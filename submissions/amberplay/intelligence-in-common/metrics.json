@@ -657,7 +657,7 @@
     },
     "public_context_clipped_feature_count": {
       "status": "known",
-      "value": 901.0,
+      "value": 985.0,
       "unit": "count",
       "source_files": [
         "visual/assets/public-context.json"
@@ -667,7 +667,7 @@
       "assumptions": [
         "A-EXISTING-001"
       ],
-      "interpretation_rule": "901 retained features after zero-pad strict vertex-run clipping and sampling; not a complete inventory or surveyed base"
+      "interpretation_rule": "985 retained features after zero-pad strict vertex-run clipping and sampling, including the added Dazhongsi public-map road and rail extract; not a complete inventory or surveyed base"
     },
     "statutory_heritage_anchor_count": {
       "status": "known",
@@ -906,13 +906,61 @@
         "visual/assets/public-context.json",
         "visual/assets/permit-compiler-runner.js"
       ],
-      "formula": "bbox intersections of selected actions with sampled public-map buildings plus desktop exclusion zones",
+      "formula": "bbox intersections with sampled public-map buildings and desktop exclusions, plus exact segment intersections between the selected Dazhongsi line and registered public-map road/rail lines",
       "confidence": "medium",
       "assumptions": [
         "A-EXISTING-001",
         "A-OPERATIONS-001"
       ],
-      "interpretation_rule": "zero desktop collisions is a coarse pre-screen, not proof of rights, fire, traffic, heritage, engineering clearance or field feasibility"
+      "interpretation_rule": "zero desktop collisions now includes the Dazhongsi road/rail conflict that invalidated the prior selected line; it remains a desktop pre-screen, not proof of rights, fire, traffic, heritage, engineering clearance or field feasibility"
+    },
+    "selected_spatial_band_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design-actions-public-context.json",
+        "visual/assets/permit-compiler-runner.js",
+        "assets/figures/key-areas.png"
+      ],
+      "formula": "count(conditionally selected actions with a complete site-specific spatial_band)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001",
+        "A-OPERATIONS-001"
+      ],
+      "interpretation_rule": "three conditional design bands share an ordinary route, memory seam and removable AI side-band but have different permanent edges; all widths remain field-pending targets"
+    },
+    "ordinary_clear_route_target_m_each": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/design-actions-public-context.json",
+        "visual/assets/permit-compiler-runner.js"
+      ],
+      "formula": "spatial_band.ordinary_clear_route_target_m for every selected action",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "self-defined minimum design target for the ordinary step-free line; not a surveyed existing width or statutory road requirement"
+    },
+    "dazhongsi_selected_public_map_road_rail_intersection_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design-actions-public-context.json",
+        "visual/assets/public-context.json",
+        "visual/assets/permit-compiler-runner.js"
+      ],
+      "formula": "exact segment intersections of selected DA-DZS-B with registered Dazhongsi public-map road and railway LineStrings",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "interpretation_rule": "the previous diagonal selected line was rejected after added public-map road/rail context exposed crossings; zero for the revised north-side service-foyer line remains desktop-only and does not prove field clearance"
     },
     "public_context_processing_pad_deg": {
       "status": "known",

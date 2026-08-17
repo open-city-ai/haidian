@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v4.0"
+iteration: "v5.0"
 summary: "以京张铁路遗址公园慢行主轴为脊梁，由两台并列引擎驱动：空间引擎'共行断面语法（Co-Mobility Cross-Section Grammar）'——四种断面原型（专用段2.5m/共享段/行人优先段/测试步道2.0m）× 四级速度分区（5/8/10/15 km/h）× 冲突测试场，使低速机器人与行人的共存规则从几何约束中生成，5000次确定性抽样验证'专用脊柱+共享支线'组合优于替代方案；治理引擎'共行执照（Co-Mobility License，BASE→BOOST→BLACKOUT→BEQUEST 四阶段合同 + G0-G4 五门验收，合同形态受 jingzhang-168 启发）'——12份执照合同×7规则分支推演中60条被阻断，证明门槛真实存在。方案配套 15.4km 专用+3.4km 共享车道、六座智递驿站、两座充电维保基地、12张AI场景卡（含4张附完整协议的测试验证场景）、8类用户画像、3个AI朝圣地标、7个全球生态案例、Logo实际样张、荣誉展示系统与七组件库、三条转化路径、运营KPI体系，形成可体验、可验证、可推广的双引擎低速机器人共行网络概念方案。"
 tracks: ["robotics-autonomous-mobility", "ai-origin-community"]
 scenarios: ["robot-delivery-low-speed", "ai-traffic-walkability"]
@@ -24,7 +24,7 @@ scenarios: ["robot-delivery-low-speed", "ai-traffic-walkability"]
 
 **不声称声明。** 本方案未开展任何现场踏勘、入户访谈、配送 OD 调查或人流计数；所有内容均为基于公开公告、任务书与开放数据的概念设计建议，不构成政府审定结论、实施承诺或对任何供应商的指定 [source:official-announcement]。指标中标 `unknown` 者为方向性占位，待官方数据与专业团队深化后补全。
 
-**迭代说明。** 本方案为第四次迭代：v1（68/100）建立空间结构；v2（75/100）引入执照治理与证据制品；v3（68/100）将断面语法单独立为主概念、执照降格——结果表明两引擎需要并列而非取舍；v4 恢复双引擎并列，并补齐评审点名的可审成果：Logo 实际样张（`visual/assets/logo-specimen.svg`）、agent.4 荣誉展示系统与七组件库（`visual/assets/honor-display-system.json`）、agent.6 三条转化路径（`visual/assets/conversion-pathways.json`）、四个测试场景的完整协议与停止条件（`visual/assets/test-scenario-protocols.json`）。
+**迭代说明。** 本方案为第五次迭代：v1（68/100）建立空间结构；v2（75/100）引入执照治理与证据制品；v3（68/100）将断面语法单独立为主概念、执照降格——结果表明两引擎需要并列而非取舍；v4 恢复双引擎并列，并补齐评审点名的可审成果：Logo 实际样张（`visual/assets/logo-specimen.svg`）、agent.4 荣誉展示系统与七组件库（`visual/assets/honor-display-system.json`）、agent.6 三条转化路径（`visual/assets/conversion-pathways.json`）、四个测试场景的完整协议与停止条件（`visual/assets/test-scenario-protocols.json`）。
 
 ## 设计依据与资料清单
 
@@ -156,6 +156,32 @@ scenarios: ["robot-delivery-low-speed", "ai-traffic-walkability"]
 更新框架以"**零大拆大建、轻设施先行**"为原则：共行网先以车道划线、模块化驿站、临时充电设施启动，可迁移、可逆、可退出；建筑规模与强度指标全部 `status=unknown` 待官方控规条件 [depth:development_intensity_controls] [depth:land_use_layout]。
 
 **"退得干"的空间兜底。** 断面语法的设计使"退得干"不依赖运营方善意，而由空间结构本身保证：所有驿站保留人工取件窗口与电话下单通道，所有机器人车道在停运后可瞬时还原为慢行通道（专用段拆除隔离恢复步行，共享段擦除色带恢复原状），所有充电设施可断电收储。空间上不存在"必须依赖机器人才能运转"的环节——断面语法定义的是叠加层，不是替换层 [E:ROBOT-V2-LICENSE-PROTOCOL]。
+
+### 动态控制层：共行信号系统（本方案原创，v5）
+
+断面语法是**静态契约**（谁让行、多快），但运行是**动态的**：同一断面同一时刻可能有多台机器人、人流高峰、天气变化。本方案从铁路信号学移植方法论（非形式），把静态契约升级为动态控制——**共行信号系统（Co-Mobility Signaling）** [E:ROBOT-V5-SIGNALING]。
+
+**三条信号规则：**
+- **闭塞区间（Block Section）**：每个断面是一个闭塞区间，同一时刻同一区间只允许一台机器人；进入必须"闭塞请求 → 获准 → 进入 → 出让"四步，出让后区间恢复自由。这借鉴铁路"同一区间同一列车"的安全逻辑——机器人不是靠"自觉避让"，而是靠区间独占。
+- **信号联锁（Interlocking）**：机器人状态与区间状态互锁——区间有人流高峰、天气恶化、维护作业或冲突告警时，禁止机器人进入；行人优先段永远优先于机器人。联锁是物理性的：状态不满足，信号不开放。
+- **调度集中（Centralized Dispatch）**：调度中心持有全区间信号表，每个区间状态公开可查、可审计；调度记录进入保障台账。区间状态与信号表不符即触发调度告警与人工复核。
+
+**负空间基线（设计起点，非应急预案）。** 慢行系统完整性是共行信号系统的设计起点：无机器人时，所有区间仍是完整、连续、可用的步行/骑行空间——专用段是绿道、共享段是慢行路、行人优先段本质就是步行空间、测试步道撤除隔离后恢复为步道。**信号系统只控制机器人存在，从不控制行人空间**；机器人停运不是"降级"，而是回到基线 [data:visual/assets/signaling-state-table.json#negative-baseline]。
+
+**闭塞区间登记（8 个区间，完整见 `visual/assets/signaling-grammar.json`）：**
+
+| 区间 | 断面类型 | 长度 | 限速 | 联锁条件（不满足即禁止进入） |
+| --- | --- | --- | --- | --- |
+| 主廊北段 | 专用段 | 2.6km | 15 | 人流高峰/天气恶化/维护/冲突告警 |
+| 主廊中段 | 专用段 | 3.1km | 15 | 人流高峰/冲突告警/维护 |
+| 主廊南段 | 专用段 | 2.8km | 15 | 人流高峰/站点潮汐/天气恶化 |
+| 共享段东支 | 共享段 | 1.2km | 10 | 人流高峰/冲突告警 |
+| 共享段西支 | 共享段 | 1.1km | 10 | 人流高峰/学校上下学高峰 |
+| 文保范围段 | 行人优先段 | 0.8km | 5 | 永远行人优先/机器人随流/文保活动 |
+| 广场周边段 | 行人优先段 | 0.6km | 5 | 永远行人优先/活动 |
+| 测试步道 | 测试步道 | 0.9km | 8 | 封闭测试/协议 |
+
+信号系统的状态机为"自由 → 请求 → 占用 → 出让 → 自由"，与 G 门衔接：G2 多机门验证的是调度集中的多区间协同，G3 共行门验证的是联锁条件下的人机冲突率。信号表全部 `synthetic_only`、`not_authorized_not_run`，现场状态须由调度中心实时登记 [data:visual/assets/signaling-grammar.json#block]。
 
 ## 重点区域详细设计
 

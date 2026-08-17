@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Centered on the concept of the 'Trifold': this corridor overprints three national basic-capability leaps — the Rail Layer (the first trunk railway designed and built by Chinese engineers, 1909), the Academy Layer (the 1952 reorganization of university departments and the systematic deployment of a knowledge network in the Eight Colleges of Xueyuan Road), and the Intelligence Meridian Layer (the contemporary AI innovation cluster, with interfaces reserved for the next general-purpose technology). The proposal organizes space through One Spine, Two Corridors, Three Harbors, and Nine Segments, Ten Stations, using K0–K9 station markers, public memory nodes, ten scenario cards, and a three-generation narrative to build the AI innovation belt into an urban living room that ordinary people can use every day. All spatial conclusions are based on a provisional boundary and are conceptual recommendations only."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "youth-friendly-public-space"]
 scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.0"
+iteration: "v1.1"
 ---
 
 # Jingzhang Trifold: Rail · Academy · Intelligence Meridian — A Conceptual Urban Design Proposal for the Centennial Jing-Zhang AI Innovation Belt
@@ -24,7 +24,7 @@ The use of sources strictly follows the usage grading of the public source regis
 
 It must be stated honestly: as of this submission, the organizer has not released the official precise boundary or key-area polygons. The site boundary and the three key areas in this proposal all adopt the **Provisional Boundary** registered in the repository. It is used only for AI generation, visualization, and local self-checking, and must not be interpreted as an official planning boundary, a basis for approval, or a basis for precise area figures; once the official polygons are published, land use, buildings, roads, green space, public space, phasing, and all area metrics must be recalculated. This organizer data gap does not block content scoring [data:geometry/site_boundary.geojson#PROV-SITE-001].
 
-![Evidence chain of sources and the structure of the submission package](assets/figures/site-overview.en.png)
+![Spatial site overview: One Spine, Two Corridors, Three Harbors, Nine Segments Ten Stations](assets/figures/site-overview.en.png)
 
 The machine-audit layer of this proposal is fully preserved in `sources.json`, `metrics.json`, `compliance_matrix.json`, `standard_matrix.json`, `design_depth_matrix.json`, and `geometry/*.geojson`; the main text annotates only one to three pieces of direct evidence beside key judgments. Any area or ratio can be recalculated from the submitted GeoJSON under the EPSG:4548 projection [metric:site_area_sqm].
 

@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以'三叠'为核心概念：这条走廊叠印着三次国家基础能力跃迁——铁轨层（1909 中国人自建的第一条干线铁路）、学路层（1952 院系调整与学院路八大学院的知识网络体系化部署）、智脉层（当代 AI 创新集群，并为下一代通用技术预留接口）。方案以一脊两廊三港、九程十站组织空间，用 K0–K9 站标、公共记忆节点、十张场景卡和三代人的叙事，把 AI 创新带建成普通人也能日常使用的城市客厅。全部空间结论基于临时边界，属概念建议。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "youth-friendly-public-space"]
 scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.0"
+iteration: "v1.1"
 ---
 
 # 京张三叠 JINGZHANG TRIFOLD：铁轨·学路·智脉——百年京张AI创新带城市设计概念方案
@@ -24,7 +24,7 @@ iteration: "v1.0"
 
 必须如实说明：截至本方案提交，组织方尚未公布官方精确边界与重点区 polygon，本方案的场地边界与三处重点区均采用仓库登记的**临时粗略边界**（provisional boundary）。它只用于 AI 生成、可视化与本地自检，不得解释为官方红线、审批依据或精确面积依据；官方 polygon 发布后，用地、建筑、道路、绿地、公共空间、分期与全部面积指标都需重算。该组织方数据缺口不阻断内容评分 [data:geometry/site_boundary.geojson#PROV-SITE-001]。
 
-![资料证据链与提交包关系图](assets/figures/site-overview.png)
+![场地空间总览图：一脊两廊三港九程十站](assets/figures/site-overview.png)
 
 本方案的机器审计层完整保存在 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json` 与 `geometry/*.geojson` 中；正文只在关键判断旁标注一至三条直接证据。任何面积、比例都可以在 EPSG:4548 投影下从提交的 GeoJSON 复算 [metric:site_area_sqm]。
 

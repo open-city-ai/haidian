@@ -52,6 +52,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from participant_owner_aliases import authorized_legacy_submission_dirs
+
 
 GITHUB_HARD_FILE_LIMIT = 100 * 1024 * 1024
 LARGE_FILE_WARNING = 25 * 1024 * 1024
@@ -128,18 +130,20 @@ def check_push(repo_root: Path, branch: str) -> dict[str, Any]:
     }
 
 
-def run_self_check(repo_root: Path, submission_rel: str, pr_author: str) -> dict[str, Any]:
-    completed = run(
-        [
-            sys.executable,
-            str(repo_root / "scripts" / "self_check_submission.py"),
-            submission_rel,
-            "--pr-author",
-            pr_author,
-            "--json",
-        ],
-        repo_root,
-    )
+def run_self_check(
+    repo_root: Path, submission_rel: str, pr_author: str, pr_author_id: int | None
+) -> dict[str, Any]:
+    command = [
+        sys.executable,
+        str(repo_root / "scripts" / "self_check_submission.py"),
+        submission_rel,
+        "--pr-author",
+        pr_author,
+        "--json",
+    ]
+    if pr_author_id is not None:
+        command.extend(["--pr-author-id", str(pr_author_id)])
+    completed = run(command, repo_root)
     try:
         output: Any = json.loads(completed.stdout) if completed.stdout.strip() else {}
     except json.JSONDecodeError:
@@ -165,11 +169,15 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
     parts = Path(submission_rel).parts
     blockers: list[str] = []
     warnings: list[str] = []
+    authorized_legacy_dirs = authorized_legacy_submission_dirs(
+        repo_root, args.pr_author_id, args.pr_author
+    )
     if len(parts) != 3 or parts[0] != "submissions":
         blockers.append("submission path must be submissions/<github-login>/<proposal-slug>")
-    elif parts[1] != args.pr_author:
+    elif parts[1] != args.pr_author and submission_rel not in authorized_legacy_dirs:
         blockers.append(
-            f"submission owner '{parts[1]}' does not exactly match PR author '{args.pr_author}'"
+            f"submission owner '{parts[1]}' does not exactly match PR author '{args.pr_author}'; "
+            "for a maintainer-approved login alias, pass the stable GitHub user ID with --pr-author-id"
         )
     if not submission_dir.is_dir():
         blockers.append(f"submission directory does not exist: {submission_rel}")
@@ -241,7 +249,9 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
 
     self_check: dict[str, Any] | None = None
     if not args.skip_self_check and submission_dir.is_dir():
-        self_check = run_self_check(repo_root, submission_rel, args.pr_author)
+        self_check = run_self_check(
+            repo_root, submission_rel, args.pr_author, args.pr_author_id
+        )
         if not self_check["ok"]:
             blockers.append("submission self-check failed; repair the reported issues before pushing")
 
@@ -317,6 +327,11 @@ def main(argv: list[str] | None = None) -> int:
         "--pr-author",
         required=True,
         help="Exact GitHub login of the PR author; must match the directory owner",
+    )
+    parser.add_argument(
+        "--pr-author-id",
+        type=int,
+        help="Stable numeric GitHub user ID; required only for a maintainer-approved login alias",
     )
     parser.add_argument(
         "--repo-root",

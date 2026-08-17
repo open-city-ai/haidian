@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "dataset_id": "jingzhang-two-answers",
   "title": {
-    "zh": "京张双答：城市采纳回执",
-    "en": "Jing-Zhang Two Answers: Civic Adoption Receipt"
+    "zh": "京张双答：把回执画进城市",
+    "en": "Jing-Zhang Two Answers: Draw the Receipt into the City"
   },
   "status_note": {
     "zh": "运营绩效均待现场基线；known 仅用于可复算的文档覆盖数。",
@@ -250,7 +250,85 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "V5-Z-BYPASS",
+        "V5-Z-EMERGENCY",
+        "V5-Z-REMOVAL",
+        "V5-Z-TRIAL",
+        "V5-Z-BUFFER",
+        "V5-Z-EVIDENCE",
+        "V5-Z-REPRO",
+        "V5-Z-CABINET",
+        "V5-Z-ENT-W",
+        "V5-Z-ENT-E",
+        "V5-Z-STAFF-01",
+        "V5-Z-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "发现无权数据、无法解释的外联或复现环境越界时立即停止。",
+          "en": "Stop T1 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     },
     {
       "id": "SCN-002",
@@ -451,7 +529,85 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_concept_design_complete",
+      "geometry_refs": [
+        "V5-Z-BYPASS",
+        "V5-Z-EMERGENCY",
+        "V5-Z-REMOVAL",
+        "V5-Z-TRIAL",
+        "V5-Z-BUFFER",
+        "V5-Z-EVIDENCE",
+        "V5-Z-REPRO",
+        "V5-Z-CABINET",
+        "V5-Z-ENT-W",
+        "V5-Z-ENT-E",
+        "V5-Z-STAFF-01",
+        "V5-Z-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "任何人进入安全缓冲区、连续两次近失误或急停失效即停止。",
+          "en": "Stop T2 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "每日开场检查、每次试验前联锁检查、每周资产盘点、每月公开复盘",
+        "en": "Daily opening check, interlock check before every trial, weekly asset inventory, monthly public review"
+      },
+      "receipt_state": "E1_READY_E2_PENDING"
     },
     {
       "id": "SCN-003",
@@ -650,7 +806,85 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "V5-Z-BYPASS",
+        "V5-Z-EMERGENCY",
+        "V5-Z-REMOVAL",
+        "V5-Z-TRIAL",
+        "V5-Z-BUFFER",
+        "V5-Z-EVIDENCE",
+        "V5-Z-REPRO",
+        "V5-Z-CABINET",
+        "V5-Z-ENT-W",
+        "V5-Z-ENT-E",
+        "V5-Z-STAFF-01",
+        "V5-Z-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "超过许可噪声/热环境、异常外传或降级失败时停止。",
+          "en": "Stop T3 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     },
     {
       "id": "SCN-004",
@@ -849,7 +1083,88 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "V5-A-PASS-01",
+        "V5-A-PASS-02",
+        "V5-A-PASS-03",
+        "V5-A-EMERGENCY",
+        "V5-A-REMOVAL",
+        "V5-A-HALL",
+        "V5-A-PLUGIN",
+        "V5-A-WAIT",
+        "V5-A-DESK",
+        "V5-A-BACK",
+        "V5-A-ENT-NW",
+        "V5-A-ENT-CW",
+        "V5-A-ENT-SW",
+        "V5-A-STAFF-01",
+        "V5-A-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "高风险事项被自动决定、连续误分诊或人工窗口不可用时停止 AI。",
+          "en": "Stop S1 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     },
     {
       "id": "SCN-005",
@@ -1050,7 +1365,88 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_concept_design_complete",
+      "geometry_refs": [
+        "V5-A-PASS-01",
+        "V5-A-PASS-02",
+        "V5-A-PASS-03",
+        "V5-A-EMERGENCY",
+        "V5-A-REMOVAL",
+        "V5-A-HALL",
+        "V5-A-PLUGIN",
+        "V5-A-WAIT",
+        "V5-A-DESK",
+        "V5-A-BACK",
+        "V5-A-ENT-NW",
+        "V5-A-ENT-CW",
+        "V5-A-ENT-SW",
+        "V5-A-STAFF-01",
+        "V5-A-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "出现身份误用、翻译改变权利义务或错误无法及时纠正时停止。",
+          "en": "Stop S2 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "每日开场检查、每次试验前联锁检查、每周资产盘点、每月公开复盘",
+        "en": "Daily opening check, interlock check before every trial, weekly asset inventory, monthly public review"
+      },
+      "receipt_state": "E1_READY_E2_PENDING"
     },
     {
       "id": "SCN-006",
@@ -1249,7 +1645,88 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "V5-A-PASS-01",
+        "V5-A-PASS-02",
+        "V5-A-PASS-03",
+        "V5-A-EMERGENCY",
+        "V5-A-REMOVAL",
+        "V5-A-HALL",
+        "V5-A-PLUGIN",
+        "V5-A-WAIT",
+        "V5-A-DESK",
+        "V5-A-BACK",
+        "V5-A-ENT-NW",
+        "V5-A-ENT-CW",
+        "V5-A-ENT-SW",
+        "V5-A-STAFF-01",
+        "V5-A-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "抓取无许可内容、生成不可追溯建议或压过社区选择时停止。",
+          "en": "Stop S3 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     },
     {
       "id": "SCN-007",
@@ -1449,7 +1926,74 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "baseline_spine.heritage_stop"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "出现无来源断言、错误未纠正或影响遗产安全时停止。",
+          "en": "Stop S4 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     },
     {
       "id": "SCN-008",
@@ -1650,7 +2194,74 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "baseline_spine.accessible_route"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "导航引向障碍、无障碍路径中断或退出后仍留存轨迹时停止。",
+          "en": "Stop S5 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     },
     {
       "id": "SCN-009",
@@ -1851,7 +2462,74 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "xiaoyuehe.climate_rest_node"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "预警来源中断、现场值异常或提示与人工判断冲突时转人工并停止。",
+          "en": "Stop S6 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     },
     {
       "id": "SCN-010",
@@ -2055,7 +2733,88 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_concept_design_complete",
+      "geometry_refs": [
+        "V5-D-NS",
+        "V5-D-EW",
+        "V5-D-EMERGENCY",
+        "V5-D-REMOVAL",
+        "V5-D-FORECOURT",
+        "V5-D-TRIAL",
+        "V5-D-EVIDENCE",
+        "V5-D-SERVICE",
+        "V5-D-CONTROL",
+        "V5-D-ENT-N",
+        "V5-D-ENT-E",
+        "V5-D-ENT-S",
+        "V5-D-ENT-W",
+        "V5-D-STAFF-01",
+        "V5-D-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "发生碰撞/近失误、定位失效、人工接管超时或投诉集中时停止。",
+          "en": "Stop S7 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "每日开场检查、每次试验前联锁检查、每周资产盘点、每月公开复盘",
+        "en": "Daily opening check, interlock check before every trial, weekly asset inventory, monthly public review"
+      },
+      "receipt_state": "E1_READY_E2_PENDING"
     },
     {
       "id": "SCN-011",
@@ -2256,7 +3015,88 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "V5-D-NS",
+        "V5-D-EW",
+        "V5-D-EMERGENCY",
+        "V5-D-REMOVAL",
+        "V5-D-FORECOURT",
+        "V5-D-TRIAL",
+        "V5-D-EVIDENCE",
+        "V5-D-SERVICE",
+        "V5-D-CONTROL",
+        "V5-D-ENT-N",
+        "V5-D-ENT-E",
+        "V5-D-ENT-S",
+        "V5-D-ENT-W",
+        "V5-D-STAFF-01",
+        "V5-D-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "人工不可用、错误影响办事权利或未授权采集身份信息时停止。",
+          "en": "Stop S8 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     },
     {
       "id": "SCN-012",
@@ -2458,12 +3298,177 @@
           "revise",
           "stop"
         ]
-      }
+      },
+      "evidence_level": "E1_catalogue_trace_complete",
+      "geometry_refs": [
+        "V5-D-NS",
+        "V5-D-EW",
+        "V5-D-EMERGENCY",
+        "V5-D-REMOVAL",
+        "V5-D-FORECOURT",
+        "V5-D-TRIAL",
+        "V5-D-EVIDENCE",
+        "V5-D-SERVICE",
+        "V5-D-CONTROL",
+        "V5-D-ENT-N",
+        "V5-D-ENT-E",
+        "V5-D-ENT-S",
+        "V5-D-ENT-W",
+        "V5-D-STAFF-01",
+        "V5-D-UTILITY"
+      ],
+      "baseline_measurement_protocol": {
+        "denominator": {
+          "zh": "同一任务下全部符合准入条件的普通服务使用尝试",
+          "en": "All eligible baseline-service attempts for the same task"
+        },
+        "sample_window": {
+          "zh": "E2 原型运行后确定；同时记录时段、天气、辅助需求与退出原因",
+          "en": "Set after the E2 prototype; record time, weather, assistance needs and exit reason"
+        },
+        "minimum_fields": [
+          "task_completion",
+          "assistance_request",
+          "safety_event",
+          "fallback_used",
+          "appeal_lodged"
+        ],
+        "current_status": "not_field_run"
+      },
+      "trial_threshold_rule": {
+        "no_regression": {
+          "zh": "普通服务的可达性、可靠性和公平性不得降低",
+          "en": "Accessibility, reliability and equity of the baseline may not regress"
+        },
+        "zero_tolerance": {
+          "zh": "计数漂移、容量接近上限、出口受阻或任何安全事件时停止入场/AI。",
+          "en": "Stop S9 when safety, rights, data minimisation, human takeover or reliable degradation fails; the human lead has final authority."
+        },
+        "ai_increment_threshold": {
+          "zh": "在 E2 基线完成后由人类场景委员会登记，当前为 unknown",
+          "en": "Registered by the human scene committee after E2 baseline completion; currently unknown"
+        }
+      },
+      "permit_dependencies": [
+        {
+          "zh": "场地与资产方同意",
+          "en": "Site and asset-owner consent"
+        },
+        {
+          "zh": "消防与疏散复核",
+          "en": "Fire and egress review"
+        },
+        {
+          "zh": "无障碍审计",
+          "en": "Accessibility audit"
+        },
+        {
+          "zh": "临时用电与网络隔离",
+          "en": "Temporary power and network isolation"
+        },
+        {
+          "zh": "设备安全与保险",
+          "en": "Equipment safety and insurance"
+        },
+        {
+          "zh": "活动或交通组织许可",
+          "en": "Event or traffic-management permit"
+        }
+      ],
+      "maintenance_cycle": {
+        "zh": "由复制场景运营者在 E2 前登记",
+        "en": "Registered by the replication-scene operator before E2"
+      },
+      "receipt_state": "CATALOGUE_READY_E2_PENDING"
     }
   ],
   "subtitle": {
     "zh": "普通服务先成立，AI 通过同题、同人、同空间的公开验收后，才获得城市采用资格。",
     "en": "The baseline stands first; AI earns civic adoption only through a public same-task, same-user, same-space test."
   },
-  "field_status": "not_field_run"
+  "field_status": "not_field_run",
+  "publication_version": "V5",
+  "evidence_ladder": [
+    {
+      "id": "E0",
+      "state": "public_source",
+      "label": {
+        "zh": "公开资料已登记",
+        "en": "Public sources registered"
+      }
+    },
+    {
+      "id": "E1",
+      "state": "concept_design",
+      "label": {
+        "zh": "概念设计可追踪",
+        "en": "Concept design traceable"
+      }
+    },
+    {
+      "id": "E2",
+      "state": "baseline_prototype_pending",
+      "label": {
+        "zh": "普通服务原型待建",
+        "en": "Baseline prototype pending"
+      }
+    },
+    {
+      "id": "E3",
+      "state": "controlled_trial_pending",
+      "label": {
+        "zh": "受控试验待运行",
+        "en": "Controlled trial pending"
+      }
+    },
+    {
+      "id": "E4",
+      "state": "civic_adoption_pending",
+      "label": {
+        "zh": "城市采用待决定",
+        "en": "Civic adoption pending"
+      }
+    }
+  ],
+  "hero_operating_framework": {
+    "raci_roles": [
+      "asset_owner_representative",
+      "site_operator",
+      "baseline_service_staff",
+      "ai_operator",
+      "safety_officer",
+      "data_steward",
+      "public_representative"
+    ],
+    "permit_prerequisites": [
+      {
+        "zh": "场地与资产方同意",
+        "en": "Site and asset-owner consent"
+      },
+      {
+        "zh": "消防与疏散复核",
+        "en": "Fire and egress review"
+      },
+      {
+        "zh": "无障碍审计",
+        "en": "Accessibility audit"
+      },
+      {
+        "zh": "临时用电与网络隔离",
+        "en": "Temporary power and network isolation"
+      },
+      {
+        "zh": "设备安全与保险",
+        "en": "Equipment safety and insurance"
+      },
+      {
+        "zh": "活动或交通组织许可",
+        "en": "Event or traffic-management permit"
+      }
+    ],
+    "decision_rule": {
+      "zh": "普通服务不得退化；安全类事件零容忍；AI 增量阈值只在 E2 普通服务基线建立后由人类场景委员会确认。",
+      "en": "The baseline must not regress; safety events are zero-tolerance; AI-increment thresholds are set by the human scene committee only after the E2 baseline is established."
+    }
+  }
 }

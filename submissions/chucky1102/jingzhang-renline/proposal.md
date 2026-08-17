@@ -7,12 +7,24 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以詹天佑京张铁路标志性的人字形线路为总体概念:人字形折返=以迭代换爬升,暗合AI训练的反向传播;人字=以人为本的AI城区。方案提出一脊两轨三折返、东西七缝、K标十驿的空间结构,12张AI场景卡、6类用户画像、4处AI朝圣地标与人字线年度活动体系,全部空间内容为概念建议,基于provisional边界生成并待官方红线后整包重算。"
 tracks: ["robotics-autonomous-mobility", "ai-public-services", "jingzhang-heritage-narrative"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.4"
+iteration: "v1.5"
 ---
 
 # 人字线 RENLINE:百年京张AI创新带城市设计方案
 
 > 1909年,詹天佑在关沟段用一个"人"字形线路解决了当时中国工业能力爬不上八达岭陡坡的难题——不硬冲,而是折返:退一步、换个方向、再爬升。这恰好是今天人工智能最基本的学习方式:迭代、回传、再逼近。百年之后,本方案把这套"折返智慧"转译为京张AI创新带的空间与制度原型,取名**人字线 RENLINE**。"人"字的两笔,一笔是百年京张的历史轨,一笔是都市AI生活的未来轨;两笔交汇之处,是以人为本的AI融合创新。
+
+## 一页判读:这条带子在地上变成什么
+
+人字线不做一排AI装置。它把京张遗址公园读成一条公共主脊,人字的两笔逐笔承接任务书三大定位:历史轨承接百年京张文化带,未来轨承接都市AI生活体验带,两笔交汇处即AI融合创新带 [source:AGENT-TASKBOOK] [depth:overall_spatial_structure]。
+
+主脊上落三处折返站,逐个承接任务书的三区角色。**众智园AI自主创新加速区(登顶站,约192.1公顷)**负责AI全栈自主创新体系与AI治理全球话语权,以全链条中试与验证设施为主;**北京AI原点社区(原点站,约104.3公顷)**负责世界级AI创新生态,把研发日常化为生活,沿街首层全部改为开发者友好界面;**大钟寺AI产业聚集区(钟声站,约72.0公顷)**负责智能原生新业态,并向觉生寺文物低强度退让 [data:geometry/key_areas.geojson#PROV-KEY-002] [depth:three_key_area_detailed_design]。两翼只承担接口角色,不编空间实质:中关村科技服务翼把要素全球化配置、中关村IP与资本接入三站;小月河场景赋能翼把场景赋能与社区、蓝绿需求接入三站 [source:AGENT-TASKBOOK] [data:geometry/public_space.geojson]。北纬社区、未来科学城、怀柔科学城、北京经开区与京津冀只作为任务书要求的协同接口登记,不代表已确认合作 [depth:three_level_scope_framework]。
+
+每一次试点都走同一条公共回路——**折返协议**:登记、限时、亮灯、复审、折返、留痕。没有普通服务等价路径、人工接管责任、停止条件与清权证据,就不进入下一阶段。三色状态与量化触发/恢复判据写在 `visual/assets/switchback-protocol.json`,并配机器可校验合同(schema+正负样例+零依赖校验器),任何人可一行复算 `node visual/assets/run-switchback-validation.js` [data:visual/assets/switchback-validation-receipt.json] [depth:phasing_implementation]。该协议已被 loml13、Dytchem、RichardGuan1 三份同行方案署名采用,采用登记在 Issue #1119。
+
+**证据边界先说在前面。**全部边界为组织方 provisional,官方红线、控规条件、现状建筑与权属、市政容量、文物法定范围五类缺口逐项登记,任一公布后对应图层与指标整包重算 [data:geometry/site_boundary.geojson] [depth:risk_missing_data]。协议校验通过只证明协议逻辑自洽,**不证明现场成效**;现场验证为零,爬升等级如实停在G0-G2 [depth:metrics_recalculation]。本方案不主张合作、供地、投资、审批或现场绩效已经成立 [source:OFFICIAL-ANNOUNCEMENT]。
+
+![一脊两轨三折返:三处折返站逐个承接任务书三区角色,两翼作为协同接口接入主脊,全部边界为 provisional](assets/figures/site-overview.png)
 
 ## 评审导航:七维执行摘要
 
@@ -126,9 +138,9 @@ iteration: "v1.4"
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
-**六类用户画像([metric:persona_count],回应 agent.3)。**①AI研究员/博士生:需要十分钟生活圈内的实验设施与深夜食堂,痛点是通勤与居住成本;②创业者与独立开发者:需要低租金工位、算力券与路演曝光,痛点是与大厂和高校的连接效率;③产业工程师:需要测试场景与中试设施,痛点是审批周期;④社区原住民与长者:需要更新不驱逐、服务可及,痛点是数字鸿沟与施工扰动;⑤青少年与家庭访客:需要可触摸的AI科普与安全的公共空间;⑥国际访问者与会议客商:需要多语言无障碍与高品质会展住宿。每类画像映射到具体空间:①→原点研发区与人才公寓,②→开发者街面与市集,③→众智园测试场,④→北下关与皂君庙宜居带 [data:geometry/land_use.geojson#LU-BE],⑤→绿脊K标科普驿,⑥→登顶广场会展带。
+**六类用户画像([metric:persona_count],回应 agent.3 [source:AGENT-TASKBOOK])。**①AI研究员/博士生:需要十分钟生活圈内的实验设施与深夜食堂,痛点是通勤与居住成本;②创业者与独立开发者:需要低租金工位、算力券与路演曝光,痛点是与大厂和高校的连接效率;③产业工程师:需要测试场景与中试设施,痛点是审批周期;④社区原住民与长者:需要更新不驱逐、服务可及,痛点是数字鸿沟与施工扰动;⑤青少年与家庭访客:需要可触摸的AI科普与安全的公共空间;⑥国际访问者与会议客商:需要多语言无障碍与高品质会展住宿。每类画像映射到具体空间:①→原点研发区与人才公寓,②→开发者街面与市集,③→众智园测试场 [data:geometry/key_areas.geojson#PROV-KEY-002],④→北下关与皂君庙宜居带 [data:geometry/land_use.geojson#LU-BE],⑤→绿脊K标科普驿 [data:geometry/green_space.geojson],⑥→登顶广场会展带 [data:geometry/public_space.geojson]。
 
-**12张AI场景卡([metric:scenario_card_count]),其中3个为产业测试验证场景([metric:industry_test_scenario_count])。**每张卡按"位置/服务对象/运行数据/隐私边界/人工复核/运营主体"六要素组织,空间锚点均可在图层中定位:
+**12张AI场景卡([metric:scenario_card_count]),其中3个为产业测试验证场景([metric:industry_test_scenario_count])。**每张卡按"位置/服务对象/运行数据/隐私边界/人工复核/运营主体"六要素组织,空间锚点均可在图层中定位 [depth:three_key_area_detailed_design],隐私边界与人工复核逐卡按折返协议登记 [data:visual/assets/switchback-protocol.json]:
 
 | # | 场景卡 | 空间锚点 | 服务对象 | 隐私边界与人工复核 |
 | --- | --- | --- | --- | --- |
@@ -242,7 +254,7 @@ node visual/assets/run-switchback-validation.js
 
 ## 指标体系、面积复算与合规矩阵
 
-全部空间指标由 GeoJSON 在 EPSG:4548 下复算 [depth:metrics_recalculation],与 `metrics.json` 一致,HTML 展示值亦与之对齐。核心指标逐项列表如下(每项一个可校验标签,设计含义随行说明;按表格呈现以降低正文连排引用密度):
+全部空间指标由 GeoJSON 在 EPSG:4548 下复算 [depth:metrics_recalculation] [data:geometry/land_use.geojson] [data:geometry/green_space.geojson],与 `metrics.json` 一致,HTML 展示值亦与之对齐。核心指标逐项列表如下(每项一个可校验标签,设计含义随行说明;按表格呈现以降低正文连排引用密度):
 
 | 指标 | 复算值 | 设计含义 |
 | --- | --- | --- |
@@ -270,7 +282,7 @@ node visual/assets/run-switchback-validation.js
 | 缝合街 [metric:stitch_street_count] | 7 | 按割裂分级布点 |
 | 重点区 [metric:key_area_count] | 3 | 公告确定 |
 
-容积率为 unknown:官方控制指标未公布,不作测算结论。
+容积率为 unknown [depth:development_intensity_controls]:官方控制指标未公布,不作测算结论 [source:SITE-PACKAGE]。
 
 **证据状态四分法。**全文数字统一按四态口径标注(做法致谢 147228/jingzhang-open-pulse,独立转译):**known**=EPSG:4548可复算值(上表全部面积与网络指标,受provisional边界限制);**design_target**=设计目标值(折返协议全部时限、15分钟圈、展示界面等,非政府承诺);**unknown**=官方未公布且本方案不作主张(容积率、高度、市政容量);**blocked**=需权属/文保/工程专项前置方可测算(地块级拆改留、文物法定范围、桥隧可行性)。四态之间只能靠新数据移动,不能靠改写移动。
 

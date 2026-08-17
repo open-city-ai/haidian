@@ -31,6 +31,7 @@ import sys
 from pathlib import Path
 
 from validate_submission import format_report, validate_submission
+from participant_owner_aliases import authorized_legacy_submission_dirs
 
 
 def repo_relative(path: Path, repo_root: Path) -> str:
@@ -90,6 +91,11 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("submission_dir")
     parser.add_argument("--pr-author", required=True)
+    parser.add_argument(
+        "--pr-author-id",
+        type=int,
+        help="Stable numeric GitHub user ID; required only for a maintainer-approved login alias",
+    )
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--json", action="store_true")
     parser.add_argument(
@@ -118,6 +124,9 @@ def main() -> int:
         strict_manifest_paths=strict_manifest_paths(changed_files)
         if args.strict_manifest
         else (),
+        authorized_legacy_submission_dirs=authorized_legacy_submission_dirs(
+            repo_root, args.pr_author_id, args.pr_author
+        ),
     )
     if args.json:
         print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))

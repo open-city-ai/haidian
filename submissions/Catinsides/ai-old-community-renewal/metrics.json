@@ -1,0 +1,302 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 12946690.536,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Site boundary uses provisional PROV-SITE-001; official boundary may shift area."
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-RESEARCH-001"
+      ],
+      "formula": "polygon_area(PROV-RESEARCH-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Used for upstream context; not the submitted design polygon."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3745026.45,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(KEY_AREA features))",
+      "confidence": "high",
+      "assumptions": [
+        "Key areas inherit PROV-KEY-001/002/003."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-001"
+      ],
+      "formula": "polygon_area(PROV-KEY-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-002"
+      ],
+      "formula": "polygon_area(PROV-KEY-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson#PROV-KEY-003"
+      ],
+      "formula": "polygon_area(PROV-KEY-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 94084.563,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(BUILDING_FOOTPRINT features))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept footprints only; not a full block survey."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2436749.859,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(GREEN_SPACE features))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept green polygons only."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.188214,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept green; not equal to statutory green ratio."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 182534.45,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(PUBLIC_SPACE features))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept public spaces."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.014099,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept ratio; not equal to statutory public-space ratio."
+      ]
+    },
+    "road_centerline_total_length_m": {
+      "status": "known",
+      "value": 28493.462,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(ROAD_CENTERLINE features))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept centerlines; not equal to road redlines."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/scenario_node.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/scenario_node.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features where is_test_scenario=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; concept-floor-area estimates are tracked separately as low-confidence design volumes."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(building_height)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls are not present; concept footprints do not encode height."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(building_base_area) / site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Concept footprints do not represent the statutory building density; awaiting official regulatory plan."
+    },
+    "green_ratio_official": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "statutory_green_area / site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official green ratio is not present in the public site package."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "min(building_setback)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Setback / building control line not present; design layer encodes no setbacks."
+    },
+    "land_use_total_area_sqm": {
+      "status": "known",
+      "value": 12946692.872,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE features))",
+      "confidence": "high",
+      "assumptions": [
+        "Sum of concept land-use polygons should equal site_area."
+      ]
+    },
+    "land_use_area_by_code_sqm": {
+      "status": "known",
+      "value": 12946692.872192383,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(LAND_USE area grouped by land_use_code)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept codes; not statutory. Breakdown by code is stored in geometry feature properties."
+      ],
+      "breakdown_by_code": {
+        "0701": 6714956.969,
+        "0802": 3327030.369,
+        "1401": 2904705.535
+      }
+    }
+  }
+}

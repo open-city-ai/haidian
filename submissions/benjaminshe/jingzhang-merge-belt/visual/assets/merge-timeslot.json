@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "jingzhang-merge-belt",
+  "contract": "merge-timeslot",
+  "contract_zh": "合流时隙表契约",
+  "description_zh": "时间层:每区段每日 6 类可预约时隙,令牌按『一区段一时段』互锁,交界交接班由合流公议排定。",
+  "description_en": "Time layer: 6 reservable slot types per segment per day; one token per segment per slot; handover set by public merge review.",
+  "slot_types": [
+    {"slot": "morning_care", "name_zh": "晨间照护", "name_en": "Morning care", "anchor_zh": "众智园·晨市", "priority": "public_first", "ai_mode": "quiet"},
+    {"slot": "day_rd", "name_zh": "日间研发", "name_en": "Day R&D", "anchor_zh": "主线公共研发", "priority": "open_queue", "ai_mode": "normal"},
+    {"slot": "evening_co_study", "name_zh": "傍晚共学", "name_en": "Evening co-study", "anchor_zh": "原点社区·学市", "priority": "open_queue", "ai_mode": "normal"},
+    {"slot": "night_culture", "name_zh": "夜间文化", "name_en": "Night culture", "anchor_zh": "大钟寺·夜市", "priority": "open_queue", "ai_mode": "normal"},
+    {"slot": "quiet_window", "name_zh": "安静时窗", "name_en": "Quiet window", "anchor_zh": "非必要 AI 降噪", "priority": "public_first", "ai_mode": "muted"},
+    {"slot": "merge_day_drill", "name_zh": "合流日演练", "name_en": "Merge-day drill", "anchor_zh": "年度·全城非合流验证", "priority": "public_first", "ai_mode": "non_ai"}
+  ],
+  "interlock_rules": [
+    {"rule_id": "ONE-TOKEN-PER-SEGMENT-SLOT", "rule_zh": "同一区段同时仅一枚合流令牌;不得圈占整座站前广场或连续全天运行。", "severity": "blocking"},
+    {"rule_id": "FORCED-RETURN", "rule_zh": "令牌到期强制归还;异议挂起预约待人工审查。", "severity": "blocking"},
+    {"rule_id": "NO-SILENT-PERMANENCE", "rule_zh": "防止『开放区』悄然变永久占用。", "severity": "blocking"}
+  ],
+  "fairness_principles": [
+    {"principle_id": "F-1", "name_zh": "普通通行与支流居民时段优先", "name_en": "Public and tributary residents first", "detail_zh": "晨间照护、安静时窗等公共时隙不可被预约挤占。"},
+    {"principle_id": "F-2", "name_zh": "公开排队、先到先得、重大公共用途优先", "name_en": "Open queue, first-come, major public use first", "detail_zh": "同一区段禁止连续圈占;爽约或超时未撤场自动归还并公开记录。"},
+    {"principle_id": "F-3", "name_zh": "让行即公平", "name_en": "Yielding is fairness", "detail_zh": "交界『交接班』由相邻区段合流公议排定;任何 AI 试验不得以延长自身时段为代价占用他人时间,异议可挂起预约待人工审查。"}
+  ],
+  "cross_segment_coordination": {
+    "rule_zh": "相邻区段在『交接班』处联动:下游时段以上游准点为前提,迟到即顺延并公开记录;使『何时合流』全线可预期、可追责。",
+    "rule_en": "Adjacent segments link at handover: downstream presumes upstream on time; lateness cascades and is publicly recorded."
+  },
+  "tributary_protection": {
+    "rule_zh": "任何活动不中断普通通行;没有智能设备也能获得等价服务;结束时刻、责任人与恢复方式在开始前公开。",
+    "quiet_hours_metric": "quiet_hours_per_day",
+    "parity_metric": "tributary_parity_index"
+  },
+  "self_check_rules": [
+    {"rule_id": "SLOT-TYPES-6", "check": "six slot types defined with anchor and ai_mode", "status": "pass"},
+    {"rule_id": "INTERLOCK-3", "check": "three blocking interlock rules present", "status": "pass"},
+    {"rule_id": "FAIRNESS-3", "check": "three fairness principles present", "status": "pass"}
+  ]
+}

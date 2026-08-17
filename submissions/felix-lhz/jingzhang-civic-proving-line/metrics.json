@@ -310,6 +310,58 @@
         "A-METRICS-001"
       ],
       "reason": "No participant survey or sampling protocol exists."
+    },
+    "traceable_design_geometry_count": {
+      "status": "known",
+      "value": 42,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features where id starts with V5-)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SPATIAL-ATLAS-001"
+      ]
+    },
+    "evidence_ladder_level_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(E0..E4 evidence levels)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "hero_operating_state_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-atlas.json"
+      ],
+      "formula": "count(OPEN, TRIAL, PAUSE, RETIRE)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "field_performance_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "not_field_run",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "measured only after E2 baseline and E3 controlled trial",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "V5 is an E1 concept design; no field prototype or controlled trial has occurred."
     }
   }
 }

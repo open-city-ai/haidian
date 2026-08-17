@@ -259,6 +259,336 @@
         "几何基于临时粗略边界生成，取得正式边界后必须整体重算。",
         "已发表的收敛证明不覆盖本方案的多终端多情景离散迭代，故只报实测步长。"
       ]
+    },
+    "land_use_unit_count": {
+      "status": "known",
+      "value": 257,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(features(land_use))",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。"
+      ]
+    },
+    "land_use_category_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count_distinct(land_use.land_use_code)",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "分类沿用可校验的用地代码，不自造分类；代码分布见同层要素属性。"
+      ]
+    },
+    "design_road_segment_count": {
+      "status": "known",
+      "value": 366,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(features(roads))",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "为概念中心线要素，不是道路红线，也不产生红线面积。"
+      ]
+    },
+    "backbone_road_segment_count": {
+      "status": "known",
+      "value": 150,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(roads.network_phase == 'backbone')",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "该值比 generation_method_metrics.backbone_edges 多 1：求解器选出 149 条骨架边，另有 1 条 ROAD-SPINE-001 智脉主轴是本方案沿遗址公园直接声明的线位，不是求解结果。详见 A-EDGE-COUNT-001。"
+      ]
+    },
+    "capillary_road_segment_count": {
+      "status": "known",
+      "value": 216,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(roads.network_phase == 'capillary')",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。"
+      ]
+    },
+    "conceptual_building_interface_count": {
+      "status": "known",
+      "value": 113,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features(buildings))",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "建筑要素仅表示可比选的适应性保留、首层更新与可逆轻量增建三类动作的位置候选，不是拆改留判定，也不含建筑高度、体量或规模结论。"
+      ]
+    },
+    "building_interface_mixed_use_count": {
+      "status": "known",
+      "value": 70,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings.building_type == 'mixed_use')",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "建筑要素仅表示可比选的适应性保留、首层更新与可逆轻量增建三类动作的位置候选，不是拆改留判定，也不含建筑高度、体量或规模结论。"
+      ]
+    },
+    "building_interface_talent_apartment_count": {
+      "status": "known",
+      "value": 30,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings.building_type == 'talent_apartment')",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "建筑要素仅表示可比选的适应性保留、首层更新与可逆轻量增建三类动作的位置候选，不是拆改留判定，也不含建筑高度、体量或规模结论。"
+      ]
+    },
+    "building_interface_ai_r_and_d_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings.building_type == 'ai_r_and_d')",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "建筑要素仅表示可比选的适应性保留、首层更新与可逆轻量增建三类动作的位置候选，不是拆改留判定，也不含建筑高度、体量或规模结论。"
+      ]
+    },
+    "public_space_node_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features(public_space))",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "节点位置由流网络高通量节点导出，为概念建议，不是法定公共空间用地。"
+      ]
+    },
+    "green_space_feature_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(features(green_space))",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。"
+      ]
+    },
+    "green_corridor_park_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(green_space.green_type == 'corridor_park')",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。"
+      ]
+    },
+    "green_node_park_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(green_space.green_type == 'node_park')",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(features(phasing))",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "分期为可逆的建议时序，不构成实施承诺或财政安排。"
+      ]
+    },
+    "constraint_feature_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features(constraints))",
+      "confidence": "high",
+      "assumptions": [
+        "计数描述本方案的概念性空间建议，不构成拆改留判断、建筑规模结论或法定用地分类结果。",
+        "当前约束要素全部为 key_area_provisional，即临时边界本身就是最主要的约束。"
+      ]
+    },
+    "key_area_announced_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(key_areas.announced_area_sqm)",
+      "confidence": "high",
+      "assumptions": [
+        "公告口径数值，逐条来自公告，不是本方案复算结果，也不是法定用地边界。"
+      ]
+    },
+    "key_area_provisional_polygon_total_sqm": {
+      "status": "known",
+      "value": 3692893.007,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_areas)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "临时粗略边界仅用于生成与展示，不得作为 official redline 或精确面积复算依据；取得正式边界后必须整体重算。",
+        "该值是临时勾绘范围的复算面积，不得用来修正公告口径。"
+      ]
+    },
+    "key_area_polygon_to_announced_ratio": {
+      "status": "known",
+      "value": 1.002414,
+      "unit": "dimensionless",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key_area_provisional_polygon_total_sqm / key_area_announced_total_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "本条是两个独立口径的面积一致性指数，不是占比，临时勾绘略大于公告口径时其值大于 1（当前偏差 +0.24%）。",
+        "偏差反映临时勾绘精度，不构成对公告范围的修正；取得正式边界后本条与三处分区面积必须整体重算。"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(building_floor_area) from an approved development-scale ledger",
+      "confidence": "unknown",
+      "reason": "无经审定的开发规模与实测建筑面积台账；建筑要素只表达位置候选，不含层数或规模。",
+      "assumptions": [
+        "按任务书边界条款，缺失数据不得由智能体推定；本条登记的是取得该数据后应当复算的口径，不是结论。"
+      ]
+    },
+    "average_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "mean(building_height) over approved height controls",
+      "confidence": "unknown",
+      "reason": "建筑高度属法定控制条件，官方控制值缺失，按任务书边界条款不作推定。",
+      "assumptions": [
+        "按任务书边界条款，缺失数据不得由智能体推定；本条登记的是取得该数据后应当复算的口径，不是结论。"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(polygon_area(road_right_of_way))",
+      "confidence": "unknown",
+      "reason": "无法定道路红线；本方案道路要素为概念中心线，不产生红线面积。",
+      "assumptions": [
+        "按任务书边界条款，缺失数据不得由智能体推定；本条登记的是取得该数据后应当复算的口径，不是结论。"
+      ]
+    },
+    "observed_od_load_fluctuation_cv": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "std(observed_link_flow) / mean(observed_link_flow)",
+      "confidence": "unknown",
+      "reason": "无实测出行 OD 与断面流量观测。load_scenario_min_jaccard 只反映假设情景之间的差异，不反映真实需求波动；缺该值时不得宣称环路冗余已被真实负荷验证。",
+      "assumptions": [
+        "按任务书边界条款，缺失数据不得由智能体推定；本条登记的是取得该数据后应当复算的口径，不是结论。"
+      ]
+    },
+    "link_failure_observed_reroute_success_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "successful_reroutes / induced_link_failures in a controlled field drill",
+      "confidence": "unknown",
+      "reason": "需在建成网络上做受控中断演练；当前 network_fault_tolerance 为模型内部图论结果，不是实测改道成功率。",
+      "assumptions": [
+        "按任务书边界条款，缺失数据不得由智能体推定；本条登记的是取得该数据后应当复算的口径，不是结论。"
+      ]
+    },
+    "pedestrian_detour_penalty_measured_s": {
+      "status": "unknown",
+      "value": null,
+      "unit": "s",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "mean(observed_walk_time) - mean(shortest_path_walk_time)",
+      "confidence": "unknown",
+      "reason": "需现场步行计时观测；本方案只给出网络几何绕行倍数，不等于人实际多花的时间。",
+      "assumptions": [
+        "按任务书边界条款，缺失数据不得由智能体推定；本条登记的是取得该数据后应当复算的口径，不是结论。"
+      ]
     }
   },
   "generation_method_metrics": {

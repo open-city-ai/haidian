@@ -53,6 +53,25 @@ from github_pr_validation import (  # noqa: E402
 from validate_local_submission import discover_submission_files  # noqa: E402
 
 
+class LandUseCodeRegistryTests(unittest.TestCase):
+    def test_wetland_and_commercial_service_codes_match_official_numeric_system(self) -> None:
+        registry = json.loads(
+            (REPO_ROOT / "brief/site-package/enums/land_use_codes.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        labels = {item["code"]: item["label_zh"] for item in registry["codes"]}
+
+        self.assertEqual("湿地", labels["05"])
+        self.assertEqual("商业服务业用地", labels["09"])
+        self.assertEqual(
+            {"0901", "0902", "0903", "0904"},
+            {code for code in labels if code.startswith("09") and len(code) == 4},
+        )
+        self.assertIn("自然资发〔2023〕234号", registry["note"])
+        self.assertIn("GB 50137-2011", registry["note"])
+
+
 class ComplianceMatrixNamespaceTests(unittest.TestCase):
     def test_standard_ids_are_separate_from_source_ids(self) -> None:
         requirements = []
@@ -3628,6 +3647,36 @@ class SubmissionWorkflowTests(unittest.TestCase):
             )
             self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
             self.assertIn("Result: PASS", completed.stdout)
+
+    def test_local_submission_wrapper_accepts_only_verified_owner_alias(self) -> None:
+        base = "submissions/zymk8353/jingzhang-safe-return-line"
+        common = [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "validate_local_submission.py"),
+            base,
+            "--repo-root",
+            str(REPO_ROOT),
+            "--pr-author",
+            "zyaoii",
+            "--json",
+        ]
+        allowed = subprocess.run(
+            [*common, "--pr-author-id", "51290995"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(allowed.returncode, 0, allowed.stdout + allowed.stderr)
+        self.assertTrue(json.loads(allowed.stdout)["ok"])
+
+        denied = subprocess.run(
+            [*common, "--pr-author-id", "7"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertNotEqual(denied.returncode, 0)
+        self.assertFalse(json.loads(denied.stdout)["ok"])
 
     def test_local_submission_wrapper_can_enforce_forward_manifest_contract(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

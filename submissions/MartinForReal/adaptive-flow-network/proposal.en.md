@@ -254,23 +254,58 @@ All areas are recomputed from the submitted GeoJSON in EPSG:4548 [metric:site_ar
 
 ### Traceable registration of every number shown on a figure
 
-Every number shown on a figure must trace back to a registered metric in `metrics.json` with a formula, source files and an explicit disclaimer. The table registers this proposal's **model-internal network metrics** — all of them appear on the boards, so all of them are registered, and each is declared **not a statutory planning indicator**:
+Every number shown on a figure must trace back to a registered metric in `metrics.json` with a formula, source files and an explicit disclaimer. The table below is generated from `metrics.json` and covers **every** registered metric, so the prose and the registry cannot drift apart. Metrics fall into two classes: **recomputed from geometry**, reproducible from the submitted GeoJSON in EPSG:4548, and **model-internal**, which measure the generated network itself. Neither class is a statutory planning indicator, and no row may be read as a floor area ratio, building density, road redline or control-plan conclusion:
 
-| Metric | Value | Unit | Formula | Citation |
-|---|---|---|---|---|
-| `network_node_coverage` | 0.387 | ratio | `retained_network_nodes / lattice_nodes` | [metric:network_node_coverage] |
-| `network_independent_loops` | 109 | count | `edges - nodes + connected_components` | [metric:network_independent_loops] |
-| `network_loop_density` | 0.424 | ratio | `independent_loops / retained_network_nodes` | [metric:network_loop_density] |
-| `network_fault_tolerance` | 0.967 | ratio | `share of single-edge removals that keep sampled node pairs connected` | [metric:network_fault_tolerance] |
-| `network_failure_resilience_betweenness` | 0.399 | ratio | `area under the largest-connected-component curve, edges removed highest-edge-betweenness first` | [metric:network_failure_resilience_betweenness] |
-| `network_failure_resilience_random` | 0.315 | ratio | `same curve, mean of 5 random removal orders` | [metric:network_failure_resilience_random] |
-| `network_recovery_resilience` | 0.684 | ratio | `0.5*min(loop_density/0.5,1) + 0.5*min(degree_CV/0.8,1)` | [metric:network_recovery_resilience] |
-| `network_total_length_norm_mst` | 0.55 | ratio | `design_total_length / mst_total_length` | [metric:network_total_length_norm_mst] |
-| `land_use_coverage_ratio` | 1 | ratio | `union(land_use polygons) / site_boundary area` | [metric:land_use_coverage_ratio] |
-| `load_scenario_min_jaccard` | 0.679 | ratio | `min over interpretable load scenarios of |E_scenario ∩ E_shipped| / |E_scenario ∪ E_shipped|` | [metric:load_scenario_min_jaccard] |
-| `solver_final_step_backbone` | 6.14e-09 | dimensionless | `max |D_(k+1) - D_k| at the final iteration, gamma = backbone` | [metric:solver_final_step_backbone] |
+| Metric | Value | Unit | Class | Formula | Citation |
+|---|---|---|---|---|---|
+| `site_area_sqm` | 1.14128e+07 | sqm | from geometry | `polygon_area(submitted_site_boundary)` | [metric:site_area_sqm] |
+| `building_footprint_area_sqm` | 614693 | sqm | from geometry | `sum(polygon_area(building_footprints))` | [metric:building_footprint_area_sqm] |
+| `green_ratio` | 0.206367 | ratio | from geometry | `green_space_area_sqm / site_area_sqm` | [metric:green_ratio] |
+| `public_space_ratio` | 0.012785 | ratio | from geometry | `public_space_area_sqm / site_area_sqm` | [metric:public_space_ratio] |
+| `key_area_count` | 3 | count | from geometry | `count(features(KEY_AREA))` | [metric:key_area_count] |
+| `network_node_coverage` | 0.3865 | ratio | model-internal | `retained_network_nodes / lattice_nodes` | [metric:network_node_coverage] |
+| `network_independent_loops` | 109 | count | model-internal | `edges - nodes + connected_components` | [metric:network_independent_loops] |
+| `network_loop_density` | 0.4241 | ratio | model-internal | `independent_loops / retained_network_nodes` | [metric:network_loop_density] |
+| `network_fault_tolerance` | 0.9667 | ratio | model-internal | `share of single-edge removals that keep sampled node pairs connected` | [metric:network_fault_tolerance] |
+| `network_failure_resilience_betweenness` | 0.3991 | ratio | model-internal | `area under the largest-connected-component curve, edges removed highest-edge-betweenness first` | [metric:network_failure_resilience_betweenness] |
+| `network_failure_resilience_random` | 0.3148 | ratio | model-internal | `same curve, mean of 5 random removal orders` | [metric:network_failure_resilience_random] |
+| `network_recovery_resilience` | 0.684 | ratio | model-internal | `0.5*min(loop_density/0.5,1) + 0.5*min(degree_CV/0.8,1)` | [metric:network_recovery_resilience] |
+| `network_total_length_norm_mst` | 0.5497 | ratio | model-internal | `design_total_length / mst_total_length` | [metric:network_total_length_norm_mst] |
+| `land_use_coverage_ratio` | 1 | ratio | from geometry | `union(land_use polygons) / site_boundary area` | [metric:land_use_coverage_ratio] |
+| `load_scenario_min_jaccard` | 0.6787 | ratio | model-internal | `min over interpretable load scenarios of |E_scenario ∩ E_shipped| / |E_scenario ∪ E_shipped|` | [metric:load_scenario_min_jaccard] |
+| `solver_final_step_backbone` | 6.1353e-09 | dimensionless | model-internal | `max |D_(k+1) - D_k| at the final iteration, gamma = backbone` | [metric:solver_final_step_backbone] |
+| `land_use_unit_count` | 257 | count | from geometry | `count(features(land_use))` | [metric:land_use_unit_count] |
+| `land_use_category_count` | 5 | count | from geometry | `count_distinct(land_use.land_use_code)` | [metric:land_use_category_count] |
+| `design_road_segment_count` | 366 | count | from geometry | `count(features(roads))` | [metric:design_road_segment_count] |
+| `backbone_road_segment_count` | 150 | count | from geometry | `count(roads.network_phase == 'backbone')` | [metric:backbone_road_segment_count] |
+| `capillary_road_segment_count` | 216 | count | from geometry | `count(roads.network_phase == 'capillary')` | [metric:capillary_road_segment_count] |
+| `conceptual_building_interface_count` | 113 | count | from geometry | `count(features(buildings))` | [metric:conceptual_building_interface_count] |
+| `building_interface_mixed_use_count` | 70 | count | from geometry | `count(buildings.building_type == 'mixed_use')` | [metric:building_interface_mixed_use_count] |
+| `building_interface_talent_apartment_count` | 30 | count | from geometry | `count(buildings.building_type == 'talent_apartment')` | [metric:building_interface_talent_apartment_count] |
+| `building_interface_ai_r_and_d_count` | 13 | count | from geometry | `count(buildings.building_type == 'ai_r_and_d')` | [metric:building_interface_ai_r_and_d_count] |
+| `public_space_node_count` | 9 | count | from geometry | `count(features(public_space))` | [metric:public_space_node_count] |
+| `green_space_feature_count` | 15 | count | from geometry | `count(features(green_space))` | [metric:green_space_feature_count] |
+| `green_corridor_park_count` | 1 | count | from geometry | `count(green_space.green_type == 'corridor_park')` | [metric:green_corridor_park_count] |
+| `green_node_park_count` | 14 | count | from geometry | `count(green_space.green_type == 'node_park')` | [metric:green_node_park_count] |
+| `phase_count` | 3 | count | from geometry | `count(features(phasing))` | [metric:phase_count] |
+| `constraint_feature_count` | 3 | count | from geometry | `count(features(constraints))` | [metric:constraint_feature_count] |
+| `key_area_announced_total_sqm` | 3.684e+06 | sqm | from geometry | `sum(key_areas.announced_area_sqm)` | [metric:key_area_announced_total_sqm] |
+| `key_area_provisional_polygon_total_sqm` | 3.69289e+06 | sqm | from geometry | `sum(polygon_area(key_areas)) in EPSG:4548` | [metric:key_area_provisional_polygon_total_sqm] |
+| `key_area_polygon_to_announced_ratio` | 1.00241 | dimensionless | from geometry | `key_area_provisional_polygon_total_sqm / key_area_announced_total_sqm` | [metric:key_area_polygon_to_announced_ratio] |
 
-Every row is recomputable from the submitted GeoJSON and the published generation parameters. **They measure the generated network itself, not any statutory control on the site**; none of them may be read as a floor area ratio, building density, road redline or control-plan conclusion [depth:metrics_recalculation].
+The 34 rows above are known. A further 7 metrics are **registered with status=unknown**: quantities a reviewer would expect that the currently public material cannot support. They are registered together with the reason they are unknown, rather than filled in with an assumed value:
+
+| Metric | Unit | Why unknown | Citation |
+|---|---|---|---|
+| `floor_area_ratio` | ratio | 官方容积率管控值缺失（planning_limits.json 标记 status=missing）；按任务书边界条款，法定强度指标不得由智能体推定，须由专业团队在取得正式规划条件后确定。 | [metric:floor_area_ratio] |
+| `total_floor_area_sqm` | sqm | 无经审定的开发规模与实测建筑面积台账；建筑要素只表达位置候选，不含层数或规模。 | [metric:total_floor_area_sqm] |
+| `average_building_height_m` | m | 建筑高度属法定控制条件，官方控制值缺失，按任务书边界条款不作推定。 | [metric:average_building_height_m] |
+| `road_area_sqm` | sqm | 无法定道路红线；本方案道路要素为概念中心线，不产生红线面积。 | [metric:road_area_sqm] |
+| `observed_od_load_fluctuation_cv` | ratio | 无实测出行 OD 与断面流量观测。load_scenario_min_jaccard 只反映假设情景之间的差异，不反映真实需求波动；缺该值时不得宣称环路冗余已被真实负荷验证。 | [metric:observed_od_load_fluctuation_cv] |
+| `link_failure_observed_reroute_success_ratio` | ratio | 需在建成网络上做受控中断演练；当前 network_fault_tolerance 为模型内部图论结果，不是实测改道成功率。 | [metric:link_failure_observed_reroute_success_ratio] |
+| `pedestrian_detour_penalty_measured_s` | s | 需现场步行计时观测；本方案只给出网络几何绕行倍数，不等于人实际多花的时间。 | [metric:pedestrian_detour_penalty_measured_s] |
+
+Every row in both tables is recomputable from the submitted GeoJSON and the published generation parameters, or checkable against the stated reason. **The known rows measure the generated network and the submitted geometry, not any statutory control on the site**; none of them may be read as a floor area ratio, building density, road redline or control-plan conclusion [depth:metrics_recalculation].
 
 ### Chinese-English substantive equivalence check
 

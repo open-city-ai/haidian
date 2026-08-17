@@ -63,6 +63,10 @@ The three classes resolve into nine stable component IDs: `B01` continuous step-
 
 The protocol is simultaneously a spatial concept, repeatable operating mechanism, governance system and scenario network. It can travel from test courts to public service, heritage, mobility and climate settings, but every location must pass its own local gate.
 
+V5 fixes the supporting proposition as “**Draw the receipt into the city: every AI trial must preserve one public route that cannot be sacrificed.**” The receipt is no longer a table beside the drawing. The `B01` public route, AI trial boundary, `E02` staffed takeover post, emergency route and removal route are registered as stable `V5-*` objects in WGS84 concept geometry and projected to local metre-based canvases only for publication. Every adoption decision can therefore be traced to an actual spatial object rather than a textual promise.[data:geometry/roads.geojson#V5-Z-BYPASS] [metric:traceable_design_geometry_count]
+
+Evidence progresses through five levels: `E0 public source → E1 concept design → E2 baseline prototype pending → E3 controlled trial pending → E4 civic adoption pending`. The current proposal completes only E0/E1. No performance percentage is set before E2; no AI increment can be claimed before E3; E4 requires the human scene committee to sign `adopt / revise / stop`. Every publication and the interactive first screen show `NOT FIELD-RUN`.[metric:evidence_ladder_level_count] [metric:field_performance_status]
+
 ![Three-layer spatial section](assets/figures/section-prototype.en.png)
 
 ## Overall design: renewal, mobility, blue-green and baseline
@@ -96,6 +100,8 @@ Hero scenario S7 brings four-quadrant walking, the conventional interchange fore
 ![Dazhongsi four-quadrant interchange and timed test bay](assets/figures/station-dazhongsi.en.png)
 
 The three prototypes deliberately do not share one plan type: a controlled ring and bypass resolves human–machine safety; a porous hall makes staffed translation public; a four-quadrant forecourt keeps conventional mobility dominant. Each situates baseline, plug-in and evidence interface so they remain mutually visible without making ordinary service dependent on AI.[metric:station_spatial_prototype_count]
+
+All three hero scenes use the same four review scales: 1:5000 urban connection, 1:2000 key-area concept plan, 1:500 component/interface detail and 1:200 typical section. Each is a prototype scale pending survey and official base-map verification. Details add adjacent building edges, entrances, curbs, paving, tree pits, seats, barriers, lighting, temporary power/data interfaces, staffed posts, fire access and removal routes. The operating axon shows `OPEN → TRIAL → PAUSE → RETIRE` and how public use is restored.[data:visual/assets/spatial-atlas.json] [metric:hero_operating_state_count]
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -140,11 +146,15 @@ The operating loop is problem register → ordinary baseline → capability repr
 
 Five work packages—the Baseline Spine, Validation Court, Translation Hall, Adoption Field and public evidence/committee—each name a conceptual lead operator, collaborators, permissions, S/M resource class, start gate, KPI establishment method, risks, stop condition, destination of assets and review owner. Actor names describe responsibility, not confirmed institutional participation. No investment value or public commitment is invented.[depth:renewal_project_list]
 
+T2, S2 and S7 share a seven-role RACI: asset owner, site operator, baseline-service staff, AI operator, safety lead, data steward and public representative. Permit prerequisites cover site, fire, accessibility, temporary power, network, event/traffic management and equipment safety. If a responsibility or critical permit is missing, the space remains in ordinary-service `OPEN` and may not enter `TRIAL`. AI assets receive a daily opening check, an interlock check before each trial, a weekly inventory and a monthly public review; after removal, the asset owner and public representative jointly verify restoration of the public route.[data:visual/assets/two-answers.json]
+
 The near-term 0–6 month pilot establishes ordinary-service and accessibility baselines. Operators, collaborators and resident representatives then define measurable indicators, monitoring and evaluation before any AI pilot advances.
 
 ### Governance and exit
 
 0–6 months: evidence, survey, ownership/control checks, accessibility audit, ordinary-service baseline, metric definitions and accountable staff. 6–12 months: three full-scale ordinary-answer prototypes only. 12–24 months: controlled removable AI enhancement and paired comparison. 24–36 months: adopt, revise or stop, with annual public review. Any stage may return to the ordinary answer.[data:geometry/phasing.geojson#PHASE-000]
+
+Each phase has entry, output and failure gates. Phase 0 advances only when source, permit route and accessibility audit are complete. Phase 1 outputs an independently usable ordinary service and E2 baseline; an incomplete baseline stays in Phase 1. Phase 2 begins only when zero-tolerance safety conditions, staffed RACI roles and measurable interfaces are all in place; any safety or rights event triggers `PAUSE`. Phase 3 accepts only reproducible evidence; insufficient evidence leads to `revise` or `stop`, never substitution by experience images or model self-scores.
 
 A human scenario committee combines operator, accessibility/community, domain, data and safety voices. Suppliers disclose interests but do not control the final vote. Severe safety or rights events trigger immediate stop by the accountable site lead.
 

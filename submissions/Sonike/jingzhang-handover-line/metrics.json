@@ -16,7 +16,10 @@
       "confidence": "low",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/site_boundary.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "green_space_area_sqm": {
       "status": "known",
@@ -30,7 +33,11 @@
       "assumptions": [
         "A-BOUNDARY-001",
         "A-BASELINE-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式用 union，重叠只计一次。实测结果：geometry/green_space.geojson：1 个面要素，union=2264695.802 ㎡，逐要素求和=2264695.802 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/green_space.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "green_ratio": {
       "status": "known",
@@ -45,7 +52,12 @@
       "assumptions": [
         "A-BOUNDARY-001",
         "A-BASELINE-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "numerator_definition": "green_space_area_sqm = area(union(green_space), EPSG:4548)；图层 geometry/green_space.geojson；投影 EPSG:4548",
+      "denominator_definition": "site_area_sqm = polygon_area(provisional_site_boundary, EPSG:4548)；图层 geometry/site_boundary.geojson；投影 EPSG:4548",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/green_space.geojson、geometry/site_boundary.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "public_space_area_sqm": {
       "status": "known",
@@ -59,7 +71,11 @@
       "assumptions": [
         "A-BOUNDARY-001",
         "A-BASELINE-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式用 union，重叠只计一次。实测结果：geometry/public_space.geojson：1 个面要素，union=1039257.211 ㎡，逐要素求和=1039257.211 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/public_space.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "public_space_ratio": {
       "status": "known",
@@ -74,7 +90,12 @@
       "assumptions": [
         "A-BOUNDARY-001",
         "A-BASELINE-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "numerator_definition": "public_space_area_sqm = area(union(PUBLIC_SPACE polygons), EPSG:4548)；图层 geometry/public_space.geojson；投影 EPSG:4548",
+      "denominator_definition": "site_area_sqm = polygon_area(provisional_site_boundary, EPSG:4548)；图层 geometry/site_boundary.geojson；投影 EPSG:4548",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/public_space.geojson、geometry/site_boundary.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "building_footprint_area_sqm": {
       "status": "known",
@@ -87,7 +108,9 @@
       "confidence": "low",
       "assumptions": [
         "A-BUILDING-001"
-      ]
+      ],
+      "overlap_treatment": "公式用 union，重叠只计一次。实测结果：geometry/buildings.geojson：20 个面要素，union=221014.099 ㎡，逐要素求和=221014.099 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/buildings.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "handover_spine_length_m": {
       "status": "known",
@@ -166,7 +189,8 @@
       "assumptions": [
         "A-OPERATIONS-001",
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。"
     },
     "key_area_count": {
       "status": "known",
@@ -179,7 +203,8 @@
       "confidence": "low",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/key_areas.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。"
     },
     "renewal_cell_count": {
       "status": "known",
@@ -205,7 +230,8 @@
       "confidence": "medium",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。"
     },
     "phase_count": {
       "status": "known",
@@ -231,7 +257,11 @@
       "confidence": "medium",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式按子集逐要素求和；只有该子集内确无重叠时求和才等于并集面积。实测结果：geometry/land_use.geojson：11 个面要素，union=11412825.386 ㎡，逐要素求和=11412825.386 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/land_use.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "land_use_0701_sqm": {
       "status": "known",
@@ -244,7 +274,11 @@
       "confidence": "medium",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式按子集逐要素求和；只有该子集内确无重叠时求和才等于并集面积。实测结果：geometry/land_use.geojson：11 个面要素，union=11412825.386 ㎡，逐要素求和=11412825.386 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/land_use.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "land_use_0702_sqm": {
       "status": "known",
@@ -257,7 +291,11 @@
       "confidence": "medium",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式按子集逐要素求和；只有该子集内确无重叠时求和才等于并集面积。实测结果：geometry/land_use.geojson：11 个面要素，union=11412825.386 ㎡，逐要素求和=11412825.386 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/land_use.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "land_use_0802_sqm": {
       "status": "known",
@@ -270,7 +308,11 @@
       "confidence": "medium",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式按子集逐要素求和；只有该子集内确无重叠时求和才等于并集面积。实测结果：geometry/land_use.geojson：11 个面要素，union=11412825.386 ㎡，逐要素求和=11412825.386 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/land_use.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "land_use_0803_sqm": {
       "status": "known",
@@ -283,7 +325,11 @@
       "confidence": "medium",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式按子集逐要素求和；只有该子集内确无重叠时求和才等于并集面积。实测结果：geometry/land_use.geojson：11 个面要素，union=11412825.386 ㎡，逐要素求和=11412825.386 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/land_use.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "land_use_0804_sqm": {
       "status": "known",
@@ -296,7 +342,11 @@
       "confidence": "medium",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式按子集逐要素求和；只有该子集内确无重叠时求和才等于并集面积。实测结果：geometry/land_use.geojson：11 个面要素，union=11412825.386 ㎡，逐要素求和=11412825.386 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/land_use.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "land_use_1401_sqm": {
       "status": "known",
@@ -309,7 +359,11 @@
       "confidence": "medium",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "overlap_treatment": "公式按子集逐要素求和；只有该子集内确无重叠时求和才等于并集面积。实测结果：geometry/land_use.geojson：11 个面要素，union=11412825.386 ㎡，逐要素求和=11412825.386 ㎡，实测重叠=0.000 ㎡。差值为 0 即该图层内无重叠，union 与逐要素求和等价。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/land_use.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "conceptual_building_coverage_ratio": {
       "status": "known",
@@ -324,7 +378,12 @@
       "assumptions": [
         "A-BOUNDARY-001",
         "A-BUILDING-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "numerator_definition": "building_footprint_area_sqm = area(union(conceptual_typology_cells), EPSG:4548)；图层 geometry/buildings.geojson；投影 EPSG:4548",
+      "denominator_definition": "site_area_sqm = polygon_area(provisional_site_boundary, EPSG:4548)；图层 geometry/site_boundary.geojson；投影 EPSG:4548",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/buildings.geojson、geometry/site_boundary.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "versioned_asset_count": {
       "status": "known",
@@ -422,7 +481,10 @@
       "assumptions": [
         "A-BOUNDARY-001",
         "A-CONTROLS-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/phasing.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "phase_2_area_sqm": {
       "status": "known",
@@ -436,7 +498,10 @@
       "assumptions": [
         "A-BOUNDARY-001",
         "A-CONTROLS-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/phasing.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "phase_3_area_sqm": {
       "status": "known",
@@ -450,7 +515,10 @@
       "assumptions": [
         "A-BOUNDARY-001",
         "A-CONTROLS-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/site_boundary.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/phasing.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "key_area_zhongzhiyuan_sqm": {
       "status": "known",
@@ -463,7 +531,10 @@
       "confidence": "low",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/key_areas.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/key_areas.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "key_area_origin_community_sqm": {
       "status": "known",
@@ -476,7 +547,10 @@
       "confidence": "low",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/key_areas.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/key_areas.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "key_area_dazhongsi_sqm": {
       "status": "known",
@@ -489,7 +563,10 @@
       "confidence": "low",
       "assumptions": [
         "A-BOUNDARY-001"
-      ]
+      ],
+      "recalculation_trigger": "官方几何到位后按同一公式与投影 EPSG:4548 原样复算，不改公式只换输入：geometry/key_areas.geojson 现为 official_boundary=false 的临时粗略范围；触发条件、责任方与复算范围登记在 assumptions.json#A-BOUNDARY-001。在此之前本值只用于同一包内的相对比较，不作为审批或征拆依据。",
+      "precision_note": "小数位来自面积/比值算法本身，不代表边界精度。输入边界为临时粗略范围，因此有效位应按边界不确定度理解，不得据此判断用地或权属界线。",
+      "verification": "已复算：用 shapely + pyproj 把 geometry/key_areas.geojson 由 EPSG:4326 投影到 EPSG:4548 后按 formula 重算。本包 20 个面积与比值指标本轮全部逐条复算，面积容差 0.001 ㎡、比值容差 1e-6，不一致 0 条。复算不依赖包外数据，任何人用同样两个库可独立重跑。"
     },
     "total_floor_area_sqm": {
       "status": "unknown",

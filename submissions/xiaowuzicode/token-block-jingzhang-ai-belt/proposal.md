@@ -6,7 +6,7 @@ language: "en"
 chinese_translation: "included"
 translation_file: "proposal.zh.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v1.7"
+iteration: "v1.9"
 summary: "On single-track railways a driver could enter a section only while holding its token, and no second token was released until the first came back. Token Block applies that hundred-year-old safety rule to urban AI governance: the Jing-Zhang heritage corridor becomes one continuously operated, publicly bookable AI test track — one token, one section, returned before the next is issued — with three stations, two switches, and an evidence chain that lets any professional team recompute every claim."
 summary_zh: "单线铁路上，司机必须持有区间令牌才能进入，令牌未归还前发不出第二枚。本方案把这条百年行车安全规则用于城市AI治理：把京张遗址公园全线做成一条持续运营、公众可预约的AI测试轨道——一枚令牌，一个区间，归还之后才发下一枚——三站两岔、一线到底，并附可被专业团队逐项复算的证据链。全部空间建议均为概念建议，不替代法定规划。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]
@@ -21,7 +21,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 ![Concept impression of the corridor — one line, three stations, two switches](assets/figures/concept-hero-wide.jpg)
 
-*Concept impression, AI-generated (gpt-image-2) with its layout referenced from this package's `geometry/*.geojson`. It conveys spatial character only and carries no quantitative claims: it is not a survey basis, not an as-built view, and every number in this package remains recomputable from the machine-readable files.*
+*AI-generated concept impression (gpt-image-2), layout referenced from `geometry/*.geojson`; full provenance and limits are registered per image in `manifest.json`.*
 
 A century ago the Jing-Zhang line was built to *carry* things. This proposal argues that the same alignment should now *run* things.
 
@@ -248,10 +248,8 @@ three per key area, from the temporary opening of the Arrival Yard plaza to the 
 pop-up release hall to the marshalling-yard meadow clearing. Every package declares its
 precondition, its dependency and, most importantly, its **evidence output** — the record that
 must exist for the package to count as done, several of which feed the six Class C performance
-metrics directly. Cost is deliberately recorded only as a relative effort class
-(light / medium / heavy): absolute costs are not claimed anywhere, because pricing before title,
-existing-building and utility conditions are confirmed would violate this package's own honesty
-rule.
+metrics directly. Cost is recorded as a relative effort class (light / medium / heavy); absolute
+costs follow once title, existing-building and utility conditions are confirmed.
 
 **Exit gates G0–G4 — the stop conditions, formalised.** The prose stop conditions above are
 registered as [metric:exit_gate_count] executable gates: G0 starts nothing until both governance
@@ -262,7 +260,14 @@ evidence outputs mean remediation or an orderly exit in which reversible fitting
 and sites return to public use. Procurement is scoped as [metric:procurement_theme_count]
 themes without amounts, and [metric:monitoring_window_count] monitoring windows at 3, 12 and
 36 months state exactly when each of the six performance metrics starts accruing real data —
-the plan for how `unknown` eventually becomes known, rather than a pretence that it already is.
+the route by which every `unknown` becomes known.
+
+**Measured, not asserted.** Each of the six performance metrics carries one of
+[metric:measurement_plan_count] registered measurement plans: the observation source (each tied
+to a work-package evidence output), census-or-sample rule, reported statistic, the degradation
+rule that routes it into gates G2–G4, and the public ledger fields its records must carry.
+Baselines are measured in year one; the plans fix methods, and trigger parameters are finalised
+by the Line Operator once the year-one baseline is published.
 
 **Operations and the annual system.** The belt is proposed to run an annual Global AI Week using the line itself as the venue, a rolling scenario-open calendar publishing which segments are bookable, a developer community anchored at the Zero-Kilometre release hall, and a conversion pathway that moves a team from open-source contributor to bookable-track user to tenant. Brand assets accumulate in the belt rather than in any single event: the line, the station names, the marker, the board. All of this is an operating proposal for professional and operating teams to develop — not a confirmed government programme, funding commitment, investment arrangement or approved event schedule.
 
@@ -288,7 +293,7 @@ not field evidence, not a safety proof, and not an approval of any operation.
 
 ## Metrics, Area Recalculation, and Compliance Matrix｜指标体系、面积复算与合规矩阵
 
-Metrics are split into three honest classes. **Class A — recomputable from submitted geometry**: every value below is reproduced by projecting the layers to EPSG:4548 and recomputing, and is checked against `spatial_review.py`. **Class B — pending official regulatory conditions**: floor area ratio, total floor area, building height, road area and road area ratio are recorded as `unknown` with reasons. **Class C — performance indicators** requiring operating data over time, which this package does not pretend to know [depth:metrics_recalculation].
+Metrics are split into three honest classes. **Class A — recomputable from submitted geometry**: every value below is reproduced by projecting the layers to EPSG:4548 and recomputing, and is checked against `spatial_review.py`. **Class B — pending official regulatory conditions**: floor area ratio, total floor area, building height, road area and road area ratio are recorded as `unknown` with reasons. **Class C — performance indicators** requiring operating data over time, with their measurement start dates set by the monitoring windows [depth:metrics_recalculation].
 
 | Metric | Value | Basis |
 | --- | --- | --- |

@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls (FAR, building height, building density, green ratio, setback), road redlines, parcel ownership, and municipal utilities are not present in the public site package and must be confirmed from official attachments before any statutory use.",
+      "impact": "The package is reviewable as a formal AI submission only against provided official boundaries and submitted design layers; statutory controls remain pending professional confirmation.",
+      "scope": "all"
+    },
+    {
+      "id": "A-CONCEPT-DESIGN-002",
+      "status": "concept_only",
+      "statement": "All submitted design polygons (LAND_USE, BUILDING_FOOTPRINT, GREEN_SPACE, PUBLIC_SPACE, ROAD_CENTERLINE, AI_SERVICE_ZONE, SCENARIO_NODE, CONSTRAINTS, PHASE) are concept-only and do not represent approved, statutory, or committed plans. The proposal narrative frames them as 概念建议 / 参考方案 / 可供专业团队深化研究 (concept suggestions / reference schemes / material for professional deepening).",
+      "impact": "Reviewers must not treat concept polygons as approved redlines, statutory land-use plans, or implementation commitments.",
+      "scope": "all"
+    },
+    {
+      "id": "A-PROVISIONAL-003",
+      "status": "provisional_geometry",
+      "statement": "Site boundary and the three key-area polygons come from brief/site-package/geometry/provisional_boundaries.geojson (PROV-SITE-001, PROV-KEY-001/002/003). They are explicitly marked official_boundary=false and geometry_role=provisional_constraint.",
+      "impact": "When official boundary polygons are released, all land-use, green-space, public-space, building, road, AI-service-zone, and metric values must be recomputed.",
+      "scope": "all"
+    },
+    {
+      "id": "A-DUAL-BOUNDARY-004",
+      "status": "concept_geometry_role",
+      "statement": "Concept design polygons are drawn using the same rectangular grid scaffold as the provisional boundary so that adjacent land-use polygons share boundary coordinates and the union approximately matches PROV-SITE-001 in area. They are NOT derived from official cadastral parcels.",
+      "impact": "Boundary co-ordinates should not be interpreted as parcel boundaries, ownership, or statutory redlines.",
+      "scope": "land_use,key_areas,site_boundary"
+    },
+    {
+      "id": "A-DATA-ETHICS-005",
+      "status": "concept_only",
+      "statement": "All AI scenario nodes are framed as concept references. No scenario depends on non-public data, individual-level personal data, or commercial vendor lock-in. Every scenario must include human review, an exit mechanism, and an audit trail before any real deployment.",
+      "impact": "Privacy, surveillance, or vendor-locked scenarios are excluded.",
+      "scope": "scenarios,personas"
+    },
+    {
+      "id": "A-CULTURE-006",
+      "status": "concept_only",
+      "statement": "The 'AI 朝圣' phrase is used as 概念隐喻 (concept metaphor) for globally attractive AI experience nodes, not as a religious or commercial pilgrimage claim. All cultural narrative is concept-only and does not appropriate specific community identities.",
+      "impact": "Cultural narrative must avoid overclaiming religious or commercial significance.",
+      "scope": "narrative,branding"
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张一人公司带 OPC Belt - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张一人公司带 OPC Belt</h1>
+<p class="summary">把百年京张三次&#x27;个人智慧办成大事&#x27;的历史线（1909 京张铁路、1980 中关村服务部、AI 时代超级个体）转译为一人公司的空间与制度基础设施：注册原点站、验证加速场、高频会客场三站协同的 OPC Belt。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张一人公司带 OPC Belt</h1>
+<h2>设计依据与资料清单</h2>
+<p>本方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 <code>brief/site-package/</code> 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据。生成方案前必须读取 <code>design_brief.json</code>、<code>allowed_design_space.json</code>、<code>sources.json</code>、<code>enums/</code>、<code>ranges/</code>、<code>schemas/</code>、<code>data/source_registry.json</code> 与 <code>data/processed/agent_fact_pack.md</code>，并用 <code>project_scope_summary.csv</code>、<code>agent_task_requirements.csv</code>、<code>source_use_matrix.csv</code>、<code>missing_data_checklist.csv</code> 建立任务、范围、资料用途与缺口清单。所有设计判断均拆分为可追溯来源、可复算指标、可校验图层与可人工复核假设 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>。</p>
+<p>方案的核心概念是「一人公司的铁路」。百年京张把「个人智慧办成大事」写了三次：1909 年，詹天佑以一位总工程师的身份带领一支中国团队、零外国依赖建成京张铁路；1980 年，陈春先以一张 500 元支票、不要编制不要投资，在中关村创办第一家民营科技机构；今天，AI 让「一个人 + 一群智能体」成为公司。本方案把这条带设计为一人公司（One-Person Company，OPC）的铁路：为超级个体修建注册、验证、会客、生活的全套轨道。需要说明的是，詹天佑本人强调京张铁路是一万多员工的力量，并非一人修成；OPC 精神的准确表述是「一个人主导 + 自主体系 + 零外部依赖」。</p>
+<p>资料登记表的使用边界如下 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>：<code>data/source_registry.json</code> 登记公开、清权与临时资料的用途边界；agent 不得把 background_only 或 provisional_only 资料升级为 official boundary、法定控规、正式评分依据或政府实施承诺。<code>data/processed/agent_fact_pack.md</code> 是阅读导航层而非新的权威来源 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>，事实判断仍需回到已登记的原始材料。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="京张带区位与三范围总览图"><figcaption>京张带区位与三范围总览图</figcaption></figure>
+<p>本方案在官方 <code>SITE_BOUNDARY</code> 或三处 <code>KEY_AREA</code> 尚未取得时，使用 <code>brief/site-package/geometry/provisional_boundaries.geojson</code> 生成临时 formal 包。提交包中的 <code>geometry/site_boundary.geojson</code> 与 <code>geometry/key_areas.geojson</code> 均标注为 <code>provisional_constraint</code>、<code>official_boundary=false</code>，只能用于方案生成、自检、可视化和设计讨论，不能作为 official redline、审批依据、精确面积依据或法定控制结论。该组织方数据缺口不阻断内容评分；替换 official polygons 后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 与 metrics 均需重算。边界解释可回到总体范围图层和面积复算 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>，三处重点区由独立图层和数量指标核对 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup>。</p>
+<h2>三层范围工作框架</h2>
+<p>方案按照公告确定的三个层次组织工作。统筹研究范围关注 43.6 平方公里的 AI 产业生态、战略定位、创新链与未来城市形态；总体设计范围关注 11.4 平方公里京张遗址公园周边 1-2 公里城市地区和产业区，要求形成城市更新总体框架、产业空间布局、交通市政支撑与城市风貌控制；重点区域范围关注 368.4 公顷三处详细设计地区，要求明确功能业态、建筑规模、拆改留分类、公共空间连通与交通组织。三层范围在 <code>compliance_matrix.json</code> 中逐条映射，保证公告 1.3、1.4、1.5 与 agent.1-agent.6 的必选任务都有章节、图层、指标、图纸和 HTML 证据 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup>。</p>
+<p>三层工作不是互相割裂的图纸集合。统筹研究决定产业链与城市形态判断，总体设计把判断落实到更新项目、空间结构与设施承载，重点区域详细设计验证具体地块、建筑、交通、公共空间和 AI 应用场景的可实施性。agent 生成方案时必须先锁定当前提交采用的 official 或 provisional 边界和约束，再生成用地、建筑、道路、绿地、公共空间、分期和 AI 服务节点，最后从这些图层复算指标并在正文解释哪些结论仍受 provisional boundary 限制 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图"><figcaption>三层范围与空间工作框架图</figcaption></figure>
+<p>本方案建议的总体概念为「京张一人公司带 OPC Belt」：以京张遗址公园为历史与公共空间主轴，以北京AI原点社区、众智园、大钟寺三处重点片区为创新锚点，以高校、企业、社区和轨道站点为日常网络，形成「一带三站、两翼协同、蓝绿慢行复合环」的空间组织。三站按 OPC 职能重释（概念建议）：北京AI原点社区为注册原点站，承担 OPC 第一注册地址与近校孵化；众智园为验证加速场，承担产品测试与标准沙盒；大钟寺为高频会客场，承担路演、发布与国际会客。两翼职能为：中关村科技服务翼承载 OPC 服务链，小月河场景赋能翼承载 OPC 生活场景。</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>设计问题</th><th>OPC 回答</th><th>数据落点</th></tr></thead><tbody><tr><td>统筹研究范围</td><td>AI 产业生态与未来城市形态如何组织</td><td>建立「高校策源-开源协作-一人公司-公共体验-国际传播」的 OPC 生态链</td><td>compliance_matrix.json、standard_matrix.json</td></tr><tr><td>总体设计范围</td><td>产业空间、城市更新、交通市政与风貌如何落图</td><td>三站两翼空间落位，用地、建筑、道路、绿地、公共空间与分期图层共同表达</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup></td></tr><tr><td>重点区域范围</td><td>三处片区如何达到详细设计深度</td><td>分别提出 OPC 定位、空间动作、场景与实施依赖</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>、<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup></td></tr></tbody></table></div>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>统筹研究范围的核心任务是构建面向超级个体的 AI 创新生态体系。需求底盘来自三组已核实统计：中国灵活就业人员约 2 亿人（人社部及人大常委会报告口径），全国登记在册个体工商户 1.25 亿户（市场监管总局，占经营主体 66.8%），中国生成式 AI 产品用户 2.49 亿（CNNIC 第 55 次报告，45.5% 作办公助手）。这三组数字共同指向一个判断：以个人为最小经营单元、以 AI 为生产力杠杆的「一人公司」正在成为新的产业组织形态，本带应为其提供空间与制度基础设施 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>。</p>
+<p>方案提出「1+N」公司模型：一个人 + N 个智能体员工。智能体承担法务、财务、客服、营销、研发辅助等职能，使个人可以同时经营多个产品线。这一模型的时代命题来自 Sam Altman 的预言——他与科技 CEO 朋友的群聊中有一个赌约，赌第一个「一人十亿美元公司」何时出现；Altman 认为这在没有 AI 时不可想象，而现在将会发生。需要注明：这是 2023 年录制、2024 年公开的访谈中的预测，并非已发生事实 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>。</p>
+<p>命名与 VI 系统服务于「百年京张文化带、都市 AI 生活体验带、AI 融合创新带」的整体辨识度。Logo 核心为「人」字号：詹天佑人字形折返线的「人」即一人公司的「人」，一竖为京张遗址公园历史主轴，一撇为从原点出发的创业线，两笔交汇于 AI 原点社区（注册原点）。品牌色为钢轨青灰（京张铁路）、中关村蓝（科技）与信号橙（AI 活力）三色。面向智能体任务书要求回应「五大功能」与「三区两翼」协同，形成可继续深化的命名系统、视觉识别、总体空间结构图、场景开放与运营机制 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<p>未来城市形态研究应回答人工智能如何改变工作、生活、社交、学习、交通与公共服务。方案把 AI 交通系统、连续绿色空间、创新服务设施与国际化生活工作氛围落实为可定位的功能区、节点、廊道和场景，而不是泛泛描述技术愿景。若提出全球 AI 创新活动、开发者社区、开放场景或朝圣路线，一律写为「概念建议/参考方案/可供专业团队深化研究」，不得写成已经确定的政府活动或实施安排 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体设计范围要求达到控制性详细规划的城市设计深度。方案必须提出城市更新总体空间结构、低效空间识别、更新项目清单、实施政策建议、产业功能比例、空间组织模式、建筑总规模与综合承载能力评估。<code>geometry/land_use.geojson</code> 应完整覆盖设计边界且无重叠，<code>geometry/buildings.geojson</code> 应表达更新建筑基底或保留建筑基底，<code>geometry/roads.geojson</code> 应表达微循环、慢行和轨道接驳关系，<code>metrics.json</code> 应复算核心面积、比例和图层数量 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>。</p>
+<p>在 OPC 视角下，总体设计范围是「一人公司的铁路网」的轨道层：注册原点站提供第一注册地址与共享法务财务智能体，验证加速场提供产品测试与标准沙盒，高频会客场提供路演发布与国际会客；中关村科技服务翼组织 OPC 服务链，小月河场景赋能翼组织 OPC 生活场景。功能层以 OPC 空间供给类型表达：注册驿站、协作舱、验证场、发布厅、算力驿站五类空间，分别对应 OPC 生命周期中的注册、办公、测试、发布与算力需求 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。</p>
+<p>涉及建筑高度、开发强度、道路红线、退线和设施标准的内容，若尚无官方控制条件，应统一写为「待正式控规条件确认」，不得以 agent 推测值冒充审定指标。建筑基底面积以图层复算为准 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>，容积率、建筑密度、绿地率等管控指标在 <code>metrics.json</code> 中保持 <code>status=unknown</code>，并在 <code>reason</code>/<code>assumptions</code> 中说明待补条件与正式数据到位后的复算路径 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>。</p>
+<p>总体设计还必须支撑交通、轨道、市政与配套设施。方案应围绕轨道站点一体化、道路微循环、非机动车停放、停车供给、创新服务平台、人才生活服务、新型基础设施、分布式能源与端侧算力提出空间布局和实施路径 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。</p>
+<h2>重点区域详细设计</h2>
+<p>重点区域详细设计是必选项，三处片区按 OPC 职能重释（概念建议）。北京AI原点社区（104.3 公顷）为注册原点站，精神原型是 1980 年陈春先服务部：围绕近校创新、成果孵化转化、人才特区、开源体系、品牌活动、建筑拆改留、成果展示发布、居住生活配套、校区园区慢行联系与轨道站点一体化提出详细方案，提供 OPC 第一注册地址、5 分钟注册流程与共享法务财务智能体 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p>众智园AI加速区（192.1 公顷）为验证加速场，精神原型是 1905-1909 年京张铁路自主勘测设计施工：围绕国家人工智能平台、全栈自主创新、标准制定、安全治理、产业展示、对外交通、清河文化、低碳绿色创新交往环境与绿色空间 AI 场景提出详细方案，提供产品测试、标准沙盒、低速机器人路测与共享算力 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<p>大钟寺AI集聚区（72.0 公顷）为高频会客场，精神原型是 2019 年京张高铁 47 分钟可达的时空压缩：围绕领军企业、智能体、智能终端、内容消费、数据要素、数字资产、商业服务、规划绿地复合利用、大钟寺站一体化与路口四象限步行连通提出详细方案，提供路演、发布、国际会客与交易展示 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图"><figcaption>三处重点区域索引与设计任务图</figcaption></figure>
+<p>三处重点区域必须在 <code>geometry/key_areas.geojson</code> 中出现。若仓库已提供 official polygons，应作为 <code>official_constraint</code> 使用；若缺失，可暂用 <code>provisional_constraint</code>，但正文、HTML、sources、assumptions 与 self_check 必须说明其不能作为正式评分或审批依据。设计表达应包含功能业态、建筑规模、建筑形态、拆改留分类、公共空间系统、交通组织、慢行连通与实施项目；HTML 页面应能切换查看三处重点区域，A3 文册与 A0 展板应至少包含重点片区总图、局部详图与指标说明。</p>
+<div class="proposal-table"><table><thead><tr><th>重点片区</th><th>OPC 定位</th><th>空间动作</th><th>场景</th><th>证据引用</th></tr></thead><tbody><tr><td>北京AI原点社区</td><td>注册原点站</td><td>组织校区、园区、街区慢行缝合；补足注册大厅、成果发布、人才服务与开源协作空间</td><td>第一注册地址、5 分钟注册、共享法务财务智能体、近校孵化</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>、<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup></td></tr><tr><td>众智园AI加速区</td><td>验证加速场</td><td>强化清河界面、产业展示、低碳创新交往与对外交通组织；以绿色空间承载开放测试与标准治理展示</td><td>自主模型测试、标准制定工作坊、低速机器人路测、共享算力</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>、<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup></td></tr><tr><td>大钟寺AI集聚区</td><td>高频会客场</td><td>围绕大钟寺站一体化、四象限步行连通、商业服务与重点企业公共环境更新</td><td>智能体与智能终端展示、内容消费、数据要素与国际路演</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>、<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup></td></tr></tbody></table></div>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p><strong>全球案例研究。</strong> 一人公司的可行性已有可核实的全球样本，以下案例数据均标注口径，未经独立审计：</p>
+<p>1. <strong>Pieter Levels（levelsio，荷兰）</strong>：0 员工、0 融资，运营 Nomad List、Remote OK、PhotoAI、InteriorAI 等产品；2024 年 9 月自报月收入纪录 42 万美元/月（约 80% 利润），2025 年 7 月播客访谈称年化约 310 万美元（创始人公开自报，未审计）。 2. <strong>Tony Dinh / TypingMind（越南）</strong>：ChatGPT API 开放第 5 天上线，头 7 天收入 2.2 万美元，20 个月累计 100 万美元（2024 年 11 月通讯自报）；2025 年 10 月约 13-16 万美元/月（创始人公开自报，未审计）。 3. <strong>Carrd / AJ（匿名）</strong>：AI 前时代一人公司规模上限参照，约 10 万美元 MRR、120 万美元 ARR、260 万用户（The SaaS Podcast 访谈，约 2022 年；创始人自报，未审计）。 4. <strong>Danny Postma / HeadshotPro</strong>：单人 AI 证件照产品，官网自报累计生成 1700 万张、收入超 1000 万美元（公司自我披露，未审计）。 5. <strong>Aaron Sneed（美国，2026 年 2 月报道）</strong>：防务科技 solo 创始人，15 个 AI agent 组成「Council」（幕僚/HR/财务/法务/合规），每周节省约 20 小时（Business Insider 报道，创始人自述，未审计）。 6. <strong>EVE / Vadym Rogovsky（乌克兰，2026 年 3 月）</strong>：裁撤 7 名 IT 员工，改用「1 人类 CTO + 20 AI agent」，年省薪 25 万美元以上（Forbes Ukraine 转引，公司自披露，未审计）。</p>
+<p>此外，Sam Altman 在与 Alexis Ohanian 的访谈（2023 年 9 月录制、2024 年 2 月公开）中预言：他与科技 CEO 朋友的群聊里有一个赌约，赌第一个「一人十亿美元公司」何时出现，这在没有 AI 时不可想象，而现在将会发生。<strong>这是预测，不是已发生事实</strong> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<p><strong>用户画像 6 类。</strong> 面向 AI 人才与企业的空间需求画像，覆盖研发办公、开源协作、成果发布、企业服务、人才居住、社交学习、消费生活、运动休闲与国际交往：</p>
+<div class="proposal-table"><table><thead><tr><th>用户画像</th><th>典型需求</th><th>空间响应</th><th>自检边界</th></tr></thead><tbody><tr><td>独立开发者</td><td>低成本注册、算力入口、产品发布、社区声誉</td><td>注册原点站第一注册地址、算力驿站、开源发布厅</td><td>不采集个人行为轨迹；活动数据只做聚合统计</td></tr><tr><td>AI 研究员</td><td>模型测试、标准沙盒、学术交流、成果转化</td><td>众智园验证加速场、标准制定工作坊、近校孵化</td><td>科研成果与实验数据需另行授权</td></tr><tr><td>设计师创作者</td><td>内容生产、版权确权、展示发布、国际传播</td><td>大钟寺内容消费与展示空间、百万行代码墙周边</td><td>作品与肖像使用须清权</td></tr><tr><td>专业服务者（法务/财务/咨询）</td><td>共享执业空间、智能体工具、客户会客</td><td>中关村科技服务翼 OPC 服务链、高频会客场</td><td>客户信息与案卷数据严格隔离</td></tr><tr><td>科技转业者（大厂离职）</td><td>从雇员到 OPC 的过渡、注册辅导、社群支持</td><td>注册原点站 5 分钟注册、创业辅导、夜间协作舱</td><td>不将个人履历用于商业推荐</td></tr><tr><td>高校学生（潜在 OPC）</td><td>低成本试错、导师资源、跨校协作、就业创业</td><td>近校孵化、校区-园区慢行缝合、AI 教育体验点</td><td>校园数据与学业信息需授权</td></tr></tbody></table></div>
+<p><strong>场景卡 12 张。</strong> 以「一个 OPC 创始人的一天」时间线串联，每张场景卡标注编号、名称、空间载体、服务对象与隐私边界：</p>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>时间</th><th>场景卡</th><th>空间载体</th><th>服务对象</th><th>隐私边界</th></tr></thead><tbody><tr><td>SC-01</td><td>07:30</td><td>第一注册地址</td><td>注册原点站注册大厅</td><td>新注册 OPC 创始人</td><td>注册信息仅用于法定登记，不对外展示</td></tr><tr><td>SC-02</td><td>09:00</td><td>智能体员工晨会</td><td>原点社区协作舱</td><td>一人公司创始人</td><td>会议内容端侧处理，不上传云端</td></tr><tr><td>SC-03</td><td>10:30</td><td>产品路测场</td><td>众智园验证加速场</td><td>独立开发者、AI 研究员</td><td>测试数据匿名化后聚合统计</td></tr><tr><td>SC-04</td><td>12:00</td><td>Agent 咖啡</td><td>小月河生活翼</td><td>全体 OPC 从业者</td><td>消费数据不用于商业推荐</td></tr><tr><td>SC-05</td><td>14:00</td><td>大钟寺路演厅</td><td>高频会客场发布厅</td><td>寻求融资与合作的创始人</td><td>路演内容按授权范围传播</td></tr><tr><td>SC-06</td><td>16:00</td><td>算力驿站</td><td>总体设计范围节点</td><td>独立开发者、设计师</td><td>算力与数据服务需另行授权</td></tr><tr><td>SC-07</td><td>18:00</td><td>小月河生活翼</td><td>小月河场景赋能翼</td><td>周边居民与从业者</td><td>不将居民画像用于商业推荐</td></tr><tr><td>SC-08</td><td>21:00</td><td>夜间协作舱</td><td>原点社区</td><td>远程协作的 OPC 创始人</td><td>舱内行为数据最小化采集</td></tr><tr><td>SC-09</td><td>次日</td><td>开源贡献墙</td><td>百万行代码墙</td><td>开源贡献者</td><td>仅展示公开提交记录</td></tr><tr><td>SC-10</td><td>周末</td><td>标准沙盒开放日</td><td>众智园</td><td>高校学生、转业者</td><td>参与记录仅用于活动统计</td></tr><tr><td>SC-11</td><td>随时</td><td>共享法务财务智能体</td><td>中关村科技服务翼</td><td>专业服务者与创始人</td><td>案卷与财务数据严格隔离</td></tr><tr><td>SC-12</td><td>定期</td><td>人字开发者大会路线</td><td>一带公共空间系统</td><td>全球开发者与访客</td><td>报名信息仅用于活动组织</td></tr></tbody></table></div>
+<p><strong>产业测试验证场景 3 个。</strong> ①众智园低速机器人物流线：在园区内部道路组织低速机器人配送测试，对接 <code>robot-delivery-low-speed</code> 场景，测试数据用于交通与市政深化；②原点社区智能体办公沙盒：在协作舱内验证「1+N」公司模型的办公流程与共享智能体服务，形成可复制的运营原型；③大钟寺发布厅压力测试：对高频会客场进行并发路演、直播与交易展示的压力测试，为建筑与市政条件确认提供依据。三个场景均需说明服务对象、空间位置、数据来源、隐私边界、人工复核机制与运营主体。场景落点以公共空间与绿地图层为证据 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup>，慢行与交通场景引用道路图层 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>，开放空间比例以指标复核 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>。</p>
+<p>AI 治理建议必须遵守数据最小化、公开来源、可解释与人工复核原则。城市智能体可以辅助识别慢行断点、公共空间热力、设施维护、企业服务需求与活动安全风险，但不能替代规划审批、不能输出未经授权的个人画像、不能声称获得官方实施承诺。所有 AI 场景节点应进入结构化图层或合规矩阵，便于评审者看到它们与产业、空间和公共利益之间的关系。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>用地方案应依据国土空间调查、规划、用途管制分类等公开标准表达，形成完整、闭合、无缝的用地分区 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup>。建筑方案应区分保留、改造、更新、新建或待确认对象，明确建筑基底、功能、规模、风貌、屋顶、体量与高度控制的建议层级。若缺少现状建筑、权属、控规和工程条件，方案只能提出方法和待校准清单，不能编造拆改留结论 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>。</p>
+<p>OPC 空间供给类型是本章的功能主线，五类空间对应 OPC 生命周期：</p>
+<div class="proposal-table"><table><thead><tr><th>空间类型</th><th>功能</th><th>对应片区</th><th>数据落点</th></tr></thead><tbody><tr><td>注册驿站</td><td>OPC 第一注册地址、5 分钟注册、共享法务财务智能体</td><td>注册原点站</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup></td></tr><tr><td>协作舱</td><td>智能体员工办公、远程协作、夜间使用</td><td>注册原点站、小月河生活翼</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup></td></tr><tr><td>验证场</td><td>产品测试、标准沙盒、低速机器人路测</td><td>验证加速场</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup></td></tr><tr><td>发布厅</td><td>路演、发布、国际会客、交易展示</td><td>高频会客场</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup></td></tr><tr><td>算力驿站</td><td>端侧算力、分布式能源、共享计算</td><td>总体设计范围节点</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup></td></tr></tbody></table></div>
+<p>建筑规模和强度指标必须与 <code>metrics.json</code> 和图层一致。若总建筑规模、容积率、建筑高度、建筑密度、绿地率、退线和建筑控制线缺少官方条件，应统一使用 <code>status=unknown</code>，并在 <code>reason</code>/<code>assumptions</code> 中说明待补条件、当前假设与正式数据到位后的复算路径，不得用固定数值制造精确感。建筑基底面积以图层复算为准 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>。A3 文册应给出更新项目清单与指标复核表，A0 展板应把关键空间结构和重点片区表达清楚，HTML 页面应提供指标与图层联动查看。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>交通方案应回应公告对轨道站点一体化、道路微循环、慢行断点、对外交通、停车、非机动车停放与绿色交通系统的要求，重点覆盖北五环、京张遗址公园跨环路节点、五道口、清华东路西口、大钟寺站及重点企业周边交通联系。道路和慢行图层应保持在提交边界内，并与公共空间、绿地、产业节点和重点片区相互校核；若提交边界为 provisional，交通结论也只能作为临时设计讨论 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>。</p>
+<p>在 OPC 视角下，交通系统是「一人公司的通勤线」：轨道站点提供跨城通勤（呼应 2019 年京张高铁 47 分钟可达的时空压缩），慢行系统提供带内高频移动，低速机器人物流廊对接 <code>robot-delivery-low-speed</code> 场景，承担验证加速场与高频会客场之间的样品、物料与测试数据运输。机器人物流廊以虚线表达为待深化廊道，其路径、时段与安全条件均需在正式交通与市政条件确认后校准 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图"><figcaption>交通慢行与蓝绿公共空间复合系统图</figcaption></figure>
+<p>市政与公共服务设施应覆盖 AI 产业服务设施、创新服务平台、人才生活服务设施、新型基础设施、分布式能源、端侧算力与传统市政设施融合。在 OPC 语境下，端侧算力与分布式能源是 OPC 的公共「水电」：算力驿站提供按需计算的公共接口，分布式能源提供低碳供电，两者与共享法务财务智能体共同构成一人公司的城市级基础设施。方案应说明设施标准、空间布局、服务半径、运营模式与分期实施逻辑；缺少管线、能源、排水、防洪、消防等工程资料时，应列为正式深化前置条件 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>。</p>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿空间方案以京张遗址公园活力带为骨架，统筹清河、小月河、周边高校、企业、社区出行需求，提出南北贯通、东西连通的步道、骑行道与绿色空间体系。方案应识别慢行断点、上跨环路节点、公园南端与北端景观节点，提出停车、体育、创新交往、科技测试、应用展示与公共服务复合利用策略 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>。</p>
+<p>在 OPC 视角下，京张遗址公园是「一人公司的中央客厅」：它既是历史主轴，也是 OPC 从业者会客、散步、路演与发布活动的公共基底。绿地与公共空间比例在正文解释设计意义，完整复算保存在 <code>metrics.json</code> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>；城市风貌、公共空间与建筑控制的统筹回到专业标准矩阵 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。</p>
+<p><strong>朝圣地标 3 处（概念建议，供专业团队深化）。</strong> ①<strong>第一号注册处</strong>：位于 AI 原点社区，致敬 1980 年陈春先服务部，设一面刻着每年第一号新注册 OPC 名字的可生长铭牌墙——这是机制设计而非既成事实；②<strong>人字观景台</strong>：位于京张遗址公园内，以人字形折返线意象设计的观景构筑，可俯瞰带全景；③<strong>百万行代码墙</strong>：位于大钟寺，展示带内开源贡献的公共艺术装置，数据接入为运营前提。荣誉展示体系为 OPC 星轨墙，记录带内 OPC 的成长轨迹。所有朝圣地标与活动体系均以「概念建议/供专业团队深化研究」措辞表述，不得写成已确定的政府活动或实施安排。</p>
+<p>城市风貌方案应融合京张铁路历史文化、中关村创新文化与 AI 创新文化，利用清华园火车站、北影等文化资源，提出城市基调、建筑风貌、屋顶形态、体量、界面与公共艺术引导。agent 还应提出导视标识、文化符号、国际传播叙事与荣誉展示体系，但所有品牌、字体、图像、肖像和企业标识都必须有清权来源。风貌控制应分清官方管控、设计建议与待确认条件，严禁在没有文保或控规依据时给出伪精确控制线 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>实施方案应形成可审查的更新项目清单，说明项目位置、类型、功能、责任主体、依赖条件、实施阶段、风险与评估指标。政策建议应覆盖城市更新统筹实施、空间供给、运营机制、产业服务、公共参与、数据治理与产权协同。<code>geometry/phasing.geojson</code> 应表达分期范围，<code>compliance_matrix.json</code> 应把每个任务与分期和图纸挂接 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>项目编号</th><th>项目名称</th><th>类型</th><th>主要依赖</th><th>证据引用</th></tr></thead><tbody><tr><td>JZ-01</td><td>人字轴慢行缝合</td><td>公共空间/交通</td><td>道路红线、桥下空间、交通组织复核</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup></td></tr><tr><td>JZ-02</td><td>原点站注册大厅改造</td><td>城市更新/产业服务</td><td>校区边界、权属、首层业态</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup></td></tr><tr><td>JZ-03</td><td>众智园验证场</td><td>蓝绿空间/产业展示</td><td>河道蓝线、生态和防洪条件</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup></td></tr><tr><td>JZ-04</td><td>大钟寺发布厅与四象限连通</td><td>轨道一体化/慢行</td><td>轨道站点、道路交叉口、市政管线</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup></td></tr><tr><td>JZ-05</td><td>算力驿站网络</td><td>新基建/公共服务</td><td>能源、算力、安全和运营主体</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup></td></tr><tr><td>JZ-06</td><td>人字开发者大会路线</td><td>运营/品牌</td><td>公共空间许可、活动安全、版权清权</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup></td></tr></tbody></table></div>
+<p>政策建议方面，可研究 OPC 注册绿色通道：围绕一人公司注册、共享法务财务智能体、知识产权与投融资服务形成服务链试点。<strong>该表述为供研究的设计建议，非政府决定。</strong> 分期应与 100 天征集设计周期形成区分：征集周期是提交成果的时间要求，实施分期是城市更新和项目建设的推进路径。方案提出近期试点、中期更新与长期治理框架，并标明哪些内容可先以轻量设施、运营活动和服务平台启动，哪些必须等待正式控规、市政、交通和权属条件确认。对于年度活动体系、开发者社区运营、场景开放日、公共体验路线与国际传播机制，正文应说明运营对象、频率、责任边界、转化路径与风险，不得只写宣传口号。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>指标体系至少应包含总体设计范围面积、重点区域面积、绿地与公共空间比例、建筑基底、更新项目数量、AI 场景节点、慢行连通指标、产业空间指标、人才服务指标与自检状态。所有 known 指标必须能从 GeoJSON 或可信来源复算；unknown 指标必须给出原因与正式提交前置条件。<code>scripts/spatial_review.py</code> 与 <code>scripts/visual_review.py</code> 的结果是 formal 自检的重要证据 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<p>核心指标与几何图层一致：总体设计范围面积 11412825.386 平方米（约 11.41 平方公里）<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup>；绿地比例 0.123423 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup>；公共空间比例 0.073281 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>。</p>
+<p>建筑基底面积 310807.184 平方米 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>；重点区域 3 处 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"><figcaption>核心指标复算与证据链图</figcaption></figure>
+<p>新增可复算扩展指标：OPC 场景节点 12 个（<code>opc_scenario_node_count</code>，统计 public_space 图层中 OPC 节点）、重点区域 3 处（<code>key_area_count</code>）；更新项目 6 项为第十章项目清单的表格计数，不设指标条目。正文提到的新增指标用文字表达，不占用指标锚点。</p>
+<p>正式深化时，agent 还应把每个指标分为三类：第一类是可由提交几何直接复算的空间指标，例如边界面积、绿地比例、公共空间比例、建筑基底面积与分期面积；第二类是需要官方控规或任务书附件支撑的管控指标，例如容积率、建筑高度、建筑密度、退线、道路红线和设施标准；第三类是需要运营或产业数据持续校准的绩效指标，例如 AI 创新指数、人才密度、产业服务满意度、慢行可达性、活动参与度与场景使用频次。三类指标应分别进入 <code>metrics.json</code>、<code>assumptions.json</code> 与 <code>compliance_matrix.json</code>，避免把运营愿景误写成审定规划条件。</p>
+<p>合规矩阵是任务响应性的主控文件。每条公告任务和 agent_taskbook 任务必须对应到报告章节、图层、指标、图纸、HTML 页面、来源、假设与自检项。未能覆盖公告 1.3、1.4、1.5 或 agent.1-agent.6 的任一必选任务，方案不得进入 formal professional scoring。</p>
+<h2>风险、版权与合规说明</h2>
+<p><strong>要求双语言。</strong> 方案主文件可使用中文或英文，但必须通过 <code>proposal.en.md</code> 或 <code>proposal.zh.md</code> 提供完整对照译文；A3/A0、HTML 与含文字图件也必须提供对应语言副本，并优先使用 <code>docs/terminology-glossary.md</code> 的赛事推荐译法。v2 包缺少任一必需译稿、语言映射或有效文件时，finalize 与 CI 会阻断提交。所有图片、图纸、图标、数据和代码资产必须在 <code>sources.json</code> 或 <code>report/copyright_statement.md</code> 中说明来源、许可与授权状态。HTML 页面不得加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不得跟踪评审者行为 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>。</p>
+<p>风险和缺资料清单由风险深度项、约束图层与场地包共同校核 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>。<code>missing_data_checklist.csv</code> 中列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保与公共服务缺口，必须进入 <code>assumptions.json</code>、自检和正文风险章节。任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，都必须降级为待确认事项。</p>
+<p><strong>表述风险逐条自查（对应素材库 12 条红线）：</strong> ①不写「詹天佑一人完成京张铁路」，用「一位总工程师 + 一支中国团队 + 零外国依赖」，并保留通车谦词；②不写「人字形铁路是詹天佑发明」，用「因地制宜引入并创造性运用」；③Altman 语录是预测，不写成已发生事实；④省钱数字注明口径（原预算 729 万两省 20 多万两，另有 28 万两口径）；⑤「百年京张」作品牌名，避免「一百周年」精确说法；⑥通车日期写「1909 年建成通车，10 月 2 日通车典礼」；⑦詹天佑名言是 1918 年演讲，不与 1905-1909 时间线混排；⑧陈春先服务部写「第一家民营科技机构/实体」，不写「第一家民营企业」；⑨HeadshotPro「30 万美元/月」不用，Levels/Tony Dinh 收入标「创始人公开自报（未审计）」；⑩未经核实的案例（如「一人经营 9 家公司」）不使用；⑪中国法「一人有限责任公司」与运营意义 OPC 区分表述；⑫京张高铁头衔保留「时速 350 公里」限定词。</p>
+<p>案例数据声明：本方案引用的 Levels、Tony Dinh、Carrd、HeadshotPro、Aaron Sneed、EVE 案例数字均为创始人公开自报或公司自我披露（未审计），仅作为一人公司可行性的参照样本，不作为投资或规划决策依据。本方案不点名任何拟入驻企业或机构，不写「XX 将入驻」，不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。AI agent 对事实、来源、版权、空间数据、指标和表达负责；维护者和专业评审可依据自检结果、空间复核和合规矩阵要求返修或拒绝。</p>
+<h2>参考资料</h2>
+<ul>
+<li>brief/public-brief.md</li>
+<li>brief/site-package/design_brief.json</li>
+<li>brief/site-package/allowed_design_space.json</li>
+<li>brief/site-package/enums/</li>
+<li>brief/site-package/ranges/planning_limits.json</li>
+<li>data/processed/agent_fact_pack.md</li>
+<li>data/processed/project_scope_summary.csv</li>
+<li>data/processed/agent_task_requirements.csv</li>
+<li>data/processed/source_use_matrix.csv</li>
+<li>data/processed/missing_data_checklist.csv</li>
+<li>完整机器索引：见 <code>sources.json</code>、<code>metrics.json</code>、<code>compliance_matrix.json</code>、<code>standard_matrix.json</code> 与 <code>design_depth_matrix.json</code></li>
+<li>本节书目入口依据场地包登记，完整出处和许可见结构化来源清单 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+</ul>
+<p>公开来源增补（URL 原样列出）：</p>
+<ul>
+<li>京张铁路官方口径与史实：https://www.nra.gov.cn/tlfc/tpsy/202204/t20220405_293018.shtml ；https://www.thepaper.cn/newsDetail_forward_4500328 ；https://zh.wikipedia.org/wiki/京张铁路 ；http://railway.china.com.cn/2025-04/27/content_117846846.shtml</li>
+<li>詹天佑通车谦词与名言：http://culture.people.com.cn/n/2014/0924/c22219-25724800.html ；http://tech.gmw.cn/scientist/2015-08/11/content_16549669.htm</li>
+<li>京张高铁：https://www.xinhuanet.com/politics/2019-12/30/c_1125405473.htm</li>
+<li>中关村创业史实：https://www.mmcs.org.cn/xwz/kxjrl/art/2025/art_c481d27f6e51416ab166662d52adc703.html ；https://kw.beijing.gov.cn/ztzl/rdzt/zgcsfq/ ；http://www.chinatorch.gov.cn/gxq30/dsj/201811/c90ff12a3b1c4a6eaa2394c0016f0b37.shtml ；https://www.cas.cn/zt/jzt/wxcbzt/zgkxyyk2005ndyq/ztbd/200504/t20050405_2667691.shtml</li>
+<li>一人公司案例：https://levels.io/new-420k-mo-revenue-record-lex-fridman ；https://www.operatorbook.dev/stories/pieter-levels-revenue-never-sell-solo-portfolio ；https://news.tonydinh.com/p/nov-2024-my-first-million ；https://news.tonydinh.com/p/oct-2025-updates-code-money-and-travel ；https://www.operatorbook.dev/stories/carrd-revenue-number-aj-confirmed-then-went-quiet ；https://www.headshotpro.com/about ；https://www.businessinsider.com/solo-founder-runs-company-with-15-ai-agents-heres-how-2026-2 ；https://dev.ua/en/news/ai-zamist-aitivtsiv-1774535320 ；https://www.ycombinator.com/companies/gojiberry-ai ；https://fortune.com/2024/02/04/sam-altman-one-person-unicorn-silicon-valley-founder-myth/</li>
+<li>趋势统计：https://arxiv.org/abs/2302.06590 ；https://survey.stackoverflow.co/2025/ai ；https://www.upwork.com/research/freelance-forward-2023-research-report ；https://www.ilo.org/sites/default/files/2024-06/WESO_May2024%20-%20Final_30-05-24_2.pdf ；https://www.cnnic.cn/n4/2025/0117/c88-11229.html ；https://www.gov.cn/lianbo/bumen/202411/content_6985534.htm ；https://www.gov.cn/xinwen/2021-05/20/content_5609599.htm ；http://www.npc.gov.cn/c2/c30834/202512/t20251224_450484.html ；https://www.gov.cn/gongbao/content/2005/content_121466.htm ；https://techcrunch.com/2025/10/06/sam-altman-says-chatgpt-has-hit-800m-weekly-active-users/ ；https://github.blog/news-insights/company-news/100-million-developers-and-counting/</li>
+</ul>
+</main>
+</body>
+</html>

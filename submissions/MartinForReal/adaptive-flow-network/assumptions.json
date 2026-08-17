@@ -3,39 +3,113 @@
   "assumptions": [
     {
       "id": "A-CONTROLS-001",
-      "status": "pending_professional_confirmation",
+      "status": "disclosed_non_blocking",
       "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
-      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation.",
+      "category": "organizer_data_gap",
+      "owner": "organizer_or_future_professional_team",
+      "resolution_trigger": "组织方发布正式控规条件与官方边界后复算全部面积与比率型指标",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
     },
     {
       "id": "A-RESISTANCE-001",
       "status": "agent_design_assumption",
       "statement": "阻力面权重（base 1.00、重点区 0.35、遗址公园主廊 0.18、西翼 0.55、东翼 0.60、边界衰减 1.90）为本方案自设计假设，用于表达希望流向哪里的价值判断。",
-      "impact": "权重直接决定生成网络形态。已在 proposal.md 与 metrics.json 全量公开，评审可用其他权重重跑并比较，避免把价值判断伪装成客观结论。"
+      "impact": "权重直接决定生成网络形态。已在 proposal.md 与 metrics.json 全量公开，评审可用其他权重重跑并比较，避免把价值判断伪装成客观结论。",
+      "category": "agent_value_judgement",
+      "owner": "submitter",
+      "resolution_trigger": "评审或专业团队用其他权重重跑并比较生成结果",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
     },
     {
       "id": "A-FLUCTUATION-001",
       "status": "agent_design_assumption",
       "statement": "以 7 组随机汇点情景模拟场景负荷波动；环路冗余由该波动证成。",
-      "impact": "若真实负荷接近稳态，最优解将趋向树状、环路应相应减少；情景设定需以真实出行与场景数据替换后重算。"
+      "impact": "若真实负荷接近稳态，最优解将趋向树状、环路应相应减少；情景设定需以真实出行与场景数据替换后重算。",
+      "category": "method_limitation",
+      "owner": "submitter",
+      "resolution_trigger": "取得本地出行与场景数据后重算环路归因",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
     },
     {
       "id": "A-LATTICE-001",
       "status": "agent_design_assumption",
       "statement": "以 140 m 间距三角点阵离散场地，得到 665 节点、1820 候选边。",
-      "impact": "分辨率决定可表达的最小空间单元；细化点阵会改变毛细相密度，但不改变骨架相拓扑结论。"
+      "impact": "分辨率决定可表达的最小空间单元；细化点阵会改变毛细相密度，但不改变骨架相拓扑结论。",
+      "category": "method_limitation",
+      "owner": "submitter",
+      "resolution_trigger": "改变点阵分辨率后复现骨架相拓扑结论",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
     },
     {
       "id": "A-NO-STATUTORY-001",
       "status": "boundary_clause",
       "statement": "全部空间落地建议均为概念建议、参考方案，可供专业团队深化研究；不含容积率、建筑高度、拆改留、道路红线、轨道线位与工程可行性结论。",
-      "impact": "符合任务书统一边界条款；不替代法定规划，不构成政府审定结论。"
+      "impact": "符合任务书统一边界条款；不替代法定规划，不构成政府审定结论。",
+      "category": "boundary_clause",
+      "owner": "submitter",
+      "resolution_trigger": "不适用：该条为任务书统一边界条款，长期有效",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
     },
     {
       "id": "A-CONVERGENCE-001",
       "status": "agent_design_assumption",
       "statement": "求解器在每个节点施加 1e-6 的 Tikhonov 正则项以保持基尔霍夫矩阵正定；已发表的 Physarum 收敛证明仅覆盖单源单汇、反馈指数为一的连续时间动力学，本方案为多终端、多情景、离散步长迭代，不在该定理覆盖范围内。",
-      "impact": "因此本方案只报实测收敛量（骨架相 γ=1.35 末步长 6.14e-09、splu 回退 0 次；毛细相 γ=0.72 末步长 5.33e-15），不宣称已证明收敛。γ≈1.15 处末步长仍为 2.2e-03，相变区最不稳定，该区间结果不应单独引用。"
+      "impact": "因此本方案只报实测收敛量（骨架相 γ=1.35 末步长 6.14e-09、splu 回退 0 次；毛细相 γ=0.72 末步长 5.33e-15），不宣称已证明收敛。γ≈1.15 处末步长仍为 2.2e-03，相变区最不稳定，该区间结果不应单独引用。",
+      "category": "method_limitation",
+      "owner": "submitter",
+      "resolution_trigger": "对多终端多情景离散迭代给出适用的收敛判据",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
+    },
+    {
+      "id": "A-EDGE-COUNT-001",
+      "status": "agent_design_assumption",
+      "statement": "roads.geojson 中 network_phase=backbone 的要素为 150 条，而 generation_method_metrics.backbone_edges 为 149 条。差值来自 ROAD-SPINE-001「智脉主轴」：该线位是本方案沿京张遗址公园直接声明的，不由求解器选出。",
+      "impact": "方案最显眼的一条线是设计判断而不是模型输出，这一点必须写明，否则会把作者的选择包装成算法结论。其余 149 条骨架边与 216 条毛细边均可由求解器复现。",
+      "category": "agent_value_judgement",
+      "owner": "submitter",
+      "resolution_trigger": "专业团队判断主轴线位是否保留为声明线位",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
+    },
+    {
+      "id": "A-BUILDING-INTERFACE-001",
+      "status": "boundary_clause",
+      "statement": "buildings.geojson 的 113 个要素表示可比选的适应性保留、首层更新与可逆轻量增建三类动作的位置候选，不是拆改留判定结果。",
+      "impact": "按 agent.1 边界条款，不给出拆改留、建筑高度、体量或规模结论；building_footprint_area_sqm 只用于概念体量关系示意。",
+      "category": "boundary_clause",
+      "owner": "future_professional_team",
+      "resolution_trigger": "取得建筑普查与产权资料后开展拆改留专项判定",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
+    },
+    {
+      "id": "A-KEY-AREA-EXTENT-001",
+      "status": "organizer_data_gap",
+      "statement": "三处重点区域的公告口径合计 368.4 公顷，本方案临时勾绘范围复算合计 369.29 公顷，比值 1.0024。",
+      "impact": "偏差反映临时勾绘精度，不构成对公告范围的修正；取得正式边界后三处分区面积、用地占比与全部比率型指标必须整体重算。",
+      "category": "organizer_data_gap",
+      "owner": "organizer",
+      "resolution_trigger": "组织方发布三处重点区域正式边界",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
+    },
+    {
+      "id": "A-EMPIRICAL-GAP-001",
+      "status": "organizer_data_gap",
+      "statement": "本方案的容错、失效韧性与恢复韧性均为模型内部图论结果，缺少与之对应的实测量：实测出行 OD 波动、受控中断演练的改道成功率、现场步行绕行计时。三者已作为 status=unknown 指标登记。",
+      "impact": "在取得上述实测量之前，网络韧性结论只能读作同一口径下的相对比较，不得读作对建成后真实表现的预测。",
+      "category": "organizer_data_gap",
+      "owner": "future_professional_team",
+      "resolution_trigger": "开展出行观测、受控中断演练与步行计时观测",
+      "blocks_formal_intake": false,
+      "blocks_content_scoring": false
     }
   ]
 }

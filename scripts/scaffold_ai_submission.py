@@ -200,7 +200,7 @@ def land_use_features(site_geom: Any) -> list[dict[str, Any]]:
     cuts = [
         (minx, minx + (maxx - minx) * PARTITION_FRACTIONS[0], "0802", "AI研发创新用地"),
         (minx + (maxx - minx) * PARTITION_FRACTIONS[0], minx + (maxx - minx) * PARTITION_FRACTIONS[1], "1401", "公园绿地与开敞空间"),
-        (minx + (maxx - minx) * PARTITION_FRACTIONS[1], minx + (maxx - minx) * PARTITION_FRACTIONS[2], "05", "产业服务与商业服务用地"),
+        (minx + (maxx - minx) * PARTITION_FRACTIONS[1], minx + (maxx - minx) * PARTITION_FRACTIONS[2], "09", "产业服务与商业服务用地"),
     ]
     generated = []
     features = []

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Origin · Converging Intelligence · Interactive</title>
+<style>
+:root{
+--bg:#071E38;--bg2:#0A2C50;--deep:#0A2C50;--cyan:#3FBBEF;--blue:#3FBBEF;--green:#35C57E;
+--amber:#E8A13F;--red:#E8834A;
+--ink:#F2F8FF;--txt:#C7D8EC;--mut:#8FA9C6;--line:rgba(140,175,215,.18);
+--card:rgba(255,255,255,.045);--card2:rgba(255,255,255,.08);
+--k-launch:#3FBBEF;--k-test:#B18CFF;--k-work:#35C57E;--k-life:#E8A13F;--k-infra:#6FD8E8;--k-all:#C7D8EC}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Hiragino Sans GB","PingFang SC","Microsoft YaHei",Arial,sans-serif;color:var(--txt);background:var(--bg);position:relative;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+radial-gradient(1200px 620px at 80% -8%,rgba(30,90,148,.5),transparent 62%),
+radial-gradient(900px 560px at -6% 48%,rgba(23,74,124,.32),transparent 60%),
+radial-gradient(1100px 640px at 98% 92%,rgba(21,63,108,.36),transparent 62%),
+linear-gradient(180deg,#0B2B4E 0%,var(--bg) 40%,#061A31 100%)}
+canvas{display:block}
+::selection{background:rgba(63,187,239,.35)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.045;mix-blend-mode:overlay;
+background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='0.55'/></svg>")}
+/* ---------- nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:90;display:flex;gap:2px;align-items:center;
+padding:12px 26px;transition:.3s;background:rgba(7,30,56,.0);border-bottom:1px solid transparent}
+nav.solid{padding:8px 26px;background:rgba(7,26,48,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+nav .brand{color:#fff;font-weight:900;letter-spacing:.05em;margin-right:auto;font-size:15px;white-space:nowrap}
+nav .brand b{color:var(--cyan)}
+nav .nav-links{display:flex;gap:2px}
+nav a{color:#B9D2EC;text-decoration:none;font-size:12.5px;padding:7px 13px;border-radius:99px;transition:.25s;white-space:nowrap}
+nav a:hover,nav a.on{color:#fff;background:rgba(63,187,239,.16)}
+.lang{border:1px solid var(--line);color:#fff;padding:5px 14px;border-radius:99px;font-size:12px;text-decoration:none;margin-left:8px}
+@media(max-width:900px){.nav-links a:not(.lang){display:none}}
+/* ---------- hero: full-screen 3D city ---------- */
+header{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+#hero{position:absolute;inset:0;width:100%;height:100%}
+.hero-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,30,56,0) 58%,rgba(7,30,56,.42) 86%,rgba(7,30,56,.78) 100%);pointer-events:none}
+.hero-shade{position:absolute;left:0;top:0;bottom:0;width:58%;z-index:2;pointer-events:none;
+background:radial-gradient(1000px 680px at 16% 44%,rgba(6,23,44,.78) 0%,rgba(6,23,44,.4) 48%,rgba(6,23,44,0) 76%)}
+.hero-in{position:relative;z-index:3;max-width:1300px;margin:0 auto;padding:150px 6% 130px;width:100%}
+.kicker{letter-spacing:.5em;font-size:12px;color:var(--cyan);margin-bottom:22px;opacity:0;animation:up .9s .15s forwards;
+text-shadow:0 1px 14px rgba(4,16,34,.9)}
+h1{font-size:clamp(40px,6.8vw,88px);font-weight:900;color:#fff;line-height:1.08;letter-spacing:.01em;
+text-shadow:0 4px 34px rgba(4,16,34,.9),0 2px 6px rgba(0,0,0,.5)}
+h1 .w{display:inline-block;opacity:0;animation:up .7s forwards}
+h1 small{display:block;font-size:clamp(15px,2vw,22px);font-weight:400;color:#C9DCF2;margin-top:20px;letter-spacing:.06em;opacity:0;animation:up .9s .95s forwards;
+text-shadow:0 2px 22px rgba(4,16,34,.9),0 1px 3px rgba(0,0,0,.55)}
+@keyframes up{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+.hero-meta{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:up .9s 1.2s forwards}
+.chip{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#D7E8F9;
+font-size:12.5px;padding:8px 18px;border-radius:99px;backdrop-filter:blur(6px)}
+.hero-hud{position:absolute;left:6%;bottom:88px;z-index:3;display:grid;grid-template-columns:repeat(4,auto);gap:40px;opacity:0;animation:up 1s 1.45s forwards}
+.hstat b{display:block;font-size:32px;font-weight:900;color:#fff;font-family:Arial}
+.hstat b i{font-style:normal;color:var(--cyan);font-size:15px;margin-left:3px}
+.hstat span{font-size:11.5px;color:#7FA3C8;letter-spacing:.1em}
+.scroll-cue{position:absolute;left:50%;bottom:24px;z-index:3;width:26px;height:44px;border:2px solid rgba(255,255,255,.35);border-radius:14px}
+.scroll-cue::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:9px;margin-left:-2px;border-radius:2px;background:#fff;animation:cue 1.6s infinite}
+@keyframes cue{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
+@media(max-width:900px){.hero-hud{display:none}}
+/* ---------- sections ---------- */
+section{max-width:1300px;margin:0 auto;padding:110px 5% 8px}
+.sec-head{margin-bottom:40px;position:relative}
+.sec-num{font-size:12px;letter-spacing:.4em;color:var(--cyan);font-weight:800;display:flex;align-items:center;gap:14px}
+.sec-num::after{content:"";height:1px;flex:1;max-width:180px;background:linear-gradient(90deg,var(--line),transparent)}
+h2{font-size:clamp(28px,4vw,46px);color:#F2F8FF;margin:14px 0 12px;font-weight:900;letter-spacing:.01em}
+.s-sub{color:var(--mut);font-size:15.5px;max-width:880px;line-height:1.8}
+.js .reveal{opacity:0;transform:translateY(34px)}
+.js .reveal.in{opacity:1;transform:none;transition:opacity .85s cubic-bezier(.2,.7,.3,1),transform .85s cubic-bezier(.2,.7,.3,1)}
+/* ---------- map cockpit ---------- */
+.map-panel{display:grid;grid-template-columns:minmax(340px,1.45fr) 1fr;gap:26px;align-items:stretch}
+.map-3d{perspective:1500px}
+.map-3d-inner{transform-style:preserve-3d;will-change:transform}
+.map-stage{position:relative;border-radius:18px;overflow:hidden;background:#0A2C50;border:1px solid var(--line);
+box-shadow:0 34px 90px -38px rgba(0,10,28,.95)}
+#flow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+#bldg3d{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+svg#mapSvg{width:100%;height:auto;display:block;position:relative;z-index:1}
+#tip{position:absolute;z-index:5;pointer-events:none;background:rgba(7,26,48,.95);color:#E4F1FF;font-size:12px;
+padding:7px 12px;border-radius:9px;opacity:0;transition:opacity .2s;max-width:220px;border:1px solid var(--line)}
+.lulayer{stroke:rgba(10,44,80,.9);stroke-width:1;transition:filter .3s}
+.lulayer:hover{filter:brightness(1.3) saturate(1.15)}
+#lyGreen{fill:#2F7D52;fill-opacity:.9;stroke:#6FCF97;stroke-width:.8}
+#lyPublic{fill:#C9A544;fill-opacity:.9;stroke:#E8C56A;stroke-width:.8}
+.road{fill:none;stroke:#3A5070;stroke-width:2.4}
+.road.greenway{stroke:#35C57E;stroke-width:4.8}
+.road.cycleway{stroke:#58A8F5;stroke-width:3.2}
+.road.pedestrian{stroke:#FFB25E;stroke-width:2.4;stroke-dasharray:6 4}
+#lyBuildings{fill:#46608C;stroke:#7E9CD0;stroke-width:.5}
+#lySite{fill:none;stroke:#DCE9F8;stroke-width:3.4}
+.keylayer{fill:rgba(63,187,239,.07);stroke:#3FBBEF;stroke-width:2.6;cursor:pointer;transition:.3s}
+.keylayer:hover,.keylayer.hl{fill:rgba(63,187,239,.22)}
+.keydot{fill:#EAF4FF;filter:drop-shadow(0 0 6px rgba(63,187,239,1))}
+.pulse{fill:none;stroke:#3FBBEF;stroke-width:2;opacity:0;transform-origin:center;transform-box:fill-box;animation:pulse 2.6s infinite}
+@keyframes pulse{0%{opacity:.9;transform:scale(.4)}70%{opacity:0;transform:scale(2.6)}100%{opacity:0}}
+.keylabel{font-size:15px;font-weight:800;fill:#F2F8FF;text-anchor:middle;paint-order:stroke;stroke:#0A2C50;stroke-width:3.5px}
+.pubdot{fill:#FFC46B;stroke:#0A2C50;stroke-width:1.2;cursor:pointer;transition:.25s}
+.pubdot:hover{r:7}
+/* cockpit console */
+.console{display:flex;flex-direction:column;gap:14px}
+.console .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;backdrop-filter:blur(10px)}
+.panel-title{font-size:11.5px;letter-spacing:.3em;color:var(--mut);font-weight:800;margin-bottom:12px}
+.layer-ctl label{display:flex;align-items:center;gap:12px;padding:10px 4px;font-size:14px;cursor:pointer;user-select:none;color:var(--txt);border-bottom:1px dashed rgba(140,175,215,.12)}
+.layer-ctl label:last-child{border-bottom:none}
+.layer-ctl .sw{position:relative;width:38px;height:20px;border-radius:99px;background:rgba(140,175,215,.18);transition:.3s;flex:none}
+.layer-ctl .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#8FA9C6;transition:.3s}
+.layer-ctl input{display:none}
+.layer-ctl input:checked + .sw{background:rgba(63,187,239,.45)}
+.layer-ctl input:checked + .sw::after{transform:translateX(18px);background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mini{background:var(--card2);border:1px solid var(--line);border-radius:13px;padding:13px 15px}
+.mini b{display:block;font-size:21px;color:var(--cyan);font-weight:900}
+.mini span{font-size:11.5px;color:var(--mut)}
+.map-legend{display:flex;flex-wrap:wrap;gap:9px}
+.lg{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--mut)}
+.lg i{width:14px;height:9px;border-radius:2.5px;display:inline-block}
+/* ---------- metric dashboard ---------- */
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.mcard{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);
+border-radius:20px;padding:24px;backdrop-filter:blur(12px);box-shadow:0 22px 50px -30px rgba(0,12,30,.9);transition:.35s}
+.mcard:hover{transform:translateY(-7px);border-color:rgba(63,187,239,.4)}
+.mcard::after{content:"";position:absolute;right:-40px;bottom:-40px;width:130px;height:130px;border-radius:50%;
+background:radial-gradient(circle,rgba(63,187,239,.15),transparent 70%)}
+.gauge{position:relative;width:96px;height:96px;margin:0 auto 14px}
+.gauge svg{transform:rotate(-90deg)}
+.gauge .gv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#F2F8FF;font-family:Arial}
+.gauge .gv i{font-style:normal;font-size:12px;color:var(--mut);margin-left:2px}
+.mk{display:block;text-align:center;font-size:13px;color:var(--mut)}
+.mvhidden{display:none}
+/* ---------- skyline: core area comparison panel (CSS) ---------- */
+.sky-panel{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.sky-col{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 22px 20px;backdrop-filter:blur(10px);position:relative;overflow:hidden;transition:.3s}
+.sky-col:hover{transform:translateY(-6px);border-color:rgba(63,187,239,.4)}
+.sky-col .sc-name{font-size:16px;font-weight:800;color:#F2F8FF}
+.sky-col .sc-role{font-size:12px;color:var(--mut);margin:5px 0 16px}
+.sky-bar{height:120px;display:flex;align-items:flex-end;border-radius:99px;background:rgba(140,175,215,.1);overflow:hidden;position:relative}
+.sky-bar i{display:block;width:100%;height:0%;border-radius:99px;transition:height 1.2s cubic-bezier(.2,.7,.3,1);position:relative}
+.sky-bar i::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 55%)}
+.sky-col.in .sky-bar i{height:var(--h)}
+.sky-col .sc-foot{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px}
+.sky-col .sc-area{font-size:20px;font-weight:900;color:var(--sc,#3FBBEF);font-family:Arial}
+.sky-col .sc-pct{font-size:11.5px;color:var(--mut)}
+.sky-cap{grid-column:1/-1;margin-top:14px;text-align:center;color:var(--mut);font-size:12px;letter-spacing:.12em}
+/* ---------- cores ---------- */
+.cores{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.core{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;transition:.35s;cursor:pointer;position:relative;overflow:hidden;backdrop-filter:blur(12px)}
+.core::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--cc,#3FBBEF),transparent)}
+.core:hover{transform:translateY(-8px);box-shadow:0 30px 58px -24px rgba(0,14,40,.95);border-color:rgba(63,187,239,.35)}
+.core-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.core-tag{font-size:12px;padding:4px 13px;border-radius:99px;border:1px solid;letter-spacing:.16em;font-weight:700}
+.core-area{font-size:12px;color:var(--mut)}
+.core h3{font-size:21px;color:#F2F8FF}
+.core-sub{color:var(--mut);font-size:13.5px;margin:8px 0 15px}
+.core ul{list-style:none}
+.core li{font-size:13.5px;padding:7px 0 7px 22px;position:relative;border-bottom:1px dashed rgba(140,175,215,.13);color:var(--txt)}
+.core li::before{content:"";position:absolute;left:2px;top:14px;width:8px;height:8px;border-radius:2px;background:var(--cc,#3FBBEF)}
+.core-bar{height:4px;border-radius:99px;background:rgba(140,175,215,.14);overflow:hidden;margin-top:16px}
+.core-bar i{display:block;height:100%;border-radius:99px}
+/* ---------- scenarios ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 28px}
+.fbtn{border:1px solid var(--line);background:var(--card2);color:var(--mut);padding:9px 20px;border-radius:99px;
+font-size:13px;cursor:pointer;transition:.25s;font-family:inherit}
+.fbtn:hover{color:#EAF4FF;border-color:var(--cyan);transform:translateY(-2px)}
+.fbtn.on{background:rgba(63,187,239,.2);color:#EAF4FF;border-color:rgba(63,187,239,.55);box-shadow:0 10px 24px -12px rgba(63,187,239,.5)}
+.scens{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scen{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;
+transition:transform .25s,box-shadow .3s,border-color .3s;overflow:hidden;backdrop-filter:blur(10px)}
+.scen::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--k-kind,#3FBBEF),transparent 70%)}
+.scen:hover{transform:translateY(-5px);box-shadow:0 26px 48px -22px rgba(0,14,40,.95);border-color:rgba(63,187,239,.35)}
+.scen-top{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.scen-kind{font-size:10.5px;letter-spacing:.14em;padding:3px 10px;border-radius:99px;border:1px solid var(--k-kind,#3FBBEF);color:var(--k-kind,#3FBBEF);font-weight:700}
+.scen .sid{margin-left:auto;font-size:11px;color:var(--mut);letter-spacing:.08em}
+.scen strong{color:#F2F8FF;font-size:16px}
+.scen em{display:block;font-style:normal;font-size:12px;color:var(--cyan);margin:5px 0 10px}
+.scen p{font-size:13px;color:var(--txt);line-height:1.6}
+.scen-foot{margin-top:12px;padding-top:10px;border-top:1px dashed rgba(140,175,215,.14)}
+.scen .priv{display:inline-block;font-size:11px;color:#EBCB84;background:rgba(232,161,63,.13);border:1px solid rgba(232,161,63,.3);padding:3px 12px;border-radius:99px}
+.scen.hide{display:none}
+table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);
+border-radius:16px;overflow:hidden;font-size:14px;margin-top:22px;backdrop-filter:blur(10px)}
+th{background:rgba(10,44,80,.8);color:#EAF4FF;text-align:left;padding:13px 17px;font-weight:600;letter-spacing:.03em}
+td{padding:12px 17px;border-top:1px solid rgba(140,175,215,.14);color:var(--txt)}
+tr:hover td{background:rgba(63,187,239,.06)}
+/* ---------- phases timeline ---------- */
+.phases{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.phase{display:grid;grid-template-columns:70px 1fr;gap:18px}
+.phase-rail{display:flex;flex-direction:column;align-items:center}
+.ph-node{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+font-weight:900;color:#fff;background:rgba(63,187,239,.15);border:2px solid var(--cyan);font-family:Arial;box-shadow:0 0 18px rgba(63,187,239,.4)}
+.phase[data-p="P2"] .ph-node{border-color:var(--green);background:rgba(53,197,126,.14);box-shadow:0 0 18px rgba(53,197,126,.4)}
+.phase[data-p="P3"] .ph-node{border-color:var(--amber);background:rgba(232,161,63,.14);box-shadow:0 0 18px rgba(232,161,63,.4)}
+.ph-line{flex:1;width:2px;background:linear-gradient(180deg,rgba(63,187,239,.4),rgba(63,187,239,.08));min-height:30px}
+.phase-body{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:8px;backdrop-filter:blur(10px);transition:.3s}
+.phase:hover .phase-body{border-color:rgba(63,187,239,.4);transform:translateX(5px)}
+.phase-meta{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.phase-name{font-size:18px;font-weight:800;color:#F2F8FF}
+.phase-years{font-size:12.5px;color:var(--cyan);letter-spacing:.06em;font-family:Arial}
+.phase-scope{color:var(--mut);font-size:13.5px;margin:8px 0 12px}
+.phase-tags{display:flex;gap:8px;flex-wrap:wrap}
+.phase-tags span{font-size:11.5px;color:var(--txt);background:var(--card2);border:1px solid var(--line);padding:4px 12px;border-radius:99px}
+/* ---------- projects ---------- */
+.proj-list{display:flex;flex-direction:column;gap:11px}
+.proj{display:grid;grid-template-columns:66px 1fr auto 54px;gap:15px;align-items:center;background:var(--card);
+border:1px solid var(--line);border-radius:14px;padding:14px 19px;font-size:14px;transition:.25s;backdrop-filter:blur(8px)}
+.proj:hover{transform:translateX(6px);border-color:rgba(63,187,239,.4);box-shadow:0 12px 30px -16px rgba(0,12,34,.9)}
+.pid{font-weight:800;color:var(--cyan);font-family:Arial}
+.pname{color:var(--ink)}
+.ptype{color:var(--mut);font-size:12.5px}
+.ph{font-size:11.5px;font-weight:800;text-align:center;padding:5px 0;border-radius:99px}
+.ph.p1{background:rgba(63,187,239,.16);color:#9FDCF6;border:1px solid rgba(63,187,239,.4)}
+.ph.p2{background:rgba(232,161,63,.14);color:#EBCB84;border:1px solid rgba(232,161,63,.38)}
+/* ---------- evidence ---------- */
+.tasks{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.task{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px 19px;font-size:14px;transition:.25s;backdrop-filter:blur(8px);color:var(--txt)}
+.task:hover{transform:translateY(-3px);border-color:rgba(63,187,239,.35)}
+.tid{font-weight:800;color:var(--cyan);font-family:Arial}
+.ok{margin-left:auto;color:var(--green);font-weight:900}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+ul.plain{list-style:none}
+ul.plain li{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:13px 17px;margin-bottom:10px;font-size:13.5px;transition:.25s;color:var(--txt);backdrop-filter:blur(8px)}
+ul.plain li:hover{border-color:rgba(63,187,239,.4)}
+.note{background:rgba(232,161,63,.08);border:1px solid rgba(232,161,63,.3);border-radius:16px;padding:20px 22px;font-size:13.5px;color:#EBCB84;margin-top:30px;line-height:1.75;backdrop-filter:blur(8px)}
+footer{margin-top:110px;background:linear-gradient(180deg,rgba(6,26,49,0),rgba(6,26,49,.9) 30%,#061A31);color:#8FB4D9;padding:52px 6%;font-size:12.5px;line-height:2}
+footer b{color:#D8E9F9}
+@media(max-width:1060px){.metrics,.scens{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.metrics,.scens{grid-template-columns:1fr}.sky-panel{grid-template-columns:1fr}}
+@media(max-width:960px){.map-panel,.two{grid-template-columns:1fr}.proj{grid-template-columns:54px 1fr 44px}.ptype{display:none}}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <div class="brand">Origin Belt <b>·</b> OJZ</div>
+  <div class="nav-links">
+    <a href="#map">Map</a><a href="#metrics">Metrics</a><a href="#cores">Cores</a>
+    <a href="#scen">AI Scenarios</a><a href="#projects">Projects</a><a href="#tasks">Evidence</a>
+    <a class="lang" href="index.html">中文</a>
+  </div>
+</nav>
+
+<header>
+  <canvas id="hero"></canvas>
+  <div class="hero-veil"></div>
+  <div class="hero-shade"></div>
+  <div class="hero-in">
+    <div class="kicker">CENTENNIAL JING-ZHANG AI INNOVATION BELT · OPEN CALL 2026</div>
+    <h1><span class="w" style="animation-delay:0.25s">O</span><span class="w" style="animation-delay:0.32s">r</span><span class="w" style="animation-delay:0.39s">i</span><span class="w" style="animation-delay:0.46s">g</span><span class="w" style="animation-delay:0.53s">i</span><span class="w" style="animation-delay:0.6000000000000001s">n</span><span class="w" style="animation-delay:0.67s"> </span><span class="w" style="animation-delay:0.74s">B</span><span class="w" style="animation-delay:0.81s">e</span><span class="w" style="animation-delay:0.8800000000000001s">l</span><span class="w" style="animation-delay:0.9500000000000001s">t</span>
+      <small>One spine, three cores, three veins — compiling a century of homegrown innovation into the future of the city</small>
+    </h1>
+    <div class="hero-meta">
+      <span class="chip">Tinxyoo · GLM-5.3</span>
+      <span class="chip">Formal package</span>
+      <span class="chip">Provisional boundary</span>
+      <span class="chip">13 AI scenario cards</span>
+    </div>
+  </div>
+  <div class="hero-hud">
+    <div class="hstat"><b>43.6<i>km²</i></b><span>RESEARCH</span></div>
+    <div class="hstat"><b>11.41<i>km²</i></b><span>DESIGN</span></div>
+    <div class="hstat"><b>368.4<i>ha</i></b><span>KEY AREAS</span></div>
+    <div class="hstat"><b>9.7<i>km</i></b><span>SPINE</span></div>
+  </div>
+  <div class="scroll-cue"></div>
+</header>
+
+<section id="map">
+  <div class="sec-head reveal">
+    <div class="sec-num">01 · OVERVIEW</div>
+    <h2>Overview Map · Spatial Cockpit</h2>
+    <p class="s-sub">Three scopes: 43.6 km² research · 11.41 km² design (provisional) · 368.4 ha key areas. Layer toggles, 3D building extrusion, spine particle flow; hover key areas.</p>
+  </div>
+  <div class="map-panel">
+    <div class="map-3d reveal">
+      <div class="map-3d-inner">
+        <div class="map-stage">
+          <svg id="mapSvg" viewBox="0 0 700 940" role="img" aria-label="Structure map">
+            <g id="gLand"><path class="lulayer" data-name="京张智脊·遗址公园绿地" d="M333.5 408.0 L339.3 0.2 L372.2 0.4 L366.4 408.3 L366.4 939.7 L333.5 939.4 L333.5 408.0 Z" fill="#2F7D52" fill-opacity="0.92"/>
+<path class="lulayer" data-name="众智园·全栈自主创新研发用地" d="M336.1 204.1 L313.4 204.0 L314.9 5.4 L338.3 5.6 L336.1 204.1 Z" fill="#3D62B8" fill-opacity="0.92"/>
+<path class="lulayer" data-name="众智园·标准治理与产业展示用地" d="M338.3 52.4 L338.3 5.6 L339.2 5.6 L338.3 52.4 Z" fill="#5C4BA8" fill-opacity="0.92"/>
+<path class="lulayer" data-name="众智园·标准治理与产业展示用地" d="M405.6 6.0 L404.2 204.6 L369.0 204.4 L372.1 5.8 L405.6 6.0 Z" fill="#5C4BA8" fill-opacity="0.92"/>
+<path class="lulayer" data-name="原点社区·近校成果孵化用地" d="M333.5 461.8 L303.3 461.5 L304.0 354.2 L334.2 354.4 L333.5 461.8 Z" fill="#3D62B8" fill-opacity="0.92"/>
+<path class="lulayer" data-name="原点社区·AI人才居住用地" d="M394.9 354.9 L394.1 462.2 L366.4 462.0 L367.1 354.6 L394.9 354.9 Z" fill="#B08A2E" fill-opacity="0.92"/>
+<path class="lulayer" data-name="大钟寺·智能原生商业服务业用地" d="M300.1 885.5 L300.6 822.8 L333.5 823.1 L333.5 885.8 L300.1 885.5 Z" fill="#B85C30" fill-opacity="0.92"/>
+<path class="lulayer" data-name="大钟寺·智能原生商业服务业用地" d="M408.0 823.6 L407.5 886.3 L366.4 886.0 L366.4 823.3 L408.0 823.6 Z" fill="#B85C30" fill-opacity="0.92"/>
+<path class="lulayer" data-name="学院路高校创新教育带" d="M400.2 886.3 L407.5 886.3 L408.0 823.6 L400.2 823.6 L400.2 450.3 L411.6 660.9 L409.6 940.0 L400.2 939.9 L400.2 886.3 Z" fill="#584AC2" fill-opacity="0.92"/>
+<path class="lulayer" data-name="学院路高校创新教育带" d="M405.6 6.0 L400.2 6.0 L400.2 0.6 L416.4 0.8 L400.2 328.9 L400.2 204.6 L404.2 204.6 L405.6 6.0 Z" fill="#584AC2" fill-opacity="0.92"/>
+<path class="lulayer" data-name="西侧更新居住片区" d="M283.6 552.6 L299.7 270.7 L299.7 939.2 L289.0 939.1 L283.6 552.6 Z" fill="#B08A2E" fill-opacity="0.92"/>
+<path class="lulayer" data-name="脊侧社区服务与混合更新带" d="M338.3 5.6 L314.9 5.4 L313.4 204.0 L336.1 204.1 L334.2 354.4 L304.0 354.2 L303.3 461.5 L333.5 461.8 L333.5 823.1 L300.6 822.8 L300.1 885.5 L333.5 885.8 L333.5 939.4 L299.7 939.2 L299.7 270.7 L312.4 -0.0 L339.3 0.2 L338.3 5.6 Z" fill="#6E7A5A" fill-opacity="0.92"/>
+<path class="lulayer" data-name="脊侧社区服务与混合更新带" d="M400.2 886.3 L400.2 939.9 L366.4 939.7 L366.4 886.0 L400.2 886.3 Z" fill="#6E7A5A" fill-opacity="0.92"/>
+<path class="lulayer" data-name="脊侧社区服务与混合更新带" d="M394.1 462.2 L394.9 354.9 L367.1 354.6 L369.0 204.4 L400.2 204.6 L400.2 328.9 L397.1 392.4 L400.2 450.3 L400.2 823.6 L366.4 823.3 L366.4 462.0 L394.1 462.2 Z" fill="#6E7A5A" fill-opacity="0.92"/>
+<path class="lulayer" data-name="脊侧社区服务与混合更新带" d="M400.2 0.6 L400.2 6.0 L372.1 5.8 L372.2 0.4 L400.2 0.6 Z" fill="#6E7A5A" fill-opacity="0.92"/></g>
+            <path id="lyGreen" d="M333.5 408.0 L339.3 0.2 L372.2 0.4 L366.4 408.3 L366.4 939.7 L333.5 939.4 L333.5 408.0 Z M311.3 25.1 L312.4 -0.0 L416.4 0.8 L415.2 25.1 L311.3 25.1 Z M410.1 875.7 L409.9 906.6 L404.1 906.6 L404.1 875.7 L410.1 875.7 Z M410.9 769.4 L410.6 800.3 L404.1 800.3 L404.1 769.4 L410.9 769.4 Z M408.6 605.0 L410.3 636.0 L404.1 636.0 L404.1 605.0 L408.6 605.0 Z M412.4 83.0 L410.8 113.9 L404.1 113.9 L404.1 83.0 L412.4 83.0 Z M304.4 299.0 L297.4 310.0 L298.8 286.1 L303.4 292.1 L304.4 299.0 Z M404.3 243.3 L397.8 238.0 L395.4 228.5 L398.7 220.7 L405.8 216.0 L404.3 243.3 Z M304.4 589.0 L296.8 600.4 L284.3 600.9 L283.9 574.5 L291.4 573.2 L298.1 575.6 L302.8 580.8 L304.4 589.0 Z M409.9 727.8 L399.6 723.6 L395.4 713.3 L399.6 703.0 L409.9 698.8 L409.9 727.8 Z M312.2 830.7 L305.8 841.4 L292.2 842.7 L287.6 839.7 L287.3 819.2 L294.9 815.1 L303.3 815.9 L309.8 821.3 L312.2 830.7 Z"/>
+            <path id="lyBuildings" d="M324.8 94.6 L314.2 94.6 L314.3 84.0 L324.8 84.0 L324.8 94.6 Z M314.3 78.2 L314.4 67.5 L324.8 67.5 L324.8 78.2 L314.3 78.2 Z M314.5 61.7 L314.5 51.1 L324.8 51.1 L324.8 61.7 L314.5 61.7 Z M314.6 45.3 L314.7 34.7 L324.8 34.7 L324.8 45.3 L314.6 45.3 Z M395.9 152.6 L395.9 162.3 L382.3 162.3 L382.3 152.6 L395.9 152.6 Z M395.9 137.6 L395.9 147.3 L382.3 147.3 L382.3 137.6 L395.9 137.6 Z M395.9 122.6 L395.9 132.3 L382.3 132.3 L382.3 122.6 L395.9 122.6 Z M325.8 433.4 L325.8 442.6 L313.2 442.6 L313.2 433.4 L325.8 433.4 Z M325.8 419.4 L325.8 428.6 L313.2 428.6 L313.2 419.4 L325.8 419.4 Z M325.8 405.4 L325.8 414.6 L313.2 414.6 L313.2 405.4 L325.8 405.4 Z M325.8 391.4 L325.8 400.6 L313.2 400.6 L313.2 391.4 L325.8 391.4 Z M366.4 452.3 L366.4 443.6 L376.0 443.6 L376.0 452.3 L366.4 452.3 Z M392.3 443.6 L392.3 452.3 L380.7 452.3 L380.7 443.6 L392.3 443.6 Z M366.4 438.9 L366.4 430.2 L376.0 430.2 L376.0 438.9 L366.4 438.9 Z M392.3 430.2 L392.3 438.9 L380.7 438.9 L380.7 430.2 L392.3 430.2 Z M327.7 866.0 L327.7 875.7 L313.2 875.7 L313.2 866.0 L327.7 866.0 Z M388.0 866.0 L388.0 875.7 L373.5 875.7 L373.5 866.0 L388.0 866.0 Z M327.7 850.8 L327.7 860.4 L313.2 860.4 L313.2 850.8 L327.7 850.8 Z M388.0 850.8 L388.0 860.4 L373.5 860.4 L373.5 850.8 L388.0 850.8 Z M373.5 872.8 L373.5 875.7 L385.9 875.7 L385.9 881.5 L373.3 881.5 L373.5 872.8 Z M373.5 859.1 L373.5 860.4 L385.9 860.4 L385.9 866.0 L373.5 866.0 L373.3 867.8 L373.5 859.1 Z"/>
+            <g id="gRoads"><path class="road greenway" d="M349.9 939.6 L349.9 408.2 L355.7 0.3"/>
+<path class="road cycleway" d="M307.4 112.5 L349.9 105.0 L410.4 121.9"/>
+<path class="road cycleway" d="M291.3 417.0 L397.6 402.0"/>
+<path class="road cycleway" d="M287.7 850.0 L352.8 852.5 L410.4 838.3"/>
+<path class="road branch" d="M310.4 46.1 L386.7 36.6 L390.5 191.3 L313.2 200.9 L309.7 60.9"/>
+<path class="road branch" d="M315.1 345.9 L384.7 336.3 L382.8 461.9 L317.1 471.6 L315.1 345.9"/>
+<path class="road branch" d="M320.9 813.8 L378.9 806.1 L380.9 889.2 L322.9 895.0 L320.9 813.8"/>
+<path class="road pedestrian" d="M347.5 939.5 L347.5 408.2 L353.3 0.3"/></g>
+            <path id="lyPublic" d="M372.1 410.2 L364.7 423.9 L349.9 428.4 L336.2 421.1 L331.7 406.2 L339.0 392.5 L353.9 388.0 L367.6 395.3 L372.1 410.2 Z M359.5 192.8 L353.9 203.2 L342.6 206.7 L332.2 201.1 L328.7 189.7 L334.3 179.3 L345.7 175.9 L356.1 181.5 L359.5 192.8 Z M367.3 853.9 L362.0 863.7 L351.4 866.9 L341.6 861.7 L338.4 851.1 L343.6 841.3 L354.3 838.1 L364.0 843.3 L367.3 853.9 Z M360.5 47.2 L357.2 53.4 L350.5 55.4 L344.3 52.1 L342.2 45.4 L345.6 39.2 L352.3 37.1 L358.5 40.4 L360.5 47.2 Z M359.1 269.4 L356.3 274.6 L350.6 276.3 L345.4 273.5 L343.7 267.8 L346.5 262.6 L352.1 260.9 L357.4 263.7 L359.1 269.4 Z M361.5 540.3 L357.8 547.1 L350.4 549.4 L343.5 545.7 L341.3 538.3 L344.9 531.4 L352.4 529.2 L359.2 532.8 L361.5 540.3 Z M358.6 656.0 L356.0 660.9 L350.7 662.5 L345.8 659.9 L344.2 654.6 L346.8 649.7 L352.1 648.1 L357.0 650.7 L358.6 656.0 Z M359.9 772.1 L356.8 777.9 L350.6 779.8 L344.8 776.7 L342.9 770.5 L346.0 764.7 L352.2 762.8 L358.0 765.9 L359.9 772.1 Z M358.1 897.6 L355.7 902.2 L350.7 903.7 L346.2 901.3 L344.7 896.3 L347.1 891.7 L352.0 890.2 L356.6 892.7 L358.1 897.6 Z M307.3 182.6 L303.9 189.4 L304.6 174.4 L306.9 178.5 L307.3 182.6 Z M399.0 442.8 L394.3 438.9 L392.5 432.9 L398.7 423.3 L399.0 442.8 Z M307.3 772.3 L303.5 779.5 L294.7 781.7 L287.4 776.3 L286.6 768.2 L291.8 761.9 L298.8 760.9 L305.0 764.6 L307.3 772.3 Z"/>
+            <g id="gPubs"><circle class="pubdot" cx="351.9" cy="408.2" r="4" data-name="原点广场（AI原点社区中心）"/>
+<circle class="pubdot" cx="344.1" cy="191.3" r="4" data-name="智汇客厅（众智园南门户）"/>
+<circle class="pubdot" cx="352.8" cy="852.5" r="4" data-name="钟寺门户广场（大钟寺站前）"/>
+<circle class="pubdot" cx="351.4" cy="46.3" r="4" data-name="智脊开发者节点"/>
+<circle class="pubdot" cx="351.4" cy="268.6" r="4" data-name="智脊开发者节点"/>
+<circle class="pubdot" cx="351.4" cy="539.3" r="4" data-name="智脊开发者节点"/>
+<circle class="pubdot" cx="351.4" cy="655.3" r="4" data-name="智脊开发者节点"/>
+<circle class="pubdot" cx="351.4" cy="771.3" r="4" data-name="智脊开发者节点"/>
+<circle class="pubdot" cx="351.4" cy="897.0" r="4" data-name="智脊开发者节点"/>
+<circle class="pubdot" cx="305.5" cy="182.0" r="4" data-name="东西缝合口"/>
+<circle class="pubdot" cx="396.5" cy="433.3" r="4" data-name="东西缝合口"/>
+<circle class="pubdot" cx="296.8" cy="771.3" r="4" data-name="东西缝合口"/></g>
+            <g id="gKeys"><path class="keylayer" data-core="zhongzhiyuan_ai_acceleration_area" data-label="众智园AI自主创新加速区" d="M313.4 204.0 L404.2 204.6 L405.6 6.0 L314.9 5.4 L313.4 204.0 Z"/><g class="keymark" data-core="zhongzhiyuan_ai_acceleration_area"><circle class="pulse" cx="359.5" cy="105.0" r="10"/><circle class="keydot" cx="359.5" cy="105.0" r="5.5"/></g><text class="keylabel" x="359.5" y="91.0">众智园AI自主创新加速区</text>
+<path class="keylayer" data-core="beijing_ai_origin_community" data-label="北京AI原点社区" d="M303.3 461.5 L394.1 462.2 L394.9 354.9 L304.0 354.2 L303.3 461.5 Z"/><g class="keymark" data-core="beijing_ai_origin_community"><circle class="pulse" cx="349.1" cy="408.2" r="10"/><circle class="keydot" cx="349.1" cy="408.2" r="5.5"/></g><text class="keylabel" x="349.1" y="394.2">北京AI原点社区</text>
+<path class="keylayer" data-core="dazhongsi_ai_industry_cluster" data-label="大钟寺AI产业聚集区" d="M300.1 885.5 L407.5 886.3 L408.0 823.6 L300.6 822.8 L300.1 885.5 Z"/><g class="keymark" data-core="dazhongsi_ai_industry_cluster"><circle class="pulse" cx="354.1" cy="854.6" r="10"/><circle class="keydot" cx="354.1" cy="854.6" r="5.5"/></g><text class="keylabel" x="354.1" y="840.6">大钟寺AI产业聚集区</text></g>
+            <path id="lySite" d="M289.0 939.1 L409.6 940.0 L411.6 660.9 L397.1 392.4 L416.4 0.8 L312.4 0.0 L283.6 552.6 L289.0 939.1 Z"/>
+          </svg>
+          <canvas id="flow"></canvas>
+          <canvas id="bldg3d"></canvas>
+          <div id="tip"></div>
+        </div>
+      </div>
+    </div>
+    <div class="console reveal">
+      <div class="panel">
+        <div class="panel-title">LAYERS</div>
+        <div class="layer-ctl">
+          <label><input type="checkbox" data-layer="gLand" checked><span class="sw"></span>Land use</label>
+          <label><input type="checkbox" data-layer="lyGreen" checked><span class="sw"></span>Blue-green & public space</label>
+          <label><input type="checkbox" data-layer="gRoads" checked><span class="sw"></span>Mobility & slow traffic</label>
+          <label><input type="checkbox" data-layer="lyBuildings" checked><span class="sw"></span>Building clusters (3D)</label>
+          <label><input type="checkbox" data-layer="gKeys" checked><span class="sw"></span>Key areas</label>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">KEY DATA</div>
+        <div class="stats">
+          <div class="mini"><b>43.6 km²</b><span>Research</span></div>
+          <div class="mini"><b>11.41 km²</b><span>Design (provisional)</span></div>
+          <div class="mini"><b>368.4 ha</b><span>Key areas</span></div>
+          <div class="mini"><b>9.7 km</b><span>Spine length</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">LEGEND</div>
+        <div class="map-legend">
+          <span class="lg"><i style="background:#2F7D52"></i>Blue-green</span>
+          <span class="lg"><i style="background:#C9A544"></i>Public</span>
+          <span class="lg"><i style="background:#35C57E"></i>Spine</span>
+          <span class="lg"><i style="background:#58A8F5"></i>Stitches</span>
+          <span class="lg"><i style="background:#46608C"></i>Clusters</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="metrics">
+  <div class="sec-head reveal">
+    <div class="sec-num">02 · METRICS</div>
+    <h2>Core Metrics · Dashboard</h2>
+    <p class="s-sub">Recomputed from submitted geometry in EPSG:4548; identical to metrics.json. FAR/height stay unknown pending official controls.</p>
+  </div>
+  <div class="metrics">
+    <div class="mcard reveal">
+      <div class="gauge"><svg viewBox="0 0 100 100" width="96" height="96"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(140,175,215,.15)" stroke-width="9"/><circle class="ring" cx="50" cy="50" r="42" fill="none" stroke="var(--cyan)" stroke-width="9" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" data-to="0.42"/></svg><span class="gv"><b class="c" data-count="11.41" data-dec="2">0</b><i>km²</i></span></div>
+      <span class="mk">Design area</span><span class="mvhidden" data-metric="site_area_sqm" data-value="11412825.386"></span>
+    </div>
+    <div class="mcard reveal">
+      <div class="gauge"><svg viewBox="0 0 100 100" width="96" height="96"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(140,175,215,.15)" stroke-width="9"/><circle class="ring" cx="50" cy="50" r="42" fill="none" stroke="var(--green)" stroke-width="9" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" data-to="0.33"/></svg><span class="gv"><b class="c" data-count="32.99" data-dec="2">0</b><i>%</i></span></div>
+      <span class="mk">Green ratio</span><span class="mvhidden" data-metric="green_ratio" data-value="0.329895"></span>
+    </div>
+    <div class="mcard reveal">
+      <div class="gauge"><svg viewBox="0 0 100 100" width="96" height="96"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(140,175,215,.15)" stroke-width="9"/><circle class="ring" cx="50" cy="50" r="42" fill="none" stroke="var(--amber)" stroke-width="9" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" data-to="0.05"/></svg><span class="gv"><b class="c" data-count="4.22" data-dec="2">0</b><i>%</i></span></div>
+      <span class="mk">Public-space ratio</span><span class="mvhidden" data-metric="public_space_ratio" data-value="0.042152"></span>
+    </div>
+    <div class="mcard reveal">
+      <div class="gauge"><svg viewBox="0 0 100 100" width="96" height="96"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(140,175,215,.15)" stroke-width="9"/><circle class="ring" cx="50" cy="50" r="42" fill="none" stroke="#6FD8E8" stroke-width="9" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" data-to="0.22"/></svg><span class="gv"><b class="c" data-count="25.4" data-dec="1">0</b><i>ha</i></span></div>
+      <span class="mk">Cluster footprint</span>
+    </div>
+    <div class="mcard reveal">
+      <div class="gauge"><svg viewBox="0 0 100 100" width="96" height="96"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(140,175,215,.15)" stroke-width="9"/><circle class="ring" cx="50" cy="50" r="42" fill="none" stroke="#B18CFF" stroke-width="9" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" data-to="0.12"/></svg><span class="gv"><b class="c" data-count="12" data-dec="0">0</b><i></i></span></div>
+      <span class="mk">AI scenario nodes</span>
+    </div>
+    <div class="mcard reveal">
+      <div class="gauge"><svg viewBox="0 0 100 100" width="96" height="96"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(140,175,215,.15)" stroke-width="9"/><circle class="ring" cx="50" cy="50" r="42" fill="none" stroke="#35C57E" stroke-width="9" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" data-to="1"/></svg><span class="gv"><b class="c" data-count="6" data-dec="0">0</b><i>/6</i></span></div>
+      <span class="mk">Task coverage</span>
+    </div>
+  </div>
+  <div class="sky-panel">
+<div class="sky-col reveal" data-sky="north" style="--sc:#1E6FD9">
+  <div class="sc-name">Zhongzhiyuan Acceleration</div>
+  <div class="sc-role">full-stack · governance · low-carbon</div>
+  <div class="sky-bar"><i style="--h:100%;background:linear-gradient(180deg,#1E6FD9,#1E6FD966)"></i></div>
+  <div class="sc-foot"><span class="sc-area">192.1 ha</span><span class="sc-pct">52%</span></div>
+</div>
+
+<div class="sky-col reveal" data-sky="central" style="--sc:#35C57E">
+  <div class="sc-name">AI Origin Community</div>
+  <div class="sc-role">incubation · open source · talent</div>
+  <div class="sky-bar"><i style="--h:54%;background:linear-gradient(180deg,#35C57E,#35C57E66)"></i></div>
+  <div class="sc-foot"><span class="sc-area">104.3 ha</span><span class="sc-pct">28%</span></div>
+</div>
+
+<div class="sky-col reveal" data-sky="south" style="--sc:#E8834A">
+  <div class="sc-name">Dazhongsi Cluster</div>
+  <div class="sc-role">agents · data · roadshow</div>
+  <div class="sky-bar"><i style="--h:37%;background:linear-gradient(180deg,#E8834A,#E8834A66)"></i></div>
+  <div class="sc-foot"><span class="sc-area">72.0 ha</span><span class="sc-pct">20%</span></div>
+</div><div class="sky-cap">Three-core area comparison (concept)</div></div>
+</section>
+
+<section id="cores">
+  <div class="sec-head reveal">
+    <div class="sec-num">03 · THREE CORES</div>
+    <h2>Key Areas · Three Core Files</h2>
+    <p class="s-sub">North to south: full-stack acceleration → origin incubation → native-intelligence economy. Hover to highlight on the map.</p>
+  </div>
+  <div class="cores">
+<article class="core reveal" data-core="north" data-color="#1E6FD9">
+  <div class="core-head"><span class="core-tag" style="border-color:#1E6FD9;color:#1E6FD9">North</span><span class="core-area">192.1 ha</span></div>
+  <h3>Zhongzhiyuan Acceleration</h3>
+  <p class="core-sub">full-stack · governance · low-carbon</p>
+  <ul><li>Open test field</li><li>Standards workshop</li><li>Governance hall</li><li>Compute hub</li></ul>
+  <div class="core-bar"><i style="width:95.0%;background:#1E6FD9"></i></div>
+</article>
+
+<article class="core reveal" data-core="central" data-color="#35C57E">
+  <div class="core-head"><span class="core-tag" style="border-color:#35C57E;color:#35C57E">Central</span><span class="core-area">104.3 ha</span></div>
+  <h3>AI Origin Community</h3>
+  <p class="core-sub">incubation · open source · talent</p>
+  <ul><li>Origin Plaza launches</li><li>Release hall</li><li>Transfer street</li><li>Co-living barns</li></ul>
+  <div class="core-bar"><i style="width:70.0%;background:#35C57E"></i></div>
+</article>
+
+<article class="core reveal" data-core="south" data-color="#E8834A">
+  <div class="core-head"><span class="core-tag" style="border-color:#E8834A;color:#E8834A">South</span><span class="core-area">72.0 ha</span></div>
+  <h3>Dazhongsi Cluster</h3>
+  <p class="core-sub">agents · data · roadshow</p>
+  <ul><li>Gateway plaza</li><li>Agent showroom</li><li>Data salon</li><li>Roadshow theatre</li></ul>
+  <div class="core-bar"><i style="width:55.00000000000001%;background:#E8834A"></i></div>
+</article></div>
+</section>
+
+<section id="scen">
+  <div class="sec-head reveal">
+    <div class="sec-num">04 · SCENARIOS</div>
+    <h2>AI Scenarios · 13 cards</h2>
+    <p class="s-sub">10 urban scenarios + 3 industry test fields, each with privacy boundary and human review.</p>
+  </div>
+  <div class="filters reveal">
+    <button class="fbtn on" data-f="all">All</button>
+    <button class="fbtn" data-f="launch">Launch</button>
+    <button class="fbtn" data-f="test">Test</button>
+    <button class="fbtn" data-f="work">Work</button>
+    <button class="fbtn" data-f="life">Life</button>
+    <button class="fbtn" data-f="infra">Infra</button>
+  </div>
+  <div class="scens">
+<div class="scen reveal" data-kind="launch">
+  <div class="scen-top"><span class="scen-kind">LAUNCH</span><span class="sid">S01</span></div>
+  <strong>Open-source Release Hall</strong><em>Origin</em>
+  <p>launches · contribution wall</p>
+  <div class="scen-foot"><span class="priv">aggregates only</span></div>
+</div>
+
+<div class="scen reveal" data-kind="test">
+  <div class="scen-top"><span class="scen-kind">TEST</span><span class="sid">S02</span></div>
+  <strong>Safety Governance Sandbox</strong><em>Zhongzhiyuan</em>
+  <p>red-team · standards</p>
+  <div class="scen-foot"><span class="priv">anonymised, sign-off</span></div>
+</div>
+
+<div class="scen reveal" data-kind="infra">
+  <div class="scen-top"><span class="scen-kind">INFRA</span><span class="sid">S03</span></div>
+  <strong>Edge-compute Post</strong><em>Smart vein</em>
+  <p>inference · hot updates</p>
+  <div class="scen-foot"><span class="priv">opt-in, public data</span></div>
+</div>
+
+<div class="scen reveal" data-kind="life">
+  <div class="scen-top"><span class="scen-kind">LIFE</span><span class="sid">S04</span></div>
+  <strong>AI Walk Wayfinding</strong><em>Spine greenway</em>
+  <p>gaps · crowding · a11y</p>
+  <div class="scen-foot"><span class="priv">low-intrusion sensors</span></div>
+</div>
+
+<div class="scen reveal" data-kind="launch">
+  <div class="scen-top"><span class="scen-kind">LAUNCH</span><span class="sid">S05</span></div>
+  <strong>Global Roadshow Lounge</strong><em>Dazhongsi</em>
+  <p>agent launches · media</p>
+  <div class="scen-foot"><span class="priv">cleared content</span></div>
+</div>
+
+<div class="scen reveal" data-kind="life">
+  <div class="scen-top"><span class="scen-kind">LIFE</span><span class="sid">S06</span></div>
+  <strong>Qinghe Low-carbon Walk</strong><em>Zhongzhiyuan edge</em>
+  <p>stormwater · carbon trail</p>
+  <div class="scen-foot"><span class="priv">public aggregates</span></div>
+</div>
+
+<div class="scen reveal" data-kind="work">
+  <div class="scen-top"><span class="scen-kind">WORK</span><span class="sid">S07</span></div>
+  <strong>Campus Transfer Street</strong><em>Origin</em>
+  <p>incubation · IP · funding</p>
+  <div class="scen-foot"><span class="priv">authorised data</span></div>
+</div>
+
+<div class="scen reveal" data-kind="work">
+  <div class="scen-top"><span class="scen-kind">WORK</span><span class="sid">S08</span></div>
+  <strong>Data-element Salon</strong><em>Dazhongsi</em>
+  <p>compliant flows · audit</p>
+  <div class="scen-foot"><span class="priv">traceable, revocable</span></div>
+</div>
+
+<div class="scen reveal" data-kind="life">
+  <div class="scen-top"><span class="scen-kind">LIFE</span><span class="sid">S09</span></div>
+  <strong>AI Life-service Street</strong><em>Community edge</em>
+  <p>health/edu/legal AI</p>
+  <div class="scen-foot"><span class="priv">opt-out recommendations</span></div>
+</div>
+
+<div class="scen reveal" data-kind="launch">
+  <div class="scen-top"><span class="scen-kind">LAUNCH</span><span class="sid">S10</span></div>
+  <strong>Global AI Week Route</strong><em>Public spaces</em>
+  <p>culture—industry loop</p>
+  <div class="scen-foot"><span class="priv">data minimisation</span></div>
+</div>
+
+<div class="scen reveal" data-kind="test">
+  <div class="scen-top"><span class="scen-kind">TEST</span><span class="sid">T1</span></div>
+  <strong>Autonomous Shuttle Test</strong><em>5th Ring—North</em>
+  <p>L4 pilot corridor</p>
+  <div class="scen-foot"><span class="priv">sandbox only</span></div>
+</div>
+
+<div class="scen reveal" data-kind="test">
+  <div class="scen-top"><span class="scen-kind">TEST</span><span class="sid">T2</span></div>
+  <strong>Robot Delivery Test</strong><em>Three cores</em>
+  <p>last-mile trials</p>
+  <div class="scen-foot"><span class="priv">speed/zone limited</span></div>
+</div>
+
+<div class="scen reveal" data-kind="work">
+  <div class="scen-top"><span class="scen-kind">WORK</span><span class="sid">T3</span></div>
+  <strong>Civic-agent Pilot</strong><em>Governance</em>
+  <p>event triage</p>
+  <div class="scen-foot"><span class="priv">human-in-the-loop</span></div>
+</div></div>
+  <table class="reveal">
+    <thead><tr><th>Persona</th><th>Needs</th><th>Spatial response</th></tr></thead>
+    <tbody><tr><td>Developer</td><td>publish · collaborate</td><td>Origin nodes</td></tr><tr><td>Startup</td><td>compute · scenes · funding</td><td>test field</td></tr><tr><td>Enterprise visitor</td><td>showcase · roadshow</td><td>Dazhongsi lounge</td></tr><tr><td>Resident</td><td>commute · leisure</td><td>blue-green loop</td></tr><tr><td>Faculty & student</td><td>transfer · walking</td><td>transfer street</td></tr></tbody>
+  </table>
+</section>
+
+<section id="projects">
+  <div class="sec-head reveal">
+    <div class="sec-num">05 · PROJECTS</div>
+    <h2>Renewal Projects</h2>
+    <p class="s-sub">Six pilot projects: light starts (events, signage, compute kiosks) precede works; tenure-, control- and utility-dependent projects await official conditions.</p>
+  </div>
+  <div class="proj-list reveal"><div class="proj"><span class="pid">JZ-01</span><span class="pname">Spine greenway 9.7 km</span><span class="ptype">public / slow</span><span class="ph p1">P1</span></div><div class="proj"><span class="pid">JZ-02</span><span class="pname">Qinghe low-carbon edge</span><span class="ptype">blue-green</span><span class="ph p2">P2</span></div><div class="proj"><span class="pid">JZ-03</span><span class="pname">Campus transfer street</span><span class="ptype">renewal / services</span><span class="ph p1">P1</span></div><div class="proj"><span class="pid">JZ-04</span><span class="pname">Station quadrants reconnected</span><span class="ptype">rail / walking</span><span class="ph p2">P2</span></div><div class="proj"><span class="pid">JZ-05</span><span class="pname">Edge-compute post chain</span><span class="ptype">new infra</span><span class="ph p1">P1</span></div><div class="proj"><span class="pid">JZ-06</span><span class="pname">AI Week public route</span><span class="ptype">operations</span><span class="ph p1">P1</span></div></div>
+</section>
+
+<section id="tasks">
+  <div class="sec-head reveal">
+    <div class="sec-num">06 · EVIDENCE</div>
+    <h2>Coverage · Sources · Assumptions · Self-check</h2>
+  </div>
+  <div class="tasks"><div class="task reveal"><span class="tid">agent.1</span><span>Concept · naming · logo · structure</span><span class="ok">✓</span></div><div class="task reveal"><span class="tid">agent.2</span><span>6 global cases · ecosystem map · factors</span><span class="ok">✓</span></div><div class="task reveal"><span class="tid">agent.3</span><span>13 scenario cards · 3 test fields · 5 personas</span><span class="ok">✓</span></div><div class="task reveal"><span class="tid">agent.4</span><span>3 AI landmarks · honours · components</span><span class="ok">✓</span></div><div class="task reveal"><span class="tid">agent.5</span><span>Culture narrative · signage · comms</span><span class="ok">✓</span></div><div class="task reveal"><span class="tid">agent.6</span><span>Annual events · community ops · conversion</span><span class="ok">✓</span></div></div>
+  <div class="two reveal" style="margin-top:28px">
+    <div><div class="panel-title" style="margin-bottom:12px">SOURCES</div>
+      <ul class="plain"><li>Prequalification announcement</li><li>Agent taskbook</li><li>Three areas & wings</li><li>MNR classification</li><li>Provisional boundaries</li></ul></div>
+    <div><div class="panel-title" style="margin-bottom:12px">ASSUMPTIONS</div>
+      <ul class="plain">
+        <li>Provisional boundary: full recalculation on official release</li>
+        <li>FAR/height/setback unknown pending official controls</li>
+        <li>All spatial ideas are concepts, not approvals</li>
+        <li>Design-model values pending operational calibration</li>
+      </ul></div>
+  </div>
+  <div class="note reveal"><strong>Self-check status：</strong>
+    All four gates passed locally; package_state=ready_for_review. Fully offline static visualisation with no remote resources.
+  </div>
+</section>
+
+<footer>
+  <b>原点·智汇京张 · Origin · Converging Intelligence on Jing-Zhang</b><br>
+  submissions/Tinxyoo/origin-smart-jingzhang · Data: geometry layers & metrics.json · sources in sources.json · 
+  Provisional boundaries, not official redlines.
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+
+  /* ============ HERO: full-screen 3D city (perspective towers + spine + stars) === */
+  var hc = document.getElementById('hero'), hx = hc.getContext('2d');
+  var stars = [];
+  var mpx = 0.5, mpy = 0.5;        /* mouse parallax 0..1 (default center) */
+  function fitHero(){ hc.width = hc.offsetWidth * devicePixelRatio; hc.height = hc.offsetHeight * devicePixelRatio; }
+  fitHero(); addEventListener('resize', fitHero);
+  var i;
+  for (i = 0; i < 100; i++) stars.push({x:Math.random(), y:Math.random(), r:.4+Math.random()*1.3, tw:Math.random()*6.28});
+  var coresH = [
+    {h:.62, c:'30,111,217'}, {h:.85, c:'30,111,217'},
+    {h:.72, c:'53,197,126'}, {h:.48, c:'53,197,126'},
+    {h:.66, c:'232,131,74'}, {h:.4,  c:'232,131,74'}
+  ];
+  var t0 = Date.now();
+  hc.addEventListener('mousemove', function(ev){
+    mpx = ev.clientX / window.innerWidth; mpy = ev.clientY / window.innerHeight;
+  });
+  (function drawHero(){
+    var W = hc.width, H = hc.height, t = (Date.now()-t0)/1000;
+    hx.clearRect(0,0,W,H);
+    /* stars with twinkle */
+    for (i = 0; i < stars.length; i++) { var s = stars[i];
+      var a = .3 + .3*Math.sin(s.tw + t*1.6);
+      hx.beginPath(); hx.arc(s.x*W, s.y*H*.82, s.r*devicePixelRatio, 0, 7);
+      hx.fillStyle = 'rgba(190,225,255,'+a+')'; hx.fill();
+    }
+    /* horizon glow + soft edge (no hard seam) */
+    var hz = H*.72;
+    var glow = hx.createLinearGradient(0, hz-H*.14, 0, hz+H*.02);
+    glow.addColorStop(0,'rgba(30,90,150,0)'); glow.addColorStop(1,'rgba(63,187,239,.22)');
+    hx.fillStyle = glow; hx.fillRect(0, hz-H*.14, W, H*.16);
+    /* faint horizon haze above the line to ease the seam */
+    var haze = hx.createLinearGradient(0, hz-H*.16, 0, hz);
+    haze.addColorStop(0,'rgba(10,44,80,0)'); haze.addColorStop(1,'rgba(10,44,80,.55)');
+    hx.fillStyle = haze; hx.fillRect(0, hz-H*.16, W, H*.16);
+    /* perspective ground grid */
+    var cxx = W*.66 + (mpx-.5)*W*.05;
+    hx.lineWidth = 1*devicePixelRatio;
+    for (var g = 0; g < 20; g++) {
+      var gx = cxx + (g-10)*W*.1;
+      hx.beginPath(); hx.moveTo(gx, H); hx.lineTo(cxx + (gx-cxx)*.1, hz);
+      hx.strokeStyle = 'rgba(63,187,239,'+(0.09 - Math.abs(g-10)*0.006)+')'; hx.stroke();
+    }
+    for (var r = 0; r < 9; r++) {
+      var p = (r/9 + (t*.04)%(1/9)) % 1, gy = hz + Math.pow(p,2.4)*(H-hz);
+      hx.beginPath(); hx.moveTo(0, gy); hx.lineTo(W, gy);
+      hx.strokeStyle = 'rgba(63,187,239,'+(p*.11)+')'; hx.stroke();
+    }
+    /* spine light ribbon (curving to towers) */
+    hx.lineCap = 'round';
+    var spineW = W*.3;
+    hx.beginPath();
+    hx.moveTo(W*.52, H);
+    hx.bezierCurveTo(W*.52 + (mpx-.5)*W*.08, hz+H*.12, cxx - spineW/2, hz+H*.04, cxx, hz);
+    hx.strokeStyle = 'rgba(53,197,126,.8)'; hx.lineWidth = 4*devicePixelRatio; hx.stroke();
+    hx.strokeStyle = 'rgba(190,255,220,.5)'; hx.lineWidth = 8*devicePixelRatio; hx.stroke();
+    /* 3D city towers along the horizon (kept right of the title zone) */
+    var slot = W*0.105;
+    for (i = 0; i < coresH.length; i++) {
+      var ct = coresH[i], x0 = cxx + (i-2.5)*slot;
+      var bw = slot*.34, bh = H*.21 * ct.h * (1 + .03*Math.sin(t*1.2 + i));
+      var y0 = hz - bh;
+      var ca = Math.max(0, .9 - Math.abs(i-2.5)*.16);
+      var body = hx.createLinearGradient(x0, y0, x0+bw, hz);
+      body.addColorStop(0, 'rgba('+ct.c+','+ca+')'); body.addColorStop(1, 'rgba('+ct.c+','+(ca*.28)+')');
+      hx.fillStyle = body;
+      hx.beginPath();
+      hx.moveTo(x0, hz); hx.lineTo(x0, y0 + bw*.3); hx.lineTo(x0 + bw/2, y0); hx.lineTo(x0 + bw, y0 + bw*.3); hx.lineTo(x0 + bw, hz);
+      hx.closePath(); hx.fill();
+      hx.strokeStyle = 'rgba(170,225,255,'+(0.45+.3*Math.sin(t*1.2+i))+')'; hx.lineWidth = 1.4*devicePixelRatio;
+      hx.beginPath();
+      hx.moveTo(x0, hz); hx.lineTo(x0, y0 + bw*.3); hx.lineTo(x0 + bw/2, y0); hx.lineTo(x0 + bw, y0 + bw*.3); hx.lineTo(x0 + bw, hz);
+      hx.stroke();
+      /* lit windows */
+      for (var wl = 0; wl < 8; wl++) {
+        var wy = hz - ((t*.5 + wl*.6) % 1) * bh;
+        if (wy > y0 + bw*.35) {
+          hx.fillStyle = 'rgba(190,235,255,'+(0.5*(1-(hz-wy)/bh))+')';
+          hx.fillRect(x0 + bw*.14, wy, bw*.72, 1.4*devicePixelRatio);
+        }
+      }
+    }
+    /* faint rising particles near ground */
+    for (var j = 0; j < 26; j++) {
+      var q = {x:Math.random(), y:((t*.04 + j*.017) % 1)};
+      var py = H - q.y*H*.7;
+      hx.beginPath(); hx.arc(q.x*W, py, 1*devicePixelRatio, 0, 7);
+      hx.fillStyle = 'rgba(120,190,255,'+(0.5*(1-q.y))+')'; hx.fill();
+    }
+    requestAnimationFrame(drawHero);
+  })();
+
+  /* ============ MAP: flow + 3D buildings + tilt + tip ============ */
+  try {
+  var fc = document.getElementById('flow'), fx = fc.getContext('2d');
+  var spine = [[349.9, 939.6], [349.9, 408.2], [353.8, 105.0], [355.7, 0.3]];
+  var dots = [];
+  for (i = 0; i < 30; i++) dots.push({u:Math.random()});
+  function fitFlow(){ if(!fc.offsetWidth) return; fc.width = fc.offsetWidth*devicePixelRatio; fc.height = fc.offsetHeight*devicePixelRatio; }
+  fitFlow(); addEventListener('resize', fitFlow);
+  function lerp(u) {
+    if (!spine || spine.length < 2) return null;
+    var total = spine.length-1, x = u*total, i0 = Math.min(Math.floor(x), total-1), f = x-i0;
+    return [spine[i0][0]+(spine[i0+1][0]-spine[i0][0])*f, spine[i0][1]+(spine[i0+1][1]-spine[i0][1])*f];
+  }
+  var svgEl = document.querySelector('svg#mapSvg');
+  var vb = svgEl && svgEl.viewBox && svgEl.viewBox.baseVal;
+  function toCanvas(x, y) {
+    if (!svgEl || !vb || !vb.width || !vb.height) return null;
+    var r = svgEl.getBoundingClientRect();
+    if (!r.width || !r.height) return null;
+    return [(x/vb.width)*r.width*devicePixelRatio, (y/vb.height)*r.height*devicePixelRatio];
+  }
+  (function flow(){
+    if (fc.width) {
+      fx.clearRect(0,0,fc.width,fc.height);
+      for (i = 0; i < dots.length; i++) { var d = dots[i];
+        d.u = (d.u + .002) % 1;
+        var p = lerp(d.u); if (!p) continue;
+        var c = toCanvas(p[0], p[1]); if (!c) continue;
+        var g = fx.createRadialGradient(c[0],c[1],0,c[0],c[1],10*devicePixelRatio);
+        g.addColorStop(0,'rgba(46,205,150,.95)'); g.addColorStop(1,'rgba(46,205,150,0)');
+        fx.fillStyle = g; fx.beginPath(); fx.arc(c[0],c[1],10*devicePixelRatio,0,7); fx.fill();
+      }
+    }
+    requestAnimationFrame(flow);
+  })();
+  } catch (e) {}
+
+  /* 3D building extrusion */
+  try {
+  var b3 = document.getElementById('bldg3d');
+  if (b3 && svgEl) {
+    var bx = b3.getContext('2d');
+    var bldgPolys = [];
+    var bp = document.getElementById('lyBuildings');
+    if (bp) {
+      var raw = bp.getAttribute('d') || '';
+      var segs = raw.split('Z').filter(function(s){ return s.trim().length; });
+      segs.forEach(function(seg){
+        var nums = seg.replace(/[ML]/g,' ').trim().split(/ +/).map(Number).filter(function(n){ return !isNaN(n); });
+        var pts = [];
+        for (var k = 0; k + 1 < nums.length; k += 2) pts.push([nums[k], nums[k+1]]);
+        if (pts.length >= 3) bldgPolys.push(pts);
+      });
+    }
+    var vb3 = svgEl.viewBox.baseVal;
+    var tiltX = 0, tiltY = 0;
+    function fitB3(){ if(!b3.offsetWidth) return; b3.width = b3.offsetWidth*devicePixelRatio; b3.height = b3.offsetHeight*devicePixelRatio; }
+    fitB3(); addEventListener('resize', fitB3);
+    var stageEl = svgEl.parentElement;
+    stageEl.addEventListener('mousemove', function(ev){
+      var r = stageEl.getBoundingClientRect();
+      tiltY = ((ev.clientX - r.left)/r.width - .5) * 2;
+      tiltX = ((ev.clientY - r.top)/r.height - .5) * -2;
+    });
+    stageEl.addEventListener('mouseleave', function(){ tiltX = 0; tiltY = 0; });
+    (function drawB3(){
+      if (b3.width) {
+        bx.clearRect(0,0,b3.width,b3.height);
+        var r = svgEl.getBoundingClientRect();
+        if (r.width && vb3) {
+          var toC = function(x, y){ return [(x/vb3.width)*r.width*devicePixelRatio, (y/vb3.height)*r.height*devicePixelRatio]; };
+          var fog = bx.createLinearGradient(0, 0, 0, b3.height);
+          fog.addColorStop(0, 'rgba(10,44,80,0)'); fog.addColorStop(1, 'rgba(8,34,63,.45)');
+          bx.fillStyle = fog; bx.fillRect(0,0,b3.width,b3.height);
+          var dx = tiltY * 3.2 * devicePixelRatio, dy = tiltX * 2.2 * devicePixelRatio;
+          bldgPolys.forEach(function(pts){
+            var c = pts.map(function(p){ return toC(p[0], p[1]); });
+            var hgt = (10 + (pts[0][0]*7 + pts[0][1]*11) % 16) * .5 * devicePixelRatio * 1.15;
+            var top = c.map(function(p){ return [p[0]+dx, p[1]+dy-hgt]; });
+            bx.lineJoin = 'round';
+            for (var s = 0; s < c.length; s++) {
+              var j = (s+1) % c.length;
+              var sh = bx.createLinearGradient(0, c[s][1], 0, top[s][1]);
+              sh.addColorStop(0, 'rgba(60,105,180,.92)'); sh.addColorStop(1, 'rgba(35,64,120,.25)');
+              bx.fillStyle = sh;
+              bx.beginPath();
+              bx.moveTo(c[s][0], c[s][1]); bx.lineTo(c[j][0], c[j][1]);
+              bx.lineTo(top[j][0], top[j][1]); bx.lineTo(top[s][0], top[s][1]);
+              bx.closePath(); bx.fill();
+            }
+            bx.fillStyle = 'rgba(150,205,255,.32)';
+            bx.strokeStyle = 'rgba(120,190,255,.55)'; bx.lineWidth = .7*devicePixelRatio;
+            bx.beginPath(); bx.moveTo(top[0][0], top[0][1]);
+            for (var k2 = 1; k2 < top.length; k2++) bx.lineTo(top[k2][0], top[k2][1]);
+            bx.closePath(); bx.fill(); bx.stroke();
+          });
+        }
+      }
+      requestAnimationFrame(drawB3);
+    })();
+  }
+  } catch (e) {}
+
+  /* map panel 3D tilt (smoothed via rAF, no CSS-transition churn) */
+  try {
+  var m3 = document.querySelector('.map-3d-inner');
+  if (m3) {
+    var mp = m3.parentElement.parentElement;
+    var curX = 0, curY = 0, tarX = 0, tarY = 0, tilting = false;
+    mp.addEventListener('mousemove', function(ev){
+      var r = mp.getBoundingClientRect();
+      tarX = ((ev.clientY - r.top)/r.height - .5) * -3.4;
+      tarY = ((ev.clientX - r.left)/r.width - .5) * 3.4;
+    });
+    mp.addEventListener('mouseleave', function(){ tarX = 0; tarY = 0; });
+    (function tiltLoop(){
+      curX += (tarX - curX) * .14;
+      curY += (tarY - curY) * .14;
+      if (Math.abs(curX - tarX) > .01 || Math.abs(curY - tarY) > .01) tilting = true;
+      else tilting = false;
+      m3.style.transform = 'rotateX('+curX.toFixed(2)+'deg) rotateY('+curY.toFixed(2)+'deg)';
+      requestAnimationFrame(tiltLoop);
+    })();
+  }
+  } catch (e) {}
+
+  /* tooltip */
+  var tip = document.getElementById('tip');
+  var tstage = tip && tip.parentElement;
+  if (tstage) {
+    tstage.addEventListener('mousemove', function(ev){
+      var tgt = ev.target;
+      var name = tgt.getAttribute && (tgt.getAttribute('data-name') || tgt.getAttribute('data-label'));
+      if (name) {
+        var r = tstage.getBoundingClientRect();
+        tip.textContent = name; tip.style.opacity = 1;
+        tip.style.left = Math.min(ev.clientX - r.left + 14, r.width - 150) + 'px';
+        tip.style.top = (ev.clientY - r.top - 34) + 'px';
+      } else tip.style.opacity = 0;
+    });
+    tstage.addEventListener('mouseleave', function(){ tip.style.opacity = 0; });
+  }
+
+  /* layer toggles (checkbox + switch) */
+  document.querySelectorAll('.layer-ctl input').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var el = document.getElementById(cb.dataset.layer);
+      if (el) el.style.display = cb.checked ? '' : 'none';
+    });
+  });
+
+  /* core hover -> map */
+  var coreMap = {north:'zhongzhiyuan_ai_acceleration_area', central:'beijing_ai_origin_community', south:'dazhongsi_ai_industry_cluster'};
+  document.querySelectorAll('.core').forEach(function(card){
+    card.addEventListener('mouseenter', function(){
+      var k = document.querySelector('.keylayer[data-core="'+coreMap[card.dataset.core]+'"]');
+      if (k) k.classList.add('hl');
+    });
+    card.addEventListener('mouseleave', function(){
+      document.querySelectorAll('.keylayer.hl').forEach(function(k){ k.classList.remove('hl'); });
+    });
+  });
+
+  /* scenario filters */
+  document.querySelectorAll('.fbtn').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.fbtn').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      var f = b.dataset.f;
+      document.querySelectorAll('.scen').forEach(function(s){
+        s.classList.toggle('hide', f !== 'all' && s.dataset.kind !== f);
+      });
+    });
+  });
+
+  /* reveal */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* metric count-up + ring gauges */
+  var cio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target, target = parseFloat(el.dataset.count), dec = +el.dataset.dec || 0;
+      var c0 = performance.now();
+      (function step(now){
+        var p = Math.min((now-c0)/1500, 1), v = target*(1-Math.pow(1-p,3));
+        el.textContent = v.toFixed(dec);
+        if (p < 1) requestAnimationFrame(step);
+      })(c0);
+      cio.unobserve(el);
+    });
+  }, {threshold:.55});
+  document.querySelectorAll('[data-count]').forEach(function(el){ cio.observe(el); });
+
+  /* ring animation */
+  var rio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var ring = e.target, to = parseFloat(ring.dataset.to) || 0, len = 264;
+      var c0 = performance.now();
+      (function step(now){
+        var p = Math.min((now-c0)/1600, 1), v = len*(1-(1-to)*(1-Math.pow(1-p,3)));
+        ring.style.strokeDashoffset = (len - v).toFixed(1);
+        if (p < 1) requestAnimationFrame(step);
+      })(c0);
+      rio.unobserve(ring);
+    });
+  }, {threshold:.4});
+  document.querySelectorAll('.ring').forEach(function(el){ rio.observe(el); });
+
+  /* nav solid + active */
+  var ids = ['map','metrics','cores','scen','projects','tasks'];
+  var sio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (e.isIntersecting) document.querySelectorAll('nav a[href^="#"]').forEach(function(l){
+        l.classList.toggle('on', l.getAttribute('href') === '#'+e.target.id);
+      });
+    });
+  }, {threshold:.2});
+  ids.forEach(function(id){ var s = document.getElementById(id); if (s) sio.observe(s); });
+  addEventListener('scroll', function(){
+    var nav = document.getElementById('nav');
+    if (nav) nav.classList.toggle('solid', window.scrollY > 40);
+  });
+})();
+</script>
+</body>
+</html>

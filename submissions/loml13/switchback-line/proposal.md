@@ -119,6 +119,8 @@ v1.7 落地的文保约束一览（provisional 推定；官方区划图纸另行
 | CX-007 | 建设控制地带Ⅴ类(2) | 747 | 不得新建建（构）筑物 |
 | CX-008 | 建设控制地带Ⅴ类(3) | 2,655 | 不得新建与文物保护和展示利用无关的建（构）筑物 |
 
+![底图总图：本方案设计几何叠加真实城市底图（OSM）](assets/figures/site-masterplan.png)
+
 ## 重点区域详细设计
 
 三处重点区是"人字线"的三次折返。每一处都按"定位+空间结构+建筑更新+交通慢行+公共空间+AI场景+实施风险"的小方案组织，详细几何见 [data:geometry/key_areas.geojson#PROV-KEY-001]（众智园）、[data:geometry/key_areas.geojson#PROV-KEY-002]（AI原点）、[data:geometry/key_areas.geojson#PROV-KEY-003]（大钟寺）[depth:three_key_area_detailed_design]。
@@ -223,6 +225,8 @@ AI 创新生态按"要素—场景—运营"组织：要素侧（土地、空间
 城市风貌：以"历史轨·数据轨"的双轨语汇统一铺装、导视与城市家具；人字形纹样作为母题贯穿栏板、铺装与标识，形成可识别的城市气质 [standard:MOHURD-URBAN-DESIGN-MEASURES]。空间尺度的设计意向用一张典型剖面表达：绿脊 120m 内保留铁轨展示、人字形铺装与慢行优先，两侧 24m 漫步带，外侧研发与商业界面的首层向公园开放，体量上"公园低、两翼高"（概念比例，非工程设计）。
 
 ![典型剖面：遗址公园绿脊与缝合廊道（AI原点段）](assets/figures/section-spine.png)
+
+![重点区剖面：AI原点社区东西向断面（绿脊 × 双翼界面，含记忆庭院）](assets/figures/keyarea-origin-section.png)
 
 ### AI 创新地标与荣誉展示体系（agent.4）
 

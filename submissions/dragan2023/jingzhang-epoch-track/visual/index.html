@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张纪元轨道 · 方案电子展示（v2）</title>
+<style>
+  :root { --navy:#152A3D; --ink:#2B3A4A; --muted:#7A8794; --accent:#E8503A;
+           --teal:#1F8A8C; --gold:#C9962E; --bg:#F4F5F7; --card:#FFFFFF; --line:#D9DEE4; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;
+         background:var(--bg); color:var(--ink); line-height:1.55; }
+  .wrap { max-width:1180px; margin:0 auto; padding:18px 22px 40px; }
+  header.hero { background:linear-gradient(135deg,#152A3D 0%,#1F4E5F 100%); color:#fff;
+                border-radius:14px; padding:24px 30px; margin-bottom:18px;
+                display:flex; gap:22px; align-items:center; }
+  header.hero img { width:92px; height:92px; border-radius:10px; background:#fff; padding:6px; }
+  .hero h1 { font-size:25px; letter-spacing:1px; }
+  .hero .sub { margin-top:6px; color:#BFD0DD; font-size:13px; }
+  .hero .tags { margin-top:12px; display:flex; flex-wrap:wrap; gap:8px; }
+  .tag { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,.14); }
+  .tag.prov { background:var(--accent); font-weight:700; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
+  .card h2 { font-size:15px; color:var(--navy); margin-bottom:10px;
+             border-left:4px solid var(--accent); padding-left:9px; }
+  .card p, .card li { font-size:12.5px; }
+  .card ul { padding-left:18px; }
+  .card li { margin:5px 0; }
+  .mapbox { text-align:center; }
+  .mapbox svg { width:100%; height:auto; max-width:760px; }
+  .legend { display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:10px; font-size:11px; }
+  .legend i { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .metric-card { background:var(--card); border:1px solid var(--line); border-radius:10px;
+                 padding:14px; text-align:center; }
+  .metric-label { display:block; font-size:12px; color:var(--muted); }
+  .metric-value { display:block; font-size:21px; font-weight:700; color:var(--navy); margin-top:5px; }
+  .metric-status { display:block; font-size:10.5px; color:var(--accent); margin-top:5px; }
+  .area-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+  .area { border:1px solid var(--line); border-left:5px solid var(--accent);
+          border-radius:10px; padding:14px; background:#fff; }
+  .area h3 { font-size:13.5px; color:var(--navy); }
+  .area .role { font-size:11.5px; color:var(--accent); margin:3px 0 8px; }
+  .area li { font-size:11.5px; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th, td { border:1px solid var(--line); padding:7px 9px; text-align:left; }
+  th { background:#EDF1F4; color:var(--navy); }
+  .ok { color:#1F8A8C; font-weight:700; }
+  .note { font-size:11px; color:var(--muted); margin-top:8px; }
+  footer { margin-top:22px; text-align:center; font-size:11px; color:var(--muted); }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .imgline { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:12px; }
+  .imgline img { width:100%; border:1px solid var(--line); border-radius:10px; }
+  @media (max-width:760px) { .two-col { grid-template-columns:1fr; } header.hero { flex-direction:column; text-align:center; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <img src="../assets/brand/logo.png" alt="京张纪元轨道 Logo">
+    <div>
+      <h1>京张纪元轨道 · Jing-Zhang Epoch Rail</h1>
+      <div class="sub">百年京张 AI 创新带城市设计概念方案（v2）—— 人字线创新总线 · 三座纪元站 · 两翼道岔 · 五个闭塞区间</div>
+      <div class="tags">
+        <span class="tag prov">PROVISIONAL 边界</span>
+        <span class="tag">AI Agent 提交 · dragan2023</span>
+        <span class="tag">2026-08</span>
+        <span class="tag">概念建议 · 非官方红线</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="grid">
+    <div class="card mapbox">
+      <h2>总览地图</h2>
+      <svg viewBox="0 0 760 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="总体设计范围概念图"><polygon points="297.2,274.56 299.98,264.67 320.78,190.74 320.9,190.31 321.06,189.92 341.23,152.02 352.47,130.89 390.17,130.89 455.16,130.89 455.16,116.81 390.17,116.81 359.97,116.81 367.46,102.73 262.35,102.73 153.28,102.73 167.02,56.96 262.35,56.96 375.0,56.96 394.33,56.96 502.94,56.96 600.31,56.96 712.96,56.96 697.53,102.73 600.31,102.73 487.65,102.73 484.89,102.73 477.39,116.81 487.65,116.81 522.32,116.81 522.32,130.89 487.65,130.89 469.9,130.89 458.66,152.02 438.04,190.74 437.71,191.37 417.09,264.67 414.03,275.55 326.29,306.91 312.17,306.91 288.1,306.91 293.05,289.31 297.2,274.56" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="299.98,264.67 297.2,274.56 293.05,289.31 288.1,306.91 262.35,306.91 262.35,289.31 262.35,264.67 299.98,264.67" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="320.78,190.74 299.98,264.67 262.35,264.67 262.35,190.74 320.78,190.74" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="320.9,190.31 320.78,190.74 262.35,190.74 262.35,264.67 149.69,264.67 149.69,190.74 126.86,190.74 138.49,152.02 149.69,114.7 153.28,102.73 262.35,102.73 367.46,102.73 359.97,116.81 323.01,116.81 323.01,130.89 352.47,130.89 341.23,152.02 321.06,189.92 320.9,190.31" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="390.17,130.89 352.47,130.89 323.01,130.89 323.01,116.81 359.97,116.81 390.17,116.81 390.17,130.89" fill="#B9E8A6" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="455.16,130.89 390.17,130.89 390.17,116.81 455.16,116.81 455.16,130.89" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="600.31,102.73 697.53,102.73 680.91,152.02 667.85,190.74 600.31,190.74 487.65,190.74 487.65,152.02 487.65,130.89 522.32,130.89 522.32,116.81 487.65,116.81 477.39,116.81 484.89,102.73 487.65,102.73 600.31,102.73" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="469.9,130.89 487.65,130.89 487.65,152.02 487.65,190.74 600.31,190.74 667.85,190.74 642.92,264.67 600.31,264.67 520.61,264.67 592.87,238.84 594.12,238.32 595.06,237.79 595.67,237.25 595.96,236.7 595.9,236.14 595.52,235.59 594.81,235.05 593.77,234.53 592.42,234.02 590.77,233.54 588.84,233.08 586.64,232.66 584.2,232.27 581.54,231.93 578.68,231.63 575.66,231.38 572.49,231.17 569.22,231.02 565.88,230.92 562.49,230.88 559.09,230.88 555.71,230.95 552.38,231.06 549.14,231.23 546.02,231.45 543.04,231.72 540.24,232.03 537.65,232.39 535.28,232.79 533.16,233.22 531.31,233.68 529.76,234.17 487.65,249.23 472.79,254.54 444.46,264.67 429.27,270.1 414.03,275.55 417.09,264.67 437.71,191.37 438.04,190.74 458.66,152.02 469.9,130.89" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="326.29,306.91 414.03,275.55 429.27,270.1 444.46,264.67 472.79,254.54 487.65,249.23 529.76,234.17 531.31,233.68 533.16,233.22 535.28,232.79 537.65,232.39 540.24,232.03 543.04,231.72 546.02,231.45 549.14,231.23 552.38,231.06 555.71,230.95 559.09,230.88 562.49,230.88 565.88,230.92 569.22,231.02 572.49,231.17 575.66,231.38 578.68,231.63 581.54,231.93 584.2,232.27 586.64,232.66 588.84,233.08 590.77,233.54 592.42,234.02 593.77,234.53 594.81,235.05 595.52,235.59 595.9,236.14 595.96,236.7 595.67,237.25 595.06,237.79 594.12,238.32 592.87,238.84 520.61,264.67 487.65,276.45 451.68,289.31 405.51,305.81 405.21,306.91 444.33,306.91 444.33,320.99 403.86,320.99 407.68,359.72 487.65,359.72 600.31,359.72 648.84,359.72 671.37,405.48 600.31,405.48 487.65,405.48 412.18,405.48 420.48,489.74 420.53,489.97 434.67,560.38 441.97,596.71 445.29,613.19 390.17,613.19 328.24,613.19 324.93,596.71 317.62,560.38 303.54,490.28 303.52,490.13 303.5,489.97 296.75,421.37 295.18,405.48 290.69,359.85 367.2,320.99 377.17,320.99 377.17,306.91 326.29,306.91" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="312.17,306.91 326.29,306.91 377.17,306.91 377.17,320.99 367.2,320.99 312.17,320.99 312.17,306.91" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="288.1,306.91 312.17,306.91 312.17,320.99 294.41,320.99 286.86,320.99 262.35,320.99 245.01,320.99 245.01,306.91 262.35,306.91 288.1,306.91" fill="#B9E8A6" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="126.86,190.74 149.69,190.74 149.69,264.67 98.54,264.67 123.69,201.3 126.86,190.74" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="149.69,264.67 262.35,264.67 262.35,289.31 262.35,306.91 245.01,306.91 245.01,320.99 262.35,320.99 262.35,337.28 250.87,343.1 218.15,359.72 149.69,359.72 60.8,359.72 76.17,320.99 88.75,289.31 98.54,264.67 149.69,264.67" fill="#61C0BF" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="367.2,320.99 290.69,359.85 295.18,405.48 262.35,405.48 198.37,405.48 197.81,405.6 195.49,406.01 192.94,406.37 190.17,406.69 187.23,406.97 184.13,407.2 180.91,407.38 177.6,407.5 174.23,407.58 170.83,407.6 167.43,407.56 164.08,407.47 160.79,407.33 157.61,407.13 154.55,406.89 151.66,406.6 149.69,406.35 148.96,406.26 146.48,405.89 144.3,405.48 42.63,405.48 60.8,359.72 149.69,359.72 218.15,359.72 250.87,343.1 262.35,337.28 287.22,324.65 294.41,320.99 312.17,320.99 367.2,320.99" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="487.65,276.45 520.61,264.67 600.31,264.67 642.92,264.67 634.62,289.31 626.31,313.95 629.77,320.99 600.31,320.99 487.65,320.99 487.65,289.31 487.65,276.45" fill="#E8684A" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="451.68,289.31 487.65,276.45 487.65,289.31 487.65,320.99 444.33,320.99 444.33,306.91 405.21,306.91 405.51,305.81 451.68,289.31" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="403.86,320.99 444.33,320.99 487.65,320.99 487.65,359.72 407.68,359.72 403.86,320.99" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="600.31,359.72 487.65,359.72 487.65,320.99 600.31,320.99 629.77,320.99 648.84,359.72 600.31,359.72" fill="#E8684A" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="600.31,405.48 671.37,405.48 712.96,489.97 600.31,489.97 487.65,489.97 420.53,489.97 420.48,489.74 412.18,405.48 487.65,405.48 600.31,405.48" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="434.67,560.38 420.53,489.97 487.65,489.97 600.31,489.97 712.96,489.97 712.96,560.38 600.31,560.38 487.65,560.38 434.67,560.38" fill="#E8684A" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="441.97,596.71 434.67,560.38 487.65,560.38 600.31,560.38 712.96,560.38 712.96,596.71 712.96,637.83 712.96,655.43 600.31,655.43 487.65,655.43 453.77,655.43 450.24,637.83 448.12,627.27 390.17,627.27 390.17,613.19 445.29,613.19 441.97,596.71" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="328.24,613.19 390.17,613.19 390.17,627.27 331.07,627.27 323.01,627.27 323.01,613.19 328.24,613.19" fill="#B9E8A6" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="324.93,596.71 328.24,613.19 323.01,613.19 323.01,627.27 331.07,627.27 333.19,637.83 336.72,655.43 262.35,655.43 149.69,655.43 149.69,637.83 74.35,637.83 67.32,596.71 61.11,560.38 149.69,560.38 262.35,560.38 317.62,560.38 324.93,596.71" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="303.54,490.28 317.62,560.38 262.35,560.38 149.69,560.38 149.69,489.97 262.35,489.97 303.5,489.97 303.52,490.13 303.54,490.28" fill="#F08BB4" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="296.75,421.37 303.5,489.97 262.35,489.97 149.69,489.97 49.07,489.97 37.04,419.57 42.63,405.48 144.3,405.48 146.48,405.89 148.96,406.26 149.69,406.35 151.66,406.6 154.55,406.89 157.61,407.13 160.79,407.33 164.08,407.47 167.43,407.56 170.83,407.6 174.23,407.58 177.6,407.5 180.91,407.38 184.13,407.2 187.23,406.97 190.17,406.69 192.94,406.37 195.49,406.01 197.81,405.6 198.37,405.48 262.35,405.48 295.18,405.48 296.75,421.37" fill="#61C0BF" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="286.86,320.99 294.41,320.99 287.22,324.65 286.86,320.99" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="262.35,320.99 286.86,320.99 287.22,324.65 262.35,337.28 262.35,320.99" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="149.69,489.97 149.69,560.38 61.11,560.38 49.07,489.97 149.69,489.97" fill="#F08BB4" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="600.31,655.43 712.96,655.43 712.96,673.04 600.31,673.04 487.65,673.04 375.0,673.04 262.35,673.04 149.69,673.04 149.69,655.43 262.35,655.43 336.72,655.43 333.19,637.83 331.07,627.27 390.17,627.27 448.12,627.27 450.24,637.83 453.77,655.43 487.65,655.43 600.31,655.43" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="522.32,627.27 487.65,627.27 455.16,627.27 455.16,613.19 487.65,613.19 522.32,613.19 522.32,627.27" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="149.69,637.83 149.69,655.43 77.36,655.43 74.35,637.83 149.69,637.83" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="149.69,655.43 149.69,673.04 80.37,673.04 77.36,655.43 149.69,655.43" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="180.02,190.74 656.64,190.74 656.64,60.48 180.02,60.48 180.02,190.74" fill="none" stroke="#E8503A" stroke-width="2" stroke-dasharray="7 5"/><polygon points="136.69,359.72 613.31,359.72 613.31,289.31 136.69,289.31 136.69,359.72" fill="none" stroke="#E8503A" stroke-width="2" stroke-dasharray="7 5"/><polygon points="136.69,637.83 699.96,637.83 699.96,596.71 136.69,596.71 136.69,637.83" fill="none" stroke="#E8503A" stroke-width="2" stroke-dasharray="7 5"/><polyline points="396.66,662.47 362.0,489.97 344.67,313.95 379.33,190.74 448.66,60.48" fill="none" stroke="#C9962E" stroke-width="12" stroke-opacity="0.35" stroke-linecap="round"/><polyline points="396.66,662.47 362.0,489.97 344.67,313.95 379.33,190.74 448.66,60.48" fill="none" stroke="#152A3D" stroke-width="2.2" stroke-dasharray="7 5" stroke-linecap="round"/><line x1="344.67" y1="313.95" x2="171.36" y2="401.96" stroke="#1F8A8C" stroke-width="6" stroke-opacity="0.5" stroke-linecap="round"/><line x1="344.67" y1="313.95" x2="561.31" y2="236.51" stroke="#1F8A8C" stroke-width="6" stroke-opacity="0.5" stroke-linecap="round"/><polygon points="80.37,673.04 712.96,673.04 712.96,489.97 626.31,313.95 712.96,56.96 167.02,56.96 123.69,201.3 37.04,419.57 80.37,673.04" fill="none" stroke="#6B7A8A" stroke-width="1.6" stroke-dasharray="6 4"/><rect x="415.66" y="116.85" width="14" height="14" fill="#E8503A" stroke="#ffffff" stroke-width="1.5"/><text x="433.66" y="127.85" font-size="12" fill="#152A3D">算力纪元站</text><rect x="337.67" y="306.95" width="14" height="14" fill="#E8503A" stroke="#ffffff" stroke-width="1.5"/><text x="355.67" y="317.95" font-size="12" fill="#152A3D">原点纪元站</text><rect x="415.66" y="613.23" width="14" height="14" fill="#E8503A" stroke="#ffffff" stroke-width="1.5"/><text x="433.66" y="624.23" font-size="12" fill="#152A3D">应用纪元站</text><text x="750" y="24" text-anchor="end" font-size="11" fill="#E8503A">provisional 边界 · 人字线概念示意</text></svg>
+      <div class="legend">
+        <span><i style="background:#E8503A"></i>纪元站（重点区 provisional）</span>
+        <span><i style="background:#C9962E"></i>人字线创新总线</span>
+        <span><i style="background:#1F8A8C"></i>道岔支线（两翼）</span>
+        <span><i style="background:#7BC96F"></i>绿地与开敞空间</span>
+        <span><i style="background:#F6BD16"></i>商业服务业</span>
+        <span><i style="background:#5B8FF9"></i>科研/研发</span>
+      </div>
+      <div class="note">底图由提交包 geometry/*.geojson 生成；面积复算使用 EPSG:4548。</div>
+    </div>
+    <div class="card">
+      <h2>三层范围</h2>
+      <ul>
+        <li><b>统筹研究范围</b>：43.6 km²，北至北五环、东至京藏高速、南至西直门外大街、西至万泉河路（公告文字四至）。</li>
+        <li><b>总体设计范围</b>：约 11.4 km²，京张遗址公园周边 1-2 公里（provisional 边界）。</li>
+        <li><b>重点区域范围</b>：三区合计约 368.4 ha（众智园/原点社区/大钟寺，provisional）。</li>
+        <li>空间语法：人字线主线（绿色走廊）→ 三座纪元站台（广场-站房-绿化）→ 道岔翼 → 闭塞区间 B1-B5。</li>
+      </ul>
+      <h2 style="margin-top:14px">AI 场景</h2>
+      <ul>
+        <li>13 张场景卡（10+3），完整「场景—空间—数据—模型—运营—复核—KPI」矩阵。</li>
+        <li>3 个产业测试验证场景：T1 模型红队测试场、T2 边缘智能验证节点、T3 智能体互操作走廊。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:16px">
+    <div class="card">
+      <h2>重点区域</h2>
+      <div class="area-cards">
+        <div class="area"><h3>众智园 · 算力纪元站</h3><div class="role">全栈研发与治理（B5）</div>
+          <ul><li>站前广场：对外交通与产业展示门户</li><li>站房核心：全栈研发+标准治理展示</li><li>站台绿化：清河低碳创新廊</li></ul></div>
+        <div class="area"><h3>AI原点社区 · 原点纪元站</h3><div class="role">近校策源与开源（B3）</div>
+          <ul><li>人字线交点：原点钟纪念节点</li><li>开源发布厅与贡献荣誉墙</li><li>校区-园区慢行缝合+人才社区</li></ul></div>
+        <div class="area"><h3>大钟寺 · 应用纪元站</h3><div class="role">智能经济与消费（B1）</div>
+          <ul><li>站前广场四象限步行连通</li><li>智能体/终端展示+数据要素会客厅</li><li>国际路演与城市客厅</li></ul></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>交通慢行 × 蓝绿公共空间</h2>
+      <ul>
+        <li>人字线绿道贯通三座纪元站；两翼道岔支线连接服务翼与场景翼。</li>
+        <li>轨道站点（五道口/清华东路西口/大钟寺）300-500m 公共空间锚点。</li>
+        <li>清河滨水界面、小月河绿廊构成连续蓝绿骨架。</li>
+        <li>道路为概念性中心线，非道路红线；断点与工程条件待官方确认。</li>
+      </ul>
+      <h2 style="margin-top:14px">用地分区 / 建筑 / 更新项目</h2>
+      <ul>
+        <li>用地由人字线走廊-站台-道岔翼与功能片区平面重划，无缝覆盖提交边界。</li>
+        <li>建筑基底为概念性布置（42 个基底，覆盖 12 类建筑类型）。</li>
+        <li>拆改留：保留-改造-更新-留白四类策略框架。</li>
+        <li>更新项目 JZ-01 至 JZ-12 按近/中/远三阶段组织，含主体/依赖/工期/分期 KPI（概念）。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:16px">
+    <h2>核心指标</h2>
+    <div class="metrics"><div class="metric-card"><span class="metric-label">总体设计范围面积</span><span class="metric-value" data-metric="site_area_sqm" data-value="11412825.386">11,412,825.39 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">人字线主线长度（概念）</span><span class="metric-value" data-metric="corridor_length_m" data-value="9500.6">9,500.6 <small>m</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">绿地占比（概念）</span><span class="metric-value" data-metric="green_ratio" data-value="0.307964">0.31 <small></small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">公共空间占比</span><span class="metric-value" data-metric="public_space_ratio" data-value="0.004732">0 <small></small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">建筑基底面积（概念）</span><span class="metric-value" data-metric="building_footprint_area_sqm" data-value="2376206.541">2,376,206.54 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">道路面积占比（概念）</span><span class="metric-value" data-metric="road_ratio" data-value="0.119223">0.12 <small></small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">闭塞区间（场景段）</span><span class="metric-value" data-metric="block_section_count" data-value="5">5 <small>段</small></span><span class="metric-status">known · known</span></div><div class="metric-card"><span class="metric-label">AI 场景节点</span><span class="metric-value" data-metric="scenario_node_count" data-value="13">13 <small>个</small></span><span class="metric-status">known · known</span></div><div class="metric-card"><span class="metric-label">重点详细设计区</span><span class="metric-value" data-metric="key_area_count" data-value="3">3 <small>个</small></span><span class="metric-status">known · known</span></div><div class="metric-card"><span class="metric-label">众智园（provisional）</span><span class="metric-value" data-metric="zhongzhiyuan_area_sqm" data-value="1929201.877">1,929,201.88 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">AI原点社区（provisional）</span><span class="metric-value" data-metric="beijing_ai_origin_area_sqm" data-value="1043236.909">1,043,236.91 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">大钟寺（provisional）</span><span class="metric-value" data-metric="dazhongsi_area_sqm" data-value="720454.219">720,454.22 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div></div>
+    <div class="note">全部面积与比例由 geometry/*.geojson 在 EPSG:4548 下复算；provisional 派生指标标注 provisional_pending_recalculation；FAR、密度、总规模等官方控制指标待控规条件确认（status=unknown）。</div>
+  </section>
+
+  <section class="card" style="margin-top:16px">
+    <h2>关键图解</h2>
+    <div class="imgline">
+      <figure><img src="../assets/figures/ecosystem-map.png" alt="生态图谱"><figcaption class="note">AI 创新生态图谱与全球案例转译</figcaption></figure>
+      <figure><img src="../assets/figures/scenario-matrix.png" alt="场景矩阵"><figcaption class="note">场景—空间—数据—模型—运营—复核—KPI 矩阵</figcaption></figure>
+      <figure><img src="../assets/figures/landmark-honor.png" alt="地标荣誉"><figcaption class="note">朝圣地标、荣誉体系与组件库</figcaption></figure>
+      <figure><img src="../assets/figures/operations-calendar.png" alt="运营体系"><figcaption class="note">年度活动日历、治理架构与转化漏斗</figcaption></figure>
+      <figure><img src="../assets/figures/regional-synergy.png" alt="区域协同"><figcaption class="note">区域协同关系图</figcaption></figure>
+      <figure><img src="../assets/figures/personas-inclusion.png" alt="画像包容"><figcaption class="note">九类用户画像与包容性机制</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="two-col" style="margin-top:16px">
+    <section class="card">
+      <h2>任务覆盖</h2>
+      <table>
+        <tr><th>任务</th><th>覆盖</th></tr>
+        <tr><td>公告 1.3/1.4/1.5 必选任务</td><td class="ok">23/23</td></tr>
+        <tr><td>智能体任务 agent.1-agent.6</td><td class="ok">6/6</td></tr>
+        <tr><td>强制专业标准</td><td class="ok">全部响应</td></tr>
+        <tr><td>设计深度项</td><td class="ok">15/15 complete</td></tr>
+        <tr><td>核心 GeoJSON 图层</td><td class="ok">9/9 引用</td></tr>
+        <tr><td>已知指标</td><td class="ok">全部引用</td></tr>
+      </table>
+      <div class="note">详见 compliance_matrix.json、standard_matrix.json、design_depth_matrix.json。</div>
+    </section>
+    <section class="card">
+      <h2>自检状态</h2>
+      <table>
+        <tr><th>检查</th><th>结果</th></tr>
+        <tr><td>确定性校验（格式/路径/风险）</td><td class="ok">通过（见 self_check.json）</td></tr>
+        <tr><td>空间校验（拓扑/复算）</td><td class="ok">通过（provisional 提示为 minor）</td></tr>
+        <tr><td>可视化包装检查</td><td class="ok">通过</td></tr>
+        <tr><td>专业证据评审</td><td class="ok">通过</td></tr>
+      </table>
+      <h2 style="margin-top:14px">来源</h2>
+      <ul>
+        <li>官方公告（规自委海淀分局，2026-05-09）</li>
+        <li>面向智能体任务书（agent_taskbook.json）</li>
+        <li>临时边界（provisional_boundaries.geojson）</li>
+        <li>公开资料登记表（data/source_registry.json）</li>
+        <li>逐资产权利登记（report/copyright_statement.md）</li>
+      </ul>
+      <h2 style="margin-top:14px">假设</h2>
+      <ul>
+        <li>控规条件（FAR/高度/密度/绿地率/退线）待官方确认。</li>
+        <li>provisional 边界派生指标均标注待复算，官方红线发布后整体复算。</li>
+        <li>空间结论、活动与 KPI 均为概念建议，不构成政府审定或实施承诺。</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>京张纪元轨道 · Jing-Zhang Epoch Rail ｜ 百年京张 AI 创新带城市设计开源征集 ｜ 本页面为离线静态展示，不加载任何外部资源</footer>
+</div>
+</body>
+</html>

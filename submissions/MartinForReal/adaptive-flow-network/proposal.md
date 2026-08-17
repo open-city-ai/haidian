@@ -254,23 +254,58 @@ AI 场景卡（不少于10张）：
 
 ### 图面数字的可追溯登记
 
-图面上出现的每一个数字，都必须能追溯到 `metrics.json` 中一条可复算、带公式、带免责说明的登记指标。下表登记本方案的**模型内网络指标**——它们全部出现在图面上，因此全部登记，并逐条声明**不是法定规划指标**：
+图面上出现的每一个数字，都必须能追溯到 `metrics.json` 中一条可复算、带公式、带免责说明的登记指标。下表由 `metrics.json` 直接生成，覆盖**全部**登记指标，因此正文与登记表之间不可能漂移。指标分两类：**几何复算**类可由提交的 GeoJSON 在 EPSG:4548 下重算；**模型内部**类衡量本方案生成的网络本身。两类都**不是法定规划指标**，任何一项都不得读作容积率、建筑密度、道路红线或控规结论：
 
-| 指标 | 值 | 单位 | 复算公式 | 引用 |
-|---|---|---|---|---|
-| `network_node_coverage` | 0.387 | ratio | `retained_network_nodes / lattice_nodes` | [metric:network_node_coverage] |
-| `network_independent_loops` | 109 | count | `edges - nodes + connected_components` | [metric:network_independent_loops] |
-| `network_loop_density` | 0.424 | ratio | `independent_loops / retained_network_nodes` | [metric:network_loop_density] |
-| `network_fault_tolerance` | 0.967 | ratio | `share of single-edge removals that keep sampled node pairs connected` | [metric:network_fault_tolerance] |
-| `network_failure_resilience_betweenness` | 0.399 | ratio | `area under the largest-connected-component curve, edges removed highest-edge-betweenness first` | [metric:network_failure_resilience_betweenness] |
-| `network_failure_resilience_random` | 0.315 | ratio | `same curve, mean of 5 random removal orders` | [metric:network_failure_resilience_random] |
-| `network_recovery_resilience` | 0.684 | ratio | `0.5*min(loop_density/0.5,1) + 0.5*min(degree_CV/0.8,1)` | [metric:network_recovery_resilience] |
-| `network_total_length_norm_mst` | 0.55 | ratio | `design_total_length / mst_total_length` | [metric:network_total_length_norm_mst] |
-| `land_use_coverage_ratio` | 1 | ratio | `union(land_use polygons) / site_boundary area` | [metric:land_use_coverage_ratio] |
-| `load_scenario_min_jaccard` | 0.679 | ratio | `min over interpretable load scenarios of |E_scenario ∩ E_shipped| / |E_scenario ∪ E_shipped|` | [metric:load_scenario_min_jaccard] |
-| `solver_final_step_backbone` | 6.14e-09 | dimensionless | `max |D_(k+1) - D_k| at the final iteration, gamma = backbone` | [metric:solver_final_step_backbone] |
+| 指标 | 值 | 单位 | 类别 | 复算公式 | 引用 |
+|---|---|---|---|---|---|
+| `site_area_sqm` | 1.14128e+07 | sqm | 几何复算 | `polygon_area(submitted_site_boundary)` | [metric:site_area_sqm] |
+| `building_footprint_area_sqm` | 614693 | sqm | 几何复算 | `sum(polygon_area(building_footprints))` | [metric:building_footprint_area_sqm] |
+| `green_ratio` | 0.206367 | ratio | 几何复算 | `green_space_area_sqm / site_area_sqm` | [metric:green_ratio] |
+| `public_space_ratio` | 0.012785 | ratio | 几何复算 | `public_space_area_sqm / site_area_sqm` | [metric:public_space_ratio] |
+| `key_area_count` | 3 | count | 几何复算 | `count(features(KEY_AREA))` | [metric:key_area_count] |
+| `network_node_coverage` | 0.3865 | ratio | 模型内部 | `retained_network_nodes / lattice_nodes` | [metric:network_node_coverage] |
+| `network_independent_loops` | 109 | count | 模型内部 | `edges - nodes + connected_components` | [metric:network_independent_loops] |
+| `network_loop_density` | 0.4241 | ratio | 模型内部 | `independent_loops / retained_network_nodes` | [metric:network_loop_density] |
+| `network_fault_tolerance` | 0.9667 | ratio | 模型内部 | `share of single-edge removals that keep sampled node pairs connected` | [metric:network_fault_tolerance] |
+| `network_failure_resilience_betweenness` | 0.3991 | ratio | 模型内部 | `area under the largest-connected-component curve, edges removed highest-edge-betweenness first` | [metric:network_failure_resilience_betweenness] |
+| `network_failure_resilience_random` | 0.3148 | ratio | 模型内部 | `same curve, mean of 5 random removal orders` | [metric:network_failure_resilience_random] |
+| `network_recovery_resilience` | 0.684 | ratio | 模型内部 | `0.5*min(loop_density/0.5,1) + 0.5*min(degree_CV/0.8,1)` | [metric:network_recovery_resilience] |
+| `network_total_length_norm_mst` | 0.5497 | ratio | 模型内部 | `design_total_length / mst_total_length` | [metric:network_total_length_norm_mst] |
+| `land_use_coverage_ratio` | 1 | ratio | 几何复算 | `union(land_use polygons) / site_boundary area` | [metric:land_use_coverage_ratio] |
+| `load_scenario_min_jaccard` | 0.6787 | ratio | 模型内部 | `min over interpretable load scenarios of |E_scenario ∩ E_shipped| / |E_scenario ∪ E_shipped|` | [metric:load_scenario_min_jaccard] |
+| `solver_final_step_backbone` | 6.1353e-09 | dimensionless | 模型内部 | `max |D_(k+1) - D_k| at the final iteration, gamma = backbone` | [metric:solver_final_step_backbone] |
+| `land_use_unit_count` | 257 | count | 几何复算 | `count(features(land_use))` | [metric:land_use_unit_count] |
+| `land_use_category_count` | 5 | count | 几何复算 | `count_distinct(land_use.land_use_code)` | [metric:land_use_category_count] |
+| `design_road_segment_count` | 366 | count | 几何复算 | `count(features(roads))` | [metric:design_road_segment_count] |
+| `backbone_road_segment_count` | 150 | count | 几何复算 | `count(roads.network_phase == 'backbone')` | [metric:backbone_road_segment_count] |
+| `capillary_road_segment_count` | 216 | count | 几何复算 | `count(roads.network_phase == 'capillary')` | [metric:capillary_road_segment_count] |
+| `conceptual_building_interface_count` | 113 | count | 几何复算 | `count(features(buildings))` | [metric:conceptual_building_interface_count] |
+| `building_interface_mixed_use_count` | 70 | count | 几何复算 | `count(buildings.building_type == 'mixed_use')` | [metric:building_interface_mixed_use_count] |
+| `building_interface_talent_apartment_count` | 30 | count | 几何复算 | `count(buildings.building_type == 'talent_apartment')` | [metric:building_interface_talent_apartment_count] |
+| `building_interface_ai_r_and_d_count` | 13 | count | 几何复算 | `count(buildings.building_type == 'ai_r_and_d')` | [metric:building_interface_ai_r_and_d_count] |
+| `public_space_node_count` | 9 | count | 几何复算 | `count(features(public_space))` | [metric:public_space_node_count] |
+| `green_space_feature_count` | 15 | count | 几何复算 | `count(features(green_space))` | [metric:green_space_feature_count] |
+| `green_corridor_park_count` | 1 | count | 几何复算 | `count(green_space.green_type == 'corridor_park')` | [metric:green_corridor_park_count] |
+| `green_node_park_count` | 14 | count | 几何复算 | `count(green_space.green_type == 'node_park')` | [metric:green_node_park_count] |
+| `phase_count` | 3 | count | 几何复算 | `count(features(phasing))` | [metric:phase_count] |
+| `constraint_feature_count` | 3 | count | 几何复算 | `count(features(constraints))` | [metric:constraint_feature_count] |
+| `key_area_announced_total_sqm` | 3.684e+06 | sqm | 几何复算 | `sum(key_areas.announced_area_sqm)` | [metric:key_area_announced_total_sqm] |
+| `key_area_provisional_polygon_total_sqm` | 3.69289e+06 | sqm | 几何复算 | `sum(polygon_area(key_areas)) in EPSG:4548` | [metric:key_area_provisional_polygon_total_sqm] |
+| `key_area_polygon_to_announced_ratio` | 1.00241 | dimensionless | 几何复算 | `key_area_provisional_polygon_total_sqm / key_area_announced_total_sqm` | [metric:key_area_polygon_to_announced_ratio] |
 
-上表每一项都可由提交的 GeoJSON 与公开的生成参数复算。**它们衡量的是本方案生成的网络本身，不是场地的法定管控指标**；任何一项都不得被读作容积率、建筑密度、道路红线或控规结论 [depth:metrics_recalculation]。
+上表 34 条为已知值。另有 7 条指标**登记为 status=unknown**：它们是评审会期待、但当前公开资料无法支撑的量。本方案把它们连同未知原因一起登记，而不是用推定值填补——「这些数据没有从当前公开资料中取得，AI agent 不得自行编造」：
+
+| 指标 | 单位 | 未知原因 | 引用 |
+|---|---|---|---|
+| `floor_area_ratio` | ratio | 官方容积率管控值缺失（planning_limits.json 标记 status=missing）；按任务书边界条款，法定强度指标不得由智能体推定，须由专业团队在取得正式规划条件后确定。 | [metric:floor_area_ratio] |
+| `total_floor_area_sqm` | sqm | 无经审定的开发规模与实测建筑面积台账；建筑要素只表达位置候选，不含层数或规模。 | [metric:total_floor_area_sqm] |
+| `average_building_height_m` | m | 建筑高度属法定控制条件，官方控制值缺失，按任务书边界条款不作推定。 | [metric:average_building_height_m] |
+| `road_area_sqm` | sqm | 无法定道路红线；本方案道路要素为概念中心线，不产生红线面积。 | [metric:road_area_sqm] |
+| `observed_od_load_fluctuation_cv` | ratio | 无实测出行 OD 与断面流量观测。load_scenario_min_jaccard 只反映假设情景之间的差异，不反映真实需求波动；缺该值时不得宣称环路冗余已被真实负荷验证。 | [metric:observed_od_load_fluctuation_cv] |
+| `link_failure_observed_reroute_success_ratio` | ratio | 需在建成网络上做受控中断演练；当前 network_fault_tolerance 为模型内部图论结果，不是实测改道成功率。 | [metric:link_failure_observed_reroute_success_ratio] |
+| `pedestrian_detour_penalty_measured_s` | s | 需现场步行计时观测；本方案只给出网络几何绕行倍数，不等于人实际多花的时间。 | [metric:pedestrian_detour_penalty_measured_s] |
+
+上两表每一项都可由提交的 GeoJSON 与公开的生成参数复算或核对。**已知项衡量的是本方案生成的网络与提交几何本身，不是场地的法定管控指标**；任何一项都不得被读作容积率、建筑密度、道路红线或控规结论 [depth:metrics_recalculation]。
 
 ### 中英实质等价核对
 

@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "jingzhang-merge-belt",
+  "contract": "return-budget",
+  "contract_zh": "回程预算契约",
+  "description_zh": "治理层退出机制:空间/运营/数据三责任人 + 撤场演练 + 年度 Undo 演练,失败案例进入复盘档案墙。",
+  "description_en": "Governance exit mechanism: space/operations/data responsibility, teardown drill, annual Undo drill; failures enter the postmortem archive.",
+  "responsible_parties": [
+    {"party": "space", "name_zh": "空间责任人", "name_en": "Space owner", "duty_zh": "场地恢复确认:设施撤走、公共空间恢复原状。"},
+    {"party": "operations", "name_zh": "运营责任人", "name_en": "Operations owner", "duty_zh": "撤场时间窗执行:服务停止、人员撤离、交接班记录。"},
+    {"party": "data", "name_zh": "数据责任人", "name_en": "Data owner", "duty_zh": "数据删除证据:个人数据与派生数据删除证明。"}
+  ],
+  "exit_mechanisms": [
+    {"mechanism_id": "TEARDOWN-DRILL", "name_zh": "撤场演练", "name_en": "Teardown drill", "detail_zh": "在退场时限内交回令牌并完成场地恢复;演练结果公开。"},
+    {"mechanism_id": "ANNUAL-UNDO", "name_zh": "年度 Undo 演练", "name_en": "Annual Undo drill", "detail_zh": "年度『合流日』关闭非必要 AI,验证普通导视/人工服务/应急;结果公开复盘。"},
+    {"mechanism_id": "POSTMORTEM-ARCHIVE", "name_zh": "复盘档案墙", "name_en": "Postmortem archive", "detail_zh": "失败案例(阈值未达即公开失败数据、原因与改进计划)进入复盘档案墙——只展示成功的墙是广告牌,不是治理。"}
+  ],
+  "metrics": {
+    "quiet_hours_per_day": {"status": "known", "unit": "hours/day", "note_zh": "每日安静时窗小时数,非必要 AI 降噪运行。"},
+    "tributary_parity_index": {"status": "unknown", "unit": "ratio", "note_zh": "归一化服务等价差,当前缺运营样本保持 unknown,进入年度合流日志。"}
+  },
+  "self_check_rules": [
+    {"rule_id": "PARTIES-3", "check": "space/operations/data responsible parties defined with duties", "status": "pass"},
+    {"rule_id": "EXIT-MECH-3", "check": "teardown drill, annual Undo drill, postmortem archive defined", "status": "pass"}
+  ]
+}

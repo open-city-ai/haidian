@@ -7,7 +7,8 @@
     "provisional_geometry": "临时几何，只支持生成、自检与比较，不得作为法定红线或精确面积依据。",
     "background_only": "行政或城市尺度的公开统计事实，只用于校准设计问题与服务口径，不可空间分配、不可作为走廊绩效目标。",
     "mechanism_reference": "境外机构公开材料，只提取组织机制，不移植绩效、土地制度或治理安排。",
-    "build_toolchain": "生成本包成果所使用的软件与字体本身。登记它们是为了让权利与可复现性可被独立核验，而不是把它们当作设计依据。"
+    "build_toolchain": "生成本包成果所使用的软件与字体本身。登记它们是为了让权利与可复现性可被独立核验，而不是把它们当作设计依据。",
+    "design_code_standard": "部委颁布的分类与编制深度口径文件，用于统一 land_use_code 语义、城市设计成果内容与控规深度的表述边界；只统一口径与用词，不产生任何用地审定、许可或指标结论。"
   },
   "sources": [
     {
@@ -218,6 +219,174 @@
       "usable_for_formal_basis": "central_registry_verbatim"
     },
     {
+      "id": "MOHURD-URBAN-DESIGN-MEASURES",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+      "source_type": "official_public",
+      "evidence_class": "design_code_standard",
+      "authority_level": "A0",
+      "title": "城市设计管理办法（住房和城乡建设部令第35号）",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "published_date": "2017-03-14",
+      "effective_date": "2017-06-01",
+      "retrieved_at": "2026-08-16",
+      "accessed_date": "2026-08-16",
+      "collection_method": "读取组织方场地包内的官方页面本地快照 brief/site-package/standards/references/mohurd-urban-design-measures.md，摘取城市设计的目的、适用范围与公共空间、城市风貌、建筑控制的表述口径，用于校核本包成果内容是否落在城市设计的职责边界内。",
+      "source_locator": "办法全文的适用范围与重点地区城市设计内容条款",
+      "spatial_coverage": "中华人民共和国境内城市、镇规划区",
+      "temporal_coverage": "2017-06-01 起施行",
+      "license_or_reuse_terms": "国家机关公开发布的部门规章，依法公开；本包只引用其对城市设计内容与边界的表述，不复制全文。",
+      "usage": "界定本包作为城市设计成果应当回答什么、不应当越界回答什么：公共空间、城市风貌、建筑高度体量与界面属于城市设计可表达的内容；具体项目的规划许可与场地量化控制不属于本包可给出的结论。本包据此把成果分为「已由城市设计回答」与「须由法定程序回答」两类。",
+      "usable_for": [
+        "作为城市设计目的与适用范围的表述依据（中央表 allowed_uses：urban design purpose and scope）",
+        "作为公共空间与城市风貌要求的表述依据（中央表 allowed_uses：public space and city character requirements）",
+        "作为建筑高度、体量、风格、色彩、天际线与界面控制的参照（中央表 allowed_uses：building height, volume, style, color, skyline and interface control references）"
+      ],
+      "not_usable_for": [
+        "作为本项目的规划许可依据（中央表 prohibited_uses：project-specific planning approval）",
+        "在缺少官方附件时得出场地的量化控制值（中央表 prohibited_uses：site-specific quantitative control without official attachments）",
+        "主张本包已履行城市设计的法定编制或报批程序"
+      ],
+      "limitations": "该办法规定的是城市设计的编制与管理程序；本包是开源征集投稿，未进入任何法定编制或审批程序，引用它只用于校核内容边界，不主张程序合规。",
+      "registry_source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "registry_authority_level": "A0",
+      "registry_review_status": "approved",
+      "usable_for_formal": "yes",
+      "usable_for_formal_basis": "central_registry_verbatim"
+    },
+    {
+      "id": "MOHURD-CONTROL-DETAILED-PLANNING",
+      "url": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
+      "source_type": "official_public",
+      "evidence_class": "design_code_standard",
+      "authority_level": "A0",
+      "title": "城市、镇控制性详细规划编制审批办法",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "published_date": null,
+      "retrieved_at": "2026-08-16",
+      "accessed_date": "2026-08-16",
+      "collection_method": "读取组织方场地包内的官方页面本地快照 brief/site-package/standards/references/mohurd-control-detailed-planning.md，摘取控规的编制内容与审批程序表述，用于区分本包哪些控制是「城市设计阶段可以给出的」、哪些是「必须由控规确定的」。",
+      "source_locator": "办法全文的控规编制内容与审批程序条款",
+      "spatial_coverage": "中华人民共和国境内城市、镇规划区",
+      "temporal_coverage": "现行有效",
+      "license_or_reuse_terms": "国家机关公开发布的部门规章，依法公开；本包只引用其对控规内容与程序的表述，不复制全文。",
+      "usage": "作为本包区分「已知控制」与「待补控制」的口径依据：容积率、建筑密度、道路红线、建筑高度上限等属控规确定的内容，在无官方控规条件时本包一律留空并标注不可假定，而不是自行取值。design_depth_matrix.json 中「已回应该深度项」与「法定量已确定」的区分即按此办法的职责划分设定。",
+      "usable_for": [
+        "作为控规深度的参照（中央表 allowed_uses：regulatory detailed planning depth reference）",
+        "作为规划许可与实施管理边界用语的依据（中央表 allowed_uses：planning permission and implementation-management boundary language）"
+      ],
+      "not_usable_for": [
+        "主张本项目已有经批准的控规控制（中央表 prohibited_uses：claiming this project has approved regulatory controls）",
+        "自行推定容积率、建筑高度、道路红线、权属、市政或消防结论（中央表 prohibited_uses：inventing FAR, height, road redline, ownership, municipal or fire-control conclusions）"
+      ],
+      "limitations": "本包不是控规成果，也不替代控规；引用该办法只用于说明哪些量必须留待法定程序确定，不构成对既有控规的解释。",
+      "registry_source_id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+      "registry_authority_level": "A0",
+      "registry_review_status": "approved",
+      "usable_for_formal": "yes",
+      "usable_for_formal_basis": "central_registry_verbatim"
+    },
+    {
+      "id": "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+      "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+      "source_type": "official_public",
+      "evidence_class": "design_code_standard",
+      "authority_level": "A0",
+      "title": "自然资源部关于印发《国土空间调查、规划、用途管制用地用海分类指南》的通知（自然资发〔2023〕234号）",
+      "publisher": "自然资源部",
+      "published_date": "2023-11-22",
+      "effective_date": "2023-11-22",
+      "retrieved_at": "2026-08-16",
+      "accessed_date": "2026-08-16",
+      "collection_method": "读取国务院政策文件库公开页面与所附《分类指南》正文的一级类、二级类代码表，逐条核对本包 geometry/land_use.geojson 使用的 7 个 land_use_code 与指南名称是否一一对应；组织方场地包内已留有同一文件的本地快照 brief/site-package/standards/references/mnr-land-use-classification-guide.md，但该快照只含通知正文、不含代码表附件，故代码表以官方页面所附正文为准。",
+      "source_locator": "一级类与二级类代码表：24 个一级类、113 个二级类、140 个三级类",
+      "spatial_coverage": "中华人民共和国境内（全国统一分类口径）",
+      "temporal_coverage": "2023-11-22 印发施行，替代 2020 年 11 月试行版",
+      "license_or_reuse_terms": "国家机关公开发布的规范性文件，依法公开；本包只引用代码与类名对应关系并注明出处，不复制正文。",
+      "usage": "作为 land_use_code 语义的权威口径，用于逐条核对本包 geometry/land_use.geojson 的 7 个代码，以及组织方场地包枚举 brief/site-package/enums/land_use_codes.json 的 16 条。核对结果：本包 7 个代码与该枚举完全一致；该枚举 16 条中 15 条与本指南一致，1 条（05）与本指南冲突，详见 observations 与 transformations。",
+      "observations": [
+        {
+          "id": "luc_code_05_is_wetland",
+          "value": "05 = 湿地",
+          "unit": "classification_code",
+          "scope": "全国统一分类口径",
+          "source_text": "一级类代码表：05 湿地（下设 0504 其他沼泽地等二级类）",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "luc_code_09_is_commercial_service",
+          "value": "09 = 商业服务业用地",
+          "unit": "classification_code",
+          "scope": "全国统一分类口径",
+          "source_text": "一级类代码表：09 商业服务业用地，二级类 0901 商业用地、0902 商务金融用地、0903 娱乐用地、0904 其他商业服务业用地",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "organizer_enum_conflict_on_05",
+          "value": "组织方枚举 land_use_codes.json 将 05 标为「商业服务业用地」，与本指南冲突（指南中 05 为湿地、商业服务业用地为 09）",
+          "unit": "data_defect",
+          "scope": "brief/site-package/enums/land_use_codes.json，16 条中的 1 条",
+          "source_text": "枚举条目 {\"code\": \"05\", \"label_zh\": \"商业服务业用地\", \"level\": 1}；该文件 source_id 为 SRC-2023-MNR-LAND-USE-CLASSIFICATION，自称本指南的项目子集",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "organizer_enum_other_15_consistent",
+          "value": "该枚举其余 15 条与本指南逐条一致",
+          "unit": "classification_code",
+          "scope": "brief/site-package/enums/land_use_codes.json",
+          "source_text": "07 居住用地、0701 城镇住宅用地、0702 城镇社区服务设施用地、08 公共管理与公共服务用地、0802 科研用地、0803 文化用地、0804 教育用地、0805 体育用地、0806 医疗卫生用地、1207 城镇村道路用地、14 绿地与开敞空间用地、1401 公园绿地、1402 防护绿地、1403 广场用地、16 留白用地",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "luc_codes_in_this_package",
+          "value": "0701、0702、0802、0803、0804、05（按指南应为 09）、1401",
+          "unit": "classification_code",
+          "scope": "本包 11 个用地要素使用的全部代码",
+          "source_text": "全部取自组织方枚举 land_use_codes.json；除 05 外均与本指南一致",
+          "not_spatially_allocable": true
+        }
+      ],
+      "transformations": [
+        {
+          "id": "verify_seven_codes_against_guide",
+          "original_statement": "指南一级类与二级类代码表",
+          "method": "逐条比对本包 7 个 land_use_code 与指南代码表；再比对组织方枚举 16 条",
+          "stored_value": "本包 6 个代码（0701/0702/0802/0803/0804/1401）与指南一致；第 7 个 05 沿用组织方枚举，与指南冲突并已在正文标注",
+          "unit": "classification_code"
+        },
+        {
+          "id": "keep_05_and_flag_conflict",
+          "original_statement": "指南中 05 为湿地、商业服务业用地为 09；组织方枚举中 05 为商业服务业用地",
+          "method": "确定性校验 validate_submission.py 以组织方枚举为硬性白名单，代码 09 会被判 unknown land_use_code 并使四道门失败；且该枚举是全场共用口径，单方面改码会破坏各投稿间的用地统计可比性。故保留 05、在正文与本表标注冲突，并按赛事规则走 Issue 反馈",
+          "stored_value": "land_use_code = 05（沿用组织方枚举）；正名 09 已在正文、standard_matrix 与本表登记；组织方修正枚举后同步改码，几何与面积不变",
+          "unit": "classification_code"
+        },
+        {
+          "id": "commercial_stops_at_first_level",
+          "original_statement": "指南该类下设 0901 商业用地、0902 商务金融用地、0903 娱乐用地、0904 其他商业服务业用地",
+          "method": "本包为城市设计阶段成果，两个要素均为消费、商务与科技服务的混合业态，业态比例须由控规阶段依实际招商与产业方案确定；无依据时不挑二级类充数",
+          "stored_value": "停在一级类，二级类留待控规阶段细分",
+          "unit": "classification_code"
+        }
+      ],
+      "usable_for": [
+        "作为 land_use_code 与用地类名对应关系的出处（对应中央表 allowed_uses 的 land-use classification terminology）",
+        "作为结构化 GeoJSON 与 metrics 中用地代码的引用依据（对应中央表 allowed_uses 的 land-use code reference for structured GeoJSON and metrics）",
+        "作为核验组织方枚举 land_use_codes.json 的对照依据"
+      ],
+      "not_usable_for": [
+        "作为任何用地的审定、许可或批准依据（中央表 prohibited_uses：site-specific land-use approval）",
+        "替代官方控规条件（中央表 prohibited_uses：replacement for official regulatory plan conditions）",
+        "倒推现状地类、权属或已批规划用途",
+        "由本包的分类表达推断任何一块土地的法定用途已被确定"
+      ],
+      "limitations": "本包的用地代码只描述城市设计提出的功能结构，不是现状调查结果，也不是规划审定结论；官方边界与控规条件到位后，用地划分与代码均须按官方口径重新核定。指南代码表以官方页面所附正文为准，组织方场地包内的本地快照只含通知正文、不含代码表附件——这也是组织方枚举那处笔误未被现有工具链发现的原因之一：仓库内没有可供机器比对的代码表。",
+      "registry_source_id": "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311",
+      "registry_authority_level": "A0",
+      "registry_review_status": "approved",
+      "usable_for_formal": "yes",
+      "usable_for_formal_basis": "central_registry_verbatim"
+    },
+    {
       "id": "FONT-NOTO-SERIF-SC",
       "source_type": "standard_resource",
       "evidence_class": "build_toolchain",
@@ -304,6 +473,48 @@
       "usable_for_formal_basis": "participant_self_assessed"
     },
     {
+      "id": "FONT-APPLE-SLA-CLAUSE-E",
+      "url": "https://www.apple.com/legal/sla/docs/macOS1013.pdf",
+      "source_type": "official_public",
+      "evidence_class": "build_toolchain",
+      "authority_level": "T0",
+      "title": "Apple Inc. Software License Agreement for macOS，第 2 节 E 条「Fonts」（系统字体的使用与嵌入边界）",
+      "publisher": "Apple Inc.",
+      "retrieved_at": "2026-08-16",
+      "accessed_date": "2026-08-16",
+      "collection_method": "从 Apple 法律条款公开页下载 macOS High Sierra 版软件许可协议 PDF，用 pdftotext 提取第 2 节 E 条全文（原文见 observations）。该条在检索到的多个 macOS/OS X 版本协议中措辞一致；本条引用的是可公开下载、任何人都能复核的那一版。",
+      "source_locator": "Section 2.E «Fonts»",
+      "spatial_coverage": "不适用",
+      "temporal_coverage": "该版本协议文本；本机所用 macOS 版本的协议随系统提供",
+      "license_or_reuse_terms": "Apple 公开发布的许可协议文本；本包只引用其中一条并注明出处，不复制全文。",
+      "usage": "为 FONT-STHEITI-RASTER 与 FONT-HELVETICA-RASTER 两条提供**可核验的许可条款出处**。此前这两条只写了本包的行为（未再分发字体文件），没有指出允许该行为的条款在哪；本条补上这一半。",
+      "observations": [
+        {
+          "id": "apple_sla_clause_e_fonts_verbatim",
+          "value": "Subject to the terms and conditions of this License, you may use the fonts included with the Apple Software to display and print content while running the Apple Software; however, you may only embed fonts in content if that is permitted by the embedding restrictions accompanying the font in question.",
+          "unit": "license_clause",
+          "scope": "Apple Inc. Software License Agreement for macOS, Section 2.E «Fonts»",
+          "source_text": "E. Fonts. Subject to the terms and conditions of this License, you may use the fonts included with the Apple Software to display and print content while running the Apple Software; however, you may only embed fonts in content if that is permitted by the embedding restrictions accompanying the font in question. These embedding restrictions can be found in the Font Book/Preview/Show Font Info panel.",
+          "not_spatially_allocable": true
+        }
+      ],
+      "usable_for": [
+        "说明本包为何认为「在 macOS 上把系统字体渲染成像素」落在该条款允许的用法内",
+        "把「使用」与「嵌入」两种行为区分开——该条对二者的规定并不相同"
+      ],
+      "not_usable_for": [
+        "作为法律意见或对本包用法的合规结论",
+        "主张 Apple 对本包的用法作过任何认可",
+        "推断本机所用 macOS 版本协议的逐字内容（本条引用的是可公开下载的那一版）",
+        "覆盖任何**嵌入**了 Apple 字体的情形——本包不存在这种情形，四套 PDF 嵌入的是 OFL 的 Noto Serif SC"
+      ],
+      "limitations": "该条允许「display and print content」，本包的用法是把字形渲染为 PNG 像素并随包分发这些像素。**「生成并分发像素产物」与「display and print」之间的对应关系，是参赛者对条款的理解，不是法律意见**，也未取得 Apple 的任何确认；如需正式结论应由法律专业人员判断。本条能被独立核验的部分是：包内不含任何字体文件（`find <包> -name '*.tt[cf]' -o -name '*.otf'` 结果为 0），四套 PDF 中 emb=yes 的中文字体只有 NotoSerifSC（`pdffonts` 可查），**即本包确实没有嵌入任何 Apple 字体**。",
+      "registry_source_id": null,
+      "registry_review_status": "not_in_central_registry",
+      "usable_for_formal": "not_a_factual_source",
+      "usable_for_formal_basis": "participant_self_assessed"
+    },
+    {
       "id": "FONT-STHEITI-RASTER",
       "source_type": "standard_resource",
       "evidence_class": "build_toolchain",
@@ -315,7 +526,7 @@
       "collection_method": "Pillow 在本机以系统字体路径加载并直接栅格化为 PNG 像素；生成物为字形图像，包内不含 .ttc/.ttf 文件。",
       "spatial_coverage": "不适用",
       "temporal_coverage": "不适用",
-      "license_or_reuse_terms": "仅在本机渲染阶段使用，输出为栅格像素；未复制、未嵌入、未再分发字体文件本身。",
+      "license_or_reuse_terms": "许可条款出处：Apple Inc. Software License Agreement for macOS 第 2 节 E 条「Fonts」允许在运行该软件时使用其附带字体 display and print content，并把「嵌入」单列为另一种受限行为 [见 FONT-APPLE-SLA-CLAUSE-E]。本包的用法落在前一类：在本机把字形渲染为像素，**未复制、未嵌入、未再分发字体文件本身**；四套 PDF 中嵌入的中文字体是 OFL 授权的 Noto Serif SC，不是 Apple 字体。「生成并分发像素产物」与条款所称 display and print 的对应关系属参赛者的理解，非法律意见。",
       "usage": "assets/figures/ 下 26 张栅格图件中的中文文字。同批图件的拉丁文字与数字另见 FONT-HELVETICA-RASTER。",
       "usable_for": [
         "说明栅格图件中中文字形的渲染来源"
@@ -323,7 +534,8 @@
       "not_usable_for": [
         "主张对该字体的任何权利",
         "在其他机器上复现完全一致的字形",
-        "证明同批图件中拉丁字形的来源（见 FONT-HELVETICA-RASTER）"
+        "证明同批图件中拉丁字形的来源（见 FONT-HELVETICA-RASTER）",
+        "作为该用法已获法律确认的证明（条款出处见 FONT-APPLE-SLA-CLAUSE-E，但对应关系是自述）"
       ],
       "limitations": "在未安装该字体的机器上重跑生成脚本会得到不同字形；图件因此按当前栅格产物归档，而非按运行时重绘。",
       "registry_source_id": null,
@@ -343,7 +555,7 @@
       "collection_method": "Pillow 在本机以系统字体路径 /System/Library/Fonts/Helvetica.ttc 加载并直接栅格化为像素；取 .ttc 内第 3 号字面（Bold Oblique）绘制页脚图签与左上角图号，另按需取常规与粗体字面绘制指北针字母与比例尺数字。生成物为字形图像，包内不含 .ttc/.ttf 文件。",
       "spatial_coverage": "不适用",
       "temporal_coverage": "不适用",
-      "license_or_reuse_terms": "仅在本机渲染阶段使用，输出为栅格像素；未复制、未嵌入、未再分发字体文件本身。与四套 PDF 中按名引用的基础十四款字体（FONT-PDF-BASE14）不是同一件事：那里不涉及任何字体文件，这里实际加载了随 macOS 分发的字体文件并用其字形生成像素。",
+      "license_or_reuse_terms": "许可条款出处：Apple Inc. Software License Agreement for macOS 第 2 节 E 条「Fonts」允许在运行该软件时使用其附带字体 display and print content，并把「嵌入」单列为另一种受限行为 [见 FONT-APPLE-SLA-CLAUSE-E]。本包的用法落在前一类：在本机把字形渲染为像素，**未复制、未嵌入、未再分发字体文件本身**；四套 PDF 中嵌入的中文字体是 OFL 授权的 Noto Serif SC，不是 Apple 字体。「生成并分发像素产物」与条款所称 display and print 的对应关系属参赛者的理解，非法律意见。",
       "usage": "assets/figures/ 下 26 张栅格图件中的拉丁文字与数字：页脚版本图签、左上角图号、指北针字母与比例尺数字。",
       "usable_for": [
         "说明栅格图件中拉丁字形与数字的渲染来源"
@@ -351,7 +563,8 @@
       "not_usable_for": [
         "主张对该字体的任何权利",
         "在其他机器上复现完全一致的字形",
-        "证明四套 PDF 中拉丁字形的来源（PDF 内为按名引用，见 FONT-PDF-BASE14）"
+        "证明四套 PDF 中拉丁字形的来源（PDF 内为按名引用，见 FONT-PDF-BASE14）",
+        "作为该用法已获法律确认的证明（条款出处见 FONT-APPLE-SLA-CLAUSE-E，但对应关系是自述）"
       ],
       "limitations": "字形来源无法从栅格产物反查，本条为渲染阶段的自述；可独立核验的只有「包内不含任何字体文件」这一半（`find submissions/Sonike/jingzhang-handover-line -name '*.tt[cf]'` 无结果）。在未安装该字体的机器上重跑生成脚本会得到不同字形；图件因此按当前栅格产物归档，而非按运行时重绘。",
       "registry_source_id": null,

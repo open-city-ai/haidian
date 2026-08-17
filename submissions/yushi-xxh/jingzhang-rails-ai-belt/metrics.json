@@ -204,12 +204,13 @@
     },
     "public_space_component_count": {
       "status": "known",
-      "value": 8,
+      "value": 9,
       "unit": "count",
       "source_files": [
+        "geometry/public_space.geojson",
         "proposal.md"
       ],
-      "formula": "count(component_library_entries) in proposal.md",
+      "formula": "count(public-space components incl. the Zero Switchback Kiosk)",
       "confidence": "high",
       "assumptions": []
     },
@@ -410,13 +411,13 @@
     },
     "schema_valid_synthetic_switchback_count": {
       "status": "known",
-      "value": 1,
+      "value": 10,
       "unit": "count",
       "source_files": [
-        "visual/assets/governance/example-k1i01-switchback.json",
-        "visual/assets/governance/validation-report.json"
+        "visual/assets/governance/switchback-instance-suite.json",
+        "visual/assets/governance/switchback-rule-check-report.json"
       ],
-      "formula": "count(synthetic switchback fixtures passing JSON Schema structural validation)",
+      "formula": "count(synthetic switchback protocol instances passing JSON Schema structural validation)",
       "confidence": "high",
       "assumptions": []
     },
@@ -428,6 +429,72 @@
         "visual/assets/governance/validation-report.json"
       ],
       "formula": "sum(error_count) in validation-report.json",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "switchback_protocol_instance_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/switchback-instance-suite.json"
+      ],
+      "formula": "count(switchback protocol instances, one per scenario card SCN-01..10)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "switchback_no_ai_baseline_scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/switchback-instance-suite.json"
+      ],
+      "formula": "count(scenario cards with a registered non-empty no_ai_baseline)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "switchback_rule_check_count": {
+      "status": "known",
+      "value": 80,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/switchback-rule-check-report.json"
+      ],
+      "formula": "baseline_count + injected_count in switchback-rule-check-report.json",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "switchback_rule_injected_intercepted": {
+      "status": "known",
+      "value": 70,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/switchback-rule-check-report.json"
+      ],
+      "formula": "injected_intercepted in switchback-rule-check-report.json",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "switchback_rule_injected_missed": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/switchback-rule-check-report.json"
+      ],
+      "formula": "injected_missed in switchback-rule-check-report.json",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "switchback_physical_stop_point_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space features with public_role=no_ai_service_point)",
       "confidence": "high",
       "assumptions": []
     }

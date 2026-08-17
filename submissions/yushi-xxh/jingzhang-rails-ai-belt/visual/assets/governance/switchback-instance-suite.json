@@ -1,0 +1,553 @@
+{
+  "schema_version": "1.0",
+  "suite_type": "switchback_protocol_instances",
+  "status": "offline_synthetic_complete_not_authorized_not_run",
+  "protocol_schema": "visual/assets/governance/switchback-protocol.schema.json",
+  "instance_count": 10,
+  "scope_note": "10 张场景卡各一条折返协议实例；字段全部由 proposal.md 场景卡、role-spec.json 与本包几何图层推出，未新增设计主张。全部为合成离线内容，未在现场运行，不构成获批、上线或实施承诺。",
+  "scenario_map": [
+    {
+      "scenario_id": "SCN-01",
+      "capability_id": "SCN-01-OPEN-SOURCE-RELEASE-HALL",
+      "label_zh": "开源发布厅 / AI 原点社区",
+      "node_id": "K2-I01-pilgrimage-anchor"
+    },
+    {
+      "scenario_id": "SCN-02",
+      "capability_id": "SCN-02-SAFETY-GOVERNANCE-SANDBOX",
+      "label_zh": "安全治理沙盒★ / 众智园",
+      "node_id": "K1-I03-sandbox-safety-cross"
+    },
+    {
+      "scenario_id": "SCN-03",
+      "capability_id": "SCN-03-EDGE-COMPUTE-STATION",
+      "label_zh": "端侧算力驿站★ / 总体节点",
+      "node_id": "K3-I03-micro-terminal-green"
+    },
+    {
+      "scenario_id": "SCN-04",
+      "capability_id": "SCN-04-AI-SLOW-TRAFFIC-NAVIGATION",
+      "label_zh": "AI 慢行导航 / 公园活力带",
+      "node_id": "K1-I01-pilot-park-edge"
+    },
+    {
+      "scenario_id": "SCN-05",
+      "capability_id": "SCN-05-INTERNATIONAL-ROADSHOW-LIVING-ROOM",
+      "label_zh": "国际路演客厅 / 大钟寺",
+      "node_id": "PUBLIC-03"
+    },
+    {
+      "scenario_id": "SCN-06",
+      "capability_id": "SCN-06-QINGHE-LOW-CARBON-CORRIDOR",
+      "label_zh": "清河低碳创新廊★ / 众智园",
+      "node_id": "K1-I02-flood-buffer"
+    },
+    {
+      "scenario_id": "SCN-07",
+      "capability_id": "SCN-07-NEAR-CAMPUS-TRANSFER-STREET",
+      "label_zh": "近校成果转化街 / 原点社区",
+      "node_id": "K2-I03-origin-square-survey-zone"
+    },
+    {
+      "scenario_id": "SCN-08",
+      "capability_id": "SCN-08-DATA-ELEMENT-CIVIC-ROOM",
+      "label_zh": "数据要素会客厅 / 大钟寺",
+      "node_id": "K3-I02-data-civic-room"
+    },
+    {
+      "scenario_id": "SCN-09",
+      "capability_id": "SCN-09-AI-LIFE-SERVICE-STREET",
+      "label_zh": "AI 生活服务样板街 / 社区商业界面",
+      "node_id": "PUBLIC-01"
+    },
+    {
+      "scenario_id": "SCN-10",
+      "capability_id": "SCN-10-GLOBAL-AI-WEEK-ROUTE",
+      "label_zh": "全球 AI 活动周路线 / 公共空间系统",
+      "node_id": "ROAD-001-spine"
+    }
+  ],
+  "instances": [
+    {
+      "protocol_version": "0.1",
+      "node_id": "K2-I01-pilgrimage-anchor",
+      "capability_id": "SCN-01-OPEN-SOURCE-RELEASE-HALL",
+      "forward_state": {
+        "scope": "在 K2 北京 AI 原点社区的发布厅，仅检索授权项目元数据、公开许可证与自报材料，生成可复核的发布摘要；不评价代码质量，不生成许可结论。",
+        "inputs": [
+          "公开项目元数据与许可证文件",
+          "项目方授权发布的自报材料",
+          "公开仓库的提交与发布记录（聚合）"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "许可证字段缺失或相互冲突时不能替代法律意见",
+          "误署名风险需人工复核",
+          "发布厅空间与运营主体尚未确认"
+        ],
+        "no_ai_baseline": "固定目录、纸本登记册与人工咨询台照常服务；停用后所有发布改为人工审校。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "停止自动摘要展示",
+          "恢复人工目录与纸本登记",
+          "公开更正与下架通知",
+          "在公开值班簿登记处置人"
+        ],
+        "reversal_trigger": [
+          "发现误署名或来源不明的项目",
+          "收到权利人撤回或争议通知",
+          "复核岗缺岗"
+        ],
+        "residual_traces": [
+          "仅保留公开更正记录",
+          "不保留任何个人浏览画像",
+          "临时推荐缓存清零"
+        ],
+        "rollback_owner": "R-SERVICE-OPS"
+      },
+      "acceptance": {
+        "reproduction": "geometry/buildings.geojson#K2-I01-pilgrimage-anchor 与 proposal.md 场景卡 01 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "运营主体未确认",
+          "发布前版权复核须由持证人员执行"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "K1-I03-sandbox-safety-cross",
+      "capability_id": "SCN-02-SAFETY-GOVERNANCE-SANDBOX",
+      "forward_state": {
+        "scope": "在 K1 众智园验证区的离线沙盒内运行合成或授权测试集，输出模型卡与复现实验记录；不连接任何生产系统。",
+        "inputs": [
+          "合成或授权测试集",
+          "随包模型卡",
+          "测试委托与安全批准记录"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "无法覆盖真实部署中的全部分布漂移",
+          "复现实验需要独立复核",
+          "沙盒越权调用风险"
+        ],
+        "no_ai_baseline": "封闭测试院落、人工测试记录与普通设备位保留；急停后沙盒回到未接入状态。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "隔离越权调用与相关账户",
+          "断开局外网络与生产连接",
+          "恢复封闭院落或普通设备位",
+          "公开正负结果与处置记录"
+        ],
+        "reversal_trigger": [
+          "越权调用被日志捕获",
+          "复现实验失败且无法解释",
+          "安全负责人缺岗或未批准"
+        ],
+        "residual_traces": [
+          "仅保留已复核的测试报告与聚合统计",
+          "临时模型输出按留存窗口删除",
+          "物理设备回位"
+        ],
+        "rollback_owner": "R-TEST-SAFETY"
+      },
+      "acceptance": {
+        "reproduction": "geometry/roads.geojson#K1-I03-sandbox-safety-cross 与 proposal.md 场景卡 02 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "沙盒运营主体与场地权限",
+          "安全测试范围与批准流程校准"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "K3-I03-micro-terminal-green",
+      "capability_id": "SCN-03-EDGE-COMPUTE-STATION",
+      "forward_state": {
+        "scope": "在 K3 街角绿地的概念节点，为初创团队提供授权任务下的端侧算力调度建议与能耗展示；不做任何个人画像或信用判断。",
+        "inputs": [
+          "授权任务清单",
+          "设备遥测最小集（聚合）",
+          "公开电价与算力目录"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "容量与能耗预测受任务类型影响",
+          "高峰排队需要人工介入",
+          "节点空间与供电条件未确认"
+        ],
+        "no_ai_baseline": "固定工作位、人工资源预约与纸面排队照常可用；降级后回到人工预约。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "停止自动调度建议",
+          "切换到固定工作位与人工预约",
+          "公开降级与恢复通知",
+          "复核能源计量"
+        ],
+        "reversal_trigger": [
+          "容量或能耗超限",
+          "遥测数据异常",
+          "值班工程师缺岗"
+        ],
+        "residual_traces": [
+          "仅保留聚合能耗与排队统计",
+          "设备级原始遥测删除",
+          "临时任务缓存清零"
+        ],
+        "rollback_owner": "R-SERVICE-OPS"
+      },
+      "acceptance": {
+        "reproduction": "geometry/buildings.geojson#K3-I03-micro-terminal-green 与 proposal.md 场景卡 03 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "节点供电与场地条件",
+          "端侧设备型号与供应商未指定"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "K1-I01-pilot-park-edge",
+      "capability_id": "SCN-04-AI-SLOW-TRAFFIC-NAVIGATION",
+      "forward_state": {
+        "scope": "约 220 m 低影响慢行入口试点：只提供路线建议与聚合人流计数，不采集身份或轨迹。",
+        "inputs": [
+          "公开路网（本包 roads 图层）",
+          "人工巡查计数（聚合）",
+          "聚合人流计数器"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "无实测地形，高程为概念假设",
+          "桥下空间使用权未确认",
+          "夜间照明许可未取得"
+        ],
+        "no_ai_baseline": "既有步行路径、人工问询、纸本地图与固定导视在停用后保持不变。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "停用数字计数与路线显示屏",
+          "恢复常亮照明与固定导视",
+          "恢复人工巡查排班",
+          "在公开值班簿发布停用通知"
+        ],
+        "reversal_trigger": [
+          "计数故障率超过试点阈值",
+          "夜间安全投诉超过基线",
+          "桥下空间使用权被拒绝"
+        ],
+        "residual_traces": [
+          "仅保留聚合统计",
+          "设备级原始数据在留存窗口内删除",
+          "物理计数器外壳拆除或改作他用"
+        ],
+        "rollback_owner": "R-PUBLIC-SPACE"
+      },
+      "acceptance": {
+        "reproduction": "geometry/roads.geojson#K1-I03-sandbox-safety-cross 与本包 site boundary 在 EPSG:4548 复算试点边界",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "河流蓝线核实（A-BOUNDARY-001）",
+          "夜间照明许可",
+          "公开运行前的无障碍评估"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "PUBLIC-03",
+      "capability_id": "SCN-05-INTERNATIONAL-ROADSHOW-LIVING-ROOM",
+      "forward_state": {
+        "scope": "在 K3 大钟寺公共空间节点，为企业访客与公众提供授权议程、多语摘要与清权材料索引；不生成投资、招商或政策承诺文本。",
+        "inputs": [
+          "授权议程",
+          "企业自报材料",
+          "公开活动信息与清权索引"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "企业自报材料可能夸大",
+          "多语转述可能失真",
+          "场馆空间与活动许可未确认"
+        ],
+        "no_ai_baseline": "人工主持、人工同传、纸本议程与前台投诉窗口保留；停用后回到非智能导览。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "撤回错误宣传与未清权材料",
+          "恢复人工主持与纸本议程",
+          "公开更正声明",
+          "受理投诉并登记"
+        ],
+        "reversal_trigger": [
+          "发现未清权或夸大材料",
+          "主持人与法务复核缺岗",
+          "场地许可变化"
+        ],
+        "residual_traces": [
+          "仅保留公开活动记录",
+          "不保留访客身份关联信息",
+          "临时翻译缓存清零"
+        ],
+        "rollback_owner": "R-CULTURE-VENUE"
+      },
+      "acceptance": {
+        "reproduction": "geometry/public_space.geojson#PUBLIC-03 与 proposal.md 场景卡 05 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "场馆运营主体",
+          "活动许可与清权流程"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "K1-I02-flood-buffer",
+      "capability_id": "SCN-06-QINGHE-LOW-CARBON-CORRIDOR",
+      "forward_state": {
+        "scope": "在清河缓冲带概念节点，辅助展示环境监测与养护提示；任何处置决定由设施人员做出。",
+        "inputs": [
+          "公开气象资料",
+          "授权环境传感数据",
+          "人工巡检记录"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "传感失效会造成展示缺口",
+          "低碳结论依赖长期数据",
+          "缓冲带生态与防洪边界未确认"
+        ],
+        "no_ai_baseline": "人工巡检、固定展板与养护工单系统照常运行；传感失效即回到人工巡检。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "停止传感驱动的展示与提示",
+          "切回人工巡检与固定展板",
+          "公开数据可用率与工单记录",
+          "复核传感器校核"
+        ],
+        "reversal_trigger": [
+          "传感失效或数据漂移",
+          "防汛或生态预警",
+          "设施管理人员缺岗"
+        ],
+        "residual_traces": [
+          "仅保留已复核的聚合环境数据",
+          "设备级原始数据按留存窗口删除",
+          "临时展示缓存清零"
+        ],
+        "rollback_owner": "R-PUBLIC-SPACE"
+      },
+      "acceptance": {
+        "reproduction": "geometry/buildings.geojson#K1-I02-flood-buffer 与 proposal.md 场景卡 06 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "河流蓝线与防洪要求",
+          "园区/绿地运营主体"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "K2-I03-origin-square-survey-zone",
+      "capability_id": "SCN-07-NEAR-CAMPUS-TRANSFER-STREET",
+      "forward_state": {
+        "scope": "在 K2 需求调查区概念节点，为高校团队提供授权成果摘要检索与服务需求匹配建议；不评价科研真实性，不替代法律意见。",
+        "inputs": [
+          "授权成果摘要",
+          "公开服务目录",
+          "高校团队主动提交的需求"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "摘要可能遗漏权利状态",
+          "匹配建议不能替代技术经理判断",
+          "街段空间与运营主体未确认"
+        ],
+        "no_ai_baseline": "人工技术经理、法务咨询与纸面服务目录保留；权利争议即暂停展示。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "暂停争议成果的展示与匹配",
+          "恢复人工咨询与纸面目录",
+          "公开权利争议处置状态",
+          "登记投诉"
+        ],
+        "reversal_trigger": [
+          "收到权利争议通知",
+          "技术经理或法务复核缺岗",
+          "发现成果摘要与公开记录不符"
+        ],
+        "residual_traces": [
+          "仅保留已清权成果目录",
+          "不保留浏览者身份信息",
+          "临时匹配缓存清零"
+        ],
+        "rollback_owner": "R-SERVICE-OPS"
+      },
+      "acceptance": {
+        "reproduction": "geometry/buildings.geojson#K2-I03-origin-square-survey-zone 与 proposal.md 场景卡 07 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "转化服务运营主体",
+          "街段空间整治范围"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "K3-I02-data-civic-room",
+      "capability_id": "SCN-08-DATA-ELEMENT-CIVIC-ROOM",
+      "forward_state": {
+        "scope": "在 K3 数据要素会客厅概念节点，仅展示公开目录、合成样例与审计日志；不交易真实敏感数据。",
+        "inputs": [
+          "公开数据目录",
+          "合成样例",
+          "脱敏审计日志"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "真实数据与合成样例混放风险",
+          "来源不明的数据可能被误展示",
+          "数据保护官未任命"
+        ],
+        "no_ai_baseline": "人工目录查询、纸面申请与数据保护官咨询保留；来源不明即拒绝。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "拒绝并隔离来源不明数据",
+          "恢复人工目录与纸面申请",
+          "公开审计问题与闭环记录",
+          "复核访问日志"
+        ],
+        "reversal_trigger": [
+          "发现真实敏感数据或来源不明数据",
+          "审计日志异常",
+          "数据保护官缺岗"
+        ],
+        "residual_traces": [
+          "仅保留脱敏审计日志与公开目录",
+          "不保留任何交易数据副本",
+          "临时演示环境清零"
+        ],
+        "rollback_owner": "R-SERVICE-OPS"
+      },
+      "acceptance": {
+        "reproduction": "geometry/buildings.geojson#K3-I02-data-civic-room 与 proposal.md 场景卡 08 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "授权数据运营主体",
+          "数据保护官任命"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "PUBLIC-01",
+      "capability_id": "SCN-09-AI-LIFE-SERVICE-STREET",
+      "forward_state": {
+        "scope": "在公共空间组件库所在界面，仅提供公开服务目录检索与多语说明；医疗、法律、教育结论一律由持证人员作出。",
+        "inputs": [
+          "公开服务目录",
+          "用户主动输入的问题",
+          "营业与无障碍信息"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "用户问题可能触发专业结论",
+          "多语信息可能失真",
+          "沿街空间与权属未确认"
+        ],
+        "no_ai_baseline": "电话、纸面报修与人工窗口保留；错误建议可转人工并申诉。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "停止自动建议与多语生成",
+          "切换电话/纸面/人工窗口",
+          "公开人工接管与申诉渠道",
+          "登记错误建议事件"
+        ],
+        "reversal_trigger": [
+          "收到专业结论错误或申诉",
+          "持证复核人员缺岗",
+          "服务目录失效"
+        ],
+        "residual_traces": [
+          "仅保留聚合服务统计",
+          "不保留用户问题与身份关联",
+          "临时会话记录清零"
+        ],
+        "rollback_owner": "R-COMMUNITY-CARE"
+      },
+      "acceptance": {
+        "reproduction": "geometry/public_space.geojson#PUBLIC-01 与 proposal.md 场景卡 09 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "沿街权属与运营主体",
+          "各服务机构的持证复核排班"
+        ]
+      },
+      "status": "draft"
+    },
+    {
+      "protocol_version": "0.1",
+      "node_id": "ROAD-001-spine",
+      "capability_id": "SCN-10-GLOBAL-AI-WEEK-ROUTE",
+      "forward_state": {
+        "scope": "沿京张主脊公共空间路线，仅提供公开活动信息、多语导览与无障碍路线说明；拥挤或许可变化即触发停用。",
+        "inputs": [
+          "公开活动与议程",
+          "无障碍设施清单",
+          "公开路线与站点信息"
+        ],
+        "deployment_mode": "sandbox_only",
+        "known_faults": [
+          "实时人流预测可能不准确",
+          "多语内容需编辑与安全复核",
+          "活动许可与安保方案未确认"
+        ],
+        "no_ai_baseline": "固定导视、人工引导、纸面手册与线下服务台保留；停用后回到固定路线。"
+      },
+      "switchback": {
+        "rollback_path": [
+          "停止动态导览与推荐",
+          "恢复固定导视与人工引导",
+          "公开路线调整与停用原因",
+          "按事件复盘发布正负结果"
+        ],
+        "reversal_trigger": [
+          "拥挤超过安全阈值",
+          "活动许可变化或安保缺岗",
+          "多语内容未经复核发布"
+        ],
+        "residual_traces": [
+          "仅保留公开活动复盘",
+          "不保留个人轨迹",
+          "临时活动缓存清零"
+        ],
+        "rollback_owner": "R-EVENT-OPS"
+      },
+      "acceptance": {
+        "reproduction": "geometry/roads.geojson#ROAD-001-spine 与 proposal.md 场景卡 10 对照复核",
+        "decision": "accept_with_conditions",
+        "open_items": [
+          "活动许可与安保方案",
+          "活动联合体组成"
+        ]
+      },
+      "status": "draft"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Taking the self-reliance spirit of the zigzag railway as its origin, the proposal reshapes the Jing-Zhang Heritage Park into a north-south 'human-centered AI public spine', with Zhongzhiyuan, the Beijing AI Origin Community and Dazhongsi as the three cores, and the Zhongguancun technology-service wing and Xiaoyuehe scenario wing as the two wings, forming an 'one-spine three-cores, four-belt two-wings, multi-node network' AI innovation belt."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.2"
+iteration: "v1.3"
 ---
 
 # New Jing-Zhang AI Innovation Belt: From the Centennial Zigzag Railway to a Human-Centered AI City
@@ -136,7 +136,7 @@ Land use is organized into five dominant functions [data:geometry/land_use.geojs
 | Code | Function | Area (thousand sqm) | Share | Design intent |
 | --- | --- | --- | --- | --- |
 | 0802 | AI R&D land | 2545.6 | 22.3% | Core carrier of Zhongzhiyuan, Origin Community, central R&D belt [metric:rnd_land_ratio] |
-| 05 | Commercial/service land | 1810.0 | 15.9% | Dazhongsi intelligent economy, Zhichun Road service belt [metric:commercial_land_ratio] |
+| 0901/0902 | Commercial/service land | 1810.0 | 15.9% | Dazhongsi intelligent economy, Zhichun Road service belt [metric:commercial_land_ratio] |
 | 0701/0702 | Residential & community | 3176.8 | 27.8% | Talent housing, community AI service network [metric:residential_land_ratio] |
 | 0804 | Education land | 674.0 | 5.9% | University-adjacent conversion interface [metric:education_land_ratio] |
 | 1401/1403 | Green & squares | 3206.5 | 28.1% | Human public spine, blue-green network [metric:green_ratio] [metric:public_space_ratio] |

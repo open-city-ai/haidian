@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/jingzhang-silver-belt/relay-handover.schema.json",
+  "title": "银龄接力签收单 (Silver Relay Handover Receipt)",
+  "description": "Auditable handover receipt for one elderly service interaction. Proves relay-rule classification only; field status remains null until authorized.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "handover_id",
+    "scenario_id",
+    "baton_human",
+    "elderly_consent",
+    "signed_receipt",
+    "followup_due",
+    "ai_free_path_available",
+    "status"
+  ],
+  "properties": {
+    "handover_id": {
+      "type": "string",
+      "pattern": "^RH-[0-9]{8}-[A-Z0-9-]+$"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^SA-[0-9]{2}$"
+    },
+    "baton_human": {
+      "type": "string",
+      "minLength": 3,
+      "description": "具名人工接棒人"
+    },
+    "elderly_consent": {
+      "type": "boolean",
+      "description": "老人（或其代理）知情同意"
+    },
+    "signed_receipt": {
+      "type": "boolean",
+      "description": "签收确认"
+    },
+    "followup_due": {
+      "type": "string",
+      "description": "回访期限（24-72小时）"
+    },
+    "ai_free_path_available": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "synthetic_only",
+        "not_authorized_not_run"
+      ]
+    },
+    "field_results": {
+      "type": "null"
+    }
+  }
+}

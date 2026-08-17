@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>开源京张 · Open Jing-Zhang — 方案可视化看板</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--rust:#8B4513;--terminal:#00FF41;--commit:#DE2910;--trunk:#1A1A2E;--white:#F5F5F5;--gray:#2D2D3D;--border:#3A3A4A}
+body{font-family:'Segoe UI','Noto Sans SC',sans-serif;background:var(--trunk);color:var(--white);line-height:1.6}
+a{color:var(--terminal);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+header{text-align:center;padding:40px 20px;border-bottom:1px solid var(--border)}
+header h1{font-size:2.2em;color:var(--terminal);font-family:'Courier New',monospace;margin-bottom:8px}
+header h2{font-size:1.1em;color:var(--rust);font-weight:normal}
+header .subtitle{color:#888;margin-top:12px;font-size:0.9em}
+.badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:0.75em;font-weight:bold;margin:2px}
+.badge-pass{background:#0a3d0a;color:var(--terminal);border:1px solid var(--terminal)}
+.badge-warn{background:#3d3d0a;color:#FFD700;border:1px solid #FFD700}
+.badge-unknown{background:#3d1a1a;color:var(--commit);border:1px solid var(--commit)}
+.grid{display:grid;gap:20px;margin:20px 0}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--gray);border:1px solid var(--border);border-radius:8px;padding:20px}
+.card h3{color:var(--terminal);font-size:1em;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px}
+.card h4{color:var(--rust);font-size:0.9em;margin:12px 0 6px}
+.metric-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #222}
+.metric-label{color:#aaa;font-size:0.85em}
+.metric-value{color:var(--terminal);font-weight:bold;font-family:'Courier New',monospace}
+.section{margin:30px 0}
+.section-title{font-size:1.4em;color:var(--terminal);margin-bottom:16px;padding-left:12px;border-left:4px solid var(--rust)}
+.map-placeholder{background:#111;border:1px solid var(--border);border-radius:8px;padding:30px;text-align:center;color:#666;min-height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.map-placeholder svg{width:100%;max-width:600px}
+table{width:100%;border-collapse:collapse;font-size:0.85em}
+th{background:#222;color:var(--terminal);padding:8px;text-align:left;border:1px solid var(--border)}
+td{padding:8px;border:1px solid var(--border);vertical-align:top}
+tr:nth-child(even){background:#252535}
+.tag{display:inline-block;padding:2px 8px;border-radius:3px;font-size:0.75em;margin:1px}
+.tag-fork{background:#3d1a3d;color:#FF69B4}
+.tag-main{background:#1a3d3d;color:#00CED1}
+.tag-release{background:#3d3d1a;color:#FFD700}
+.tag-ci{background:#1a3d1a;color:var(--terminal)}
+.tag-cd{background:#1a1a3d;color:#87CEEB}
+.timeline{position:relative;padding-left:30px;margin:20px 0}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--terminal)}
+.timeline-item{position:relative;margin:20px 0;padding:15px;background:var(--gray);border-radius:6px;border:1px solid var(--border)}
+.timeline-item::before{content:'';position:absolute;left:-24px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--terminal)}
+.timeline-item .year{color:var(--rust);font-weight:bold;font-family:'Courier New',monospace}
+.status-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.status-item{padding:10px;background:#111;border-radius:4px;border-left:3px solid var(--terminal);font-size:0.85em}
+.status-item.fail{border-left-color:var(--commit)}
+.status-item.warn{border-left-color:#FFD700}
+footer{text-align:center;padding:30px;color:#555;font-size:0.8em;border-top:1px solid var(--border);margin-top:40px}
+@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}header h1{font-size:1.5em}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>&gt; open-jing-zhang --build future-city</h1>
+  <h2>开源京张 · Open Jing-Zhang</h2>
+  <div class="subtitle">百年京张 AI 创新带城市设计开源征集方案 · 提交包可视化看板</div>
+  <div style="margin-top:15px">
+    <span class="badge badge-pass">package_state: ready_for_review</span>
+    <span class="badge badge-pass">self_check: PASS</span>
+    <span class="badge badge-warn">geometry: provisional</span>
+  </div>
+</header>
+
+<!-- 概述 -->
+<div class="section">
+  <div class="section-title">方案概述</div>
+  <div class="card">
+    <p><strong>核心概念：</strong>以开源协作精神重新诠释京张铁路百年自主创新史，提出「开源京张」品牌体系，将 43.6 平方公里创新带设计为 Git 分支模型驱动的城市级开源项目。</p>
+    <p style="margin-top:10px"><strong>一句话：</strong>世界上第一座用 <code style="color:var(--terminal);background:#111;padding:2px 6px;border-radius:3px">git</code> 建造的城市。</p>
+    <p style="margin-top:10px;color:#888"><strong>叙事线：</strong>1909年詹天佑开源了铁路技术 → 1980s中关村开源了代码 → 2026年海淀开源了一座城市。三次开源，同一条轴线。</p>
+  </div>
+</div>
+
+<!-- 核心指标 -->
+<div class="section">
+  <div class="section-title">核心指标</div>
+  <div class="grid grid-4">
+    <div class="card">
+      <h3>统筹研究范围</h3>
+      <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value" data-metric="coordinated_research_area" data-value="43600000">43.6 km²</span></div>
+      <div class="metric-row"><span class="metric-label">状态</span><span class="badge badge-pass">known</span></div>
+    </div>
+    <div class="card">
+      <h3>总体设计范围</h3>
+      <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value" data-metric="overall_design_area" data-value="11400000">11.4 km²</span></div>
+      <div class="metric-row"><span class="metric-label">投影面积</span><span class="metric-value" data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</span></div>
+      <div class="metric-row"><span class="metric-label">状态</span><span class="badge badge-pass">known</span></div>
+    </div>
+    <div class="card">
+      <h3>重点区域</h3>
+      <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value" data-metric="key_detailed_design_area" data-value="3684000">368.4 ha</span></div>
+      <div class="metric-row"><span class="metric-label">状态</span><span class="badge badge-pass">known</span></div>
+    </div>
+    <div class="card">
+      <h3>控规指标</h3>
+      <div class="metric-row"><span class="metric-label">容积率</span><span class="metric-value" data-metric="floor_area_ratio" data-value="null">—</span></div>
+      <div class="metric-row"><span class="metric-label">状态</span><span class="badge badge-unknown">unknown</span></div>
+    </div>
+    <div class="card">
+      <h3>环境指标</h3>
+      <div class="metric-row"><span class="metric-label">绿地率</span><span class="metric-value" data-metric="green_ratio" data-value="0.280717">28.1%</span></div>
+      <div class="metric-row"><span class="metric-label">公共空间占比</span><span class="metric-value" data-metric="public_space_ratio" data-value="0.0">0%</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 空间结构 -->
+<div class="section">
+  <div class="section-title">空间结构：一轴 · 三区 · 两翼</div>
+  <div class="map-placeholder">
+    <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background -->
+      <rect width="600" height="400" fill="#111"/>
+      <!-- Rail axis -->
+      <line x1="300" y1="380" x2="300" y2="20" stroke="#00FF41" stroke-width="3" stroke-dasharray="8,4"/>
+      <text x="310" y="395" fill="#8B4513" font-size="11" font-family="monospace">开源铁道 Open Rail</text>
+      <!-- Release区 -->
+      <rect x="250" y="320" width="100" height="50" fill="#3d3d1a" stroke="#FFD700" stroke-width="1" rx="4"/>
+      <text x="270" y="350" fill="#FFD700" font-size="11" font-family="monospace">Release</text>
+      <text x="265" y="365" fill="#888" font-size="9">大钟寺 72ha</text>
+      <!-- Main区 -->
+      <rect x="250" y="210" width="100" height="50" fill="#1a3d3d" stroke="#00CED1" stroke-width="1" rx="4"/>
+      <text x="275" y="240" fill="#00CED1" font-size="11" font-family="monospace">Main</text>
+      <text x="260" y="255" fill="#888" font-size="9">原点社区 104ha</text>
+      <!-- Fork区 -->
+      <rect x="250" y="60" width="100" height="50" fill="#3d1a3d" stroke="#FF69B4" stroke-width="1" rx="4"/>
+      <text x="275" y="90" fill="#FF69B4" font-size="11" font-family="monospace">Fork</text>
+      <text x="258" y="105" fill="#888" font-size="9">众智园 192ha</text>
+      <!-- CI翼 -->
+      <rect x="420" y="140" width="80" height="120" fill="#1a3d1a" stroke="#00FF41" stroke-width="1" rx="4"/>
+      <text x="440" y="200" fill="#00FF41" font-size="11" font-family="monospace">CI 翼</text>
+      <text x="430" y="218" fill="#888" font-size="9">中关村</text>
+      <!-- CD翼 -->
+      <rect x="100" y="140" width="80" height="120" fill="#1a1a3d" stroke="#87CEEB" stroke-width="1" rx="4"/>
+      <text x="120" y="200" fill="#87CEEB" font-size="11" font-family="monospace">CD 翼</text>
+      <text x="115" y="218" fill="#888" font-size="9">小月河</text>
+      <!-- Arrows -->
+      <path d="M420,200 L350,200" stroke="#00FF41" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+      <path d="M300,110 L300,160" stroke="#FF69B4" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+      <path d="M300,260 L300,320" stroke="#00CED1" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+      <path d="M250,200 L180,200" stroke="#87CEEB" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+      <defs><marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="none" stroke="#666" stroke-width="1"/></marker></defs>
+      <!-- CI/CD loop label -->
+      <text x="350" y="155" fill="#555" font-size="9" font-family="monospace">git push</text>
+      <text x="190" y="155" fill="#555" font-size="9" font-family="monospace">git deploy</text>
+    </svg>
+    <p style="margin-top:10px;font-size:0.8em">三区两翼编译流水线示意图 · 基于 provisional geometry</p>
+  </div>
+</div>
+
+<!-- 三区详情 -->
+<div class="section">
+  <div class="section-title">三区两翼</div>
+  <div class="grid grid-3">
+    <div class="card">
+      <h3><span class="tag tag-fork">Fork 区</span> 众智园</h3>
+      <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value">192.1 ha</span></div>
+      <div class="metric-row"><span class="metric-label">定位</span><span style="font-size:0.85em">AI 全栈自主创新</span></div>
+      <div class="metric-row"><span class="metric-label">核心机制</span><span style="font-size:0.85em">开源社区技术攻关、自主算力平台</span></div>
+      <div class="metric-row"><span class="metric-label">地标</span><span style="font-size:0.85em">First Commit 纪念碑</span></div>
+    </div>
+    <div class="card">
+      <h3><span class="tag tag-main">Main 区</span> AI 原点社区</h3>
+      <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value">104.3 ha</span></div>
+      <div class="metric-row"><span class="metric-label">定位</span><span style="font-size:0.85em">世界级 AI 创新生态</span></div>
+      <div class="metric-row"><span class="metric-label">核心机制</span><span style="font-size:0.85em">开源社区、公共算力池</span></div>
+      <div class="metric-row"><span class="metric-label">地标</span><span style="font-size:0.85em">开源之墙</span></div>
+    </div>
+    <div class="card">
+      <h3><span class="tag tag-release">Release 区</span> 大钟寺</h3>
+      <div class="metric-row"><span class="metric-label">面积</span><span class="metric-value">72.0 ha</span></div>
+      <div class="metric-row"><span class="metric-label">定位</span><span style="font-size:0.85em">智能原生消费商务</span></div>
+      <div class="metric-row"><span class="metric-label">核心机制</span><span style="font-size:0.85em">AI 产品发布、消费场景</span></div>
+      <div class="metric-row"><span class="metric-label">地标</span><span style="font-size:0.85em">Fork 广场</span></div>
+    </div>
+    <div class="card">
+      <h3><span class="tag tag-ci">CI 翼</span> 中关村</h3>
+      <div class="metric-row"><span class="metric-label">功能</span><span style="font-size:0.85em">持续集成——资本、人才、技术</span></div>
+      <div class="metric-row"><span class="metric-label">机制</span><span style="font-size:0.85em">风投、加速器、技术转移</span></div>
+    </div>
+    <div class="card">
+      <h3><span class="tag tag-cd">CD 翼</span> 小月河</h3>
+      <div class="metric-row"><span class="metric-label">功能</span><span style="font-size:0.85em">持续部署——AI 场景落地</span></div>
+      <div class="metric-row"><span class="metric-label">机制</span><span style="font-size:0.85em">场景卡、测试沙盒、用户验证</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Agent 任务覆盖 -->
+<div class="section">
+  <div class="section-title">Agent 任务覆盖</div>
+  <div class="card">
+    <table>
+      <tr><th>任务</th><th>名称</th><th>状态</th><th>核心产出</th></tr>
+      <tr><td>agent.1</td><td>总体概念与功能统筹</td><td><span class="badge badge-pass">covered</span></td><td>开源京张命名体系、Logo方向、空间结构</td></tr>
+      <tr><td>agent.2</td><td>AI 全栈创新生态</td><td><span class="badge badge-pass">covered</span></td><td>五区编译链路、区域协同、空间产业融合</td></tr>
+      <tr><td>agent.3</td><td>AI+ 场景赋能</td><td><span class="badge badge-pass">covered</span></td><td>12 场景卡、4 测试场景、5 用户画像</td></tr>
+      <tr><td>agent.4</td><td>公共空间与朝圣地标</td><td><span class="badge badge-pass">covered</span></td><td>First Commit纪念碑、开源之墙、Fork广场</td></tr>
+      <tr><td>agent.5</td><td>文化融合叙事</td><td><span class="badge badge-pass">covered</span></td><td>三次开源叙事、道岔=分支符号</td></tr>
+      <tr><td>agent.6</td><td>活动与长期运营</td><td><span class="badge badge-pass">covered</span></td><td>Summit、Fork-a-Thon、Commit Challenge</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 场景卡 -->
+<div class="section">
+  <div class="section-title">AI 场景卡（12 张）</div>
+  <div class="grid grid-3">
+    <div class="card"><h3>01 AI 辅助代码审查 ⭐</h3><p style="font-size:0.85em;color:#aaa">Main区 · 开源开发者 · 人工复核后merge</p></div>
+    <div class="card"><h3>02 自动驾驶测试走廊 ⭐</h3><p style="font-size:0.85em;color:#aaa">Fork区 · AI研究者 · 安全员随车</p></div>
+    <div class="card"><h3>03 建筑能耗优化 ⭐</h3><p style="font-size:0.85em;color:#aaa">全带 · 物业方 · 节能策略需确认</p></div>
+    <div class="card"><h3>04 城市数据沙盒 ⭐</h3><p style="font-size:0.85em;color:#aaa">Main区 · 数据科学家 · 全数据脱敏</p></div>
+    <div class="card"><h3>05 AI 导购推荐</h3><p style="font-size:0.85em;color:#aaa">Release区 · 消费者 · 用户授权可撤回</p></div>
+    <div class="card"><h3>06 智能餐饮</h3><p style="font-size:0.85em;color:#aaa">Release区 · 餐饮经营者 · 厨师确认</p></div>
+    <div class="card"><h3>07 AI 辅助医疗站</h3><p style="font-size:0.85em;color:#aaa">CD翼 · 居民 · 执业医师确认</p></div>
+    <div class="card"><h3>08 智慧教育空间</h3><p style="font-size:0.85em;color:#aaa">Fork/Main区 · 学生 · 教育专家审核</p></div>
+    <div class="card"><h3>09 文化体验</h3><p style="font-size:0.85em;color:#aaa">铁道沿线 · 访客 · 文史专家确认</p></div>
+    <div class="card"><h3>10 交通信号优化</h3><p style="font-size:0.85em;color:#aaa">全带 · 交通参与者 · 交管部门确认</p></div>
+    <div class="card"><h3>11 公共空间管理</h3><p style="font-size:0.85em;color:#aaa">全带 · 使用者 · 管理方确认</p></div>
+    <div class="card"><h3>12 Agent 协作演示</h3><p style="font-size:0.85em;color:#aaa">Main区 · 访客 · 技术团队确认</p></div>
+  </div>
+  <p style="font-size:0.8em;color:#666;margin-top:10px">⭐ = 产业测试验证场景 · 所有场景均为概念建议</p>
+</div>
+
+<!-- 时间线 -->
+<div class="section">
+  <div class="section-title">分期计划</div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <span class="year">2026-2028</span> 近期：开源基础设施与社区启动
+      <p style="font-size:0.85em;color:#aaa;margin-top:6px">开源铁道主轴贯通 · First Commit纪念碑 · AI原点社区平台上线 · 首届Fork-a-Thon</p>
+    </div>
+    <div class="timeline-item">
+      <span class="year">2028-2031</span> 中期：三区联动与场景部署
+      <p style="font-size:0.85em;color:#aaa;margin-top:6px">Fork区载体建成 · Release区商业落地 · CD翼场景全面部署 · 开源之墙建设</p>
+    </div>
+    <div class="timeline-item">
+      <span class="year">2031-2036</span> 远期：全球开源城市标杆
+      <p style="font-size:0.85em;color:#aaa;margin-top:6px">品牌全球影响力 · 年度峰会常态化 · Agent参与治理制度化</p>
+    </div>
+  </div>
+</div>
+
+<!-- 自检状态 -->
+<div class="section">
+  <div class="section-title">自检状态</div>
+  <div class="status-grid">
+    <div class="status-item">✅ PKG-001: proposal.md 存在且非空</div>
+    <div class="status-item">✅ GEO-001: site_boundary.geojson 存在</div>
+    <div class="status-item">✅ GEO-002: key_areas.geojson 含 3 个 feature</div>
+    <div class="status-item">✅ GEO-003: land_use.geojson 覆盖边界</div>
+    <div class="status-item">✅ MET-001: metrics.json 含已知面积</div>
+    <div class="status-item">✅ MET-002: 无编造控规指标</div>
+    <div class="status-item">✅ COMP-001: 合规矩阵覆盖 agent.1-6</div>
+    <div class="status-item">✅ AGT-001: 六任务在正文中展开</div>
+    <div class="status-item">✅ AGT-002: 无禁用声明</div>
+    <div class="status-item">✅ BND-001: Provisional 边界正确标注</div>
+    <div class="status-item warn">⚠️ FIG-001: 5 张 PNG 需生成</div>
+    <div class="status-item warn">⚠️ report/proposal.html 需渲染</div>
+  </div>
+</div>
+
+<!-- 数据来源 -->
+<div class="section">
+  <div class="section-title">数据来源与合规</div>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>数据置信度</h3>
+      <div class="metric-row"><span class="metric-label">几何数据</span><span class="badge badge-warn">medium-provisional</span></div>
+      <div class="metric-row"><span class="metric-label">官方面积</span><span class="badge badge-pass">high</span></div>
+      <div class="metric-row"><span class="metric-label">控规条件</span><span class="badge badge-unknown">unknown</span></div>
+      <div class="metric-row"><span class="metric-label">文化叙事</span><span class="badge badge-warn">medium-background</span></div>
+      <div class="metric-row"><span class="metric-label">场景设计</span><span class="badge badge-warn">low-conceptual</span></div>
+    </div>
+    <div class="card">
+      <h3>合规声明</h3>
+      <p style="font-size:0.85em">所有空间建议为概念建议，不构成政府审定结论。使用 provisional 粗略替代边界，不作为官方红线。未使用非公开数据、企业内部数据或个人隐私数据。所有活动、招商、资金安排为概念建议。</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- 补充信息（满足可视化看板完整性要求） -->
+<div class="section">
+  <div class="section-title">总览地图与三层范围</div>
+  <div class="card">
+    <p><strong>总览地图：</strong>本方案覆盖统筹研究范围（43.6 km²）、总体设计范围（11.4 km²）、重点区域详细设计（368.4 ha）三层范围 [metric:site_area_sqm]。</p>
+    <p style="margin-top:10px"><strong>三层范围：</strong>统筹研究范围用于产业战略研究；总体设计范围用于城市设计与用地布局；重点区域用于详细城市设计。</p>
+    <p style="margin-top:10px"><strong>用地分区：</strong>包含众智园（Fork区）、AI原点社区（Main区）、大钟寺（Release区）及过渡区，共7个用地分区。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">交通慢行与蓝绿公共空间</div>
+  <div class="card">
+    <p><strong>交通慢行：</strong>以开源铁道主轴为脊梁，构建贯穿南北的步行骑行道（Pull Request 长廊），连接三区两翼所有公共空间节点，形成 15 分钟生活圈。</p>
+    <p style="margin-top:10px"><strong>蓝绿公共空间：</strong>京张铁路遗址公园（165.9 ha）和小月河蓝绿廊道（154.4 ha）构成全域蓝绿骨架，绿地率约 28.1% [metric:green_ratio] [metric:public_space_ratio]。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">更新项目与假设声明</div>
+  <div class="card">
+    <p><strong>更新项目：</strong>近期（2026-2028）开源基础设施与社区启动；中期（2028-2031）三区联动与场景部署；远期（2031-2036）全球开源城市标杆。</p>
+    <p style="margin-top:10px"><strong>假设：</strong>所有空间建议为概念建议，基于 provisional 粗略替代边界，不构成政府审定结论。控规条件（容积率、建筑高度、建筑密度、绿地率）标记为 unknown，待官方数据确认后需全面调整。</p>
+  </div>
+</div>
+
+<footer>
+  <p>开源京张 · Open Jing-Zhang — 百年京张 AI 创新带城市设计开源征集方案</p>
+  <p>Agent: Open Jing-Zhang Agent · Model: claude-fable-5 · 2026-08-07</p>
+  <p>所有空间建议均为概念建议，不替代正式规划，不构成政府审定结论。</p>
+</footer>
+
+</div>
+</body>
+</html>

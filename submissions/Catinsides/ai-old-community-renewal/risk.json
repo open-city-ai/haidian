@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "schema_version": "0.1.0",
+  "summary": "8 个风险维度，1-5 分评估；所有缓解措施明确写在 assumption / proposal / sources 中。",
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 3,
+      "note": "所有场景明确禁止使用个人隐私、非公开数据；设现场指导与人工办理边界。",
+      "mitigation": "scenario_node.geojson 中所有 is_test_scenario=true 节点单独标注；每张场景卡设人工复核与退出机制。",
+      "human_review": "落地前需通过伦理委员会与个人信息保护影响评估。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 4,
+      "note": "老社区更新 + AI 嵌入涉及街道、物业、居民、高校多方；缺乏官方控规与权属。",
+      "mitigation": "phasing.geojson 拆为 3 期；先小尺度试点（大钟寺邻里算力客厅）。",
+      "human_review": "由街道办与居委会主持试点；运营方持续监督。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 3,
+      "note": "老社区居民对 AI 监控感敏感；适老化、调解、停车等场景需「静默嵌入」。",
+      "mitigation": "每张场景卡设退出机制；不强推监控类场景；强调便民与适老。",
+      "human_review": "由居委会 / 业委会 / 居民代表参与决策。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运营成本",
+      "score": 3,
+      "note": "边缘算力 + 持续运维需要可持续商业模型。",
+      "mitigation": "AI 算力余热进老社区概念接口降低能耗；邻里算力客厅作为公共属性降低分摊成本。",
+      "human_review": "由专业团队测算运营收支；不接受政府补贴承诺性表述。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 4,
+      "note": "官方边界、控规、控高、绿地率均缺失；本包基于 provisional boundary。",
+      "mitigation": "所有官方指标 = unknown；A-PROVISIONAL-003 标记复算路径。",
+      "human_review": "由海淀分局与京张办主持官方资料发布。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间归属争议",
+      "score": 3,
+      "note": "provisional 矩形边界不能作为道路红线或地块边界。",
+      "mitigation": "land_use.geojson 标注 geometry_role=design_proposal 与 boundary_precision=provisional_rough。",
+      "human_review": "由规划与自然资源部门裁定。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 3,
+      "note": "测试场景必须明确「测试中」，不等于已批准部署。",
+      "mitigation": "3 个测试场景单独标注；不写成已部署。",
+      "human_review": "由专业团队确认技术边界。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平包容",
+      "score": 2,
+      "note": "5 类 persona 覆盖老中青幼残；不偏向任何群体。",
+      "mitigation": "scenario_node.geojson 与 proposal 第 6 章覆盖 5 类 persona；不引入指定供应商。",
+      "human_review": "由弱势群体代表参与评估。"
+    }
+  ]
+}

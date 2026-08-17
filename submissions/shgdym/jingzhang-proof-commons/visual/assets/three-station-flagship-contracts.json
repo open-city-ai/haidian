@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0.0",
+  "proposal_id": "jingzhang-proof-commons",
+  "evidence_level": "proposed_design_acceptance_contract",
+  "claim_boundary_zh": "三份合同把现有场景、概念拓扑和实施项目连接为可检查的设计要求。它们不是现场测试结果、产品认证、铁路行车规则、政府审批或运营承诺；主体、尺寸、预算、保险和许可均待专业团队确认。",
+  "claim_boundary_en": "The three contracts connect existing scenes, conceptual topology and delivery projects as checkable design requirements. They are not field-test results, product certification, railway operating rules, government approval or operating commitments; organisations, dimensions, budgets, insurance and permissions remain subject to professional confirmation.",
+  "through_product": {
+    "id": "SC-03-PRODUCT-01",
+    "description_zh": "同一件低速具身AI原型依次经过众智园TEST、AI原点RELEASE和大钟寺USE；公众异议触发RETURN后形成新工况并回到众智园。",
+    "description_en": "One low-speed embodied-AI prototype passes through Zhongzhi TEST, AI Origin RELEASE and Dazhongsi USE; a public objection triggers RETURN, creates a new fixture and sends it back to Zhongzhi.",
+    "version_history_ref": "visual/assets/lived-lifecycle.json",
+    "receipt_schema_ref": "visual/assets/x-receipt.schema.json"
+  },
+  "contracts": [
+    {
+      "id": "CONTRACT-ZHONGZHI-TEST",
+      "station_id": "ZHONGZHI_TEST",
+      "stage": "TEST",
+      "project_ref": "JZ-06",
+      "primary_scene_refs": ["SC-01", "SC-03"],
+      "question_zh": "它能否在明确边界内工作？",
+      "question_en": "Can it work inside an explicit envelope?",
+      "railway_translation_zh": "以试车、区段边界和人工放行组织进入条件；只转译有界运行逻辑，不模仿真实铁路票证。",
+      "railway_translation_en": "Entry is organised through test running, bounded sections and human release; this translates bounded operation without imitating real railway credentials.",
+      "technical_system": {
+        "components": ["lidar_or_depth_sensing", "localisation_and_local_map", "geofence_monitor", "minimum_risk_stop", "physical_and_remote_emergency_stop", "versioned_event_log"],
+        "allowed_inputs": ["authorised_test_fixture", "device_telemetry", "boundary_event", "stop_event", "operator_annotation"],
+        "prohibited_inputs": ["face_identity", "persistent_person_track", "unrelated_public_audio"],
+        "human_decision": "site_safety_lead_signs_test_receipt",
+        "limitations_zh": "概念方案不声称传感器精度、制动距离、急停时延或安全等级已经现场验证。",
+        "limitations_en": "The concept does not claim field-verified sensing accuracy, braking distance, emergency-stop latency or safety rating."
+      },
+      "spatial_contract": {
+        "topology_ref": "visual/assets/station-topology.json#ZHONGZHI_TEST",
+        "required_nodes": ["z_public_spine", "z_observation", "z_control_gate", "z_test_pocket", "z_restore_court"],
+        "closable_nodes": ["z_observation", "z_control_gate", "z_test_pocket"],
+        "public_function_kept_open": "z_public_spine",
+        "ordinary_use_after_return": "z_restore_court",
+        "distinctive_move_zh": "永久公众正线沿外缘连续，观察缓冲与机器口袋逐层向内，机器只能经有人值守且无旁路的交叉点进入测试区。",
+        "distinctive_move_en": "A permanent civic main line stays continuous at the edge; observation buffer and machine pocket step inward, and machines enter only through one staffed no-bypass crossing."
+      },
+      "day_90_gate": {
+        "status": "proposed_target_not_achieved_result",
+        "required_evidence": ["candidate_operator_and_safety_roles", "field_base_and_public_route_audit", "insurance_and_permission_gap_register", "four_fixture_tabletop_and_field_plan", "emergency_stop_and_demobilisation_drill_plan"],
+        "decision": "hold_unless_all_evidence_is_signed"
+      },
+      "day_180_gate": {
+        "status": "proposed_target_not_achieved_result",
+        "required_evidence": ["two_versioned_test_cycles", "independent_reproduction_record", "all_severe_findings_closed_or_returned", "public_route_continuity_record", "restoration_drill_record"],
+        "decision": "release_candidate_only_after_human_review"
+      },
+      "immediate_stop_conditions": [
+        {"trigger": "machine_crosses_declared_envelope", "human_action": "site_safety_lead_orders_stop", "spatial_action": "close_test_pocket_keep_public_spine_open"},
+        {"trigger": "emergency_stop_or_takeover_fails", "human_action": "freeze_event_log_and_suspend_version", "spatial_action": "clear_machine_and_restore_court"},
+        {"trigger": "uncontrolled_machine_public_crossing", "human_action": "reclassify_fixture_as_fail", "spatial_action": "close_control_gate_without_public_detour"}
+      ],
+      "resource_band": "M/L",
+      "candidate_accountable_role": "site_operator_legal_entity",
+      "handover_output": "Test Receipt"
+    },
+    {
+      "id": "CONTRACT-AI-ORIGIN-RELEASE",
+      "station_id": "AI_ORIGIN_RELEASE",
+      "stage": "RELEASE",
+      "project_ref": "JZ-07",
+      "primary_scene_refs": ["SC-05"],
+      "question_zh": "这个确切版本是否有资格被公开？",
+      "question_en": "Is this exact version eligible for public release?",
+      "railway_translation_zh": "像区段放行一样，前序凭证、版本和责任未闭合时保持HOLD；发布票不是产品认证或政府许可。",
+      "railway_translation_en": "As with bounded section release, unresolved predecessor evidence, version or responsibility keeps the state at HOLD; the Release Ticket is neither certification nor government permission.",
+      "technical_system": {
+        "components": ["exact_package_hash", "software_bill_of_materials", "model_and_data_card", "licence_and_rights_inventory", "reproduction_runner", "withdrawal_registry"],
+        "allowed_inputs": ["test_receipt_hash", "exact_product_version", "dependency_metadata", "licence_metadata", "reproduction_result"],
+        "prohibited_inputs": ["undisclosed_private_code", "unlicensed_training_material", "unnecessary_personal_data"],
+        "human_decision": "release_lead_and_rights_reviewer_sign_release_ticket",
+        "limitations_zh": "复测只检查公开包与声明的一致性，不证明模型在所有环境安全、准确或适用。",
+        "limitations_en": "Reproduction checks consistency between the disclosed package and claims; it does not prove safety, accuracy or suitability in every environment."
+      },
+      "spatial_contract": {
+        "topology_ref": "visual/assets/station-topology.json#AI_ORIGIN_RELEASE",
+        "required_nodes": ["o_public_spine", "o_method_table", "o_rights_table", "o_withdraw_interface", "o_teaching", "o_collaboration", "o_restore_studio"],
+        "closable_nodes": ["o_method_table", "o_rights_table", "o_withdraw_interface"],
+        "public_function_kept_open": "o_public_spine",
+        "ordinary_use_after_return": "o_restore_studio",
+        "distinctive_move_zh": "方法台、权利台和撤回界面在同一首层视域连续出现；任何一台HOLD时发布界面关闭，教学与协作仍开放。",
+        "distinctive_move_en": "Method, rights and withdrawal interfaces share one ground-floor field of view; a HOLD at any table closes release while learning and collaboration remain open."
+      },
+      "day_90_gate": {
+        "status": "proposed_target_not_achieved_result",
+        "required_evidence": ["candidate_release_and_rights_roles", "hash_and_dependency_schema", "licence_gap_register", "reproduction_dry_run", "hold_and_withdrawal_drill"],
+        "decision": "hold_if_version_rights_or_owner_is_incomplete"
+      },
+      "day_180_gate": {
+        "status": "proposed_target_not_achieved_result",
+        "required_evidence": ["two_independent_reproduction_records", "exact_upstream_receipt_hash_for_each_candidate", "rights_dispute_response_record", "two_withdrawal_drills", "research_to_retest_handover_log"],
+        "decision": "limited_release_only_after_dual_human_signoff"
+      },
+      "immediate_stop_conditions": [
+        {"trigger": "package_version_differs_from_test_receipt", "human_action": "release_lead_sets_hold", "spatial_action": "remove_product_status_keep_methods_teaching_open"},
+        {"trigger": "licence_or_data_rights_unresolved", "human_action": "rights_reviewer_blocks_release", "spatial_action": "close_rights_and_release_interface_keep_collaboration_open"},
+        {"trigger": "withdrawal_owner_or_route_missing", "human_action": "operator_refuses_publication", "spatial_action": "return_interface_to_ordinary_studio_use"}
+      ],
+      "resource_band": "M",
+      "candidate_accountable_role": "release_platform_legal_entity",
+      "handover_output": "Release Ticket"
+    },
+    {
+      "id": "CONTRACT-DAZHONGSI-USE",
+      "station_id": "DAZHONGSI_USE",
+      "stage": "USE",
+      "project_ref": "JZ-08",
+      "primary_scene_refs": ["SC-03", "SC-10"],
+      "question_zh": "公众是否愿意并能够平等地继续使用？",
+      "question_en": "Can and will the public continue using it on equal terms?",
+      "railway_translation_zh": "限定运行必须显示状态、责任和停止入口；异议触发折返并生成新工况，而不是默认继续。",
+      "railway_translation_en": "Limited operation must expose state, responsibility and a stop route; objection triggers return and a new fixture rather than default continuation.",
+      "technical_system": {
+        "components": ["public_state_display", "bounded_route_configuration", "staffed_takeover_console", "anonymous_complaint_register", "non_ai_service_status", "return_task_generator"],
+        "allowed_inputs": ["release_ticket_hash", "device_event_state", "anonymous_service_issue", "staff_roster_state", "non_ai_service_availability"],
+        "prohibited_inputs": ["default_identity_tracking", "face_recognition", "commercial_behaviour_profile"],
+        "human_decision": "public_service_lead_and_accessibility_reviewer_sign_public_verdict",
+        "limitations_zh": "公众裁决是建议的现场运营决定，不代表统计上充分的公众接受度或正式行政决定。",
+        "limitations_en": "The Public Verdict is a proposed operating decision, not statistically representative public acceptance or a formal administrative decision."
+      },
+      "spatial_contract": {
+        "topology_ref": "visual/assets/station-topology.json#DAZHONGSI_USE",
+        "required_nodes": ["d_public_spine", "d_non_ai_service", "d_trial_pocket", "d_complaint_point", "d_commercial", "d_rest", "d_restore_square"],
+        "closable_nodes": ["d_trial_pocket"],
+        "public_function_kept_open": "d_public_spine",
+        "ordinary_use_after_return": "d_restore_square",
+        "distinctive_move_zh": "有限试用口袋与公众主链平行而非串联；非AI服务和投诉点从主链直接到达，设备撤出后商业、休息和人工服务继续。",
+        "distinctive_move_en": "The limited trial pocket runs parallel rather than in series with the civic chain; non-AI service and complaint are directly reachable, while retail, rest and staffed service survive equipment removal."
+      },
+      "day_90_gate": {
+        "status": "proposed_target_not_achieved_result",
+        "required_evidence": ["candidate_public_service_and_accessibility_roles", "field_route_and_service_audit", "notice_comprehension_test_plan", "non_ai_service_parity_drill", "complaint_and_restoration_drill"],
+        "decision": "hold_unless_staffed_and_non_ai_service_is_live"
+      },
+      "day_180_gate": {
+        "status": "proposed_target_not_achieved_result",
+        "required_evidence": ["two_user_cohort_review_cycles", "accessible_route_parity_record", "staffed_service_availability_record", "complaint_closure_and_dissent_log", "return_to_retest_task_trace"],
+        "decision": "continue_modify_or_return_by_public_verdict"
+      },
+      "immediate_stop_conditions": [
+        {"trigger": "trial_obstructs_public_or_accessibility_chain", "human_action": "public_service_lead_orders_return", "spatial_action": "close_trial_pocket_keep_public_spine_open"},
+        {"trigger": "staff_or_non_ai_equivalent_unavailable", "human_action": "duty_manager_suspends_trial", "spatial_action": "restore_staffed_service_and_ordinary_square"},
+        {"trigger": "rights_complaint_unresolved_at_review_gate", "human_action": "accessibility_and_public_review_roles_keep_return", "spatial_action": "remove_device_and_generate_new_zhongzhi_fixture"}
+      ],
+      "resource_band": "L",
+      "candidate_accountable_role": "public_service_operator_legal_entity",
+      "handover_output": "Public Verdict"
+    }
+  ]
+}

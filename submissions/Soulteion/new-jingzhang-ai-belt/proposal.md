@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以'人'字形铁路的自主创新精神为原点，将京张遗址公园塑造为贯穿南北的'人本AI公共脊'，以众智园、北京AI原点社区、大钟寺三处重点片区为三芯，以中关村科技服务翼与小月河场景赋能翼为两翼，形成'一脊三芯·四带两翼·多点成网'的AI创新带整体方案。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.2"
+iteration: "v1.3"
 ---
 
 # 新京张·AI创新带：从百年人字形铁路到人本AI城市
@@ -136,7 +136,7 @@ Logo 方向：以京张铁路"人"字形铁轨为母题，将两条铁轨变形�
 | 用地代码 | 功能 | 面积（千平方米） | 占比 | 设计意图 |
 | --- | --- | --- | --- | --- |
 | 0802 | AI 研发科研用地 | 2545.6 | 22.3% | 众智园、原点社区、中部研发带核心载体 [metric:rnd_land_ratio] |
-| 05 | 商业服务业用地 | 1810.0 | 15.9% | 大钟寺智能经济、知春路服务带 [metric:commercial_land_ratio] |
+| 0901/0902 | 商业服务业用地 | 1810.0 | 15.9% | 大钟寺智能经济、知春路服务带 [metric:commercial_land_ratio] |
 | 0701/0702 | 居住与社区服务 | 3176.8 | 27.8% | 人才居住、社区 AI 服务网络 [metric:residential_land_ratio] |
 | 0804 | 教育科研用地 | 674.0 | 5.9% | 依托高校，近校转化界面 [metric:education_land_ratio] |
 | 1401/1403 | 绿地与广场 | 3206.5 | 28.1% | 人形公共脊、蓝绿网络 [metric:green_ratio] [metric:public_space_ratio] |

@@ -55,6 +55,10 @@ from validate_submission import (
     format_report,
     validate_submission,
 )
+from participant_owner_aliases import (
+    PARTICIPANT_OWNER_ALIASES_PATH,
+    authorized_legacy_submission_dirs,
+)
 
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
@@ -68,7 +72,6 @@ RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 # with the path and head-specific download error after the retry budget.
 RETRYABLE_STATUS_CODES = frozenset({404, 429, 500, 502, 503, 504})
 TRUSTED_REVIEW_GATE_TIMEOUT_SECONDS = 180
-PARTICIPANT_OWNER_ALIASES_PATH = "data/participant_owner_aliases.json"
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -409,56 +412,6 @@ def strict_manifest_paths_for(files: list[dict]) -> list[str]:
         if isinstance(filename, str) and filename.endswith("/manifest.json"):
             paths.add(filename)
     return sorted(paths)
-
-
-def authorized_legacy_submission_dirs(
-    repo_root: Path, github_user_id: object, current_login: str
-) -> set[str]:
-    """Resolve maintainer-controlled rename aliases from trusted GitHub identity."""
-    if not isinstance(github_user_id, int) or isinstance(github_user_id, bool):
-        return set()
-    policy_path = repo_root / PARTICIPANT_OWNER_ALIASES_PATH
-    try:
-        policy = json.loads(policy_path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
-        return set()
-    aliases = policy.get("aliases") if isinstance(policy, dict) else None
-    if not isinstance(aliases, list):
-        return set()
-    for item in aliases:
-        if not isinstance(item, dict):
-            continue
-        configured_user_id = item.get("github_user_id")
-        if (
-            not isinstance(configured_user_id, int)
-            or isinstance(configured_user_id, bool)
-            or configured_user_id != github_user_id
-        ):
-            continue
-        configured_login = item.get("current_login")
-        if not isinstance(configured_login, str) or configured_login.casefold() != current_login.casefold():
-            continue
-        legacy_login = item.get("legacy_login")
-        if not isinstance(legacy_login, str) or not legacy_login:
-            return set()
-        legacy_dirs = item.get("legacy_submission_dirs")
-        if not isinstance(legacy_dirs, list):
-            return set()
-        result: set[str] = set()
-        for value in legacy_dirs:
-            if not isinstance(value, str):
-                return set()
-            parts = PurePosixPath(value).parts
-            if (
-                len(parts) != 3
-                or parts[0] != "submissions"
-                or parts[1] != legacy_login
-                or ".." in parts
-            ):
-                return set()
-            result.add(PurePosixPath(value).as_posix())
-        return result
-    return set()
 
 
 def reserved_legacy_login_user_id(repo_root: Path, login: str) -> int | None:

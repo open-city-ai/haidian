@@ -1825,8 +1825,8 @@
     }
   ],
   "my_position": {
-    "merged_on_main": false,
-    "note": "upstream/main 上 submissions/gr-87 为占位空树；我方方案仅在本地分支 submission/gr-87/jingzhang-ai-new-track-v04。",
+    "merged_on_main": true,
+    "note": "upstream/main 已包含历史版本（v0.3，PR 已合并）；本证据文件为 v0.5 冻结快照，以 script 重跑结果为准；默认只读复演，--write 才更新本文件。",
     "declared_tracks": [
       "jingzhang-heritage-narrative",
       "ai-origin-community",
@@ -1861,12 +1861,12 @@
     "consistent": true
   },
   "reproducibility": {
-    "rerun_command": "node submissions/gr-87/jingzhang-ai-new-track/visual/assets/run_field_census.js",
+    "rerun_command": "node submissions/gr-87/jingzhang-ai-new-track/visual/assets/run_field_census.js  # read-only; add --write to refresh",
     "env_overrides": [
       "CENSUS_FIELD_REF",
       "CENSUS_REPO_ROOT",
       "CENSUS_OUT_FILE"
     ],
-    "determinism_note": "scheme lists sorted; measurement depends only on the git ref named by git_sha_of_main"
+    "determinism_note": "scheme lists sorted; measurement depends only on the git ref named by git_sha_of_main; default run is read-only and does not modify this evidence file."
   }
 }

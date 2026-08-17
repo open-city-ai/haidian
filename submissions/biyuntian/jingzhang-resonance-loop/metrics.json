@@ -81,6 +81,45 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "public_interface_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/interface-delivery-matrix.json"
+      ],
+      "formula": "count(interfaces where id in R01..R06)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a conceptual interface-card count, not a count of approved construction locations."
+      ]
+    },
+    "reversible_micro_project_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/interface-delivery-matrix.json"
+      ],
+      "formula": "count(micro_projects)",
+      "confidence": "high",
+      "assumptions": [
+        "A micro-project is a concept-stage reversible action with a stated first move and rollback; it is not an approved project count."
+      ]
+    },
+    "pilot_observation_anchor_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/pilot-observation-ledger.json"
+      ],
+      "formula": "count(anchors)",
+      "confidence": "high",
+      "assumptions": [
+        "The count records proposed aggregate-observation anchors, not monitored individuals or installed devices."
+      ]
     }
   }
 }

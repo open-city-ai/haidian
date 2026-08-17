@@ -1,0 +1,266 @@
+{
+  "schema_version": "0.1.0",
+  "concept": "数据对账 (Data Reconciliation) — double-entry bookkeeping",
+  "canonical_contract": {
+    "zh": "proposal.md",
+    "en": "proposal.en.md"
+  },
+  "methodology_source_zh": "方法论移植自会计学的复式记账与期末对账：数据回执是单式记录（只记使用方），数据对账是双式闭环（使用方获得=借，公共池记录=贷），期末对账核平。不能核平的回执是差异，不是已结记录。",
+  "methodology_source_en": "Methodology transplanted from double-entry bookkeeping and period-end reconciliation: the Data Receipt is a single-entry record (the user side only); Data Reconciliation is a double-entry loop (user receives = debit, public pool records = credit) reconciled at period end. A receipt that cannot be reconciled is a discrepancy, not a closed record.",
+  "reconciliation_rules": [
+    {
+      "id": "R1",
+      "rule_zh": "每笔数据使用必须成对记账（借=使用方获得，贷=公共池记录），借贷不平即标记差异"
+    },
+    {
+      "id": "R2",
+      "rule_zh": "期末对账（季度）：核对全部回执的借贷平衡、保留期与删除记录；差异须在下一对账周期前澄清"
+    },
+    {
+      "id": "R3",
+      "rule_zh": "对账结果公开（脱敏）；差异记录进入公共台账，接受公众与监管查阅"
+    }
+  ],
+  "negative_space_baseline_zh": "无数据基线：无任何数据服务时，市民仍能通过人工窗口、纸面表格与社区网络办成基本服务。数据服务是可关闭的叠加层，对账确保其关闭时不留未结记录。",
+  "negative_space_baseline_en": "No-data baseline: without any data service, citizens can still complete basic services through staffed windows, paper forms and community networks. Data services are a shuttable overlay; reconciliation ensures no unsettled records remain when they close.",
+  "entry_count": 12,
+  "entries": [
+    {
+      "entry_id": "DE-2026Q3-DS-01",
+      "dataset_id": "DS-01",
+      "dataset_name_zh": "公共空间开放度数据",
+      "debit": {
+        "account_zh": "使用方获得数据（service_operator）",
+        "amount": 1,
+        "detail_zh": "用途：共行网线路规划"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期90天，删除要求：是"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-02",
+      "dataset_id": "DS-02",
+      "dataset_name_zh": "慢行流量聚合数据",
+      "debit": {
+        "account_zh": "使用方获得数据（service_operator）",
+        "amount": 1,
+        "detail_zh": "用途：驿站选址与调度"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期180天，删除要求：是"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-03",
+      "dataset_id": "DS-03",
+      "dataset_name_zh": "文化遗产点位公开信息",
+      "debit": {
+        "account_zh": "使用方获得数据（developer）",
+        "amount": 1,
+        "detail_zh": "用途：文化导览生成"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期365天，删除要求：否"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-04",
+      "dataset_id": "DS-04",
+      "dataset_name_zh": "气象与空气质量公开数据",
+      "debit": {
+        "account_zh": "使用方获得数据（service_operator）",
+        "amount": 1,
+        "detail_zh": "用途：运营窗口判断"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期30天，删除要求：是"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-05",
+      "dataset_id": "DS-05",
+      "dataset_name_zh": "公共服务设施目录",
+      "debit": {
+        "account_zh": "使用方获得数据（service_operator）",
+        "amount": 1,
+        "detail_zh": "用途：服务导航"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期365天，删除要求：否"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-06",
+      "dataset_id": "DS-06",
+      "dataset_name_zh": "无障碍设施普查数据",
+      "debit": {
+        "account_zh": "使用方获得数据（developer）",
+        "amount": 1,
+        "detail_zh": "用途：无障碍路线规划"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期180天，删除要求：否"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-07",
+      "dataset_id": "DS-07",
+      "dataset_name_zh": "轨道站点客流聚合数据",
+      "debit": {
+        "account_zh": "使用方获得数据（service_operator）",
+        "amount": 1,
+        "detail_zh": "用途：地铁接驳调度"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期90天，删除要求：是"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-08",
+      "dataset_id": "DS-08",
+      "dataset_name_zh": "园区企业服务需求聚合数据",
+      "debit": {
+        "account_zh": "使用方获得数据（service_operator）",
+        "amount": 1,
+        "detail_zh": "用途：企业服务导航"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期180天，删除要求：是"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-09",
+      "dataset_id": "DS-09",
+      "dataset_name_zh": "应急点位公开信息",
+      "debit": {
+        "account_zh": "使用方获得数据（service_operator）",
+        "amount": 1,
+        "detail_zh": "用途：紧急救助导航"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期365天，删除要求：否"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-10",
+      "dataset_id": "DS-10",
+      "dataset_name_zh": "活动与展览公开信息",
+      "debit": {
+        "account_zh": "使用方获得数据（developer）",
+        "amount": 1,
+        "detail_zh": "用途：文化服务导航"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期90天，删除要求：否"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-11",
+      "dataset_id": "DS-11",
+      "dataset_name_zh": "停车与共享单车聚合数据",
+      "debit": {
+        "account_zh": "使用方获得数据（service_operator）",
+        "amount": 1,
+        "detail_zh": "用途：停车疏导"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期60天，删除要求：是"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "entry_id": "DE-2026Q3-DS-12",
+      "dataset_id": "DS-12",
+      "dataset_name_zh": "公众反馈聚合统计",
+      "debit": {
+        "account_zh": "使用方获得数据（research）",
+        "amount": 1,
+        "detail_zh": "用途：服务质量改进"
+      },
+      "credit": {
+        "account_zh": "公共数据池-使用记录",
+        "amount": 1,
+        "detail_zh": "保留期180天，删除要求：是"
+      },
+      "balanced": true,
+      "human_reviewer": "数据合规官",
+      "status": "synthetic_only",
+      "field_results": null
+    }
+  ],
+  "period_end_reconciliation": {
+    "period": "2026-Q3",
+    "total_entries": 12,
+    "balanced_entries": 12,
+    "discrepancies": 0,
+    "status": "synthetic_only",
+    "field_results": null,
+    "note_zh": "合成对账示例；现场对账须由数据合规官按季度执行并公开。"
+  }
+}

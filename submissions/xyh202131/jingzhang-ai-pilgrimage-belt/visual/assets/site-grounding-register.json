@@ -991,6 +991,53 @@
         "result": "refresh_records now carry 50 Round 35 records; summary updated to audit_round r35, executed 2026-08-15, 48/2/50; review_due set is identical to Round 21 and freezes upgrades without deleting any statement",
         "certification_note": "Freshness digests fix the bytes retrieved this pass only and are not publisher signatures; the audit is not a rights clearance or a validity guarantee."
       },
+      "compliance_namespace_r36": {
+        "contract_id": "JZ-COMPLIANCE-NAMESPACE-R36",
+        "executed_at": "2026-08-15",
+        "rule_layer_basis": "The formal-submission-guide and SKILL.md now require compliance_matrix.json to keep evidence namespaces separate: source_ids may only contain source-registry/package source IDs, while professional standard IDs belong in standard_ids and must also be declared in standard_matrix.json. The new brief/site-package/schemas/compliance_matrix.schema.json formalizes the row shape.",
+        "baseline_findings": {
+          "rows_mixing_standard_in_source_ids": 6,
+          "mixed_id": "STD-URBAN-DESIGN",
+          "matching_standard_id": "MOHURD-URBAN-DESIGN-MEASURES",
+          "land_use_codes_vs_new_enum": "all 9 used codes present in brief/site-package/enums/land_use_codes.json",
+          "schema_required_fields": "all present in all 23 rows",
+          "schema_version": "0.1.0"
+        },
+        "fixes": [
+          {
+            "file": "compliance_matrix.json",
+            "change": "removed STD-URBAN-DESIGN from source_ids in the six rows (1.3.2, 1.4.2, 1.5.1.2, 1.5.2.2, 1.5.2.4, 1.5.2.5) and added standard_ids=[MOHURD-URBAN-DESIGN-MEASURES] to each; STD-URBAN-DESIGN remains registered in sources.json and remains the snapshot source of MOHURD-URBAN-DESIGN-MEASURES in standard_matrix.json"
+          }
+        ],
+        "result_after_fix": "0 rows mix standard ids into source_ids; 6 rows carry standard_ids; current self_check and strict scoring pass under the new rule layer; the presentation-contract regression guard (r24 contrast, r25 h2, r27 heading) is now also enforced by the index generator on every regeneration",
+        "certification_note": "Namespace separation is a structural compliance check; it is not an approval or a rights grant."
+      },
+      "browser_matrix_r37": {
+        "contract_id": "JZ-BROWSER-MATRIX-R37",
+        "executed_at": "2026-08-17",
+        "purpose": "Re-validation of the Round 22 browser QA matrix after the foreign-restore incident (commit b6c05fffe, repaired in Rounds 35-36): prove the interactive and fallback behaviours of both visual pages still hold on the current package bytes",
+        "environment": "Google Chrome headless + Chrome DevTools Protocol + Node.js 22 built-in WebSocket; the same zero-dependency package-external driver as Round 22, repointed to this package",
+        "case_count": 18,
+        "bilingual": ["zh", "en"],
+        "result": "all_pass",
+        "key_measurements": {
+          "viewport_1440x900_page_overflow": false,
+          "viewport_390x844_page_overflow": false,
+          "no_javascript_walk_steps_visible": 5,
+          "no_javascript_library_open": true,
+          "reduced_motion_stays_on_state_01": true,
+          "motion_boundary_at_12_25s_state": "02",
+          "first_focusable_is_skip_link": true,
+          "images_missing_alt": 0,
+          "aria_live_present": true,
+          "h1_count": 1,
+          "console_errors": 0,
+          "failed_requests": 0,
+          "external_hosts": 0
+        },
+        "visual_content_changes": 0,
+        "certification_note": "Programmatic browser verification of layout and interaction only; it is not assistive-technology certification, human visual inspection, field evidence or an approval of any kind."
+      },
       "replay_expectations": {
         "t02_fixture_count": 10,
         "t02_exact_matches": 10,

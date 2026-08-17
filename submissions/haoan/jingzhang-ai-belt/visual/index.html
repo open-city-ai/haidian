@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智脉 · 概念方案展示</title>
+<style>
+:root{--ink:#1a1a1a;--sub:#666;--spine:#2e9e6b;--ind:#e07b39;--liv:#3a7ca5;--bg:#f7f7f4;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--ink);}
+header{background:#14213d;color:#fff;padding:22px 28px;}
+header h1{font-size:22px;letter-spacing:1px;}
+header .sub{color:#a8c0e8;font-size:12px;margin-top:6px;}
+.badge{display:inline-block;background:#c0504d;color:#fff;font-size:10px;padding:3px 10px;border-radius:10px;margin-left:10px;vertical-align:middle;letter-spacing:1px;}
+.wrap{display:flex;flex-wrap:wrap;gap:18px;padding:18px;max-width:1400px;margin:0 auto;}
+.card{background:#fff;border:1px solid #e3e3de;border-radius:10px;padding:16px;}
+.card h2{font-size:14px;color:var(--sub);margin-bottom:10px;border-left:4px solid var(--spine);padding-left:8px;}
+#mapcard{flex:2 1 560px;}
+#map{width:100%;height:520px;display:block;background:#f0efec;border-radius:6px;}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.tabs button{border:1px solid #d5d5cf;background:#fff;padding:6px 14px;border-radius:16px;font-size:12px;cursor:pointer;}
+.tabs button.on{background:var(--spine);color:#fff;border-color:var(--spine);}
+#side{flex:1 1 320px;display:flex;flex-direction:column;gap:14px;}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+.metric{background:#f0f5f1;border:1px solid #dbe7df;border-radius:8px;padding:10px;}
+.metric .v{font-size:20px;font-weight:700;color:#1f8a70;}
+.metric .l{font-size:11px;color:var(--sub);margin-top:4px;}
+ul{list-style:none;}
+li{font-size:12px;color:#333;padding:5px 0;border-bottom:1px dashed #eee;}
+li:last-child{border-bottom:none;}
+.chip{display:inline-block;background:#e8f3ec;color:#1f8a70;font-size:10px;padding:2px 8px;border-radius:8px;margin:2px;}
+.small{font-size:11px;color:var(--sub);line-height:1.7;}
+footer{text-align:center;font-size:10px;color:#999;padding:16px;}
+@media(max-width:900px){#map{height:380px;}}
+</style>
+</head>
+<body>
+<header>
+  <h1>京张智脉 · 概念方案展示<span class="badge">PROVISIONAL 边界</span></h1>
+  <div class="sub">百年京张AI创新带城市设计开源征集 · 概念建议（非官方审定）</div>
+</header>
+<div class="wrap">
+  <div class="card" id="mapcard">
+    <h2>总览地图</h2>
+    <div class="tabs" id="tabs">
+      <button data-view="overview" class="on">总览</button>
+      <button data-view="landuse">用地分区</button>
+      <button data-view="mobility">交通慢行</button>
+      <button data-view="bluegreen">蓝绿公共空间</button>
+      <button data-view="keyareas">重点区域</button>
+      <button data-view="phasing">实施分期</button>
+    </div>
+    <canvas id="map"></canvas>
+    <div class="small" id="legend" style="margin-top:8px;"></div>
+  </div>
+  <div id="side">
+    <div class="card">
+      <h2>核心指标</h2>
+      <div class="metrics">
+        <div class="metric"><div class="v"><span data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</span></div><div class="l">总体设计范围面积</div></div>
+        <div class="metric"><div class="v"><span data-metric="green_ratio" data-value="0.238078">23.8%</span></div><div class="l">绿地率</div></div>
+        <div class="metric"><div class="v"><span data-metric="public_space_ratio" data-value="0.026366">2.6%</span></div><div class="l">公共空间率</div></div>
+        <div class="metric"><div class="v"><span data-metric="building_footprint_area_sqm" data-value="932616.207">0.93 km²</span></div><div class="l">概念建筑基底</div></div>
+      </div>
+    </div>
+    <div class="card"><h2>三层范围</h2><ul><li>统筹研究范围 43.6 km²</li><li>总体设计范围 11.4 km²</li><li>重点区域 368.4 ha</li></ul></div>
+    <div class="card"><h2>任务覆盖</h2><ul><li>agent.1 总体概念与命名体系（京张智脉）</li><li>agent.2 全球案例与创新生态（8案例）</li><li>agent.3 AI 场景卡 10+ / 画像 5+（含3测试场景）</li><li>agent.4 朝圣地标 3 个</li><li>agent.5 京张·中关村·AI 融合叙事</li><li>agent.6 年度活动与长期运营</li></ul></div>
+    <div class="card"><h2>更新项目（概念 10 类）</h2><ul><li>智脉长廊贯通与活化</li><li>原点广场</li><li>众智园 AI 测试场（开放测试床）</li><li>智脉驿站网络（15 分钟节点）</li><li>里程碑碑刻公园</li><li>开源成果展示廊</li><li>存量楼宇功能置换计划</li><li>小月河滨水步道贯通</li><li>大钟寺智能商务街区更新</li><li>AI 城市运行管理中心（概念）</li></ul></div>
+    <div class="card"><h2>自检状态</h2><div><span class="chip">✓ BOUNDARY_TRUST</span><span class="chip">✓ KEY_AREAS_TRUST</span><span class="chip">✓ LAND_USE_TOPOLOGY</span><span class="chip">✓ FORMAT_INTEGRITY</span><span class="chip">✓ VISUAL_PACKAGING</span><span class="chip">✓ PROFESSIONAL_EVIDENCE</span></div>
+      <p class="small" style="margin-top:6px;">EPSG:4548 复算 · 与 metrics.json 一致</p></div>
+    <div class="card"><h2>来源</h2><ul><li>官方公告 + 智能体任务书（formal 依据）</li><li>provisional 边界（组织方维护，非官方红线）</li><li>OSM 公开底图（ODbL）· 全球案例背景资料</li></ul></div>
+    <div class="card"><h2>假设</h2><ul><li>边界与指标为低置信度概念值，官方 polygon 发布后全量复算</li><li>容积率/高度等法定指标待官方控规，记为 unknown</li><li>建筑体块与路网为概念示意，非现状、非红线</li></ul></div>
+  </div>
+</div>
+<footer>本方案由 AI Agent 生成 · 全部空间建议为概念建议，可提交专业团队深化 · 数据：本包 geometry/*.geojson 与 metrics.json（EPSG:4548 复算）</footer>
+<script src="assets/map-data.js"></script>
+<script>
+(function(){
+var D=window.MAP_DATA, c=document.getElementById('map'), ctx=c.getContext('2d');
+var W,H,PAD=14;
+function resize(){var r=c.getBoundingClientRect();W=r.width;H=Math.max(360,Math.round(W*1.22));c.width=W*2;c.height=H*2;c.style.height=H+'px';ctx.setTransform(2,0,0,2,0,0);}
+window.addEventListener('resize',resize);resize();
+var LON0=116.334,LON1=116.361,LAT0=39.934,LAT1=40.032;
+function X(lon){return PAD+(lon-LON0)/(LON1-LON0)*(W-2*PAD);}
+function Y(lat){return PAD+(LAT1-lat)/(LAT1-LAT0)*(H-2*PAD);}
+function ringPts(r){return r.map(function(p){return [X(p[0]),Y(p[1])];});}
+function path(pts){ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);for(var i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.closePath();}
+function poly(r,f,ec){path(ringPts(r));ctx.fillStyle=f;ctx.fill();if(ec){ctx.strokeStyle=ec;ctx.lineWidth=0.8;ctx.stroke();}}
+function line(coords,color,w,dash){ctx.beginPath();var p0=ringPts(coords);ctx.moveTo(p0[0][0],p0[0][1]);for(var i=1;i<p0.length;i++)ctx.lineTo(p0[i][0],p0[i][1]);ctx.strokeStyle=color;ctx.lineWidth=w;if(dash)ctx.setLineDash(dash);else ctx.setLineDash([]);ctx.stroke();ctx.setLineDash([]);}
+var LU={'0802':'#2f8f8f','05':'#c9a227','0701':'#3a7ca5','0803':'#c0504d','0804':'#7a5fa0'};
+var VIEW='overview';
+function draw(){
+ctx.clearRect(0,0,W,H);
+ctx.fillStyle='#f0efec';ctx.fillRect(0,0,W,H);
+// OSM base
+for(var i=0;i<D.osm.length;i++){var o=D.osm[i];
+  line(o.c, o.t==='water'?'#b8d4e8':(o.t==='park'?'#cde3cd':'#d8d8d2'), o.t==='water'?1.4:0.7);}
+// landuse blocks
+if(VIEW!=='mobility'&&VIEW!=='bluegreen'){
+  for(var j=0;j<D.landUse.length;j++){var lu=D.landUse[j];
+    for(var k=0;k<lu.rings.length;k++)poly(lu.rings[k],LU[lu.code]+'cc','#ffffff');}}
+// green
+if(VIEW==='overview'||VIEW==='bluegreen'||VIEW==='landuse'){
+  for(var g=0;g<D.green.length;g++)poly(D.green[g],'#5aa97f55',null);}
+// public
+if(VIEW==='overview'||VIEW==='bluegreen'){
+  for(var p=0;p<D.public.length;p++)poly(D.public[p],'#1f8a70cc','#ffffff');}
+// roads
+if(VIEW==='mobility'||VIEW==='overview'){
+  for(var r=0;r<D.roads.length;r++){line(D.roads[r].c,'#7a7a7a',1.8);
+    var lbl=ringPts(D.roads[r].c)[0];ctx.fillStyle='#666';ctx.font='9px sans-serif';
+    ctx.fillText(D.roads[r].n,lbl[0]+3,lbl[1]+3);}}
+// heritage axis
+if(VIEW==='overview'||VIEW==='mobility'){
+  var cy0=Y(LAT0),cy1=Y(LAT1),cx=X((LON0+LON1)/2);
+  ctx.beginPath();ctx.moveTo(cx,cy0);ctx.lineTo(cx,cy1);
+  ctx.strokeStyle='#c0504d';ctx.lineWidth=2.2;ctx.setLineDash([6,4]);ctx.stroke();ctx.setLineDash([]);}
+// spine
+if(VIEW!=='keyareas'&&VIEW!=='phasing'){
+  ctx.beginPath();ctx.moveTo(cx,cy0);ctx.lineTo(cx,cy1);
+  ctx.strokeStyle='#2e9e6b';ctx.lineWidth=4;ctx.lineCap='round';ctx.stroke();}
+// key areas
+if(VIEW==='overview'||VIEW==='keyareas'){
+  for(var a=0;a<D.keyAreas.length;a++){var ka=D.keyAreas[a];
+    for(var m=0;m<ka.rings.length;m++)poly(ka.rings[m],'rgba(31,138,112,0.18)','#1f8a70');
+    var c2=ka.rings[0];var xs2=c2.map(function(q){return X(q[0]);}),ys2=c2.map(function(q){return Y(q[1]);});
+    var mx=xs2.reduce(function(a,b){return a+b;})/xs2.length;
+    var my=ys2.reduce(function(a,b){return a+b;})/ys2.length;
+    ctx.fillStyle='#1f8a70';ctx.beginPath();ctx.arc(mx,my,5,0,7);ctx.fill();
+    ctx.fillStyle='#14213d';ctx.font='bold 11px sans-serif';ctx.textAlign='center';
+    ctx.fillText(ka.name,mx,my-9);ctx.textAlign='left';}}
+// phasing
+if(VIEW==='phasing'){
+  var cols=['#e07b3944','#c9a22744','#3a7ca544'];
+  for(var ph=0;ph<D.phasing.length;ph++){var pg=D.phasing[ph];
+    for(var q=0;q<pg.rings.length;q++)poly(pg.rings[q],cols[ph%3],'#888888');
+    var c3=pg.rings[0];var mx3=c3.map(function(q){return X(q[0]);}).reduce(function(a,b){return a+b;})/c3.length;
+    var my3=c3.map(function(q){return Y(q[1]);}).reduce(function(a,b){return a+b;})/c3.length;
+    ctx.fillStyle='#14213d';ctx.font='bold 10px sans-serif';ctx.textAlign='center';
+    ctx.fillText(pg.label,mx3,my3);ctx.textAlign='left';}}
+// site boundary (provisional dash)
+for(var s=0;s<D.site.length;s++){path(ringPts(D.site[s]));ctx.strokeStyle='#9a9a9a';ctx.lineWidth=1.6;ctx.setLineDash([5,4]);ctx.stroke();ctx.setLineDash([]);}
+// units U1-U7
+if(VIEW==='landuse'||VIEW==='overview'){
+  var uy=[40.0235,40.0140,40.0038,39.9918,39.9768,39.9640,39.9485];
+  for(var u=0;u<uy.length;u++){ctx.fillStyle='#1f8a70';ctx.beginPath();
+    ctx.arc(X(LON0+0.0018),Y(uy[u]),7,0,7);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font='bold 9px sans-serif';ctx.textAlign='center';
+    ctx.fillText('U'+(u+1),X(LON0+0.0018),Y(uy[u])+3);ctx.textAlign='left';}}
+}// draw
+document.getElementById('tabs').addEventListener('click',function(e){
+  if(e.target.tagName!=='BUTTON')return;
+  var b=document.querySelectorAll('#tabs button');
+  for(var i=0;i<b.length;i++)b[i].className='';
+  e.target.className='on';VIEW=e.target.dataset.view;draw();
+});
+draw();
+})();
+</script>
+</body>
+</html>

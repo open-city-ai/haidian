@@ -1,0 +1,638 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "公告声明值",
+      "confidence": "high",
+      "assumptions": [
+        "来自官方资格预审公告"
+      ],
+      "label_zh": "统筹研究范围面积",
+      "scope": "coordinated_research"
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "公告声明值",
+      "confidence": "high",
+      "assumptions": [
+        "来自官方资格预审公告"
+      ],
+      "label_zh": "总体设计范围面积",
+      "scope": "overall_design"
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "三处重点区面积之和",
+      "confidence": "high",
+      "assumptions": [
+        "来自官方资格预审公告"
+      ],
+      "label_zh": "重点区域合计面积",
+      "scope": "key_detail"
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "公告声明值",
+      "confidence": "high",
+      "assumptions": [
+        "来自官方资格预审公告"
+      ],
+      "label_zh": "众智园加速区面积",
+      "scope": "key_detail"
+    },
+    "ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "公告声明值",
+      "confidence": "high",
+      "assumptions": [
+        "来自官方资格预审公告"
+      ],
+      "label_zh": "AI原点社区面积",
+      "scope": "key_detail"
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "公告声明值",
+      "confidence": "high",
+      "assumptions": [
+        "来自官方资格预审公告"
+      ],
+      "label_zh": "大钟寺产业区面积",
+      "scope": "key_detail"
+    },
+    "land_use_area": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "EPSG:4548投影面积复算",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时粗略边界复算，官方边界补齐后需重算"
+      ],
+      "label_zh": "用地分区面积",
+      "scope": "overall_design",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.135242,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "绿地斑块面积合计/提交边界面积（EPSG:4548 投影复算）",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时粗略边界（provisional_rough）在 EPSG:4548 投影下的几何复算值；官方精确边界补齐后需重新校核。",
+        "35% 为方案设计目标值，本值为提交几何的现状复算基线"
+      ],
+      "label_zh": "绿地率",
+      "scope": "overall_design"
+    },
+    "green_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "绿化覆盖面积/用地面积",
+      "confidence": "none",
+      "assumptions": [
+        "45%为方案设计目标值，非已验证基线值；需待官方控规和现状绿化普查后补充基线"
+      ],
+      "label_zh": "绿化覆盖率",
+      "scope": "overall_design",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "sponge_city_runoff_control_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "基地整体年径流总量控制率",
+      "confidence": "none",
+      "assumptions": [
+        "80%为方案设计目标值；需汇水分析、土壤渗透性测定和海绵设施规模计算后方可验证"
+      ],
+      "label_zh": "海绵城市年径流总量控制率",
+      "scope": "overall_design",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "five_minute_life_circle_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "一级邻里中心300米步行覆盖人口/总居住人口",
+      "confidence": "none",
+      "assumptions": [
+        "90%为方案设计目标值；需人口分布基线数据和步行等时线计算后方可验证"
+      ],
+      "label_zh": "五分钟生活圈覆盖率",
+      "scope": "overall_design",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "branch_road_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "支路总长度/用地面积",
+      "confidence": "none",
+      "assumptions": [
+        "10km/km²为方案设计目标值；需现状道路普查和精确路网测量后方可验证"
+      ],
+      "label_zh": "支路网密度",
+      "scope": "overall_design",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "block_scale": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "支路间距",
+      "confidence": "low",
+      "assumptions": [
+        "方案设计目标值，需在控规中确认"
+      ],
+      "label_zh": "街区尺度",
+      "scope": "overall_design",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "green_service_radius": {
+      "status": "known",
+      "value": 500,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "口袋公园至最远住户步行距离",
+      "confidence": "low",
+      "assumptions": [
+        "方案设计目标值"
+      ],
+      "label_zh": "绿地服务半径",
+      "scope": "overall_design"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "总建筑面积/用地面积",
+      "confidence": "none",
+      "assumptions": [
+        "待官方控规条件补齐"
+      ],
+      "label_zh": "容积率",
+      "scope": "key_detail",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "控规条件",
+      "confidence": "none",
+      "assumptions": [
+        "待官方控规条件补齐"
+      ],
+      "label_zh": "建筑高度",
+      "scope": "key_detail",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "建筑基底面积/用地面积",
+      "confidence": "none",
+      "assumptions": [
+        "待官方控规条件补齐"
+      ],
+      "label_zh": "建筑密度",
+      "scope": "key_detail",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "场景卡数量",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值"
+      ],
+      "label_zh": "AI场景节点数量",
+      "scope": "overall_design"
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "画像类型数",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值"
+      ],
+      "label_zh": "用户画像数量",
+      "scope": "overall_design"
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "测试场景数",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值"
+      ],
+      "label_zh": "测试验证场景数量",
+      "scope": "overall_design"
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "地标数",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值"
+      ],
+      "label_zh": "AI朝圣地标数量",
+      "scope": "overall_design"
+    },
+    "ecosystem_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "案例数",
+      "confidence": "medium",
+      "assumptions": [
+        "基于公开资料研究，来源未全部进入approved_formal_sources"
+      ],
+      "label_zh": "全球生态案例数量",
+      "scope": "coordinated_research"
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "分区数",
+      "confidence": "medium",
+      "assumptions": [
+        "几何复算"
+      ],
+      "label_zh": "用地分区数量",
+      "scope": "overall_design"
+    },
+    "building_footprint_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "建筑数",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性布局"
+      ],
+      "label_zh": "建筑足迹数量",
+      "scope": "key_detail"
+    },
+    "public_space_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "节点数",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性布局"
+      ],
+      "label_zh": "公共空间节点数量",
+      "scope": "overall_design"
+    },
+    "green_space_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "绿地块数",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性布局"
+      ],
+      "label_zh": "绿地斑块数量",
+      "scope": "overall_design"
+    },
+    "road_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "道路数",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性布局"
+      ],
+      "label_zh": "道路条数",
+      "scope": "overall_design"
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "项目数",
+      "confidence": "medium",
+      "assumptions": [
+        "方案设计值，含邻里中心建设项目"
+      ],
+      "label_zh": "更新项目数量",
+      "scope": "overall_design"
+    },
+    "neighborhood_center_total": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "一级8+二级3+三级1",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值"
+      ],
+      "label_zh": "邻里中心总数",
+      "scope": "key_detail"
+    },
+    "neighborhood_center_level1": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "众智园3+AI原点社区3+大钟寺2",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值，服务半径300米"
+      ],
+      "label_zh": "一级社区邻里中心",
+      "scope": "key_detail"
+    },
+    "neighborhood_center_level2": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "三区各1个",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值，服务半径800米"
+      ],
+      "label_zh": "二级街区邻里中心",
+      "scope": "key_detail"
+    },
+    "neighborhood_center_level3": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "走廊中段1个",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值，服务半径2公里"
+      ],
+      "label_zh": "三级走廊邻里枢纽",
+      "scope": "overall_design"
+    },
+    "open_innovation_block_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "三区各1个开放街区",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计值，建议取消围墙门禁（概念建议，需尊重现有权属）"
+      ],
+      "label_zh": "开放创新街区数量",
+      "scope": "key_detail"
+    },
+    "provisional_area_warning": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "N/A",
+      "confidence": "high",
+      "assumptions": [
+        "所有基于临时边界的面积指标在官方边界补齐后需重算"
+      ],
+      "label_zh": "临时边界面积警告",
+      "scope": "all",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "area_recalculation_needed": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "N/A",
+      "confidence": "high",
+      "assumptions": [
+        "官方精确边界补齐后所有面积需重新复算"
+      ],
+      "label_zh": "面积复算需求",
+      "scope": "all",
+      "reason": "基于临时粗略边界或设计概念阶段的估算值，未经官方精确数据验证，在官方数据补齐后需重新校核。"
+    },
+    "ecosystem_case_studies": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "6个全球案例+波士顿/纽约对比+OPC社区",
+      "confidence": "medium",
+      "assumptions": [
+        "含外部参考文献案例，来源未全部进入approved_formal_sources"
+      ],
+      "label_zh": "科创生态案例研究数",
+      "scope": "coordinated_research"
+    },
+    "innovation_ecosystem_pillars": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "超越要素优先+五工具本地化+OPC嵌入+草根创新",
+      "confidence": "high",
+      "assumptions": [
+        "基于波士顿/纽约案例和OPC模式提炼（外部参考，未进入approved_formal_sources）"
+      ],
+      "label_zh": "科创生态支柱数",
+      "scope": "coordinated_research"
+    },
+    "opc_service_modules": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "基础承载+政务专业+能力成长+技术赋能+市场转化",
+      "confidence": "medium",
+      "assumptions": [
+        "参照南岸新地OPC五大模块（外部参考，未进入approved_formal_sources）"
+      ],
+      "label_zh": "OPC生态服务模块数",
+      "scope": "key_detail"
+    },
+    "site_organization_principles": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "水系优先+绿地联通+道路为骨+铁路铸魂",
+      "confidence": "high",
+      "assumptions": [
+        "方案设计框架"
+      ],
+      "label_zh": "基地整理原则数",
+      "scope": "overall_design"
+    },
+    "regional_synergy_nodes": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "北纬社区+未来科学城+怀柔科学城+经开区+京津冀",
+      "confidence": "medium",
+      "assumptions": [
+        "方案设计值，协同安排为概念建议"
+      ],
+      "label_zh": "区域协同节点数",
+      "scope": "coordinated_research"
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "提交边界多边形面积（EPSG:4548 投影复算）",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时粗略边界（provisional_rough）在 EPSG:4548 投影下的几何复算值；官方精确边界补齐后需重新校核。"
+      ],
+      "label_zh": "提交边界面积",
+      "scope": "submission_boundary"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.030451,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "公共空间节点面积合计/提交边界面积（EPSG:4548 投影复算）",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时粗略边界（provisional_rough）在 EPSG:4548 投影下的几何复算值；官方精确边界补齐后需重新校核。",
+        "仅统计提交的 6 处公共空间节点，不含走廊沿线其他开敞空间"
+      ],
+      "label_zh": "公共空间节点占比",
+      "scope": "submission_boundary"
+    }
+  }
+}

@@ -2,6 +2,78 @@
 
 Changelog — adaptive-flow-network
 
+## v2.1 - 2026-08-16
+
+**Evidence-chain repair.** This revision closes the reference graph: every registered metric, source
+and assumption is now reachable from a file the reviewer reads, and every reference in the three
+matrices resolves. One of the changes fixes a self-contradiction the package shipped with, so it is
+listed first.
+
+### Corrected defect
+
+- **All 44 matrix rows pointed at self-check ids that do not exist.** The scaffold ships
+  `self_check.json` with the ids `BOUNDARY_TRUST` / `KEY_AREAS_TRUST` / `LAND_USE_TOPOLOGY` /
+  `VISUAL_STATIC`, and points every row of `compliance_matrix.json`, `standard_matrix.json` and
+  `design_depth_matrix.json` at them. Running `self_check_submission.py --mark-self-checked`
+  replaces that file's `checks` array with the four gate results the runner actually produces
+  (`DETERMINISTIC_VALIDATION`, `SPATIAL_REVIEW`, `VISUAL_PACKAGING`, `PROFESSIONAL_EVIDENCE`), so
+  after a real self-check the intersection between the ids cited by the matrices and the ids present
+  in `self_check.json` was **empty for all 44 rows**. `validate_submission.py` only checks that
+  `self_check_ids` is a non-empty array of strings, so the gates stayed green while the package
+  contradicted itself for anyone holding both files. Every row now cites the gates it actually rests
+  on, non-uniformly (7 distinct combinations across the 23 compliance rows), and the build step
+  asserts that each id resolves against the persisted `self_check.json`.
+
+### Registered rather than asserted
+
+- **`metrics.json` 17 → 41 entries** (34 known, 7 unknown). The 24 additions are quantities the
+  package already relied on in prose or on the boards but had never registered: unit and category
+  counts for land use, roads, buildings, public space and green space; the phase and constraint
+  counts; and the key-area area reconciliation. Each carries `formula`, `source_files`,
+  `confidence`, `assumptions` and a scope disclaimer stating it is **not a statutory planning
+  indicator**.
+- **Six of the additions are registered unknowns** — `total_floor_area_sqm`,
+  `average_building_height_m`, `road_area_sqm`, `observed_od_load_fluctuation_cv`,
+  `link_failure_observed_reroute_success_ratio`, `pedestrian_detour_penalty_measured_s`. These are
+  quantities a reviewer would expect and the current public material cannot support. They are
+  registered with `status: "unknown"`, `value: null` and a stated reason rather than filled in with
+  an assumed value, per 「这些数据没有从当前公开资料中取得，AI agent 不得自行编造」.
+- **The traceability table in the proposal is now generated from `metrics.json`** instead of a
+  hard-coded list of 11 ids, so it covers all 41 and cannot drift from the registry. A second table
+  lists the 7 unknowns with the reason each is unknown. All 41 are cited by `[metric:]` in both
+  language versions.
+- **Four new assumptions** — `A-EDGE-COUNT-001`, `A-BUILDING-INTERFACE-001`,
+  `A-KEY-AREA-EXTENT-001`, `A-EMPIRICAL-GAP-001` — and every assumption now carries `category`,
+  `owner`, `resolution_trigger` and explicit `blocks_formal_intake` / `blocks_content_scoring`
+  flags.
+
+### Corrected numbers
+
+- **`backbone_road_segment_count` is 150, not 149 solver outputs.** The disclaimer now states that
+  149 edges come from the solver and **1 is the authored corridor spine**, appended by hand before
+  the solver loop. This is consistent with the v2.0 correction that the spine is drawn, not solved.
+- **`key_area_polygon_to_announced_ratio` is declared `dimensionless`, not `ratio`.** Its value is
+  1.002414, and both `spatial_review.py` and `validate_submission.py` correctly require a metric with
+  `unit: "ratio"` to fall in 0..1. This quantity is not a share of a whole: it is an agreement index
+  between two independently sourced areas, and it exceeds 1 whenever the provisional tracing comes
+  out slightly larger than the announced figure — here by **+0.24%**. The metric says so in its own
+  assumption text.
+
+### Rows that now answer their own question
+
+- All 23 compliance, 6 standard and 15 depth rows previously shipped byte-identical bodies apart
+  from the title (7 / 1 / 1 distinct). Each row now carries a unique `evidence_summary_zh` quoting
+  the specific numbers it rests on, interpolated from `metrics.json` at build time so the prose
+  cannot drift, plus row-specific section, layer, drawing, figure, source and assumption references.
+  Distinct evidence bodies: **23 / 6 / 15**.
+- Coverage after the rewrite: **41/41 metrics, 30/30 sources and 10/10 assumptions** are cited by at
+  least one matrix row; **0 dangling references** of any kind, verified against the shipped files
+  after `self_check_submission.py` rewrites `self_check.json`.
+
+Boundary conditions are unchanged: the boundary and the three key areas remain provisional, no
+statutory control figure is inferred from the corridor 控规 having 「通过技术审查」, and every spatial
+proposal remains a concept suggestion rather than an approval conclusion.
+
 ## v2.0 - 2026-08-16
 
 **Correctness repair.** This revision follows a self-audit of the version merged in PR #2808. It

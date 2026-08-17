@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/jingzhang-civic-services/guarantee-receipt.schema.json",
+  "title": "三保一验服务保障回执 (Service Guarantee Receipt)",
+  "description": "Auditable receipt for one AI civic-service navigation interaction. Proves chain logic closure only; field status remains null until authorized operation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_id",
+    "scenario_id",
+    "service_name",
+    "ai_actions",
+    "human_review",
+    "completion_status",
+    "escalation_path",
+    "deadline_met",
+    "complaint_channel",
+    "status"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^RCT-[0-9]{8}-[A-Z0-9-]+$"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^GS-[0-9]{2}$"
+    },
+    "service_name": {
+      "type": "string",
+      "minLength": 2
+    },
+    "ai_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "只记录导航动作，不记录用户内容"
+    },
+    "human_review": {
+      "type": "string",
+      "minLength": 3,
+      "description": "人工复核记录：谁复核、复核了什么"
+    },
+    "completion_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "escalated",
+        "failed",
+        "pending"
+      ]
+    },
+    "escalation_path": {
+      "type": "string",
+      "minLength": 3,
+      "description": "升级链：下一级人工责任位"
+    },
+    "deadline_met": {
+      "type": "boolean",
+      "description": "保障时限是否兑现"
+    },
+    "complaint_channel": {
+      "type": "string",
+      "minLength": 3,
+      "description": "投诉/申诉渠道"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "synthetic_only",
+        "not_authorized_not_run"
+      ]
+    },
+    "field_results": {
+      "type": "null"
+    }
+  }
+}

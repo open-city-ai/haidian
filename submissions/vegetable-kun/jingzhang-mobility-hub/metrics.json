@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "This area is calculated from provisional boundaries generated from public data for temporary visualization and concept design ONLY. It is NOT based on official redlines and MUST NOT be used for precise area calculation or formal planning. Recalculate when official geometry is supplied."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 9482.336,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "This is a participant-generated design sample for concept demonstration ONLY. It does NOT represent complete current building coverage. Actual building survey data is not available in the public site package."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from provisional green space layer and provisional site boundary. This ratio is for internal concept comparison ONLY and MUST NOT be treated as formal green space compliance data."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from provisional public space layer and provisional site boundary. This ratio is for internal concept comparison ONLY and MUST NOT be treated as formal public space compliance data."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three key areas are defined per taskbook requirement. Their boundaries are provisional and generated from public data for concept design ONLY."
+      ]
+    }
+  }
+}

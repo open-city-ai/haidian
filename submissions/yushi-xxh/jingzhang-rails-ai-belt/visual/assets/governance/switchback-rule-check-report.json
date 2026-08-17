@@ -1,0 +1,934 @@
+{
+  "schema_version": "1.0",
+  "report_type": "switchback_protocol_rule_check",
+  "status": "offline_complete_not_authorized_not_run",
+  "generated_by": "scripts_local/v220_switchback_suite.py",
+  "scope_note": "对 10 条折返协议实例各跑 1 条基线与 7 类缺陷注入，共 80 条检查。基线验证协议不误拦合规实例；注入验证每条规则确实拦得住对应缺陷。只证明规则闭合，不证明现场绩效、安全、合规或获批。",
+  "inputs": {
+    "schema": {
+      "path": "switchback-protocol.schema.json",
+      "sha256": "c8497fd6e957e57e093e45d03a8f3474912ce203406744482878eb6a588cdba7"
+    },
+    "instances": {
+      "path": "switchback-instance-suite.json",
+      "sha256": "f90b06ec2282f92ecee4a3adfb2fd18b95f85a69b79ac15a9c7cf0e1df6d1829"
+    },
+    "role_spec": {
+      "path": "role-spec.json",
+      "sha256": "236c03af275b2985a1b3771b7e5c97f6b6b0f57e0f27da3af515ebcb04177aec"
+    }
+  },
+  "rules": [
+    {
+      "rule_id": "R1_NODE_REFERENCE_EXISTS",
+      "statement_zh": "node_id 必须指向本包几何图层中真实存在的 feature id"
+    },
+    {
+      "rule_id": "R2_ROLE_REFERENCE_EXISTS",
+      "statement_zh": "rollback_owner 必须指向 role-spec.json 中真实存在的 R- 角色"
+    },
+    {
+      "rule_id": "R3_NO_AI_BASELINE_PRESENT",
+      "statement_zh": "no_ai_baseline 必须非空：无 AI 等价服务必须先于智能层存在"
+    },
+    {
+      "rule_id": "R4_ROLLBACK_PATH_PRESENT",
+      "statement_zh": "rollback_path 至少包含一个可执行的返回步骤"
+    },
+    {
+      "rule_id": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "statement_zh": "accept_with_conditions 必须同时列出未决项，未决项不得静默消失"
+    },
+    {
+      "rule_id": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "statement_zh": "sandbox_only 实例的输入不得包含真实个人身份、轨迹或隐私数据"
+    },
+    {
+      "rule_id": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "statement_zh": "deployment_mode=public 时不得存在未闭合的阻塞性未决项"
+    }
+  ],
+  "totals": {
+    "instances_validated": 10,
+    "schema_error_count": 0,
+    "check_count": 80,
+    "baseline_count": 10,
+    "baseline_failed": 0,
+    "injected_count": 70,
+    "injected_intercepted": 70,
+    "injected_missed": 0,
+    "failed_check_count": 0
+  },
+  "checks": [
+    {
+      "check_id": "SCN-01::baseline",
+      "scenario_id": "SCN-01",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-01::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-01",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-01::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-01",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-01::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-01",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-01::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-01",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-01::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-01",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-01::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-01",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-01::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-01",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-02::baseline",
+      "scenario_id": "SCN-02",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-02::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-02",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-02::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-02",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-02::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-02",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-02::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-02",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-02::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-02",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-02::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-02",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-02::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-02",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-03::baseline",
+      "scenario_id": "SCN-03",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-03::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-03",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-03::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-03",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-03::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-03",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-03::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-03",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-03::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-03",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-03::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-03",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-03::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-03",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-04::baseline",
+      "scenario_id": "SCN-04",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-04::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-04",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-04::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-04",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-04::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-04",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-04::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-04",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-04::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-04",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-04::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-04",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-04::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-04",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-05::baseline",
+      "scenario_id": "SCN-05",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-05::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-05",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-05::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-05",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-05::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-05",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-05::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-05",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-05::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-05",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-05::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-05",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-05::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-05",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-06::baseline",
+      "scenario_id": "SCN-06",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-06::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-06",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-06::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-06",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-06::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-06",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-06::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-06",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-06::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-06",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-06::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-06",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-06::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-06",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-07::baseline",
+      "scenario_id": "SCN-07",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-07::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-07",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-07::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-07",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-07::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-07",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-07::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-07",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-07::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-07",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-07::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-07",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-07::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-07",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-08::baseline",
+      "scenario_id": "SCN-08",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-08::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-08",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-08::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-08",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-08::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-08",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-08::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-08",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-08::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-08",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-08::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-08",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-08::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-08",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-09::baseline",
+      "scenario_id": "SCN-09",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-09::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-09",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-09::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-09",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-09::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-09",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-09::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-09",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-09::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-09",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-09::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-09",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-09::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-09",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-10::baseline",
+      "scenario_id": "SCN-10",
+      "variant": "baseline",
+      "injected_defect": null,
+      "expected": "no_violation",
+      "violations": [],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-10::R1_NODE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-10",
+      "variant": "defect_injected",
+      "injected_defect": "R1_NODE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R1_NODE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-10::R2_ROLE_REFERENCE_EXISTS",
+      "scenario_id": "SCN-10",
+      "variant": "defect_injected",
+      "injected_defect": "R2_ROLE_REFERENCE_EXISTS",
+      "expected": "violation_detected",
+      "violations": [
+        "R2_ROLE_REFERENCE_EXISTS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-10::R3_NO_AI_BASELINE_PRESENT",
+      "scenario_id": "SCN-10",
+      "variant": "defect_injected",
+      "injected_defect": "R3_NO_AI_BASELINE_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R3_NO_AI_BASELINE_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-10::R4_ROLLBACK_PATH_PRESENT",
+      "scenario_id": "SCN-10",
+      "variant": "defect_injected",
+      "injected_defect": "R4_ROLLBACK_PATH_PRESENT",
+      "expected": "violation_detected",
+      "violations": [
+        "R4_ROLLBACK_PATH_PRESENT",
+        "R4_ROLLBACK_PATH_PRESENT"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-10::R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "scenario_id": "SCN-10",
+      "variant": "defect_injected",
+      "injected_defect": "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R5_CONDITIONAL_ACCEPTANCE_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-10::R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "scenario_id": "SCN-10",
+      "variant": "defect_injected",
+      "injected_defect": "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA",
+      "expected": "violation_detected",
+      "violations": [
+        "R6_SANDBOX_INPUTS_NO_PERSONAL_DATA"
+      ],
+      "result": "pass"
+    },
+    {
+      "check_id": "SCN-10::R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "scenario_id": "SCN-10",
+      "variant": "defect_injected",
+      "injected_defect": "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS",
+      "expected": "violation_detected",
+      "violations": [
+        "R7_PUBLIC_DEPLOYMENT_REQUIRES_NO_BLOCKING_OPEN_ITEMS"
+      ],
+      "result": "pass"
+    }
+  ]
+}

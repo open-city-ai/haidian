@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/jingzhang-civic-data-commons/data-receipt.schema.json",
+  "title": "数据回执 (Data Receipt)",
+  "description": "Auditable receipt for one use of a public dataset. Proves receipt-chain logic closure only; field usage remains null until authorized.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receipt_id",
+    "dataset_id",
+    "recipient_type",
+    "purpose",
+    "data_minimized",
+    "retention_days",
+    "deletion_required",
+    "human_reviewer",
+    "status"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^DR-[0-9]{8}-[A-Z0-9-]+$"
+    },
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^DS-[0-9]{2}$"
+    },
+    "recipient_type": {
+      "type": "string",
+      "enum": [
+        "service_operator",
+        "developer",
+        "research",
+        "public"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 3
+    },
+    "data_minimized": {
+      "type": "boolean"
+    },
+    "retention_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 730
+    },
+    "deletion_required": {
+      "type": "boolean"
+    },
+    "human_reviewer": {
+      "type": "string",
+      "minLength": 3
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "pending",
+        "closed",
+        "synthetic_only"
+      ]
+    },
+    "deletion_record": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "field_results": {
+      "type": "null"
+    }
+  }
+}

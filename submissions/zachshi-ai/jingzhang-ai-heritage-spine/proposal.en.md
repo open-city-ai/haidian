@@ -10,7 +10,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Using the Jingzhang Railway Heritage Corridor as a spine, the proposal links the Zhongzhiyuan AI Acceleration Area, Beijing AI Origin Community, and Dazhongsi AI Industry Cluster to build a world-class AI innovation belt with three zones and two wings. The proposal introduces the 'AI Origin · Jingzhang Spine' concept, using the heritage park slow-mobility axis to stitch east-west and connect north-south, with 10 land-use zones, 15 concept buildings, 12 AI scenario cards, and 3 pilgrimage landmarks, forming an experienceable, scalable, and iterative smart city concept."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "jingzhang-heritage-narrative"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "robot-delivery-low-speed"]
-iteration: "v1.0"
+iteration: "v4.0"
 ---
 
 # Jingzhang AI Heritage Spine: A Century-Old Railway Corridor Reborn as an Intelligent City
@@ -252,6 +252,56 @@ The Jing-Zhang Railway is the first trunk line independently designed and built 
 ### Three-Layer Cultural Fusion Narrative
 
 The proposal presents a "railway culture — innovation culture — AI new culture" three-layer narrative fusion: the first layer takes Zhan Tianyou's spirit of independent railway-building as the historical origin, the second layer takes Zhongguancun's evolution from an electronics street to a science city as the innovation thread, and the third layer takes the "Urban Agent" of the AI era as the new cultural form [source:agent-taskbook]. The narrative does not treat culture as technological decoration or slogan, but makes the historical, contemporary, and future layers walkable, perceptible, and tellable in space.
+
+### Core Mechanism: Ren-Track Design Grammar (Original to This Proposal)
+
+Heritage narratives being consumed by technology is a common affliction—AI functions land on the heritage corridor without giving back to the culture that carries them. This proposal borrows the "switchback reversal" spirit of Zhan Tianyou's herringbone Ren-Track railway and proposes an original **Ren-Track Design Grammar**: every AI node must complete the three-beat switchback of "cultural anchor → AI function → cultural reciprocity" [E:HERITAGE-REN-TRACK-GRAMMAR].
+
+**The three-beat switchback rules:**
+- **R1 Cultural Anchor**: Every AI node must declare which piece of heritage it departs from—the anchor must be an identifiable historical resource (Tsinghuayuan Station, the Ren-Track, railway logistics history, etc.), not a generic reference.
+- **R2 Bounded Function**: AI functions must have explicit boundaries (navigation/Q&A/display) and must not perform diagnosis/approval/law enforcement.
+- **R3 Cultural Reciprocity**: Every node must reciprocate with one **physical** cultural artifact—an exhibition gallery, plaque, handbook, graduation mark, or collection box. Virtual layers (AR/projection) do not count as reciprocity.
+- **R4 Switchback Closure**: The three beats of anchor→function→reciprocity are invalid if any one is missing; a node may not defer reciprocity on the grounds of "can be added later."
+
+**Switchback registry of the 12 AI nodes** (full version in `visual/assets/ren-track-grammar.json`):
+
+| Node | Cultural Anchor (R1) | AI Function (R2) | Cultural Reciprocity Artifact (R3, physical) |
+| --- | --- | --- | --- |
+| Innovation Origin Plaza | Zhan Tianyou's independent construction spirit | AI launch hall | Independent construction spirit gallery + Ren-Track model (touchable) |
+| Tsinghuayuan Memory Node | Former Tsinghuayuan Station site and red culture | AI cultural guide | Station history timeline (embedded in ground) + paper guide booklet |
+| Open Source Living Room | Jingzhang collaborative construction tradition | AI open source collaboration | Open source contributor wall + collaboration history display board |
+| AI Valley Eye Plaza | Dazhongsi industrial transformation and railway logistics history | AI industry roadshow | Railway logistics history gallery + industrial transformation timeline |
+| Qinghe Low-Carbon Innovation Corridor | Water-land collaboration between Jingzhang and Qinghe | AI low-carbon monitoring | Qinghe ecological guide sign + low-carbon knowledge handbook |
+| Railway Memory Corridor | Ren-Track and full Guanggou section history | AI immersive guide | Ren-Track scale model + full-line history paper map |
+| Smart Delivery Ark Station | Jingzhang passenger-freight transport service tradition | AI smart logistics | Railway freight history display + station service commitment plaque |
+
+**Rule closure verification.** `run_ren_track.js` correctly classifies all 48 synthetic cases—12 nodes × 4 rule branches (complete / missing anchor / missing reciprocity / virtual-only reciprocity)—(36 blocked / 12 passed), demonstrating that the grammar rules are logically closed. But this only proves correct classification; it does not constitute a heritage impact assessment or on-site construction evidence. On-site performance remains null, with status `not_authorized_not_run` [data:visual/assets/ren-track-audit.json#blocked].
+
+**Relationship to "culture is not decoration."** The core of the Ren-Track Grammar is not to make AI more cultural, but to make **every AI node owe culture one physical reciprocity artifact**. This turns "culture is not consumed" from a slogan into an auditable structural constraint: nodes may enter culture and use culture, but they must switch back and leave something physical behind. A node without a reciprocity artifact is not valid under the grammar [source:agent-taskbook].
+
+### Internalizing the Three Conservation Principles (Original to This Proposal, v4)
+
+Cultural reciprocity answers "what AI must give back to culture," but it does not yet answer "how AI may touch the heritage"—this is the core question of heritage conservation. This proposal transplants methodology from international conservation principles (in the spirit of the Venice Charter), internalizing the three principles as design constraints for every AI node [E:HERITAGE-CONSERVATION-PRINCIPLES]:
+
+- **P1 Minimum Intervention**: AI facilities do not alter the heritage itself—Tsinghuayuan Station, the railway track remnants, and the Qinghe river blue line are all "no-intervention" nodes; AI is only overlaid in the surrounding public space.
+- **P2 Reversibility**: After any facility is removed, the site fully returns to its original state—galleries and models are independent, demountable structures; ground timelines are removable appliqués; the station is a wholly relocatable module. Removal is not destruction; it is returning to baseline.
+- **P3 Distinguishability**: AI facilities are clearly distinguishable in appearance from historical remnants—contemporary materials (stainless steel / reflective / silver-gray modules), the Jingzhang green signage band, and physical models labeled with the word "model." Distinguishability protects the authenticity of history: the new is new, the old is old.
+
+**Anchor-chain negative-space baseline.** The cultural anchor chain (Tsinghuayuan Station → Railway Memory Corridor → Ren-Track → full-line history) must itself be a complete, walkable, tellable heritage tour line—**it remains valid with no AI at all**. AI is an overlay layer that can be removed as a whole: after all AI facilities are removed, the anchor chain still remains a complete Centennial Jingzhang cultural tour line. This is the starting point of the design, not a contingency plan [data:visual/assets/intervention-register.json#negative-baseline].
+
+**Intervention register of the 7 nodes** (full version in `visual/assets/intervention-register.json`):
+
+| Node | Intervention Level | Reversibility Measure | Distinguishability Marking | No-AI Baseline |
+| --- | --- | --- | --- | --- |
+| Tsinghuayuan Memory Node | No intervention | Timeline as removable appliqué | Stainless steel + reflective material | The former station site itself is a complete interpretation point |
+| Railway Memory Corridor | No intervention | Freestanding, movable scale model | Labeled with the word "model" | Track remnants and the corridor itself are complete |
+| Qinghe Low-Carbon Innovation Corridor | No intervention | Removable freestanding guide sign | Contemporary material distinct from the shoreline | Green corridor and guide signs complete |
+| Innovation Origin Plaza | Surface overlay | Gallery and model fully demountable | Jingzhang green signage band | Gallery and plaza complete |
+| AI Valley Eye Plaza | Surface overlay | Gallery timeline independently demountable | Contemporary exhibition language | Logistics history gallery complete |
+| Open Source Living Room | Surface overlay | Plaque wall demountable | Contemporary plaque material | Collaboration history display board complete |
+| Smart Delivery Ark Station | Surface overlay | Module wholly relocatable | Silver-gray modular appearance | Station can revert to a staffed service point |
+
+The three principles connect to the G gate: every node must submit an intervention register before the G0 spatial gate; a register that does not pass (e.g., proposing to alter the heritage itself) may not enter design deepening. All entries in the register are `not_authorized_not_run`; on-site implementation requires professional review by the heritage protection authority [depth:risk_missing_data].
 
 ### Cultural Tour Route and Spatial Narrative Spine
 

@@ -1,71 +1,67 @@
 {
-  "schema_version": "1.1.0",
-  "review_date": "2026-08-13",
-  "version": "V4",
-  "status": "local_review_complete_with_follow_up",
-  "summary": {
-    "blocking_open": 0,
-    "major_open": 0,
-    "major_closed": 4,
-    "minor_open": 2
-  },
+  "schema_version": "1.2.0",
+  "review_date": "2026-08-15",
+  "version": "V5",
+  "calibration_baseline": "PR #2347 Review Agent 81/100",
+  "status": "local_review_complete_with_external_dependencies",
+  "summary": { "blocking_open": 0, "major_open": 0, "major_closed": 4, "minor_open": 2 },
   "findings": [
     {
-      "id": "V4-UD-01",
+      "id": "V5-EX-01",
+      "round": "review_agent_evidence_entry",
+      "severity": "major",
+      "finding": "The five canonical figures repeated the same abstract spine; metrics-evidence also clipped its priority line and omitted stop text after SVG conversion.",
+      "evidence": ["1024 px review of the five canonical figures", "V4 Review Agent evidence bundle"],
+      "remediation": "Assigned distinct decisions to overall, land-use, key-area, mobility and evidence figures; replaced foreignObject text with native SVG text and rechecked 1024 px output.",
+      "verification": "Closed by bilingual canonical PNG review; all five are distinct and no title or stop condition is clipped.",
+      "status": "closed"
+    },
+    {
+      "id": "V5-UD-01",
       "round": "urban_design_site_specificity",
       "severity": "major",
-      "finding": "The merged version distributed attention equally across 12 scenes and lacked a professional scale chain for any one scene.",
-      "evidence": ["PR #2272 Review Agent 69/100", "pre-V4 A3 pages", "pre-V4 scenario matrix"],
-      "remediation": "Promoted T2, S2 and S7 to hero status with 1:5000/1:2000/1:500/1:200 evidence, routes, staff positions and receipts.",
-      "verification": "Closed by bilingual A3 pages 8-14 and A0 board 2; structured references in two-answers.json and spatial-atlas.json.",
+      "finding": "Hero plans remained diagrammatic and did not show enough street-edge, entrance, paving, landscape and utility-interface evidence.",
+      "evidence": ["V4 A0 board 2", "V4 A3 pages 8–14"],
+      "remediation": "Added WGS84 trace objects plus curbs, paving, tree pits, seats, entrances, lighting/interface notes, staffed posts, emergency and removal routes for three distinct spatial types.",
+      "verification": "Closed by 42 V5 geometry objects, three bilingual 1:2000 plan comparisons and hero detail PNGs.",
       "status": "closed"
     },
     {
-      "id": "V4-EX-01",
-      "round": "expression_and_jury_readability",
+      "id": "V5-PUB-01",
+      "round": "publication_density_and_increment",
       "severity": "major",
-      "finding": "A missing CSS brace collapsed intended grids into one column; page-count checks still returned 20 pages and therefore concealed clipped content.",
-      "evidence": ["original-size raster review of A3 pages 2, 7, 15 and 18"],
-      "remediation": "Corrected stylesheet closure, added computed-layout validation and regenerated all four PDFs.",
-      "verification": "Closed after full 72/150-DPI raster review, 20-page/3-board page checks and file-size checks.",
+      "finding": "A0-03 left a large low-information lower field and A3 repeated the full overall plan more than twice.",
+      "evidence": ["150 DPI contact sheets generated during V5 QA"],
+      "remediation": "Expanded A0-03 receipt, section, catalogue and phasing zones; replaced A3 repeated maps with mobility, key-area, land-use and evidence-specific figures.",
+      "verification": "Closed after 3-board and 20-page bilingual contact-sheet review; overall plan now appears in full on only pages 3 and 5.",
       "status": "closed"
     },
     {
-      "id": "V4-AI-01",
-      "round": "ai_governance_industry_translation",
+      "id": "V5-WEB-01",
+      "round": "offline_interaction_and_accessibility",
       "severity": "major",
-      "finding": "The protocol described human decisions but did not expose a single inspectable and printable adoption record per scene.",
-      "evidence": ["pre-V4 evidence drawer", "pre-V4 equal-weight scene data"],
-      "remediation": "Added receipt_fields to 12/12 scenes, NOT FIELD-RUN state, allowed decisions and printable receipt UI.",
-      "verification": "Closed by schema 1.2.0 data and desktop/mobile offline interaction tests.",
+      "finding": "A generic .hero selector expanded the hero-scenario status chip into a blank viewport-high amber block after the V5 first-screen redesign.",
+      "evidence": ["390×844 and 1440×1600 Playwright interaction screenshots"],
+      "remediation": "Scoped the layout to header.hero and explicitly reset the nested tier.hero chip; added automated scenario-card screenshot QA.",
+      "verification": "Closed with desktop, mobile and English tests: 42 geometry objects, schema 1.3.0, hash restoration, reduced motion, no external requests and zero console errors.",
       "status": "closed"
     },
     {
-      "id": "V4-PR-01",
-      "round": "accessibility_public_rights",
-      "severity": "major",
-      "finding": "Station plans did not consistently expose baseline, emergency and removal routes together with staff positions.",
-      "evidence": ["pre-V4 station figures", "pre-V4 spatial-atlas.json"],
-      "remediation": "Added route geometries, buffers, section lines, operation windows and human positions for all three stations.",
-      "verification": "Closed by A3 hero pages, A0 board 2 and interactive station views.",
-      "status": "closed"
-    },
-    {
-      "id": "V4-MIN-01",
+      "id": "V5-MIN-01",
       "round": "urban_design_site_specificity",
       "severity": "minor",
       "finding": "Official survey, ownership, statutory controls, utilities and observed flows remain unavailable.",
-      "remediation": "Retain provisional-boundary and concept-scale disclosures; require these inputs before professional development.",
+      "remediation": "Keep provisional-boundary and concept-scale disclosures; require these inputs before E2 baseline prototype.",
       "status": "open_external_dependency"
     },
     {
-      "id": "V4-MIN-02",
-      "round": "ai_governance_industry_translation",
+      "id": "V5-MIN-02",
+      "round": "evidence_and_civic_adoption",
       "severity": "minor",
-      "finding": "No scene has been field-run, so outcome targets cannot yet be set from evidence.",
-      "remediation": "All performance remains unknown; receipts are pending_field_evidence and define measurement methods only.",
+      "finding": "No scene has been field-run, so outcome thresholds and adoption decisions remain unavailable.",
+      "remediation": "Keep performance unknown and advance only through the E0–E4 evidence ladder after field baseline establishment.",
       "status": "open_external_dependency"
     }
   ],
-  "note": "Internal adversarial review only; not an official score, statutory review or field validation."
+  "note": "Internal adversarial review only; not an official score, statutory review or field validation. No machine score is fabricated."
 }

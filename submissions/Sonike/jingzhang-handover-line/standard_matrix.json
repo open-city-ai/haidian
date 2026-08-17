@@ -137,6 +137,7 @@
         "building_footprint_area_sqm"
       ],
       "source_ids": [
+        "MOHURD-URBAN-DESIGN-MEASURES",
         "OFFICIAL-ANNOUNCEMENT",
         "SITE-PACKAGE"
       ],
@@ -176,6 +177,7 @@
         "maximum_building_height_m"
       ],
       "source_ids": [
+        "MOHURD-CONTROL-DETAILED-PLANNING",
         "SITE-PACKAGE",
         "OFFICIAL-ANNOUNCEMENT"
       ],
@@ -191,7 +193,7 @@
     },
     {
       "standard_id": "MNR-LAND-USE-CLASSIFICATION-GUIDE",
-      "requirement_zh": "用地表达采用可校验用地分类和 land_use_code，不使用自造分类替代。",
+      "requirement_zh": "用地、道路与建筑均采用组织方场地包提供的可校验分类词汇，代码与类名逐条对得上现行分类指南，不使用自造分类替代。",
       "professional_dimension": "用地分类",
       "mandatory": true,
       "review_status": "addressed",
@@ -205,13 +207,16 @@
         "drawings/a3-booklet.pdf#p12"
       ],
       "geometry_refs": [
-        "geometry/land_use.geojson"
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson",
+        "geometry/buildings.geojson"
       ],
       "metric_refs": [
         "land_use_zone_count",
         "site_area_sqm"
       ],
       "source_ids": [
+        "MNR-LAND-USE-CLASSIFICATION-GUIDE",
         "SITE-PACKAGE",
         "OFFICIAL-ANNOUNCEMENT"
       ],
@@ -223,7 +228,7 @@
         "LAND_USE_TOPOLOGY",
         "GEOMETRY_VALIDITY"
       ],
-      "evidence_summary_zh": "用地表达全部采用现行公开分类代码：1401公园绿地、0802科研、0804教育、0803文化、0702社区服务、0701住宅、05商业服务，无自造分类。11个要素由临时边界拓扑切分，联合覆盖场地且无设计性重叠或空隙，面积在 EPSG:4548 中复算。该结果是城市设计结构，不能倒推现状地类、权属或规划许可。"
+      "evidence_summary_zh": "用地表达全部采用组织方场地包枚举 brief/site-package/enums/land_use_codes.json 的代码，无自造分类；类名按《国土空间调查、规划、用途管制用地用海分类指南》原文写全：1401 公园绿地、0802 科研用地、0804 教育用地、0803 文化用地、0702 城镇社区服务设施用地、0701 城镇住宅用地、05 商业服务业用地。本次修订按指南代码表逐条复核，查出一处冲突且冲突不在本包一侧：该枚举 16 条中 15 条与指南严丝合缝，唯 05 一条对不上——指南中 05 为湿地，商业服务业用地为 09（下设 0901/0902/0903/0904）。本包保留 05：确定性校验以该枚举为硬性白名单，改为 09 会被判 unknown land_use_code 使四道门失败，且该枚举是全场共用口径，单方面改码会破坏各投稿的用地统计可比性。冲突已在正文与 sources.json 标注，并按赛事规则走 Issue 反馈（open-city-ai/haidian#2977）；组织方修正后本包同步改码，几何与面积不变。该类停在一级类是因为两块均为消费、商务与科技服务的混合业态，二级类须由控规依实际业态细分，无依据时不挑一个填充。七个代码的出处与全部核对过程已逐条写入 sources.json 的 observations 与 transformations，可被第三方按同一份公开代码表复核。11 个要素由临时边界拓扑切分，联合覆盖场地且无设计性重叠或空隙，面积在 EPSG:4548 中复算。该结果是城市设计结构，不能倒推现状地类、权属或规划许可。 同一次核对把这条纪律补到了另外两个图层：组织方另提供 road_classes.json（9 类）与 building_types.json（13 类），校验器同样逐条校验，而本包此前一条都没用——道路只有自造的 movement_class、建筑只有自造的 typology，与本条自设要求相抵触。现已补齐：9 条道路 road_class 为 1 greenway + 8 transit_connection；20 个更新单元 building_type 为 ai_r_and_d / lab / incubator / community_service 各 5 个。自造字段保留但退居其后：官方枚举是单值、负责全场可比，自造字段记录单值装不下的复合功能与原型语义，不允许只有后者。"
     },
     {
       "standard_id": "MOHURD-ARCH-DESIGN-DEPTH-2016",
@@ -262,6 +267,111 @@
         "PROFESSIONAL_EVIDENCE"
       ],
       "evidence_summary_zh": "该标准的正式内容在资料包中缺失，本包按 data_gap 处理：只作为深化提醒而不充当审定依据。建筑层因此停留在类型单元与四步判定（保留、修缮、可逆插入、待核）方法层面，二十个单元只比较空间供给原型；单体设计深度、日照、消防间距、结构与退界须在取得正式文件与逐栋测绘后由建筑专业承担。"
+    },
+    {
+      "standard_id": "GENERATIVE-AI-INTERIM-MEASURES",
+      "requirement_zh": "严格按第2条的适用范围、第14条的违法内容处置义务、第15条的投诉举报机制、第17条的舆论属性限定引用，不把任何一条泛化成面向一般用户的普遍权利或数值时限。",
+      "professional_dimension": "AI治理与合规",
+      "mandatory": false,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "合规基线：先分清法定下限，再说本方案自设的标准",
+        "AI 创新生态、人才画像与 AI+ 场景",
+        "把判据做成一个开关：智能层可以在页面上被关掉",
+        "风险、版权与合规说明"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf#p04",
+        "drawings/a3-booklet.pdf#p08"
+      ],
+      "geometry_refs": [
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "scenario_node_count",
+        "machine_readable_shift_protocol_count"
+      ],
+      "source_ids": [
+        "GENERATIVE-AI-INTERIM-MEASURES",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-OPERATIONS-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE",
+        "DETERMINISTIC_VALIDATION"
+      ],
+      "evidence_summary_zh": "合规基线表把这三条逐行分列，且分列的方式正是该标准要求的「不得泛化」：第14条是**发现违法内容时**的处置义务，不构成面向一般用户的停用权；第15条要求建立投诉举报机制并公布处理流程与反馈时限，**未规定任何数值时限**；第17条只适用于**具有舆论属性或社会动员能力的**服务。因此本方案的接管亭物理停用入口、非违法情形下的常设停用入口、十二个场景的无AI等价路径与任何数值时限，一律标注为**本方案自设的公共服务标准，不是该办法的要求**。该办法对本包为背景依据（mandatory_for_formal=false），本包不据此主张任何备案或安全评估结论。"
+    },
+    {
+      "standard_id": "BARRIER-FREE-ENVIRONMENT-LAW",
+      "requirement_zh": "第39条的现场指导与人工办理要求，严格限于该条列举的医疗、社会保障、金融、生活缴费等公共服务场所，不泛化为全部公共空间或数字界面的普遍结论。",
+      "professional_dimension": "无障碍与公共服务",
+      "mandatory": false,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "合规基线：先分清法定下限，再说本方案自设的标准",
+        "AI 创新生态、人才画像与 AI+ 场景",
+        "蓝绿空间、公共空间与城市风貌"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf#p04",
+        "drawings/a3-booklet.pdf#p09"
+      ],
+      "geometry_refs": [
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "scenario_node_count",
+        "public_space_ratio"
+      ],
+      "source_ids": [
+        "BARRIER-FREE-ENVIRONMENT-LAW",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-OPERATIONS-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE",
+        "SPATIAL_REVIEW"
+      ],
+      "evidence_summary_zh": "本包区分两件事：第39条对**其列举场所**规定应当保留现场指导与人工办理，这是法定下限；而本方案把人工兜底推广到**全部十二个场景与十项组件**、要求无AI路径不得更慢更差，属**本方案自设标准，非该法要求**——合规基线表逐行如此分列。城市交接场与社区协作屋按「人工窗口先于智能界面」布置，组件库十项均可在智能层撤除后独立运行。本包不据此对任何具体场所作合规认定。"
+    },
+    {
+      "standard_id": "ELDERLY-SMART-TECH-PLAN-2020-45",
+      "requirement_zh": "作为传统服务方式与智能化服务并行、老年人高频服务场景的政策参照；不写成2026年仍在执行的法律义务，也不作为本地落实事实。",
+      "professional_dimension": "适老与数字包容",
+      "mandatory": false,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "合规基线：先分清法定下限，再说本方案自设的标准",
+        "AI 创新生态、人才画像与 AI+ 场景",
+        "不同阶段的团队在这条带上分别拿到什么"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf#p04",
+        "drawings/a3-booklet.pdf#p08"
+      ],
+      "geometry_refs": [
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "scenario_node_count",
+        "public_space_area_sqm"
+      ],
+      "source_ids": [
+        "ELDERLY-SMART-TECH-PLAN",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-OPERATIONS-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "该方案提出传统服务方式与智能化服务**并行**，并列举出行、就医、消费、文娱等高频场景，本包据此把「无AI等价路径」设为十二个场景的共同前置，而不是可选项。**时效边界已如实标注**：该文件2020–2022年的阶段性目标已到期，本包只把它当作场景设计的政策参照与背景，不写成当前仍在执行的法律义务，也不主张任何本地落实事实（sources.json 中该条 usable_for_formal=background_only，逐字取自中央登记表）。"
     }
   ]
 }

@@ -1258,11 +1258,11 @@
     }
   ],
   "mechanism_register": {
-    "version": "v0.4",
+    "version": "v0.5",
     "mechanism_id": "JZ-SWITCHBACK-001",
     "mechanism_name_zh": "人字回退（Switchback Fallback）",
     "mechanism_name_en": "Switchback Fallback",
-    "version_note_zh": "v0.4：switchback_states 更新为四态 normal/degraded/paused/retired（刻意不对称：退回容易、恢复缓慢）；新增 NT-6 服务契约六步（缺一不可转入 normal 态）与可执行制品（visual/assets/，见 executable_artifacts）；validation_windows 不变，仍为 concept_only。",
+    "version_note_zh": "v0.5：switchback_states 四态 normal/degraded/paused/retired 不变；NT-6 服务契约六步不变；可执行制品改只读复演（不改写包内文件）；三处折返试验段以 geometry/key_areas.geojson 的 mechanism_window_id/switchback_window_id 属性空间落位；法条条号核校（生成式AI办法第15条、无障碍环境建设法第39条、国办发〔2020〕45号政策文件）。",
     "heritage_binding_zh": "京张铁路1905-1909年建成、詹天佑任总工程师、中国自主设计修建第一条干线铁路、青龙桥'人'字形线路双机车折返爬坡（公开史料常识，仅作命名与叙事锚点，不等同于已认证历史结论）。AI 服务遇障碍时如人字线机车折返回人工轨道。",
     "service_chain_steps": [
       "choose",
@@ -1337,7 +1337,7 @@
       {
         "path": "visual/assets/run_jzsw_tabletop.js",
         "kind": "tabletop_drill_script",
-        "role_zh": "桌面演练（18 用例：6 接受 12 拒绝，零 fail-open）",
+        "role_zh": "桌面演练（18 用例：6 接受 12 拒绝，零 fail-open；只读复演）",
         "run": "node visual/assets/run_jzsw_tabletop.js"
       },
       {
@@ -1348,7 +1348,7 @@
       {
         "path": "visual/assets/run_field_census.js",
         "kind": "census_script",
-        "role_zh": "同场测量：枚举 main 全场 836 份方案（只读上游，不 checkout）",
+        "role_zh": "同场测量：枚举 main 全场方案（只读，不写证据文件；--write 才显式写出）",
         "run": "node visual/assets/run_field_census.js（仓库根目录执行）"
       },
       {

@@ -12,11 +12,17 @@ This package is the author's original work. Methodologies are cited public liter
 | `report/proposal.html`, `report/proposal.en.html` | Derived from the above via `scripts/render_proposal_html.py` | Original (derived) / 原创（派生） |
 | `visual/index.html`, `visual/index.en.html` | AI agent (author), original writing | Original / 原创 |
 | `geometry/*.geojson` (site boundary, key areas, land use, buildings, roads, green space, public space, constraints, phasing) | `agent_generated_design` conceptual geometry; provisional boundary sourced from `brief/site-package/geometry/provisional_boundaries.geojson` (official public) | Original design geometry; provisional boundary per site package / 原创设计几何；临时边界来自站点包 |
-| `assets/figures/*.png`, `assets/figures/*.en.png` | AI agent (author), plotted with matplotlib | Original / 原创 |
-| `drawings/a3-booklet.pdf`, `drawings/a0-boards.pdf`, `*.en.pdf` | AI agent (author), assembled with matplotlib PdfPages | Original / 原创 |
+| `assets/figures/*.png`, `assets/figures/*.en.png` (top-level, excl. `effects/`) | AI agent (author), plotted with matplotlib | Original / 原创 |
+| `assets/figures/effects/effect_01~06.png` (6 concept renders) | AI agent (author), AI-generated concept imagery (generative/text-to-image); **not** data plots, **not** survey geometry | Original concept renders; non-evidentiary / 原创概念效果图（非数据图、非测绘几何） |
+| `assets/brand/logo.svg`, `vi_palette.png`, `vi_applications.png` (+ `.en` variants) | AI agent (author), original brand identity (logo + VI palette + applications) | Original / 原创 |
+| `visual/assets/leaflet.js`, `leaflet.css` | Leaflet 1.9.4, (c) 2010-2023 Vladimir Agafonkin, (c) 2010-2011 CloudMade — vendored for offline interactive map | BSD-2-Clause (see "Redistributed JS libraries" below) / BSD-2-Clause |
+| `visual/assets/demo.js`, `demo.css`, `scenes.json`, `scenes.css`, `demo_data.json` | AI agent (author), original interactive demo code and data (conceptual network + OSM station points + provisional boundary) | Original / 原创 |
+| `drawings/a3-booklet.pdf`, `a0-boards.pdf`, `a0_board_01.pdf`, `a0_board_02.pdf` (+ `.en` variants) | AI agent (author), assembled with matplotlib PdfPages | Original / 原创 |
+| `drawings/land_use_plan.pdf`, `road_section.pdf`, `phasing_plan.pdf` | AI agent (author), generated with matplotlib (statutory-depth drawings, conceptual) | Original / 原创（概念法定深度图纸） |
 | Embedded CJK font (Noto Sans SC subset, inlined as base64 `@font-face` in `report/*.html` and `visual/*.html`) | Noto Sans SC by Google (subset generated with fontTools, SIL OFL 1.1) | SIL Open Font License 1.1 / SIL OFL 1.1 |
 | `simulation.json` | Author's real Physarum + NSGA-II run logs (recorded faithfully) | Original (author's own run data) / 原创（作者运行数据） |
 | `metrics.json`, `assumptions.json`, `sources.json`, `compliance_matrix.json`, `standard_matrix.json`, `design_depth_matrix.json`, `self_check.json`, `agent.json`, `manifest.json` | AI agent (author), original structured records | Original / 原创 |
+| `report/narrative.md`, `changelog.md` | AI agent (author), original process and change-log records | Original / 原创 |
 
 ## Method references (cited, not reproduced) / 方法引用（仅引用，未复制）
 
@@ -35,6 +41,14 @@ This package is the author's original work. Methodologies are cited public liter
 | shapely | BSD-3-Clause |
 | pyproj | MIT |
 | fontTools | MIT |
+
+## Redistributed JS libraries (vendored, offline) / 再分发 JS 库（本地化，离线）
+
+| Library | Version | License |
+| --- | --- | --- |
+| Leaflet (`visual/assets/leaflet.js`, `leaflet.css`) | 1.9.4 | BSD-2-Clause — (c) 2010-2023 Vladimir Agafonkin, (c) 2010-2011 CloudMade |
+
+Leaflet is vendored locally so the interactive demo renders fully offline; it is not loaded from any CDN, and its BSD-2-Clause attribution header is preserved at the top of `leaflet.js`. / Leaflet 已本地化以支持完全离线渲染，未从任何 CDN 加载，其 BSD-2-Clause 版权头保留于 `leaflet.js` 顶部。
 
 ## Font note / 字体说明
 

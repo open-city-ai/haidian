@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v0.5 - 2026-08-17
+
+- Corrected the Dazhongsi commercial-service concept parcel from land-use code `05` to `09` after the official numeric table was repaired in [PR #3017](https://github.com/open-city-ai/haidian/pull/3017): under 自然资发〔2023〕234号, `05` means wetland and `09` means commercial service land.
+- Renamed the corresponding machine-readable metric to `land_use_area_09_sqm` and updated every standard, design-depth, and compliance-matrix reference without changing the provisional polygon or its recomputed area.
+- Regenerated the bilingual land-use figures, offline visual indexes, A3 booklets, and A0 boards, and fitted long English headings within their title and page-header bands. This remains a semantic classification correction only; it does not turn the provisional geometry into an official land-use plan or create a retroactive scoring claim.
+
 ## v0.4 - 2026-08-15
 
 - Aligned the readiness claim with the current official Skill contract: missing organizer-supplied official polygons remain a disclosed provisional-data limitation and recomputation trigger, but no longer appear as a participant-controlled content-scoring blocker.

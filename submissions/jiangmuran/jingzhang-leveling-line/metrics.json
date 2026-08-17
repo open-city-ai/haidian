@@ -548,7 +548,7 @@
     },
     "road_feature_count": {
       "status": "known",
-      "value": 17,
+      "value": 23,
       "unit": "count",
       "assumption_ids": [
         "A-SELF-COUNT-001",
@@ -671,7 +671,7 @@
     },
     "matrix_reference_count": {
       "status": "known",
-      "value": 618,
+      "value": 736,
       "unit": "count",
       "assumption_ids": [
         "A-SELF-COUNT-001"
@@ -681,7 +681,7 @@
         "standard_matrix.json",
         "design_depth_matrix.json"
       ],
-      "formula": "count(references declared in the 17 reference fields of the three matrices)",
+      "formula": "count(references declared in the 20 reference fields of the three matrices)",
       "confidence": "high",
       "assumptions": [
         "这是**被声明**的引用数；其中能被解析规则核对的那部分由 matrix_refs_qa 分别报出，两个数取自同一个定义，不再各算各的（此前二者相差 5）。每条条目的证据摘要由其自身引用生成，44 条互不相同。"
@@ -747,7 +747,7 @@
     },
     "errata_entry_count": {
       "status": "known",
-      "value": 227,
+      "value": 267,
       "unit": "count",
       "assumption_ids": [
         "A-SELF-COUNT-001"
@@ -795,7 +795,7 @@
     },
     "rights_ledger_entry_count": {
       "status": "known",
-      "value": 155,
+      "value": 158,
       "unit": "count",
       "assumption_ids": [
         "A-SELF-COUNT-001"
@@ -1148,6 +1148,26 @@
         "visual/assets/osm_fabric.json"
       ],
       "formula": "dijkstra(walkable OSM graph) summed over consecutive benchmarks in survey order, BM-2 → BM-301 → BM-302 → BM-0 → BM-303 → BM-1",
+      "chain_benchmarks": [
+        "BM-2",
+        "BM-301",
+        "BM-302",
+        "BM-0",
+        "BM-303",
+        "BM-1"
+      ],
+      "excluded_benchmarks": [
+        {
+          "benchmark": "BM-21",
+          "reason_zh": "在本包这份 OSM 可步行图上，与任何其他水准点之间都不存在可步行路径——不是绕得远，是**走不到**。这是现状读数，不是本方案的取舍。",
+          "reason_en": "On this package's walkable OSM graph there is no walkable path between it and any other benchmark at all — not a detour, unreachable. That is a reading about today's ground, not a choice this proposal made."
+        },
+        {
+          "benchmark": "BM-22",
+          "reason_zh": "以支线到达，不在顺线序列上；其步行距离单独登记，不并入这条链，否则同一段路会被算两遍。",
+          "reason_en": "Reached by a spur rather than in line; its walking distance is registered separately and not folded into this chain, which would count one leg twice."
+        }
+      ],
       "confidence": "medium",
       "assumptions": [
         "OpenStreetMap via the Overpass API, ODbL 1.0, in EPSG:4548. Crowd-sourced: absence from the map is not absence from the ground.",
@@ -1158,7 +1178,7 @@
       ],
       "evidence_class": "background_only",
       "confidence_is_about": "computation",
-      "metric_class": "package_self_count",
+      "metric_class": "measured_not_reverified",
       "measures": "existing_conditions",
       "recalculation_trigger_zh": "新的 OSM 抽取或官方实测成果取代当前读数时重算；本包读数为众包数据，不作为法定依据。",
       "recalculation_trigger_en": "A new OSM extract or an official survey superseding this reading. The reading is crowd-sourced and is not a statutory basis.",
@@ -1186,7 +1206,7 @@
       ],
       "evidence_class": "background_only",
       "confidence_is_about": "computation",
-      "metric_class": "package_self_count",
+      "metric_class": "measured_not_reverified",
       "measures": "proposed_design",
       "recalculation_trigger_zh": "官方 polygon 发布，或本包任一几何图层变更时**整体重算**——不得只替换单个文件，这与本方案「超限整段重测」是同一条原则。",
       "recalculation_trigger_en": "Publication of the official polygon, or any change to a shipped geometry layer — recomputed as a whole rather than file by file, the same rule this proposal applies to a route that exceeds its tolerance.",
@@ -1366,10 +1386,10 @@
       ],
       "evidence_class": "background_only",
       "confidence_is_about": "computation",
-      "metric_class": "package_self_count",
-      "measures": "proposed_design",
-      "recalculation_trigger_zh": "官方 polygon 发布，或本包任一几何图层变更时**整体重算**——不得只替换单个文件，这与本方案「超限整段重测」是同一条原则。",
-      "recalculation_trigger_en": "Publication of the official polygon, or any change to a shipped geometry layer — recomputed as a whole rather than file by file, the same rule this proposal applies to a route that exceeds its tolerance.",
+      "metric_class": "measured_not_reverified",
+      "measures": "existing_conditions",
+      "recalculation_trigger_zh": "新的 OSM 抽取或官方实测成果取代当前读数时重算；本包读数为众包数据，不作为法定依据。",
+      "recalculation_trigger_en": "A new OSM extract or an official survey superseding this reading. The reading is crowd-sourced and is not a statutory basis.",
       "verification_role_zh": "交通工程",
       "verification_role_en": "Transport engineering",
       "note_zh": "现状步行网络上，十分钟走得到任一水准点的建筑基底数。",
@@ -1394,7 +1414,7 @@
       ],
       "evidence_class": "background_only",
       "confidence_is_about": "computation",
-      "metric_class": "package_self_count",
+      "metric_class": "measured_not_reverified",
       "measures": "proposed_design",
       "recalculation_trigger_zh": "官方 polygon 发布，或本包任一几何图层变更时**整体重算**——不得只替换单个文件，这与本方案「超限整段重测」是同一条原则。",
       "recalculation_trigger_en": "Publication of the official polygon, or any change to a shipped geometry layer — recomputed as a whole rather than file by file, the same rule this proposal applies to a route that exceeds its tolerance.",

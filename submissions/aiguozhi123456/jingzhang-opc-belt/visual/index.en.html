@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jing-Zhang One-Person Company Belt (OPC Belt) · Visual Index</title>
+<style>
+:root{
+  --rail:#5B6B73; --rail-d:#3A4A52; --rail-l:#8FA0AA;
+  --blue:#1E5AA8; --blue-t:#E2ECF7;
+  --orange:#F5822B; --orange-t:#FDE9DB;
+  --ink:#243137; --muted:#7A868D; --line:#D6DEE4;
+  --soft:#F4F7F9; --panel:#FAFBFC;
+  --rail-t:#E4E9EC; --gray-t:#EEF0F2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Segoe UI","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--soft);line-height:1.6}
+.wrap{max-width:1240px;margin:0 auto;padding:0 26px}
+code,.mono{font-family:Consolas,"Courier New",monospace}
+
+/* ---------- header ---------- */
+header{background:linear-gradient(135deg,#2A343B 0%,#3A4A52 58%,#43555E 100%);color:#fff;border-bottom:6px solid var(--orange)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;padding:40px 0 34px;align-items:center}
+.eyebrow{color:#9FB6C4;letter-spacing:.3em;font-size:12px;margin-bottom:10px}
+h1{font-size:34px;line-height:1.2;margin:0 0 12px;letter-spacing:.01em}
+h1 small{display:block;font-size:15px;font-weight:400;color:#B8C6CE;margin-top:8px;letter-spacing:.1em}
+.hero p{color:#C9D5DC;margin:0;max-width:820px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pill{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 13px;font-size:12px;color:#E6EDF1}
+/* REN mark logo (CSS: vertical + diagonal strokes meeting at an orange dot) */
+.mark-box{display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:22px 18px;background:rgba(255,255,255,.05)}
+.ren{position:relative;width:96px;height:104px}
+.ren .v{position:absolute;left:52px;top:0;width:12px;height:104px;background:#DCE4E9;border-radius:6px}
+.ren .p{position:absolute;left:14px;top:8px;width:12px;height:104px;background:var(--blue);border-radius:6px;transform:rotate(38deg);transform-origin:top center}
+.ren .dot{position:absolute;left:47px;top:-2px;width:22px;height:22px;border-radius:50%;background:var(--orange);border:4px solid #2A343B}
+.mark-box b{font-size:13px;letter-spacing:.18em;color:#DCE4E9}
+.mark-box span{font-size:11px;color:#9FB6C4;text-align:center}
+.years{display:flex;gap:14px}
+.years i{font-style:normal;font-size:11px;color:#9FB6C4;border-top:2px solid rgba(255,255,255,.25);padding-top:6px}
+.years b{display:block;font-size:17px;color:#fff;font-family:Consolas,monospace}
+
+/* ---------- sections ---------- */
+main{padding:30px 0 40px}
+section.sheet{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:26px;overflow:hidden;box-shadow:0 10px 26px rgba(36,49,55,.06)}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:20px 26px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+.sheet-head h2{margin:0;font-size:21px;display:flex;align-items:center;gap:12px}
+.sheet-head h2::before{content:"";width:8px;height:24px;border-radius:2px;background:var(--orange)}
+.sheet-head .tag{flex:none;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 10px;background:#fff;white-space:nowrap}
+.sheet-head p{margin:6px 0 0;color:var(--muted);font-size:14px;max-width:860px}
+.sheet-body{padding:22px 26px}
+figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:12px;color:var(--muted);padding:9px 14px;border-top:1px solid var(--line);background:var(--panel)}
+
+/* grids & cards */
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fff}
+.card h3{margin:0 0 8px;font-size:15.5px}
+.card p{margin:0;font-size:13px;color:var(--muted)}
+.card ul{margin:8px 0 0;padding-left:18px;font-size:13px;color:var(--ink)}
+.card li{margin:4px 0}
+.card .num{font-family:Consolas,monospace;font-weight:700;color:var(--blue)}
+.scope-a{border-top:4px solid var(--rail-l)}
+.scope-b{border-top:4px solid var(--blue)}
+.scope-c{border-top:4px solid var(--orange)}
+.station{border:1px solid var(--line);border-top:5px solid var(--rail-d);border-radius:10px;padding:16px 18px}
+.station.s2{border-top-color:var(--orange)}
+.station.s1{border-top-color:var(--blue)}
+.station h3{margin:0;font-size:16px}
+.station .en{font-size:12px;color:var(--muted);letter-spacing:.06em}
+.station .year{float:right;font-family:Consolas,monospace;font-size:26px;font-weight:700;color:var(--rail)}
+.station.s2 .year{color:var(--orange)}
+.station.s1 .year{color:var(--blue)}
+.chip{display:inline-block;font-size:12px;border-radius:6px;padding:2px 9px;margin:8px 6px 0 0;background:var(--gray-t);color:var(--ink)}
+.chip.hot{background:var(--orange-t);color:#9A4E12}
+.chip.cool{background:var(--blue-t);color:var(--blue)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--panel);text-align:left;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em}
+th,td{border:1px solid var(--line);padding:8px 12px;vertical-align:top}
+tr:nth-child(even) td{background:#FCFDFD}
+td .code{font-family:Consolas,monospace;font-weight:700;color:var(--blue)}
+
+/* metrics */
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:18px}
+.metric{border:1px solid var(--line);border-radius:10px;padding:18px 20px;border-top:5px solid var(--blue)}
+.metric.g{border-top-color:var(--rail)}
+.metric.p{border-top-color:var(--orange)}
+.metric label{font-size:12.5px;color:var(--muted);letter-spacing:.04em}
+.metric .val{display:block;font-family:Consolas,monospace;font-size:29px;font-weight:700;color:var(--ink);margin:6px 0 4px;word-break:break-all}
+.metric small{color:var(--muted);font-size:11.5px}
+.disc{background:var(--soft);border:1px dashed var(--rail-l);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--muted);margin-top:14px}
+
+/* scenario cards */
+.sc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.sc{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:#fff;position:relative}
+.sc::before{content:attr(data-t);position:absolute;top:13px;right:14px;font-family:Consolas,monospace;font-size:11px;color:var(--orange)}
+.sc b{display:block;font-size:13.5px;margin-bottom:5px;padding-right:56px}
+.sc span{display:block;font-size:11.5px;color:var(--muted);line-height:1.5}
+.sc .where{color:var(--blue)}
+
+/* evidence / footer blocks */
+.ev{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.klist{list-style:none;margin:0;padding:0}
+.klist li{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:13px;background:#fff}
+.klist b{color:var(--rail-d)}
+.warn{border-left:4px solid var(--orange);background:var(--orange-t);border-radius:8px;padding:12px 16px;font-size:13px;color:#7A410F}
+.note{border-left:4px solid var(--blue);background:var(--blue-t);border-radius:8px;padding:12px 16px;font-size:13px;color:#173E73}
+.check{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.check .c{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:var(--panel)}
+.check b{font-size:12.5px;display:block;margin-bottom:6px}
+.check span{font-size:11.5px;color:var(--muted)}
+footer{background:#2A343B;color:#9FB6C4;padding:26px 0;font-size:12.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr}
+  .grid3,.grid4,.sc-grid,.check,.ev{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metric-grid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .grid3,.grid4,.sc-grid,.check,.ev,.grid2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">INTERNATIONAL URBAN DESIGN COMPETITION · VISUAL INDEX</div>
+      <h1>Jing-Zhang One-Person Company Belt<small>OPC BELT · A RAILWAY FOR ONE-PERSON COMPANIES</small></h1>
+      <p>A century of Jing-Zhang wrote "individual wisdom accomplishing great things" three times: the 1909 Jing-Zhang Railway, the 1980 first private sci-tech institute in Zhongguancun, and today's AI super-individuals. The belt is designed as a railway for one-person companies — three stations working together: <b>Registry Origin, Proving Ground, Deal Floor</b>, building the full tracks of registration, proving, meetings and life for super-individuals. This is a static offline page; authoritative data lives in the GeoJSON layers, metrics.json, matrices and self-check results.</p>
+      <div class="pills">
+        <span class="pill">Three stations</span><span class="pill">REN mark structure</span><span class="pill">12 scenario cards</span><span class="pill">Evidence-chain metrics</span><span class="pill">Bilingual contract</span>
+      </div>
+    </div>
+    <div class="mark-box">
+      <div class="ren" aria-label="REN mark logo: vertical and diagonal strokes meeting at an orange dot"><i class="v"></i><i class="p"></i><i class="dot"></i></div>
+      <b>THE "REN" MARK</b>
+      <span>vertical = heritage axis · diagonal = startup line<br>meeting point = AI Origin Community</span>
+      <div class="years"><i><b>1909</b>Jing-Zhang Ry.</i><i><b>1980</b>Zhongguancun</i><i><b>2019</b>Jing-Zhang HSR</i></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 01 Overview Map -->
+  <section class="sheet" id="overview">
+    <div class="sheet-head">
+      <div><h2>Overview Map</h2><p>Belt location, three-level scope and the REN-mark structure: the vertical stroke (Jing-Zhang Ruins Park heritage axis) and the diagonal (startup line) meet at the AI Origin Community; the three stations thread along the belt.</p></div>
+      <span class="tag mono">FIG 01 · site-overview.en.png</span>
+    </div>
+    <div class="sheet-body">
+      <figure>
+        <img src="../assets/figures/site-overview.en.png" alt="Overall scope and REN-mark structure overview with three ranges and three stations">
+        <figcaption>Schematic (provisional boundary) · derived from geometry/site_boundary.geojson and key_areas.geojson; not an engineering drawing.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 02 Three-Level Scope -->
+  <section class="sheet" id="scope">
+    <div class="sheet-head">
+      <div><h2>Three-Level Scope</h2><p>Coordination study → overall design → key areas: ecosystem research, regulatory-depth urban design and station detailed design are each bound to layers and metrics.</p></div>
+      <span class="tag mono">project_scope_summary</span>
+    </div>
+    <div class="sheet-body grid3">
+      <div class="card scope-a"><h3>Coordination study · 43.6 km²</h3>
+        <p>OPC ecosystem chain: university sourcing — open-source collaboration — one-person companies — public experience — global storytelling.</p>
+        <ul><li>Demand base: ~200M flexible workers, 125M self-employed, 249M GenAI users in China</li><li>"1+N" company model: one person + N agent employees</li><li>Altman's one-person-billion-dollar prediction (cited as a forecast)</li></ul></div>
+      <div class="card scope-b"><h3>Overall design · 11.4 km²</h3>
+        <p>Three stations + two wings, urban renewal and regulatory-depth design.</p>
+        <ul><li>Four land-use zones, seamless coverage (see Land Use)</li><li>site_boundary SITE-001 (provisional; official boundary prevails)</li><li>Two wings: Zhongguancun service wing / Xiaoyue life wing</li></ul></div>
+      <div class="card scope-c"><h3>Key areas · 368.4 ha</h3>
+        <p>Detailed design of three stations (104.3 + 192.1 + 72.0 ha).</p>
+        <ul><li>Registry Origin (Beijing AI Origin Community)</li><li>Proving Ground (Zhongzhiyuan AI Acceleration)</li><li>Deal Floor (Dazhongsi AI Cluster)</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 03 Key Areas -->
+  <section class="sheet" id="key-areas">
+    <div class="sheet-head">
+      <div><h2>Key Areas</h2><p>Three-station panels: each with area, three key roles and a spiritual prototype year (1980 / 1909 / 2019). Concept proposals for professional teams to develop further.</p></div>
+      <span class="tag mono">key_areas.geojson ×3</span>
+    </div>
+    <div class="sheet-body">
+      <figure style="margin-bottom:18px">
+        <img src="../assets/figures/key-areas.en.png" alt="Three station panels with areas, roles and spiritual prototype years">
+        <figcaption>FIG 03 · three-panel detail (schematic).</figcaption>
+      </figure>
+      <div class="grid3">
+        <div class="station s2"><span class="year">1980</span><h3>02 Registry Origin</h3>
+          <span class="chip">Beijing AI Origin Community · 104.3 ha</span><span class="chip hot">Prototype: Chen Chunxian's institute</span>
+          <ul><li>First OPC registered address: a 5-minute lane (concept)</li><li>Shared legal / finance / IP agent counters</li><li>Campus-adjacent incubation for students and indie devs</li></ul></div>
+        <div class="station s1"><span class="year">1909</span><h3>01 Proving Ground</h3>
+          <span class="chip">Zhongzhiyuan AI Acceleration · 192.1 ha</span><span class="chip cool">Prototype: self-built railway, 1905-1909</span>
+          <ul><li>Product test field & standards sandbox</li><li>Low-speed robot test loop (robot-delivery scenario)</li><li>Shared compute & pilot lines: Proving-as-a-Service</li></ul></div>
+        <div class="station"><span class="year">2019</span><h3>03 Deal Floor</h3>
+          <span class="chip">Dazhongsi AI Cluster · 72.0 ha</span><span class="chip">Prototype: 47-minute metropolis</span>
+          <ul><li>Roadshows & launches with translation agents</li><li>Trade showcase: agent-driven retail & showrooms</li><li>Four-quadrant links stitching walkability</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Land Use -->
+  <section class="sheet" id="land-use">
+    <div class="sheet-head">
+      <div><h2>Land Use</h2><p>Four zones seamlessly covering the overall scope (land_use LU-001…004, agent_generated_design), overlaid with five OPC function tags (design_proposal).</p></div>
+      <span class="tag mono">land_use.geojson</span>
+    </div>
+    <div class="sheet-body">
+      <figure style="margin-bottom:18px">
+        <img src="../assets/figures/land-use-structure.en.png" alt="Land-use structure with OPC function layer overlay and share chart">
+        <figcaption>FIG 02 · land-use structure + OPC function layer (horizontal scale enlarged).</figcaption>
+      </figure>
+      <table>
+        <tr><th>Code</th><th>Zone</th><th>area_sqm_declared</th><th>OPC function (concept)</th></tr>
+        <tr><td class="code">LU-001</td><td>AI R&D land</td><td class="mono">2,674,562.492 m²</td><td>Proving & production (Zhongzhiyuan anchor)</td></tr>
+        <tr><td class="code">LU-002</td><td>Park & open space</td><td class="mono">2,589,339.239 m²</td><td>OPC common room / living scenes</td></tr>
+        <tr><td class="code">LU-003</td><td>Industry & business services</td><td class="mono">3,366,138.181 m²</td><td>Deal & showcase + service chain</td></tr>
+        <tr><td class="code">LU-004</td><td>Community services & amenities</td><td class="mono">2,782,792.823 m²</td><td>Living scenes (Xiaoyue wing)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 05 Mobility -->
+  <section class="sheet" id="mobility">
+    <div class="sheet-head">
+      <div><h2>Mobility</h2><p>OPC commute lines (rail + slow-mobility spine) link the three stations; a dashed low-speed robot logistics loop serves the robot-delivery-low-speed scenario.</p></div>
+      <span class="tag mono">roads.geojson</span>
+    </div>
+    <div class="sheet-body">
+      <figure>
+        <img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility and blue-green systems overlay with dashed robot logistics loop">
+        <figcaption>FIG 04 · mobility + blue-green system + low-speed robot logistics loop (orange dashed loop).</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 06 Blue-Green Public Space -->
+  <section class="sheet" id="bluegreen">
+    <div class="sheet-head">
+      <div><h2>Blue-Green Public Space</h2><p>The Jing-Zhang Ruins Park is the OPC common living room; the Xiaoyue and Qinghe rivers form a blue-green network. Three pilgrimage landmarks are concept proposals, not established facts.</p></div>
+      <span class="tag mono">green_space / public_space</span>
+    </div>
+    <div class="sheet-body">
+      <div class="grid3">
+        <div class="card"><h3>① No.1 Registry</h3>
+          <p>At the AI Origin Community, honouring the 1980 institute: a growing nameplate wall engraved each year with the first newly registered OPC — a mechanism design, not an established fact.</p></div>
+        <div class="card"><h3>② REN Deck</h3>
+          <p>An overlook structure in the Ruins Park inspired by the "REN"-shaped switchback line (Zhan Tianyou's creative application, not invention), overlooking the whole belt.</p></div>
+        <div class="card"><h3>③ Million-Line Code Wall</h3>
+          <p>A public-art installation at Dazhongsi showing open-source contributions from the belt; data hookup is an operations prerequisite — currently a concept proposal.</p></div>
+      </div>
+      <div class="note" style="margin-top:16px">Honour system = OPC Star-Track Wall: the three stations' public spaces display the growth of belt OPCs under a "star track" motif (concept proposal).</div>
+    </div>
+  </section>
+
+  <!-- 07 Buildings -->
+  <section class="sheet" id="buildings">
+    <div class="sheet-head">
+      <div><h2>Buildings</h2><p>The retain-renovate-demolish methodology is kept: no conclusions without official evidence. OPC space supply follows light, reversible retrofit with five standard products.</p></div>
+      <span class="tag mono">buildings.geojson</span>
+    </div>
+    <div class="sheet-body">
+      <table style="margin-bottom:14px">
+        <tr><th>Space product</th><th>Preferred location</th><th>Serves</th><th>Character</th></tr>
+        <tr><td>Registry kiosk</td><td>Origin campus interface</td><td>Prospective OPCs, students</td><td>Counter + booths, light retrofit</td></tr>
+        <tr><td>Work pods</td><td>Around the three stations</td><td>1-3 person teams</td><td>Reversible prefab pods</td></tr>
+        <tr><td>Proving field</td><td>Zhongzhiyuan test loop</td><td>Hardware / embodied-AI teams</td><td>Sandbox + pilot lines</td></tr>
+        <tr><td>Launch hall</td><td>Dazhongsi quadrants</td><td>Roadshows, launches</td><td>Stress-tested AV network</td></tr>
+        <tr><td>Compute depot</td><td>Co-located with logistics nodes</td><td>All belt OPCs</td><td>Edge compute + energy</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--muted);margin:0">Existing footprints in buildings.geojson total <span class="mono">310,807.184 m²</span> (agent_generated_design, medium confidence). FAR, height, density, setbacks and red lines have no official basis in the public package — they stay unknown; no numeric conclusions.</p>
+    </div>
+  </section>
+
+  <!-- 08 Renewal Projects -->
+  <section class="sheet" id="renewal">
+    <div class="sheet-head">
+      <div><h2>Renewal Projects</h2><p>Six OPC renewal projects (JZ-01…06); phasing P1 origin pilot → P2 stations online → P3 wings networked. The 100 days are a solicitation period, not construction.</p></div>
+      <span class="tag mono">phasing.geojson</span>
+    </div>
+    <div class="sheet-body">
+      <table>
+        <tr><th>ID</th><th>Project</th><th>Main content</th><th>Phase</th></tr>
+        <tr><td class="code">JZ-01</td><td>REN-axis slow-traffic stitching</td><td>Continuous slow-mobility spine along the heritage axis, mending gaps</td><td>P2</td></tr>
+        <tr><td class="code">JZ-02</td><td>Origin registry hall retrofit</td><td>Light retrofit into registry kiosk + agent counters</td><td>P1</td></tr>
+        <tr><td class="code">JZ-03</td><td>Zhongzhiyuan proving field</td><td>Standards sandbox, robot test loop, shared compute</td><td>P2</td></tr>
+        <tr><td class="code">JZ-04</td><td>Dazhongsi launch hall & quadrants</td><td>Launch hall retrofit + four-quadrant walk links</td><td>P2</td></tr>
+        <tr><td class="code">JZ-05</td><td>Compute depot network</td><td>Edge compute and energy pods co-located with logistics nodes</td><td>P3</td></tr>
+        <tr><td class="code">JZ-06</td><td>REN Developers' Conference route</td><td>Annual three-station conference circuit</td><td>P3</td></tr>
+      </table>
+      <div class="warn" style="margin-top:14px">A green lane for OPC registration is a research proposal for the organizers and professional teams — not a government decision; phasing implies no construction commitment.</div>
+    </div>
+  </section>
+
+  <!-- 09 AI Scenarios -->
+  <section class="sheet" id="scenarios">
+    <div class="sheet-head">
+      <div><h2>AI Scenarios</h2><p>Twelve scenario cards threaded as "a day of an OPC founder" (SC-01…12, matching opc_node anchors in the public_space layer); each card states its spatial carrier, users and privacy boundaries.</p></div>
+      <span class="tag mono">scenarios ×12</span>
+    </div>
+    <div class="sheet-body">
+      <div class="sc-grid">
+        <div class="sc" data-t="07:30"><b>SC-01 First registered address</b><span class="where">Origin · registry kiosk</span><span>For prospective OPCs. Privacy: statutory business disclosure only; home addresses never public.</span></div>
+        <div class="sc" data-t="09:00"><b>SC-02 Agent-staff standup</b><span class="where">Origin · work pods</span><span>For 1+N teams. Privacy: pod data never mirrored to public screens.</span></div>
+        <div class="sc" data-t="10:30"><b>SC-03 Proving loop test</b><span class="where">Zhongzhiyuan · test loop</span><span>For hardware teams. Privacy: roadside imagery anonymized.</span></div>
+        <div class="sc" data-t="12:00"><b>SC-04 Agent coffee</b><span class="where">Ruins Park · common room</span><span>For all belt developers. Privacy: orders not retained.</span></div>
+        <div class="sc" data-t="14:00"><b>SC-05 Dazhongsi roadshow</b><span class="where">Dazhongsi · launch hall</span><span>For investors & media. Privacy: closed sessions never recorded.</span></div>
+        <div class="sc" data-t="16:00"><b>SC-06 Compute depot</b><span class="where">Logistics nodes</span><span>For all OPCs. Privacy: workloads encrypted in scheduling.</span></div>
+        <div class="sc" data-t="18:00"><b>SC-07 Xiaoyue life wing</b><span class="where">Xiaoyue riverside</span><span>For resident OPCs. Privacy: health data processed on-device.</span></div>
+        <div class="sc" data-t="21:00"><b>SC-08 Night work pods</b><span class="where">Around the stations</span><span>For cross-timezone work. Privacy: named booking, anonymous usage.</span></div>
+        <div class="sc" data-t="wall"><b>SC-09 No.1 Registry wall</b><span class="where">Origin · nameplate wall</span><span>For new OPCs. Privacy: opt-in numbering and aliases only.</span></div>
+        <div class="sc" data-t="deck"><b>SC-10 REN Deck overlook</b><span class="where">Ruins Park</span><span>For the public & visitors. Privacy: no facial recognition.</span></div>
+        <div class="sc" data-t="art"><b>SC-11 Code Wall</b><span class="where">Dazhongsi</span><span>For the open-source community. Privacy: only already-open commits shown.</span></div>
+        <div class="sc" data-t="yearly"><b>SC-12 REN Developers' Conference</b><span class="where">Three-station circuit</span><span>For global developers. Privacy: attendance data de-identified afterwards.</span></div>
+      </div>
+
+      <h3 style="font-size:16px;margin:24px 0 10px">Industrial test & verification scenarios (3)</h3>
+      <div class="grid3">
+        <div class="card"><h3>Low-speed robot logistics line</h3><p>A closed test loop in Zhongzhiyuan: samples, documents and goods at low speed; operations data feeds the standards sandbox.</p></div>
+        <div class="card"><h3>Agent office sandbox</h3><p>Controllable space at the Origin Community to test legal/finance agent service flows, with mandatory human-review checkpoints.</p></div>
+        <div class="card"><h3>Launch-hall stress test</h3><p>High-concurrency streaming and multilingual translation agents tested at the Dazhongsi hall, public data only.</p></div>
+      </div>
+
+      <h3 style="font-size:16px;margin:24px 0 10px">Global case studies (6) — sourcing noted per row</h3>
+      <table>
+        <tr><th>Case</th><th>Key facts</th><th>Sourcing</th></tr>
+        <tr><td>Pieter Levels (levelsio)</td><td>Zero staff, zero funding; self-reported record $420,000/month (2024-09)</td><td>Founder-reported (unaudited)</td></tr>
+        <tr><td>Tony Dinh / TypingMind</td><td>$22K in first 7 days; $1M cumulative over 20 months (2024-11 newsletter)</td><td>Founder-reported (unaudited)</td></tr>
+        <tr><td>Carrd / AJ</td><td>≈$100K MRR, 2.6M users (c. 2022 interview)</td><td>Founder-reported, anonymous</td></tr>
+        <tr><td>HeadshotPro / D. Postma</td><td>Solo AI headshot product; site-reported cumulative revenue over $10M</td><td>Company self-disclosure</td></tr>
+        <tr><td>Aaron Sneed</td><td>15 AI agents as a "Council", ~20 hours saved weekly (2026-02 report)</td><td>Press report</td></tr>
+        <tr><td>EVE / V. Rogovsky</td><td>1 human CTO + 20 AI agents, $250K+ payroll saved yearly (2026-03)</td><td>Press report</td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--muted);margin:10px 0 0">Sam Altman's "one-person, billion-dollar company" is a forecast from a 2024-02 interview, cited as such. Six user personas: indie developers, AI researchers, designer-creators, professional services, tech career-changers, university students.</p>
+    </div>
+  </section>
+
+  <!-- 10 Core Metrics -->
+  <section class="sheet" id="metrics">
+    <div class="sheet-head">
+      <div><h2>Core Metrics</h2><p>Three core metrics verbatim from metrics.json (three-way sync geometry ↔ metrics ↔ visual, 1ppm). Counting extensions: key_area_count=3, opc_scenario_node_count=12; renewal projects total 6 (§10 table count, not a metrics entry).</p></div>
+      <span class="tag mono">metrics.json</span>
+    </div>
+    <div class="sheet-body">
+      <div class="metric-grid">
+        <div class="metric"><label>site_area_sqm · overall design scope area</label>
+          <strong data-metric="site_area_sqm" data-value="11412825.386"><span class="val">11412825.386</span></strong>
+          <small>formula: polygon_area(site_boundary) · source geometry/site_boundary.geojson · confidence medium (provisional boundary, A-OPC-001)</small></div>
+        <div class="metric g"><label>green_ratio</label>
+          <strong data-metric="green_ratio" data-value="0.123423"><span class="val">0.123423</span></strong>
+          <small>formula: green_space_area_sqm / site_area_sqm · sources green_space + site_boundary · confidence medium</small></div>
+        <div class="metric p"><label>public_space_ratio</label>
+          <strong data-metric="public_space_ratio" data-value="0.073281"><span class="val">0.073281</span></strong>
+          <small>formula: public_space_area_sqm / site_area_sqm · sources public_space + site_boundary · confidence medium</small></div>
+      </div>
+      <figure>
+        <img src="../assets/figures/metrics-evidence.en.png" alt="Metrics evidence chain with three core values, formulas and source file paths">
+        <figcaption>FIG 05 · metrics evidence chain: value · formula · source path (schematic).</figcaption>
+      </figure>
+      <div class="disc">floor_area_ratio = unknown: no approved FAR or red-line controls exist in the public package; the value stays null with a stated reason — no numeric conclusions.</div>
+    </div>
+  </section>
+
+  <!-- 11 Task Coverage -->
+  <section class="sheet" id="coverage">
+    <div class="sheet-head">
+      <div><h2>Task Coverage</h2><p>compliance_matrix.json covers all 23 tasks: 17 announcement clauses plus agent.1-6; each agent task is bound to proposal chapters.</p></div>
+      <span class="tag mono">compliance_matrix.json ×23</span>
+    </div>
+    <div class="sheet-body">
+      <table>
+        <tr><th>Task</th><th>Title</th><th>Mapped chapters</th></tr>
+        <tr><td class="code">agent.1</td><td>Overall belt concept & functional coordination</td><td>Three-level scope framework / coordination study / overall urban renewal & regulatory depth / key-area detailed design</td></tr>
+        <tr><td class="code">agent.2</td><td>AI full-stack innovation & world-class ecosystem</td><td>AI ecosystem, personas & AI+ scenarios (6 cases + 6 personas)</td></tr>
+        <tr><td class="code">agent.3</td><td>AI+ scenario empowerment & intelligent vitality</td><td>AI ecosystem (12 scenario cards) / transport, rail & utilities</td></tr>
+        <tr><td class="code">agent.4</td><td>AI public space, native formats & landmarks</td><td>Blue-green space, public space & cityscape (3 landmarks)</td></tr>
+        <tr><td class="code">agent.5</td><td>Century Jing-Zhang × Zhongguancun × AI narrative</td><td>Design basis & inventory / blue-green chapter (1909 · 1980 · 2019)</td></tr>
+        <tr><td class="code">agent.6</td><td>Global AI event system & long-term operations</td><td>Renewal list, policy & phasing (JZ-06 conference route)</td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--muted);margin:12px 0 0">Announcement clauses 1.3.1-1.3.3 (ecosystem / urban form / quality district), 1.4.1-1.4.3 (three-level scope) and 1.5.1-1.5.3 (depth requirements & three districts) are covered in the same matrix — see compliance_matrix.json.</p>
+    </div>
+  </section>
+
+  <!-- 12 Self-Check Status -->
+  <section class="sheet" id="selfcheck">
+    <div class="sheet-head">
+      <div><h2>Self-Check Status</h2><p>All four gates must pass before self-checked marking; this page is the carrier of Gate 3 (visual packaging) and itself obeys the static-offline bans.</p></div>
+      <span class="tag mono">self_check.json</span>
+    </div>
+    <div class="sheet-body">
+      <div class="check">
+        <div class="c"><b>Gate 1 DETERMINISTIC_VALIDATION</b><span>Whitelist / sizes / front matter / 13 chapters / 5 embedded figures / citation density / bilingual contract</span></div>
+        <div class="c"><b>Gate 2 SPATIAL_REVIEW</b><span>EPSG:4548 recomputation, stations ±3%, seamless land_use, metrics ±1%</span></div>
+        <div class="c"><b>Gate 3 VISUAL_PACKAGING</b><span>This page: UTF-8, no scripts/remote, 14 sections, data-metric at 1ppm</span></div>
+        <div class="c"><b>Gate 4 PROFESSIONAL_EVIDENCE</b><span>Standard/depth matrices covered, metrics parseable</span></div>
+      </div>
+      <div class="warn" style="margin-top:14px">Current boundary status: provisional geometry (PASS intake only). Official boundaries must replace it before formal professional scoring; all areas and ratios on this page defer to metrics.json.</div>
+    </div>
+  </section>
+
+  <!-- 13 Sources -->
+  <section class="sheet" id="sources">
+    <div class="sheet-head">
+      <div><h2>Sources</h2><p>All sources are registered in sources.json; case figures keep "founder-reported / company-disclosed / press" sourcing notes; original URLs live in the proposal references.</p></div>
+      <span class="tag mono">sources.json</span>
+    </div>
+    <div class="sheet-body ev">
+      <div>
+        <h3 style="font-size:15px;margin:0 0 10px">Official & taskbook</h3>
+        <ul class="klist">
+          <li><b>OFFICIAL-ANNOUNCEMENT</b> · competition announcement (scope & 23 tasks)</li>
+          <li><b>AGENT-TASKBOOK</b> · agent.1-6 taskbook</li>
+          <li><b>SITE-PACKAGE / BOUNDARY-SOURCE / KEY-AREA-SOURCE</b> · site package & boundaries (provisional)</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:15px;margin:0 0 10px">Cases & historical records</h3>
+        <ul class="klist">
+          <li><b>OPC-CASE-LEVELS / OPC-CASE-TONY-DINH / OPC-CASE-CARRD / OPC-CASE-HEADSHOTPRO / OPC-CASE-SNEED / OPC-CASE-EVE</b> · six cases (self-reported basis)</li>
+          <li><b>OPC-HIST-JINGZHANG / OPC-HIST-ZGC-1980 / OPC-HIST-JZHSR-2019</b> · Jing-Zhang Railway, Zhongguancun institute, Jing-Zhang HSR records</li>
+          <li><b>OPC-STAT-FLEXIBLE-EMP / OPC-STAT-CNNIC / OPC-STAT-SELF-EMPLOYED</b> · 200M flexible workers, 249M GenAI users, 125M self-employed (official statistics)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 Assumptions -->
+  <section class="sheet" id="assumptions">
+    <div class="sheet-head">
+      <div><h2>Assumptions</h2><p>assumptions.json holds five entries; all open items are explained in the proposal for their design impact.</p></div>
+      <span class="tag mono">assumptions.json</span>
+    </div>
+    <div class="sheet-body">
+      <ul class="klist">
+        <li><b>A-OPC-001 · provisional boundary</b>: site_boundary is provisional_constraint (official_boundary=false), intake display basis; official boundaries replace it before formal scoring and all area metrics are recomputed.</li>
+        <li><b>A-OPC-002 · self-reported cases</b>: revenue and scale figures of the six cases are founder-reported or company-disclosed (unaudited), used as trend evidence only, never as financial commitments; all six are overseas cases with no direct evidence of China-local OPC density.</li>
+        <li><b>A-OPC-003 · mechanisms, not facts</b>: pilgrimage landmarks, the registration green lane, the nameplate wall and the code wall are mechanism designs and concept proposals for organizers and professionals — not government decisions or established facts.</li>
+        <li><b>A-OPC-004 · scenario nodes and area basis</b>: the 12 Point scenario nodes in public_space serve as illustration and counting only, excluded from area recomputation; key-area figures follow the announcement wording (104.3/192.1/72.0 ha) while geometry recomputation yields 104.32/192.92/72.05 ha (within ±3% tolerance), unified once official polygons are released.</li>
+        <li><b>A-CONTROLS-001 · controls pending</b>: FAR / height / density / setbacks / red lines have no official basis in the public package and stay unknown; retain-renovate-demolish draws no conclusions.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Jing-Zhang One-Person Company Belt (OPC Belt) · static offline display (no scripts / no remote resources / no iframes) · authoritative data: package GeoJSON, metrics.json and matrices</div>
+    <div class="mono">visual/index.en.html · en · 1909 / 1980 / 2019</div>
+  </div>
+</footer>
+
+</body>
+</html>

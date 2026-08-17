@@ -1,0 +1,51 @@
+{
+ "schema_version": "0.1.0",
+ "note": "市政容量概念测算。方法:基于 provisional 边界的用地面积×人均/负荷指标估算,属总量级参考;官方控规与市政专项数据取得后必须整包重算。全部数值为设计估算,不是市政工程结论。",
+ "basis": {
+  "site_area_sqm": 11412825.39,
+  "residential_land_sqm": 1708148.0,
+  "estimated_building_gfa_sqm": 13197236.64,
+  "gfa_assumption": "示意建筑基底×5层(概念估算,非审批规模)"
+ },
+ "population": {
+  "residents_estimate": [
+   37958,
+   48804
+  ],
+  "residents_basis": "居住用地1,708,148m² ÷ 人均居住用地35-45m²",
+  "employee_estimate": [
+   197958,
+   263944
+  ],
+  "employee_basis": "60%非居住GFA ÷ 人均办公面积30-40m²(概念)"
+ },
+ "utility_capacity": {
+  "water_supply": {
+   "estimate_m3_per_day": [
+    87201,
+    101387
+   ],
+   "method": "(居住人口+就业人口)×综合用水定额250-300L/人·日"
+  },
+  "wastewater": {
+   "estimate_m3_per_day": [
+    75702,
+    88945
+   ],
+   "method": "给水量的80-85%×0.28-0.30 折算系数(概念)"
+  },
+  "power_load": {
+   "estimate_kva": 279043,
+   "method": "人口×综合负荷指标0.8kVA/人(城市综合,概念)"
+  },
+  "gas_demand": {
+   "estimate_m3_per_day": 122081,
+   "method": "人口×0.35m³/人·日(管道燃气普及率假设)"
+  },
+  "solid_waste": {
+   "estimate_ton_per_day": 418.6,
+   "method": "人口×1.2kg/人·日(北京参考值,概念)"
+  }
+ },
+ "note_on_uncertainty": "人口与负荷均为概念估算,实际容量须由市政专项规划按官方人口、用地、负荷指标测算;本表仅用于识别容量量级与设施布点需求。"
+}

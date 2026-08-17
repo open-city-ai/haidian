@@ -1,0 +1,197 @@
+{
+  "schema_version": "0.1.0",
+  "concept": "闭塞确认 (Block Confirmation) — one responsible party per service at a time",
+  "canonical_contract": {
+    "zh": "proposal.md",
+    "en": "proposal.en.md"
+  },
+  "methodology_source_zh": "方法论移植自铁路调度：同一区间同一时刻只有一列车，交接必须闭塞确认。适老服务同理——同一服务同一时刻只有一个责任主体（AI 或人工），AI 块必须先释放、人工块才占用；无间隙、无重叠。",
+  "methodology_source_en": "Methodology transplanted from railway dispatching: one train per block section at a time; handover requires block confirmation. Elderly services likewise — one responsible party (AI or human) per service at a time; the AI block must be released before the human block is occupied; no gap, no overlap.",
+  "lens_zh": "透镜：老人的一天——服务链按老人从起床到入睡的完整生活设计（晨间用药提醒→上午就医→午间助餐→下午办事/数字帮扶→晚间安全→睡前回访确认），而非按服务点清单设计。",
+  "lens_en": "Lens: An Elder's Day — the service chain is designed around a full day from waking to sleeping (morning medication reminder -> morning clinic visit -> midday meals -> afternoon errands/digital aid -> evening safety -> bedtime follow-up), not around a service-point inventory.",
+  "negative_space_baseline_zh": "无AI基线：无任何AI服务时，老人的一天仍能通过社区志愿者、家庭与传统文化服务完整度过。AI 是可关闭的叠加层；闭塞确认确保其关闭时无间隙（老人不会没人管）。",
+  "negative_space_baseline_en": "No-AI baseline: without any AI service, an elder's day still works through community volunteers, family and traditional services. AI is a shuttable overlay; block confirmation ensures no gap remains when it is shut (the elder is never left unattended).",
+  "scenario_count": 10,
+  "blocks": [
+    {
+      "scenario_id": "SA-01",
+      "name_zh": "银龄就医导航",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI导航"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：导诊陪同"
+      },
+      "confirmation_zh": "AI块释放→人工块占用",
+      "followup_zh": "24h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "社区健康热线全程人工",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-02",
+      "name_zh": "银龄办事导航",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI材料清单"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：窗口人工核对"
+      },
+      "confirmation_zh": "AI块释放→窗口块占用",
+      "followup_zh": "48h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "直接到窗口全程人工",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-03",
+      "name_zh": "银龄助餐服务",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI推荐餐点"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：人工确认口味忌口"
+      },
+      "confirmation_zh": "AI块释放→助餐点块占用",
+      "followup_zh": "72h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "电话订餐全程人工",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-04",
+      "name_zh": "银龄代取代办",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI下单"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：志愿者交接"
+      },
+      "confirmation_zh": "AI块释放→志愿者块占用",
+      "followup_zh": "24h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "志愿者上门全程人工",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-05",
+      "name_zh": "银龄无障碍出行",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI路线"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：专员陪同"
+      },
+      "confirmation_zh": "AI块释放→专员块占用",
+      "followup_zh": "24h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "电话预约陪同",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-06",
+      "name_zh": "银龄健康驿站",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI引导检测"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：人工解读"
+      },
+      "confirmation_zh": "AI块释放→健康管理员块占用",
+      "followup_zh": "48h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "直接找健康管理员",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-07",
+      "name_zh": "银龄数字帮扶",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI教程"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：代际志愿者教学"
+      },
+      "confirmation_zh": "AI块释放→志愿者块占用",
+      "followup_zh": "72h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "社区数字帮扶站人工教学",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-08",
+      "name_zh": "银龄夜间安全",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI导航"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：值班确认安全抵达"
+      },
+      "confirmation_zh": "AI块释放→值班块占用",
+      "followup_zh": "次日回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "直接拨打夜间值班电话",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-09",
+      "name_zh": "银龄文化参与",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI推荐活动"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：人工确认报名"
+      },
+      "confirmation_zh": "AI块释放→场馆块占用",
+      "followup_zh": "活动后48h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "电话报名全程人工",
+      "status": "synthetic_only",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-10",
+      "name_zh": "银龄家庭联动",
+      "ai_block": {
+        "state": "released_after_handover",
+        "detail_zh": "AI完成：AI代办"
+      },
+      "human_block": {
+        "state": "occupied_after_confirmation",
+        "detail_zh": "人工接管：家属确认（老人知情）"
+      },
+      "confirmation_zh": "AI块释放→家属块占用",
+      "followup_zh": "48h回访",
+      "no_gap_no_overlap": true,
+      "ai_free_path_zh": "家属直接线下代办",
+      "status": "synthetic_only",
+      "field_results": null
+    }
+  ]
+}

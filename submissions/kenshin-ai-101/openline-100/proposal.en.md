@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A century ago China built the Jing-Zhang railway to win its own right-of-way; this century we open a civic road you can join, verify, exit and inherit—Why Jing-Zhang: The Openline 100. Three chapters run together: the Openline is the road and Open Ticket is the fare; a capital loop makes every phase answer build / pay / operate / return; rails of humanity—in 1909 the character “ren” (person) drew the line's shape, in this century it names whom the line belongs to. AI is the vehicle on the road, not the object of the ticket. Districts keep the taskbook's words: AI Origin = the source of innovation, Dazhongsi = The Native Street, Zhongzhiyuan = the Garden Innovation Street. Overlay completed against the 2026-08-11 approved block plan's public text; provisional footprints remain the discussion base; adopted sheets still trigger a full-package recalculation."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.24-review-repairs"
+iteration: "v1.28-infographic-craft"
 ---
 
 # Why Jing-Zhang: The Openline 100
@@ -52,7 +52,7 @@ The four gates write Join · Verify · Exit · Inherit as an executable fare sys
 
 ### Chapter 2 · Capital loop
 
-Bankability is not a finer timeline. Each phase must answer **what is built / who pays / who operates / how revenue returns to the public realm**. Three financing scenes—special-purpose bond / district pooling / corporate adoption—relay; they are not a multiple-choice. Phase-three adoption is bound by the Open Ticket permission chain; the public interface stays public.
+Bankability is not a finer timeline. Each phase must answer **what is built / who pays / who operates / how revenue returns to the public realm**. Three financing scenes—special-purpose bond / district pooling / corporate adoption—relay; they are not a multiple-choice; all are comparable concept scenarios with preconditions and Plan Bs, not settled financing arrangements. Phase-three adoption is bound by the Open Ticket permission chain; the public interface stays public.
 
 ![Capital logic: each phase answers build / pay / operate / return](assets/figures/phasing-capital.en.png)
 
@@ -89,9 +89,9 @@ The three chapters are the narrative spine. Everything else supports this road�
 | Layer | System | Relation to the three chapters |
 | --- | --- | --- |
 | Spatial | Dual-line spine (L1 Fact Line / L2 Openline Spine) + axis + three stitches + two centers and one core | The road's material layer: cut the spatial cost of finding collaborators and completing review |
-| Landmark | Kilometer Zero · The Join | Ritual nails for join and transfer—not toll booths |
+| Landmark | Kilometer Zero · The Join · The Strata Wall | Three pilgrimage landmarks: join nail / transfer field / inherit wall—not toll booths, not renamed furniture |
 | Fare | Open Ticket (four strata × four gates) + three innovation mechanisms | One fare system for the line; full-stack / open question / urban adoption is how the gates run in each area |
-| Scenario | Three full-depth cards + ten-item scene index (S-01–S-10) | The ticket's daily layer: each district's production function—skip one step and it is fake |
+| Scenario | Ten full-depth cards (one eight-item card per S-01–S-10) | The ticket's daily layer; Cards 01–03 are the three district production functions |
 | Futures | Eight Form Questions · Foresight Matrix · Invariant List (Appendix A) | The road's longevity layer; capital loop and rails of humanity are Chapters 2 and 3 |
 
 ## Design basis and source inventory
@@ -101,6 +101,17 @@ This proposal responds to the Haidian Branch of Beijing Municipal Commission of 
 Source use follows the central registry [source:SOURCE-REGISTRY]: formal-ready materials support tasks and standards; background_only stays background; provisional boundaries remain provisional intake only. Agents must not upgrade provisional geometry into official redlines, statutory controls, or government implementation promises.
 
 **Registry discipline (stated item by item as required by review):** the four external records `HD-JINGZHANG-BLOCK-PLAN-20260811`, `HD-JINGZHANG-CONTROL-PLAN-ADOPTION-20250208`, `HD-JINGZHANG-BLOCK-PLAN-DRAFT-20241227`, `ZGC-SCIENCE-CITY-NORTH-202312`, together with People.cn / Beijing Daily field facts and the OSM 2026-08 basemap, are **not listed in the registry's approved_formal_sources**. This package downgrades all of them to **background / pending-review evidence** (each is marked `package_usability: background_pending_registry_review` in sources.json): none of them alone supports "formal overlay", "statutory center", or any adopted metric. Every structural alignment drawn from the 2026-08-11 approval coverage (one belt / one axis / two centers / multiple nodes, extents, 1,668.2 ha) is worded as "news-reported approval, pending registry verification"; parcel sheets and intensities remain `unknown`. The OSM basemap's extraction range, snapshot date, processing pipeline, and ODbL attribution are documented in the `OSM-BASEMAP-202608` source card in sources.json. Per-item source cards are complete in sources.json; this discipline holds until the registry approves them [source:SOURCE-REGISTRY].
+
+**Non-formal source → dependent claims → status table** (this package never self-upgrades a source to formal evidence via submissions/sources.json):
+
+| Source | Use inside the package | How dependent claims are worded | Status |
+|---|---|---|---|
+| HD-JINGZHANG-BLOCK-PLAN-20260811 (approval news) | Structural alignment: one belt / one axis / two centers / multiple nodes, extents, 1,668.2 ha | Always "news-reported approval, pending registry verification"; never claimed as formal overlay or statutory center | background_pending_registry_review |
+| HD-JINGZHANG-CONTROL-PLAN-ADOPTION-20250208 (consultation-adoption notice) | Plan title, junction and road name checks | Name evidence only; supplies no intensity, boundary, or parcel sheet | background_pending_registry_review |
+| HD-JINGZHANG-BLOCK-PLAN-DRAFT-20241227 (draft coverage) | Draft-stage facility counts (298/37/62/36) and landscape belts | Marked as draft-stage public figures; the approval news did not repeat them, so they are not upgraded to adopted metrics | background_pending_registry_review |
+| ZGC-SCIENCE-CITY-NORTH-202312 | Background for regional coordination (North interface) | Background only; every regional direction is worded as interface design, not a cooperation commitment | background_pending_registry_review |
+| People.cn / Beijing Daily field facts | Atmosphere and event background | Narrative background only; never enters metrics or serves as tenure / implementation evidence | background_pending_registry_review |
+| OSM-BASEMAP-202608 (2026-08 snapshot) | All real-fabric base maps | Extraction range / snapshot / pipeline / ODbL attribution in the source card; basemap geometry never substitutes official survey | background_pending_registry_review (ODbL compliance declared) |
 
 The overall design footprint and three key areas currently come from repository provisional polygons marked `provisional_constraint` and `official_boundary=false` [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]. They support generation, visualization, and intake self-check—not approval or precise-area conclusions. Organizer data gaps do not block content scoring. When official polygons arrive, regenerate the full package.
 
@@ -219,7 +230,19 @@ Therefore: keep doing Zhongzhiyuan detailed design. Do not paint it as this plan
 
 ### Naming, Logo, and Visual Identity System
 
-**Title:** Why Jing-Zhang: The Openline 100. **Road and ticket:** the Openline is the road; Open Ticket is the fare—the fare name is not a third logo. **Logo direction:** a walkable spine through "100"—no planar geometry pairing as landmarks. The three positionings translate culture belt / urban AI life belt / AI fusion innovation belt into: cultural Openline (heritage walkable), life Openline (talent can stop), innovation Openline (outputs verifiable) [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+**Title:** Why Jing-Zhang: The Openline 100. **Road and ticket:** the Openline is the road; Open Ticket is the fare—the fare name is not a third logo. The three positionings translate culture belt / urban AI life belt / AI fusion innovation belt into: cultural Openline (heritage walkable), life Openline (talent can stop), innovation Openline (outputs verifiable) [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+
+**Logo construction (verifiable rules, not a direction sentence):** the mark is a walkable thin spine crossing a serif "100". The spine is the road; 100 is inheritable kilometres and cohorts, not decoration. The Chinese question "Why Jing-Zhang" may sit above the spine; The Openline 100 sits below. Open Ticket must not enter the master mark.
+
+| Rule | Spec | Forbidden |
+| --- | --- | --- |
+| Construction | Continuous spine (one break allowed for a stitch) + "100"; single colour first | Copper disc, triangle, a third geometric seal, switchback-rail glyph |
+| Minimum size | Print short side ≥ 12 mm; screen long side ≥ 96 px; spine ≥ 0.35 mm / 2 px | Faking legibility by fattening a sub-minimum mark |
+| Clear space | Margin on all sides equal to the height of "100"; no fight with landmark icons, QR codes, or photos | Drawing Zero / Join / Strata Wall into the logo |
+| Reverse | Deep ground uses paper-soft `#F7F5F0` or paper white; light ground uses ink; contrast ≥ 4.5:1 | Fluorescent, gradient stroke, metallic brush |
+| Application | Board headers, A0 footers, HTML titles, wayfinding posts; mono and reverse share one construction | A second logo per district; drawing Open Ticket as a second master mark |
+
+The master mark identifies the belt. Landmarks are distinguished by spatial type, not by pairing geometries.
 
 **Five functions land on the taskbook's own words—no second set:**
 
@@ -409,7 +432,7 @@ The taskbook-required **AI innovation ecosystem map** lands here: not a director
 
 #### Eight mechanism factors (isomorphic with the map)
 
-Land · space · industry · capital · talent · compute · data · scenes map to: catalyst partitions, dual-line Openline, three regimes, capital meeting interface (concept), personas, authorized edge compute, salon authorization lists, three full-depth scenario cards [depth:metrics_recalculation].
+Land · space · industry · capital · talent · compute · data · scenes map to: catalyst partitions, dual-line Openline, three regimes, capital meeting interface (concept), personas, authorized edge compute, salon authorization lists, ten full-depth scenario cards [depth:metrics_recalculation].
 
 Future-city judgment: AI changes who may enter the innovation process, not only whether buildings hold compute. The Openline keeps work, learning, release, verification, and living within walkable distance; the seventeen actor types meet through Openline interfaces rather than one closed park [standard:MOHURD-URBAN-DESIGN-MEASURES] [data:geometry/public_space.geojson#PUBLIC-JOIN].
 
@@ -700,7 +723,7 @@ Line 12 Exit D ── 1733 public RoW ── four-quadrant walk ── Line 13 A
 
 Openline users are participants who enter and exit under the open rules, not managed objects. Personas and cards are conceptual, with privacy boundaries and human review [source:AGENT-TASKBOOK].
 
-**Depth over breadth, and 1:1 to the three key areas.** Positioning is settled: Card 01 = Origin origination crossing the wall, Card 02 = Dazhongsi street adoption, Card 03 = Zhongzhiyuan full-stack upgrade. Depth is not "five stops in one day." It is each district's production logic—**skip one step and it is fake**. Card 01 is a causal chain (rights → match → claim → use → leave); Card 02 is parallel layers (street rule ‖ off-street exception ‖ living remainder), with arrival only testing whether a passerby can meet the rule; Card 03 is temporal layers (invariant / variable / license), with the 15-minute walk only testing whether the stack remains readable after generation-change. The remaining ten stay a one-line **scene index (S-01–S-10)**. Answer-before-the-call drops to east-wing index S-09. The brief's ≥3 industry test/verification scenes are carried by Card 02 street trials, Card 03 upgrade permission and the governance door, together with S-02, S-03, and S-08.
+**Depth over breadth, and 1:1 to the three key areas.** Positioning is settled: Card 01 = Origin origination crossing the wall, Card 02 = Dazhongsi street adoption, Card 03 = Zhongzhiyuan full-stack upgrade. Depth is not "five stops in one day." It is each district's production logic—**skip one step and it is fake**. Card 01 is a causal chain (rights → match → claim → use → leave); Card 02 is parallel layers (street rule ‖ off-street exception ‖ living remainder), with arrival only testing whether a passerby can meet the rule; Card 03 is temporal layers (invariant / variable / license), with the 15-minute walk only testing whether the stack remains readable after generation-change. S-01–S-10 are now ten full-depth cards, each with the eight required items. Answer-before-the-call remains east-wing card S-09 / D-10. The brief's ≥3 industry test/verification scenes are carried by Card 02 street trials, Card 03 upgrade permission and the governance door, together with S-02, S-03, and S-08.
 
 | Persona | Need | Spatial response | Boundary |
 | --- | --- | --- | --- |
@@ -727,7 +750,7 @@ Openline users are participants who enter and exit under the open rules, not man
 | **09 Data-element meeting hall** (S-08) | Test & verify | Data trading stays downstairs, never on the street | Authorization lists + audit trails + human compliance; without audit trails the hall becomes a grey market | Verify → Exit → Inherit | Appendix D-09 |
 | **10 Answer-before-ask** (S-09) | Public service | AI hears people first; a human is always present | Hear → anticipate → get it done → else a standardized ticket to 12345; without a human backstop the service discriminates against the digitally disadvantaged | Join → Exit | Appendix D-10 |
 
-Each of the ten cards carries the required eight: users / place / trigger / operations / data minimization / human review / exit & shutdown / metrics. S-01 open-launch hall and S-07 near-campus conversion street are covered inside Card 01's full text (Appendix C-1) as its independent operating form and continuous interface; the S-10 event-week route lives in OL-06 and the long-term operations chapter—the index is fully covered without duplicating full texts.
+Each of the ten cards carries the required eight: users / place / trigger / operations / data minimization / human review / exit & shutdown / metrics. S-02 / S-03 / S-04 / S-05 / S-06 / S-08 / S-09 are Appendix D-04–D-10. **S-01 / S-07 / S-10 are no longer counted by folding them into another card**; each has its own eight-item card (D-S01 / D-S07 / D-S10). Cards 01–03 remain the three district production-function texts (Appendix C) and do not replace index numbers.
 
 ### Scene index S-01–S-10 (one line each)
 
@@ -871,6 +894,18 @@ The three landmarks host the civic procedures of joining, turning, and inheritin
 
 **Component library:** station kiosk, tree-pit seats, movable walls, accessible ramps, multilingual posts, booking posts, rain continuity, emergency clear zones—versioned under Inherit.
 
+**Accessibility and digital inclusion: verifiable notes, not principle sentences.** Machine-vision screenshots cannot certify accessibility. The five items below are design and acceptance protocols. Field checks sit on P-01–P-10; this package does not pretend they are finished.
+
+| Item | Verifiable requirement | Honest status until surveyed |
+| --- | --- | --- |
+| Continuous-path audit | One wheelchair-continuous chain each at the three landmarks, five transverse accesses, and Dazhongsi's four quadrants; breaks are work orders, not fake ramps | P-01 / P-02 await timed walks and level-change survey |
+| Braille / tactile / audio | Tactile maps + spoken prompts at landmarks and stations; off by default, refuseable; never a substitute for asking a person | Components are in the library; points await survey |
+| Cognitive ease | Wayfinding uses at most two decisions; icon + short sentence; no metaphor-only place names | Sheet-level layout awaits the official wayfinding brief |
+| Low-vision contrast | Master mark, wayfinding, and shutdown buttons ≥ 4.5:1; reverse and mono share one construction | Logo rules are in the table above; site illuminance awaits survey |
+| Children and caregivers | School-safe and grocery paths, grades, and rest points sit in Card 02's living remainder; stroller width reserved | P-07 awaits the community-front survey |
+
+After tech shutdown, fixed ramps, tactile maps, human windows, and phone channels continue. Refusing the digital channel does not downgrade the service.
+
 ### Culture narrative and wayfinding
 
 The story is the same generation as Chapter 3—not the old three-segment epic of Jing-Zhang / Zhongguancun / Openline. The line is **rails of humanity** [source:AGENT-TASKBOOK] [depth:blue_green_public_space]:
@@ -989,6 +1024,8 @@ Class 2 (block structure known, parcel intensity unknown): FAR, density, height 
 
 This proposal claims no official approval, approved controls, final tenure, final building scale, or delivery guarantee. The AI agent is responsible for facts, sources, copyright, and expression; all spatial ideas are conceptual suggestions for professional teams. Assets: `sources.json`, `report/copyright_statement.md`; `visual/index.html` stays offline with no remote dependencies.
 
+**Rights-clearance summary (full itemized ledger in `report/copyright_statement.md`, directly auditable by reviewers):** (1) Base maps — OpenStreetMap data (c) OSM contributors, ODbL 1.0; attribution rides on every figure and this package; extraction range / snapshot / pipeline in the `OSM-BASEMAP-202608` source card. (2) Fonts — Noto Sans SC (SIL OFL 1.1); the Chinese HTML embeds a subset limited to actual document glyphs; OFL permits subsetting and embedding, and the embedded font is renamed `OpenlineEmbeddedSC`; OFL compliance points are stated item by item in the ledger (the full license text is cited by pointer to its canonical source). (3) Images — every figure is generated locally by this package's scripts; no third-party photos, stock, or aerial imagery. (4) Generation tooling — figures come from a matplotlib / reportlab / PIL pipeline; text was drafted by the AI agent and checked section by section by a human pass. (5) Third-party names — the Sasaki graphic standard, Station F and other cases are referenced as method or by nominative mention only; none of their marks or graphic assets are used. (6) Original content in this package is published under COMMUNITY-DISPLAY-ONLY.
+
 ## Appendix A | Urban form for the AI era: Eight Form Questions · Foresight Matrix (full text)
 
 > Moved from the Coordinated Research chapter; content unchanged. The main text keeps only the theoretical ground and a one-line index to preserve the single master-concept narrative.
@@ -1060,7 +1097,7 @@ Cases transfer spatial and operating mechanisms only—no invented investment, f
 | 7 | Cyberport (Hong Kong) | Enterprise services beside public performance | Existing 1733 bookable rooms (demo / data salon) | Fiscal incentives as facts |
 | 8 | Zhongguancun street network | Near-campus, near-rail, near-life mixed blocks | Wudaokou–Tsinghua East stitch + living demo street | Erasing the distinction between Origin and Zhongzhiyuan |
 
-## Appendix C | Three full-depth scenario cards (1:1 to the three key areas)
+## Appendix C | Three district production-function texts (Cards 01–03 · 1:1 to the three key areas)
 
 > The main text keeps summaries. This appendix writes each district's production logic—skip one step and it is fake—not sightseeing stops. Answer-before-the-call lives on east-wing index S-09.
 
@@ -1173,7 +1210,7 @@ A generation-change license must be witnessable by a passerby, or the license la
 
 ## Appendix D | Scenario cards 04–10, full texts (each card's eight: users / place / trigger / operations / data minimization / human review / exit & shutdown / metrics)
 
-Seven cards correspond to scene index S-02 / S-03 / S-04 / S-05 / S-06 / S-08 / S-09; together with Cards 01–03 they make ten full-depth cards. All are concept proposals: steps involving owner agreements, administrative permits, or data compliance are marked pending and are not claimed as authorized [depth:ai_application_scenarios].
+S-01–S-10 each have one eight-item card: D-S01, D-04–D-10, D-S07, D-S10. Cards 01–03 are the three district production-function texts (Appendix C) and do not replace index numbers. All are concept proposals: steps involving owner agreements, administrative permits, or data compliance are marked pending and are not claimed as authorized [depth:ai_application_scenarios].
 
 ### D-04 Safety governance sandbox (S-02 · test & verify · Zhongzhiyuan)
 
@@ -1280,11 +1317,57 @@ Seven cards correspond to scene index S-02 / S-03 / S-04 / S-05 / S-06 / S-08 / 
 | Exit & shutdown | Refusal carries no penalty and no service downgrade; a station can close while phone and window channels remain |
 | Metrics | Human-handoff rate, first-time resolution rate, response time, exit rate with zero-penalty audit |
 
+### D-S01 Open-source hall (S-01 · industry collaboration · Origin)
+
+**Core concept: public agenda, human host—the hall is not a room rental.** This is Card 01's "claim" step as a standalone operation; it still uses the authorization window and does not invent a second wall-crossing rule.
+
+| Item | Content |
+| --- | --- |
+| Users | Open-source developers, startup teams, faculty and students, walk-in observers |
+| Place | Origin Community open-source hall (a separately operated room inside Card 01's corridor slice; may time-share with the first-launch hall) |
+| Trigger | Public-agenda signup; no posting without an ownership note from the authorization window |
+| Operations | Human host; agenda, licenses, and failure records posted on the spot; audience may question and leave |
+| Data minimization | Session count and license type only; no faces, no developer dossiers |
+| Human review | Host reviews ownership and clearance; disputes go to the human legal window (S-07) |
+| Exit & shutdown | A release may be withdrawn with a receipt; the hall may close while the public question wall stays readable |
+| Metrics | Public sessions, withdrawal handling time, unauthorized-posting events (target always 0) |
+
+### D-S07 Near-campus conversion street (S-07 · conversion service · Origin)
+
+**Core concept: authorization window—prototype shop—release hall must be continuous; miss one link and the eight-find is a directory.** This is Card 01's rights→match front, not a second conversion product.
+
+| Item | Content |
+| --- | --- |
+| Users | Faculty and students, tech-transfer staff, firm counterparts, first community users |
+| Place | Origin conversion-street continuous front (window + prototype shop + walk to the hall) |
+| Trigger | Rights-holders book an authorization consult; no matching without campus/institute authorization |
+| Operations | Human legal window explains license tiers; eight-find completed inside a walk; no closed membership zone |
+| Data minimization | Authorization status and license IDs only; no faculty/student portraits |
+| Human review | Every authorization is human-signed; matches may be appealed |
+| Exit & shutdown | Authorization may be withdrawn; the window may close without cutting street passage |
+| Metrics | Authorization turnaround, walk continuity rate, withdrawal-receipt completeness |
+
+### D-S10 Global AI Activity Week route (S-10 · cultural operations · belt public system)
+
+**Core concept: events use the existing public system; components version under Inherit; the week does not build a second city.** This is OL-06, not a third operations brand.
+
+| Item | Content |
+| --- | --- |
+| Users | Residents, developers, international visitors, volunteers |
+| Place | L1/L2 public spine + three pilgrimage landmarks + station network (no new occupation of the park core) |
+| Trigger | Annual event permit + approved safety plan, then open signup |
+| Operations | Routes, stalls, and volume obey the street rule; sponsors need clearance; the basic route stays free |
+| Data minimization | Minimal signup fields; no face check-in; image release needs the subject's consent |
+| Human review | Safety plan and clearance list are human-reviewed; noise and occupation can be stopped on the spot |
+| Exit & shutdown | The event may be cancelled; components return to the versioned library; the ground returns to public passage |
+| Metrics | Clearance pass rate, core-occupation time (target near 0), component return-to-library rate |
+
 ## References
 
 - brief/site-package/design_brief.json, allowed_design_space.json, agent_taskbook.json
 - data/source_registry.json, data/processed/agent_fact_pack.md and sibling CSVs
 - docs/terminology-glossary.md
+- report/copyright_statement.md (itemized rights ledger: OSM ODbL / Noto OFL / locally generated imagery / generation tooling / third-party names / license)
 - 2026-08-11 block-plan approval coverage: Beijing Daily / People.cn 2026-08-12, CNR 2026-08-12, Capital Window Beijing News 2026-08-12 ([source:HD-JINGZHANG-BLOCK-PLAN-20260811])
 - 2025-02-08 draft consultation-adoption notice, Haidian Branch of BMPNR ([source:HD-JINGZHANG-CONTROL-PLAN-ADOPTION-20250208])
 - 2024-12-27 Beijing Evening News draft-stage public wording, background only, not upgraded to adopted metrics ([source:HD-JINGZHANG-BLOCK-PLAN-DRAFT-20241227])

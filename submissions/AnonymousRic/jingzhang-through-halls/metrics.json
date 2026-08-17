@@ -1,0 +1,772 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(site_boundary)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1496090.284,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(unary_union(green_space)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 201520.313,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(unary_union(public_space)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 15035.971,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(unary_union(conceptual_building_footprints)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual prototype footprints; not existing-building survey or approved construction scale."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.131089,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.017657,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.001317,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Design-prototype ratio only; official building coverage control is unknown."
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 11154.259,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(unary_union(conceptual_road_centerlines)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual walking/cycling/service alignment; not a road redline."
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(land_use)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_coverage_gap_sqm": {
+      "status": "known",
+      "value": 0.984,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "abs(area(unary_union(land_use)) - area(unary_union(site_boundary))) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims.",
+        "A residual of no more than 2 sqm is treated as serialization/topology tolerance and must be snapped to zero when authoritative parcel geometry replaces the provisional model."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_area_features)",
+      "confidence": "high",
+      "assumptions": [
+        "Count is fixed by the official announcement; polygons remain provisional."
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenarios.json"
+      ],
+      "formula": "count(DSC scenario records)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_primary_anchor_coverage_ratio": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/scenarios.json",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "scenarios_with_one_valid_primary_anchor / scenario_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_spatial_contract_coverage_ratio": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/scenarios.json",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "scenarios_with_C_W_H_closure_access_queue_logistics_and_egress_geometry / scenario_count",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual reference modules only; survey, fire, accessibility, ownership, and operations review remain mandatory."
+      ]
+    },
+    "scenario_interface_feature_count": {
+      "status": "known",
+      "value": 39,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "scenario_count * 3 public/staffed/operations interface roles",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_operational_constraint_count": {
+      "status": "known",
+      "value": 52,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "scenario_count * 4 operational separation lines",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "dazhongsi_georeferenced_design_feature_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson",
+        "geometry/phasing.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(all geometry_role=design_proposal features with positive-dimensional or point containment overlap with PROV-KEY-003 in EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "PROV-KEY-003 remains only as a non-design provisional hold mask because its published repository position is disputed; FIG.03 instead provides a non-georeferenced, non-boundary and non-quantitative four-quadrant concept covering function, building action, mobility, public space, operations, and start conditions."
+      ]
+    },
+    "dazhongsi_public_context_feature_count": {
+      "status": "known",
+      "value": 270,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/osm_context.json"
+      ],
+      "formula": "count(OSM road, railway, transit-stop, station-access, and building context features tagged PUBLIC-ANCHOR-DZS)",
+      "confidence": "medium",
+      "assumptions": [
+        "Orientation context only under ODbL; not the 72-hectare key-area boundary, a survey base, or a design-area measurement."
+      ]
+    },
+    "dazhongsi_design_overlap_area_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area(design_proposal feature intersection PROV-KEY-003)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "dazhongsi_design_overlap_length_m": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/constraints.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(length(design_proposal feature intersection PROV-KEY-003)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_design_tile_count": {
+      "status": "known",
+      "value": 16.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use features where geometry_role=design_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Computational topology tiles are not parcels, ownership units, or regulatory-plan blocks."
+      ]
+    },
+    "dazhongsi_hold_partition_piece_count": {
+      "status": "known",
+      "value": 2.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(land_use topology pieces where zone_id=DZHOLD and geometry_role=provisional_constraint)",
+      "confidence": "high",
+      "assumptions": [
+        "These pieces close the topology only; they carry no land-use, phasing, road, station, or development proposal."
+      ]
+    },
+    "confirmed_project_owner_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/projects.json"
+      ],
+      "formula": "count(projects with a confirmed accountable legal entity)",
+      "confidence": "high",
+      "assumptions": [
+        "No accountable legal entity is invented; all nine projects remain blocked from activation."
+      ]
+    },
+    "site_area_reported_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "official announcement reported approximate area",
+      "confidence": "high",
+      "assumptions": [
+        "Approximate reported scope area; not an exact polygon calculation."
+      ]
+    },
+    "zhongzhiyuan_reported_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "official announcement reported approximate area",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_origin_reported_area_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "official announcement reported approximate area",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "dazhongsi_reported_area_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "official announcement reported approximate area",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved parcel controls and verified existing floor area are unavailable."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site polygon are unavailable."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "area(official_road_redlines)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines are unavailable."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines and site polygon are unavailable."
+    },
+    "official_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls and applicable constraint layers are unavailable."
+    },
+    "official_setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_setback_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Road, fire-control, municipal and heritage setback controls are unavailable."
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(normalized_dimension_score * approved_dimension_weight) across research, enterprise, talent, testing, technology-transfer, and public service dimensions",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No officially adopted local baseline, weights, reporting year, or verified input series is available.",
+      "measurement_unit": "0-100 index",
+      "activation_condition": "The competent authority approves the indicator dimensions, weights, reporting year, study boundary, and auditable input series.",
+      "required_source_fields": [
+        "dimension",
+        "definition",
+        "numerator",
+        "denominator",
+        "reporting_year",
+        "study_boundary",
+        "source_owner",
+        "weight",
+        "verification_status"
+      ]
+    },
+    "ai_talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "verified full-time AI R&D and technical-service personnel / verified AI industry and research gross floor area in hectares",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Employer-level aggregate personnel counts and verified AI-space floor areas are unavailable.",
+      "measurement_unit": "persons per hectare of verified AI industry and research floor area",
+      "activation_condition": "Use aggregated, non-personal employer records for one reporting year and a verified floor-area inventory within the same boundary.",
+      "required_source_fields": [
+        "reporting_year",
+        "employer_id",
+        "eligible_personnel_count",
+        "eligible_floor_area_sqm",
+        "address",
+        "boundary_match",
+        "source_owner"
+      ]
+    },
+    "ai_industry_output_value": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(audited annual operating revenue or officially defined output value of eligible AI entities within the study boundary), with duplicate legal entities removed",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "An official statistical definition, reporting-year enterprise roster, and auditable financial or statistical series are unavailable.",
+      "measurement_unit": "CNY per reporting year",
+      "activation_condition": "The statistics authority confirms the output definition, eligible entity roster, boundary, reporting year, and de-duplication rule.",
+      "required_source_fields": [
+        "reporting_year",
+        "legal_entity_id",
+        "eligible_ai_business_rule",
+        "registered_or_operating_address",
+        "reported_value",
+        "value_definition",
+        "source_owner"
+      ]
+    },
+    "ai_enterprise_cluster_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "count(distinct verified active AI enterprises with an operating site inside the official boundary) / official study area in square kilometres",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "A verified, de-duplicated enterprise roster and official study polygon are unavailable.",
+      "measurement_unit": "active AI enterprises per square kilometre",
+      "activation_condition": "Confirm the AI-enterprise eligibility rule, active status, operating address, reporting date, and official polygon.",
+      "required_source_fields": [
+        "legal_entity_id",
+        "active_status",
+        "eligible_ai_business_rule",
+        "operating_address",
+        "reporting_date",
+        "boundary_match"
+      ]
+    },
+    "ai_industry_space_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(verified gross floor area assigned to eligible AI research, testing, incubation, enterprise service, and supporting production uses)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No building-level existing-use survey, tenancy roster, ownership record, or verified gross-floor-area dataset is available.",
+      "activation_condition": "Complete a building and tenancy inventory with surveyed floor area, use, vacancy, rights, and operating status.",
+      "required_source_fields": [
+        "building_id",
+        "floor_id",
+        "gross_floor_area_sqm",
+        "current_use",
+        "eligible_ai_space_rule",
+        "occupancy_status",
+        "rights_status",
+        "survey_date"
+      ]
+    },
+    "ai_industry_space_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "ai_industry_space_area_sqm / regional_total_building_floor_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Both the eligible AI-space area and regional total building floor area are unavailable.",
+      "activation_condition": "Activate only after both numerator and denominator use the same official boundary, survey date, and gross-floor-area convention.",
+      "required_source_fields": [
+        "ai_industry_space_area_sqm",
+        "regional_total_building_floor_area_sqm",
+        "study_boundary",
+        "survey_date"
+      ]
+    },
+    "regional_total_building_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(verified existing gross floor area within the official overall-design boundary)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing-building survey, approved floor-area records, and the official overall-design polygon are unavailable.",
+      "activation_condition": "Reconcile survey, planning-permit, completion-acceptance, and building-register records against the official polygon.",
+      "required_source_fields": [
+        "building_id",
+        "gross_floor_area_sqm",
+        "status",
+        "source_record",
+        "survey_date",
+        "boundary_match"
+      ]
+    },
+    "renewal_potential_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(parcel or building areas classified through verified retain, repair, adapt, replace, or public-realm-improvement screening)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Building condition, use efficiency, vacancy, ownership, heritage, infrastructure capacity, and regulatory constraints are unavailable at parcel level.",
+      "activation_condition": "Complete site survey and multi-department verification before assigning any parcel or building to a renewal class.",
+      "required_source_fields": [
+        "spatial_unit_id",
+        "current_use",
+        "condition",
+        "occupancy",
+        "ownership",
+        "heritage_constraint",
+        "utility_capacity",
+        "renewal_class",
+        "reviewer",
+        "review_date"
+      ]
+    },
+    "live_work_learning_service_completeness": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "100 * count(accessibly reachable categories among work, housing, daily service, learning, and recreation) / 5, assessed by verified walking network and agreed time threshold",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "A verified facility inventory, accessible walking network, residential and employment data, and an approved travel-time threshold are unavailable.",
+      "measurement_unit": "0-100 completeness index",
+      "activation_condition": "Agree the five-category facility standard and travel-time threshold, then validate facilities, entrances, opening hours, capacity, and accessible routes.",
+      "required_source_fields": [
+        "facility_id",
+        "category",
+        "entrance",
+        "opening_hours",
+        "capacity",
+        "accessible_route",
+        "travel_time",
+        "study_boundary"
+      ]
+    },
+    "land_use_z01_area_sqm": {
+      "status": "known",
+      "value": 867837.301,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(unary_union(land_use where zone_id=Z01)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_z02_area_sqm": {
+      "status": "known",
+      "value": 2389313.154,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(unary_union(land_use where zone_id=Z02)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_z03_area_sqm": {
+      "status": "known",
+      "value": 1958087.048,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(unary_union(land_use where zone_id=Z03)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_z04_area_sqm": {
+      "status": "known",
+      "value": 1942245.189,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(unary_union(land_use where zone_id=Z04)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_z05_area_sqm": {
+      "status": "known",
+      "value": 1247597.477,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(unary_union(land_use where zone_id=Z05)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_z06_area_sqm": {
+      "status": "known",
+      "value": 2287113.441,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(unary_union(land_use where zone_id=Z06)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phase_p01_area_sqm": {
+      "status": "known",
+      "value": 5476956.106,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(unary_union(phasing where phase_id=P01)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phase_p02_area_sqm": {
+      "status": "known",
+      "value": 5215237.503,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(unary_union(phasing where phase_id=P02)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phase_p03_area_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(unary_union(phasing where phase_id=P03)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "P03 intentionally has zero georeferenced area while the Dazhongsi location anomaly and official station-area evidence gap remain unresolved."
+      ]
+    }
+  }
+}

@@ -264,6 +264,7 @@ def build_self_check(
     submission_dir: Path,
     pr_author: str,
     *,
+    pr_author_id: int | None = None,
     allow_pending_self_check: bool = False,
 ) -> dict[str, Any]:
     repo_root = repo_root.resolve()
@@ -278,6 +279,8 @@ def build_self_check(
         pr_author,
         "--json",
     ]
+    if pr_author_id is not None:
+        validation_command.extend(["--pr-author-id", str(pr_author_id)])
     if allow_pending_self_check:
         validation_command.append("--allow-pending-self-check")
     validation = run_json_command(validation_command)
@@ -477,6 +480,11 @@ def main() -> int:
         help="Exact GitHub login of the PR author; must match the directory owner",
     )
     parser.add_argument(
+        "--pr-author-id",
+        type=int,
+        help="Stable numeric GitHub user ID; required only for a maintainer-approved login alias",
+    )
+    parser.add_argument(
         "--repo-root",
         default=".",
         help="Repository root directory (default: current working directory)",
@@ -505,6 +513,7 @@ def main() -> int:
         repo_root,
         submission_dir,
         args.pr_author,
+        pr_author_id=args.pr_author_id,
         allow_pending_self_check=args.mark_self_checked,
     )
     if args.mark_self_checked:
@@ -519,7 +528,12 @@ def main() -> int:
                 report.setdefault("next_actions", []).append(error)
                 report["self_checked_manifest_updated"] = False
             else:
-                verified = build_self_check(repo_root, submission_dir, args.pr_author)
+                verified = build_self_check(
+                    repo_root,
+                    submission_dir,
+                    args.pr_author,
+                    pr_author_id=args.pr_author_id,
+                )
                 if verified["ok"]:
                     report = verified
                     report["self_checked_manifest_updated"] = True

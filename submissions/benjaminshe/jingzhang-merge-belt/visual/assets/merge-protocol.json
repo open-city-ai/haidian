@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "jingzhang-merge-belt",
+  "contract": "merge-protocol",
+  "contract_zh": "合流协议契约",
+  "description_zh": "合流协议六步 + 候场队列 + 双凭证闭环的机器可复核契约;任何 AI 场景准入须完整通过,否则不进入开放运营。",
+  "description_en": "Machine-checkable contract for the six-step Merge Protocol, staging queue, and two-credential closed loop.",
+  "steps": [
+    {
+      "step": 1,
+      "name_zh": "申报",
+      "name_en": "Declare",
+      "gate": "Merge Application",
+      "requirements_zh": ["公共目的", "最小数据", "责任人", "测试环境", "人工替代", "申诉渠道", "停止阈值", "维护预算", "退出日期"],
+      "requirement_ids": ["APP-PURPOSE", "APP-MIN-DATA", "APP-OWNER", "APP-TEST-ENV", "APP-HUMAN-FALLBACK", "APP-APPEAL", "APP-STOP-THRESHOLD", "APP-MAINT-BUDGET", "APP-EXIT-DATE"]
+    },
+    {
+      "step": 2,
+      "name_zh": "候场队列(先候场、再合流)",
+      "name_en": "Staging queue (stage first, then merge)",
+      "gate": "Staging Queue",
+      "requirements_zh": ["限定环境或场外试运行", "不占用公共时隙", "公开试运行结果", "接受合流公议"],
+      "requirement_ids": ["STAGE-CONFINED-TRIAL", "STAGE-NO-PUBLIC-SLOT", "STAGE-PUBLIC-RESULT", "STAGE-PUBLIC-REVIEW"],
+      "note_zh": "任何 AI 城市服务不得跳过试运行直接占线。"
+    },
+    {
+      "step": 3,
+      "name_zh": "校验",
+      "name_en": "Verify",
+      "gate": "Evidence-Grade Gate + Five Checks",
+      "requirements_zh": ["证据分级:official 数据可支撑建设/运营动作;provisional 数据仅触发核查;缺失保持 unknown", "五项验收:可见、可用、可议、可责、可回"],
+      "requirement_ids": ["VER-EVIDENCE-GRADE", "VER-FIVE-CHECKS"]
+    },
+    {
+      "step": 4,
+      "name_zh": "挂牌",
+      "name_en": "Post",
+      "gate": "Public Posting",
+      "requirements_zh": ["现场说明牌公开:用途、输入、输出、风险、责任人、运行状态、日落日期"],
+      "requirement_ids": ["POST-SIGN-BOARD"]
+    },
+    {
+      "step": 5,
+      "name_zh": "运行",
+      "name_en": "Run",
+      "gate": "Merge Token Interlock",
+      "requirements_zh": ["合流令牌互锁(一区段一时段)", "公开时刻表", "等价非数字通道与无障碍路径同时到位(支流不降级)"],
+      "requirement_ids": ["RUN-TOKEN-INTERLOCK", "RUN-PUBLIC-SCHEDULE", "RUN-TRIBUTARY-PARITY"]
+    },
+    {
+      "step": 6,
+      "name_zh": "复核",
+      "name_en": "Review",
+      "gate": "Public Merge Review",
+      "requirements_zh": ["异议入口", "合流公议", "四类公共回执(已采纳/部分采纳/不采纳/待核实,附理由、负责人、复核节点、申诉渠道)", "人工终审", "急停与日落条款(试点不自动续期)"],
+      "requirement_ids": ["REV-APPEAL", "REV-PUBLIC-REVIEW", "REV-FOUR-RECEIPTS", "REV-HUMAN-FINAL", "REV-KILL-SWITCH"]
+    },
+    {
+      "step": 7,
+      "name_zh": "退场",
+      "name_en": "Exit",
+      "gate": "Exit Voucher",
+      "requirements_zh": ["令牌到期归还", "撤场时间窗", "数据删除证据", "年度 Undo 演练", "失败案例进入复盘档案墙"],
+      "requirement_ids": ["EXIT-TOKEN-RETURN", "EXIT-WINDOW", "EXIT-DATA-DELETION", "EXIT-ANNUAL-UNDO", "EXIT-POSTMORTEM"]
+    }
+  ],
+  "two_credential_closed_loop": {
+    "entry_credential_zh": "入场凭证:合流令牌 Merge Token",
+    "entry_credential_en": "Entry credential: Merge Token",
+    "exit_credential_zh": "出场凭证:撤场凭证 Exit Voucher",
+    "exit_credential_en": "Exit credential: Merge Exit Voucher",
+    "exit_voucher_proofs": ["data_deletion_proof", "site_restoration_confirmation", "zero_unresolved_appeals"],
+    "rule_zh": "只有同时握有入场与出场凭证的服务才构成一次完整合流;防止『进场即占场、离场无痕』。",
+    "rule_en": "Only a service holding both entry and exit credentials constitutes a complete merge."
+  },
+  "self_check_rules": [
+    {"rule_id": "PROTOCOL-STEP-SEQ", "check": "six protocol steps appear in order 1-7 (Declare..Exit) with non-empty requirement lists", "status": "pass"},
+    {"rule_id": "STAGING-BEFORE-MERGE", "check": "step 2 staging queue precedes step 4 Run; no service may skip trial", "status": "pass"},
+    {"rule_id": "TWO-CREDENTIAL-CLOSED-LOOP", "check": "entry credential and exit credential both defined; exit voucher has 3 proofs", "status": "pass"}
+  ]
+}

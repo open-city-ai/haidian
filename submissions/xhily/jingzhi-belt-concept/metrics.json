@@ -1,0 +1,177 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385553982,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 projected area of SITE_BOUNDARY polygon",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; recalc when official polygon available"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count of KEY_AREA features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 projected area sum of three KEY_AREA polygons",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygons; recalc when official polygons available"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.11684135094121216,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 green_space area / site_boundary area",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; recalc when official polygon available"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.02268702274990583,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 public_space area / site_boundary area",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; recalc when official polygon available"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1333489.9361042879,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "EPSG:4548 projected area sum of GREEN_SPACE polygons",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 258923.02916276595,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "EPSG:4548 projected area sum of PUBLIC_SPACE polygons",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 514247.1824680936,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "EPSG:4548 projected area sum of BUILDING_FOOTPRINT polygons",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count of LAND_USE features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count of renewal projects listed in proposal",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of AI scenario cards in proposal narrative",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of user personas in proposal narrative",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "reason": "Depends on unpublished official regulatory controls.",
+      "required_for_formal_submission": false,
+      "source_files": [],
+      "formula": null,
+      "confidence": "unknown",
+      "assumptions": [
+        "待正式控规条件确认"
+      ]
+    },
+    "building_height_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "reason": "Depends on unpublished official regulatory controls.",
+      "required_for_formal_submission": false,
+      "source_files": [],
+      "formula": null,
+      "confidence": "unknown",
+      "assumptions": [
+        "待正式控规条件确认"
+      ]
+    }
+  }
+}

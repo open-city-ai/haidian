@@ -8,7 +8,7 @@
       "required": true,
       "status": "complete",
       "proposal_sections": [
-        "第二幕：把同一台仪器用在场地上",
+        "场地数据本身的闭合差：同一件事的两份来源对不上",
         "设计依据与资料清单"
       ],
       "drawing_refs": [
@@ -32,7 +32,7 @@
       "self_check_ids": [
         "BOUNDARY_TRUST"
       ],
-      "evidence_summary_zh": "本条由正文小节「第二幕：把同一台仪器用在场地上」「设计依据与资料清单」；图层 site_boundary.geojson；指标 site_area_sqm（class 1，由 visual/assets/verify.js 独立重算）；指标 field_census_corpus_size（包内自计数，由构建从随包产物重算，不在 verify.js 的覆盖范围内）；图纸 site-overview.png；来源 BOUNDARY-SOURCE、OSM-REFERENCE-2026-08（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「场地数据本身的闭合差：同一件事的两份来源对不上」「设计依据与资料清单」；图层 site_boundary.geojson；指标 site_area_sqm（class 1，由 visual/assets/verify.js 独立重算）；指标 field_census_corpus_size（包内自计数，由构建从随包产物重算，不在 verify.js 的覆盖范围内）；图纸 site-overview.png；来源 BOUNDARY-SOURCE、OSM-REFERENCE-2026-08（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
       "reviewer_reachability": {
         "references": 11,
         "reviewer_can_read_whole": 9,
@@ -94,16 +94,17 @@
         "assets/figures/hero-leveling-line.png"
       ],
       "geometry_refs": [
-        "geometry/roads.geojson",
-        "geometry/public_space.geojson"
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson"
       ],
       "metric_refs": [
         "leveling_spine_length_m",
         "benchmark_count"
       ],
       "source_ids": [
-        "BOUNDARY-SOURCE",
-        "MOHURD-URBAN-DESIGN-MEASURES"
+        "BOUNDARY-SOURCE"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001"
@@ -111,13 +112,16 @@
       "self_check_ids": [
         "SPATIAL_REVIEW"
       ],
-      "evidence_summary_zh": "本条由正文小节「总体概念与命名体系」；图层 roads.geojson、public_space.geojson；指标 leveling_spine_length_m、benchmark_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 site-overview.png、hero-leveling-line.png；来源 BOUNDARY-SOURCE、MOHURD-URBAN-DESIGN-MEASURES（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「总体概念与命名体系」；图层 buildings.geojson、land_use.geojson、public_space.geojson、roads.geojson；指标 leveling_spine_length_m、benchmark_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 site-overview.png、hero-leveling-line.png；来源 BOUNDARY-SOURCE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "standard_ids": [
+        "MOHURD-URBAN-DESIGN-MEASURES"
+      ],
       "reviewer_reachability": {
         "references": 11,
-        "reviewer_can_read_whole": 7,
+        "reviewer_can_read_whole": 6,
         "reviewer_sees_as_image": 1,
         "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 3
+        "reviewer_cannot_open": 4
       }
     },
     {
@@ -140,7 +144,6 @@
         "land_use_feature_count"
       ],
       "source_ids": [
-        "MNR-LAND-USE-CLASSIFICATION-GUIDE",
         "SITE-PACKAGE"
       ],
       "assumption_ids": [
@@ -149,13 +152,16 @@
       "self_check_ids": [
         "LAND_USE_TOPOLOGY"
       ],
-      "evidence_summary_zh": "本条由正文小节「用地是完整剖分」；图层 land_use.geojson；指标 land_use_class_count、land_use_feature_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 land-use-structure.png；来源 MNR-LAND-USE-CLASSIFICATION-GUIDE、SITE-PACKAGE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「用地是完整剖分」；图层 land_use.geojson；指标 land_use_class_count、land_use_feature_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 land-use-structure.png；来源 SITE-PACKAGE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "standard_ids": [
+        "MNR-LAND-USE-CLASSIFICATION-GUIDE"
+      ],
       "reviewer_reachability": {
         "references": 9,
-        "reviewer_can_read_whole": 7,
+        "reviewer_can_read_whole": 6,
         "reviewer_sees_as_image": 1,
         "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 1
+        "reviewer_cannot_open": 2
       }
     },
     {
@@ -178,7 +184,8 @@
         "phasing_union_area_sqm"
       ],
       "source_ids": [
-        "MOHURD-CONTROL-DETAILED-PLANNING"
+        "OFFICIAL-ANNOUNCEMENT",
+        "BOUNDARY-SOURCE"
       ],
       "assumption_ids": [
         "A-CONTROLS-001",
@@ -187,20 +194,23 @@
       "self_check_ids": [
         "DETERMINISTIC_VALIDATION"
       ],
-      "evidence_summary_zh": "本条由正文小节「指标体系、面积复算与合规矩阵」；图层 phasing.geojson；指标 phasing_union_area_sqm（class 1，由 visual/assets/verify.js 独立重算）；指标 floor_area_ratio（class 2，须官方控规支撑，状态保持 unknown；verify.js 断言的是它保持 unknown，不是它的取值）；图纸 metrics-evidence.png；来源 MOHURD-CONTROL-DETAILED-PLANNING（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「指标体系、面积复算与合规矩阵」；图层 phasing.geojson；指标 phasing_union_area_sqm（class 1，由 visual/assets/verify.js 独立重算）；指标 floor_area_ratio（class 2，须官方控规支撑，状态保持 unknown；verify.js 断言的是它保持 unknown，不是它的取值）；图纸 metrics-evidence.png；来源 OFFICIAL-ANNOUNCEMENT、BOUNDARY-SOURCE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
       "completeness_limited_by": [
         "floor_area_ratio"
       ],
       "completeness_limit_attribution": {
         "floor_area_ratio": "organizer_gap"
       },
-      "completeness_qualifier_zh": "**本项的 `complete` 是「做到现有数据允许的深度」，不是「该做的都有数据」。**受限于：它引用的 floor_area_ratio 属第二类指标：须官方控规支撑，本方案刻意不填估计值。`scripts/self_check_submission.py` 要求正式投稿的每一条设计深度项都为 `complete`，因此本项不改状态——把它降为 `data_gap` 不会让本包更诚实，只会让它退出正式评审，而诚实在那里没人读到。**规则与事实在此确有冲突，该冲突属于上游，不该由投稿人私下选一边解决。** 本项与 standard_matrix 对同一议题的 `data_gap` 判定并列存在，两者都留在包里，供评审自行判断。\n\n**受限项还标明归属**（`completeness_limit_attribution`）：floor_area_ratio = 组织方缺口——`brief/site-package/ranges/planning_limits.json` 自己记为 `status: missing`，需要「approved regulatory planning conditions or official design brief attachments」才能闭合。区分二者是 @CocoSgt 在 #2147 上对 #2149 提出的要求：只要求 `limited_by` 指向包内任意 metric/source，无法证明缺口属于组织方。可用的分类法已经存在，就是组织方自己维护的那份 `official_planning_controls`。",
+      "completeness_qualifier_zh": "**本项的 `complete` 是「做到现有数据允许的深度」，不是「该做的都有数据」。**受限于：它引用的 floor_area_ratio 属第二类指标：须官方控规支撑，本方案刻意不填估计值。正式投稿要求每一条设计深度项都为 `complete`，因此本项不改状态——把它降为 `data_gap` 不会让本包更诚实，只会让它退出正式评审。**规则与事实在此确有冲突，该冲突不该由投稿人私下选一边解决。** 本项与 standard_matrix 对同一议题的 `data_gap` 判定并列存在，两者都留在包里，供评审自行判断。\n\n**受限项还标明归属**（`completeness_limit_attribution`）：floor_area_ratio = 组织方缺口——`brief/site-package/ranges/planning_limits.json` 自己记为 `status: missing`，需要「approved regulatory planning conditions or official design brief attachments」才能闭合。区分二者是 @CocoSgt 在 #2147 上对 #2149 提出的要求：只要求 `limited_by` 指向包内任意 metric/source，无法证明缺口属于组织方。可用的分类法已经存在，就是组织方自己维护的那份 `official_planning_controls`。",
+      "standard_ids": [
+        "MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
       "reviewer_reachability": {
-        "references": 10,
-        "reviewer_can_read_whole": 7,
+        "references": 12,
+        "reviewer_can_read_whole": 8,
         "reviewer_sees_as_image": 1,
         "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 2
+        "reviewer_cannot_open": 3
       }
     },
     {
@@ -222,8 +232,8 @@
         "building_footprint_area_sqm"
       ],
       "source_ids": [
-        "MOHURD-ARCH-DESIGN-DEPTH-2016",
-        "MOHURD-CONTROL-DETAILED-PLANNING"
+        "OFFICIAL-ANNOUNCEMENT",
+        "BOUNDARY-SOURCE"
       ],
       "assumption_ids": [
         "A-CONTROLS-001"
@@ -231,20 +241,24 @@
       "self_check_ids": [
         "DETERMINISTIC_VALIDATION"
       ],
-      "evidence_summary_zh": "本条由正文小节「建筑规模与拆改留」；图层 buildings.geojson；指标 building_footprint_area_sqm（class 1，由 visual/assets/verify.js 独立重算）；图纸 street-eye-level.png；来源 MOHURD-ARCH-DESIGN-DEPTH-2016、MOHURD-CONTROL-DETAILED-PLANNING（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「建筑规模与拆改留」；图层 buildings.geojson；指标 building_footprint_area_sqm（class 1，由 visual/assets/verify.js 独立重算）；图纸 street-eye-level.png；来源 OFFICIAL-ANNOUNCEMENT、BOUNDARY-SOURCE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
       "completeness_limited_by": [
         "MOHURD-ARCH-DESIGN-DEPTH-2016"
       ],
       "completeness_limit_attribution": {
         "MOHURD-ARCH-DESIGN-DEPTH-2016": "author_gap"
       },
-      "completeness_qualifier_zh": "**本项的 `complete` 是「做到现有数据允许的深度」，不是「该做的都有数据」。**受限于：它引用的 MOHURD-ARCH-DESIGN-DEPTH-2016 的 `retrieved_at` 为「未取得」——本包从未打开这份文件。`scripts/self_check_submission.py` 要求正式投稿的每一条设计深度项都为 `complete`，因此本项不改状态——把它降为 `data_gap` 不会让本包更诚实，只会让它退出正式评审，而诚实在那里没人读到。**规则与事实在此确有冲突，该冲突属于上游，不该由投稿人私下选一边解决。** 本项与 standard_matrix 对同一议题的 `data_gap` 判定并列存在，两者都留在包里，供评审自行判断。\n\n**受限项还标明归属**（`completeness_limit_attribution`）：MOHURD-ARCH-DESIGN-DEPTH-2016 = **本方案自己的缺口**——这是一份公开可得的文件，本包没有取得它，不能记在组织方账上。区分二者是 @CocoSgt 在 #2147 上对 #2149 提出的要求：只要求 `limited_by` 指向包内任意 metric/source，无法证明缺口属于组织方。可用的分类法已经存在，就是组织方自己维护的那份 `official_planning_controls`。",
+      "completeness_qualifier_zh": "**本项的 `complete` 是「做到现有数据允许的深度」，不是「该做的都有数据」。**受限于：它引用的 MOHURD-ARCH-DESIGN-DEPTH-2016 的 `retrieved_at` 为「未取得」——本包从未打开这份文件。**规则与事实在此确有冲突，该冲突属于上游，不该由投稿人私下选一边解决。** 本项与 standard_matrix 对同一议题的 `data_gap` 判定并列存在，两者都留在包里，供评审自行判断。\n\n**受限项还标明归属**（`completeness_limit_attribution`）：MOHURD-ARCH-DESIGN-DEPTH-2016 = **本方案自己的缺口**——这是一份公开可得的文件，本包没有取得它，不能记在组织方账上。区分二者是 @CocoSgt 在 #2147 上对 #2149 提出的要求：只要求 `limited_by` 指向包内任意 metric/source，无法证明缺口属于组织方。可用的分类法已经存在，就是组织方自己维护的那份 `official_planning_controls`。",
+      "standard_ids": [
+        "MOHURD-ARCH-DESIGN-DEPTH-2016",
+        "MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
       "reviewer_reachability": {
-        "references": 9,
+        "references": 11,
         "reviewer_can_read_whole": 6,
         "reviewer_sees_as_image": 0,
         "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 3
+        "reviewer_cannot_open": 5
       }
     },
     {
@@ -268,7 +282,6 @@
         "land_use_feature_count"
       ],
       "source_ids": [
-        "MOHURD-ARCH-DESIGN-DEPTH-2016",
         "KEY-AREA-SOURCE"
       ],
       "assumption_ids": [
@@ -278,20 +291,23 @@
       "self_check_ids": [
         "LAND_USE_TOPOLOGY"
       ],
-      "evidence_summary_zh": "本条由正文小节「三片区共同的拆改留原则」；图层 buildings.geojson、land_use.geojson；指标 building_footprint_area_sqm、land_use_feature_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 key-areas.png；来源 MOHURD-ARCH-DESIGN-DEPTH-2016、KEY-AREA-SOURCE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「三片区共同的拆改留原则」；图层 buildings.geojson、land_use.geojson；指标 building_footprint_area_sqm、land_use_feature_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 key-areas.png；来源 KEY-AREA-SOURCE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
       "completeness_limited_by": [
         "MOHURD-ARCH-DESIGN-DEPTH-2016"
       ],
       "completeness_limit_attribution": {
         "MOHURD-ARCH-DESIGN-DEPTH-2016": "author_gap"
       },
-      "completeness_qualifier_zh": "**本项的 `complete` 是「做到现有数据允许的深度」，不是「该做的都有数据」。**受限于：它引用的 MOHURD-ARCH-DESIGN-DEPTH-2016 的 `retrieved_at` 为「未取得」——本包从未打开这份文件。`scripts/self_check_submission.py` 要求正式投稿的每一条设计深度项都为 `complete`，因此本项不改状态——把它降为 `data_gap` 不会让本包更诚实，只会让它退出正式评审，而诚实在那里没人读到。**规则与事实在此确有冲突，该冲突属于上游，不该由投稿人私下选一边解决。** 本项与 standard_matrix 对同一议题的 `data_gap` 判定并列存在，两者都留在包里，供评审自行判断。\n\n**受限项还标明归属**（`completeness_limit_attribution`）：MOHURD-ARCH-DESIGN-DEPTH-2016 = **本方案自己的缺口**——这是一份公开可得的文件，本包没有取得它，不能记在组织方账上。区分二者是 @CocoSgt 在 #2147 上对 #2149 提出的要求：只要求 `limited_by` 指向包内任意 metric/source，无法证明缺口属于组织方。可用的分类法已经存在，就是组织方自己维护的那份 `official_planning_controls`。",
+      "completeness_qualifier_zh": "**本项的 `complete` 是「做到现有数据允许的深度」，不是「该做的都有数据」。**受限于：它引用的 MOHURD-ARCH-DESIGN-DEPTH-2016 的 `retrieved_at` 为「未取得」——本包从未打开这份文件。**规则与事实在此确有冲突，该冲突属于上游，不该由投稿人私下选一边解决。** 本项与 standard_matrix 对同一议题的 `data_gap` 判定并列存在，两者都留在包里，供评审自行判断。\n\n**受限项还标明归属**（`completeness_limit_attribution`）：MOHURD-ARCH-DESIGN-DEPTH-2016 = **本方案自己的缺口**——这是一份公开可得的文件，本包没有取得它，不能记在组织方账上。区分二者是 @CocoSgt 在 #2147 上对 #2149 提出的要求：只要求 `limited_by` 指向包内任意 metric/source，无法证明缺口属于组织方。可用的分类法已经存在，就是组织方自己维护的那份 `official_planning_controls`。",
+      "standard_ids": [
+        "MOHURD-ARCH-DESIGN-DEPTH-2016"
+      ],
       "reviewer_reachability": {
         "references": 12,
-        "reviewer_can_read_whole": 8,
+        "reviewer_can_read_whole": 7,
         "reviewer_sees_as_image": 1,
         "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 3
+        "reviewer_cannot_open": 4
       }
     },
     {
@@ -314,7 +330,6 @@
         "road_feature_count"
       ],
       "source_ids": [
-        "MOHURD-URBAN-DESIGN-MEASURES",
         "OSM-REFERENCE-2026-08"
       ],
       "assumption_ids": [
@@ -324,13 +339,16 @@
       "self_check_ids": [
         "SPATIAL_REVIEW"
       ],
-      "evidence_summary_zh": "本条由正文小节「交通、轨道、市政与公共服务设施」；图层 roads.geojson；指标 leveling_spine_length_m、road_feature_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 mobility-bluegreen.png；来源 MOHURD-URBAN-DESIGN-MEASURES、OSM-REFERENCE-2026-08（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「交通、轨道、市政与公共服务设施」；图层 roads.geojson；指标 leveling_spine_length_m、road_feature_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 mobility-bluegreen.png；来源 OSM-REFERENCE-2026-08（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "standard_ids": [
+        "MOHURD-URBAN-DESIGN-MEASURES"
+      ],
       "reviewer_reachability": {
         "references": 10,
-        "reviewer_can_read_whole": 8,
+        "reviewer_can_read_whole": 7,
         "reviewer_sees_as_image": 1,
         "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 1
+        "reviewer_cannot_open": 2
       }
     },
     {
@@ -354,8 +372,7 @@
         "benchmark_third_order_count"
       ],
       "source_ids": [
-        "AGENT-TASKBOOK",
-        "ELDERLY-SMART-TECH-PLAN"
+        "AGENT-TASKBOOK"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001"
@@ -363,13 +380,16 @@
       "self_check_ids": [
         "SPATIAL_REVIEW"
       ],
-      "evidence_summary_zh": "本条由正文小节「站—点合一与市政排序」；图层 public_space.geojson；指标 benchmark_count、benchmark_third_order_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 street-eye-level.png、key-areas.png；来源 AGENT-TASKBOOK、ELDERLY-SMART-TECH-PLAN（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「站—点合一与市政排序」；图层 public_space.geojson；指标 benchmark_count、benchmark_third_order_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 street-eye-level.png、key-areas.png；来源 AGENT-TASKBOOK（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "standard_ids": [
+        "ELDERLY-SMART-TECH-PLAN-2020-45"
+      ],
       "reviewer_reachability": {
         "references": 10,
-        "reviewer_can_read_whole": 7,
+        "reviewer_can_read_whole": 6,
         "reviewer_sees_as_image": 1,
         "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 2
+        "reviewer_cannot_open": 3
       }
     },
     {
@@ -426,16 +446,18 @@
         "assets/figures/key-areas.png"
       ],
       "geometry_refs": [
+        "geometry/buildings.geojson",
         "geometry/key_areas.geojson",
-        "geometry/land_use.geojson"
+        "geometry/land_use.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson"
       ],
       "metric_refs": [
         "key_area_count",
         "benchmark_first_order_count"
       ],
       "source_ids": [
-        "KEY-AREA-SOURCE",
-        "MNR-LAND-USE-CLASSIFICATION-GUIDE"
+        "KEY-AREA-SOURCE"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001"
@@ -444,14 +466,7 @@
         "KEY_AREAS_TRUST",
         "LAND_USE_TOPOLOGY"
       ],
-      "evidence_summary_zh": "本条由正文小节「重点区域详细设计」；图层 key_areas.geojson、land_use.geojson；指标 key_area_count、benchmark_first_order_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 key-areas.png；来源 KEY-AREA-SOURCE、MNR-LAND-USE-CLASSIFICATION-GUIDE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
-      "reviewer_reachability": {
-        "references": 12,
-        "reviewer_can_read_whole": 8,
-        "reviewer_sees_as_image": 1,
-        "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 3
-      },
+      "evidence_summary_zh": "本条由正文小节「重点区域详细设计」；图层 buildings.geojson、key_areas.geojson、land_use.geojson、public_space.geojson、roads.geojson；指标 key_area_count、benchmark_first_order_count（class 1，由 visual/assets/verify.js 独立重算）；图纸 key-areas.png；来源 KEY-AREA-SOURCE（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
       "detail_section_coverage": {
         "units_published_by_the_taskbook": 5,
         "with_a_detail_section": 3,
@@ -468,7 +483,17 @@
       "completeness_limit_attribution": {
         "key_area_count": "author_gap"
       },
-      "completeness_qualifier_zh": "**本项的 `complete` 是「做到现有数据允许的深度」，不是「该做的都有数据」。**受限于：它引用的 key_area_count 属第二类指标：须官方控规支撑，本方案刻意不填估计值。`scripts/self_check_submission.py` 要求正式投稿的每一条设计深度项都为 `complete`，因此本项不改状态——把它降为 `data_gap` 不会让本包更诚实，只会让它退出正式评审，而诚实在那里没人读到。**规则与事实在此确有冲突，该冲突属于上游，不该由投稿人私下选一边解决。** 本项与 standard_matrix 对同一议题的 `data_gap` 判定并列存在，两者都留在包里，供评审自行判断。\n\n**受限项还标明归属**（`completeness_limit_attribution`）：key_area_count = **本方案自己的缺口**——这是一份公开可得的文件，本包没有取得它，不能记在组织方账上。区分二者是 @CocoSgt 在 #2147 上对 #2149 提出的要求：只要求 `limited_by` 指向包内任意 metric/source，无法证明缺口属于组织方。可用的分类法已经存在，就是组织方自己维护的那份 `official_planning_controls`。"
+      "completeness_qualifier_zh": "**本项的 `complete` 是「做到现有数据允许的深度」，不是「该做的都有数据」。**受限于：它引用的 key_area_count 属第二类指标：须官方控规支撑，本方案刻意不填估计值。正式投稿要求每一条设计深度项都为 `complete`，因此本项不改状态——把它降为 `data_gap` 不会让本包更诚实，只会让它退出正式评审。**规则与事实在此确有冲突，该冲突不该由投稿人私下选一边解决。** 本项与 standard_matrix 对同一议题的 `data_gap` 判定并列存在，两者都留在包里，供评审自行判断。\n\n**受限项还标明归属**（`completeness_limit_attribution`）：key_area_count = **本方案自己的缺口**——这是一份公开可得的文件，本包没有取得它，不能记在组织方账上。区分二者是 @CocoSgt 在 #2147 上对 #2149 提出的要求：只要求 `limited_by` 指向包内任意 metric/source，无法证明缺口属于组织方。可用的分类法已经存在，就是组织方自己维护的那份 `official_planning_controls`。",
+      "standard_ids": [
+        "MNR-LAND-USE-CLASSIFICATION-GUIDE"
+      ],
+      "reviewer_reachability": {
+        "references": 12,
+        "reviewer_can_read_whole": 7,
+        "reviewer_sees_as_image": 1,
+        "reviewer_sees_first_page_only": 0,
+        "reviewer_cannot_open": 4
+      }
     },
     {
       "item_id": "renewal_project_list",
@@ -489,8 +514,7 @@
         "renewal_project_count"
       ],
       "source_ids": [
-        "AGENT-TASKBOOK",
-        "MOHURD-CONTROL-DETAILED-PLANNING"
+        "AGENT-TASKBOOK"
       ],
       "assumption_ids": [
         "A-SELF-COUNT-001",
@@ -499,13 +523,16 @@
       "self_check_ids": [
         "PROFESSIONAL_EVIDENCE"
       ],
-      "evidence_summary_zh": "本条由正文小节「更新项目清单」；图层 phasing.geojson；指标 renewal_project_count（包内自计数，由构建从随包产物重算，不在 verify.js 的覆盖范围内）；图纸 evidence-circuit.png；来源 AGENT-TASKBOOK、MOHURD-CONTROL-DETAILED-PLANNING（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "evidence_summary_zh": "本条由正文小节「更新项目清单」；图层 phasing.geojson；指标 renewal_project_count（包内自计数，由构建从随包产物重算，不在 verify.js 的覆盖范围内）；图纸 evidence-circuit.png；来源 AGENT-TASKBOOK（登记于 sources.json） 共同支撑，每一项均可独立打开核对。",
+      "standard_ids": [
+        "MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
       "reviewer_reachability": {
         "references": 9,
-        "reviewer_can_read_whole": 7,
+        "reviewer_can_read_whole": 6,
         "reviewer_sees_as_image": 0,
         "reviewer_sees_first_page_only": 0,
-        "reviewer_cannot_open": 2
+        "reviewer_cannot_open": 3
       }
     },
     {
@@ -632,13 +659,5 @@
         "reviewer_cannot_open": 2
       }
     }
-  ],
-  "reviewer_reachability_total": {
-    "references": 162,
-    "reviewer_can_read_whole": 119,
-    "reviewer_sees_as_image": 12,
-    "reviewer_sees_first_page_only": 0,
-    "reviewer_cannot_open": 31,
-    "note_zh": "评审模型整份收到九个文件，不含 `geometry/` 与 `visual/assets/`（见 `scripts/review_submission.py::build_review_input`）。本表逐条标出它能打开多少、打不开多少——**这不是免责，是让评审知道哪一行的证据它可以自己核，哪一行只能听我说**。数字由构建算出，管线若开始多送文件，它们会自己变。"
-  }
+  ]
 }

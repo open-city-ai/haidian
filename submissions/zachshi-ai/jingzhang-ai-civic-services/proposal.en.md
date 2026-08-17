@@ -10,7 +10,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Taking the Jingzhang Railway heritage corridor as the main axis, this proposal links the subdistrict offices, community health centers, and legal aid points along the corridor into a single AI civic-service network. The proposal puts forward the overall concept of an 'AI Civic Service Spine': a one-stop government, health, and legal civic service hub is built in the AI Origin Community; citizen service stations are deployed along the main axis of the heritage park; and the belt is formed of 13 service passage segments, 6 civic-service buildings, 3 service hub plazas, and 5 street-side stations, supported by 12 AI scenario cards, 5 categories of user personas, and 3 civic-service landmark destinations. AI is used only for service navigation and public information Q&A; it does not diagnose and does not approve, and all content is manually reviewed by medical, legal, and data-security professionals."
 tracks: ["ai-public-services"]
 scenarios: ["ai-health-service-navigation"]
-iteration: "v1.0"
+iteration: "v4.0"
 ---
 
 # Jingzhang AI Civic Services Belt: A One-Stop Government, Health and Legal Services Network
@@ -47,7 +47,17 @@ The naming system includes: the belt's main name "AI Civic Service Spine" (Chine
 
 ### Three Positionings, Five Functions, and Three-Zones-Two-Wings Synergy
 
-The proposal responds to the three positionings in the announcement: the Centennial Jingzhang Culture Belt (service heritage), the Urban AI Life Experience Belt (service experience), and the AI Integration and Innovation Belt (service innovation) [source:official-announcement]. The five functions are placed as: one-stop government navigation services, health navigation community services, public-interest legal consulting services, service scenario testing and validation, and citizen data-literacy cultivation. The three-zones-two-wings synergy loop: Zhongzhiyuan provides talent health checkups and AI service technology validation; the Origin Community hosts one-stop daily government affairs, community healthcare, and legal aid handling; Dazhongsi develops the industrialization of legal consulting and enterprise civic services; the Zhongguancun service wing provides government data integration and AI service orchestration; and the Xiaoyuehe scenario wing provides a service-scenario testbed [source:agent-taskbook].
+The proposal responds to the three positionings in the announcement: the Centennial Jingzhang Culture Belt (service heritage), the Urban AI Life Experience Belt (service experience), and the AI Integration and Innovation Belt (service innovation) [source:official-announcement]. The five functions are each implemented item by item (not merely renaming service categories), and each function is given a spatial carrier, a responsibility mechanism, and a verification gate [source:agent-taskbook]:
+
+| Announcement's Five Functions | Item-by-Item Implementation in This Proposal | Spatial Carrier | Responsibility Mechanism and Verification |
+| --- | --- | --- | --- |
+| AI full-stack independent innovation system | Zhongzhiyuan talent health services and AI service technology validation segment: algorithmic filing, safety evaluation, and scenario testing of the AI navigation engine close the loop here | Zhongzhiyuan service validation area | Algorithmic filing + independent evaluation (G1/G2 gates) |
+| World-class AI innovation ecosystem | Seven-element map (service entry / catalog / identity / data / AI engine / human review / feedback) differentially configured across the three zones | Service nodes of the three zones | Human review by three categories of professionals (medical / legal / data security) |
+| New paradigm of AI+ scenario enablement | 12 scenario cards covering real scenarios: government affairs / health / legal / multilingual / elderly-friendly / accessibility / nighttime | 5 stations + 3 hubs | Each card paired with a guarantee receipt (Three Guarantees, One Verification) |
+| Intelligent AI-powered vibrant city | The Three Guarantees, One Verification guarantee chain translates AI services into auditable urban responsibility infrastructure | Whole-line service network | Independent quarterly verification (receipt sampling ≥100) |
+| Global discourse on AI governance | Guarantee receipts and independent verification can be exported as a public-service AI governance paradigm (international communication) | Origin Community hub | Verification reports made public + international communication copy |
+
+The three-zones-two-wings synergy loop: Zhongzhiyuan provides talent health checkups and AI service technology validation; the Origin Community hosts one-stop daily government affairs, community healthcare, and legal aid handling; Dazhongsi develops the industrialization of legal consulting and enterprise civic services; the Zhongguancun service wing provides government data integration and AI service orchestration; and the Xiaoyuehe scenario wing provides a service-scenario testbed. Every link of the synergy corresponds to a named responsibility position in the guarantee receipt, making the "three zones and two wings" not just a synergy diagram, but an auditable responsibility network [source:agent-taskbook].
 
 ### External Regional Coordination
 
@@ -70,6 +80,46 @@ This proposal studies 7 domestic and international public-service digitalization
 This proposal constructs seven elements of the civic-service AI ecosystem: service entry (one-stop navigation), service catalog (manually curated), identity authentication (unified), data foundation (public/authorized data), AI engine (Q&A and navigation), human review (three categories of professionals: medical, legal, and data security), and feedback mechanism (satisfaction analysis). The seven elements are differentially configured across the three key areas [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design (Civic-Service Oriented)
+
+### Core Mechanism: The "Three Guarantees, One Verification" Service Guarantee Chain (Original to This Proposal)
+
+The chronic problem with AI in government services is "it answers very well, but when something cannot be done, no one is responsible." This proposal puts forward an original **"Three Guarantees, One Verification" service guarantee chain**: turning "getting it done" from a slogan into a verifiable chain of commitments [E:CIVIC-SERVICE-GUARANTEE-CHAIN]:
+
+**Guarantee One: Commitment (Guarantee of Commitment).** Every AI navigation service must declare who its human fallback is — the subdistrict-office integrated counter, the community health service desk, manual reception at the legal aid point, bilingual volunteers, silver-age service point specialists, and so on. AI only navigates and answers questions; the fallback responsibility always rests on named human positions [source:official-announcement].
+
+**Guarantee Two: Response Time (Guarantee of Response Time).** Every service promises that a real person must respond within a limited time: 30 minutes for nighttime emergencies, 2 hours for government-service navigation, 24 hours for health referrals, and 3 working days for legal aid. The time-limit commitment is written into the service contract, and overruns automatically escalate.
+
+**Guarantee Three: Receipt (Guarantee Receipt).** Every service generates an auditable receipt: what the AI did, what humans reviewed, the done/escalated/failed status, and the complaint channel. Receipts are retained for 90 days for auditing, aggregated statistically after anonymization, and no identity or document content is collected. The receipt schema is at `visual/assets/guarantee-receipt.schema.json` [data:visual/assets/guarantee-receipt.schema.json#receipt].
+
+**One Verification: Independent Verification.** Every quarter, an independent third-party evaluation body randomly samples ≥100 receipts from the receipt ledger (covering all 12 scenarios) and verifies: guarantee-fulfillment rate ≥95%, response-time compliance rate ≥90%, receipt-completeness rate ≥98%, escalation-chain effectiveness rate ≥95%, and complaint-handling timeliness rate ≥95%. If any threshold is not met, AI navigation for the corresponding scenario is suspended and switched to human-window priority, and it resumes after passing re-verification the next quarter. The verification protocol is at `visual/assets/independent-verification-protocol.json`, and verification reports are made public (after desensitization) for public and regulatory review [depth:risk_missing_data].
+
+**Rule-closure validation.** `run_guarantee_tabletop.js` correctly classifies all 72 synthetic cases of 12 scenarios × 6 rule branches (complete / missing human fallback / missing time limit / missing receipt / missing escalation chain / time overrun) — 48 blocked / 12 guaranteed / 12 escalated — demonstrating that the guarantee-chain rule logic is closed. However, this only proves correct classification and does not constitute on-site service evidence; on-site performance remains null with status `not_authorized_not_run` [data:visual/assets/guarantee-tabletop-evidence.json#blocked].
+
+**Relationship to "someone is responsible when things cannot be done."** The core of the Three Guarantees, One Verification is not to make AI smarter, but to give "cannot be done" a clear responsible person, a clear time limit, auditable records, and an independent verifier. This is what distinguishes it from mature platforms such as City Brain, Suishenban, and Jingtong — those platforms provide navigation functions, while this proposal provides the **responsibility infrastructure** of navigation: behind every navigation there is a traceable guarantee receipt, and behind every receipt there is a named human responsibility position [source:shanghai-suishenban].
+
+### Completion Checklist: Internalizing the WHO Surgical Safety Checklist Methodology (Original to This Proposal, v4)
+
+The Three Guarantees, One Verification answers "who is responsible, how fast the response, how the trail is kept, and who verifies," but it does not yet answer "what is confirmed at each step." This proposal transplants the methodology of the WHO Surgical Safety Checklist: **three-phase checks of before/during/after, with item-by-item oral confirmation required before proceeding** [E:CIVIC-COMPLETION-CHECKLIST].
+
+**The lens: Completed.** Service success is judged by whether "the matter is done (办成)," not by whether "the AI answered well." The checklist breaks "getting it done" into actions that can be confirmed item by item — the before-check (materials/permissions/fallback person), the during-check (steps), and the after-check (completion/receipt); any item not confirmed means the next phase is not entered [data:visual/assets/completion-checklist.json#lens].
+
+**Three-phase checklist rules:**
+- **Before-check**: the matter name, the material list, handling permissions, and the human fallback window — if materials are incomplete, the applicant is told on the spot to make corrections, and handling does not begin.
+- **During-check**: handling steps, completeness of materials, and whether supplements are needed — the AI only confirms the steps and does not perform substantive review.
+- **After-check**: the acceptance receipt, notification of the handling time limit, and the complaint channel — confirming "completed" or "accepted"; if not completed, the escalation chain is triggered.
+
+**No-AI baseline (negative space).** Without any AI, citizens can still get matters done through human windows, hotlines, and community networks. AI is a layer that can be switched off; with AI switched off, the checklist **degrades into a purely human three-phase check** — completion does not depend on AI [data:visual/assets/completion-checklist.json#negative-baseline].
+
+**The checklists for the 12 categories of services** (full version at `visual/assets/completion-checklist.json`):
+
+| Service type | Before-check | During-check | After-check |
+| --- | --- | --- | --- |
+| Government handling | Matter/materials/permissions/window fallback | Steps/material completeness | Acceptance receipt/time limit/12345 |
+| Health services | Department/procedure/service-desk fallback | Referral pathway (AI does not diagnose) | Follow-up/return-visit reminders/health hotline |
+| Legal aid | Aid category/materials/legal-aid-point fallback | Eligibility preliminary-review boundary | Acceptance confirmation/time limit/legal-aid hotline |
+| Emergency rescue | Emergency points/duty dispatch | Emergency boundary (direct transfer to hotline) | Dispatch response/emergency command center |
+
+**Relationship to the Three Guarantees, One Verification.** The receipt is the record of the check result, and verification is the spot-check of the checks — the Three Guarantees, One Verification answers the "responsibility chain," while the checklist answers "what is confirmed at each step." Together the two guarantee: for every matter a citizen handles, every step has someone confirming it, a record of it, and verifiability [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
 ### Spatial Structure
 
@@ -104,6 +154,22 @@ The regeneration strategy adopts a "retain–renovate–new-build" classificatio
 **Service facilities:** Centrally deploy the AI Civic-Service Demonstration Hall (BLD-016), the Community Health Service AI Navigation Center (BLD-017), the AI Legal Aid Service Center (BLD-018), and the Subdistrict-Office AI Collaboration Service Building (BLD-021), forming a one-stop civic-service cluster [data:geometry/buildings.geojson#BLD-016] [data:geometry/buildings.geojson#BLD-017] [data:geometry/buildings.geojson#BLD-018]. Supporting facilities include the AI Civic-Service Demonstration Plaza (PS-006), the Jingzhang Health Park (GS-006), and the Central Service Station (PS-011) and Central-North Station (PS-010) [data:geometry/public_space.geojson#PS-006] [data:geometry/green_space.geojson#GS-006].
 
 **AI scenarios:** Deploy everyday scenarios such as AI + government service guidance, AI + health navigation, and AI + legal consultation, forming an experienceable one-stop service community. AI is used only for navigation and public information Q&A [standard:GENERATIVE-AI-INTERIM-MEASURES].
+
+**Minimal pilot (review requirement: a verifiable minimal pilot).** The Origin Community government-navigation pilot serves as the first on-the-ground validation of the Three Guarantees, One Verification mechanism, with all elements as follows (all are conceptual suggestions; the pilot starts only after confirmation by the local subdistrict and a professional team):
+
+| Element | Content |
+| --- | --- |
+| Current-state assumption | The Origin Community currently has one subdistrict-office integrated counter, one community health service center, and one legal aid point; the community population is mainly university faculty and students, young families, and elderly residents (baseline pending confirmation by on-site survey) |
+| Roles | Operator (station operating enterprise), subdistrict-office counter duty staff (human fallback), community health service desk guide (health fallback), legal aid receptionist (legal fallback), independent evaluation body (quarterly verification) |
+| Process | Resident comes to the station / calls the hotline → AI navigation (Q&A and guidance only) → guarantee receipt automatically generated → automatic escalation to human staff on time overrun → human handling / referral → receipt updated to completed status → quarterly sampled verification |
+| Equipment | AI interactive screen ×1 at the station (switchable to paper-based guidance), hotline line ×1, receipt printing terminal ×1 (replaceable by a fully paper-based process) |
+| Data | Only item names and processing status (aggregated); no identity, document content, medical records, or case facts are collected |
+| Human positions | Counter duty staff 1 person/shift, health guide 1 person/shift, legal aid receptionist 1 person/shift (8:00–18:00 during the pilot period) |
+| Cost range | Equipment RMB 80,000–150,000 (conceptual estimate, including transferable modules), labor cost RMB 30,000–50,000/month (conceptual estimate), evaluation fee RMB 20,000–30,000/quarter (conceptual estimate); all amounts are rough ranges pending verification, not commitments |
+| Timeline | Month 1: current-state survey + demand baseline; Month 2: equipment installation + staff training + trial run of the receipt process; Months 3–6: formal pilot + first quarterly verification |
+| Acceptance thresholds | Guarantee-fulfillment rate ≥95%, response-time compliance rate ≥90%, receipt-completeness rate ≥98%, complaint-handling timeliness rate ≥95% (see the independent verification protocol) |
+| Failure fallback | Any threshold not met → suspend AI navigation and switch to human-window priority → re-verify the next quarter; two consecutive non-compliant quarters → pilot terminated, full manual process restored |
+| Suspension conditions | Any safety incident, unhandled complaint escalation, or data-boundary violation → immediate suspension and full review |
 
 ### Dazhongsi AI Industry Cluster (approx. 72.0 ha): Legal Consulting and Enterprise Civic Services Segment
 

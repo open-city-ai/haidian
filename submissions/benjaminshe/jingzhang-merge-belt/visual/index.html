@@ -77,6 +77,95 @@
 <section class="sheet"><div class="sheet-head"><div><h2>用地分区 · 蓝绿公共空间 · 更新项目</h2><p>三层空间证据图层:用地分区(land_use.geojson)、蓝绿公共空间(green/public_space.geojson)、交通慢行与更新项目(roads/phasing.geojson + MR 工作包)。</p></div><span class="tag">geometry evidence</span></div><div class="matrix"><article class="area-card"><h3>用地分区</h3><p>科研、文化、教育、居住、社区服务、商业、公园绿地与留白构成混合序列(20 个概念分区,拓扑完整覆盖、无缝隙无叠压),代码来自法定分类接口。</p><ul><li>land_use.geojson#LU-001~020(分用途面积见 metrics.json)</li><li>建筑=7 处可逆催化示范项目(capacity_test_only)</li></ul></article><article class="area-card"><h3>蓝绿公共空间</h3><p>京张连续公园、清河低碳花园、原点社区开源草坪、大钟寺雨洪静园;主线廊道 + 六个合流节点广场 + 三处共享公厅。</p><ul><li>绿比 12.3% / 公共空间比 7.3%(概念估算)</li><li>安静时窗与无障碍支流优先</li></ul></article><article class="area-card"><h3>更新项目</h3><p>8 个合并请求工作包(MR-01~08),三期实施(PHASE-001/002/003):支流基线 → 公共界面与产业服务 → 合流运营。</p><ul><li>phasing.geojson#PHASE-001~003</li><li>可评审、可驳回、可回滚</li></ul></article></div></section>
 
 <section class="sheet"><div class="sheet-head"><div><h2>任务覆盖 · 来源 · 假设</h2><p>compliance_matrix.json 覆盖公告 1.3/1.4/1.5 与 agent.1–agent.6;standard_matrix.json 覆盖六项专业标准;design_depth_matrix.json 覆盖十五个专业深度项。</p></div><span class="tag">matrix evidence</span></div><div class="evidence"><div><h3>来源</h3><p>来源见 sources.json、data/source_registry.json、agent_taskbook.json、standards/references。本页完全离线,不加载 CDN、远程地图瓦片、外部脚本、外部字体、API 或 iframe。</p><div class="source-line">sources.json / standard_matrix.json / design_depth_matrix.json</div></div><div><h3>假设与合规</h3><p>容积率/高度/密度/退线等官方缺失指标保持 unknown(planning_limits.json);建筑为可逆容量测试,不构成拆改留结论;所有空间动作表述为"概念建议/参考方案/供专业团队深化"。假设编号见 assumptions.json(A-BOUNDARY-001 等)。</p><div class="source-line">assumptions.json / self_check.json / report/copyright_statement.md</div></div></div></section>
+<section class="sheet"><div class="sheet-head"><div><h2>多模态呈现 · 概念示意</h2><p>封面与四张概念图(程序化生成,非现状/非审批);下方交互模块可拖动"合流令牌"查看一日时隙。</p></div><span class="tag">multimodal · conceptual</span></div>
+<style>
+.ts-wrap{position:relative;background:#fff;border:1px solid #d8dee6;border-radius:10px;padding:6px}
+#ts-canvas{width:100%;height:auto;display:block;outline:none;cursor:crosshair;border-radius:6px}
+#ts-readout{margin:10px 0 8px;min-height:44px;background:#f6f7fa;border-radius:8px;padding:8px 10px;font-size:13px;color:#1c2b4a}
+.ts-controls{display:flex;gap:8px;align-items:center}
+#ts-play{border:0;background:#1fa3a0;color:#fff;font:600 13px/1 "Microsoft YaHei",sans-serif;padding:8px 14px;border-radius:8px;cursor:pointer}
+#ts-play:hover{background:#17817f}
+.ts-hint{font-size:11px;color:#6b7280}
+</style>
+<div class="map-grid">
+<div><div class="map-frame"><img src="assets/media/merge-timeslot.webp" alt="合流时隙表(概念示意)"></div><div class="legend"><span><i class="sw" style="background:#e8893c"></i>晨市</span><span><i class="sw" style="background:#1fa3a0"></i>研发/分发</span><span><i class="sw" style="background:#23405f"></i>共学/夜市</span><span><i class="sw" style="background:#58a55c"></i>安静时窗</span></div></div>
+<aside><h3>合流时隙 · 一日(交互)</h3><p>拖动光标、点击或按 ←/→ 键,查看任一时刻三区段的活动类型;绿色为安静时窗。"合流令牌"按"一区段·一时段"互锁,到期强制归还。</p><div class="ts-wrap"><canvas id="ts-canvas" width="900" height="300" tabindex="0" role="slider" aria-label="合流时隙一日交互,可用左右方向键调整时刻"></canvas></div><div class="ts-readout" id="ts-readout">拖动光标查看任一时刻的三区段活动;示例分布,非运营时刻表。</div><div class="ts-controls"><button type="button" id="ts-play">播放一日</button><span class="ts-hint">键盘 ←/→ 步进 1 小时</span></div></aside>
+</div>
+<div class="matrix">
+<article class="area-card"><h3>概念封面</h3><img src="assets/media/cover.webp" alt="京张合流带概念封面" style="width:100%;border-radius:8px"><p>一条铁路,汇出一座开源城市;合流是选择,不是强制,支流不降级,回程有预算。</p></article>
+<article class="area-card"><h3>三区两翼合流回路</h3><img src="assets/media/merge-circuit.webp" alt="三区两翼合流回路(概念示意)" style="width:100%;border-radius:8px"><p>开源释放→维护转化→场景分发→需求反馈;中关村科技服务翼与小月河场景赋能翼支撑回路。</p></article>
+<article class="area-card"><h3>合流协议六步</h3><img src="assets/media/merge-protocol.webp" alt="合流协议六步(概念示意)" style="width:100%;border-radius:8px"><p>申报→校验→挂牌→运行→复核→退场;未过六步不进入开放运营。</p></article>
+<article class="area-card"><h3>支流保障</h3><img src="assets/media/tributary-assurance.webp" alt="支流保障(概念示意)" style="width:100%;border-radius:8px"><p>人工/离线/无账户通道与主线等价运行;公共回执、支流台账、失败复盘夜与年度合流日。</p></article>
+</div>
+</section>
+<script>
+(function(){
+  var canvas=document.getElementById("ts-canvas");if(!canvas)return;
+  var ctx=canvas.getContext("2d");var W=900,H=300;
+  var L=150,R=26,T=34,B=30;
+  var zones=[
+    {name:"众智园 · 上游",color:"#23405F",slots:[[0,6,"安静时窗","#58A55C"],[6,10,"晨间照护 · 晨市","#E8893C"],[10,18,"日间研发 · 产业测试","#1FA3A0"],[18,21,"开放共创","#23405F"],[21,24,"安静时窗","#58A55C"]]},
+    {name:"原点社区 · 维护者",color:"#1FA3A0",slots:[[0,6,"安静时窗","#58A55C"],[6,9,"通勤照护","#E8893C"],[9,17,"共学 · 研发 · 转化","#1FA3A0"],[17,21,"傍晚共学 · 学市","#23405F"],[21,24,"安静时窗","#58A55C"]]},
+    {name:"大钟寺 · 发行区",color:"#E8893C",slots:[[0,6,"安静时窗","#58A55C"],[6,10,"晨市(消费)","#E8893C"],[10,18,"日间分发 · 展示","#1FA3A0"],[18,23,"夜间文化 · 夜市","#23405F"],[23,24,"安静时窗","#58A55C"]]}
+  ];
+  var laneH=64,gap=18,rowH=laneH+gap;
+  var cursor=8.5,playing=false,timer=null;
+  function x(h){return L+(h/24)*(W-L-R);}
+  function hAt(px){var v=(px-L)/(W-L-R)*24;return Math.max(0,Math.min(24,v));}
+  function slotFor(zone,h){for(var i=0;i<zone.slots.length;i++){var s=zone.slots[i];if(h>=s[0]&&h<s[1])return s;}return zone.slots[zone.slots.length-1];}
+  function fmt(h){var hh=Math.floor(h),mm=Math.round((h-hh)*60);if(mm===60){hh++;mm=0;}return (hh<10?"0":"")+hh+":"+(mm<10?"0":"")+mm;}
+  function draw(){
+    ctx.clearRect(0,0,W,H);ctx.fillStyle="#F6F7FA";ctx.fillRect(0,0,W,H);
+    for(var z=0;z<zones.length;z++){
+      var y=T+z*rowH;
+      ctx.fillStyle="#FFFFFF";ctx.fillRect(L,y,W-L-R,laneH);
+      ctx.strokeStyle="#D8DEE6";ctx.lineWidth=1;ctx.strokeRect(L+0.5,y+0.5,W-L-R-1,laneH-1);
+      var zone=zones[z];
+      for(var i=0;i<zone.slots.length;i++){
+        var s=zone.slots[i];var x0=x(s[0]),x1=x(s[1]);
+        ctx.fillStyle=s[3];ctx.fillRect(x0+1,y+1,x1-x0-2,laneH-2);
+        ctx.fillStyle="#FFFFFF";ctx.font="600 12px 'Microsoft YaHei',sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";
+        var txt=s[1];var tw=ctx.measureText(txt).width;
+        if(tw<x1-x0-6){ctx.fillText(txt,(x0+x1)/2,y+laneH/2);}else{ctx.fillStyle="#1C2B4A";ctx.textAlign="left";ctx.fillText(txt,x1+4,y+laneH/2);ctx.textAlign="center";}
+      }
+      ctx.fillStyle="#1C2B4A";ctx.font="600 13px 'Microsoft YaHei',sans-serif";ctx.textAlign="right";ctx.textBaseline="middle";
+      ctx.fillText(zone.name,L-10,y+laneH/2);
+    }
+    ctx.strokeStyle="#B7C0CC";ctx.lineWidth=1;
+    for(var h=0;h<=24;h+=4){
+      var xx=x(h);ctx.beginPath();ctx.moveTo(xx,T-6);ctx.lineTo(xx,T+zones.length*rowH+6);ctx.stroke();
+      ctx.fillStyle="#6B7280";ctx.font="11px 'Microsoft YaHei',sans-serif";ctx.textAlign="center";ctx.textBaseline="top";
+      ctx.fillText(fmt(h),xx,T+zones.length*rowH+10);
+    }
+    ctx.strokeStyle="#C0504D";ctx.lineWidth=3;
+    var cx=x(cursor);ctx.beginPath();ctx.moveTo(cx,T-4);ctx.lineTo(cx,T+zones.length*rowH+4);ctx.stroke();
+    ctx.fillStyle="#C0504D";ctx.beginPath();ctx.arc(cx,T-8,5,0,Math.PI*2);ctx.fill();
+    var parts=[];
+    for(var z=0;z<zones.length;z++){parts.push(zones[z].name.split(" · ")[0]+":"+slotFor(zones[z],cursor)[1]);}
+    document.getElementById("ts-readout").textContent="此刻 "+fmt(cursor)+" — "+parts.join(" ｜ ")+"。(示例分布,非运营时刻表;每日至少 2 小时安静时窗。)";
+  }
+  function setCursor(h){cursor=Math.max(0,Math.min(24,h));draw();}
+  function onMove(ev){var r=canvas.getBoundingClientRect();setCursor(hAt((ev.clientX-r.left)*(W/r.width)));}
+  canvas.addEventListener("mousemove",onMove);
+  canvas.addEventListener("click",function(ev){var r=canvas.getBoundingClientRect();setCursor(hAt((ev.clientX-r.left)*(W/r.width)));});
+  canvas.addEventListener("keydown",function(ev){
+    if(ev.key==="ArrowLeft"){setCursor(cursor-1);ev.preventDefault();}
+    else if(ev.key==="ArrowRight"){setCursor(cursor+1);ev.preventDefault();}
+    else if(ev.key==="Home"){setCursor(0);ev.preventDefault();}
+    else if(ev.key==="End"){setCursor(24);ev.preventDefault();}
+  });
+  var playBtn=document.getElementById("ts-play");
+  var reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  playBtn.addEventListener("click",function(){
+    if(playing){stop();return;}
+    playing=true;playBtn.textContent="暂停";
+    if(reduced){timer=setInterval(function(){setCursor((cursor+1)%24);},650);}
+    else{timer=setInterval(function(){setCursor((cursor+1)%24);},90);}
+  });
+  function stop(){playing=false;clearInterval(timer);timer=null;playBtn.textContent="播放一日";}
+  draw();
+})();
+</script>
 </main>
 <footer style="text-align:center;padding:20px;color:#98a2b3;font-size:12px">京张合流带 Jingzhang Merge Belt · 概念建议(provisional 边界) · 由 AI Agent 生成,采用 CC-BY-4.0 · 不构成政府审定结论</footer>
 </body>

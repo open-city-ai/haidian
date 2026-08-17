@@ -1,5 +1,5 @@
 ---
-title: "RailCode Commons v1.4: A Public Validation Operating System"
+title: "RailCode Commons v1.5: A Public Validation Operating System"
 author_github: "296277"
 language: "en"
 proposal_format_version: "2"
@@ -9,10 +9,10 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A heritage civic spine becomes a public validation operating system: three distinct urban prototypes, twelve scenario contracts, a reversible 90-day pilot, and sign-off-ready delivery gates."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.4"
+iteration: "v1.5"
 ---
 
-# RailCode Commons v1.4
+# RailCode Commons v1.5
 
 **Put responsibility, opt-out, and public value into space before AI enters the city.**
 
@@ -26,7 +26,7 @@ iteration: "v1.4"
 | Which numbers are not existing conditions or budgets? | Provisional boundary, unknown controls, quantity/lifecycle-cost method, and rights ledger | Amounts, institutions, and field performance remain null or unconfirmed |
 | Can the rules be replayed? | 24 offline synthetic cases cover 6 pass and 18 reject-or-pause branches | 24/24 proves rule consistency only; field runs remain 0 |
 
-Version 1.4 frames the Jing-Zhang corridor as a public validation operating system rather than a technology display belt. Railway heritage is the continuous civic base; Zhongzhiyuan, AI Origin Community, and Dazhongsi become three distinct validation prototypes; every AI scenario must carry spatial, data, accountability, human-fallback, pause, and exit contracts. The original contribution is to translate open-source versioning, testing, rollback, and public review into an urban experience that people can walk through, inspect, and challenge.
+Version 1.5 frames the Jing-Zhang corridor as a public validation operating system rather than a technology display belt. Railway heritage is the continuous civic base; Zhongzhiyuan, AI Origin Community, and Dazhongsi become three distinct validation prototypes; every AI scenario must carry spatial, data, accountability, human-fallback, pause, and exit contracts. The original contribution is to translate open-source versioning, testing, rollback, and public review into an urban experience that people can walk through, inspect, and challenge. This iteration adds four visually consistent AI concept renderings that make spatial sequence, accessible movement, human fallback, and reversible components immediate; they communicate atmosphere and use relationships only, not existing conditions, public opinion, boundaries, or engineering evidence.
 
 ## Design Basis and Source List
 
@@ -34,7 +34,11 @@ The announcement establishes the scope, approximate scale, three key areas, and 
 
 Evidence has three powers: official text determines what must be answered; provisional geometry provides a replaceable testing container; Agent design proposes how it might work. Ownership, buildings, heritage, road red lines, rail protection, utilities, fire, flood, movement, and engineering remain unknown. Any official geometry must trigger coordinated recalculation of nine GeoJSON layers, metrics, figures, HTML, and PDFs [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [depth:risk_missing_data].
 
-![RailCode Commons v1.4 overview](assets/figures/site-overview.en.png)
+![RailCode Commons v1.5 overview](assets/figures/site-overview.en.png)
+
+![Four public-validation spaces in RailCode Commons: AI concept renderings, not site photographs or engineering evidence](assets/media/cover.webp)
+
+**Image boundary:** the four scenes above and the individual views below were generated with `gpt-image-2` and locally composed. They are AI concept renderings—not site photographs, built conditions, resident views, official renderings, or engineering evidence. Spatial claims remain governed by the GeoJSON, metrics, contracts, and professional evidence chain. Method, rights scope, and limitations are recorded in `visual/assets/ai_render_disclosure.json`.
 
 
 
@@ -87,21 +91,23 @@ The three areas now use distinct spatial gradients, delivery contracts, and stop
 
 Public river garden—transparent observation gallery—controlled test court—research back-of-house. Visitors never cross equipment logistics; the gallery makes time, responsibility, human stewards, and physical emergency stops visible. Ownership/river/fire review, isolation and stop drills, and limited appointments are sequential gates. A serious incident, over-collection, or failed stop closes the trial.
 
-![Zhongzhiyuan Trust Court: locally code-drawn concept board, not a site photograph](assets/media/v1.1/zhongzhiyuan-trust-court.png)
+![Zhongzhiyuan Trust Court: AI concept rendering separating public observation, controlled testing, and research back-of-house; not a site photograph or engineering evidence](assets/media/v1.5/zhongzhiyuan-trust-court-ai-concept.webp)
 
 ### AI Origin Community — Open-Ground-Floor Weave
 
 Campus/park pores—open-results street—contributors’ living room—near-campus daily-life lanes. Publication, licensing, incubation, childcare, health, and evening collaboration alternate rather than forming an office monoculture. Every result node displays provenance, licence, a human contact, and withdrawal. Fire, ownership, or resident consultation gaps prevent activation.
 
-![AI Origin open ground floor: locally code-drawn concept board, not a site photograph](assets/media/v1.1/ai-origin-open-ground-floor.png)
+![AI Origin open-ground-floor weave: AI concept rendering of a results street, contributor living room, and continuous accessible route; not a site photograph or engineering evidence](assets/media/v1.5/ai-origin-open-ground-ai-concept.webp)
 
 ### Dazhongsi — Public Acceptance Street
 
 A relative 100 m sequence—not a surveyed road—moves through notice (0–20 m), parallel human and AI service (20–45 m), inclusive co-testing (45–75 m), and appeal/rollback (75–100 m). A continuous accessible path connects all four; equipment is removable and may not obstruct basic movement [depth:public_service_facilities].
 
-![Dazhongsi Public Acceptance Street: locally code-drawn concept board, not a site photograph](assets/media/v1.1/dazhongsi-public-acceptance-street.png)
+![Dazhongsi Public Acceptance Street: AI concept rendering of notice, parallel human and AI service, public co-testing, and appeal or rollback; not a site photograph or engineering evidence](assets/media/v1.5/dazhongsi-public-acceptance-street-ai-concept.webp)
 
 Across all three prototypes, space exposes accountability first: without an app, a visitor should understand purpose, data, responsible human, fallback, and exit within thirty seconds.
+
+![Jing-Zhang Public Version Spine: AI concept rendering of railway heritage traces, accessible cross-links, and three lightweight civic learning nodes; not a site photograph or engineering evidence](assets/media/v1.5/jingzhang-public-version-spine-ai-concept.webp)
 
 ## AI Ecosystem, Personas, and AI+ Scenarios
 
@@ -181,7 +187,7 @@ Agent.6 uses a five-stage developer conversion funnel: **join—co-create—test
 
 Spatial metrics derive from projected GeoJSON; non-spatial metrics count located cards, contracts, and gates. The package records 3 key areas, 12 scenarios, 6 personas, 3 industrial test types, 4 contribution nodes, 6 delivery contracts, 5 implementation gates, and 6 red-line KPIs [metric:key_area_count] [metric:scenario_card_count] [metric:persona_count] [metric:implementation_gate_count] [depth:metrics_recalculation]. Complete evidence sits in the compliance, standard, and design-depth matrices [depth:professional_standard_response] [depth:formal_package_completeness].
 
-![v1.4 seven-dimension evidence navigation, synthetic replay, and reality boundary](assets/figures/metrics-evidence.en.png)
+![v1.5 seven-dimension evidence navigation, synthetic replay, and reality boundary](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Rights, and Compliance
 

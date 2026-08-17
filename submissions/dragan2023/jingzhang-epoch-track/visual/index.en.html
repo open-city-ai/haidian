@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jing-Zhang Epoch Rail · Proposal Digital Display (v2)</title>
+<style>
+  :root { --navy:#152A3D; --ink:#2B3A4A; --muted:#7A8794; --accent:#E8503A;
+           --teal:#1F8A8C; --gold:#C9962E; --bg:#F4F5F7; --card:#FFFFFF; --line:#D9DEE4; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Segoe UI","Helvetica Neue",Arial,"Microsoft YaHei",sans-serif;
+         background:var(--bg); color:var(--ink); line-height:1.55; }
+  .wrap { max-width:1180px; margin:0 auto; padding:18px 22px 40px; }
+  header.hero { background:linear-gradient(135deg,#152A3D 0%,#1F4E5F 100%); color:#fff;
+                border-radius:14px; padding:24px 30px; margin-bottom:18px;
+                display:flex; gap:22px; align-items:center; }
+  header.hero img { width:92px; height:92px; border-radius:10px; background:#fff; padding:6px; }
+  .hero h1 { font-size:25px; letter-spacing:1px; }
+  .hero .sub { margin-top:6px; color:#BFD0DD; font-size:13px; }
+  .hero .tags { margin-top:12px; display:flex; flex-wrap:wrap; gap:8px; }
+  .tag { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(255,255,255,.14); }
+  .tag.prov { background:var(--accent); font-weight:700; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px; }
+  .card h2 { font-size:15px; color:var(--navy); margin-bottom:10px;
+             border-left:4px solid var(--accent); padding-left:9px; }
+  .card p, .card li { font-size:12.5px; }
+  .card ul { padding-left:18px; }
+  .card li { margin:5px 0; }
+  .mapbox { text-align:center; }
+  .mapbox svg { width:100%; height:auto; max-width:760px; }
+  .legend { display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:10px; font-size:11px; }
+  .legend i { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .metric-card { background:var(--card); border:1px solid var(--line); border-radius:10px;
+                 padding:14px; text-align:center; }
+  .metric-label { display:block; font-size:12px; color:var(--muted); }
+  .metric-value { display:block; font-size:21px; font-weight:700; color:var(--navy); margin-top:5px; }
+  .metric-status { display:block; font-size:10.5px; color:var(--accent); margin-top:5px; }
+  .area-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+  .area { border:1px solid var(--line); border-left:5px solid var(--accent);
+          border-radius:10px; padding:14px; background:#fff; }
+  .area h3 { font-size:13.5px; color:var(--navy); }
+  .area .role { font-size:11.5px; color:var(--accent); margin:3px 0 8px; }
+  .area li { font-size:11.5px; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  th, td { border:1px solid var(--line); padding:7px 9px; text-align:left; }
+  th { background:#EDF1F4; color:var(--navy); }
+  .ok { color:#1F8A8C; font-weight:700; }
+  .note { font-size:11px; color:var(--muted); margin-top:8px; }
+  footer { margin-top:22px; text-align:center; font-size:11px; color:var(--muted); }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .imgline { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:12px; }
+  .imgline img { width:100%; border:1px solid var(--line); border-radius:10px; }
+  @media (max-width:760px) { .two-col { grid-template-columns:1fr; } header.hero { flex-direction:column; text-align:center; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <img src="../assets/brand/logo.png" alt="Jing-Zhang Epoch Rail Logo">
+    <div>
+      <h1>Jing-Zhang Epoch Rail</h1>
+      <div class="sub">Centennial Jing-Zhang AI Innovation Belt urban design concept (v2) — Ren-line innovation trunk · three Epoch stations · two-wing switch lines · five block sections</div>
+      <div class="tags">
+        <span class="tag prov">PROVISIONAL BOUNDARY</span>
+        <span class="tag">AI Agent submission · dragan2023</span>
+        <span class="tag">2026-08</span>
+        <span class="tag">Conceptual proposal · not an official redline</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="grid">
+    <div class="card mapbox">
+      <h2>Overview Map</h2>
+      <svg viewBox="0 0 760 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Overall design scope conceptual map"><polygon points="297.2,274.56 299.98,264.67 320.78,190.74 320.9,190.31 321.06,189.92 341.23,152.02 352.47,130.89 390.17,130.89 455.16,130.89 455.16,116.81 390.17,116.81 359.97,116.81 367.46,102.73 262.35,102.73 153.28,102.73 167.02,56.96 262.35,56.96 375.0,56.96 394.33,56.96 502.94,56.96 600.31,56.96 712.96,56.96 697.53,102.73 600.31,102.73 487.65,102.73 484.89,102.73 477.39,116.81 487.65,116.81 522.32,116.81 522.32,130.89 487.65,130.89 469.9,130.89 458.66,152.02 438.04,190.74 437.71,191.37 417.09,264.67 414.03,275.55 326.29,306.91 312.17,306.91 288.1,306.91 293.05,289.31 297.2,274.56" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="299.98,264.67 297.2,274.56 293.05,289.31 288.1,306.91 262.35,306.91 262.35,289.31 262.35,264.67 299.98,264.67" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="320.78,190.74 299.98,264.67 262.35,264.67 262.35,190.74 320.78,190.74" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="320.9,190.31 320.78,190.74 262.35,190.74 262.35,264.67 149.69,264.67 149.69,190.74 126.86,190.74 138.49,152.02 149.69,114.7 153.28,102.73 262.35,102.73 367.46,102.73 359.97,116.81 323.01,116.81 323.01,130.89 352.47,130.89 341.23,152.02 321.06,189.92 320.9,190.31" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="390.17,130.89 352.47,130.89 323.01,130.89 323.01,116.81 359.97,116.81 390.17,116.81 390.17,130.89" fill="#B9E8A6" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="455.16,130.89 390.17,130.89 390.17,116.81 455.16,116.81 455.16,130.89" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="600.31,102.73 697.53,102.73 680.91,152.02 667.85,190.74 600.31,190.74 487.65,190.74 487.65,152.02 487.65,130.89 522.32,130.89 522.32,116.81 487.65,116.81 477.39,116.81 484.89,102.73 487.65,102.73 600.31,102.73" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="469.9,130.89 487.65,130.89 487.65,152.02 487.65,190.74 600.31,190.74 667.85,190.74 642.92,264.67 600.31,264.67 520.61,264.67 592.87,238.84 594.12,238.32 595.06,237.79 595.67,237.25 595.96,236.7 595.9,236.14 595.52,235.59 594.81,235.05 593.77,234.53 592.42,234.02 590.77,233.54 588.84,233.08 586.64,232.66 584.2,232.27 581.54,231.93 578.68,231.63 575.66,231.38 572.49,231.17 569.22,231.02 565.88,230.92 562.49,230.88 559.09,230.88 555.71,230.95 552.38,231.06 549.14,231.23 546.02,231.45 543.04,231.72 540.24,232.03 537.65,232.39 535.28,232.79 533.16,233.22 531.31,233.68 529.76,234.17 487.65,249.23 472.79,254.54 444.46,264.67 429.27,270.1 414.03,275.55 417.09,264.67 437.71,191.37 438.04,190.74 458.66,152.02 469.9,130.89" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="326.29,306.91 414.03,275.55 429.27,270.1 444.46,264.67 472.79,254.54 487.65,249.23 529.76,234.17 531.31,233.68 533.16,233.22 535.28,232.79 537.65,232.39 540.24,232.03 543.04,231.72 546.02,231.45 549.14,231.23 552.38,231.06 555.71,230.95 559.09,230.88 562.49,230.88 565.88,230.92 569.22,231.02 572.49,231.17 575.66,231.38 578.68,231.63 581.54,231.93 584.2,232.27 586.64,232.66 588.84,233.08 590.77,233.54 592.42,234.02 593.77,234.53 594.81,235.05 595.52,235.59 595.9,236.14 595.96,236.7 595.67,237.25 595.06,237.79 594.12,238.32 592.87,238.84 520.61,264.67 487.65,276.45 451.68,289.31 405.51,305.81 405.21,306.91 444.33,306.91 444.33,320.99 403.86,320.99 407.68,359.72 487.65,359.72 600.31,359.72 648.84,359.72 671.37,405.48 600.31,405.48 487.65,405.48 412.18,405.48 420.48,489.74 420.53,489.97 434.67,560.38 441.97,596.71 445.29,613.19 390.17,613.19 328.24,613.19 324.93,596.71 317.62,560.38 303.54,490.28 303.52,490.13 303.5,489.97 296.75,421.37 295.18,405.48 290.69,359.85 367.2,320.99 377.17,320.99 377.17,306.91 326.29,306.91" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="312.17,306.91 326.29,306.91 377.17,306.91 377.17,320.99 367.2,320.99 312.17,320.99 312.17,306.91" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="288.1,306.91 312.17,306.91 312.17,320.99 294.41,320.99 286.86,320.99 262.35,320.99 245.01,320.99 245.01,306.91 262.35,306.91 288.1,306.91" fill="#B9E8A6" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="126.86,190.74 149.69,190.74 149.69,264.67 98.54,264.67 123.69,201.3 126.86,190.74" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="149.69,264.67 262.35,264.67 262.35,289.31 262.35,306.91 245.01,306.91 245.01,320.99 262.35,320.99 262.35,337.28 250.87,343.1 218.15,359.72 149.69,359.72 60.8,359.72 76.17,320.99 88.75,289.31 98.54,264.67 149.69,264.67" fill="#61C0BF" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="367.2,320.99 290.69,359.85 295.18,405.48 262.35,405.48 198.37,405.48 197.81,405.6 195.49,406.01 192.94,406.37 190.17,406.69 187.23,406.97 184.13,407.2 180.91,407.38 177.6,407.5 174.23,407.58 170.83,407.6 167.43,407.56 164.08,407.47 160.79,407.33 157.61,407.13 154.55,406.89 151.66,406.6 149.69,406.35 148.96,406.26 146.48,405.89 144.3,405.48 42.63,405.48 60.8,359.72 149.69,359.72 218.15,359.72 250.87,343.1 262.35,337.28 287.22,324.65 294.41,320.99 312.17,320.99 367.2,320.99" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="487.65,276.45 520.61,264.67 600.31,264.67 642.92,264.67 634.62,289.31 626.31,313.95 629.77,320.99 600.31,320.99 487.65,320.99 487.65,289.31 487.65,276.45" fill="#E8684A" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="451.68,289.31 487.65,276.45 487.65,289.31 487.65,320.99 444.33,320.99 444.33,306.91 405.21,306.91 405.51,305.81 451.68,289.31" fill="#9270CA" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="403.86,320.99 444.33,320.99 487.65,320.99 487.65,359.72 407.68,359.72 403.86,320.99" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="600.31,359.72 487.65,359.72 487.65,320.99 600.31,320.99 629.77,320.99 648.84,359.72 600.31,359.72" fill="#E8684A" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="600.31,405.48 671.37,405.48 712.96,489.97 600.31,489.97 487.65,489.97 420.53,489.97 420.48,489.74 412.18,405.48 487.65,405.48 600.31,405.48" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="434.67,560.38 420.53,489.97 487.65,489.97 600.31,489.97 712.96,489.97 712.96,560.38 600.31,560.38 487.65,560.38 434.67,560.38" fill="#E8684A" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="441.97,596.71 434.67,560.38 487.65,560.38 600.31,560.38 712.96,560.38 712.96,596.71 712.96,637.83 712.96,655.43 600.31,655.43 487.65,655.43 453.77,655.43 450.24,637.83 448.12,627.27 390.17,627.27 390.17,613.19 445.29,613.19 441.97,596.71" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="328.24,613.19 390.17,613.19 390.17,627.27 331.07,627.27 323.01,627.27 323.01,613.19 328.24,613.19" fill="#B9E8A6" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="324.93,596.71 328.24,613.19 323.01,613.19 323.01,627.27 331.07,627.27 333.19,637.83 336.72,655.43 262.35,655.43 149.69,655.43 149.69,637.83 74.35,637.83 67.32,596.71 61.11,560.38 149.69,560.38 262.35,560.38 317.62,560.38 324.93,596.71" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="303.54,490.28 317.62,560.38 262.35,560.38 149.69,560.38 149.69,489.97 262.35,489.97 303.5,489.97 303.52,490.13 303.54,490.28" fill="#F08BB4" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="296.75,421.37 303.5,489.97 262.35,489.97 149.69,489.97 49.07,489.97 37.04,419.57 42.63,405.48 144.3,405.48 146.48,405.89 148.96,406.26 149.69,406.35 151.66,406.6 154.55,406.89 157.61,407.13 160.79,407.33 164.08,407.47 167.43,407.56 170.83,407.6 174.23,407.58 177.6,407.5 180.91,407.38 184.13,407.2 187.23,406.97 190.17,406.69 192.94,406.37 195.49,406.01 197.81,405.6 198.37,405.48 262.35,405.48 295.18,405.48 296.75,421.37" fill="#61C0BF" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="286.86,320.99 294.41,320.99 287.22,324.65 286.86,320.99" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="262.35,320.99 286.86,320.99 287.22,324.65 262.35,337.28 262.35,320.99" fill="#5B8FF9" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="149.69,489.97 149.69,560.38 61.11,560.38 49.07,489.97 149.69,489.97" fill="#F08BB4" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="600.31,655.43 712.96,655.43 712.96,673.04 600.31,673.04 487.65,673.04 375.0,673.04 262.35,673.04 149.69,673.04 149.69,655.43 262.35,655.43 336.72,655.43 333.19,637.83 331.07,627.27 390.17,627.27 448.12,627.27 450.24,637.83 453.77,655.43 487.65,655.43 600.31,655.43" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="522.32,627.27 487.65,627.27 455.16,627.27 455.16,613.19 487.65,613.19 522.32,613.19 522.32,627.27" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="149.69,637.83 149.69,655.43 77.36,655.43 74.35,637.83 149.69,637.83" fill="#F6BD16" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="149.69,655.43 149.69,673.04 80.37,673.04 77.36,655.43 149.69,655.43" fill="#7BC96F" fill-opacity="0.82" stroke="#ffffff" stroke-width="0.6"/><polygon points="180.02,190.74 656.64,190.74 656.64,60.48 180.02,60.48 180.02,190.74" fill="none" stroke="#E8503A" stroke-width="2" stroke-dasharray="7 5"/><polygon points="136.69,359.72 613.31,359.72 613.31,289.31 136.69,289.31 136.69,359.72" fill="none" stroke="#E8503A" stroke-width="2" stroke-dasharray="7 5"/><polygon points="136.69,637.83 699.96,637.83 699.96,596.71 136.69,596.71 136.69,637.83" fill="none" stroke="#E8503A" stroke-width="2" stroke-dasharray="7 5"/><polyline points="396.66,662.47 362.0,489.97 344.67,313.95 379.33,190.74 448.66,60.48" fill="none" stroke="#C9962E" stroke-width="12" stroke-opacity="0.35" stroke-linecap="round"/><polyline points="396.66,662.47 362.0,489.97 344.67,313.95 379.33,190.74 448.66,60.48" fill="none" stroke="#152A3D" stroke-width="2.2" stroke-dasharray="7 5" stroke-linecap="round"/><line x1="344.67" y1="313.95" x2="171.36" y2="401.96" stroke="#1F8A8C" stroke-width="6" stroke-opacity="0.5" stroke-linecap="round"/><line x1="344.67" y1="313.95" x2="561.31" y2="236.51" stroke="#1F8A8C" stroke-width="6" stroke-opacity="0.5" stroke-linecap="round"/><polygon points="80.37,673.04 712.96,673.04 712.96,489.97 626.31,313.95 712.96,56.96 167.02,56.96 123.69,201.3 37.04,419.57 80.37,673.04" fill="none" stroke="#6B7A8A" stroke-width="1.6" stroke-dasharray="6 4"/><rect x="415.66" y="116.85" width="14" height="14" fill="#E8503A" stroke="#ffffff" stroke-width="1.5"/><text x="433.66" y="127.85" font-size="11" fill="#152A3D">Computing Epoch Station</text><rect x="337.67" y="306.95" width="14" height="14" fill="#E8503A" stroke="#ffffff" stroke-width="1.5"/><text x="355.67" y="317.95" font-size="11" fill="#152A3D">Origin Epoch Station</text><rect x="415.66" y="613.23" width="14" height="14" fill="#E8503A" stroke="#ffffff" stroke-width="1.5"/><text x="433.66" y="624.23" font-size="11" fill="#152A3D">Application Epoch Station</text><text x="750" y="24" text-anchor="end" font-size="11" fill="#E8503A">Provisional boundary · conceptual Ren-line</text></svg>
+      <div class="legend">
+        <span><i style="background:#E8503A"></i>Epoch stations (key areas, provisional)</span>
+        <span><i style="background:#C9962E"></i>Ren-line innovation trunk</span>
+        <span><i style="background:#1F8A8C"></i>Switch branch lines (two wings)</span>
+        <span><i style="background:#7BC96F"></i>Green and open space</span>
+        <span><i style="background:#F6BD16"></i>Commercial services</span>
+        <span><i style="background:#5B8FF9"></i>Research / R&amp;D</span>
+      </div>
+      <div class="note">Base map generated from geometry/*.geojson in the package; area recomputation uses EPSG:4548.</div>
+    </div>
+    <div class="card">
+      <h2>Three-Tier Scope</h2>
+      <ul>
+        <li><b>Coordinated research scope</b>: 43.6 km², bounded north by the North 5th Ring Road, east by the Jingzang Expressway, south by Xizhimen Outer Street, west by Wanquanhe Road (announcement text).</li>
+        <li><b>Overall design scope</b>: ~11.4 km², 1–2 km around the Jing-Zhang Heritage Park (provisional boundary).</li>
+        <li><b>Key area scope</b>: three areas totaling ~368.4 ha (Zhongzhiyuan / Origin Community / Dazhongsi, provisional).</li>
+        <li>Spatial syntax: Ren-line mainline (green corridor) → three Epoch station platforms (plaza – station building – greenery) → switch wings → block sections B1–B5.</li>
+      </ul>
+      <h2 style="margin-top:14px">AI Scenarios</h2>
+      <ul>
+        <li>13 scenario cards (10+3) with the full scenario–space–data–model–operation–review–KPI matrix.</li>
+        <li>3 industrial test-and-validation scenarios: T1 model red-team test ground, T2 edge-intelligence validation node, T3 agent interoperability corridor.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid" style="margin-top:16px">
+    <div class="card">
+      <h2>Key Areas</h2>
+      <div class="area-cards">
+        <div class="area"><h3>Zhongzhiyuan · Computing Epoch Station</h3><div class="role">Full-stack R&amp;D and governance (B5)</div>
+          <ul><li>Station-front plaza: external transport and industry showcase gateway</li><li>Station core: full-stack R&amp;D + standards governance showcase</li><li>Platform greenery: Qinghe low-carbon innovation corridor</li></ul></div>
+        <div class="area"><h3>AI Origin Community · Origin Epoch Station</h3><div class="role">Campus-adjacent origination and open source (B3)</div>
+          <ul><li>Ren-line intersection: Origin Bell memorial node</li><li>Open-source release hall and contributor honor wall</li><li>Campus–park slow-traffic stitching + talent community</li></ul></div>
+        <div class="area"><h3>Dazhongsi · Application Epoch Station</h3><div class="role">Intelligent economy and consumption (B1)</div>
+          <ul><li>Station-front plaza four-quadrant pedestrian connectivity</li><li>Agent/terminal showcase + data-element lounge</li><li>International roadshow and urban living room</li></ul></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Mobility × Blue-Green Public Space</h2>
+      <ul>
+        <li>The Ren-line greenway links the three Epoch stations; the two-wing switch branches connect the service wing and scenario wing.</li>
+        <li>Transit stations (Wudaokou / West Qinghua East Road / Dazhongsi) as 300–500 m public space anchors.</li>
+        <li>The Qinghe waterfront and Xiaoyue River green corridor form the continuous blue-green skeleton.</li>
+        <li>Roads are conceptual centerlines, not road redlines; gaps and engineering conditions await official confirmation.</li>
+      </ul>
+      <h2 style="margin-top:14px">Land-Use Zones / Buildings / Renewal Projects</h2>
+      <ul>
+        <li>Land use is re-planned along the Ren-line corridor–station–switch wing and functional zones, seamlessly covering the submission boundary.</li>
+        <li>Building footprints are conceptual (42 footprints covering 12 building types).</li>
+        <li>Demolition/renewal/retention: four strategy tiers — preserve, retrofit, renew, reserve.</li>
+        <li>Renewal projects JZ-01 to JZ-12 are organized in near/mid/long phases with subject/dependency/duration/phased KPIs (conceptual).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:16px">
+    <h2>Core Metrics</h2>
+    <div class="metrics"><div class="metric-card"><span class="metric-label">Overall design scope area</span><span class="metric-value" data-metric="site_area_sqm" data-value="11412825.386">11,412,825.39 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">Ren-line mainline length (conceptual)</span><span class="metric-value" data-metric="corridor_length_m" data-value="9500.6">9,500.6 <small>m</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">Green ratio (conceptual)</span><span class="metric-value" data-metric="green_ratio" data-value="0.307964">0.31 <small></small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">Public space ratio</span><span class="metric-value" data-metric="public_space_ratio" data-value="0.004732">0 <small></small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">Building footprint area (conceptual)</span><span class="metric-value" data-metric="building_footprint_area_sqm" data-value="2376206.541">2,376,206.54 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">Road ratio (conceptual)</span><span class="metric-value" data-metric="road_ratio" data-value="0.119223">0.12 <small></small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">Block sections (scenario segments)</span><span class="metric-value" data-metric="block_section_count" data-value="5">5 <small>seg</small></span><span class="metric-status">known · known</span></div><div class="metric-card"><span class="metric-label">AI scenario nodes</span><span class="metric-value" data-metric="scenario_node_count" data-value="13">13 <small>nodes</small></span><span class="metric-status">known · known</span></div><div class="metric-card"><span class="metric-label">Key detailed design areas</span><span class="metric-value" data-metric="key_area_count" data-value="3">3 <small>areas</small></span><span class="metric-status">known · known</span></div><div class="metric-card"><span class="metric-label">Zhongzhiyuan (provisional)</span><span class="metric-value" data-metric="zhongzhiyuan_area_sqm" data-value="1929201.877">1,929,201.88 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">AI Origin Community (provisional)</span><span class="metric-value" data-metric="beijing_ai_origin_area_sqm" data-value="1043236.909">1,043,236.91 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div><div class="metric-card"><span class="metric-label">Dazhongsi (provisional)</span><span class="metric-value" data-metric="dazhongsi_area_sqm" data-value="720454.219">720,454.22 <small>m²</small></span><span class="metric-status">known · provisional_pending_recalculation</span></div></div>
+    <div class="note">All areas and ratios are recomputed from geometry/*.geojson under EPSG:4548; provisional-derived metrics are marked provisional_pending_recalculation; official control metrics such as FAR, density and total scale await control-plan conditions (status=unknown).</div>
+  </section>
+
+  <section class="card" style="margin-top:16px">
+    <h2>Key Diagrams</h2>
+    <div class="imgline">
+      <figure><img src="../assets/figures/ecosystem-map.png" alt="Ecosystem map"><figcaption class="note">AI innovation ecosystem map and global case translation</figcaption></figure>
+      <figure><img src="../assets/figures/scenario-matrix.png" alt="Scenario matrix"><figcaption class="note">Scenario–space–data–model–operation–review–KPI matrix</figcaption></figure>
+      <figure><img src="../assets/figures/landmark-honor.png" alt="Landmark and honor"><figcaption class="note">Pilgrimage landmarks, honor system and component library</figcaption></figure>
+      <figure><img src="../assets/figures/operations-calendar.png" alt="Operations system"><figcaption class="note">Annual activity calendar, governance structure and conversion funnel</figcaption></figure>
+      <figure><img src="../assets/figures/regional-synergy.png" alt="Regional synergy"><figcaption class="note">Regional synergy diagram</figcaption></figure>
+      <figure><img src="../assets/figures/personas-inclusion.png" alt="Personas and inclusion"><figcaption class="note">Nine user personas and inclusion mechanisms</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="two-col" style="margin-top:16px">
+    <section class="card">
+      <h2>Task Coverage</h2>
+      <table>
+        <tr><th>Task</th><th>Coverage</th></tr>
+        <tr><td>Announcement 1.3/1.4/1.5 mandatory tasks</td><td class="ok">23/23</td></tr>
+        <tr><td>Agent tasks agent.1–agent.6</td><td class="ok">6/6</td></tr>
+        <tr><td>Mandatory professional standards</td><td class="ok">All addressed</td></tr>
+        <tr><td>Design depth items</td><td class="ok">15/15 complete</td></tr>
+        <tr><td>Core GeoJSON layers</td><td class="ok">9/9 referenced</td></tr>
+        <tr><td>Known metrics</td><td class="ok">All referenced</td></tr>
+      </table>
+      <div class="note">See compliance_matrix.json, standard_matrix.json and design_depth_matrix.json.</div>
+    </section>
+    <section class="card">
+      <h2>Self-Check Status</h2>
+      <table>
+        <tr><th>Check</th><th>Result</th></tr>
+        <tr><td>Deterministic validation (format/path/risk)</td><td class="ok">Passed (see self_check.json)</td></tr>
+        <tr><td>Spatial validation (topology/recomputation)</td><td class="ok">Passed (provisional notice is minor)</td></tr>
+        <tr><td>Visualization packaging check</td><td class="ok">Passed</td></tr>
+        <tr><td>Professional evidence review</td><td class="ok">Passed</td></tr>
+      </table>
+      <h2 style="margin-top:14px">Sources</h2>
+      <ul>
+        <li>Official announcement (Haidian Branch, Beijing Municipal Planning and Natural Resources Commission, 2026-05-09)</li>
+        <li>Agent-oriented taskbook (agent_taskbook.json)</li>
+        <li>Provisional boundary (provisional_boundaries.geojson)</li>
+        <li>Public source registry (data/source_registry.json)</li>
+        <li>Per-asset rights registration (report/copyright_statement.md)</li>
+      </ul>
+      <h2 style="margin-top:14px">Assumptions</h2>
+      <ul>
+        <li>Control-plan conditions (FAR/height/density/green ratio/setback) await official confirmation.</li>
+        <li>All provisional-boundary-derived metrics are marked pending recalculation; a full recalculation follows the official redline release.</li>
+        <li>Spatial conclusions, activities and KPIs are conceptual proposals and do not constitute government approval or implementation commitments.</li>
+      </ul>
+    </section>
+  </div>
+
+  <footer>Jing-Zhang Epoch Rail · Centennial Jing-Zhang AI Innovation Belt urban design open call · Offline static display; no external resources are loaded</footer>
+</div>
+</body>
+</html>

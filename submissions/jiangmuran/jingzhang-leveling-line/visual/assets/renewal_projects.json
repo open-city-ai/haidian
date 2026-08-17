@@ -1,0 +1,175 @@
+{
+ "generated_by": "analysis/build_renewal_projects.py",
+ "read_from": "proposal.md#更新项目清单 (the R1-R8 table)",
+ "note_zh": "`depends_on` 是「另一个项目必须先建成」；`blockers` 是「本包之外的一个条件」，并注明谁能解除它。两者失败方式不同，解除的人也不同，因此分开记。一条依赖只在该行自己的前置条件点名了另一个项目时才写入——这就是为什么只有一条。",
+ "note_en": "depends_on means another project must be built first; blockers are conditions outside this package, each tagged with who can lift it. They fail differently and are relieved by different people, so they are recorded apart. A dependency is written only where that row's own precondition names another project, which is why there is one.",
+ "projects": [
+  {
+   "id": "R1",
+   "name_zh": "水准原点标石 L1 与公共证据厅",
+   "name_en": "Origin benchmark L1 and the public evidence hall",
+   "phase_zh": "近期",
+   "phase": "near",
+   "cost_band": "A",
+   "depends_on": [],
+   "blockers": [
+    {
+     "kind": "permit",
+     "condition_zh": "现状公共用地使用许可",
+     "condition_en": "a use permit on existing public land",
+     "lifted_by_zh": "使用许可（场地管理方）",
+     "lifted_by_en": "a use permit, from the site's manager"
+    }
+   ]
+  },
+  {
+   "id": "R2",
+   "name_zh": "限差 F 首版公开制定",
+   "name_en": "First public tolerance F",
+   "phase_zh": "近期",
+   "phase": "near",
+   "cost_band": "A",
+   "depends_on": [],
+   "blockers": []
+  },
+  {
+   "id": "R3",
+   "name_zh": "S08 文化导览四周闭合试验",
+   "name_en": "S08 four-week closure trial on the heritage walk",
+   "phase_zh": "近期",
+   "phase": "near",
+   "cost_band": "A",
+   "depends_on": [],
+   "blockers": []
+  },
+  {
+   "id": "R4",
+   "name_zh": "三等水准点（社区与轨道站）布设",
+   "name_en": "Third-order benchmarks at community and station",
+   "phase_zh": "近期—中期",
+   "phase": "near-mid",
+   "cost_band": "B",
+   "depends_on": [],
+   "blockers": [
+    {
+     "kind": "official_data",
+     "condition_zh": "管辖归属核定",
+     "condition_en": "a ruling on which authority holds each point",
+     "lifted_by_zh": "官方数据或法定条件（主管部门）",
+     "lifted_by_en": "official data or a statutory condition, from the authority"
+    }
+   ]
+  },
+  {
+   "id": "R5",
+   "name_zh": "众智园受控测试场（S11）",
+   "name_en": "Zhongzhiyuan controlled test ground",
+   "phase_zh": "中期",
+   "phase": "mid",
+   "cost_band": "B",
+   "depends_on": [],
+   "blockers": [
+    {
+     "kind": "permit",
+     "condition_zh": "场地围合条件与安全评估",
+     "condition_en": "an enclosed site and a safety assessment",
+     "lifted_by_zh": "使用许可（场地管理方）",
+     "lifted_by_en": "a use permit, from the site's manager"
+    }
+   ]
+  },
+  {
+   "id": "R6",
+   "name_zh": "主脊连续化与东西缝合",
+   "name_en": "Continuous spine and east-west stitching",
+   "phase_zh": "中期",
+   "phase": "mid",
+   "cost_band": "C",
+   "depends_on": [],
+   "blockers": [
+    {
+     "kind": "official_data",
+     "condition_zh": "官方边界与控规条件",
+     "condition_en": "the official boundary and the statutory plan",
+     "lifted_by_zh": "官方数据或法定条件（主管部门）",
+     "lifted_by_en": "official data or a statutory condition, from the authority"
+    },
+    {
+     "kind": "engineering",
+     "condition_zh": "工程专项论证",
+     "condition_en": "an engineering review",
+     "lifted_by_zh": "工程专项论证（专业论证机构）",
+     "lifted_by_en": "an engineering review, from the reviewing body"
+    }
+   ]
+  },
+  {
+   "id": "R7",
+   "name_zh": "S06 低速机器人分段准入",
+   "name_en": "S06 low-speed robot admission by segment",
+   "phase_zh": "中期",
+   "phase": "mid",
+   "cost_band": "B",
+   "depends_on": [
+    "R4"
+   ],
+   "blockers": [
+    {
+     "kind": "programme_state",
+     "condition_zh": "冰雪与噪声测项取得基线",
+     "condition_en": "a baseline for the ice-and-snow and noise readings",
+     "lifted_by_zh": "本方案自身的读数状态（复核主体）",
+     "lifted_by_en": "this programme's own reading record, from the review parties"
+    }
+   ]
+  },
+  {
+   "id": "R8",
+   "name_zh": "年度归零仪式与全网复测制度化",
+   "name_en": "Annual re-zeroing and network-wide re-measurement",
+   "phase_zh": "远期",
+   "phase": "far",
+   "cost_band": "A",
+   "depends_on": [],
+   "blockers": [
+    {
+     "kind": "programme_state",
+     "condition_zh": "中期连续两个周期闭合合格",
+     "condition_en": "two consecutive mid-term cycles within tolerance",
+     "lifted_by_zh": "本方案自身的读数状态（复核主体）",
+     "lifted_by_en": "this programme's own reading record, from the review parties"
+    }
+   ]
+  }
+ ],
+ "dependency_edge_count": 1,
+ "longest_chain": [
+  "R4",
+  "R7"
+ ],
+ "longest_chain_length": 2,
+ "independent_of_official_data": [
+  "R1",
+  "R2",
+  "R3",
+  "R5",
+  "R8"
+ ],
+ "independent_of_official_data_rule_zh": "前置条件中不含官方数据一类，且不等待任何其他项目",
+ "startable_now": [
+  "R1",
+  "R2",
+  "R3"
+ ],
+ "startable_now_rule_zh": "在上一条基础上再要求：属于近期，且不等工程论证或本程序自身的读数状态",
+ "official_data_gates": [
+  {
+   "project": "R4",
+   "condition_zh": "管辖归属核定"
+  },
+  {
+   "project": "R6",
+   "condition_zh": "官方边界与控规条件"
+  }
+ ]
+}

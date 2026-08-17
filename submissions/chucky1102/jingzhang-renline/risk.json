@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "summary": "人字线 RENLINE 的风险登记把正文《风险、版权与合规说明》、七维执行摘要的证据上限以及三处重点区「实施风险」中已经声明的风险,结构化为仓库规定的八个可校验维度。本登记不新增任何风险主张、不新增证据、不改变任何空间或指标结论。分数表示处理优先级而非发生概率;provisional、blocked_until_evidence 与 not_started 都不构成放行。任何试点窗口都必须保留普通服务等价路径、无障碍等价路径、人工接管责任、停止条件与留痕记录(折返协议)。",
+  "dimensions": [
+    {
+      "id": "policy_uncertainty",
+      "label": "临时边界、资料缺口与表述边界",
+      "score": 5,
+      "note": "本包全部边界为组织方 provisional 几何。官方红线、控规条件、现状建筑与权属、市政容量、文物法定范围五类资料缺口逐项登记,任何一项公布后对应图层与指标必须整包重算。provisional 边界不得被读作法定红线或精确面积依据。本方案为开放共创的概念建议与参考方案,不替代正式规划,不构成政府审定结论、投资承诺或工程可行性判断;所有站名、地标、活动均为品牌与运营概念,非既定安排。",
+      "mitigation": "全部依赖图层保留 provisional 标记、来源、公式与重算触发条件,并在 sources.json、assumptions.json、self_check.json、可视化页与正文一致声明;官方数据发布即触发整包重算;不将概念建议、活动设想或政策机制建议表述为已确定的政府决策或实施安排。",
+      "human_review": "由规划、自然资源、市政与文物专业人员在官方资料发布后复核,再进入下一版;对外表述由人类账号所有者复核。",
+      "state": "controlled_by_gate",
+      "trigger": "官方 geometry、控规条件、权属或文保范围发布,或任何对外表述场合",
+      "evidence": ["geometry/site_boundary.geojson", "geometry/key_areas.geojson", "assumptions.json", "sources.json"],
+      "stop_condition": "官方红线发布前不作任何地块级结论、精确面积主张或建设承诺;任何情况下不表述为已获官方背书、审批结论或实施承诺。",
+      "owner_role": "概念证据与规划负责人"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "现场验证为零与爬升等级上限",
+      "score": 5,
+      "note": "折返协议的机器可校验合同通过,只证明协议逻辑自洽,不证明现场成效。本方案现场验证为零,爬升等级如实停在 G0-G2,未进入任何现场窗口;12 张场景卡均为 G0-G1,T1-T3 只有经黄灯期三道验证门才可能达到 G3。",
+      "mitigation": "校验回执与爬升等级同时公开,校验结论旁写明自我设限;成效表述一律限定在桌面校验范围内;等级只能因新证据上升,不因措辞上升,降级与升级同样公开。",
+      "human_review": "现场窗口开启前须由运营、安全与无障碍专业人员复核。",
+      "state": "blocked_until_evidence",
+      "trigger": "获得授权的现场试点窗口开启",
+      "evidence": ["visual/assets/switchback-validation-receipt.json", "visual/assets/switchback-protocol.json", "visual/assets/switchback-protocol.schema.json"],
+      "stop_condition": "无授权、无人工接管责任、无停止条件时不开启任何现场窗口。",
+      "owner_role": "协议维护与试点复核负责人"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "文物保护范围与空间权属争议",
+      "score": 5,
+      "note": "觉生寺(大钟寺古钟博物馆)为全国重点文物保护单位,法定保护范围以文物部门公布为准,本包未取得该范围数据。桥下空间等更新项目的空间权属亦需确认。",
+      "mitigation": "严控文物周边高度与体量,保护范围内只做低强度退让性设计;邻近文物的改造一律标注为概念表达;权属未确认的空间不作实施建议。",
+      "human_review": "文物主管部门、文保专业团队与权属方共同评估。",
+      "state": "blocked_until_evidence",
+      "trigger": "文物保护专项评估、法定保护范围公布或权属确认",
+      "evidence": ["geometry/constraints.geojson", "geometry/land_use.geojson", "geometry/key_areas.geojson"],
+      "stop_condition": "文物保护专项评估完成前,一切邻近文物的改造只作概念表达;权属未确认前不作地块级结论。",
+      "owner_role": "文化遗产与风貌负责人"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "土地一级开发与市政承载",
+      "score": 4,
+      "note": "众智园重点区以新建为主,增量开发依赖土地一级开发与市政承载论证,二者在本包内均为待确认事项。全带不设成片拆除,任何 demolish 级动作都需权属、安置与文保前置论证。",
+      "mitigation": "开发规模与留白面积均标注为概念建议;市政容量保持 unknown 并说明原因,不以公开数据筛查冒充现状容量;控规条件公布前以 S1-S3 强度情景包络表达不确定性,只定义假设与检验问题,不预设结论。",
+      "human_review": "自然资源、市政、交通与实施主体共同论证。",
+      "state": "not_started",
+      "trigger": "市政容量数据与土地一级开发条件公布",
+      "evidence": ["geometry/land_use.geojson", "geometry/phasing.geojson", "assumptions.json"],
+      "stop_condition": "市政承载论证完成前不作开发强度承诺,不给出地块级拆除结论。",
+      "owner_role": "更新实施与分期负责人"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "高校边界开放与轨道运营协同",
+      "score": 4,
+      "note": "AI 原点社区依赖高校边界开放,需校方共建机制;人流高峰治理需与轨道运营协同。两者均为建议,未获校方或轨道运营主体确认。大钟寺站 TOD 缝合街还依赖 13 号线拆分工程时序衔接。",
+      "mitigation": "校城融合界面与接驳径均按概念建议表述并写明依赖共建机制;高峰治理措施保留非智能等价路径;时序依赖逐项写入更新项目清单的关键依赖条件列。",
+      "human_review": "高校、属地街道与轨道运营方共同复核。",
+      "state": "not_started",
+      "trigger": "校方共建机制或轨道运营协同意向确立",
+      "evidence": ["geometry/key_areas.geojson", "geometry/roads.geojson", "geometry/phasing.geojson"],
+      "stop_condition": "未获相关主体确认前,不表述为已达成的合作安排。",
+      "owner_role": "重点区详细设计负责人"
+    },
+    {
+      "id": "data_privacy",
+      "label": "数据隐私、AI 可接管性与版权清权",
+      "score": 4,
+      "note": "全部场景卡内置数据最小化、人工复核与可解释边界;本方案不提出人脸识别、社会信用评分或无法人工接管的自动决策场景。方案文本、图件、GeoJSON 均为 AI agent 原创生成;历史影像、馆藏钟声、人物姓名、代码与论文的任何实体展示均以取得授权或开源许可允许为前置条件——声景不采样馆藏钟声,短片不使用系统 TTS 人声;Logo 与导视仅为方向描述,未使用任何现有字体或商标资产。",
+      "mitigation": "折返协议要求每个场景保留普通服务等价路径、无障碍等价路径与人工接管责任,不可接管的自动决策不进入场景卡;引用的国际案例仅使用公开事实;授权边界逐项写入 report/copyright_statement.md 与正文,未授权即不使用。",
+      "human_review": "伦理、隐私、无障碍专业复核,以及法律合规与权利人授权流程。",
+      "state": "controlled_by_gate",
+      "trigger": "新增场景卡、场景进入现场窗口,或出现任何实体展示、采样与再分发需求",
+      "evidence": ["visual/assets/switchback-protocol.json", "visual/assets/switchback-protocol.schema.json", "report/copyright_statement.md", "assets/media/renline-soundscape.md"],
+      "stop_condition": "无人工接管路径或无等价非智能服务的场景不予推进;未取得授权或开源许可前不做任何实体展示、采样或再分发。",
+      "owner_role": "场景治理与版权清权负责人"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平、包容与非智能等价路径",
+      "score": 4,
+      "note": "青年友好清单、无障碍与非智能等价路径、更新不驱逐、养老与基层诊疗辅助均为设计意图,尚未经受益群体参与式核验。社区原住民与长者的主要痛点是数字鸿沟与施工扰动。",
+      "mitigation": "折返协议把无障碍等价路径与普通服务等价路径写为进入下一阶段的前置条件;更新项目以存量改造与整体保留为主,不设成片拆除;包容性措施在正文中标注为设计意图而非已验证结论。",
+      "human_review": "受益群体参与式核验,以及无障碍与社会工作专业复核。",
+      "state": "blocked_until_evidence",
+      "trigger": "参与式核验或现场试点窗口开启",
+      "evidence": ["geometry/public_space.geojson", "geometry/green_space.geojson", "visual/assets/switchback-protocol.json"],
+      "stop_condition": "任何智能服务在缺少等价非智能路径与无障碍路径时不予推进;不将设计意图表述为已核验的包容性成效。",
+      "owner_role": "公共利益与包容性负责人"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运营主体、维护责任与成本未测算",
+      "score": 3,
+      "note": "14 项更新项目的实施主体与依赖条件均为建议,未获任何主体确认;成本在本包内保持 unknown,不作测算结论。折返协议要求每个窗口有明确运营主体与退出记录,但运营主体尚未确认。",
+      "mitigation": "实施主体一律标注为建议;成本保持 unknown 并说明原因,不以概念规模冒充投资估算;折返协议内置时限、90 天复审与折返(退出)机制,避免无主运营长期存续。",
+      "human_review": "实施主体、运营主体与财政/投资专业复核。",
+      "state": "not_started",
+      "trigger": "实施主体或运营主体确认,或官方控制条件公布后进入测算",
+      "evidence": ["geometry/phasing.geojson", "visual/assets/switchback-protocol.json", "metrics.json"],
+      "stop_condition": "无确认的运营主体与退出机制时不推进试点;成本保持 unknown,不给出投资承诺或可行性判断。",
+      "owner_role": "更新实施与运营机制负责人"
+    }
+  ]
+}

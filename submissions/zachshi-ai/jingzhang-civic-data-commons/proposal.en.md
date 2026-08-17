@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Restructuring the Jingzhang AI Innovation Belt into a service-oriented city spine built on 'data as a public good': one spine (the open civic-data axis), three hearts (Zhongzhiyuan data factory, AI-Origin community service living room, Dazhongsi enterprise data port), and many nodes (citizen-participatory AI service pods). Public data opens along the belt; citizens and developers co-create AI services at co-creation nodes; the digital platform and physical space are designed as one, forming a governable, experienceable, and replicable civic-data commons."
 tracks: ["ai-public-services", "civic-agent-governance"]
 scenarios: ["ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide"]
-iteration: "v1.0"
+iteration: "v5.0"
 ---
 
 # Jingzhang AI Civic Data Commons: A Co-Created Service-Oriented City Spine
@@ -194,9 +194,70 @@ Phasing extents are conceptual recommendations, subject to formal implementation
 
 The proposal designs a "four-season citizen co-creation program": spring "Open Data Hackathon" (Zhongzhiyuan), summer "AI Service Experience Week" (AI-Origin Community), autumn "Enterprise Data Co-Creation Day" (Dazhongsi), winter "Civic Data Commons Outcomes Exhibition" (full line). The program must be coordinated with public-space permits, event safety, and copyright clearance, and must not be written as confirmed government arrangements [source:agent-taskbook].
 
+### Core Mechanism: Data Receipt (original to this proposal)
+
+The chronic problem with public-data opening is "declared open, yet no one can track where the data went, who used it, for what purpose, and when it was deleted." This proposal introduces an original **Data Receipt mechanism**: turning every use of public data into an auditable receipt [E:DATA-COMMONS-RECEIPT] [source:data-security-law].
+
+**Receipt elements (required for every use):**
+- Dataset ID (DS-xx) and data provider
+- User type (service operator / developer / research / public)
+- Purpose of use (must be specific; generic terms such as "data analysis" are not allowed)
+- Data-minimization confirmation (whether only the required fields are taken)
+- Retention period (days) and whether deletion is required
+- **Named human reviewer** (data compliance officer / security officer / accessibility advisor, etc.)
+- Status (open / pending / closed) and deletion record
+
+**Receipt ledger for the 12 public datasets** (full version in `visual/assets/data-receipt-ledger.json`):
+
+| Dataset | Purpose of use | Retention period | Human reviewer | Deletion required |
+| --- | --- | --- | --- | --- |
+| Public-space openness data | Shared-mobility network route planning | 90 days | Data compliance officer | Yes |
+| Slow-traffic aggregated data | Data-station siting and scheduling | 180 days | Data compliance officer | Yes |
+| Cultural-heritage site public information | Cultural guide generation | 365 days | Heritage protection advisor | No |
+| Weather and air-quality public data | Operations-window determination | 30 days | Security officer | Yes |
+| Accessibility-facility survey data | Barrier-free route planning | 180 days | Accessibility advisor | No |
+| Rail-station passenger-flow aggregated data | Metro connection scheduling | 90 days | Data compliance officer | Yes |
+| Public-feedback aggregate statistics | Service-quality improvement | 180 days | Public oversight representative | Yes |
+
+**Rule-closure verification.** `run_receipt_tabletop.js` correctly classifies all 72 synthetic cases from 12 receipts × 6 rule branches (complete / missing purpose / missing human review / missing retention period / deletion missing / closed without deletion) — 48 blocked / 12 auditable / 12 flagged — proving that the receipt rules are logically closed. This proves only classification correctness, however, and does not constitute data authorization, compliance, or evidence of actual use; on-site performance remains null, with status `not_authorized_not_run` [data:visual/assets/receipt-tabletop-evidence.json#blocked].
+
+**Relationship with "data as a public good."** The Data Receipt mechanism makes "public good" live up to its name: when data is used, it is like a public item being lent out — there must be a loan record, a return period, and a responsible person. The ledger is public (de-identified) and open to public and regulatory inspection, and every receipt has a named human reviewer — the whereabouts of data go from "no one knows" to "everyone can check" [source:public-data-policy].
+
+### Core Mechanism: Data Timetable (original to this proposal, v5)
+
+The Data Receipt solves "every use is recorded," but the records lie in a ledger — **citizens still cannot see them**. The core insight of this proposal comes from the Jingzhang railway itself: **the Jingzhang railway's publicness is built on being seen — tracks, stations, and timetables are seen by citizens every day; data is this century's "invisible public infrastructure." Publicness = visibility.** The Data Timetable turns every data use into a row on a timetable, so that citizens read data the way they read a railway timetable [E:DATA-TIMETABLE] [source:official-announcement].
+
+**Timetable row (isomorphic with a railway timetable).** Each row shows: data / provider / user / purpose / display period / retention period / deletion requirement / display status / objection status / human reviewer — corresponding to a railway timetable's train number / origin / destination / status / remarks. All 12 rows are fully registered in `visual/assets/data-timetable.json` [data:visual/assets/data-timetable.json#rows]:
+
+| Data | User | Purpose | Display period | Deletion | Reviewer |
+| --- | --- | --- | --- | --- | --- |
+| Public-space openness data | Service operator | Shared-mobility network route planning | 90 days | Yes | Data compliance officer |
+| Slow-traffic aggregated data | Service operator | Data-station siting and scheduling | 180 days | Yes | Data compliance officer |
+| Cultural-heritage site public information | Developer | Cultural guide generation | 365 days | No | Heritage protection advisor |
+| Rail-station passenger-flow aggregated data | Service operator | Metro connection scheduling | 90 days | Yes | Data compliance officer |
+| Public-feedback aggregate statistics | Research | Service-quality improvement | 180 days | Yes | Public oversight representative |
+
+**Timetable stations (5, distributed along the corridor).** Full specifications are in `visual/assets/timetable-stations.json` [data:visual/assets/timetable-stations.json#stations]:
+
+| Station | Location | Display form | No-AI equivalent |
+| --- | --- | --- | --- |
+| TS-01 Zhongzhiyuan Station | Innovation Exchange Plaza (PS-002) | Flip-board style (conceptual) | Paper timetable |
+| TS-02 Origin Community Station | Service station (PS-011) | Flip-board + paper slot | Paper timetable + manual inquiry by an attendant |
+| TS-03 Mid-Park Station | Mid-point station (PS-012) | Flip-board style | Paper timetable |
+| TS-04 Dazhongsi Station | Smart-Delivery Experience Plaza (PS-013) | Flip-board + electronic screen (conceptual) | Paper timetable |
+| TS-05 South End Station | South-end node (PS-014) | Flip-board style | Paper timetable |
+
+**Data objection channel (the other half of visibility: contestability).** Citizens can anonymously query "where the data is being used" at any timetable station and submit an objection against any row (anonymous submission allowed): false purpose / purpose drift / not deleted after expiry / involves oneself. Objections enter the public ledger; the data compliance officer and the public oversight representative accept and reply to them within 5 working days, and objection records are retained for 180 days. Paper objection forms and telephone objections ensure equal usability for people without digital skills. The full flow is in `visual/assets/objection-channel.json` [data:visual/assets/objection-channel.json#flow].
+
+**Negative-space baseline.** Timetable stations are removable installations; once removed, the corridor reverts to complete park space — **data is visible but takes up no space, and publicness does not depend on the installations' existence**. Even when the Data Timetable is completely out of service, citizens can still complete basic services through manual service windows, paper forms, and community networks [data:visual/assets/timetable-stations.json#negative-baseline].
+
+**Rule-closure verification.** `run_timetable_tabletop.js` correctly classifies all 72 synthetic cases from 12 rows × 6 rule branches (complete / missing purpose / missing human reviewer / missing retention period / not deleted after expiry / objection unanswered) — 36 blocked / 12 displayable / 24 flagged — proving that the timetable display rules are logically closed. This proves only classification correctness, however, and does not constitute data authorization, compliance, or evidence of actual use; on-site performance remains null, with status `not_authorized_not_run` [data:visual/assets/timetable-tabletop-evidence.json#blocked].
+
+**Relationship with the Data Receipt.** The receipt is "the record of each use" (management side); the timetable is "the disclosure of each use" (public side) — the receipt ensures every data use is traceable, and the timetable ensures citizens can see and question it. Together they form the visibility loop of "civic data infrastructure": **invisible data is not public; data that is visible and contestable is** [source:public-data-policy].
+
 ### Open-Data Policy Roadmap
 
-It recommends establishing a tiered open-data catalogue (public / registered-use / restricted-use), with supporting data-security assessment, AI-service registration disclosure, and citizen feedback mechanisms. Policy recommendations must comply with current laws and regulations and are conceptual only; they do not constitute government-approved conclusions or implementation commitments [standard:GENERATIVE-AI-INTERIM-MEASURES] [source:data-security-law].
+It recommends establishing a tiered open-data catalogue (public / registered-use / restricted-use), with supporting data-security assessment, AI-service registration disclosure, and citizen feedback mechanisms; each tier of opening is paired with a Data Receipt as the implementation tool for data-security assessment. Policy recommendations must comply with current laws and regulations and are conceptual only; they do not constitute government-approved conclusions or implementation commitments [standard:GENERATIVE-AI-INTERIM-MEASURES] [source:data-security-law].
 
 ### Developer Community Operation Mechanism
 

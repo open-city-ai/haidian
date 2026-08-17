@@ -63,7 +63,7 @@
       "severity": "info",
       "target": "self_check.json",
       "source": "package-provided",
-      "message": "以 PKG_ 开头的条目是本方案自建的闸门，不是组织方检查项，不参与 ok / can_enter_formal_review 的判定。**它们只可能记录『通过』**——任一闸门不过，构建即停止，包不会存在，因此『通过』二字本身不构成证据。有证据价值的是每条 message 里的读数：它可以拿随包产物直接复核。（本次记录 53 道闸门，逐道由构建的输出现取，而不是从一份手写名单里挑——名单曾经只列了 7 道。另有 3 条以 PKG_ 开头的条目**不是闸门**：本条与两条统计披露，它们的 `result` 字段对它们没有意义，有意义的是 message 里那几个可以拿随包产物复核的数。因此 PKG_ 行共 56 条 = 53 道闸门 + 3 条披露。）"
+      "message": "以 PKG_ 开头的条目是本方案自建的闸门，不是组织方检查项，不参与 ok / can_enter_formal_review 的判定。**它们只可能记录『通过』**——任一闸门不过，构建即停止，包不会存在，因此『通过』二字本身不构成证据。有证据价值的是每条 message 里的读数：它可以拿随包产物直接复核。（本次记录 76 道闸门，逐道由构建的输出现取，而不是从一份手写名单里挑——名单曾经只列了 7 道。另有 3 条以 PKG_ 开头的条目**不是闸门**：本条与两条统计披露，它们的 `result` 字段对它们没有意义，有意义的是 message 里那几个可以拿随包产物复核的数。因此 PKG_ 行共 79 条 = 76 道闸门 + 3 条披露。）"
     },
     {
       "check_id": "PKG_ACCESSIBILITY_QA",
@@ -71,7 +71,15 @@
       "severity": "info",
       "target": "visual/index.html, report/proposal.html",
       "source": "package-provided",
-      "message": "对比度与无障碍 — accessibility: 0 failure(s) — 8 contrast ratios, tightest 3.00:1 against its own 3.0 floor (1.00x); 69 sheets checked for type size at A0, smallest 4.47 mm; 2 offline pages, 0 image(s) without alt text"
+      "message": "对比度与无障碍 — accessibility: 0 failure(s) — 14 contrast ratios, tightest 3.00:1 against its own 3.0 floor (1.00x); 69 sheets checked for type size at A0, smallest 4.47 mm; 2 offline pages, 0 image(s) without alt text"
+    },
+    {
+      "check_id": "PKG_ANNOUNCEMENT_TERMS_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "announcement_terms_qa.py — announcement terms: 4 deliverable names read from brief/site-package/standards/references/project-official-announcement.md @ upstream/main — each still in their sentence, each occurring in proposal.md, and each carrying a row in the block that maps it to what this package ships"
     },
     {
       "check_id": "PKG_ASSUMPTION_REFS_QA",
@@ -80,6 +88,22 @@
       "target": "metrics.json / assumptions.json",
       "source": "package-provided",
       "message": "指标与其假设的机读联接 — assumption references: 53 metrics, 65 id references, every one resolves and matches what the metric actually reads (boundary, corpus, OSM, package-internal); the 67 source paths those rules read all resolve too — 63 in the package, 4 in the organiser's brief; the prose boundary rule matches 0 of 3 markers today (kept as a net for a metric outside the provisional class), and 3 of 5 census files are read by no metric"
+    },
+    {
+      "check_id": "PKG_BENCHMARK_CHAIN_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "benchmark_chain_qa.py — benchmark chain: 6 benchmarks in the published chain (BM-2 → BM-301 → BM-302 → BM-0 → BM-303 → BM-1), 4 counting claim(s) across the prose and the drawings all equal to it, and 2 of 8 shipped benchmarks outside it each with a reason published in metrics.json rather than in a build log (BM-21, BM-22). Scope: this does not judge whether an exclusion is right, only that the count is true and the two left out are named where a reviewer reads"
+    },
+    {
+      "check_id": "PKG_BLOCK_TYPE_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "block_type_qa.py — block types: 3 key areas, each paired in proposal.md with the type the announcement assigns it (花园型人工智能创新街区, 近校型人工智能创新街区, 城市型人工智能创新街区), each carrying a row with its own failable condition and evidence this document holds; whether the block is designed as that type is the reviewer's call and this does not claim it"
     },
     {
       "check_id": "PKG_BUILD_RUBRIC_COVERAGE",
@@ -103,7 +127,7 @@
       "severity": "info",
       "target": "proposal.md, report/, assumptions.json",
       "source": "package-provided",
-      "message": "正文所述语料读数与随包 JSON 是否一致 — census claims: 14 facts in both editions and 20 context patterns (22 occurrence(s) constrained) across 8 shipped files, all current (corpus 793)"
+      "message": "正文所述语料读数与随包 JSON 是否一致 — census claims: 9 facts in both editions and 19 context patterns (22 occurrence(s) constrained) across 8 shipped files, all current (corpus 793)"
     },
     {
       "check_id": "PKG_CJK_LEAK_QA",
@@ -119,7 +143,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "claim_audit_qa.py — claim audit: 87 zh / 87 en unit-carrying measurements in prose, same set in both editions; 190/182 bare numbers reported but not blocked, and one designed check (80 candidates) not shipped"
+      "message": "claim_audit_qa.py — claim audit: 81 zh / 81 en unit-carrying measurements in prose, same set in both editions; 152/144 bare numbers reported but not blocked, and one designed check (75 candidates) not shipped"
     },
     {
       "check_id": "PKG_CLAIM_STATE_QA",
@@ -128,6 +152,14 @@
       "target": "package",
       "source": "package-provided",
       "message": "claim_state_qa.py — 本次构建未记录到该闸门的输出，因此不声称它跑过"
+    },
+    {
+      "check_id": "PKG_COMPUTE_SITING_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "compute_siting_qa.py — compute siting: 4 conditions, 2 judgeable from what this package already ships and 2 each naming the official condition it waits on; no floor area, rack count or load anywhere in the block. Whether Zhongzhi Park is the right place is the reviewer's call and this does not claim it — only that the case for it is made out of conditions that can fail"
     },
     {
       "check_id": "PKG_COMPUTED_VALUE_QA",
@@ -143,7 +175,15 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "declared_geometry_qa.py — declared geometry: 61 declared measurements across 9 layers, every one equal to the shape it sits on when measured in EPSG:4548, the CRS the package states and uses"
+      "message": "declared_geometry_qa.py — declared geometry: 67 declared measurements across 9 layers, every one equal to the shape it sits on when measured in EPSG:4548, the CRS the package states and uses"
+    },
+    {
+      "check_id": "PKG_DEPTH_DIMENSION_EVIDENCE_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "depth_dimension_evidence_qa.py — depth dimension evidence: 2 item(s) declaring a mapped dimension, each citing every one of the 4 evidence kinds that dimension consists of, or exempt where the layer has no feature inside the item's own extent (0 exemption(s)). Only 城市设计 is mapped; the other dimensions carry no required set and this gate does not guess at them. Scope: it checks that an item cites the kinds its dimension is made of, not whether the design is good or the layers well chosen"
     },
     {
       "check_id": "PKG_ENTRANCE_RULE_QA",
@@ -175,7 +215,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "figure_citation_qa.py — figure citations: all 34 sheets cited from the argument in both editions outside the drawing index, and all 64 shipped deliverables named in each edition separately; 4 'never drawn' claim(s) (4 zh, 0 en — the English patterns match the unscoped present perfect, and the English text uses the past perfect, which scopes by tense), every one of them scoped to the moment it was true; 61 distinct ids cited across five namespaces, every one reachable from both editions; 8 finished documents in two languages, each named by its own edition"
+      "message": "figure_citation_qa.py — figure citations: all 34 sheets cited from the argument in both editions outside the drawing index, and all 67 shipped deliverables named in each edition separately; 4 'never drawn' claim(s) (4 zh, 0 en — the English patterns match the unscoped present perfect, and the English text uses the past perfect, which scopes by tense), every one of them scoped to the moment it was true; 61 distinct ids cited across five namespaces, every one reachable from both editions; 8 finished documents in two languages, each named by its own edition"
     },
     {
       "check_id": "PKG_FIGURE_TITLE_QA",
@@ -199,7 +239,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "formal_visual_metrics_qa.py — formal visual metrics: all 3 metrics the organisers' formal_visual_metrics_contract makes non-waivable are known finite values recomputable from this package's own geometry, each with its formula and its recomputation trigger, and each matching the data-value visual/index.html publishes — site_area_sqm=11412825.385554, green_ratio=0.196628, public_space_ratio=0.064227"
+      "message": "formal_visual_metrics_qa.py — formal visual metrics: all 3 metrics the organisers' formal_visual_metrics_contract makes non-waivable are known finite values recomputable from this package's own geometry, each with its formula and its recomputation trigger, and each matching the data-value visual/index.html publishes — site_area_sqm=11412825.385554, green_ratio=0.196628, public_space_ratio=0.064227. Every data-value either page declares is compared, not only the contract's: 14 pair(s) across the two editions, all equal to metrics.json"
     },
     {
       "check_id": "PKG_FORWARD_REFERENCE_QA",
@@ -218,12 +258,20 @@
       "message": "frame_collision_qa.py — frame collisions: 0 across 69 sheets in both languages, at a 2.0-unit bite on both sides of a vertical edge and 0.6 on a horizontal one — including 0 on the 7 sheets the reviewing model is sent (read from upstream/main), which is where this gate's floor started and no longer stops; 0 label(s) inside rotated groups are not measured and are counted here rather than absorbed"
     },
     {
+      "check_id": "PKG_GARDEN_CROSSING_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "garden_crossing_qa.py — garden crossings: 9 east-west crossings through PROV-KEY-001 over 2,061 m, worst gap 239.8 m (ROAD-201 → ROAD-202) against the 250 m this package published for a garden-type block, and 6 of them added by this proposal, each declaring ≥ 6.0 m clear and ungated. Both limits are read from the criterion in proposal.md, so the sentence and the check are the same characters. Scope: this measures spacing along the block, not whether a route walks on the ground; the positions come from dividing each over-long gap evenly rather than from route selection, and the geometry says so itself"
+    },
+    {
       "check_id": "PKG_GATE_COUNT_QA",
       "result": "pass",
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "gate_count_qa.py — gate counts: both editions quote the harness correctly — 73 mutations, 48 of 53 gates proven able to fail, 5 with published reasons, every figure read from gate_mutation.json rather than trusted"
+      "message": "gate_count_qa.py — gate counts: both editions quote the harness correctly — 105 mutations, 73 of 76 gates proven able to fail, 3 with published reasons, every figure read from gate_mutation.json rather than trusted"
     },
     {
       "check_id": "PKG_GATE_MUTATION_QA",
@@ -231,7 +279,15 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "gate_mutation_qa.py — gate mutation: 73 deliberate defects across 48 of 53 gates, all caught and all named by the gate that caught them; 5 gates not yet proven able to fail, each with its reason published"
+      "message": "gate_mutation_qa.py — gate mutation: 105 deliberate defects across 73 of 76 gates, all caught and all named by the gate that caught them; 3 gates not yet proven able to fail, each with its reason published"
+    },
+    {
+      "check_id": "PKG_HARNESS_REFERENCE_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "harness_reference_qa.py — harness references: 0 across the 7 site-facing files the reviewing model reads whole, where this package once had 55. Exempt by declaration: self_check.json (a record of checks; naming the script a check reads from is provenance, not commentary about the reviewer). Scope: a word check, not a judgement about tone — it cannot tell whether a sentence is useful, only that these files talk about Haidian"
     },
     {
       "check_id": "PKG_I18N_ORDER_QA",
@@ -239,7 +295,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "i18n_order_qa.py — i18n order: 350 numeric templates checked; every slot that carries a unit or a figure number in both editions carries the same one — the check is silent about slots whose English rephrases the unit away, and says so rather than guessing"
+      "message": "i18n_order_qa.py — i18n order: 365 numeric templates checked; every slot that carries a unit or a figure number in both editions carries the same one — the check is silent about slots whose English rephrases the unit away, and says so rather than guessing"
     },
     {
       "check_id": "PKG_INTAKE_LIMITS_QA",
@@ -247,7 +303,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "intake_limits_qa.py — intake limits: 56 shipped Markdown and JSON files within the organisers' caps; the tightest is proposal.en.md with 1,378 bytes to spare. The package totals 39.7 MiB against a 40 MiB total cap and a 5 MiB per-asset cap, both read from upstream/main"
+      "message": "intake_limits_qa.py — intake limits: 59 shipped Markdown and JSON files within the organisers' caps; the tightest is proposal.en.md with 13,324 bytes to spare. The package totals 26.1 MiB against a 40 MiB total cap and a 5 MiB per-asset cap, both read from upstream/main"
     },
     {
       "check_id": "PKG_LABEL_COLLISION_QA",
@@ -263,7 +319,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "markdown_structure_qa.py — markdown structure: 110 tables across both editions, every separator and row matching its header, every ordered list strictly increasing"
+      "message": "markdown_structure_qa.py — markdown structure: 109 tables across both editions, every separator and row matching its header, every ordered list strictly increasing"
     },
     {
       "check_id": "PKG_MATRIX_REFS_QA",
@@ -271,7 +327,7 @@
       "severity": "info",
       "target": "compliance/standard/design_depth matrices",
       "source": "package-provided",
-      "message": "三张矩阵的引用是否解析且指向对的小节 — matrix references: 618 declared across three matrices, 618 of them resolved against headings, shipped files or the file that defines the id; every requirement whose title names a heading cites that heading; 23 class-1 metrics, every one recomputed by the shipped verifier; 7 + 13 review dimensions from the two published rubrics, mapped to 57 sections, every one resolving"
+      "message": "三张矩阵的引用是否解析且指向对的小节 — matrix references: 736 declared across three matrices, 736 of them resolved against headings, shipped files or the file that defines the id; every requirement whose title names a heading cites that heading; 23 class-1 metrics, every one recomputed by the shipped verifier; 7 + 13 review dimensions from the two published rubrics, mapped to 57 sections, every one resolving"
     },
     {
       "check_id": "PKG_MEASUREMENT_PROTOCOL_QA",
@@ -282,12 +338,52 @@
       "message": "measurement_protocol_qa.py — measurement protocol: 4 class-three metrics, each carrying who collects it, who countersigns, the sampling unit, the cadence, what a missed reading does and who may dispute a value; both roles resolving to posts in role_spec.json; baseline and target present and null on every one, so a target cannot be slipped in ahead of the first reading"
     },
     {
+      "check_id": "PKG_METRIC_LABEL_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "metric_label_qa.py — metric labels: 53 metrics, each carrying both marks and none of them disagreeing (1: 23, 2: 5, 3: 4, measured_not_reverified: 4, package_self_count: 17); 36 measure the ground or the design. Scope: this checks that the two labels agree, not that either is the right label — whether the verifier ought to recompute the four it does not is a separate question, and the class says plainly that today it does not"
+    },
+    {
+      "check_id": "PKG_METRIC_SUBJECT_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "metric_subject_qa.py — metric subject: 3 of 53 metrics state their own subject in their formula, and every one agrees with the label derived for it — 1 computed on the network as mapped (walk10_benchmark_reach_today_buildings), 2 with this proposal's links added (walk10_benchmark_reach_built_buildings, walk10_benchmark_reach_gain_buildings). Scope: this cannot tell whether a metric measures the right thing, only that a hand decision in recompute_metrics.py which drifts from the metric's own words fails the build rather than shipping"
+    },
+    {
       "check_id": "PKG_NAMING_QA",
       "result": "pass",
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "naming_qa.py — naming: 534 distinct names harvested from the package — 518 matching exactly one of 24 published families and 16 that are named documents in naming.json, and nothing else; every family governs at least one, and 8 benchmarks carry digits agreeing with the order they declare — the naming system is checked against the package rather than asserted about it"
+      "message": "naming_qa.py — naming: 617 distinct names harvested from the package — 601 matching exactly one of 24 published families and 16 that are named documents in naming.json, and nothing else; every family governs at least one, and 8 benchmarks carry digits agreeing with the order they declare — the naming system is checked against the package rather than asserted about it"
+    },
+    {
+      "check_id": "PKG_OFFICIAL_AREA_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "official_area_qa.py — official areas: 3 key areas compared one at a time against known_official_area_values in brief/site-package/ranges/planning_limits.json @ upstream/main — 2 agree to within 0.05 ha and the whole difference sits in the rest (PROV-KEY-001 192.9 vs 192.1 ha (+0.8); PROV-KEY-002 104.3 vs 104.3 ha (+0.0); PROV-KEY-003 72.0 vs 72.0 ha (+0.0)). This does not reconcile them: the polygons are provisional substitutes and the official figures are text, so agreement to a tenth of a hectare would be coincidence, not evidence"
+    },
+    {
+      "check_id": "PKG_ORGANISER_REVIEW_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "organiser_review_qa.py — organiser review: 1 issue id(s) emitted by the organisers' spatial, visual and professional reviews (run from upstream/main, not from this checkout), every one answered by id and severity in compliance_matrix.json, and nothing answered that they have stopped emitting"
+    },
+    {
+      "check_id": "PKG_ORGANISER_VERDICT_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "organiser_verdict_qa.py — organiser verdicts: all 4 blocks the organisers' self-check produces are persisted whole (deterministic rc=0, spatial rc=0, visual rc=0, professional rc=0), with 3 issue-id lists carrying 3 id(s) between them and review_status=formal-review-ready. Scope: this does not judge the verdicts — whether an issue is answered well is the reviewer's call; what is held is that the record is handed over rather than summarised away"
     },
     {
       "check_id": "PKG_OVERFLOW_QA",
@@ -303,7 +399,7 @@
       "severity": "info",
       "target": "proposal.md / proposal.en.md",
       "source": "package-provided",
-      "message": "双语内容一致性 — bilingual content parity: overall 81%, 16/16 sections at or above floor"
+      "message": "双语内容一致性 — bilingual content parity: overall 79%, 16/16 sections at or above floor"
     },
     {
       "check_id": "PKG_PDF_PAGE1_QA",
@@ -330,6 +426,30 @@
       "message": "planning_controls_qa.py — planning controls: of 5 controls the organisers publish as missing, 4 are registered here as unknown with a null value and the organisers' own precondition, and 1 carries a computed value of this proposal's own under the same name and says so in both languages — read from upstream/main, not from this checkout"
     },
     {
+      "check_id": "PKG_POSITIONING_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "positioning_qa.py — positioning: 3 positionings and 5 functions read from brief/site-package/standards/references/agent-open-call-taskbook-0518.md @ upstream/main, every one occurring in proposal.md, each positioning with a row carrying a failable condition and each of the 5 area-to-function assignments joined as the taskbook joins it; whether the answer is good is the reviewer's call and this does not claim it"
+    },
+    {
+      "check_id": "PKG_PROJECT_DEPENDENCY_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "project_dependency_qa.py — project dependencies: 8 projects, 1 dependency edge(s) all resolving and acyclic, longest chain R4 → R7; every blocker carries one of 4 published kinds and a party who can lift it; 5 wait on no official data and 3 can start today, both counted by a stated rule rather than by hand; the count agrees with renewal_project_count in metrics.json. Scope: this cannot tell whether a dependency is the right one, only that the ordering the chapter claims is written down, resolves, and does not contradict the phases beside it"
+    },
+    {
+      "check_id": "PKG_PROPOSAL_LEGIBILITY_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "proposal_legibility_qa.py — proposal legibility: 6 designed group(s) across the sheets the reviewing model receives, each stroked at or above 2.38 units — 1.4× the heaviest class the measured basemap draws (1.7) — each carrying a casing, and each named in the sheet's own words. The floor is weight rather than colour because every hue in this palette sits at 1.6–1.7 contrast against the fabric grey, so hue alone would not separate them. Scope: a legibility rule about weight and naming, not about whether a route is well chosen"
+    },
+    {
       "check_id": "PKG_READING_CALENDAR_QA",
       "result": "pass",
       "severity": "info",
@@ -346,12 +466,28 @@
       "message": "registry_alignment_qa.py — registry alignment: 9 of this package's sources are in the organisers' registry (read from upstream/main), every one carrying the registry id and none graded above the strength that registry allows"
     },
     {
+      "check_id": "PKG_RESOURCE_FRAME_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "resource_frame_qa.py — resource frame: 3 phases, the last equal to operations.json on every figure — 47 sessions a year, 138.7–219.7 paid hours, CNY 19,444–63,922 — with maintenance in both, where the phasing model had dropped it; cumulative benchmark sets nest, and every phase's annual cost is stated in both editions rather than only on a sheet the reviewing model never receives. Scope: this holds that the two derivations agree and that the answer reaches the prose; it cannot tell whether the rate band is right, which operations.json publishes as the one estimated number in the model"
+    },
+    {
       "check_id": "PKG_REVIEW_RULES_QA",
       "result": "pass",
       "severity": "info",
       "target": "package",
       "source": "package-provided",
       "message": "review_rules_qa.py — review rules: 18 items on the organisers' published review checklist — 8 visual checks in rule 6 and 10 taskbook aspects in rule 3, read from scripts/ai_review_submission.py @ upstream/main — each mapped to the gate in this build that measures it, 2 of them to a published reason instead because no check can honestly claim them; the list is read from the prompt every build, so an item they add fails here rather than passing unnoticed"
+    },
+    {
+      "check_id": "PKG_RISK_JOIN_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "risk_join_qa.py — risk join: 8 risks, each with a trigger, a pause threshold, an owning post from role_spec.json and a resume condition, and each borne by at least one entry — 40 risk reference(s) across the three matrices, where there were 0. Scope: this cannot judge whether a threshold sits at the right level, only that it exists, is owned, and is reachable from a file the reviewer opens"
     },
     {
       "check_id": "PKG_ROLE_SPEC_QA",
@@ -370,12 +506,36 @@
       "message": "scarce_surface_qa.py — scarce surface: the one rasterised board carries street-eye-level, kit-of-parts, neither of which is among the 5 figures the harness sends on its own (read from upstream/main); 6 boards in all"
     },
     {
+      "check_id": "PKG_SCENARIO_VERIFICATION_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "scenario_verification_qa.py — scenario verification: 12 cards, each with an effect question and one metric written before any measurement, a named control and three stages; 8 run a parallel control that is the card's own declared non-AI path and 4 run a before-and-after with a published reason, because withholding protection to obtain a cleaner comparison is a decision and not a study design; every effect question appears in both editions. Scope: this cannot tell whether a question is the right one or whether its metric would answer it, only that each is written down before the measurement, joined to a named control, and readable where a reviewer looks"
+    },
+    {
       "check_id": "PKG_SCHEMA_CONFORMANCE_QA",
       "result": "unknown",
       "severity": "info",
       "target": "package",
       "source": "package-provided",
       "message": "六份随包文件对组织方已发布 schema 的校验 — 该闸门在本文件写定之后才运行（它校验的正是本文件），因此它的读数按构造不可能出现在这里；结果见构建输出与 visual/assets/gate_mutation.json 的覆盖记录。"
+    },
+    {
+      "check_id": "PKG_SCOPE_ANCHOR_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "scope_anchor_qa.py — scope anchor: 12 names read from brief/site-package/standards/references/project-official-announcement.md @ upstream/main, every one in proposal.md — including 京张遗址公园, which defines the overall design area and had occurred zero times; both scopes carry all four boundary streets, and the position that follows from naming it is stated rather than left implied"
+    },
+    {
+      "check_id": "PKG_SENT_FIGURE_TITLE_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "sent_figure_title_qa.py — sent figure titles: 5 sheets, each one's heading carrying a word its filename promises; the list of sheets is read from scripts/ai_review_submission.py @ upstream/main rather than from a local copy. Whether the drawing is good is the reviewer's call and this does not claim it — only that the sheet is about what it is named for"
     },
     {
       "check_id": "PKG_SHEET_CLAIM_QA",
@@ -386,12 +546,36 @@
       "message": "sheet_claim_qa.py — sheet claims: 5 sent sheets × 2 languages, 28 numbers in their claim bands, every one equal to a value recomputed here from a shipped file; the sheet list is read from scripts/ai_review_submission.py @ upstream/main and a number with no recomputed source fails rather than passing"
     },
     {
+      "check_id": "PKG_SHEET_LAYER_KEY_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "sheet_layer_key_qa.py — sheet layer keys: 6 declared layer(s) across both editions, every one with a key swatch on the same sheet and no key without a layer; sheets that declare no layers are out of scope and this does not guess at them"
+    },
+    {
+      "check_id": "PKG_SHEET_LEGEND_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "sheet_legend_qa.py — sheet legends: 14 class(es) drawn in two devices on the same sheet across both editions, every one with the same fill, the same opacity and the same name in both — a reader matching a swatch to a bar is matching, not guessing"
+    },
+    {
       "check_id": "PKG_SHEET_SCALE_QA",
       "result": "pass",
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "sheet_scale_qa.py — sheet scales: 2 section(s) across both editions, each drawn at the same number of units per metre across and up — which is what their captions claim — and each with its plate drawn at the height the declared scale gives"
+      "message": "sheet_scale_qa.py — sheet scales: 2 section(s) across both editions, each drawn at the same number of units per metre across and up — which is what their captions claim — and each with its plate drawn at the height the declared scale gives; and 6 plan window(s), each declaring the ground it shows rather than the span it was asked for, every declaration equal to its own frame divided by its own scale, all windows on a sheet sharing one scale, and both extents stated in the sheet's own caption. Scope: this checks drawings that declare a scale or an extent; one that claims neither is not a failure here"
+    },
+    {
+      "check_id": "PKG_SOURCE_PROVENANCE_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "source_provenance_qa.py — source provenance: 22 registered sources, 1 of them published by a Beijing or Haidian body (OFFICIAL-ANNOUNCEMENT) — the open call's own announcement, and no district planning document at all. A-SOURCE-001 states both numbers and this gate recomputes them from sources.json. Scope: this counts publishers, not relevance; whether a source suits what it is cited for is the reviewer's judgement"
     },
     {
       "check_id": "PKG_SOURCES_QA",
@@ -415,7 +599,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "standards_alignment_qa.py — standards alignment: all 5 standards the organisers mark mandatory are answered in standard_matrix.json, plus 1 optional (MOHURD-ARCH-DESIGN-DEPTH-2016); 6 cited ids all exist in the registry (read from upstream/main)"
+      "message": "standards_alignment_qa.py — standards alignment: all 9 standards in the organisers' registry are answered in standard_matrix.json — 5 mandatory and 4 optional (BARRIER-FREE-ENVIRONMENT-LAW, ELDERLY-SMART-TECH-PLAN-2020-45, GENERATIVE-AI-INTERIM-MEASURES, MOHURD-ARCH-DESIGN-DEPTH-2016); 9 cited ids all exist in the registry (read from upstream/main). The floor was 'nothing mandatory missing' and is now 'nothing registered unanswered'; a standard this package declines would be declined in this gate with its reason, not by saying nothing"
     },
     {
       "check_id": "PKG_STATUTE_QUOTE_QA",
@@ -455,7 +639,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "term_consistency_qa.py — term consistency: 1701 distinct Chinese terms across i18n_en 618, i18n_drawings 774, i18n_html 334; 25 of them are translated in more than one table and every one uses the same English wording (case and punctuation aside), with 1 declared exception(s), each still in use"
+      "message": "term_consistency_qa.py — term consistency: 1749 distinct Chinese terms across i18n_en 653, i18n_drawings 783, i18n_html 338; 25 of them are translated in more than one table and every one uses the same English wording (case and punctuation aside), with 1 declared exception(s), each still in use"
     },
     {
       "check_id": "PKG_UPSTREAM_DRIFT_QA",
@@ -479,7 +663,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "visual_packet_qa.py — visual packet: 18 images against the organisers' cap of 18 (0 slot(s) free) — 10 figures in both languages, 4 PDF first pages, 4 screenshots; largest is drawings/a3-booklet.pdf at 1.40 MiB against a 4 MiB per-image cap, read from upstream/main"
+      "message": "visual_packet_qa.py — visual packet: 18 images against the organisers' cap of 18 (0 slot(s) free) — 10 figures in both languages, 4 PDF first pages, 4 screenshots; largest is drawings/a3-booklet.pdf at 1.47 MiB against a 4 MiB per-image cap, read from upstream/main"
     },
     {
       "check_id": "PKG_WHITESPACE_RULES_QA",
@@ -495,7 +679,7 @@
       "severity": "info",
       "target": "visual/assets/errata.json",
       "source": "package-provided",
-      "message": "勘误册共 227 条，按发现者：audit 25、external 26、external-reviewer 5、own-gate 17、rival-read 4、self 150；最常见形状：check-measured-the-convenient-thing 41、two-copies-of-one-thing-drifted 34、deliverable-not-inspected-before-shipping 26、claim-outlived-the-package 18。**该文件随包提交，但不在评审工具读取的九个文件之内**（正文只点名其中 18 条），因此这一行是它在评审可读范围内的唯一入口。 / The errata register holds 227 entries. It ships at visual/assets/errata.json and is not one of the nine files the review harness reads, so this line is its only entry point from where a reviewer sits."
+      "message": "勘误册共 267 条，按发现者：audit 27、external 30、external-reviewer 5、own-gate 18、rival-read 16、self 171；最常见形状：check-measured-the-convenient-thing 46、two-copies-of-one-thing-drifted 39、deliverable-not-inspected-before-shipping 30、claim-that-cannot-be-checked-by-construction 20。**该文件随包提交，但不在评审工具读取的九个文件之内**（正文只点名其中 22 条），因此这一行是它在评审可读范围内的唯一入口。 / The errata register holds 267 entries. It ships at visual/assets/errata.json and is not one of the nine files the review harness reads, so this line is its only entry point from where a reviewer sits."
     },
     {
       "check_id": "PKG_MUTATION_COVERAGE",
@@ -503,11 +687,311 @@
       "severity": "info",
       "target": "visual/assets/gate_mutation.json",
       "source": "package-provided",
-      "message": "闸门变异测试：73 处人为缺陷，覆盖 48 道闸门，全部被抓住且被点名；另有 3 条规则当前匹配为零，逐条附理由。**「通过」本身不构成证据——任一闸门不过，构建即停，包不会存在**；有证据价值的是这些读数，而完整记录同样不在评审工具读取的九个文件之内。 / Mutation testing: 73 deliberate defects across 48 gates, all caught and named, plus 3 rules currently matching nothing, each with its reason. The full record is not among the nine files the harness reads."
+      "message": "闸门变异测试：105 处人为缺陷，覆盖 73 道闸门，全部被抓住且被点名；另有 3 条规则当前匹配为零，逐条附理由。**「通过」本身不构成证据——任一闸门不过，构建即停，包不会存在**；有证据价值的是这些读数，而完整记录同样不在评审工具读取的九个文件之内。 / Mutation testing: 105 deliberate defects across 73 gates, all caught and named, plus 3 rules currently matching nothing, each with its reason. The full record is not among the nine files the harness reads."
     }
   ],
   "ok": true,
   "can_enter_formal_review": true,
   "review_status": "formal-review-ready",
-  "package_type": "professional_design_package"
+  "package_type": "professional_design_package",
+  "submission_dir": "submissions/jiangmuran/jingzhang-leveling-line",
+  "pr_author": "jiangmuran",
+  "stage": "formal",
+  "deterministic_validation": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "submissions/jiangmuran/jingzhang-leveling-line/manifest.json: packages marked ready_for_review must set validation_claim.self_checked=true after running self_check; legacy package accepted for intake; run self_check_submission.py --mark-self-checked to migrate",
+        "submissions/jiangmuran/jingzhang-leveling-line/self_check.json: packages marked ready_for_review must persist ok=true; legacy package accepted for intake; run self_check_submission.py --mark-self-checked to migrate",
+        "submissions/jiangmuran/jingzhang-leveling-line/self_check.json: packages marked ready_for_review must persist can_enter_formal_review=true; legacy package accepted for intake; run self_check_submission.py --mark-self-checked to migrate",
+        "submissions/jiangmuran/jingzhang-leveling-line/self_check.json: packages marked ready_for_review must persist pass/blocking gates for DETERMINISTIC_VALIDATION, PROFESSIONAL_EVIDENCE, SPATIAL_REVIEW, VISUAL_PACKAGING; legacy package accepted for intake; run self_check_submission.py --mark-self-checked to migrate",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/site_boundary.geojson: uses provisional boundary; do not treat it as an official redline or precise-area basis. Organizer data gaps do not block content scoring; recalculate when official geometry is supplied",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[0]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[1]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[2]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[3]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[4]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[5]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[6]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[7]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[8]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[9]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[10]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[11]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[12]: provisional spatial concept needs maintainer review before being treated as public-facing context",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json: items[13]: provisional spatial concept needs maintainer review before being treated as public-facing context"
+      ],
+      "proposal_files": [
+        "submissions/jiangmuran/jingzhang-leveling-line/proposal.md"
+      ],
+      "changelog_files": [
+        "submissions/jiangmuran/jingzhang-leveling-line/changelog.md"
+      ],
+      "changed_files": [
+        "submissions/jiangmuran/jingzhang-leveling-line/agent.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/closure.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/closure.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/crossing.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/crossing.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/detail.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/detail.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/device.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/device.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/ecosystem.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/ecosystem.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/evidence-circuit.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/evidence-circuit.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/heritage.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/heritage.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/hero-leveling-line.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/hero-leveling-line.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/identity.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/identity.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/key-areas.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/key-areas.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/kit-of-parts.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/kit-of-parts.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/land-use-structure.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/land-use-structure.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/maintenance.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/maintenance.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/metrics-evidence.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/metrics-evidence.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/mobility-bluegreen.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/mobility-bluegreen.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/night.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/night.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/origin.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/origin.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/phasing.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/phasing.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/reach.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/reach.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/region-interface.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/region-interface.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/riverfront.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/riverfront.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/roster.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/roster.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/sections.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/sections.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/site-overview.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/site-overview.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/station.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/station.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/steplink.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/steplink.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/street-eye-level.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/street-eye-level.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/third.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/third.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/visit.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/visit.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/volunteer.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/volunteer.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/wayfind.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/wayfind.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/wing.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/wing.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/winter.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/winter.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/year.en.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/figures/year.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/closure-advance.md",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/closure-advance.mp4",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/closure-advance.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/closure-advance.vtt",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/cover.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/leveling-line.md",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/leveling-line.mp4",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/leveling-line.png",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/leveling-line.vtt",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/leveling-year.md",
+        "submissions/jiangmuran/jingzhang-leveling-line/assets/media/leveling-year.mp3",
+        "submissions/jiangmuran/jingzhang-leveling-line/assumptions.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/changelog.md",
+        "submissions/jiangmuran/jingzhang-leveling-line/compliance_matrix.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/design_depth_matrix.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/drawings/a0-boards.en.pdf",
+        "submissions/jiangmuran/jingzhang-leveling-line/drawings/a0-boards.pdf",
+        "submissions/jiangmuran/jingzhang-leveling-line/drawings/a3-booklet.en.pdf",
+        "submissions/jiangmuran/jingzhang-leveling-line/drawings/a3-booklet.pdf",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/buildings.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/constraints.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/green_space.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/key_areas.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/land_use.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/phasing.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/public_space.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/roads.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/geometry/site_boundary.geojson",
+        "submissions/jiangmuran/jingzhang-leveling-line/manifest.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/metrics.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/proposal.en.md",
+        "submissions/jiangmuran/jingzhang-leveling-line/proposal.md",
+        "submissions/jiangmuran/jingzhang-leveling-line/report/copyright_statement.md",
+        "submissions/jiangmuran/jingzhang-leveling-line/report/narrative.md",
+        "submissions/jiangmuran/jingzhang-leveling-line/report/proposal.en.html",
+        "submissions/jiangmuran/jingzhang-leveling-line/report/proposal.html",
+        "submissions/jiangmuran/jingzhang-leveling-line/risk.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/self_check.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/sources.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/spatial.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/standard_matrix.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/accessibility_qa.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/agent_declarations.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/block_types.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/census.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/census_history.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/check_cards.js",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/check_closure.js",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/check_osm.js",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/claim_audit.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/closure-record.schema.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/errata.en.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/errata.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/evidence_ceiling.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/example-s08-closure-record.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/field_extras.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/field_map.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/gate_mutation.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/i18n_order_qa.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/label_collision_qa.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/manifest_schema_survey.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/naming.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/operations.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/osm_fabric.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/osm_reference.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/osm_stitching.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/parity_qa.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/personas.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/reading_log.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/renewal_projects.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/resource_frame.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/review_gate_survey.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/review_repeatability.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/review_route.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/rights_ledger.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/role_spec.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/run_s08_tabletop.js",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/s08-tabletop-evidence.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/scenario_cards.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/score_correlates.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/spatial_level_survey.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/taskbook_coverage.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/track_scan.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/verify.js",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/visual_packet_qa.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/year_explorer.js",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/assets/year_model.json",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/index.en.html",
+        "submissions/jiangmuran/jingzhang-leveling-line/visual/index.html"
+      ],
+      "ai_package_stages": {
+        "submissions/jiangmuran/jingzhang-leveling-line": "formal"
+      },
+      "total_bytes": 27288349,
+      "maintainer_bypass": false
+    },
+    "stderr": ""
+  },
+  "spatial_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "stage": "formal",
+      "issues": [
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-001",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-002",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-003",
+          "expected": null,
+          "actual": null
+        }
+      ],
+      "metrics": {
+        "site_area_sqm": 11412825.386,
+        "green_space_area_sqm": 2244081.797,
+        "public_space_area_sqm": 733011.382,
+        "building_footprint_area_sqm": 82276.0,
+        "green_ratio": 0.196628,
+        "public_space_ratio": 0.064227
+      }
+    },
+    "stderr": ""
+  },
+  "visual_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "issues": [],
+      "metrics_seen": {
+        "site_area_sqm": 11412825.385554,
+        "leveling_spine_length_m": 9443.264658,
+        "benchmark_count": 8.0,
+        "green_ratio": 0.196628,
+        "public_space_ratio": 0.064227,
+        "building_footprint_area_sqm": 82276.0,
+        "key_area_count": 3.0
+      }
+    },
+    "stderr": ""
+  },
+  "professional_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "issues": [],
+      "summary": {
+        "standard_matrix_items": 9,
+        "design_depth_items": 15,
+        "known_metric_refs_required": 44,
+        "proposal_format_version": "2",
+        "evidence_contract": "section-anchors-plus-structured-audit",
+        "proposal_reference_counts": {
+          "source": 12,
+          "standard": 6,
+          "depth": 15,
+          "data": 17,
+          "metric": 11
+        }
+      }
+    },
+    "stderr": ""
+  },
+  "spatial_issue_ids": [
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL"
+  ],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "missing_review_dependencies": [],
+  "next_actions": []
 }

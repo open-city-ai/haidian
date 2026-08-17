@@ -1,22 +1,25 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-smart="on">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>京张智脉共生带 · 可视化 v2.0</title>
+<title>京张智脉共生带 · 离线评审台 v2.2</title>
 <style>
-  :root {
-    --ink:#1d2435; --ink-2:#2a3a55; --muted:#54627a; --bg:#fbfbfd;
-    --card:#ffffff; --line:#dfe6f1; --accent:#cf6a3f;
-    --accent-2:#5d6cbe; --accent-3:#3c8b5d; --accent-4:#a86a1c; --accent-5:#7b3f1c; --accent-6:#4f8059;
-  }
+  :root { --ink:#1d2435; --ink-2:#2a3a55; --muted:#54627a; --bg:#fbfbfd; --card:#ffffff; --line:#dfe6f1; --accent:#cf6a3f; --accent-2:#5d6cbe; --accent-3:#3c8b5d; --accent-4:#a86a1c; --accent-5:#7b3f1c; --accent-6:#4f8059; --yellow:#f2c14e; }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: "Noto Sans SC", "Microsoft YaHei", "DejaVu Sans", "Helvetica", Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-  header.hero { padding: 32px 36px; background: linear-gradient(180deg, #1d2435 0%, #2a3a55 100%); color: #fff; }
+  header.hero { padding: 30px 36px; background: linear-gradient(180deg, #1d2435 0%, #2a3a55 100%); color: #fff; }
   header.hero h1 { margin: 0 0 6px; font-size: 28px; letter-spacing: 0.5px; }
-  header.hero .subtitle { font-size: 14px; color: #dfe6f1; opacity: 0.85; }
-  header.hero .meta { font-size: 12px; color: #a8b3c2; margin-top: 14px; line-height: 1.5; }
-  header.hero .meta b { color: #cf6a3f; }
+  header.hero .subtitle { font-size: 14px; color: #dfe6f1; opacity: 0.9; }
+  header.hero .meta { font-size: 12px; color: #a8b3c2; margin-top: 12px; line-height: 1.5; }
+  header.hero .meta b { color: var(--accent); }
+  .switchbar { margin-top: 18px; padding: 14px 16px; border: 1px solid #5c6674; background: #202736; border-radius: 8px; max-width: 820px; }
+  .sw-btns { display: inline-flex; border: 1px solid #6f7a88; border-radius: 6px; overflow: hidden; }
+  .sw-btns button { appearance: none; border: 0; padding: 8px 18px; background: transparent; color: #dfe6f1; font: 700 13px/1 inherit; cursor: pointer; }
+  .sw-btns button + button { border-left: 1px solid #6f7a88; }
+  .sw-btns button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+  [data-smart="off"] .sw-btns button[data-smart="off"][aria-pressed="true"] { background: var(--yellow); color: var(--ink); }
+  .sw-note { margin: 10px 0 0; font-size: 13px; line-height: 1.6; color: #c8d0da; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 24px 80px; }
   .grid { display: grid; gap: 20px; }
   .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -38,17 +41,41 @@
   table.mini { width: 100%; border-collapse: collapse; font-size: 12px; }
   table.mini th, table.mini td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; vertical-align: top; }
   table.mini th { background: #f1f4f8; color: var(--ink-2); }
+  .scenario-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+  @media (max-width: 820px) { .scenario-grid { grid-template-columns: 1fr; } }
+  .scenario { border: 1px solid var(--line); border-left: 5px solid var(--accent-2); border-radius: 8px; padding: 14px 16px; background: #fff; }
+  .scenario .id { font: 700 11px/1 monospace; color: var(--muted); }
+  .scenario h3 { margin: 8px 0 6px; font-size: 15px; }
+  .scenario p { margin: 0; font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+  .scenario .handover { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 11px; color: var(--accent-4); }
+  .scenario .offline { display: none; margin-top: 10px; padding-top: 8px; border-top: 1px solid #e3c87b; }
+  .offline .off-k { display: block; font: 700 10px/1 monospace; letter-spacing: 0.12em; color: var(--accent-4); }
+  .offline .off-p { display: block; margin-top: 6px; font-weight: 700; font-size: 13px; line-height: 1.4; color: var(--ink); }
+  .offline .off-m { display: block; margin-top: 5px; font-size: 11px; line-height: 1.5; color: var(--muted); }
+  [data-smart="off"] .scenario p, [data-smart="off"] .scenario .handover { display: none; }
+  [data-smart="off"] .scenario .offline { display: block; }
+  [data-smart="off"] .scenario { border-left-color: var(--yellow); }
+  .kiosk { border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: 8px; padding: 14px 16px; background: #fff8f1; }
+  .rule-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .rule-table th, .rule-table td { border: 1px solid var(--line); padding: 7px 9px; text-align: left; vertical-align: top; }
+  .rule-table th { background: #f1f4f8; color: var(--ink-2); }
+  .audio-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
   footer { color: var(--muted); font-size: 11px; text-align: center; padding: 24px 0 0 0; }
 </style>
 </head>
 <body>
 <header class="hero">
   <h1>京张智脉共生带</h1>
-  <p class="subtitle">轨道文化 · AI 新基座 · 包容的未来城市 · v1.10 可视化展示页</p>
-  <p class="meta">
-    <b>v2.0</b> · 2026-08-14 · package_type=professional_design_package · package_state=ready_for_review<br>
-    MiniMax-M3 via opencode · urban-design-ai-submission skill · provisional 边界（官方几何发布后重算）
-  </p>
+  <p class="subtitle">轨道文化 · AI 新基座 · 包容的未来城市 · 离线评审台</p>
+  <p class="meta"><b>v2.2</b> · 2026-08-16 · package_type=professional_design_package · package_state=ready_for_review<br>MiniMax-M3 via opencode · provisional 边界（官方几何发布后重算）</p>
+  <div class="switchbar">
+    <span class="sw-btns" role="group" aria-label="智能层开关">
+      <button type="button" data-smart="on" aria-pressed="true">智能层在线</button>
+      <button type="button" data-smart="off" aria-pressed="false">停用</button>
+    </span>
+    <p class="sw-note" data-when="on">下方「AI 场景」显示智能层在线时的十张场景卡。<b>把开关拨到「停用」，每张卡只显示同一件事在没有 AI 时怎么办成、由谁承担。</b>停用态不是空白页，是可继续通行的公共空间。</p>
+    <p class="sw-note" data-when="off" hidden>智能层已停用。下面每张卡显示的是无 AI 等价服务；若其中任何一条在停用后不可用，该场景不得上线。</p>
+  </div>
 </header>
 <main class="wrap">
 
@@ -59,16 +86,15 @@
       <div class="stat-card"><div class="k">三处重点区域</div><div class="v">369.3 ha</div><div class="sub">公告为 368.4 ha</div></div>
       <div class="stat-card"><div class="k">绿地比例</div><div class="v" data-metric="green_ratio" data-value="0.309644">31.0%</div><div class="sub">复算 · 仅概念</div></div>
       <div class="stat-card"><div class="k">公共空间比例</div><div class="v" data-metric="public_space_ratio" data-value="0.041935">4.2%</div><div class="sub">复算 · 仅概念</div></div>
-      <div class="stat-card"><div class="k">建筑基底面积</div><div class="v">≈ 113.7 ha</div><div class="sub">概念体量</div></div>
-      <div class="stat-card"><div class="k">治理矩阵字段</div><div class="v">60</div><div class="sub">6 项目 × 10 字段</div></div>
+      <div class="stat-card"><div class="k">折返协议实例</div><div class="v" data-metric="switchback_protocol_instance_count" data-value="10">10 / 10</div><div class="sub">十张场景卡各一条</div></div>
+      <div class="stat-card"><div class="k">规则检查</div><div class="v" data-metric="switchback_rule_check_count" data-value="80">80</div><div class="sub">拦截 70 · 漏过 0</div></div>
+      <div class="stat-card"><div class="k">零号折返亭</div><div class="v">1</div><div class="sub">物理停用 · 概念原型</div></div>
+      <div class="stat-card"><div class="k">中英音频导览</div><div class="v">2</div><div class="sub">文字稿与字幕逐句一致</div></div>
       <div class="stat-card"><div class="k">AI 场景卡</div><div class="v">10</div><div class="sub">3 个产业测试场</div></div>
-      <div class="stat-card"><div class="k">用户画像</div><div class="v">8</div><div class="sub">含无障碍人群</div></div>
-      <div class="stat-card"><div class="k">AI 朝圣地标</div><div class="v">3</div><div class="sub">概念级</div></div>
     </div>
     <p class="small" style="margin-top: 12px;">
-      <span class="pill">review/intake-accepted</span>
-      <span class="pill">历史评审基线：75/100（v1.5）· 71/100（v1.9）· 74/100（v1.10）· 68/100（v1.11/1.12）</span>
-      <span class="pill">v2.0 目标：80+</span>
+      <span class="pill">v2.0 / v2.1 两次采样 81/100</span>
+      <span class="pill">v2.2 机制深标：实例套件 + 规则注入 + 零号折返亭 + 声音 + 交互开关</span>
     </p>
   </section>
 
@@ -82,7 +108,7 @@
   <section class="panel">
     <h2>重点区域</h2>
     <div class="figure-frame">
-      <figure class="fig"><img src="../assets/figures/key-areas.png" alt="三处重点区域"><figcaption>K1 众智园 · K2 北京 AI 原点社区 · K3 大钟寺 AI 产业聚集区 · 9 个概念地块 · 12 条干预要素</figcaption></figure>
+      <figure class="fig"><img src="../assets/figures/key-areas.png" alt="三处重点区域"><figcaption>K1 众智园 · K2 北京 AI 原点社区 · K3 大钟寺 AI 产业集聚区 · 12 条干预要素</figcaption></figure>
     </div>
   </section>
 
@@ -98,21 +124,66 @@
     <h2>建筑 · 更新项目 · AI 场景</h2>
     <div class="grid grid-2">
       <div class="figure-frame"><figure class="fig"><img src="../assets/figures/key-area-sections.png" alt="重点片区剖面"><figcaption>三处重点片区概念剖面（K1-A / K2-A / K3-A）</figcaption></figure></div>
-      <div class="figure-frame"><figure class="fig"><img src="../assets/figures/metrics-evidence.png" alt="核心指标与证据链"><figcaption>核心指标复算与证据链 · 建筑基底 ≈ 113.7 ha · 更新项目 JZ-01..06 · 10 张 AI 场景卡</figcaption></figure></div>
+      <div class="figure-frame"><figure class="fig"><img src="../assets/figures/metrics-evidence.png" alt="核心指标与证据链"><figcaption>核心指标复算与证据链 · 更新项目 JZ-01..06 · 10 张 AI 场景卡</figcaption></figure></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>AI 场景 · 智能层在线/停用</h2>
+    <p class="small">默认显示智能层在线内容。拨动页面顶部开关后，每张卡只显示无 AI 等价服务：由谁承担、不依赖什么。数据源：<code>visual/assets/governance/switchback-instance-suite.json</code>。</p>
+    <div class="scenario-grid">
+      <article class="scenario"><span class="id">SCN-01 / K2 原点社区</span><h3>开源发布厅</h3><p>仅检索授权项目元数据与公开许可证，生成可复核发布摘要。</p><div class="handover">人工复核：误署名即下架</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">固定目录、纸本登记册与人工咨询台</span><span class="off-m">switchback-instance-suite.json · SCN-01 · R-SERVICE-OPS</span></div></article>
+      <article class="scenario"><span class="id">SCN-02 / K1 众智园 ★</span><h3>安全治理沙盒</h3><p>离线沙盒运行合成或授权测试集，不连接任何生产系统。</p><div class="handover">安全负责人批准测试与报告</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">封闭测试院落、人工测试记录与普通设备位</span><span class="off-m">switchback-instance-suite.json · SCN-02 · R-TEST-SAFETY</span></div></article>
+      <article class="scenario"><span class="id">SCN-03 / 总体节点 ★</span><h3>端侧算力驿站</h3><p>授权任务下的端侧算力调度建议与能耗展示，不做个人画像。</p><div class="handover">值班工程师审核资源与能耗</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">固定工作位、人工资源预约与纸面排队</span><span class="off-m">switchback-instance-suite.json · SCN-03 · R-SERVICE-OPS</span></div></article>
+      <article class="scenario"><span class="id">SCN-04 / 公园活力带</span><h3>AI 慢行导航</h3><p>只给路线建议与聚合人流计数，不采集身份或轨迹。</p><div class="handover">交通/无障碍专员确认高风险提示</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">既有步行路径、纸本地图、固定导视与人工问询</span><span class="off-m">switchback-instance-suite.json · SCN-04 · R-PUBLIC-SPACE</span></div></article>
+      <article class="scenario"><span class="id">SCN-05 / 大钟寺</span><h3>国际路演客厅</h3><p>授权议程、多语摘要与清权索引，不生成投资或政策承诺。</p><div class="handover">主持人与法务审稿</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">人工主持、人工同传、纸本议程与前台投诉窗口</span><span class="off-m">switchback-instance-suite.json · SCN-05 · R-CULTURE-VENUE</span></div></article>
+      <article class="scenario"><span class="id">SCN-06 / 众智园 ★</span><h3>清河低碳创新廊</h3><p>辅助展示环境监测与养护提示，处置由设施人员决定。</p><div class="handover">设施人员决定处置</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">人工巡检、固定展板与养护工单</span><span class="off-m">switchback-instance-suite.json · SCN-06 · R-PUBLIC-SPACE</span></div></article>
+      <article class="scenario"><span class="id">SCN-07 / 原点社区</span><h3>近校成果转化街</h3><p>授权成果摘要检索与服务匹配，不评价科研真实性。</p><div class="handover">技术经理/法务复核</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">人工技术经理、法务咨询与纸面服务目录</span><span class="off-m">switchback-instance-suite.json · SCN-07 · R-SERVICE-OPS</span></div></article>
+      <article class="scenario"><span class="id">SCN-08 / 大钟寺</span><h3>数据要素会客厅</h3><p>只展示公开目录、合成样例与审计日志，不交易真实敏感数据。</p><div class="handover">数据保护官批准演示</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">人工目录查询、纸面申请与数据保护官咨询</span><span class="off-m">switchback-instance-suite.json · SCN-08 · R-SERVICE-OPS</span></div></article>
+      <article class="scenario"><span class="id">SCN-09 / 社区商业界面</span><h3>AI 生活服务样板街</h3><p>只提供公开服务目录检索，专业结论由持证人员作出。</p><div class="handover">对应持证人员复核</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">电话、纸面报修与人工窗口</span><span class="off-m">switchback-instance-suite.json · SCN-09 · R-COMMUNITY-CARE</span></div></article>
+      <article class="scenario"><span class="id">SCN-10 / 公共空间系统</span><h3>全球 AI 活动周路线</h3><p>只做公开活动信息与多语导览，拥挤或许可变化即停用。</p><div class="handover">内容编辑与安全岗发布</div><div class="offline"><span class="off-k">AI 停用后 · 同一件事怎么办成</span><span class="off-p">固定导视、人工引导、纸面手册与线下服务台</span><span class="off-m">switchback-instance-suite.json · SCN-10 · R-EVENT-OPS</span></div></article>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>零号折返亭 · 物理停用入口（概念原型）</h2>
+    <div class="kiosk">
+      <p><b>固定导视 + 常亮照明 + 纸面值班簿 + 人工服务台 + 物理停用按钮。</b>不依赖任何 App、账号或网络即可完成问询、投诉与停用；位置、尺寸、材料与无障碍净宽由专业团队按现场测绘与无障碍规范确定。状态：概念建议，未选址、未建造、未运行。</p>
+      <p class="small">空间锚点：<code>geometry/public_space.geojson#PUBLIC-04-ZERO-SWITCHBACK-KIOSK</code> · 服务场景：SCN-04 / SCN-10 · 指标：switchback_physical_stop_point_count = 1</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>折返协议 · 80 条规则检查</h2>
+    <table class="rule-table">
+      <tr><th>规则</th><th>说明</th><th>基线</th><th>注入</th><th>结果</th></tr>
+      <tr><td>R1</td><td>node_id 必须指向真实几何要素</td><td>10 通过</td><td>10 拦截</td><td>0 漏过</td></tr>
+      <tr><td>R2</td><td>rollback_owner 必须指向真实角色</td><td>10 通过</td><td>10 拦截</td><td>0 漏过</td></tr>
+      <tr><td>R3</td><td>无 AI 基线必须非空</td><td>10 通过</td><td>10 拦截</td><td>0 漏过</td></tr>
+      <tr><td>R4</td><td>折返路径至少一步</td><td>10 通过</td><td>10 拦截</td><td>0 漏过</td></tr>
+      <tr><td>R5</td><td>有条件接受必须列未决项</td><td>10 通过</td><td>10 拦截</td><td>0 漏过</td></tr>
+      <tr><td>R6</td><td>沙盒输入禁止个人数据</td><td>10 通过</td><td>10 拦截</td><td>0 漏过</td></tr>
+      <tr><td>R7</td><td>公共部署不得带阻塞未决项</td><td>10 通过</td><td>10 拦截</td><td>0 漏过</td></tr>
+    </table>
+    <p class="small" style="margin-top:10px;">共 80 条检查：10 基线 + 70 注入，70 拦截、0 漏过。报告见 <code>visual/assets/governance/switchback-rule-check-report.json</code>。只证明规则闭合，不证明现场绩效、安全、合规或获批。</p>
+  </section>
+
+  <section class="panel">
+    <h2>声音 · 三分钟音频导览</h2>
+    <div class="audio-row">
+      <audio controls preload="none" src="../assets/media/audio-guide-zh.mp3">音频导览</audio>
+      <span class="small">中文 2分55秒 · 文字稿 <code>assets/media/audio-guide-zh.md</code> · 字幕 <code>audio-guide-zh.vtt</code> · 机器语音合成，非真人录音，无背景音乐。</span>
+    </div>
+    <div class="audio-row" style="margin-top:10px;">
+      <audio controls preload="none" src="../assets/media/audio-guide-en.mp3">Audio guide</audio>
+      <span class="small">English 2分44秒 · transcript <code>assets/media/audio-guide-en.md</code> · captions <code>audio-guide-en.vtt</code> · machine voice, not a human recording.</span>
     </div>
   </section>
 
   <section class="panel">
     <h2>品牌识别</h2>
     <div class="figure-frame">
-      <figure class="fig"><img src="../assets/figures/brand-identity.png" alt="品牌识别概念板"><figcaption>品牌识别概念板 · 主标志 / 单色 / 夜景 / 24 px · 四级品牌体系 · 采用前须完成商标与字体清权</figcaption></figure>
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>治理契约 · 折返协议 0.1</h2>
-    <div class="figure-frame">
-      <figure class="fig"><img src="../assets/figures/switchback-protocol.png" alt="共生带折返协议"><figcaption>共生带折返协议 0.1 · 1909 人字形折返线 → 前向状态登记 → 折返登记 · 机器可读契约见 visual/assets/governance/（结构校验 0 errors）</figcaption></figure>
+      <figure class="fig"><img src="../assets/figures/brand-identity.png" alt="品牌识别概念板"><figcaption>品牌识别概念板 · 四级品牌体系 · 采用前须完成商标与字体清权</figcaption></figure>
     </div>
   </section>
 
@@ -121,11 +192,11 @@
     <table class="mini">
       <tr><th>任务</th><th>覆盖位置</th></tr>
       <tr><td>agent.1 命名与品牌</td><td>总体概念章节 + 品牌识别图 + 本页</td></tr>
-      <tr><td>agent.2 全球案例与生态图谱</td><td>8 项全球案例表 + AI 创新生态章节</td></tr>
-      <tr><td>agent.3 场景卡与画像</td><td>10 张场景卡 + 8 类用户画像 + 3 个测试场</td></tr>
-      <tr><td>agent.4 公共空间与朝圣地标</td><td>3 个 AI 朝圣地标 + 8 个公共空间组件</td></tr>
-      <tr><td>agent.5 文化叙事与导视</td><td>三层文化并置叙事 + 国际传播线索</td></tr>
-      <tr><td>agent.6 活动体系与运营</td><td>4 项年度活动 + 开发者社区 + 场景开放机制</td></tr>
+      <tr><td>agent.2 全球案例与生态图谱</td><td>8 项全球案例表 + 要素保障 / 技术测试 / 场景开放</td></tr>
+      <tr><td>agent.3 场景卡与画像</td><td>10 张场景卡 + 8 类用户画像 + 3 个测试场 + 智能层开关</td></tr>
+      <tr><td>agent.4 公共空间与朝圣地标</td><td>3 个 AI 朝圣地标 + 9 个公共空间组件 + 零号折返亭</td></tr>
+      <tr><td>agent.5 文化叙事与导视</td><td>三层文化并置叙事 + 国际传播三句短文</td></tr>
+      <tr><td>agent.6 活动体系与运营</td><td>长期运营价值三要素 + 开发者社区 + 场景开放机制</td></tr>
     </table>
   </section>
 
@@ -141,26 +212,32 @@
 
   <section class="panel">
     <h2>来源 · 假设</h2>
-    <p class="small">35 条来源逐条登记 usable_for / not_usable_for；与中央 registry 同源条目绑定 registry_source_id（DATA-SRC-*，verbatim 复制），另含无障碍环境建设法、生成式AI服务管理暂行办法、老年人智能技术实施方案三条 registry 法定来源。16 条假设（A-BOUNDARY-001 等）覆盖官方边界、控规、道路红线、权属、建筑实测、文保、市政、数据与运营边界；provisional 边界不作为官方红线或精确面积依据。</p>
-  </section>
-
-  <section class="panel">
-    <h2>v2.0 深度重设计</h2>
-    <ul>
-      <li>原创机器可读治理契约《共生带折返协议 0.1》：schema + 合成样例 + 角色规范 + 基线测量协议 + 结构校验报告（0 errors），以 1909 人字形折返线为原型的可逆性机制。</li>
-      <li>合规锚点四栏表：法定依据与实际效果、自设标准、空间后果逐行分列。</li>
-      <li>试点交付契约 P01-P06：概念 RACI + 二元开放门槛 + 回滚状态 + 六张开工单分级确认。</li>
-      <li>权利与构建溯源：逐资产可命令核验。</li>
-      <li>评审可见图件全部重绘：key-areas 与 key-area-sections 英文版为真实对照；site-overview 截断修复；land-use-structure 分辨率提升；清除图内开发标记。</li>
-      <li>sources.json 绑定中央 registry，新增三条 registry 法定来源；修复 PUB-PII 链接错误。</li>
-      <li>self_check.json 持久化四门 gate 证据（ok=true、can_enter_formal_review=true）。</li>
-      <li>中文报告 HTML 由当前正文重渲染；双语合规模块数更新为 7 图 + 2 PDF + 1 HTML。</li>
-    </ul>
+    <p class="small">38 条来源逐条登记 usable_for / not_usable_for，与中央 registry 同源条目绑定 registry_source_id；16 条假设（A-BOUNDARY-001 等）覆盖官方边界、控规、道路红线、权属、建筑实测、文保、市政、数据与运营边界。v2.2 音频与封面均为本机程序化/语音合成生成，provenance 见 sources.json 与 manifest。</p>
   </section>
 
   <footer>
-    MiniMax-M3 via opencode · urban-design-ai-submission skill · 2026-08-14 (v2.0) · provisional 边界 · 非官方红线，不构成实施承诺
+    MiniMax-M3 via opencode · urban-design-ai-submission skill · 2026-08-16 (v2.2) · provisional 边界 · 非官方红线，不构成实施承诺
   </footer>
 </main>
+<script>
+  (function () {
+    var root = document.documentElement;
+    function apply(state) {
+      root.setAttribute('data-smart', state);
+      var btns = document.querySelectorAll('.sw-btns button');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute('aria-pressed', String(btns[i].getAttribute('data-smart') === state));
+      }
+      var on = document.querySelectorAll('.sw-note[data-when="on"]');
+      var off = document.querySelectorAll('.sw-note[data-when="off"]');
+      for (var j = 0; j < on.length; j++) on[j].hidden = (state !== 'on');
+      for (var k = 0; k < off.length; k++) off[k].hidden = (state !== 'off');
+    }
+    var buttons = document.querySelectorAll('.sw-btns button');
+    for (var n = 0; n < buttons.length; n++) {
+      buttons[n].addEventListener('click', function () { apply(this.getAttribute('data-smart')); });
+    }
+  })();
+</script>
 </body>
 </html>

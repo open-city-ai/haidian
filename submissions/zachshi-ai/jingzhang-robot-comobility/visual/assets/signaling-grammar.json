@@ -1,0 +1,128 @@
+{
+  "schema_version": "0.1.0",
+  "concept": "共行信号系统 (Co-Mobility Signaling)",
+  "canonical_contract": {
+    "zh": "proposal.md",
+    "en": "proposal.en.md"
+  },
+  "problem_statement_zh": "断面语法是静态契约（谁让行、多快），但运行是动态的：同一断面同一时刻可能有多台机器人、人流高峰、天气变化。共行信号系统从铁路信号学移植'闭塞+联锁+调度集中'，把静态契约升级为动态控制。",
+  "problem_statement_en": "The cross-section grammar is a static contract (who yields, how fast), but operation is dynamic: multiple robots, pedestrian surges, weather changes on the same section. Co-Mobility Signaling transplants railway 'block + interlocking + centralized dispatch' to upgrade the static contract into dynamic control.",
+  "negative_space_baseline_zh": "慢行系统完整性是设计起点：无机器人时，所有区间仍是完整、连续、可用的步行/骑行空间。信号系统只控制机器人存在，从不控制行人空间。",
+  "negative_space_baseline_en": "Slow-traffic integrity is the design starting point: without robots, every block remains a complete, continuous, usable pedestrian/cycling space. Signaling controls robot presence, never pedestrian space.",
+  "block_section_rule_zh": "闭塞区间：每个断面是一个闭塞区间，同一时刻同一区间只允许一台机器人；进入必须'闭塞请求→获准→进入→出让'四步，出让后区间恢复自由。",
+  "interlocking_rule_zh": "信号联锁：机器人状态与区间状态互锁——区间有人流高峰/天气恶化/维护作业/冲突告警时，禁止机器人进入；行人优先段永远优先于机器人。",
+  "centralized_dispatch_zh": "调度集中：调度中心持有全区间信号表，每个区间状态公开可查、可审计；调度记录进入保障台账。",
+  "state_machine": [
+    "free",
+    "requested",
+    "occupied",
+    "releasing",
+    "free"
+  ],
+  "block_count": 8,
+  "blocks": [
+    {
+      "id": "BLK-01",
+      "name_zh": "主廊北段专用区间",
+      "section_type": "dedicated",
+      "length_m": 2600,
+      "speed_kmh": 15,
+      "interlock_rules": [
+        "pedestrian_surge_blocks",
+        "weather_degradation_blocks",
+        "maintenance_blocks",
+        "conflict_alert_blocks"
+      ],
+      "negative_baseline_zh": "无机器人时该区间为完整慢行绿道，行人/骑行不受影响"
+    },
+    {
+      "id": "BLK-02",
+      "name_zh": "主廊中段专用区间",
+      "section_type": "dedicated",
+      "length_m": 3100,
+      "speed_kmh": 15,
+      "interlock_rules": [
+        "pedestrian_surge_blocks",
+        "conflict_alert_blocks",
+        "maintenance_blocks"
+      ],
+      "negative_baseline_zh": "无机器人时该区间为完整慢行绿道"
+    },
+    {
+      "id": "BLK-03",
+      "name_zh": "主廊南段专用区间",
+      "section_type": "dedicated",
+      "length_m": 2800,
+      "speed_kmh": 15,
+      "interlock_rules": [
+        "pedestrian_surge_blocks",
+        "station_surge_blocks",
+        "weather_degradation_blocks"
+      ],
+      "negative_baseline_zh": "无机器人时该区间为完整慢行绿道"
+    },
+    {
+      "id": "BLK-04",
+      "name_zh": "共享段东支",
+      "section_type": "shared",
+      "length_m": 1200,
+      "speed_kmh": 10,
+      "interlock_rules": [
+        "pedestrian_surge_blocks",
+        "conflict_alert_blocks"
+      ],
+      "negative_baseline_zh": "无机器人时该区间为普通慢行路，色带擦除即复原"
+    },
+    {
+      "id": "BLK-05",
+      "name_zh": "共享段西支",
+      "section_type": "shared",
+      "length_m": 1100,
+      "speed_kmh": 10,
+      "interlock_rules": [
+        "pedestrian_surge_blocks",
+        "school_peak_blocks"
+      ],
+      "negative_baseline_zh": "无机器人时该区间为普通慢行路"
+    },
+    {
+      "id": "BLK-06",
+      "name_zh": "行人优先段（文保范围）",
+      "section_type": "pedestrian_priority",
+      "length_m": 800,
+      "speed_kmh": 5,
+      "interlock_rules": [
+        "always_pedestrian_priority",
+        "robot_follows_flow",
+        "heritage_event_blocks"
+      ],
+      "negative_baseline_zh": "该区间本质是步行空间，机器人只是被允许低速随行"
+    },
+    {
+      "id": "BLK-07",
+      "name_zh": "行人优先段（广场周边）",
+      "section_type": "pedestrian_priority",
+      "length_m": 600,
+      "speed_kmh": 5,
+      "interlock_rules": [
+        "always_pedestrian_priority",
+        "event_blocks"
+      ],
+      "negative_baseline_zh": "该区间本质是广场步行空间"
+    },
+    {
+      "id": "BLK-08",
+      "name_zh": "测试步道区间",
+      "section_type": "test_trail",
+      "length_m": 900,
+      "speed_kmh": 8,
+      "interlock_rules": [
+        "closed_testing_only",
+        "protocol_blocks"
+      ],
+      "negative_baseline_zh": "测试场撤除隔离后恢复为普通绿地步道"
+    }
+  ],
+  "field_status": "not_authorized_not_run",
+  "field_results": null
+}

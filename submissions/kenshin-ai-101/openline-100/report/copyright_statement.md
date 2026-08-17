@@ -13,8 +13,9 @@ All submitted text, geometry, diagrams, PDFs, and static HTML assets are authore
 
 - **Noto Sans SC Regular / Bold** (bundled with the managed Python runtime; SIL Open Font License 1.1, no Reserved Font Name):
   - subset-embedded by reportlab into `drawings/*.pdf` (build toolchain `HGB` / `HGB-B`);
-  - subset-embedded as WOFF (base64) into `report/proposal.html` and `visual/index.html` by `tools/openline-100/embed_cjk_font.py`, so the offline HTML renders on machines without CJK fonts.
-- **OFL compliance:** subsetting, embedding, and redistribution inside documents are permitted; the fonts are not sold standalone; this statement is the attribution. Original full fonts are not redistributed.
+  - subset-embedded as WOFF (base64) into `report/proposal.html` and `visual/index.html` by `tools/openline-100/embed_cjk_font.py`, so the offline HTML renders on machines without CJK fonts; the embedded subset is renamed `OpenlineEmbeddedSC` (OFL has no Reserved Font Name here, and renaming avoids any confusion with the original font);
+  - the English HTML files (`report/proposal.en.html`, `visual/index.en.html`) embed the same renamed subset for Latin/punctuation glyphs, fixing missing-glyph rendering in font-poor review environments.
+- **OFL compliance:** subsetting, embedding, and redistribution inside documents are permitted; the fonts are not sold standalone; this statement is the attribution. Original full fonts are not redistributed. The full OFL 1.1 text is incorporated by reference from its canonical source: SIL International, "SIL Open Font License, Version 1.1" (scripts.sil.org/OFL); it is not reproduced here to avoid transcription drift.
 - **Matplotlib figure text:** rendered to raster pixels at export; whichever system CJK font matplotlib selects (e.g. Hiragino Sans GB on macOS) is never redistributed as a font file—only pixels ship.
 
 ## 3. Images, icons, diagrams

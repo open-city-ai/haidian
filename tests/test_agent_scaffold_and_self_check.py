@@ -485,6 +485,30 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual(expected, {key: agent[key] for key in expected})
             self.assertEqual(expected, {key: manifest["agent"][key] for key in expected})
 
+    def test_scaffold_uses_commercial_service_code_for_commercial_partition(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp) / "submissions" / "alice" / "land-use-codes"
+            scaffold = run_scaffold(output_dir)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+
+            land_use = json.loads(
+                (output_dir / "geometry" / "land_use.geojson").read_text(encoding="utf-8")
+            )
+            commercial = [
+                feature
+                for feature in land_use["features"]
+                if "商业服务" in feature["properties"].get("name_zh", "")
+            ]
+            self.assertEqual(1, len(commercial))
+            self.assertEqual("09", commercial[0]["properties"]["land_use_code"])
+            self.assertNotIn(
+                "05",
+                {
+                    feature["properties"].get("land_use_code")
+                    for feature in commercial
+                },
+            )
+
     def test_finalize_blocks_v2_package_without_required_bilingual_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             output_dir = Path(tmp) / "submissions" / "alice" / "missing-bilingual"

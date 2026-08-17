@@ -1,0 +1,191 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 边界；正式红线发布后复算",
+    "组织方数据缺口不阻断内容评分"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.238078,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(green_space) / site_area, EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念蓝绿网络（智脉长廊+小月河绿带）；正式边界后复算"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.026366,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(public_space) / site_area, EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "智脉长廊公共活动带（3 个朝圣地标锚点）；正式边界后复算"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2717140.011,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(green_space), EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念蓝绿网络"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 300908.094,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(public_space), EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念公共活动带"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 932616.207,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(building_footprints), EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念体量（非法定建筑规模）；控规数据到位后复算"
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 126,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(building features)",
+   "confidence": "low",
+   "assumptions": [
+    "概念建筑体块数量"
+   ]
+  },
+  "road_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(road centerlines)",
+   "confidence": "low",
+   "assumptions": [
+    "概念路网（真实道路名的概念线位）"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key area features)",
+   "confidence": "low",
+   "assumptions": [
+    "三个重点区为 provisional 粗略范围"
+   ]
+  },
+  "phasing_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(phase features)",
+   "confidence": "low",
+   "assumptions": [
+    "近/中/远三期概念分期"
+   ]
+  },
+  "edge_compute_node_count": {
+   "status": "known",
+   "value": 15,
+   "unit": "count",
+   "source_files": [
+    "spatial.json"
+   ],
+   "formula": "concept count of 1+3+N edge computing nodes (1 center + 3 hubs + 12-15 stations, upper bound 15)",
+   "confidence": "low",
+   "assumptions": [
+    "1+3+N 算力体系为概念设计，节点数量与选址待专业评估"
+   ]
+  },
+  "pilot_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [],
+   "formula": "count(Phase-0 pilot projects defined in proposal chapter 10)",
+   "confidence": "low",
+   "assumptions": [
+    "5 个轻启动试点为概念设计，周期/指标待专业评估"
+   ]
+  },
+  "mixed_unit_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(mixed-use unit bands), 7 units × 3 columns = 21 parcels",
+   "confidence": "low",
+   "assumptions": [
+    "智脉复合单元：创新与宜居单元内混合交织，非空间二分"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "pending official regulatory controls",
+   "confidence": "unknown",
+   "assumptions": [
+    "依赖未公开的官方控规指标，待正式数据补齐后复算"
+   ],
+   "reason": "官方控规与建筑控制条件尚未公开，不得虚构法定容积率"
+  }
+ }
+}

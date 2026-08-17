@@ -7,11 +7,13 @@
  * 与我方（gr-87 / jingzhang-ai-new-track）同赛道、同场景的有多少？
  * 哪些"测项覆盖"在全场是空白（human_fallback / 退出阈值 / 法条引用）？
  *
- * 只读约束：全部经 git ls-tree / git show / git rev-parse / git grep 读取
- * upstream/main（或 CENSUS_FIELD_REF 指定的 ref），绝不 checkout / switch / 写文件，
- * 唯一写入物是运行目录下的 field-census-evidence.json。
+ * 只读约束（v0.5）：全部经 git ls-tree / git show / git rev-parse / git grep 读取
+ * upstream/main（或 CENSUS_FIELD_REF 指定的 ref），绝不 checkout / switch；
+ * 默认不写任何文件，只把结果打印到 stdout；显式传入 --write 才更新
+ * field-census-evidence.json（复演命令不会破坏 manifest SHA-256）。
  *
- * 用法：node visual/assets/run_field_census.js
+ * 用法：node visual/assets/run_field_census.js            # 只读复演
+ *       node visual/assets/run_field_census.js --write    # 显式重写证据文件
  * 环境变量（可选）：
  *   CENSUS_FIELD_REF    默认 upstream/main
  *   CENSUS_REPO_ROOT    默认从本脚本向上寻找含 .git 的仓库根
@@ -36,6 +38,7 @@ const MY_PKG_RELPATH = 'submissions/gr-87/jingzhang-ai-new-track'; // 我方方�
 const FIELD_REF = process.env.CENSUS_FIELD_REF || 'upstream/main';
 const OUT_FILE = process.env.CENSUS_OUT_FILE ||
   path.join(SCRIPT_DIR, 'field-census-evidence.json');
+const WRITE_MODE = process.argv.includes('--write'); // v0.5: 默认只读
 
 /* ---------- 仓库根定位（向上找 .git） ---------- */
 function findRepoRoot(start) {
@@ -314,12 +317,21 @@ try {
   grepCrossCheck = { error: String(e.message || e) };
 }
 
-/* 我方位置 */
+/* 我方位置（v0.5：按 main 上实际文件存在性判定，不硬编码） */
 const myTrackIntersectN = stats.same_track.length;
 const myScenarioIntersectN = stats.same_scenario.length;
+const myProposalOnMain = readFileAt(FIELD_REF, MY_PKG_RELPATH + '/proposal.md');
+const myManifestOnMain = readFileAt(FIELD_REF, MY_PKG_RELPATH + '/manifest.json');
+let mainIteration = null;
+if (myProposalOnMain) {
+  const m2 = /^iteration:\s*["']?([\w.-]+)["']?\s*$/m.exec(myProposalOnMain);
+  mainIteration = m2 ? m2[1] : 'unknown';
+}
 const myPosition = {
-  merged_on_main: false,
-  note: 'upstream/main 上 submissions/gr-87 为占位空树；我方方案仅在本地分支 submission/gr-87/jingzhang-ai-new-track-v04。',
+  merged_on_main: myProposalOnMain !== null && myManifestOnMain !== null,
+  note: myProposalOnMain
+    ? 'upstream/main 已包含历史版本（iteration=' + mainIteration + '）；本次测量针对本地 v0.5 工作区声明，仅用于同场对照。'
+    : 'upstream/main 未包含该方案；本次测量针对本地工作区声明。',
   declared_tracks: myTracks,
   declared_scenarios: myScenarios,
   tracks_declared_count: myTracks.length,
@@ -386,7 +398,9 @@ const out = {
     determinism_note: 'scheme lists sorted; measurement depends only on the git ref named by git_sha_of_main',
   },
 };
-fs.writeFileSync(OUT_FILE, JSON.stringify(out, null, 2), 'utf8');
+if (WRITE_MODE) {
+  fs.writeFileSync(OUT_FILE, JSON.stringify(out, null, 2), 'utf8');
+}
 
 /* ---------- 5. 控制台汇总 ---------- */
 const L = (k, v) => console.log('  ' + k.padEnd(46) + String(v));
@@ -402,7 +416,7 @@ L('distinct model writings', stats.distinct_models.size);
 L('proposal.md present / missing', stats.proposal.present + ' / ' + stats.proposal.missing);
 L('tracks declared>0 / empty', stats.proposal.tracks_declared + ' / ' + stats.proposal.tracks_empty);
 L('scenarios declared>0 / empty', stats.proposal.scenarios_declared + ' / ' + stats.proposal.scenarios_empty);
-console.log('— 我方（gr-87/jingzhang-ai-new-track，本地分支，未合入 main）—');
+console.log('— 我方（gr-87/jingzhang-ai-new-track，本地工作区声明；main 版本以 my_position 为准）—');
 L('my tracks', '[' + myTracks.join(', ') + ']');
 L('my scenarios', '[' + myScenarios.join(', ') + ']');
 L('same-track schemes', myTrackIntersectN);
@@ -415,4 +429,5 @@ for (const f of findings) {
 }
 console.log('— cross-check (git grep vs script) —');
 console.log('  ' + JSON.stringify(grepCrossCheck));
-console.log('evidence written : ' + OUT_FILE);
+if (WRITE_MODE) { console.log('evidence written : ' + OUT_FILE); }
+else { console.log('evidence NOT written (read-only mode; rerun with --write to refresh the committed evidence file). would-write: ' + OUT_FILE); }

@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张一人公司带 OPC Belt · 可视化总览</title>
+<style>
+:root{
+  --rail:#5B6B73; --rail-d:#3A4A52; --rail-l:#8FA0AA;
+  --blue:#1E5AA8; --blue-t:#E2ECF7;
+  --orange:#F5822B; --orange-t:#FDE9DB;
+  --ink:#243137; --muted:#7A868D; --line:#D6DEE4;
+  --soft:#F4F7F9; --panel:#FAFBFC;
+  --rail-t:#E4E9EC; --gray-t:#EEF0F2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Microsoft YaHei","PingFang SC","Source Han Sans SC",sans-serif;color:var(--ink);background:var(--soft);line-height:1.65}
+.wrap{max-width:1240px;margin:0 auto;padding:0 26px}
+code,.mono{font-family:Consolas,"Courier New",monospace}
+
+/* ---------- header ---------- */
+header{background:linear-gradient(135deg,#2A343B 0%,#3A4A52 58%,#43555E 100%);color:#fff;border-bottom:6px solid var(--orange)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:30px;padding:40px 0 34px;align-items:center}
+.eyebrow{color:#9FB6C4;letter-spacing:.35em;font-size:12px;margin-bottom:10px}
+h1{font-size:36px;line-height:1.2;margin:0 0 12px;letter-spacing:.02em}
+h1 small{display:block;font-size:16px;font-weight:400;color:#B8C6CE;margin-top:8px;letter-spacing:.12em}
+.hero p{color:#C9D5DC;margin:0;max-width:820px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pill{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 13px;font-size:12px;color:#E6EDF1}
+/* REN mark logo（CSS 绘制「人」字：竖+撇+橙点） */
+.mark-box{display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:22px 18px;background:rgba(255,255,255,.05)}
+.ren{position:relative;width:96px;height:104px}
+.ren .v{position:absolute;left:52px;top:0;width:12px;height:104px;background:#DCE4E9;border-radius:6px}
+.ren .p{position:absolute;left:14px;top:8px;width:12px;height:104px;background:var(--blue);border-radius:6px;transform:rotate(38deg);transform-origin:top center}
+.ren .dot{position:absolute;left:47px;top:-2px;width:22px;height:22px;border-radius:50%;background:var(--orange);border:4px solid #2A343B}
+.mark-box b{font-size:14px;letter-spacing:.28em;color:#DCE4E9}
+.mark-box span{font-size:11px;color:#9FB6C4}
+.years{display:flex;gap:14px}
+.years i{font-style:normal;font-size:12px;color:#9FB6C4;border-top:2px solid rgba(255,255,255,.25);padding-top:6px}
+.years b{display:block;font-size:18px;color:#fff;font-family:Consolas,monospace}
+
+/* ---------- sections ---------- */
+main{padding:30px 0 40px}
+section.sheet{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:26px;overflow:hidden;box-shadow:0 10px 26px rgba(36,49,55,.06)}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:20px 26px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+.sheet-head h2{margin:0;font-size:21px;display:flex;align-items:center;gap:12px}
+.sheet-head h2::before{content:"";width:8px;height:24px;border-radius:2px;background:var(--orange)}
+.sheet-head .tag{flex:none;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 10px;background:#fff;white-space:nowrap}
+.sheet-head p{margin:6px 0 0;color:var(--muted);font-size:14px;max-width:860px}
+.sheet-body{padding:22px 26px}
+figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:12px;color:var(--muted);padding:9px 14px;border-top:1px solid var(--line);background:var(--panel)}
+
+/* grids & cards */
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fff}
+.card h3{margin:0 0 8px;font-size:16px}
+.card p{margin:0;font-size:13.5px;color:var(--muted)}
+.card ul{margin:8px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink)}
+.card li{margin:4px 0}
+.card .num{font-family:Consolas,monospace;font-weight:700;color:var(--blue)}
+.scope-a{border-top:4px solid var(--rail-l)}
+.scope-b{border-top:4px solid var(--blue)}
+.scope-c{border-top:4px solid var(--orange)}
+.station{border:1px solid var(--line);border-top:5px solid var(--rail-d);border-radius:10px;padding:16px 18px}
+.station.s2{border-top-color:var(--orange)}
+.station.s1{border-top-color:var(--blue)}
+.station h3{margin:0;font-size:17px}
+.station .en{font-size:12px;color:var(--muted);letter-spacing:.08em}
+.station .year{float:right;font-family:Consolas,monospace;font-size:26px;font-weight:700;color:var(--rail)}
+.station.s2 .year{color:var(--orange)}
+.station.s1 .year{color:var(--blue)}
+.chip{display:inline-block;font-size:12px;border-radius:6px;padding:2px 9px;margin:8px 6px 0 0;background:var(--gray-t);color:var(--ink)}
+.chip.hot{background:var(--orange-t);color:#9A4E12}
+.chip.cool{background:var(--blue-t);color:var(--blue)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{background:var(--panel);text-align:left;font-size:12.5px;color:var(--muted);font-weight:600;letter-spacing:.04em}
+th,td{border:1px solid var(--line);padding:8px 12px;vertical-align:top}
+tr:nth-child(even) td{background:#FCFDFDFC}
+td .code{font-family:Consolas,monospace;font-weight:700;color:var(--blue)}
+
+/* metrics */
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:18px}
+.metric{border:1px solid var(--line);border-radius:10px;padding:18px 20px;border-top:5px solid var(--blue)}
+.metric.g{border-top-color:var(--rail)}
+.metric.p{border-top-color:var(--orange)}
+.metric label{font-size:12.5px;color:var(--muted);letter-spacing:.05em}
+.metric .val{display:block;font-family:Consolas,monospace;font-size:29px;font-weight:700;color:var(--ink);margin:6px 0 4px;word-break:break-all}
+.metric small{color:var(--muted);font-size:12px}
+.disc{background:var(--soft);border:1px dashed var(--rail-l);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--muted);margin-top:14px}
+
+/* scenario cards */
+.sc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.sc{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:#fff;position:relative}
+.sc::before{content:attr(data-t);position:absolute;top:13px;right:14px;font-family:Consolas,monospace;font-size:11px;color:var(--orange)}
+.sc b{display:block;font-size:14px;margin-bottom:5px;padding-right:52px}
+.sc span{display:block;font-size:12px;color:var(--muted);line-height:1.55}
+.sc .where{color:var(--blue)}
+
+/* evidence / footer blocks */
+.ev{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.klist{list-style:none;margin:0;padding:0}
+.klist li{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-bottom:10px;font-size:13.5px;background:#fff}
+.klist b{color:var(--rail-d)}
+.warn{border-left:4px solid var(--orange);background:var(--orange-t);border-radius:8px;padding:12px 16px;font-size:13px;color:#7A410F}
+.note{border-left:4px solid var(--blue);background:var(--blue-t);border-radius:8px;padding:12px 16px;font-size:13px;color:#173E73}
+.check{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.check .c{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:var(--panel)}
+.check b{font-size:13px;display:block;margin-bottom:6px}
+.check span{font-size:12px;color:var(--muted)}
+footer{background:#2A343B;color:#9FB6C4;padding:26px 0;font-size:12.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (max-width:960px){
+  .hero{grid-template-columns:1fr}
+  .grid3,.grid4,.sc-grid,.check,.ev{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .metric-grid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .grid3,.grid4,.sc-grid,.check,.ev,.grid2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">城市设计国际竞赛 · 参赛可视化总览</div>
+      <h1>京张一人公司带<small>OPC BELT · JING-ZHANG ONE-PERSON COMPANY BELT</small></h1>
+      <p>百年京张三次写下「个人智慧办成大事」：1909 京张铁路、1980 中关村第一家民营科技机构、AI 时代超级个体。本方案把这条带设计为<b>一人公司的铁路</b>——注册原点站、验证加速场、高频会客场三站协同，为超级个体修建注册、验证、会客、生活的全套轨道。本页为离线静态展示；权威数据以 GeoJSON、metrics.json、矩阵与自检结果为准。</p>
+      <div class="pills">
+        <span class="pill">三站系统</span><span class="pill">人字号结构</span><span class="pill">12 张场景卡</span><span class="pill">证据链指标</span><span class="pill">双语契约</span>
+      </div>
+    </div>
+    <div class="mark-box">
+      <div class="ren" aria-label="人字号 logo：一竖一撇交汇于橙点"><i class="v"></i><i class="p"></i><i class="dot"></i></div>
+      <b>「人」字号</b>
+      <span>竖=遗址公园历史轴 · 撇=创业线<br>交点=AI 原点社区</span>
+      <div class="years"><i><b>1909</b>京张铁路</i><i><b>1980</b>中关村服务部</i><i><b>2019</b>京张高铁</i></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 01 总览地图 -->
+  <section class="sheet" id="overview">
+    <div class="sheet-head">
+      <div><h2>总览地图</h2><p>京张带区位示意、三层范围与「人字号」构图形轴：一竖（京张遗址公园历史轴）一撇（创业线）交汇于 AI 原点社区；三站沿带串联。</p></div>
+      <span class="tag mono">FIG 01 · site-overview.png</span>
+    </div>
+    <div class="sheet-body">
+      <figure>
+        <img src="../assets/figures/site-overview.png" alt="总体范围与人字号结构总览图：三范围、竖撇轴线与三站区位">
+        <figcaption>示意图（provisional 边界口径）· 派生自 geometry/site_boundary.geojson 与 key_areas.geojson，非工程坐标图。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 02 三层范围 -->
+  <section class="sheet" id="scope">
+    <div class="sheet-head">
+      <div><h2>三层范围</h2><p>统筹研究 → 总体设计 → 重点区域逐级聚焦：生态链研究、控规深度城市设计与三站详细设计分别绑定图层与指标。</p></div>
+      <span class="tag mono">project_scope_summary</span>
+    </div>
+    <div class="sheet-body grid3">
+      <div class="card scope-a"><h3>统筹研究范围 · 43.6 km²</h3>
+        <p>OPC 生态链「高校策源—开源协作—一人公司—公共体验—国际传播」研究与叙事层。</p>
+        <ul><li>全球 2 亿灵活就业 / 1.25 亿个体户 / 2.49 亿生成式 AI 用户作需求底盘</li><li>「1+N」公司模型：一个人 + N 个智能体员工</li><li>Altman 一人十亿美元公司预言（注明预测性质）作时代命题</li></ul></div>
+      <div class="card scope-b"><h3>总体设计范围 · 11.4 km²</h3>
+        <p>三站 + 两翼空间落位，城市更新与控规深度城市设计。</p>
+        <ul><li>四类用地无缝覆盖（见「用地分区」）</li><li>site_boundary SITE-001（provisional，正式评审以官方边界为准）</li><li>两翼：中关村科技服务翼 / 小月河场景赋能翼</li></ul></div>
+      <div class="card scope-c"><h3>重点区域范围 · 368.4 ha</h3>
+        <p>三站详细设计（104.3 + 192.1 + 72.0 ha）。</p>
+        <ul><li>注册原点站（北京AI原点社区）</li><li>验证加速场（众智园AI加速区）</li><li>高频会客场（大钟寺AI集聚区）</li></ul></div>
+    </div>
+  </section>
+
+  <!-- 03 重点区域 -->
+  <section class="sheet" id="key-areas">
+    <div class="sheet-head">
+      <div><h2>重点区域</h2><p>三站详图：每站含面积、职能三要点与精神原型年份（1980 / 1909 / 2019）。概念建议措辞，供专业团队深化。</p></div>
+      <span class="tag mono">key_areas.geojson ×3</span>
+    </div>
+    <div class="sheet-body">
+      <figure style="margin-bottom:18px">
+        <img src="../assets/figures/key-areas.png" alt="三站详图三面板：注册原点站、验证加速场、高频会客场职能与精神原型">
+        <figcaption>FIG 03 · 三面板详图（示意）。</figcaption>
+      </figure>
+      <div class="grid3">
+        <div class="station s2"><span class="year">1980</span><h3>02 注册原点站 <span class="en">Registry Origin</span></h3>
+          <span class="chip">北京AI原点社区 · 104.3 ha</span><span class="chip hot">精神原型：陈春先服务部</span>
+          <ul><li>OPC 第一注册地址：5 分钟注册绿色通道（概念建议）</li><li>共享法务 / 财务 / 知识产权智能体服务柜</li><li>近校孵化：面向学生与独立开发者的第一间办公室</li></ul></div>
+        <div class="station s1"><span class="year">1909</span><h3>01 验证加速场 <span class="en">Proving Ground</span></h3>
+          <span class="chip">众智园AI加速区 · 192.1 ha</span><span class="chip cool">原型：京张自主勘测设计施工</span>
+          <ul><li>产品测试场与标准沙盒：可控公共空间实测</li><li>低速机器人路测环道（robot-delivery-low-speed）</li><li>共享算力与中试平台：验证即服务</li></ul></div>
+        <div class="station"><span class="year">2019</span><h3>03 高频会客场 <span class="en">Deal Floor</span></h3>
+          <span class="chip">大钟寺AI集聚区 · 72.0 ha</span><span class="chip">原型：47 分钟同城圈</span>
+          <ul><li>路演与发布：高频会客、国际连线与翻译智能体</li><li>交易展示：智能体新业态展厅与体验首店</li><li>路口四象限连通：缝合慢行网络</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 用地分区 -->
+  <section class="sheet" id="land-use">
+    <div class="sheet-head">
+      <div><h2>用地分区</h2><p>四类用地无缝覆盖总体范围（land_use LU-001…004，agent_generated_design），叠加五类 OPC 功能层概念标注（design_proposal）。</p></div>
+      <span class="tag mono">land_use.geojson</span>
+    </div>
+    <div class="sheet-body">
+      <figure style="margin-bottom:18px">
+        <img src="../assets/figures/land-use-structure.png" alt="用地结构与OPC功能层叠加分析图，四类用地条带与功能标注">
+        <figcaption>FIG 02 · 用地结构 + OPC 功能层（横向比例放大示意）。</figcaption>
+      </figure>
+      <table>
+        <tr><th>编码</th><th>用地类别</th><th>面积 area_sqm_declared</th><th>OPC 功能层（概念）</th></tr>
+        <tr><td class="code">LU-001</td><td>AI研发创新用地</td><td class="mono">2,674,562.492 m²</td><td>验证生产（众智园锚点）</td></tr>
+        <tr><td class="code">LU-002</td><td>公园绿地与开敞空间</td><td class="mono">2,589,339.239 m²</td><td>OPC 中央客厅 / 生活场景</td></tr>
+        <tr><td class="code">LU-003</td><td>产业服务与商业服务用地</td><td class="mono">3,366,138.181 m²</td><td>会客展示 + 服务链</td></tr>
+        <tr><td class="code">LU-004</td><td>社区服务与配套用地</td><td class="mono">2,782,792.823 m²</td><td>生活场景（小月河翼）</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 05 交通慢行 -->
+  <section class="sheet" id="mobility">
+    <div class="sheet-head">
+      <div><h2>交通慢行</h2><p>OPC 通勤线（轨道+慢行主轴）串联三站；低速机器人物流廊（虚线）闭环布设，对接 robot-delivery-low-speed 场景。</p></div>
+      <span class="tag mono">roads.geojson</span>
+    </div>
+    <div class="sheet-body">
+      <figure>
+        <img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿系统叠加图，含低速机器人物流廊虚线环">
+        <figcaption>FIG 04 · 交通慢行 + 蓝绿系统 + 低速机器人物流廊（橙色虚线环）。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 06 蓝绿公共空间 -->
+  <section class="sheet" id="bluegreen">
+    <div class="sheet-head">
+      <div><h2>蓝绿公共空间</h2><p>京张遗址公园=OPC 中央客厅；小月河 / 清河蓝绿成网。三处朝圣地标均为「概念建议 / 供专业团队深化」，非既成事实。</p></div>
+      <span class="tag mono">green_space / public_space</span>
+    </div>
+    <div class="sheet-body">
+      <div class="grid3">
+        <div class="card"><h3>① 第一号注册处 <span class="en mono">No.1 Registry</span></h3>
+          <p>AI 原点社区。致敬 1980 中关村服务部：一面可生长铭牌墙，刻着每年第一号新注册 OPC 的名字——机制设计而非既成事实。</p></div>
+        <div class="card"><h3>② 人字观景台 <span class="en mono">REN Deck</span></h3>
+          <p>遗址公园内以人字形折返线为意象的观景构筑，可俯瞰带全景；折返线系詹天佑因地制宜的创造性运用（非发明）。</p></div>
+        <div class="card"><h3>③ 百万行代码墙 <span class="en mono">Code Wall</span></h3>
+          <p>大钟寺片区展示带内开源贡献的公共艺术装置；数据接入为运营前提，当前为概念建议。</p></div>
+      </div>
+      <div class="note" style="margin-top:16px">荣誉展示体系＝OPC 星轨墙：三站公共空间以「星轨」母题展示带内 OPC 的成长轨迹（概念建议）。</div>
+    </div>
+  </section>
+
+  <!-- 07 建筑 -->
+  <section class="sheet" id="buildings">
+    <div class="sheet-head">
+      <div><h2>建筑</h2><p>拆改留方法论义务保留：无官方依据不结论。OPC 空间供给以轻改造、可逆植入为原则，提供五类标准空间产品。</p></div>
+      <span class="tag mono">buildings.geojson</span>
+    </div>
+    <div class="sheet-body">
+      <table style="margin-bottom:14px">
+        <tr><th>空间产品</th><th>选址偏好</th><th>服务对象</th><th>规模特征</th></tr>
+        <tr><td>注册驿站</td><td>原点站近校界面</td><td>准 OPC、高校学生</td><td>柜台+卡座，轻改造</td></tr>
+        <tr><td>协作舱</td><td>三站轨道站点周边</td><td>1-3 人小团队</td><td>可逆装配式舱体</td></tr>
+        <tr><td>验证场</td><td>众智园测试环道</td><td>硬件/具身智能团队</td><td>标准沙盒+中试</td></tr>
+        <tr><td>发布厅</td><td>大钟寺四象限</td><td>路演、发布会</td><td>压力测试级扩声网络</td></tr>
+        <tr><td>算力驿站</td><td>物流廊节点共址</td><td>全带 OPC</td><td>端侧算力+能源仓</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--muted);margin:0">buildings.geojson 现状 footprint 合计 <span class="mono">310,807.184 m²</span>（agent_generated_design，置信度 medium）。容积率、高度、密度、退线、红线等控制指标在公开包内无官方依据，保持 unknown，不写数值结论。</p>
+    </div>
+  </section>
+
+  <!-- 08 更新项目 -->
+  <section class="sheet" id="renewal">
+    <div class="sheet-head">
+      <div><h2>更新项目</h2><p>六项 OPC 更新项目（JZ-01…06）；分期 P1 原点站试点 → P2 三站成线 → P3 两翼成网。100 天为征集期，非实施期。</p></div>
+      <span class="tag mono">phasing.geojson</span>
+    </div>
+    <div class="sheet-body">
+      <table>
+        <tr><th>编号</th><th>项目</th><th>主要内容</th><th>分期</th></tr>
+        <tr><td class="code">JZ-01</td><td>人字轴慢行缝合</td><td>沿遗址公园历史轴贯通慢行主轴，修补断点</td><td>P2</td></tr>
+        <tr><td class="code">JZ-02</td><td>原点站注册大厅改造</td><td>既有建筑轻改造为注册驿站+服务柜集群</td><td>P1</td></tr>
+        <tr><td class="code">JZ-03</td><td>众智园验证场</td><td>标准沙盒、低速机器人路测环道与共享算力</td><td>P2</td></tr>
+        <tr><td class="code">JZ-04</td><td>大钟寺发布厅与四象限连通</td><td>发布厅改造 + 路口四象限慢行连通</td><td>P2</td></tr>
+        <tr><td class="code">JZ-05</td><td>算力驿站网络</td><td>物流廊节点共址布设端侧算力与能源仓</td><td>P3</td></tr>
+        <tr><td class="code">JZ-06</td><td>人字开发者大会路线</td><td>三站联动的年度开发者大会活动线路</td><td>P3</td></tr>
+      </table>
+      <div class="warn" style="margin-top:14px">OPC 注册绿色通道等为研究建议，供主办方与专业团队研究，非政府决定；分期表述不含开工承诺。</div>
+    </div>
+  </section>
+
+  <!-- 09 AI 场景 -->
+  <section class="sheet" id="scenarios">
+    <div class="sheet-head">
+      <div><h2>AI 场景</h2><p>12 张场景卡以「一个 OPC 创始人的一天」串联（SC-01…12，与 public_space 图层 opc_node 落点一致）；每卡说明空间载体、服务对象与隐私边界。</p></div>
+      <span class="tag mono">scenarios ×12</span>
+    </div>
+    <div class="sheet-body">
+      <div class="sc-grid">
+        <div class="sc" data-t="07:30"><b>SC-01 第一注册地址</b><span class="where">原点站 · 注册驿站</span><span>服务对象：准 OPC。隐私边界：工商信息按法定公示，个人住址不公开。</span></div>
+        <div class="sc" data-t="09:00"><b>SC-02 智能体员工晨会</b><span class="where">原点站 · 协作舱</span><span>服务对象：1+N 团队。隐私边界：舱内数据不上传公共屏。</span></div>
+        <div class="sc" data-t="10:30"><b>SC-03 验证加速场路测</b><span class="where">众智园 · 测试环道</span><span>服务对象：硬件团队。隐私边界：路测影像匿名化。</span></div>
+        <div class="sc" data-t="12:00"><b>SC-04 Agent 咖啡</b><span class="where">遗址公园 · 中央客厅</span><span>服务对象：全带开发者。隐私边界：点单数据不留存。</span></div>
+        <div class="sc" data-t="14:00"><b>SC-05 大钟寺路演</b><span class="where">大钟寺 · 发布厅</span><span>服务对象：投资人/媒体。隐私边界：闭门场次禁录。</span></div>
+        <div class="sc" data-t="16:00"><b>SC-06 算力驿站</b><span class="where">物流廊节点</span><span>服务对象：全带 OPC。隐私边界：任务内容加密调度。</span></div>
+        <div class="sc" data-t="18:00"><b>SC-07 小月河生活翼</b><span class="where">小月河沿岸</span><span>服务对象：OPC 居住者。隐私边界：健康数据本地处理。</span></div>
+        <div class="sc" data-t="21:00"><b>SC-08 夜间协作舱</b><span class="where">三站站点周边</span><span>服务对象：跨时区协作。隐私边界：预约实名、使用匿名。</span></div>
+        <div class="sc" data-t="铭牌"><b>SC-09 第一号注册处</b><span class="where">原点站 · 铭牌墙</span><span>服务对象：新 OPC。隐私边界：仅登刊号与代号，本人同意制。</span></div>
+        <div class="sc" data-t="观景"><b>SC-10 人字观景台</b><span class="where">遗址公园</span><span>服务对象：公众/访客。隐私边界：观景台无面部识别。</span></div>
+        <div class="sc" data-t="艺术"><b>SC-11 百万行代码墙</b><span class="where">大钟寺</span><span>服务对象：开源社区。隐私边界：仅展示已开源提交。</span></div>
+        <div class="sc" data-t="年度"><b>SC-12 人字开发者大会</b><span class="where">三站联动线路</span><span>服务对象：全球开发者。隐私边界：参会数据会后脱敏。</span></div>
+      </div>
+
+      <h3 style="font-size:16px;margin:24px 0 10px">产业测试验证场景（3）</h3>
+      <div class="grid3">
+        <div class="card"><h3>低速机器人物流线</h3><p>众智园闭环路测：样品、文件、物料低速配送，运营数据反哺标准沙盒。</p></div>
+        <div class="card"><h3>智能体办公沙盒</h3><p>原点社区可控空间内测试法务/财务智能体服务流，人工复核节点强制保留。</p></div>
+        <div class="card"><h3>发布厅压力测试</h3><p>大钟寺发布厅高并发直播与多语翻译智能体实测，限公共数据。</p></div>
+      </div>
+
+      <h3 style="font-size:16px;margin:24px 0 10px">全球案例研究（6）——口径逐条标注</h3>
+      <table>
+        <tr><th>案例</th><th>事实要点</th><th>口径</th></tr>
+        <tr><td>Pieter Levels（levelsio）</td><td>0 员工 0 融资；2024-09 自报月收入纪录 $420,000/月</td><td>创始人自报（未审计）</td></tr>
+        <tr><td>Tony Dinh / TypingMind</td><td>上线头 7 天 $22K；20 个月累计 $100 万（2024-11 通讯）</td><td>创始人自报（未审计）</td></tr>
+        <tr><td>Carrd / AJ</td><td>约 $100K MRR、260 万用户（约 2022 访谈）</td><td>创始人口径，匿名</td></tr>
+        <tr><td>HeadshotPro / D. Postma</td><td>单人 AI 证件照产品，官网自报累计收入超 $1,000 万</td><td>公司自我披露</td></tr>
+        <tr><td>Aaron Sneed</td><td>15 个 AI agent 组成 "Council"，每周省约 20 小时（2026-02 报道）</td><td>媒体报道</td></tr>
+        <tr><td>EVE / V. Rogovsky</td><td>1 名人类 CTO + 20 个 AI agent，年省薪 $25 万+（2026-03）</td><td>媒体报道</td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--muted);margin:10px 0 0">Sam Altman「一人十亿美元公司」为访谈中的预言（2024-02 公开），本方案按预测性质引用。用户画像 6 类：独立开发者、AI 研究员、设计师创作者、专业服务者、科技转业者、高校学生。</p>
+    </div>
+  </section>
+
+  <!-- 10 核心指标 -->
+  <section class="sheet" id="metrics">
+    <div class="sheet-head">
+      <div><h2>核心指标</h2><p>三个核心指标与 metrics.json 逐字符一致（geometry ↔ metrics ↔ visual 三处同步，1ppm）。扩展计数指标：key_area_count=3、opc_scenario_node_count=12；更新项目 6 项（§10 表格计数，非 metrics 条目）。</p></div>
+      <span class="tag mono">metrics.json</span>
+    </div>
+    <div class="sheet-body">
+      <div class="metric-grid">
+        <div class="metric"><label>site_area_sqm · 总体设计范围面积</label>
+          <strong data-metric="site_area_sqm" data-value="11412825.386"><span class="val">11412825.386</span></strong>
+          <small>formula: polygon_area(site_boundary) · 来源 geometry/site_boundary.geojson · confidence medium（provisional 边界，A-OPC-001）</small></div>
+        <div class="metric g"><label>green_ratio · 绿地率</label>
+          <strong data-metric="green_ratio" data-value="0.123423"><span class="val">0.123423</span></strong>
+          <small>formula: green_space_area_sqm / site_area_sqm · 来源 green_space + site_boundary · confidence medium</small></div>
+        <div class="metric p"><label>public_space_ratio · 公共空间率</label>
+          <strong data-metric="public_space_ratio" data-value="0.073281"><span class="val">0.073281</span></strong>
+          <small>formula: public_space_area_sqm / site_area_sqm · 来源 public_space + site_boundary · confidence medium</small></div>
+      </div>
+      <figure>
+        <img src="../assets/figures/metrics-evidence.png" alt="指标证据链图：三个核心指标数值、公式与来源文件路径">
+        <figcaption>FIG 05 · 指标证据链：数值 · 公式 · 来源路径（示意）。</figcaption>
+      </figure>
+      <div class="disc">floor_area_ratio = unknown：公开包内无官方容积率与红线控制，value=null 并说明理由；不写任何数值结论。</div>
+    </div>
+  </section>
+
+  <!-- 11 任务覆盖 -->
+  <section class="sheet" id="coverage">
+    <div class="sheet-head">
+      <div><h2>任务覆盖</h2><p>compliance_matrix.json 覆盖公告 17 条 + agent.1-6 全部 23 项任务；agent 任务与正文章节一一挂接。</p></div>
+      <span class="tag mono">compliance_matrix.json ×23</span>
+    </div>
+    <div class="sheet-body">
+      <table>
+        <tr><th>任务</th><th>任务名称</th><th>对应正文章节</th></tr>
+        <tr><td class="code">agent.1</td><td>一带总体概念与功能统筹方案设计</td><td>三层范围工作框架 / 统筹研究范围产业与未来城市研究 / 总体设计范围城市更新与控规深度城市设计 / 重点区域详细设计</td></tr>
+        <tr><td class="code">agent.2</td><td>AI全栈自主创新体系与世界级AI创新生态设计</td><td>AI 创新生态、人才画像与 AI+ 场景（案例 6 + 画像 6 类）</td></tr>
+        <tr><td class="code">agent.3</td><td>AI+场景赋能新范式与智能化AI活力城市设计</td><td>AI 创新生态（12 场景卡）/ 交通、轨道、市政与公共服务设施</td></tr>
+        <tr><td class="code">agent.4</td><td>AI公共空间、智能原生新业态与朝圣地标设计</td><td>蓝绿空间、公共空间与城市风貌（三朝圣地标）</td></tr>
+        <tr><td class="code">agent.5</td><td>百年京张文化、中关村文化与AI新文化融合叙事设计</td><td>设计依据与资料清单 / 蓝绿空间（1909·1980·2019 叙事线）</td></tr>
+        <tr><td class="code">agent.6</td><td>一带全球AI创新活动体系与长期运营设计</td><td>更新项目清单、实施政策与分期计划（JZ-06 大会路线）</td></tr>
+      </table>
+      <p style="font-size:12.5px;color:var(--muted);margin:12px 0 0">公告条款 1.3.1-1.3.3（生态体系/城市形态/高品质城区）、1.4.1-1.4.3（三层范围）、1.5.1-1.5.3（分范围深度要求与三片区）同表全覆盖，详见 compliance_matrix.json。</p>
+    </div>
+  </section>
+
+  <!-- 12 自检状态 -->
+  <section class="sheet" id="selfcheck">
+    <div class="sheet-head">
+      <div><h2>自检状态</h2><p>四门闸全部通过方可标记 self-checked；本页为 visual 门（门3）的载体，自身执行静态离线禁令。</p></div>
+      <span class="tag mono">self_check.json</span>
+    </div>
+    <div class="sheet-body">
+      <div class="check">
+        <div class="c"><b>门1 DETERMINISTIC_VALIDATION</b><span>白名单/体积/front matter/13 章节/5 图内嵌/引用密度/双语契约</span></div>
+        <div class="c"><b>门2 SPATIAL_REVIEW</b><span>EPSG:4548 面积复算、三站 ±3%、land_use 无缝、指标 ±1%</span></div>
+        <div class="c"><b>门3 VISUAL_PACKAGING</b><span>本页：UTF-8、无脚本/远程资源、14 区块、data-metric 1ppm</span></div>
+        <div class="c"><b>门4 PROFESSIONAL_EVIDENCE</b><span>standard/depth 矩阵覆盖、metrics 可解析</span></div>
+      </div>
+      <div class="warn" style="margin-top:14px">当前边界状态：provisional geometry（PASS intake only）。正式专业评分前须以官方边界替换；本页所有面积与比率以 metrics.json 登记值为准。</div>
+    </div>
+  </section>
+
+  <!-- 13 来源 -->
+  <section class="sheet" id="sources">
+    <div class="sheet-head">
+      <div><h2>来源</h2><p>全部来源登记于 sources.json；案例数字保留「创始人自报 / 公司自我披露 / 媒体报道」口径标注；原始 URL 见 proposal.md 参考资料。</p></div>
+      <span class="tag mono">sources.json</span>
+    </div>
+    <div class="sheet-body ev">
+      <div>
+        <h3 style="font-size:15px;margin:0 0 10px">官方与任务书</h3>
+        <ul class="klist">
+          <li><b>OFFICIAL-ANNOUNCEMENT</b> · 竞赛公告（三层范围与 23 项任务）</li>
+          <li><b>AGENT-TASKBOOK</b> · agent.1-6 任务书</li>
+          <li><b>SITE-PACKAGE / BOUNDARY-SOURCE / KEY-AREA-SOURCE</b> · 场地包与边界（provisional 口径）</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:15px;margin:0 0 10px">案例与史实登记</h3>
+        <ul class="klist">
+          <li><b>OPC-CASE-LEVELS / OPC-CASE-TONY-DINH / OPC-CASE-CARRD / OPC-CASE-HEADSHOTPRO / OPC-CASE-SNEED / OPC-CASE-EVE</b> · 六案例（自报口径）</li>
+          <li><b>OPC-HIST-JINGZHANG / OPC-HIST-ZGC-1980 / OPC-HIST-JZHSR-2019</b> · 京张铁路、中关村服务部、京张高铁史实</li>
+          <li><b>OPC-STAT-FLEXIBLE-EMP / OPC-STAT-CNNIC / OPC-STAT-SELF-EMPLOYED</b> · 灵活就业 2 亿、生成式 AI 用户 2.49 亿、个体户 1.25 亿（权威统计）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 假设 -->
+  <section class="sheet" id="assumptions">
+    <div class="sheet-head">
+      <div><h2>假设</h2><p>assumptions.json 共五条；全部待定项在正文解释对设计结论的影响。</p></div>
+      <span class="tag mono">assumptions.json</span>
+    </div>
+    <div class="sheet-body">
+      <ul class="klist">
+        <li><b>A-OPC-001 · provisional 边界</b>：site_boundary 为 provisional_constraint（official_boundary=false），intake 展示口径；正式评分前以官方边界替换并重算全部面积指标。</li>
+        <li><b>A-OPC-002 · 案例自报口径</b>：六案例收入与规模数字为创始人自报或公司自我披露（未审计），仅作趋势证据，不作财务承诺；且均为海外案例，无中国本土 OPC 密度直接实证。</li>
+        <li><b>A-OPC-003 · 机制非事实</b>：三朝圣地标、注册绿色通道、铭牌墙、代码墙等均为机制设计与概念建议，供主办方与专业团队深化，非政府决定或既成事实。</li>
+        <li><b>A-OPC-004 · 场景节点落点与面积口径</b>：public_space 新增 12 个 Point 场景节点仅作示意与计数，不参与面积复算；重点区面积公告口径 104.3/192.1/72.0 ha，几何复算 104.32/192.92/72.05 ha（±3% 容差内），官方 polygon 发布后统一复算。</li>
+        <li><b>A-CONTROLS-001 · 控制指标待定</b>：容积率/高度/密度/退线/红线在公开包内无官方依据，全部保持 unknown；拆改留不结论。</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>京张一人公司带 OPC Belt · 离线静态展示页（无脚本 / 无远程资源 / 无 iframe）· 权威数据以提交包 GeoJSON、metrics.json 与矩阵为准</div>
+    <div class="mono">visual/index.html · zh · 1909 / 1980 / 2019</div>
+  </div>
+</footer>
+
+</body>
+</html>

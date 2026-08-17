@@ -1,0 +1,30 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+   "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+  },
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "pending_official_data",
+   "statement": "总体设计范围与三处重点区域均使用仓库临时粗略几何（provisional_rough）；官方精确边界未发布。",
+   "impact": "全部面积指标为低置信度临时复算值；官方边界发布后须重算 site_area、green_ratio、public_space_ratio 及全部分区面积。",
+   "recalc_trigger": "official SITE_BOUNDARY / KEY_AREA polygons published"
+  },
+  {
+   "id": "A-FLOOR-001",
+   "status": "pending_official_data",
+   "statement": "概念建筑体量按平均6层估算总建筑量，仅为设计量级参考。",
+   "impact": "total_floor_area_sqm 为概念设计量，不等于法定开发强度；容积率/高度/密度控制值保持 unknown。"
+  },
+  {
+   "id": "A-ROAD-001",
+   "status": "concept_assumption",
+   "statement": "慢行网络面积按12m平均断面估算。",
+   "impact": "road_area_sqm 为概念口径，道路红线以官方为准。"
+  }
+ ]
+}

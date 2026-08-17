@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-OPC-001",
+      "status": "pending_official_data",
+      "statement": "官方 SITE_BOUNDARY 与三处 KEY_AREA polygon 发布前，本包使用 brief/site-package/geometry/provisional_boundaries.geojson 生成 site_boundary.geojson 与 key_areas.geojson 等图层，并标注 provisional_constraint、official_boundary=false；官方 polygon 发布后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 与全部指标均需重算。",
+      "impact": "provisional 边界仅用于方案生成、自检、可视化与设计讨论，不作为 official redline、审批依据、精确面积依据或法定控制结论；该组织方数据缺口不阻断内容评分，替换 official polygons 后按正文与 metrics 复算路径全量更新。"
+    },
+    {
+      "id": "A-OPC-002",
+      "status": "unaudited_self_report",
+      "statement": "全球一人公司案例（Pieter Levels、Tony Dinh、Carrd、HeadshotPro、Aaron Sneed、EVE）的收入与规模数字均为创始人公开自报或公司自我披露，未经独立审计；Sam Altman「一人十亿美元公司」为 2023-09 录制、2024-02 公开访谈中的预测，并非已发生事实。六案例均为海外公开案例；本包未引用中国本土一人公司密度的公开实证统计（中国生成式 AI 用户与灵活就业总量见 OPC-STAT-CNNIC / OPC-STAT-FLEXIBLE-EMP，但二者非 OPC 密度直接证据）。",
+      "impact": "案例数字仅作为一人公司可行性的参照样本，不构成投资、规划或财务决策依据；正文与可视化逐条标注口径，评审不得视为已核实的普遍规律。"
+    },
+    {
+      "id": "A-OPC-003",
+      "status": "concept_proposal",
+      "statement": "三站重释（北京AI原点社区=注册原点站、众智园=验证加速场、大钟寺=高频会客场）、朝圣地标 3 处（第一号注册处/人字观景台/百万行代码墙）、OPC 星轨墙荣誉展示体系与人字开发者大会等活动体系均为概念建议，供主办方与专业团队深化研究，非政府决定、非已确定实施安排。",
+      "impact": "不改变公告任务范围与评分要求；正文、HTML 与合规矩阵中以「概念建议/供专业团队深化」措辞表述，评审者不得将其视为官方承诺或既成事实。"
+    },
+    {
+      "id": "A-OPC-004",
+      "status": "concept_node_placement",
+      "statement": "public_space 图层新增 12 个 OPC 场景节点（opc_scenario_node_count=12）为概念落点：这些节点以 Point 类型表达（opc_node=true），仅作场景示意与计数指标，不参与面积复算；面积相关指标（public_space_ratio、green_ratio 等）一律以 Polygon 图层为准。补充披露：场地包枚举中 PUBLIC_SPACE 图层几何类型以 Polygon/MultiPolygon 为主，SCENARIO_NODE 类节点无法在 geometry 白名单的九个固定文件内单独成档，故以 Point 形式登记于 public_space 图层并在此书面披露；三处重点区面积在正文采用公告文字口径（104.3/192.1/72.0 ha），自提交几何按 EPSG:4548 复算为 104.32/192.92/72.05 ha（众智园相差约 0.82 ha，在 spatial_review ±3% 容差内），官方 polygon 发布后统一复算。",
+      "impact": "opc_scenario_node_count 为 known 计数指标但不参与几何面积复算；图层几何类型声明以 Polygon 为主，Point 节点仅供可视化与场景索引，避免面积口径混淆。"
+    }
+  ]
+}

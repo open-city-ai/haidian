@@ -1,5 +1,5 @@
 ---
-title: "轨道源场 RailCode Commons v1.4：公共验证操作系统"
+title: "轨道源场 RailCode Commons v1.5：公共验证操作系统"
 author_github: "296277"
 language: "zh"
 proposal_format_version: "2"
@@ -9,10 +9,10 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把京张遗产脊梁升级为城市创新的公共验证操作系统：三座差异化城市原型、十二份场景合同、90天可退出试点与可签认实施门。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.4"
+iteration: "v1.5"
 ---
 
-# 轨道源场 RailCode Commons v1.4
+# 轨道源场 RailCode Commons v1.5
 
 **先把 AI 的责任、退出和公共价值画进空间，再允许它进入城市。**
 
@@ -26,7 +26,7 @@ iteration: "v1.4"
 | 哪些数字不能被误读为现状或预算？ | 临时边界、未知控制条件、工程量/全生命周期成本方法与版权/许可台账 | 金额、机构、现场绩效均为空或未确认 |
 | 规则是否可复演？ | 24 个离线合成案例覆盖 6 条通过分支与 18 条拒绝/暂停分支 | 24/24 仅证明规则执行一致，现场运行仍为 0 |
 
-v1.4 不把京张理解为一条“展示技术的走廊”，而是提出一套可复制的城市创新基础设施：铁路遗产是连续公共底板，众智园、AI 原点社区、大钟寺是三种差异化验证原型，每个 AI 场景都必须同时提交空间、数据、责任、人工兜底、暂停和退出合同。设计的原创性不在于造一座未来感建筑，而在于把开源软件的版本、测试、回滚和公共审议翻译成人人可走、可看、可质询的城市空间。
+v1.5 不把京张理解为一条“展示技术的走廊”，而是提出一套可复制的城市创新基础设施：铁路遗产是连续公共底板，众智园、AI 原点社区、大钟寺是三种差异化验证原型，每个 AI 场景都必须同时提交空间、数据、责任、人工兜底、暂停和退出合同。设计的原创性不在于造一座未来感建筑，而在于把开源软件的版本、测试、回滚和公共审议翻译成人人可走、可看、可质询的城市空间。本轮新增四张统一风格的 AI 概念效果图，把空间序列、无障碍通行、人工兜底与可逆设施转成可见体验；它们只承担气氛与使用关系表达，不作为现状、公众意见、边界或工程证据。
 
 ## 设计依据与资料清单
 
@@ -36,7 +36,11 @@ v1.4 不把京张理解为一条“展示技术的走廊”，而是提出一套
 
 资料权力分三档：公告与任务书决定“必须回答什么”；临时几何决定“本轮在哪里测试”；Agent 设计决定“建议如何组织”。权属、现状建筑、文保、道路红线、轨道保护、市政、消防、防洪、客流和工程资料仍为 unknown；任一 official polygon 到位后，九类 GeoJSON、metrics、图件、HTML 与 PDF 必须整体复算 [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [depth:risk_missing_data]。
 
-![轨道源场v1.4总体结构](assets/figures/site-overview.png)
+![轨道源场v1.5总体结构](assets/figures/site-overview.png)
+
+![轨道源场四个公共验证空间：AI 概念效果图，非现场照片、非工程依据](assets/media/cover.webp)
+
+**图像边界：**以上四景及下方分场景图均为 `gpt-image-2` 生成并经本地编排的 AI 概念效果图，不是现场照片、已建成状态、居民意见、官方效果图或工程依据；空间判断仍以 GeoJSON、指标、合同和专业证据链为准。生成方法、权利范围和限制见 `visual/assets/ai_render_disclosure.json`。
 
 
 
@@ -95,21 +99,23 @@ RailCode Commons 的投稿识别由本方案原创绘制，并形成横排、竖
 
 空间序列是“清河公共花园—透明观察廊—可控测试庭院—研发后场”。公众不穿越后勤和设备运行线；观察廊能看到责任牌、测试时段、人工安全员和实体急停。首批交付为可撤除测试铺装、模型安全解释廊、端侧互操作庭院和低碳算力镜像。G1 权属/河道/消防核验、G2 隔离环境与急停演练、G3 限时预约试点依次通过才可开放；严重安全事件、越界采集或急停失效立即关闭。
 
-![众智园可信测试庭院：本地代码绘制概念场景板，非现场照片](assets/media/v1.1/zhongzhiyuan-trust-court.png)
+![众智园可信测试庭院：公众观察线、可控测试区与研发后场分离的 AI 概念效果图，非现场照片、非工程依据](assets/media/v1.5/zhongzhiyuan-trust-court-ai-concept.webp)
 
 ### AI 原点社区：开放首层织补 / Open-Ground-Floor Weave
 
 空间序列是“校园园区孔隙—开放成果街—贡献者客厅—近校生活支路”。发布、版权清权、孵化、托育、健康和夜间协作交替出现，避免把创新区做成单一办公园。每个成果节点同时展示来源、许可证、人工联系人和撤回入口；基本通行和社区服务不以手机、账户或人脸为前提。首批交付为可追溯成果橱窗、无障碍共创台、时段共享首层和贡献者长桌；消防、权属、居民协商任一缺失即不激活。
 
-![AI原点开放首层：本地代码绘制概念场景板，非现场照片](assets/media/v1.1/ai-origin-open-ground-floor.png)
+![AI原点开放首层织补：成果街、贡献者客厅与连续无障碍通道的 AI 概念效果图，非现场照片、非工程依据](assets/media/v1.5/ai-origin-open-ground-ai-concept.webp)
 
 ### 大钟寺：公共验收街 / Public Acceptance Street
 
 空间序列是 100 米相对尺度原型：0—20 米知情门廊，公开用途、数据、责任与开放时段；20—45 米双轨服务台，人工与 AI 并列；45—75 米公共共验庭，让居民、老人、残障者、专业人员共同测试；75—100 米申诉与回滚廊，提供纠错、删除、暂停和退出留痕。连续无障碍路径串联四段，所有设备可撤、不得侵占基本通行。该 100 米不是现状测绘、道路红线或工程线位 [depth:public_service_facilities]。
 
-![大钟寺公共验收街：本地代码绘制概念场景板，非现场照片](assets/media/v1.1/dazhongsi-public-acceptance-street.png)
+![大钟寺公共验收街：知情、人工与AI双轨、公共共验及申诉回滚四段空间的 AI 概念效果图，非现场照片、非工程依据](assets/media/v1.5/dazhongsi-public-acceptance-street-ai-concept.webp)
 
 三座原型的共同原则是“空间先暴露责任”：使用者不用打开 App，也能在 30 秒内知道服务目的、采集什么、谁负责、如何转人工和怎样退出。
+
+![京张公共版本脊：铁路遗产轨迹、无障碍横向针脚与三处轻量公共学习节点的 AI 概念效果图，非现场照片、非工程依据](assets/media/v1.5/jingzhang-public-version-spine-ai-concept.webp)
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
@@ -231,7 +237,7 @@ agent.6 的开发者转化不是报名人数叙事，而是 **加入—共创—
 
 任务书、标准和设计深度分别由 `compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json` 保存完整机器证据。正文以锚点连接判断，不用编号堆砌替代设计 [depth:professional_standard_response] [depth:formal_package_completeness]。
 
-![v1.4七维证据导航、合成复演与现实边界](assets/figures/metrics-evidence.png)
+![v1.5七维证据导航、合成复演与现实边界](assets/figures/metrics-evidence.png)
 
 ## 风险、版权与合规说明
 

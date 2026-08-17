@@ -359,10 +359,17 @@ check('every class-1 table row quotes the current building footprint',
 // This closes that door from the reader's side rather than the author's.
 const cards = read('visual/assets/scenario_cards.json').cards;
 const tableIds = [...prose.matchAll(/^\| (S\d\d) \|/gm)].map((m) => m[1]);
-check('the card table carries every card in scenario_cards.json, in both editions',
-      tableIds.length === cards.length * 2 &&
-      cards.every((c) => tableIds.filter((id) => id === c.id).length === 2),
-      `${cards.length} cards, ${tableIds.length} table rows across both editions`);
+// Two tables per edition now carry the cards: the card table itself and the
+// verification table added with E265, which states for each card what "it
+// worked" would mean and what it is compared against. The count below was
+// `* 2` when there was one table, and raising it to `* 4` makes the check
+// stricter rather than looser: every card must appear in BOTH tables in BOTH
+// editions, so a card that gains a scenario and no way of finding out whether
+// it helped fails here.
+check('both card tables carry every card in scenario_cards.json, in both editions',
+      tableIds.length === cards.length * 4 &&
+      cards.every((c) => tableIds.filter((id) => id === c.id).length === 4),
+      `${cards.length} cards, ${tableIds.length} table rows across two tables and both editions`);
 
 check('floor_area_ratio stays unknown until official FAR controls exist',
       metrics.floor_area_ratio.status === 'unknown' && metrics.floor_area_ratio.value === null,

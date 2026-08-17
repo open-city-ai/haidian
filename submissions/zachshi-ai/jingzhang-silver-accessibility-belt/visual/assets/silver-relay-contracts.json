@@ -1,0 +1,145 @@
+{
+  "schema_version": "0.1.0",
+  "concept": "银龄接力 (Silver Relay)",
+  "canonical_contract": {
+    "zh": "proposal.md",
+    "en": "proposal.en.md"
+  },
+  "problem_statement_zh": "AI适老服务常把老人变成被动接收者：机器'处理'老人，人际连接消失。银龄接力要求每个AI适老服务点在服务边界把接力棒交给具名人工，老人始终是主动方。",
+  "problem_statement_en": "AI elderly services often treat the elderly as passive receivers: the machine 'handles' them and human connection disappears. The Silver Relay requires every AI elderly-service point to pass the baton to a named human at the service boundary — the elderly person is always the active party.",
+  "relay_rules": [
+    {
+      "id": "R1",
+      "rule_zh": "人工交接：AI处理到边界必须交棒给具名人工（志愿者/家属/社区工作者）"
+    },
+    {
+      "id": "R2",
+      "rule_zh": "签收确认：交接有签收（老人或其代理确认收到服务）"
+    },
+    {
+      "id": "R3",
+      "rule_zh": "回访闭环：服务后24-72小时内必须回访，确认服务真正完成"
+    },
+    {
+      "id": "R4",
+      "rule_zh": "无AI等价：老人可全程走人工通道，不受任何AI环节影响"
+    },
+    {
+      "id": "R5",
+      "rule_zh": "代际通道：每个服务点配置代际志愿者通道（青年帮扶机制）"
+    }
+  ],
+  "scenario_count": 10,
+  "contracts": [
+    {
+      "scenario_id": "SA-01",
+      "name_zh": "银龄就医导航",
+      "service_zh": "挂号、科室、取药流程导航",
+      "baton_zh": "社区健康服务台志愿者/导诊",
+      "handover_note_zh": "AI导航结束即转人工导诊，陪同至挂号或取药",
+      "followup_zh": "24小时内电话回访确认就诊完成",
+      "ai_free_path_zh": "直接拨打社区健康热线全程人工",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-02",
+      "name_zh": "银龄办事导航",
+      "service_zh": "社保、医保、民政事项办理导航",
+      "baton_zh": "街道办综合窗口值班员",
+      "handover_note_zh": "AI材料清单结束即转窗口人工核对",
+      "followup_zh": "48小时内回访确认事项受理",
+      "ai_free_path_zh": "直接到窗口，全程人工受理",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-03",
+      "name_zh": "银龄助餐服务",
+      "service_zh": "社区食堂、送餐服务导航",
+      "baton_zh": "社区助餐点工作人员",
+      "handover_note_zh": "AI推荐餐点结束即转人工确认口味与忌口",
+      "followup_zh": "72小时内回访确认送餐质量",
+      "ai_free_path_zh": "电话订餐，全程人工",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-04",
+      "name_zh": "银龄代取代办",
+      "service_zh": "重物、药品、证件代取代办",
+      "baton_zh": "社区志愿者/代取专员",
+      "handover_note_zh": "AI下单结束即转志愿者，交接有签收",
+      "followup_zh": "24小时内回访确认物品送达",
+      "ai_free_path_zh": "社区志愿者上门，全程人工",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-05",
+      "name_zh": "银龄无障碍出行",
+      "service_zh": "无障碍路线、地铁口、坡道导航",
+      "baton_zh": "无障碍服务专员/志愿者陪同",
+      "handover_note_zh": "AI路线结束即转专员陪同至目的地",
+      "followup_zh": "24小时内回访确认安全到达",
+      "ai_free_path_zh": "电话预约陪同，全程人工",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-06",
+      "name_zh": "银龄健康驿站",
+      "service_zh": "血压、血糖自助检测引导",
+      "baton_zh": "驿站健康管理员",
+      "handover_note_zh": "AI引导检测结束即转人工解读与建议",
+      "followup_zh": "48小时内回访确认检测结果已知悉",
+      "ai_free_path_zh": "直接找健康管理员，全程人工",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-07",
+      "name_zh": "银龄数字帮扶",
+      "service_zh": "手机使用、线上挂号教学",
+      "baton_zh": "代际志愿者（青年学生）",
+      "handover_note_zh": "AI教程结束即转志愿者手把手教学",
+      "followup_zh": "72小时内回访确认学会使用",
+      "ai_free_path_zh": "社区数字帮扶站，全程人工教学",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-08",
+      "name_zh": "银龄夜间安全",
+      "service_zh": "夜间出行、应急求助导航",
+      "baton_zh": "夜间值班人员/应急热线",
+      "handover_note_zh": "AI导航结束即转人工确认安全抵达",
+      "followup_zh": "次日回访确认无异常",
+      "ai_free_path_zh": "直接拨打夜间值班电话",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-09",
+      "name_zh": "银龄文化参与",
+      "service_zh": "文化活动、展览、讲座导航",
+      "baton_zh": "场馆工作人员/老年志愿者",
+      "handover_note_zh": "AI推荐活动结束即转人工确认报名与到场",
+      "followup_zh": "活动后48小时回访收集体验",
+      "ai_free_path_zh": "电话报名，全程人工",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    },
+    {
+      "scenario_id": "SA-10",
+      "name_zh": "银龄家庭联动",
+      "service_zh": "子女远程代办、代预约",
+      "baton_zh": "家属/子女（经老人同意）",
+      "handover_note_zh": "AI代办结束即转家属确认，老人始终知情",
+      "followup_zh": "48小时内回访确认老人知情并同意",
+      "ai_free_path_zh": "家属直接线下代办",
+      "status": "not_authorized_not_run",
+      "field_results": null
+    }
+  ]
+}

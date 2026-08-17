@@ -118,6 +118,8 @@ Heritage constraints landed in v1.7 (provisional derivations; official delineati
 | CX-007 | Control belt V(2) | 747 | no new buildings/structures |
 | CX-008 | Control belt V(3) | 2,655 | no new buildings/structures unrelated to heritage preservation and display |
 
+![General plan: design geometry over the real urban basemap (OSM)](assets/figures/site-masterplan.en.png)
+
 ## Detailed Design of Key Areas
 
 The three key areas are the line's three switchbacks. Each is organized as a readable sub-scheme of positioning + spatial structure + building renewal + transport and slow mobility + public space + AI scenarios + implementation risk; geometry: [data:geometry/key_areas.geojson#PROV-KEY-001] (Zhongzhiyuan), [data:geometry/key_areas.geojson#PROV-KEY-002] (AI Origin), [data:geometry/key_areas.geojson#PROV-KEY-003] (Dazhongsi) [depth:three_key_area_detailed_design].

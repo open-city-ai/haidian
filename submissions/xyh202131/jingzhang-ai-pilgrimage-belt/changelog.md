@@ -1,5 +1,29 @@
 # 方案迭代记录 / Changelog
 
+## v37.0 - 2026-08-17
+
+**Browser QA matrix re-validation after the foreign-restore incident / 外部恢复事件后的浏览器 QA 矩阵复验**
+
+- 第 35—36 轮修复了外部恢复提交 `b6c05fffe` 造成的台账过期并建立回归护栏；本轮补上最后一环：用第 22 轮同一零依赖 CDP 驱动（Chrome headless + DevTools Protocol + Node.js 22 内置 WebSocket）对当前包字节重跑 18 例双语浏览器矩阵，全部通过——1440×900 与 390×844 无横向溢出、无 JS 五步漫游与证据库回退可见、reduced-motion 保持状态 01、12.25 秒运动边界为状态 02、首个焦点为跳过链接、图片缺 alt 0、aria-live 存在、h1=1、控制台/请求/外域 0。交互层确认未受恢复事件影响。
+- Rounds 35–36 repaired the ledger staleness caused by the foreign restore commit `b6c05fffe` and built regression guards; this round closes the last gap: the same zero-dependency CDP driver as Round 22 (Chrome headless + DevTools Protocol + Node.js 22 built-in WebSocket) re-runs the 18-case bilingual browser matrix on the current package bytes — all pass: no horizontal overflow at 1440×900 and 390×844, no-JS five-step walk and evidence library fallback visible, reduced-motion stays in state 01, the 12.25 s motion boundary is state 02, first focus is the skip link, 0 images missing alt, aria-live present, h1=1, 0 console errors / failed requests / external hosts. The interactive layer is confirmed unaffected by the restore incident.
+- 证据登记：site-grounding 新增 `browser_matrix_r37` 合同（18/18 all_pass、执行日 2026-08-17、与第 22 轮同驱动同断言）；无任何内容、图面、PDF 或数据变化。
+- Evidence: site-grounding gains the `browser_matrix_r37` contract (18/18 all_pass, executed 2026-08-17, same driver and assertions as Round 22); no content, figure, PDF or data change.
+- 冻结项保持不变：12/8/3/36、G0、NO-GO、provisional、`not_fully_cleared`、独立逐文件清权 0、141 路径。
+- Frozen items remain unchanged: 12/8/3/36, G0, NO-GO, provisional, `not_fully_cleared`, 0 independent file-level audits and 141 paths.
+
+## v36.0 - 2026-08-15
+
+**Compliance evidence-namespace separation & presentation regression guard / 合规证据命名空间分离与展示回归护栏**
+
+- 规则层更新：formal-submission-guide 与 SKILL.md 要求 `compliance_matrix.json` 分开证据命名空间——`source_ids` 只放来源登记 ID，专业标准 ID 必须放 `standard_ids` 并在 `standard_matrix.json` 声明；新增 `compliance_matrix.schema.json` 与 `land_use_codes.json`。本轮重读并响应：6 行（1.3.2/1.4.2/1.5.1.2/1.5.2.2/1.5.2.4/1.5.2.5）把 `STD-URBAN-DESIGN` 从 `source_ids` 移入 `standard_ids=["MOHURD-URBAN-DESIGN-MEASURES"]`（该标准在 standard_matrix 中已声明，STD-URBAN-DESIGN 仍是其在 sources.json 中的快照来源）；23 行 schema 必填字段齐全、schema_version 0.1.0、9 个用地代码全部在新枚举内。
+- Rule-layer update: the guide and SKILL.md now require `compliance_matrix.json` to separate evidence namespaces — `source_ids` carries only source-registry IDs while professional standard IDs belong in `standard_ids` and must also be declared in `standard_matrix.json`; a new `compliance_matrix.schema.json` and `land_use_codes.json` were added. This round re-reads and responds: in the six rows (1.3.2/1.4.2/1.5.1.2/1.5.2.2/1.5.2.4/1.5.2.5) `STD-URBAN-DESIGN` moves from `source_ids` to `standard_ids=["MOHURD-URBAN-DESIGN-MEASURES"]` (already declared in standard_matrix; STD-URBAN-DESIGN remains its snapshot source in sources.json); all 23 rows carry the schema-required fields, schema_version 0.1.0, and all 9 used land-use codes are inside the new enum.
+- 展示回归护栏（第 36 轮）：第 24 轮对比度修复值（--red/--green/#8a5a00/#5c6663）、第 25 轮阅读入口 h2、第 27 轮官方章节标题纳入索引生成器强制不变量（`presentation_contract_regression_guard`），任何静默回退都会使再生成失败——外部恢复提交 `b6c05fffe` 的历史教训永久关闭。
+- Presentation regression guard (Round 36): the Round 24 contrast values (--red/--green/#8a5a00/#5c6663), the Round 25 reading-entry h2 and the Round 27 official chapter heading join the index generator's enforced invariants (`presentation_contract_regression_guard`), so any silent reversion fails regeneration — the lesson of the foreign restore commit `b6c05fffe` is closed permanently.
+- 无主张、数据、机制、图面、PDF 或成熟度变化；geometry 九文件、metrics 值、sources/assumptions 内容字节未变。
+- No claim, datum, mechanism, figure, PDF or maturity change; the nine geometry files, metric values and sources/assumptions content bytes are unchanged.
+- 冻结项保持不变：12/8/3/36、G0、NO-GO、provisional、`not_fully_cleared`、独立逐文件清权 0、141 路径。
+- Frozen items remain unchanged: 12/8/3/36, G0, NO-GO, provisional, `not_fully_cleared`, 0 independent file-level audits and 141 paths.
+
 ## v35.0 - 2026-08-15
 
 **Rights-ledger digest coherence repair & second freshness audit / 权利台账摘要一致性修复与第二次来源新鲜度审计**

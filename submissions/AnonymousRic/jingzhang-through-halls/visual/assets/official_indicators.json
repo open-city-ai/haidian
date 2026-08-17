@@ -1,0 +1,230 @@
+{
+  "schema_version": "1.0",
+  "status": "definitions_ready_values_pending_official_and_survey_data",
+  "use_rule": "Definitions are design-stage proposals for official confirmation. Unknown values must remain null until every activation condition is met.",
+  "indicators": [
+    {
+      "metric_id": "ai_innovation_index",
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(normalized_dimension_score * approved_dimension_weight) across research, enterprise, talent, testing, technology-transfer, and public service dimensions",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No officially adopted local baseline, weights, reporting year, or verified input series is available.",
+      "measurement_unit": "0-100 index",
+      "activation_condition": "The competent authority approves the indicator dimensions, weights, reporting year, study boundary, and auditable input series.",
+      "required_source_fields": [
+        "dimension",
+        "definition",
+        "numerator",
+        "denominator",
+        "reporting_year",
+        "study_boundary",
+        "source_owner",
+        "weight",
+        "verification_status"
+      ]
+    },
+    {
+      "metric_id": "ai_talent_density",
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "verified full-time AI R&D and technical-service personnel / verified AI industry and research gross floor area in hectares",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Employer-level aggregate personnel counts and verified AI-space floor areas are unavailable.",
+      "measurement_unit": "persons per hectare of verified AI industry and research floor area",
+      "activation_condition": "Use aggregated, non-personal employer records for one reporting year and a verified floor-area inventory within the same boundary.",
+      "required_source_fields": [
+        "reporting_year",
+        "employer_id",
+        "eligible_personnel_count",
+        "eligible_floor_area_sqm",
+        "address",
+        "boundary_match",
+        "source_owner"
+      ]
+    },
+    {
+      "metric_id": "ai_industry_output_value",
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(audited annual operating revenue or officially defined output value of eligible AI entities within the study boundary), with duplicate legal entities removed",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "An official statistical definition, reporting-year enterprise roster, and auditable financial or statistical series are unavailable.",
+      "measurement_unit": "CNY per reporting year",
+      "activation_condition": "The statistics authority confirms the output definition, eligible entity roster, boundary, reporting year, and de-duplication rule.",
+      "required_source_fields": [
+        "reporting_year",
+        "legal_entity_id",
+        "eligible_ai_business_rule",
+        "registered_or_operating_address",
+        "reported_value",
+        "value_definition",
+        "source_owner"
+      ]
+    },
+    {
+      "metric_id": "ai_enterprise_cluster_density",
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "count(distinct verified active AI enterprises with an operating site inside the official boundary) / official study area in square kilometres",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "A verified, de-duplicated enterprise roster and official study polygon are unavailable.",
+      "measurement_unit": "active AI enterprises per square kilometre",
+      "activation_condition": "Confirm the AI-enterprise eligibility rule, active status, operating address, reporting date, and official polygon.",
+      "required_source_fields": [
+        "legal_entity_id",
+        "active_status",
+        "eligible_ai_business_rule",
+        "operating_address",
+        "reporting_date",
+        "boundary_match"
+      ]
+    },
+    {
+      "metric_id": "ai_industry_space_area_sqm",
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(verified gross floor area assigned to eligible AI research, testing, incubation, enterprise service, and supporting production uses)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No building-level existing-use survey, tenancy roster, ownership record, or verified gross-floor-area dataset is available.",
+      "activation_condition": "Complete a building and tenancy inventory with surveyed floor area, use, vacancy, rights, and operating status.",
+      "required_source_fields": [
+        "building_id",
+        "floor_id",
+        "gross_floor_area_sqm",
+        "current_use",
+        "eligible_ai_space_rule",
+        "occupancy_status",
+        "rights_status",
+        "survey_date"
+      ]
+    },
+    {
+      "metric_id": "ai_industry_space_ratio",
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "ai_industry_space_area_sqm / regional_total_building_floor_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Both the eligible AI-space area and regional total building floor area are unavailable.",
+      "activation_condition": "Activate only after both numerator and denominator use the same official boundary, survey date, and gross-floor-area convention.",
+      "required_source_fields": [
+        "ai_industry_space_area_sqm",
+        "regional_total_building_floor_area_sqm",
+        "study_boundary",
+        "survey_date"
+      ]
+    },
+    {
+      "metric_id": "regional_total_building_floor_area_sqm",
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(verified existing gross floor area within the official overall-design boundary)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing-building survey, approved floor-area records, and the official overall-design polygon are unavailable.",
+      "activation_condition": "Reconcile survey, planning-permit, completion-acceptance, and building-register records against the official polygon.",
+      "required_source_fields": [
+        "building_id",
+        "gross_floor_area_sqm",
+        "status",
+        "source_record",
+        "survey_date",
+        "boundary_match"
+      ]
+    },
+    {
+      "metric_id": "renewal_potential_area_sqm",
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "sum(parcel or building areas classified through verified retain, repair, adapt, replace, or public-realm-improvement screening)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Building condition, use efficiency, vacancy, ownership, heritage, infrastructure capacity, and regulatory constraints are unavailable at parcel level.",
+      "activation_condition": "Complete site survey and multi-department verification before assigning any parcel or building to a renewal class.",
+      "required_source_fields": [
+        "spatial_unit_id",
+        "current_use",
+        "condition",
+        "occupancy",
+        "ownership",
+        "heritage_constraint",
+        "utility_capacity",
+        "renewal_class",
+        "reviewer",
+        "review_date"
+      ]
+    },
+    {
+      "metric_id": "live_work_learning_service_completeness",
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "sources.json",
+        "visual/assets/official_indicators.json"
+      ],
+      "formula": "100 * count(accessibly reachable categories among work, housing, daily service, learning, and recreation) / 5, assessed by verified walking network and agreed time threshold",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "A verified facility inventory, accessible walking network, residential and employment data, and an approved travel-time threshold are unavailable.",
+      "measurement_unit": "0-100 completeness index",
+      "activation_condition": "Agree the five-category facility standard and travel-time threshold, then validate facilities, entrances, opening hours, capacity, and accessible routes.",
+      "required_source_fields": [
+        "facility_id",
+        "category",
+        "entrance",
+        "opening_hours",
+        "capacity",
+        "accessible_route",
+        "travel_time",
+        "study_boundary"
+      ]
+    }
+  ]
+}
