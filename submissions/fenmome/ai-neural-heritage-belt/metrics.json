@@ -1,0 +1,143 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "brief/site-package/geometry/provisional_boundaries.geojson"
+   ],
+   "formula": "polygon_area_EPSG4548(submitted_site_boundary)",
+   "confidence": "low",
+   "assumptions": [
+    "临时替代边界复算值；公告声明值为 11,400,000 sqm（SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT）",
+    "官方正式边界发布后需重新计算并更新本指标"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1337766.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area_EPSG4548(building_footprints))",
+   "confidence": "low",
+   "assumptions": [
+    "概念体量示意（agent_generated_design），非建筑方案结论",
+    "官方现状建筑数据未公开，待补齐后复算"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.3722,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "area_EPSG4548(green_space ∩ site_boundary) / area_EPSG4548(site_boundary)",
+   "confidence": "low",
+   "assumptions": [
+    "边界为公告临时替代边界（provisional），官方正式边界发布后需全量复算",
+    "绿脉走向依据公开资料推断（京张铁路走廊、小月河）"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.1474,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "area_EPSG4548(public_space ∩ site_boundary) / area_EPSG4548(site_boundary)",
+   "confidence": "low",
+   "assumptions": [
+    "边界为公告临时替代边界（provisional），官方正式边界发布后需全量复算",
+    "公共空间为概念建议网络（14 个 AI 公共空间节点）"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "public_space_node_count": {
+   "status": "known",
+   "value": 14,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space_features)",
+   "confidence": "low",
+   "assumptions": [
+    "概念建议节点网络"
+   ]
+  },
+  "green_component_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "count(green_space_features)",
+   "confidence": "low",
+   "assumptions": [
+    "绿脉+滨水+社区公园三类绿色空间组件"
+   ]
+  },
+  "land_use_cell_count": {
+   "status": "known",
+   "value": 30,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(land_use_features)",
+   "confidence": "low",
+   "assumptions": [
+    "基于临时边界的概念用地分区，全覆盖无重叠"
+   ]
+  },
+  "road_feature_count": {
+   "status": "known",
+   "value": 22,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(road_centerline_features)",
+   "confidence": "low",
+   "assumptions": [
+    "含现状骨架（推断）与设计道路"
+   ]
+  }
+ }
+}
