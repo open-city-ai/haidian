@@ -1,0 +1,251 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims until official boundary is published."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.129026,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green-space layer expresses the heritage-rail green spine of the design concept; provisional boundary basis."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.052478,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Public-space layer expresses the AI public plazas at key-area and station anchors; provisional boundary basis."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2286064.473,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual massing footprints for design discussion only; do not use as statutory building data."
+      ]
+    },
+    "building_density_ratio": {
+      "status": "known",
+      "value": 0.200307,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual coverage ratio derived from design massing; official density controls are unknown."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; remains pending official regulatory conditions."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls, aviation/landscape/heritage constraints are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan key-area feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; replace with official polygon before formal scoring."
+      ]
+    },
+    "beijing_ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(ai origin community key-area feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; replace with official polygon before formal scoring."
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi key-area feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; replace with official polygon before formal scoring."
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 15456.032,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "Design road-centerline network (spine greenway + cross streets + connectors); not road redlines."
+      ]
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(distinct land_use_code)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1472552.505,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Heritage-rail green spine of the design concept; provisional boundary basis."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 598918.529,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "AI public plazas at key-area and station anchors; provisional boundary basis."
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 6263565.377,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_1_feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "Near-term phase: key-area nodes and station AI living rooms."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 5149234.293,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_2_feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "Medium-term phase: spine completion and two-wing stitching."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 74,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Ten AI scenario cards are declared in the proposal narrative and compliance matrix."
+      ]
+    }
+  }
+}

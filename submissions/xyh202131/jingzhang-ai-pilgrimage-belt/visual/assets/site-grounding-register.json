@@ -1038,6 +1038,60 @@
         "visual_content_changes": 0,
         "certification_note": "Programmatic browser verification of layout and interaction only; it is not assistive-technology certification, human visual inspection, field evidence or an approval of any kind."
       },
+      "reviewer_path_matrix_r38": {
+        "contract_id": "JZ-REVIEWER-PATH-MATRIX-R38",
+        "executed_at": "2026-08-17",
+        "purpose": "Verify the compressed six-part reviewer path, native evidence disclosure, offline fallback, responsive safety and reduced-motion behavior on the final Round 38 visual bytes",
+        "environment": "Bundled Playwright 1.62.1 with installed Google Chrome, one local HTTP server, no remote dependency",
+        "case_count": 5,
+        "cases": ["zh-desktop", "en-desktop", "zh-mobile", "zh-no-js", "zh-reduced-motion"],
+        "result": "all_pass",
+        "key_measurements": {
+          "primary_navigation_items_per_language": 6,
+          "evidence_index_links_per_language": 25,
+          "public_signal_rows_per_language": 12,
+          "zh_desktop_front_stage_viewports": 9.854,
+          "en_desktop_front_stage_viewports": 10.428,
+          "viewport_overflow_cases": 0,
+          "missing_alt_images": 0,
+          "duplicate_ids": 0,
+          "console_or_page_errors": 0,
+          "failed_or_remote_requests": 0,
+          "no_javascript_native_disclosures_operable": true,
+          "reduced_motion_transition_seconds": 0,
+          "print_signal_rows_visible": 12
+        },
+        "certification_note": "Programmatic browser and print-layout verification only; not assistive-technology certification, human field observation, approval, operational evidence or a rights grant."
+      },
+      "cold_read_baseline_r39": {
+        "contract_id": "JZ-COLD-READ-BASELINE-R39",
+        "executed_at": "2026-08-17",
+        "purpose": "Give each of the eight existing editorial cold-read questions one primary answer, one distinct front-stage anchor and existing A3/A0 page locators without adding facts, media, pages or maturity.",
+        "red_before": {
+          "questions": 8,
+          "generic_surface_entries": 4,
+          "per_question_answers": 0,
+          "per_question_primary_anchors": 0,
+          "per_question_pdf_locators": 0,
+          "conflict": "the front stage claimed that per-question entries existed in the index"
+        },
+        "result_after_repair": {
+          "questions": 8,
+          "primary_answers": 8,
+          "unique_answer_ids": 8,
+          "unique_primary_anchors": 8,
+          "missing_bilingual_anchors": 0,
+          "proposal_rows_per_language": 8,
+          "visual_rows_per_language": 8,
+          "report_rows_per_language": 8,
+          "a3_page_counts": [14, 14],
+          "a0_page_counts": [8, 8]
+        },
+        "media_added": 0,
+        "facts_or_claims_added": 0,
+        "pdfs_rebuilt": 0,
+        "editorial_boundary": "Cold-read answers and timing targets are editorial review only, not measured public feedback, expert opinion, jury results, accessibility certification, professional acceptance or approval."
+      },
       "replay_expectations": {
         "t02_fixture_count": 10,
         "t02_exact_matches": 10,

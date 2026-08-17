@@ -43,3 +43,25 @@ Each observation point requires GPS and directional photography, widths/levels/s
 OpenStreetMap 不是官方边界、地籍、测绘或施工底图；候选尺寸不是现状尺寸或规范结论。总体范围与三重点区官方 polygon、现场证据、专业签署、真实业主、采购路径和人民币成本到位后，才允许把相应 HOLD 改为 GO。
 
 OpenStreetMap is not an official boundary, cadastral record, survey or construction base. Candidate dimensions are not existing-condition measurements or code conclusions. A HOLD may become GO only after official polygons, field evidence, professional sign-off, real owners, procurement routes and RMB costs are available.
+
+## 6. 六项实施证据闭合 / Six Implementation-Evidence Closures
+
+| 主题 | 已完成的可执行合同 | 不得冒充的外部结果 |
+|---|---|---|
+| 产权/运营/责任 | 已核实征集组织、一期建设单位及铁路用地“不改变权属”；建立逐资产八角色 RACI、授权与签署字段 | 三重点区产权人、受权运营者、具名责任人仍待产权摘录、授权函和合同 |
+| 分时现场基线 | 锁定周二/周四/周六/周日、四时窗、三处观察簇、15 分钟分箱及工作日 24h 声环境协议 | 公开 24h 开园和年度 430 万人次不能替代工作日/周末、昼/夜实测 |
+| 共同阈值 | 法定硬门 + 听证—实施协调—30/90 日效果评议；阈值带版本、签名、非 AI 对照和停止规则 | 三项目任何成功数字仍未共同签署 |
+| CAPEX/OPEX | 建立工程/设备/无障碍/恢复 CAPEX 与人员/维护/评估/退役 OPEX 成本簿；分政府投资、采购服务、场景专项、产权人自筹四路径 | 真实人民币金额、工程量、报价、资金和预算批复仍为 unknown |
+| 独立评估 | 七角色隔离、关联方排除、付款隔离、P0—P5、SHA-256 只读快照和独立申诉 | 不宣称已经聘请机构或完成评估 |
+| 官方几何 | 官方仓库快照仍为 `official_boundary=false`；建立来源冻结到独立复算与差异发布的十步整包重算 | 任何面积、比例、位置和剖面都不是法定结果 |
+
+| Topic | Executable contract now present | External result that remains unavailable |
+|---|---|---|
+| rights, operation, accountability | verified call organisation, Phase-I construction unit and unchanged railway-land title; asset-level eight-role RACI and authority/signature fields | title holders, authorised operators and named people for the three key areas |
+| time-based baseline | Tuesday/Thursday/Saturday/Sunday, four time bands, three area clusters, 15-minute bins and a weekday 24-hour acoustic protocol | public 24-hour opening and annual visits do not replace weekday/weekend and day/night fieldwork |
+| shared thresholds | statutory hard gates plus hearing—coordination—30/90-day review, with versions, signatures, non-AI comparison and stop rules | no project success number has stakeholder signatures |
+| CAPEX/OPEX | full-life cost book and government-investment, service-procurement, scenario-fund and owner-funded routes | real RMB totals, quantities, prices, funding and approvals remain unknown |
+| independent evaluation | seven-role separation, conflicts and payment isolation, P0–P5, read-only hashed snapshots and independent appeal | no evaluator is represented as appointed and no evaluation as completed |
+| official geometry | current official-repository snapshot remains `official_boundary=false`; ten-step full-package recalculation is specified | no area, ratio, location or section is statutory |
+
+Detailed public sources and usage limits are registered in `sources.json`; the full bilingual contract is in `proposal.md` and `proposal.en.md`. Current gate for all six rows remains `HOLD` until the named external evidence is obtained.

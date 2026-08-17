@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "总体设计范围与三处重点区域均使用仓库登记的临时粗略 polygon（provisional_constraint, official_boundary=false, boundary_precision=provisional_rough）。",
+      "impact": "所有面积、比例、分期面积与用地结构均为临时设计模型值，不得作为 official redline、审批依据或精确面积依据。",
+      "recalculation_trigger": "组织方发布官方 SITE_BOUNDARY 与三处 KEY_AREA polygon 后，重跑几何生成、指标复算、图件、HTML、A3/A0 与自检。",
+      "affected": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "metrics.json",
+        "visual/index.html"
+      ]
+    },
+    {
+      "id": "A-KEY003-OFFSET-001",
+      "status": "pending_official_data",
+      "statement": "临时 polygon PROV-KEY-003（大钟寺AI产业聚集区）质心约 39.94692N/116.34850E，距大钟寺地铁站约 2.26 km，北京北站落在该矩形内部；维护者已澄清三个临时矩形仅按公告南北顺序与约面积配置，尚未完成站点与道路锚定（仓库公开讨论 #1029）。",
+      "impact": "钟声站的四象限步行连通、站城广场、回声钟房与消费实验街等结论只作为方向性概念建议，不代表在该临时矩形位置上的精确落点；面积复算（720,454 m²，与公告 72.0 ha 差 0.06%）仍有效。",
+      "recalculation_trigger": "官方 KEY_AREA polygon 或站点/道路锚定关系发布后，重新锚定钟声站几何、指标、图件与文本；本方案不自行平移源几何，以保持与仓库源数据一致。",
+      "affected": [
+        "geometry/key_areas.geojson",
+        "proposal.md",
+        "assets/figures/key-areas.png",
+        "visual/index.html"
+      ]
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "容积率、建筑高度、建筑密度、退线、道路红线、地块权属、市政管线与工程条件缺少官方依据。",
+      "impact": "本方案不输出上述法定或工程结论；相关指标保持 unknown 并说明所需资料。",
+      "recalculation_trigger": "取得经批准的控规条件与专项资料后由专业团队校核并补齐指标。",
+      "affected": [
+        "metrics.json",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/constraints.geojson"
+      ]
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_official_data",
+      "statement": "文物保护范围、建设控制地带、蓝线与生态管控线没有可引用的官方几何；清华园站房等文化资源仅按公开信息作叙述性引用。",
+      "impact": "constraints.geojson 保持空集合并登记数据缺口；不得以推定线条冒充 official_constraint。",
+      "recalculation_trigger": "取得官方或已清权的文保、蓝线、绿线几何后补入约束图层并复核所有相邻设计动作。",
+      "affected": [
+        "geometry/constraints.geojson",
+        "proposal.md"
+      ]
+    },
+    {
+      "id": "A-SPINE-001",
+      "status": "design_assumption",
+      "statement": "人字轨主轨线位取临时走廊中线，主轨公共铺装带按 44 m、公园绿地按 150 m 概念宽度生成。",
+      "impact": "主轨长度 9,720.7 m 与公共空间面积为概念建议值，不代表遗址公园实际线位、宽度或用地边界。",
+      "recalculation_trigger": "取得公园已实施范围与原设计方案后按实际线位与宽度重算。",
+      "affected": [
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "metrics.json"
+      ]
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "design_assumption",
+      "statement": "buildings.geojson 只包含本方案提出的更新与新建建筑基底概念建议（264 个），不是现状建筑普查结果。",
+      "impact": "建筑基底面积与占比只能用于比较设计方案强度意向，不能用于建筑总量、容积率或拆改留结论。",
+      "recalculation_trigger": "取得现状建筑普查、层数与权属数据后重建建筑图层并补算总建筑规模。",
+      "affected": [
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ]
+    },
+    {
+      "id": "A-OVERLAP-001",
+      "status": "disclosure",
+      "statement": "公共空间图层中的人字轨公共铺装带位于公园绿地范围内。",
+      "impact": "green_ratio 与 public_space_ratio 口径存在重叠，两个比例不可相加；绿地口径不含广场用地(1403)。",
+      "recalculation_trigger": "官方要求统一口径时按其定义重新分解并复算。",
+      "affected": [
+        "metrics.json",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ]
+    },
+    {
+      "id": "A-CASE-001",
+      "status": "pending_verification",
+      "statement": "7 个全球案例的面积、企业数量与运营机制数据来自公开网页与新闻稿，未经一手文件核验。",
+      "impact": "案例仅作为背景研究与方法借鉴，不作为本项目指标、承诺或评分依据。",
+      "recalculation_trigger": "如需进入正式论证，应回到各案例官方规划文件或年报核验并更新 sources.json。",
+      "affected": [
+        "sources.json",
+        "proposal.md"
+      ]
+    },
+    {
+      "id": "A-SCENARIO-001",
+      "status": "design_assumption",
+      "statement": "12 张班次卡、4 个产业测试验证场景与运营机制均为概念建议，需主管部门批准、安全评估与运营主体落实。",
+      "impact": "不得表述为已批准运营、已确定活动或政府承诺；测试场景一律保留人工接管与终止机制。",
+      "recalculation_trigger": "取得试点授权与运营主体确认后转为实施方案并重新评估风险。",
+      "affected": [
+        "proposal.md",
+        "compliance_matrix.json",
+        "geometry/public_space.geojson"
+      ]
+    },
+    {
+      "id": "A-TRANSIT-001",
+      "status": "pending_official_data",
+      "statement": "五道口、清华东路西口、大钟寺、学院桥、清河等站点位置按公开信息粗略指向。",
+      "impact": "轨道接驳线为概念建议，不代表轨道线位、站点红线或工程方案。",
+      "recalculation_trigger": "取得轨道线位与站点资料后重绘接驳关系并校核四象限步行连通设计。",
+      "affected": [
+        "geometry/roads.geojson",
+        "proposal.md"
+      ]
+    },
+    {
+      "id": "A-PEER-ADOPTION-001",
+      "status": "disclosure",
+      "statement": "班次卡治理合约采用社区开放贡献的折返协议 v1.0（CC-BY-4.0，署名 chucky1102 / RENLINE）；服务等价基准 SEB（CC-BY-SA-4.0）仅以引用方式对照。",
+      "impact": "协议中的时限与状态为设计目标与候选状态，不是实测结果、批准运营或政府承诺；SEB 规范文本未被复制，避免许可混用。",
+      "recalculation_trigger": "协议或基准发布新版本、或组织方给出统一治理口径时，重新对照并更新班次卡字段与署名记录。",
+      "affected": [
+        "proposal.md",
+        "sources.json",
+        "visual/index.html"
+      ]
+    }
+  ]
+}

@@ -63,7 +63,7 @@
       "severity": "info",
       "target": "self_check.json",
       "source": "package-provided",
-      "message": "以 PKG_ 开头的条目是本方案自建的闸门，不是组织方检查项，不参与 ok / can_enter_formal_review 的判定。**它们只可能记录『通过』**——任一闸门不过，构建即停止，包不会存在，因此『通过』二字本身不构成证据。有证据价值的是每条 message 里的读数：它可以拿随包产物直接复核。（本次记录 76 道闸门，逐道由构建的输出现取，而不是从一份手写名单里挑——名单曾经只列了 7 道。另有 3 条以 PKG_ 开头的条目**不是闸门**：本条与两条统计披露，它们的 `result` 字段对它们没有意义，有意义的是 message 里那几个可以拿随包产物复核的数。因此 PKG_ 行共 79 条 = 76 道闸门 + 3 条披露。）"
+      "message": "以 PKG_ 开头的条目是本方案自建的闸门，不是组织方检查项，不参与 ok / can_enter_formal_review 的判定。**它们只可能记录『通过』**——任一闸门不过，构建即停止，包不会存在，因此『通过』二字本身不构成证据。有证据价值的是每条 message 里的读数：它可以拿随包产物直接复核。（本次记录 75 道闸门，逐道由构建的输出现取，而不是从一份手写名单里挑——名单曾经只列了 7 道。另有 3 条以 PKG_ 开头的条目**不是闸门**：本条与两条统计披露，它们的 `result` 字段对它们没有意义，有意义的是 message 里那几个可以拿随包产物复核的数。因此 PKG_ 行共 78 条 = 75 道闸门 + 3 条披露。）"
     },
     {
       "check_id": "PKG_ACCESSIBILITY_QA",
@@ -143,7 +143,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "claim_audit_qa.py — claim audit: 81 zh / 81 en unit-carrying measurements in prose, same set in both editions; 152/144 bare numbers reported but not blocked, and one designed check (75 candidates) not shipped"
+      "message": "claim_audit_qa.py — claim audit: 81 zh / 81 en unit-carrying measurements in prose, same set in both editions; 151/144 bare numbers reported but not blocked, and one designed check (75 candidates) not shipped"
     },
     {
       "check_id": "PKG_CLAIM_STATE_QA",
@@ -215,7 +215,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "figure_citation_qa.py — figure citations: all 34 sheets cited from the argument in both editions outside the drawing index, and all 67 shipped deliverables named in each edition separately; 4 'never drawn' claim(s) (4 zh, 0 en — the English patterns match the unscoped present perfect, and the English text uses the past perfect, which scopes by tense), every one of them scoped to the moment it was true; 61 distinct ids cited across five namespaces, every one reachable from both editions; 8 finished documents in two languages, each named by its own edition"
+      "message": "figure_citation_qa.py — figure citations: all 34 sheets cited from the argument in both editions outside the drawing index, and all 67 shipped deliverables named in each edition separately; 4 'never drawn' claim(s) (4 zh, 0 en — the English patterns match the unscoped present perfect, and the English text uses the past perfect, which scopes by tense), every one of them scoped to the moment it was true; 62 distinct ids cited across five namespaces, every one reachable from both editions; 8 finished documents in two languages, each named by its own edition"
     },
     {
       "check_id": "PKG_FIGURE_TITLE_QA",
@@ -271,7 +271,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "gate_count_qa.py — gate counts: both editions quote the harness correctly — 105 mutations, 73 of 76 gates proven able to fail, 3 with published reasons, every figure read from gate_mutation.json rather than trusted"
+      "message": "gate_count_qa.py — gate counts: both editions quote the harness correctly — 103 mutations, 72 of 75 gates proven able to fail, 3 with published reasons, every figure read from gate_mutation.json rather than trusted"
     },
     {
       "check_id": "PKG_GATE_MUTATION_QA",
@@ -279,7 +279,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "gate_mutation_qa.py — gate mutation: 105 deliberate defects across 73 of 76 gates, all caught and all named by the gate that caught them; 3 gates not yet proven able to fail, each with its reason published"
+      "message": "gate_mutation_qa.py — gate mutation: 103 deliberate defects across 72 of 75 gates, all caught and all named by the gate that caught them; 3 gates not yet proven able to fail, each with its reason published"
     },
     {
       "check_id": "PKG_HARNESS_REFERENCE_QA",
@@ -295,7 +295,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "i18n_order_qa.py — i18n order: 365 numeric templates checked; every slot that carries a unit or a figure number in both editions carries the same one — the check is silent about slots whose English rephrases the unit away, and says so rather than guessing"
+      "message": "i18n_order_qa.py — i18n order: 365 numeric templates checked; every slot that carries a unit or a figure number in both editions carries the same one, and no template carries the same units in a different order — the transposition signature that a both-sides rule misses when a slot is bare in Chinese and dimensioned in English. The check stays silent about slots whose English rephrases a unit away, because that changes the multiset and is not evidence of a crossing, and it says so rather than guessing"
     },
     {
       "check_id": "PKG_INTAKE_LIMITS_QA",
@@ -303,7 +303,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "intake_limits_qa.py — intake limits: 59 shipped Markdown and JSON files within the organisers' caps; the tightest is proposal.en.md with 13,324 bytes to spare. The package totals 26.1 MiB against a 40 MiB total cap and a 5 MiB per-asset cap, both read from upstream/main"
+      "message": "intake_limits_qa.py — intake limits: 59 shipped Markdown and JSON files within the organisers' caps; the tightest is proposal.en.md with 15,600 bytes to spare. The package totals 26.1 MiB against a 40 MiB total cap and a 5 MiB per-asset cap, both read from upstream/main"
     },
     {
       "check_id": "PKG_LABEL_COLLISION_QA",
@@ -359,7 +359,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "naming_qa.py — naming: 617 distinct names harvested from the package — 601 matching exactly one of 24 published families and 16 that are named documents in naming.json, and nothing else; every family governs at least one, and 8 benchmarks carry digits agreeing with the order they declare — the naming system is checked against the package rather than asserted about it"
+      "message": "naming_qa.py — naming: 632 distinct names harvested from the package — 610 matching exactly one of 24 published families and 22 that are named documents in naming.json, and nothing else; every family governs at least one, and 8 benchmarks carry digits agreeing with the order they declare — the naming system is checked against the package rather than asserted about it"
     },
     {
       "check_id": "PKG_OFFICIAL_AREA_QA",
@@ -399,7 +399,7 @@
       "severity": "info",
       "target": "proposal.md / proposal.en.md",
       "source": "package-provided",
-      "message": "双语内容一致性 — bilingual content parity: overall 79%, 16/16 sections at or above floor"
+      "message": "双语内容一致性 — bilingual content parity: overall 80%, 16/16 sections at or above floor"
     },
     {
       "check_id": "PKG_PDF_PAGE1_QA",
@@ -408,14 +408,6 @@
       "target": "package",
       "source": "package-provided",
       "message": "pdf_page1_qa.py — pdf page 1: the harness takes page 1 only of each PDF (page_limit read from scripts/ai_review_submission.py @ upstream/main), the first board page carries FIG.10 and FIG.09 exactly as its sheet list says, and both editions name them"
-    },
-    {
-      "check_id": "PKG_PEER_CLAIM_QA",
-      "result": "pass",
-      "severity": "info",
-      "target": "package",
-      "source": "package-provided",
-      "message": "peer_claim_qa.py — peer claims: 2 claims about named other packages, both re-read from upstream/main — 16 scenario cards carrying a filled control_segment_zh in dakfjalka/jingzhang-commissioning-belt, matching both editions here, and Sijie-Yang/the-second-survey's 十八断面 still in its own proposal"
     },
     {
       "check_id": "PKG_PLANNING_CONTROLS_QA",
@@ -551,7 +543,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "sheet_layer_key_qa.py — sheet layer keys: 6 declared layer(s) across both editions, every one with a key swatch on the same sheet and no key without a layer; sheets that declare no layers are out of scope and this does not guess at them"
+      "message": "sheet_layer_key_qa.py — sheet layer keys: 8 declared layer(s) across both editions, every one with a key swatch on the same sheet and no key without a layer; sheets that declare no layers are out of scope and this does not guess at them"
     },
     {
       "check_id": "PKG_SHEET_LEGEND_QA",
@@ -575,7 +567,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "source_provenance_qa.py — source provenance: 22 registered sources, 1 of them published by a Beijing or Haidian body (OFFICIAL-ANNOUNCEMENT) — the open call's own announcement, and no district planning document at all. A-SOURCE-001 states both numbers and this gate recomputes them from sources.json. Scope: this counts publishers, not relevance; whether a source suits what it is cited for is the reviewer's judgement"
+      "message": "source_provenance_qa.py — source provenance: 28 registered sources, 6 of them published by a Beijing or Haidian body (OFFICIAL-ANNOUNCEMENT, HAIDIAN-PARK-PHASE2-PLAN, HAIDIAN-PARK-REGISTER, HAIDIAN-RENEWAL-GUIDE-2025, BEIJING-AI-BLOCKS-FIRST-BATCH, ZGC-AI-EMPOWERMENT-PLAN-2024-2026) — the open call, the district government's park notice, the municipal park register, the Haidian renewal guideline of 2025, the release naming the first AI innovation blocks and the district AI empowerment plan — against a floor of 6 that may only rise. **Still missing: a control-plan approval with its document number and publication window, and a formal issuing number for that AI policy — the policy is registered and its published page carries no number.** A-SOURCE-001 states both numbers and this gate recomputes them from sources.json. Scope: this counts publishers, not relevance; whether a source suits what it is cited for is the reviewer's judgement"
     },
     {
       "check_id": "PKG_SOURCES_QA",
@@ -583,7 +575,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "sources_qa.py — sources: 22 records, one vocabulary, every one answering the same 12 core fields, and none claiming a class its own fields rule out (background_only 10, official_context 5, regulatory_baseline 5, provisional 2); every FIG.24 envelope bound can back its own class, 4 of them by admitting there is nothing to back it with; 2 prose limit(s) taken from a standard, each naming it or saying it was never obtained; 2 scope declaration(s) naming a bound this package chooses, each admitting it; 88 descriptive field(s) across 22 sources are readable in both languages — what each source is, how it was obtained, what may be reused, and what it is used for; 22 of 22 sources carry a timeliness level on the organisers' T0-T4 scale, 20 of them also graded A0-A3 and 2 declared outside that scale with reasons, none in X; 284 answers across 22 sources to the 13 fields the organisers' rules require before indexing; all 22 records state what they cannot support, 22 distinct statements; 21 of 22 traceable to a public URL, the rest saying the document was never obtained; 6 international cases joined to their case-table rows by label"
+      "message": "sources_qa.py — sources: 28 records, one vocabulary, every one answering the same 12 core fields, and none claiming a class its own fields rule out (background_only 11, official_context 9, regulatory_baseline 6, provisional 2); every FIG.24 envelope bound can back its own class, 4 of them by admitting there is nothing to back it with; 2 prose limit(s) taken from a standard, each naming it or saying it was never obtained; 2 scope declaration(s) naming a bound this package chooses, each admitting it; 112 descriptive field(s) across 28 sources are readable in both languages — what each source is, how it was obtained, what may be reused, and what it is used for; 28 of 28 sources carry a timeliness level on the organisers' T0-T4 scale, 26 of them also graded A0-A3 and 2 declared outside that scale with reasons, none in X; 362 answers across 28 sources to the 13 fields the organisers' rules require before indexing; all 28 records state what they cannot support, 28 distinct statements; 27 of 28 traceable to a public URL, the rest saying the document was never obtained; 6 international cases joined to their case-table rows by label"
     },
     {
       "check_id": "PKG_STALE_CORPUS_QA",
@@ -639,7 +631,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "term_consistency_qa.py — term consistency: 1749 distinct Chinese terms across i18n_en 653, i18n_drawings 783, i18n_html 338; 25 of them are translated in more than one table and every one uses the same English wording (case and punctuation aside), with 1 declared exception(s), each still in use"
+      "message": "term_consistency_qa.py — term consistency: 1758 distinct Chinese terms across i18n_en 653, i18n_drawings 783, i18n_html 347; 25 of them are translated in more than one table and every one uses the same English wording (case and punctuation aside), with 1 declared exception(s), each still in use"
     },
     {
       "check_id": "PKG_UPSTREAM_DRIFT_QA",
@@ -663,7 +655,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "visual_packet_qa.py — visual packet: 18 images against the organisers' cap of 18 (0 slot(s) free) — 10 figures in both languages, 4 PDF first pages, 4 screenshots; largest is drawings/a3-booklet.pdf at 1.47 MiB against a 4 MiB per-image cap, read from upstream/main"
+      "message": "visual_packet_qa.py — visual packet: 18 images against the organisers' cap of 18 (0 slot(s) free) — 10 figures in both languages, 4 PDF first pages, 4 screenshots; largest is drawings/a3-booklet.pdf at 1.43 MiB against a 4 MiB per-image cap, read from upstream/main"
     },
     {
       "check_id": "PKG_WHITESPACE_RULES_QA",
@@ -679,7 +671,7 @@
       "severity": "info",
       "target": "visual/assets/errata.json",
       "source": "package-provided",
-      "message": "勘误册共 267 条，按发现者：audit 27、external 30、external-reviewer 5、own-gate 18、rival-read 16、self 171；最常见形状：check-measured-the-convenient-thing 46、two-copies-of-one-thing-drifted 39、deliverable-not-inspected-before-shipping 30、claim-that-cannot-be-checked-by-construction 20。**该文件随包提交，但不在评审工具读取的九个文件之内**（正文只点名其中 22 条），因此这一行是它在评审可读范围内的唯一入口。 / The errata register holds 267 entries. It ships at visual/assets/errata.json and is not one of the nine files the review harness reads, so this line is its only entry point from where a reviewer sits."
+      "message": "勘误册共 278 条，按发现者：audit 27、external 31、external-reviewer 5、own-gate 19、rival-read 17、self 179；最常见形状：check-measured-the-convenient-thing 50、two-copies-of-one-thing-drifted 40、deliverable-not-inspected-before-shipping 30、claim-outlived-the-package 20。**该文件随包提交，但不在评审工具读取的九个文件之内**（正文只点名其中 20 条），因此这一行是它在评审可读范围内的唯一入口。 / The errata register holds 278 entries. It ships at visual/assets/errata.json and is not one of the nine files the review harness reads, so this line is its only entry point from where a reviewer sits."
     },
     {
       "check_id": "PKG_MUTATION_COVERAGE",
@@ -687,7 +679,7 @@
       "severity": "info",
       "target": "visual/assets/gate_mutation.json",
       "source": "package-provided",
-      "message": "闸门变异测试：105 处人为缺陷，覆盖 73 道闸门，全部被抓住且被点名；另有 3 条规则当前匹配为零，逐条附理由。**「通过」本身不构成证据——任一闸门不过，构建即停，包不会存在**；有证据价值的是这些读数，而完整记录同样不在评审工具读取的九个文件之内。 / Mutation testing: 105 deliberate defects across 73 gates, all caught and named, plus 3 rules currently matching nothing, each with its reason. The full record is not among the nine files the harness reads."
+      "message": "闸门变异测试：103 处人为缺陷，覆盖 72 道闸门，全部被抓住且被点名；另有 3 条规则当前匹配为零，逐条附理由。**「通过」本身不构成证据——任一闸门不过，构建即停，包不会存在**；有证据价值的是这些读数，而完整记录同样不在评审工具读取的九个文件之内。 / Mutation testing: 103 deliberate defects across 72 gates, all caught and named, plus 3 rules currently matching nothing, each with its reason. The full record is not among the nine files the harness reads."
     }
   ],
   "ok": true,
@@ -893,7 +885,7 @@
       "ai_package_stages": {
         "submissions/jiangmuran/jingzhang-leveling-line": "formal"
       },
-      "total_bytes": 27288349,
+      "total_bytes": 27319230,
       "maintainer_bypass": false
     },
     "stderr": ""
@@ -975,7 +967,7 @@
         "proposal_format_version": "2",
         "evidence_contract": "section-anchors-plus-structured-audit",
         "proposal_reference_counts": {
-          "source": 12,
+          "source": 13,
           "standard": 6,
           "depth": 15,
           "data": 17,

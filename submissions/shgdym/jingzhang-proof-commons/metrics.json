@@ -624,6 +624,46 @@
       "assumptions": [],
       "precision_note": "PASS means the proposed contracts cross-reference checked-in topology, scenes and projects consistently."
     },
+    "osm_site_context_feature_count": {
+      "status": "known",
+      "value": 6266,
+      "unit": "count",
+      "source_files": ["visual/assets/site-context-osm.json"],
+      "formula": "count(normalized OSM ways in shipped context snapshot)",
+      "confidence": "medium",
+      "assumptions": ["A-OSM-CONTEXT-001"],
+      "precision_note": "Count of publicly mapped features in the timestamped snapshot, not a complete site inventory."
+    },
+    "osm_key_area_mapped_building_count": {
+      "status": "known",
+      "value": 450,
+      "unit": "count",
+      "source_files": ["visual/assets/site-context-results.json", "geometry/key_areas.geojson"],
+      "formula": "sum(mapped building-footprint centroids inside the three provisional key-area boxes); per-box values are retained in site-context-results.json",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-001", "A-OSM-CONTEXT-001"],
+      "precision_note": "Public-map observation inside provisional boxes; not an existing-building survey."
+    },
+    "osm_key_area_walk_cycle_length_m": {
+      "status": "known",
+      "value": 24625,
+      "unit": "m",
+      "source_files": ["visual/assets/site-context-results.json", "geometry/key_areas.geojson"],
+      "formula": "sum(clipped lengths across the three provisional boxes of OSM ways tagged footway, path, pedestrian, cycleway, steps or living_street; per-box values are retained in site-context-results.json)",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-001", "A-OSM-CONTEXT-001"],
+      "precision_note": "Mapped linework only; does not prove route continuity, quality, legal access or accessibility."
+    },
+    "osm_context_recomputation_pass_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": ["visual/assets/site-context-results.json"],
+      "formula": "count(reproducibility checks with result=pass)",
+      "confidence": "high",
+      "assumptions": ["A-OSM-CONTEXT-001"],
+      "precision_note": "Repository recomputation only; PASS is not field or map-quality validation."
+    },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,

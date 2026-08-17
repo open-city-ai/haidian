@@ -1,5 +1,5 @@
 ---
-title: "轨道源场 RailCode Commons v1.5：公共验证操作系统"
+title: "轨道源场 RailCode Commons v1.6：公共验证操作系统"
 author_github: "296277"
 language: "zh"
 proposal_format_version: "2"
@@ -9,10 +9,10 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把京张遗产脊梁升级为城市创新的公共验证操作系统：三座差异化城市原型、十二份场景合同、90天可退出试点与可签认实施门。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.5"
+iteration: "v1.6"
 ---
 
-# 轨道源场 RailCode Commons v1.5
+# 轨道源场 RailCode Commons v1.6
 
 **先把 AI 的责任、退出和公共价值画进空间，再允许它进入城市。**
 
@@ -26,7 +26,7 @@ iteration: "v1.5"
 | 哪些数字不能被误读为现状或预算？ | 临时边界、未知控制条件、工程量/全生命周期成本方法与版权/许可台账 | 金额、机构、现场绩效均为空或未确认 |
 | 规则是否可复演？ | 24 个离线合成案例覆盖 6 条通过分支与 18 条拒绝/暂停分支 | 24/24 仅证明规则执行一致，现场运行仍为 0 |
 
-v1.5 不把京张理解为一条“展示技术的走廊”，而是提出一套可复制的城市创新基础设施：铁路遗产是连续公共底板，众智园、AI 原点社区、大钟寺是三种差异化验证原型，每个 AI 场景都必须同时提交空间、数据、责任、人工兜底、暂停和退出合同。设计的原创性不在于造一座未来感建筑，而在于把开源软件的版本、测试、回滚和公共审议翻译成人人可走、可看、可质询的城市空间。本轮新增四张统一风格的 AI 概念效果图，把空间序列、无障碍通行、人工兜底与可逆设施转成可见体验；它们只承担气氛与使用关系表达，不作为现状、公众意见、边界或工程证据。
+v1.6 不把京张理解为一条“展示技术的走廊”，而是提出一套可复制的城市创新基础设施：铁路遗产是连续公共底板，众智园、AI 原点社区、大钟寺是三种差异化验证原型，每个 AI 场景都必须同时提交空间、数据、责任、人工兜底、暂停和退出合同。设计的原创性不在于造一座未来感建筑，而在于把开源软件的版本、测试、回滚和公共审议翻译成人人可走、可看、可质询的城市空间。本轮保留 v1.5 的四张 AI 概念效果图，不重新生成场景；新增无文字评审首屏与双语首读图，把四种空间体验直接连接 RC 合同、G0-G4 门和原始证据，并同步进入 A3/A0 PDF 首页。效果图只承担气氛与使用关系表达，不作为现状、公众意见、边界或工程证据。
 
 ## 设计依据与资料清单
 
@@ -36,9 +36,9 @@ v1.5 不把京张理解为一条“展示技术的走廊”，而是提出一套
 
 资料权力分三档：公告与任务书决定“必须回答什么”；临时几何决定“本轮在哪里测试”；Agent 设计决定“建议如何组织”。权属、现状建筑、文保、道路红线、轨道保护、市政、消防、防洪、客流和工程资料仍为 unknown；任一 official polygon 到位后，九类 GeoJSON、metrics、图件、HTML 与 PDF 必须整体复算 [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [depth:risk_missing_data]。
 
-![轨道源场v1.5总体结构](assets/figures/site-overview.png)
+![轨道源场v1.6四个公共验证空间、任务拓扑与证据边界](assets/figures/site-overview.png)
 
-![轨道源场四个公共验证空间：AI 概念效果图，非现场照片、非工程依据](assets/media/cover.webp)
+![轨道源场四个公共验证空间：无文字评审首屏底图，AI 概念效果图，非现场照片、非工程依据](assets/media/v1.6/review-hero.webp)
 
 **图像边界：**以上四景及下方分场景图均为 `gpt-image-2` 生成并经本地编排的 AI 概念效果图，不是现场照片、已建成状态、居民意见、官方效果图或工程依据；空间判断仍以 GeoJSON、指标、合同和专业证据链为准。生成方法、权利范围和限制见 `visual/assets/ai_render_disclosure.json`。
 
@@ -237,7 +237,7 @@ agent.6 的开发者转化不是报名人数叙事，而是 **加入—共创—
 
 任务书、标准和设计深度分别由 `compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json` 保存完整机器证据。正文以锚点连接判断，不用编号堆砌替代设计 [depth:professional_standard_response] [depth:formal_package_completeness]。
 
-![v1.5七维证据导航、合成复演与现实边界](assets/figures/metrics-evidence.png)
+![v1.6七维证据导航、合成复演与现实边界](assets/figures/metrics-evidence.png)
 
 ## 风险、版权与合规说明
 

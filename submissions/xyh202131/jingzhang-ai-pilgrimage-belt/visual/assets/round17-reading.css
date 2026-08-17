@@ -32,11 +32,12 @@ header code {
 }
 
 .language-switch {
+  position: absolute;
   right: 12px;
 }
 
 section {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 72px;
 }
 
 p,
@@ -243,21 +244,35 @@ table:focus-visible,
   z-index: 20;
   top: 0;
   align-items: center;
-  padding: 12px;
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  padding: 8px 10px;
   border: 1px solid #d8dbd4;
-  border-radius: 18px;
+  border-radius: 14px;
   background: rgba(243, 244, 239, 0.96);
   box-shadow: 0 8px 24px rgba(18, 32, 47, 0.08);
   backdrop-filter: blur(10px);
 }
 
+.primary-nav > a {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 7px 10px;
+  text-align: center;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
 .evidence-index {
-  flex: 1 1 100%;
-  padding: 9px 12px;
-  border-top: 1px solid #d8dbd4;
+  margin: 0 0 34px;
+  border: 1px solid #d8dbd4;
+  border-radius: 12px;
+  background: #fff;
 }
 
 .evidence-index summary {
+  padding: 9px 12px;
   cursor: pointer;
   color: var(--blue);
   font-weight: 700;
@@ -267,7 +282,16 @@ table:focus-visible,
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 12px;
+  padding: 2px 12px 12px;
+}
+
+main > section {
+  margin-top: 42px;
+  margin-bottom: 42px;
+}
+
+#review-handoff > section {
+  margin: 32px 0;
 }
 
 .figure-backlink {
@@ -297,6 +321,13 @@ table:focus-visible,
 
   .primary-nav {
     position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .primary-nav > a {
+    width: 100%;
+    white-space: normal;
   }
 
   .language-switch {
@@ -351,6 +382,10 @@ table:focus-visible,
   }
 }
 
+details.signal-static-fallback:not([open]) > :not(summary) {
+  display: none;
+}
+
 @media print {
   .primary-nav {
     position: static;
@@ -363,6 +398,7 @@ table:focus-visible,
 
   details.entry-evidence:not([open]) > :not(summary),
   details.backstage-library:not([open]) > :not(summary),
+  details.signal-static-fallback:not([open]) > :not(summary),
   .ordinary-life > details:not([open]) > :not(summary),
   .front-stage-areas > details:not([open]) > :not(summary) {
     display: block !important;

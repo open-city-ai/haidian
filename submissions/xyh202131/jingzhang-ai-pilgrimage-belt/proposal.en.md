@@ -33,6 +33,8 @@ scenarios:
 
 ![Three-frame site reading: published background orientation, the provisional design container, and Twin-Track Jing-Zhang design relationships remain separate and never co-register; G0 concept, provisional geometry, not to scale, with no official redline or station anchor claimed](assets/figures/site-overview.en.png)
 
+> **Editorial hierarchy: 13 required chapters + 8 extended evidence units.** The required proposal consists of Chapters 1–12, from “Design Basis and Source List” through “Risk, Copyright, and Compliance,” plus Chapter 13, “References,” at the end. This reading entry is Extended Evidence E0; the seven H2 units between Chapters 12 and 13 are E1–E7. Extended evidence expands verification, professional handoff, and field-replacement rules. It does not replace a required chapter or change any G0 status, provisional boundary, unknown, non-AI path, rights block, or professional veto.
+
 ## 30-Second / 3-Minute / 15-Minute Entry
 
 | Reading time | Answer only this | Start here | Misreading to stop |
@@ -41,11 +43,28 @@ scenarios:
 | 3 minutes | The three truth frames, a complete non-AI journey for one ordinary task, the ordinary–proof–failure–recovery states, and why D01–D08 / H01–H07 still block real-world advancement. | Figures 02–05, the three switchyards, and the evidence gates. | A relationship diagram is not an existing plan; a machine PASS is not content quality, professional duty, or approval. |
 | 15 minutes | Audit every scene, project, key area, right, maintenance, resource, failure, climate, long-term operations, source, and recalculation trigger. | The evidence and professional-handoff layer that follows. | Back-stage contracts cannot manufacture field data; no gap may be bypassed with a more polished image. |
 
-**Package navigation and review handoff index.** Review locating for all 141 package paths lives in `visual/assets/review-handoff-index.json`: seven reading routes (the 30-second / 3-minute / 15-minute entries, the five-step accessible walk, all 21 chapter reading units, the D01–D08/H01–H07 handoff and the eight-question cold read) plus a per-file registry with five statuses (current / historical snapshot / machine input / frozen / provisional), language pairs, round provenance and rights backlinks. `round15-baseline.json` is a historical snapshot rather than current state, and `t02-g0-g1-replay-fixtures.json` is synthetic-replay machine input; neither may be misread as current evidence. The index only locates; it creates no evidence and changes no maturity or rights state [data:visual/assets/review-handoff-index.json].
+### Eight-Question Cold-Read Answer Map (Editorial Review Only)
+
+Each question below has one front-stage primary answer. The proposal, A3 and A0 are equivalent checking surfaces, not second conclusions. Cold-read records are not public feedback, expert opinion, jury results or approval. This round adds no new media.
+
+| ID and question | Single primary answer | Single front-stage entry | Print cross-check |
+|---|---|---|---|
+| Q1 · What is the single core concept? | “Twin-Track Jing-Zhang”: the continuous ordinary track comes first and the intermittent proof track appears only beside it; the three prototypes are non-interchangeable; everything remains G0. | `visual/index.en.html#jury-entry` | A3 P1; A0 P1 |
+| Q2 · Can the ordinary task be completed without registration, QR or AI? | Yes. Physical wayfinding, screen-free information, a continuous non-AI/accessibility-intent route, paper or spoken guidance, staffed handoff and a clear exit stand on their own first. | `visual/index.en.html#ordinary-life` | A3 P8; A0 P5 |
+| Q3 · Why can the three places not copy one another? | Zhongzhiyuan uses a parallel proof court, equipment isolation edge and physical stop; Origin uses one street, two courts, four nodes and point-by-point withdrawal; Dazhongsi uses a four-way commute, off-route publishing hall and staffed desk. | `visual/index.en.html#areas` | A3 P4–P7; A0 P3–P4 |
+| Q4 · Why is the proof track not continuous occupation? | It is a voluntary, announced, bounded, stoppable and removable side task overlay. Twin tracks express task relationships, not coordinates, distances, a continuous footprint or a construction alignment. | `visual/index.en.html#cold-read-proof-boundary` | A3 P1, P3; A0 P1 |
+| Q5 · What stops and what continues on failure? | Automation, collection, amplification, display or service overlays stop and isolate. The continuous ordinary track, complete non-AI route, screen-free information, staffed takeover, withdrawal, appeal and safe exit continue. | `visual/index.en.html#four-state-motion` | A3 P9; A0 P6 |
+| Q6 · Why is recovery not G1, approval or restart? | Recovery first returns the ordinary route, screen-free information, quiet conditions and the same basic task. Real acceptance and GO remain zero; an open gap keeps the overlay at G0, closed or retired. | `visual/index.en.html#cold-read-recovery-boundary` | A3 P9, P13; A0 P6, P8 |
+| Q7 · Which spatial information remains provisional or unknown? | `PROV-SITE-001` and all three `PROV-KEY` objects are provisional containers. Official redlines, coordinate alignment, station/road/parcel/building anchors, component dimensions, materials, connections and specialist conclusions remain unknown. | `visual/index.en.html#cold-read-spatial-unknowns` | A3 P2, P14; A0 P1, P3–P4 |
+| Q8 · Which inputs and professional roles may revise, reject or delete the proposal? | D01–D08 real inputs may replace provisional geometry, typed placeholders and unverified sources. H01–H07 professional roles may recalculate, revise, reject or delete the concept; a major gap keeps NO-GO. | `visual/index.en.html#review-handoff` | A3 P13–P14; A0 P7–P8 |
+
+**Package navigation and review handoff index.** Review locating for all 141 package paths lives in `visual/assets/review-handoff-index.json`: seven reading routes (the 30-second / 3-minute / 15-minute entries, the five-step accessible walk, all 21 chapter reading units, the D01–D08/H01–H07 handoff and the [eight-question cold-read answer map](visual/index.en.html#cold-read-answer-map)) plus a per-file registry with five statuses (current / historical snapshot / machine input / frozen / provisional), language pairs, round provenance and rights backlinks. `round15-baseline.json` is a historical snapshot rather than current state, and `t02-g0-g1-replay-fixtures.json` is synthetic-replay machine input; neither may be misread as current evidence. The index only locates; it creates no evidence and changes no maturity or rights state [data:visual/assets/review-handoff-index.json].
 
 Figure 01 deliberately separates three frames. **A, background orientation**, converts published reports into field questions; it is not survey or as-built evidence. **B, the provisional design container**, supports concept organization and intake checks only; it is not an official redline. **C, design relationships**, shows task relay, adjacent proof, staffed handover, stop, and restoration only; it establishes no coordinate, distance, or approval order. The three frames must not be merged into one apparently real site map. The recorded 0% overlap and about 412.5-metre separation in the existing OSM background check remain an unresolved background divergence. `PROV-KEY-003` remains unanchored to Dazhongsi station, a road, parcel, or building. The geometry therefore stays in place, with explicit recalculation triggers [data:visual/assets/site-grounding-register.json#JZ-SITE-READING-R17] [assumption:A-SITE-READING-020].
 
 The proposal retains twelve existing machine-readable scenes, eight projects, and three key areas. The front-matter `scenarios` list uses the repository’s six current scenario-registry families only as discovery metadata; it deletes, renumbers, and advances no `SCENE-*` object. Chinese and English prose, structured evidence, figures, and the offline entry share one conclusion: **document completeness proves neither field maturity nor approval.** [assumption:A-JURY-CONVERGENCE-019] [assumption:A-SITE-READING-020]
+
+> **Formal proposal · Chapters 1–12 of 13.** The following twelve chapters retain the required headings and order. Chapter 13, “References,” resumes after the extended evidence.
 
 ## Design Basis and Source List
 
@@ -610,6 +629,9 @@ The rights matrix strictly separates “reviewable inside the repository” from
 | Release of OSM, fonts, logo, software, or generated assets | Blocked pending component audit | ODbL, font-embedding, trademark, and tool-output terms audit |
 
 All current AI scenarios are in G0 conceptual status. The eight projects and four-season events are proposals: they are not approved, built, or operating, and no organization has committed to them. Entry to a higher operating gate may be discussed only after statutory approval, responsible entities, professional review, public participation, funding and operations, and incident response are all defined.
+
+> **Extended evidence · E1–E7 (E0 is the opening reading entry).** The following seven H2 units expand verification, professional handoff, reversible components, accessible evidence tracing, and field-input replacement. They are evidence supplements, not additional required chapters, a separate proposal, or a maturity upgrade.
+
 ## The Century-Time Museum: A Verifiable, Correctable, Screen-free Time Education Line
 
 ### Strategic Proposition
@@ -954,6 +976,8 @@ The source record [source:SOURCE-JZ-COMMONS-LOOP-METHOD-R15] contributes one met
 ![Field evidence intake and replacement pack: eight empty packets, custody, professional dispositions and three differentiated future field routes; field collection, approval and duty acceptance all remain 0](assets/figures/field-evidence-intake.en.png)
 
 The contract covers the existing 12 scenes, 8 projects, 3 key areas, 99 slots, geometry, and metrics. Every object remains G0, provisional, NO-GO and `not_fully_cleared`. The contract is not a field brief, procurement order, survey result, professional opinion, approval record or implementation authorization.
+
+> **Formal proposal · Chapter 13 of 13.** The extended evidence ends here; “References” resumes the formal proposal.
 
 ## References
 

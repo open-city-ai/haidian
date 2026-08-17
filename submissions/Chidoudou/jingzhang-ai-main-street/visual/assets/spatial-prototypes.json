@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "status": "conceptual_not_authorized",
-  "title_zh": "京张上街 v2.4：三处首发100米与一套可逆构件",
-  "title_en": "Jing-Zhang AI MAIN STREET v2.4: three first-use 100-m studies and one reversible kit",
+  "title_zh": "京张上街 v2.5：六个横向入口、三处首发100米与一套可逆构件",
+  "title_en": "Jing-Zhang AI MAIN STREET v2.5: six cross-corridor gateways, three first-use 100-m studies and one reversible kit",
   "boundary_note_zh": "每处均为代表性的100米概念研究窗口，不是官方片区边界、道路红线、实测总平面、工程尺寸、投资或实施承诺；须在正式数据、权属、遗产、交通、消防、市政、运营授权与专业审查后深化。",
   "boundary_note_en": "Each is a representative 100-m concept study window, not an official area boundary, road line, surveyed plan, engineering dimension, investment or delivery commitment. It requires official data, ownership, heritage, transport, fire, utility, operating-authority and professional review before development.",
   "palette": {
@@ -234,13 +234,30 @@
       "id": "PROTOTYPE-DZS-100M",
       "area_ref": "geometry/key_areas.geojson#PROV-KEY-003",
       "gate": "FIRST USE",
-      "name_zh": "大钟寺首用换乘环",
-      "name_en": "Dazhongsi First-use Transfer Loop",
-      "question_zh": "一次真实到达能否先被看懂、连续通行，再选择AI服务？",
-      "question_en": "Can a real arrival be understood and completed before any optional AI service begins?",
+      "name_zh": "大钟寺可迁移站城首用接口",
+      "name_en": "Dazhongsi Relocatable Station-City First-use Interface",
+      "question_zh": "入口和换乘组织持续变化时，普通到达能否先成立，服务又能否随变化迁移？",
+      "question_en": "As entrances and transfers change, can ordinary arrival work first and can the service relocate with it?",
       "accent": "#FF9855",
       "rendering": "assets/media/field-dazhongsi-1733.webp",
       "media_type": "field_observation",
+      "transition_states": [
+        {
+          "id": "T0",
+          "zh": "现状时间切片：A口—地面—1733—D口，逐日核验入口、围挡、无障碍和人工服务。",
+          "en": "Current time slice: Exit A–surface–1733–Exit D, with daily checks of entrances, hoarding, accessibility and human help."
+        },
+        {
+          "id": "T1",
+          "zh": "施工转换期：旧路线自动失效，状态板与人工台迁到临时入口，未经复核不发布数字建议。",
+          "en": "Construction transition: the old route expires automatically; the board and human desk move to the temporary entrance, and no digital advice is published before re-checking."
+        },
+        {
+          "id": "T2",
+          "zh": "未来站城整合：接入获批连廊和公共首层；准确位置、开放时间与无障碍链由后续专业设计确定。",
+          "en": "Future station-city integration: connect to approved passages and public ground floors; later professional design determines exact locations, hours and the accessible chain."
+        }
+      ],
       "evidence_refs": [
         "visual/assets/pilot-matrix.json#PILOT-INDUSTRY-01",
         "geometry/public_space.geojson#SCN-03",
@@ -313,49 +330,49 @@
     }
   ],
   "journey": {
-    "id": "JOURNEY-COMPOSITE-LIN-LAN",
-    "persona_zh": "林岚：合成、非识别性角色；大钟寺通勤者、照护者与小组织协作者",
-    "persona_en": "Lin Lan: a composite, non-identifying Dazhongsi commuter, caregiver and small-organisation collaborator",
-    "problem_zh": "希望把A口—1733—D口的多语换乘与无障碍到达信息说清楚，不上传乘客身份。",
-    "problem_en": "Wants clear multilingual transfer and accessible-arrival information for Exit A–1733–Exit D without uploading passenger identity.",
+    "id": "JOURNEY-SERVICE-EVIDENCE-PASS",
+    "persona_zh": "主角不是一位跨城赶场的人，而是一项待上街的AI服务和随它同行的证据",
+    "persona_en": "The protagonist is not a person racing across the city, but an AI service seeking street use and the evidence travelling with it",
+    "problem_zh": "例题：大钟寺多语换乘与无障碍到达信息；不上传乘客身份，普通路线必须先成立。",
+    "problem_en": "Example: multilingual transfer and accessible-arrival information at Dazhongsi; no passenger identity is uploaded, and the ordinary route must work first.",
     "steps": [
       {
-        "time": "07:30",
-        "gate": "PUBLIC BASE",
-        "title_zh": "遗址公园先保证普通到达",
-        "title_en": "The heritage park first guarantees ordinary arrival",
-        "result_zh": "无App导向、遮荫座椅、实体地图与人工求助先成立。",
-        "result_en": "No-app wayfinding, shaded seating, a physical map and human help work first."
+        "time": "00",
+        "gate": "REAL PROBLEM",
+        "title_zh": "先从真实问题出发",
+        "title_en": "Start with a real problem",
+        "result_zh": "乘客、照护者和维护者共同定义问题；先画普通路线。",
+        "result_en": "Passengers, caregivers and maintainers define the problem together; draw the ordinary route first."
       },
       {
-        "time": "09:30",
+        "time": "01",
         "gate": "PROVE",
-        "title_zh": "众智园决定能不能试",
-        "title_en": "Zhongzhiyuan decides whether it may be tested",
+        "title_zh": "众智园回答：安全吗？",
+        "title_en": "Zhongzhiyuan asks: is it safe?",
         "result_zh": "范围、急停、近失和撤场线清楚；失败也是有效结果。",
         "result_en": "Boundary, emergency stop, near miss and exit route are clear; failure is a valid result."
       },
       {
-        "time": "12:30",
+        "time": "02",
         "gate": "TRANSLATE",
-        "title_zh": "原点社区决定能不能听懂",
-        "title_en": "AI Origin decides whether people can understand it",
-        "result_zh": "林岚能复述用途、局限、人工责任和撤回方法才盖章。",
-        "result_en": "The stamp is given only if Lin can restate purpose, limits, human responsibility and withdrawal."
+        "title_zh": "原点社区回答：说得清吗？",
+        "title_en": "AI Origin asks: is it understandable?",
+        "result_zh": "普通人能复述用途、局限、人工责任和撤回方法才盖章。",
+        "result_en": "A member of the public must be able to restate purpose, limits, human responsibility and withdrawal."
       },
       {
-        "time": "16:30",
+        "time": "03",
         "gate": "FIRST USE",
-        "title_zh": "大钟寺决定一次真实到达能不能成立",
-        "title_en": "Dazhongsi decides whether one real arrival works",
+        "title_zh": "大钟寺回答：真能用吗？",
+        "title_en": "Dazhongsi asks: does it work in real use?",
         "result_zh": "A—1733—D先靠实体图与人工走通；AI只作自愿、限时、可关闭的侧层。",
         "result_en": "A–1733–D works first through physical maps and people; AI remains optional, time-limited and switchable."
       },
       {
-        "time": "20:00",
+        "time": "04",
         "gate": "FEEDBACK",
-        "title_zh": "公众决定扩展、暂停还是退场",
-        "title_en": "The public decides expansion, pause or exit",
+        "title_zh": "共同回答：扩展、暂停还是退场？",
+        "title_en": "Decide together: expand, pause or exit?",
         "result_zh": "成功、暂停和失败同权记录；设备撤走后普通换乘和商业空间继续。",
         "result_en": "Success, pause and failure are recorded equally; ordinary transfer and commercial space continue after equipment leaves."
       }
@@ -474,16 +491,16 @@
     },
     {
       "id": "SP-04",
-      "title_zh": "大钟寺首用换乘环",
-      "title_en": "Dazhongsi First-use Transfer Loop",
-      "h1_zh": "A—1733—D实体图与人工台",
-      "h1_en": "A–1733–D physical map and human desk",
-      "h2_zh": "普通路线成立后的限时侧层",
-      "h2_en": "Time-limited side layer after ordinary transfer works",
-      "h3_zh": "逐点位/时段重新授权后复制",
-      "h3_en": "Replication after each location/time window is re-authorised",
-      "gate_zh": "路线核验、人工接管、维护与恢复",
-      "gate_en": "Route verification, human takeover, maintenance and restoration"
+      "title_zh": "大钟寺可迁移站城接口",
+      "title_en": "Dazhongsi Relocatable Station-City Interface",
+      "h1_zh": "T0实体图、人工台与路线版本",
+      "h1_en": "T0 physical map, human desk and route version",
+      "h2_zh": "T1迁移到经复核的临时入口",
+      "h2_en": "T1 relocation to a reviewed temporary entrance",
+      "h3_zh": "T2接入获批连廊与公共首层",
+      "h3_en": "T2 connection to approved passages and public ground floors",
+      "gate_zh": "路线变化即失效、人工复核、维护与恢复",
+      "gate_en": "Route changes invalidate it; human review, maintenance and restoration"
     },
     {
       "id": "SP-05",

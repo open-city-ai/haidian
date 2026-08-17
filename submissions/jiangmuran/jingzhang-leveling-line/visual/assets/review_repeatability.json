@@ -4,19 +4,19 @@
  "why_zh": "几何水准不因为仪器报了一个高程就相信它：走一圈回到起点，把同一个点读两次，两次之差就是闭合差，也是关于这台仪器可信到什么程度的唯一诚实说法。本方案通篇主张一座城市应当为自己的系统公开这个数。**给本方案打分的这台仪器，已经在同一个点上被读过很多次，而这个差没有人发表过。**",
  "method_zh": "控制项是一个 commit，不是一份文件清单。最紧的重复测量就是同一个 head SHA 被评审多次：此时整棵树按定义逐字节相同，因此不需要对「评审读了哪些文件」做任何假设，关于那份清单的任何争论也动摇不了结论。本模块的早期版本恰恰去比对评审输入文件集，而且把清单读错了三处——图像由 ai_review_submission.py 组装而非 build_review_input；PDF 是两个固定文件名而不是 drawings/ 下的每一份，因此两份 .en.pdf 从不被送出；build_review_input 还会送出递归文件清单与三份仓库根目录文件。改按 commit 归组之后，这三处错误全部消失。",
  "corpus": {
-  "scored_verdicts": 2495,
-  "distinct_head_commits": 2473,
+  "scored_verdicts": 2535,
+  "distinct_head_commits": 2513,
   "commits_reviewed_more_than_once": 15,
   "verdicts_inside_those_commits": 37
  },
  "by_instrument": {
   "intake_decision": {
    "groups": 14,
-   "verdicts": 2170
+   "verdicts": 2208
   },
   "weighted_seven": {
    "groups": 0,
-   "verdicts": 325
+   "verdicts": 327
   }
  },
  "mixed_instrument_groups": 1,
@@ -167,9 +167,9 @@
   }
  ],
  "adjacent_verdict_deltas": {
-  "n": 1698,
-  "mean_abs": 5.074,
-  "median_abs": 4.0,
+  "n": 1735,
+  "mean_abs": 5.037,
+  "median_abs": 4,
   "note_zh": "同一投稿者相邻两次评审之差的绝对值，含内容确有改动的情形；这是读者比较两个版本时实际拿到的数。"
  },
  "this_package": {
@@ -186,12 +186,12 @@
   "同一 commit 多次评审两两之间的差值不独立；给出池化标准差而不是成对统计量正是为此。"
  ],
  "score_against_repair_count": {
-  "n": 325,
-  "pearson_r": -0.2926,
+  "n": 327,
+  "pearson_r": -0.2907,
   "note_zh": "对每一份同时印出加权分与 repair 总数的 verdict 计算。此前正文引用过一个 −0.352，而随包文件里没有任何东西计算它；现在它要么是这里算出来的，要么不被声称。"
  },
  "publication_recommendation_counts": {
-  "do-not-publish": 325
+  "do-not-publish": 327
  },
  "groups": [
   {

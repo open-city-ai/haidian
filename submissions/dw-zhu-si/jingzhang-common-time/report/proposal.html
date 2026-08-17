@@ -12,28 +12,44 @@
   --paper: #ffffff;
   --bg: #f4f7fa;
   --accent: #245b8f;
+  --navy: #17313c;
+  --orange: #e66a36;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   color: var(--ink);
   background: var(--bg);
   line-height: 1.75;
 }
 main {
-  max-width: 980px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 42px 24px 72px;
+  padding: 46px 44px 72px;
   background: var(--paper);
   min-height: 100vh;
   box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
 }
 .hero {
-  border-bottom: 3px solid var(--accent);
-  padding-bottom: 24px;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 38px;
+  color: #fff;
+  background: var(--navy);
+  border-left: 10px solid var(--orange);
+  border-radius: 0 18px 18px 0;
+  padding: 48px 48px 44px;
+  margin-bottom: 38px;
 }
+.hero h1 { font-size: clamp(48px, 6vw, 76px); line-height: .98; letter-spacing: -.045em; margin: 10px 0 24px; }
+.hero .summary { color: #dbe5e8; font-size: 19px; line-height: 1.55; max-width: 38em; }
+.hero-kicker { color: #f4a16f; font-weight: 800; letter-spacing: .08em; font-size: 13px; }
+.hero-claims { display: grid; align-content: center; gap: 12px; }
+.hero-claims article { padding: 18px 20px; background: rgba(255,255,255,.07); border-top: 1px solid rgba(255,255,255,.25); }
+.hero-claims b { display: block; color: #fff; font-size: 20px; margin-bottom: 4px; }
+.hero-claims span { color: #bfcfd4; font-size: 14px; line-height: 1.45; }
+.hero-boundary { color: #f3d6c6; font-size: 12px; line-height: 1.45; padding: 10px 2px 0; }
 h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
 h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
 h3 { font-size: 20px; margin: 26px 0 10px; }
@@ -52,7 +68,7 @@ code {
   border-radius: 4px;
 }
 .summary { color: var(--muted); font-size: 17px; }
-.translation-link a { color: var(--accent); font-weight: 700; }
+.translation-link a { color: #fff; font-weight: 750; }
 .proposal-table { margin: 20px 0 26px; overflow-x: auto; }
 .proposal-table table {
   border-collapse: collapse;
@@ -101,20 +117,30 @@ code {
   line-height: 1.35;
   vertical-align: super;
 }
+.implementation-brief { margin: -8px 0 40px; padding: 22px 24px; border: 1px solid var(--line); border-top: 5px solid var(--accent); background: #f8fafc; }
+.implementation-brief h2 { margin: 0 0 14px; border: 0; padding: 0; font-size: 20px; }
+.implementation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.implementation-grid article { min-height: 108px; padding: 13px 14px; background: #fff; border: 1px solid var(--line); }
+.implementation-grid b { display: block; color: var(--accent); font-size: 13px; letter-spacing: .03em; }
+.implementation-grid span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.implementation-note { margin: 13px 0 0; color: #8a4a2d; font-size: 13px; line-height: 1.5; }
 @media (max-width: 720px) {
   main { padding: 26px 16px 52px; }
+  .hero { grid-template-columns: 1fr; padding: 32px 24px; }
+  .hero h1 { font-size: 42px; }
   h1 { font-size: 26px; }
   h2 { font-size: 21px; }
+  .implementation-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 <main>
 <section class="hero">
-<h1>共时京张 / COMMON TIME：一条由证据门驱动的 AI 创新采用带</h1>
-<p class="summary">以时段基线、三尺度空间系统和 VERIFY—LEARN—LIVE—ADOPT/RETIRE 采用回路，检验存量空间能否在更长时间服务科研转译、城市采用与公共生活；所有空间落位均为 provisional 关系示意。</p>
-<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+<div class="hero-copy"><div class="hero-kicker">01 / IMPLEMENTATION EVIDENCE / COMMON TIME JING–ZHANG</div><h1>共享城市时间，<br>先闭合真实证据。</h1><p class="summary">公开事实、责任接口和法定程序已经核实；现场、共同签署、真实成本、独立任命与官方几何继续保持 PENDING。</p><p class="translation-link"><a href="proposal.en.html">Read in English →</a></p></div>
+<div class="hero-claims"><article><b>四日 × 四时窗</b><span>周二/周四/周六/周日，含工作日 24h 声环境与周末对照。</span></article><article><b>七角色独立评估</b><span>委托、实施、主评、数据托管、专业核验、公众与申诉相互隔离。</span></article><article><b>十步整包重算</b><span>官方几何到达后，数据、指标、图、PDF、HTML 和决定共同更新。</span></article><div class="hero-boundary">概念建议 · 非官方规划 · 公开责任接口不等于项目授权 · 六项外部证据未取得前继续 HOLD</div></div>
 </section>
+<section class="implementation-brief" aria-label="六项实施证据状态"><h2>六项实施证据闭合 v1</h2><div class="implementation-grid"><article><b>01 责任</b><span>一期建设单位与征集组织可核；项目级产权、运营、具名责任待签。</span></article><article><b>02 基线</b><span>24h 开园和年度汇总可核；四日昼夜实测协议就绪、现场待做。</span></article><article><b>03 阈值</b><span>听证—协调—30/90 日评议合同就绪；三项目阈值待共同签署。</span></article><article><b>04 CAPEX/OPEX</b><span>成本簿与采购路径就绪；工程量、报价、资金和预算批复待取。</span></article><article><b>05 独立评估</b><span>七角色与 P0—P5 任务书就绪；独立采购、回避审查和任命待办。</span></article><article><b>06 官方几何</b><span>当前仍为 official_boundary=false；十步重算 SOP 就绪、数据待发布。</span></article></div><p class="implementation-note">READY 表示程序可执行，不表示外部证据已经发生。六项当前门均为 HOLD。</p></section>
 <h1>共时京张 / COMMON TIME</h1>
 <blockquote><p><strong>不是让 AI 占领更多城市，而是让每一次技术进入城市之前，先回答：谁的问题、谁负责、如何验证、何时停止。</strong></p></blockquote>
 <p>“共时京张”把“科研、社区、商业与公共服务可能存在时段错配”作为<strong>待调查假设</strong>，而不是既成事实。方案先建立工作日/周末、昼/夜的时段基线，再以共享、轻改、可逆补点和必要建设四级动作，检验存量空间能否在更多时间服务更多人。AI 仅承担检索、匹配、翻译、预约和复盘；问题业主、产权人、运营者、独立评测者与公众保留批准、申诉和停止权。</p>

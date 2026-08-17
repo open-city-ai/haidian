@@ -1,0 +1,111 @@
+{
+  "schema_version": "0.2.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "提交元数据、文件清单和结构化包已按可信校验规则复核。"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "空间审查通过；保留 provisional boundary 提示，不将其表述为官方红线。"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html / drawings/",
+      "message": "视觉打包审查通过；流程图和证据表达可独立阅读。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md / report/",
+      "message": "专业证据审查通过；未验证资料和实施边界仍按 known_blockers 保留。"
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "unknown",
+      "severity": "minor",
+      "target": "geometry/site_boundary.geojson",
+      "message": "使用 provisional boundary；不作为官方红线或精确面积依据。",
+      "suggested_fix": "官方 polygon 发布后替换并重算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "unknown",
+      "severity": "minor",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区为 provisional polygon。",
+      "suggested_fix": "取得官方重点区 polygon 后替换并重算。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区由总体边界与共享切线生成，无有意留白或重叠。"
+    },
+    {
+      "check_id": "METRICS_RECOMPUTABLE",
+      "result": "pass",
+      "severity": "info",
+      "target": "metrics.json",
+      "message": "空间指标由 GeoJSON 在 EPSG:4548 下重算。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线 HTML 仅引用本地图片和静态文本，无远程资源或主动脚本。"
+    },
+    {
+      "check_id": "CASE_EVIDENCE_COVERAGE",
+      "result": "unknown",
+      "severity": "major",
+      "target": "compliance_matrix.json#case_crosswalk",
+      "message": "8 个具名案例已进入文字和来源交叉表，但仍是 candidate_reference；本地已验证案例数与 AI 结果数为 0。",
+      "suggested_fix": "重新生成正式报告、视觉索引并由人工复核案例状态、来源定位和限制。"
+    },
+    {
+      "check_id": "CASE_VISUAL_INDEX",
+      "result": "unknown",
+      "severity": "major",
+      "target": "report/proposal.html / visual/index.html",
+      "message": "v0.2.2 visual/index.html 已重构并完成桌面/移动截图；仍需人工检查层级、地图可读性和旧版图纸一致性。",
+      "suggested_fix": "人工复核 output/playwright/v0.2.2-visual-after-desktop.png 与 mobile 截图，并在图纸同步后重新检查。"
+    },
+    {
+      "check_id": "SCENARIO_RUNTIME_SEMANTICS",
+      "result": "unknown",
+      "severity": "major",
+      "target": "proposal.md#十张 AI 场景卡",
+      "message": "场景已降级为候选/离线 simulation_only，但仍需检查所有派生 HTML、视觉和指标没有把设计数量写成运行结果。",
+      "suggested_fix": "保持 verified_scene_count=0、run_status=not_run，并完成派生文件和正式自检。"
+    },
+    {
+      "check_id": "PROPOSAL_METRICS_CONSISTENCY",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md / metrics.json",
+      "message": "proposal 与机器指标已将概念建筑数量统一为 22，并将具名案例数量标为 design/reference count。"
+    },
+    {
+      "check_id": "PROFESSIONAL_CONTROLS",
+      "result": "unknown",
+      "severity": "major",
+      "target": "assumptions.json",
+      "message": "控规、权属、工程与文保条件待官方附件和专业团队确认。",
+      "suggested_fix": "补齐正式资料后复核强度、高度、退线和工程策略。"
+    }
+  ]
+}

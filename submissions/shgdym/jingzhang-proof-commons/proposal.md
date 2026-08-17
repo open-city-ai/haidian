@@ -156,6 +156,8 @@ AI原点形成“成果披露前台—开源协作首层—人才生活庭院—
 
 ![三处重点区概念总平、场景布点与实施依赖](assets/figures/key-areas.png)
 
+**公开现状切片。** 为避免三站只靠名称区分，本稿保存了 2026-08-17 获取的 OSM 公开道路、铁路、水系、绿地和建筑轮廓切片，共 6,266 个要素，并用同一脚本重算三处临时重点区框内的公开地图读数：众智园、AI原点、大钟寺分别包含 196、144、110 个建筑轮廓，框内步行/骑行线总长约 12.8、9.5、2.4 km。读数只说明公开地图“画了什么”，不证明建筑现状、权属、流量、无障碍或工程可行性；它们用于把众智园的受控测试边界、AI原点的贯通发布界面和大钟寺的人工到达服务放回不同城市肌理，并在正式测绘到位后全部复核。[source:OSM-SITE-CONTEXT-20260817] [data:visual/assets/site-context-results.json] [metric:osm_site_context_feature_count]
+
 三站详细图谱把平面、公共剖面、运营程序和失败复原放在同一审查面上。众智园以有人值守的封闭测试环保护公众路径；AI原点以贯通首层和公共问题桌连接发布、协作与权利披露；大钟寺以到达十字和环形客厅分开试用、申诉与非AI服务。三种原型不是同一网格换名字，且都要求设备退出后公共空间继续成立。[data:geometry/buildings.geojson#BLDG-101] [data:geometry/public_space.geojson#LANDMARK-01] [depth:three_key_area_detailed_design]
 
 ![三站平面、剖面、运营与复原对齐图谱](assets/figures/station-design-atlas.png)
@@ -182,7 +184,7 @@ AI原点形成“成果披露前台—开源协作首层—人才生活庭院—
 
 ![交通慢行、东西缝合与三类公共剖面](assets/figures/mobility-bluegreen.png)
 
-三类东西缝合剖面共享一条不可中断的公众路径，但受控活动层可按事故、天气、无障碍故障或许可状态单独关闭。现场无障碍审计、非AI等价服务、夜间安全、人工接管演练和失败复原构成连续性验收链；任一环节未闭合时，不开放相应技术功能。[standard:MOHURD-URBAN-DESIGN-MEASURES] [data:geometry/roads.geojson#ROAD-X01] [metric:east_west_stitch_count]
+图中浅色路网是可重跑的 OSM 公开现状切片，红色公众主链和三处技术口袋是概念关系，不是现状道路或工程线路。三类东西缝合剖面共享一条不可中断的公众路径，但受控活动层可按事故、天气、无障碍故障或许可状态单独关闭。现场无障碍审计、非AI等价服务、夜间安全、人工接管演练和失败复原构成连续性验收链；任一环节未闭合时，不开放相应技术功能。[source:OSM-SITE-CONTEXT-20260817] [data:geometry/roads.geojson#ROAD-X01] [metric:east_west_stitch_count]
 
 ![三类缝合剖面与无障碍连续性验收链](assets/figures/sections-accessibility.png)
 

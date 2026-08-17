@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张智脉·百年京张AI创新带城市设计提案 · 离线电子展示</title>
+<style>
+:root {
+  --ink:#172235; --muted:#475569; --paper:#ffffff; --soft:#f6f8fb;
+  --line:#d7dee8; --gold:#c79838; --ai:#4f46e5; --park:#15803d;
+  --work:#b7791f; --civic:#b42318; --blue:#0f7490;
+  --shadow:0 14px 34px rgba(22,32,51,.09);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+  "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+  background: #eef2f6; color: var(--ink); line-height: 1.6;
+}
+.wrap { max-width: 1280px; margin: auto; padding: 0 18px; }
+header {
+  background: linear-gradient(180deg, #101827 0%, #172235 100%);
+  color: #fff; border-bottom: 5px solid var(--gold);
+  padding: 30px 0 26px;
+}
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; }
+.eyebrow {
+  color: #9fd7c0; letter-spacing: .18em; text-transform: uppercase;
+  font-size: 12px; margin-bottom: 10px;
+}
+h1 { font-size: 32px; line-height: 1.2; margin: 0 0 10px; }
+.hero-copy { color: #d8e3ef; font-size: 15.5px; max-width: 880px; }
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.pill, .tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  border-radius: 999px; border: 1px solid rgba(255,255,255,.28);
+  padding: 5px 11px; font-size: 12px; color: #fff; background: rgba(255,255,255,.06);
+}
+.status-box {
+  border: 1px solid rgba(255,255,255,.22); border-radius: 8px;
+  padding: 16px; background: rgba(255,255,255,.06);
+}
+.status-box strong { display: block; font-size: 17px; margin-bottom: 6px; }
+.status-box p { margin: 0 0 6px; color: #d8e3ef; font-size: 13px; }
+main { padding: 22px 0 36px; }
+.sheet {
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 10px; margin: 0 0 20px; box-shadow: var(--shadow); overflow: hidden;
+}
+.sheet-head {
+  display: flex; justify-content: space-between; gap: 16px; align-items: flex-start;
+  padding: 18px 22px; border-bottom: 1px solid #e6ebf2; background: #fbfcfe;
+}
+.sheet-head h2 { margin: 0; font-size: 21px; }
+.sheet-head p { margin: 4px 0 0; color: var(--muted); max-width: 820px; }
+.tag { background: #f1f5fb; color: var(--ink); border-color: #d7dee8; }
+.section-body { padding: 18px 22px; }
+.row { display: grid; gap: 16px; }
+.row.cols-2 { grid-template-columns: 1fr 1fr; }
+.row.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.row.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.card {
+  border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px;
+  background: #fbfcfe;
+}
+.card h3 { margin: 0 0 6px; font-size: 15px; color: var(--ink); }
+.card p { margin: 0; color: var(--muted); font-size: 13px; }
+.card.bordered-ai { border-left: 4px solid var(--ai); }
+.card.bordered-park { border-left: 4px solid var(--park); }
+.card.bordered-work { border-left: 4px solid var(--work); }
+.card.bordered-blue { border-left: 4px solid var(--blue); }
+.card.bordered-gold { border-left: 4px solid var(--gold); }
+.map-svg {
+  display: block; width: 100%; height: auto; border: 1px solid #b9c4d3;
+  border-radius: 6px; background: #f8fafc;
+}
+.metric {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px;
+  background: #fbfcfe; font-size: 14px;
+}
+.metric span { color: var(--muted); }
+.metric strong { font-size: 16px; color: var(--ink); }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+th { background: #f6f8fb; color: var(--ink); font-weight: 600; }
+.check-row { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13.5px; }
+.check { display: inline-flex; gap: 6px; align-items: center; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot.pass { background: #15803d; }
+.dot.minor { background: #c79838; }
+.dot.warn { background: #b42318; }
+.evidence-note {
+  background: #fff7ed; border: 1px solid #fed7aa; color: #7c2d12;
+  padding: 12px 14px; border-radius: 8px; font-size: 13.5px; margin-top: 12px;
+}
+.pass-banner {
+  background: #ecfdf3; border: 2px solid #15803d; color: #166534;
+  padding: 12px 14px; border-radius: 8px; font-size: 14px;
+  margin: 10px 0 4px; text-align: center; font-weight: bold;
+}
+.legend { display: flex; flex-wrap: wrap; gap: 14px; padding: 12px 0 0; font-size: 13px; }
+.legend span { display: inline-flex; gap: 6px; align-items: center; color: #334155; }
+.swatch { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+.swatch.dash {
+  background: repeating-linear-gradient(45deg, #94a3b8, #94a3b8 3px, transparent 3px, transparent 6px);
+}
+ul.compact { margin: 0; padding-left: 18px; color: #334155; font-size: 13.5px; }
+ul.compact li { margin: 5px 0; }
+footer {
+  background: #101827; color: #cbd5e1; padding: 18px 0; font-size: 12.5px;
+}
+footer p { margin: 0; }
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; }
+  .row.cols-2, .row.cols-3, .row.cols-4 { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<header><div class="wrap hero">
+<div>
+<div class="eyebrow">离线电子展示 · Centennial Jing-Zhang AI Innovation Belt</div>
+<h1>京张智脉 · 百年京张AI创新带城市设计提案</h1>
+<p class="hero-copy">本页是 AI Agent 提交包的离线电子展示：权威数据以 GeoJSON、metrics.json、矩阵与自检结果为准。本页把总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、建筑更新项目、AI 场景、核心指标、任务覆盖、自检状态、来源、假设、约束与分期、风险矩阵转成人类可读的视觉说明。不加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API。</p>
+<div class="pill-row">
+<span class="pill">一带三核</span>
+<span class="pill">京张智脉 JZ·IA</span>
+<span class="pill">三层范围</span>
+<span class="pill">三处重点区域</span>
+<span class="pill">三期实施</span>
+<span class="pill">5 条临时约束</span>
+<span class="pill">≥10 张 AI 场景</span>
+<span class="pill">≥5 类用户画像</span>
+</div>
+</div>
+<aside class="status-box">
+<strong>状态 · formal-review-ready</strong>
+<p>提交包以 <code>RyanYang25</code> 署名；provisional geometry 已显著披露；四门机器校验 PASS。</p>
+<p>本页面仅支持 intake 展示、讨论与返修，不作为正式专业评分图纸。</p>
+</aside>
+</div></header>
+<main class="wrap">
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>① 总览地图</h2><p>一带三核空间主线：以京张遗址公园为公共空间主轴，南北串联众智园、北京 AI 原点社区、大钟寺三处重点片区；并叠加铁路遗址保护带（虚线）等 5 类临时约束。</p></div><span class="tag">geometry + constraints</span></div>
+<div class="section-body row cols-2">
+<div>
+<svg viewBox="0 0 360 520" role="img" aria-label="总览地图：京张智脉一带三核空间主线" class="map-svg">
+<polygon points="35.28,506.00 14.00,303.58 56.56,129.27 77.85,14.00 106.96,14.00 106.96,506.00 35.28,506.00" fill="#e7e7ff" stroke="#ffffff" stroke-width="1" />
+<polygon points="106.96,506.00 106.96,14.00 173.36,14.00 173.36,506.00 106.96,506.00" fill="#d8f3e3" stroke="#ffffff" stroke-width="1" />
+<polygon points="173.36,506.00 173.36,14.00 259.68,14.00 259.68,506.00 173.36,506.00" fill="#fff0cc" stroke="#ffffff" stroke-width="1" />
+<polygon points="346.00,14.00 303.44,219.23 346.00,359.81 346.00,506.00 259.68,506.00 259.68,14.00 346.00,14.00" fill="#ffe1da" stroke="#ffffff" stroke-width="1" />
+<polygon points="113.60,427.28 113.60,92.72 166.72,92.72 166.72,427.28 113.60,427.28" fill="#15803d" fill-opacity="0.28" stroke="#15803d" stroke-width="1" />
+<polygon points="176.68,348.56 176.68,161.60 233.12,161.60 233.12,348.56 176.68,348.56" fill="#0f7490" fill-opacity="0.30" stroke="#0f7490" stroke-width="1" />
+<polyline points="45.92,504.88 52.31,416.03 62.95,303.58 79.97,191.12 94.87,95.53 105.51,19.62" fill="none" stroke="#8a5a00" stroke-width="2.0" stroke-dasharray="5 3" />
+<polygon points="52.31,95.53 201.28,95.53 201.28,28.06 52.31,28.06 52.31,95.53" fill="none" stroke="#0f7490" stroke-width="1.4" stroke-dasharray="4 3" />
+<polygon points="37.41,466.64 190.64,466.64 190.64,410.41 37.41,410.41 37.41,466.64" fill="none" stroke="#4f46e5" stroke-width="1.4" stroke-dasharray="4 3" />
+<polygon points="52.31,286.71 190.64,286.71 190.64,241.73 52.31,241.73 52.31,286.71" fill="none" stroke="#b42318" stroke-width="1.4" stroke-dasharray="4 3" />
+<polyline points="265.13,444.15 275.77,331.69 286.41,219.23 297.05,106.78 307.69,50.55" fill="none" stroke="#64748b" stroke-width="2.0" stroke-dasharray="5 3" />
+<polyline points="40.56,250.16 312.80,250.16" fill="none" stroke="#15803d" stroke-width="3.0" stroke-linecap="round" />
+<polyline points="201.28,461.58 188.51,376.67 180.00,278.27 180.00,227.67 188.51,146.14 201.28,68.54" fill="none" stroke="#0f7490" stroke-width="3.4" stroke-linecap="round" />
+<polyline points="62.95,227.67 105.51,252.97 222.56,252.97 297.05,227.67 297.05,199.55 62.95,199.55 62.95,227.67" fill="none" stroke="#15803d" stroke-width="3.0" stroke-linecap="round" />
+<polyline points="35.28,106.78 126.79,106.78 126.79,50.55 339.62,50.55" fill="none" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" />
+<polyline points="62.95,469.45 169.36,469.45 169.36,444.15 339.62,444.15" fill="none" stroke="#172235" stroke-width="3.6" stroke-linecap="round" />
+<polyline points="73.59,399.17 297.05,399.17 297.05,134.89 105.51,134.89" fill="none" stroke="#94a3b8" stroke-width="2.0" stroke-linecap="round" />
+<polygon points="84.23,120.83 318.33,120.83 318.33,16.81 84.23,16.81 84.23,120.83" fill="#4f46e5" fill-opacity="0.55" stroke="#4f46e5" stroke-width="2" />
+<polygon points="62.95,255.78 297.05,255.78 297.05,199.55 62.95,199.55 62.95,255.78" fill="#15803d" fill-opacity="0.55" stroke="#15803d" stroke-width="2" />
+<polygon points="62.95,477.89 339.62,477.89 339.62,445.05 62.95,445.05 62.95,477.89" fill="#b7791f" fill-opacity="0.55" stroke="#b7791f" stroke-width="2" />
+<path d="M 173.62 464.75 L 156.59 233.29 L 177.87 79.23" fill="none" stroke="#172235" stroke-width="6" stroke-opacity="0.5" stroke-linecap="round" />
+<path d="M 173.62 464.75 L 156.59 233.29 L 177.87 79.23" fill="none" stroke="#c79838" stroke-width="2" stroke-linecap="round" />
+<circle cx="177.87" cy="79.23" r="9" fill="#ffffff" stroke="#172235" stroke-width="2" />
+<text x="177.87" y="95.23" text-anchor="middle" font-size="10" font-weight="bold" fill="#172235">众智园</text>
+<text x="177.87" y="107.23" text-anchor="middle" font-size="9" fill="#475467">AI自主创新加速区</text>
+<circle cx="156.59" cy="233.29" r="9" fill="#ffffff" stroke="#172235" stroke-width="2" />
+<text x="156.59" y="249.29" text-anchor="middle" font-size="10" font-weight="bold" fill="#172235">北京AI</text>
+<text x="156.59" y="261.29" text-anchor="middle" font-size="9" fill="#475467">原点社区</text>
+<circle cx="173.62" cy="464.75" r="9" fill="#ffffff" stroke="#172235" stroke-width="2" />
+<text x="173.62" y="480.75" text-anchor="middle" font-size="10" font-weight="bold" fill="#172235">大钟寺</text>
+<text x="173.62" y="492.75" text-anchor="middle" font-size="9" fill="#475467">AI产业聚集区</text>
+<text x="180.0" y="260.0" text-anchor="middle" font-size="24" font-weight="bold" fill="#b42318" fill-opacity="0.14" transform="rotate(-22 180.0 260.0)">PROVISIONAL 临时边界</text>
+<g transform="translate(334 22)"><line x1="0" y1="0" x2="0" y2="18" stroke="#172235" stroke-width="2" /><polygon points="-4,18 4,18 0,26" fill="#172235" /><text x="0" y="-4" text-anchor="middle" font-size="11" font-weight="bold" fill="#172235">N</text></g>
+<g transform="translate(14 502)"><line x1="0" y1="0" x2="58" y2="0" stroke="#172235" stroke-width="2" /><line x1="0" y1="-4" x2="0" y2="4" stroke="#172235" stroke-width="2" /><line x1="58" y1="-4" x2="58" y2="4" stroke="#172235" stroke-width="2" /><text x="29" y="-6" text-anchor="middle" font-size="9" fill="#172235">约 1 km（示意）</text></g>
+</svg>
+<div class="legend">
+<span><i class="swatch" style="background:#4f46e5"></i>众智园 AI 自主创新加速区</span>
+<span><i class="swatch" style="background:#15803d"></i>北京 AI 原点社区</span>
+<span><i class="swatch" style="background:#b7791f"></i>大钟寺 AI 产业聚集区</span>
+<span><i class="swatch" style="background:#0f7490"></i>公共空间 / 慢行</span>
+<span><i class="swatch" style="background:#15803d;opacity:.6"></i>蓝绿空间</span>
+<span><i class="swatch dash"></i>临时约束（铁路/蓝线/站区/文保/市政）</span>
+<span><i class="swatch" style="background:#172235"></i>京张智脉（概念）</span>
+</div>
+</div>
+<aside>
+<h3>② 核心指标（data-metric 可机读）</h3>
+<div class="metric"><span>site_area_sqm · 总体设计范围面积</span>
+<strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386</strong></div>
+<div class="metric"><span>green_ratio · 绿地率</span>
+<strong data-metric="green_ratio" data-value="0.123423">0.123423</strong></div>
+<div class="metric"><span>public_space_ratio · 公共空间率</span>
+<strong data-metric="public_space_ratio" data-value="0.073281">0.073281</strong></div>
+<div class="metric"><span>building_footprint_area_sqm · 建筑基底</span>
+<strong>310807.184</strong></div>
+<div class="metric"><span>key_area_count · 重点区域数量</span>
+<strong>3</strong></div>
+<div class="evidence-note">③ 临时边界与正式提交前置条件：四门自检须正式跑通（参见下方自检状态卡片）。</div>
+</aside>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>④ 三层范围</h2><p>方案按统筹研究范围、总体设计范围、重点区域范围递进，把产业判断、城市更新与重点片区设计绑定到图层与指标。</p></div><span class="tag">three-level scope</span></div>
+<div class="section-body row cols-3">
+<div class="card bordered-ai"><h3>统筹研究范围 43.6 km²</h3><p>AI 产业生态、三区两翼协同、未来城市形态、文化叙事、品牌命名与传播。</p></div>
+<div class="card bordered-park"><h3>总体设计范围 11.4 km²</h3><p>京张遗址公园周边 1–2 km 城市地区与产业区，城市更新总体框架、产业空间布局、交通市政支撑与城市风貌控制。</p></div>
+<div class="card bordered-gold"><h3>重点区域范围 368.4 ha</h3><p>三处详细设计地区：众智园 AI 自主创新加速区 / 北京 AI 原点社区 / 大钟寺 AI 产业聚集区。</p></div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑤ 重点区域</h2><p>三处重点区有产业定位、空间策略、建筑与公共空间动作、交通接口与实施风险。</p></div><span class="tag">key_areas.geojson</span></div>
+<div class="section-body row cols-3">
+<div class="card bordered-ai"><h3>众智园 AI 自主创新加速区</h3><p>花园型自主创新街区。强化清河界面、产业展示、低碳交往与对外交通组织；以绿色空间承载开放测试与标准治理展示。</p></div>
+<div class="card bordered-park"><h3>北京 AI 原点社区</h3><p>近校型成果转化与人才社区。组织校区、园区、街区慢行缝合；补足成果发布、人才服务、居住生活与开源协作空间。</p></div>
+<div class="card bordered-work"><h3>大钟寺 AI 产业聚集区</h3><p>城市型智能经济与国际交往街区。围绕大钟寺站一体化、四象限步行连通、商业服务与重点企业公共环境更新。</p></div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑥ 用地分区</h2><p>总体设计范围用地结构概念方案：四类主导功能区无缝覆盖设计边界，依据国土空间用地分类表达。</p></div><span class="tag">land_use.geojson · LU-001~004</span></div>
+<div class="section-body row cols-2">
+<div><svg viewBox="0 0 360 520" role="img" aria-label="用地分区四类主导功能" class="map-svg">
+<polygon points="35.28,506.00 14.00,303.58 56.56,129.27 77.85,14.00 106.96,14.00 106.96,506.00 35.28,506.00" fill="#e7e7ff" stroke="#ffffff" stroke-width="1.4" />
+<text x="61.84" y="282.69" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#172235">AI研发创新用地</text>
+<polygon points="106.96,506.00 106.96,14.00 173.36,14.00 173.36,506.00 106.96,506.00" fill="#d8f3e3" stroke="#ffffff" stroke-width="1.4" />
+<text x="133.52" y="309.20" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#172235">公园绿地与开敞空间</text>
+<polygon points="173.36,506.00 173.36,14.00 259.68,14.00 259.68,506.00 173.36,506.00" fill="#fff0cc" stroke="#ffffff" stroke-width="1.4" />
+<text x="207.89" y="309.20" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#172235">产业服务与商业服务用地</text>
+<polygon points="346.00,14.00 303.44,219.23 346.00,359.81 346.00,506.00 259.68,506.00 259.68,14.00 346.00,14.00" fill="#ffe1da" stroke="#ffffff" stroke-width="1.4" />
+<text x="315.26" y="233.29" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#172235">社区服务与配套用地</text>
+<polygon points="84.23,120.83 318.33,120.83 318.33,16.81 84.23,16.81 84.23,120.83" fill="#4f46e5" fill-opacity="0.3" stroke="#4f46e5" stroke-width="1.8" />
+<polygon points="62.95,255.78 297.05,255.78 297.05,199.55 62.95,199.55 62.95,255.78" fill="#15803d" fill-opacity="0.3" stroke="#15803d" stroke-width="1.8" />
+<polygon points="62.95,477.89 339.62,477.89 339.62,445.05 62.95,445.05 62.95,477.89" fill="#b7791f" fill-opacity="0.3" stroke="#b7791f" stroke-width="1.8" />
+<polygon points="35.28,506.00 346.00,506.00 346.00,359.81 303.44,219.23 346.00,14.00 77.85,14.00 56.56,129.27 14.00,303.58 35.28,506.00" fill="none" stroke="#172235" stroke-width="2" stroke-dasharray="4 3" />
+</svg></div>
+<aside>
+<ul class="compact">
+<li><b>LU-001</b> · AI 研发创新用地（0802）</li>
+<li><b>LU-002</b> · 公园绿地与开敞空间（1401）</li>
+<li><b>LU-003</b> · 产业服务与商业服务用地（05）</li>
+<li><b>LU-004</b> · 社区服务与配套用地（0702）</li>
+</ul>
+<p class="card" style="margin-top:12px">用地与建筑高度、退线、容积率等缺少官方条件时，列为 pending_control，不编造结论；详见 standards/MOHURD-CONTROL-DETAILED-PLANNING。</p>
+</aside>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑦ 交通慢行 · ⑧ 蓝绿公共空间</h2><p>以京张遗址公园活力带为骨架，统筹绿地、公共空间与慢行廊道，形成南北贯通、东西连通的复合环。</p></div><span class="tag">roads / green_space / public_space / constraints</span></div>
+<div class="section-body row cols-2">
+<div><svg viewBox="0 0 360 520" role="img" aria-label="交通慢行与蓝绿公共空间复合系统" class="map-svg">
+<polygon points="113.60,427.28 113.60,92.72 166.72,92.72 166.72,427.28 113.60,427.28" fill="#15803d" fill-opacity="0.30" stroke="#15803d" stroke-width="1.2" />
+<polygon points="176.68,348.56 176.68,161.60 233.12,161.60 233.12,348.56 176.68,348.56" fill="#0f7490" fill-opacity="0.32" stroke="#0f7490" stroke-width="1.2" />
+<polygon points="52.31,95.53 201.28,95.53 201.28,28.06 52.31,28.06 52.31,95.53" fill="none" stroke="#0f7490" stroke-width="1.3" stroke-dasharray="4 3" />
+<polygon points="37.41,466.64 190.64,466.64 190.64,410.41 37.41,410.41 37.41,466.64" fill="none" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="4 3" />
+<polygon points="52.31,286.71 190.64,286.71 190.64,241.73 52.31,241.73 52.31,286.71" fill="none" stroke="#64748b" stroke-width="1.3" stroke-dasharray="4 3" />
+<polyline points="40.56,250.16 312.80,250.16" fill="none" stroke="#15803d" stroke-width="3.0" stroke-linecap="round" />
+<polyline points="201.28,461.58 188.51,376.67 180.00,278.27 180.00,227.67 188.51,146.14 201.28,68.54" fill="none" stroke="#0f7490" stroke-width="3.4" stroke-linecap="round" />
+<polyline points="62.95,227.67 105.51,252.97 222.56,252.97 297.05,227.67 297.05,199.55 62.95,199.55 62.95,227.67" fill="none" stroke="#15803d" stroke-width="3.0" stroke-linecap="round" />
+<polyline points="35.28,106.78 126.79,106.78 126.79,50.55 339.62,50.55" fill="none" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" />
+<polyline points="62.95,469.45 169.36,469.45 169.36,444.15 339.62,444.15" fill="none" stroke="#172235" stroke-width="3.6" stroke-linecap="round" />
+<polyline points="73.59,399.17 297.05,399.17 297.05,134.89 105.51,134.89" fill="none" stroke="#94a3b8" stroke-width="2.0" stroke-linecap="round" />
+<path d="M 173.62 464.75 L 156.59 233.29 L 177.87 79.23" fill="none" stroke="#172235" stroke-width="6" stroke-opacity="0.45" stroke-linecap="round" />
+<circle cx="177.87" cy="79.23" r="8" fill="#ffffff" stroke="#4f46e5" stroke-width="2.2" />
+<circle cx="156.59" cy="233.29" r="8" fill="#ffffff" stroke="#15803d" stroke-width="2.2" />
+<circle cx="173.62" cy="464.75" r="8" fill="#ffffff" stroke="#b7791f" stroke-width="2.2" />
+<polygon points="35.28,506.00 346.00,506.00 346.00,359.81 303.44,219.23 346.00,14.00 77.85,14.00 56.56,129.27 14.00,303.58 35.28,506.00" fill="none" stroke="#172235" stroke-width="2" stroke-dasharray="4 3" />
+</svg></div>
+<aside>
+<ul class="compact">
+<li><b>ROAD-001</b> · 京张遗址公园慢行绿道（greenway）</li>
+<li><b>ROAD-002</b> · 京张智脉慢行主轴（cycleway，南北贯通）</li>
+<li><b>ROAD-003</b> · 中段慢行复合环（greenway，东西连通）</li>
+<li><b>ROAD-004</b> · 跨环路节点（branch，对外联系）</li>
+<li><b>ROAD-005</b> · 大钟寺站一体化接驳（transit_connection）</li>
+<li><b>ROAD-006</b> · 低速无人配送与公共服务（local_access）</li>
+<li><b>GREEN-001</b> · 京张遗址公园绿地（公园绿地与开敞空间）</li>
+<li><b>PUBLIC-001</b> · 重点片区公共空间（公共活动界面）</li>
+<li><b>CONSTRAINT-002</b> · 清河蓝线缓冲（虚线·临时）</li>
+<li><b>CONSTRAINT-003</b> · 大钟寺站一体化保护区（虚线·临时）</li>
+</ul>
+</aside>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑨ 约束与分期 · ⑩ 三期实施</h2><p>5 条临时约束覆盖铁路遗址、蓝线、站区、文保、市政；3 期实施锚定三重点区，由北向南推进。</p></div><span class="tag">constraints.geojson · phasing.geojson</span></div>
+<div class="section-body row cols-2">
+<div>
+<svg viewBox="0 0 360 520" role="img" aria-label="三期实施范围" class="map-svg">
+<polygon points="56.56,129.27 77.85,14.00 346.00,14.00 318.16,148.25 51.93,148.25 56.56,129.27" fill="#fef3c7" stroke="#172235" stroke-width="1.2" />
+<text x="151.18" y="97.17" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#172235">近期试点（众智园 AI 自主创新加速区）</text>
+<polygon points="14.00,303.58 51.93,148.25 318.16,148.25 303.44,219.23 341.39,344.57 18.31,344.57 14.00,303.58" fill="#dbeafe" stroke="#172235" stroke-width="1.2" />
+<text x="151.60" y="258.86" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#172235">中期更新（北京 AI 原点社区）</text>
+<polygon points="18.31,344.57 341.39,344.57 346.00,359.81 346.00,506.00 35.28,506.00 18.31,344.57" fill="#fce7f3" stroke="#172235" stroke-width="1.2" />
+<text x="184.21" y="400.92" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#172235">长期治理（大钟寺 AI 产业聚集区）</text>
+<polygon points="35.28,506.00 346.00,506.00 346.00,359.81 303.44,219.23 346.00,14.00 77.85,14.00 56.56,129.27 14.00,303.58 35.28,506.00" fill="none" stroke="#172235" stroke-width="2" stroke-dasharray="4 3" />
+</svg>
+</div>
+<aside>
+<ul class="compact">
+<li><b>CONSTRAINT-001</b> · <span style="color:#64748b">heritage_corridor</span> · 京张铁路遗址保护带（概念示意）</li><li><b>CONSTRAINT-002</b> · <span style="color:#64748b">river_blue_line</span> · 清河蓝线缓冲（众智园北侧，概念示意）</li><li><b>CONSTRAINT-003</b> · <span style="color:#64748b">transit_station_protection</span> · 大钟寺站一体化保护区（南端，概念示意）</li><li><b>CONSTRAINT-004</b> · <span style="color:#64748b">heritage_control_zone</span> · 文保单位建设控制地带示意（清华园火车站等）</li><li><b>CONSTRAINT-005</b> · <span style="color:#64748b">municipal_utilities_pending</span> · 现状道路与市政管线待确认（概念线位）</li>
+</ul>
+<ul class="compact" style="margin-top:14px">
+<li><b>PHASE-001</b> · phase_1 近期试点（众智园 AI 自主创新加速区）</li>
+<li><b>PHASE-002</b> · phase_2 中期更新（北京 AI 原点社区）</li>
+<li><b>PHASE-003</b> · phase_3 长期治理（大钟寺 AI 产业聚集区）</li>
+</ul>
+<p style="color:#64748b;font-size:12.5px;margin-top:8px">所有约束均为临时约束，边界与权属以官方资料为准；分期为概念建议的纬度带切分，待官方边界与实施计划落地后重划。</p>
+</aside>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑪ 建筑 · ⑫ 更新项目</h2><p>更新项目清单说明项目位置、类型、功能、责任主体、依赖条件、实施阶段、风险与评估指标。</p></div><span class="tag">buildings / renewal list</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>编号</th><th>名称</th><th>类型</th><th>主要依赖</th><th>几何证据</th></tr></thead>
+<tbody>
+<tr><td><code>JZ-01</code></td><td>京张遗址公园慢行断点缝合</td><td>公共空间/交通</td><td>道路红线、桥下空间复核</td><td>ROAD-001/002</td></tr><tr><td><code>JZ-02</code></td><td>众智园清河创新界面</td><td>蓝绿空间/产业展示</td><td>河道蓝线、防洪条件</td><td>CONSTRAINT-002</td></tr><tr><td><code>JZ-03</code></td><td>原点社区近校成果转化街</td><td>城市更新/产业服务</td><td>校区边界、权属、首层业态</td><td>BLDG-001/PHASE-002</td></tr><tr><td><code>JZ-04</code></td><td>大钟寺站四象限步行连通</td><td>轨道一体化/慢行</td><td>轨道站点、道路交叉口、市政管线</td><td>CONSTRAINT-003/ROAD-005</td></tr><tr><td><code>JZ-05</code></td><td>AI 公共服务与端侧算力节点</td><td>新基建/公共服务</td><td>能源、算力、安全与运营主体</td><td>CONSTRAINT-005</td></tr><tr><td><code>JZ-06</code></td><td>全球 AI 活动周公共路线</td><td>运营/品牌</td><td>公共空间许可、活动安全、版权清权</td><td>PHASE-001/003</td></tr>
+</tbody>
+</table>
+<p style="color:var(--muted);font-size:13px;margin-top:8px">建筑基底复算：310807 m²（31.08 万m²），来源 geometry/buildings.geojson#BLDG-001。</p>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑬ AI 场景（12 张场景卡，含 3 张产业测试验证）</h2><p>每个场景说明服务对象、空间位置、数据来源、隐私边界、人工复核与运营主体。</p></div><span class="tag">scenario cards</span></div>
+<div class="section-body row cols-3">
+<div class="card bordered-blue"><h3>01 开源发布厅</h3><p>面向开发者、企业和高校的成果发布与模型评测节点。</p></div><div class="card bordered-blue"><h3>02 安全治理沙盒</h3><p>在可控公共空间测试模型红队与可信评测，需授权与人工复核。</p></div><div class="card bordered-blue"><h3>03 端侧算力驿站</h3><p>分布式能源与算力承载压力测试，与公共服务设施融合。</p></div><div class="card bordered-ai"><h3>04 AI 慢行导航</h3><p>面向遗址公园慢行断点的导航与可达性诊断（公开数据 + 人工复核）。</p></div><div class="card bordered-ai"><h3>05 大钟寺国际路演客厅</h3><p>领军企业国际接待、商务与开发者聚会的城市客厅。</p></div><div class="card bordered-blue"><h3>06 清河低碳创新廊</h3><p>众智园清河界面与低碳创新交往环境。</p></div><div class="card bordered-blue"><h3>07 近校成果转化街</h3><p>校-园-街慢行缝合与成果转化会客。</p></div><div class="card bordered-ai"><h3>08 数据要素会客厅</h3><p>数据资产、智能终端与内容消费展示。</p></div><div class="card bordered-ai"><h3>09 AI 生活服务样板街</h3><p>居住、学习、消费、运动、社交一站式公共服务。</p></div><div class="card bordered-ai"><h3>10 全球 AI 活动周路线</h3><p>开发者节、场景开放日、城市体验路线（概念建议）。</p></div><div class="card bordered-ai"><h3>11 AI 健康服务导航</h3><p>脱敏与人工复核前提下的分诊与健康服务导航。</p></div><div class="card bordered-blue"><h3>12 文化导览智能体</h3><p>京张文脉、AI 文化与国际传播叙事导览（概念方案）。</p></div>
+</div>
+<p style="color:var(--muted);font-size:13px;margin:10px 0 0;padding:0 22px 16px">产业测试验证场景：02 安全治理沙盒 · 03 端侧算力驿站 · 11 AI 健康服务导航（均需授权与人工复核）。</p>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑭ 任务覆盖</h2><p>compliance_matrix.json 覆盖公告 1.3、1.4、1.5 与 agent.1–agent.6；standard_matrix 与 design_depth_matrix 证明专业标准与成果深度。</p></div><span class="tag">matrix evidence</span></div>
+<div class="section-body">
+<table>
+<thead><tr><th>任务编号</th><th>说明</th></tr></thead>
+<tbody>
+<tr><td><code>1.3.1</code></td><td>总体设计范围城市设计框架</td></tr><tr><td><code>1.3.2</code></td><td>城市更新与拆改留</td></tr><tr><td><code>1.3.3</code></td><td>建筑规模与开发强度</td></tr><tr><td><code>1.4.1</code></td><td>交通与轨道系统</td></tr><tr><td><code>1.4.2</code></td><td>市政与公共服务设施</td></tr><tr><td><code>1.4.3</code></td><td>公共空间与城市风貌</td></tr><tr><td><code>1.5.1.1</code></td><td>众智园 AI 自主创新加速区</td></tr><tr><td><code>1.5.1.2</code></td><td>北京 AI 原点社区</td></tr><tr><td><code>1.5.2.1–2.5</code></td><td>大钟寺及配套</td></tr><tr><td><code>1.5.3.required / 1–3</code></td><td>统筹研究 + 重点区域实施</td></tr><tr><td><code>agent.1</code></td><td>命名与 Logo</td></tr><tr><td><code>agent.2</code></td><td>5–8 个全球 AI 创新生态案例</td></tr><tr><td><code>agent.3</code></td><td>≥10 张 AI 场景卡 + ≥3 测试验证</td></tr><tr><td><code>agent.4</code></td><td>≥5 类用户画像</td></tr><tr><td><code>agent.5</code></td><td>≥3 处 AI 朝圣地标</td></tr><tr><td><code>agent.6</code></td><td>文化叙事与长期运营</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑮ 风险矩阵（8 维度）</h2><p>从 risk.json 实时读取；高风险（≥4）项需由规划、交通、数据安全、法律合规等专业团队复核。</p></div><span class="tag">risk.json</span></div>
+<div class="section-body row cols-2">
+<div class="card bordered-blue"><h3>数据隐私 · <span style="color:#475569">3/5</h3><p style="margin:0 0 4px">AI 场景涉及公众出行、服务使用或反馈数据，需要明确授权、脱敏和聚合边界。</p><p style="margin:0;color:#64748b;font-size:12.5px"><b>缓解：</b>只使用公开资料、授权反馈和聚合指标，不采集个人敏感信息；城市智能体不输出未经授权的个人画像。</div><div class="card bordered-work"><h3>实施复杂度 · <span style="color:#475569">4/5</h3><p style="margin:0 0 4px">涉及轨道站点一体化、道路组织、公共空间改造与多主体协同，依赖专业深化和审批程序。</p><p style="margin:0;color:#64748b;font-size:12.5px"><b>缓解：</b>先做低成本、可撤回、可复盘的轻量试点（近期试点以众智园为锚点），分三期推进；依赖条件未确认前不表述为审定结论。</p><p style="margin:4px 0 0;color:#7c2d12;font-size:12px"><b>人工复核：</b>由规划、交通、市政和运营团队联合复核实施边界与依赖条件。</p></div><div class="card bordered-blue"><h3>公众接受度 · <span style="color:#475569">3/5</h3><p style="margin:0 0 4px">机器人、自动驾驶或 AI 服务可能引发噪声、安全、体验和公平性担忧。</p><p style="margin:0;color:#64748b;font-size:12.5px"><b>缓解：</b>在试点前公开说明边界，建立反馈渠道，允许公众退出或绕行；保留非数字化替代路径。</div><div class="card bordered-blue"><h3>运维成本 · <span style="color:#475569">3/5</h3><p style="margin:0 0 4px">设备、数据维护、现场运营和人工复核均会产生持续成本。</p><p style="margin:0;color:#64748b;font-size:12.5px"><b>缓解：</b>优先复用既有公共服务空间和运营主体，分阶段评估投入产出；运营建议均以概念方向表述。</div><div class="card bordered-work"><h3>政策不确定性 · <span style="color:#475569">4/5</h3><p style="margin:0 0 4px">建设强度、道路断面、公共安全和数据治理规则需要后续主管部门确认；官方边界与三重点区 polygon 尚未发布。</p><p style="margin:0;color:#64748b;font-size:12.5px"><b>缓解：</b>把相关内容写为概念建议和待确认事项，不表述为审定结论；官方资料补齐后统一重算。</p><p style="margin:4px 0 0;color:#7c2d12;font-size:12px"><b>人工复核：</b>由规划、交通、数据安全和法律合规专业人员复核。</p></div><div class="card bordered-blue"><h3>空间争议 · <span style="color:#475569">3/5</h3><p style="margin:0 0 4px">公共空间、慢行、活动和配送场景可能与居民、企业和既有交通需求冲突。</p><p style="margin:0;color:#64748b;font-size:12.5px"><b>缓解：</b>通过分时、分区、低速和可撤回设施降低冲突；跨环路节点等重大工程以轨道、道路专业复核为前提。</div><div class="card bordered-blue"><h3>技术成熟度 · <span style="color:#475569">2/5</h3><p style="margin:0 0 4px">部分 AI 场景（端侧算力、安全治理沙盒、AI 健康导航）仍需要真实环境测试，不应承诺稳定落地效果。</p><p style="margin:0;color:#64748b;font-size:12.5px"><b>缓解：</b>将技术应用限定为辅助建议或受监管试点，保留人工兜底与人工复核机制。</div><div class="card bordered-blue"><h3>公平与包容性 · <span style="color:#475569">3/5</h3><p style="margin:0 0 4px">青年、老人、残障人士、游客和小企业对空间与服务的需求不同。</p><p style="margin:0;color:#64748b;font-size:12.5px"><b>缓解：</b>在场景设计中保留无障碍、低门槛、非数字化替代路径和多角色反馈渠道。</div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑯ 自检状态</h2><p>确定性校验、空间审查、可视化打包检查、专业证据审查（运行 scripts/self_check_submission.py 实时读取）。</p></div><span class="tag">self_check.json</span></div>
+<div class="section-body">
+<div class="pass-banner">提交包自检：PASS · formal-review-ready · can_enter_formal_review=True</div>
+<div class="check-row" style="margin-top:10px">
+<span class="check"><i class="dot pass"></i>deterministic_validation · pass · blocking</span><span class="check"><i class="dot pass"></i>spatial_review · pass · blocking</span><span class="check"><i class="dot pass"></i>visual_review · pass · blocking</span><span class="check"><i class="dot pass"></i>professional_review · pass · blocking</span><span class="check"><i class="dot pass"></i>provisional_boundary_disclosure · pass · info</span>
+</div>
+<div class="evidence-note">提交前请运行 <code>scripts/finalize_submission.py</code> 与 <code>scripts/self_check_submission.py</code>，确保四门校验全部 PASS。本页面基于最新一次 finalize 重算后的 self_check.json 渲染。</div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑰ 来源</h2><p>所有引用在 sources.json 与标准/深度矩阵中可机读追溯。</p></div><span class="tag">sources.json</span></div>
+<div class="section-body">
+<ul class="compact"><li><b>SITE-PACKAGE</b> · official_public · <span style="color:#475569">Project brief, enums, allowed design space, ranges, and schemas.</span></li><li><b>SOURCE-REGISTRY</b> · repository_public_registry · <span style="color:#475569">Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.</span></li><li><b>PROCESSED-FACT-PACK</b> · repository_processed_reference · <span style="color:#475569">Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.</span></li><li><b>BOUNDARY-SOURCE</b> · agent_inferred_from_public_data · <span style="color:#475569">Submitted site boundary geometry source (provisional).</span></li><li><b>KEY-AREA-SOURCE</b> · agent_inferred_from_public_data · <span style="color:#475569">Three required detailed-design key area boundaries (provisional).</span></li><li><b>OFFICIAL-ANNOUNCEMENT</b> · official_public · <span style="color:#475569">Official announcement tasks, scope levels, key areas, language, and deliverable context.</span></li><li><b>AGENT-TASKBOOK</b> · user_provided_cleared · <span style="color:#475569">Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.</span></li></ul>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head"><div><h2>⑱ 假设</h2><p>来自 assumptions.json；正式深化前须以官方附件核对。</p></div><span class="tag">assumptions.json</span></div>
+<div class="section-body">
+<ul class="compact"><li><b>A-CONTROLS-001</b> · <span style="color:#475569">pending_professional_confirmation</span> · Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.</li><li><b>A-CONTROLS-002</b> · <span style="color:#475569">pending_official_data</span> · Official site boundary and the three key-area polygons are not yet published; the package uses provisional_constraint geometry from brief/site-package/geometry/provisional_boundaries.geojson.</li><li><b>A-DATA-001</b> · <span style="color:#475569">pending_data_collection</span> · Current population and employment data (district/sub-district level) and commuting OD are missing; industrial space scale and service facility sizing are therefore indicative only.</li><li><b>A-DATA-002</b> · <span style="color:#475569">pending_data_collection</span> · Topography (DEM/slope) and engineering geology/hydrogeology data are missing; building height, massing and development intensity proposals are concept-level.</li><li><b>A-DATA-003</b> · <span style="color:#475569">pending_planning_coordination</span> · Upper-level planning documents (Beijing master plan, Haidian district plan, ongoing regulatory detailed plans, historic-city conservation plan) have not been incorporated into this package.</li><li><b>A-DATA-004</b> · <span style="color:#475569">pending_data_collection</span> · Environmental baseline data (air, water, noise, soil) and ecological sensitivity assessment are missing; green and ecological network design relies on qualitative judgment.</li><li><b>A-INFRA-001</b> · <span style="color:#475569">pending_data_collection</span> · Municipal utility network, energy, drainage, flood control and fire-safety engineering data are missing.</li><li><b>A-TRAFFIC-001</b> · <span style="color:#475569">pending_data_collection</span> · Current road network hierarchy, traffic volume, rail station ridership and parking supply data are missing.</li></ul>
+</div>
+</section>
+
+</main>
+<footer><div class="wrap"><p>京张智脉 · 百年京张AI创新带城市设计提案 · AI Agent 提交包 · 离线电子展示 · 使用维护者登记的临时粗略边界</p></div></footer>
+</body>
+</html>

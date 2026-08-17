@@ -160,18 +160,6 @@
       "why_en": "With the line gone `verify.js` still exits 0 — it does not warn about what it does not test — while the proposal says it recomputes every class-1 metric. This package has shipped that defect once already: the verifier recomputed the nine someone had listed and nothing could tell that eight equally recomputable metrics were outside the list. Computing metric_class fixed the nine and nothing was added to keep it fixed."
     },
     {
-      "id": "M32",
-      "gate": "peer_claim_qa.py",
-      "target": "proposal.md",
-      "caught": true,
-      "exit_code": 1,
-      "named_the_damage": true,
-      "what_zh": "把本方案对另一份方案的引述数字改错一个。",
-      "what_en": "Change by one the number this package states about another package.",
-      "why_zh": "**关于别人工作的断言，是本包唯一无法靠改自己文件来补救的一种**，也是最容易在无声中过期的一种——那份方案由它自己的作者按自己的节奏修订。此前这两处引述读过一次、手写下来，没有joined到任何东西。若改错一个数而无人作声，本包对同行的引述就没有任何保障。",
-      "why_en": "A claim about someone else's work is the one kind this package cannot repair by editing its own files, and the kind most likely to go stale in silence, since the other package is revised by its own author on their own schedule. These two citations had been read once by hand and joined to nothing. If the number can be changed without objection, nothing protects what this package says about its peers."
-    },
-    {
       "id": "M31",
       "gate": "figure_citation_qa.py",
       "target": "proposal.en.md",
@@ -850,8 +838,8 @@
       "caught": true,
       "exit_code": 1,
       "named_the_damage": true,
-      "what_zh": "把本包对自己来源构成的自陈从「1 条」改成「4 条」——**登记册一条没动**，动的是这份包对自己说的话，而且改的方向是让缺口看起来小一些。",
-      "what_en": "Change this package's own statement about its evidence base from one locally published source to four. **The registry does not change**; what changes is what the package says about itself, in the direction that makes the gap look smaller.",
+      "what_zh": "把本包对自己来源构成的自陈从「6 条」改成「9 条」——**登记册一条没动**，动的是这份包对自己说的话，而且改的方向是让缺口看起来小一些。",
+      "what_en": "Change this package's own statement about its evidence base from six locally published source to four. **The registry does not change**; what changes is what the package says about itself, in the direction that makes the gap look smaller.",
       "why_zh": "**一份自陈缺口的文件，最容易失真的方向就是把缺口说小。** 这条变异要证明的是：这句话由 `sources.json` 现算核对，说小了会被拦下。",
       "why_en": "**A document that declares its own gaps is most likely to deform in the direction of making them smaller.** The mutation proves the sentence is recomputed against sources.json and an understatement is caught."
     },
@@ -1095,19 +1083,6 @@
       "why_en": "**A drawing that contradicts its own caption is worse than no drawing**: it turns a checkable sentence into decoration. This mutation proves that the section's vertical and horizontal scales parting company stops the build."
     },
     {
-      "id": "M72",
-      "gate": "computed_value_qa.py",
-      "target": "build_figure_index.py",
-      "caught": true,
-      "exit_code": 1,
-      "named_the_damage": true,
-      "rendered": true,
-      "what_zh": "把图纸索引的注释规则改回「只给评审收到的五张保留」——**这正是本轮第一次剪裁时的真实状态**：一句带实测量的注释被连同装饰一起剪掉，而 `computed_value_qa` 当场报出那条模式再也匹配不到任何一处。",
-      "what_en": "Put the figure index's note rule back to keeping notes only for the five sheets the reviewer receives. **This is the state the first cut of this round was actually in**: a note carrying a measured quantity went out with the descriptive ones, and computed_value_qa reported its pattern as matching nothing.",
-      "why_zh": "**剪裁要剪装饰，不剪读数。** 这条变异要证明的是：任何一句带构建算得出的数的句子被剪掉，构建就停——而不是安静地少掉一处可核对的东西。",
-      "why_en": "**A cut removes decoration, not readings.** This mutation proves that dropping any sentence carrying a number the build computes stops the build rather than quietly losing something checkable."
-    },
-    {
       "id": "M75",
       "gate": "accessibility_qa.py",
       "target": "build_visual.py",
@@ -1290,7 +1265,7 @@
       "why_en": "**This sheet is one of the five the review pipeline sends every time, and the six crossings on it exist to satisfy a crossability condition this package published.** Drawn at the weight and colour of the measured streets, a reader sees no intervention. E242 set this rule on this very sheet for buildings — the designed thing must not be the faintest mark in its own frame — and the lines were never covered by it. The mutation proves the build stops when this proposal's own lines are drawn fainter than the survey beneath them."
     }
   ],
-  "caught": 105,
+  "caught": 103,
   "survived": 0,
   "gates_proven_able_to_fail": [
     "accessibility_qa.py",
@@ -1335,7 +1310,6 @@
     "overflow_qa.py",
     "parity_qa.py",
     "pdf_page1_qa.py",
-    "peer_claim_qa.py",
     "planning_controls_qa.py",
     "positioning_qa.py",
     "project_dependency_qa.py",
@@ -1408,6 +1382,6 @@
       "why_en": "The English patterns match the unscoped present perfect, and the English text writes the past perfect, where the tense is the scope. Zero matches is the correct reading, and it was probed: switching one English sentence to the present perfect makes the gate name it."
     }
   ],
-  "coverage_note_zh": "**覆盖率的分母写在这里，而且是读出来的不是写死的。** 本包共 76 道闸门，其中 73 道已被证明会失败；其余 3 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
-  "coverage_note_en": "**The denominator is written down, and it is read rather than retyped.** Of this package's 76 gates, 73 have been shown capable of failing and 3 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
+  "coverage_note_zh": "**覆盖率的分母写在这里，而且是读出来的不是写死的。** 本包共 75 道闸门，其中 72 道已被证明会失败；其余 3 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
+  "coverage_note_en": "**The denominator is written down, and it is read rather than retyped.** Of this package's 75 gates, 72 have been shown capable of failing and 3 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
 }

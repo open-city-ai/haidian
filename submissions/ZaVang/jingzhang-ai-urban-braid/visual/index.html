@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>织脉京张｜v0.2.2 离线视觉板</title>
+  <style>
+    :root {
+      --ink: #10263d;
+      --ink-soft: #334b5f;
+      --muted: #66798a;
+      --paper: #f4f6f2;
+      --surface: #ffffff;
+      --surface-soft: #eaf2ee;
+      --teal: #238f8e;
+      --teal-dark: #126968;
+      --coral: #e86256;
+      --yellow: #efc451;
+      --blue: #7397c7;
+      --line: #cdd9dc;
+      --line-strong: #a8bbc1;
+      --shadow: 0 18px 48px rgba(16, 38, 61, .08);
+      --content: 1280px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; }
+    a { color: inherit; }
+    a:focus-visible {
+      outline: 3px solid var(--coral);
+      outline-offset: 4px;
+    }
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 12px;
+      z-index: 20;
+      transform: translateY(-160%);
+      background: var(--ink);
+      color: #fff;
+      padding: 10px 14px;
+      text-decoration: none;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .shell {
+      width: min(var(--content), calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: min(820px, 100svh);
+      display: grid;
+      align-content: center;
+      padding: 72px 0 60px;
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .hero-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 66px;
+    }
+    .version {
+      margin: 0;
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .status {
+      margin: 0;
+      border: 1px solid var(--coral);
+      color: #b33e34;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .hero-copy { max-width: 980px; }
+    h1 {
+      margin: 0;
+      font-size: clamp(64px, 10vw, 144px);
+      line-height: .9;
+      letter-spacing: -.075em;
+    }
+    .subtitle {
+      margin: 26px 0 0;
+      color: var(--teal-dark);
+      font-size: clamp(22px, 3vw, 38px);
+      line-height: 1.25;
+      font-weight: 700;
+    }
+    .lede {
+      max-width: 900px;
+      margin: 24px 0 0;
+      color: var(--ink-soft);
+      font-size: clamp(18px, 2vw, 25px);
+      line-height: 1.72;
+    }
+    .structure {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 58px;
+    }
+    .structure article {
+      min-height: 174px;
+      padding: 25px 26px 28px;
+      background: var(--surface);
+      border-top: 5px solid var(--teal);
+      box-shadow: var(--shadow);
+    }
+    .structure article:nth-child(2) { border-color: var(--coral); }
+    .structure article:nth-child(3) { border-color: var(--yellow); }
+    .structure-kicker {
+      display: block;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+    .structure strong {
+      display: block;
+      font-size: clamp(22px, 2.1vw, 31px);
+      line-height: 1.25;
+    }
+    .structure p {
+      margin: 12px 0 0;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .jump-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(244, 246, 242, .96);
+      border-bottom: 1px solid var(--line);
+    }
+    .jump-nav .shell {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-top: 11px;
+      padding-bottom: 11px;
+      scrollbar-width: thin;
+    }
+    .jump-nav a {
+      flex: 0 0 auto;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: var(--ink-soft);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .jump-nav a:hover { background: var(--surface); }
+
+    main { display: block; }
+    .chapter {
+      padding: 108px 0;
+      border-bottom: 1px solid var(--line-strong);
+      scroll-margin-top: 62px;
+    }
+    .chapter-head {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 760px);
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 52px;
+    }
+    .chapter-no {
+      color: var(--teal-dark);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+    .chapter-intro {
+      margin: 20px 0 0;
+      color: var(--ink-soft);
+      font-size: 19px;
+      line-height: 1.75;
+    }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .figure-card {
+      margin: 0;
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .figure-scroll {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      background: #f5f7f4;
+      scrollbar-color: var(--teal) #dfe8e5;
+    }
+    .figure-scroll img {
+      display: block;
+      width: 100%;
+      min-width: 920px;
+      height: auto;
+    }
+    figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .scroll-hint { color: var(--teal-dark); font-weight: 700; }
+
+    .anchor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+    .anchor-card {
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .anchor-card:nth-child(1) { border-top: 6px solid var(--coral); }
+    .anchor-card:nth-child(2) { border-top: 6px solid var(--blue); }
+    .anchor-card:nth-child(3) { border-top: 6px solid var(--yellow); }
+    .card-number {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .anchor-card h3 {
+      margin: 15px 0 10px;
+      font-size: 25px;
+      line-height: 1.35;
+    }
+    .anchor-card p { margin: 0; color: var(--ink-soft); }
+    .anchor-card .boundary {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .map-stack { display: grid; gap: 42px; }
+    .map-stack .figure-card { padding: 26px; }
+    .figure-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: baseline;
+      margin-bottom: 20px;
+    }
+    .figure-title h3 { margin: 0; font-size: 27px; }
+    .figure-title p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .logic-graph {
+      padding: clamp(22px, 4vw, 46px);
+      background: #f8fbf7;
+      border: 1px solid var(--line);
+    }
+    .logic-graph-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--line);
+    }
+    .logic-kicker,
+    .logic-step-label,
+    .logic-principle-label {
+      color: var(--teal-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .logic-graph-header strong {
+      display: block;
+      margin-top: 8px;
+      font-size: clamp(25px, 3.2vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -.04em;
+    }
+    .logic-graph-header p { margin: 10px 0 0; color: var(--ink-soft); font-size: 15px; }
+    .logic-badge {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border: 1px solid var(--coral);
+      border-radius: 999px;
+      color: #a94138;
+      background: rgba(255, 255, 255, .75);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .logic-flow {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 34px;
+    }
+    .logic-step {
+      min-height: 264px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      box-shadow: 0 14px 28px rgba(16, 38, 61, .07);
+    }
+    .logic-step.step-one { border-top: 7px solid var(--coral); }
+    .logic-step.step-two { border-top: 7px solid var(--teal); }
+    .logic-step.step-three { border-top: 7px solid var(--yellow); }
+    .logic-step h4 { margin: 14px 0 5px; font-size: clamp(26px, 2.8vw, 38px); line-height: 1.15; }
+    .logic-step strong { display: block; color: var(--teal-dark); font-size: 18px; }
+    .logic-step p { margin: 14px 0 0; color: var(--ink-soft); font-size: 15px; line-height: 1.65; }
+    .logic-step ul { margin: 16px 0 0; padding-left: 18px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .logic-arrow {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      min-width: 94px;
+      color: var(--teal-dark);
+      text-align: center;
+    }
+    .logic-arrow-mark { font-size: 44px; font-weight: 300; line-height: 1; }
+    .logic-arrow small { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .logic-feedback {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 24px;
+      padding: 18px 22px;
+      background: var(--surface-soft);
+      border-left: 7px solid var(--blue);
+      color: var(--ink-soft);
+    }
+    .logic-feedback strong { color: var(--ink); font-size: 18px; }
+    .logic-feedback span { font-size: 14px; }
+    .logic-feedback .logic-loop { margin-left: auto; color: var(--blue); font-size: 30px; line-height: 1; }
+    .logic-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+    .logic-principle { padding: 14px 16px; border: 1px dashed var(--line-strong); color: var(--ink-soft); background: rgba(255, 255, 255, .62); }
+    .logic-principle strong { display: block; margin-top: 5px; color: var(--ink); font-size: 16px; }
+    .simple-flow {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+    .simple-flow.five {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 10px;
+    }
+    .simple-node {
+      min-height: 164px;
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-top: 6px solid var(--teal);
+    }
+    .simple-node:nth-child(3n + 1) { border-top-color: var(--coral); }
+    .simple-node:nth-child(3n + 2) { border-top-color: var(--teal); }
+    .simple-node:nth-child(3n) { border-top-color: var(--yellow); }
+    .simple-node-label { color: var(--teal-dark); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .simple-node h4 { margin: 11px 0 6px; font-size: clamp(21px, 2.2vw, 30px); line-height: 1.2; }
+    .simple-node strong { display: block; color: var(--teal-dark); font-size: 16px; line-height: 1.4; }
+    .simple-node p { margin: 10px 0 0; color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+    .simple-arrow { display: grid; align-content: center; justify-items: center; min-width: 78px; color: var(--teal-dark); text-align: center; }
+    .simple-arrow-mark { font-size: 36px; line-height: 1; }
+    .simple-arrow small { margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+    .simple-flow.five .simple-node { min-height: 184px; padding: 16px; }
+    .simple-flow.five .simple-node h4 { font-size: 21px; }
+    .simple-flow.five .simple-node p { font-size: 13px; }
+    .simple-flow.five .simple-arrow { min-width: 48px; }
+
+    .case-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .legend-item, .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--ink-soft);
+      background: var(--surface);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .case-card {
+      min-height: 260px;
+      padding: 27px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+    .case-card.counterexample { border-left: 6px solid var(--coral); }
+    .case-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+    .case-card h3 {
+      margin: 18px 0 11px;
+      font-size: 27px;
+      line-height: 1.25;
+    }
+    .case-card p { margin: 0; color: var(--ink-soft); }
+    .case-limit {
+      margin-top: auto !important;
+      padding-top: 18px;
+      color: var(--muted) !important;
+      font-size: 14px;
+    }
+    .precedents {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+    .precedent {
+      padding: 24px 27px;
+      border: 1px dashed var(--line-strong);
+      background: transparent;
+    }
+    .precedent h3 { margin: 0 0 8px; font-size: 21px; }
+    .precedent p { margin: 0; color: var(--ink-soft); }
+
+    .scenario-notice {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 24px;
+      margin-bottom: 28px;
+      background: #fff7e3;
+      border: 1px solid #d8b765;
+    }
+    .scenario-notice strong {
+      color: #765411;
+      font-size: 28px;
+      line-height: 1;
+    }
+    .scenario-notice p { margin: 0; color: #59471f; }
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .scenario-card {
+      min-height: 196px;
+      padding: 25px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .scenario-card.simulation {
+      background: #fff9ea;
+      border-color: #d7b65c;
+    }
+    .scenario-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .scenario-code {
+      color: var(--teal-dark);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .1em;
+    }
+    .scenario-state {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: right;
+    }
+    .scenario-card.simulation .scenario-state { color: #765411; }
+    .scenario-card h3 {
+      margin: 18px 0 10px;
+      font-size: 23px;
+      line-height: 1.35;
+    }
+    .scenario-card p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+
+    .evidence-layout {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .metric {
+      min-height: 132px;
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+    .metric span {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .metric strong { display: block; font-size: 31px; line-height: 1.15; }
+    .metric small {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .evidence-panel {
+      padding: 28px;
+      background: var(--ink);
+      color: #fff;
+    }
+    .evidence-panel h3 { margin: 0 0 20px; font-size: 27px; }
+    .evidence-panel dl { margin: 0; }
+    .evidence-panel div {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      padding: 15px 0;
+      border-top: 1px solid rgba(255,255,255,.18);
+    }
+    .evidence-panel dt { color: #c9d7de; }
+    .evidence-panel dd { margin: 0; font-weight: 800; text-align: right; }
+    .unknown { color: #ffcf66; }
+    .no-go { color: #ff8d82; }
+    .evidence-panel p {
+      margin: 22px 0 0;
+      color: #c9d7de;
+      font-size: 14px;
+    }
+    .metric-figure { margin-top: 28px; }
+
+    .boundary-box {
+      max-width: 980px;
+      padding: 34px;
+      background: var(--surface-soft);
+      border-left: 7px solid var(--teal);
+    }
+    .boundary-box h3 { margin: 0 0 14px; font-size: 28px; }
+    .boundary-box p { margin: 0; color: var(--ink-soft); }
+    .boundary-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px 26px;
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .boundary-list li {
+      padding-top: 15px;
+      border-top: 1px solid var(--line-strong);
+      color: var(--ink-soft);
+    }
+    .boundary-list strong { color: var(--ink); }
+
+    footer {
+      padding: 46px 0 70px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer p { max-width: 940px; margin: 0; }
+
+    @media (max-width: 900px) {
+      .shell { width: min(100% - 36px, var(--content)); }
+      .hero { min-height: auto; padding: 38px 0 52px; }
+      .hero-topline { display: block; margin-bottom: 50px; }
+      .status { display: inline-block; margin-top: 18px; }
+      h1 { font-size: clamp(58px, 19vw, 96px); }
+      .subtitle { margin-top: 20px; }
+      .lede { font-size: 18px; }
+      .structure { grid-template-columns: 1fr; margin-top: 40px; }
+      .structure article { min-height: 0; }
+      .chapter { padding: 76px 0; }
+      .chapter-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 34px; }
+      .anchor-grid, .case-grid, .precedents, .scenario-grid,
+      .evidence-layout, .boundary-list { grid-template-columns: 1fr; }
+      .figure-card, .map-stack .figure-card { padding: 12px; }
+      .figure-scroll img { min-width: 820px; }
+      .logic-graph { padding: 20px; }
+      .logic-graph-header { display: block; }
+      .logic-badge { display: inline-block; margin-top: 16px; }
+      .logic-flow { grid-template-columns: 1fr; gap: 10px; }
+      .logic-step { min-height: 0; }
+      .logic-arrow { display: flex; min-width: 0; gap: 10px; }
+      .logic-arrow-mark { transform: rotate(90deg); }
+      .logic-feedback { flex-wrap: wrap; gap: 8px 14px; }
+      .logic-feedback .logic-loop { margin-left: 0; }
+      .logic-principles { grid-template-columns: 1fr; }
+      .simple-flow, .simple-flow.five { grid-template-columns: 1fr; gap: 8px; }
+      .simple-node, .simple-flow.five .simple-node { min-height: 0; }
+      .simple-arrow { display: flex; min-width: 0; gap: 10px; }
+      .simple-arrow-mark { transform: rotate(90deg); }
+      figcaption, .figure-title { display: block; }
+      .scroll-hint, .figure-title p { display: block; margin-top: 8px; }
+      .case-card, .scenario-card { min-height: 0; }
+      .metric-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .shell { width: min(100% - 28px, var(--content)); }
+      .version { letter-spacing: .11em; }
+      .status { white-space: normal; }
+      h1 { font-size: 64px; }
+      .subtitle { font-size: 25px; }
+      .structure strong { font-size: 23px; }
+      h2 { font-size: 41px; }
+      .chapter-intro { font-size: 17px; }
+      .anchor-card, .case-card, .scenario-card, .evidence-panel, .boundary-box { padding: 22px; }
+      .metric-grid { grid-template-columns: 1fr; }
+      .scenario-notice { grid-template-columns: 1fr; }
+      .logic-graph-header strong { font-size: 30px; }
+      .logic-feedback { display: grid; }
+      .logic-feedback .logic-loop { justify-self: start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      .jump-nav, .skip-link, .scroll-hint { display: none; }
+      .shell { width: 100%; }
+      .hero { min-height: auto; }
+      .chapter { break-before: page; }
+      .figure-scroll { overflow: visible; }
+      .figure-scroll img { min-width: 0; }
+      .case-card, .scenario-card, .anchor-card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到主要内容</a>
+
+  <header class="hero shell" id="top">
+    <div class="hero-topline">
+      <p class="version">V0.2.2 · 离线视觉板 / Offline reading board</p>
+      <p class="status">研究同步稿 · 尚未达到提交条件</p>
+    </div>
+    <div class="hero-copy">
+      <h1>织脉京张</h1>
+      <p class="subtitle">面向可验证创新的 AI 城市共生带</p>
+      <p class="lede">以京张铁路历史线索为公共记忆骨架，把创新接口、日常生活与可复核治理织成一条复合城市带。它不是封闭 AI 园区，也不预设一座实体 AI 枢纽。</p>
+    </div>
+    <div class="structure" aria-label="三段功能链">
+      <article>
+        <span class="structure-kicker">01 / 研发与验证</span>
+        <strong>众智园</strong>
+        <p>把科研、企业和专业人员组织起来，先做可复核、可停止的小规模测试。</p>
+      </article>
+      <article>
+        <span class="structure-kicker">02 / 知识与生活</span>
+        <strong>AI 原点社区</strong>
+        <p>把技术和知识转化为人才日常、社区服务和公众能够理解的内容。</p>
+      </article>
+      <article>
+        <span class="structure-kicker">03 / 城市交流</span>
+        <strong>大钟寺</strong>
+        <p>让成果进入展示、活动、企业服务和城市交流，并接收公共使用反馈。</p>
+      </article>
+    </div>
+  </header>
+
+  <nav class="jump-nav" aria-label="视觉板章节导航">
+    <div class="shell">
+      <a href="#overview">总体结构</a>
+      <a href="#anchors">三处重点区</a>
+      <a href="#maps">治理流程</a>
+      <a href="#cases">案例机制</a>
+      <a href="#scenarios">场景卡</a>
+      <a href="#evidence">证据状态</a>
+      <a href="#boundary">表达边界</a>
+    </div>
+  </nav>
+
+  <main id="content">
+    <section class="chapter" id="overview">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="chapter-no">01 / 工作层级 · 总览地图说明（流程版）</div>
+          <div>
+            <p class="eyebrow">One project · three working levels</p>
+            <h2>先看工作深度，不看地图位置</h2>
+            <p class="chapter-intro">这里用流程表达三个工作层级：先统筹研究，再形成总体设计，最后进入重点任务。面积是任务书口径或 provisional 计算，不表示法定边界。</p>
+        </div>
+      </div>
+      <figure class="figure-card">
+          <div class="figure-title">
+            <h3>工作范围｜逐层收敛</h3>
+            <p>流程图 / 不表示空间位置</p>
+          </div>
+          <div class="simple-flow" role="img" aria-label="工作范围流程图：约 43.6 平方公里统筹研究，收敛到约 11.4 平方公里总体设计，再进入约 3.684 平方公里重点设计；不表示空间位置或法定边界。">
+            <article class="simple-node">
+              <span class="simple-node-label">Level 01 / Scan</span>
+              <h4>统筹研究</h4>
+              <strong>约 43.6 km²</strong>
+              <p>识别问题、资源、主体和需要进一步核验的关系。</p>
+            </article>
+            <div class="simple-arrow" aria-hidden="true"><span class="simple-arrow-mark">→</span><small>筛选研究对象</small></div>
+            <article class="simple-node">
+              <span class="simple-node-label">Level 02 / Frame</span>
+              <h4>总体设计</h4>
+              <strong>约 11.4 km²</strong>
+              <p>形成整体策略、功能分工、证据闸门和实施框架。</p>
+            </article>
+            <div class="simple-arrow" aria-hidden="true"><span class="simple-arrow-mark">→</span><small>锁定重点任务</small></div>
+            <article class="simple-node">
+              <span class="simple-node-label">Level 03 / Focus</span>
+              <h4>重点设计</h4>
+              <strong>约 3.684 km²</strong>
+              <p>深入到接口、场景和可逆的概念动作；仍待正式资料核验。</p>
+            </article>
+          </div>
+          <figcaption>
+            <span>三层范围｜面积只说明工作范围和设计深度，不说明相互位置。</span>
+            <span class="scroll-hint">概念层 / 非法定边界</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="chapter" id="anchors">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="chapter-no">02 / 三处重点区 · 重点区域</div>
+          <div>
+            <p class="eyebrow">Three different urban interfaces</p>
+            <h2>三核不是三个复制粘贴的 AI 园区</h2>
+            <p class="chapter-intro">每个重点区承担不同接口，组合起来才形成复合城市带。名称沿用任务书，面积为公告口径；具体边界、现状建筑与实施条件仍待正式资料确认。</p>
+          </div>
+        </div>
+        <div class="anchor-grid">
+          <article class="anchor-card">
+            <span class="card-number">ANCHOR 01</span>
+            <h3>众智园</h3>
+            <p>专业测试接口候选：把安全、标准、低碳和全栈能力转成可被专业人员复核、可以停止的受控测试。</p>
+            <p class="boundary">公告规模约 192.1 ha｜provisional 范围</p>
+          </article>
+          <article class="anchor-card">
+            <span class="card-number">ANCHOR 02</span>
+            <h3>北京 AI 原点社区</h3>
+            <p>知识与生活接口候选：连接近校成果转化、开源协作、社区服务与日常公共空间，保留人工服务和非 AI 选项。</p>
+            <p class="boundary">公告规模约 104.3 ha｜provisional 范围</p>
+          </article>
+          <article class="anchor-card">
+            <span class="card-number">ANCHOR 03</span>
+            <h3>大钟寺</h3>
+            <p>城市产业交流接口候选：承接到达、展示、招聘、企业服务与国际交流，但不把活动展示等同于政府背书。</p>
+            <p class="boundary">公告规模约 72.0 ha｜provisional 范围</p>
+          </article>
+        </div>
+        <figure class="figure-card" style="margin-top: 28px;">
+          <div class="figure-title">
+            <h3>重点区｜角色分工</h3>
+            <p>流程图 / 不表示相对位置</p>
+          </div>
+          <div class="simple-flow" role="img" aria-label="重点区角色分工流程图：众智园负责研发验证，AI 原点社区负责知识生活，大钟寺负责城市交流扩散；三个角色不是地理顺序。">
+            <article class="simple-node">
+              <span class="simple-node-label">Role 01 / Make</span>
+              <h4>众智园</h4>
+              <strong>把问题做成可复核测试</strong>
+              <p>安全、标准、低碳和全栈能力先在受控条件下验证。</p>
+            </article>
+            <div class="simple-arrow" aria-hidden="true"><span class="simple-arrow-mark">→</span><small>转化为可理解内容</small></div>
+            <article class="simple-node">
+              <span class="simple-node-label">Role 02 / Live</span>
+              <h4>AI 原点社区</h4>
+              <strong>把知识带进日常生活</strong>
+              <p>连接近校成果、开源协作、人才服务和公众理解。</p>
+            </article>
+            <div class="simple-arrow" aria-hidden="true"><span class="simple-arrow-mark">→</span><small>进入城市公共交流</small></div>
+            <article class="simple-node">
+              <span class="simple-node-label">Role 03 / Share</span>
+              <h4>大钟寺</h4>
+              <strong>让成果进入城市交流</strong>
+              <p>承接展示、活动、企业服务和国际交流，并接收公共反馈。</p>
+            </article>
+          </div>
+          <figcaption>
+            <span>角色流程｜三个重点区的分工关系，不代表地理顺序、距离或建设先后。</span>
+            <span class="scroll-hint">概念层 / 非法定边界</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="chapter" id="maps">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="chapter-no">03 / 功能链 · 治理流程</div>
+          <div>
+            <p class="eyebrow">Separate layers, separate claims</p>
+            <h2>先把功能分工讲清楚，再看治理流程</h2>
+            <p class="chapter-intro">第一张图只解释三处重点区各自负责什么，不表示地理位置、距离或建设顺序；第二张图把蓝绿与慢行转换成问题处理流程。这里的概念动作不替代控规、道路红线、轨道工程、市政条件或文保认定。</p>
+          </div>
+        </div>
+        <div class="map-stack">
+          <figure class="figure-card">
+            <div class="figure-title">
+              <h3>功能分工｜作为服务链</h3>
+              <p>原“用地分区”任务的流程版；不表示空间分区，只说明三处重点区的任务角色</p>
+            </div>
+            <div class="logic-graph" role="img" aria-label="功能流程图：众智园负责研发与验证，AI 原点社区负责知识与生活，大钟寺负责城市交流与成果扩散，公共使用反馈回到下一轮研发。此图不表示地理位置、空间距离或建设顺序。">
+              <div class="logic-graph-header">
+                <div>
+                  <span class="logic-kicker">Functional flow / not a map</span>
+                  <strong>AI 创新带如何分工</strong>
+                  <p>只看角色和任务，不表示地理位置、空间距离或建设顺序。</p>
+                </div>
+                <span class="logic-badge">功能关系图</span>
+              </div>
+              <div class="logic-flow">
+                <article class="logic-step step-one">
+                  <span class="logic-step-label">Step 01 / Make</span>
+                  <h4>众智园</h4>
+                  <strong>研发与验证</strong>
+                  <p>把科研、企业和专业人员组织起来，先做小规模、可复核、可停止的测试。</p>
+                  <ul><li>研发协作</li><li>创业与产业服务</li><li>专业验证接口</li></ul>
+                </article>
+                <div class="logic-arrow" aria-hidden="true"><span class="logic-arrow-mark">→</span><small>形成可复核原型</small></div>
+                <article class="logic-step step-two">
+                  <span class="logic-step-label">Step 02 / Live</span>
+                  <h4>AI 原点社区</h4>
+                  <strong>知识与生活</strong>
+                  <p>把技术和知识转化为人才日常、社区服务和公众能够理解的内容。</p>
+                  <ul><li>知识交流</li><li>人才生活接口</li><li>人工服务与非 AI 选项</li></ul>
+                </article>
+                <div class="logic-arrow" aria-hidden="true"><span class="logic-arrow-mark">→</span><small>进入城市公共生活</small></div>
+                <article class="logic-step step-three">
+                  <span class="logic-step-label">Step 03 / Share</span>
+                  <h4>大钟寺</h4>
+                  <strong>城市交流与扩散</strong>
+                  <p>让成果进入展示、活动、企业服务和城市交流，但不等同于政府背书。</p>
+                  <ul><li>成果展示</li><li>产业与国际交流</li><li>公共活动接口</li></ul>
+                </article>
+              </div>
+              <div class="logic-feedback">
+                <span class="logic-kicker">Feedback loop</span>
+                <strong>公共使用与问题反馈</strong>
+                <span>把真实需求带回下一轮研发和服务调整</span>
+                <span class="logic-loop" aria-hidden="true">↺</span>
+              </div>
+              <div class="logic-principles">
+                <div class="logic-principle"><span class="logic-principle-label">Guardrail 01</span><strong>专业人员复核</strong></div>
+                <div class="logic-principle"><span class="logic-principle-label">Guardrail 02</span><strong>随时可以停止</strong></div>
+                <div class="logic-principle"><span class="logic-principle-label">Guardrail 03</span><strong>保留人工回退</strong></div>
+              </div>
+            </div>
+            <figcaption><span>功能流程图｜只表达三处重点区的任务分工与反馈，不表示真实空间关系。</span><span class="scroll-hint">概念层 / 非控规</span></figcaption>
+          </figure>
+          <figure class="figure-card">
+            <div class="figure-title">
+              <h3>交通慢行与蓝绿关系｜工作流程</h3>
+              <p>不画路线，只画问题如何被处理</p>
+            </div>
+            <div class="simple-flow five" role="img" aria-label="交通慢行与蓝绿关系工作流程：从问题输入开始，经过资料核对、分段概念动作、交通生态文保专业复核，最后保留、调整或停止；不表示路线或空间位置。">
+              <article class="simple-node">
+                <span class="simple-node-label">Input</span>
+                <h4>问题输入</h4>
+                <p>慢行断点、蓝绿冲突、历史敏感线索。</p>
+              </article>
+              <div class="simple-arrow" aria-hidden="true"><span class="simple-arrow-mark">→</span></div>
+              <article class="simple-node">
+                <span class="simple-node-label">Check</span>
+                <h4>资料核对</h4>
+                <p>核对来源、对象、责任和边界。</p>
+              </article>
+              <div class="simple-arrow" aria-hidden="true"><span class="simple-arrow-mark">→</span></div>
+              <article class="simple-node">
+                <span class="simple-node-label">Design</span>
+                <h4>分段动作</h4>
+                <p>提出连接、停留、保护或人工服务方案。</p>
+              </article>
+              <div class="simple-arrow" aria-hidden="true"><span class="simple-arrow-mark">→</span></div>
+              <article class="simple-node">
+                <span class="simple-node-label">Review</span>
+                <h4>专业复核</h4>
+                <p>交通、无障碍、生态、文保分别设闸门。</p>
+              </article>
+              <div class="simple-arrow" aria-hidden="true"><span class="simple-arrow-mark">→</span></div>
+              <article class="simple-node">
+                <span class="simple-node-label">Decision</span>
+                <h4>结果回流</h4>
+                <p>保留、调整、人工回退或停止。</p>
+              </article>
+            </div>
+            <figcaption><span>工作流程｜不表示连续路线、道路红线、轨道接驳、桥隧或地下工程。</span><span class="scroll-hint">概念层 / 待逐段核验</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="cases">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="chapter-no">04 / 案例机制</div>
+          <div>
+            <p class="eyebrow">Eight named candidate references</p>
+            <h2>八个机制对照候选，不是八个 AI 成功案例</h2>
+            <p class="chapter-intro">案例只帮助拆解组织、空间、试点和退出机制。它们不证明海淀需要同类园区，不构成本地企业、投资、伙伴或 AI 运行成果；本地已验证案例数仍为 0。</p>
+          </div>
+        </div>
+        <div class="case-legend" aria-label="案例分类图例">
+          <span class="legend-item">创新生态机制 × 4</span>
+          <span class="legend-item">AI 邻近 / 城市试点 × 2</span>
+          <span class="legend-item">数字 / AI 城区候选 × 1</span>
+          <span class="legend-item">治理反例 × 1</span>
+        </div>
+        <div class="case-grid">
+          <article class="case-card">
+            <div class="case-meta"><span>CASE-01</span><span>创新生态机制</span></div>
+            <h3>22@Barcelona</h3>
+            <p>土地、基础设施、混合用途与桥接组织协同；官方增长记录与转型未完成、住房和公共设施落差并存。</p>
+            <p class="case-limit">非 AI 原生｜不复制土地制度、资本条件或产业结果。</p>
+          </article>
+          <article class="case-card">
+            <div class="case-meta"><span>CASE-04</span><span>创新生态机制</span></div>
+            <h3>One-North</h3>
+            <p>长期协调者、work–live–play–learn 与受监管测试床；AI 和数字试点属于后置叠加。</p>
+            <p class="case-limit">机构自报多于独立因果证据｜不外推制度、密度与人才政策。</p>
+          </article>
+          <article class="case-card">
+            <div class="case-meta"><span>CASE-05</span><span>创新生态机制</span></div>
+            <h3>Kendall Square</h3>
+            <p>大学—城市—企业—住房—公共空间的规划交换；集聚同时伴随可负担性、可达性与公共空间问题。</p>
+            <p class="case-limit">整体不是 AI 区｜局部 AI hub 不代表区域 AI 结果。</p>
+          </article>
+          <article class="case-card">
+            <div class="case-meta"><span>CASE-06</span><span>创新生态机制</span></div>
+            <h3>Cortex</h3>
+            <p>非营利 master developer、锚点机构、创业支持与混合空间；就业和产出含模型估算，统计口径存在差异。</p>
+            <p class="case-limit">AI 特异性低｜不把 modeled impact 当作因果证明。</p>
+          </article>
+          <article class="case-card">
+            <div class="case-meta"><span>CASE-07</span><span>AI 邻近城市试点</span></div>
+            <h3>Smart Kalasatama</h3>
+            <p>Urban Lab、居民—企业—研究者共创、小规模试点、评估与退出，为城市 living lab 提供治理参考。</p>
+            <p class="case-limit">仅有限 AI 子试点｜没有长期部署、绩效与规模化证据。</p>
+          </article>
+          <article class="case-card counterexample">
+            <div class="case-meta"><span>CASE-08</span><span>治理反例</span></div>
+            <h3>Toronto Quayside</h3>
+            <p>用于审查土地、资本、审批、数据权利、公共授权和退出条件；原方案没有按计划实施。</p>
+            <p class="case-limit">不能确认单一退出原因｜只作为失败闸门，不作成功模板。</p>
+          </article>
+          <article class="case-card">
+            <div class="case-meta"><span>CASE-09</span><span>AI 邻近知识网络</span></div>
+            <h3>Knowledge Quarter London</h3>
+            <p>跨机构研究—文化—企业网络与知识转化接口；官方审计包含机器学习与 AI 方向。</p>
+            <p class="case-limit">不是单一开发项目｜无独立空间—AI 因果结果。</p>
+          </article>
+          <article class="case-card">
+            <div class="case-meta"><span>CASE-10</span><span>数字 / AI 城区候选</span></div>
+            <h3>Punggol Digital District</h3>
+            <p>SIT—JTC—社区、数字基础设施、ODP、AI/机器人与 living lab 的规划和能力证据较强。</p>
+            <p class="case-limit">计划规模不等于已实现结果｜先验证本地问题方、数据和评测。</p>
+          </article>
+        </div>
+        <div class="precedents" aria-label="空间先例附录">
+          <article class="precedent">
+            <h3>空间先例 A｜King’s Cross Central</h3>
+            <p>铁路遗产、公共空间、适应性再利用和长期分期；不计入八个核心候选，也不证明 AI 需要共址。</p>
+          </article>
+          <article class="precedent">
+            <h3>空间先例 B｜Euralille</h3>
+            <p>交通接口、复合功能与公共—私人实施机制；不计入八个核心候选，也不证明 AI 产业结果。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="scenarios">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="chapter-no">05 / 任务覆盖 · 场景卡</div>
+          <div>
+            <p class="eyebrow">Ten design cards, zero verified runs</p>
+            <h2>场景是设计合同，不是部署清单</h2>
+            <p class="chapter-intro">十张卡分别说明对象、空间、人工复核与退出条件。设计数量为 10，已验证运行数为 0；任何真实部署仍需问题方、数据授权、专业责任和停止阈值。</p>
+          </div>
+        </div>
+        <div class="scenario-notice">
+          <strong>02 / 03 / 06</strong>
+          <p>三张候选测试原型当前统一为 <b>simulation_only / not_run</b>。只允许合成、回放或展示性测试，不把设计写成已经运行、已经验证或已经接入公共系统。</p>
+        </div>
+        <div class="scenario-grid">
+          <article class="scenario-card">
+            <div class="scenario-head"><span class="scenario-code">SC-01</span><span class="scenario-state">概念候选</span></div>
+            <h3>开源发布厅</h3>
+            <p>发布前由社区与版权管理员复核；贡献者可撤回展示。</p>
+          </article>
+          <article class="scenario-card simulation">
+            <div class="scenario-head"><span class="scenario-code">SC-02</span><span class="scenario-state">simulation_only / not_run</span></div>
+            <h3>安全治理沙盒候选</h3>
+            <p>仅合成或回放数据；红队、合规和专业人员共同评审，测试可随时终止。</p>
+          </article>
+          <article class="scenario-card simulation">
+            <div class="scenario-head"><span class="scenario-code">SC-03</span><span class="scenario-state">simulation_only / not_run</span></div>
+            <h3>算力服务接口候选</h3>
+            <p>只讨论能耗、授权与服务边界；不声称已有设施或系统接入。</p>
+          </article>
+          <article class="scenario-card">
+            <div class="scenario-head"><span class="scenario-code">SC-04</span><span class="scenario-state">资料治理 / 人工服务</span></div>
+            <h3>慢行可达性资料差异筛查</h3>
+            <p>只做离线资料差异标记；不识别公众、不输出实时导航、不替代无障碍核验。</p>
+          </article>
+          <article class="scenario-card">
+            <div class="scenario-head"><span class="scenario-code">SC-05</span><span class="scenario-state">概念候选</span></div>
+            <h3>国际路演客厅</h3>
+            <p>企业与活动主办方审查内容；不把展示等同于政府背书。</p>
+          </article>
+          <article class="scenario-card simulation">
+            <div class="scenario-head"><span class="scenario-code">SC-06</span><span class="scenario-state">simulation_only / not_run</span></div>
+            <h3>清河低碳关系展示候选</h3>
+            <p>专业复核前只做展示性原型，不输出水务、生态或工程结论。</p>
+          </article>
+          <article class="scenario-card">
+            <div class="scenario-head"><span class="scenario-code">SC-07</span><span class="scenario-state">概念候选</span></div>
+            <h3>近校成果转化街</h3>
+            <p>知识产权、法务、学校与团队共同确认可公开内容。</p>
+          </article>
+          <article class="scenario-card">
+            <div class="scenario-head"><span class="scenario-code">SC-08</span><span class="scenario-state">概念候选</span></div>
+            <h3>数据要素会客厅</h3>
+            <p>数据授权、用途、审计与人工裁量必须可查看、可退出。</p>
+          </article>
+          <article class="scenario-card">
+            <div class="scenario-head"><span class="scenario-code">SC-09</span><span class="scenario-state">人工回退优先</span></div>
+            <h3>生活服务与人工回退街区</h3>
+            <p>居民自愿参与，保留人工窗口与非 AI 选项；不预设公共 AI 部署。</p>
+          </article>
+          <article class="scenario-card">
+            <div class="scenario-head"><span class="scenario-code">SC-10</span><span class="scenario-state">概念候选</span></div>
+            <h3>全球 AI 活动周路线</h3>
+            <p>以活动安全、公共空间许可与版权清权为实施前置。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="evidence">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="chapter-no">06 / 核心指标 · 证据状态 · 自检状态</div>
+          <div>
+            <p class="eyebrow">Design counts are not verified outcomes</p>
+            <h2>核心指标｜把可复算设计量与尚未确认事项分开</h2>
+            <p class="chapter-intro">以下数值来自同一 provisional 几何或设计目录，只描述当前方案的计算与编制状态，不代表法定指标、现状存量、建成成果、批准数量或运行绩效。</p>
+          </div>
+        </div>
+        <div class="evidence-layout">
+          <div class="metric-grid" aria-label="当前设计指标">
+            <div class="metric"><span>provisional 设计范围</span><strong data-metric="site_area_sqm" data-value="11412825.386">11.41M m²</strong><small>投影复算值，不表示官方边界精度</small></div>
+            <div class="metric"><span>蓝绿设计层比例</span><strong data-metric="green_ratio" data-value="0.290946">29.1%</strong><small>不是法定绿地率</small></div>
+            <div class="metric"><span>公共空间节点比例</span><strong data-metric="public_space_ratio" data-value="0.033635">3.4%</strong><small>不是实际公共空间供给</small></div>
+            <div class="metric"><span>概念建筑基底</span><strong data-metric="building_count" data-value="22">22</strong><small>不是现状或最终建设量</small></div>
+            <div class="metric"><span>设计场景卡</span><strong data-metric="ai_scenario_node_count" data-value="10">10</strong><small>已验证运行数为 0</small></div>
+            <div class="metric"><span>概念荣誉节点</span><strong data-metric="ai_pilgrimage_landmark_count" data-value="3">3</strong><small>不是已批准或建成地标</small></div>
+            <div class="metric"><span>具名机制案例</span><strong data-metric="case_design_count" data-value="8">8</strong><small>不是八个 AI 成功案例</small></div>
+            <div class="metric"><span>实施框架</span><strong data-metric="phase_count" data-value="3">3 期</strong><small>不是已实施阶段</small></div>
+          </div>
+          <aside class="evidence-panel" aria-label="关键证据闸门">
+            <h3>当前闸门</h3>
+            <dl>
+              <div><dt>官方精确边界</dt><dd class="unknown">UNKNOWN</dd></div>
+              <div><dt>文保对象与边界</dt><dd class="unknown">UNKNOWN</dd></div>
+              <div><dt>强度 / 高度 / 退线</dt><dd class="unknown">UNKNOWN</dd></div>
+              <div><dt>本地案例验证</dt><dd>0</dd></div>
+              <div><dt>AI 场景运行结果</dt><dd>0</dd></div>
+              <div><dt>公共 AI 部署</dt><dd class="no-go">NO-GO</dd></div>
+              <div><dt>实体 AI 枢纽</dt><dd class="no-go">NO-GO</dd></div>
+            </dl>
+            <p>未知不是缺省同意。缺少正式资料、权责和专业复核时，空间动作回退为关系图、人工服务或 simulation_only。</p>
+          </aside>
+        </div>
+        <figure class="figure-card metric-figure">
+          <div class="figure-scroll" tabindex="0" aria-label="指标证据图，可横向滚动查看">
+            <img src="../assets/figures/metrics-evidence.png" alt="证据状态、设计数量、验证数量和分期框架的关系图">
+          </div>
+          <figcaption><span>指标证据链｜同一边界 → 图层 → 可复算指标；设计数量与验证结果严格分离。</span><span class="scroll-hint">边界更新后必须重算</span></figcaption>
+        </figure>
+        <div class="evidence-panel project-summary" aria-label="更新项目与分期实施">
+          <h3>更新项目｜分期实施</h3>
+          <p>近期保留公共关系和离线/合成测试；中期才讨论重点区更新、接驳和首层界面；长期根据专业资料、运行证据和公共反馈决定扩张或退出。这里是实施框架，不是已批准项目清单。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapter" id="boundary">
+      <div class="shell">
+        <div class="chapter-head">
+          <div class="chapter-no">07 / 表达边界</div>
+          <div>
+            <p class="eyebrow">Fail closed</p>
+            <h2>看起来需要保护的，先按敏感对象对待</h2>
+            <p class="chapter-intro">这是设计阶段的保护性假设，不是文物认定。对象级来源、边界、权属和专业意见补齐之前，不在疑似历史对象上附着设备，不确定拆改，不把铁路、公园、河道画成连续可改造测试带。</p>
+          </div>
+        </div>
+        <div class="boundary-box">
+          <h3>本板只表达三类关系</h3>
+          <p>历史叙事关系、蓝绿公共空间关系、到达与反馈关系。任何进一步空间实体化都需要独立闸门。</p>
+          <ul class="boundary-list">
+            <li><strong>允许：</strong>历史线索、敏感对象候选、provisional 关系图。</li>
+            <li><strong>待确认：</strong>对象身份、范围、权属、道路与市政条件。</li>
+            <li><strong>不主张：</strong>已确认文物、保护范围、建设控制地带。</li>
+            <li><strong>不主张：</strong>确定路线、工程线位、拆改量或实施承诺。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <p>本页为离线静态研究视觉板｜方案：ZaVang × Codex｜版本：v0.2.2。仅使用包内图片与内联样式，不加载远程字体、地图瓦片、脚本、API 或 iframe。空间建议不构成法定规划、审批结论、文保认定或政府实施承诺。</p>
+  </footer>
+</body>
+</html>

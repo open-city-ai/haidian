@@ -1,5 +1,39 @@
 # 方案迭代记录 / Jing-Zhang Intelli-Rail Changelog
 
+## v1.16 - 2026-08-17
+
+- 将三核“验—转—用”和 G0—G3 放行门同步到双语离线展陈，四份 A3/A0 图纸统一标注 v1.16。
+  Synchronized the three-hub VERIFY–TRANSFER–USE grammar and G0–G3 release gates into the bilingual offline exhibit, with all four A3/A0 PDFs labeled v1.16.
+- 将全球案例与核心指标的证据标记贴附到各自论点，重新生成双语 HTML、PDF、manifest 与自检记录，保持公开成果、机器清单和验证状态一致。
+  Attached global-case and core-metric evidence markers to their corresponding claims, then regenerated the bilingual HTML, PDFs, manifest, and self-check so public outputs, machine records, and validation status remain aligned.
+
+## v1.15 - 2026-08-17
+
+- 将 G0—G3 四道实施放行门从原则性文字升级为“必须证据—建议复核角色—未通过动作”的执行合同：资料门对应缺口登记与替换触发条件，普通服务门对应 AI 关闭日和非数字路径，安全包容门对应接管/无障碍/公共数据卡，证据门对应基线/对照/投诉接管/资源与公共收益证据。
+  Upgraded G0–G3 from principle statements into executable evidence contracts with required artifacts, suggested review roles, and explicit failure actions: data-gap registers and replacement triggers for G0, AI-off/ordinary-service evidence for G1, takeover/accessibility/Civic Data Placard evidence for G2, and baseline/comparison/complaint-takeover/resource/public-benefit evidence for G3.
+- 明确阶段不因日历时间自动推进，“试点已运行”不能替代成效证据；未过门时对应研究/补服务/暂停复测/维持规模或退出四类动作。
+  Clarified that phases do not advance automatically with calendar time and that a running pilot is not outcome evidence; failure now maps to research-only, restore ordinary service, pause/retest, or hold/reduce/exit actions.
+
+## v1.14 - 2026-08-17
+
+- 在首屏增加三核“动词—空间—证据—回退”交付语法：众智园=验（VERIFY）、AI原点=转（TRANSFER）、大钟寺=用（USE）；每核同时给出最小可见空间交付、扩展前证据和 AI 失效后的普通城市状态。
+  Added a three-hub “verb–space–evidence–fallback” grammar to the first read: Zhongzhiyuan=VERIFY, AI Origin=TRANSFER, Dazhongsi=USE; each hub now states its minimum visible spatial delivery, pre-expansion evidence, and ordinary city state after AI failure.
+- 该轮不新增品牌口号堆叠，而是让品牌辨识、重点区空间明确性和可转化实施判断共用同一套三核动作语法。
+  Rather than adding more slogans, this pass makes brand identity, key-area spatial clarity, and transferability share the same three-hub action grammar.
+
+## v1.13 - 2026-08-17
+
+- 新增“一页判读”，把空间、普通服务、验证和运营四层压缩成首屏可读结构；三处重点区分别形成“河—庭—廊”“校—街—厅”“站—厅—街—绿”英雄空间序列。
+  Added a one-page first read that compresses space, ordinary service, verification, and operations into a concise public-facing structure; the three key areas now use the hero sequences river–court–gallery, campus–street–hall, and station–hall–street–green.
+- 十二个 AI+ 场景全部补齐“测量与对照—人工接管/普通路径—阶段门与停止条件”，把原来的指标说明升级成可执行验证合同；三类测试沙盒分别对应接管/失效、数字与非数字等价、同任务能耗对照。
+  All twelve AI+ scenarios now carry measurement/comparison, human-takeover/ordinary-path, and stage-gate/stop-condition contracts; the three testbeds explicitly verify takeover/failure, digital–non-digital equivalence, and same-task energy performance.
+- 三处重点区增加“永久城市骨架 + 可撤 AI 侧带”规则和 AI 关闭日演练，确保 AI 停机后通行、导视、柜台、展陈和无障碍服务仍可独立工作。
+  Added a permanent-urban-base plus removable-AI-sideband rule and AI-off drills in all three key areas so movement, signs, counters, interpretation, and accessibility remain functional after shutdown.
+- 新增 G0—G3 四道实施放行门与 B01—B05 第一年基线测量方案；补充停车、区域协同接口、国际传播固定文案、公共空间组件库和从公开问题到验证/转化/退出的长期运营路径。
+  Added G0–G3 implementation release gates and B01–B05 year-one baseline measurement plans; also strengthened parking, regional-synergy interfaces, international communication copy, the public-space component library, and the long-term public-problem-to-verification/conversion/exit pathway.
+- 中英文正文保持同构，正式边界、控规和工程数据缺口状态不变；本轮不修改九个几何图层、既有空间指标和五张核心图。
+  Chinese and English proposals remain structurally equivalent; provisional geometry and missing formal control/engineering data remain unchanged. This round does not alter the nine geometry layers, existing spatial metrics, or the five core figures.
+
 ## v1.12 - 2026-08-17
 
 - 冻结版：v1.1—v1.11 的全部修改经四门自检、双语对齐审计与 manifest 哈希核验后定稿；本版不新增内容，仅作最终校验与提交。
@@ -42,8 +76,8 @@
 
 ## v1.4 - 2026-08-17
 
-- 新增“承诺—交付”索引表：正文承诺的每类交付内容对应到包内具体文件，供评审快速核验。
-  Added a promise-to-deliverable index mapping every category of promised content to the exact package files for quick review verification.
+- 新增“承诺—交付”索引表：正文承诺的每类交付内容对应到包内具体文件，便于快速核验。
+  Added a promise-to-deliverable index mapping every category of promised content to the exact package files for rapid verification.
 
 ## v1.3 - 2026-08-17
 

@@ -23,7 +23,7 @@ This section is the one-page entry for review: the left column is the question a
 
 | Review question | This proposal's answer | Verifiable deliverable |
 | --- | --- | --- |
-| What is the core proposition | Jing-Zhang AI Spine: translating the green corridor into a trustable public innovation interface; self-checked by three delivery disciplines — Recalculable, Stoppable, Accountable — with a one-line test standard (recalculable / stoppable / answerable — if any of the three cannot be answered it does not go live) | This section + the indicator-recalculation table + the task-coverage matrix + 14 vector planning sheets (incl. grading hierarchy, subsystem composition and three key-area detail sheets) |
+| What is the core proposition | Jing-Zhang AI Spine: translating the green corridor into a trustable public innovation interface; self-checked by three delivery disciplines — Recalculable, Stoppable, Accountable — with a one-line test standard (recalculable / stoppable / answerable — if any of the three cannot be answered it does not go live) | This section + the indicator-recalculation table + the task-coverage matrix + 14 vector planning sheets (incl. grading hierarchy, subsystem composition and three key-area detail sheets) plus a sheet index |
 | How does it respond spatially | One belt, three cores, multiple points; a blue-green slow-mobility composite ring; the three delivery disciplines land on three drawable spatial images: Zhizhiyuan · Recalculable Ledger Plaza, Dazhongsi · Stoppable Service Street, Origin Community · Accountability Corridor | The spatial layers + five analysis figures + the A3 booklet and A0 boards |
 | How do AI and governance interlock | Each of the ten scenario cards declares "no-AI equivalent path + stop condition + manual fallback"; aligned with the five-field criteria of the Service Equivalence Baseline SEB v0.2 | Scenario-card section + the task-coverage matrix |
 | Where does implementation start | Three stoppable work packages + three phases + six renewal projects (roles / preconditions / outcome indicators / fallback) | Renewal-project-list section + the phasing layer |
@@ -45,6 +45,9 @@ The boundary reading returns to the overall-scope layer and area recalculation [
 
 ### Current-State Evidence Ledger: Verified Facts — Remaining Unknowns — Design Consequences
 
+
+![Existing Constraints & Networks](assets/figures/plan-02-constraints.png)
+
 This proposal writes the key gaps as a four-row "evidence ledger", each row separating this round's verifiable facts, what still cannot be proven, and the design consequence; new facts only shrink the unknown, never auto-completing a line, activating a service, or manufacturing precision [depth:existing_conditions_diagnosis]:
 
 | Dimension | Verifiable facts this round | Still cannot prove | Design consequence |
@@ -56,7 +59,20 @@ This proposal writes the key gaps as a four-row "evidence ledger", each row sepa
 
 This ledger simultaneously enforces the three delivery disciplines "Recalculable, Stoppable, Accountable": what is recalculable is written as a number, what is not is written as awaiting formal data; what is verifiable is written as fact, what is not is written "pending verification, not drawn"; what can be held responsible is written with a role, what cannot is written unactivated.
 
+## A Century in Dialogue: From Self-Strengthening in the First Industrial Revolution to Leadership in the Fourth
+
+This roughly nine-kilometre Jing-Zhang green corridor is where two of China's self-strengthening stories — from two industrial revolutions — overlap on the same ground [source:DATA-JINGZHANG-HISTORY].
+
+In 1909, a poor and weakened China was told that "the engineer who could build the Beijing–Zhangjiakou Railway had not yet been born." Zhan Tianyou (Jeme Tien-yow), leading an all-Chinese team, independently designed and built the country's first trunk railway. His herringbone switchback translated the steep 28‰ grade at Qinglongqiao into engineering wisdom a train could climb, stop on, and be held accountable for at every switchback — a self-strengthening project in which China learned from and caught up with the advanced technology of the First Industrial Revolution [source:DATA-JINGZHANG-HISTORY]. The Qinghuayuan Station, opened the same year, lies within today's provisional extent of the Beijing AI Origin Community; in 1949 it became the first stop of the leadership's "journey to the capital for the examination," and after closing in 2016 it rests southwest of Chengfu Road. One small station anchors three identities at once: the 1909 origin of self-strengthening, the 1949 starting point of the "examination," and the 2026 origin of innovation.
+
+One hundred and seventeen years later, on the same ground, China has become one of the leaders in artificial intelligence. With an AI core-industry scale of 350 billion yuan, 130 registered large models and 26 unicorns, Haidian carries a core share of China's role in global intelligent competition [source:DATA-HAIDIAN-AI-INDUSTRY]. The centenary Jing-Zhang AI Innovation Belt is not a fresh start on a blank slate, but the continuation and elevation of this self-strengthening thread into the Fourth Industrial Revolution — translating the herringbone railway's recalculability, stoppability and accountability on a grade into this proposal's three delivery disciplines for AI systems: Recalculable, Stoppable, Accountable.
+
+This is the conception of the proposal: to make the Jing-Zhang AI Spine a public innovation interface that runs "from historical self-strengthening to intelligent leadership." As the flagship detailed-design anchor (see "Key-Area Detailed Design"), the Beijing AI Origin Community overlays the triple memory of Qinghuayuan Station, the engineering wisdom of the herringbone and the contemporary discipline of the Accountability Corridor in a single place — letting a passerby, beside the rail relics, read a nation's two self-strengthenings: the first time, we learned and caught up with the world's advanced technology; this time, we co-define the rules of the intelligent age with the world [source:DATA-JINGZHANG-HISTORY] [depth:overall_spatial_structure].
+
 ## Three-Level Scope Working Framework
+
+
+![Location & Overall Scope](assets/figures/plan-01-location.png)
 
 This proposal organizes its work along the three levels defined by the announcement: the strategic research scope covers the 43.6 km² AI industry ecology, strategic positioning, innovation chain and future urban form; the overall design scope covers the 11.4 km² urban area and industrial zones within 1–2 km of the Jing-Zhang Heritage Park, forming an overall urban-renewal framework, industrial spatial layout, transport and municipal support, and urban character control; the key-area scope covers the 368.4 ha of three detailed-design areas, specifying function mix, building scale, retain/renovate/demolish classification, public-space connectivity and transport organization. The three levels are mapped line-by-line in the task-coverage matrix, so that every mandatory task in announcement clauses 1.3, 1.4, 1.5 and agent taskbook items 1–6 has a section, layer, metric, drawing and HTML evidence. The three-level framework's depth is governed by [depth:three_level_scope_framework] and [depth:overall_spatial_structure]; spatial evidence takes [data:geometry/site_boundary.geojson#SITE-001] and [data:geometry/key_areas.geojson#PROV-KEY-001]; task authority takes [standard:PROJECT-OFFICIAL-ANNOUNCEMENT].
 
@@ -161,7 +177,13 @@ All brands, fonts, images, portraits and corporate marks must be cleared before 
 
 This proposal, in the overall design scope, proposes the urban-renewal overall structure of "one belt, three cores, multiple scenarios, blue-green slow-mobility composite ring", landing it on 10 land-use zones, 6 building clusters, 4 roads, 1 continuous green belt and 3 public nodes, forming a recalculable, stoppable, accountable spatial base map [depth:land_use_layout] [depth:development_intensity_controls].
 
+
+![Spatial Structure](assets/figures/plan-04-structure.png)
+
 **Land-use structure**: the ten zones of the land-use layer fully cover the design boundary without overlap, expressing the functional division of the three cores and the green corridor through four official land-use codes [data:geometry/land_use.geojson#LU-001]. Code 0802 AI R&D innovation land carries the two incubation poles — the Beijing AI Origin Community innovation-incubation zone (~835,600 m²) and the Zhizhiyuan full-stack autonomous-innovation acceleration zone (~1,817,000 m²); code 09 commercial service land carries translation and consumption — the Dazhongsi AI-native and commercial-service zone (~1,912,600 m²) and the northern connector industrial service and supporting facilities (~1,219,100 m²); code 0702 community-service and supporting land (~2,436,300 m²) carries the southern connector's job-housing and living services; code 1401 park green space and open space, five segments, jointly constitute the Jing-Zhang Heritage Park green main axis. The ten-zone proportions are a recalculated expression of the current conceptual geometry, not a regulatory-planning adjustment decision [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE].
+
+
+![Land-Use Plan](assets/figures/plan-03-landuse.png)
 
 **Building footprints**: the six clusters of the building-footprint layer are organized two per core — Zhizhiyuan full-stack autonomous R&D cluster and standards-and-governance display cluster, Origin Community open-source collaboration cluster and outcomes-translation cluster, Dazhongsi intelligent-terminal display cluster and international-exchange business cluster — with building footprints recalculated at ~427,900 m² [data:geometry/buildings.geojson#BLDG-001] [metric:building_footprint_area_sqm]. These express renewal/retained building footprints, not an existing-building census; ownership, structure, height and retain/renovate/demolish await official data [depth:retain_renovate_demolish].
 
@@ -169,11 +191,26 @@ This proposal, in the overall design scope, proposes the urban-renewal overall s
 
 **Vector planning sheets**: this proposal is accompanied by fourteen vector planning sheets that land the spatial structure above as verifiable drawings — nine overall sheets: Location & Overall Scope, Existing Constraints & Networks, Land-Use Plan (land-sea classification colours and codes), Spatial Structure, Three Key-Area Site Plans, Green & Public-Space System, Mobility & Slow-Traffic System, Phased Implementation, and Blue-Green Landscape System; two system sheets: Grading Hierarchy (three-level design control: overall — key areas — places) and Subsystem Composition (four subsystems overlaid: industry-innovation, blue-green ecology, mobility & slow traffic, public service); and three key-area detail sheets at roughly 1:2000: Zhongzhiyuan AI Acceleration Area, Beijing AI Origin Community and Dazhongsi AI Industry Cluster, each marking the anchor of its spatial imagery (Recalculable Ledger Plaza, Accountability Corridor, Stoppable Service Street) together with in-area land-use parcels, R&D clusters and public nodes. Each sheet carries a title, legend, north arrow, scale bar, the provisional-boundary red dashed line and source notes, so the placement of every zone, greenway and node can be zoomed and checked directly.
 
+
+![Grading Hierarchy](assets/figures/plan-10-hierarchy.png)
+
+![Subsystem Composition](assets/figures/plan-11-subsystems.png)
+
+The fourteen vector planning sheets are distributed across the matching sections for text-figure reading: Location & Overall Scope (Three-Level Scope), Existing Constraints & Networks (Evidence Ledger), Spatial Structure (Overall Design Scope), Land-Use Plan (Land-Use Structure), Grading Hierarchy & Subsystem Composition (Vector Planning Sheets), Three Key-Area Site Plans and three detail sheets (Key-Area Detailed Design), Green & Public-Space System (Blue-Green Space), Mobility & Slow-Traffic System (Transport), Phased Implementation (Phasing Plan), Blue-Green Landscape System (Urban Character). Vector PDF originals are in `drawings/`; rendered sheets appear here for direct viewing.
+
 Regulatory-depth control indicators — FAR, building height, building density, setbacks, road redlines and facility standards — in the absence of official control conditions are uniformly marked as awaiting formal data and entered in the indicator-recalculation table and the assumptions list, with the missing conditions and recalculation path stated, never substituting agent-inferred values for approved indicators [depth:development_intensity_controls] [metric:floor_area_ratio]. The indicator-recalculation table recalculates the core areas, ratios and layer counts, and the task-coverage matrix ties each task to layers, metrics and drawings.
 
 ## Key-Area Detailed Design
 
 The three key areas are this proposal's three detailed-design anchors. The Zhizhiyuan AI Autonomous-Innovation Acceleration Area develops around the national AI platform, full-stack autonomy, standard-setting, safety governance, industry display, external transport, Qinghe culture, low-carbon green innovation exchange environment and green-space AI scenarios; the Beijing AI Origin Community develops around near-campus innovation, outcomes incubation and translation, a talent zone, open-source system, brand activities, building retain/renovate/demolish, outcomes display and release, residential and living support, campus-park slow-mobility links and rail-station integration; the Dazhongsi AI Industry Cluster Area develops around leading enterprises, intelligent agents, intelligent terminals, content consumption, data factors, digital assets, commercial services, composite use of planned green space, Dazhongsi Station integration and four-quadrant pedestrian connectivity. All three detailed designs cite [data:geometry/key_areas.geojson#PROV-KEY-001], [data:geometry/key_areas.geojson#PROV-KEY-002], [data:geometry/key_areas.geojson#PROV-KEY-003], with depth checked by [depth:three_key_area_detailed_design].
+
+
+![Three Key-Area Site Plans](assets/figures/plan-05-keyareas.png)
+
+Among the three key areas, **the Beijing AI Origin Community is the flagship detailed-design anchor**, carrying the spatial narrative of "A Century in Dialogue." Its detailed design is organized around an "Origin Axis": anchored on the Qinghuayuan Station relic lying southwest of Chengfu Road — where three identities overlap (the 1909 origin of self-strengthening, the 1949 starting point of the "examination," and the 2026 origin of innovation) [source:DATA-JINGZHANG-HISTORY] — the axis runs north to stitch the open-source collaboration cluster and the outcomes-translation cluster into one walkable continuous interface of "near-campus incubation, outcomes release and talent-zone services." Graphically it continues Zhan Tianyou's herringbone-switchback motif: the main axis makes a single "switchback" in front of the station relic, separating the R&D backstage from the public frontstage — the public-facing Accountability Corridor is laid along the switchback, writing each renewal project's responsible body, appeal interface and fallback path on the ground so that anyone harmed can follow the corridor to a name, an appeal and a fallback [data:geometry/key_areas.geojson#PROV-KEY-002] [metric:public_space_ratio]; the backstage open-source release hall and incubation spaces sit inside the corridor, so that on failure the public rooms can close as a whole without encroaching on care and incubation cores. In-area 0802 AI R&D innovation land (~835,600 m²) overlaps with 1401 park green space, and the slow greenway passes north–south, linking the Wudaokou–Tsinghua–PKU institute chain into this Origin Axis that runs "from historical self-strengthening to intelligent leadership" [data:geometry/land_use.geojson#LU-001] [depth:three_key_area_detailed_design].
+
+
+![Beijing AI Origin Community Detail (c.1:2000)](assets/figures/plan-13-keyarea-origin.png)
 
 ![Three key areas index and design tasks](assets/figures/key-areas.png)
 
@@ -186,6 +223,11 @@ The three key areas are marked as provisional constraint in the key-area layer (
 | Dazhongsi AI Industry Cluster Area | Urban-style intelligent economy and international-exchange block | Around Dazhongsi Station integration, four-quadrant pedestrian connectivity, commercial services and public-environment renewal of key enterprises | Intelligent-agent and terminal display, content consumption, data factors and international roadshows | [data:geometry/key_areas.geojson#PROV-KEY-003], [metric:key_area_count] |
 
 The spatial moves of the three areas follow one discipline: Zhizhiyuan separates the test foreground from the maintenance and data back office, where models or facilities can be stopped on site; the Origin Community places the public foreground between research and community life, so that on failure the public room closes and the care and incubation cores are not squeezed; Dazhongsi organizes the station's four quadrants into a time-banded gateway sequence, where static wayfinding still completes basic tasks when digital systems are down. All three retain "no-AI equivalent path + stop condition + manual fallback", and no incremental service opens unless every condition is met [depth:three_key_area_detailed_design].
+
+
+![Zhongzhiyuan AI Acceleration Area Detail (c.1:2000)](assets/figures/plan-12-keyarea-zhongzhiyuan.png)
+
+![Dazhongsi AI Industry Cluster Detail (c.1:2000)](assets/figures/plan-14-keyarea-dazhongsi.png)
 
 ## AI Innovation Ecosystem, Talent Personas and AI+ Scenarios
 
@@ -260,13 +302,21 @@ The transport plan organizes rail-station integration, road micro-circulation, s
 
 ![Transport, slow mobility and blue-green public-space composite system](assets/figures/mobility-bluegreen.png)
 
+
+![Mobility & Slow-Traffic System](assets/figures/plan-07-mobility.png)
+
 Municipal and public services adopt a "chassis—increment—shutdown" topology [depth:municipal_new_infrastructure]: the chassis layer is lighting, accessibility, emergency contact, water/sanitation, manual or telephone, static wayfinding and safety power-off; the increment layer is computing, robotics, booking, digital wayfinding and activities; the shutdown layer is local isolation, manual takeover, closure information, clearing/reset and event logging. Every layer states its supply entry, daily operation, fault isolation, manual substitution and reopening evidence. Energy, water supply/drainage, fire safety, communications, waste, noise, thermal environment and edge-computing capacity remain UNKNOWN, so the topology does not represent pipelines, loads, equipment or engineering feasibility; where budget, positions, substitution, maintenance windows, manual alternatives or appeal responsibility are missing, the corresponding increment stays not_activated [assumption:A-CONTROLS-001].
 
 ## Blue-Green Space, Public Space and Urban Character
 
+
+![Green & Public-Space System](assets/figures/plan-06-green-public.png)
+
 Blue-green space takes the Jing-Zhang Heritage Park vitality belt as its skeleton, coordinates the Qinghe and Xiaoyuehe rivers and the travel needs of surrounding universities, enterprises and communities, and forms a north-south connected, east-west linked system of walking, cycling and green space; it identifies slow-mobility breakpoints, ring-crossing nodes, and the park's south- and north-end landscape nodes, and proposes composite-use strategies for parking, sports, innovation exchange, technology testing, application display and public services. The Jing-Zhang Heritage Park continuous green belt is the conceptual surface of a continuous green corridor for recovery and handoff, recalculated at ~2.46 million m² [data:geometry/green_space.geojson#GREEN-001]; Three public nodes — the Dazhongsi Station four-quadrant public node, the AI Origin Community public-activity interface and the Zhizhiyuan Qinghe innovation-exchange interface — jointly constitute the public interface [data:geometry/public_space.geojson#PUBLIC-001]. Green ratio ~21.56% and public-space ratio ~10.89% are recalculable from the provisional geometry but describe only the submitted layers, not existing conditions or planning performance [metric:green_ratio] [metric:public_space_ratio]. Digital services in the green corridor can be switched off; shading, seating, accessibility, drinking water, static wayfinding and safety contact form the non-digital chassis; the public interface shows who is on duty, what is closed, how to appeal and when to reopen. If staff are insufficient or maintenance incomplete, services close rather than squeezing back-office time [depth:blue_green_public_space].
 
 Urban character fuses the Jing-Zhang Railway's historical culture, Zhongguancun's innovation culture and AI innovation culture, using cultural resources such as Qinghuayuan Railway Station and the Beijing Film Academy to propose urban tone, architectural character, roof form, massing, interface and public-art guidance; wayfinding, cultural symbols, international-communication narrative, AI pilgrimage landmarks, contribution walls and honor-display systems all require cleared sources. Character control distinguishes official control, design suggestion and to-be-confirmed conditions, and does not fabricate pseudo-precise control lines without heritage-protection or regulatory-planning basis [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+![Blue-Green Landscape System](assets/figures/plan-09-blue-green.png)
 
 ### AI Pilgrimage Landmarks and Honor-Display System
 
@@ -279,6 +329,9 @@ This proposal proposes three conceptual landmarks, all positioned as "open co-cr
 The honor-display system shares one rule with the three landmarks: the contribution wall, milestone wall and annual list record only public, verifiable, cleared content; they do not collect personal behavior trails, do not output unauthorized personal profiles, and retain manual takedown and correction channels [source:AGENT-TASKBOOK]. No landmark is entertainment-driven, internet-famous or vulgar, and none violates heritage-protection, green-space, blue-line or traffic-safety constraints [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
 ## Renewal Project List, Implementation Policy and Phasing Plan
+
+
+![Phased Implementation](assets/figures/plan-08-phasing.png)
 
 This proposal forms an auditable renewal-project list stating project position, type, function, responsible actors, dependency conditions, implementation stage, risk and evaluation indicators; policy suggestions cover coordinated urban-renewal implementation, spatial supply, operating mechanisms, industrial services, public participation, data governance and property-rights coordination. The phasing layer expresses phasing scope [data:geometry/phasing.geojson#PHASE-001], and the task-coverage matrix ties each task to phasing and drawings; anything without ownership, funding, implementation actors or approval paths is written as an implementation risk, not a landing commitment [depth:renewal_project_list] [depth:phasing_implementation].
 

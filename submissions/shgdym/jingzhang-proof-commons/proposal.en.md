@@ -157,6 +157,8 @@ The images describe three kinds of ordinary city life, not three AI showrooms. Z
 
 ![Three key-area plans, scene locations and dependencies](assets/figures/key-areas.en.png)
 
+**Public context slice.** To keep the three stations from differing by name alone, this package ships a 17 August 2026 OSM slice of mapped roads, railways, waterways, green areas and building outlines: 6,266 features in total. The same script recomputes mapped observations inside the three provisional key-area boxes. Zhongzhi, AI Origin and Dazhongsi contain 196, 144 and 110 mapped building footprints, with about 12.8, 9.5 and 2.4 km of mapped walking/cycling lines. These readings state only what the public map contains; they do not prove current buildings, ownership, demand, accessibility or engineering feasibility. They place Zhongzhi's controlled test edge, AI Origin's continuous release interface and Dazhongsi's staffed arrival service in visibly different fabrics, all subject to replacement by official survey. [source:OSM-SITE-CONTEXT-20260817] [data:visual/assets/site-context-results.json] [metric:osm_site_context_feature_count]
+
 The station atlas aligns plan, civic section, operating programme and failed restoration on one review surface. Zhongzhi uses a staffed controlled loop to protect the public route; AI Origin uses a continuous ground floor and public problem table to connect release, collaboration and rights disclosure; Dazhongsi uses an arrival cross and circular hall to separate trial, appeal and non-AI service. These are not one generic grid with different labels, and civic space must remain useful after equipment exits. [data:geometry/buildings.geojson#BLDG-101] [data:geometry/public_space.geojson#LANDMARK-01] [depth:three_key_area_detailed_design]
 
 ![Aligned plans, sections, operations and restoration for three stations](assets/figures/station-design-atlas.en.png)
@@ -183,7 +185,7 @@ Urban character comes from rail traces, rain planting, durable paving, reversibl
 
 ![Mobility, east-west stitches and three public sections](assets/figures/mobility-bluegreen.en.png)
 
-The three east-west stitch sections share one public route that cannot be interrupted, while the controlled event layer can close independently after an incident, extreme weather, accessibility failure or permit lapse. Field accessibility audit, non-AI equivalent service, night-safety review, human-takeover drill and failed restoration form the continuity acceptance chain. Technical functions do not open while any link remains unresolved. [standard:MOHURD-URBAN-DESIGN-MEASURES] [data:geometry/roads.geojson#ROAD-X01] [metric:east_west_stitch_count]
+The pale network is the reproducible public OSM context slice; the red civic mainline and three technical pockets are conceptual relations, not existing roads or engineering alignments. The three east-west stitch sections share one public route that cannot be interrupted, while the controlled event layer can close independently after an incident, extreme weather, accessibility failure or permit lapse. Field accessibility audit, non-AI equivalent service, night-safety review, human-takeover drill and failed restoration form the continuity acceptance chain. Technical functions do not open while any link remains unresolved. [source:OSM-SITE-CONTEXT-20260817] [data:geometry/roads.geojson#ROAD-X01] [metric:east_west_stitch_count]
 
 ![Three stitch sections and the accessible continuity acceptance chain](assets/figures/sections-accessibility.en.png)
 

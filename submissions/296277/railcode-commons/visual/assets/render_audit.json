@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "package_version": "v1.5",
+  "package_version": "v1.6",
   "checked_at": "2026-08-17",
   "checker": "participant-side review using bundled Playwright, pypdf, Poppler, and Pillow",
   "status": "participant_side_final_render_pass",
@@ -31,13 +31,27 @@
     "result": "pass"
   },
   "synthetic_media_audit": {
-    "declared_assets": 5,
+    "declared_assets": 6,
     "scene_images": 4,
-    "contact_sheet_cover": 1,
+    "contact_sheets": 2,
+    "review_hero_is_text_free": true,
+    "fixed_multimodal_figure_pairs_with_all_four_scenes": 1,
     "broken_images": 0,
     "non_empty_alt_text": true,
     "disclaimer_present_in_both_languages": true,
     "rights_and_method_record": "visual/assets/ai_render_disclosure.json",
+    "result": "pass"
+  },
+  "official_review_first_view": {
+    "documents": [
+      "visual/index.html",
+      "visual/index.en.html"
+    ],
+    "viewport": "1440x1600",
+    "all_four_scenes_visible": true,
+    "baked_in_text": false,
+    "html_heading_clipped": false,
+    "competing_text_layers": false,
     "result": "pass"
   },
   "pdf_audit": [
@@ -72,6 +86,9 @@
     "Made repeated package generation byte-stable, including PDFs.",
     "Added four declared AI concept renderings and a local contact-sheet cover with bilingual-neutral first-read labels and explicit non-evidence disclaimers.",
     "Replaced the three v1.1 scene-board references in both proposal languages and both visual pages with the v1.5 synthetic scene assets.",
+    "Added a text-free 8:7 four-scene reviewer hero so background cropping cannot remove baked-in labels or create competing text layers.",
+    "Redrew the paired fixed site-overview figures with all four scenes, task topology, RC/G0-G4 routing, reality state, and evidence boundary; placed the same pair on all A3/A0 first pages.",
+    "Reproduced the official 1440x1600 HTML first view in both languages with no clipping and all four scenes visible.",
     "Contained wide report tables and wrapped long code/evidence paths on 390 px mobile viewports; all eight HTML cases have zero document overflow, broken images, console errors, or page errors."
   ]
 }

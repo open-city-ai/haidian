@@ -1,0 +1,531 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "recomputation_note_zh": "所有 known 空间指标均可由提交的 GeoJSON 在 EPSG:4548 下复算；三类指标（几何可复算、待官方控制条件、待运营数据校准）在正文第十一章分别说明。",
+  "recomputation_note_en": "Every known spatial metric is recomputable from the submitted GeoJSON in EPSG:4548. Computed from the registered provisional rough corridor boundary PROV-SITE-001; recalculate the whole package when official geometry is released.",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson#SITE-001"
+      ],
+      "formula": "polygon_area(project(site_boundary, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "公告文字四至对应约 11,400,000 sqm；本临时几何计算值与公告值相差约 0.11%。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。"
+      ],
+      "note_zh": "临时边界面积，不得作为正式面积依据。"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1851608.352,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(green_space)) = area(land_use[1401]) + area(land_use[1402])",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "绿地口径为公园绿地(1401)与防护绿地(1402)，不含广场用地(1403)，避免与公共空间口径重复计算。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.162239,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "设计模型值，非法定绿地率指标。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 601206.209,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(public_space)) 含人字轨公共铺装带、站城广场、里程桩广场与三处地标节点",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "公共铺装带位于公园绿地范围内，绿地率与公共空间率存在设计意图上的重叠，不可相加。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.052678,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "与绿地率口径重叠部分已在正文与本文件说明。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 965182.573,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "仅为本方案提出的更新与新建建筑基底概念建议集合，不代表现状建筑总量，也不含权属与工程结论。"
+      ]
+    },
+    "proposed_building_coverage_ratio": {
+      "status": "known",
+      "value": 0.08457,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "该值只反映方案提出的更新建筑基底占比，不是法定建筑密度控制指标。"
+      ]
+    },
+    "proposed_building_count": {
+      "status": "known",
+      "value": 264,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "拆改留分类为概念建议。"
+      ]
+    },
+    "land_use_partition_face_count": {
+      "status": "known",
+      "value": 60,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_faces)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分区由边界与分段线、纵向控制线共同 polygonize 生成，相邻面共用顶点，无缝无叠。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。"
+      ]
+    },
+    "land_use_coverage_gap_sqm": {
+      "status": "known",
+      "value": 50.78,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(site_boundary difference union(land_use))",
+      "confidence": "high",
+      "assumptions": [
+        "浮点误差量级的残差，远小于 spatial_review 的 1,141 sqm 容差。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。"
+      ]
+    },
+    "park_land_area_1401_sqm": {
+      "status": "known",
+      "value": 1313702.015,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use[land_use_code=1401]))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。"
+      ]
+    },
+    "research_land_area_0802_sqm": {
+      "status": "known",
+      "value": 2044279.783,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use[land_use_code=0802]))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。"
+      ]
+    },
+    "reserved_white_land_area_16_sqm": {
+      "status": "known",
+      "value": 355849.187,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use[land_use_code=16]))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "留白用地用于端侧算力、分布式能源与测试验证场地的弹性预留，是本方案的规划创新建议。"
+      ]
+    },
+    "residential_land_area_0701_sqm": {
+      "status": "known",
+      "value": 2687298.218,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use[land_use_code=0701]))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。"
+      ]
+    },
+    "business_land_area_0902_sqm": {
+      "status": "known",
+      "value": 1083662.231,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use[land_use_code=0902]))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "三处重点区域采用仓库登记的临时粗略 polygon，公告面积分别为 192.1、104.3、72.0 公顷。"
+      ]
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area(key_areas))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "公告重点区域范围合计约 3,684,000 sqm；临时 polygon 合计计算值与之相差约 0.24%。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。"
+      ]
+    },
+    "main_track_length_m": {
+      "status": "known",
+      "value": 9720.7,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson#ROAD-SPINE-01"
+      ],
+      "formula": "length(project(ROAD-SPINE-01, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "主轨线位为临时走廊中线，不代表铁路线位、公园红线或道路中心线。"
+      ]
+    },
+    "proposed_slow_mobility_network_length_m": {
+      "status": "known",
+      "value": 69607.7,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerlines))",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "为本方案提出的慢行、接驳与微循环概念线网总长，不含现状道路网。"
+      ]
+    },
+    "stitching_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(east_west_stitching_links) = count(milestone_plazas)",
+      "confidence": "medium",
+      "assumptions": [
+        "12 处东西缝合线与 12 处里程桩广场一一对应，用于回应公告提出的慢行断点问题。"
+      ]
+    },
+    "milestone_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space[public_space_type=milestone_stitching_plaza])",
+      "confidence": "medium",
+      "assumptions": [
+        "K0–K11 里程桩体系同时承担导视、荣誉铭牌、端侧算力与无障碍休憩功能。"
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space[public_space_type=pilgrimage_landmark])",
+      "confidence": "medium",
+      "assumptions": [
+        "折返台、零号里程桩、回声钟房；均为概念建议，不含工程结论。"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json",
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards S-01..S-12)",
+      "confidence": "medium",
+      "assumptions": [
+        "场景卡（班次卡）在正文与合规矩阵中逐条登记，含数据边界与人工复核机制。"
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json",
+        "proposal.md"
+      ],
+      "formula": "count(industry_validation_scenarios T-01..T-04)",
+      "confidence": "medium",
+      "assumptions": [
+        "产业测试验证场景为概念建议，实际开展需主管部门批准与安全评估。"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json",
+        "proposal.md"
+      ],
+      "formula": "count(personas P-01..P-06)",
+      "confidence": "medium",
+      "assumptions": [
+        "用户画像为公开研究与任务书导出的类型化描述，不含任何个人数据。"
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(global_ai_district_cases)",
+      "confidence": "medium",
+      "assumptions": [
+        "7 个全球案例均标注来源链接与检索日期，属背景研究材料，不作为法定依据。"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 2762749.548,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-01"
+      ],
+      "formula": "area(PHASE-01)",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "分期不构成投资或建设时序承诺。"
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3898258.504,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-02"
+      ],
+      "formula": "area(PHASE-02)",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "分期不构成投资或建设时序承诺。"
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 4751836.395,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-03"
+      ],
+      "formula": "area(PHASE-03)",
+      "confidence": "low",
+      "assumptions": [
+        "以仓库登记的临时粗略走廊边界 PROV-SITE-001 为几何基础；正式边界发布后必须整包复算。",
+        "所有面积均在 EPSG:4548 下按顶点投影后计算，与 scripts/spatial_review.py 的复算方式一致。",
+        "分期不构成投资或建设时序承诺。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "公开场地包未提供经审定的容积率控制条件，也没有官方边界面积，推定值会制造伪精确。",
+      "needed_from": "经批准的控规条件或官方设计任务书附件",
+      "required_for_formal_submission": true
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(building_floor_area) 需建筑层数与高度控制条件",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少现状建筑层数、权属与审定高度条件，无法复算总建筑规模。",
+      "needed_from": "现状建筑普查数据与经批准的控规条件",
+      "required_for_formal_submission": true
+    },
+    "building_height_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(height_control_by_parcel)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少经批准的高度管控、机场净空、景观视廊与文保建设控制地带条件。",
+      "needed_from": "经批准的高度控制条件与相关专项管控",
+      "required_for_formal_submission": true
+    },
+    "official_building_density_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control(building_density)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "公开资料没有法定建筑密度控制值；本包只提供方案提出的更新建筑基底占比。",
+      "needed_from": "经批准的控规条件",
+      "required_for_formal_submission": true
+    },
+    "setback_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control(setback)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少道路红线、建筑控制线、消防与市政退线条件。",
+      "needed_from": "道路红线与建筑控制线正式条件",
+      "required_for_formal_submission": true
+    },
+    "ai_enterprise_count_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "data/source_registry.json"
+      ],
+      "formula": "count(registered_ai_enterprises_in_scope)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "公开登记资料中没有可核验的带内 AI 企业名录与统计口径，编造企业名单属任务书禁止事项。",
+      "needed_from": "官方产业统计或经清权的企业名录",
+      "required_for_formal_submission": true
+    },
+    "ai_industry_output_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "data/source_registry.json"
+      ],
+      "formula": "sum(ai_industry_output_in_scope)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "公开登记资料中没有带内 AI 产值统计；不得以推测值替代。",
+      "needed_from": "官方统计年鉴或产业主管部门公开数据",
+      "required_for_formal_submission": true
+    }
+  }
+}

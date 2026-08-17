@@ -159,10 +159,10 @@
     },
     {
       "id": "A-FONT-001",
-      "status": "pending_professional_confirmation",
-      "statement": "v1.11 用 Ghostscript + cidfmap 把四套图纸的中文由 Adobe 标准 CID 字体名改为 Noto Serif SC 子集嵌入，解决了「阅读器需自带中文字体」的可移植性问题，但换嵌本身留下两处未关闭的缺口：其一，A3 中文本第 6 页的分隔符 · (U+00B7) 在子集里没有字形，该行 7 处全部渲染为 .notdef 方框，同文件中 、(U+3001) 有字形且渲染正常；其二，四套图纸的中文 /ToUnicode 部分错映，渲染正确但文本抽取错字（产业→銳釐、人才→鋑㹚）。",
-      "impact": "第一处是图面可读性缺陷，范围已量清：仅 A3 中文本第 6 页 7 处，英文 A3 与两套 A0 各为 0。第二处影响 PDF 内中文的检索、复制与屏幕阅读器读取，因此本包对无障碍的表述在「图纸内文本可被辅助技术读取」这一项上不成立；同样内容的可抽取版本是 report/proposal.html 与 proposal.md，二者中文抽取正常。两处均不影响图面的视觉呈现与打印。",
-      "recalculation_trigger": "整包重建、或第 6 页的原生成器可用时；两处修复须在同一轮完成并重新逐套核验。",
+      "status": "resolved",
+      "statement": "v1.11 用 Ghostscript + cidfmap 换嵌中文字体时留下两处缺陷，2026-08-17 已修复并复验。其一，A3 中文本第 6 页分隔符 `·`(U+00B7) 在嵌入子集中无字形，该行 7 处渲染为 .notdef 方框；其二，四套图纸的中文 /ToUnicode 写的是 code→字形索引而非 code→Unicode（如 <0020>→<003f>、<0041>→<0060>），导致渲染正确但文本抽取错字。两者同源于换嵌那一轮。",
+      "impact": "修复前：图面出现 7 处缺字方框；PDF 内中文的检索、复制与屏幕阅读器读取不可靠。修复后两项均已消除，本包对无障碍的表述在「图纸内文本可被辅助技术读取」这一项上重新成立。",
+      "recalculation_trigger": "已于 2026-08-17 修复；后续任何一轮重建 PDF 后须按 resolution_evidence 重新核验，防止回归。",
       "affected_files": [
         "drawings/a3-booklet.pdf",
         "drawings/a3-booklet.en.pdf",
@@ -170,9 +170,9 @@
         "drawings/a0-boards.en.pdf"
       ],
       "responsible_role": "R-INDEPENDENT-REVIEW",
-      "resolution_evidence": "第一处：`pdftoppm -f 6 -l 6 -r 200 drawings/a3-booklet.pdf -` 渲染后该行无 .notdef 方框。第二处：poppler(`pdftotext`)、PyMuPDF 与 pypdf 三个引擎对同一页抽取的中文一致且与图面文字相符；核验机须已安装 poppler-data 的 Adobe-GB1 CMap，以排除阅读器缺资源造成的假阳性。",
-      "recalculation_scope": "四套图纸的中文字体子集与 /ToUnicode CMap 全部重建；第 6 页需连同其原生成器一并恢复后重出。已验证不可采用的修法：按 UCS-2 字节替换 \\x00\\xB7，因 /Encoding 为 UniGB-UCS2-H 且 CJK 走十六进制 CID 串，裸字节匹配一次命中 68 处而非 7 处，会损坏其它文字。",
-      "risk_statement_zh": "读者把图纸内中文检索不到或复制出错字误读为内容缺失；或把本包的无障碍表述当作已覆盖 PDF 内文本的辅助技术读取。"
+      "resolution_evidence": "① `pdftoppm -f 6 -l 6 -r 200 drawings/a3-booklet.pdf -` 渲染后该行分隔符为顿号，无 .notdef 方框；抽取结果 `·` 计数 0、`、` 计数 7。② poppler(`pdftotext`)、PyMuPDF、pypdf 三引擎对同页抽取的中文一致且与图面相符（如 A3 第 6 页「八个共享栈，把能力交到下一班」、A0 第 1 页「京张交接线」，修复前分别抽成「頙釮頠銸䐛」「銺㬪銯㾲」）。③ 四套 `qpdf --check` 全 PASS，页数与 `PACKAGE v1.15` 命中数相等（13/13、13/13、6/6、6/6），CID 中文字体未嵌入数为 0。",
+      "recalculation_scope": "修法：内容流的 CJK 走十六进制串且编码为 UniGB-UCS2-H，串内即 UCS-2 码位，因此正确的 ToUnicode 是恒等映射——把每个 ToUnicode 流整体换成一条 `<0000><ffff><0000>` 的 bfrange，流长由 fix-qdf 重算；缺字则在十六进制串的 4 位码元边界上把 `00b7` 换成 `3001`，全文恰好 7 处、无过匹配。已验证不可采用的修法：在 `(...)` 字面量里按裸字节替换 `\\x00\\xb7` 一次命中 68 处，全是跨字边界的巧合，会损坏其它文字——CJK 根本不走字面量。",
+      "risk_statement_zh": "若后续重建 PDF 而未重跑上述三项核验，两处缺陷可能回归而不被察觉。"
     }
   ]
 }

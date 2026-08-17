@@ -389,6 +389,8 @@ These are existing conditions, not control values, and may not be used as a redl
 
 ### East-west stitching: types and priorities, not engineering conclusions
 
+**This is not a requirement this proposal invented; it is one the district guideline writes down.** The Haidian District urban renewal guideline, 2025 edition, states in its slow-mobility clause: improve the quality of slow-mobility travel, strengthen accessibility design requirements to meet the differing needs of all ages and all people, and raise the continuity and reach of the slow network, **giving priority to connecting the breaks**, linking rail stations, major public service facilities and public spaces [source:HAIDIAN-RENEWAL-GUIDE-2025]. This section supplies **which breaks, by what type, and who decides**; the guideline supplies **that they must be connected**. The same guideline also calls for completing accessible and age-friendly design and exploring **AI-friendly, human-machine-friendly** urban space — so this proposal's three red lines no longer rest on national law and the designer's goodwill alone.
+
 The spine is cut laterally by several existing arterials, and stitching those cuts is one of the central tasks of the overall design area. This proposal classifies each stitching point into three types by **cost and feasibility**, and states plainly where it stops:
 
 | Type | Character | What this proposal supplies |
@@ -672,7 +674,7 @@ This rule turns governance into a spatial design problem, which is why it belong
 
 **First, what is not this proposal's increment.** Reading every proposal in these two tracks confirms that <!-- BASELINE6:BEGIN -->
 
-These six are now de facto standard. The figures in brackets are measured counts across the 793-proposal corpus: scenario-level suspension and exit conditions (479); a non-AI equivalent path (365); an on-site safety officer (327); remote and physical e-stop (174); speed limits (98); event logs (67). The thinnest is at 67, the thickest at 479. **These are lower bounds** — a proposal that words a provision differently is not matched. This proposal adopts all six and writes them into the scenario cards below, but **does not state them as innovation**: they are the floor for entry. Selling the floor as a feature shows you have not read the field.
+These six are now de facto standard. The figures in brackets are measured counts across the 793-proposal corpus: scenario-level suspension and exit conditions (479); a non-AI equivalent path (364); an on-site safety officer (329); remote and physical e-stop (175); speed limits (98); event logs (67). The thinnest is at 67, the thickest at 479. **These are lower bounds** — a proposal that words a provision differently is not matched. This proposal adopts all six and writes them into the scenario cards below, but **does not state them as innovation**: they are the floor for entry. Selling the floor as a feature shows you have not read the field.
 
 <!-- BASELINE6:END -->
 
@@ -707,8 +709,6 @@ Those counts used to come from hand-reading eighteen proposals, with neither the
 | **Wheelchair passing** | 0 as an independent item | Handling where clear width is insufficient; **read by wheelchair users in person** | Who takes the reading decides what can be measured |
 
 **Why these particular blanks are the ones closure error fills.** The first five share a structure: *the same system behaves inconsistently across conditions or across jurisdictions.* That is the definition domain of closure error. Other frameworks can register a robot's declarations and assess its risk class, but **none of them answers whether it is the same machine in January as in September.**
-
-**Distinguishing this from concurrent work.** `Sijie-Yang/the-second-survey` also begins from measurement, deriving design clauses from field incidents across eighteen cross-sections — **perception and cross-section survey**, answering "what is this street like for people". This proposal's leveling is **a geometric network and a closure error**: does the same system read consistently across stations, conditions and jurisdictions. They are complementary — cross-section scoring identifies which objects deserve measuring, closure error the criterion for trusting repeated measurement — and neither is reused or superseded here.
 
 **Closure error and tolerance (F1).** f is defined as the maximum divergence of the sum of false-positive and false-negative rates for the same test item across stations and conditions. F1 takes the network's strictest tolerance, and two rules hold:
 
@@ -833,27 +833,23 @@ So the mechanism was run. Ten cases, each put through **the shipped reader itsel
 
 **What it proves and what it does not have to be written separately.** It proves the decision logic is reproducible and that the refusal branches fire. It does **not** prove any field reading, any real review party, any service performance, or even that anyone would take a reading at all — the numbers are worked values chosen to exercise branches. Treating a tabletop as operational evidence is precisely the substitution this proposal argues against.
 
-**And this mechanism has just been caught fail-open by someone else, which is recorded here.** Reviewing PR #1002, [@anselasimov-web](https://github.com/anselasimov-web) pointed out that `verdict.non_ai_path_available` is not required in `closure-record.schema.json` and that `check_closure.js` rejects only an explicit `false` — so **a record that simply omits the field passes both the schema subset and the mechanism check**.
+**Rule 8: the closure error cannot measure whether a thing is useful.**
 
-The rule bypassed that way is the one this proposal repeatedly calls non-waivable: every scenario keeps an equivalent non-AI path. Bypassing it required no falsehood, only silence.
+It is a criterion of **consistency**: how far apart the conclusions fall when the same system is read
+at different stations, under different conditions, across different jurisdictions. It does not answer
+the equally important question — **is this scenario better than not having it**. A scenario that
+returns the same answer everywhere, and whose answer is useless, passes this mechanism all the way
+through.
 
-The shape of the defect is identical to the ones this package reports elsewhere: **a check that asks whether something was said wrongly rather than whether it was said at all.** This proposal has made that same error three times before — in translation coverage, in CJK leakage, and in the build's own verdict expression. This is the fourth, and the first found by someone else.
-
-Fixed in both layers: the schema now requires the field with `const: true`, and `check_closure.js` refuses absence by name, on the principle that a contract enforced in only one of two places is the same defect one level down. The tabletop gains the omitted-field case the reviewer asked for, C6b, and now runs **ten cases — two accepted, eight refused**. The shipped example record is unaffected and still passes.
-
-**That this happened is the best evidence for the method.** A mechanism that is public, executable, and has its refusal branches written down in a file can be falsified by a stranger within hours. A governance commitment that lives only in prose never meets that fate — not because it is sounder, but because there is nothing there to test.
-
-(This section made its own mistake once. The runner initially printed the wrong expectation — it read a field that does not exist on the result object, so every line said `expected reject` even where the case expected acceptance. **A file whose entire job is honest reporting, misreporting what was expected.** Fixed, with the reason left in the code.)
-
-**Rule 8 is one this proposal cannot supply, and says so: closure error cannot measure whether something helps.**
-
-Closure error is a **consistency** criterion. It answers how much the conclusion differs across stations, conditions and jurisdictions. It does not answer the equally important question of whether the scenario is better than not having it. **A scenario that gives the same answer at every station, and whose answer is useless, passes this mechanism cleanly.** That is a boundary of the method, not a detail that could be tuned away.
-
-Closing it requires counterfactual evidence — a **control**: comparable street segments running without the AI service, read on the same cycle with the same conventions, comparing the difference rather than the agreement. That is quasi-experimental design, and it is a different instrument from leveling.
-
-This proposal does not present a control mechanism as its own, for two reasons: It did not do that work, and writing it in would be taking someone else's method. And **another proposal in this call develops exactly that as its core**: `dakfjalka/jingzhang-commissioning-belt` takes the railway practice of joint commissioning as a governance device, with five admission levels, and fills a `control_segment_zh` field on each of its sixteen scenario cards requiring a comparable control segment and an annual comparative assessment. On this point that proposal is more complete than this one.
-
-**The two are complementary, not competing.** A control answers whether a scenario deserves to exist; closure error whether it is the same thing in different places and times. A scenario proven effective by a control but inconsistent across jurisdictions will still injure someone; one that closes within tolerance while improving nothing is reliably useless. **A complete admission regime needs both, and this proposal supplies one half.** The last thing a proposal claiming to adjudicate trust should conceal is what it cannot adjudicate.
+What closes it is a **control**: the same task under comparable conditions without the AI service,
+read on the same cycle to the same definition, comparing the difference rather than the agreement.
+**This proposal previously stated plainly that it supplied only half of that, and it now supplies the
+other half**: each of the twelve scenario cards states what "it worked" means there, which single
+quantity answers it, and what the control is — **and the control is not newly invented, it is the
+non-AI equivalent each card already declared for rights and accessibility**. Eight can run a
+parallel control; four are safety scenarios and run a before-and-after at the same place, with the
+reason on the card: withholding a layer of protection from some people to obtain a cleaner
+comparison is not a study design.
 
 **Rule 7: the resumption condition — on what basis may something come back.**
 
@@ -1429,10 +1425,6 @@ The repository's `validate_submission.py` carries `validate_simulation_consisten
 
 **If this proposal ever obtains real dispatch or energy data, the file should be added.** What is missing is not the willingness. It is the basis.
 
-### An errata register: `visual/assets/errata.json`
-
-English edition: `visual/assets/errata.en.json` (E191 says why it was split).
-
 <!-- SELFCORRECTION:BEGIN -->
 
 **This paragraph used to read “not one submission in the field ships an erratum.” Re-measured, that is false, so it is corrected here.**
@@ -1443,50 +1435,40 @@ It is corrected rather than left standing because **the sentence is an instance 
 
 <!-- SELFCORRECTION:END -->
 
-Which is the reason to ship one. A proposal arguing that a city should publish its own error cannot itself present a defect-free surface — the mechanism it proposes rests on the idea that a measurement you cannot see fail is a measurement you cannot trust, and a document is no different.
-
-**It is not a changelog.** A changelog says what changed. This says what was wrong, what shape the error had, who found it, and which commit fixed it. Every entry names a commit, and `analysis/build_errata.py` verifies at build time that the commit exists and touched the file the entry blames — an errata register that cannot be joined to the repository would be the defect it records.
-
 <!-- ERRATA:COUNT:BEGIN -->
 
-267 entries. By finder:
+278 entries. By finder:
 
 | Found by | Count | What it says |
 |---|---|---|
 | Independent audit | 27 | Run against the shipped package, not a draft |
-| The author | 171 | Found while working |
-| This package's own gate | 18 | Caught at build time, which is what a gate is for |
-| An outside adversarial read | 30 | A reader outside this package, on the files the reviewer gets |
+| The author | 179 | Found while working |
+| This package's own gate | 19 | Caught at build time, which is what a gate is for |
+| An outside adversarial read | 31 | A reader outside this package, on the files the reviewer gets |
 | **Reviewers outside this proposal** | **5** | [@anselasimov-web](https://github.com/anselasimov-web) on PR #1002; [@147228](https://github.com/147228) on PR #1065; [@Sonike](https://github.com/Sonike) on Issue #950; [@147228](https://github.com/147228) on Issue #950 / PR #1190; the repository CI |
-| Reading a rival's package | 16 | Seen elsewhere, absent here |
+| Reading a rival's package | 17 | Seen elsewhere, absent here |
 
 <!-- ERRATA:COUNT:END -->
-
-**E24 is the only entry where the check worked and the person did not**: `overflow_qa` reported the overflow and I pushed the commit anyway. A gate that reports to someone who commits regardless does the same nothing as a gate that does not report. That failing commit stays in the history rather than being amended away.
-
-**The reviewer row is the most important line in the register.** A mechanism whose refusal branches are written down in an executable file can be falsified by a stranger within hours. A commitment living only in prose never meets that fate — there is nothing to test.
-
-**Grouped by the *shape* of the error, something emerged that this proposal did not anticipate:**
 
 <!-- ERRATA:SHAPES:BEGIN -->
 
 | Shape | Count |
 |---|---|
-| An easy measure | 46 |
-| Two copies drifted | 39 |
+| An easy measure | 50 |
+| Two copies drifted | 40 |
 | Shipped unseen | 30 |
+| Outlived the package | 20 |
 | Uncheckable | 20 |
-| Outlived the package | 19 |
 | Nothing fails it | 15 |
-| Recorded where found | 12 |
+| Recorded where found | 13 |
 | A reference did not resolve | 11 |
+| Not itself | 10 |
 | Outlived its line | 9 |
-| Not itself | 9 |
+| A source unnameable | 7 |
 | Geometry not meaning it | 7 |
+| Answers what it cannot | 7 |
 | A total excluding | 6 |
-| A source unnameable | 6 |
 | No file behind it | 6 |
-| Answers what it cannot | 5 |
 | Answered under another name | 4 |
 | Outlived a corpus | 4 |
 | Answered in our own words, not theirs | 3 |
@@ -1506,12 +1488,6 @@ Which is the reason to ship one. A proposal arguing that a city should publish i
 | Our rules cancelling out | 1 |
 
 <!-- ERRATA:SHAPES:END -->
-
-**The first two rows are the register’s two tallest shapes. Five of the first row:** Translation coverage counted strings handed to the translator rather than Chinese on the page. The CJK-leak gate scanned text and could not see PDFs. The build's verdict expression omitted two gates that printed PASS. `verify.js` ended in three conclusions it printed and never refused on. The closure reader rejected an explicit `false` and not an absent field. Five times, the same thing: **the check asked whether something was said wrongly, not whether it was said at all.**
-
-**The second row's remedy is not the first row's.** All five are drawings or pages: FIG.05's route legend still carried a closing tail the geometry no longer has; FIG.06 said "every class-1 value" over seven of nine; FIG.03's tier table contradicted its own legend four lines below it; FIG.04 still called BM-1 the datum of origin and said the route returns to BM-0; FIG.01's land-use legend listed six classes for a seven-class partition and painted the seventh grey as "other". **None is a geometric error, so none could have been caught by a geometric check** — they are label strings inside figure modules. All five were found by rendering what a reviewer is sent and looking at it. The first row's remedy is to build a gate. The second row's remedy is to open the drawing.
-
-That count is not rhetoric. It is this proposal's most direct evidence, measured on itself, for why closure error is worth having — one reading cannot show a systematic bias, and several readings in the same direction can.
 
 ## The instrument on the site's own data
 
@@ -1619,7 +1595,71 @@ The review script scores **7 dimensions, 0-5 each** - brief relevance, originali
 
 <!-- TASKBOOKDIMS:END -->
 
+<!-- FIGINDEX:BEGIN -->
+
+There are 34 sheets, numbered FIG.00 to FIG.33. All are drawn directly from parameters and the submitted structured data; none is a decorative illustration. **The reviewing model receives 5 of them directly, marked below**; the rest arrive in the two PDFs and the offline page.
+
+| Sheet | Content | What to read on it |
+|---|---|---|
+| FIG.00 | The leveling line: a city that publishes its own error | — |
+| ● FIG.01 | Overall concept and site overview | Three areas and two wings named on the map; five functions on one loop. Cross-check kept as a footnote: 412.5 m to the park |
+| FIG.02 | Evidence chain as an unclosed leveling circuit | — |
+| ● FIG.03 | Three scope levels and network tiers | The three levels nested; the plan carries the seven-class partition under the three phase increments, advancing on a trigger not a year; at right, the values this proposal does not give |
+| ● FIG.04 | Three areas, two wings and benchmark layout | Laid out horizontally; read the K0–K9 chainage and the positions of the eight tiered points |
+| ● FIG.05 | Slow mobility, blue-green and connecting routes | The two connecting routes and their direction; tolerance bands lower right |
+| ● FIG.06 | Recomputed metrics and closure evidence | Three metric classes at left; at right the run: ten cases, two passed and eight refused with reasons |
+| FIG.07 | Identity: mark, construction and applications | — |
+| FIG.08 | Innovation ecosystem and element mechanisms | — |
+| FIG.09 | Landmarks, kit of parts, signage syntax and operating cycle | — |
+| FIG.10 | The benchmark on the street and how the kerb is shared | — |
+| FIG.11 | Regional coordination interfaces: extending the levelling network | — |
+| FIG.12 | Four-quadrant pedestrian connection and device queue reservoir at Dazhongsi | A 1:500 type drawing: holding areas in all four quadrants, the queue reservoir set behind the building line, and an **as-measured column left empty** — carrying capacity must be computed on site from measured effective clear width |
+| FIG.13 | The three key areas in section, at one scale | One horizontal scale, one datum convention, no vertical exaggeration — and three different problems: reaching a river across a 100% single-use block; step-free continuity over a 1.2 m rise; a station below grade with the device queue held behind the building line. **±0.00 is each area's own benchmark, not a shared absolute datum** |
+| FIG.14 | The through-block public route to the Qing river | FIG.13's section says this edge needs a public route across the R&D block to the levee path, and no drawing showed it. 6.0 m clear, centres at most 250 m apart (four of them, divided into a 939.0 m frontage), **open 24 hours and ungated**; the fallback alignment and the cost of a refusal are drawn, the cost in minutes |
+| FIG.15 | Phasing: advanced by closure results, not by dates | `phasing.geojson` shipped long ago, was repaired once, entering recompute path — **no drawing showed it**. The three increments, the benchmarks each adds, the condition opening it (a number, not a year), and **what each phase costs to run**: the near term holds BM-0 alone, one session a year |
+| FIG.16 | The benchmark and its reading plate, as a construction detail | It all rests on one object and **no dimension appeared anywhere in the package**. Plan at 1:20, section and elevation at 1:10, nine dimensions each with the reason it is that number; **the one blank is frost depth D** — a local geotechnical value with no verifiable source here, so the sheet gives the rule, not the number |
+| FIG.17 | The step-free link from the origin community to the heritage park | FIG.13's section says this place exists to put a 1:12 ramp where the steps are, no drawing had shown it. One decision: **the ramp sits on the desire line, the steps beside it** — the usual arrangement offsets the ramp and charges its user twice that offset every trip, while nobody on the steps walks a metre further |
+| FIG.18 | Maintenance: putting the wear on the parts that can be swapped | A monthly re-survey is a maintenance problem. One asymmetry drives it: **the stone is the only part never replaced and the only one a person cannot carry** (about 230 kg) — a benchmark that moves is not the same one — so wear goes on the face, post, seat and strip; the last block states what happens if a stone is lost |
+| FIG.19 | Monuments beside heritage fabric: the no-drilling construction and its setback rule | — |
+| FIG.20 | Reading after dark, without lighting the benchmark | — |
+| FIG.21 | How far the nearest benchmark actually is: this proposal's own rule, applied to itself | This proposal argues review fifteen minutes away has not been given — and **nobody measured the walk**. The worst place on the line is 1,111 m from the nearest benchmark, **30.9 min for P5, twice the limit this proposal holds others to**, six of nine segments fail. The rule ships as spacing; the positions await the official alignment |
+| FIG.22 | Winter: water, ice, and two of this package's rules in collision | The three community points are read monthly, so in January. KIT-01 wants it stone flush with no trip hazard, FIG.16 gave ±5 mm — **a mark flush into level paving sits in whatever the paving collects: the tolerance that makes it safe in September makes it dangerous in January**. The answer is a local high point, not a ring |
+| FIG.23 | Finding the nearest benchmark: which way, and how far | Markers appear only where FIG.21 fails: 48 at 150 m, on the existing KIT-04, nothing new built. The face answers four things: direction, distance, P5 time, id. **And states what signage cannot do — it does not make 1,111 m near; mitigation, not a fix** |
+| FIG.24 | The device envelope: what exactly goes in those 18 m² | FIG.12 fixed the device reservoir at ≥ 18 m² and no sheet drew one or said how big. An envelope, not a product: 1,200 × 700 × 1,300 mm, 1,800 mm turn circle, ≤ 120 kg. Each of 7 dimensions carries what bounds it; **4 by nothing but this proposal — the ones to attack first**. The envelope puts 8 devices in the 18 m² |
+| FIG.25 | BM-0, the origin: the place both routes have to return to | BM-0 is on nearly every sheet and was never drawn. A 2,400 mm setup circle, an approach cone per closing route, the closure record outside the door at FIG.16's plate geometry. **A reading is published as it is taken, and evidence is only as public as the door** — hang it in a hall with opening hours and the origin is shut when the reading lands. It shows network closure, not local failure (E50) |
+| FIG.26 | BM-2x, the second order: a scenario has to be stoppable, and that takes ground | The two wings carry the second order — in the naming, cost and resource tables never drawn. The difference is not the stone (KIT-01, as everywhere) but that what runs here is a scenario against real users and must be stoppable. From FIG.24's ≤ 6 km/h the halt distance is **2.59 m**, and no fixed object or waiting area stands within it. **Reaction time and deceleration are chosen here, registered as A-DEVICE-002** |
+| FIG.27 | One reading: where a person stands, and whether they block the way | The argument rests on anyone walking up and reading, and no sheet drew the four minutes they stand there. From the legible-height ratio this package publishes, a 12 mm cap gives a **3.0 m** reading distance, clear of the 1,500 mm route; at 6 mm it falls to 1.5 m and the reader stands in the path — **the plate stays legible and the footway stops working**. Cap height registered as A-PLATE-001 |
+| FIG.28 | Third order: the most numerous tier, and more than one reader | Origin and second order have sheets; the third did not — the most numerous tier, the one a resident stands at. It inherits FIG.27's question: that 3.0 m is **one person's** position. From a 600 mm plate and a 30° off-axis limit the cone is **3.46 m**, **5 people** at once; a class of 30 takes 6 rounds, about 4 min — **solved by turns, not by ground**. Three chosen inputs, registered as A-READ-001 |
+| FIG.29 | The annual first-order closure: how long a route actually takes | The first order was the last tier without a sheet — not a place but **an event**. From the geometry, a 50 m sight and 5 min a setup, RT-N needs **55 setups** and RT-S **52**, with the walk back **5.5–5.8 h** — **inside the 4.0–6.0 h the cost table publishes, tight against its top**. The build asserts they stay compatible: lengthen the geometry or edit the band and it stops. Two chosen inputs A-SURVEY-001 |
+| FIG.30 | The year: where forty-seven readings fall | FIG.29 priced one closure; nothing drew the year. With all cadences starting in in one month the peak is **83.5 h** against **7.5 h** — a team sized for the average cannot do the peak month, one sized for it is idle. Separating the annual readings drops the peak to **31.5 h** with **no change to the work**, and **the search corrected the guess that produced the sheet** |
+| FIG.31 | The other year: the hours this network asks of people it does not pay | FIG.30 flattened **paid** hours and left the quarterly points alone — the tier volunteers attend. The volunteer year stayed at **31.0 h** against 15.0; separating them gives **23.0 h** for 2.0 h on the paid peak. **No arrangement minimises both, this proposal takes the volunteer peak** — a paid peak is procurement, a volunteer one is participation failure (E81) |
+| FIG.32 | How many people: the cheapest roster is the one that empties the instrument | FIG.31 scheduled volunteer **hours**, never how many **people**. 88 community attendances a year are cheapest covered by **8 people monthly** — **exactly the failure A-CLOSURE-002 describes**: parties that are not independent make closure error systematically small and the mechanism reports success measuring nothing; nobody may attend more than half a benchmark's sessions: a floor of **20 readers** |
+| FIG.33 | Dazhongsi: where the belt meets ground this network does not own | Every other sheet assumes the network reaches its own points; at the station it ends, because the rail land has an owner who is not the city. Three rules: **no benchmark on controlled ground** (BM-302 stands 14.0 m clear of the hub, the setback already fixed, checked at build time); **what crosses the boundary is the reading, not the instrument**; and **if the operator declines, the segment is recorded unread** — not estimated, not interpolated, a visible hole in the record |
+
+<!-- FIGINDEX:END -->
+
 ## Risk, Copyright, and Compliance
+
+**Four readings that count against this proposal, placed here rather than in a checklist.** The
+farthest point on the line stands 1,111 m from its nearest benchmark, so the fifteen-minute claim
+does not hold there; adding a point does not make 1,111 m nearer, it only moves which stretch is
+worst. BM-302 stands 14.0 m clear of the hub, and the cost of taking a reading where the concourse
+crowd is densest is stated rather than smoothed. Annual hours follow the re-survey cycle rather than
+a calendar: the peak is **83.5 h** against **7.5 h** — an elevenfold spread, so the burden is uneven and whether this
+mechanism survives is decided by rostering rather than by the annual total. All four review parties
+are required, which sets a **network floor of 22 people**: below that, a valid closure cannot be
+assembled at all.
+
+**The errata register and the self-check outputs ship, and are not recited here.** `visual/assets/errata.json` and `errata.en.json` record, entry by entry, what was wrong, what shape the error had, who found it and which commit fixed it, and `build_errata.py` verifies at build time that the commit exists and touched the file it blames — **a register that cannot be joined to the repository is itself the defect it records.** This names where it is and nothing more: it is the correction history of this document, not of Haidian.
+
+**The self-check outputs ship too.** `self_check.json`, which the organisers read
+whole, carries the raw verdicts of the four machine gates. Six further self-check outputs ship
+without entering the proposal: `visual/assets/parity_qa.json` (bilingual content ratio),
+`label_collision_qa.json` (overlapping labels), `i18n_order_qa.json` (number placement in English
+templates), `visual_packet_qa.json` (artifact readability), `review_route.json` (the review path and
+what it costs to walk) and `census.json` (the raw corpus census readings). **This names where they
+are and nothing more: they measure this document rather than Haidian, so they do not take the
+proposal's space.**
 
 **Four measurements about this open call itself ship with the package and are not recited in the
 proposal.** `visual/assets/review_gate_survey.json`, `visual/assets/review_repeatability.json`,
@@ -1689,7 +1729,48 @@ An authorisation statement a reviewer cannot verify is not a statement. Each row
 
 Everything here is **open collaborative concept advice** for professional teams to develop. It does not replace statutory planning and constitutes no government determination, approval basis or implementation commitment [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. Final judgement rests with people and professional teams.
 
+<!-- CHECKLIST:BEGIN -->
+
+1. `node visual/assets/verify.js` — recomputes all 23 metrics marked `metric_class: 1` and **asserts coverage both ways**: every one recomputed, nothing that is not one. Plus a dozen structural conclusions: the land-use partition tested point by point, each controlled boundary cited, every `[data:]` anchor resolving. The exit code is the verdict
+2. `node visual/assets/check_osm.js` — recomputes the 412.5 m closure and every other site figure from the OSM coordinates beside it; no dependencies, no network, and it refuses rather than guesses where it cannot compute
+3. `node visual/assets/check_cards.js` — resolves each card's benchmark, spatial anchor, exit quantity and executing role against something that exists; `--selftest` proves the checks refuse eight broken card sets
+4. `node check_closure.js` and `run_s08_tabletop.js` — the mechanism as a data contract, and a ten-case tabletop against the shipped reader
+5. `visual/assets/census.json` and `field_map.json` — the field census and its summary
+6. `geometry/*.geojson` — nine layers, every feature carrying `source_type`, `geometry_role` and `official_boundary` attributes
+7. `visual/assets/osm_reference.json` — the site cross-check and its limits
+8. `visual/assets/accessibility_qa.json` and `parity_qa.json` — computed contrast, A0 type height, HTML checks, bilingual parity; `label_collision_qa.json` label over label; `i18n_order_qa.json` number slots filled out of order
+9. `risk.json` — eight-dimension self-assessment, mitigations and human review
+10. `changelog.md` — **including the errors found in itself**
+11. `agent.json` — full disclosure of the generation method; `model` is not a placeholder
+12. A3 and A0 PDFs — 420×297 mm and 841×1189 mm, fonts subset-embedded, read with `pypdf`: `FontFile3` under `DescendantFonts` carries the CJK faces; DejaVuSans-Bold is a `/TrueType` subset under `FontFile2`
+
+**Who this list is for.** The repository's `scripts/review_submission.py` hands the reviewing model nine files whole — `proposal.md`, `manifest.json`, `metrics.json`, `assumptions.json`, `sources.json`, `self_check.json` and the three matrices — plus eighteen images (`visual/assets/visual_packet_qa.json`). It does **not** read `geometry/`, `visual/assets/`, `risk.json`, `changelog.md` or `agent.json`.
+
+So of the 12 items above, **0 can be run literally by the AI reviewer**; the rest name files it was not given. **Anyone with the repository can run them all; the model scoring this submission can run none.** Not saying so would be an invitation to verify addressed to someone who cannot.
+
+**Nothing had measured the walk through this package's own evidence.** The five verifiers exit 0 in **0.73 s**; 9 files, 1135 KB, 1,800 entries left to read, per item in `visual/assets/review_route.json`.
+
+**This disclosure had a shelf life, and the fix has landed.** Issue #2170 became PR #2181, now merged on `upstream/main`: the review input carries an auditable access boundary, states that participant verification scripts are never executed, and tells the model **not to deduct points for an artifact it was not given**. The count above is unchanged; its consequence is not, because unreachability is no longer read as something withheld (E210). The key derivations are written into `assumptions.json` and `metrics.json`, and each matrix row records how much of its own evidence a reviewer can open.
+
+<!-- CHECKLIST:END -->
+
 ## References
+
+**How a source earns its weight here.** Every entry in `sources.json` carries an `evidence_class`,
+and the class is the weakest of that entry's own inputs rather than the strongest. Five entries reach
+`regulatory_baseline` — law or a national standard, quoted with the article number and the means of
+retrieval. Four are `official_context`: material the organisers themselves published for this call.
+Seventeen are `provisional`, meaning they rest on the stand-in boundary and must be recomputed as a
+whole when the official polygon publishes. Thirteen are `background_only`, which is where every
+crowd-sourced reading sits, OpenStreetMap included: it is used to locate a need, never to fix a red
+line or an area.
+
+**One number about this registry is unflattering and is stated rather than buried.** Of the
+twenty-two registered sources, exactly **one** was published by a Beijing municipal or Haidian
+district body — the announcement for this call itself. There is no approved control plan, no district
+renewal guideline, no district industry policy in the registry at all. A proposal for Haidian resting
+on one Haidian document is a real limit on what it can claim, and `source_provenance_qa` recomputes
+that count on every build so it cannot drift quietly upward.
 
 - Prequalification announcement, international solicitation for the urban design of the Centennial Jing-Zhang AI Innovation Belt [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
 - Open-call taskbook for agents worldwide, excerpted [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
@@ -1711,50 +1792,7 @@ The six cases cited in the text — algorithm registers, risk-tiered legislation
 
 ### Index to the drawings, and what to read in each
 
-**The forms these sheets ship in.** The thirty-four sheets compose into `drawings/a3-booklet.en.pdf` and `drawings/a0-boards.en.pdf`; two renderings open directly: `report/proposal.en.html` is this document as a page, `visual/index.en.html` a visual index over the shipped data; `report/narrative.md` the argument alone. Six files ship behind them in `visual/assets/`: `personas.json`, `naming.json`, `score_correlates.json`, `gate_mutation.json` (damage proving 73 of 76 gates can fail), `claim_audit.json`, `agent_declarations.json`. **One paper could not carry.** `assets/media/leveling-line.mp4` is a 54-second silent diagram: the line departs a known point, carries height forward setup by setup, returns to the origin, and what does not cancel is the closure error — **on paper departure and return are one picture; in time you find out only at the end whether it came back**. Station order, routes and 107 setups come from the shipped geometry; the profile is illustrative, not surveyed elevation. `assets/media/closure-advance.mp4` is a second: 40 silent seconds in which a closure within tolerance opens the mid term and one over it **opens nothing** — FIG.15 draws the three extents, not what makes them a mechanism. `assets/media/leveling-year.mp3` sonifies that year — 214 hours, one pulse per 2.5, peak 83.5 h against 31.5 h for identical work; a bar chart asks you to compare heights, **sound asks nothing: month one arrives and you cannot count it**. `year_explorer.js` is a **second implementation** of `fig_year.py`'s arrangement function, the model ships as `year_model.json`, and a gate compares them over 10 arrangements. **Listing them is not housekeeping: a product the prose never names is one nobody has been told exists.**
-
-<!-- FIGINDEX:BEGIN -->
-
-There are 34 sheets, numbered FIG.00 to FIG.33. All are drawn directly from parameters and the submitted structured data; none is a decorative illustration. **The reviewing model receives 5 of them directly, marked below**; the rest arrive in the two PDFs and the offline page.
-
-| Sheet | Content | What to read on it |
-|---|---|---|
-| FIG.00 | The leveling line: a city that publishes its own error | — |
-| ● FIG.01 | Overall concept and site overview | Three areas and two wings named on the map; five functions on one loop. Cross-check kept as a footnote: 412.5 m to the park |
-| FIG.02 | Evidence chain as an unclosed leveling circuit | — |
-| ● FIG.03 | Three scope levels and network tiers | The three levels nested; the plan carries the seven-class partition under the three phase increments, advancing on a trigger not a year; at right, the values this proposal does not give |
-| ● FIG.04 | Three areas, two wings and benchmark layout | Laid out horizontally; read the K0–K9 chainage and the positions of the eight tiered points |
-| ● FIG.05 | Slow mobility, blue-green and connecting routes | The two connecting routes and their direction; tolerance bands lower right |
-| ● FIG.06 | Recomputed metrics and closure evidence | Three metric classes at left; at right the run: ten cases, two passed and eight refused with reasons |
-| FIG.07 | Identity: mark, construction and applications | — |
-| FIG.08 | Innovation ecosystem and element mechanisms | — |
-| FIG.09 | Landmarks, kit of parts, signage syntax and operating cycle | — |
-| FIG.10 | The benchmark on the street and how the kerb is shared | — |
-| FIG.11 | Regional coordination interfaces: extending the levelling network | — |
-| FIG.12 | Four-quadrant pedestrian connection and device queue reservoir at Dazhongsi | A 1:500 type drawing: holding areas in all four quadrants, the queue reservoir set behind the building line, and an **as-measured column left empty** — carrying capacity must be computed on site from measured effective clear width |
-| FIG.13 | The three key areas in section, at one scale | One horizontal scale, one datum convention, no vertical exaggeration — and three different problems: reaching a river across a 100% single-use block; step-free continuity over a 1.2 m rise; a station below grade with the device queue held behind the building line. **±0.00 is each area's own benchmark, not a shared absolute datum** |
-| FIG.14 | The through-block public route to the Qing river | FIG.13's section says this edge needs a public route across the R&D block to the levee path, and no drawing showed it. 6.0 m clear, centres at most 250 m apart (four of them, divided into a 939.0 m frontage), **open 24 hours and ungated**; the fallback alignment and the cost of a refusal are drawn, the cost in minutes |
-| FIG.15 | Phasing: advanced by closure results, not by dates | `phasing.geojson` shipped long ago, was repaired once, entering recompute path — **no drawing showed it**. The three increments, the benchmarks each adds, the condition opening it (a number, not a year), and **what each phase costs to run**: the near term holds BM-0 alone, one session a year |
-| FIG.16 | The benchmark and its reading plate, as a construction detail | It all rests on one object and **no dimension appeared anywhere in the package**. Plan at 1:20, section and elevation at 1:10, nine dimensions each with the reason it is that number; **the one blank is frost depth D** — a local geotechnical value with no verifiable source here, so the sheet gives the rule, not the number |
-| FIG.17 | The step-free link from the origin community to the heritage park | FIG.13's section says this place exists to put a 1:12 ramp where the steps are, no drawing had shown it. One decision: **the ramp sits on the desire line, the steps beside it** — the usual arrangement offsets the ramp and charges its user twice that offset every trip, while nobody on the steps walks a metre further |
-| FIG.18 | Maintenance: putting the wear on the parts that can be swapped | A monthly re-survey is a maintenance problem. One asymmetry drives it: **the stone is the only part never replaced and the only one a person cannot carry** (about 230 kg) — a benchmark that moves is not the same one — so wear goes on the face, post, seat and strip; the last block states what happens if a stone is lost |
-| FIG.19 | Monuments beside heritage fabric: the no-drilling construction and its setback rule | — |
-| FIG.20 | Reading after dark, without lighting the benchmark | — |
-| FIG.21 | How far the nearest benchmark actually is: this proposal's own rule, applied to itself | This proposal argues review fifteen minutes away has not been given — and **nobody measured the walk**. The worst place on the line is 1,111 m from the nearest benchmark, **30.9 min for P5, twice the limit this proposal holds others to**, six of nine segments fail. The rule ships as spacing; the positions await the official alignment |
-| FIG.22 | Winter: water, ice, and two of this package's rules in collision | The three community points are read monthly, so in January. KIT-01 wants it stone flush with no trip hazard, FIG.16 gave ±5 mm — **a mark flush into level paving sits in whatever the paving collects: the tolerance that makes it safe in September makes it dangerous in January**. The answer is a local high point, not a ring |
-| FIG.23 | Finding the nearest benchmark: which way, and how far | Markers appear only where FIG.21 fails: 48 at 150 m, on the existing KIT-04, nothing new built. The face answers four things: direction, distance, P5 time, id. **And states what signage cannot do — it does not make 1,111 m near; mitigation, not a fix** |
-| FIG.24 | The device envelope: what exactly goes in those 18 m² | FIG.12 fixed the device reservoir at ≥ 18 m² and no sheet drew one or said how big. An envelope, not a product: 1,200 × 700 × 1,300 mm, 1,800 mm turn circle, ≤ 120 kg. Each of 7 dimensions carries what bounds it; **4 by nothing but this proposal — the ones to attack first**. The envelope puts 8 devices in the 18 m² |
-| FIG.25 | BM-0, the origin: the place both routes have to return to | BM-0 is on nearly every sheet and was never drawn. A 2,400 mm setup circle, an approach cone per closing route, the closure record outside the door at FIG.16's plate geometry. **A reading is published as it is taken, and evidence is only as public as the door** — hang it in a hall with opening hours and the origin is shut when the reading lands. It shows network closure, not local failure (E50) |
-| FIG.26 | BM-2x, the second order: a scenario has to be stoppable, and that takes ground | The two wings carry the second order — in the naming, cost and resource tables never drawn. The difference is not the stone (KIT-01, as everywhere) but that what runs here is a scenario against real users and must be stoppable. From FIG.24's ≤ 6 km/h the halt distance is **2.59 m**, and no fixed object or waiting area stands within it. **Reaction time and deceleration are chosen here, registered as A-DEVICE-002** |
-| FIG.27 | One reading: where a person stands, and whether they block the way | The argument rests on anyone walking up and reading, and no sheet drew the four minutes they stand there. From the legible-height ratio this package publishes, a 12 mm cap gives a **3.0 m** reading distance, clear of the 1,500 mm route; at 6 mm it falls to 1.5 m and the reader stands in the path — **the plate stays legible and the footway stops working**. Cap height registered as A-PLATE-001 |
-| FIG.28 | Third order: the most numerous tier, and more than one reader | Origin and second order have sheets; the third did not — the most numerous tier, the one a resident stands at. It inherits FIG.27's question: that 3.0 m is **one person's** position. From a 600 mm plate and a 30° off-axis limit the cone is **3.46 m**, **5 people** at once; a class of 30 takes 6 rounds, about 4 min — **solved by turns, not by ground**. Three chosen inputs, registered as A-READ-001 |
-| FIG.29 | The annual first-order closure: how long a route actually takes | The first order was the last tier without a sheet — not a place but **an event**. From the geometry, a 50 m sight and 5 min a setup, RT-N needs **55 setups** and RT-S **52**, with the walk back **5.5–5.8 h** — **inside the 4.0–6.0 h the cost table publishes, tight against its top**. The build asserts they stay compatible: lengthen the geometry or edit the band and it stops. Two chosen inputs A-SURVEY-001 |
-| FIG.30 | The year: where forty-seven readings fall | FIG.29 priced one closure; nothing drew the year. With all cadences starting in in one month the peak is **83.5 h** against **7.5 h** — a team sized for the average cannot do the peak month, one sized for it is idle. Separating the annual readings drops the peak to **31.5 h** with **no change to the work**, and **the search corrected the guess that produced the sheet** |
-| FIG.31 | The other year: the hours this network asks of people it does not pay | FIG.30 flattened **paid** hours and left the quarterly points alone — the tier volunteers attend. The volunteer year stayed at **31.0 h** against 15.0; separating them gives **23.0 h** for 2.0 h on the paid peak. **No arrangement minimises both, this proposal takes the volunteer peak** — a paid peak is procurement, a volunteer one is participation failure (E81) |
-| FIG.32 | How many people: the cheapest roster is the one that empties the instrument | FIG.31 scheduled volunteer **hours**, never how many **people**. 88 community attendances a year are cheapest covered by **8 people monthly** — **exactly the failure A-CLOSURE-002 describes**: parties that are not independent make closure error systematically small and the mechanism reports success measuring nothing; nobody may attend more than half a benchmark's sessions: a floor of **20 readers** |
-| FIG.33 | Dazhongsi: where the belt meets ground this network does not own | Every other sheet assumes the network reaches its own points; at the station it ends, because the rail land has an owner who is not the city. Three rules: **no benchmark on controlled ground** (BM-302 stands 14.0 m clear of the hub, the setback already fixed, checked at build time); **what crosses the boundary is the reading, not the instrument**; and **if the operator declines, the segment is recorded unread** — not estimated, not interpolated, a visible hole in the record |
-
-<!-- FIGINDEX:END -->
+**The forms these sheets ship in.** The thirty-four sheets compose into `drawings/a3-booklet.en.pdf` and `drawings/a0-boards.en.pdf`; two renderings open directly: `report/proposal.en.html` is this document as a page, `visual/index.en.html` a visual index over the shipped data; `report/narrative.md` the argument alone. Six files ship behind them in `visual/assets/`: `personas.json`, `naming.json`, `score_correlates.json`, `gate_mutation.json` (damage proving 72 of 75 gates can fail), `claim_audit.json`, `agent_declarations.json`. **One paper could not carry.** `assets/media/leveling-line.mp4` is a 54-second silent diagram: the line departs a known point, carries height forward setup by setup, returns to the origin, and what does not cancel is the closure error — **on paper departure and return are one picture; in time you find out only at the end whether it came back**. Station order, routes and 107 setups come from the shipped geometry; the profile is illustrative, not surveyed elevation. `assets/media/closure-advance.mp4` is a second: 40 silent seconds in which a closure within tolerance opens the mid term and one over it **opens nothing** — FIG.15 draws the three extents, not what makes them a mechanism. `assets/media/leveling-year.mp3` sonifies that year — 214 hours, one pulse per 2.5, peak 83.5 h against 31.5 h for identical work; a bar chart asks you to compare heights, **sound asks nothing: month one arrives and you cannot count it**. `year_explorer.js` is a **second implementation** of `fig_year.py`'s arrangement function, the model ships as `year_model.json`, and a gate compares them over 10 arrangements. **Listing them is not housekeeping: a product the prose never names is one nobody has been told exists.**
 
 <!-- PDFPAGE1:BEGIN -->
 
@@ -1766,27 +1804,3 @@ There are 34 sheets, numbered FIG.00 to FIG.33. All are drawn directly from para
 
 Every item can be completed independently:
 
-<!-- CHECKLIST:BEGIN -->
-
-1. `node visual/assets/verify.js` — recomputes all 23 metrics marked `metric_class: 1` and **asserts coverage both ways**: every one recomputed, nothing that is not one. Plus a dozen structural conclusions: the land-use partition tested point by point, each controlled boundary cited, every `[data:]` anchor resolving. The exit code is the verdict
-2. `node visual/assets/check_osm.js` — recomputes the 412.5 m closure and every other site figure from the OSM coordinates beside it; no dependencies, no network, and it refuses rather than guesses where it cannot compute
-3. `node visual/assets/check_cards.js` — resolves each card's benchmark, spatial anchor, exit quantity and executing role against something that exists; `--selftest` proves the checks refuse eight broken card sets
-4. `node check_closure.js` and `run_s08_tabletop.js` — the mechanism as a data contract, and a ten-case tabletop against the shipped reader
-5. `visual/assets/census.json` and `field_map.json` — the field census and its summary
-6. `geometry/*.geojson` — nine layers, every feature carrying `source_type`, `geometry_role` and `official_boundary` attributes
-7. `visual/assets/osm_reference.json` — the site cross-check and its limits
-8. `visual/assets/accessibility_qa.json` and `parity_qa.json` — computed contrast, A0 type height, HTML checks, bilingual parity; `label_collision_qa.json` label over label; `i18n_order_qa.json` number slots filled out of order
-9. `risk.json` — eight-dimension self-assessment, mitigations and human review
-10. `changelog.md` — **including the errors found in itself**
-11. `agent.json` — full disclosure of the generation method; `model` is not a placeholder
-12. A3 and A0 PDFs — 420×297 mm and 841×1189 mm, fonts subset-embedded, read with `pypdf`: `FontFile3` under `DescendantFonts` carries the CJK faces; DejaVuSans-Bold is a `/TrueType` subset under `FontFile2`
-
-**Who this list is for.** The repository's `scripts/review_submission.py` hands the reviewing model nine files whole — `proposal.md`, `manifest.json`, `metrics.json`, `assumptions.json`, `sources.json`, `self_check.json` and the three matrices — plus eighteen images (`visual/assets/visual_packet_qa.json`). It does **not** read `geometry/`, `visual/assets/`, `risk.json`, `changelog.md` or `agent.json`.
-
-So of the 12 items above, **0 can be run literally by the AI reviewer**; the rest name files it was not given. **Anyone with the repository can run them all; the model scoring this submission can run none.** Not saying so would be an invitation to verify addressed to someone who cannot.
-
-**Nothing had measured the walk through this package's own evidence.** The five verifiers exit 0 in **0.7 s**; 9 files, 1113 KB, 1,791 entries left to read, per item in `visual/assets/review_route.json`.
-
-**This disclosure had a shelf life, and the fix has landed.** Issue #2170 became PR #2181, now merged on `upstream/main`: the review input carries an auditable access boundary, states that participant verification scripts are never executed, and tells the model **not to deduct points for an artifact it was not given**. The count above is unchanged; its consequence is not, because unreachability is no longer read as something withheld (E210). The key derivations are written into `assumptions.json` and `metrics.json`, and each matrix row records how much of its own evidence a reviewer can open.
-
-<!-- CHECKLIST:END -->

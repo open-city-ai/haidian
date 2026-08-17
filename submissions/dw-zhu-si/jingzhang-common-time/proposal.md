@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以时段基线、三尺度空间系统和 VERIFY—LEARN—LIVE—ADOPT/RETIRE 采用回路，检验存量空间能否在更长时间服务科研转译、城市采用与公共生活；所有空间落位均为 provisional 关系示意。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-version: "9.0.0-evidence-contract"
+version: "11.0.0-implementation-evidence"
 ---
 
 # 共时京张 / COMMON TIME
@@ -141,7 +141,7 @@ version: "9.0.0-evidence-contract"
 4. 业主预算、采购路径、运维、迁移和退役资金任一未确认，不得进入 G6；
 5. 任何生命安全、文保真实性、隐私权或严重群体差异失败直接 `RETIRE`，不得以总分平均。
 
-当前三个优先项目的业主、现场、阈值、预算和独立评测均为 `PENDING/HOLD`，因此本方案只证明合同结构与拒绝逻辑，不声称任何项目已经通过 G0—G8。
+当前三个优先项目的项目级产权、受权运营者、具名责任人、现场基线、共同签署阈值、预算批复和独立评测委托仍为 `PENDING/HOLD`。公开资料已经核实一期建设单位、征集组织、既有公园开放制度、政府投资与采购规则等**责任接口**，但这些接口不能被外推为本方案的项目授权。因此本方案证明的是可落地的责任与证据闭合路径，不声称任何项目已经通过 G0—G8。[source:OFFICIAL-JINGZHANG-PHASE1-APPROVAL] [source:OFFICIAL-OPEN-CALL-ORGANISATION-2026]
 
 ### 五个指定区域协同接口
 
@@ -258,7 +258,7 @@ version: "9.0.0-evidence-contract"
 
 ## 三重点区优先项目合同
 
-三个优先项目把空间原型转成可被拒绝的工作合同。它们都是 `PROPOSED` 且当前决策均为 `HOLD`：未核实真实业主、资产/运营者、官方 GIS、现场条件、独立评测、采购路径、人民币预算或资金承诺。
+三个优先项目把空间原型转成可被拒绝的工作合同。它们都是 `PROPOSED` 且当前决策均为 `HOLD`：已查明若干公开责任接口与采购规则，但尚未核实项目级产权/受权运营者、具名行动责任人、官方 GIS、实地基线、共同签署阈值、独立评测委托、人民币预算或资金承诺。
 
 | 合同 | 问题业主与非 AI 基线 | 最小空间/服务范围 | 必须记录的成果 | `HOLD / RETIRE` 条件 |
 | --- | --- | --- | --- | --- |
@@ -267,6 +267,57 @@ version: "9.0.0-evidence-contract"
 | P-D01 大钟寺 LIVE 到达与安静服务前场 | 交通/公共服务问题业主 `PENDING`，交通、车站、街道和社区主体均未确认；基线是现有法定路权/信号、人工信息、纸质地图、固定路缘规则和现场管理 | 可逆且有人值守的到达、连续无障碍、固定时段路缘、安静候车与限时试用；算法不控制路权 | 换乘时间分布而非平均值、冲突/险情、无障碍任务成功、人工接管、噪声/投诉、一线劳动负担、单位成本与恢复时间 | 疏散、消防、路权或无障碍失败；现场无法接管；噪声/劳动恶化；两轮后无净改善；数据滥用或申诉未闭环 |
 
 三项合同共用 G0—G8 记录字段，但不共用成功阈值。阈值、样本、评测者、责任人、项目财务和恢复资金只能由后续业主、影响群体和相关专业联合确认，本投稿不预填数字。
+
+### 六项实施证据闭合 v1
+
+本轮把“尚不能由 AI 生成的真实证据”拆为六份可以被签署、采购、复算和审计的合同。`READY` 只表示表单、字段与程序已就绪；它不等于取得现场数据、利益相关方同意、预算、任命或官方几何。
+
+#### 1. 产权、运营与行动责任
+
+公开资料可以核实三类不同角色，不能把它们合并成“项目业主”：①本次征集由北京市发展改革委、北京市规划自然资源委与海淀区政府主办，中关村科学城管委会承办；②京张遗址公园一期建设单位为海淀区园林绿化局；③一期铁路用地经铁路单位同意使用且“不改变土地权属”，因此建设/使用接口不等于产权转移。[source:OFFICIAL-OPEN-CALL-ORGANISATION-2026] [source:OFFICIAL-JINGZHANG-PHASE1-APPROVAL] [source:OFFICIAL-JINGZHANG-LAND-USE-2021]
+
+每个重点区在 G0 前必须逐资产建立一张具名并签署的 `RACI + 权利证明`：法定产权/资产管理人（A）、问题业主（A）、设计建设执行者（R）、受权运营者（R）、数据责任人（R）、独立评测者（I）、公众/使用者代表（C）、独立申诉人与退役责任人（A）。众智园、AI 原点和大钟寺的公开单位线索只进入“待核对名单”，不得在取得产权摘录、授权函、合同范围和具名负责人前写成已确认主体。当前状态：`ROLE_INTERFACE_VERIFIED / PROJECT APPOINTMENTS PENDING`。[metric:responsibility_chain_completeness_rate]
+
+#### 2. 工作日/周末、昼/夜实地基线
+
+官方公开事实构成调查起点而非结果：京张遗址公园公开目录登记为 24 小时、免费、免预约、无公共停车场；2025 年 60 余场活动和约 430 万人次只是全年汇总，不能回答工作日/周末或昼/夜差异；清华园车站旧址等设施另有分时开放规则。[source:OFFICIAL-BEIJING-PARK-DIRECTORY-2025] [source:OFFICIAL-JINGZHANG-OPERATING-FACTS-2026] [source:OFFICIAL-QINGHUAYUAN-OPENING-2026]
+
+已锁定四日基线协议：普通周二、周四、周六、周日各一天，覆盖 07:00—10:00、10:00—18:00、18:00—22:00、22:00—07:00 四时窗；众智园、AI 原点、大钟寺分别设三组观察簇，记录 15 分钟分箱的人流/骑行/停留/排队、无障碍任务、人工接管、照明/噪声/投诉、维护工时和非 AI 服务。另选代表性工作日完成 24 小时声环境测量，周末用同仪器同点位比较；先核定声功能区，再引用 GB 3096 限值。默认不采集人脸、车牌、精确个人轨迹或可复原身份的自由文本。原始记录、校准、天气、缺测、两人复核和 SHA-256 一并归档。当前状态：`FIELD PROTOCOL READY / FIELDWORK PENDING`。[source:OFFICIAL-GB3096-NOISE] [source:OFFICIAL-HAIDIAN-NOISE-ZONING-2022] [metric:field_baseline_protocol_count]
+
+#### 3. 利益相关方共同确认的触发阈值
+
+法定安全、消防、无障碍、文保、数据与环境底线是硬门，不能由多数表决放宽。除此之外，项目 KPI 先以“候选阈值”进入听证会，再由产权/运营者、受影响居民、无障碍与一线劳动者、问题业主、专业部门和独立评测者在实施协调会上共同确认，形成版本号、基线、非 AI 对照、样本/置信规则、通过/停止阈值、责任人和签名；30/90 日效果评议会只允许 `续期 / 修订 / 退役`，不得静默改阈值。[source:OFFICIAL-BEIJING-URBAN-RENEWAL-REGULATION] [metric:stakeholder_threshold_protocol_count]
+
+三项目仍不预填成功数字：P-V01 必须共同确认复现、严重事件、生态维护和单位进阶成本门槛；P-L01 必须确认无障碍/非数字同等成功、理解纠错、安静与公共时段门槛；P-D01 必须确认换乘分布、冲突、无障碍、噪声、劳动与人工接管门槛。当前状态：`CONSULTATION PROTOCOL READY / SIGNATURES PENDING`。
+
+#### 4. CAPEX、OPEX、资金来源与采购路径
+
+真实人民币总额仍为 `unknown`，因为缺少官方几何、工程量清单、现场条件和可比询价；既有工程金额、政策上限或外地案例不得移作本项目预算。成本簿已经规定最小字段：CAPEX 的勘察/设计/许可/土建/设备/无障碍/市政接入/预备费/恢复金；OPEX 的人员/培训/保洁安保/能源网络/许可订阅/维修校准/保险/独立评估/公众参与/数据保留与退役。每项必须记录数量、单价日期与来源、税费、生命周期、责任方和敏感性区间；正式估算前至少形成清权工程量和可核对的市场/定额依据。[metric:real_capex_opex_total_cny]
+
+资金与采购不预设获批：公共固定资产投资须取得项目代码、可研/初设及概算并进入年度投资计划；公共服务和运营采购须由采购人承担需求、采购、合同和验收首责。[source:OFFICIAL-BEIJING-GOVERNMENT-INVESTMENT] [source:OFFICIAL-GOV-PROCUREMENT-DEMAND] [source:OFFICIAL-BEIJING-PROCUREMENT-ACCEPTANCE]
+
+产权人/园区投入、社会赞助或创新场景专项只能在权利、合同、公共利益、数据和退出条件清楚后列为候选，政策资助上限不是资金承诺。当前状态：`COST BOOK + PROCUREMENT ROUTES READY / QUANTITIES, QUOTES AND APPROVALS PENDING`。[source:OFFICIAL-HAIDIAN-SCENARIO-FUNDING-2025]
+
+#### 5. 独立第三方评估安排
+
+评估采用七角色隔离：委托/治理方、设计实施方、独立主评估方、中立数据托管方、专业核验方、公众/使用者小组、独立申诉复核方。主评估方及其人员不得与前期咨询、设计、建设、运营、自评或供应商存在利益关联；采购、付款和原始数据访问由委托方而非被评项目控制，设计实施方可以答疑但不能改写原始数据或最终结论。[source:OFFICIAL-NDRC-POST-EVALUATION-2024] [source:OFFICIAL-BEIJING-PREEXPENDITURE-EVALUATION]
+
+评估任务书依次锁定 P0 预注册、P1 四日与昼夜基线、P2 非 AI 对照和有限试点、P3 独立复算、P4 公众/专家解释、P5 申诉与公开差异报告；数据快照需带 SHA-256、只读权限、访问日志、去标识化和保留/删除日期。当前已形成角色数与任务书，不虚构获聘机构或完成结果：`TOR READY / INDEPENDENT APPOINTMENT PENDING`。[metric:independent_evaluation_role_count]
+
+#### 6. 官方边界发布后的整包重算
+
+截至 2026-08-17，官方仓库 `main@fc1b6de15094fbe6200ae669342519b6e124bdb1` 的 geometry 目录仍只有临时粗略边界、依据说明和研究框；数据明确标记 `official_boundary=false`，因此本包任何面积、比例、位置和剖面都不是法定结果。[source:OFFICIAL-CURRENT-REPO-GEOMETRY-20260817]
+
+官方范围、重点区、宗地、道路/河道/绿线或文保控制任一发布即触发十步重算：①冻结来源、许可、发布日期与 SHA-256；②确认 CRS/垂直基准/精度；③保留原始层并生成投影副本；④做拓扑、空值、重叠与范围检查；⑤裁切和重算全部 GeoJSON 指标；⑥重新标注仍未知的法定/专业门；⑦重绘双语 PNG、四份 PDF 与两份 HTML；⑧更新 `metrics/sources/assumptions/manifest/self_check`；⑨由未参与计算者独立复算；⑩发布逐项差异和 `GO/HOLD/PIVOT/RETIRE` 决定。所有图面在复算完成前继续显示 provisional 声明。当前状态：`RECALCULATION SOP READY / OFFICIAL GEOMETRY PENDING`。[metric:official_geometry_recalculation_step_count]
+
+| 证据缺口 | 本轮形成的可执行成果 | 仍需外部取得 | 当前门 |
+|---|---|---|---|
+| 产权/运营/责任 | 公开责任接口 + 八角色逐资产签署表 | 产权摘录、授权函、合同、具名签名 | `HOLD` |
+| 分时现场基线 | 四日四时窗 + 24h 声环境协议 | 现场许可、实测原始记录、两人复核 | `HOLD` |
+| 共同阈值 | 听证—协调—效果评议和版本合同 | 受影响群体/业主/专业方共同签署 | `HOLD` |
+| CAPEX/OPEX | 全生命周期成本簿 + 采购路径 | 工程量、报价/定额、资金与预算批复 | `HOLD` |
+| 独立评估 | 七角色隔离 + P0—P5 任务书 | 独立采购、回避审查、正式任命 | `HOLD` |
+| 官方几何 | 十步整包重算 SOP | 法定或官方发布数据 | `HOLD` |
 
 ## AI 创新生态、人才画像与 AI+ 场景
 

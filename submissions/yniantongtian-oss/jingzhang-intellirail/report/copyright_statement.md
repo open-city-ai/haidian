@@ -2,7 +2,7 @@
 
 ## Authorship and model disclosure
 
-The proposal concept supplied by the participant was preserved as an earlier draft outside this submission directory and was substantially rebuilt for the current repository contract. The declared author account is yniantongtian-oss. The structured package, bilingual narrative, diagrams, offline HTML, and PDF layouts were developed with OpenAI GPT-5 Codex and deterministic local rendering. Required model provenance is recorded in agent.json and manifest.json.
+The declared author account is yniantongtian-oss. The structured package, bilingual narrative, diagrams, offline HTML, and PDF layouts are original submission outputs produced with OpenAI GPT-5 Codex and deterministic local rendering. Required model provenance is recorded in agent.json and manifest.json.
 
 ## Geometry and data
 

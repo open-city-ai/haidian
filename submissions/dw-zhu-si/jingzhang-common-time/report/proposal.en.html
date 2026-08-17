@@ -12,28 +12,44 @@
   --paper: #ffffff;
   --bg: #f4f7fa;
   --accent: #245b8f;
+  --navy: #17313c;
+  --orange: #e66a36;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-family: "Avenir Next", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   color: var(--ink);
   background: var(--bg);
   line-height: 1.75;
 }
 main {
-  max-width: 980px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 42px 24px 72px;
+  padding: 46px 44px 72px;
   background: var(--paper);
   min-height: 100vh;
   box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
 }
 .hero {
-  border-bottom: 3px solid var(--accent);
-  padding-bottom: 24px;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 38px;
+  color: #fff;
+  background: var(--navy);
+  border-left: 10px solid var(--orange);
+  border-radius: 0 18px 18px 0;
+  padding: 48px 48px 44px;
+  margin-bottom: 38px;
 }
+.hero h1 { font-size: clamp(48px, 6vw, 76px); line-height: .98; letter-spacing: -.045em; margin: 10px 0 24px; }
+.hero .summary { color: #dbe5e8; font-size: 19px; line-height: 1.55; max-width: 38em; }
+.hero-kicker { color: #f4a16f; font-weight: 800; letter-spacing: .08em; font-size: 13px; }
+.hero-claims { display: grid; align-content: center; gap: 12px; }
+.hero-claims article { padding: 18px 20px; background: rgba(255,255,255,.07); border-top: 1px solid rgba(255,255,255,.25); }
+.hero-claims b { display: block; color: #fff; font-size: 20px; margin-bottom: 4px; }
+.hero-claims span { color: #bfcfd4; font-size: 14px; line-height: 1.45; }
+.hero-boundary { color: #f3d6c6; font-size: 12px; line-height: 1.45; padding: 10px 2px 0; }
 h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
 h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
 h3 { font-size: 20px; margin: 26px 0 10px; }
@@ -52,7 +68,7 @@ code {
   border-radius: 4px;
 }
 .summary { color: var(--muted); font-size: 17px; }
-.translation-link a { color: var(--accent); font-weight: 700; }
+.translation-link a { color: #fff; font-weight: 750; }
 .proposal-table { margin: 20px 0 26px; overflow-x: auto; }
 .proposal-table table {
   border-collapse: collapse;
@@ -101,20 +117,30 @@ code {
   line-height: 1.35;
   vertical-align: super;
 }
+.implementation-brief { margin: -8px 0 40px; padding: 22px 24px; border: 1px solid var(--line); border-top: 5px solid var(--accent); background: #f8fafc; }
+.implementation-brief h2 { margin: 0 0 14px; border: 0; padding: 0; font-size: 20px; }
+.implementation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.implementation-grid article { min-height: 108px; padding: 13px 14px; background: #fff; border: 1px solid var(--line); }
+.implementation-grid b { display: block; color: var(--accent); font-size: 13px; letter-spacing: .03em; }
+.implementation-grid span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.implementation-note { margin: 13px 0 0; color: #8a4a2d; font-size: 13px; line-height: 1.5; }
 @media (max-width: 720px) {
   main { padding: 26px 16px 52px; }
+  .hero { grid-template-columns: 1fr; padding: 32px 24px; }
+  .hero h1 { font-size: 42px; }
   h1 { font-size: 26px; }
   h2 { font-size: 21px; }
+  .implementation-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 <main>
 <section class="hero">
-<h1>COMMON TIME JING-ZHANG: A Civic AI Adoption Belt Governed by Evidence Gates</h1>
-<p class="summary">A three-scale urban design framework that links railway memory, public space, research translation and accountable AI adoption through VERIFY, LEARN and LIVE districts. All spatial locations remain provisional pending official data and professional verification.</p>
-<p class="translation-link"><a href="proposal.html">阅读中文版本</a></p>
+<div class="hero-copy"><div class="hero-kicker">01 / IMPLEMENTATION EVIDENCE / COMMON TIME JING–ZHANG</div><h1>Share city time.<br>Close real evidence first.</h1><p class="summary">Public facts, responsibility interfaces and lawful procedures are verified. Fieldwork, joint signatures, real costs, independent appointments and official geometry remain PENDING.</p><p class="translation-link"><a href="proposal.html">阅读中文版本 →</a></p></div>
+<div class="hero-claims"><article><b>Four days × four time bands</b><span>Tuesday, Thursday, Saturday and Sunday, including weekday 24h acoustics and weekend comparison.</span></article><article><b>Seven-role independent review</b><span>Commissioning, implementation, evaluation, data custody, verification, public input and appeal are separated.</span></article><article><b>Ten-step package recalculation</b><span>Official geometry updates data, metrics, figures, PDFs, HTML and decisions together.</span></article><div class="hero-boundary">CONCEPT PROPOSAL · PUBLIC ROLE INTERFACES ARE NOT PROJECT AUTHORITY · ALL SIX EXTERNAL EVIDENCE GATES REMAIN HOLD</div></div>
 </section>
+<section class="implementation-brief" aria-label="six implementation-evidence states"><h2>Six implementation-evidence closures v1</h2><div class="implementation-grid"><article><b>01 RESPONSIBILITY</b><span>Phase-I construction and call roles verified; title, authorised operation and named people await signatures.</span></article><article><b>02 BASELINE</b><span>24h park access and annual totals verified; four-day/day-night protocol ready, fieldwork pending.</span></article><article><b>03 THRESHOLDS</b><span>Hearing—coordination—30/90-day review contract ready; project thresholds await joint signatures.</span></article><article><b>04 CAPEX/OPEX</b><span>Cost book and procurement routes ready; quantities, prices, funding and approvals pending.</span></article><article><b>05 INDEPENDENCE</b><span>Seven roles and P0–P5 terms ready; procurement, conflicts review and appointment pending.</span></article><article><b>06 OFFICIAL GEOMETRY</b><span>Current state is official_boundary=false; ten-step SOP ready, official data pending.</span></article></div><p class="implementation-note">READY means executable procedure, not completed external evidence. All six gates remain HOLD.</p></section>
 <h1>COMMON TIME JING-ZHANG</h1>
 <blockquote><p>AI should not occupy more of the city by default. Before any technology enters public life it must identify whose problem it solves, who remains accountable, how it will be tested, and when it will stop.</p></blockquote>
 <p>COMMON TIME treats a possible mismatch between the operating hours of research, community, commerce and public services as a hypothesis to be measured, not as an established fact. The proposal begins with weekday/weekend and day/night baselines. It then applies four levels of intervention—shared use, light retrofit, reversible additions and only then necessary construction—to test whether existing assets can serve more people for longer periods. AI may assist retrieval, matching, translation, booking and review; human problem owners, property owners, operators, independent evaluators and affected communities retain approval, appeal and stop authority.</p>

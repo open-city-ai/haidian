@@ -6,7 +6,8 @@
 | --- | --- | --- |
 | `proposal.md`, `proposal.en.md`, narrative | Produced for this submission by the declared AI agent from registered sources | Participant-generated, CC BY-SA 4.0; source claims retain their own rights |
 | `geometry/*.geojson` | Repository provisional constraints plus participant-generated design layers | Provisional constraints are not official redlines; design layers are conceptual |
-| Required and additional figures | Locally composed diagrams from submission GeoJSON, metrics and text | Participant-generated; no commercial basemap or third-party diagram |
+| Required and additional figures | Locally composed diagrams from submission GeoJSON, metrics, text and the attributed OSM context snapshot below | Participant-generated layouts; no commercial basemap or third-party diagram |
+| `visual/assets/site-context-osm.json` and four bilingual core map figures | Gzip/base64-wrapped normalized public OpenStreetMap data obtained through Overpass on 2026-08-17; map layouts composed locally | Database source © OpenStreetMap contributors, ODbL 1.0; the shipped subset and derivative maps retain attribution and do not assert survey completeness |
 | `site-overview.png` | Participant-supplied web-generated concept image on 2026-08-11; the exported PNG contains no provider or model metadata | Language-neutral aerial concept illustration; not a survey, official masterplan, approval-grade geometry or construction promise |
 | `framework-overview.png`, `.en.png` | Local Pillow composition from submission geometry, metrics and operating rules | Bilingual auditable framework diagram; all geometry remains provisional |
 | `experience-zhongzhi.png` | Participant-supplied web-generated concept image on 2026-08-11; the exported PNG contains no provider or model metadata | Text-directed concept illustration; not a site photograph, survey, official rendering or construction promise |

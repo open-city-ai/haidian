@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A three-scale urban design framework that links railway memory, public space, research translation and accountable AI adoption through VERIFY, LEARN and LIVE districts. All spatial locations remain provisional pending official data and professional verification."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-version: "9.0.0-evidence-contract"
+version: "11.0.0-implementation-evidence"
 ---
 
 # COMMON TIME JING-ZHANG
@@ -84,7 +84,7 @@ Each project may have only one current record. Required fields are `problem_owne
 4. Missing owner budget, procurement route, operations, migration or retirement fund prohibits entry to G6.
 5. Any life-safety, heritage-authenticity, privacy-right or serious group-disparity failure causes `RETIRE` and cannot be averaged away by a composite score.
 
-Owners, site evidence, thresholds, budgets and independent evaluators for all three priority projects are `PENDING/HOLD`. This submission therefore proves only the contract structure and rejection logic; it does not claim that any project has passed G0–G8.
+Project-specific title holders, authorised operators, named accountable people, field baselines, jointly signed thresholds, budget approvals and independent-evaluation commissions remain `PENDING/HOLD` for all three priority projects. Public sources now verify Phase I’s construction unit, the call’s organisers, existing park access rules, and government-investment and procurement procedures. These are **responsibility interfaces**, not authorisation for this proposal. The submission therefore demonstrates an executable path to close responsibility and evidence; it does not claim that any project has passed G0–G8. [source:OFFICIAL-JINGZHANG-PHASE1-APPROVAL] [source:OFFICIAL-OPEN-CALL-ORGANISATION-2026]
 
 ### Five Named Regional Coordination Interfaces
 
@@ -140,7 +140,7 @@ Each district must ultimately provide a locatable plan, two sections through rea
 
 ## Priority Project Contracts for the Three Key Areas
 
-Each priority project converts a spatial prototype into a work contract that can be rejected. All three are `PROPOSED`, and every current decision is `HOLD`: no real problem owner, asset/operator, official GIS, site condition, independent evaluator, procurement route, RMB budget or funding commitment has been verified.
+Each priority project converts a spatial prototype into a work contract that can be rejected. All three are `PROPOSED`, and every current decision is `HOLD`: several public responsibility interfaces and procurement rules are verified, but project-specific title holders/authorised operators, named action owners, official GIS, field baselines, jointly signed thresholds, independent commissions, RMB budgets and funding commitments are not.
 
 | Contract | Problem owner and non-AI baseline | Minimum spatial/service scope | Outcomes that must be recorded | `HOLD / RETIRE` conditions |
 | --- | --- | --- | --- | --- |
@@ -149,6 +149,55 @@ Each priority project converts a spatial prototype into a work contract that can
 | P-D01 Dazhongsi LIVE arrival and quiet-service forecourt | transport/public-service owner `PENDING`; transport, station, street and community parties are unconfirmed; baseline is lawful right of way/signals, human information, paper maps, fixed kerb rules and site management | reversible staffed arrival, continuous accessibility, fixed-time kerb, quiet waiting and bounded trial; algorithms never control right of way | distribution of interchange time rather than averages, conflicts/near misses, accessible task success, human takeover, noise/appeals, frontline labour burden, unit cost and recovery time | evacuation, fire, right-of-way or accessibility failure; no site takeover; worse noise/labour; no net gain after two cycles; data misuse or unresolved appeal |
 
 The three contracts share the G0–G8 record fields but not success thresholds. Thresholds, samples, evaluators, accountable people, project finance and restoration funds can be confirmed only with the future owner, affected groups and relevant professionals; this submission does not prefill numbers.
+
+### Six implementation-evidence closures v1
+
+This revision turns the six kinds of real evidence that AI cannot generate into contracts that can be signed, procured, recalculated and audited. `READY` means the fields and procedure are ready; it never means that field data, stakeholder consent, funding, appointments or official geometry have been obtained.
+
+#### 1. Ownership, operation and action responsibility
+
+Public evidence verifies three different role types that must not be merged into a generic “project owner”: the call is sponsored by the Beijing development and reform authority, planning/natural-resources authority and Haidian District Government and organised by the Zhongguancun Science City Management Committee; Phase I of the Jingzhang park names the Haidian landscaping authority as construction unit; and railway land use for Phase I was agreed without changing land ownership. A construction or use interface is therefore not a title transfer. [source:OFFICIAL-OPEN-CALL-ORGANISATION-2026] [source:OFFICIAL-JINGZHANG-PHASE1-APPROVAL] [source:OFFICIAL-JINGZHANG-LAND-USE-2021]
+
+Before G0, each asset must have a named, signed `RACI + rights evidence` record: legal title/asset manager (A), problem owner (A), design/construction delivery (R), authorised operator (R), data steward (R), independent evaluator (I), public/user representatives (C), independent appeal and retirement owner (A). Public entity clues for Zhongzhiyuan, AI Origin and Dazhongsi enter only a verification list; they are not confirmed until title extracts, letters of authority, contractual scope and named people exist. Status: `ROLE INTERFACES VERIFIED / PROJECT APPOINTMENTS PENDING`. [metric:responsibility_chain_completeness_rate]
+
+#### 2. Weekday/weekend and day/night field baseline
+
+Official public facts are the survey start point, not its result. The official directory records Jingzhang Heritage Park as open 24 hours, free, reservation-free and without public parking. More than sixty events and about 4.3 million visits in 2025 are annual aggregates and cannot establish weekday/weekend or day/night variation; Qinghuayuan Station and other facilities have separate limited-hour access rules. [source:OFFICIAL-BEIJING-PARK-DIRECTORY-2025] [source:OFFICIAL-JINGZHANG-OPERATING-FACTS-2026] [source:OFFICIAL-QINGHUAYUAN-OPENING-2026]
+
+The locked baseline protocol covers an ordinary Tuesday, Thursday, Saturday and Sunday, each across 07:00–10:00, 10:00–18:00, 18:00–22:00 and 22:00–07:00. Three observation clusters in each key area record 15-minute bins for walking/cycling/staying/queues, accessible tasks, human takeover, light/noise/complaints, maintenance labour and non-AI service. One representative weekday receives a continuous 24-hour acoustic survey, with the same instrument and points used for the weekend comparison; the noise functional zone must be confirmed before GB 3096 limits are applied. Faces, licence plates, precise personal trajectories and re-identifiable free text are excluded by default. Raw records, calibration, weather, missingness, two-person review and SHA-256 are archived together. Status: `FIELD PROTOCOL READY / FIELDWORK PENDING`. [source:OFFICIAL-GB3096-NOISE] [source:OFFICIAL-HAIDIAN-NOISE-ZONING-2022] [metric:field_baseline_protocol_count]
+
+#### 3. Stakeholder-confirmed trigger thresholds
+
+Statutory life safety, fire, accessibility, heritage, data and environmental requirements are hard gates and cannot be relaxed by majority vote. Other project KPIs enter a hearing as candidate thresholds. The asset/operator, affected residents, disabled and frontline participants, problem owner, professional authority and independent evaluator then sign a versioned baseline, non-AI comparator, sample/confidence rule, pass/stop threshold and accountable person at an implementation coordination meeting. A 30/90-day effect-review meeting may only `renew / revise / retire`; it may not silently move the threshold. [source:OFFICIAL-BEIJING-URBAN-RENEWAL-REGULATION] [metric:stakeholder_threshold_protocol_count]
+
+No success number is prefilled. P-V01 must agree reproducibility, serious-event, ecological-maintenance and unit-cost gates; P-L01 must agree accessible/non-digital parity, correction, quiet and public-hours gates; P-D01 must agree interchange-distribution, conflict, accessibility, noise, labour and takeover gates. Status: `CONSULTATION PROTOCOL READY / SIGNATURES PENDING`.
+
+#### 4. CAPEX, OPEX, funding and procurement
+
+The real RMB total remains `unknown` because official geometry, bills of quantities, site conditions and comparable quotations are missing. Previous project values, policy ceilings and external cases cannot become this project’s budget. The cost book now requires CAPEX for survey/design/approval/civil works/equipment/accessibility/utility connections/contingency/restoration, and OPEX for staff/training/cleaning/security/energy-network/licences/maintenance-calibration/insurance/independent evaluation/public participation/data retention/retirement. Every line requires quantity, dated unit-price source, tax, life, responsible party and sensitivity range; a formal estimate requires rights-cleared quantities and auditable market or quota evidence. [metric:real_capex_opex_total_cny]
+
+No funding is presumed. Public fixed-asset investment requires a project code, feasibility/preliminary design and estimate, and entry into an annual investment plan. Public service and operating procurement makes the purchaser responsible for demand, procurement, contract and acceptance. Owner/park investment, sponsorship or innovation-scenario funds are only candidates after rights, contract, public benefit, data and exit terms are clear; a policy percentage ceiling is not a funding award. Status: `COST BOOK + PROCUREMENT ROUTES READY / QUANTITIES, QUOTES AND APPROVALS PENDING`. [source:OFFICIAL-BEIJING-GOVERNMENT-INVESTMENT] [source:OFFICIAL-GOV-PROCUREMENT-DEMAND] [source:OFFICIAL-BEIJING-PROCUREMENT-ACCEPTANCE] [source:OFFICIAL-HAIDIAN-SCENARIO-FUNDING-2025]
+
+#### 5. Independent third-party evaluation
+
+Seven roles are separated: commissioning/governance, design/implementation, independent principal evaluator, neutral data custodian, professional verifier, public/user group, and independent appeal reviewer. The principal evaluator and personnel must have no interest in the project’s earlier consulting, design, construction, operation, self-evaluation or suppliers. Procurement, payment and raw-data access are controlled by the commissioner rather than the evaluated project; the implementation team may answer questions but cannot rewrite raw data or final findings. [source:OFFICIAL-NDRC-POST-EVALUATION-2024] [source:OFFICIAL-BEIJING-PREEXPENDITURE-EVALUATION]
+
+The terms of reference lock P0 preregistration, P1 four-day/day-night baseline, P2 non-AI control and bounded pilot, P3 independent recalculation, P4 public/expert interpretation, and P5 appeal plus a published difference report. Data snapshots require SHA-256, read-only rights, access logs, de-identification and retention/deletion dates. The role architecture and terms of reference exist; no appointed body or completed result is invented: `TOR READY / INDEPENDENT APPOINTMENT PENDING`. [metric:independent_evaluation_role_count]
+
+#### 6. Full-package recalculation after official geometry
+
+As of 2026-08-17, the official repository at `main@fc1b6de15094fbe6200ae669342519b6e124bdb1` provides only provisional boundaries, their basis note and a study frame in its geometry directory. The data explicitly states `official_boundary=false`; no package area, ratio, location or section is statutory. [source:OFFICIAL-CURRENT-REPO-GEOMETRY-20260817]
+
+Publication of any official scope, key area, parcel, road/river/green or heritage control triggers ten steps: freeze source/licence/date/SHA-256; confirm CRS/vertical datum/accuracy; preserve the original and make projected copies; test topology/nulls/overlaps/extents; clip and recalculate every GeoJSON metric; re-mark unresolved statutory/professional gates; regenerate bilingual PNGs, four PDFs and two HTML views; update `metrics/sources/assumptions/manifest/self_check`; commission an independent reproduction; publish itemised differences and a `GO/HOLD/PIVOT/RETIRE` decision. Every drawing retains the provisional notice until this completes. Status: `RECALCULATION SOP READY / OFFICIAL GEOMETRY PENDING`. [metric:official_geometry_recalculation_step_count]
+
+| Evidence gap | Executable result in this revision | External evidence still required | Current gate |
+|---|---|---|---|
+| ownership/operation/responsibility | public interfaces + eight-role asset sign-off | title extract, authority, contract, names/signatures | `HOLD` |
+| time-based baseline | four-day/four-band + 24h acoustic protocol | site permission, raw observations, two-person review | `HOLD` |
+| shared thresholds | hearing—coordination—effect-review contract | signed owner/affected-group/professional agreement | `HOLD` |
+| CAPEX/OPEX | life-cycle cost book + procurement routes | quantities, quotes/quotas, funding and budget approvals | `HOLD` |
+| independent evaluation | seven-role separation + P0–P5 terms | independent procurement, conflict review, appointment | `HOLD` |
+| official geometry | ten-step full-package recalculation SOP | statutory or officially released data | `HOLD` |
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
