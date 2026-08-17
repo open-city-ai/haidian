@@ -928,6 +928,54 @@
       "why_en": "**An item declaring urban-design depth whose evidence contains no built form is claiming more than it shows.** That file is one of the three matrices the reviewing model reads whole, and this item is the delivered face of a top-level brief requirement. The mutation proves the build stops when an item declaring a dimension stops citing the kind of evidence that dimension is made of."
     },
     {
+      "id": "M109",
+      "gate": "geometry_citation_qa.py",
+      "target": "proposal.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把十一个东西缝合点的机读锚点改回主脊 `ROAD-001`——**句子里的括号仍然写着「ROAD-101 至 ROAD-111」**，改的只是机器跟着走的那一个指向哪里。",
+      "what_en": "Put the machine-readable anchor for the eleven east-west stitching points back on the spine `ROAD-001` — **the sentence's own parenthetical still says ROAD-101 through ROAD-111**; what changes is where the copy a machine follows points.",
+      "why_zh": "这是修复前的原文：一句话里两份同一个事实，**而机器跟着走的那一份是错的那一份**。`ROAD-001` 是 9,443 m 的主脊，身上根本没有 `stitching_street` 这个属性；**顺着那个锚点走的评审，落在一条长线上，看不到那句话正在讲的十一段 90 m 连通提案。**十一个要素由图层的 `stitching_street` 属性现算，不手写。",
+      "why_en": "This is the pre-fix text: two copies of one fact inside a single sentence, **and the copy a machine follows was the wrong one**. `ROAD-001` is the 9,443 m spine and carries no `stitching_street` property at all, so **a reviewer following that anchor landed on one long line and saw none of the eleven 90 m connection proposals the sentence is about.** The eleven are recomputed from the layer's `stitching_street` property rather than typed."
+    },
+    {
+      "id": "M108",
+      "gate": "geometry_citation_qa.py",
+      "target": "proposal.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "从文化用地那一行的引用里删掉一个要素号（LU-B03）——**图层一个字没改，那一行也还在引图层**，改的只是它引的那一组要素是否仍等于图层放在该代码下的那一组。",
+      "what_en": "Drop one feature id (LU-B03) from the cultural-use row's citation — **the layer is untouched and the row still cites the layer**; what changes is whether the set it cites still equals the set the layer puts under that code.",
+      "why_zh": "本包在前言摘要里声明「七类用地完整剖分（无重叠无缺口）」，而 `land_use.geojson` 的 22 个要素此前在正文里**只被引过一次**。一个被告知剖分完整的评审，能核对四项面积读数，**却无法从任何一行走到那一行由哪些多边形组成**。接上之后这组引用必须由图层现算而非手写：**一个逐行手做七次的决定，必然有一次会做错**。",
+      "why_en": "This package states in its front-matter summary that seven land-use classes are partitioned with no overlap and no gap, while `land_use.geojson`'s 22 features were cited **once** in the prose. A reviewer told the partition is complete can check the four area readings and **cannot get from any row to the polygons that row is made of**. Once joined, the set has to be recomputed from the layer rather than typed: **a per-row decision made by hand seven times is one that will be got wrong once.**"
+    },
+    {
+      "id": "M107",
+      "gate": "source_citation_qa.py",
+      "target": "proposal.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "删掉正文里指向一条已登记来源的那个 `[source:]` 标记——**`sources.json` 一个字不改，来源记录完好无损**，改的只是论证还有没有一句话去拿它。",
+      "what_en": "Delete the one `[source:]` tag in the argument that reaches for a registered source — **`sources.json` is untouched and the record stays intact**; what changes is whether the argument still has a sentence that picks it up.",
+      "why_zh": "**登记册说明一件东西存在，它不给评审任何打开它的理由。** 这句话是本包为自己的图纸写的，而写下之后从没有被用在来源登记册上：28 条里 12 条正文一句不引，其中四条正是本包为了补上本地来源、专门跑到仓库外面去找回来的（E271–E273），并据此把下限抬到 6。**在它们的数量上建了一道下限，而论证一条都没用上。**",
+      "why_en": "**An index says a thing exists and gives a reviewer no reason to open it.** This package wrote that sentence for its own drawings and never once applied it to the source register: 12 of 28 records had nothing in either edition's argument reaching for them, and four of those were the local records this package went outside the repository to find (E271-E273) and then raised a floor on. **A floor was built on their count while the argument used none of them.**"
+    },
+    {
+      "id": "M106",
+      "gate": "figure_citation_qa.py",
+      "target": "proposal.md",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把一处图号还原成占位符：「FIG.21 沿主脊量了这段路」改回「FIG.NN」——**图还在、图号还在登记表里、同一份文件另外八处引对了**，改的只是这一处引用有没有被填上。本包所有图号模式都要求数字（`FIG\\.(\\d{2,})`），因此占位符对它们全都不可见：**查「引用是否落地」的那道检查，恰恰看不见一条从未落地的引用**。",
+      "what_en": "Turn one figure number back into a placeholder: 「FIG.21 沿主脊量了这段路」 becomes 「FIG.NN」 — **the sheet still exists, the number is still registered, and the same document still cites it correctly eight times elsewhere**; what changes is whether this one citation was ever filled in. Every figure pattern in this package demands digits (`FIG\\.(\\d{2,})`), so a placeholder is invisible to all of them: **the check for whether references resolve could not see a reference that never resolved.**",
+      "why_zh": "**一个看起来像引用、却指不到任何东西的记号，是装饰而不是引用**——本包在登记表里把这条记为 `reference-does-not-resolve`，而这一次犯在自己身上，犯在评审整份读到的那个文件里、在最前面几屏。它活下来不是因为没有闸门，是因为那道闸门只从登记表走向正文，从不反向走一遍。**规则存在而缺陷通过了，结论是这条规则从没被用在这里。**",
+      "why_en": "**A notation that looks like a citation and points at nothing is decoration, not a citation** — this register counts that shape as `reference-does-not-resolve`, and this time the package committed it against itself, in the file the reviewing model reads whole, within the first few screens. It survived not for want of a gate but because that gate only ever walked from the register to the prose and never once walked back. **When a rule exists and a defect passed anyway, the finding is that the rule was never applied here.**"
+    },
+    {
       "id": "M105",
       "gate": "scenario_verification_qa.py",
       "target": "visual/assets/scenario_cards.json",
@@ -1265,7 +1313,7 @@
       "why_en": "**This sheet is one of the five the review pipeline sends every time, and the six crossings on it exist to satisfy a crossability condition this package published.** Drawn at the weight and colour of the measured streets, a reader sees no intervention. E242 set this rule on this very sheet for buildings — the designed thing must not be the faintest mark in its own frame — and the lines were never covered by it. The mutation proves the build stops when this proposal's own lines are drawn fainter than the survey beneath them."
     }
   ],
-  "caught": 103,
+  "caught": 107,
   "survived": 0,
   "gates_proven_able_to_fail": [
     "accessibility_qa.py",
@@ -1294,6 +1342,7 @@
     "frame_collision_qa.py",
     "garden_crossing_qa.py",
     "gate_count_qa.py",
+    "geometry_citation_qa.py",
     "harness_reference_qa.py",
     "i18n_order_qa.py",
     "intake_limits_qa.py",
@@ -1329,6 +1378,7 @@
     "sheet_layer_key_qa.py",
     "sheet_legend_qa.py",
     "sheet_scale_qa.py",
+    "source_citation_qa.py",
     "source_provenance_qa.py",
     "sources_qa.py",
     "stale_corpus_qa.py",
@@ -1382,6 +1432,6 @@
       "why_en": "The English patterns match the unscoped present perfect, and the English text writes the past perfect, where the tense is the scope. Zero matches is the correct reading, and it was probed: switching one English sentence to the present perfect makes the gate name it."
     }
   ],
-  "coverage_note_zh": "**覆盖率的分母写在这里，而且是读出来的不是写死的。** 本包共 75 道闸门，其中 72 道已被证明会失败；其余 3 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
-  "coverage_note_en": "**The denominator is written down, and it is read rather than retyped.** Of this package's 75 gates, 72 have been shown capable of failing and 3 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
+  "coverage_note_zh": "**覆盖率的分母写在这里，而且是读出来的不是写死的。** 本包共 77 道闸门，其中 74 道已被证明会失败；其余 3 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
+  "coverage_note_en": "**The denominator is written down, and it is read rather than retyped.** Of this package's 77 gates, 74 have been shown capable of failing and 3 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
 }

@@ -6,7 +6,7 @@ bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Under the concept 'Centennial Loop · AI Origin', the engineering spirit of China's first self-built railway (1909) is translated into the origin of an AI-era city. The proposal rests on an explicit sociological foundation — a 'future-society judgment' about how AI reshapes labor, social structure and the social environment — answered by a dual-scenario discipline with twin master plans, and operationalized by a generative 'building code' (Yingzao Fashi). One heritage slow-mobility spine stitches three key areas and two wings; a 'Centennial Station' public-space system hosts AI scenarios and honor displays. All metrics are recomputed from submitted geometry in EPSG:4548."
-iteration: "v1.1"
+iteration: "v1.2"
 ---
 
 # Centennial Loop · AI Origin: Jing-Zhang Origin Urban Design Proposal
@@ -27,6 +27,8 @@ Every spatial judgment in this proposal rests on an explicit sociological founda
 
 **The dual-scenario discipline and the twin master plans.** Scenario A (polarization persists; work remains the mainstay) and Scenario B (working time shrinks sharply; a post-work society) must both hold: the same spatial structure is a "polarization buffer" under A and the "skeleton of a new life" under B. Every spatial move must answer "what is this design under each scenario?" — moves that cannot answer are dropped. The proposal expresses this discipline through twin master plans: identical form, two sets of destiny legends — Scenario A (platform ownership, advertising invasion, stations turned into shops, full sensor coverage) versus Scenario B (community-fund ownership, arcade sociability, care clusters, warm embedded-line lighting). The form is exactly the same; the destiny is entirely different — **the difference is not technology, but distribution** [source:DESIGN-RESEARCH-PACK].
 
+![Twin master plans: identical form, two destinies — Scenario A warning version (left) vs Scenario B formal version (right)](assets/figures/dual-scenario-masterplans.png)
+
 **Judging the vision, and the purpose.** Vision value = conceptual first-principles depth × rule executability × governance legitimacy ÷ scale ambition. All judgment and design obey one purpose: **let the city truly be for people and serve people** — technology is the backdrop, public life is the protagonist; AI is the tool, and human encounter, creation and belonging are the ends [source:LIT-FUTURE-SOCIETY].
 
 ## Index of Original Mechanisms
@@ -45,8 +47,9 @@ A consolidated index of the original concepts and mechanisms this proposal contr
 | 8 | Spatialization of recognition | Honor Wall, Achievement Gallery, Origin Marker: an everyday place-system for contribution identity | Future Vision, proposition ③ |
 | 9 | Color and nightscape constitutions | High-saturation colors monopolized by wayfinding and recognition systems; brightness decreases with height | Blue-green & character |
 | 10 | 1.5-key units and care clusters | Built form answering income volatility and making reproductive labor visible | Building-code chapter |
+| 11 | Open-scenario filing and three-tier data governance | Full-lifecycle governance of AI scenarios: existing temporarily under continuous justification | AI governance chapter |
 
-The ten mechanisms cover the output requirements of agent tasks agent.1–agent.6, mapped item by item in the compliance matrix [source:AGENT-TASKBOOK].
+The eleven mechanisms cover the output requirements of agent tasks agent.1–agent.6, mapped item by item in the compliance matrix [source:AGENT-TASKBOOK].
 
 ## Design Basis and Source List
 
@@ -135,11 +138,23 @@ A future vision is not "built" in one act — it is "raised" under a building co
 
 **The five-step landing path.** ① Heritage inventory (relic lists and ownership mapping by segment) → ② Chartlets set the rules (type mix, height, building-line, minimum buildable unit, governance clauses, three-state annotation) → ③ Generation sets the form (a generator produces massing per chartlet and machine-checks it) → ④ Phasing sets the sequence (stations and green corridor first — cheap, fast, crowd-drawing; courtyard cells second; towers only with consensus; every phase stands alone) → ⑤ Operation feeds back: measured acceptance indicators — station-courtyard weekday/weekend footfall ratio 0.8–1.2, non-consumption stay coverage ≥60%, care service radius ≤150 m, 1.5-key units ≥50% — failures return to step ② to revise the chartlet. The chartlet is alive; metrics are its editor [depth:phasing_implementation].
 
+## AI Governance Mechanisms: Full-Lifecycle Filing, Three-Tier Data Governance, and Human Review
+
+In the vision equation, "governance legitimacy" sits in the numerator, not the denominator: however many AI scenarios a scheme stacks up, indefensible governance is a veto. This chapter consolidates the governance commitments scattered across building-code principle P7, the scenario-card data-governance notes and validation scenario T-03 into one operable mechanism (a conceptual suggestion for competent authorities and professional teams to deepen) [source:LIT-FUTURE-SOCIETY] [source:DESIGN-RESEARCH-PACK].
+
+**Open-scenario filing (full lifecycle).** Every AI scenario entering public space is managed in five steps — application, filing, monitoring, evaluation, exit. Application: the scenario card must answer all five questions (where it lands, who uses it, who operates it, what data it collects, how to exit). Filing: dual filing with the competent authority and the community, publicly searchable — filing is not approval but a complete chain of accountability. Monitoring: operational data is logged by data tier, with quarterly public summaries. Evaluation: an annual third-party assessment plus public deliberation (the T-03 governance sandbox regularized as a standing public interface). Red lines — data-tier breach, missing human review, complaint rate above threshold — trigger rectification or exit. A scenario does not "exist permanently once approved"; it "exists temporarily under continuous justification".
+
+**Three-tier data governance.** Open data: anonymized aggregates (footfall counts, environmental sensing, activity levels) — public by default, feeding the open-data annual report. Restricted data: personal or commercially sensitive (health pre-screening, order routing, workspace matchmaking) — explicit consent, minimal collection, local processing, retention caps (e.g. SCN-09's 30 days), held in custody and audited by the data trust. Forbidden data: facial recognition, biometrics, individual behavior profiling — not collected, not stored, no technical entry point; the LED-advertising ban and the restrained nightscape are the visual expression of this tier. Every scenario card states its data tier prominently; upgrading a tier requires re-filing.
+
+**Human-review council and appeal channels.** A three-layer governance structure is suggested: the competent authority (statutory oversight), a community council (residents + universities + operator, holding one vote on scenario admission and exit), and the data trust (custody and audit of restricted data, co-signing test admission with the council). Human review is written in front of automation (the SCN-02 traffic joint mechanism, SCN-03 community health institutions, SCN-05 manual-takeover stations institutionalized); every automated decision keeps a human appeal and takeover channel. The lesson of Sidewalk Toronto is that opaque governance alone can terminate a project — this proposal delivers governance at the same depth as space [source:GLOBAL-CASES].
+
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
 The core mobility claim: give movement back to slow modes. The 9.6 km spine is a linear parkway shared by walking, cycling and time-scheduled low-speed autonomous vehicles; 11 east-west connectors stitch the two wings — a "one axis, eleven rungs" slow network (conceptual alignments, not road redlines) [data:geometry/roads.geojson#RD-001] [depth:traffic_rail_slow_parking].
 
 **The Jing-Zhang Ring: from one green corridor to a closed loop.** Metro Line 13 runs nearly parallel to the Jing-Zhang corridor (Xizhimen–Wudaokou–Shangdi–Qinghe): the corridor was never an isolated line but a chord on an existing rail ring. The proposal upgrades the network from "one green corridor" to the "Jing-Zhang Ring": the green corridor (slow chord) plus Line 13 / Changping Line (rail arc) close into a loop — whenever any corridor segment is interrupted by construction, events or emergency, the ring always offers another way, answering the fragility critique of linear topology. Green-corridor stops and rail stops complement each other (Wudaokou merges both systems; Liudaokou/Xuezhiyuan are corridor-only), forming fast/slow dual systems. The structural rule upgrades accordingly to "one ring, one spine": the ring is the resilience layer, the spine is the life layer; two-path connectivity between any two points on the ring is controlled at 100% (conceptual network, not road redlines) [source:DESIGN-RESEARCH-PACK] [depth:traffic_rail_slow_parking]. Rail-integration intents: Xizhimen/Beijing North, Dazhongsi and Wudaokou/Liudaokou stations connect to spine nodes via weather-protected links and underground-connection intents, engineering feasibility pending. Parking strategy: peripheral interception plus core sharing, with smart cycle parking at every station.
+
+![The Jing-Zhang Ring: green-corridor slow chord and rail arc closing into a loop, with complementary fast/slow systems](assets/figures/jingzhang-loop.png)
 
 Municipal and new infrastructure: edge-compute cabinets in block-level plant rooms, distributed energy and stormwater underground, sensors mounted on station structures — "ground for people, underground for machines" [depth:municipal_new_infrastructure]. Public services follow a 15-minute-life-circle intent, to be verified once population estimates become possible with official data [source:PLANNING-LIMITS].
 
@@ -170,6 +185,8 @@ Core metrics recomputed from submitted geometry in EPSG:4548: site area 11.4128 
 Compliance coverage: announcement tasks 1.3/1.4/1.5 and agent tasks agent.1–agent.6 are itemized in the compliance matrix; mandatory professional standards are answered in the standard matrix; all 15 design-depth items are complete [depth:metrics_recalculation]. Formulas, sources and assumptions are registered per metric in metrics.json — every figure is recomputable from geometry [depth:existing_conditions_diagnosis].
 
 **Digital prototype: before/after walking simulation (the evidence loop).** In an agent-led design call, "prototype = simulation": taking Node B (the Wudaokou–Liudaokou segment) as the sample area, we compared shortest paths of 60 random OD pairs on the existing OSM walking network (1,035 edges) versus the intervention network (adding the green-corridor spine and five crossing passages). Results (simulated values, not measured): along-corridor walking OD detour factor fell from 1.44 to 1.23, a 15.1% reduction — the corridor turns "unwalkable rail" into a walking expressway; cross-corridor OD improved by only 1.7% — permeability around Wudaokou–Liudaokou was already decent, so the real value of crossing passages lies in the northern/southern segments where crossing spacing reaches ~2.07 km. The simulation directly corrected a homogenized design assumption: crossing density is now differentiated by segment in the chartlets. Conversion between simulated and measured values awaits calibration with real data; none of this is an engineering conclusion [source:DESIGN-RESEARCH-PACK] [depth:metrics_recalculation].
+
+![Digital-prototype simulation: before/after walking OD detour factors (Node B sample area, simulated values)](assets/figures/digital-prototype-sim.png)
 
 ![Core metric recomputation and evidence chain](assets/figures/metrics-evidence.en.png)
 

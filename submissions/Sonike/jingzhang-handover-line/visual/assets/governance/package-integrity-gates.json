@@ -10,7 +10,7 @@
       "statement_en": "Every reference in the three matrices must resolve to a real entity inside the package.",
       "checks": "standard_matrix / compliance_matrix / design_depth_matrix 的 proposal_sections、drawing_refs、geometry_refs、metric_refs、source_ids、assumption_ids",
       "decision_rule_zh": "章节名须逐字等于 proposal.md 的某个 ## / ### 标题；drawing_refs 的 `文件#pN` 中 N 不得超过该 PDF 页数；其余四类须分别命中 geometry/*.geojson 文件名、metrics.json 的键、sources.json 的 id、assumptions.json 的 id。",
-      "current_result": "907/907 引用可解析，断链 0（含 self_check_ids 97 处、standard_ids、geometry_feature_ids、scenario_ids、gate_ids）",
+      "current_result": "1025/1025 引用可解析，断链 0（含 gate_ids 152、source_ids 128、metric_refs 109、self_check_ids 98、assumption_ids 92、scenario_ids 88、standard_ids 86、drawing_refs 83、geometry_feature_ids 74、proposal_sections 64、geometry_refs 51）",
       "caught_real_defects": [
         {
           "when": "2026-08-16",
@@ -25,6 +25,12 @@
           "when": "2026-08-17",
           "what": "本闸门自陈「154/154，断链 0」，当场重跑发现两件事：一是自陈数字早已过期（矩阵本轮新增六个交叉索引字段后引用总数为 907）；二是更严重的——三个矩阵的 self_check_ids 共引用 19 个标签 97 次，其中 16 个标签、81 处引用在包内没有任何实体定义，self_check.json 只有 4 个真实 check_id。也就是说「断链 0」这句话此前是错的。",
           "fix": "把 19 个标签逐条定义写进 compliance_matrix.json 顶层的 self_check_expectations（矩阵本身在评审输入内，引用与定义同文件可解析），每条写明断言什么、证据在包内哪个文件的哪个字段、怎么独立核验；covered_by_self_check_id 只取 self_check.json 中真实存在的四个 check_id。修后实测 907/907、断链 0。"
+        },
+        {
+          "when": "2026-08-17（对比度轮）",
+          "what": "本轮为新增的 WCAG-CONTRAST 标准条目写 proposal_sections 时，凭印象写成「品牌、IP 与视觉系统」——正文里没有这个标题，那段文字实际归在「更新项目清单、实施政策与分期计划」之下。闸门重跑时 1025 条引用里恰好只断这 1 条，指名道姓指到了本轮作者刚写下的那一行。",
+          "fix": "改为实际标题后 1025/1025、断链 0。同轮发现自陈数字又一次落后：矩阵新增交叉引用后引用总数已由 907 增到 1025，本文件仍写着 907/907。",
+          "note": "这是本闸门第三次抓到「为新增内容写引用时凭印象编造」，与 2026-08-16 那次的 9 处同一类错误；也是第二次抓到自陈总数过期。自陈型数字必须每轮重测，凭印象写引用必被拦。"
         }
       ]
     },
@@ -79,7 +85,7 @@
       "statement_en": "The Chinese and English proposals must have identical section structure at every level.",
       "checks": "proposal.md 与 proposal.en.md 的 ## / ### 计数",
       "decision_rule_zh": "两侧 h2 数相等且 h3 数相等；任一侧新增章节必须同一轮补齐另一侧。",
-      "current_result": "h2 15/15，h3 28/28，层级序列逐位一致",
+      "current_result": "h2 15/15，h3 29/29，层级序列逐位一致",
       "caught_real_defects": [
         {
           "when": "2026-08-16",
@@ -90,6 +96,12 @@
           "when": "2026-08-17",
           "what": "本闸门自陈仍写 h3 27/27，而当前包为 28/28——它第二次抓到「为它自己写的那一节让自陈数字过时了」。",
           "fix": "当场重跑并写回实测值；同轮把 G01 的自陈数字一并更正。"
+        },
+        {
+          "when": "2026-08-17（对比度轮）",
+          "what": "本文件自陈仍写 h3 28/28，实测两侧均为 29/29——**第三次**抓到自己的自陈落后于包的实际状态。",
+          "fix": "当场重测并写回 29/29；同轮把 G01 的 907/907 一并更正为 1025/1025。",
+          "note": "三次都是同一个机制失效：新增内容时补了正文与结构化文件，却没重跑自陈数字。故本轮起把 G01/G05 的重测并入提交前的固定动作，而不依赖记得去做。"
         }
       ]
     },

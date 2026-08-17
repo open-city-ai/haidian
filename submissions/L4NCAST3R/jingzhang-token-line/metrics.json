@@ -1,0 +1,412 @@
+{
+ "schema_version": "0.2.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "project_id": "centennial-jingzhang-ai-belt",
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "基于仓库 provisional 粗略边界复算；正式边界公布后需重算。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1588476.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "union(polygon_area(green_space)) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念绿地系统，基于 provisional 边界；不替代官方绿地指标。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 231798.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "union(polygon_area(public_space)) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念公共空间（广场/客厅/驿站），基于 provisional 边界。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1992900.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "union(polygon_area(building_footprint)) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念建筑基底示意，非现状建筑底数；现状建筑需官方调查。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.1392,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 设计模型值；正式绿地指标以官方控规为准。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0203,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 设计模型值；正式公共空间指标以官方控规为准。"
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.1746,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "概念密度，非官方建筑密度控制值。"
+   ]
+  },
+  "land_use_parcel_count": {
+   "status": "known",
+   "value": 20,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(features in land_use.geojson)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_count": {
+   "status": "known",
+   "value": 36,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(features in buildings.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "概念建筑数量，非现状建筑统计。"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(required key-area features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(features in phasing.geojson)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "coordinated_research_area_sqm": {
+   "status": "known",
+   "value": 43600000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official announcement value (1.4.1)",
+   "confidence": "high",
+   "assumptions": [
+    "公告面积值；精确 polygon 待官方发布。"
+   ]
+  },
+  "overall_design_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 边界复算值，接近公告约 11.4 km²；正式边界公布后重算。"
+   ]
+  },
+  "key_detailed_design_area_sqm": {
+   "status": "known",
+   "value": 3692893.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(key area areas) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "基于 provisional key-area polygons 汇总；官方面积约 368.4 公顷。"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area / site_area",
+   "confidence": "unknown",
+   "reason": "官方控规条件未公开，不得给出审定容积率；待正式数据补齐后复算。",
+   "assumptions": [
+    "官方控规条件未公开；不得给出审定容积率。待正式控规数据补齐后复算。"
+   ]
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official height control",
+   "confidence": "unknown",
+   "reason": "官方高度控制条件未公开；待正式数据补齐后复算。",
+   "assumptions": [
+    "官方高度控制条件未公开；待正式数据补齐后复算。"
+   ]
+  },
+  "land_use_area_0701_sqm": {
+   "status": "known",
+   "value": 2234217.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0701')",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 概念用地分区面积。"
+   ]
+  },
+  "land_use_area_0802_sqm": {
+   "status": "known",
+   "value": 1881667.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0802')",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 概念用地分区面积。"
+   ]
+  },
+  "land_use_area_0804_sqm": {
+   "status": "known",
+   "value": 1149702.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0804')",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 概念用地分区面积。"
+   ]
+  },
+  "land_use_area_0806_sqm": {
+   "status": "known",
+   "value": 1538981.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0806')",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 概念用地分区面积。"
+   ]
+  },
+  "land_use_area_0901_sqm": {
+   "status": "known",
+   "value": 668068.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0901')",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 概念用地分区面积。"
+   ]
+  },
+  "land_use_area_0902_sqm": {
+   "status": "known",
+   "value": 2109945.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '0902')",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 概念用地分区面积。"
+   ]
+  },
+  "land_use_area_1207_sqm": {
+   "status": "known",
+   "value": 587632.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '1207')",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 概念用地分区面积。"
+   ]
+  },
+  "land_use_area_1401_sqm": {
+   "status": "known",
+   "value": 1242629.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(f) for f in land_use if land_use_code == '1401')",
+   "confidence": "low",
+   "assumptions": [
+    "provisional 概念用地分区面积。"
+   ]
+  },
+  "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+   "status": "known",
+   "value": 1929201.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area 'zhongzhiyuan_ai_acceleration_area') in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "provisional key-area 复算值；官方 polygon 公布后重算。"
+   ]
+  },
+  "key_area_beijing_ai_origin_community_sqm": {
+   "status": "known",
+   "value": 1043236.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area 'beijing_ai_origin_community') in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "provisional key-area 复算值；官方 polygon 公布后重算。"
+   ]
+  },
+  "key_area_dazhongsi_ai_industry_cluster_sqm": {
+   "status": "known",
+   "value": 720454.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area 'dazhongsi_ai_industry_cluster') in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "provisional key-area 复算值；官方 polygon 公布后重算。"
+   ]
+  },
+  "phase_phase_1_area_sqm": {
+   "status": "known",
+   "value": 2259237.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase 'phase_1') in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念分期范围。"
+   ]
+  },
+  "phase_phase_2_area_sqm": {
+   "status": "known",
+   "value": 3617927.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase 'phase_2') in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念分期范围。"
+   ]
+  },
+  "phase_phase_3_area_sqm": {
+   "status": "known",
+   "value": 5513700.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phase 'phase_3') in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念分期范围。"
+   ]
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 38353.3,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(road centerlines)) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念路网长度（含遗址公园慢行主轴），非官方道路统计。"
+   ]
+  }
+ }
+}

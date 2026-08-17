@@ -5,7 +5,9 @@ language: "zh"
 license: "CC-BY-4.0"
 proposal_format_version: "2"
 translation_file: "proposal.en.md"
-summary: "以京张铁路遗址公园为空间载体，融合百年铁路文化、中关村创新基因与AI技术革命的未来城市创新带设计方案，覆盖43.6平方公里，构建三带叠加的空间格局。"
+summary: "以京张铁路遗址公园为空间载体，把三核两翼组织成可验证、可接管、可退出的城市AI试验带；每个场景同时交付空间载体、普通服务路径、测量方法和公开回执。"
+tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]
+iteration: "v7"
 ---
 
 # 百年京张AI创新带城市设计方案
@@ -17,6 +19,8 @@ summary: "以京张铁路遗址公园为空间载体，融合百年铁路文化�
 ## 摘要 / Abstract
 
 百年京张AI创新带是以京张铁路遗址公园为空间载体，融合百年铁路文化、中关村创新基因与AI技术革命的未来城市创新带。本方案统筹研究范围覆盖43.6平方公里（公告口径），总体设计范围（几何复算）为11.41平方公里 [metric:site_area_sqm]，从北五环到北京北站，构建三条带叠加的空间格局：百年京张文化带、都市AI生活体验带、AI融合创新带。
+
+**一页判读：这条带子在地上变成什么。** 方案可按四层理解：**空间层**是一轴三核两翼——7.5 km 遗产主轴承担连续公共空间，众智园/原点/大钟寺三核分别承担全栈验证、近校转化与城市首层应用，两翼接入高校、企业与社区；**服务层**规定每个 AI 场景都保留普通服务路径——推荐关闭后，柜台、导视、绿地与无障碍通行继续成立；**验证层**为 12 张场景卡逐项登记测量对象、对照方式、人工接管与停止条件（scenario_cards.json + check_cards.js）；**运营层**把公开问题经"沙盒—证据—复核—扩点/退出"回到年度公共价值审计（operations.json + check_ops.js）。任何 AI 场景进入公共空间前都要回答六件事：落在哪里、普通服务如何保留、测什么、谁复核、何时接管、怎样退出。
 
 The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innovation belt that integrates century-old railway culture, Zhongguancun's innovation DNA, and AI technology revolution, using the Beijing-Zhangjiakou Railway Heritage Park as its spatial carrier. This proposal covers 43.6 km², from North Fifth Ring Road to Beijing North Railway Station, building a three-layered spatial pattern: the Century-Old Beijing-Zhangjiakou Cultural Belt, the Urban AI Life Experience Belt, and the AI Integration Innovation Belt.
 
@@ -96,17 +100,17 @@ The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innova
 - 年度开源贡献记录≥1000项
 - 全球开发者访问量≥10万人次/年
 
-**中期目标（2030-2035）**：
-- AI产业产值突破500亿元
-- 独角兽企业培育≥10家
-- 年度国际AI会议≥5场
-- 获得碑刻记录的贡献者≥100人
+**中期目标（2030-2035，情景假设非预测承诺，见 assumptions.json）**：
+- AI产业产值500亿元为情景值——放行证据为年度产值审计与在统企业清单，不达标即修正目标而非口径
+- 独角兽培育≥10家为情景值——以孵化器毕业企业与融资公开记录计数
+- 年度国际AI会议≥5场——以实际举办场次与参会名录登记
+- 荣誉墙入选≥100人——以 operations.json 台账与年度公示为准，编号不排名
 
-**远期目标（2035-2040）**：
-- 成为全球AI创新网络TOP10节点
-- 形成可复制推广的AI城市范式
-- 累计开源贡献≥10万项
-- 国际影响力对标硅谷、波士顿
+**远期方向（2035-2040，方向性目标，以阶段门放行而非日历推进）**：
+- 参与全球AI创新网络对话，位次以年度公开可验证指标为准，不预设名次承诺
+- 形成可复制推广的AI城市范式，以至少一个外部城市采纳组件库条目为放行证据
+- 开源贡献累计规模以年度审计口径计数，随荣誉墙台账同步公开
+- 国际影响力以国际参会者占比、外文媒体报道量等可测项逐年公开，不对标口号
 
 ### 2.3 核心指标 / Core Metrics
 
@@ -988,7 +992,7 @@ The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innova
 
 ### 7.2 公共空间设计 / Public Space Design
 
-**AI地标1：智能体贡献荣誉墙**
+**AI朝圣地标1：智能体贡献荣誉墙（agent.4 地标一）**
 
 - **位置**：五道口站遗址广场
 - **设计理念**：永久纪念碑刻系统，记录入选方案和贡献者姓名
@@ -1000,7 +1004,7 @@ The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innova
 - **更新机制**：每年评审一次，最杰出的贡献刻入碑墙
 - **预期容量**：可容纳≥500个贡献者记录
 
-**AI地标2：百年铁路数字博物馆**
+**AI朝圣地标2：百年铁路数字博物馆（agent.4 地标二）**
 
 - **位置**：清华园车站遗址
 - **设计理念**：沉浸式数字展示，重现京张铁路百年历史
@@ -1014,7 +1018,7 @@ The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innova
   - 技术展示：人字形铁路、青龙桥车站的设计智慧
 - **预期参观量**：≥50万人次/年
 
-**AI地标3：开源成果展示节点**
+**AI朝圣地标3：开源成果展示节点（agent.4 地标三）**
 
 - **位置**：沿京张铁路遗址公园，每1 km设置一个
 - **设计理念**：可视化展示开源项目的代码演进历程
@@ -1033,6 +1037,24 @@ The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innova
 - 广场：5个城市广场，每个面积≥0.5 ha，用于公共活动
 - 街道：活力街道，宽度20-30m，底层商业，上层居住办公
 - 庭院：建筑内部庭院，提供私密交流空间
+
+**公共空间组件库 / Public Space Component Library（agent.4 必备输出）**
+
+朝圣地标之外，全带的公共空间由一套可复用组件装配而成，保证不同节点体验一致、实施可控：
+
+| 组件编号 | 组件 | 规格 | 数量 | AI 能力 |
+|---|---|---|---|---|
+| CP-01 | 智慧座椅 | 光伏顶棚+USB/无线充电+环境传感器 | 200组 | 用电/客流统计（匿名聚合） |
+| CP-02 | 导览屏 | 32寸触摸屏+离线地图+无障碍语音 | 40处 | 多语导览、SC-11 降级为纸质二维码 |
+| CP-03 | 环境监测杆 | 空气/噪声/温湿度三合一 | 60根 | SC-12 城市孪生数据源 |
+| CP-04 | 智能照明 | 分时调光+人感节能 | 全线 | 亮度随客流自适应 |
+| CP-05 | 无人零售亭 | 8-12m² 模块化箱体 | 30座 | 库存预测、扫码结算 |
+| CP-06 | 场景测试舱 | 可移动集装箱改造 | 12座 | SC-07/08 产业测试载体 |
+| CP-07 | 代码雕塑小品 | 贡献者代码片段实体化 | 20处 | 与荣誉墙数据联动 |
+| CP-08 | 无障碍通道模块 | 坡道+盲道+扶手一体化 | 全线 | 跌倒检测（SC-04 同款毫米波） |
+
+*组件库规则：组件编号进入 operations.json 运营台账；每类组件对应场景卡与降级策略；新增组件须先在场景测试舱（CP-06）验证一个季度方可上线。规格为概念性建议，供专业团队深化。*
+
 
 ### 7.3 文化叙事与导览路线 / Cultural Narrative and Guided Tour Route
 
@@ -1106,6 +1128,15 @@ The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innova
 ## 更新项目清单、实施政策与分期计划 / Renewal Projects, Implementation Policy, and Phasing
 
 ### 8.1 分期实施计划 / Phased Implementation Plan
+
+**四道放行门（G0-G3）**：任何阶段推进不因日历到期自动放行，只因证据齐备放行。
+
+| 放行门 | 扩展前必须存在的证据 | 建议复核角色 | 未通过时的动作 |
+| --- | --- | --- | --- |
+| G0 资料门 | 边界/权属/文保/工程资料缺口登记；临时约束替换为正式资料的触发条件 | 规划、文保及工程专业团队 | 只做研究与可逆原型，不进入不可逆工程 |
+| G1 普通服务门 | AI关闭日演练记录、普通服务路径图、线下柜台/纸质导视核对单 | 场景运营方 + 社区共治会 | 先补普通服务；不能独立运行的AI插件不上线 |
+| G2 安全与包容门 | 人工接管演练、无障碍共测、隐私核对、申诉处理记录 | 专业委员会 + 受影响使用者代表 | 暂停场景，修复后重新共测 |
+| G3 证据门 | 基线、对照、接管/投诉记录、公共收益说明 | 独立审计 + 联合理事会 | 维持原规模、缩点或退出 |
 
 **一期（2027-2030）：基础设施与核心区启动**
 
@@ -1228,6 +1259,19 @@ The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innova
   - 主题之旅：如"大模型之旅""开源框架之旅"
 - 预期：年度接待开发者≥10万人次
 
+**开发者社区运营机制 / Developer Community Operation（agent.6 必备输出）**
+
+面向全球开源开发者，以 operations.json OPS-1~OPS-4 四档运营节奏为骨架：
+
+- **治理结构**：9席开发者共治委员会（4席贡献者代表+2席居民代表+1席高校+1席企业+1席独立技术伦理），季度例会，决议公示
+- **成长路径（5步）**：访客 → 注册贡献者（首次PR合并）→ 活跃贡献者（季度≥3次有效提交）→ 维护者（委员会提名）→ 荣誉墙入选（年度评审，编号展示不排名）
+- **激励体系**：开源贡献积分（可兑换工位/算力/住宿）、年度荣誉墙入选、季度开发者大会演讲席位
+- **行为守则**：采用主流开源社区 CoC 模板，违规由委员会处理，两次违规移出社区
+- **数据边界**：贡献统计只用公开 PR 元数据；个人数据不进荣誉墙（SC-05 同规则）
+- **AI关闭日**：每场景每半年一次全离线演练，验证普通服务能否独立运行（对应基线 B05）；演练记录进入年度公共价值审计
+
+*运营机制全部字段化于 operations.json（developer_community_operation 节），check_ops.js 可校验。*
+
 **运营主体设计 / Operation Entity Design**：
 
 **政府主导**：
@@ -1311,6 +1355,18 @@ The Beijing-Zhangjiakou AI Innovation Corridor is a future-oriented urban innova
 | 医疗设施覆盖半径 | 1000 | m | 100%覆盖 |
 | 公园绿地500m覆盖 | 100 | % | 完全达标 |
 | 轨道站点800m覆盖 | ≥80 | % | 主要覆盖核心区 |
+
+**第一年基线测量方案（B01-B05）**：设施覆盖率为静态可达性计算；运营成效以下列基线为准，先测后比，不放空数。
+
+| 基线 | 观测与频率 | 统计/对照 | HOLD 规则 |
+| --- | --- | --- | --- |
+| B01 主轴慢行断点 | 首次全线踏勘建清单；干预后月度复测 | 断点数、类别、关闭时长；修复前后对照 | 新增高风险断点 → 属地交通/公园复核 |
+| B02 无障碍连续性 | 轮椅/低视力使用者与审计员共测 | 路线完成、求助、不可达点；AI/纸图/人工三路径比较 | 新增不可达点 → 无障碍场景暂停 |
+| B03 公共空间非商业可用 | 公开日历+现场抽查 | 承诺开放时段与实际占用对照 | 商业挤占基础通行 → 活动缩场 |
+| B04 场景申诉与接管 | 工单与急停日志连续记录 | 首次响应、完整关闭、人工接管原因 | 同类投诉重复未修复 → 对应场景暂停 |
+| B05 AI关闭日演练 | 每场景每半年一次全离线演练 | 普通服务独立运行时长、恢复时间 | 演练失败 → 场景降级直至修复 |
+
+基线值当前保持待实测状态。每项首次发布时同时公开定义、采样边界与责任角色；正式边界变化只重算空间指标，不改测量规则。
 
 ### 9.2 合规矩阵 / Compliance Matrix
 

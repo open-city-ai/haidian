@@ -63,7 +63,7 @@
       "severity": "info",
       "target": "self_check.json",
       "source": "package-provided",
-      "message": "以 PKG_ 开头的条目是本方案自建的闸门，不是组织方检查项，不参与 ok / can_enter_formal_review 的判定。**它们只可能记录『通过』**——任一闸门不过，构建即停止，包不会存在，因此『通过』二字本身不构成证据。有证据价值的是每条 message 里的读数：它可以拿随包产物直接复核。（本次记录 75 道闸门，逐道由构建的输出现取，而不是从一份手写名单里挑——名单曾经只列了 7 道。另有 3 条以 PKG_ 开头的条目**不是闸门**：本条与两条统计披露，它们的 `result` 字段对它们没有意义，有意义的是 message 里那几个可以拿随包产物复核的数。因此 PKG_ 行共 78 条 = 75 道闸门 + 3 条披露。）"
+      "message": "以 PKG_ 开头的条目是本方案自建的闸门，不是组织方检查项，不参与 ok / can_enter_formal_review 的判定。**它们只可能记录『通过』**——任一闸门不过，构建即停止，包不会存在，因此『通过』二字本身不构成证据。有证据价值的是每条 message 里的读数：它可以拿随包产物直接复核。（本次记录 77 道闸门，逐道由构建的输出现取，而不是从一份手写名单里挑——名单曾经只列了 7 道。另有 3 条以 PKG_ 开头的条目**不是闸门**：本条与两条统计披露，它们的 `result` 字段对它们没有意义，有意义的是 message 里那几个可以拿随包产物复核的数。因此 PKG_ 行共 80 条 = 77 道闸门 + 3 条披露。）"
     },
     {
       "check_id": "PKG_ACCESSIBILITY_QA",
@@ -143,7 +143,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "claim_audit_qa.py — claim audit: 81 zh / 81 en unit-carrying measurements in prose, same set in both editions; 151/144 bare numbers reported but not blocked, and one designed check (75 candidates) not shipped"
+      "message": "claim_audit_qa.py — claim audit: 83 zh / 83 en unit-carrying measurements in prose, same set in both editions; 152/146 bare numbers reported but not blocked, and one designed check (81 candidates) not shipped"
     },
     {
       "check_id": "PKG_CLAIM_STATE_QA",
@@ -167,7 +167,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "computed_value_qa.py — 38 metric citations across both editions, every one naming a metric that exists"
+      "message": "computed_value_qa.py — 42 metric citations across both editions, every one naming a metric that exists"
     },
     {
       "check_id": "PKG_DECLARED_GEOMETRY_QA",
@@ -215,7 +215,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "figure_citation_qa.py — figure citations: all 34 sheets cited from the argument in both editions outside the drawing index, and all 67 shipped deliverables named in each edition separately; 4 'never drawn' claim(s) (4 zh, 0 en — the English patterns match the unscoped present perfect, and the English text uses the past perfect, which scopes by tense), every one of them scoped to the moment it was true; 62 distinct ids cited across five namespaces, every one reachable from both editions; 8 finished documents in two languages, each named by its own edition"
+      "message": "figure_citation_qa.py — figure citations: all 34 sheets cited from the argument in both editions outside the drawing index, and all 67 shipped deliverables named in each edition separately; 4 'never drawn' claim(s) (4 zh, 0 en — the English patterns match the unscoped present perfect, and the English text uses the past perfect, which scopes by tense), every one of them scoped to the moment it was true; 84 distinct ids cited across five namespaces, every one reachable from both editions; 8 finished documents in two languages, each named by its own edition; every citation resolves to one of the 34 registered sheets, in both directions — 0 unsubstituted placeholder(s) and 0 citation(s) to a number no sheet carries, where the old check could report neither because it only ever walked from the register to the prose"
     },
     {
       "check_id": "PKG_FIGURE_TITLE_QA",
@@ -271,7 +271,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "gate_count_qa.py — gate counts: both editions quote the harness correctly — 103 mutations, 72 of 75 gates proven able to fail, 3 with published reasons, every figure read from gate_mutation.json rather than trusted"
+      "message": "gate_count_qa.py — gate counts: both editions quote the harness correctly — 107 mutations, 74 of 77 gates proven able to fail, 3 with published reasons, every figure read from gate_mutation.json rather than trusted"
     },
     {
       "check_id": "PKG_GATE_MUTATION_QA",
@@ -279,7 +279,15 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "gate_mutation_qa.py — gate mutation: 103 deliberate defects across 72 of 75 gates, all caught and all named by the gate that caught them; 3 gates not yet proven able to fail, each with its reason published"
+      "message": "gate_mutation_qa.py — gate mutation: 107 deliberate defects across 74 of 77 gates, all caught and all named by the gate that caught them; 3 gates not yet proven able to fail, each with its reason published"
+    },
+    {
+      "check_id": "PKG_GEOMETRY_CITATION_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "geometry_citation_qa.py — geometry citations: all 7 land-use rows cite exactly the feature ids the layer puts under their code, in both editions, recomputed from geometry/land_use.geojson rather than typed (22 features across 7 codes); across all nine layers the argument reaches 49 of 70 features, and the ones it does not are named rather than left to look complete — buildings.geojson 1/6, phasing.geojson 1/3, public_space.geojson 4/8, roads.geojson 13/23. Scope: this cannot tell whether a feature is cited in the right sentence, only that a row's ids are the layer's ids for that code, and that the unreached remainder is counted out loud; the 11 east-west stitching points are anchored to themselves rather than to the spine, the set recomputed from the layer's stitching_street property"
     },
     {
       "check_id": "PKG_HARNESS_REFERENCE_QA",
@@ -303,7 +311,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "intake_limits_qa.py — intake limits: 59 shipped Markdown and JSON files within the organisers' caps; the tightest is proposal.en.md with 15,600 bytes to spare. The package totals 26.1 MiB against a 40 MiB total cap and a 5 MiB per-asset cap, both read from upstream/main"
+      "message": "intake_limits_qa.py — intake limits: 59 shipped Markdown and JSON files within the organisers' caps; the tightest is proposal.en.md with 3,724 bytes to spare. The package totals 28.8 MiB against a 40 MiB total cap and a 5 MiB per-asset cap, both read from upstream/main"
     },
     {
       "check_id": "PKG_LABEL_COLLISION_QA",
@@ -319,7 +327,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "markdown_structure_qa.py — markdown structure: 109 tables across both editions, every separator and row matching its header, every ordered list strictly increasing"
+      "message": "markdown_structure_qa.py — markdown structure: 115 tables across both editions, every separator and row matching its header, every ordered list strictly increasing"
     },
     {
       "check_id": "PKG_MATRIX_REFS_QA",
@@ -359,7 +367,7 @@
       "severity": "info",
       "target": "package",
       "source": "package-provided",
-      "message": "naming_qa.py — naming: 633 distinct names harvested from the package — 611 matching exactly one of 24 published families and 22 that are named documents in naming.json, and nothing else; every family governs at least one, and 8 benchmarks carry digits agreeing with the order they declare — the naming system is checked against the package rather than asserted about it"
+      "message": "naming_qa.py — naming: 646 distinct names harvested from the package — 624 matching exactly one of 24 published families and 22 that are named documents in naming.json, and nothing else; every family governs at least one, and 8 benchmarks carry digits agreeing with the order they declare — the naming system is checked against the package rather than asserted about it"
     },
     {
       "check_id": "PKG_OFFICIAL_AREA_QA",
@@ -562,6 +570,14 @@
       "message": "sheet_scale_qa.py — sheet scales: 2 section(s) across both editions, each drawn at the same number of units per metre across and up — which is what their captions claim — and each with its plate drawn at the height the declared scale gives; and 6 plan window(s), each declaring the ground it shows rather than the span it was asked for, every declaration equal to its own frame divided by its own scale, all windows on a sheet sharing one scale, and both extents stated in the sheet's own caption. Scope: this checks drawings that declare a scale or an extent; one that claims neither is not a failure here"
     },
     {
+      "check_id": "PKG_SOURCE_CITATION_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "package",
+      "source": "package-provided",
+      "message": "source_citation_qa.py — source citations: all 28 registered sources reached from the argument in both editions outside the bibliography, through the five registered namespaces (28 zh, 28 en; 0 carrying a published reason to sit uncited). The rule is the one this package wrote for its drawings — an index says a thing exists and gives nobody a reason to open it — applied for the first time to the source register. Scope: this cannot tell whether a source is cited well, only that nothing is shipped with the argument reaching for none of it"
+    },
+    {
       "check_id": "PKG_SOURCE_PROVENANCE_QA",
       "result": "pass",
       "severity": "info",
@@ -671,7 +687,7 @@
       "severity": "info",
       "target": "visual/assets/errata.json",
       "source": "package-provided",
-      "message": "勘误册共 279 条，按发现者：audit 27、external 31、external-reviewer 5、own-gate 19、rival-read 17、self 180；最常见形状：check-measured-the-convenient-thing 51、two-copies-of-one-thing-drifted 40、deliverable-not-inspected-before-shipping 30、claim-outlived-the-package 20。**该文件随包提交，但不在评审工具读取的九个文件之内**（正文只点名其中 20 条），因此这一行是它在评审可读范围内的唯一入口。 / The errata register holds 279 entries. It ships at visual/assets/errata.json and is not one of the nine files the review harness reads, so this line is its only entry point from where a reviewer sits."
+      "message": "勘误册共 288 条，按发现者：audit 27、external 31、external-reviewer 5、own-gate 20、rival-read 17、self 188；最常见形状：check-measured-the-convenient-thing 52、two-copies-of-one-thing-drifted 42、deliverable-not-inspected-before-shipping 30、claim-outlived-the-package 20。**该文件随包提交，但不在评审工具读取的九个文件之内**（正文只点名其中 21 条），因此这一行是它在评审可读范围内的唯一入口。 / The errata register holds 288 entries. It ships at visual/assets/errata.json and is not one of the nine files the review harness reads, so this line is its only entry point from where a reviewer sits."
     },
     {
       "check_id": "PKG_MUTATION_COVERAGE",
@@ -679,7 +695,7 @@
       "severity": "info",
       "target": "visual/assets/gate_mutation.json",
       "source": "package-provided",
-      "message": "闸门变异测试：103 处人为缺陷，覆盖 72 道闸门，全部被抓住且被点名；另有 3 条规则当前匹配为零，逐条附理由。**「通过」本身不构成证据——任一闸门不过，构建即停，包不会存在**；有证据价值的是这些读数，而完整记录同样不在评审工具读取的九个文件之内。 / Mutation testing: 103 deliberate defects across 72 gates, all caught and named, plus 3 rules currently matching nothing, each with its reason. The full record is not among the nine files the harness reads."
+      "message": "闸门变异测试：107 处人为缺陷，覆盖 74 道闸门，全部被抓住且被点名；另有 3 条规则当前匹配为零，逐条附理由。**「通过」本身不构成证据——任一闸门不过，构建即停，包不会存在**；有证据价值的是这些读数，而完整记录同样不在评审工具读取的九个文件之内。 / Mutation testing: 107 deliberate defects across 74 gates, all caught and named, plus 3 rules currently matching nothing, each with its reason. The full record is not among the nine files the harness reads."
     }
   ],
   "ok": true,
@@ -885,7 +901,7 @@
       "ai_package_stages": {
         "submissions/jiangmuran/jingzhang-leveling-line": "formal"
       },
-      "total_bytes": 27323067,
+      "total_bytes": 30098698,
       "maintainer_bypass": false
     },
     "stderr": ""
@@ -967,11 +983,11 @@
         "proposal_format_version": "2",
         "evidence_contract": "section-anchors-plus-structured-audit",
         "proposal_reference_counts": {
-          "source": 13,
+          "source": 25,
           "standard": 6,
           "depth": 15,
-          "data": 17,
-          "metric": 11
+          "data": 25,
+          "metric": 13
         }
       }
     },

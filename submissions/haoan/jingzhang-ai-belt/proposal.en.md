@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A concept proposal centered on the Jing-Zhang Railway Heritage Park spine: 'Jing-Zhang AI Spine' with a three-core/two-wing synergy loop, seven AI Spine mixed-use units (innovation and livability interwoven everywhere), 10+ AI scenario cards and 3 AI pilgrimage landmarks, with a global balance check of 48% industry-innovation vs 52% livability support — a high-quality urban district concept that global AI talent aspires to. All spatial proposals are reference schemes for professional teams to deepen."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
-iteration: "v0.1"
+iteration: "v0.6"
 ---
 
 # Jing-Zhang AI Spine — Concept Urban Design for the Centennial Jing-Zhang AI Innovation Belt
@@ -111,7 +111,7 @@ Naming system (all conceptual):
 
 Logo direction: the switchback "zigzag" track of the Qinglongqiao on the Jing-Zhang Railway, fused with integrated-circuit traces as a shared graphic motif, expressing the symbiosis of human creation and machine intelligence; palette of railway steel grey-blue and Zhongguancun tech blue. A professional team should deepen the visual identity system (wayfinding, gateway signage, event visuals) [agent.1].
 
-### Global AI Innovation Ecosystem Cases and Transferable Mechanisms (5-8)
+### Global AI Innovation Ecosystem Cases and Transferable Mechanisms (10)
 
 | # | Case | Region | Transferable mechanism |
 |---|---|---|---|
@@ -126,7 +126,16 @@ Logo direction: the switchback "zigzag" track of the Qinglongqiao on the Jing-Zh
 | 9 | Station F | Paris, France | Railway heritage converted into the world's largest startup campus: **heritage space hosting startup ecosystem + corporate accelerators** |
 | 10 | Shenzhen Bay Tech Eco-Park | Shenzhen, China | Industry-city integration: R&D offices + talent apartments + public space in one, "**park as community**" operations |
 
-Six transferable mechanisms: ① walkable research-industry circles (<15-min walking chain); ② mixed use and talent housing (industry-livability balance); ③ heritage activation as innovation container (railway heritage → innovation corridor); ④ open test beds and scenario release mechanisms; ⑤ anchor-enterprise ecosystem chains plus professional park operators; ⑥ event branding linked to spatial marketing. All cases are background factual references [source:DATA-SRC-GLOBAL-CASES]; only mechanisms are drawn, never copied forms [agent.2].
+All cases are background factual references [source:DATA-SRC-GLOBAL-CASES]; only mechanisms are drawn, never copied forms [agent.2]. The six transferable mechanisms are concretized below (all conceptual, linked to the main chapters):
+
+| # | Mechanism | Spatial carrier (concept) | Actors (concept) | Operation points (concept) | Measurable direction (concept) |
+|---|---|---|---|---|---|
+| ① | Walkable research-industry circles (<15-min chain) | AI-Spine stations × shared labs, university north-gate nodes, Origin Plaza | Universities/institutes, developer community, park operator, student founders | Co-located joint labs bound to AI-Spine stations; university courses and internships enter the open test bed; professors and student representatives join the human review committee [agent.3] | Number of joint industry-academia projects, shared lab seats, universities covered per circle |
+| ② | Mixed use and talent housing | Residential clusters inside AI-Spine units, low-cost innovation spaces | Local government, park operator, housing operators | Talent and founder apartments allocated per unit (concept); 48:52 industry-livability total check; targeted rent safeguards [depth:phasing_implementation] | Talent housing units, jobs-housing balance index |
+| ③ | Heritage activation as innovation container | Qinghuayuan station node, heritage-park station buildings, rail exhibition corridor | Heritage authorities, park operator, cultural institutions | Station activation list (concept): waiting hall→incubator, platform→gallery, rails→slow exhibition axis; compliant with heritage and character control [standard:MOHURD-URBAN-DESIGN-MEASURES] | Activated nodes, annual cultural events |
+| ④ | Open test beds and scenario release | Zhongzhiyuan open test bed, scenario filing platform | Enterprises, developers, human review committee | Full lifecycle of scenario cards (filing→trial→monitoring→formalize/exit); KPI thresholds and exit ledger in the Implementation Assurance System [agent.3] | Scenarios under test, formalization rate |
+| ⑤ | Anchor-enterprise chains + professional park operators | Dazhongsi Smart Bazaar, Zhongguancun service wing | Anchor enterprises, AI-Spine operating company, industry funds | Triangle operation model (government guidance/park operator/developer co-creation); anchor-chain completion with operator-supplied space and compliance services [agent.6] | Ecosystem-chain coverage, tenant count |
+| ⑥ | Event branding linked to spatial marketing | Milestone Plaza, open-source gallery, annual event system | Park operator, developer community, media | Annual open-source festival / benchmark release / Jing-Zhang Declaration summit (concept); events linked with the OMP honor system; space as marketing carrier [agent.6] | Annual events, brand exposure count |
 
 ### Coordinated-Level Structure: Three Cores, Two Wings Synergy Loop
 
@@ -235,7 +244,7 @@ The three key-area polygons are provisional rough extents corresponding to the a
 
 Ecosystem elements are organized along eight factors — "**land, space, industry, capital, talent, computing, data, scenarios**": land/space (three-core/two-wing land guarantee); industry (foundation-model–application–service chain); capital (Zhongguancun IP and capital enablement, Capital & IP Wing); talent (talent apartments + founder apartments + university collaboration); computing (public computing platform, concept); data (public data space with compliant governance); scenarios (Scenario Wing open test beds and scenario release mechanism) [agent.2].
 
-### User Personas (5)
+### User Personas (6)
 
 | Persona | Profile | Spatial needs | Scenario mapping |
 |---|---|---|---|

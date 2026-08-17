@@ -173,6 +173,23 @@
       "resolution_evidence": "① `pdftoppm -f 6 -l 6 -r 200 drawings/a3-booklet.pdf -` 渲染后该行分隔符为顿号，无 .notdef 方框；抽取结果 `·` 计数 0、`、` 计数 7。② poppler(`pdftotext`)、PyMuPDF、pypdf 三引擎对同页抽取的中文一致且与图面相符（如 A3 第 6 页「八个共享栈，把能力交到下一班」、A0 第 1 页「京张交接线」，修复前分别抽成「頙釮頠銸䐛」「銺㬪銯㾲」）。③ 四套 `qpdf --check` 全 PASS，页数与 `PACKAGE v1.15` 命中数相等（13/13、13/13、6/6、6/6），CID 中文字体未嵌入数为 0。",
       "recalculation_scope": "修法：内容流的 CJK 走十六进制串且编码为 UniGB-UCS2-H，串内即 UCS-2 码位，因此正确的 ToUnicode 是恒等映射——把每个 ToUnicode 流整体换成一条 `<0000><ffff><0000>` 的 bfrange，流长由 fix-qdf 重算；缺字则在十六进制串的 4 位码元边界上把 `00b7` 换成 `3001`，全文恰好 7 处、无过匹配。已验证不可采用的修法：在 `(...)` 字面量里按裸字节替换 `\\x00\\xb7` 一次命中 68 处，全是跨字边界的巧合，会损坏其它文字——CJK 根本不走字面量。",
       "risk_statement_zh": "若后续重建 PDF 而未重跑上述三项核验，两处缺陷可能回归而不被察觉。"
+    },
+    {
+      "id": "A-CONTRAST-001",
+      "status": "open",
+      "statement": "本包 26 张栅格图件的文字前景色已按 WCAG 2.1 SC 1.4.3 逐色测量并全部达到 4.5:1 以上（最低 4.60:1），但**两件事仍未验证**：一是填充色块之间的相互区分度未量化——对比度指标衡量的是「文字对底色」，不衡量「色块 A 对色块 B」，因此四色图例在色觉障碍条件下能否互相区分尚无测量值；二是未做任何真实用户可读性测试，对比度达标不等于低视力用户实际可读。",
+      "impact": "图面可读性的结论目前只覆盖「文字—底色」一对关系。若后续测量表明填充色块在色觉障碍条件下不可区分，需要为四色补加形状或纹理编码（图例已用圆/方/三角区分的做法可扩展到色块），此类改动只涉及图件生成器与图例，不改动几何、指标与语义绑定。",
+      "recalculation_trigger": "满足以下任一条即复核并更新 figure-contrast-report.json 与相关图件：(a) 取得可用的色觉障碍模拟测量（对四色两两做 protanopia/deuteranopia/tritanopia 变换后重算区分度）；(b) 组织一次含低视力与色觉障碍参与者的可读性共测并留下失败与修复记录；(c) 视觉系统新增第五种语义色或更换任一色值。",
+      "affected_files": [
+        "visual/assets/governance/figure-contrast-report.json",
+        "assets/figures/",
+        "standard_matrix.json",
+        "sources.json"
+      ],
+      "responsible_role": "参赛者（图面表达）；深化阶段应由无障碍专业人员与真实用户共同复核",
+      "resolution_evidence": null,
+      "recalculation_scope": "已排除的做法：不通过加深填充色块来提高区分度——填充色块承担的是语义区分而非阅读，加深会破坏与文字深版的层级关系，也会让四色在色条上趋同。已验证可行的方向是形状/纹理冗余编码，本包触觉走廊图已用圆/方/三角实现同一思路。",
+      "risk_statement_zh": "风险在于把「对比度达标」误读为「无障碍已验证」。本包在正文、standard_matrix.json 的 WCAG-CONTRAST 条目与 figure-contrast-report.json 的 not_claimed 三处同时写明这一条不成立，避免单点声明被当作整体结论。"
     }
   ]
 }

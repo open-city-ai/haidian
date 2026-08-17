@@ -1,0 +1,234 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "unary union of SITE_BOUNDARY features in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEO-001",
+        "A-GEO-002"
+      ],
+      "note_zh": "依据临时粗略边界复算，official 边界发布后必须重算",
+      "note_en": "recalculated from the provisional boundary; must be recomputed when official geometry arrives"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 227640.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "unary union of GREEN_SPACE features in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEO-004"
+      ],
+      "note_zh": "绿地为概念方案形态，非现状/批复绿地；官方绿地数据发布后必须重算",
+      "note_en": "green-space shape is a concept proposal, not existing/approved green land; must be recomputed when official data arrives"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 556506.779,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "unary union of PUBLIC_SPACE features in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEO-005"
+      ],
+      "note_zh": "公共空间多边形要素在 EPSG:4548 下按并集复算；该值为概念方案几何面积，非现状或批复公共空间面积，官方完整面数据发布后必须整体重算",
+      "note_en": "public-space polygon features are unioned and recomputed in EPSG:4548; this is a conceptual-geometry area, not an existing or approved public-space area, and must be recomputed when complete official polygon data arrives"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.0199,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space area / site area in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEO-004"
+      ],
+      "note_zh": "绿地率为概念方案比值，非现状绿地率；官方绿地数据发布后必须重算",
+      "note_en": "green ratio is a concept-proposal ratio, not the existing green ratio; must be recomputed when official data arrives"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0488,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space area / site area in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEO-005"
+      ],
+      "note_zh": "公共空间多边形要素在 EPSG:4548 下按并集复算；该值为概念方案几何面积，非现状或批复公共空间面积，官方完整面数据发布后必须整体重算",
+      "note_en": "public-space polygon features are unioned and recomputed in EPSG:4548; this is a conceptual-geometry area, not an existing or approved public-space area, and must be recomputed when complete official polygon data arrives"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1068617.426,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "unary union of buildings in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEO-006"
+      ],
+      "note_zh": "建筑轮廓为概念体块，无既有建筑测绘；拆改留须以官方调查为准",
+      "note_en": "footprints are concept massing with no existing-building survey; retain/renovate/demolish must await an official survey"
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 40890.38,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum of projected road feature lengths in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEO-007"
+      ],
+      "note_zh": "路段为概念路网，长度按投影几何要素长度累加，非现状道路长度",
+      "note_en": "concept road network; projected segment lengths summed, not the existing road length"
+    },
+    "key_area_beijing_ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area of KEY_AREA beijing_ai_origin_community in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEO-003"
+      ],
+      "note_zh": "临时重点区边界面积",
+      "note_en": "provisional key-area area"
+    },
+    "key_area_dazhongsi_ai_industry_cluster_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area of KEY_AREA dazhongsi_ai_industry_cluster in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEO-003"
+      ],
+      "note_zh": "临时重点区边界面积",
+      "note_en": "provisional key-area area"
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area of KEY_AREA zhongzhiyuan_ai_acceleration_area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEO-003"
+      ],
+      "note_zh": "临时重点区边界面积",
+      "note_en": "provisional key-area area"
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [],
+      "formula": "100 × mean(reproducible_experiment_score, cross_area_validation_score, public_governance_record_score, adoption_output_score), with each component normalized to 0–1",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRIC-001"
+      ],
+      "baseline_status": "unknown",
+      "proposed_target_value": 70,
+      "proposed_target_horizon": "2030 conceptual scenario; reset after launch baseline",
+      "measurement_frequency": "季度测量、年度独立复核 / quarterly with annual independent review",
+      "data_owner": "拟议带区指标托管方，待确认 / proposed belt indicator steward, pending confirmation (A-DATA-001)",
+      "status_wording": "基线待补齐；70/100为概念情景目标，不是批准指标或绩效承诺。",
+      "reason": "锁定输入没有可复算的带区实验、跨区验证、治理记录和采纳成果联合台账。"
+    },
+    "ai_talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "annual active AI research, engineering, governance, and creative participants / annual active work-and-learning participants in the belt",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRIC-001"
+      ],
+      "baseline_status": "unknown",
+      "proposed_target_value": 0.25,
+      "proposed_target_horizon": "2030 conceptual scenario; reset after launch baseline",
+      "measurement_frequency": "半年测量、年度审计 / semiannual with annual audit",
+      "data_owner": "拟议带区指标托管方，待确认 / proposed belt indicator steward, pending confirmation (A-DATA-001)",
+      "status_wording": "基线未知；目标参考首尔AI人才枢纽与Mila研究院的人才培养机制作概念外推（机制级参考，非数值移植），proposed/pending confirmation。",
+      "reason": "锁定输入没有带区统一的人才口径、活动去重名册和就业学习分母。"
+    },
+    "ai_output_scale": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count of distinct outputs per year passing reproducibility, risk review, and cross-area validation gates",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRIC-001"
+      ],
+      "baseline_status": "unknown",
+      "proposed_target_value": 50,
+      "proposed_target_horizon": "2030 annual conceptual scenario; reset after launch baseline",
+      "measurement_frequency": "季度登记、年度去重 / quarterly registration with annual deduplication",
+      "data_owner": "拟议带区指标托管方，待确认 / proposed belt indicator steward, pending confirmation (A-DATA-001)",
+      "status_wording": "基线待补齐；每年50项为概念情景目标，仅统计通过三类闸门的成果。",
+      "reason": "锁定输入没有按统一闸门登记的年度AI成果清单。"
+    },
+    "ecosystem_conversion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "qualified scenarios entering limited procurement, public-service pilot, or sustained open-source maintenance / scenarios completing controlled tests in the same annual cohort",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRIC-001"
+      ],
+      "baseline_status": "unknown",
+      "proposed_target_value": 0.3,
+      "proposed_target_horizon": "2030 annual cohort conceptual scenario; reset after launch baseline",
+      "measurement_frequency": "年度同批次测量 / annual cohort measurement",
+      "data_owner": "拟议带区指标托管方，待确认 / proposed belt indicator steward, pending confirmation (A-DATA-001)",
+      "status_wording": "基线未知；目标参考Station F精选初创的筛选机制与Vector研究院的研究-应用转化加速功能作概念外推（机制级参考，非数值移植），proposed/pending confirmation。",
+      "reason": "锁定输入没有同批次受控测试与采购、服务试点或持续维护的关联台账。"
+    }
+  }
+}

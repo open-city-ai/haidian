@@ -1,0 +1,310 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or planning-control claims."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1432926.658,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or planning-control claims."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.125554,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or planning-control claims."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 751173.204,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or planning-control claims."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.065818,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or planning-control claims."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 56448.113,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(conceptual_building_footprints)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual modules; not a survey of existing buildings."
+      ]
+    },
+    "building_coverage_ratio": {
+      "status": "known",
+      "value": 0.004946,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model coverage only; not an approved building coverage ratio."
+      ]
+    },
+    "care_work_spine_length_m": {
+      "status": "known",
+      "value": 8840.044,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-RELAY-001)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or planning-control claims."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key-area polygons)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or planning-control claims."
+      ]
+    },
+    "care_relay_station_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(distinct relay_zone)",
+      "confidence": "low",
+      "assumptions": [
+        "Programs and staffing remain conceptual."
+      ]
+    },
+    "care_priority_ground_floor_module_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features where ground_floor_priority=care_public_service)",
+      "confidence": "low",
+      "assumptions": [
+        "Modules are conceptual and pending building/ownership survey."
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE)",
+      "confidence": "low",
+      "assumptions": [
+        "Scenario nodes are conceptual recommendations."
+      ]
+    },
+    "testing_validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE where scenario_kind=testing_validation)",
+      "confidence": "low",
+      "assumptions": [
+        "Testing requires operator approval, safety review and an exit plan."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona rows in proposal)",
+      "confidence": "low",
+      "assumptions": [
+        "Personas are design lenses, not surveyed residents."
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(named honor-display landmarks)",
+      "confidence": "low",
+      "assumptions": [
+        "Landmarks are conceptual public-space references."
+      ]
+    },
+    "non_ai_equivalent_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE where non_ai_equivalent_required=true)",
+      "confidence": "low",
+      "assumptions": [
+        "The fallback is a design contract pending operator confirmation."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel/building data are not available."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height, heritage and aviation controls are not available."
+    },
+    "building_density_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved building coverage control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved building-density controls are not available; submitted coverage is only a conceptual model."
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0802)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the submitted provisional-boundary design model; not an official control value."
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=1401)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the submitted provisional-boundary design model; not an official control value."
+      ]
+    },
+    "land_use_0902_area_sqm": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0902)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the submitted provisional-boundary design model; not an official control value."
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0702)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the submitted provisional-boundary design model; not an official control value."
+      ]
+    }
+  }
+}

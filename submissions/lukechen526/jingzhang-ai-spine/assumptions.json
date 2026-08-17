@@ -1,0 +1,121 @@
+{
+  "schema_version": "1",
+  "assumptions": [
+    {
+      "id": "A-GEO-001",
+      "statement_zh": "总体设计范围仅有依据公告文字四至拟合的临时粗略polygon（PROV-SITE-001），折线不等同于道路红线或法定范围线；官方polygon到达后必须整体重算全部面积与比例。",
+      "statement_en": "The overall design area exists only as a provisional rough polygon (PROV-SITE-001) fitted from the announcement's textual boundaries; its lines are not road redlines or statutory lines, and all areas and ratios must be recomputed when official polygons arrive.",
+      "status": "provisional",
+      "geometry_role": "provisional_constraint"
+    },
+    {
+      "id": "A-GEO-002",
+      "statement_zh": "六类用地分区（LU-01—LU-06）由PROV-SITE-001按共享水平切割精确派生，覆盖无缝隙无重叠；分区边界是概念设计线，不代表地块或权属边界。",
+      "statement_en": "The six land-use zones (LU-01 to LU-06) are derived exactly from PROV-SITE-001 by shared horizontal cuts with no gaps or overlaps; their boundaries are conceptual design lines, not parcel or ownership boundaries.",
+      "status": "provisional",
+      "geometry_role": "provisional_constraint"
+    },
+    {
+      "id": "A-GEO-003",
+      "statement_zh": "三处重点区（PROV-KEY-001/002/003）矩形仅为公告面积约束下的占位范围，不表达地块或权属边界；重点区面积指标以临时几何复算，与公告面积分离呈现。",
+      "statement_en": "The three key-area rectangles (PROV-KEY-001/002/003) are placeholder extents under the announced area constraints, not parcel or ownership boundaries; key-area areas are recomputed from provisional geometry and shown separately from announced areas.",
+      "status": "provisional",
+      "geometry_role": "provisional_constraint"
+    },
+    {
+      "id": "A-GEO-004",
+      "statement_zh": "绿地形态（GR-*）为概念方案表达，非现状或批复绿地；绿地面积与绿地率为概念值，官方绿地数据到达后必须重算。",
+      "statement_en": "Green-space shapes (GR-*) are concept proposals, not existing or approved green land; green-space area and green ratio are concept values and must be recomputed when official data arrives.",
+      "status": "pending_data",
+      "geometry_role": "provisional_constraint"
+    },
+    {
+      "id": "A-GEO-005",
+      "statement_zh": "提交的公共空间几何包含可量算的临时概念多边形以及点/线要素；面积指标仅对多边形在 EPSG:4548 下的并集复算，点/线不计入面积。该并集不代表现状或批复公共空间，官方完整面数据到达后必须同步重算面积、比例、图纸、HTML、指标与分期。",
+      "statement_en": "The submitted public-space geometry contains measurable provisional conceptual polygons as well as point and line features; area metrics are recomputed only from the polygon union in EPSG:4548, while point and line features do not contribute area. The union is not existing or approved public space; when complete official polygon data arrives, area, ratio, drawings, HTML, metrics, and phasing must be recomputed together.",
+      "status": "pending_data",
+      "geometry_role": "provisional_constraint"
+    },
+    {
+      "id": "A-GEO-006",
+      "statement_zh": "建筑轮廓均为低置信度agent生成的概念体块，无既有建筑测绘；拆改留不得作为调查结论，须以官方现状调查与权属资料为准。",
+      "statement_en": "All footprints are low-confidence agent-generated concept massing with no existing-building survey; retain/renovate/demolish must not be treated as a survey conclusion and must await official status survey and ownership data.",
+      "status": "pending_data",
+      "geometry_role": "provisional_constraint"
+    },
+    {
+      "id": "A-GEO-007",
+      "statement_zh": "路网（RD-*）为概念路网，路段长度按投影几何要素长度累加，非现状道路长度；道路红线与断面缺失，须以官方道路资料为准。",
+      "statement_en": "The road network (RD-*) is a concept network whose projected segment lengths are summed, not the existing road length; road redlines and sections are missing and must be replaced by official road data.",
+      "status": "pending_data",
+      "geometry_role": "provisional_constraint"
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "statement_zh": "三层范围与三处重点区均无官方精确polygon，仅可使用临时粗略边界用于生成、展示与自检；不得作为official redline、审批依据或精确面积复算依据。",
+      "statement_en": "None of the three scope levels or three key areas has an official precise polygon; only provisional rough boundaries may be used for generation, display and self-check, never as an official redline, approval basis or precise area basis.",
+      "status": "provisional",
+      "geometry_role": "provisional_constraint"
+    },
+    {
+      "id": "A-CONTROL-001",
+      "statement_zh": "控规条件（容积率、建筑高度、建筑密度、绿地率、退线、建筑控制线）缺失，开发强度与建筑规模记为unknown或概念建议值，不得写成审定指标。",
+      "statement_en": "Regulatory control conditions (FAR, height, density, green ratio, setbacks, building control lines) are missing; development intensity and building scale are recorded as unknown or concept values, never as approved indicators.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-LAND-001",
+      "statement_zh": "土地权属、宗地边界与征拆路径未核验；全部空间动作以租赁、共享使用或临时许可优先，不得推断征拆或权属结论。",
+      "statement_en": "Land ownership, parcel boundaries and demolition pathways are unverified; all spatial actions prioritize leasing, shared use or temporary permits and must not infer demolition or ownership conclusions.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "statement_zh": "京张铁路遗址公园与清华园车站旧址文保控制范围缺失；遗产廊道仅作关注廊道，不作文保控制线。",
+      "statement_en": "Heritage control ranges for the Jing-Zhang railway park and the Qinghuayuan station site are missing; the heritage corridor is an attention corridor only, not a heritage control line.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "statement_zh": "市政管线、消防、防洪排涝与海绵条件缺失；市政容量与接口均为待核概念。",
+      "statement_en": "Utility, fire, flood-drainage and sponge-city conditions are missing; municipal capacity and interfaces remain concepts pending verification.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-ROAD-001",
+      "statement_zh": "道路红线与断面缺失；断面宽度区间为概念建议，不得作为工程或交通组织结论。",
+      "statement_en": "Road redlines and sections are missing; section width ranges are concept suggestions, not engineering or traffic-organization conclusions.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-OPS-001",
+      "statement_zh": "各场景与长期运营的运营主体均为拟议、待确认；未经确认不得写成已确定的运营安排。",
+      "statement_en": "Operators for all scenarios and long-term operations are proposed and pending confirmation; they must not be written as confirmed arrangements.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-GOV-001",
+      "statement_zh": "公共协调方、治理席位与独立复核组均为拟议、待确认；不得表述为已确定政府安排。",
+      "statement_en": "The public coordinator, governance seats and independent review panel are proposed and pending confirmation; they must not be stated as confirmed government arrangements.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-FUND-001",
+      "statement_zh": "资金、预算与来源均为拟议、待确认；不得作出资金或财政承诺。",
+      "statement_en": "Funding, budgets and sources are proposed and pending confirmation; no funding or fiscal commitment may be made.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-DATA-001",
+      "statement_zh": "指标数据托管方与数据治理责任人待确认；指标基线建立前不声称已可度量。",
+      "statement_en": "Indicator data stewards and data-governance owners are pending confirmation; no indicator may be claimed measurable before its baseline is established.",
+      "status": "pending_data"
+    },
+    {
+      "id": "A-METRIC-001",
+      "statement_zh": "四项概念指标基线未知，2030目标值仅为显式假设支持的概念情景，建立基线后必须重设。",
+      "statement_en": "All four concept-indicator baselines are unknown; the 2030 target values are conceptual scenarios supported only by an explicit assumption and must be reset after baselining.",
+      "status": "provisional"
+    }
+  ]
+}

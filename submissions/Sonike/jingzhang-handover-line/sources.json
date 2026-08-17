@@ -1094,7 +1094,7 @@
       "source_locator": "https://github.com/notofonts/noto-cjk（CJK）与 https://github.com/notofonts/notofonts.github.io（拉丁）",
       "retrieved_at": "2026-08-14",
       "accessed_date": "2026-08-16",
-      "collection_method": "封面 assets/media/cover.png 由 Pillow 12.3.0 在本机栅格化，只加载四个 OFL 字体文件：NotoSansCJKsc-Medium.otf（sha256 ca094f6b0001fb048ca39ddd797a0cdb0179e1e55c6561e111c49c3e6a61d7b7，16,523,632 字节）、NotoSansCJKsc-Light.otf（sha256 e78bbbe1573bbb006156c1198f5c8cd6329470cb6e0b6702c7a3c83913db4abf，16,329,648 字节）、NotoSans-Bold.ttf（sha256 1df075a380fc7cb898acf64c1f7b3b4dd780de3caa860178bf929de35817a913，631,484 字节）、NotoSans-Regular.ttf（sha256 478c558ea716033cd60c03438f628dfa75694dcf6b5f6d505a2f05fd2b4f3823，621,572 字节）。字体文件存放在仓库之外的构建脚本目录，不随包提交。",
+      "collection_method": "全部 26 张栅格产物（24 张 PNG = 12 张图件 × 中英；2 张 JPEG = handover-scene 中英）由 Pillow 12.3.0 在本机栅格化，共加载**六个** OFL 字体文件，逐个记录 sha256 与字节数以便独立核对：NotoSansCJKsc-Medium.otf（ca094f6b0001fb048ca39ddd797a0cdb0179e1e55c6561e111c49c3e6a61d7b7，16,523,632 字节，中文正文字重）、NotoSansCJKsc-Light.otf（e78bbbe1573bbb006156c1198f5c8cd6329470cb6e0b6702c7a3c83913db4abf，16,329,648 字节，中文浅色注记）、NotoSans-Regular.ttf（478c558ea716033cd60c03438f628dfa75694dcf6b5f6d505a2f05fd2b4f3823，621,572 字节）、NotoSans-Bold.ttf（1df075a380fc7cb898acf64c1f7b3b4dd780de3caa860178bf929de35817a913，631,484 字节）、NotoSans-Italic.ttf（467e3f89eeca4108bb8710a2b9e0cf2281ac56d5b0609211a83776d0505eecb5，639,124 字节）、NotoSans-BoldItalic.ttf（1b602a9d6353be42c91df097a4857b69fa2696f26703d7a33b54a15d87c2622c，646,092 字节）。**中文一律取 Medium 档而非 Regular**：Noto Sans CJK 的笔画比原用的 STHeiti 细、字面更小，取 Medium 才与迁移前的图面重量相当。字体文件存放在仓库外的工具链目录，只在渲染阶段被读取以生成像素；包内不含任何字体文件，可用 `find <包> -name '*.tt[cf]' -o -name '*.otf'` 当场核验，结果为 0。画廊封面 assets/media/cover.png 的字体权利另立一条，见 FONT-NOTO-COVER。",
       "spatial_coverage": "不适用",
       "temporal_coverage": "不适用",
       "license_or_reuse_terms": "SIL Open Font License 1.1。OFL 明文允许使用、修改、嵌入与随文档再分发，因此包内全部栅格产物的字体权利依据不依赖对任何条款的解释。现行字重共六款，逐款 sha256 如下（字体文件存放在仓库之外的构建工具链目录，仅在本机渲染阶段读取字形生成像素，投稿包内不含任何字体文件）：NotoSansCJKsc-Medium.otf sha256=ca094f6b0001fb04…6a61d7b7；NotoSansCJKsc-Light.otf sha256=e78bbbe1573bbb00…13db4abf；NotoSans-Regular.ttf sha256=478c558ea716033c…2b4f3823；NotoSans-Bold.ttf sha256=1df075a380fc7cb8…5817a913；NotoSans-Italic.ttf sha256=467e3f89eeca4108…505eecb5；NotoSans-BoldItalic.ttf sha256=1b602a9d6353be42…87c2622c。",
@@ -1110,6 +1110,38 @@
       "registry_source_id": null,
       "registry_review_status": "not_in_central_registry",
       "usable_for_formal": "not_a_factual_source",
+      "usable_for_formal_basis": "participant_self_assessed"
+    },
+    {
+      "id": "W3C-WCAG-21",
+      "source_type": "standard_resource",
+      "evidence_class": "published_standard",
+      "authority_level": "T1",
+      "title": "Web Content Accessibility Guidelines (WCAG) 2.1，成功准则 1.4.3 Contrast (Minimum)（AA 级）",
+      "publisher": "World Wide Web Consortium (W3C)，W3C Recommendation 2018-06-05（最新勘误版 2023-09-21）",
+      "retrieved_at": "2026-08-17",
+      "accessed_date": "2026-08-17",
+      "collection_method": "读取 W3C 推荐标准正文中 SC 1.4.3 的阈值（正文 4.5:1、大号文字 3:1）与相对亮度定义（WCAG 2.1 §Definitions: relative luminance），按该定义在本机对本包实际使用的 sRGB 色值逐对计算对比度；不引用任何第三方对该标准的转述。",
+      "spatial_coverage": "不适用（技术标准）",
+      "temporal_coverage": "WCAG 2.1 自 2018-06-05 起为 W3C Recommendation",
+      "license_or_reuse_terms": "W3C Document License：允许复制与引用标准文本，须保留出处与版权声明。本包只引用阈值数值与相对亮度公式两项事实，未复制标准正文。",
+      "usage": "本包 26 张栅格图件文字前景色的对比度自检基准；测量结果见 visual/assets/governance/figure-contrast-report.json。",
+      "transformations": [
+        "原文表述：contrast ratio of at least 4.5:1 for text（SC 1.4.3, AA） → 方法：按 WCAG 2.1 相对亮度定义 L = 0.2126R + 0.7152G + 0.0722B（各通道先按 c/12.92 或 ((c+0.055)/1.055)^2.4 线性化），对比度 =(L_亮+0.05)/(L_暗+0.05) → 入库值：七种文字色 × 两种底色共 14 个比值，最低 4.60 → 单位：无量纲比值"
+      ],
+      "usable_for": [
+        "判定本包栅格图件的文字前景色是否达到 AA 级正文对比度阈值",
+        "说明四色亮版为何只用于填充而不用于文字"
+      ],
+      "not_usable_for": [
+        "认定本方案整体符合任何无障碍法定义务——WCAG 是自愿采纳的技术标准，非中国法定强制要求",
+        "替代对建成环境无障碍设施的规范审查（净宽、坡度、扶手等由《无障碍环境建设法》与相关工程规范约束，不在本标准范围内）",
+        "证明低视力用户的实际可读性——对比度达标不等于通过真实用户测试"
+      ],
+      "limitations": "SC 1.4.3 的原始适用对象是 Web 内容的文本呈现；本包把它用作**栅格图件文字**的自检基准，属参赛者主动扩展适用范围的自设标准，非该标准的规定用法。阈值区分正文 4.5 与大号文字 3.0，本包一律按更严的 4.5 判定，不为大字号放宽。",
+      "registry_source_id": null,
+      "registry_review_status": "not_in_central_registry",
+      "usable_for_formal": "supporting_standard",
       "usable_for_formal_basis": "participant_self_assessed"
     }
   ],
