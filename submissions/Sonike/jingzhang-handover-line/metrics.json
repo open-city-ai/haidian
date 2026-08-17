@@ -851,6 +851,37 @@
         "baseline": null,
         "target": null
       }
+    },
+    "stitch_grade_break_crossing_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(roads where movement_class != 'greenway_walk_cycle')",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "measurement_protocol": "八条东西缝合支线与主轴各交汇一次，因此交汇点数等于支线条数；主轴沿废弃铁路线形，支线接回城市街道标高，交汇处即高差可能出现的位置。",
+      "recalculation_trigger": "官方几何或道路红线到位后按同一公式复算；支线条数变化即更新。",
+      "verification": "已复算：读 geometry/roads.geojson，movement_class 非 greenway_walk_cycle 的要素为 ROAD-002…ROAD-009，共 8 条。"
+    },
+    "spine_longitudinal_gradient_max_pct": {
+      "status": "unknown",
+      "value": null,
+      "unit": "percent",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "max(abs(delta_elevation / horizontal_run)) along ROAD-001",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "reason": "主轴纵坡需现状高程测量。仓库未提供 DEM 或纵断面测量数据，几何图层亦无高程字段，因此保持未赋值——不以「铁路线形通常平缓」推算出一个数字。",
+      "measurement_protocol": "取得纵断面测量后，沿 ROAD-001 逐段计算纵坡，取绝对值最大者；与无障碍规范限值比较后决定该段是否需要设置休息平台或绕行。"
     }
   }
 }

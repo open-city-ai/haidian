@@ -450,6 +450,13 @@ English brief — **One test decides everything here: for any AI service on this
 
 ## 交通、轨道、市政与公共服务设施
 
+**这条带能做到连续无高差，靠的是它继承了一条铁路的纵坡。** 主轴 [data:geometry/roads.geojson#ROAD-001] 沿废弃铁路线形布置，而铁路线形本身就是为低而连续的纵坡而设计的——1909 年詹天佑在关沟遇到爬不上去的坡，用「人」字形折返换高度，正是同一个约束的另一面。普通城市街道随地形起伏，这条带不是：**它的可达性不是设计出来的优待，是线形遗产给的**。这也解释了为什么把「连续、无高差」写成开放前提在这里可行，而换到别处就不可行。
+
+**高差不出现在主轴上，出现在八处交汇点。** 八条东西缝合支线 [data:geometry/roads.geojson#ROAD-002] 要从铁路标高接回城市街道标高，交汇点数等于支线条数，共 **8 处** [metric:stitch_grade_break_crossing_count]。因此本方案把坡度检查放在这 8 处而不是全线：**任一处不能做到无高差连续通行，该处支线即不开放**，回到固定导视与人工服务；这与十二个场景「缺一不开」的口径一致，判据在同一层。**主轴最大纵坡保持未赋值** [metric:spine_longitudinal_gradient_max_pct]——需现状纵断面测量，几何图层无高程字段，本方案不以「铁路通常平缓」推算出一个数字来充数。
+
+**大钟寺站所在路口是唯一的四象限交汇**，它与八处支线交汇的性质不同：那里是车行主导的城市交叉口，四个象限之间需要连续、可视、无高差的步行连通关系，并在每个象限设到达界面与人工求助点。轨道接驳方案与四象限具体连通方式须取得正式交通、权属、消防与文保资料后由专业团队深化。
+
+
 交通结构由一条连续步行骑行主轴与八条东西缝合支线组成，概念线路总长18,855.117米 [metric:conceptual_movement_length_m]，见 [data:geometry/roads.geojson#ROAD-001]。主轴服务全带连续体验，支线只标识需要由专业交通研究解决的连接方向；每个交接场设置“到达—减速—辨识—人工求助—继续”的五步界面。**图 F/04 的走廊卡内列出十二个接管点的完整索引**，与图上 01–12 的编号一一对应；十二个名称逐字取自 `public_space.geojson` 的 `name_zh` / `name_en`，编号用与图上节点相同的电气青，使编号、点位与名称三者可以互相对上 [data:geometry/public_space.geojson]。轨道站点、北五环跨越、道路断面、停车与非机动车容量均缺正式数据，因此不声称新建桥隧或调整道路红线。后续交通模型需验证十五分钟慢行覆盖、换乘冲突、消防与物流时段，并响应 [depth:traffic_rail_slow_parking]。
 
 **道路与建筑图层同样使用组织方词汇。** 场地包除用地代码外还提供 `road_classes.json`（9 类）与 `building_types.json`（13 类）：9 条道路的 `road_class` 为 1 条 `greenway` + 8 条 `transit_connection`；20 个更新单元的 `building_type` 为 `ai_r_and_d` / `lab` / `incubator` / `community_service` 各 5 个 [data:geometry/roads.geojson#ROAD-001] [data:geometry/buildings.geojson#BLDG-001]。自造字段 `movement_class` 与 `typology` 同时保留：官方枚举是单值、承担全场可比，而八条支线实际是「慢行 + 轨道接驳」复合，单值装不下——**官方字段负责可比，自造字段负责表达，前者在前。**

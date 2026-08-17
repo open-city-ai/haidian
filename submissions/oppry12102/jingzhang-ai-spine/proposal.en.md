@@ -180,6 +180,10 @@ This proposal, in the overall design scope, proposes the urban-renewal overall s
 
 ![Spatial Structure](assets/figures/plan-04-structure.png)
 
+The three-dimensional relationship of "one belt, three cores" is shown in isometric axonometric: the Jing-Zhang Heritage Park continuous green belt is the green main line through the whole belt, and the R&D clusters of the three key areas rise along it from south to north as the Dazhongsi industry peak, the Origin Community sourcing peak and the Zhizhiyuan compute peak (schematic massing) [depth:overall_spatial_structure].
+
+![One-Belt Three-Cores Structure (isometric, schematic)](assets/figures/axonometric-three-cores.png)
+
 **Land-use structure**: the ten zones of the land-use layer fully cover the design boundary without overlap, expressing the functional division of the three cores and the green corridor through four official land-use codes [data:geometry/land_use.geojson#LU-001]. Code 0802 AI R&D innovation land carries the two incubation poles — the Beijing AI Origin Community innovation-incubation zone (~835,600 m²) and the Zhizhiyuan full-stack autonomous-innovation acceleration zone (~1,817,000 m²); code 09 commercial service land carries translation and consumption — the Dazhongsi AI-native and commercial-service zone (~1,912,600 m²) and the northern connector industrial service and supporting facilities (~1,219,100 m²); code 0702 community-service and supporting land (~2,436,300 m²) carries the southern connector's job-housing and living services; code 1401 park green space and open space, five segments, jointly constitute the Jing-Zhang Heritage Park green main axis. The ten-zone proportions are a recalculated expression of the current conceptual geometry, not a regulatory-planning adjustment decision [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE].
 
 
@@ -189,7 +193,7 @@ This proposal, in the overall design scope, proposes the urban-renewal overall s
 
 **Transport skeleton**: in the road layer, the Jing-Zhang AI Spine north-south slow greenway is the green main line through the whole belt; three east-west connectors respectively join Dazhongsi Station, the Origin Community and Zhizhiyuan to the greenway [data:geometry/roads.geojson#ROAD-001], forming a "one vertical, three horizontal" slow-mobility and micro-circulation base map [depth:traffic_rail_slow_parking].
 
-**Vector planning sheets**: this proposal is accompanied by fourteen vector planning sheets that land the spatial structure above as verifiable drawings — nine overall sheets: Location & Overall Scope, Existing Constraints & Networks, Land-Use Plan (land-sea classification colours and codes), Spatial Structure, Three Key-Area Site Plans, Green & Public-Space System, Mobility & Slow-Traffic System, Phased Implementation, and Blue-Green Landscape System; two system sheets: Grading Hierarchy (three-level design control: overall — key areas — places) and Subsystem Composition (four subsystems overlaid: industry-innovation, blue-green ecology, mobility & slow traffic, public service); and three key-area detail sheets at roughly 1:2000: Zhongzhiyuan AI Acceleration Area, Beijing AI Origin Community and Dazhongsi AI Industry Cluster, each marking the anchor of its spatial imagery (Recalculable Ledger Plaza, Accountability Corridor, Stoppable Service Street) together with in-area land-use parcels, R&D clusters and public nodes. Each sheet carries a title, legend, north arrow, scale bar, the provisional-boundary red dashed line and source notes, so the placement of every zone, greenway and node can be zoomed and checked directly.
+**Vector planning sheets**: this proposal is accompanied by fourteen vector planning sheets that land the spatial structure above as verifiable drawings — nine overall sheets: Location & Overall Scope, Existing Constraints & Networks, Land-Use Plan (land-sea classification colours and codes), Spatial Structure, Three Key-Area Site Plans, Green & Public-Space System, Mobility & Slow-Traffic System, Phased Implementation, and Blue-Green Landscape System; two system sheets: Grading Hierarchy (three-level design control: overall — key areas — places) and Subsystem Composition (four subsystems overlaid: industry-innovation, blue-green ecology, mobility & slow traffic, public service); and three key-area detail sheets at roughly 1:2000: Zhongzhiyuan AI Acceleration Area, Beijing AI Origin Community and Dazhongsi AI Industry Cluster, each marking the anchor of its spatial imagery (Recalculable Ledger Plaza, Accountability Corridor, Stoppable Service Street) together with in-area land-use parcels, R&D clusters and public nodes. Each sheet carries a title, legend, north arrow, scale bar, the provisional-boundary red dashed line and source notes, so the placement of every zone, greenway and node can be zoomed and checked directly. Beyond the fourteen plan sheets, this proposal adds five types of differentiated expression drawings — axonometric, section, skyline, perspective and node perspective — rendering the same spatial base through different projections and viewpoints to avoid the single path of "the same type enlarged" (all marked schematic).
 
 
 ![Grading Hierarchy](assets/figures/plan-10-hierarchy.png)
@@ -212,6 +216,12 @@ Among the three key areas, **the Beijing AI Origin Community is the flagship det
 
 ![Beijing AI Origin Community Detail (c.1:2000)](assets/figures/plan-13-keyarea-origin.png)
 
+The vertical organization of the Accountability Corridor is shown in a north-south section along the Origin Axis: between the outcomes-translation cluster (south) and the open-source collaboration cluster (north), the Qinghuayuan Station relic lies as the historical anchor at the switchback point; the corridor writes the responsible body, appeal interface and fallback path on the ground, while compute nodes and data ducts retreat underground and retain a stoppable, degradable fallback (schematic section) [depth:three_key_area_detailed_design].
+
+![Beijing AI Origin Community Accountability Corridor section (N-S along Origin Axis, schematic)](assets/figures/section-origin-community.png)
+
+![Beijing AI Origin Community Accountability Corridor perspective (schematic)](assets/figures/perspective-origin-community.png)
+
 ![Three key areas index and design tasks](assets/figures/key-areas.png)
 
 The three key areas are marked as provisional constraint in the key-area layer (official boundaries not yet published), and the main text, HTML, source list, assumptions list and self-check report all state that they do not constitute a formal scoring or approval basis; the task-coverage matrix covers announcement clauses 1.5.3.1, 1.5.3.2 and 1.5.3.3 respectively. The function mix, building scale, building form, retain/renovate/demolish classification, public-space system, transport organization, slow-mobility connectivity and implementation projects of the three areas are as follows; the HTML page switches among the three, and the A3 booklet and A0 boards contain key-area master plans, local detail drawings and indicator notes:
@@ -226,6 +236,10 @@ The spatial moves of the three areas follow one discipline: Zhizhiyuan separates
 
 
 ![Zhongzhiyuan AI Acceleration Area Detail (c.1:2000)](assets/figures/plan-12-keyarea-zhongzhiyuan.png)
+
+The Recalculable Ledger Plaza is shown in an eye-level node perspective as the everyday face of "recalculable": standing screens on the plaza display compute load, energy use and test pass-rate in real time, each conclusion annotated with its formula and layer source; when digital systems stop, shade, seating, accessibility and static wayfinding still form the non-digital base (stoppable) [depth:three_key_area_detailed_design].
+
+![Zhongzhiyuan Recalculable Ledger Plaza node perspective (eye-level, schematic)](assets/figures/node-ledger-plaza.png)
 
 ![Dazhongsi AI Industry Cluster Detail (c.1:2000)](assets/figures/plan-14-keyarea-dazhongsi.png)
 
@@ -317,6 +331,10 @@ Blue-green space takes the Jing-Zhang Heritage Park vitality belt as its skeleto
 Urban character fuses the Jing-Zhang Railway's historical culture, Zhongguancun's innovation culture and AI innovation culture, using cultural resources such as Qinghuayuan Railway Station and the Beijing Film Academy to propose urban tone, architectural character, roof form, massing, interface and public-art guidance; wayfinding, cultural symbols, international-communication narrative, AI pilgrimage landmarks, contribution walls and honor-display systems all require cleared sources. Character control distinguishes official control, design suggestion and to-be-confirmed conditions, and does not fabricate pseudo-precise control lines without heritage-protection or regulatory-planning basis [standard:MOHURD-URBAN-DESIGN-MEASURES].
 
 ![Blue-Green Landscape System](assets/figures/plan-09-blue-green.png)
+
+The skyline of the urban character is shown as a north-south elevation silhouette with a three-peak rhythm: the Dazhongsi industry peak, the Origin Community sourcing peak and the Zhizhiyuan compute peak rise in turn along the Jing-Zhang Heritage Park continuous green belt, with the Qinghuayuan Station relic embedded as a low-rise historical anchor, forming a height narrative "from steam to intelligence" (schematic skyline) [depth:blue_green_public_space].
+
+![Jing-Zhang AI Spine Three-Peak Skyline (N-S elevation, schematic)](assets/figures/skyline-jingzhang-spine.png)
 
 ### AI Pilgrimage Landmarks and Honor-Display System
 
