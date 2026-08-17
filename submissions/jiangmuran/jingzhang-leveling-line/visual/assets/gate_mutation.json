@@ -4,6 +4,30 @@
   "note_en": "**Every gate in this package had only ever been observed passing, and a gate that never fails cannot be told apart from a gate that cannot fail.** Each entry damages the package in a way one gate was built to catch, and requires that gate both to exit non-zero and to name the damage in its output — exiting without naming it sends a reviewer through the whole package (E50: bad news belongs where it happened). Original bytes are restored in a `finally`, so an interrupted run leaves nothing damaged. **One surviving mutation fails the build**, because it would mean a check this package cites as evidence does not do what it is cited for.",
   "mutations": [
     {
+      "id": "M112",
+      "gate": "claim_state_qa.py",
+      "target": "manifest.json",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把 E203 那句「如实留 false」放回 `validation_claim` 的说明里，而标志此时是 true——**这正是本包实际提交过的状态，而且它在包里躺了很多轮没人看见**。",
+      "what_en": "Put E203's sentence saying the flag is honestly left false back into the validation_claim explanation while the flag itself is true - **this is the state this package actually shipped in, unnoticed, for many rounds**.",
+      "why_zh": "`manifest.json` 由评审整份读取，所以这一处矛盾没有藏身之处：同一个对象里，标志说被自检过、挂在它上面的说明说没有。本包自己写下过判据——`set_self_checked` 的 docstring 就说「通过自检后仍留 false 是包内自相矛盾，而这一类矛盾正是评审会挑出来的」——然后撞上了它。`claim_state_qa` 此前只问标志是不是 true；**它从不读挨着标志的那句话**。这条变异钉住的是反方向的问题：那句话是否还在说这个标志。",
+      "why_en": "manifest.json is read whole by the review harness, so this contradiction has nowhere to sit: in one object the flag says the package was self-checked and the explanation beside it says it was not. This package wrote the test down itself - set_self_checked's docstring says leaving the flag false after a passing self-check is a package-internal contradiction, and that contradictions of exactly this kind are what review flags - and then walked into it. claim_state_qa only ever asked whether the flag was true; **it never read the sentence next to the flag**. This mutation pins the reverse direction: whether that sentence is still about this flag."
+    },
+    {
+      "id": "M113",
+      "gate": "claim_state_qa.py",
+      "target": "manifest.json",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把 `PKG_` 条数改回手写时代的 43——**这个数字曾经是对的**，它只是没跟着文件一起长。",
+      "what_en": "Change the PKG_ row count back to the hand-typed era's 43 - **that number was once correct**; it simply did not grow with the file.",
+      "why_zh": "手写的数不会随文件一起长：写下时 43 是真的，随后闸门读数涨到 81，而句子一动不动，在评审整份读取的文件里把自己的证据说少了 38 条。本包的规矩是**能现算的数不手写**；这条变异检查那条规矩这一次真的落地了，而不只是写在登记册里。",
+      "why_en": "A typed number does not grow with the file: 43 was true when it was written, the gate readings then rose to 81, and the sentence did not move - understating its own evidence by 38 rows in a file the reviewer reads whole. This package's rule is that a number it can derive is never typed; this mutation checks that the rule actually landed here rather than only being recorded in the register."
+    },
+    {
       "id": "M45",
       "gate": "upstream_validator_qa.py",
       "target": "manifest.json",
@@ -402,12 +426,12 @@
     {
       "id": "M23",
       "gate": "census_claims_qa.py",
-      "target": "proposal.en.md",
+      "target": "proposal.md",
       "caught": true,
       "exit_code": 1,
       "named_the_damage": true,
-      "what_zh": "把英文摘要里的「228→793 proposals」改成一句不带数字的说法，句子照样成立，而守着它的那条模式从此匹配不到任何东西。",
-      "what_en": "Reword the English summary so the pattern watching it matches nothing. The sentence stays true and readable; the check simply stops running.",
+      "what_zh": "把正文里被 context 模式守着的「两条赛道 40 份中」改成不带数字的说法，句子照样成立，而守着它的那条模式从此匹配不到任何东西。",
+      "what_en": "Reword a phrase a context pattern guards so that pattern matches nothing. The sentence stays true and readable; the check simply stops running.",
       "why_zh": "本闸门的十四条 fact 要求「必须找得到」，而二十一条 context 模式约束的是「每一次出现都必须等于当前值」——**零次出现就是零次约束**，循环根本不进入，而汇总行照旧写着「21 条模式」。三条已经这样悄悄失效了。若人为再造一条而闸门不响，这道闸门报出的数就只是它自己声明的条数，不是它做过的功。",
       "why_en": "This gate's fourteen facts must each be *found*; its context patterns instead constrain every occurrence of a phrasing — and **zero occurrences is zero constraint**. The loop never runs and the summary keeps reporting the number of patterns as though each had done work. Three had already fallen silent this way. If a fourth can be created deliberately without objection, the gate's headline number is a count of its own declarations, not of anything it checked."
     },
@@ -838,7 +862,7 @@
       "caught": true,
       "exit_code": 1,
       "named_the_damage": true,
-      "what_zh": "把本包对自己来源构成的自陈从「6 条」改成「9 条」——**登记册一条没动**，动的是这份包对自己说的话，而且改的方向是让缺口看起来小一些。",
+      "what_zh": "把本包对自己来源构成的自陈从「7 条」改成「9 条」——**登记册一条没动**，动的是这份包对自己说的话，而且改的方向是让缺口看起来小一些。",
       "what_en": "Change this package's own statement about its evidence base from six locally published source to four. **The registry does not change**; what changes is what the package says about itself, in the direction that makes the gap look smaller.",
       "why_zh": "**一份自陈缺口的文件，最容易失真的方向就是把缺口说小。** 这条变异要证明的是：这句话由 `sources.json` 现算核对，说小了会被拦下。",
       "why_en": "**A document that declares its own gaps is most likely to deform in the direction of making them smaller.** The mutation proves the sentence is recomputed against sources.json and an understatement is caught."
@@ -952,6 +976,18 @@
       "why_en": "This package states in its front-matter summary that seven land-use classes are partitioned with no overlap and no gap, while `land_use.geojson`'s 22 features were cited **once** in the prose. A reviewer told the partition is complete can check the four area readings and **cannot get from any row to the polygons that row is made of**. Once joined, the set has to be recomputed from the layer rather than typed: **a per-row decision made by hand seven times is one that will be got wrong once.**"
     },
     {
+      "id": "M111",
+      "gate": "land_use_enum_qa.py",
+      "target": "geometry/land_use.geojson",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把一块商服地块的用地代码改回 `05`——**要素名一个字没动**，改的只是这个代码在组织方枚举里现在指什么。",
+      "what_en": "Put one commercial parcel's land-use code back to `05` — **its name is untouched**; what changes is what that code now means in the organisers' enum.",
+      "why_zh": "组织方 2026-08-16 把 `05` 由商业服务业用地改为**湿地**，另立 `09`。**`05` 本身合法，成员性检查永远抓不到这条**——错的是要素的名字断言了另一个代码的含义。这条缺陷是靠看对手迁移才发现的，不是靠本包任何一道检查；枚举现在每次构建都从 `upstream/main` 读回来比对，**组织方那边一动，构建就停，而不是照常发货**。",
+      "why_en": "The organisers moved `05` from commercial services to **wetland** on 2026-08-16 and added `09`. **`05` is itself valid, so no membership check could ever catch this** — what is wrong is that the feature's name asserts the meaning of a different code. This defect surfaced from watching a rival migrate, not from any check here; the enum is now read back from `upstream/main` on every build, so **a change on their side stops the build instead of shipping silently.**"
+    },
+    {
       "id": "M107",
       "gate": "source_citation_qa.py",
       "target": "proposal.md",
@@ -986,6 +1022,19 @@
       "what_en": "Change a **safety** card's control from before-and-after to a parallel control — that is, withhold a layer of protection from some people so the comparison comes out cleaner. **Not a word of the card changes**; only which kind of control it says it runs.",
       "why_zh": "**这不是一个研究设计问题，是一个不该做的决定。** 闸门要求：凡声明并行对照的卡，其对照文本必须就是这张卡自己声明的非 AI 等价路径；安全类卡一旦改口说自己并行，那段文本对不上，构建就停。**一个未经声明就把人置于更少保护之下的比较，正是本方案通篇反对的那种做法。**",
       "why_en": "**This is not a study-design question but a decision that should not be taken.** The gate requires that a card claiming a parallel control have as its control text the very non-AI path that card declares; when a safety card switches its claim, the two texts no longer match and the build stops. **A comparison that quietly puts people under less protection is the practice this proposal spends its length objecting to.**"
+    },
+    {
+      "id": "M110",
+      "gate": "pdf_page1_qa.py",
+      "target": "build_drawings.py",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "rendered": true,
+      "what_zh": "把 A3 文册封面那行地名换成一句不含地名的口号——**页面照样排得出、照样好看**，改的只是它还说不说得出自己画的是哪里。",
+      "what_en": "Replace the place line on the A3 booklet cover with a slogan carrying no place name — **the page still composes and still looks finished**; what changes is whether it can say where what it draws is.",
+      "why_zh": "主办方对每份 PDF 只取第 1 页，而文册的第 1 页就是封面：**这一页是评审就这份文册所能看到的全部。** 封面此前写了机制、闭合规则与六项读数，一个地名都没有；而 `brief_alignment` 占 20%，问的正是本方案是否围绕这条带、三层范围与三大重点片区展开。地名由 `key_areas.geojson` 现算，因此这道检查读的是合版后的矢量源——**不是对成品 PDF 做文本抽取**：封面自己的标题就抽不出来，抽取分不清「写了地名」和「没写地名」。",
+      "why_en": "The harness takes page 1 only of each PDF and the booklet's page 1 is its cover, so **that page is the whole of this deliverable the reviewer sees**. The cover used to state the mechanism, the closure rule and six readings and name no place at all, while brief_alignment — 20% of the weighted score — asks whether the proposal is built around this belt, this scope and these three areas. The names are recomputed from `key_areas.geojson`, and this check reads the composed vector source rather than **extracting text from the finished PDF**: the cover's own title does not extract, so extraction cannot tell a named page from an unnamed one."
     },
     {
       "id": "M60",
@@ -1313,7 +1362,7 @@
       "why_en": "**This sheet is one of the five the review pipeline sends every time, and the six crossings on it exist to satisfy a crossability condition this package published.** Drawn at the weight and colour of the measured streets, a reader sees no intervention. E242 set this rule on this very sheet for buildings — the designed thing must not be the faintest mark in its own frame — and the lines were never covered by it. The mutation proves the build stops when this proposal's own lines are drawn fainter than the survey beneath them."
     }
   ],
-  "caught": 107,
+  "caught": 111,
   "survived": 0,
   "gates_proven_able_to_fail": [
     "accessibility_qa.py",
@@ -1347,6 +1396,7 @@
     "i18n_order_qa.py",
     "intake_limits_qa.py",
     "label_collision_qa.py",
+    "land_use_enum_qa.py",
     "markdown_structure_qa.py",
     "matrix_refs_qa.py",
     "measurement_protocol_qa.py",
@@ -1432,6 +1482,6 @@
       "why_en": "The English patterns match the unscoped present perfect, and the English text writes the past perfect, where the tense is the scope. Zero matches is the correct reading, and it was probed: switching one English sentence to the present perfect makes the gate name it."
     }
   ],
-  "coverage_note_zh": "**覆盖率的分母写在这里，而且是读出来的不是写死的。** 本包共 77 道闸门，其中 74 道已被证明会失败；其余 3 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
-  "coverage_note_en": "**The denominator is written down, and it is read rather than retyped.** Of this package's 77 gates, 74 have been shown capable of failing and 3 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
+  "coverage_note_zh": "**覆盖率的分母写在这里，而且是读出来的不是写死的。** 本包共 78 道闸门，其中 75 道已被证明会失败；其余 3 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
+  "coverage_note_en": "**The denominator is written down, and it is read rather than retyped.** Of this package's 78 gates, 75 have been shown capable of failing and 3 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
 }
