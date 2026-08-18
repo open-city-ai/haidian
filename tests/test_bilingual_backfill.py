@@ -1,5 +1,7 @@
 import hashlib
 import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -17,8 +19,10 @@ from backfill_bilingual_artifacts import (  # noqa: E402
 )
 from backfill_bilingual_submissions import (  # noqa: E402
     LocalTranslator,
+    backfill_proposal,
     extract_legacy_translation,
     parse_front_matter,
+    proposal_dirs,
     set_front_fields,
     split_long_text,
     translate_body,
@@ -26,6 +30,121 @@ from backfill_bilingual_submissions import (  # noqa: E402
 
 
 class BilingualBackfillTests(unittest.TestCase):
+    class StubTranslator:
+        batch_size = 4
+
+        def translate(self, text: str) -> str:
+            return f"EN:{text}"
+
+        def translate_many(self, texts: list[str]) -> list[str]:
+            return [self.translate(text) for text in texts]
+
+    def test_proposal_discovery_rejects_symlinked_packages_and_files(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            submissions = root / "submissions"
+            regular = submissions / "alice" / "regular"
+            regular.mkdir(parents=True)
+            (regular / "proposal.md").write_text("regular", encoding="utf-8")
+
+            outside_package = Path(tmp) / "outside-package"
+            outside_package.mkdir()
+            (outside_package / "proposal.md").write_text("outside", encoding="utf-8")
+            (submissions / "alice" / "linked-package").symlink_to(
+                outside_package,
+                target_is_directory=True,
+            )
+
+            linked_file = submissions / "alice" / "linked-file"
+            linked_file.mkdir()
+            (linked_file / "proposal.md").symlink_to(outside_package / "proposal.md")
+
+            outside_owner = Path(tmp) / "outside-owner"
+            owner_package = outside_owner / "linked-owner-package"
+            owner_package.mkdir(parents=True)
+            (owner_package / "proposal.md").write_text("outside owner", encoding="utf-8")
+            (submissions / "linked-owner").symlink_to(
+                outside_owner,
+                target_is_directory=True,
+            )
+
+            self.assertEqual([regular], proposal_dirs(root, []))
+
+    def test_only_rejects_ambiguous_slug_and_accepts_exact_path(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            first = root / "submissions" / "alice" / "same-slug"
+            second = root / "submissions" / "bob" / "same-slug"
+            for package in (first, second):
+                package.mkdir(parents=True)
+                (package / "proposal.md").write_text("proposal", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "ambiguous"):
+                proposal_dirs(root, ["same-slug"])
+            self.assertEqual([first], proposal_dirs(root, ["submissions/alice/same-slug"]))
+            self.assertEqual([second], proposal_dirs(root, [str(second)]))
+
+    def test_only_rejects_empty_selection(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            package = root / "submissions" / "alice" / "sample"
+            package.mkdir(parents=True)
+            (package / "proposal.md").write_text("proposal", encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "did not match"):
+                proposal_dirs(root, ["missing"])
+
+    def test_cli_reports_selection_errors_before_loading_runtime(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            package = root / "submissions" / "alice" / "sample"
+            package.mkdir(parents=True)
+            (package / "proposal.md").write_text("proposal", encoding="utf-8")
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "backfill_bilingual_submissions.py"),
+                    "--repo-root",
+                    str(root),
+                    "--only",
+                    "missing",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn("did not match a discovered submission", completed.stderr)
+
+    def test_backfill_refuses_translation_symlinks(self) -> None:
+        for target_exists, force in ((False, False), (True, True)):
+            with self.subTest(target_exists=target_exists, force=force), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                package = root / "submissions" / "alice" / "sample"
+                package.mkdir(parents=True)
+                (package / "proposal.md").write_text(
+                    '---\ntitle: "示例"\nsummary: "摘要"\nlanguage: "zh"\n---\n# 示例\n\n正文\n',
+                    encoding="utf-8",
+                )
+                outside = root / "outside.md"
+                if target_exists:
+                    outside.write_text("outside original\n", encoding="utf-8")
+                (package / "proposal.en.md").symlink_to(outside)
+                original = outside.read_bytes() if target_exists else None
+
+                changed, message = backfill_proposal(
+                    package,
+                    {("zh", "en"): self.StubTranslator()},
+                    force=force,
+                )
+
+                self.assertFalse(changed)
+                self.assertIn("refusing to write through symlink", message)
+                if target_exists:
+                    self.assertEqual(outside.read_bytes(), original)
+                else:
+                    self.assertFalse(outside.exists())
+
     def test_front_matter_parser_accepts_utf8_bom(self) -> None:
         front, body = parse_front_matter("\ufeff---\nlanguage: zh\n---\n正文\n")
         self.assertEqual(["language: zh"], front)
