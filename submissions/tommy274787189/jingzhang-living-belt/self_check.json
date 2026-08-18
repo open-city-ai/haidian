@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.1.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "description_zh": "确定性校验（validate_submission.py）通过：文件齐备、双语契约有效、无高风险模式。",
+      "result": "pass",
+      "severity": "blocking"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "description_zh": "空间审查（spatial_review.py）通过：几何闭合、临时边界已披露、面积复算一致。",
+      "result": "pass",
+      "severity": "blocking"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "description_zh": "可视化封装审查（visual_review.py）通过：离线页含中文证据标记与指标声明。",
+      "result": "pass",
+      "severity": "blocking"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "description_zh": "专业证据审查（professional_review.py）通过：证据层齐全、来源可核验。",
+      "result": "pass",
+      "severity": "blocking"
+    },
+    {
+      "check_id": "SC-001",
+      "description_zh": "几何要素坐标闭合、属性齐全；场地边界标记为 provisional_constraint。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "SC-002",
+      "description_zh": "核心面积在 EPSG:4548 投影下复算，与公告量级一致（场地约 1141.3 万㎡）。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "SC-003",
+      "description_zh": "六条用地功能带完整覆盖临时场地边界，无空隙。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "SC-004",
+      "description_zh": "13 个必选章节齐备，每章含机器可读证据引用。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "SC-005",
+      "description_zh": "双语契约（proposal_format_version=2, bilingual_contract_version=1）已声明，英文对照齐全。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "SC-006",
+      "description_zh": "提案不含身份证、手机号或伪造官方批准/背书等高风险模式。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "SC-007",
+      "description_zh": "合规矩阵覆盖 23 个征集任务，标准矩阵覆盖 5 部强制标准。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "SC-008",
+      "description_zh": "设计深度矩阵 15 项必选条目状态均为 complete。",
+      "result": "pass",
+      "severity": "info"
+    }
+  ]
+}
