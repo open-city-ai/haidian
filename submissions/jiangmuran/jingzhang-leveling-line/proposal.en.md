@@ -163,7 +163,7 @@ These are not three unrelated drawing sets. The research area decides **what to 
 | **分布式能源** | **This proposal cannot supply it.** No electricity, photovoltaic or energy-capacity source in this package can be cited, so it is registered as a data gap rather than inferred. That is consistent with the reading plate needing no power and the benchmarks carrying no lighting: a device that does not depend on supply does not need supply solved first. |
 | **北影** | An art resource the announcement names. It is registered here as a cultural and artistic resource within scope awaiting verification, alongside the Tsinghua Garden station; its spatial relation and use require official material and are neither inferred nor put into any layer. |
 | **人才密度** | This proposal gives personas P1-P9 and the location of talent-support land, not a density figure: density needs official population and employment data, which this package cannot cite. A figure that cannot be given is not written as a metric. |
-| **创新指数** | This proposal builds no composite index, and the reason is stated: the weights of a composite cannot be independently recomputed, and this proposal's whole claim is that a conclusion must be. What it gives instead is 45 recomputable metrics in four families. |
+| **创新指数** | This proposal builds no composite index, and states why: a composite's weights cannot be independently recomputed, and this proposal's whole claim is that a conclusion must be. What it gives instead is recomputable metrics in four families. |
 | **独角兽** | The innovation-element chain is organised by element type, not by a list of firms. **No firm list is given**: fabricating company names, investment or output figures is explicitly refused here, because no verifiable source for them exists in this package. |
 | **上市企业** | As above: the chain records what carries an element, which benchmark holds its reading and what is re-measured, not company names. |
 | **职住** | Living and commuting are expressed here by two measurable quantities: buildings within a ten-minute walk of a benchmark (232 today, 261 once linked) and the distribution of third-order points on the community side. The ratio itself needs official data. |
@@ -174,6 +174,20 @@ These are not three unrelated drawing sets. The research area decides **what to 
 | **屋顶形态** | **Explicitly not given, and named here.** It sits with building height, intensity, massing, setbacks and road redlines inside the statutory approval process and is not drafted before official conditions publish. This package refused that family without ever saying the words roof form: **a refusal that does not name what it declines does not answer the requirement either.** |
 | **上跨环路** | The North Third Ring (`ROAD-103`) and North Fourth Ring Middle Road (`ROAD-104`) stitching points are the ring-road crossings the announcement refers to, with nearest surveyed crossings at 33 m and 30 m, both class A. Connection need is registered; no bridge, tunnel or structural conclusion is given. |
 <!-- ANNVOCAB:END -->
+
+<!-- OPSVOCAB:BEGIN -->
+**One layer out: the words for *running* the thing.** These seven terms of the brief **occurred zero times here, while most of what they name had been done and named otherwise**. Each is read from the announcement or the taskbook at `upstream/main` and checked every build; what cannot be given says so.
+
+| Term | Source | How this proposal answers it |
+|---|---|---|
+| **全生命周期** | Announcement 1.3 | Four rules: the F1 trial decides whether a service may open; it is re-levelled on a cycle by its order; **over tolerance the whole route returns and the service drops to its non-AI equivalent**; resumption needs two passing cycles, a published cause and four-party agreement - the end of the lifecycle is written down, not left open. |
+| **运营策略** | Announcement 1.3 | Not a festival calendar but a re-levelling one: monthly community days (third order), quarterly scenario open days (second), half-yearly route re-levelling (first), annual return-to-zero. **Every event is also a reading**, so readings stop before the events do. |
+| **场景-空间-运营** | Taskbook | Each of the twelve scenario cards is bound to a benchmark order (space) and a re-levelling cycle with a lead post (operation): third - monthly - P4/P5/P7, second - quarterly - P2/P3, first-order route - half-yearly - accredited body. **Three columns of one table.** |
+| **招引转化** | Taskbook | The path: take part in re-levelling, propose a scenario, enter the test ground, pass the levelling, then operate - each step gated on a reading, not an opinion. **The taskbook forbids writing investment promotion as settled commitment**, so this is a channel, not a firm list. |
+| **运营团队** | Taskbook | The transferability criterion asks who carries the work further. The answer is the post specification: **who may decide what, and what may not open while a post is vacant** - so a team taking this over need not read the whole document to find its limits. |
+| **活动品牌** | Taskbook | The taskbook asks for an event brand and in the same clause forbids slogans with no operating mechanism. **This package coins no brand name**: a brand with no repeatable act behind it is a slogan. The four acts carry it; naming them is the responsible body's call. |
+| **传播视觉** | Taskbook | The part this package can be answerable for is the part that recomputes: the wayfinding numbering syntax, the rule that **numbers are never translated** (`BM-0` is `BM-0` in every language), and the compression order when space runs short - captions first, English second, never the numbers. Logo, colour and typeface are licensed assets. |
+<!-- OPSVOCAB:END -->
 
 ### Why three levels map exactly onto three orders
 
@@ -620,18 +634,18 @@ The closure error measures whether two readings agree, not whether the thing hel
 
 | Card | Scenario | What "it worked" means here | The quantity that answers it | Control |
 |---|---|---|---|---|
-| S01 | Scenario open day and public trial route | Did more people come than without it, and did they look more like who actually lives here | Attendance and the skew of participants' home locations | Parallel (this card&#39;s non-AI path) |
-| S02 | Walking-network breakpoint detection and repair | Were the identified breaks actually repaired, and did the detour on that segment fall | Share of identified breaks repaired, and the change in detour distance | Parallel (this card&#39;s non-AI path) |
-| S03 | Agent business service desk | Did people finish faster, rather than get handed on faster | First-contact completion rate, and the rate of transfer to a staffed counter | Parallel (this card&#39;s non-AI path) |
+| S01 | Scenario open day and public trial route | Did more people come than without it, and did they look more like who actually lives here | Attendance and the skew of participants' home locations | Parallel (this card’s non-AI path) |
+| S02 | Walking-network breakpoint detection and repair | Were the identified breaks actually repaired, and did the detour on that segment fall | Share of identified breaks repaired, and the change in detour distance | Parallel (this card’s non-AI path) |
+| S03 | Agent business service desk | Did people finish faster, rather than get handed on faster | First-contact completion rate, and the rate of transfer to a staffed counter | Parallel (this card’s non-AI path) |
 | S04 | AI health service navigation | Did navigation send people to the right department without leaving an emergency in place | First-triage accuracy, and missed identifications of an emergency | Before/after (safety) |
-| S05 | Data-asset authorisation chain, made visible | Did residents exercise refusal more once the chain was visible | Withdrawals of consent, and the share of services still usable afterwards | Parallel (this card&#39;s non-AI path) |
+| S05 | Data-asset authorisation chain, made visible | Did residents exercise refusal more once the chain was visible | Withdrawals of consent, and the share of services still usable afterwards | Parallel (this card’s non-AI path) |
 | S06 | Low-speed robot delivery and inspection | Did delivery reduce human legwork rather than shift the burden onto those giving way | Staff hours per delivery, and the count of pedestrian give-way events | Before/after (safety) |
-| S07 | Open collaboration and publication | Was what was published actually used by anybody else | External reuses, and corrections submitted from outside | Parallel (this card&#39;s non-AI path) |
-| S08 | AI cultural guide | After the walk, were people's accounts of this history closer to the record | The change in correct answers on the same question set before and after | Parallel (this card&#39;s non-AI path) |
-| S09 | Everyday-services demonstration street | Did the street reduce the number of trips a daily errand takes | Trips and total walking distance to complete one daily errand | Parallel (this card&#39;s non-AI path) |
+| S07 | Open collaboration and publication | Was what was published actually used by anybody else | External reuses, and corrections submitted from outside | Parallel (this card’s non-AI path) |
+| S08 | AI cultural guide | After the walk, were people's accounts of this history closer to the record | The change in correct answers on the same question set before and after | Parallel (this card’s non-AI path) |
+| S09 | Everyday-services demonstration street | Did the street reduce the number of trips a daily errand takes | Trips and total walking distance to complete one daily errand | Parallel (this card’s non-AI path) |
 | S10 | Public-safety operations review | Did the review change what happened next, rather than only produce a report | Share of review actions implemented within the next cycle | Before/after (safety) |
 | S11 | AI industry test and validation range | Did devices passing here have fewer incidents once on the street | Street incident rate of devices tested here against comparable untested devices | Before/after (safety) |
-| S12 | Live verification of step-free routes | Did live checking mean one fewer impassable point per trip for a wheelchair user | Impassable points encountered per trip | Parallel (this card&#39;s non-AI path) |
+| S12 | Live verification of step-free routes | Did live checking mean one fewer impassable point per trip for a wheelchair user | Impassable points encountered per trip | Parallel (this card’s non-AI path) |
 
 **Three stages, each with a way out:**
 
@@ -671,7 +685,7 @@ keep the non-AI equivalent available.
 
 ### Three red lines are not this proposal's goodwill; they are existing legal obligations
 
-This package had been presenting the equivalent non-AI path, the stop-on-detection rule, and the numeric appeal deadline as its own design judgements. Reading the highest-scoring proposals in this call made clear that this weakens them: **all three are already obligations under current Chinese law and policy, and writing them as design preferences reduces their force.** The three instruments below were each read in full by this proposal's author on the official publisher's site; article numbers and substance are cited, full text is not reproduced.
+This package had presented the equivalent non-AI path, the stop-on-detection rule and the numeric appeal deadline as its own design judgements, which weakens them: **all three are already obligations under current Chinese law and policy, and writing them as design preferences reduces their force.** Each instrument below was read in full on the official publisher's site; article numbers and substance are cited, full text is not.
 
 | This proposal's rule | Verified legal basis | What changes |
 |---|---|---|
@@ -743,7 +757,7 @@ Those counts used to come from hand-reading eighteen proposals, with neither the
 1. **Any safety incident suspends the whole network** — not the machine involved, not the segment involved, but every machine of that type on the line, stopped and re-measured. The reason is the same as the general principle: local patching is not permitted.
 2. **Tolerance scales with kinetic energy.** F tightens with the product of mass and speed. To run faster or heavier, an operator must first obtain a stricter closure clearance — not apply for an exemption.
 
-**Incident handling and appeal, with a clock on it.** Across the 40 proposals in these two tracks, almost everyone writes that decisions can be appealed, and **six give a numeric time limit — four excluding this one.** A right of appeal without a deadline cannot be enforced, because there is no way to tell whether it has been honoured. Appeal is therefore written as measurable commitments, and the time limits enter the re-survey items: **appeal response timeliness is a measured quantity, not a promise.**
+**Incident handling and appeal, with a clock on it.** Across the 40 proposals in these two tracks almost everyone writes that decisions can be appealed, and **six give a numeric time limit — four other than this.** A right of appeal without a deadline cannot be enforced: nobody can tell whether it was honoured. Appeal is therefore written as measurable commitments, and the time limits enter the re-survey items: **appeal response timeliness is a measured quantity, not a promise.**
 
 **Insurance and a removal bond, so exit can be executed.** Eleven of the 40 mention a bond or insurance, ten excluding this one, always as one word in a list, none designing the risk transfer. Yet this proposal's core rule returns the whole route for re-survey and removes the devices, and without funding that defers into indefinite observation. Admission therefore requires a **removal bond** for removal and site restoration, scaled to device count and area, released on **a full re-survey cycle within tolerance** rather than on entering operation; the claims route for an injured pedestrian is published at admission; and F1 risk transfer must be in place before closure clearance.
 
@@ -751,7 +765,7 @@ Those counts used to come from hand-reading eighteen proposals, with neither the
 
 ### Jurisdictional seams: where pilots on this belt actually die
 
-Across the 40 proposals in these two tracks, jurisdiction, ownership boundaries and park management match in two — one excluding this proposal. Yet this is where low-speed device pilots most often fail in reality: a machine leaves the heritage park's green space onto a municipal road, passes a campus frontage, and enters the forecourt of a privately held parcel — **changing responsible party at every crossing.** Technically it never stopped moving; in responsibility it changed hands four times.
+Across the 40, jurisdiction, ownership boundaries and park management match in two — one other than this. Yet this is where low-speed device pilots most often fail: a machine leaves the park's green space onto a municipal road, passes a campus frontage, enters a private forecourt — **changing responsible party at every crossing.** Technically it never stopped moving; in responsibility it changed hands four times.
 
 This proposal writes jurisdiction into the geometry rather than into prose. Every point in `geometry/public_space.geojson` carries `jurisdictions` and `is_seam_point` attributes [data:geometry/public_space.geojson#PUBLIC-001], so the claim is machine-checkable. The measured result is worth stating on its own line:
 
@@ -771,7 +785,7 @@ Rule 4 (defined below in full) is the important one. The real failure mode at a 
 
 **Explicitly not done:** jurisdiction types here are **inferred from position**, flagged as such in the layer attribute `jurisdiction_note_zh`, and must be replaced once official ownership and management boundaries are verified — after which the section is recomputed. This proposal assigns no responsibility to any authority and makes no commitment on anyone's behalf; the above is a mechanism offered for independent evaluation by each authority.
 
-**Substitution and employment: the half that also has to be said.** Low-speed delivery robots displace specific people's work. This proposal neither pretends the problem does not exist nor claims to solve it, but it refuses to place it outside the design scope:
+**Substitution and employment: the half that also has to be said.** Low-speed delivery robots displace specific people's work. This proposal neither pretends the problem away nor claims to solve it, but refuses to put it outside the design scope:
 
 - Changes in delivery employment within a pilot area must be **registered as a baseline at admission and published each re-survey cycle**, alongside the device count.
 - Existing couriers and delivery workers are real users of the spine. Their needs for dwelling, charging, shade and toilets enter the public-space kit of parts at the same level as device chargers, and must not be reduced to make room for devices.
@@ -939,7 +953,7 @@ The rule has real veto power. It means positions inside campuses, behind compoun
 
 ### Device charging, standby, and kerb allocation
 
-Few proposals in these two tracks address where low-speed devices are charged and parked. This sentence used to say none, which was a hand-read and was refuted by this package's own data once a probe was added for it: of the 40 proposals, **26** mention charging or parking and only **3**, this one included, touch siting — two others, `LaoFang114514` and `xiaofenggan01`. Mentioning it is normal; saying where it goes is not. This is a gap that stalls real pilots: a device fleet needs charging bays, standby bays and maintenance bays, all three occupy kerb or ground space, and all three want to be where the people are.
+Few proposals in these two tracks address where low-speed devices are charged and parked: of the 40, **26** mention charging or parking and only **3**, this one, touch siting. Mentioning it is normal; saying where it goes is not. This gap stalls real pilots: a fleet needs charging, standby and maintenance bays; all three take kerb or ground space, and all want to be where the people are.
 
 What this proposal supplies is a **priority order for kerb allocation**, not a set of positions:
 
@@ -988,7 +1002,7 @@ Device failure at intersections is not a failure to yield; it is **accumulation*
 
 ### Emergency access: a constraint that cannot be traded away
 
-Across the 40 proposals in these two tracks, fire lanes, ambulances and emergency access match in three — two excluding this proposal. This proposal writes it as a hard constraint rather than a note:
+Across the 40, fire lanes, ambulances and emergency access match in three — two other than this. This proposal writes it as a hard constraint rather than a note:
 
 - **No charging point, parking bay or queue storage** may be placed within a fire lane or emergency access route;
 - device behaviour on detecting an approaching emergency vehicle enters the fixed test battery, and its readings enter the closure error;
@@ -1318,6 +1332,21 @@ Every reading here is taken by one party and countersigned by another, and those
 
 <!-- ROLESPEC:END -->
 
+<!-- READCAL:BEGIN -->
+**Eight benchmarks: where each stands, how often it is read, who reads it and who countersigns.** Places and ids are joined by the build from `geometry/public_space.geojson`; a failed join fails it.
+
+| Id | Place | Order | Cadence | Read by | Countersigned |
+|---|---|---|---|---|---|
+| `BM-0` | **AI Origin Community** | origin | annual datum run and closing check | professional body | international visitor |
+| `BM-1` | **Zhongzhiyuan** | first | annual re-survey | professional body | resident representative |
+| `BM-2` | **Dazhongsi** | first | annual re-survey | professional body | resident representative |
+| `BM-21` | **Zhongguancun technology-services wing access point** | second | quarterly re-survey | park operator | professional body |
+| `BM-22` | **Xiaoyuehe scenario wing access point** | second | quarterly re-survey | park operator | professional body |
+| `BM-301` | **North Third Ring south-section community** | third | monthly re-survey | community self-organisation | park operator |
+| `BM-302` | **Xueyuan Road rail station** | third | monthly re-survey | community self-organisation | park operator |
+| `BM-303` | **Qinghe south-bank community** | third | monthly re-survey | community self-organisation | park operator |
+<!-- READCAL:END -->
+
 ### Pilot agreement components
 
 Launching the first trial needs an agreement, not only a proposal. This document does not draft the text — that is legal work — but lists the components none of which can be omitted: composition and replacement rules for the four review categories, including absence handling and how resident representatives are selected; **freezing and publication of the question set**, unmodifiable once the trial starts; ownership and publication deadline for readings; site use and safety responsibility, including who carries the safety plan and insurance; **exit and resumption** under rule 7, written into the agreement rather than agreed verbally; a specific list of personal data not collected, and the consequence of breach; and a review cycle for the agreement itself, since it is a living document.
@@ -1404,7 +1433,7 @@ Both numbers are true; what was missing was saying so. **Both now ship, and both
 
 So each metric's **evidence ceiling** is computed from the weakest file it reads rather than judged, and ships as `visual/assets/evidence_ceiling.json`. The result is unflattering, which is why it is stated: of 53 metrics, 52 can be graded — the remaining one is marked unknown with no value, so it has no number to overstate. **17 are capped at `provisional`** (drawn on an inferred boundary), **13 at `background_only`** (crowd-sourced geometry or keyword counts over other people's proposals), 18 at `self_measured` (they measure this package), exactly **4** reaches `official_context`, and **none** reaches `regulatory_baseline`. Of the 30 weak-ceiling metrics, 24 read `confidence_is_about: computation` — the “high” is about the arithmetic — and 6 read `reading`: the OSM fabric, where the reading is the uncertainty (E197).
 
-**The practice is borrowed openly.** `Abreto/REN AXIS` ran four adversarial rounds, retracting four conclusions carried by background sources alone; `147228` ships an errata register with a `found_by` field. This package's increment is not the idea but **no longer doing it by hand**: the ceiling comes from the source files, so a source weaker than the claim fails the build, not the reader.
+**The practice is borrowed openly.** This package's increment is not the idea but **no longer doing it by hand**: the ceiling comes from the source files, so a source weaker than the claim fails the build, not the reader.
 
 <!-- CEILING:END -->
 
@@ -1425,7 +1454,7 @@ It calls none of this proposal's generation scripts and needs neither Python nor
 
 ### Accessibility and legibility QA: computed, not asserted
 
-Reviews of the highest-scoring concurrent submissions repeatedly ask for the same thing: distance-legibility and colour-contrast testing on A0 boards, and alt-text, keyboard, screen-reader and contrast checks on the HTML. That request is usually answered with a sentence. Here it is computed, shipped as `visual/assets/accessibility_qa.json`, and **enforced as a build gate — failure stops the build rather than warning.** To be exact: `analysis/` is not in the package, so a reviewer cannot re-run the gate itself; re-runnable is the shipped `accessibility_qa.json` and the five `.js` checkers.
+Reviews of the highest-scoring concurrent submissions keep asking for one thing: distance-legibility and colour-contrast testing on A0 boards, and alt-text, keyboard, screen-reader and contrast checks on the HTML — usually answered with a sentence. Here it is computed, shipped as `visual/assets/accessibility_qa.json`, and **enforced as a build gate — failure stops the build rather than warning.** `analysis/` is not in the package, so a reviewer re-runs the shipped `accessibility_qa.json` and the five `.js` checkers, not the gate.
 
 Contrast (WCAG 2.1, ≥ 4.5 body text, ≥ 3.0 large text and graphical objects, against the paper surface): principal ink 11.44, secondary text 4.56, muted annotation 3.00, datum red 4.74, instrument blue 4.59, brass 4.51, surveyed green 6.86 — all clearing their floors. **Four of these failed before this revision** — muted annotation at 2.30, brass 3.47, olive 2.60, secondary 4.30. The script found them; new values were then derived against the target ratios and applied throughout. Chosen by eye, all four looked "clear enough".
 
@@ -1490,18 +1519,18 @@ The repository's `validate_submission.py` carries `validate_simulation_consisten
 
 Of the current 793, **9** ship a standalone errata file — this proposal and `147228`, `LShengYi`, `dingle2001`, `felix-lhz`, `irisquirrel`, `lqqk7`, `wocaonimaworinixi-collab`, `youngkermit8-coder` — and **13** use self-correction language in the body. When this proposal first wrote that sentence the figure was 1, itself. It is not any more.
 
-It is corrected rather than left standing because **the sentence is an instance of this proposal’s own argument**: an assertion that stopped being true when the corpus changed goes on reading as true unless its author re-measures it. The errata file in `147228`, `LShengYi`, `dingle2001`, `felix-lhz`, `irisquirrel`, `lqqk7`, `wocaonimaworinixi-collab`, `youngkermit8-coder` — `visual/assets/errata.json` under that submission, readable in the same repository — carries `found_by` and `shape` fields whose shape vocabulary overlaps this register’s closely (`two_copies_drifted`, `known_value_not_recomputed`), **which says the notation travels and is not this proposal’s property**. **So this proposal no longer claims nobody else does this. It claims something narrower and more checkable: an errata register should be generated by the build and held by a gate to ‘every entry joins back to the repository’, not maintained by hand.** `build_errata.py` verifies at build time that each entry’s commit exists and actually touched the file it blames. That is a difference an outsider can check; a count of entries is not.
+It is corrected rather than left standing because **the sentence is an instance of this proposal’s own argument**: an assertion that stopped being true when the corpus changed goes on reading as true unless its author re-measures it. **So this proposal no longer claims nobody else does this. It claims something narrower and checkable: an errata register should be generated by the build and held by a gate to ‘every entry joins back to the repository’, not maintained by hand.** `build_errata.py` verifies on every build that each entry’s commit exists and actually touched the file it blames. That is a difference an outsider can check; a count of entries is not.
 
 <!-- SELFCORRECTION:END -->
 
 <!-- ERRATA:COUNT:BEGIN -->
 
-295 entries. By finder:
+307 entries. By finder:
 
 | Found by | Count | What it says |
 |---|---|---|
 | Independent audit | 27 | Run against the shipped package, not a draft |
-| The author | 193 | Found while working |
+| The author | 205 | Found while working |
 | This package's own gate | 20 | Caught at build time, which is what a gate is for |
 | An outside adversarial read | 31 | A reader outside this package, on the files the reviewer gets |
 | **Reviewers outside this proposal** | **5** | [@anselasimov-web](https://github.com/anselasimov-web) on PR #1002; [@147228](https://github.com/147228) on PR #1065; [@Sonike](https://github.com/Sonike) on Issue #950; [@147228](https://github.com/147228) on Issue #950 / PR #1190; the repository CI |
@@ -1513,22 +1542,22 @@ It is corrected rather than left standing because **the sentence is an instance 
 
 | Shape | Count |
 |---|---|
-| An easy measure | 55 |
-| Two copies drifted | 43 |
+| An easy measure | 57 |
+| Two copies drifted | 44 |
 | Shipped unseen | 30 |
+| Uncheckable | 23 |
 | Outlived the package | 21 |
-| Uncheckable | 21 |
-| Nothing fails it | 15 |
+| Nothing fails it | 16 |
 | Recorded where found | 14 |
 | A reference did not resolve | 12 |
 | Not itself | 12 |
+| A source unnameable | 9 |
 | Outlived its line | 9 |
-| A source unnameable | 8 |
+| A total excluding | 8 |
+| Answered under another name | 7 |
 | Geometry not meaning it | 7 |
 | Answers what it cannot | 7 |
-| A total excluding | 6 |
 | No file behind it | 6 |
-| Answered under another name | 5 |
 | Outlived a corpus | 4 |
 | Answered in our own words, not theirs | 3 |
 | A rule with nobody to apply it | 3 |
@@ -1539,6 +1568,7 @@ It is corrected rather than left standing because **the sentence is an instance 
 | Read off, not computed | 1 |
 | A requirement nobody runs | 1 |
 | The scarcest surface, spent on someone else | 1 |
+| A self-count left behind | 1 |
 | Six classes for seven | 1 |
 | Paid in honesty | 1 |
 | A term of art misapplied | 1 |
@@ -1709,7 +1739,7 @@ mechanism survives is decided by rostering rather than by the annual total. All 
 are required, which sets a **network floor of 22 people**: below that, a valid closure cannot be
 assembled at all.
 
-**The errata register and the self-check outputs ship, and are not recited here.** `visual/assets/errata.json` and `errata.en.json` record, entry by entry, what was wrong, what shape the error had, who found it and which commit fixed it, and `build_errata.py` verifies at build time that the commit exists and touched the file it blames — **a register that cannot be joined to the repository is itself the defect it records.** This names where it is and nothing more: it is the correction history of this document, not of Haidian.
+**The errata register and self-check outputs ship, and are not recited here.** `visual/assets/errata.json` (the oldest 24 in `visual/assets/errata-archive.json`; both state the total) records entry by entry what was wrong, its shape, who found it and which commit fixed it, and the build verifies that commit exists and touched the file it blames — **a register that cannot be joined to the repository is itself the defect it records.** This names where it is and nothing more: it is the correction history of this document, not of Haidian.
 
 **The self-check outputs ship too.** `self_check.json`, which the organisers read
 whole, carries the raw verdicts of the four machine gates. Six further self-check outputs ship
@@ -1755,11 +1785,11 @@ An authorisation statement a reviewer cannot verify is not a statement. Each row
 
 <!-- LEDGERCOUNT:BEGIN -->
 
-**The file-level ledger sits outside the review input, so its result is brought in here.** `build_review_input` sends `proposal.md` and eight JSON files; neither `report/copyright_statement.md` nor `visual/assets/rights_ledger.json` is among them. **A rights ledger the reviewer structurally cannot open is, from the reviewer's position, exactly the unverifiable assertion this package objects to elsewhere.** All **158 shipped files** carry a clearance class; a file without one fails the build:
+**The file-level ledger sits outside the review input, so its result is brought in here.** `build_review_input` sends `proposal.md` and eight JSON files; neither `report/copyright_statement.md` nor `visual/assets/rights_ledger.json` is among them. **A rights ledger the reviewer structurally cannot open is, from the reviewer's position, exactly the unverifiable assertion this package objects to elsewhere.** All **159 shipped files** carry a clearance class; a file without one fails the build:
 
 | Clearance class | Files |
 |---|---|
-| `author-originated` | 135 |
+| `author-originated` | 136 |
 | `provisional-only-with-stated-limit` | 9 |
 | `author-originated-measurement` | 8 |
 | `author-originated-with-embedded-fonts` | 4 |
@@ -1807,7 +1837,7 @@ Everything here is **open collaborative concept advice** for professional teams 
 
 So of the 12 items above, **0 can be run literally by the AI reviewer**; the rest name files it was not given. **Anyone with the repository can run them all; the model scoring this submission can run none.** Not saying so would be an invitation to verify addressed to someone who cannot.
 
-**Nothing had measured the walk through this package's own evidence.** The five verifiers exit 0 in **0.73 s**; 9 files, 1169 KB, 1,825 entries left to read, per item in `visual/assets/review_route.json`.
+**Nothing had measured the walk through this package's own evidence.** The five verifiers exit 0 in **0.73 s**; 9 files, 1166 KB, 1,815 entries left to read, per item in `visual/assets/review_route.json`.
 
 **This disclosure had a shelf life, and the fix has landed.** Issue #2170 became PR #2181, now merged on `upstream/main`: the review input carries an auditable access boundary, states that participant verification scripts are never executed, and tells the model **not to deduct points for an artifact it was not given**. The count above is unchanged; its consequence is not, because unreachability is no longer read as something withheld (E210). The key derivations are written into `assumptions.json` and `metrics.json`, and each matrix row records how much of its own evidence a reviewer can open.
 
@@ -1851,7 +1881,7 @@ The six cases cited in the text — algorithm registers, risk-tiered legislation
 
 ### Index to the drawings, and what to read in each
 
-**The forms these sheets ship in.** The thirty-four sheets compose into `drawings/a3-booklet.en.pdf` and `drawings/a0-boards.en.pdf`; two renderings open directly: `report/proposal.en.html` is this document as a page, `visual/index.en.html` a visual index over the shipped data; `report/narrative.md` the argument alone. Six files ship behind them in `visual/assets/`: `personas.json`, `naming.json`, `score_correlates.json`, `gate_mutation.json` (damage proving 75 of 78 gates can fail), `claim_audit.json`, `agent_declarations.json`. **One paper could not carry.** `assets/media/leveling-line.mp4` is a 54-second silent diagram: the line departs a known point, carries height forward setup by setup, returns to the origin, and what does not cancel is the closure error — **on paper departure and return are one picture; in time you find out only at the end whether it came back**. Station order, routes and 107 setups come from the shipped geometry; the profile is illustrative, not surveyed elevation. `assets/media/closure-advance.mp4` is a second: 40 silent seconds in which a closure within tolerance opens the mid term and one over it **opens nothing** — FIG.15 draws the three extents, not what makes them a mechanism. `assets/media/leveling-year.mp3` sonifies that year — 214 hours, one pulse per 2.5, peak 83.5 h against 31.5 h for identical work; a bar chart asks you to compare heights, **sound asks nothing: month one arrives and you cannot count it**. `year_explorer.js` is a **second implementation** of `fig_year.py`'s arrangement function, the model ships as `year_model.json`, and a gate compares them over 10 arrangements. **Listing them is not housekeeping: a product the prose never names is one nobody has been told exists.**
+**Forms these sheets ship in.** The thirty-four sheets compose into `drawings/a3-booklet.en.pdf` and `drawings/a0-boards.en.pdf`: `report/proposal.en.html` is this document as a page, `visual/index.en.html` a visual index, `report/narrative.md` the argument. Behind them in `visual/assets/`: `personas.json`, `naming.json`, `score_correlates.json`, `gate_mutation.json` (damage proving 76 of 79 gates can fail), `claim_audit.json`, `agent_declarations.json`, `errata.en.json`. **One paper could not carry.** `assets/media/leveling-line.mp4` is a 54-second silent diagram: the line departs a known point, carries height forward setup by setup, returns to origin, and what does not cancel is the closure error — **on paper departure and return are one picture; in time you learn only at the end whether it came back**. Station order, routes and 107 setups come from the shipped geometry; the profile is illustrative, not surveyed. `assets/media/closure-advance.mp4` is a second: 40 silent seconds in which a closure within tolerance opens the mid term and one over it **opens nothing** — FIG.15 draws the three extents, not the mechanism. `assets/media/leveling-year.mp3` sonifies that year — 214 hours, one pulse per 2.5, peak 83.5 h against 31.5 h for the same work; a bar chart asks you to compare heights, **sound asks nothing: month one arrives and you cannot count it**. `year_explorer.js` is a **second implementation** of `fig_year.py`'s arrangement function; the model ships as `year_model.json` and a gate compares them over 10 arrangements.
 
 <!-- PDFPAGE1:BEGIN -->
 

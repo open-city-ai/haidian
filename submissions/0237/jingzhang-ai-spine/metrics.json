@@ -1,0 +1,197 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "官方公告值，以资格预审公告为准"
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "官方公告值"
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "sum_of_three_key_area_declared_values",
+      "confidence": "high",
+      "assumptions": [
+        "官方公告三处重点片区面积之和"
+      ]
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "临时范围，面积按公告值"
+      ]
+    },
+    "beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "临时范围，面积按公告值"
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "临时范围，面积按公告值"
+      ]
+    },
+    "ai_scenario_cards_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "cards",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design_proposal_count",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议数量，满足≥10张要求"
+      ]
+    },
+    "ai_pilgrimage_landmarks_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "nodes",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design_proposal_count",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议数量，满足≥3处要求"
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "personas",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design_proposal_count",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议数量，满足≥5类要求"
+      ]
+    },
+    "industry_test_scenarios_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "scenarios",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design_proposal_count",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议数量，满足≥3个要求"
+      ]
+    },
+    "agent_task_coverage": {
+      "status": "known",
+      "value": 6,
+      "unit": "tasks",
+      "source_files": [
+        "agent_taskbook.json",
+        "compliance_matrix.json"
+      ],
+      "formula": "count_required_tasks",
+      "confidence": "high",
+      "assumptions": [
+        "覆盖 agent.1–agent.6 全部六项任务"
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum_of_site_boundary_polygon_area",
+      "confidence": "medium",
+      "assumptions": [
+        "基于提交几何 site_boundary.geojson 计算；当前为临时粗略边界，待官方边界后重算"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.199046,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "蓝绿面积由提交几何计算，绿地率 = 蓝绿面积 / 站点计算总面积；临时边界，待复算"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.118606,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间面积由提交几何计算，公共空间率 = 公共空间面积 / 站点计算总面积；临时边界，待复算"
+      ]
+    }
+  }
+}

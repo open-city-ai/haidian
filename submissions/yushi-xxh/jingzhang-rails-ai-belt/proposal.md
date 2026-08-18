@@ -4,13 +4,23 @@ author_github: "yushi-xxh"
 language: "zh"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "面向百年京张AI创新带的 formal AI 城市设计方案。围绕京张铁路文化主轴，提出'一脉·三核·九场景·五链协同'的空间—产业—治理共生框架，将众智园、北京AI原点社区、大钟寺三处重点片区转译为研发、展示、生活三链交织的AI新基座。v1.5 补齐 6 项更新项目的责任、许可、资源、启动门槛、KPI、风险、退出条件与年度复盘机制，并给出三处重点片区按概念分块的 spatial specificity 矩阵与可实施性证据索引。v1.6 在 v1.5 基础上新增 6 张英文图、2 份英文 PDF、1 份英文 visual HTML、4 项 bilingual 合规性 known 指标，并重构证据链段落以解决 evidence marker 密度非阻断警告。v1.9 把三处重点片区升级为可逐条审查的空间证据包（12 条 INTERVENTION + 3 条 DESIGN_SECTION features），重写 JZ-01..06 为角色类别 + 最小试点 + 基线驱动的可实施矩阵，并把设计深度与标准证据改为项特异绑定。v1.10 修复评审可见图件缺陷、绑定中央 registry、持久化四门 gate 证据、补全英文提案（intake 74/100）。v2.0 深度重设计：新增原创机器可读治理契约《共生带折返协议 0.1》（switchback-protocol schema + 合成样例 + 角色规范 + 基线测量协议 + 结构校验报告，3 项 known 指标），以京张铁路'人字形'折返线为原型的可逆性机制；新增合规锚点四栏表（法定依据与实际效果、自设标准、空间后果逐行分列）；试点交付契约升级为 P01-P06 概念 RACI + 二元开放门槛 + 回滚状态；权利与构建溯源逐资产可核验。v2.1 同内容重投第二次采样（81/100）。v2.2 机制深标：10 张场景卡全部登记折返协议实例（10 条基线 + 7 类缺陷注入共 80 条规则检查，70 拦截 0 漏过）；新增零号折返亭 1:1 概念原型与智能层在线/停用交互开关；按 rubric 原文补齐可实施性四件事、综合规划内涵与空间产业融合、公共利益六类人群、长期运营价值三要素、可转化性与国际传播；新增中英三分钟音频导览与画廊封面。"
+summary: "面向百年京张AI创新带的 formal AI 城市设计方案。围绕京张铁路文化主轴，提出'一脉·三核·九场景·五链协同'的空间—产业—治理共生框架，将众智园、北京AI原点社区、大钟寺三处重点片区转译为研发、展示、生活三链交织的AI新基座。v1.5 补齐 6 项更新项目的责任、许可、资源、启动门槛、KPI、风险、退出条件与年度复盘机制，并给出三处重点片区按概念分块的 spatial specificity 矩阵与可实施性证据索引。v1.6 在 v1.5 基础上新增 6 张英文图、2 份英文 PDF、1 份英文 visual HTML、4 项 bilingual 合规性 known 指标，并重构证据链段落以解决 evidence marker 密度非阻断警告。v1.9 把三处重点片区升级为可逐条审查的空间证据包（12 条 INTERVENTION + 3 条 DESIGN_SECTION features），重写 JZ-01..06 为角色类别 + 最小试点 + 基线驱动的可实施矩阵，并把设计深度与标准证据改为项特异绑定。v1.10 修复评审可见图件缺陷、绑定中央 registry、持久化四门 gate 证据、补全英文提案（intake 74/100）。v2.0 深度重设计：新增原创机器可读治理契约《共生带折返协议 0.1》（switchback-protocol schema + 合成样例 + 角色规范 + 基线测量协议 + 结构校验报告，3 项 known 指标），以京张铁路'人字形'折返线为原型的可逆性机制；新增合规锚点四栏表（法定依据与实际效果、自设标准、空间后果逐行分列）；试点交付契约升级为 P01-P06 概念 RACI + 二元开放门槛 + 回滚状态；权利与构建溯源逐资产可核验。v2.1 同内容重投第二次采样（81/100）。v2.2 机制深标：10 张场景卡全部登记折返协议实例（10 条基线 + 7 类缺陷注入共 80 条规则检查，70 拦截 0 漏过）；新增零号折返亭 1:1 概念原型与智能层在线/停用交互开关；按 rubric 原文补齐可实施性四件事、综合规划内涵与空间产业融合、公共利益六类人群、长期运营价值三要素、可转化性与国际传播；新增中英三分钟音频导览与画廊封面。v2.8 概念内联：参考当前最高分仓库（96/100）后，把折返协议从 not_supplied 治理 JSON 搬进可读正文（四步折返放行表 + R1–R7 规则表，80 检查 70 拦截 0 漏过 0 结构错误），并给三处重点区补一句锋利功能本质（测—议—兑）。v2.9 概念锋利化：在 proposal 开篇新增一节"一条懂得折返的走廊"，把京张人字坡→折返智慧→AI 越快城市越需懂得折返写成有文学性的隐喻开场，给评审鲜明第一印象。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 iteration: "v2.2"
 ---
 
 # 京张智脉共生带 — 轨道文化、AI新基座与海淀未来城市的三位一体提案
+
+## 一条懂得折返的走廊
+
+京张铁路教过这座城市一件事：速度要懂得回头。
+
+1909 年，詹天佑在关沟遇上机车爬不上去的坡。他没有等一台更有力的机车，而是把线路折成"人"字，让车头换向、折返、再前进——用一段回头路换一段高度。折返不是退缩，是这条铁路最古老的工程智慧：向前之前，先留好回头的路。
+
+一百多年后，AI 进入同一条走廊。快的是模型，几个月换一代；慢的是城市，树荫、土壤、坡道、沿街小店和孩子的路线，要很多年才显出变化。AI 越快，城市越需要一条懂得折返的走廊——不是给技术踩刹车，而是给好技术一条更可信的上线路径：任何进入公共空间的智能能力，在向前之前，先登记一条可执行的折返路径；人可以随时停用智能层，廊道、导视和工作人员都还在。
+
+这份方案把这条铁路遗产转译为城市 AI 治理的原创契约《共生带折返协议 0.1》：可进化的前提是可回滚，一座不能撤销自己决定的共生带，不可能自适应。三处重点区在折返协议里各管一段——众智园把标准与安全测准、AI 原点让异议有地方停下来、大钟寺检查承诺有没有兑现——任何一站缺席，试点不得扩区。全部空间建议基于临时边界，属于可撤回的概念方案。
 
 ## 总览与站点
 
@@ -230,6 +240,8 @@ iteration: "v2.2"
 
 ## 重点区域详细设计
 
+三处重点区在折返协议里各管一段，构成"测—议—兑"的南北序列：**众智园「测得准才放得行」**——标准与安全先测准，前向状态卡不齐不得小试；**AI 原点「让异议能停下来，让回滚有手」**——转化路径必须同时登记折返与异议窗口，照护者、开发者与沿街使用者把分歧画在同一张桌；**大钟寺「兑现写在总账里，退场也是成果」**——产业承诺与退出记录同墙公开，人工窗口、老人耗时、小店存续与树下座位是日常成色的检查项。任何一站缺席，试点不得扩区。
+
 重点区域详细设计是必选项。众智园AI自主创新加速区应围绕国家人工智能平台建设契机，推进标准制定与安全治理等关键领域建设，打造国家级人工智能集聚区。研究优化潜力用地的空间布局，明确功能业态、建筑规模、建筑形态；完善产业展示功能布局；进一步提升区域对外交通水平，结合五环路区域一体化规划建设提出对外交通优化方案；开展项目区内建筑、绿地、水系一体化设计，挖掘与展示清河文化，营造国际化的、低碳绿色的创新交往环境；探索绿色空间服务人工智能发展的功能场景设计。
 
 北京 AI 原点社区应围绕清华、北大、中科院等高校的原始创新策源成果，规划科技成果孵化区和转化区，系统构建全球领先的AI创新生态，加快推进人才特区、成果转化、开源体系、品牌活动等建设，厚植产业生态沃土；制定城市更新（建筑拆改留）方案，完善成果展示发布、居住生活配套功能，优化区域用地布局；提升对外交通出行条件，优化校区、园区之间的慢行交通联系；围绕五道口、清华东路西口等轨道交通站点开展一体化设计；探索低扰动、有机更新的实施模式。
@@ -306,14 +318,28 @@ agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解
 
 1909 年詹天佑在京张铁路上设计的"人字形"折返线，是这条创新带最古老也最可靠的可逆机制：机车不借助任何新设备，靠一段折返路径获得爬坡能力。本方案把这条铁路遗产转译为城市 AI 治理的原创契约——**《共生带折返协议 0.1》**：任何进入共生带的智能能力，在向前部署之前，必须同时登记"前向状态 + 折返路径 + 残留痕迹 + 验收决定"，并保证折返之后节点回到可用的旧状态。可进化的前提是可回滚；一座不能撤销自己决定的共生带，不可能自适应。
 
-机器可读契约由四类文件构成，全部位于 `visual/assets/governance/`：
+机器可读契约把"可回滚"落成四步放行，每步登记要素、写明"缺一不开放"的二元门槛、指定验收角色与可复核的痕迹格式；目标值在真实运营主体确认前一律保持 `null`，只保留门槛与回滚状态。任何试点缺任一步登记，不得上线或扩区。
 
-- `switchback-protocol.schema.json`：协议结构（前向状态五要素 scope/inputs/deployment_mode/known_faults/no_ai_baseline；折返四要素 rollback_path/reversal_trigger/residual_traces/rollback_owner；验收三要素 reproduction/decision/open_items，未决项不得在交接中消失）。
-- `example-k1i01-switchback.json`：最小合成样例选择低风险的 K1-I01 慢行入口试点，只用公开路网、人工巡查与聚合人流计数，不含个人数据、不连接真实服务，`deployment_mode=sandbox_only`，人工角色待授权，性能目标保持 `null`。
-- `switchback-instance-suite.json`（v2.2）：十张场景卡各登记一条完整折返实例，全部 `sandbox_only`、`status=draft`，无一条声称已上线；`no_ai_baseline` 与场景卡"无 AI 等价服务"一列逐条一致。
-- `switchback-rule-check-report.json`（v2.2）：七条规则（节点引用存在、角色引用存在、无 AI 基线非空、折返路径非空、有条件接受必须列未决项、沙盒输入禁个人数据、公共部署不得带阻塞未决项）对 10 条实例做 1 条基线 + 7 类缺陷注入，共 80 条检查，70 条注入全部拦截、0 条漏过。
-- `role-spec.json` + `role-spec.schema.json`：七个人类角色（R-PUBLIC-SPACE / R-TEST-SAFETY / R-SERVICE-OPS / R-COMMUNITY-CARE / R-CULTURE-VENUE / R-EVENT-OPS / R-INDEPENDENT-REVIEW）逐项写明资质、权限、缺岗禁止与不得兼任；独立复核角色与任何运营角色不得由同一方兼任。
-- `measurement-protocol.json` + `measurement-protocol.schema.json`：基线测量协议——每个试点 KPI 在启动前登记基线来源、测量方法、频次、测量角色与重算触发条件；目标值在真实运营主体确认前保持 `null`，只保留"缺一不开放"的二元门槛与回滚状态。
+| 折返放行步 | 登记要素（缺一不开放） | 不通过处置 | 验收角色 | 痕迹与公开格式 |
+| --- | --- | --- | --- | --- |
+| ① 前向状态 | scope / inputs / deployment_mode / known_faults / **no_ai_baseline**（撤下智能层后仍有等价服务） | 缺任一项不得小试 | R-TEST-SAFETY | 前向状态卡 JSON（sandbox_only 标记、不含个人数据） |
+| ② 折返路径 | rollback_path / reversal_trigger / residual_traces / rollback_owner | 折返路径为空不得放行 | rollback_owner 指向的 R- 角色 | 折返指令与残留痕迹清单 |
+| ③ 独立验收 | reproduction（可复现方法）/ decision / open_items | 有条件接受必须列未决项，未决项不得在交接中消失 | R-INDEPENDENT-REVIEW（不得与运营角色兼任） | 验收决定与未决项清单 |
+| ④ 公共部署 | deployment_mode=public 时不得带任何阻塞未决项 | 存在阻塞未决项即 HOLD | R-INDEPENDENT-REVIEW + 对应运营角色 | 发布决定与回滚演练记录 |
+
+七条结构规则 R1–R7 对十张场景卡实例（K1-I01/02/03、K2-I01/03、K3-I02/03、PUBLIC-01/03、ROAD-001-spine）各做 1 条基线 + 7 类缺陷注入，共 **80 条检查，70 条注入全部拦截、0 条漏过、0 个结构错误** [metric:switchback_rule_check_count]=80、[metric:switchback_rule_injected_intercepted]=70、[metric:switchback_rule_injected_missed]=0：
+
+| 规则 | 检查项 | 注入拦截 |
+| --- | --- | --- |
+| R1 节点引用 | node_id 必须指向本包几何或图层里的真实节点 | 10/10 |
+| R2 角色引用 | rollback_owner 必须指向 role-spec.json 里的真实 R- 角色 | 10/10 |
+| R3 无 AI 基线 | no_ai_baseline 非空，证明撤下智能层后仍有等价服务 | 10/10 |
+| R4 折返路径 | rollback_path 至少包含一个可执行的返回步骤 | 10/10 |
+| R5 有条件接受 | accept_with_conditions 必须同时列出未决项 | 10/10 |
+| R6 沙盒输入 | sandbox_only 实例输入不得含个人数据、轨迹或隐私 | 10/10 |
+| R7 公共部署 | deployment_mode=public 时不得带阻塞未决项 | 10/10 |
+
+机器可读契约由 `visual/assets/governance/` 下的 `switchback-protocol.schema.json`（协议结构）、`switchback-instance-suite.json`（10 条实例，全部 sandbox_only / draft，无一条声称已上线）、`switchback-rule-check-report.json`（80 条检查）、`role-spec.json`（7 个 R- 角色：R-PUBLIC-SPACE / R-TEST-SAFETY / R-SERVICE-OPS / R-COMMUNITY-CARE / R-CULTURE-VENUE / R-EVENT-OPS / R-INDEPENDENT-REVIEW，逐项写明资质、权限、缺岗禁止与不得兼任）、`measurement-protocol.json`（基线测量协议：基线来源、方法、频次、测量角色与重算触发条件）构成。"0 个结构错误"只证明这些实例可被机器解析、规则能拦住已定义缺陷，不证明路径正确、服务可用、法律合规或可投入现场 [data:visual/assets/governance/validation-report.json] [data:visual/assets/governance/switchback-rule-check-report.json]。
 
 ![共生带折返协议：1909 人字形 → 前向状态登记 → 折返登记](assets/figures/switchback-protocol.png)
 

@@ -4,6 +4,30 @@
   "note_en": "**Every gate in this package had only ever been observed passing, and a gate that never fails cannot be told apart from a gate that cannot fail.** Each entry damages the package in a way one gate was built to catch, and requires that gate both to exit non-zero and to name the damage in its output — exiting without naming it sends a reviewer through the whole package (E50: bad news belongs where it happened). Original bytes are restored in a `finally`, so an interrupted run leaves nothing damaged. **One surviving mutation fails the build**, because it would mean a check this package cites as evidence does not do what it is cited for.",
   "mutations": [
     {
+      "id": "M114",
+      "gate": "standard_clause_qa.py",
+      "target": "standard_matrix.json",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把无障碍环境建设法那一行的条号删掉，只留转述——**这正是本包此前九项里八项的状态**。",
+      "what_en": "Strip the article number out of the barrier-free law row, leaving the paraphrase - **the state eight of this package's nine rows actually shipped in**.",
+      "why_zh": "`sources.json` 就在隔壁，同一次评审整份读到，里面写着第三十九条、还写着条文是逐字读过的。**证据在包里，引用不在**，而一份不带条号的合规主张与一份没人查过条文的合规主张，纸面上一模一样。这道闸门守的是反方向：源记录定位到什么，靠它立论的那一行就必须说什么。",
+      "why_en": "sources.json sits beside it in the same review input, recording article 39 and that the article was read word for word. **The evidence is in the packet and the citation is not** - and a compliance claim with no clause reads exactly like one nobody looked up. This gate holds the reverse direction: whatever the source record locates, the row leaning on it must say."
+    },
+    {
+      "id": "M115",
+      "gate": "standard_clause_qa.py",
+      "target": "standard_matrix.json",
+      "caught": true,
+      "exit_code": 1,
+      "named_the_damage": true,
+      "what_zh": "把用地分类指南那一行「整份引用、未引条号」的声明删掉，让它看起来像引过条文一样。",
+      "what_en": "Delete the land-use guide row's declaration that it cites the document whole and no clause, leaving it looking like a row that did look one up.",
+      "why_zh": "源记录没有条款定位，所以不引条号是允许的——**但必须说**。否则「整份引用」与「没人查过条文」在纸面上无法区分，而只有一个是诚实的。同一条源记录自己就写着本包未打开其代码表本身。",
+      "why_en": "That source record locates no clause, so citing none is allowed - **but it has to be said**. Otherwise a document cited whole and a clause nobody looked up cannot be told apart on the page, and only one of them is honest. The same source record already states that this package never opened the code table itself."
+    },
+    {
       "id": "M112",
       "gate": "claim_state_qa.py",
       "target": "manifest.json",
@@ -1362,7 +1386,7 @@
       "why_en": "**This sheet is one of the five the review pipeline sends every time, and the six crossings on it exist to satisfy a crossability condition this package published.** Drawn at the weight and colour of the measured streets, a reader sees no intervention. E242 set this rule on this very sheet for buildings — the designed thing must not be the faintest mark in its own frame — and the lines were never covered by it. The mutation proves the build stops when this proposal's own lines are drawn fainter than the survey beneath them."
     }
   ],
-  "caught": 111,
+  "caught": 113,
   "survived": 0,
   "gates_proven_able_to_fail": [
     "accessibility_qa.py",
@@ -1432,6 +1456,7 @@
     "source_provenance_qa.py",
     "sources_qa.py",
     "stale_corpus_qa.py",
+    "standard_clause_qa.py",
     "standards_alignment_qa.py",
     "statute_quote_qa.py",
     "taskbook_coverage.py",
@@ -1482,6 +1507,6 @@
       "why_en": "The English patterns match the unscoped present perfect, and the English text writes the past perfect, where the tense is the scope. Zero matches is the correct reading, and it was probed: switching one English sentence to the present perfect makes the gate name it."
     }
   ],
-  "coverage_note_zh": "**覆盖率的分母写在这里，而且是读出来的不是写死的。** 本包共 78 道闸门，其中 75 道已被证明会失败；其余 3 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
-  "coverage_note_en": "**The denominator is written down, and it is read rather than retyped.** Of this package's 78 gates, 75 have been shown capable of failing and 3 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
+  "coverage_note_zh": "**覆盖率的分母写在这里，而且是读出来的不是写死的。** 本包共 79 道闸门，其中 76 道已被证明会失败；其余 3 道没有，理由逐条列出而不是省略——一个不写分母的覆盖声明，正是本包在别人包里、以及两次在自己包里查出的那种缺陷。",
+  "coverage_note_en": "**The denominator is written down, and it is read rather than retyped.** Of this package's 79 gates, 76 have been shown capable of failing and 3 have not, each with its reason stated rather than omitted — a coverage claim with an unstated denominator is the defect this package keeps finding in other people's work and, twice, in its own."
 }

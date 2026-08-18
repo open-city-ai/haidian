@@ -10,7 +10,7 @@
   "prompt_language": "English",
   "candidates_per_scene": 2,
   "annotation_layer": "Hand-written HTML overlay (package design system: header band, bilingual title, coral badge 概念意象 · AI 生成 · 非工程依据, annotation cards, footer rights pointer), rendered with Chromium via Playwright at device scale factor 4",
-  "post_processing": "PIL/Pillow: resize to 3000 px wide (LANCZOS), encode WebP quality 88 method 6",
+  "post_processing": "PIL/Pillow: resize to 3000 px wide (LANCZOS), encode WebP quality 88 method 6. Package revision v7.7 re-encoded the six shipped files from those q88 files to reduce package weight, with Pillow WebP method 6 at quality 75 (scene-dual-state, scene-interface-yard, both languages) and quality 55 (scene-corridor-aerial, both languages); measured SSIM against the q88 files is 0.9805/0.9811, 0.9820/0.9807 and 0.9706/0.9704 (zh/en, all-plane). No resampling, no crop, no annotation change: pixel dimensions and drawn content are unchanged.",
   "no_third_party_material": "Prompts reference no third-party artwork or style name; no unlicensed third-party material entered any generation call. The only image input (scene 3, geographic layout reference) was the package's own site-overview.png, which itself contains OpenStreetMap basemap elements used and attributed under ODbL — see the OSM entries in sources.json and the rights ledger.",
   "no_third_party_material_zh": "提示词不引用任何第三方作品或风格名；任何生成调用均未输入未经许可的第三方素材。唯一图像输入（场景三，地理布局参照）为本包自绘 site-overview.png，其内含按 ODbL 许可使用并署名的 OpenStreetMap 底图要素——见 sources.json 与权利台账 OSM 条目。"
  },
@@ -24,11 +24,11 @@
    "files": {
     "zh": {
      "path": "assets/figures/scene-dual-state.webp",
-     "sha256": "9686ea66dc625bc0f0dd60e15f8ed70a5d952ffc9c6e6657b3970f49356bccdd"
+     "sha256": "86367ec9c7455f8882f0512d320b9a49c24680075b9760d7ab563aeaab58323f"
     },
     "en": {
      "path": "assets/figures/scene-dual-state.en.webp",
-     "sha256": "16ee5a2257cdc6e62839d2b63b31bf87edea2c08bd459555e5b04a757eeac880"
+     "sha256": "7b2ee533421474bac89d29eb6b0b59d6f16d21ab06d19a0323f39657de128255"
     }
    },
    "revision_v6_4_zh": "v6.4 同源重制：审查发现原成图的左右两幅为一次生成的双联、并非同一场景的两种状态（挡墙材质、触觉带宽度、信息牌与人物均存在双影级差异），与图版「同一空间·同一批人·同一任务」的声明不符。本版以原左幅（AI 开启态）为唯一底图，右幅由其经局部图像编辑生成——仅熄灭地面流光导引带、信息立牌屏面与挡墙嵌光条（掩膜内去饱和压暗），人物、建筑、材质、路灯与构图逐像素保持；编辑后全图像素变化率 3.7%（8% 容差下 2.8%），变化区域仅限灯光要素。左右两幅自此为真实的同源受控对照。",
@@ -43,11 +43,11 @@
    "files": {
     "zh": {
      "path": "assets/figures/scene-interface-yard.webp",
-     "sha256": "3aa484bf51de36585a0b6314f9d4f637cdfdac9c7bd52354e6851bd531f9d5dd"
+     "sha256": "d3d175ec02434a965b40a1c8dde9ce0ba2cf000cb64c1fc1b079e9f1892ff18b"
     },
     "en": {
      "path": "assets/figures/scene-interface-yard.en.webp",
-     "sha256": "337f91d7930cf057a530edc40265f1c0b7589dd6b500d9d20735de139475dd08"
+     "sha256": "cd4a574f15d795d7a5235c02c7e78fa4ef7411af71f888b26590da12c979e051"
     }
    }
   },
@@ -61,11 +61,11 @@
    "files": {
     "zh": {
      "path": "assets/figures/scene-corridor-aerial.webp",
-     "sha256": "9ecfb48b5674c4e297abc1ada37ec26b411c6b8dc2b5d06360a7c4f5672887cf"
+     "sha256": "a9359bb0b01dd184a1b665820a2b5d49b439ccebd1ee4d0400e1fa6da3de8a56"
     },
     "en": {
      "path": "assets/figures/scene-corridor-aerial.en.webp",
-     "sha256": "90be3cafcabd105e4e29309d3524c5b0542d62f824769c5e34d443330f7f0f4d"
+     "sha256": "7be9b575a12c2e702fe6d23760083699e57a3eca342b564316877acfc85a8cf5"
     }
    }
   }
