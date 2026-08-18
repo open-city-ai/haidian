@@ -17,6 +17,10 @@ This formal proposal responds to the Centennial Jing-Zhang AI Innovation Belt an
 
 The design identity is “Signal Garden”. Railway signal discipline becomes an open urban protocol: publish the data boundary first, open a bookable public test second, and keep human review in the loop. The JZ / wave / plus mark connects railway memory, blue-green continuity, and cross-disciplinary collaboration. All marks, typefaces, historic images, and enterprise identities remain subject to rights clearance.
 
+![JZ / wave / plus brand system, palette, and applications](assets/figures/brand-system.en.png)
+
+The “three zones and two wings” becomes a concrete collaboration loop: the three key areas handle research, translation, and urban demonstration; Beiwei Community provides resident feedback and daily services; Future Science City and Huairou Science City provide research and verification; the Beijing Economic-Technological Development Area provides industrialisation and manufacturing; and the wider Jing-Jin-Ji region provides scenario diffusion and talent exchange. The loop is research → translate → test → operate → share, and every external collaboration remains a concept proposal pending public evidence and professional confirmation [source:AGENT-TASKBOOK] [depth:overall_spatial_structure].
+
 ## Three-Level Scope Framework
 
 The proposal moves from a 43.6 square kilometre coordinated research area, to an approximately 11.4 square kilometre overall design area, and then to three detailed key areas. The first level frames the innovation ecosystem and future-city strategy; the second translates it into land use, renewal, mobility, municipal support, and public space; the third tests the strategy through specific anchors [depth:three_level_scope_framework] [data:geometry/key_areas.geojson#PROV-KEY-001].
@@ -47,6 +51,10 @@ The core users are open-source developers, early-stage teams, enterprise visitor
 
 Ten scenario cards are proposed: open-source publishing hall; city-agent sandbox; slow-mobility gap diagnosis; talent-life concierge; AI safety governance corridor; university-enterprise translation room; data-element theatre; low-carbon edge-compute station; Jing-Zhang memory route; and global AI activity-week route. At least the sandbox, mobility diagnosis, safety corridor, and edge-compute station require industry testing with consent, logs, red-team review, and human sign-off [data:geometry/public_space.geojson#PUBLIC-001] [depth:ai_scenario_system].
 
+Three industry test cards use explicit protocols. T1 tests a transport/operations agent with public aggregated data, red-team review, and an immediate exit gate for unsafe or unexplained outputs. T2 tests accessible-route diagnosis with public networks, manual reports, field checks, and mandatory human takeover. T3 tests edge-compute capacity and privacy budget; exceeding energy, capacity, or privacy limits stops the trial. Baselines, reviewers, logs, and final KPIs remain pending before any real pilot [data:geometry/roads.geojson#ROAD-001] [data:geometry/constraints.geojson#CONSTRAINTS].
+
+Inclusion does not assume smartphone access. Older adults and non-digital users receive staffed counters and paper wayfinding; children receive low-speed public learning nodes without commercial recommendation; disabled users receive continuous accessible routes, low-vision wayfinding, seating, and shade; low-income users receive free public hours and basic services; night workers receive lighting, rest, sanitation, and night staffing. Every scenario keeps appeal, withdrawal, human override, log access, and stop conditions [data:geometry/public_space.geojson#PUBLIC-001] [depth:public_interest_inclusion].
+
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 The land-use partition is a complete conceptual partition of the submitted boundary, using shared edges rather than independent rectangles. Research, blue-green open space, service-and-commerce, and living interfaces form the spatial logic of the signal garden [data:geometry/land_use.geojson#LU-001] [depth:land_use_layout].
@@ -71,9 +79,11 @@ Six projects create a reversible sequence: repair the park slow-mobility gaps; e
 
 The first phase uses wayfinding, movable furniture, open events, reservation rules, and public review. The middle phase tests adaptable buildings and shared services. The long phase depends on official controls, rights, infrastructure, and professional design. A proposed annual cycle—weekly open tests, monthly evidence reviews, and an annual global AI week—keeps operations accountable without claiming a confirmed government programme [depth:phasing_implementation].
 
+The six projects are also assigned reviewable actor types and stop conditions: a public-space team and community for JZ-01, a blue-green team and operator for JZ-02, a campus/park partner and service team for JZ-03, a rail/road professional team for JZ-04, a data-governance team and operator for JZ-05, and a community/event team for JZ-06. Near-term gates cover road redlines, ownership, utilities, fire safety, accessibility, privacy, rights, and public permission. These are not confirmed government, corporate, or funding commitments; they are concept-level implementation controls [depth:renewal_project_list] [depth:phasing_implementation].
+
 ## Metrics, Area Recalculation, and Compliance Matrix
 
-The package exposes site area, green ratio, public-space ratio, building footprint, key-area count, and phase quantities as reproducible geometry metrics. The current site area is 11,412,825.386 square metres, the green ratio is 0.123423, and the public-space ratio is 0.073281; these values are intake calculations tied to provisional geometry, not official controls [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio].
+The package exposes site area, green ratio, public-space ratio, building footprint, key-area count, and phase quantities as reproducible geometry metrics. The current rounded intake area is 11,412,825.4 square metres, the green ratio is 0.123423, and the public-space ratio is 0.073281; these values are tied to provisional geometry, not official controls [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio].
 
 The compliance matrix covers the announcement tasks, the six agent tasks, professional standards, and design-depth items. Unknown controls remain visibly pending. Replacing the provisional polygons triggers a full recalculation of land use, buildings, roads, blue-green space, public space, phasing, figures, and the self-check record [depth:metrics_recalculation] [source:SITE-PACKAGE].
 
@@ -82,6 +92,8 @@ The compliance matrix covers the announcement tasks, the six agent tasks, profes
 The principal risks are provisional boundaries, missing controls, rights and ownership uncertainty, infrastructure capacity, privacy, unequal access, public acceptance, and operating cost. AI scenarios use minimum data, aggregated outputs, explicit consent where needed, and human review. They cannot replace planning approval, public participation, or professional judgement [depth:risk_missing_data] [data:geometry/constraints.geojson#CONSTRAINTS].
 
 All figures and drawings in this package are participant-authored explanatory diagrams generated from the package data. They are not site photographs, public-consent evidence, official renderings, or construction commitments. Rights, tools, and limitations are recorded in `report/copyright_statement.md`.
+
+The copyright ledger lists each local figure, PDF, HTML page, logo, font, external source, code/tool, and dataset with author, source, licence, redistribution scope, and limitation. Any visual asset without clear rights is excluded from the package [source:SOURCE-REGISTRY].
 
 ## References
 

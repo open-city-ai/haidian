@@ -7,15 +7,15 @@
   "metrics": {
     "site_area_sqm": {
       "status": "known",
-      "value": 11412825.386,
+      "value": 11412825.4,
       "unit": "sqm",
       "source_files": [
         "geometry/site_boundary.geojson"
       ],
-      "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
+      "formula": "round(polygon_area(submitted_site_boundary), 1) for provisional intake",
+      "confidence": "low",
       "assumptions": [
-        "Trusted official boundary is present in the site package."
+        "Submitted boundary is a provisional polygon inferred from public task materials; this value is for intake comparison only and must be recalculated from the official polygon."
       ]
     },
     "building_footprint_area_sqm": {
@@ -27,7 +27,9 @@
       ],
       "formula": "sum(polygon_area(building_footprints))",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Conceptual design footprint; not a measured existing-building or statutory control value."
+      ]
     },
     "green_ratio": {
       "status": "known",
@@ -38,8 +40,10 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Derived from provisional boundary and design green-space layer for intake comparison only."
+      ]
     },
     "public_space_ratio": {
       "status": "known",
@@ -50,8 +54,10 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Derived from provisional boundary and design public-space layer for intake comparison only."
+      ]
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -73,8 +79,10 @@
         "geometry/key_areas.geojson"
       ],
       "formula": "count(key_detailed_design_areas)",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "medium",
+      "assumptions": [
+        "Count is stable as a task requirement; polygon areas remain provisional until official key-area boundaries arrive."
+      ]
     }
   }
 }
