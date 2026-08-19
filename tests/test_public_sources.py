@@ -136,6 +136,44 @@ class PublicSourcesTests(unittest.TestCase):
             report = validate_source_index(root)
             self.assertTrue(report.ok, report.errors)
 
+    def test_symlinked_local_path_cannot_escape_repo(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            workspace = Path(tmp)
+            root = workspace / "repo"
+            outside = workspace / "outside"
+            outside.mkdir()
+            (outside / "public-brief.md").write_text(
+                "outside evidence", encoding="utf-8"
+            )
+            root.mkdir()
+            try:
+                (root / "brief").symlink_to(outside, target_is_directory=True)
+            except OSError as exc:
+                self.skipTest(f"symlinks unavailable: {exc}")
+            self.write_json(root, "sources/public-sources.json", VALID_INDEX)
+
+            report = validate_source_index(root)
+
+            self.assertFalse(report.ok)
+            self.assertIn("referenced path escapes repo", "\n".join(report.errors))
+
+    def test_symlink_loop_returns_validation_error(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            try:
+                (root / "loop-a").symlink_to("loop-b", target_is_directory=True)
+                (root / "loop-b").symlink_to("loop-a", target_is_directory=True)
+            except OSError as exc:
+                self.skipTest(f"symlinks unavailable: {exc}")
+            bad_index = copy.deepcopy(VALID_INDEX)
+            bad_index["sources"][0]["path"] = "loop-a/evidence.md"
+            self.write_json(root, "sources/public-sources.json", bad_index)
+
+            report = validate_source_index(root)
+
+            self.assertFalse(report.ok)
+            self.assertIn("referenced path could not be resolved", "\n".join(report.errors))
+
 
 if __name__ == "__main__":
     unittest.main()

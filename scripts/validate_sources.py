@@ -153,8 +153,25 @@ def validate_source_item(
             except ValueError as exc:
                 report.add_error(f"{prefix}: {exc}")
             else:
-                if not (repo_root / local_path).is_file():
-                    report.add_error(f"{prefix}: referenced path is missing: {local_path}")
+                try:
+                    resolved = (repo_root / local_path).resolve(strict=True)
+                except FileNotFoundError:
+                    report.add_error(
+                        f"{prefix}: referenced path is missing: {local_path}"
+                    )
+                except (OSError, RuntimeError):
+                    report.add_error(
+                        f"{prefix}: referenced path could not be resolved: {local_path}"
+                    )
+                else:
+                    if not resolved.is_relative_to(repo_root):
+                        report.add_error(
+                            f"{prefix}: referenced path escapes repo: {local_path}"
+                        )
+                    elif not resolved.is_file():
+                        report.add_error(
+                            f"{prefix}: referenced path is missing: {local_path}"
+                        )
 
     if url_value is not None:
         if not isinstance(url_value, str) or not url_value.startswith("https://"):
