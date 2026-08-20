@@ -48,7 +48,9 @@ import csv
 import datetime as dt
 import hashlib
 import json
+import os
 import re
+import tempfile
 import urllib.parse
 from pathlib import Path
 from typing import Any
@@ -59,7 +61,7 @@ from discover_public_sources import (
     content_type_kind,
     parse_dateish,
 )
-from validate_data_registry import validate_registry
+from validate_data_registry import RegistryReport, validate_registry
 
 
 DEFAULT_DISCOVERY_CSV = "brief/discovery/candidate-sources.csv"
@@ -287,10 +289,35 @@ def build_draft(
     }
 
 
-def write_registry_json(data: dict[str, Any], path: Path) -> None:
+def serialize_registry_json(data: dict[str, Any]) -> str:
     serializable = {key: value for key, value in data.items() if not key.startswith("_")}
+    return json.dumps(serializable, ensure_ascii=False, indent=2) + "\n"
+
+
+def validate_and_publish_draft(
+    data: dict[str, Any], repo_root: Path, path: Path
+) -> RegistryReport:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(serializable, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as stream:
+            stream.write(serialize_registry_json(data))
+            temporary = Path(stream.name)
+        report = validate_registry(repo_root, temporary)
+        if report.ok:
+            os.replace(temporary, path)
+            temporary = None
+        return report
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def main() -> int:
@@ -328,8 +355,7 @@ def main() -> int:
         limit=args.limit,
         include_existing=args.include_existing,
     )
-    write_registry_json(draft, out_path)
-    report = validate_registry(repo_root, out_path)
+    report = validate_and_publish_draft(draft, repo_root, out_path)
     summary = {
         "ok": report.ok,
         "input": input_path.relative_to(repo_root).as_posix() if input_path.is_relative_to(repo_root) else str(input_path),
