@@ -45,6 +45,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timezone
 import fcntl
 import json
 import os
@@ -56,7 +57,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from ai_review_submission import DEFAULT_BASE_URL, review_identity
 from generate_submissions_data import package_sha256
+from review_submission import ADVISORY_REVIEW_SCHEMA_PATH, build_review_input
 
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
@@ -64,6 +67,8 @@ CONFLICT_MARKER = "<!-- haidian-auto-review-conflict:{head_sha} -->"
 PASS = "SUCCESS"
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
+OBSERVATION_LOCK = threading.Lock()
+OBSERVATION_SCHEMA_VERSION = "1.0.0"
 
 
 class WorkerError(RuntimeError):
@@ -75,6 +80,63 @@ class Decision:
     action: str
     score: float | None
     reason: str
+
+
+def build_review_observation(
+    *,
+    number: int,
+    head_sha: str,
+    submission_dir: str,
+    review: dict[str, Any],
+    decision: dict[str, Any],
+    outcome: Decision,
+    reused_audit: bool,
+) -> dict[str, Any]:
+    """Return a minimal local observation without persisting review prose."""
+    rubric_scores = {
+        str(item["dimension_id"]): item["score"]
+        for item in review.get("rubric_scores", [])
+        if isinstance(item, dict) and "dimension_id" in item and "score" in item
+    }
+    repair_count = sum(
+        len(item.get("required_repairs_zh", []))
+        for item in review.get("rubric_scores", [])
+        if isinstance(item, dict) and isinstance(item.get("required_repairs_zh", []), list)
+    )
+    next_actions = review.get("required_next_actions_zh", [])
+    return {
+        "schema_version": OBSERVATION_SCHEMA_VERSION,
+        "recorded_at": datetime.now(timezone.utc).isoformat(),
+        "pr_number": number,
+        "head_sha": head_sha,
+        "submission_dir": submission_dir,
+        "reviewed_package_sha256": decision.get("reviewed_package_sha256"),
+        "review_input_sha256": decision.get("review_input_sha256"),
+        "prompt_sha256": decision.get("prompt_sha256"),
+        "review_schema_sha256": decision.get("review_schema_sha256"),
+        "review_policy_sha256": decision.get("review_policy_sha256"),
+        "model": decision.get("model"),
+        "base_url": decision.get("base_url"),
+        "reasoning_effort": decision.get("reasoning_effort"),
+        "weighted_score_100": decision.get("weighted_score_100"),
+        "rubric_scores": rubric_scores,
+        "repair_count": repair_count,
+        "required_next_actions_count": len(next_actions) if isinstance(next_actions, list) else None,
+        "publication_recommendation": decision.get("publication_recommendation"),
+        "action": outcome.action,
+        "cache_reused": reused_audit,
+    }
+
+
+def append_review_observation(ledger_path: Path, observation: dict[str, Any]) -> None:
+    """Append one JSON observation atomically for same-process queue workers."""
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    line = json.dumps(observation, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
+    with OBSERVATION_LOCK:
+        with ledger_path.open("a", encoding="utf-8") as handle:
+            handle.write(line)
+            handle.flush()
+            os.fsync(handle.fileno())
 
 
 def run(command: list[str], *, cwd: Path, capture: bool = True) -> subprocess.CompletedProcess[str]:
@@ -255,11 +317,18 @@ def load_cached_review(
     submission_dir: str,
     checkout_root: Path,
     threshold: float,
+    *,
+    model: str,
+    base_url: str,
+    reasoning_effort: str,
 ) -> tuple[dict[str, Any], dict[str, Any], Decision] | None:
     try:
         review = json.loads((audit_dir / "ai-review.json").read_text(encoding="utf-8"))
         decision = json.loads((audit_dir / "ai-decision.json").read_text(encoding="utf-8"))
         comment = (audit_dir / "pr-comment.md").read_text(encoding="utf-8")
+        metadata = json.loads((audit_dir / "request-metadata.json").read_text(encoding="utf-8"))
+        cached_input = json.loads((audit_dir / "review-input.json").read_text(encoding="utf-8"))
+        schema = json.loads((checkout_root / ADVISORY_REVIEW_SCHEMA_PATH).read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return None
     if not comment.strip():
@@ -268,11 +337,89 @@ def load_cached_review(
         return None
     if decision.get("dry_run") is not False or decision.get("model_output_schema_valid") is not True:
         return None
+    if not isinstance(cached_input, dict) or not isinstance(schema, dict):
+        return None
     try:
         expected_hash = package_sha256(checkout_root / submission_dir)
     except SystemExit:
         return None
     if decision.get("reviewed_package_sha256") != expected_hash:
+        return None
+    identity_fields = [
+        "reviewed_package_sha256",
+        "review_input_sha256",
+        "prompt_sha256",
+        "review_schema_sha256",
+        "review_policy_sha256",
+        "model",
+        "base_url",
+        "reasoning_effort",
+    ]
+    if any(
+        not isinstance(metadata.get(field), str)
+        or metadata.get(field) != decision.get(field)
+        for field in identity_fields
+    ):
+        return None
+    expected_base_url = os.getenv("OPENAI_BASE_URL", DEFAULT_BASE_URL)
+    if (
+        metadata["model"] != model
+        or metadata["base_url"] != base_url
+        or metadata["base_url"] != expected_base_url
+    ):
+        return None
+    if metadata["reasoning_effort"] != reasoning_effort:
+        return None
+    visual_inputs = metadata.get("visual_inputs")
+    visual_warnings = metadata.get("visual_warnings")
+    visual_preflight_issues = metadata.get("visual_preflight_issues")
+    content_preflight_issues = metadata.get("content_preflight_issues")
+    if not all(
+        isinstance(value, list)
+        for value in [visual_inputs, visual_warnings, visual_preflight_issues, content_preflight_issues]
+    ):
+        return None
+
+    try:
+        current_input = build_review_input(checkout_root, checkout_root / submission_dir)
+        current_input["ai_visual_input_summary"] = {
+            "included": visual_inputs,
+            "warnings": visual_warnings,
+            "preflight_issues": visual_preflight_issues,
+        }
+        current_input["ai_content_preflight_issues"] = content_preflight_issues
+        cached_identity = review_identity(
+            checkout_root,
+            checkout_root / submission_dir,
+            cached_input,
+            schema,
+            model,
+            base_url,
+            reasoning_effort,
+        )
+        current_identity = review_identity(
+            checkout_root,
+            checkout_root / submission_dir,
+            current_input,
+            schema,
+            model,
+            base_url,
+            reasoning_effort,
+        )
+    except Exception:
+        return None
+
+    if cached_input.get("submission_dir") != submission_dir or current_input.get("submission_dir") != submission_dir:
+        return None
+    if any(
+        any(record.get(field) != expected.get(field) for field in identity_fields)
+        for record, expected in [
+            (metadata, cached_identity),
+            (decision, cached_identity),
+            (metadata, current_identity),
+            (decision, current_identity),
+        ]
+    ):
         return None
     try:
         outcome = decide(review, decision, threshold)
@@ -354,7 +501,15 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
         checked = run(["git", "rev-parse", "HEAD"], cwd=worktree).stdout.strip()
         if checked != head_sha:
             raise WorkerError("fetched worktree SHA does not match live PR head")
-        cached = load_cached_review(audit_dir, submission_dir, worktree, args.threshold)
+        cached = load_cached_review(
+            audit_dir,
+            submission_dir,
+            worktree,
+            args.threshold,
+            model=args.model,
+            base_url=os.getenv("OPENAI_BASE_URL", DEFAULT_BASE_URL),
+            reasoning_effort=args.reasoning_effort,
+        )
         if cached is None:
             command = [
                 sys.executable,
@@ -397,6 +552,18 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
             "package_sha256": ai_decision.get("reviewed_package_sha256"),
             "reused_audit": reused_audit,
         }
+        append_review_observation(
+            args.audit_root / "review-observations.jsonl",
+            build_review_observation(
+                number=number,
+                head_sha=head_sha,
+                submission_dir=submission_dir,
+                review=review,
+                decision=ai_decision,
+                outcome=outcome,
+                reused_audit=reused_audit,
+            ),
+        )
         if args.apply:
             with GITHUB_WRITE_LOCK:
                 apply_review(

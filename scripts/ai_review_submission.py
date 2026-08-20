@@ -45,6 +45,7 @@ from __future__ import annotations
 import argparse
 import base64
 from datetime import datetime, timezone
+import hashlib
 import json
 import mimetypes
 import os
@@ -383,6 +384,110 @@ def compact_review_input(review_input: dict[str, Any]) -> dict[str, Any]:
     result = dict(review_input)
     result.pop("advisory_review_schema", None)
     return result
+
+
+def stable_json_sha256(value: Any) -> str:
+    payload = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+TRUSTED_REVIEW_SCRIPT_NAMES = (
+    "ai_review_submission.py",
+    "auto_review_queue.py",
+    "generate_submissions_data.py",
+    "review_submission.py",
+    "source_registry_utils.py",
+    "validate_local_submission.py",
+    "validate_submission.py",
+    "self_check_submission.py",
+    "spatial_review.py",
+    "visual_review.py",
+    "professional_review.py",
+)
+
+# These are the repository-controlled inputs read by the trusted review
+# scripts.  Glob entries are intentional: adding/removing an enum or scenario
+# must invalidate an advisory cache even when the current package does not use
+# that new value yet.
+TRUSTED_REVIEW_POLICY_PATHS = (
+    ADVISORY_REVIEW_SCHEMA_PATH,
+    "brief/site-package/agent_taskbook.json",
+    "brief/site-package/enums/*.json",
+    "brief/site-package/schemas/geojson_feature.schema.json",
+    "brief/site-package/standards/standards.json",
+    "data/source_registry.json",
+    "tracks.json",
+    "scenarios/*.json",
+)
+
+
+def review_policy_sha256(repo_root: Path) -> str:
+    """Fingerprint every trusted code and input that can affect review output."""
+    digest = hashlib.sha256()
+    script_root = Path(__file__).resolve().parent
+    for script_name in TRUSTED_REVIEW_SCRIPT_NAMES:
+        path = script_root / script_name
+        digest.update(f"trusted-scripts/{script_name}".encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(path.read_bytes() if path.is_file() else b"<missing>")
+        digest.update(b"\0")
+    trusted_policy_root = script_root.parent
+    for pattern in TRUSTED_REVIEW_POLICY_PATHS:
+        # Some deterministic validators intentionally fall back to the
+        # maintainer checkout when a PR checkout is missing a policy file.
+        # Hash the effective file for every relative match so a change to that
+        # trusted fallback cannot reuse an older advisory review.
+        repo_matches = {
+            path.relative_to(repo_root).as_posix(): path
+            for path in repo_root.glob(pattern)
+            if path.is_file()
+        }
+        trusted_matches = {
+            path.relative_to(trusted_policy_root).as_posix(): path
+            for path in trusted_policy_root.glob(pattern)
+            if path.is_file()
+        }
+        matches = [
+            (
+                relative_path,
+                repo_matches[relative_path]
+                if relative_path in repo_matches
+                else trusted_matches[relative_path],
+            )
+            for relative_path in sorted(set(repo_matches) | set(trusted_matches))
+        ]
+        if not matches:
+            digest.update(f"package-policy/{pattern}".encode("utf-8"))
+            digest.update(b"\0<missing>\0")
+            continue
+        for relative_path, path in matches:
+            digest.update(f"package-policy/{relative_path}".encode("utf-8"))
+            digest.update(b"\0")
+            digest.update(path.read_bytes())
+            digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def review_identity(
+    repo_root: Path,
+    submission_dir: Path,
+    review_input: dict[str, Any],
+    schema: dict[str, Any],
+    model: str,
+    base_url: str,
+    reasoning_effort: str,
+) -> dict[str, str]:
+    prompt = system_instructions() + "\n\n" + build_prompt(review_input)
+    return {
+        "reviewed_package_sha256": package_sha256(submission_dir),
+        "review_input_sha256": stable_json_sha256(compact_review_input(review_input)),
+        "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+        "review_schema_sha256": stable_json_sha256(schema),
+        "review_policy_sha256": review_policy_sha256(repo_root),
+        "model": model,
+        "base_url": base_url,
+        "reasoning_effort": reasoning_effort,
+    }
 
 
 def api_response_schema(schema: dict[str, Any]) -> dict[str, Any]:
@@ -814,13 +919,12 @@ def run_ai_review(
             "preflight_issues": visual_preflight_issues,
         }
         review_input["ai_content_preflight_issues"] = content_preflight_issues
+        identity = review_identity(repo_root, submission_dir, review_input, schema, model, base_url, reasoning_effort)
         payload = build_request_payload(review_input, schema, model, visual_content, reasoning_effort)
         metadata = {
             "schema_version": "1.0.0",
             "submission_dir": review_input["submission_dir"],
-            "reviewed_package_sha256": package_sha256(submission_dir),
-            "model": model,
-            "base_url": base_url,
+            **identity,
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "visual_inputs": visual_inputs,
             "visual_warnings": visual_warnings,
