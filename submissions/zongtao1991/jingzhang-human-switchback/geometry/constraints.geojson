@@ -1,22 +1,85 @@
 {
   "type": "FeatureCollection",
-  "name": "constraints_scaffold",
+  "name": "constraints_data_gap_register",
   "features": [],
   "data_gap": {
-    "status": "official_constraint_geometry_unavailable",
-    "declared_by": "scripts/scaffold_ai_submission.py",
+    "status": "official_and_cleared_constraint_geometry_unavailable",
     "assumption_ids": [
+      "A-BOUNDARY-001",
       "A-CONTROLS-001"
     ],
-    "missing_layers": [
-      "REGULATORY_CONTROL",
-      "HERITAGE_PROTECTION",
-      "PARCEL",
-      "EXISTING_PRIMARY_ROAD",
-      "EXISTING_RAIL",
-      "EXISTING_WATER"
+    "known_provisional_constraints": [
+      {
+        "feature_ids": [
+          "SITE-001"
+        ],
+        "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "role": "provisional_constraint",
+        "limitation": "rough temporary generation envelope; not an official redline"
+      },
+      {
+        "feature_ids": [
+          "PROV-KEY-001",
+          "PROV-KEY-002",
+          "PROV-KEY-003"
+        ],
+        "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "role": "provisional_constraint",
+        "limitation": "rough key-area envelopes; not parcel, road, ownership, or approval boundaries"
+      }
     ],
-    "note_zh": "本图层刻意保持空集合。控规控制线、文物保护范围与建设控制地带、道路红线、权属地块、轨道与蓝线均属锁定图层，公开场地包中目前没有可引用的官方几何来源。缺口按 assumption A-CONTROLS-001 登记；取得官方或已清权几何前，不得以推定线条冒充 official_constraint，空集合优于编造。",
-    "note_en": "This layer is intentionally an empty set. Regulatory control lines, heritage protection and construction-control zones, road redlines, cadastral parcels, rail and blue lines are locked layers with no citable official geometry in the public site package. The gap is registered as assumption A-CONTROLS-001; until official or cleared geometry is available, inferred lines must not be presented as an official_constraint - an empty set is preferred over fabrication."
+    "missing_constraint_register": [
+      {
+        "layer": "REGULATORY_CONTROL",
+        "status": "missing_official_geometry",
+        "needed": "approved FAR, height, density, setback and building-control lines",
+        "design_consequence": "all proposed massing remains a low-confidence design model"
+      },
+      {
+        "layer": "PARCEL",
+        "status": "missing_official_or_cleared_geometry",
+        "needed": "cadastral parcels, ownership and existing land-use inventory",
+        "design_consequence": "no parcel-level retain/renovate/demolish or delivery claim is made"
+      },
+      {
+        "layer": "EXISTING_PRIMARY_ROAD",
+        "status": "missing_official_or_cleared_geometry",
+        "needed": "road redlines, intersections, parking/access and traffic survey",
+        "design_consequence": "roads.geojson contains design-proposal centre-lines only"
+      },
+      {
+        "layer": "EXISTING_RAIL",
+        "status": "missing_official_or_cleared_geometry",
+        "needed": "rail/heritage alignment, protection distances and station interfaces",
+        "design_consequence": "no protection, excavation or engineering feasibility conclusion is made"
+      },
+      {
+        "layer": "HERITAGE_PROTECTION",
+        "status": "missing_official_geometry",
+        "needed": "heritage protection scope and construction-control zone",
+        "design_consequence": "heritage references remain narrative/design intent only"
+      },
+      {
+        "layer": "EXISTING_WATER",
+        "status": "missing_official_or_cleared_geometry",
+        "needed": "surveyed water, blue line, flood risk, groundwater and drainage catchments",
+        "design_consequence": "green-space rain gardens are conceptual and no watercourse is fabricated"
+      },
+      {
+        "layer": "MUNICIPAL_AND_HAZARD",
+        "status": "missing_professional_inputs",
+        "needed": "utilities, energy, fire access, emergency, geotechnical and environmental surveys",
+        "design_consequence": "implementation and phasing require professional recalibration"
+      },
+      {
+        "layer": "EXISTING_BUILDING_AND_PUBLIC_SERVICE",
+        "status": "missing_official_or_cleared_inventory",
+        "needed": "building age/condition/use/height and facility service data",
+        "design_consequence": "building footprints are concept massing, not surveyed existing buildings"
+      }
+    ],
+    "recalculation_trigger": "Any official or rights-cleared constraint dataset must replace the corresponding gap; then rerun tools/rebuild_spatial_model.py and professional traffic, heritage, municipal, fire, accessibility, geotechnical and cost review before implementation use.",
+    "note_zh": "空要素集是刻意的数据诚信选择：没有可引用的官方/已清权约束几何时，不以推定线替代法定控制线。",
+    "note_en": "The empty feature set is intentional: inferred lines are not substituted for unavailable official or cleared constraints."
   }
 }
