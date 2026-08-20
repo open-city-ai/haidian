@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "ASSUMPTION-001",
+      "title_zh": "官方精确边界尚未取得，使用仓库临时边界",
+      "category": "boundary",
+      "status": "provisional",
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "description_zh": "总体设计范围、三处重点区均使用仓库依据公告文字四至和约面积推定的 provisional polygon。所有面积、比例、空间关系均为设计模型值，待 official polygon 公布后须全面复算并替换图层、图纸与 HTML。",
+      "recalculation_trigger_zh": "取得资格预审文件、正式任务书、补遗答疑或其他清权官方 CAD/GIS/PDF 边界后，登记坐标系、版本和转换方法，并重新生成所有几何与指标。"
+    },
+    {
+      "assumption_id": "ASSUMPTION-002",
+      "title_zh": "官方控规条件缺失，容积率、建筑密度、建筑高度等指标保持 unknown",
+      "category": "regulatory_control",
+      "status": "data_gap",
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "SRC-MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
+      "description_zh": "公开资料包未包含容积率、建筑密度、建筑高度、退线、道路红线等控规条件。本方案仅提供概念性建筑 footprint 与层数示意，不作为法定控制指标或工程依据。",
+      "recalculation_trigger_zh": "取得官方控规条件后，按地块重新计算 FAR、密度、高度，并校核建筑布局。"
+    },
+    {
+      "assumption_id": "ASSUMPTION-003",
+      "title_zh": "现状建筑、权属、市政与文保数据缺失",
+      "category": "existing_conditions",
+      "status": "data_gap",
+      "source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "description_zh": "缺少现状建筑轮廓、高度、用途、建成年代、保留/改造/拆除状态，以及地块权属、市政管线、消防通道、文保范围与建设控制地带。拆改留策略、市政基础设施和文化遗产处理仅为概念方向。",
+      "recalculation_trigger_zh": "取得现状建筑/权属/市政/文保 GIS 或 CAD 资料后，由专业团队重新评估拆改留、市政承载与风貌控制。"
+    },
+    {
+      "assumption_id": "ASSUMPTION-004",
+      "title_zh": "道路与轨道数据为概念示意",
+      "category": "transport",
+      "status": "provisional",
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "description_zh": "geometry/roads.geojson 中的道路中心线为设计概念线，不代表官方道路红线、断面或工程设计。轨道站点一体化、地下连通道等仅为空间意向。",
+      "recalculation_trigger_zh": "取得道路红线、轨道站点边界、客流与市政资料后，由交通与轨道专业深化。"
+    },
+    {
+      "assumption_id": "ASSUMPTION-005",
+      "title_zh": "AI 场景为概念设计，不构成已批准运营",
+      "category": "scenario",
+      "status": "conceptual",
+      "source_ids": [
+        "DATA-SRC-AGENT-TASKBOOK-20260518"
+      ],
+      "description_zh": "场景卡描述的服务内容、数据边界、运营主体和人工复核机制均为设计建议。任何场景落地须经过合规审查、隐私影响评估和主管部门许可。",
+      "recalculation_trigger_zh": "进入实施阶段前，逐场景完成合规、安全与运营可行性评估。"
+    }
+  ]
+}
