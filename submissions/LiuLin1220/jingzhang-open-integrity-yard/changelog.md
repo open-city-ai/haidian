@@ -1,5 +1,16 @@
 # 方案迭代记录
 
+## v0.5 - 2026-08-21
+
+- Clarified the P04 ownership label throughout the package as “一区一主责槽位” / “one sole primary slot per zone”; removed numeric-ratio shorthand so detached figures, cards, matrices, HTML, and PDF pages cannot be misread as full-scale or engineering-scale drawings.
+- Deepened P04 without changing provisional geometry: the Dazhongsi concept is now a five-zone reversible recall-service counter whose notice, staffed continuity, impact mapping, controlled repair/retest, and exit/restore/archive zones each bind one sole primary role slot to resources, acceptance evidence, and an exit rule.
+- Replaced generic RACI labels with eight coded role slots (`A01`, `R01`–`R03`, `C01`–`C03`, `I01`) and kept every holder explicitly `UNASSIGNED`; the package names no person, legal entity, operator, supplier, venue owner, funding body, or public authority.
+- Split the pilot into four future evidence gates—D0 authorization/freeze, D30 reversible mock-up, D60 negative-case/rollback verification, and D90 independent `GO / REVISE / STOP`—and pre-committed six negative cases so absent authorization, accountable ownership, human fallback, rollback/deletion/restoration evidence, or comparable quotes cannot be narrated as progress.
+- Added a truthful package-evidence baseline: verified field-observation records `0`, confirmed responsible-entity records `0`, written venue-authorization records `0`, and comparable independent quote records `0`. These values count only qualifying records in this submission and do not claim that no evidence exists elsewhere.
+- Tightened the two-quote procurement gate: both quotes must be independent, written, conflict-disclosed, and comparable on one frozen five-zone quantity, period, tax, transport/installation, maintenance, removal/restoration, and asset-handover basis. Quotes do not prove funding, select a supplier, authorize a venue, or approve a pilot.
+- Propagated the equivalent Chinese/English contract into the opening Review Agent view, full proposal, structured metrics/assumption/risk evidence, all three matrices, the `key-areas` and `mobility-bluegreen` figure pairs, both visual HTML pages, and the first face plus relevant later pages of all four PDFs.
+- Regenerated only evidence and presentation artifacts required by the P04 contract; the repository-supplied provisional SITE/KEY polygons and all submitted geometry remain byte-for-byte unchanged.
+
 ## v0.4 - 2026-08-20
 
 - Migrated the two commercial/service concept precincts from the superseded numeric land-use code `05` to current code `09`; renamed the derived metric to `land_use_area_09_sqm` and updated the professional/depth evidence references without changing any geometry.

@@ -151,6 +151,113 @@
       "impact": "Values can support package consistency checks but cannot be used for statutory area scoring, real-world performance claims, procurement, or public-service assurance.",
       "recalculation_trigger": "Recompute spatial metrics after official data replacement and operational metrics after an authorized, observed pilot with a published measurement protocol.",
       "recalculation_trigger_zh": "官方数据替换后重算空间指标；在有授权、可观测且公布测量协议的试点后再计算运营指标。"
+    },
+    {
+      "id": "A-P04-BASELINE-001",
+      "category": "p04_reversible_recall_counter",
+      "status": "zero_evidence_baseline",
+      "statement": "As of 2026-08-21, this v0.5 package contains zero verified P04 field-observation records, zero confirmed responsible-entity records, zero written venue-authorization records, and zero comparable independent quote records. These are counts of qualifying evidence in the submitted package, not claims that nothing exists outside it.",
+      "statement_zh": "截至 2026-08-21，本 v0.5 投稿包内可核验的 P04 现场观察记录、已确认责任主体记录、书面场地授权记录和可比独立报价记录均为 0。这只是对投稿包内合格证据的计数，不声称包外不存在相关资料。",
+      "impact": "The five service zones, eight role slots, four decision gates, and six negative cases are a conceptual audit contract only. Every role holder is UNASSIGNED, so no live intake, public service, procurement, installation, site access, or organizational commitment is authorized.",
+      "impact_zh": "五个服务区、八个角色槽位、四道决策门和六个负例只是概念审计合同。全部角色持有人均为“未指派”，因此不授权真实接入、公共服务、采购、安装、场地进入或组织承诺。",
+      "recalculation_trigger": "Add only dated and attributable records with lawful scope, responsible-entity acceptance, venue-owner authorization, and rights-cleared evidence. Before procurement, obtain two independent written quotes on the same frozen quantities, service period, tax, installation, maintenance, removal, and handover scope; then regenerate metrics, figures, HTML, PDFs, manifest hashes, and self-check.",
+      "recalculation_trigger_zh": "仅在资料具备日期、可归责主体、合法范围、责任主体书面接受、场地方书面授权和清权证据时增加记录。采购前须取得两份独立书面报价，并使用同一冻结数量、服务周期、税费、安装、维护、撤场和移交口径；随后重新生成指标、图件、HTML、PDF、manifest 哈希和自检。",
+      "evidence_baseline": {
+        "scope": "submitted_package_records_only",
+        "as_of": "2026-08-21",
+        "verified_field_observation_records": 0,
+        "confirmed_responsible_entity_records": 0,
+        "written_venue_authorization_records": 0,
+        "comparable_independent_quote_records": 0
+      },
+      "contract": {
+        "service_zones": [
+          {
+            "id": "Z1-PUBLIC-NOTICE-TRIAGE",
+            "name_zh": "公共告知与分诊区",
+            "name_en": "Public Notice and Triage Zone",
+            "primary_role_slot": "R01-COUNTER-DUTY-OPERATOR",
+            "resources_zh": "双语状态牌、纸面分诊单、无障碍等候位和可核查回执",
+            "resources_en": "bilingual status board, paper triage form, accessible waiting position, and verifiable receipt",
+            "acceptance_zh": "公众能读取版本、影响、行动、人工替代和责任槽位，并取得时间戳回执",
+            "acceptance_en": "a visitor can read version, impact, action, staffed alternative, and responsible slot and receive a timestamped receipt",
+            "exit_zh": "未经批准的公告、无障碍路径不可达或回执不可核查时关闭分诊并转人工安全渠道",
+            "exit_en": "close triage and route to a safe staffed channel when notice is uncleared, the accessible route fails, or the receipt is unverifiable"
+          },
+          {
+            "id": "Z2-STAFFED-CONTINUITY-RECEIPT",
+            "name_zh": "人工连续服务与回执区",
+            "name_en": "Staffed Continuity and Receipt Zone",
+            "primary_role_slot": "R03-FRONTLINE-CONTINUITY-LEAD",
+            "resources_zh": "纸面业务流程、离线名册、回拨队列和同层无障碍柜台",
+            "resources_en": "paper service procedure, offline roster, callback queue, and same-level accessible counter",
+            "acceptance_zh": "数字路径暂停后仍能完成冻结任务并留下人工接管、处理和下次复核回执",
+            "acceptance_en": "the frozen task remains completable after digital suspension with a receipt for human takeover, disposition, and next review",
+            "exit_zh": "值守缺席、纸面流程失效或同层替代不可达时停止面向公众的试点",
+            "exit_en": "stop the public-facing pilot when staffing is absent, the paper process fails, or the same-level alternative is unreachable"
+          },
+          {
+            "id": "Z3-DOWNSTREAM-IMPACT-MAP",
+            "name_zh": "下游影响映射区",
+            "name_en": "Downstream Impact-Mapping Zone",
+            "primary_role_slot": "I01-DOWNSTREAM-SERVICE-OWNER-BUYER",
+            "resources_zh": "版本化合成依赖图、受影响/未知/不受影响及理由卡、通知与回执台账",
+            "resources_en": "versioned synthetic dependency graph, affected/unknown/not-affected-with-reason cards, and notice/acknowledgement ledger",
+            "acceptance_zh": "每个合成下游项均保留责任槽位、状态理由、通知路径和未关闭未知项",
+            "acceptance_en": "every synthetic downstream item retains a responsible slot, state reason, notice route, and visible unresolved unknowns",
+            "exit_zh": "真实主体或生产数据误入、影响范围无责任槽位或未知项被自动改写为安全时封存并停止",
+            "exit_en": "seal the record and stop if a real entity or production datum enters, affected scope lacks a responsible slot, or automation rewrites unknown as safe"
+          },
+          {
+            "id": "Z4-CONTROLLED-REPAIR-RETEST",
+            "name_zh": "受控修复与复测区",
+            "name_en": "Controlled Repair and Retest Zone",
+            "primary_role_slot": "R02-ARTIFACT-MAINTAINER-REPAIR-LEAD",
+            "resources_zh": "隔离工作位、冻结测试套件、补丁摘要、回滚包和复测日志",
+            "resources_en": "isolated workstation, frozen test suite, patch summary, rollback bundle, and retest log",
+            "acceptance_zh": "合成修复可在隔离环境复现，回滚可执行，复测结果和失败均被保留",
+            "acceptance_en": "the synthetic repair is reproducible in isolation, rollback executes, and both retest results and failures are retained",
+            "exit_zh": "出现真实漏洞细节、生产凭据、越权、回滚失败或删除不可验证时立即隔离并结束演练",
+            "exit_en": "isolate and end the exercise upon real exploit detail, production credentials, excessive privilege, rollback failure, or unverifiable deletion"
+          },
+          {
+            "id": "Z5-EXIT-RESTORE-ARCHIVE",
+            "name_zh": "退出、复原与归档门",
+            "name_en": "Exit, Restore, and Archive Gate",
+            "primary_role_slot": "A01-PILOT-ACCOUNTABLE-OWNER",
+            "resources_zh": "撤场清单、数据删除证明、资产移交单、空间复原记录和脱敏归档索引",
+            "resources_en": "de-installation checklist, deletion evidence, asset-handover form, space-restoration record, and sanitized archive index",
+            "acceptance_zh": "接收人、资产、数据、空间、未决事项和下次复核均有签收记录",
+            "acceptance_en": "recipient, assets, data, space, open issues, and next review all have signed records",
+            "exit_zh": "D90 为停止/修改或责任、资金、授权、接收人任一缺失时撤场、删除、复原且不续期",
+            "exit_en": "de-install, delete, restore, and do not renew when D90 decides stop/revise or responsibility, funding, authorization, or recipient is missing"
+          }
+        ],
+        "role_slots": [
+          {"id": "A01-PILOT-ACCOUNTABLE-OWNER", "title_zh": "试点问责人", "title_en": "Pilot Accountable Owner", "holder_status": "unassigned"},
+          {"id": "R01-COUNTER-DUTY-OPERATOR", "title_zh": "柜台值守运营席", "title_en": "Counter Duty Operator", "holder_status": "unassigned"},
+          {"id": "R02-ARTIFACT-MAINTAINER-REPAIR-LEAD", "title_zh": "制品维护与修复席", "title_en": "Artifact Maintainer and Repair Lead", "holder_status": "unassigned"},
+          {"id": "R03-FRONTLINE-CONTINUITY-LEAD", "title_zh": "一线连续服务席", "title_en": "Front-line Continuity Lead", "holder_status": "unassigned"},
+          {"id": "C01-AUTHORIZATION-PROCUREMENT-LEGAL-REVIEWER", "title_zh": "授权、采购与法务复核席", "title_en": "Authorization, Procurement, and Legal Reviewer", "holder_status": "unassigned"},
+          {"id": "C02-ACCESSIBILITY-COMMUNITY-OBSERVER", "title_zh": "无障碍与社区观察席", "title_en": "Accessibility and Community Observer", "holder_status": "unassigned"},
+          {"id": "C03-SECURITY-DISCLOSURE-COORDINATOR", "title_zh": "安全与披露协调席", "title_en": "Security and Disclosure Coordinator", "holder_status": "unassigned"},
+          {"id": "I01-DOWNSTREAM-SERVICE-OWNER-BUYER", "title_zh": "下游服务责任人与采购知会席", "title_en": "Downstream Service Owner and Buyer", "holder_status": "unassigned"}
+        ],
+        "decision_gates": [
+          {"id": "D0", "meaning_zh": "核验主体、场地、数据和安全授权，指派并书面接受角色，冻结合成范围、基线和停止门；缺一项即不启动", "meaning_en": "verify entity, venue, data, and safety authorization; assign and accept roles in writing; freeze synthetic scope, baseline, and stop gates; otherwise do not start"},
+          {"id": "D30", "meaning_zh": "在获授权既有空间完成五区可逆样机和桌面演练；未获场地授权时只能离场模拟", "meaning_en": "complete a reversible five-zone mock-up and tabletop in an authorized existing room; without venue authorization remain off-site and synthetic"},
+          {"id": "D60", "meaning_zh": "通过断网、无障碍、人工替代、回滚、删除与六个负例测试后才可讨论受控公开演练", "meaning_en": "only discuss a controlled public exercise after offline, accessibility, staffed fallback, rollback, deletion, and six negative-case tests pass"},
+          {"id": "D90", "meaning_zh": "由独立观察形成继续、修改或停止；继续只授权下一轮有界试验，不自动触发采购、招商或永久建设", "meaning_en": "independent observation decides go, revise, or stop; go authorizes only another bounded trial, never automatic procurement, attraction, or permanent construction"}
+        ],
+        "negative_cases": [
+          {"id": "N01", "case_zh": "无书面场地授权仍拟进入、拍摄、安装或服务", "case_en": "entry, recording, installation, or service is proposed without written venue authorization", "decision": "STOP"},
+          {"id": "N02", "case_zh": "无已确认责任主体或 A01/R 席位未指派仍拟真实接入", "case_en": "live intake is proposed without a confirmed responsible entity or assigned A01/R slots", "decision": "STOP"},
+          {"id": "N03", "case_zh": "真实漏洞、个人数据、生产凭据或未经批准的主体名称进入演练/公开层", "case_en": "real exploit detail, personal data, production credentials, or an uncleared entity name enters the exercise or public layer", "decision": "STOP"},
+          {"id": "N04", "case_zh": "人工替代、无障碍路径或纸面流程不可达", "case_en": "staffed fallback, accessible route, or paper procedure is unavailable", "decision": "STOP"},
+          {"id": "N05", "case_zh": "回滚、删除、回执或空间复原证据不可验证", "case_en": "rollback, deletion, receipt, or space-restoration evidence is unverifiable", "decision": "STOP"},
+          {"id": "N06", "case_zh": "少于两份独立书面报价，或报价未采用同一冻结范围与全生命周期口径", "case_en": "fewer than two independent written quotes exist, or the quotes do not share one frozen scope and lifecycle basis", "decision": "NO_PROCUREMENT"}
+        ]
+      }
     }
   ]
 }
