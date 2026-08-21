@@ -120,6 +120,21 @@ iteration: "v1.8.1"
 
 ![三处重点区的交通服务接口、回读分母与人工回退](assets/figures/mobility-route-service-atlas.svg)
 
+### 一日连续性回执｜同一条普通服务链要经得住四个时段
+
+一条到站回家链不能只在单一高峰时段成立。方案把早高峰到岗、日常服务到达、晚间换乘和断网雨雪回退放进同一份回执。每个时段都先保留轨道、公交、步行、人工、电话或纸面入口，再让 AI 处理分组需求、冲突说明和回退清单；没有接收人、等价路线或带日期的恢复记录时，服务停在 `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation]。
+
+![一日四段服务回执：普通路线、AI 辅助、人工等价与停止动作](assets/figures/mobility-continuity-receipt.svg)
+
+| 时段 | 普通服务先做什么 | AI 只承担什么 | 证据缺失时的动作 |
+| --- | --- | --- | --- |
+| 早高峰到岗 | 轨道/公交、受保护路缘和现场引导 | 聚合到岗时段，提示路缘冲突 | 无接收人或容量记录时拒收预约 |
+| 日常服务到达 | 步入、电话、纸面和连续无障碍路线 | 按服务类型聚合时段，不留连续轨迹 | 基本通行受损时关闭推荐并回到 P0 |
+| 晚间换乘回家 | 时刻表、公共过街信息和人工引导 | 解释换乘冲突，提出可逆分流 | 容量或责任未知时删除 feeder 需求 |
+| 断网雨雪与维护 | 人工、轨道、公交、纸面和电话回退 | 离线整理冻结、改道和恢复清单 | 无安全交接或无日期记录时保持 HOLD |
+
+`mobility-continuity-receipt.json` 固定 4 个时段、4 个交接缝、12 个回执字段、4 个正向控制和 6 个负例。`run-mobility-continuity-receipt.js` 与负例回归只证明合同能够离线复核，不能证明现场连续性；当前授权为 0，现场观察为 0，结果保持 `not_run`，`performance_results=null`。
+
 ## AI 创新生态、人才画像与 AI+ 场景
 
 ### 六类参与者与三项产业测试
