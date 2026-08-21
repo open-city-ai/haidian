@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A time-windowed curb ledger brings metro, bus, bicycle, walking/accessibility, cars, parking and loading into one auditable system, while external commuting, people flow and multimodal simulation remain explicit; future air mobility is only a conditional, reversible, ground-first experiment."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.7"
+iteration: "v2.2"
 ---
 
 # Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating System
@@ -31,6 +31,16 @@ An ordinary person is not a flow point in a model. At each step—leaving, trans
 | 5. Replay | An independent reviewer replays one door-to-door chain and compares continue, repair or withdraw | Minimal log, grouped result, complaint-closure evidence, version and review decision | Return to P0 investigation and human service when evidence is missing or the slowest group worsens |
 
 This table connects the design boards, curb ledger, M-09 fallback tabletop and P0/P1/P2 phasing to one acceptance entry point. PASS for four synthetic requests proves only that the state machine and rollback logic can be replayed; it does not prove real demand, accessibility performance, staffing, public acceptance or safety.
+
+### First 168 hours and first 12 weeks: turn “can this proceed?” into an exit receipt
+
+High-scoring packages often compress a vision into a delivery chain that a reviewer can interrogate one step at a time. This version adds two time receipts, while keeping them explicitly as design contracts rather than completed work: `visual/assets/mobility-first-168h.json` binds 0–24, 24–72, 72–120, and 120–168 hours to the ordinary route, the three interfaces, failure tabletop, and independent review; `visual/assets/mobility-first-12-weeks.json` connects W01–02 boundary and consent, W03–04 route audit, W05–07 ordinary-service parity, W08–09 failure tabletop, W10–11 professional review, and W12 HOLD/repair/withdrawal.
+
+Every window states four things: **who receives the handoff, what evidence is retained, what stops the work, and which ordinary path remains after the stop**. The “12 weeks” is therefore not an operating promise, and an offline replay is not field performance; authorization, field observation, and the local baseline remain zero or `unknown`. The default output of the first 168 hours is `HOLD`, a request for evidence, repair, or withdrawal—not service opening. The bilingual overview is `assets/figures/mobility-release-chain.svg` and `.en.svg`.
+
+![First 168 hours to first 12 weeks: mobility delivery chain and exit conditions](assets/figures/mobility-release-chain.en.svg)
+
+`visual/assets/mobility-release-evidence-map.json` binds seven review questions—ordinary-person journey, three spatial interfaces, delivery and maintenance, source boundary, governance, reversibility, and reviewer navigation—to concrete files; every dimension keeps an empty `field_claims` list. A reviewer can start at one board and follow the same path back to the JSON, drawings, assumptions, and negative fixtures, without mistaking “many files” for “already operating.”
 
 ## Design Basis and Source List
 

@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把地铁、公交、自行车、步行/无障碍、汽车与停车装卸纳入同一张可审计的时段路缘账本，并把企业—居民对外通勤、人员动线和综合仿真接上；未来空中出行只作为受审批、可撤回、地面接驳优先的实验接口，三处重点区以五道硬门逐步验证。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.8.1"
+iteration: "v2.2"
 ---
 
 # 京张共行环：企业—居民交通共益系统
@@ -31,6 +31,16 @@ iteration: "v1.8.1"
 | 5. 复核 | 独立复核者回放一条到站—到家链，比较是否继续、修复或撤回 | 原始最小日志、分组结果、投诉关闭证据、版本和复核意见 | 证据缺失或最慢群体变差时回到 P0 调查与人工服务 |
 
 这张表把设计图、路缘账本、M-09 回退桌演和 P0/P1/P2 分期接成同一个验收入口；4 条合成请求的 PASS 只证明状态机和回滚逻辑可重放，不证明真实客流、无障碍绩效、人员值守、公众接受或安全结果。
+
+### 首 168 小时与首 12 周：把“能不能做”先变成退出票据
+
+高分方案常把愿景压缩成评审者可以逐项追问的交付链。本版新增两张时间票据，但它们仍是设计合同，不是已经发生的工作：`visual/assets/mobility-first-168h.json` 把首 0–24、24–72、72–120、120–168 小时分别绑定到普通路线、三处接口、失效桌演和独立复核；`visual/assets/mobility-first-12-weeks.json` 再把 W01–02 的边界与同意、W03–04 的路线审计、W05–07 的普通服务等价、W08–09 的失效桌演、W10–11 的专业复核和 W12 的 HOLD/修复/撤回接起来。
+
+时间表每一段都写四件事：**谁接收、要留下什么证据、什么情况必须停、停下后回到哪条普通路径**。因此它不把“12 周”写成承诺，也不把离线回放写成现场绩效；授权、现场观察和本地 baseline 仍为 0 或 `unknown`。首 168 小时的默认产出是 `HOLD`、补证据、修复或撤回，而不是开通服务。双语总览见 `assets/figures/mobility-release-chain.svg` 与 `.en.svg`。
+
+![首 168 小时到首 12 周的交通服务交付链与退出条件](assets/figures/mobility-release-chain.svg)
+
+`visual/assets/mobility-release-evidence-map.json` 把普通人旅程、三处空间接口、交付维护、来源边界、治理权责、可逆性和视觉导航七个评审问题绑定到具体文件；每个维度的 `field_claims` 保持为空。这样评审者可以先看一张板，再沿同一条路径回到 JSON、图纸、假设与负例，而不会把“文件很多”误读成“已经运营”。
 
 ## 设计依据与资料清单
 

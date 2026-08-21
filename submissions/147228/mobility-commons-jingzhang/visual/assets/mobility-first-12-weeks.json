@@ -1,0 +1,73 @@
+{
+  "schema_version": "mobility-first-12-weeks-v1",
+  "contract_id": "MOB-12W-01",
+  "status": "design_only",
+  "authorization": 0,
+  "field_observations": 0,
+  "local_baseline": "unknown",
+  "result_status": "not_run",
+  "default_decision": "HOLD",
+  "weeks": [
+    {
+      "id": "W01-02",
+      "name": "boundary, consent and ordinary-route register",
+      "gate": "G0",
+      "owner_role": "site/data stewardship and community liaison roles (proposed)",
+      "evidence_required": ["official geometry revision or missingness record", "purpose/retention note", "ordinary human/telephone/paper route card"],
+      "design_deliverables": ["versioned three-node map", "eight service-group register", "complaint owner template"],
+      "stop_conditions": ["personal trajectories are requested", "ordinary access requires an app", "no proposed complaint receiver"],
+      "fallback": "remain in BASE and keep the digital layer disabled"
+    },
+    {
+      "id": "W03-04",
+      "name": "station, accessible-route and curb audit",
+      "gate": "G1",
+      "owner_role": "transport and accessibility review roles (proposed)",
+      "evidence_required": ["dated route walk audit", "crossing/gradient/obstruction record", "curb and loading inventory", "public-transport transfer observation"],
+      "design_deliverables": ["node-by-node denominator sheet", "refusal and detour taxonomy", "maintenance asset register"],
+      "stop_conditions": ["a route segment is unverified", "fire, accessible or public route is displaced", "transfer responsibility is unknown"],
+      "fallback": "publish the gap and return all requests to ordinary public transport or staffed wayfinding"
+    },
+    {
+      "id": "W05-07",
+      "name": "ordinary-service parity and grouped-demand rehearsal",
+      "gate": "G2",
+      "owner_role": "enterprise mobility, resident/carer observation and rail/bus roles (proposed)",
+      "evidence_required": ["grouped demand register", "non-AI route comparison", "staffed handoff rehearsal", "privacy and deletion receipt"],
+      "design_deliverables": ["BASE/BOOST comparison", "refusal log", "maintenance response card"],
+      "stop_conditions": ["AI recommendation becomes the only route", "a group loses an equivalent path", "purpose or retention is unclear"],
+      "fallback": "freeze BOOST and operate only the documented BASE path in the rehearsal"
+    },
+    {
+      "id": "W08-09",
+      "name": "blackout, weather and curb-conflict tabletop",
+      "gate": "G3",
+      "owner_role": "field maintenance, safety, privacy and equity review roles (proposed)",
+      "evidence_required": ["offline negative fixtures", "BLACKOUT handoff receipt", "removal/repair receipt", "group-split review"],
+      "design_deliverables": ["four-state replay", "five-gate decision log", "withdrawal package"],
+      "stop_conditions": ["a failed case is counted as a pass", "no human receiver can take over", "a hard safety or equity gate fails"],
+      "fallback": "freeze the digital layer, remove temporary assets and return to P0 inventory"
+    },
+    {
+      "id": "W10-11",
+      "name": "independent professional review and maintenance closeout",
+      "gate": "G4",
+      "owner_role": "independent professional and maintainer review roles (external)",
+      "evidence_required": ["exact-tree review packet", "all negative/refused cases", "maintenance and complaint closure ledger", "professional responsibility note"],
+      "design_deliverables": ["reviewer evidence map", "decision memo", "public correction/withdrawal receipt"],
+      "stop_conditions": ["exact tree is not reproducible", "a required review dimension is absent", "local performance is inferred from synthetic replay"],
+      "fallback": "remain HOLD and request the missing evidence"
+    },
+    {
+      "id": "W12",
+      "name": "release decision or explicit non-release",
+      "gate": "G5",
+      "owner_role": "maintainer-controlled publication and responsible professional roles (external)",
+      "evidence_required": ["dated decision", "named maintenance owner", "withdrawal trigger", "aggregate public note"],
+      "design_deliverables": ["HOLD/repair/withdraw decision", "next evidence request", "version and archive receipt"],
+      "stop_conditions": ["authorization is absent", "ordinary fallback is weaker than the digital path", "public claims exceed evidence"],
+      "fallback": "do not open a pilot; keep BASE assets and archive the candidate"
+    }
+  ],
+  "release_rule": "The 12-week sequence can organize evidence collection, but cannot grant a permit, operating authority, route capacity, safety result or public acceptance. Missing or failed evidence returns the package to HOLD."
+}

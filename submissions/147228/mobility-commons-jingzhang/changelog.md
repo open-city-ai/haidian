@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.2 - 2026-08-21
+
+- Added a fail-closed first-168-hour receipt and first-12-week delivery contract with proposed receivers, evidence, stop conditions and ordinary fallbacks.
+- Added a seven-dimension reviewer evidence map and a bilingual release-chain board connecting the three spatial interfaces to the HOLD/repair/withdrawal decision.
+- Added a deterministic supplemental runner with a positive control plus four negative fixtures; it proves contract completeness only and does not create field authorization, baseline or performance.
+
 ## v2.0 - 2026-08-21
 
 - Closed the responsibility-transfer coverage gap identified in the previous Mobility review: seven resource units now declare explicit mappings to eight affected groups.
