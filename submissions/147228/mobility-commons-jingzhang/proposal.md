@@ -132,6 +132,20 @@ iteration: "v2.2"
 
 ![三处重点区的交通服务接口、回读分母与人工回退](assets/figures/mobility-route-service-atlas.svg)
 
+### 三处空间接口原型：从“有路线”推进到“能进入、能接管、能撤回”
+
+路线账本回答“服务经过哪里”，但评审还需要看到“人如何进入、谁在现场接手、失败后怎样退回”。因此本版把三处重点区各自压成一个可被专业团队继续深化的空间接口原型：众智园是**到岗—装卸前厅**，AI 原点是**照护—人工连续环**，大钟寺是**轨道—路缘换乘廊**。图板使用 `1:500` 与 `1:50` 作为审阅层级标签，不提供施工尺寸；它只描述公共路线、人工节点、路缘窗口、回执与停止关系 [data:visual/assets/mobility-interface-prototypes.json] [depth:three_key_area_detailed_design]。
+
+| 原型 | 先交付的普通服务 | AI 只做什么 | 缺证据时怎么停 |
+| --- | --- | --- | --- |
+| 众智园到岗—装卸前厅 | 公共交通、步入、人工导向、纸面登记 | 解释聚合时窗冲突 | 没有普通等价、消防/无障碍冲突或接收人时拒收预约 |
+| AI 原点照护—人工连续环 | 步入、电话、纸面、公共交通、人工服务 | 聚合服务时窗、准备回退选项 | 基本通行依赖 App、无障碍断裂或隐私边界不清时关闭推荐 |
+| 大钟寺轨道—路缘换乘廊 | 轨道、公交、公共过街、人工导向、骑行换乘 | 解释换乘冲突、提出可逆分流 | 公共路线被挤占、过街/路缘记录缺失时冻结 feeder |
+
+三个原型共享四道闸门：普通路线先行、接收人与维护责任明确、观察证据带日期并可公开回读、失败即停止并回到人工/公共交通。`run-mobility-interface-prototypes.js` 还会拒绝授权值、现场观察、数字尺寸、空的普通服务或非空 `field_claims`；负例测试用于证明这个空间契约不会把概念图板升级为现状或工程结论 [data:visual/assets/run-mobility-interface-prototypes.js] [data:visual/assets/test-mobility-interface-prototypes.js]。
+
+![三处空间接口原型：1:500 概念原型到 1:50 交接细节](assets/figures/mobility-interface-prototypes.svg)
+
 ### 一日连续性回执｜同一条普通服务链要经得住四个时段
 
 一条到站回家链不能只在单一高峰时段成立。方案把早高峰到岗、日常服务到达、晚间换乘和断网雨雪回退放进同一份回执。每个时段都先保留轨道、公交、步行、人工、电话或纸面入口，再让 AI 处理分组需求、冲突说明和回退清单；没有接收人、等价路线或带日期的恢复记录时，服务停在 `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation]。

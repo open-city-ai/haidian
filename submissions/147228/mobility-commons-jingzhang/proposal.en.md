@@ -112,6 +112,20 @@ This is a design-interface atlas, not a current map. It places the three key are
 
 ![Three key-area mobility interfaces, denominators and human fallbacks](assets/figures/mobility-route-service-atlas.en.svg)
 
+### Three spatial interface prototypes: from “a route exists” to “enter, hand over, and withdraw”
+
+The route ledger answers where a service passes, but a reviewer also needs to see how a person enters, who receives a failure, and where the service returns. This revision therefore gives each key area one spatial interface prototype for professional deepening: Zhongzhiyuan is an **arrival and loading forecourt**, the AI Origin Community is a **care and human-continuity loop**, and Dazhongsi is a **rail-to-curb transfer porch**. `1:500` and `1:50` are review-level labels, not construction dimensions. The board describes only the relationship between the public route, staffed node, curb window, receipt and stop action [data:visual/assets/mobility-interface-prototypes.json] [depth:three_key_area_detailed_design].
+
+| Prototype | Ordinary service first | AI is limited to | Stop when evidence is missing |
+| --- | --- | --- | --- |
+| Zhongzhiyuan arrival and loading forecourt | public transport, walk-in, staffed wayfinding, paper register | explain grouped time-window conflicts | refuse booking when no ordinary equivalent, a fire/access conflict or receiver is missing |
+| AI Origin care and human-continuity loop | walk-in, telephone, paper, public transport, staffed service | group service windows and prepare fallback options | disable recommendations when basic access requires an app, the accessible route breaks or privacy is unclear |
+| Dazhongsi rail-to-curb transfer porch | rail, bus, public crossing, staffed wayfinding, bike transfer | explain transfer conflicts and offer reversible separation | freeze feeder demand when the public route is displaced or crossing/curb evidence is missing |
+
+All three prototypes share four gates: ordinary route first, a named receiving and maintenance role, dated observations with public readback, and immediate return to staffed or public transport after failure. `run-mobility-interface-prototypes.js` rejects authorization, field observations, numeric dimensions, an empty ordinary service list or non-empty `field_claims`; its negative fixtures make sure a concept board cannot be promoted into a current-state or construction claim [data:visual/assets/run-mobility-interface-prototypes.js] [data:visual/assets/test-mobility-interface-prototypes.js].
+
+![Three spatial interface prototypes: 1:500 concept to 1:50 handoff detail](assets/figures/mobility-interface-prototypes.en.svg)
+
 ### One-day continuity receipt | One ordinary service chain across four windows
 
 A door-to-door chain must remain understandable beyond one peak period. The package places weekday arrival, daily access, evening transfer and outage or weather fallback in one receipt. Rail, bus, walking, human, telephone and paper routes stay available first; AI only groups demand, explains conflicts and prepares a rollback list. Missing a receiver, an equivalent route or a dated restoration record keeps the service at `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation].

@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.3 - 2026-08-21
+
+- Added three bilingual spatial interface prototypes: Zhongzhiyuan arrival/loading forecourt, AI Origin care/human-continuity loop, and Dazhongsi rail-to-curb transfer porch.
+- Added a `1:500` concept to `1:50` handoff board and a machine-readable contract with ordinary-service-first, named-owner, dated-evidence and stop/return gates.
+- Added positive and fail-closed negative fixtures; kept numeric dimensions null, authorization and field observations at 0, performance null and decision HOLD.
+
 ## v2.2 - 2026-08-21
 
 - Added a fail-closed first-168-hour receipt and first-12-week delivery contract with proposed receivers, evidence, stop conditions and ordinary fallbacks.
