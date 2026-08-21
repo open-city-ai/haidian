@@ -84,6 +84,8 @@ The first intervention is reversible: signs, wayfinding, rain shelters, seats, b
 
 Zhongzhiyuan tests enterprise arrival, shuttle consolidation and loading. The AI Origin Community tests daily resident access, care and a genuinely equivalent human route. Dazhongsi tests rail transfer, bicycle parking, loading and event-day public-space management. Each area has an accountable enterprise or community operator, a transport reviewer and a maintenance owner; no partner, permit or existing operation is claimed [metric:key_area_count] [depth:three_key_area_detailed_design].
 
+The responsibility-transfer table maps seven resource units to eight affected groups and checks a named receiver, ordinary equivalent, refusal condition and write-back field for each unit. `run-mobility-responsibility-transfer.js` is a supplemental contract audit, not one of the four formal self-check gates; it additionally rejects duplicate, empty, unknown or unmapped groups. `test-mobility-responsibility-transfer.js` replays all four negative fixtures. A pass proves only that the audit contract is complete; it proves no field coverage, authorization, user observation or transport performance [data:visual/assets/mobility-responsibility-transfer.json] [data:visual/assets/run-mobility-responsibility-transfer.js] [data:visual/assets/test-mobility-responsibility-transfer.js].
+
 The first pilot is a small morning and evening window in Zhongzhiyuan, an accessible daily-route comparison in the Origin Community, and a rail/curb separation rehearsal at Dazhongsi. Enterprise bookings cannot become permanent community bans. Shared vehicles cannot occupy a fire route, accessible path or emergency corridor.
 
 ### Readback order for the three interfaces

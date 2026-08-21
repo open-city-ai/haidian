@@ -106,6 +106,8 @@ iteration: "v1.8.1"
 
 每个重点区都要有企业责任人、社区/公共服务责任人、交通专业复核人和维护责任人，记录目标、输入、停止条件和回读证据；现阶段不声称已有合作方或运营许可 [depth:three_key_area_detailed_design] [source:HAIDIAN-ROAD-PARKING-TENDER-2026]。
 
+责任移交表把七个资源单元映射到八类受影响群体，并逐项检查“有名责任人—普通替代—拒绝条件—回写字段”。`run-mobility-responsibility-transfer.js` 是 supplemental contract audit，不属于四道正式 self-check gate；它额外拒绝重复、空值、未知或未被任何资源单元覆盖的群组。`test-mobility-responsibility-transfer.js` 对这四类负例逐一回放。通过只证明审计契约完整，不证明现场覆盖、授权、用户观察或交通绩效 [data:visual/assets/mobility-responsibility-transfer.json] [data:visual/assets/run-mobility-responsibility-transfer.js] [data:visual/assets/test-mobility-responsibility-transfer.js]。
+
 ### 三处接口的回读顺序
 
 三处重点区共用一条候选服务链，但各自接收不同责任。众智园先核对企业到岗与装卸分母，AI 原点社区先核对分组日常服务和无障碍等价路径，大钟寺先核对班次、过街和路缘观察窗。每个接口都给出拒绝条件和人工回退，缺少现场记录时保持 `HOLD` [data:visual/assets/mobility-route-service-atlas.json] [depth:three_key_area_detailed_design]。
