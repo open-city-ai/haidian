@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.3 - 2026-08-21
+
+- 新增企业—居民首 100 天交付合同，将三处空间原型接到 `BASE`、`PILOT`、`BLACKOUT`、`CLOSEOUT` 四个状态和五个时间窗。
+- 明确企业分组需求、居民回程、人工接管、轨道公交骨干、申诉暂停、维修债务和清权结案的共同闸门；企业请求不单独换取公共路权。
+- 增加中英双语交付图板、机器可读合同、3 个正例和 5 个负例；保持 HOLD、0 授权、0 现场观察、`unknown` baseline、`not_run` 结果和空现场声称。
+
 ## v2.2 - 2026-08-21
 
 - Rebuilt the bilingual `key-areas` figure as three distinct spatial prototypes: the Zhongzhiyuan River Forecourt, AI Origin Care Loop and Dazhongsi Four-Quadrant Hall. Each now carries a concept plan, indicative section, enterprise request, resident return, stop condition and evidence request.

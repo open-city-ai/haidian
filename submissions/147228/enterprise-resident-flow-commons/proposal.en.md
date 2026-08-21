@@ -52,6 +52,22 @@ The four offline screens remain in `visual/assets`. The proposal keeps only the 
 
 All four currently pass package-structure replay only. Field receipts, operating authorization and real performance remain zero. The air candidate retains zero agents and stays outside operating denominators; papers frame the question but provide neither Haidian parameters nor permission [source:SAV-VKT-TRANSIT-COMPETITION-2024].
 
+## First 100-day delivery contract, with the resident return first
+
+The three spatial prototypes show where the service sits. The first 100-day contract adds who acts first, what the public can see, and where the release must stop. `visual/assets/enterprise-resident-100day-contract.json` places enterprise requests and resident returns in four states, `BASE → PILOT → BLACKOUT → CLOSEOUT`, and five delivery windows. An enterprise may submit grouped demand, but it cannot purchase public right-of-way with a request; ordinary, accessible, rail/bus and staffed routes remain visible first.
+
+| Window | Enterprise delivery | Resident return | Evidence before release | Fail-closed action |
+| --- | --- | --- | --- | --- |
+| D00-07 | grouped need register, no booking | ordinary, accessible and human route card | audit scope, receiver, appeal entry, public status card | missing owner or unknown route stays at `BASE` |
+| D08-30 | one arrival or loading window | same-window public route and human takeover | dated walk, maintainer, fallback receipt, grouped request record | pause when the slowest group worsens or the denominator is unlocked |
+| D31-60 | clear, repair and read back a conflict | paper, phone, staffed alternative and appeal pause | outage/weather replay, repair window, appeal readback | freeze when no receiver can take over or the curb is uncleared |
+| D61-90 | stop booking, clear assets and publish the reason | rail, bus, walking and staffed return | trigger record, human route readback, affected-group notice | remain in `BLACKOUT` when the return is not visible |
+| D91-100 | publish continue, repair or withdraw decision | ordinary public asset and appealable closeout | complaint disposition, maintenance debt, clearance record, public closeout card | exit when the reason is not explainable or uncleared traces remain |
+
+![Enterprise–resident reciprocity first 100-day delivery contract](assets/figures/enterprise-resident-100day.en.svg)
+
+Five shared gates run through the three nodes. The first keeps ordinary service available. The second gives every enterprise request a resident return and a maintenance owner. The third keeps rail, bus, walking and accessibility routes in the acceptance denominator. The fourth makes the digital or feeder layer stoppable while public service continues. The fifth makes complaints, maintenance debt, withdrawal and clearance readable to the public. The contract currently proves only an offline synthetic replay. Authorization, field observations, local baseline and performance remain 0, 0, `unknown` and empty; `run-enterprise-resident-100day-contract.js` and its positive/negative fixtures check the boundary, not field acceptance.
+
 ## Design Basis and Source List
 
 The open-call requirements cover three spatial scales, three key areas, AI and mobility scenarios, an innovation ecosystem and reviewable drawings and data layers [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]. The package uses the public provisional site package but replaces the narrative, road attributes, metrics, evidence register and visual boards with an enterprise–resident mobility focus. Both the site and key-area polygons declare `official_boundary=false` and `geometry_role=provisional_constraint` [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001].
