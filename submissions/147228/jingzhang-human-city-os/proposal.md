@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v2.8-candidate"
-summary: "先发布人的最低版本，再调用机器：以一条公共脊、六个空间单元、三处重点区和四道推进门，把普通通行、人工服务、无屏恢复与退出回放设为 AI 场景进入城市的前置条件。临时几何、可重算设计量与未知结果分栏呈现。"
+iteration: "v2.9-candidate"
+summary: "先发布人的最低版本，再调用机器。以一条公共脊、六个空间单元、三处重点区、四道推进门和十二周最小试点方法，把普通通行、人工服务、无屏恢复与退出回放设为 AI 场景进入城市的前置条件。临时几何、可重算设计量与未知结果分栏呈现。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -130,7 +130,22 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ![图 14｜城市发布门｜进入条件、停止动作与退出证据](assets/figures/release-gates.png)
 
-五类项目族依次承担人本缓冲、城市 API 与可逆构件、人机/气候/算电、数据授权与版本治理、生态和区域外溢。角色、预算与工期均为待确认项；本方案只给出“谁应负责哪类证据”的责任槽位，不把建议角色写成已落实主体。[data:visual/assets/implementation-operation-matrix.json] [depth:phasing_implementation]
+四道门由一份十二周最小试点合同接住。前两周冻结任务、资料边界和责任槽位；第 3 至 6 周只走人工基线、无障碍和多语路径；第 7 至 8 周允许合成或另行授权数据的影子调用；第 9 至 10 周专门演练故障、申诉与删除；最后两周由独立角色作出 HOLD、修改、受限试点或退出决定。ISO 人本设计、NIST AI 风险管理、GOV.UK 包容服务和 UN-Habitat 人本智慧城市方法只帮助定义过程，不构成京张已经符合这些标准。[source:METHOD-ISO-HCD-2019] [source:METHOD-NIST-AI-RMF-2023] [source:METHOD-UK-INCLUSIVE-SERVICE]
+
+| 周次 | 这一段只做什么 | 进入下一段的判断尺 |
+| --- | --- | --- |
+| 1 至 2 周 | 冻结四项关键公共事务、禁入数据、人工入口和停止责任 | 任务、来源、权利和责任均有记录 |
+| 3 至 4 周 | 按三处重点区、四项事务和昼晚两时段规划 24 次普通路径检查 | 每项关键事务至少有一条可用的非 AI 路径 |
+| 5 至 6 周 | 规划 12 次独立无障碍走读和 24 个渠道语言等价案例 | 指定路径没有未关闭的严重无障碍阻断 |
+| 7 至 8 周 | 只做可撤回的影子调用，高影响动作继续由人决定 | 拒绝 AI 不降低基本服务，权限和目的没有漂移 |
+| 9 至 10 周 | 回放 8 个失败码，核对回执、申诉、修正和删除证明 | 每个失败都安全停住，每个个案都能申诉并按期删除 |
+| 11 至 12 周 | 复核覆盖、失败、异议、劳动与资源，再决定去留 | 有一份披露冲突与未决问题的独立书面决定 |
+
+24、24、12 和 8 都是覆盖矩阵的最低计划量，用于防止只测一条顺路样本。它们不具有人口代表性，也不表示已经招募或完成现场工作。真实参与要另行取得授权和知情同意，残障人士与低数字能力者不能由项目人员代演。任何关键事务缺少人工、电话或纸面入口，任何指定路径留有严重无障碍阻断，或者拒绝、申诉和删除证明不完整，默认结论都是 HOLD。[data:visual/assets/human-minimum-release-pilot-v29.json] [metric:planned_human_route_attempt_count] [metric:planned_service_equivalence_case_count]
+
+六个责任槽位分别承担公共服务、无障碍、数据、安全、公众联络和独立复核，目前均未指定。资源分成三档。R1 只用既有人员、电话、纸本和便携标识；R2 增加临时有人服务点、可租用无障碍构件、翻译校对和独立审计；施工、真实城市 API、安全关键机械与低空运行属于 R3，不能塞进十二周试点。当前 G0 不留真实个案，未来获授权的编码观察原始记录建议不超过 30 天，非个人汇总不超过一年；确切期限仍要由有权的数据责任角色审批。[data:visual/assets/human-minimum-release-pilot-v29.json] [metric:planned_accessibility_walkthrough_count] [metric:planned_failure_appeal_drill_count]
+
+五类项目族依次承担人本缓冲、城市 API 与可逆构件、人机/气候/算电、数据授权与版本治理、生态和区域外溢。十二周合同把六个行动包、覆盖规模、资源档位、责任槽位和退出证据接到项目族上，但场地、主体、经费和招募仍待授权。方案给出的是专业团队可以删改的起步方法，不把建议角色写成已落实主体，也不把资源档位写成预算承诺。[data:visual/assets/implementation-operation-matrix.json] [data:visual/assets/human-minimum-release-pilot-v29.json] [depth:phasing_implementation]
 
 资料缺口也进入门。官方边界、权属、道路/空域、现状建筑、能源热网、蓝线水文、居民和就业基线、服务授权分别绑定受影响图层、指标和回退动作；一项资料变化，会触发相关几何、指标、图件和发布判断整体重算。[data:visual/assets/data-readiness-register.json]
 
@@ -153,7 +168,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 统筹研究范围产业与未来城市研究｜让方法与失败记录可以复用
 
-统筹研究不以虚构企业、伙伴或活动补足产业叙事。它把高校策源、小团队转化、科技服务、公共问题与区域协作写成待确认接口，输出去地点化 schema、失败包和版本差异。七个仓库评审问题和任务书要求分别回到最短证据入口。任务契合看三层范围与三区两翼；原创性看人的最低版本、机器插件与四道门是否一致；AI 规划创新看参数化取舍与受限 API；实施可行性看项目族、责任槽位和停止动作；公共利益看九类 persona 和人工等效；风险合规看资料门与 unknown；表达完整度看双语五图、PDF 与离线网页。[data:visual/assets/reviewer-navigation-index.json]
+统筹研究不以虚构企业、伙伴或活动补足产业叙事。它把高校策源、小团队转化、科技服务、公共问题与区域协作写成待确认接口，输出去地点化 schema、失败包和版本差异。七个仓库评审问题和任务书要求分别回到最短证据入口。任务契合看三层范围与三区两翼；原创性看人的最低版本、机器插件与四道门是否一致；AI 规划创新看参数化取舍与受限 API；实施可行性看十二周行动包、责任槽位、资源档位和停止动作；公共利益看九类 persona 和人工等效；风险合规看资料门与 unknown；表达完整度看双语图件、PDF 与离线网页。[data:visual/assets/reviewer-navigation-index.json]
 
 ![图 17｜七维评审证据地图｜问题、最短路径、证据边界与下一步](assets/figures/reviewer-scorecard-map.png)
 

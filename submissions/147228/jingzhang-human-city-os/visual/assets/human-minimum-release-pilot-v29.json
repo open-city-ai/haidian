@@ -1,0 +1,229 @@
+{
+  "document_type": "human_minimum_release_pilot_contract",
+  "schema_version": "1.0.0",
+  "package_id": "HUMAN-CITY-MINIMUM-RELEASE-V29",
+  "iteration": "v2.9-candidate",
+  "status": {
+    "field_state": "not_authorized_not_run",
+    "contract_state": "planning_method_only",
+    "performance_results": null,
+    "confirmed_operator": null,
+    "confirmed_budget": null,
+    "confirmed_site": null
+  },
+  "purpose": {
+    "zh": "把人的最低版本变成十二周、可停止、可移交的最小试点方法。它规定先测什么、由谁复核、什么情况不得进入下一门，不填造现场结果。",
+    "en": "Turn the minimum human release into a twelve-week, stoppable and transferable pilot method. It defines what is checked first, who reviews it, and what blocks the next gate without inventing field results."
+  },
+  "method_references": [
+    {
+      "source_id": "METHOD-ISO-HCD-2019",
+      "use": "human-centred activities across the system life cycle",
+      "limit": "method reference only; not proof of ISO conformity"
+    },
+    {
+      "source_id": "METHOD-NIST-AI-RMF-2023",
+      "use": "risk-based test, evaluation, verification and validation",
+      "limit": "voluntary framework; not a Chinese statutory standard"
+    },
+    {
+      "source_id": "METHOD-UK-INCLUSIVE-SERVICE",
+      "use": "representative journeys, assisted channels, manual checks and independent accessibility audit",
+      "limit": "service-design reference; not a local legal or performance claim"
+    },
+    {
+      "source_id": "METHOD-UNHABITAT-PCCS-2025",
+      "use": "institutional foundation, participation, rights, budgeting and monitoring",
+      "limit": "international playbook; local authorization and adaptation remain required"
+    }
+  ],
+  "decision_rule": {
+    "zh": "一项关键公共事务只要缺少可用的非 AI 通道、人工接管、申诉、删除证明或独立复核，就不得进入受限试点。",
+    "en": "A critical public task cannot enter a bounded pilot if a usable non-AI channel, human takeover, appeal, deletion proof, or independent review is missing.",
+    "default_decision": "hold",
+    "allowed_decisions": ["hold", "revise", "bounded_pilot", "retire"]
+  },
+  "coverage_sampling_plan": {
+    "sampling_type": "coverage_oriented_purposive_not_statistical",
+    "population_inference_allowed": false,
+    "route_attempts": {
+      "minimum_count": 24,
+      "formula": "3 provisional key areas x 4 critical task journeys x 2 dayparts",
+      "task_journeys": ["arrive", "obtain_human_explanation", "complete_or_handoff", "appeal_or_exit"],
+      "dayparts": ["day", "evening"],
+      "field_value": null
+    },
+    "service_equivalence_cases": {
+      "minimum_count": 24,
+      "formula": "4 public-service tasks x 3 non-AI channels x 2 languages",
+      "channels": ["staffed", "telephone", "paper"],
+      "languages": ["zh", "en"],
+      "field_value": null
+    },
+    "accessibility_walkthroughs": {
+      "minimum_count": 12,
+      "formula": "3 provisional key areas x 2 dayparts x 2 independent walkthrough roles",
+      "required_perspectives": ["disabled_or_assistive_technology_user", "older_or_low_digital_capability_user"],
+      "proxy_substitution_allowed": false,
+      "field_value": null
+    },
+    "failure_and_appeal_drills": {
+      "minimum_count": 8,
+      "formula": "8 registered fail codes from the bounded public-service tabletop",
+      "source_asset": "visual/assets/human-city-public-service-tabletop-v1.json",
+      "field_value": null
+    },
+    "sampling_limit_zh": "以上数字是覆盖矩阵的最低计划量，不是人口代表性样本，也不构成招募、排班或现场完成声明。真实参与必须另行授权、知情同意并由无障碍与伦理要求校正。",
+    "sampling_limit_en": "These counts are minimum coverage-matrix quantities, not a statistically representative sample or a claim of recruitment, staffing, or field completion. Real participation requires separate authorization, informed consent, and accessibility and ethics adjustment."
+  },
+  "timeline": [
+    {
+      "phase_id": "W01-02",
+      "weeks": [1, 2],
+      "name_zh": "冻结任务与资料边界",
+      "name_en": "Freeze tasks and evidence boundaries",
+      "work": ["confirm four critical public tasks", "register sources and prohibited data", "name accountable role slots", "publish accessible contact route"],
+      "entry": "authorized planning team and declared service scope",
+      "exit_gate": "task list, evidence boundary, human routes, and stop owner all recorded",
+      "stop": "no accountable planning owner or unresolved data-rights boundary"
+    },
+    {
+      "phase_id": "W03-04",
+      "weeks": [3, 4],
+      "name_zh": "只走人的基线",
+      "name_en": "Run the human-only baseline",
+      "work": ["run 24 planned route attempts", "check staffed, telephone, and paper routes", "record completion and handoff without identifiers"],
+      "entry": "W01-02 gate passed",
+      "exit_gate": "every critical task has at least one usable non-AI route",
+      "stop": "any critical task lacks a usable non-AI route"
+    },
+    {
+      "phase_id": "W05-06",
+      "weeks": [5, 6],
+      "name_zh": "无障碍与多语挑战",
+      "name_en": "Accessibility and multilingual challenge",
+      "work": ["run 12 planned independent walkthroughs", "run 24 planned channel-language equivalence cases", "log critical blockers and repair owners"],
+      "entry": "human-only task routes exist",
+      "exit_gate": "no unresolved critical access blocker on a declared task route",
+      "stop": "proxy-only review, unavailable assisted channel, or unresolved critical blocker"
+    },
+    {
+      "phase_id": "W07-08",
+      "weeks": [7, 8],
+      "name_zh": "影子调用与拒绝演练",
+      "name_en": "Shadow calls and refusal rehearsal",
+      "work": ["use synthetic or separately authorized minimum data", "keep all high-impact actions human-decided", "compare AI suggestion with the recorded human route"],
+      "entry": "access and language gate passed",
+      "exit_gate": "AI remains optional, read-only where possible, and fully reversible",
+      "stop": "purpose drift, excess data, automated high-impact action, or missing human takeover"
+    },
+    {
+      "phase_id": "W09-10",
+      "weeks": [9, 10],
+      "name_zh": "故障、申诉与删除证明",
+      "name_en": "Failure, appeal, and deletion proof",
+      "work": ["replay eight registered fail codes", "issue accessible decision receipts", "exercise appeal and correction", "verify the declared deletion schedule"],
+      "entry": "shadow mode produced auditable logs",
+      "exit_gate": "all critical failures stop safely and every case has appeal and deletion evidence",
+      "stop": "unsafe continuation, missing receipt, unanswered appeal, or deletion-proof failure"
+    },
+    {
+      "phase_id": "W11-12",
+      "weeks": [11, 12],
+      "name_zh": "独立复核与去留决定",
+      "name_en": "Independent review and retain-or-retire decision",
+      "work": ["review coverage, failures, unresolved dissent, labour, and resource use", "publish a version difference", "choose hold, revise, bounded pilot, or retire"],
+      "entry": "complete evidence packet and unresolved-issue list",
+      "exit_gate": "independent signed decision with reasons and next evidence",
+      "stop": "reviewer conflict, missing dissent record, or unresolved critical defect"
+    }
+  ],
+  "gate_thresholds": [
+    {
+      "gate_id": "T-NON-AI",
+      "measure": "critical tasks with at least one usable staffed, telephone, or paper route",
+      "threshold": "100_percent_of_declared_critical_tasks",
+      "failure_action": "hold"
+    },
+    {
+      "gate_id": "T-ACCESS",
+      "measure": "unresolved critical accessibility blockers on declared task routes",
+      "threshold": "zero",
+      "failure_action": "repair_and_repeat_walkthrough"
+    },
+    {
+      "gate_id": "T-OPTIONAL",
+      "measure": "cases where AI refusal reduces basic service access",
+      "threshold": "zero",
+      "failure_action": "disable_ai_assistance"
+    },
+    {
+      "gate_id": "T-APPEAL",
+      "measure": "reviewed cases with accessible receipt and appeal route",
+      "threshold": "100_percent",
+      "failure_action": "hold"
+    },
+    {
+      "gate_id": "T-DELETE",
+      "measure": "records due for deletion with verifiable deletion evidence",
+      "threshold": "100_percent",
+      "failure_action": "freeze_data_processing"
+    },
+    {
+      "gate_id": "T-INDEPENDENT",
+      "measure": "independent decision packet with conflicts and dissent disclosed",
+      "threshold": "one_complete_signed_packet",
+      "failure_action": "no_release"
+    }
+  ],
+  "accountability_slots": [
+    {"role_id": "R-SERVICE", "role_zh": "公共服务责任角色", "confirmed": false, "duty": "declare critical tasks, assisted channels, staffing, and service recovery"},
+    {"role_id": "R-ACCESS", "role_zh": "无障碍与包容复核角色", "confirmed": false, "duty": "approve recruitment and walkthrough method; prevent proxy-only review"},
+    {"role_id": "R-DATA", "role_zh": "数据责任角色", "confirmed": false, "duty": "approve purpose, fields, access, retention, deletion, and incident handling"},
+    {"role_id": "R-SAFETY", "role_zh": "空间与安全责任角色", "confirmed": false, "duty": "approve route, facility, emergency, insurance, and stop procedures"},
+    {"role_id": "R-PUBLIC", "role_zh": "公众与受影响群体联络角色", "confirmed": false, "duty": "record consent, dissent, appeal, response, and non-participation"},
+    {"role_id": "R-INDEPENDENT", "role_zh": "独立复核角色", "confirmed": false, "duty": "review evidence and conflicts, then sign hold, revise, bounded-pilot, or retire decision"}
+  ],
+  "resource_envelopes": [
+    {
+      "class": "R1",
+      "label_zh": "既有人员与便携工具",
+      "includes": ["staff time", "paper and telephone scripts", "portable signs", "observation forms"],
+      "excludes": ["construction", "live API integration", "personal-data platform"]
+    },
+    {
+      "class": "R2",
+      "label_zh": "临时服务点与独立审计",
+      "includes": ["temporary staffed desk", "rented accessible components", "translation review", "independent accessibility and risk review"],
+      "excludes": ["permanent fit-out", "production automation", "procurement commitment"]
+    },
+    {
+      "class": "R3",
+      "label_zh": "另立项深化",
+      "includes": ["physical construction", "live city API", "safety-critical machinery", "regulated low-altitude operation"],
+      "excludes": ["twelve-week minimum pilot"]
+    }
+  ],
+  "action_packages": [
+    {"id": "AP-01", "name_zh": "普通路径与人工服务基线", "weeks": "1-4", "scale": "3 key areas, 4 tasks, 2 dayparts", "resource_class": "R1", "owner_slot": "R-SERVICE", "output": "route and handoff ledger"},
+    {"id": "AP-02", "name_zh": "无障碍与多语挑战", "weeks": "3-6", "scale": "12 walkthroughs and 24 channel-language cases planned", "resource_class": "R2", "owner_slot": "R-ACCESS", "output": "critical-blocker and repair ledger"},
+    {"id": "AP-03", "name_zh": "最小权限影子调用", "weeks": "7-8", "scale": "4 critical tasks in synthetic or separately authorized shadow mode", "resource_class": "R1", "owner_slot": "R-DATA", "output": "purpose, permission, and human-decision log"},
+    {"id": "AP-04", "name_zh": "故障与申诉演练", "weeks": "9-10", "scale": "8 registered fail codes", "resource_class": "R1", "owner_slot": "R-PUBLIC", "output": "stop, receipt, appeal, correction, and deletion evidence"},
+    {"id": "AP-05", "name_zh": "临时空间服务构件", "weeks": "3-10", "scale": "portable interventions only; exact quantity after site audit", "resource_class": "R2", "owner_slot": "R-SAFETY", "output": "installation, access, maintenance, and removal record"},
+    {"id": "AP-06", "name_zh": "独立去留复核", "weeks": "11-12", "scale": "one complete decision packet", "resource_class": "R2", "owner_slot": "R-INDEPENDENT", "output": "signed hold, revise, bounded-pilot, or retire decision"}
+  ],
+  "data_and_redress": {
+    "current_g0_retention_days": 0,
+    "future_field_raw_observation_max_days": 30,
+    "future_non_personal_aggregate_max_days": 365,
+    "appeal_window_days": 30,
+    "allowed_fields": ["task_code", "channel", "provisional_zone", "daypart", "completion_state", "handoff_state", "issue_category", "consent_state"],
+    "prohibited_fields": ["name", "face", "precise_route_trace", "health_record", "immigration_status", "employment_status", "cross_service_profile"],
+    "repository_rule": "no real participant or case-level field record enters the public repository",
+    "deletion_proof": "authorized steward signs a field-level deletion log; only a non-personal aggregate result and proof identifier may enter the review packet"
+  },
+  "limits": {
+    "zh": "本合同和 runner 只证明试点方法内部闭合。十二周、覆盖数量、三档资源和留存上限均为待授权的概念参数，不证明场地、经费、主体、招募、性能、公众接受、许可或官方评分。",
+    "en": "This contract and runner prove only internal coherence of the pilot method. The twelve weeks, coverage counts, three resource classes, and retention caps are authorization-pending concept parameters; they prove no site, funding, operator, recruitment, performance, public acceptance, permit, or official score."
+  }
+}
