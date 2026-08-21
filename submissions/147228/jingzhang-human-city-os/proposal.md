@@ -163,7 +163,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 风险、版权与合规说明｜权利与后续补证
 
-本方案不处理个人数据、内部资料或非公开空间数据。公开来源按用途、日期、权利和限制登记在 `sources.json`；图件、脚本与结构化文件的作者和引用边界登记在版权声明与权利台账。外部案例只转译机制，不移植境外绩效、制度或法定标准。[source:SOURCE-REGISTRY] [data:report/copyright_statement.md]
+本方案仅使用已登记的公开资料与包内临时几何，不处理个人数据或未对外发布的材料。公开来源按用途、日期、权利和限制登记在 `sources.json`；图件、脚本与结构化文件的作者和引用边界登记在版权声明与权利台账。外部案例只转译机制，不移植境外绩效、制度或法定标准。[source:SOURCE-REGISTRY] [data:report/copyright_statement.md]
 
 当前最关键的缺口包括官方边界与法定控制、现状建筑与权属、交通/空域/安全/保险、能源/热网/水文、居民/商户/就业基线、具名运营与公众授权。它们由组织方、专业团队与未来获授权主体分别补齐；在此之前，场景保持 `not_authorized_not_run`，结果保持 `null`。[depth:risk_missing_data]
 

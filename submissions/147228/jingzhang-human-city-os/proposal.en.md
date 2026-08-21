@@ -164,7 +164,7 @@ The figures, A3/A0 sets, HTML, and structured evidence share one manifest hash c
 
 ## Risk, Copyright, and Compliance | Rights and evidence still required
 
-The proposal uses no personal data, internal material, or non-public spatial data. Public sources are registered by use, date, rights, and limitation in `sources.json`; authorship and reuse boundaries for figures, scripts, and structured files are recorded in the copyright statement and rights ledger. External cases transfer mechanisms only, not foreign performance, institutions, or statutory standards. [source:SOURCE-REGISTRY] [data:report/copyright_statement.md]
+The proposal uses only registered public sources and the package's provisional geometry; it does not process personal data or materials not released for public use. Public sources are registered by use, date, rights, and limitation in `sources.json`; authorship and reuse boundaries for figures, scripts, and structured files are recorded in the copyright statement and rights ledger. External cases transfer mechanisms only, not foreign performance, institutions, or statutory standards. [source:SOURCE-REGISTRY] [data:report/copyright_statement.md]
 
 Six gap groups remain decisive: official boundaries and statutory controls; existing buildings and ownership; transport, airspace, safety, and insurance; energy, heat, and hydrology; resident, merchant, and employment baselines; and named operation with public authorization. Organizers, professional teams, and future authorized parties must supply them according to responsibility. Until then, scenarios remain `not_authorized_not_run` and outcomes remain `null`. [depth:risk_missing_data]
 
