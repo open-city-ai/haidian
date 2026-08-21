@@ -146,6 +146,21 @@ iteration: "v2.2"
 
 ![三处空间接口原型：1:500 概念原型到 1:50 交接细节](assets/figures/mobility-interface-prototypes.svg)
 
+### 系统级空间选项：先裁决公共基线，再谈扩展方式
+
+前面的接口原型回答“一个人如何进入、接管和退出”。本节再把三处接口放回同一套系统选项中，避免把一张漂亮节点图误当成完整交通方案。`mobility-spatial-options.json` 用五级尺度（`1:5000` → `1:50`）、四个候选、五项公共权利和五道硬门做概念比较：先拒绝把冲突外部化给公共空间的 S0，再把空中出行 S2 限制为地面基线之上的条件附加项；S3 是雨雪、断网和维护时的地面回退层。四个选项都覆盖三处重点区，但只有 S1 **地面优先多方式协同**获得“进入专业设计复核”的资格。这个资格不是授权、施工、容量、绩效或排名结论 [data:visual/assets/mobility-spatial-options.json] [source:BEIJING-14TH-TRANSPORT-PLAN] [depth:three_key_area_detailed_design]。
+
+| 选项 | 空间裁决 | 评审状态 | 缺证据时的回退 |
+| --- | --- | --- | --- |
+| S0 无协同高峰 | 车流、装卸和接驳争用同一路缘；公共过街与无障碍路线成为剩余空间 | **REJECT** | 回到 P0，先清点权属、路权、公共路线和责任人 |
+| S1 地面优先多方式协同 | 轨道/公交/步行无障碍是底座；三处接口都有人工接收、时段路缘和撤回路径 | **ADVANCE_TO_DESIGN_REVIEW** | 冻结 feeder，保留普通路线并回到 P0 |
+| S2 空中优先接驳 | 只保留地面—空中换乘关系；空域、天气、保险、噪声、应急与运营责任未核 | **REVISE** | 回到 S1，空中层不得挤占公共换乘 |
+| S3 极端天气地面回退 | 雨雪、断网、维护时切换到轨道/公交、人工、纸面和电话；路缘转为 human-only/emergency | **REVISE** | 回到 S1，作为地面系统的韧性层 |
+
+五级尺度把同一裁决逐级压到空间关系：`1:5000` 看走廊方式选择，`1:2000` 看三处重点区连接，`1:500` 看站口/路缘/社区节点，`1:100` 看普通路线和保护区，`1:50` 只看人工接管、申诉、暂停和撤回的交接细节。它们都是审阅层级标签，`numeric_dimensions=null`，不得从图板反推施工尺寸。五项公共权利也必须逐项回读：普通通行、无障碍与照护、轨道/公交保护、申诉与暂停、隐私与退出。`run-mobility-spatial-options.js` 的正向控制与 6 个负例会拒绝缺选项、选中 REJECT、数字尺寸、缺权利、现场声称和绕过普通路线；通过只证明比较合同可离线复核，不证明任何现场结果 [data:visual/assets/run-mobility-spatial-options.js] [data:visual/assets/test-mobility-spatial-options.js]。
+
+![系统级空间选项：四个候选、五级尺度与五项公共权利](assets/figures/mobility-spatial-options.svg)
+
 ### 一日连续性回执｜同一条普通服务链要经得住四个时段
 
 一条到站回家链不能只在单一高峰时段成立。方案把早高峰到岗、日常服务到达、晚间换乘和断网雨雪回退放进同一份回执。每个时段都先保留轨道、公交、步行、人工、电话或纸面入口，再让 AI 处理分组需求、冲突说明和回退清单；没有接收人、等价路线或带日期的恢复记录时，服务停在 `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation]。
