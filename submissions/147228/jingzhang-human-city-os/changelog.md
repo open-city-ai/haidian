@@ -1,38 +1,40 @@
 # 方案迭代记录
 
-## v2.7 - 2026-08-11
+## v2.8-candidate - 2026-08-21
 
-- 跟随主线双语渲染器重生成英文 HTML 报告，证据标签在英文页显示为 `Source`、`Standard`、`Depth`、`Spatial data` 与 `Metric`，不改正文、几何、指标或图件内容。
-- 用当前主线自检器重新持久化四道门禁与 `manifest.validation_claim`；`PROFESSIONAL_EVIDENCE` 以包内可回读的 pass 记录，避免旧版自检快照被新验证器误判为未完成。
-- 本轮只修复双语证据表达与自检快照一致性；继续保持临时边界、未授权/未运行、未知输入和不产生官方分数的边界。
+- 把中英文正文从版本堆叠收束为同一条判断：先发布人的最低版本，再调用机器。评审顺序改为公共脊、六个空间单元、三处重点区、四条受限廊道和 G0—G3 推进门。
+- 重做中英文离线评审首屏，只呈现空间总图、普通人首发路径、机器边界、G0 证据与仍为 unknown/HOLD 的事项；历史迭代留在本文件，不再占用首轮审阅。
+- 以同源 GeoJSON 与 metrics 重建五张核心双语图及 18 页双语 A3/A0 图册，保留现有结构化证据、参数化取舍、九类使用者和十七张场景卡。
+- 本轮没有改写临时几何、正式指标值、许可、运行状态或现场结果，也不声称新的官方分数。候选版通过本地校验后仍需维护者按精确提交头复评。
 
-## v2.6 - 2026-08-10
+## v2.6 - 2026-08-12
 
-- 新增 `public-interest-coverage-v26.json` 与确定性 runner，在既有 6 类基础 persona 外补充青年初入行者、开发者与研究者、首次到访者与国际访客；每类回接已有场景和 GeoJSON 锚点，并登记受益、影响风险、人工替代、停止条件与待补证据。
-- 中英文 proposal 明确 6 类基础 persona + 3 类公共利益扩展的关系；新增内容不改写人口、服务、就业、无障碍或官方评分结论。
-- 修复离线引用审计对 `depth:brief_alignment` 的错误阻断：该标识是 reviewer navigation 中明确登记的 formal 维度，不是设计深度矩阵中的行；审计现在只接受设计深度项或已登记 reviewer 维度，并新增未知 depth 负样本，避免放宽为任意字符串。
-- 刷新 `human-city-reference-audit.json` 与 manifest 哈希；当前中英文提案共 703 条包内引用、134 个唯一引用全部解析，仍不产生官方评分或现场绩效结论。
+- 把既有 `HC-T01 / SC-A03` 最小首发路径接入评审首屏，第四张信息卡直接显示 4/4 正样本、8/8 负样本拒绝、4/4 双语检查与 G1 HOLD，减少评审者在首屏、空间图和完整台账之间的跳转。
+- 将已有 `public-interest-coverage-v26.json` 的 P-07 青年学生与初入行者、P-08 开发者与研究者、P-09 首次到访者与国际访客补入中英文“一页先读”，逐项写明普通入口、影响风险和证据不足时的停止动作。
+- 新增首屏构建器的结构回归检查，锁定首发路径的空间锚点、合成回放覆盖和三类公共利益扩展；所有新增内容仍是包内证据与概念建议，不改变几何、指标、许可、运营状态、现场结果或官方分数。
 
-## v2.5 - 2026-08-10
+## v2.5 - 2026-08-12
 
-- 新增双语图 27“公共空间连接、组件与社群转化”和两个结构化台账：`public-space-connector-atlas-v25.json` 以南北贯通、东西缝合和五类人本组件把 agent.4 落到既有空间锚点；`developer-community-conversion-v25.json` 以“公开问题—共学复核—受控场景—版本发布”四阶段把 agent.6 的开发者社群、场景开放和标准/知识外溢写成可停止、可回放的概念链。
-- 公共贡献三联展明确为概念展示，不是官方荣誉/奖励系统；所有新增空间和运营表达继续保持 `official_boundary=false`、`geometry_role=provisional_constraint`、`operational_status=not_authorized_not_run`、`performance_results=null` 与 `not_a_score=true`，不新增几何、指标、运营方、许可、资金或绩效结论。
-- 同步中英文 proposal、离线 visual index、双语审计、确定性 checker、HTML、PDF/图册与 manifest；不修改正式 metrics、来源等级、`submissions-data.js`、`gallery-publication.json` 或公开排序。
+- 将既有公共服务合成契约接入固定评审图。图面直接显示 4/4 正样本通过、8/8 负样本按预设原因拒绝和 4/4 双语关键字段一致，并将这组包内 G0 PASS 与现场 HOLD 分栏呈现。
+- 核心图生成器现在读取并校验 `human-city-public-service-tabletop-v1.json` 与其 evidence。字段覆盖、现场状态、真实用户、外部系统或绩效边界发生漂移时停止出图。
+- 中英文正文同步说明证据边界。`performance_results` 保持 `null`，现场继续为 `not_authorized_not_run`；本轮不改变几何、指标、许可、运营状态或公众结果。
 
-## v2.4 - 2026-08-10
+## v2.4 - 2026-08-12
 
-- 为 23 条公告 / 任务书要求各自增加差异化、包内可回读的 `evidence_items`，并在 reviewer evidence map 中标注差异化主张与复核边界。
-- 为全部开放假设增加 `priority` 与保守的补料排序说明；优先级是排程工具，不是缺口已解决的证据。
-- 为 PUE 与绿电占比增加明确标注为未测量的政策参考基线，不改变正式 metric value / status。
-- 将既有 `people_first` / `baseline_reproduction` 的三项 `decision_diff` 展开为双语首屏可回读表；仅提高空间取舍可见性，不把概念比较升级为推荐、正式面积或运行结果。
-- 同步中英文 proposal 与 reviewer navigation index；不改 geometry、官方边界结论、分数或公共发布状态。
+- 将固定评审图 `key-areas` 收束为三条普通人优先的首发路径。每处重点区同页显示优先使用者、五段路径、G0/G1/G2 推进门、过门最低证据和停止动作；当前状态只到包内 G0，现场走读、授权试点和独立复核均未开展或未到达。
+- 为满足主干增量校验，保留 v2.3、v2.5、v2.6 和公共服务 tabletop 的既有文件作为次级归档；它们不占用本轮首读顺序，也不改变当前几何、指标、许可、运营状态或高分保护线。
+- 将中英文“一页先读”移到迭代记录之前，评审者先看到方案判断、三处重点区、可重算指标和不能证明的事项；正文内容、证据引用、几何和指标值保持不变。
+- 首屏图同时标明图谱版本 v2.2 与当前包版本 v2.4，并将英文重点区名称和问题改为两至三行，消除文字压入动作卡的重叠。
+- 使用同一确定性脚本重做 `land-use-structure`、`key-areas`、`mobility-bluegreen`、`metrics-evidence` 四组中英文核心图；修复旧版大面积空白、过淡小字和规则卡文字叠压，把空间取舍、人的优先、机器边界与停止条件放入首轮审阅面。
+- 四组图只读取既有 GeoJSON、`metrics.json` 与空间动作记录；临时几何、指标值、`unknown=null`、`official_boundary=false`、许可和 `not_authorized_not_run` 状态均不变。
 
-## v2.3 - 2026-08-10
+## v2.3 - 2026-08-11
 
-- 新增双语图 26“城市 API 六步可回放序列”与 `city-api-sequence-v23.json`：目录、授权、调用、日志、审计、退出逐步绑定既有空间锚点、场景、发布门、人工等效和停止/回退动作；新增离线 checker 与证据回读。
-- 为 6 个测试类场景补充 `first_evidence_needed_zh/en` 与 `first_evidence_owner_zh/en`，明确授权前第一份资料和待授权复核角色，不把建议角色升级为运营主体。
-- `parametric-tradeoff-study-evidence.json` 新增由既有 baseline/variant shares 和派生面积回算的 `decision_diff`，只表达概念取舍，不改变正式 geometry、metrics、图纸或发布状态。
-- 同步中英文 proposal、离线 visual index、PDF/HTML、双语图件和 manifest；修复中文 visual index 重复图 24。保持 `official_boundary=false`、`geometry_role=provisional_constraint`、`operational_status=not_authorized_not_run` 与所有 unknown；不修改 `submissions-data.js` / `gallery-publication.json`。
+- 将两处“不是……而是……”式说明改为直接陈述，让城市接口和空间序列先说动作、再说边界；任务书中的“AI+ 场景赋能新范式”“小月河场景赋能翼”作为正式专名原样保留。
+- 删除中文离线 `visual/index.html` 中重复出现的图 24，保留唯一空间动作房间入口，减少评审导航噪音；不改变 geometry、metrics、图件内容、资料等级或运营状态。
+- 使用当前主干渲染器重建中英文报告，并将英文报告与英文离线审阅页中的证据徽标统一为 `Source`、`Standard`、`Depth`、`Spatial data`、`Metric`；只改阅读界面，不改证据键值。
+- 新增确定性 `build-review-pdfs-v23.js`：按固定 18 页图序生成双语 A3/A0，修正 A0 实际页幅为 ISO A0，并为 72/72 页写入可搜索图题、源图路径和页码；明确不声称完整 PDF/UA 标签树。
+- 新增英文图 12 的确定性元数据修复脚本，将三处残留中文角色类别改为英文；空间草图、动作卡、指标、几何引用和概念边界不变。
 
 ## v2.2 - 2026-08-10
 
