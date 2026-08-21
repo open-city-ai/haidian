@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v1.8.1 - 2026-08-21
+
+- Added a bilingual route-service atlas for the three key areas, with spatial interfaces, denominators, non-AI equivalents, refusal rules and fallbacks.
+- Added an offline checker for the three-node chain, five gates and field-status boundary; it keeps authorization and real observations at zero.
+- Kept the atlas as design-only evidence and did not turn provisional geometry, synthetic inputs or role labels into current operations.
+
 ## v1.7 - 2026-08-09
 
 - Added a bilingual one-page executive brief at the top of both readable proposals.

@@ -86,6 +86,20 @@ Zhongzhiyuan tests enterprise arrival, shuttle consolidation and loading. The AI
 
 The first pilot is a small morning and evening window in Zhongzhiyuan, an accessible daily-route comparison in the Origin Community, and a rail/curb separation rehearsal at Dazhongsi. Enterprise bookings cannot become permanent community bans. Shared vehicles cannot occupy a fire route, accessible path or emergency corridor.
 
+### Readback order for the three interfaces
+
+The three key areas share one candidate service route, while each receives a different responsibility. Zhongzhiyuan first checks enterprise arrival and loading denominators. The AI Origin Community first checks grouped daily services and an equivalent accessible route. Dazhongsi first checks headways, crossings and curb observation windows. Each interface states a refusal rule and a human fallback. Missing field records keep the package at `HOLD` [data:visual/assets/mobility-route-service-atlas.json] [depth:three_key_area_detailed_design].
+
+| Interface | Field denominators | Non-AI equivalent | Action when evidence is missing |
+| --- | --- | --- | --- |
+| Zhongzhiyuan arrival and loading | arrival attempts, available curb minutes, protected fire/access minutes | paper register, staffed marshal, public transport | refuse booking, freeze and return to staffed transit |
+| AI Origin daily access | grouped attempts, continuous route segments, staffed service windows | walk-in, telephone, paper, public transport | disable recommendation, keep the staffed route and return to P0 |
+| Dazhongsi rail transfer | headways, transfer observations, crossing windows, event-day curb minutes | timetable, staffed wayfinding, public crossing information | remove feeder demand, preserve the public route and dispatch staff |
+
+This is a design-interface atlas, not a current map. It places the three key areas, service groups, denominators, refusal rules and fallbacks on one review surface. Real route observations, responsibility handoffs and authorization remain zero until official geometry and field audits are available [data:visual/assets/mobility-route-service-atlas.json].
+
+![Three key-area mobility interfaces, denominators and human fallbacks](assets/figures/mobility-route-service-atlas.en.svg)
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 Personas include enterprise mobility coordinators, residents and carers, wheelchair users, rail and bus operators, logistics and maintenance staff, school and community workers, night-shift staff and transport/privacy/fire professionals. AI aggregates demand, explains conflicts and prepares rollback checklists; it cannot permanently lock a public route.

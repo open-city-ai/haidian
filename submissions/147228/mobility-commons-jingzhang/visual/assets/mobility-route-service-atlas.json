@@ -1,0 +1,85 @@
+{
+  "schema_version": "mobility-route-service-atlas-v1",
+  "atlas_id": "MOB-ROUTE-SERVICE-ATLAS-01",
+  "status": "design_only",
+  "authorization": 0,
+  "boundary": "The three nodes and the handoff route use provisional geometry and are not an operating route, permit or current performance claim.",
+  "chain": [
+    "MS-01-ZHONGZHIYUAN",
+    "MS-02-AI-ORIGIN",
+    "MS-03-DAZHONGSI"
+  ],
+  "nodes": [
+    {
+      "id": "MS-01-ZHONGZHIYUAN",
+      "key_area_feature_id": "PROV-KEY-001",
+      "label_zh": "众智园企业到岗与装卸",
+      "label_en": "Zhongzhiyuan arrival and loading",
+      "spatial_interface": "enterprise mobility desk, shuttle waiting, loading curb and protected fire/access route",
+      "service_groups": ["enterprise_employee", "logistics_or_maintenance_worker", "emergency_responder"],
+      "modes": ["rail_or_bus", "shuttle", "bicycle", "walking"],
+      "denominators": ["peak arrival attempts", "available curb minutes", "protected fire and accessible route minutes"],
+      "acceptance": "grouped demand is recorded and the curb is cleared within the declared window without reducing the public route",
+      "non_ai_equivalent": "paper register, staffed marshal and published public-transport route",
+      "refusal": "refuse a booking when a responsible marshal, capacity record or protected route is missing",
+      "fallback": "freeze booking and return the request to public transport or a staffed desk"
+    },
+    {
+      "id": "MS-02-AI-ORIGIN",
+      "key_area_feature_id": "PROV-KEY-002",
+      "label_zh": "AI 原点社区日常到达",
+      "label_en": "AI Origin daily access",
+      "spatial_interface": "community service desk, continuous accessible route, rain shelter and non-digital request point",
+      "service_groups": ["resident", "carer_or_child", "wheelchair_or_assistive_device_user", "night_shift_worker"],
+      "modes": ["walking", "wheelchair", "public_transport", "telephone_or_paper"],
+      "denominators": ["grouped daily-service attempts", "accessible route segments", "staffed human-service windows"],
+      "acceptance": "the same daily trip can be completed through a human, telephone or paper route without requiring an app or enterprise account",
+      "non_ai_equivalent": "walk-in desk, telephone, paper wayfinding and public transport",
+      "refusal": "disable the recommendation when the digital option is required for basic access or an observed group loses an equivalent route",
+      "fallback": "keep the staffed route open, record the refusal and return to P0 route review"
+    },
+    {
+      "id": "MS-03-DAZHONGSI",
+      "key_area_feature_id": "PROV-KEY-003",
+      "label_zh": "大钟寺轨道换乘与路缘分流",
+      "label_en": "Dazhongsi interchange and curb separation",
+      "spatial_interface": "station wayfinding, bicycle parking, walking crossing, enterprise entrance and timed curb",
+      "service_groups": ["enterprise_employee", "resident", "visitor", "wheelchair_or_assistive_device_user"],
+      "modes": ["rail", "bus", "bicycle", "walking", "wheelchair"],
+      "denominators": ["dated headways", "transfer observation windows", "usable crossing windows", "event-day curb minutes"],
+      "acceptance": "rail transfer, loading and resident return remain separated, with a dated alternative route whenever a curb window is refused",
+      "non_ai_equivalent": "station timetable, staffed wayfinding and public crossing information",
+      "refusal": "do not reserve a curb window when capacity, accessibility, fire clearance or transfer responsibility is unknown",
+      "fallback": "remove feeder demand, keep the public route open and dispatch staffed wayfinding"
+    }
+  ],
+  "handoffs": [
+    {
+      "from": "MS-03-DAZHONGSI",
+      "to": "MS-02-AI-ORIGIN",
+      "handoff": "rail or bus arrival to accessible ground route and community desk",
+      "evidence_required": ["dated route walk audit", "transfer observation", "fallback handover record"]
+    },
+    {
+      "from": "MS-02-AI-ORIGIN",
+      "to": "MS-01-ZHONGZHIYUAN",
+      "handoff": "public route or enterprise trip with grouped demand and protected curb window",
+      "evidence_required": ["grouped demand ledger", "curb clearing record", "human equivalent route comparison"]
+    }
+  ],
+  "gates": [
+    "provisional geometry is versioned and recalculation is ready",
+    "grouped demand and consent boundary are dated",
+    "safety and accessibility route audit is complete",
+    "receiving role and maintenance response are named",
+    "negative cases and non-AI equivalents are reviewed"
+  ],
+  "writeback_fields": ["event_id", "node_id", "service_group", "mode", "accepted_or_refused", "fallback", "responsible_role", "evidence_version", "next_decision"],
+  "field_status": {
+    "real_route_observations": 0,
+    "real_handoffs": 0,
+    "real_authorization": 0,
+    "local_baseline": "unknown",
+    "decision": "HOLD"
+  }
+}
