@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.0 - 2026-08-21
+
+- Closed the responsibility-transfer coverage gap identified in the previous Mobility review: seven resource units now declare explicit mappings to eight affected groups.
+- Hardened the supplemental contract audit against duplicate, empty, unknown and unmapped group IDs, and added four deterministic negative fixtures.
+- Kept this audit separate from the four formal self-check gates; a PASS proves contract completeness only, not field coverage, authorization, user observation or transport performance.
+
 ## v1.9 - 2026-08-21
 
 - Added a bilingual four-window continuity receipt for weekday arrival, daily access, evening return, and outage/weather fallback.

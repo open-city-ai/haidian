@@ -11,8 +11,39 @@ function check(id, ok, detail) {
 }
 
 const units = contract.resource_units || [];
+const declaredGroups = Array.isArray(contract.coverage_groups) ? contract.coverage_groups : [];
+const knownGroups = new Set(declaredGroups);
+const mappedGroups = units.flatMap((item) => Array.isArray(item.coverage_group_ids) ? item.coverage_group_ids : []);
 check('seven_resource_units', units.length === 7, `${units.length}/7`);
 check('unique_unit_ids', new Set(units.map((item) => item.id)).size === units.length, 'unique IDs');
+check(
+  'coverage_group_ids_are_unique_non_empty',
+  declaredGroups.length === 8 && declaredGroups.every((item) => typeof item === 'string' && item.trim().length > 0) && new Set(declaredGroups).size === declaredGroups.length,
+  `${new Set(declaredGroups).size}/${declaredGroups.length} unique non-empty groups`
+);
+check(
+  'coverage_mapping_is_declared',
+  units.every((item) => Array.isArray(item.coverage_group_ids) && item.coverage_group_ids.length > 0),
+  'each resource unit maps at least one coverage group'
+);
+check(
+  'coverage_mapping_uses_known_groups',
+  mappedGroups.every((item) => typeof item === 'string' && knownGroups.has(item)),
+  'all mapped groups are declared coverage groups'
+);
+check(
+  'every_group_is_mapped',
+  declaredGroups.every((item) => mappedGroups.includes(item)),
+  'each declared coverage group maps to at least one resource unit'
+);
+check(
+  'unit_group_mappings_are_unique',
+  units.every((item) => {
+    const groups = item.coverage_group_ids || [];
+    return new Set(groups).size === groups.length;
+  }),
+  'each resource unit has unique group mappings'
+);
 check(
   'resource_denominators',
   units.every((item) => Array.isArray(item.denominator) && item.denominator.length >= 3),
@@ -50,7 +81,8 @@ const result = {
   checks,
   summary: {
     resource_units: units.length,
-    coverage_groups: contract.coverage_groups?.length || 0,
+    coverage_groups: declaredGroups.length,
+    mapped_coverage_groups: new Set(mappedGroups).size,
     real_transfers_accepted: contract.review_surface?.real_transfers_accepted,
     real_authorization: contract.offline_evidence?.real_authorization,
     field_status: contract.review_surface?.field_status,
