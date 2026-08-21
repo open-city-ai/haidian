@@ -19,6 +19,11 @@ const retainedPaths = [
   'visual/assets/open-pulse-test-window-record.schema.json',
   'visual/assets/example-s02-embodied-test-window.json'
 ];
+const textExtensions = new Set(['.html', '.js', '.json', '.md']);
+const allowedHistoricalFiles = new Set([
+  'changelog.md',
+  'visual/assets/test-open-pulse-rights-clean.js'
+]);
 
 function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(packageRoot, relativePath), 'utf8'));
@@ -70,14 +75,32 @@ const example = readJson(retainedPaths[1]);
 assert(schema.$id === 'open-pulse-test-window-record-0.2.0', 'retained schema id changed');
 assert(example.record_id === 'OPW-S02-SYNTHETIC-001', 'retained example identity changed');
 
-const textExtensions = new Set(['.html', '.js', '.json', '.md']);
+function scanTextFiles(directory, relativeDirectory = '') {
+  let scanned = 0;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const absolutePath = path.join(directory, entry.name);
+    const relativePath = path.posix.join(relativeDirectory, entry.name);
+    if (entry.isDirectory()) {
+      scanned += scanTextFiles(absolutePath, relativePath);
+      continue;
+    }
+    if (!entry.isFile() || allowedHistoricalFiles.has(relativePath) ||
+        !textExtensions.has(path.extname(relativePath))) continue;
+    scanned += 1;
+    const content = fs.readFileSync(absolutePath, 'utf8');
+    for (const oldPath of oldPaths) {
+      assert(!content.includes(oldPath), `active file reintroduces disputed reference: ${relativePath}`);
+    }
+  }
+  return scanned;
+}
+
+const scannedTextFiles = scanTextFiles(packageRoot);
 for (const entry of manifestEntries) {
-  if (entry.path === 'changelog.md' ||
-      entry.path === 'visual/assets/test-open-pulse-rights-clean.js' ||
-      !textExtensions.has(path.extname(entry.path))) continue;
+  if (!textExtensions.has(path.extname(entry.path)) || allowedHistoricalFiles.has(entry.path)) continue;
   const content = fs.readFileSync(path.join(packageRoot, entry.path), 'utf8');
-  for (const relativePath of oldPaths) {
-    assert(!content.includes(relativePath), `active file reintroduces disputed reference: ${entry.path}`);
+  for (const oldPath of oldPaths) {
+    assert(!content.includes(oldPath), `active file reintroduces disputed reference: ${entry.path}`);
   }
 }
 
@@ -85,5 +108,6 @@ console.log(JSON.stringify({
   ok: true,
   old_assets_absent: oldPaths.length,
   retained_assets_verified: retainedPaths.length,
+  scanned_text_files: scannedTextFiles,
   historical_changelog_allowed: true
 }));
