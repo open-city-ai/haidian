@@ -154,6 +154,16 @@ iteration: "v2.2-three-spatial-prototypes"
 
 三处重点区 × 四个时段仍保留 12 个模型到人工决定单元，用来登记骨干方式、补证要求和停止条件。`conditional_review` 只表示可以准备现场复核，`hold` 表示锚点、权属、责任、容量、无障碍或夜间安全证据尚未齐全。合成护栏不能授权施工、运营、评分或上榜；现场交通计数、分组 OD、无障碍走查、路缘清场回执、末班车回退和公众意见才是释放条件 [data:visual/assets/spatial-mobility-atlas-readout.json] [data:visual/assets/run-spatial-mobility-atlas.js]。
 
+## 一次空间裁决，先把居民回程留在图上
+
+三处原型还需要一个可比较的设计决定。`enterprise-spatial-decision.json` 对同一组企业请求、居民回程和维护条件生成三个备选。ALT-A 把优先级交给企业共享路缘，直接失去普通与无障碍路径，予以 REJECT。ALT-B 把窗口拆到三处，局部冲突下降，但申诉、停运和结案责任被拆散，予以 REVISE。ALT-C 保留三处节点的差异，同时使用同一套居民回程、人工接管、轨道公交保护和公开结案规则，进入设计复核。三种状态属于设计备选，不代表现场采纳。
+
+图件把裁决继续压到五级尺度。1:5000 只回答区域关系，1:2000 回答网络接口，1:500 回答节点平面，1:200 回答路缘与回退断面，1:50 回答边缘回执和可拆接口。每一级只承担一个问题，正式测绘、权属、交通、消防、无障碍和工程条件未齐以前，数值保持概念状态 [data:visual/assets/enterprise-spatial-decision.json] [data:visual/assets/run-enterprise-spatial-decision.js] [depth:three_key_area_detailed_design]。
+
+![企业—居民互惠空间裁决与设计尺度](assets/figures/enterprise-spatial-decision.svg)
+
+ALT-C 的五项居民权利与每个企业窗口一起验收。普通通行保留步行和公共交通，无障碍通行保留连续路线与人工帮助，轨道公交保留在分母内，申诉暂停保留纸面、电话和人工入口，隐私退出要求没有连续个人轨迹并清除未登记记录。任何一项没有责任人、替代路径、停止动作和公开回执，状态维持 `HOLD` [data:visual/assets/enterprise-spatial-decision.json]。
+
 ## AI 创新生态、人才画像与 AI+ 场景
 
 ### 六类参与者与三项产业测试

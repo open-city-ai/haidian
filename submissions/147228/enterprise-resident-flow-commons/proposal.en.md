@@ -140,6 +140,16 @@ This prototype follows the announcement task for a four-quadrant pedestrian conn
 
 Twelve model-to-human cells—three areas by four time windows—remain as an audit register for backbone mode, evidence requests and stop conditions. `conditional_review` only means that field review may be prepared; `hold` means that anchor, rights, responsibility, capacity, accessibility or night-safety evidence is incomplete. Synthetic guards cannot authorize construction, operation, scoring or gallery promotion. Field counts, grouped OD, accessibility walk-throughs, curb-clearance receipts, last-service fallback and public input remain the release evidence [data:visual/assets/spatial-mobility-atlas-readout.json] [data:visual/assets/run-spatial-mobility-atlas.js].
 
+## One spatial decision, with the resident return route kept visible
+
+The three prototypes still need a comparable design decision. `enterprise-spatial-decision.json` tests three alternatives against the same enterprise request, resident return and maintenance conditions. ALT-A gives priority to an enterprise shared curb and loses ordinary and accessible routes, so it is REJECTED. ALT-B separates the windows across three sites, reducing local conflict while splitting appeal, blackout and closeout responsibility, so it is sent back for REVISION. ALT-C keeps the three node identities while sharing resident-return, human-takeover, transit-protection and public-closeout rules, so it advances to design review. These states describe design alternatives, not field adoption.
+
+The board then brings the decision through five design scales. 1:5000 asks about regional relations, 1:2000 about network interfaces, 1:500 about the node plan, 1:200 about the curb and fallback section, and 1:50 about the receipt edge and removable interface. Each scale answers one question. Until survey, rights, transport, fire, accessibility and engineering conditions are available, the values remain conceptual [data:visual/assets/enterprise-spatial-decision.json] [data:visual/assets/run-enterprise-spatial-decision.js] [depth:three_key_area_detailed_design].
+
+![Enterprise–resident reciprocity spatial decision and design scales](assets/figures/enterprise-spatial-decision.en.svg)
+
+ALT-C carries five resident rights into every enterprise window. Ordinary access keeps walking and public transport available. Accessible access keeps a continuous route and human help. Rail and bus remain in the denominator. Appeal and pause keep paper, phone and staffed entry. Privacy and exit prohibit continuous personal traces and require uncleared records to be removed. If any right lacks an owner, fallback, stop action and public receipt, the state remains `HOLD` [data:visual/assets/enterprise-spatial-decision.json].
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 ### Six participant groups and three industry tests

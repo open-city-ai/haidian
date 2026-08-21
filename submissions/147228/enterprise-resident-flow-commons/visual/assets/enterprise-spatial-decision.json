@@ -1,0 +1,79 @@
+{
+  "schema_version": "enterprise-spatial-decision-v1",
+  "contract_id": "ERF-SPATIAL-DECISION-001",
+  "claim_level": "local_synthetic_tabletop",
+  "decision": "HOLD",
+  "boundary": {
+    "official_boundary": false,
+    "geometry_role": "provisional_constraint",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "result_status": "not_run",
+    "operational_status": "not_authorized_not_run",
+    "public_rank_claim": false,
+    "numeric_dimensions": null
+  },
+  "scales": [
+    {"id": "S5000", "scale": "1:5000", "question": "How do the three nodes connect to the regional rail, bus and public-space backbone?", "evidence": "conceptual relationship only"},
+    {"id": "S2000", "scale": "1:2000", "question": "Where do enterprise windows meet resident return routes and maintenance edges?", "evidence": "provisional network relationship"},
+    {"id": "S500", "scale": "1:500", "question": "Can a node keep an ordinary route, an accessible route and a staffed handoff visible together?", "evidence": "design prototype, pending survey"},
+    {"id": "S200", "scale": "1:200", "question": "Can curb, crossing, waiting, appeal and blackout states be separated in section?", "evidence": "relative section logic, pending engineering review"},
+    {"id": "S50", "scale": "1:50", "question": "Can a public receipt, human takeover and removable interface be read at the edge?", "evidence": "material and service detail, pending professional review"}
+  ],
+  "alternatives": [
+    {
+      "id": "ALT-A",
+      "label": "enterprise-first shared curb",
+      "decision": "REJECT",
+      "reason": "A single priority window lets enterprise arrival and loading occupy the same edge as ordinary and accessible movement.",
+      "resident_return": "no independently protected return route",
+      "spatial_move": "one shared curb with a digital priority queue",
+      "stop_if": ["accessible_route_displaced", "human_route_not_visible", "queue_spills_to_public_space"],
+      "required_evidence": ["dated_route_audit", "grouped_demand_denominator", "named_human_receiver"]
+    },
+    {
+      "id": "ALT-B",
+      "label": "three independent windows",
+      "decision": "REVISE",
+      "reason": "Separate windows reduce direct conflict but split maintenance, appeal and blackout responsibilities across the three nodes.",
+      "resident_return": "ordinary route retained, shared closeout unclear",
+      "spatial_move": "three local windows without a common receipt",
+      "stop_if": ["handoff_owner_split", "appeal_unowned", "blackout_not_shared"],
+      "required_evidence": ["cross_node_receipt", "maintenance_roster", "public_closeout_card"]
+    },
+    {
+      "id": "ALT-C",
+      "label": "reciprocal node chain",
+      "decision": "ADVANCE_TO_DESIGN_REVIEW",
+      "reason": "The enterprise request, resident return, human handoff and public closeout stay paired at every node while the digital or feeder layer remains removable.",
+      "resident_return": "ordinary, accessible, rail-bus and staffed routes remain first-class",
+      "spatial_move": "three nodes with one shared receipt grammar and independent maintenance edges",
+      "stop_if": ["resident_return_missing", "transit_backbone_weakened", "closeout_not_readable"],
+      "required_evidence": ["node_walkthrough", "receiver_acceptance", "blackout_rehearsal", "appeal_readback"]
+    }
+  ],
+  "selected_alternative": "ALT-C",
+  "nodes": [
+    {"id": "NODE-ZHONGZHIYUAN-FORECOURT", "area": "zhongzhiyuan", "role": "enterprise_arrival_and_loading", "resident_protection": "continuous_public_edge_and_staffed_wayfinding"},
+    {"id": "NODE-AIORIGIN-CARE-LOOP", "area": "ai_origin_community", "role": "care_shift_and_daily_service", "resident_protection": "paper_phone_and_human_route_without_digital_precondition"},
+    {"id": "NODE-DAZHONGSI-TRANSFER-HALL", "area": "dazhongsi_ai_industry_cluster", "role": "rail_to_curb_transfer", "resident_protection": "public_crossing_transit_backbone_and_event_reset"}
+  ],
+  "rights_matrix": [
+    {"right": "ordinary_access", "ordinary_service": "walk_and_public_transport remain available", "enterprise_condition": "grouped request only", "failure_action": "hold window"},
+    {"right": "accessible_access", "ordinary_service": "continuous accessible route and human help", "enterprise_condition": "no longer or less safe route", "failure_action": "blackout and restore"},
+    {"right": "transit_backbone", "ordinary_service": "rail and bus stay in denominator", "enterprise_condition": "feeder supplements instead of displaces", "failure_action": "cap or withdraw"},
+    {"right": "appeal_and_pause", "ordinary_service": "paper, phone and staffed complaint entry", "enterprise_condition": "named receiver and public closeout", "failure_action": "freeze release"},
+    {"right": "privacy_and_exit", "ordinary_service": "no continuous personal trace", "enterprise_condition": "aggregated need and cleared records", "failure_action": "delete uncleared trace and stop"}
+  ],
+  "shared_gates": [
+    "ordinary_service_first",
+    "resident_return_paired",
+    "rail_bus_backbone_protected",
+    "human_takeover_and_blackout_visible",
+    "public_closeout_and_appeal_readable"
+  ],
+  "positive_controls": ["ALT-C_with_ordinary_route", "ALT-C_with_human_takeover", "ALT-C_with_cleared_closeout"],
+  "negative_fixtures": ["ALT-A_displaces_accessible_route", "ALT-B_splits_appeal_owner", "ALT-C_without_resident_return", "ALT-C_without_transit_backbone", "ALT-C_uncleared_closeout"],
+  "field_claims": []
+}
