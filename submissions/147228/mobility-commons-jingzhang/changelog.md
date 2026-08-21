@@ -6,6 +6,12 @@
 - Hardened the supplemental contract audit against duplicate, empty, unknown and unmapped group IDs, and added four deterministic negative fixtures.
 - Kept this audit separate from the four formal self-check gates; a PASS proves contract completeness only, not field coverage, authorization, user observation or transport performance.
 
+## v2.1 - 2026-08-21
+
+- Added three key-area public-baseline prototypes with explicit BASE, BOOST, BLACKOUT and BEQUEST states.
+- Added a five-stage P0–P4 sequence and offline negative-fixture runner so the package records what ordinary mobility and maintainable public assets remain after AI withdrawal.
+- Kept every state design-only: authorization and field observations remain zero, baseline unknown, performance null and decision HOLD.
+
 ## v1.9 - 2026-08-21
 
 - Added a bilingual four-window continuity receipt for weekday arrival, daily access, evening return, and outage/weather fallback.

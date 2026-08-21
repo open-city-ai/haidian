@@ -1,0 +1,25 @@
+{
+  "schema_version": "mobility-public-baseline-contract-v1",
+  "contract_id": "MOB-PUBLIC-BASELINE-001",
+  "review_role": "supplemental_design_contract_not_a_field_result",
+  "states": [
+    {"id": "BASE", "meaning": "Ordinary public mobility works without AI, account, network or model.", "required_assets": ["public_transport", "accessible_route", "human_service", "paper_or_phone_entry"]},
+    {"id": "BOOST", "meaning": "AI may aggregate grouped demand and explain a conflict without taking public right-of-way or human authority.", "required_assets": ["grouped_input", "named_receiver", "ordinary_route", "refusal_rule"]},
+    {"id": "BLACKOUT", "meaning": "An outage, weather event or safety conflict freezes the digital layer and returns people to human or public transport service.", "required_assets": ["freeze_action", "fallback_route", "public_notice", "handoff_record"]},
+    {"id": "BEQUEST", "meaning": "After withdrawal, the useful public asset remains independently maintainable and the change is archived.", "required_assets": ["static_wayfinding", "maintenance_card", "complaint_owner", "withdrawal_receipt"]}
+  ],
+  "prototypes": [
+    {"id": "MB-01", "key_area": "Zhongzhiyuan", "ordinary_service": "rail_or_bus_arrival, walking and staffed loading guidance", "ai_boost": "aggregate enterprise arrival windows and flag curb conflicts", "blackout_action": "freeze shuttle or curb booking and dispatch public transport or a named marshal", "bequest_asset": "paper curb-window register, protected-route sign and maintenance card", "responsible_role": "enterprise mobility role plus transport/accessibility reviewer", "stop_conditions": ["fire_or_access_route_displaced", "no_receiver", "capacity_unknown"]},
+    {"id": "MB-02", "key_area": "AI Origin Community", "ordinary_service": "walk-in, telephone, paper and continuous accessible route for daily needs", "ai_boost": "group service windows and explain an optional detour without retaining continuous traces", "blackout_action": "disable recommendation and keep the staffed route, public transport and complaint desk open", "bequest_asset": "tactile/static route card, human service directory and dated correction log", "responsible_role": "community liaison plus accessibility and privacy reviewer", "stop_conditions": ["basic_access_requires_app", "accessible_alternative_missing", "complaint_owner_missing"]},
+    {"id": "MB-03", "key_area": "Dazhongsi", "ordinary_service": "rail timetable, public crossing, staffed wayfinding and a protected return path", "ai_boost": "compare grouped transfer windows and propose reversible feeder separation", "blackout_action": "remove feeder demand and preserve the public route when headway, crossing or curb evidence is missing", "bequest_asset": "static interchange map, event-day curb protocol and public withdrawal notice", "responsible_role": "rail/bus operations role plus independent safety reviewer", "stop_conditions": ["transfer_capacity_unknown", "crossing_window_blocked", "event_overflow_unmanaged"]}
+  ],
+  "phase_sequence": [
+    {"id": "P0", "window": "weeks_1_2", "action": "inventory ordinary routes, assets, owners, consent boundaries and dated denominators", "gate": "unknowns remain unknown; no booking"},
+    {"id": "P1", "window": "weeks_3_4", "action": "compare one ordinary route with one optional grouped-demand explanation", "gate": "ordinary route remains available to every group"},
+    {"id": "P2", "window": "weeks_5_6", "action": "run offline shadow and negative fixtures without field authorization", "gate": "all hard failures return to HOLD"},
+    {"id": "P3", "window": "week_7", "action": "rehearse BLACKOUT, handoff, public notice and reservation freeze", "gate": "named receiver and dated restoration record"},
+    {"id": "P4", "window": "weeks_8_12", "action": "audit BEQUEST assets, maintenance burden, complaints and group differences", "gate": "expand, repair or withdraw only after independent review"}
+  ],
+  "field_status": {"authorization": 0, "field_observations": 0, "local_baseline": "unknown", "performance_results": null, "decision": "HOLD"},
+  "boundary": "The contract makes ordinary service, bounded AI, withdrawal and retained public assets reviewable. It does not prove a route, staffing, capacity, authorization, user outcome, safety result or operating performance."
+}
