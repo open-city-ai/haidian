@@ -46,6 +46,14 @@ iteration: "v1.6"
 
 图中先看普通路径和人工接管，再看 AI 选项。每次拒绝、撤回和未解决事项都保留回写位置；缺少日期化基线、接收角色或独立复核时，方案停在 HOLD。图件不提供现场客流、居民体验、服务绩效或授权结论 [data:visual/assets/commute-service-equivalence-atlas.json]。
 
+## 一次空间裁决：先保护公共回程，再决定如何调度
+
+服务等价还必须落回空间选择。这里先把同一处站口/路缘的三种做法并排审查：**ALT-A 企业优先预约路缘**把到岗、装卸和普通通行压在同一条边上，拒绝；**ALT-B 三处独立接驳窗口**降低直接冲突，但把跨节点交接、申诉和熄火责任拆散，暂列修订；**ALT-C 公共脊加可逆路缘窗口**先保留轨道公交、普通回程、无障碍和人工路线，再把企业服务做成可暂停、可撤除的附加层，进入专业深化。选中 ALT-C 不是授权运行，整项裁决仍为 HOLD [data:visual/assets/commute-spatial-decision.json]。
+
+![一次空间裁决：三种替代、五级尺度、三个节点与五项公共权利](assets/figures/commute-spatial-decision.svg)
+
+图板按 1:5000、1:2000、1:500、1:200、1:50 五级尺度逐层提问：先看轨道—公交—公共脊，再看三处重点区和全天交接，最后落到等候、人工接管、申诉、撤场和可拆界面。三个节点都共用五项权利：普通可达、无障碍连续、轨道公交骨干、申诉/暂停、隐私/退出。当前授权为 0、现场观察为 0、现场声明为空；`run-commute-spatial-decision.js` 与负例回归只证明这张设计合同可以被离线复核，不证明容量、居民体验、服务绩效或实施许可 [data:visual/assets/commute-spatial-decision.json] [data:visual/assets/run-commute-spatial-decision.js] [depth:traffic_rail_slow_parking]。
+
 为了看清分数从哪里来，模型又固定 C3 的地面方式、路缘、可靠性和无障碍参数，只把企业错峰输入从 0% 扫到 24%。在这组声明输入下，企业组读数随输入小幅变化，保护群组的最低可达和最低满意度保持不变，全体代理分只出现很小的波动。18% 是当前 C3 的声明输入，不是企业已接受的比例，也不构成现实中的最佳错峰率。企业接受度、班次容量、居民回应和现场满意度仍需有日期的证据 [data:visual/assets/commute-co-benefit-sensitivity.json] [data:assets/figures/commute-co-benefit-sensitivity-board.svg]。
 
 ![企业错峰输入敏感性与群体保护。固定地面控制，只改变一个声明输入](assets/figures/commute-co-benefit-sensitivity-board.svg)
