@@ -3,43 +3,87 @@ const path = require('path');
 
 const root = __dirname;
 const file = path.join(root, 'commute-service-equivalence-atlas.json');
-const atlas = JSON.parse(fs.readFileSync(file, 'utf8'));
-const errors = [];
 const expected = ['AC-01-LEAVE', 'AC-02-FEEDER', 'AC-03-ARRIVE', 'AC-04-MIDDAY', 'AC-05-RETURN', 'AC-06-REVIEW'];
-const ids = atlas.nodes.map((node) => node.id);
-if (atlas.schema_version !== 'commute-service-equivalence-atlas-v1') errors.push('schema_version');
-if (JSON.stringify(ids) !== JSON.stringify(expected)) errors.push('six activity-chain nodes in order');
-if (atlas.nodes.length !== 6) errors.push('node count');
-if (atlas.handoffs.length !== 4) errors.push('handoff count');
-if (atlas.gates.length !== 5) errors.push('gate count');
-if (atlas.writeback_fields.length < 8) errors.push('writeback fields');
-for (const node of atlas.nodes) {
-  if (!node.key_area || !node.moment_zh || !node.moment_en) errors.push(`${node.id} labels`);
-  if (!Array.isArray(node.groups) || node.groups.length < 3) errors.push(`${node.id} groups`);
-  if (!Array.isArray(node.denominators) || node.denominators.length < 3) errors.push(`${node.id} denominators`);
-  for (const key of ['ai_option', 'non_ai_equivalent', 'acceptance', 'refusal', 'fallback']) {
-    if (typeof node[key] !== 'string' || node[key].length < 12) errors.push(`${node.id} ${key}`);
+const expectedHandoffs = [
+  {from: 'AC-01-LEAVE', to: 'AC-02-FEEDER', required: ['choice_record', 'route_version', 'fallback_route']},
+  {from: 'AC-02-FEEDER', to: 'AC-03-ARRIVE', required: ['transfer_record', 'capacity_record', 'takeover_role']},
+  {from: 'AC-03-ARRIVE', to: 'AC-04-MIDDAY', required: ['curb_clearance_receipt', 'public_route_check', 'complaint_owner']},
+  {from: 'AC-05-RETURN', to: 'AC-06-REVIEW', required: ['exit_record', 'unresolved_item', 'independent_reviewer']}
+];
+const expectedGates = [
+  'dated local baseline',
+  'named accountable role',
+  'non-AI equivalent path',
+  'withdrawal and record retention',
+  'independent review before expansion'
+];
+const expectedWritebackFields = [
+  'chain_version',
+  'grouped_denominator',
+  'route_or_service_id',
+  'human_owner',
+  'fallback_action',
+  'refusal_reason',
+  'unresolved_item',
+  'next_review_date',
+  'prior_record_id'
+];
+const expectedNegativeCases = [
+  'missing local baseline',
+  'missing takeover role',
+  'public route blocked by enterprise window',
+  'AI route available without a paper or human equivalent',
+  'complaint closed without repair or independent replay'
+];
+
+function validateAtlas(atlas) {
+  const errors = [];
+  const ids = atlas.nodes.map((node) => node.id);
+  if (atlas.schema_version !== 'commute-service-equivalence-atlas-v1') errors.push('schema_version');
+  if (JSON.stringify(ids) !== JSON.stringify(expected)) errors.push('six activity-chain nodes in order');
+  if (atlas.nodes.length !== 6) errors.push('node count');
+  if (JSON.stringify(atlas.handoffs) !== JSON.stringify(expectedHandoffs)) errors.push('handoff contract');
+  if (JSON.stringify(atlas.gates) !== JSON.stringify(expectedGates)) errors.push('gate contract');
+  if (JSON.stringify(atlas.writeback_fields) !== JSON.stringify(expectedWritebackFields)) errors.push('writeback contract');
+  if (JSON.stringify(atlas.negative_cases) !== JSON.stringify(expectedNegativeCases)) errors.push('negative-case contract');
+  for (const node of atlas.nodes) {
+    if (!node.key_area || !node.moment_zh || !node.moment_en) errors.push(`${node.id} labels`);
+    if (!Array.isArray(node.groups) || node.groups.length < 3) errors.push(`${node.id} groups`);
+    if (!Array.isArray(node.denominators) || node.denominators.length < 3) errors.push(`${node.id} denominators`);
+    for (const key of ['ai_option', 'non_ai_equivalent', 'acceptance', 'refusal', 'fallback']) {
+      if (typeof node[key] !== 'string' || node[key].length < 12) errors.push(`${node.id} ${key}`);
+    }
+    if (!Array.isArray(node.maintenance_writeback) || node.maintenance_writeback.length < 3) errors.push(`${node.id} maintenance`);
   }
-  if (!Array.isArray(node.maintenance_writeback) || node.maintenance_writeback.length < 3) errors.push(`${node.id} maintenance`);
+  if (atlas.status.authorization_count !== 0) errors.push('authorization count must remain zero');
+  if (atlas.status.field_observation_count !== 0) errors.push('field observation count must remain zero');
+  if (atlas.status.local_baseline !== 'unknown') errors.push('local baseline must remain unknown');
+  if (atlas.status.performance_results !== null) errors.push('performance results must remain null');
+  if (atlas.status.decision !== 'HOLD') errors.push('decision must remain HOLD');
+  return errors;
 }
-if (atlas.status.authorization_count !== 0) errors.push('authorization count must remain zero');
-if (atlas.status.field_observation_count !== 0) errors.push('field observation count must remain zero');
-if (atlas.status.local_baseline !== 'unknown') errors.push('local baseline must remain unknown');
-if (atlas.status.performance_results !== null) errors.push('performance results must remain null');
-if (atlas.status.decision !== 'HOLD') errors.push('decision must remain HOLD');
-if (errors.length) {
-  console.error(`FAIL ${errors.join('; ')}`);
-  process.exit(1);
+
+function main() {
+  const atlas = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const errors = validateAtlas(atlas);
+  if (errors.length) {
+    console.error(`FAIL ${errors.join('; ')}`);
+    process.exit(1);
+  }
+  console.log(JSON.stringify({
+    ok: true,
+    atlas_id: atlas.atlas_id,
+    nodes: atlas.nodes.length,
+    handoffs: atlas.handoffs.length,
+    gates: atlas.gates.length,
+    writeback_fields: atlas.writeback_fields.length,
+    authorization_count: atlas.status.authorization_count,
+    field_observation_count: atlas.status.field_observation_count,
+    local_baseline: atlas.status.local_baseline,
+    decision: atlas.status.decision
+  }, null, 2));
 }
-console.log(JSON.stringify({
-  ok: true,
-  atlas_id: atlas.atlas_id,
-  nodes: atlas.nodes.length,
-  handoffs: atlas.handoffs.length,
-  gates: atlas.gates.length,
-  writeback_fields: atlas.writeback_fields.length,
-  authorization_count: atlas.status.authorization_count,
-  field_observation_count: atlas.status.field_observation_count,
-  local_baseline: atlas.status.local_baseline,
-  decision: atlas.status.decision
-}, null, 2));
+
+if (require.main === module) main();
+
+module.exports = {validateAtlas};
