@@ -9,7 +9,7 @@ translation_of: "proposal.md"
 license: "CC-BY-4.0"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v2.6"
+iteration: "v1.7"
 ---
 
 # From an AI Showcase to a City for People in the AI Era
@@ -29,44 +29,6 @@ The first G0 acceptance unit starts with a complete ordinary-person journey. The
 | Independent replay and decide expand/repair/exit | Evidence cabinet, version board and public observer seat | Replay difference, worst-group result and decision record | Return to the paper protocol if it cannot be replayed |
 
 The package claims only a G0 conceptual evidence chain; G1/G2 still require field work, formal data, professional review and authorization. The five-step chain cross-checks the ten scenario cards, human fallback and implementation matrix without turning concept metrics into service performance [data:geometry/constraints.geojson#SCN-06] [metric:scenario_g0_count]. The offline runner now binds four existing routes to real GeoJSON features: intergenerational learning, civic API, night human service, and reskilling each have an ordinary-person entry. It requires 5/5 journey steps, 5/5 rollback steps, 6/6 acceptance checks, and 4/4 resolving routes; five failing fixtures stop, reject a data call, freeze night expansion, hold automated routing, or return to G0, while three ordinary or human alternatives continue. This proves only local structural replay, not field service, accessibility, staffing, or safety outcomes [data:visual/assets/ai-era-ordinary-journey-evidence.json] [metric:scenario_g0_count].
-
-## Five Receipt Steps Keep Ordinary Service Beside Automation
-
-The existing ordinary-person journey records four sample routes, eight fixtures, six acceptance checks and five rollback actions. The new bilingual board puts these fields on one receipt so a reviewer can read the ordinary route before the AI-assisted route. The replay covers package structure only; authorisation count is zero, field observations are zero, the local baseline remains unknown, and the package stays at HOLD [data:visual/assets/ai-era-g0-journey-atlas.json] [data:visual/assets/run-ai-era-g0-journey-atlas.js].
-
-![G0 ordinary-person journey receipt: four routes, five handoffs and human fallback](assets/figures/ai-era-g0-journey-atlas.en.svg)
-
-The board places choice, purpose, takeover, appeal and independent replay back into the sequence of actions. Missing ordinary route, human responsibility or independent replay returns the chain to G0; the board provides no resident experience, service performance, permit or implementation evidence [data:visual/assets/ai-era-g0-journey-atlas.json].
-
-## AI Is Optional and the City Keeps Running
-
-Four routes use ordinary service without AI as the baseline and place AI only in a reversible gain position. Intergenerational learning keeps human explanation, the civic API keeps a staffed service without a data call, night service keeps staffing and paper rules, and reskilling keeps human consultation. Each route passes through ordinary baseline, optional gain, stop trigger and retained public asset [data:visual/assets/ai-era-off-city-on-contract.json] [data:visual/assets/run-ai-era-off-city-on.js].
-
-| State | Reviewer check | Current boundary |
-| --- | --- | --- |
-| Ordinary baseline | Human, paper, voice or physical wayfinding can complete the task first | Concept contract |
-| Optional gain | AI offers bounded prompts, retrieval or matching and is never the only entry | G0 design target |
-| Stop trigger | Missing takeover, unclear rights, night risk or failed exit freezes the route | Synthetic replay |
-| Retained public asset | Remove the digital layer and retain access, service, redress and the decision record | Field result unknown |
-
-![AI is optional and the city keeps running. Four routes share an ordinary baseline and a withdrawal state](assets/figures/ai-era-off-city-on-atlas.en.svg)
-
-This contract links each existing route to an ordinary entry, the AI role, the stop condition and the public asset retained after withdrawal. Four negative fixtures return to HOLD and three ordinary or human controls continue. The result remains zero authorisations, zero field data, not run and HOLD; it provides no service performance, staffing or official-score evidence [data:visual/assets/ai-era-off-city-on-contract.json].
-
-## A Continuity Receipt Connects Maintenance to Ordinary Service
-
-The four states now continue into a maintenance handoff. BASE checks the ordinary entry, screen-free alternative and exit record. BOOST keeps AI as a bounded gain. BLACKOUT stops the route when role, rights or safety conditions are unclear. BEQUEST retains access, service, redress and the release record. After handoff, the public asset returns to the ordinary route and the digital layer is not the only entrance [data:visual/assets/ai-era-continuity-maintenance-contract.json] [data:visual/assets/run-ai-era-continuity-maintenance.js].
-
-| State | Reviewer action | Passing condition |
-| --- | --- | --- |
-| BASE ordinary route | Staffed entry, paper rule, screen-free wayfinding, exit record | Ordinary service is visible and staffed |
-| BOOST optional gain | Purpose bound, human review, withdrawal | AI is not the only entry |
-| BLACKOUT stop and takeover | Stop trigger, safe retreat, incident record | Every failing fixture returns to HOLD |
-| BEQUEST public retention | Maintenance handoff, release note, public replay | Access, service and redress remain usable |
-
-![Human continuity and maintenance receipt: four states, three key areas, seven maintenance roles and twelve conceptual review windows](assets/figures/ai-era-continuity-maintenance-atlas.en.svg)
-
-The receipt places the ordinary entries of Zhongzhiyuan, AI Origin Community and Dazhongsi under one handoff rule. It also records six handoff seams, seven proposed responsibility roles and seven offline components. W01 through W12 are conceptual review windows covering source inventory, paper replay, screen-free checks, stop replay, maintenance handoff, public replay and stage decisions. They are not field work periods or operating commitments. Six negative fixtures remain HOLD. Four positive controls only show that ordinary service, a human option or a retained public asset can continue in replay. The package remains at zero authorisations, zero field observations, baseline unknown and performance not run [data:visual/assets/ai-era-continuity-maintenance-contract.json].
 
 ## Design Basis and Source List
 
@@ -163,24 +125,6 @@ This spatial delta addresses the AI-planning-innovation dimension without replac
 The table expresses how spatial roles change under AI constraints; it is not a dimensional change. No new geometry is added, and `design_target` is not upgraded into a professional measurement. Once official boundary, rights, accessibility, and field baselines exist, this delta must be recomputed with the metrics, plates, HTML, PDF, and self-check. [data:visual/assets/ai-era-spatial-interface-plans.json#AI-NODE-ZHONGZHIYUAN] [data:visual/assets/scenario-space-operation-matrix.json#SCN-06] [metric:api_governance_gate_count]
 
 The full-chain recalculation after formal evidence arrives is a metrics-recalculation depth item; before that trigger, the plates support conceptual suggestions and relational questions only.[depth:metrics_recalculation]
-
-## v2.1 Seven-dimension professional review evidence map: turn readability into questions
-
-v2.1 adds no boundary, route, capacity, field data, or policy conclusion. It gathers evidence already distributed across the taskbook, scenario cards, spatial anchors, metrics, sources, and plates into seven questions that a reviewer can actually challenge. `visual/assets/ai-era-professional-review-map-v21.json` records evidence references, conceptual actions, what is not proven, the next professional gate, and confidence for each dimension. A deterministic runner checks that referenced files exist, formal-basis IDs resolve, provisional boundaries are not overwritten, and every unresolved item has a next gate.[data:visual/assets/ai-era-professional-review-map-v21.json] [data:visual/assets/run-ai-era-professional-review-map-v21.js]
-
-| Review question | Existing evidence and spatial action (concept suggestion) | Not proven | Next gate |
-|---|---|---|---|
-| Brief alignment | The announcement, agent.1–agent.6, scenario cards, spatial anchors, and compliance matrix return to one entry point | Missing annexes, official extents, and professional interpretation | Recheck together when official boundary, key-area extents, and annexes arrive |
-| Differentiation | Ordinary arrival → staffed takeover → bounded simulation → freeze/exit replaces a single AI showcase entrance | Not a site survey or user outcome | Compare entry conditions with a professional team and public observer seat |
-| AI-native innovation | City API, silicon right-of-way, and reversibility pass authorization, logs, human takeover, and G0 freeze gates | No claim of API, right-of-way, airspace, or deployment permission | Data authorization, responsibility interface, transport and safety rehearsal |
-| Deepening path | Five project families move G0 → professional review → freeze/exit without construction promises | Engineering, funding, operator, insurance, and schedule feasibility | Rights, existing facilities, fire/accessibility, and operating evidence |
-| Public interest | Residents/older people, workers at transition risk, night workers and others retain paper/voice, staffed, appeal, and exit paths | Personas are not demographic, jobs, or fairness results | Consented community/access walk-through and night-safety baseline |
-| Risk and compliance | Formal/background/provisional layers, rights ledger, and stop conditions remain separate | Does not replace authority, data authorization, or legal review | Official annexes, rights/culture, authorization, and safety responsibility |
-| Expression and traceability | Maps, HTML, PDF, GeoJSON, metrics, and bilingual assets point to the same evidence set | Local rendering and self-check do not mean merge, score, or publication | Professional visual/text review; full recomputation when inputs change |
-
-This seven-dimension map is a submission-owned review index, not an official score. It shortens the path from design intent to spatial action, evidence, gap, and next gate for a professional team. All spatial actions remain conceptual suggestions/reference options for professional deepening. `official_boundary=false`, `geometry_role=provisional_constraint`, `operational_status=not_authorized_not_run`, `performance_results=null`, and `not_an_official_score=true` remain aligned across the JSON, plates, and runner.[data:assets/figures/professional-review-map-v21.en.png] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:metrics_recalculation]
-
-![Figure 11: v2.1 seven-dimension professional review evidence map](assets/figures/professional-review-map-v21.en.png)
 
 ## v1.2 Taskbook–space–operation triad: make agent.4–agent.6 meet on one board
 
