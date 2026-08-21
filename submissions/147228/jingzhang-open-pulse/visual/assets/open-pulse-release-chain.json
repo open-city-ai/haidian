@@ -1,0 +1,144 @@
+{
+  "contract_id": "OPEN-PULSE-RELEASE-CHAIN-01",
+  "version": "1.0",
+  "claim_level": "design_contract_only",
+  "default_decision": "HOLD",
+  "boundary": {
+    "official_boundary": false,
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "operational_status": "not_authorized_not_run",
+    "performance_results": null,
+    "public_rank_claim": false
+  },
+  "ordinary_service_first": {
+    "base_modes": ["walking", "staffed_service", "handcart_delivery"],
+    "must_remain_available": true,
+    "no_app_route": true,
+    "acceptance": "A person can arrive, ask, receive ordinary help, complain and leave without an account, app, biometric identifier or autonomous system."
+  },
+  "states": [
+    {
+      "id": "BASE",
+      "meaning": "ordinary public service is the default",
+      "ai_mode": "off",
+      "release_condition": "ordinary route and staffed fallback are open"
+    },
+    {
+      "id": "BOOST",
+      "meaning": "a bounded AI assist may be added",
+      "ai_mode": "reversible_assist",
+      "release_condition": "dated local evidence, named owner and human takeover are recorded"
+    },
+    {
+      "id": "BLACKOUT",
+      "meaning": "the AI layer is suspended while ordinary service continues",
+      "ai_mode": "off",
+      "release_condition": "incident, uncertainty, consent or maintenance trigger is open"
+    },
+    {
+      "id": "BEQUEST",
+      "meaning": "the public record preserves learning without preserving personal traces",
+      "ai_mode": "archived",
+      "release_condition": "retention, redaction and withdrawal record are complete"
+    }
+  ],
+  "first_168h": [
+    {
+      "id": "H0",
+      "window": "0-24h",
+      "owner_role": "ordinary-service lead",
+      "evidence": ["route inventory", "staffed fallback rota", "rights and source check"],
+      "acceptance_checks": ["ordinary route is open", "no-app service is staffed", "public status card is visible"],
+      "stop_conditions": ["accessible route is blocked", "no accountable human is present"],
+      "public_artifact": "H0 ordinary-service card"
+    },
+    {
+      "id": "H1",
+      "window": "24-72h",
+      "owner_role": "safety and accessibility lead",
+      "evidence": ["paired route walk", "manual incident drill", "asset and consent ledger"],
+      "acceptance_checks": ["human takeover is rehearsed", "fallback is faster than escalation", "no individual trace is retained"],
+      "stop_conditions": ["takeover fails", "privacy boundary is unclear", "route conflict is unresolved"],
+      "public_artifact": "H1 route-and-fallback receipt"
+    },
+    {
+      "id": "H2",
+      "window": "72-120h",
+      "owner_role": "scenario steward",
+      "evidence": ["bounded scenario brief", "model and content provenance", "maintenance window"],
+      "acceptance_checks": ["one small reversible assist is defined", "ordinary service remains equivalent", "withdrawal action is one step"],
+      "stop_conditions": ["assist changes eligibility", "unregistered data appears", "maintenance cannot be scheduled"],
+      "public_artifact": "H2 bounded-assist card"
+    },
+    {
+      "id": "H3",
+      "window": "120-168h",
+      "owner_role": "review and redress lead",
+      "evidence": ["public feedback log", "incident and near-miss review", "publish-or-retire decision"],
+      "acceptance_checks": ["complaints have a human response", "blackout can be announced", "learning is redacted and reusable"],
+      "stop_conditions": ["harm cannot be explained", "redress has no owner", "public status cannot be updated"],
+      "public_artifact": "H3 release-or-retire receipt"
+    }
+  ],
+  "first_12_weeks": [
+    {
+      "id": "W01-02",
+      "gate": "ordinary service and rights baseline",
+      "owner_role": "service and rights desk",
+      "evidence": "dated route, staffing, source and consent inventory",
+      "stop_conditions": "unknown owner or missing non-digital route",
+      "fallback": "BASE plus staffed service"
+    },
+    {
+      "id": "W03-04",
+      "gate": "accessibility and safety rehearsal",
+      "owner_role": "professional review team",
+      "evidence": "paired day/night route test and takeover rehearsal",
+      "stop_conditions": "any inaccessible seam or failed takeover",
+      "fallback": "BLACKOUT plus physical wayfinding"
+    },
+    {
+      "id": "W05-07",
+      "gate": "one bounded public-interest assist",
+      "owner_role": "scenario steward",
+      "evidence": "minimum-data card, human alternative and incident log",
+      "stop_conditions": "assist becomes a requirement for service",
+      "fallback": "ordinary service only"
+    },
+    {
+      "id": "W08-09",
+      "gate": "maintenance and continuity",
+      "owner_role": "asset owner",
+      "evidence": "inspection, repair, spare-part and withdrawal record",
+      "stop_conditions": "two missed service windows or unclear asset owner",
+      "fallback": "remove complex layer; retain passive component"
+    },
+    {
+      "id": "W10-11",
+      "gate": "public redress and evidence review",
+      "owner_role": "redress lead",
+      "evidence": "complaint response, disagreement log and bilingual public card",
+      "stop_conditions": "unanswered complaint or unresolvable provenance",
+      "fallback": "BLACKOUT and publish the unresolved question"
+    },
+    {
+      "id": "W12",
+      "gate": "scale, hold or retire",
+      "owner_role": "multi-party review panel",
+      "evidence": "decision diff, retention/withdrawal record and next gate",
+      "stop_conditions": "no evidence-backed improvement over BASE",
+      "fallback": "BEQUEST learning archive; no scale-up"
+    }
+  ],
+  "review_dimensions": [
+    {"id": "ordinary_person_journey", "question": "Can an ordinary person use the place without AI or an app?", "field_claims": []},
+    {"id": "three_spatial_interfaces", "question": "Do the three key areas have distinct, reversible spatial interfaces?", "field_claims": []},
+    {"id": "delivery_and_maintenance", "question": "Who maintains each interface and what happens when it fails?", "field_claims": []},
+    {"id": "evidence_and_source_boundary", "question": "Can every claim be separated into source, design target, unknown and future evidence?", "field_claims": []},
+    {"id": "governance_and_rights", "question": "Can consent, provenance, redress and human responsibility be inspected?", "field_claims": []},
+    {"id": "reversibility", "question": "Can the AI layer be stopped without removing ordinary public service?", "field_claims": []},
+    {"id": "visual_reviewer_navigation", "question": "Can a reviewer find the decision, evidence and stop path on one board?", "field_claims": []}
+  ]
+}

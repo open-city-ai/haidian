@@ -216,6 +216,27 @@ The case file compares six mechanism patterns—station-as-public-room, bounded 
 
 The proposal is not considered implemented because it is written. It is reviewable because each task can be traced to a section, a spatial or operational artifact, a source/assumption, an acceptance test and a stop/rollback path. Official polygons, planning controls, ownership, municipal, heritage, traffic, weather, drainage and measured-experience data must replace the provisional and unknown fields before professional implementation.
 
+## v1.9 First 168 Hours and First 12 Weeks: Make AI Release a Reversible Public Contract
+
+A high-scoring proposal cannot only describe the desired endpoint. It must show how an ordinary person is protected on day one, who owns the decision in the first week, and when the system stops after three months. `visual/assets/open-pulse-release-chain.json` fixes four states: `BASE` is ordinary service without AI; `BOOST` is a bounded reversible assist; `BLACKOUT` suspends the AI layer while ordinary service continues; `BEQUEST` preserves redacted learning without preserving personal traces. All four states remain design contracts: authorization is 0, field observations are 0, the local baseline is `unknown`, and the operational status is `not_authorized_not_run`. They are not field deployment or performance results. [data:visual/assets/open-pulse-release-chain.json] [source:NIST-HUMAN-CENTERED-AI]
+
+![First 168 hours and first 12 weeks release chain](assets/figures/open-pulse-release-chain.en.svg)
+
+### First 168 hours: prove that AI has not displaced ordinary service
+
+| Window | Owner | Evidence that must exist | Stop condition | Public receipt |
+| --- | --- | --- | --- | --- |
+| H0, 0–24h | ordinary-service lead | route, staffed rota and rights inventory | no accountable human or unresolved accessible seam | ordinary-service card |
+| H1, 24–72h | safety and accessibility lead | paired walk, human takeover rehearsal, asset and consent ledger | takeover failure, overreach data or unresolved route conflict | route-and-fallback receipt |
+| H2, 72–120h | scenario steward | one bounded assist, minimum-data card and maintenance window | eligibility changes, unregistered data or no maintenance path | bounded-assist card |
+| H3, 120–168h | review and redress lead | public feedback, near-miss review and release/retire decision | unexplained harm, ownerless redress or unpublishable status | release-or-retire receipt |
+
+### First 12 weeks: one gate every two weeks, otherwise return to BASE
+
+W01–02 confirms ordinary service, rights and a no-app route; W03–04 rehearses day/night accessibility and human takeover; W05–07 permits only one public-interest assist that cannot change service eligibility; W08–09 checks inspection, repair, spares and withdrawal; W10–11 publishes complaints, disagreement and bilingual evidence cards; W12 decides whether to scale, hold, retire or leave only a `BEQUEST` learning record. Two missed maintenance windows, a missing owner, a failed takeover or no evidence of improvement over `BASE` blocks scale-up. `visual/assets/run-open-pulse-release-chain.js` and `test-open-pulse-release-chain.js` provide fail-closed offline regression checks for missing windows, non-HOLD decisions, unauthorized states and field claims; they are contract checkers, not field acceptance tests.
+
+This chain makes the existing RACI/SLA and long-term operations auditable in time order. Walking, staffed service, handcart delivery and paper/voice/multilingual routes remain available; AI can never become a prerequisite for public service. Field data, professional responsibility, permits, real complaints and performance outcomes still require future evidence and are not replaced by a local synthetic replay. [source:BEIJING-ACCESSIBILITY-REGULATION] [source:RESILIENT-CITY-INFRASTRUCTURE-2024]
+
 ## Cultural “Feng Shui” Narrative and the Wind–Water–Health Evidence Gate
 
 The expressions *cang feng ju qi* (藏风聚气) and *feng shui* may be used only as cultural landscape narratives linked to spatial memory. They are not medical findings, public-health causation, air-quality evidence, hydrological rules, engineering models or approval criteria. The narrative is therefore translated into six separate, auditable indicators whose current baselines remain `unknown`:
