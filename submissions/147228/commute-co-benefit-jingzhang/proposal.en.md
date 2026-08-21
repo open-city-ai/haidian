@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "An activity-chain model links employer staggering, resident care, external commuting, metro, bus, bicycle, walking/accessibility, cars and enterprise shuttles; a population-scale synthetic screen compares arrival reliability, transfer waiting, curb conflict and group equity, while future air mobility remains a conditional, reversible, ground-first experiment."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.4"
+iteration: "v1.6"
 ---
 
 # Jing-Zhang Commute Commons: An Enterprise–Resident Activity-Chain Network
@@ -37,6 +37,14 @@ This contract puts “what the enterprise receives” beside “who cannot be sa
 The contract also needs an evidence ladder so that a synthetic score cannot be mistaken for permission to open a service. P0 registers grouped OD, headways and capacity, resident care and accessibility validation, complaint and fallback rehearsal, and privacy rules. P1 tests one reversible minimum chain. P2 discusses wider time windows and service scope only after the evidence closes. The current package stays at P0; expired evidence, protected-group decline or missing ownership returns it to P0 or stops it. The air candidate is a separate blocked item and cannot fill a ground-evidence gap [data:visual/assets/commute-co-benefit-authorization.json] [data:assets/figures/commute-co-benefit-authorization-board.en.svg].
 
 ![Evidence ladder from synthetic screen to field authorisation: current hold at P0](assets/figures/commute-co-benefit-authorization-board.en.svg)
+
+## Six Handoffs Before Efficiency Comparison
+
+The activity chain is only as strong as its handoffs. Leaving home, first and last mile transfer, work and loading arrival, midday care, return home, and complaint and repair each involve different people and spaces. The new receipt places the field denominator, non-AI equivalent, refusal rule, fallback action and maintenance write-back beside every node. It is a design contract; authorisation and field observation counts remain zero, and the local baseline remains pending official data [data:visual/assets/commute-service-equivalence-atlas.json] [data:visual/assets/run-commute-service-equivalence-atlas.js].
+
+![Full-day activity-chain service-equivalence receipt: six handoffs and five gates](assets/figures/commute-service-equivalence-atlas.en.svg)
+
+The board starts with the ordinary route and human takeover, then shows the AI option. Refusals, withdrawals and unresolved items keep a write-back location; missing dated baseline, receiving role or independent review keeps the package at HOLD. The board does not provide field demand, resident experience, service performance or authorisation evidence [data:visual/assets/commute-service-equivalence-atlas.json].
 
 To show where the proxy score comes from, the model now holds the C3 ground modes, curb, reliability and accessibility controls fixed while sweeping the declared employer shift input from 0% to 24%. Under these declared inputs, the enterprise readout changes slightly, the minimum protected-group access and satisfaction stay unchanged, and the overall proxy moves only within a narrow range. The current 18% is a declared C3 input, not accepted employer participation and not a real-world optimal stagger rate. Employer acceptance, timetable capacity, resident response and field satisfaction still need dated evidence [data:visual/assets/commute-co-benefit-sensitivity.json] [data:assets/figures/commute-co-benefit-sensitivity-board.en.svg].
 

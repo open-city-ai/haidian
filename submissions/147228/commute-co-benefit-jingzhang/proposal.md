@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把企业错峰、居民照护、对外通勤、地铁、公交、自行车、步行/无障碍、汽车和企业接驳放进同一套可复算活动链；用全区域尺度合成压力屏查比较到岗可靠性、换乘等待、路缘冲突与群体公平，未来空中出行只保留受审批、可撤回、地面接驳优先的实验接口。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.4"
+iteration: "v1.6"
 ---
 
 # 京张通勤共益调度台。企业—居民多模式活动链
@@ -37,6 +37,14 @@ iteration: "v1.4"
 合同还需要一张证据阶梯，防止合成分数被误读成开通许可。P0 只登记分组 OD、班次与容量、居民照护和无障碍验证、投诉回退演练以及隐私规则；P1 只做一条可逆的最小活动链；P2 才讨论时段和服务范围扩展。当前方案停在 P0，任一证据过期、保护组变差或责任人缺位，就回到 P0 或停止。空中候选单列为阻断项，不能拿来填补地面证据缺口 [data:visual/assets/commute-co-benefit-authorization.json] [data:assets/figures/commute-co-benefit-authorization-board.svg]。
 
 ![从合成屏查到现场授权的证据阶梯。当前停在 P0，先补证据再谈小试](assets/figures/commute-co-benefit-authorization-board.svg)
+
+## 六个交接点，先验收服务等价再看效率
+
+全日活动链的关键在交接。出门、首末端接驳、到岗与装卸、午间照护、返程回家、投诉维修各有不同的人和空间。新回执把每个节点的现场分母、无 AI 等价路径、拒绝条件、回退动作和维护回写字段放在一起。它只描述设计合同，当前授权数量和现场观察数量均为 0，本地基线仍待正式数据补齐 [data:visual/assets/commute-service-equivalence-atlas.json] [data:visual/assets/run-commute-service-equivalence-atlas.js]。
+
+![全日活动链服务等价回执。六个交接点共用五道扩展前门](assets/figures/commute-service-equivalence-atlas.svg)
+
+图中先看普通路径和人工接管，再看 AI 选项。每次拒绝、撤回和未解决事项都保留回写位置；缺少日期化基线、接收角色或独立复核时，方案停在 HOLD。图件不提供现场客流、居民体验、服务绩效或授权结论 [data:visual/assets/commute-service-equivalence-atlas.json]。
 
 为了看清分数从哪里来，模型又固定 C3 的地面方式、路缘、可靠性和无障碍参数，只把企业错峰输入从 0% 扫到 24%。在这组声明输入下，企业组读数随输入小幅变化，保护群组的最低可达和最低满意度保持不变，全体代理分只出现很小的波动。18% 是当前 C3 的声明输入，不是企业已接受的比例，也不构成现实中的最佳错峰率。企业接受度、班次容量、居民回应和现场满意度仍需有日期的证据 [data:visual/assets/commute-co-benefit-sensitivity.json] [data:assets/figures/commute-co-benefit-sensitivity-board.svg]。
 
