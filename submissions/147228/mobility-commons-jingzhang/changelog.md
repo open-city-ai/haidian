@@ -1,5 +1,12 @@
 # 方案迭代记录
 
+## v1.9 - 2026-08-21
+
+- Added a bilingual four-window continuity receipt for weekday arrival, daily access, evening return, and outage/weather fallback.
+- Added four handoff seams, twelve receipt fields, four positive controls and six negative HOLD fixtures with an offline regression runner.
+- Kept ordinary rail/bus/human/paper service first; AI remains limited to grouped demand, conflict explanation and rollback preparation.
+- Kept authorization and field observations at 0, local baseline unknown, result `not_run`, and performance results null.
+
 ## v1.8.1 - 2026-08-21
 
 - Added a bilingual route-service atlas for the three key areas, with spatial interfaces, denominators, non-AI equivalents, refusal rules and fallbacks.

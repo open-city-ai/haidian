@@ -100,6 +100,21 @@ This is a design-interface atlas, not a current map. It places the three key are
 
 ![Three key-area mobility interfaces, denominators and human fallbacks](assets/figures/mobility-route-service-atlas.en.svg)
 
+### One-day continuity receipt | One ordinary service chain across four windows
+
+A door-to-door chain must remain understandable beyond one peak period. The package places weekday arrival, daily access, evening transfer and outage or weather fallback in one receipt. Rail, bus, walking, human, telephone and paper routes stay available first; AI only groups demand, explains conflicts and prepares a rollback list. Missing a receiver, an equivalent route or a dated restoration record keeps the service at `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation].
+
+![Four-window mobility continuity receipt with ordinary routes, bounded AI and stop actions](assets/figures/mobility-continuity-receipt.en.svg)
+
+| Window | Ordinary service comes first | AI is limited to | Action when evidence is missing |
+| --- | --- | --- | --- |
+| Weekday arrival | Rail/bus, protected curb and staffed guidance | Group arrival windows and flag curb conflicts | Refuse booking when receiver or capacity is missing |
+| Daily access | Walk-in, telephone, paper and a continuous accessible route | Group service windows without continuous traces | Disable the recommendation and return to P0 |
+| Evening return | Timetable, public crossing information and staffed wayfinding | Explain transfer conflicts and suggest reversible separation | Remove feeder demand when capacity or responsibility is unknown |
+| Outage, weather and maintenance | Human, rail, bus, paper and telephone fallback | Organize an offline freeze, reroute and restore list | Keep HOLD when a safe handoff or dated record is missing |
+
+`mobility-continuity-receipt.json` fixes four windows, four handoff seams, twelve receipt fields, four positive controls and six negative fixtures. `run-mobility-continuity-receipt.js` and its regression cases prove only that the contract can be checked offline; they do not prove field continuity. Authorization remains 0, field observations remain 0, the result remains `not_run`, and `performance_results=null`.
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 Personas include enterprise mobility coordinators, residents and carers, wheelchair users, rail and bus operators, logistics and maintenance staff, school and community workers, night-shift staff and transport/privacy/fire professionals. AI aggregates demand, explains conflicts and prepares rollback checklists; it cannot permanently lock a public route.
