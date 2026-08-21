@@ -126,6 +126,21 @@ All three prototypes share four gates: ordinary route first, a named receiving a
 
 ![Three spatial interface prototypes: 1:500 concept to 1:50 handoff detail](assets/figures/mobility-interface-prototypes.en.svg)
 
+### System spatial options: decide the public baseline before adding modes
+
+The interface prototypes answer how a person enters, hands over and exits. This section puts the three interfaces back into one system comparison so that a polished node board is not mistaken for a complete transport plan. `mobility-spatial-options.json` compares four alternatives across five review scales (`1:5000` → `1:50`), five public rights and five hard gates: it rejects S0, which externalizes conflict to public space; it keeps S2 air mobility as a conditional layer above the ground baseline; and it treats S3 as the ground fallback for rain, outage and maintenance. All four alternatives cover the three key areas, but only S1 **Ground-first multimodal** earns entry to professional design review. That status is not authorization, construction, capacity, performance or ranking [data:visual/assets/mobility-spatial-options.json] [source:BEIJING-14TH-TRANSPORT-PLAN] [depth:three_key_area_detailed_design].
+
+| Option | Spatial decision | Review status | Return when evidence is missing |
+| --- | --- | --- | --- |
+| S0 Unmanaged peak | Cars, loading and feeders compete for one curb; public crossing and accessibility become residual space | **REJECT** | Return to P0 to inventory ownership, right-of-way, public routes and receivers |
+| S1 Ground-first multimodal | Rail/bus/walking-accessibility form the base; each node has a staffed receiver, time-windowed curb and withdrawal path | **ADVANCE_TO_DESIGN_REVIEW** | Freeze the feeder, keep the ordinary route and return to P0 |
+| S2 Air-first feeder | Keep only a ground–air transfer relationship; airspace, weather, insurance, noise, emergency and operator duties remain unverified | **REVISE** | Return to S1; the air layer cannot displace public interchange |
+| S3 Extreme-weather ground fallback | During rain, outage and maintenance, switch to rail/bus, human, paper and telephone routes; curb states become human-only/emergency | **REVISE** | Return to S1 as the ground system's resilience layer |
+
+The five scales carry one decision from corridor to handoff: `1:5000` tests corridor mode choice, `1:2000` the three key-area connections, `1:500` station/curb/community relationships, `1:100` the ordinary route and protected conflict zone, and `1:50` only the staffed handoff, appeal, pause and withdrawal detail. They are review-level labels; `numeric_dimensions=null`, and no construction dimension may be inferred. The five public rights must also be read back separately: ordinary access, accessibility and care, rail/bus protection, appeal and pause, and privacy and exit. The runner's positive control and six negative fixtures reject a missing option, selecting REJECT, numeric dimensions, missing rights, a field claim or an ordinary-route bypass. A pass proves only that the comparison contract is replayable offline; it proves no field outcome [data:visual/assets/run-mobility-spatial-options.js] [data:visual/assets/test-mobility-spatial-options.js].
+
+![System spatial options: four alternatives, five scales and five public rights](assets/figures/mobility-spatial-options.en.svg)
+
 ### One-day continuity receipt | One ordinary service chain across four windows
 
 A door-to-door chain must remain understandable beyond one peak period. The package places weekday arrival, daily access, evening transfer and outage or weather fallback in one receipt. Rail, bus, walking, human, telephone and paper routes stay available first; AI only groups demand, explains conflicts and prepares a rollback list. Missing a receiver, an equivalent route or a dated restoration record keeps the service at `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation].

@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.4 - 2026-08-21
+
+- Added a bilingual system-level spatial-options board comparing four alternatives: unmanaged peak, ground-first multimodal, air-first feeder and extreme-weather ground fallback.
+- Added five review scales from `1:5000` to `1:50`, five public-rights rows and five hard-gate results; S1 advances only to professional design review while the package remains `HOLD`.
+- Added a deterministic runner with one positive control and six fail-closed negative fixtures; no numeric construction dimensions, authorization, field claims or performance results were added.
+
 ## v2.3 - 2026-08-21
 
 - Added three bilingual spatial interface prototypes: Zhongzhiyuan arrival/loading forecourt, AI Origin care/human-continuity loop, and Dazhongsi rail-to-curb transfer porch.
