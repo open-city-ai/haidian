@@ -222,6 +222,14 @@ A high-scoring proposal cannot only describe the desired endpoint. It must show 
 
 ![First 168 hours and first 12 weeks release chain](assets/figures/open-pulse-release-chain.en.svg)
 
+### v2.2 Three civic release interfaces: put the time chain into reachable spatial nodes
+
+The time contract needs reachable, explainable and reversible spatial interfaces; otherwise it remains an operations slogan. `visual/assets/open-pulse-release-interface-prototypes.json` turns three key areas into one four-state prototype set: Zhongzhiyuan is the civic release porch, AI Origin is the consent-and-care fallback room, and Dazhongsi is the public version and appeal hall. Each shows ordinary `BASE` service first, then permits a bounded `BOOST`; `BLACKOUT` freezes the AI layer and returns to ordinary service, while `BEQUEST` keeps only cleared, de-identified learning.
+
+![Three civic release interface prototypes](assets/figures/open-pulse-release-interfaces.en.svg)
+
+The prototypes express a conceptual 1:500 site relationship and 1:50 public-interface relationship. They do not assert construction dimensions, capacity, permits or field observation. All three retain walk-in access, a staffed counter or receiver, paper/voice explanation, a public status board, appeal and maintenance receipts; AI is limited to explaining version differences, preparing plain-language notices or organizing bounded learning. Four shared gates apply: `BASE` must be visible first; a human receiver and maintenance role must exist before release; the public must see status, refusal reason, appeal path and return action; after `BLACKOUT`, the system must return to `BASE`, and `BEQUEST` must not preserve uncleared personal traces. Authorization, field observations, baseline, performance and named operational owners remain 0/0/`unknown`/empty/to-be-confirmed. The proposal does not present the interface prototypes as deployment results. `run-open-pulse-release-interface-prototypes.js` and its negative fixtures provide fail-closed checks for the three nodes, reversible state order, ordinary-service-first rule, human ownership, stop conditions and zero field claims.
+
 ### First 168 hours: prove that AI has not displaced ordinary service
 
 | Window | Owner | Evidence that must exist | Stop condition | Public receipt |

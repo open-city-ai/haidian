@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "OPEN-PULSE-RELEASE-INTERFACES-01",
+  "package": "jingzhang-open-pulse",
+  "decision": "HOLD",
+  "design_only": true,
+  "boundary": {
+    "official_boundary": false,
+    "geometry_role": "provisional_constraint",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "operational_status": "not_authorized_not_run",
+    "performance_results": null,
+    "public_rank_claim": false
+  },
+  "scale_contract": {
+    "conceptual_site_scale": "1:500",
+    "public_interface_scale": "1:50",
+    "scale_status": "design_reference_only",
+    "numeric_dimensions": null,
+    "dimension_rule": "No construction dimension, capacity, permit or field performance is inferred from this concept board."
+  },
+  "interfaces": [
+    {
+      "id": "I-ZHONGZHIYUAN-RELEASE-PORCH",
+      "key_area": "zhongzhiyuan_ai_acceleration_area",
+      "name_zh": "众智园：公共版本发布前厅",
+      "name_en": "Zhongzhiyuan: Civic Release Porch",
+      "state_sequence": ["BASE", "BOOST", "BLACKOUT", "BEQUEST"],
+      "ordinary_service_first": ["walk_in", "staffed_service", "paper_or_voice", "public_route"],
+      "ai_role": "show_review_status_and_grouped_test_window_only",
+      "components": ["public_status_board", "staffed_receipt_desk", "ordinary_route", "test_window_marker", "maintenance_return"],
+      "owner": "named_site_operator_to_be_confirmed",
+      "evidence_required": ["dated_review_receipt", "ordinary_route_walkthrough", "maintenance_owner", "public_stop_notice"],
+      "stop_if": ["status_not_explainable", "ordinary_route_missing", "staffed_receiver_missing", "maintenance_window_missed"]
+    },
+    {
+      "id": "I-AIORIGIN-CONSENT-ROOM",
+      "key_area": "beijing_ai_origin_community",
+      "name_zh": "AI 原点：同意—照护回退室",
+      "name_en": "AI Origin: Consent and Care Fallback Room",
+      "state_sequence": ["BASE", "BOOST", "BLACKOUT", "BEQUEST"],
+      "ordinary_service_first": ["human_counter", "telephone", "paper", "walk_in", "accessible_route"],
+      "ai_role": "prepare_explainers_and_anonymized_learning_notes_only",
+      "components": ["human_counter", "consent_notice", "care_pause", "accessible_exit", "appeal_box"],
+      "owner": "named_public_or_community_service_role_to_be_confirmed",
+      "evidence_required": ["consent_boundary", "human_equivalent", "accessible_route_receipt", "appeal_readback"],
+      "stop_if": ["digital_precondition", "consent_unclear", "care_fallback_missing", "appeal_unowned"]
+    },
+    {
+      "id": "I-DAZHONGSI-VERSION-HALL",
+      "key_area": "dazhongsi_ai_industry_cluster",
+      "name_zh": "大钟寺：公共版本与申诉厅",
+      "name_en": "Dazhongsi: Public Version and Appeal Hall",
+      "state_sequence": ["BASE", "BOOST", "BLACKOUT", "BEQUEST"],
+      "ordinary_service_first": ["public_display", "staffed_wayfinding", "public_crossing", "paper_notice", "event_reset"],
+      "ai_role": "compare_release_options_and_prepare_plain_language_notice_only",
+      "components": ["version_wall", "plain_language_notice", "staffed_appeal", "public_crossing", "event_reset_marker"],
+      "owner": "named_public_space_and_event_role_to_be_confirmed",
+      "evidence_required": ["version_diff_receipt", "public_notice", "appeal_response", "return_to_normal_record"],
+      "stop_if": ["public_notice_missing", "appeal_unanswered", "crossing_displaced", "return_to_normal_unproven"]
+    }
+  ],
+  "shared_review_gates": [
+    {"id": "G1", "label": "BASE_VISIBLE", "pass": "The ordinary public service is visible before BOOST or any AI layer."},
+    {"id": "G2", "label": "RECEIVER_NAMED", "pass": "A human receiving and maintenance role is identified before a release window."},
+    {"id": "G3", "label": "NOTICE_AND_APPEAL", "pass": "The public can read the status, refusal reason, appeal path and return action."},
+    {"id": "G4", "label": "BLACKOUT_RETURN", "pass": "BLACKOUT freezes AI and returns to BASE; BEQUEST stores only cleared, bounded learning."}
+  ],
+  "field_claims": []
+}
