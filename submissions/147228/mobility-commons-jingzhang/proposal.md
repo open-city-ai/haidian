@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把地铁、公交、自行车、步行/无障碍、汽车与停车装卸纳入同一张可审计的时段路缘账本，并把企业—居民对外通勤、人员动线和综合仿真接上；未来空中出行只作为受审批、可撤回、地面接驳优先的实验接口，三处重点区以五道硬门逐步验证。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.7"
+iteration: "v1.8.1"
 ---
 
 # 京张共行环：企业—居民交通共益系统
@@ -105,6 +105,20 @@ iteration: "v1.7"
 | 大钟寺 AI 产业聚集区 | 轨道换乘、企业访客、停车装卸、活动日人流 | 站口—骑行停放—步行穿越—企业入口统一导向；路缘按分钟级窗口清场 | 在工作日高峰与活动日做轨道接驳、装卸和居民归家分流演练 | 不占消防/无障碍通道；共享自动驾驶不替代轨道，不承诺社会道路许可 |
 
 每个重点区都要有企业责任人、社区/公共服务责任人、交通专业复核人和维护责任人，记录目标、输入、停止条件和回读证据；现阶段不声称已有合作方或运营许可 [depth:three_key_area_detailed_design] [source:HAIDIAN-ROAD-PARKING-TENDER-2026]。
+
+### 三处接口的回读顺序
+
+三处重点区共用一条候选服务链，但各自接收不同责任。众智园先核对企业到岗与装卸分母，AI 原点社区先核对分组日常服务和无障碍等价路径，大钟寺先核对班次、过街和路缘观察窗。每个接口都给出拒绝条件和人工回退，缺少现场记录时保持 `HOLD` [data:visual/assets/mobility-route-service-atlas.json] [depth:three_key_area_detailed_design]。
+
+| 接口 | 现场回读分母 | 无 AI 等价路径 | 证据缺失时的动作 |
+| --- | --- | --- | --- |
+| 众智园到岗与装卸 | 到岗尝试、可用路缘分钟、受保护消防/无障碍分钟 | 纸面登记、现场引导、公共交通 | 拒收预约，冻结并回到公共交通/人工台 |
+| AI 原点社区日常到达 | 分组尝试、连续路线段、人工服务窗 | 步入、电话、纸面、公共交通 | 关闭推荐，保持值守路线并回到 P0 |
+| 大钟寺轨道换乘 | 班次、换乘观察窗、过街窗、活动日路缘分钟 | 时刻表、站内人工台、公共过街信息 | 删除 feeder 需求，保持公共路线并人工引导 |
+
+这张图是设计接口图，不是现状地图。它把三处重点区、服务对象、分母、拒绝和回退放在同一页；真实路线观察、责任交接和授权数量仍为 0，待正式边界与现场审计补齐 [data:visual/assets/mobility-route-service-atlas.json]。
+
+![三处重点区的交通服务接口、回读分母与人工回退](assets/figures/mobility-route-service-atlas.svg)
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
