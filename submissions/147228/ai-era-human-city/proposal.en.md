@@ -9,7 +9,7 @@ translation_of: "proposal.md"
 license: "CC-BY-4.0"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v2.1"
+iteration: "v2.4"
 ---
 
 # From an AI Showcase to a City for People in the AI Era
@@ -29,6 +29,14 @@ The first G0 acceptance unit starts with a complete ordinary-person journey. The
 | Independent replay and decide expand/repair/exit | Evidence cabinet, version board and public observer seat | Replay difference, worst-group result and decision record | Return to the paper protocol if it cannot be replayed |
 
 The package claims only a G0 conceptual evidence chain; G1/G2 still require field work, formal data, professional review and authorization. The five-step chain cross-checks the ten scenario cards, human fallback and implementation matrix without turning concept metrics into service performance [data:geometry/constraints.geojson#SCN-06] [metric:scenario_g0_count]. The offline runner now binds four existing routes to real GeoJSON features: intergenerational learning, civic API, night human service, and reskilling each have an ordinary-person entry. It requires 5/5 journey steps, 5/5 rollback steps, 6/6 acceptance checks, and 4/4 resolving routes; five failing fixtures stop, reject a data call, freeze night expansion, hold automated routing, or return to G0, while three ordinary or human alternatives continue. This proves only local structural replay, not field service, accessibility, staffing, or safety outcomes [data:visual/assets/ai-era-ordinary-journey-evidence.json] [metric:scenario_g0_count].
+
+### v2.4 Four ordinary-person route cards: put G0 handoffs on a reviewer-readable page
+
+The sequence and JSON fields are not enough; reviewers also need one page showing how four routes enter the same ordinary service, human takeover, appeal/withdrawal and independent replay contract. `visual/assets/ai-era-g0-journey-atlas.json` and its bilingual boards bind intergenerational learning, the civic API, night human service and reskilling to package scenarios and provisional spatial anchors. They are not existing routes, service commitments or engineering dimensions. Each route preserves a paper, voice, staffed or physical-wayfinding equivalent before any bounded conceptual assist; missing a human role, exit path or independent replay returns the state to G0/HOLD.
+
+![Figure 11: G0 ordinary-person journey receipt and four routes](assets/figures/ai-era-g0-journey-atlas.en.svg)
+
+The board puts the five journey steps, five rollback steps, six acceptance checks, four routes, negative replay 5/5, controls 3/3 and network calls 0 on one review surface. These are structural readouts from an offline synthetic replay, not resident experience, accessibility certification, staffing results or AI performance. `authorizations=0`, `field_data=false`, `baseline=unknown`, `result_status=not_run`, `performance_results=null` and `operational_status=not_authorized_not_run` remain unchanged. `run-ai-era-g0-journey-atlas.js` and the test inspect reference resolution, route coverage, five-step order and the G0 boundary only; they do not assign an official score or replace a professional field gate.
 
 ## Design Basis and Source List
 

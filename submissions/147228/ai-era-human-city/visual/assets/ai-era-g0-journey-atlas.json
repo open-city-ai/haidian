@@ -1,0 +1,80 @@
+{
+  "schema_version": "ai-era-g0-journey-atlas-v1",
+  "atlas_id": "AI-ERA-G0-JOURNEY-001",
+  "contract_ref": "visual/assets/ai-era-ordinary-journey-contract.json#AE-ORDINARY-JOURNEY-001",
+  "evidence_ref": "visual/assets/ai-era-ordinary-journey-evidence.json",
+  "claim_level": "local_synthetic_tabletop",
+  "status": {
+    "gate": "G0",
+    "decision": "HOLD",
+    "authorizations": 0,
+    "field_data": false,
+    "baseline": "unknown",
+    "result_status": "not_run",
+    "performance_results": null,
+    "operational_status": "not_authorized_not_run"
+  },
+  "route_cards": [
+    {
+      "route_id": "ROUTE-01",
+      "scenario_id": "SCN-03",
+      "persona_ids": ["P-01", "P-06"],
+      "phase_id": "PHASE-01",
+      "spatial_refs": ["PUBLIC-03", "LAND-01"],
+      "ordinary_equivalent": "paper, voice, staffed or physical wayfinding route"
+    },
+    {
+      "route_id": "ROUTE-02",
+      "scenario_id": "SCN-06",
+      "persona_ids": ["P-05"],
+      "phase_id": "PHASE-02",
+      "spatial_refs": ["SCN-06", "SERVICE-ZONE-02"],
+      "ordinary_equivalent": "staffed public-service route without a data call"
+    },
+    {
+      "route_id": "ROUTE-03",
+      "scenario_id": "SCN-04",
+      "persona_ids": ["P-03"],
+      "phase_id": "PHASE-01",
+      "spatial_refs": ["PUBLIC-04", "LAND-07"],
+      "ordinary_equivalent": "night service with a staffed safety review"
+    },
+    {
+      "route_id": "ROUTE-04",
+      "scenario_id": "SCN-02",
+      "persona_ids": ["P-02"],
+      "phase_id": "PHASE-01",
+      "spatial_refs": ["PUBLIC-02", "LAND-03"],
+      "ordinary_equivalent": "choice-led reskilling advice with human consultation"
+    }
+  ],
+  "journey_steps": [
+    {"id": "J-01", "label_zh": "进入并选择", "label_en": "Enter and choose", "evidence": "route and ordinary option"},
+    {"id": "J-02", "label_zh": "请求有限服务", "label_en": "Request bounded service", "evidence": "purpose and data scope"},
+    {"id": "J-03", "label_zh": "人工接管或冻结", "label_en": "Take over or freeze", "evidence": "stop before unsafe continuation"},
+    {"id": "J-04", "label_zh": "申诉撤回并离开", "label_en": "Appeal, withdraw and leave", "evidence": "paper, voice or staffed fallback"},
+    {"id": "J-05", "label_zh": "独立复演再决定", "label_en": "Replay before decision", "evidence": "expand, repair or exit"}
+  ],
+  "negative_replay": {
+    "declared": 5,
+    "replayed": 5,
+    "decision": "reject_or_return_to_g0",
+    "field_observations": 0
+  },
+  "positive_control": {
+    "declared": 3,
+    "replayed": 3,
+    "ordinary_route_remains": true
+  },
+  "writeback_fields": [
+    "scenario_id",
+    "route_id",
+    "choice_state",
+    "data_purpose",
+    "takeover_reason",
+    "appeal_id",
+    "withdrawal_state",
+    "replay_difference",
+    "next_review_state"
+  ]
+}
