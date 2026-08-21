@@ -137,6 +137,8 @@ iteration: "v1.8.1"
 
 `mobility-continuity-receipt.json` 固定 4 个时段、4 个交接缝、12 个回执字段、4 个正向控制和 6 个负例。`run-mobility-continuity-receipt.js` 与负例回归只证明合同能够离线复核，不能证明现场连续性；当前授权为 0，现场观察为 0，结果保持 `not_run`，`performance_results=null`。
 
+为了让“AI 拔掉后还剩什么”成为空间验收，而不是一句口号，三个重点区各自绑定一份 `BASE → BOOST → BLACKOUT → BEQUEST` 公共基线合同：众智园留下受保护路线、纸面路缘账和维护卡；AI 原点留下静态/触觉路线卡、人工服务目录和更正记录；大钟寺留下换乘图、活动日路缘规程和公开撤回通知。五段 P0—P4 只规定调试顺序，仍没有现场授权。supplemental runner 检查三处原型、四种状态、五段阶段和 HOLD 边界；通过只证明合同完整，不证明真实路线、人员、容量或绩效 [data:visual/assets/mobility-public-baseline-contract.json] [data:visual/assets/run-mobility-public-baseline-contract.js] [data:visual/assets/test-mobility-public-baseline-contract.js]。
+
 ## AI 创新生态、人才画像与 AI+ 场景
 
 ### 六类参与者与三项产业测试
