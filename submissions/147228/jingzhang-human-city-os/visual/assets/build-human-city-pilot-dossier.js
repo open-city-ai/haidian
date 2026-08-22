@@ -28,7 +28,7 @@ function header(code,titleValue,subtitle,lang){let s=text(72,63,code,18,{fill:C.
 function nodeBoard(lang){
   const zh=lang==='zh'; const titleValue=zh?'一个公共服务节点，三张可被追问的图':'One public-service node, three drawings that can be challenged';
   let s=start(titleValue)+header('HUMAN CITY OS / INCLUSIVE SERVICE NODE / 01',titleValue,zh?'ALT-C：普通入口、低位人工台和退出路径先于可撤回 AI 服务岛':'ALT-C: ordinary entry, low staffed desk and exit precede the removable AI island',lang);
-  s+=rect(72,255,1045,930,{fill:C.white,stroke:C.green,sw:3,radius:24})+text(105,305,zh?'1:500 平面设计目标':'1:500 PLAN DESIGN TARGET',zh?27:23,{weight:760})+text(1080,305,'30.0 m × 18.0 m',20,{anchor:'end',fill:C.green,weight:700});
+  s+=rect(72,255,1045,930,{fill:C.white,stroke:C.green,sw:3,radius:24})+text(105,305,zh?'1:500 层级平面示意｜非打印比例':'1:500 PLAN-LEVEL SCHEMATIC · NOT PRINT SCALE',zh?25:20,{weight:760})+text(1080,305,zh?'未落位 30.0×18.0 m':'UNLOCATED 30.0×18.0 m',zh?17:15,{anchor:'end',fill:C.orange,weight:700});
   const px=130,py=370,pw=900,ph=540,scale=30;
   s+=rect(px,py,pw,ph,{fill:'#f9faf8',stroke:C.ink,sw:4,radius:0});
   s+=rect(px,py,2.4*scale,ph,{fill:C.purpleSoft,stroke:C.purple,sw:2,radius:0})+text(px+38,py+ph/2,zh?'2.4 m 维护':'2.4 m MAINT.',16,{anchor:'middle',fill:C.purple,weight:700});
@@ -38,23 +38,23 @@ function nodeBoard(lang){
   s+=rect(px+255,py+205,6*scale,4*scale,{fill:'#eef2f6',stroke:C.muted,sw:2,radius:8})+wrap(px+345,py+248,zh?'低刺激等候 6×4 m':'LOW-STIMULATION WAIT 6×4 m',zh?16:13,zh?10:20,{anchor:'middle',fill:C.muted,weight:700,maxRows:3});
   const ix=px+570,iy=py+95; s+=rect(ix-60,iy-60,8*scale,7*scale,{fill:C.orangeSoft,stroke:C.orange,sw:3,dash:'12 8',radius:10})+text(ix+60,iy-26,zh?'2.0 m 净空环':'2.0 m CLEAR RING',15,{anchor:'middle',fill:C.orange,weight:700});
   s+=rect(ix,iy,4*scale,3*scale,{fill:C.orange,stroke:C.ink,sw:3,radius:8})+wrap(ix+60,iy+40,zh?'可撤回 AI 岛 4×3 m':'REMOVABLE AI ISLAND 4×3 m',zh?16:13,zh?9:17,{anchor:'middle',fill:C.white,weight:700,maxRows:3});
-  s+=`<circle cx="${px+245}" cy="${py+118}" r="${1.5*scale/2}" fill="none" stroke="${C.green}" stroke-width="3" stroke-dasharray="8 6"/>`+text(px+245,py+124,'Ø1.50 m',14,{anchor:'middle',fill:C.green,weight:700});
+  s+=`<circle cx="${px+385}" cy="${py+118}" r="${1.5*scale/2}" fill="none" stroke="${C.green}" stroke-width="3" stroke-dasharray="8 6"/>`+text(px+385,py+124,'Ø1.50 m',14,{anchor:'middle',fill:C.green,weight:700});
   s+=dim(px,py-24,px+pw,py-24,'30.0 m')+dim(px-24,py,px-24,py+ph,'18.0 m',true);
   s+=text(105,955,zh?'已消解冲突':'RESOLVED CONFLICTS',16,{fill:C.green,weight:800});
   const conflicts=zh?['人机零交叉：AI 岛为尽端支路','排队袋不占 3.0 m 普通路径','维护从西/北独立进入','线缆不跨越普通路径','停电只隔离 AI 岛']:['Zero ordinary-machine crossings','Queue pocket stays off 3.0 m route','Maintenance enters west/north','No cable crosses ordinary route','Blackout isolates AI island only'];
   conflicts.forEach((v,i)=>{const y=990+i*35;s+=`<circle cx="118" cy="${y-5}" r="7" fill="${i===4?C.orange:C.green}"/>`+text(140,y,v,zh?15:13,{weight:600});});
-  s+=rect(105,1152,975,92,{fill:C.orangeSoft,stroke:C.orange,sw:2,radius:12})+wrap(132,1185,zh?'标准校准：内部通行≥0.90 m、轮椅回转 Ø≥1.50 m、低位台面 0.70–0.85 m；本图取更宽目标，仍须专业复核。':'Calibration: internal route ≥0.90 m, wheelchair turn Ø≥1.50 m, low counter 0.70–0.85 m. Wider targets still require professional review.',zh?15:14,zh?50:90,{fill:C.ink,maxRows:2});
+  s+=rect(105,1152,975,92,{fill:C.orangeSoft,stroke:C.orange,sw:2,radius:12})+wrap(132,1185,zh?'规范交叉校准：通道≥1.20 m（人员密集≥1.80 m）；手动门≥0.90 m / 自动门≥1.00 m。低位与回转另见浙江二次参照；均待专业复核。':'Cross-check: route >=1.20 m (crowded >=1.80 m); manual/automatic doors >=0.90/1.00 m. Low counter/turn: secondary Zhejiang reference. Professional review required.',zh?15:13,zh?52:82,{fill:C.ink,maxRows:2});
 
-  s+=rect(1150,255,1178,455,{fill:C.white,stroke:C.blue,sw:3,radius:24})+text(1185,305,zh?'1:100 剖面｜通行、服务、设备与维护不抢一条线':'1:100 SECTION · MOVEMENT, SERVICE, EQUIPMENT + MAINTENANCE',zh?26:20,{weight:760});
+  s+=rect(1150,255,1178,455,{fill:C.white,stroke:C.blue,sw:3,radius:24})+text(1185,305,zh?'1:100 层级剖面示意｜非打印比例':'1:100 SECTION-LEVEL SCHEMATIC · NOT PRINT SCALE',zh?25:19,{weight:760});
   const sx=1200,base=625; s+=line(sx,base,2245,base,{stroke:C.ink,sw:5})+line(sx,base-255,2245,base-255,{stroke:C.ink,sw:3});
   s+=rect(sx+15,base-90,235,90,{fill:C.greenSoft,stroke:C.green,sw:2,radius:0})+text(sx+132,base-38,zh?'3.0 m 普通通行':'3.0 m ORDINARY',15,{anchor:'middle',fill:C.green,weight:700});
   s+=rect(sx+270,base-132,185,132,{fill:C.blueSoft,stroke:C.blue,sw:2,radius:0})+text(sx+362,base-82,zh?'0.75 m 低位台':'0.75 m LOW DESK',14,{anchor:'middle',fill:C.blue,weight:700})+text(sx+362,base-38,'0.75×0.65×0.45 m',12,{anchor:'middle',fill:C.blue});
-  s+=`<circle cx="${sx+150}" cy="${base-92}" r="54" fill="none" stroke="${C.green}" stroke-width="3" stroke-dasharray="7 5"/>`+text(sx+150,base-88,'Ø1.50 m',13,{anchor:'middle',fill:C.green,weight:700});
+  s+=`<circle cx="${sx+150}" cy="${base-165}" r="54" fill="none" stroke="${C.green}" stroke-width="3" stroke-dasharray="7 5"/>`+text(sx+150,base-161,'Ø1.50 m',13,{anchor:'middle',fill:C.green,weight:700});
   s+=rect(sx+540,base-155,320,155,{fill:C.orangeSoft,stroke:C.orange,sw:3,dash:'10 7',radius:4})+rect(sx+625,base-115,150,115,{fill:C.orange,stroke:C.ink,sw:2,radius:4})+text(sx+700,base-62,zh?'可撤 AI 岛':'REMOVABLE AI',14,{anchor:'middle',fill:C.white,weight:700});
   s+=rect(sx+900,base-120,125,120,{fill:C.purpleSoft,stroke:C.purple,sw:2,radius:0})+wrap(sx+962,base-82,zh?'2.4 m 维护/设备':'2.4 m MAINT.',13,zh?7:12,{anchor:'middle',fill:C.purple,weight:700,maxRows:2});
   s+=dim(sx-25,base-255,sx-25,base,'3.60 m',true)+text(1185,675,zh?'BLACKOUT：在设备脊断电断数；普通路径、人工、电话、纸面和双出口保持。':'BLACKOUT: isolate power/data at the utility spine; retain ordinary, staffed, phone, paper and both exits.',zh?15:14,{fill:C.orange,weight:700});
 
-  s+=rect(1150,745,1178,500,{fill:C.white,stroke:C.gold,sw:3,radius:24})+text(1185,795,zh?'1:50 节点与放大｜把“可撤回”落到构造动作':'1:50 DETAILS · TURN REVERSIBILITY INTO CONSTRUCTION ACTIONS',zh?25:19,{weight:760});
+  s+=rect(1150,745,1178,500,{fill:C.white,stroke:C.gold,sw:3,radius:24})+text(1185,795,zh?'1:50 层级接口示意｜非打印比例':'1:50 INTERFACE-LEVEL SCHEMATIC · NOT PRINT SCALE',zh?25:19,{weight:760});
   const cards=zh?[
     ['低位人工台','台面 0.75 m｜膝部净空 0.75×0.65×0.45 m','轮椅回转 Ø1.50 m；前方不设门槛'],
     ['人工停用控制','操作中心 0.95 m｜标准校准 0.85–1.10 m','一键隔离 AI 岛，不切断人工/电话'],
@@ -67,7 +67,7 @@ function nodeBoard(lang){
     ['DOOR + QUEUE POCKET','Door target 1.00 m · pocket 2.40×4.00 m','Door swing, turn and exit remain separate']
   ];
   cards.forEach((c,i)=>{const col=i%2,row=Math.floor(i/2),x=1185+col*555,y=835+row*176;s+=rect(x,y,520,145,{fill:i===2?C.orangeSoft:i===0?C.greenSoft:'#f7f8fa',stroke:i===2?C.orange:i===0?C.green:C.line,sw:2,radius:12})+text(x+22,y+33,c[0],zh?17:15,{fill:i===2?C.orange:i===0?C.green:C.ink,weight:800})+text(x+22,y+70,c[1],zh?15:14,{weight:700})+wrap(x+22,y+103,c[2],zh?14:13,zh?28:52,{fill:C.muted,maxRows:2});});
-  s+=rect(1185,1190,1108,72,{fill:C.navy,stroke:C.navy,radius:12})+text(1212,1221,zh?'仍缺：授权测绘、消防/无障碍签字、公众走查、权属与市政核验。':'STILL MISSING: authorised survey, fire/accessibility sign-off, public walkthrough, title + utilities.',zh?15:14,{fill:C.white,weight:700})+text(1212,1248,'0 authorisations · 0 field observations · release_capacity=null · HOLD',14,{fill:'#a9c4db'});
+  s+=rect(1185,1190,1108,72,{fill:C.navy,stroke:C.navy,radius:12})+text(1212,1221,zh?'仍缺：入口/街道/建筑边与标高落位、消防/无障碍签字、公众走查、权属和市政点位。':'STILL MISSING: located entrance/street/building edges + levels, sign-offs, walkthrough, title and utilities.',zh?14:13,{fill:C.white,weight:700})+text(1212,1248,'verified_anchor_count=0 · field observations=0 · release_capacity=null · HOLD',14,{fill:'#a9c4db'});
   return s+'</g></svg>\n';
 }
 
@@ -100,7 +100,7 @@ function deliveryBoard(lang){
   const slaZh=['普通路径 + 人工/电话/纸面服务始终可完成','停用触发后 2 分钟内隔离 AI 岛','投诉 1 工作日确认、5 工作日给状态','开闭场签署路径/电话/纸面/断电/维护检查','无障碍/消防/隐私/同意重大失败即归零'];
   dc.service_level_targets.forEach((item,i)=>{const y=920+i*52;s+=`<circle cx="1248" cy="${y-5}" r="15" fill="${i===4?C.red:C.green}"/>`+text(1248,y,String(i+1),12,{anchor:'middle',fill:C.white,weight:800})+wrap(1278,y-8,zh?slaZh[i]:item.target,zh?14:13,zh?48:82,{fill:C.white,maxRows:2,gap:16});});
   s+=line(1230,1182,2290,1182,{stroke:'#54708b',sw:2})+text(1230,1215,zh?'退役：断电拆岛、封接口、恢复地面、保留普通服务、通知公众、关闭投诉并归档。':'RETIRE: isolate/remove island, cap interfaces, restore floor, retain ordinary service, notify, close complaints, archive.',zh?13:13,{fill:'#f0ce7b',weight:700});
-  s+=rect(72,1270,2256,55,{fill:C.orangeSoft,stroke:C.orange,sw:2,radius:10})+text(100,1304,zh?'放行仍需：具名所有者、正式几何、专业签字、知情同意公众走查、成本确认、保险和独立决定；当前均未确认。':'RELEASE STILL REQUIRES named owner, verified geometry, sign-offs, consented walkthrough, confirmed cost, insurance and independent decision; none is confirmed.',zh?14:13,{fill:C.ink,weight:700});
+  s+=rect(72,1270,2256,55,{fill:C.orangeSoft,stroke:C.orange,sw:2,radius:10})+text(100,1304,zh?'预走查协议已写但未授权：五任务、0 招募、0 参与者、结果 null；具名所有者、正式几何、专业签字、成本、保险和独立决定仍缺。':'WALKTHROUGH PROTOCOL AUTHORED, NOT AUTHORISED: 5 tasks, 0 recruitment, 0 participants, result=null; owner, geometry, sign-offs, cost, insurance and decision remain missing.',zh?13:12,{fill:C.ink,weight:700});
   return s+'</g></svg>\n';
 }
 

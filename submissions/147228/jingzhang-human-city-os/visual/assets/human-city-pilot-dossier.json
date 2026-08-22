@@ -19,16 +19,20 @@
     "public_promise_en": "Ordinary entry, a low staffed desk, telephone and paper service, appeal and exit always precede a removable AI service island."
   },
   "dimension_rule": {
-    "status": "participant_authored_design_target_calibrated_to_public_standard",
+    "status": "participant_authored_design_target_cross_checked_against_public_standards",
     "must_recalculate": true,
-    "calibration_source_id": "GB-55019-2021",
+    "calibration_source_ids": ["GB-55019-2021", "ZJ-ACCESSIBLE-RESIDENTIAL-2022"],
     "calibration": {
-      "internal_accessible_route_min_m": 0.9,
+      "accessible_route_clear_width_min_m": 1.2,
+      "crowded_public_accessible_route_clear_width_min_m": 1.8,
+      "new_or_extended_manual_door_clear_width_min_m": 0.9,
+      "automatic_door_clear_width_min_m": 1.0,
       "wheelchair_turning_diameter_min_m": 1.5,
       "low_counter_surface_range_m": [0.7, 0.85],
       "low_counter_knee_space_m": [0.75, 0.65, 0.45],
       "control_panel_height_range_m": [0.85, 1.1]
     },
+    "source_scope": "GB 55019-2021 clauses 2.2.2, 2.5.4, 2.5.5 and 3.1.6 calibrate route, door and in-facility control targets. Zhejiang DBJ33/T 1267-2022 clauses 7.6.2-7.6.3 calibrate the low service surface, knee/toe space and turning space. Applicability to this unlocated node requires professional confirmation.",
     "recalculation_triggers": [
       "authorized survey or CAD boundary",
       "verified title and public-access interface",
@@ -41,6 +45,21 @@
   },
   "spatial_dossier": {
     "scale_chain": ["1:500", "1:100", "1:50"],
+    "scale_representation": "schematic_level_not_print_scale",
+    "drawing_scale_disclaimer": "The ratios identify design-review levels only. The same board is fitted to A3 and A0 and is not a dimensionally reliable print-scale drawing.",
+    "site_fit": {
+      "status": "unlocated_parameter_envelope",
+      "verified_anchor_count": 0,
+      "required_to_locate": [
+        "authorised site boundary and title",
+        "surveyed ordinary entrance and street edge",
+        "surveyed building edge and finished levels",
+        "named section cut and fire-escape relation",
+        "verified power, data, drainage and maintenance points",
+        "professional accessibility and fire review"
+      ],
+      "forbidden_upgrade": "The 30 m by 18 m envelope must not be read as a selected footprint, address, entrance, street interface, level, utility point or fire-escape solution."
+    },
     "plan_1_500": {
       "envelope_m": [30, 18],
       "orientation": "ordinary route along the south edge; separate maintenance access along the west and north edges",
@@ -64,6 +83,7 @@
     "section_1_100": {
       "clear_height_m": 3.6,
       "door_clear_width_m": 1.0,
+      "door_type": "unconfirmed_manual_or_automatic_design_target",
       "wheelchair_turning_diameter_m": 1.5,
       "bands": [
         {"id": "S01", "name_zh": "普通通行与轮椅回转", "name_en": "ordinary movement and wheelchair turn", "width_m": 3.0, "state": "design_target"},
@@ -162,6 +182,50 @@
     "acceptance_gate": "Release requires an authorised owner, verified geometry, professional sign-offs, consented anonymised walkthrough evidence, cost confirmation and an independent decision record.",
     "rollback": "De-energise and remove the AI island, cap interfaces, restore finishes, retain ordinary, staffed, telephone and paper service, notify affected users, close complaints and archive the version record."
   },
+  "pre_field_walkthrough_protocol": {
+    "status": "authored_not_authorized_not_run",
+    "participant_count": 0,
+    "recruitment_status": "not_started",
+    "consent": {
+      "plain_language_before_task": true,
+      "non_ai_participation_option": true,
+      "withdrawal_without_penalty": true,
+      "no_continuous_identity_trace": true,
+      "recording_off_by_default": true
+    },
+    "participant_mix_rule": "Before recruitment, an independent accessibility lead and community observer must set and publish a justified mix covering wheelchair and mobility-aid users, blind or low-vision users, Deaf or hard-of-hearing users, older adults, low-digital-confidence users, carers, and ordinary first-time visitors. No quota or participant is claimed here.",
+    "tasks": [
+      {"id": "WT-01", "task": "arrive through the ordinary route and find both exits without entering the AI island", "human_baseline": "staffed wayfinding and static signs"},
+      {"id": "WT-02", "task": "complete one service request at the low staffed desk with a paper receipt", "human_baseline": "staffed and paper-only completion"},
+      {"id": "WT-03", "task": "complete the same request by telephone or device-free service", "human_baseline": "telephone and staffed completion"},
+      {"id": "WT-04", "task": "trigger a simulated AI blackout and verify ordinary movement, takeover and complaint entry", "human_baseline": "island isolated; staff, telephone and paper remain"},
+      {"id": "WT-05", "task": "appeal, withdraw and leave without providing a reason or losing ordinary service", "human_baseline": "staffed appeal, paper withdrawal and both exits"}
+    ],
+    "barrier_log_fields": [
+      "anonymous session code",
+      "task id and channel used",
+      "route or interface location",
+      "barrier described in participant words",
+      "severity and immediate stop decision",
+      "human handoff used",
+      "owner role and due date",
+      "repair evidence and participant-approved retest status"
+    ],
+    "subgroup_rules": [
+      "report task completion and barriers by predeclared participant groups without identifying individuals",
+      "never use a pooled average to erase a subgroup critical failure",
+      "suppress or combine publication cells that could identify a participant, while retaining the critical-failure gate",
+      "AI-path performance cannot compensate for a failed ordinary, staffed, telephone, paper, appeal or exit path"
+    ],
+    "stop_rules": [
+      "stop immediately on a safety, accessibility, consent, privacy or distress event",
+      "reduce AI service capacity to zero when an ordinary or non-digital baseline fails",
+      "remain HOLD until the owner closes the barrier and the affected participant group approves a retest",
+      "a local runner PASS never changes field status"
+    ],
+    "result": null,
+    "forbidden_upgrade": "This authored protocol is not recruitment, consent, participation, a walkthrough result, accessibility certification or public approval."
+  },
   "field_acceptance": {
     "status": "not_run",
     "required_but_missing": [
@@ -174,5 +238,5 @@
     ],
     "rule": "Synthetic fixtures and local runner PASS never satisfy this field-acceptance gate."
   },
-  "boundary": "Participant-authored standard-calibrated design targets and low-confidence quantity-rate estimates only; not surveyed geometry, a tender, funded project, appointment, field performance, professional approval, official score or release."
+  "boundary": "Participant-authored public-standard-cross-checked design targets, an unlocated parameter envelope, an unrun walkthrough protocol and low-confidence quantity-rate estimates only; not surveyed geometry, a print-scale drawing, tender, funded project, appointment, field performance, professional approval, official score or release."
 }

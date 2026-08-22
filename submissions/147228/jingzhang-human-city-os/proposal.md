@@ -7,24 +7,26 @@ bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 iteration: "v3.0"
-summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v3.0 将 ALT-C 压到 AI 原点一个包容性公共服务节点，用 1:500 / 1:100 / 1:50 设计目标、冲突消解、条件进度、量价成本、SLA、保险与退役条款形成可复核但仍为 HOLD 的空间—交付合同。临时几何、已知指标与 unknown 均保持原值。"
+summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v3.0 将 ALT-C 压到 AI 原点一个包容性公共服务节点，用非打印比例的 1:500 / 1:100 / 1:50 层级示意、冲突消解、条件进度、量价成本、预走查协议、SLA、保险与退役条款形成可复核但仍为 HOLD 的空间—交付合同。临时几何、已知指标与 unknown 均保持原值。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
 
 ## v3.0 包容性公共服务节点｜把 ALT-C 从原则画成一个可拆的空间与交付合同
 
-v2.8 选中了“人的主线 + 有界机器车道”，这轮不再扩写原则，而是把它压到 `PROV-KEY-002` 内一个 **30 m × 18 m 的参数包络**。图 30 同时给出 1:500 平面、1:100 剖面和 1:50 接口：3.0 m 连续普通路径、2.4 m 独立维护通道、直径 1.5 m 轮椅回转、0.75 m 低位人工台、0.95 m 人工停用控制和零普通人—机器交叉。AI 服务岛停电或拆除后，普通通行、低位人工台、电话、纸面回执、申诉和双向退出仍然保留。[data:visual/assets/human-city-pilot-dossier.json] [source:GB-55019-2021] [depth:three_key_area_detailed_design]
+v2.8 选中了“人的主线 + 有界机器车道”，这轮不再扩写原则，而是把它压到 `PROV-KEY-002` 内一个 **30 m × 18 m 的未落位参数包络**。图 30 用 1:500 平面层级、1:100 剖面层级和 1:50 接口层级示意同一个节点；它们不是可按 A3/A0 量取的打印比例图。节点目标包括 3.0 m 连续普通路径、2.4 m 独立维护通道、直径 1.5 m 轮椅回转、0.75 m 低位人工台、0.95 m 人工停用控制和零普通人—机器交叉。AI 服务岛停电或拆除后，普通通行、低位人工台、电话、纸面回执、申诉和双向退出仍然保留。[data:visual/assets/human-city-pilot-dossier.json] [depth:three_key_area_detailed_design]
 
-![图 30｜AI 原点包容性公共服务节点：1:500 平面、1:100 剖面、1:50 接口与五组冲突消解](assets/figures/human-city-pilot-node-dossier.png)
+![图 30｜AI 原点包容性公共服务节点：1:500 / 1:100 / 1:50 层级示意（非打印比例）与五组冲突消解](assets/figures/human-city-pilot-node-dossier.png)
 
-这些尺寸是参赛者依据公开标准校准的**设计目标**，不是测绘、法定、施工、招标、无障碍认证或竣工尺寸。正式边界、权属、消防、市政和无障碍专业复核任一项改变，平面、成本、容量和图纸都必须重算；当前释放容量仍为 `null`。[data:assumptions.json] [depth:overall_spatial_structure] [depth:risk_missing_data]
+这些尺寸是参赛者按公开标准交叉校准的**设计目标**：GB 55019-2021 第 2.2.2 条区分 1.20 m 无障碍通道和 1.80 m 人员密集公共场所，第 2.5.4 / 2.5.5 条区分 0.90 m 手动门和 1.00 m 自动门；低位台面、容膝空间和 1.50 m 回转值另按浙江省 DBJ33/T 1267-2022 第 7.6.2–7.6.3 条作二次参照，不冒充北京法定依据。[source:GB-55019-2021] [source:ZJ-ACCESSIBLE-RESIDENTIAL-2022] 它们都不是测绘、施工、招标、无障碍认证或竣工尺寸。正式边界、入口、街道/建筑边、标高、剖切线、消防疏散、市政点位和专业适用性任一项未核实，包络不得落位，平面、成本、容量和图纸必须重算；当前 `verified_anchor_count=0`、释放容量仍为 `null`。[data:visual/assets/human-city-pilot-dossier.json] [depth:overall_spatial_structure] [depth:risk_missing_data]
 
 图 31 把“能不能做”写成一份条件交付合同：只有 G0 授权与基线齐备后，才启动条件性的 18 周六阶段链；五组 RACI 角色全部是 `role_unconfirmed`，采购采用两阶段竞争性、开放量价的试点方式。概念 CAPEX 为 754,400–1,124,700 元，月度 OPEX 为 32,780–54,340 元，均由数量 × 单价加预备费回算，置信度低，不是资金承诺、招标控制价或运营报价。[data:visual/assets/human-city-pilot-dossier.json] [depth:renewal_project_list] [depth:phasing_implementation]
 
 ![图 31｜条件交付凭证：依赖进度、未确认 RACI、竞争性采购、量价成本、SLA 与回滚](assets/figures/human-city-pilot-delivery-receipt.png)
 
-五项 SLA 目前全部是 `design_target_not_observed`。授权主体、现场测绘、专业签章、保险、经同意的匿名走查、核实量价和独立启用决定尚缺，现场验收因此保持 `not_run`，整项仍为 HOLD。runner 的 1 个正例和 13 个负例只证明字段和 fail-closed 规则可离线回放；四份 24 页中英文 A3/A0 PDF 按同一 B01–B24 页序生成，不产生现场绩效、专业批准或官方分数。[data:visual/assets/run-human-city-pilot-dossier.js] [data:visual/assets/test-human-city-pilot-dossier.js] [data:visual/assets/human-city-pdf-equivalence-record.json]
+现场开始前不再只写一句“公众走查”。台账已经把五项任务写死：普通到达与双出口、低位人工 + 纸面完成、电话 / 无设备完成、AI 停电接管、申诉撤回与离开；同时写入事前知情同意、非 AI 参与、无理由退出、默认不录音、参与者组合制定责任、八字段障碍日志、分组报告和重大失败归零。它目前只是 `authored_not_authorized_not_run`：0 招募、0 参与者、结果 `null`，不能冒充公众参与。[data:visual/assets/human-city-pilot-dossier.json] [depth:risk_missing_data]
+
+五项 SLA 目前全部是 `design_target_not_observed`。授权主体、现场测绘、专业签章、保险、经同意的匿名走查、核实量价和独立启用决定尚缺，现场验收因此保持 `not_run`，整项仍为 HOLD。runner 的 1 个正例和 19 个负例只证明字段和 fail-closed 规则可离线回放；四份 24 页中英文 A3/A0 PDF 按同一 B01–B24 页序生成，不产生现场绩效、专业批准或官方分数。[data:visual/assets/run-human-city-pilot-dossier.js] [data:visual/assets/test-human-city-pilot-dossier.js] [data:visual/assets/human-city-pdf-equivalence-record.json]
 
 ## v2.6 公共利益覆盖扩展｜把三类容易被 AI 叙事遮住的人写回场景
 
@@ -72,7 +74,7 @@ v2.4 不增加新的空间承诺，而是把 23 条公告 / 任务书要求各�
 
 ![图 28｜一次空间裁决：三种替代、五级尺度、三个节点与五项公共权利](assets/figures/human-city-spatial-decision.svg)
 
-图板按 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 逐层追问：先看人的主线和四条价值链，再看三个重点区、普通入口、接管、申诉和可撤机器车道。三个节点共用人的尊严/普通可达、非数字等价/无障碍、同意暂停申诉退出、社区修复保留、公共资产/隐私五项权利；五道共享闸门任何一项不清都停在 HOLD。`run-human-city-spatial-decision.js` 与五个负例只证明设计合同可以离线复核，不证明现场几何、容量、权属、许可、部署、社会结果或官方评分 [data:visual/assets/human-city-spatial-decision.json] [data:visual/assets/run-human-city-spatial-decision.js] [depth:overall_spatial_structure]
+图板按 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 的设计审阅层级逐层追问，不把同一张缩放图板冒充打印比例图：先看人的主线和四条价值链，再看三个重点区、普通入口、接管、申诉和可撤机器车道。三个节点共用人的尊严/普通可达、非数字等价/无障碍、同意暂停申诉退出、社区修复保留、公共资产/隐私五项权利；五道共享闸门任何一项不清都停在 HOLD。`run-human-city-spatial-decision.js` 与五个负例只证明设计合同可以离线复核，不证明现场几何、容量、权属、许可、部署、社会结果或官方评分 [data:visual/assets/human-city-spatial-decision.json] [data:visual/assets/run-human-city-spatial-decision.js] [depth:overall_spatial_structure]
 
 ## v2.3 城市 API 六步序列｜把可调用写成可回放的责任链
 
@@ -390,7 +392,7 @@ v1.6 已经把抽象长条换成了真实提交几何，v1.7 继续处理阅读�
 
 ### 评审导航：先区分问题来源，再回放最短证据
 
-下面的 7 行仅对应仓库 formal scorecard 的工作流问题；其模板百分比不属于主办方官方评分，也不构成本投稿得分。任务书的 13 项统一评审维度、各自的中英文边界与最短证据路径另登记在 `visual/assets/reviewer-navigation-index.json`，并由 `run-reviewer-navigation-audit.js` 做离线覆盖与路径复核。正文中的 `[metric:]`、`[source:]`、`[data:]`、`[depth:]` 和 `[standard:]` 标记仍由无网络的 `visual/assets/run-human-city-reference-audit.js` 解析；未登记 ID 或不存在的空间要素会被报告为 FAIL。
+下面的 7 行仅对应仓库 formal scorecard 的工作流问题；其模板百分比不属于主办方官方评分，也不构成本投稿得分。任务书的 13 项统一评审维度、各自的中英文边界与最短证据路径另登记在 `visual/assets/reviewer-navigation-index.json`，并由 `run-reviewer-navigation-audit.js` 做离线覆盖与路径复核。正文中的 `[metric:]`、`[source:]`、`[data:]`、`[depth:]` 和 `[standard:]` 标记仍由无网络的 `visual/assets/run-human-city-reference-audit.js` 解析；未登记 ID 或不存在的空间要素会被报告为 FAIL。`design_depth_matrix.json` 的 `status=complete` 只是仓库要求的“15 个必需证据槽位均已交付”，不是现场、授权或专业完成；每项真实缺口另写入 `completeness_limited_by` 和 `assumptions.json`。
 
 | 仓库 formal 工作流问题（非主办方评分） | 最短入口 | 评审者先看什么 | 本包仍不能证明什么 |
 | --- | --- | --- | --- |

@@ -23,6 +23,8 @@ const observed = clone(original); observed.field_observation_count=1; fixtures.p
 const official = clone(original); official.official_boundary=true; fixtures.push(['fabricated-official-boundary',official]);
 const fixed = clone(original); fixed.dimension_rule.must_recalculate=false; fixtures.push(['fixed-dimensions',fixed]);
 const narrow = clone(original); narrow.spatial_dossier.plan_1_500.modules[0].width_m=0.8; fixtures.push(['narrow-ordinary-route',narrow]);
+const falseScale = clone(original); falseScale.spatial_dossier.scale_representation='print_scale'; fixtures.push(['false-print-scale',falseScale]);
+const fakeSite = clone(original); fakeSite.spatial_dossier.site_fit.status='located'; fakeSite.spatial_dossier.site_fit.verified_anchor_count=1; fixtures.push(['fabricated-site-fit',fakeSite]);
 const crossing = clone(original); crossing.spatial_dossier.plan_1_500.ordinary_machine_crossings=1; fixtures.push(['unresolved-machine-crossing',crossing]);
 const counter = clone(original); counter.spatial_dossier.detail_1_50.elements[0].target_m=1.1; fixtures.push(['uncalibrated-counter',counter]);
 const owner = clone(original); owner.delivery_contract.raci[0].status='confirmed'; fixtures.push(['invented-owner',owner]);
@@ -30,6 +32,10 @@ const schedule = clone(original); schedule.delivery_contract.schedule[2].predece
 const capex = clone(original); capex.delivery_contract.capex_design_estimate_cny.lower=100000; fixtures.push(['broken-capex-formula',capex]);
 const sla = clone(original); sla.delivery_contract.service_level_targets[0].basis='field_observed'; fixtures.push(['invented-sla-result',sla]);
 const rollback = clone(original); rollback.delivery_contract.rollback=''; fixtures.push(['missing-rollback',rollback]);
+const recruited = clone(original); recruited.pre_field_walkthrough_protocol.participant_count=1; fixtures.push(['fabricated-participant',recruited]);
+const consent = clone(original); consent.pre_field_walkthrough_protocol.consent.withdrawal_without_penalty=false; fixtures.push(['missing-withdrawal-consent',consent]);
+const tasks = clone(original); tasks.pre_field_walkthrough_protocol.tasks.pop(); fixtures.push(['missing-walkthrough-task',tasks]);
+const subgroups = clone(original); subgroups.pre_field_walkthrough_protocol.subgroup_rules=[]; fixtures.push(['missing-subgroup-rules',subgroups]);
 const field = clone(original); field.field_acceptance.status='pass'; fixtures.push(['fabricated-walkthrough',field]);
 const unexpected = fixtures.filter(([,x]) => run(x)).map(([name]) => name);
 if (unexpected.length) throw new Error(`negative fixtures passed: ${unexpected.join(', ')}`);
