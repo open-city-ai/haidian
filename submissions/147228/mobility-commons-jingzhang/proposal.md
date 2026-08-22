@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把地铁、公交、自行车、步行/无障碍、汽车与停车装卸纳入同一张可审计的时段路缘账本，并把企业—居民对外通勤、人员动线和综合仿真接上；v2.5 将连续性回执、空间选项、三处接口、公共基线、责任移交和发布链压缩到同一条双语评审阅读路径。未来空中出行只作为受审批、可撤回、地面接驳优先的实验接口，三处重点区以五道硬门逐步验证。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v2.5"
+iteration: "v2.6"
 ---
 
 # 京张共行环：企业—居民交通共益系统
@@ -166,6 +166,14 @@ iteration: "v2.5"
 一条到站回家链不能只在单一高峰时段成立。方案把早高峰到岗、日常服务到达、晚间换乘和断网雨雪回退放进同一份回执。每个时段都先保留轨道、公交、步行、人工、电话或纸面入口，再让 AI 处理分组需求、冲突说明和回退清单；没有接收人、等价路线或带日期的恢复记录时，服务停在 `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation]。
 
 ![一日四段服务回执：普通路线、AI 辅助、人工等价与停止动作](assets/figures/mobility-continuity-receipt.svg)
+
+### 可选互操作对照：三处空间接口接入 SEB v0.5.0
+
+本包把三处已有接口的普通服务、人工接管角色、P0/P1/P2 公共基线阶段、`contract_check_only` 状态和责任角色，对照到 SEB v0.5.0 的 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode`、`responsible_role`。source of record 仍是本包的 `mobility-route-service-atlas.json` 与 `mobility-public-baseline-contract.json`，不是另一份投稿包；对照只服务于跨包阅读，不采用外部叙事、几何或数据 [source:SEB-V0.5.0] [data:visual/assets/mobility-seb-crosswalk.json] [data:visual/assets/run-mobility-seb-crosswalk.js]。
+
+离线 runner 对 3 个节点做正向检查，并用 5 个负向 fixture 拒绝 AI-only 旁路、缺失人工角色、非法阶段门、缺失运行模式和 source 对齐变化。当前仍是 `HOLD`、`authorization=0`、`field_observations=0`、`local_baseline=unknown`、`operational_status=not_authorized_not_run`；这不是已发生的服务等价、现场成效、仓库硬门、正式评分项或官方分数 [data:visual/assets/mobility-seb-crosswalk-evidence.json]。
+
+![共行环三处空间接口与 SEB 字段对照：普通服务、接管角色和 HOLD 边界](assets/figures/mobility-seb-crosswalk.svg)
 
 | 时段 | 普通服务先做什么 | AI 只承担什么 | 证据缺失时的动作 |
 | --- | --- | --- | --- |

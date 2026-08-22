@@ -1,0 +1,84 @@
+{
+  "document_type": "optional_service_equivalence_crosswalk",
+  "package_iteration": "v2.6",
+  "adoption": {
+    "mode": "component_level_opt_in",
+    "spec_name": "Service Equivalence Baseline",
+    "spec_name_zh": "服务等价基准",
+    "spec_abbreviation": "SEB",
+    "spec_version": "0.5.0",
+    "spec_status": "draft_concept_recommendation",
+    "license": "CC-BY-SA-4.0",
+    "attribution": "SEB v0.5.0 by lqqk7, used as an optional component-level reference; no institutional endorsement is implied.",
+    "source_id": "SEB-V0.5.0",
+    "canonical_public_reference": "https://github.com/open-city-ai/haidian/blob/main/submissions/lqqk7/every-sense-jingzhang/visual/assets/seb-spec.json",
+    "accessed_date": "2026-08-22",
+    "adopter_lexicon": [
+      "transport and accessibility reviewer role",
+      "community liaison and accessibility role",
+      "rail and bus operations role",
+      "independent safety and privacy review role"
+    ],
+    "adopter_lexicon_evidence": {
+      "transport and accessibility reviewer role": "The package-local responsibility-transfer contract names this role for accessible routes, curb space and protected public access.",
+      "community liaison and accessibility role": "The package-local public-baseline contract names the community and accessibility interface for ordinary daily access and human service.",
+      "rail and bus operations role": "The package-local responsibility-transfer contract names this role for dated headways, station capacity and transfer observations.",
+      "independent safety and privacy review role": "The package-local responsibility-transfer contract names independent review for safety, accessibility, privacy and equity burden."
+    },
+    "scope_zh": "只采用本包已公开的三处接口、人工替代、责任角色和公共基线阶段字段做互操作对照；不采用外部包的叙事、几何或数据，不新增仓库硬门禁、正式评分项、服务覆盖或现场成效主张。",
+    "scope_en": "This maps already-public interface, human-alternative, role and public-baseline phase fields for interoperability only. It adopts no external package narrative, geometry or data, and adds no repository hard gate, formal score item, service coverage or field-outcome claim."
+  },
+  "nodes": [
+    {
+      "node_id": "MS-01-ZHONGZHIYUAN",
+      "scenario_source_ref": "visual/assets/mobility-route-service-atlas.json#nodes[MS-01-ZHONGZHIYUAN]",
+      "local_gate_source_ref": "visual/assets/mobility-public-baseline-contract.json#phase_sequence[P0]",
+      "local_gate_id": "P0",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "纸面登记、现场引导和公开公共交通路线可独立承接到岗与装卸，不依赖 App。", "en": "Paper registration, on-site wayfinding and the published public-transport route can independently receive arrival and loading requests without an app."},
+      "human_handoff": {"zh": "交通与无障碍复核角色（待授权指定）", "en": "Transport and accessibility reviewer role (pending authorization)"},
+      "responsible_role": {"zh": "交通与无障碍复核角色（待授权指定）", "en": "Transport and accessibility reviewer role (pending authorization)"}
+    },
+    {
+      "node_id": "MS-02-AI-ORIGIN",
+      "scenario_source_ref": "visual/assets/mobility-route-service-atlas.json#nodes[MS-02-AI-ORIGIN]",
+      "local_gate_source_ref": "visual/assets/mobility-public-baseline-contract.json#phase_sequence[P1]",
+      "local_gate_id": "P1",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "步入、电话、纸面、公共交通和人工服务台可完成同一项日常到达，不要求企业账号。", "en": "Walking, telephone, paper, public transport and a staffed service desk can complete the same daily-access task without an enterprise account."},
+      "human_handoff": {"zh": "社区联络与无障碍角色（待授权指定）", "en": "Community liaison and accessibility role (pending authorization)"},
+      "responsible_role": {"zh": "社区联络与无障碍角色（待授权指定）", "en": "Community liaison and accessibility role (pending authorization)"}
+    },
+    {
+      "node_id": "MS-03-DAZHONGSI",
+      "scenario_source_ref": "visual/assets/mobility-route-service-atlas.json#nodes[MS-03-DAZHONGSI]",
+      "local_gate_source_ref": "visual/assets/mobility-public-baseline-contract.json#phase_sequence[P2]",
+      "local_gate_id": "P2",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "车站时刻表、有人引导和公共过街信息保留，路缘预约被拒时仍可回到轨道公交与公共路线。", "en": "The station timetable, staffed wayfinding and public-crossing information remain available, with rail, bus and public routes preserved when a curb request is refused."},
+      "human_handoff": {"zh": "轨道与公交运营角色（待授权指定）", "en": "Rail and bus operations role (pending authorization)"},
+      "responsible_role": {"zh": "独立安全与隐私复核角色（待授权指定）", "en": "Independent safety and privacy review role (pending authorization)"}
+    }
+  ],
+  "negative_fixtures": [
+    {"id": "NEG-01", "node_id": "MS-01-ZHONGZHIYUAN", "mutation": "ai_off_path_dependency", "expected_fail_code": "AI_OFF_PATH_DEPENDENCY"},
+    {"id": "NEG-02", "node_id": "MS-02-AI-ORIGIN", "mutation": "human_handoff_role_missing", "expected_fail_code": "HUMAN_HANDOFF_ROLE_MISSING"},
+    {"id": "NEG-03", "node_id": "MS-03-DAZHONGSI", "mutation": "gate_id_invalid", "expected_fail_code": "GATE_ID_INVALID"},
+    {"id": "NEG-04", "node_id": "MS-01-ZHONGZHIYUAN", "mutation": "operating_mode_missing", "expected_fail_code": "OPERATING_MODE_MISSING"},
+    {"id": "NEG-05", "node_id": "MS-02-AI-ORIGIN", "mutation": "source_alignment_changed", "expected_fail_code": "SOURCE_ALIGNMENT_MISMATCH"}
+  ],
+  "boundary": {
+    "decision": "HOLD",
+    "field_state": "not_authorized_not_run",
+    "operational_status": "not_authorized_not_run",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "performance_results": null,
+    "public_rank_claim": false,
+    "formal_score_claim": false
+  }
+}

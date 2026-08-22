@@ -158,6 +158,14 @@ A door-to-door chain must remain understandable beyond one peak period. The pack
 
 To make “what remains after AI is unplugged” a spatial acceptance test rather than a slogan, each key area now has a `BASE → BOOST → BLACKOUT → BEQUEST` public-baseline contract. Zhongzhiyuan leaves a protected route, paper curb register and maintenance card; the AI Origin Community leaves a static/tactile route card, human service directory and correction log; Dazhongsi leaves an interchange map, event-day curb protocol and public withdrawal notice. The five P0–P4 stages define a debugging sequence only and carry no field authorization. The supplemental runner checks three prototypes, four states, five stages and the HOLD boundary; a pass proves contract completeness, not a real route, staff, capacity or performance [data:visual/assets/mobility-public-baseline-contract.json] [data:visual/assets/run-mobility-public-baseline-contract.js] [data:visual/assets/test-mobility-public-baseline-contract.js].
 
+### Optional interoperability crosswalk: three spatial interfaces to SEB v0.5.0
+
+This package maps the existing ordinary service, human-takeover role, P0/P1/P2 public-baseline phase, `contract_check_only` mode and accountable role for its three interfaces to SEB v0.5.0's `ai_off_path`, `human_handoff`, `gate_id`, `operating_mode` and `responsible_role`. The source of record remains this package's `mobility-route-service-atlas.json` and `mobility-public-baseline-contract.json`, not another submission package; the crosswalk is for cross-package reading only and adopts no external narrative, geometry or data [source:SEB-V0.5.0] [data:visual/assets/mobility-seb-crosswalk.json] [data:visual/assets/run-mobility-seb-crosswalk.js].
+
+The offline runner checks three positive nodes and uses five negative fixtures to reject an AI-only bypass, a missing human role, an invalid phase gate, a missing operating mode and a changed source alignment. `HOLD`, `authorization=0`, `field_observations=0`, `local_baseline=unknown` and `operational_status=not_authorized_not_run` remain unchanged; this is not service equivalence already delivered, a field outcome, a repository hard gate, a formal score item or an official-score claim [data:visual/assets/mobility-seb-crosswalk-evidence.json].
+
+![Mobility Commons spatial interfaces and SEB crosswalk: ordinary service, handoff roles and the HOLD boundary](assets/figures/mobility-seb-crosswalk.en.svg)
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 Personas include enterprise mobility coordinators, residents and carers, wheelchair users, rail and bus operators, logistics and maintenance staff, school and community workers, night-shift staff and transport/privacy/fire professionals. AI aggregates demand, explains conflicts and prepares rollback checklists; it cannot permanently lock a public route.
