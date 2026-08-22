@@ -1,0 +1,745 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(SITE_BOUNDARY)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundaries; not suitable for official area/control claims."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features where layer=KEY_AREA)",
+      "confidence": "high",
+      "assumptions": [
+        "Required area identities are fixed by the brief; polygons remain provisional."
+      ]
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area(KEY_AREA features)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundaries; not suitable for official area/control claims."
+      ]
+    },
+    "land_use_total_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(non-overlapping LAND_USE partition)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "land_use_total_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "building_feature_count": {
+      "status": "known",
+      "value": 153,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT features)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts submitted design-model features, not surveyed existing buildings."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 590834.267,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(BUILDING_FOOTPRINT)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "design_model_total_floor_area_sqm": {
+      "status": "known",
+      "value": 3030159.905,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area_sqm_declared * floors_design_model)",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "three_key_areas_concept_massing_only"
+    },
+    "design_model_key_area_floor_area_ratio": {
+      "status": "known",
+      "value": 0.820538,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "design_model_total_floor_area_sqm / key_area_total_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "non_statutory_design_model_for_three_provisional_key_areas"
+    },
+    "design_model_key_area_building_density": {
+      "status": "known",
+      "value": 0.159992,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / key_area_total_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "non_statutory_design_model_for_three_provisional_key_areas"
+    },
+    "design_model_min_height_m": {
+      "status": "known",
+      "value": 12.6,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "min(height_m_design_model)",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "concept_massing_not_approved_height"
+    },
+    "design_model_max_height_m": {
+      "status": "known",
+      "value": 33.6,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "max(height_m_design_model)",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "concept_massing_not_approved_height"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1251476.632,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.109655,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 113520.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE polygons)) in EPSG:4548; point nodes add zero area",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.009947,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 522746.202,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(union(ROAD_AREA)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.045803,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 36215.775,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(ROAD_CENTERLINE)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Design centre-lines, not surveyed roads or approved redlines."
+      ]
+    },
+    "phasing_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area(non-overlapping PHASE polygons)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": [
+        "Counts submitted design scenario nodes; locations are conceptual."
+      ]
+    },
+    "interpretive_station_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE and scenario_no is 1..12)",
+      "confidence": "high",
+      "assumptions": [
+        "One structured node per Twelve-Scenes station; no longer inferred from line vertices."
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE and node_type=ai_landmark)",
+      "confidence": "high",
+      "assumptions": [
+        "Three landmark nodes retain NODE-LM-001..003 IDs; locations remain conceptual."
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "count(sources where evidence_role=\"background_case\" and case_group=\"agent_taskbook_global_case_review\")",
+      "confidence": "high",
+      "assumptions": [
+        "Counts structured background-case records only; case presence does not imply transferability or verified outcomes."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR control and official site polygon are absent; use design_model_key_area_floor_area_ratio only as a non-statutory concept output."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved building-density control and a complete official existing/proposed footprint inventory are absent; use the explicitly named key-area design-model density metrics for concept comparison only."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height, aviation, landscape and heritage controls are absent; design_model_min/max_height_m are non-statutory massing inputs."
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 2070179.32,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"0701\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 1291445.367,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"0702\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 1721275.408,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"0802\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 1108045.933,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"0803\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 883807.081,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"0804\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_09_sqm": {
+      "status": "known",
+      "value": 1763627.563,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"09\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_1207_sqm": {
+      "status": "known",
+      "value": 522746.202,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"1207\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1251476.632,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"1401\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_1403_sqm": {
+      "status": "known",
+      "value": 113520.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"1403\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "land_use_area_16_sqm": {
+      "status": "known",
+      "value": 686701.879,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(feature)) where layer=LAND_USE and land_use_code=\"16\" in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(KEY_AREA where id=\"PROV-KEY-001\") in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundaries; not suitable for official area/control claims."
+      ]
+    },
+    "zhongzhiyuan_building_count": {
+      "status": "known",
+      "value": 75,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT where parent_key_area_id=\"PROV-KEY-001\")",
+      "confidence": "high",
+      "assumptions": [
+        "Counts submitted concept massing features, not existing buildings."
+      ]
+    },
+    "zhongzhiyuan_design_floor_area_sqm": {
+      "status": "known",
+      "value": 1482533.102,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(floor_area_sqm_design_model where parent_key_area_id=\"PROV-KEY-001\")",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "zhongzhiyuan_design_far": {
+      "status": "known",
+      "value": 0.76847,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "zhongzhiyuan_design_floor_area_sqm / zhongzhiyuan_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "non_statutory_key_area_design_model"
+    },
+    "zhongzhiyuan_design_building_density": {
+      "status": "known",
+      "value": 0.170883,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(footprint area where parent_key_area_id=\"PROV-KEY-001\") / zhongzhiyuan_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "non_statutory_key_area_design_model"
+    },
+    "ai_origin_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(KEY_AREA where id=\"PROV-KEY-002\") in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundaries; not suitable for official area/control claims."
+      ]
+    },
+    "ai_origin_building_count": {
+      "status": "known",
+      "value": 45,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT where parent_key_area_id=\"PROV-KEY-002\")",
+      "confidence": "high",
+      "assumptions": [
+        "Counts submitted concept massing features, not existing buildings."
+      ]
+    },
+    "ai_origin_design_floor_area_sqm": {
+      "status": "known",
+      "value": 913303.938,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(floor_area_sqm_design_model where parent_key_area_id=\"PROV-KEY-002\")",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "ai_origin_design_far": {
+      "status": "known",
+      "value": 0.875452,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "ai_origin_design_floor_area_sqm / ai_origin_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "non_statutory_key_area_design_model"
+    },
+    "ai_origin_design_building_density": {
+      "status": "known",
+      "value": 0.159005,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(footprint area where parent_key_area_id=\"PROV-KEY-002\") / ai_origin_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "non_statutory_key_area_design_model"
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(KEY_AREA where id=\"PROV-KEY-003\") in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundaries; not suitable for official area/control claims."
+      ]
+    },
+    "dazhongsi_building_count": {
+      "status": "known",
+      "value": 33,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT where parent_key_area_id=\"PROV-KEY-003\")",
+      "confidence": "high",
+      "assumptions": [
+        "Counts submitted concept massing features, not existing buildings."
+      ]
+    },
+    "dazhongsi_design_floor_area_sqm": {
+      "status": "known",
+      "value": 634322.865,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(floor_area_sqm_design_model where parent_key_area_id=\"PROV-KEY-003\")",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "dazhongsi_design_far": {
+      "status": "known",
+      "value": 0.880449,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "dazhongsi_design_floor_area_sqm / dazhongsi_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "non_statutory_key_area_design_model"
+    },
+    "dazhongsi_design_building_density": {
+      "status": "known",
+      "value": 0.132259,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(footprint area where parent_key_area_id=\"PROV-KEY-003\") / dazhongsi_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ],
+      "interpretation": "non_statutory_key_area_design_model"
+    },
+    "phase_near_term_area_sqm": {
+      "status": "known",
+      "value": 3273114.291,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE where phase=\"near_term\") in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "phase_mid_term_area_sqm": {
+      "status": "known",
+      "value": 4604999.444,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE where phase=\"mid_term\") in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    },
+    "phase_long_term_area_sqm": {
+      "status": "known",
+      "value": 3534711.65,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE where phase=\"long_term\") in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Non-statutory low-confidence design model; recalculate after official boundaries, parcels and controls are supplied."
+      ]
+    }
+  }
+}
