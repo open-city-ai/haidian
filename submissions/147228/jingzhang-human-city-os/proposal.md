@@ -6,11 +6,25 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v2.9"
-summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v2.9 在 v2.8 空间裁决之上，增加四个公共服务合同到 SEB v0.5.0 五字段的可选互操作 crosswalk，并用正负夹具验证 AI 关闭路径、人工接管、闸门、运行方式和责任角色。临时几何、已知指标与 unknown 均保持原值。"
+iteration: "v3.0"
+summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v3.0 将 ALT-C 压到 AI 原点一个包容性公共服务节点，用 1:500 / 1:100 / 1:50 设计目标、冲突消解、条件进度、量价成本、SLA、保险与退役条款形成可复核但仍为 HOLD 的空间—交付合同。临时几何、已知指标与 unknown 均保持原值。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
+
+## v3.0 包容性公共服务节点｜把 ALT-C 从原则画成一个可拆的空间与交付合同
+
+v2.8 选中了“人的主线 + 有界机器车道”，这轮不再扩写原则，而是把它压到 `PROV-KEY-002` 内一个 **30 m × 18 m 的参数包络**。图 30 同时给出 1:500 平面、1:100 剖面和 1:50 接口：3.0 m 连续普通路径、2.4 m 独立维护通道、直径 1.5 m 轮椅回转、0.75 m 低位人工台、0.95 m 人工停用控制和零普通人—机器交叉。AI 服务岛停电或拆除后，普通通行、低位人工台、电话、纸面回执、申诉和双向退出仍然保留。[data:visual/assets/human-city-pilot-dossier.json] [source:GB-55019-2021] [depth:three_key_area_detailed_design]
+
+![图 30｜AI 原点包容性公共服务节点：1:500 平面、1:100 剖面、1:50 接口与五组冲突消解](assets/figures/human-city-pilot-node-dossier.png)
+
+这些尺寸是参赛者依据公开标准校准的**设计目标**，不是测绘、法定、施工、招标、无障碍认证或竣工尺寸。正式边界、权属、消防、市政和无障碍专业复核任一项改变，平面、成本、容量和图纸都必须重算；当前释放容量仍为 `null`。[data:assumptions.json] [depth:overall_spatial_structure] [depth:risk_missing_data]
+
+图 31 把“能不能做”写成一份条件交付合同：只有 G0 授权与基线齐备后，才启动条件性的 18 周六阶段链；五组 RACI 角色全部是 `role_unconfirmed`，采购采用两阶段竞争性、开放量价的试点方式。概念 CAPEX 为 754,400–1,124,700 元，月度 OPEX 为 32,780–54,340 元，均由数量 × 单价加预备费回算，置信度低，不是资金承诺、招标控制价或运营报价。[data:visual/assets/human-city-pilot-dossier.json] [depth:renewal_project_list] [depth:phasing_implementation]
+
+![图 31｜条件交付凭证：依赖进度、未确认 RACI、竞争性采购、量价成本、SLA 与回滚](assets/figures/human-city-pilot-delivery-receipt.png)
+
+五项 SLA 目前全部是 `design_target_not_observed`。授权主体、现场测绘、专业签章、保险、经同意的匿名走查、核实量价和独立启用决定尚缺，现场验收因此保持 `not_run`，整项仍为 HOLD。runner 的 1 个正例和 13 个负例只证明字段和 fail-closed 规则可离线回放；四份 24 页中英文 A3/A0 PDF 按同一 B01–B24 页序生成，不产生现场绩效、专业批准或官方分数。[data:visual/assets/run-human-city-pilot-dossier.js] [data:visual/assets/test-human-city-pilot-dossier.js] [data:visual/assets/human-city-pdf-equivalence-record.json]
 
 ## v2.6 公共利益覆盖扩展｜把三类容易被 AI 叙事遮住的人写回场景
 

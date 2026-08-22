@@ -6,11 +6,25 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v2.9"
-summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v2.9 adds an optional component-level crosswalk from four public-service contracts to five SEB v0.5.0 fields on top of the v2.8 spatial decision, while keeping the package in an offline-reviewable HOLD state. Provisional geometry, known metrics, and unknowns remain unchanged."
+iteration: "v3.0"
+summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v3.0 resolves ALT-C into one AI Origin inclusive public-service node and a reviewable spatial-delivery contract with 1:500 / 1:100 / 1:50 design targets, conflict resolution, a conditional schedule, quantity-rate costs, SLAs, insurance, and closeout while remaining at HOLD. Provisional geometry, known metrics, and unknowns remain unchanged."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
+
+## v3.0 Inclusive public-service node | Turn ALT-C from a principle into a removable spatial-delivery contract
+
+v2.8 selected a “human mainline + bounded machine lane.” This iteration stops expanding the principle and resolves it into a **30 m × 18 m parameter envelope** inside `PROV-KEY-002`. Figure 30 combines a 1:500 plan, 1:100 section, and 1:50 interface: a continuous 3.0 m ordinary route, separate 2.4 m maintenance access, a 1.5 m wheelchair turning diameter, 0.75 m low staffed counter, 0.95 m human stop control, and zero ordinary-person/machine crossings. When the AI island is blacked out or removed, ordinary movement, the low staffed desk, telephone, paper receipt, appeal, and both exits remain.[data:visual/assets/human-city-pilot-dossier.json] [source:GB-55019-2021] [depth:three_key_area_detailed_design]
+
+![Figure 30 | AI Origin inclusive public-service node: 1:500 plan, 1:100 section, 1:50 interface, and five conflict resolutions](assets/figures/human-city-pilot-node-dossier.en.png)
+
+These dimensions are participant-authored **design targets** calibrated against a public standard, not surveyed, statutory, construction, tender, accessibility-certified, or as-built dimensions. A change to the authorized boundary, title, fire, utilities, or professional accessibility review triggers recalculation of the plan, cost, capacity, and drawings; release capacity remains `null`.[data:assumptions.json] [depth:overall_spatial_structure] [depth:risk_missing_data]
+
+Figure 31 turns “can this be delivered?” into a conditional contract. A six-stage, 18-week chain starts only after all G0 authorization and baseline gates pass; every role in the five-row RACI remains `role_unconfirmed`, and procurement is a two-stage competitive, open-book quantity-rate pilot. Concept CAPEX is CNY 754,400–1,124,700 and monthly OPEX is CNY 32,780–54,340, recalculated from quantity × rate plus allowances with low confidence. Neither is funding, a tender control price, nor an operating quote.[data:visual/assets/human-city-pilot-dossier.json] [depth:renewal_project_list] [depth:phasing_implementation]
+
+![Figure 31 | Conditional delivery receipt: dependent schedule, unconfirmed RACI, competitive procurement, quantity-rate costs, SLAs, and rollback](assets/figures/human-city-pilot-delivery-receipt.en.png)
+
+All five SLAs remain `design_target_not_observed`. The authorized owner, site survey, professional sign-offs, insurance, consented anonymized walkthrough, verified rates, and independent release decision are missing, so field acceptance remains `not_run` and the whole item remains at HOLD. One positive and thirteen negative runner fixtures prove only that the fields and fail-closed rules replay offline. All four 24-page bilingual A3/A0 PDFs use the same B01–B24 order; they create no field performance, professional approval, or official score.[data:visual/assets/run-human-city-pilot-dossier.js] [data:visual/assets/test-human-city-pilot-dossier.js] [data:visual/assets/human-city-pdf-equivalence-record.json]
 
 ## v2.6 Public-interest coverage extension | Return three easily hidden groups to the scenes
 

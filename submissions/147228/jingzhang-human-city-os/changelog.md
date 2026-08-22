@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v3.0 - 2026-08-22
+
+- 将 v2.8 选中的 ALT-C 压到 `PROV-KEY-002` 的一个包容性公共服务节点：新增 1:500 平面、1:100 剖面、1:50 接口、五组空间冲突消解和双语图 30；尺寸是依据 GB 55019-2021 校准的参赛者设计目标，不是测绘、法定、施工或无障碍认证结论。
+- 新增条件性交付合同和双语图 31：六阶段依赖进度、全部未确认的五组 RACI、两阶段竞争性采购、量价 CAPEX / OPEX、五项未观测 SLA、保险门、验收门和完整退役回滚；0 授权、0 现场观察、容量 `null`、现场验收 `not_run`，整项保持 HOLD。
+- 新增确定性 runner、1 个正例与 13 个 fail-closed 负例；四份中英文 A3/A0 评审 PDF 统一为 B01–B24 的 24 页同序包，并写入等价记录。同步 proposal、来源、假设、设计深度、双语/无障碍/版权审计、离线 visual index 与 manifest；不修改正式 geometry、metrics、公共排序或官方分数。
+
 ## v2.9 - 2026-08-22
 
 - 新增 `human-city-seb-crosswalk.json`，采用 SEB v0.5.0 的组件级可选互操作路径，把四个已有公共服务桌面合同回接到 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode` 与 `responsible_role` 五个公开字段；保留 CC-BY-SA-4.0 署名、来源 URL 和无机构背书边界。
