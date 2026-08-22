@@ -6,10 +6,10 @@ title: "Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating
 author_github: "147228"
 language: "en"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "A time-windowed curb ledger brings metro, bus, bicycle, walking/accessibility, cars, parking and loading into one auditable system, while external commuting, people flow and multimodal simulation remain explicit; future air mobility is only a conditional, reversible, ground-first experiment."
+summary: "One auditable curb ledger links enterprise arrival with residents' daily mobility; a first-168-hour release chain explains how to stop and withdraw, while a 12-week minimum measurement contract tests ordinary routes, accessibility and human handoffs with all field values null."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v2.2"
+iteration: "v2.4-candidate"
 ---
 
 # Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating System
@@ -42,6 +42,45 @@ Every window states four things: **who receives the handoff, what evidence is re
 
 `visual/assets/mobility-release-evidence-map.json` binds seven review questions—ordinary-person journey, three spatial interfaces, delivery and maintenance, source boundary, governance, reversibility, and reviewer navigation—to concrete files; every dimension keeps an empty `field_claims` list. A reviewer can start at one board and follow the same path back to the JSON, drawings, assumptions, and negative fixtures, without mistaking “many files” for “already operating.”
 
+## Taskbook at a Glance | How One Complete Trip Connects Three Areas and Two Wings
+
+Mobility Commons answers the taskbook's three positions through one complete trip. The Centennial Jing-Zhang Cultural Belt appears through legible timekeeping, transfers, and public passage. The Urban AI Life Experience Belt starts at a building exit, continues through a first walking or wheelchair leg, crossing, station entrance, and transfer, and ends at the destination entrance with a safe route home. The AI Convergence Innovation Belt aggregates grouped needs, explains conflicts, prepares human takeover, and records stops and reviews. All three share one boundary. Public passage cannot depend on an enterprise account or require a resident to surrender a continuous personal trace [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+
+| Taskbook function | Visible Mobility Commons output | First deliverable | Still missing |
+| --- | --- | --- | --- |
+| Full-stack AI autonomy | Demand registers, curb state machine, multimodal sandbox, fallback runner, and versioned receipt | Two peak-period scripts and a synthetic failure drill at Zhongzhiyuan | Enterprise authorization, field capacity, and a safety owner |
+| World-class AI innovation ecosystem | Enterprises, public transport, communities, developers, disabled users, and independent reviewers define interfaces together | Open field dictionary, procurement interfaces, and replayable negative samples | Real partners and accountable roles for funding, talent, and compute |
+| New AI+ scenario paradigm | Ten scenario cards, three industry tests, and a complete-trip receipt share stop conditions | Four synthetic M-09 requests and five rollback steps | An authorized minimum sample and dated field baseline |
+| AI-enabled vibrant city | Rail and bus form the backbone while walking, wheelchairs, and human service protect public passage | Dazhongsi-to-AI-Origin arrival-home candidate chain | Entrances, crossings, gradients, headways, and staffing |
+| Global discourse on AI governance | One recommendation leaves records of choice, takeover, exit, appeal, and review | Bilingual fields, failure archive, and third-party replay note | Public deliberation, independent review body, and long-term operation |
+
+Six public international references each solve one part of the problem. USDOT Complete Trip joins cross-organization delivery with end-to-end accessibility. The DART GoLink case shows why a first/last-mile service should start in a small area and involve frontline operators in procurement. Research with disabled riders shows how a usable station or vehicle can still be disconnected outside the station [source:USDOT-COMPLETE-TRIP-ITS4US] [source:USDOT-DART-GOLINK] [source:DISABLED-FIRST-LAST-MILE-2024]. A whole-journey review keeps that break in view. A Shanghai wheelchair-transit study records walking barriers, station entrances, and delay factors separately. FHWA curb guidance compares accessibility, loading, transit, and micromobility claims at the same curb. The proposal translates methods and delivery relationships without importing foreign funding, institutions, sample proportions, or performance [source:WHOLE-JOURNEY-DISABILITY-2021] [source:SHANGHAI-WHEELCHAIR-TRANSIT-2025] [source:FHWA-CURBSIDE-MANAGEMENT].
+
+To prevent “international cases” from becoming a name list, this version adds six transfer cards. Punggol ODP contributes only the shared district interface and Seoul S-Map contributes public scenario comparison. Sensor counts, monitoring powers and foreign governance are not Haidian facts [source:PUNGGOL-ODP-LIVING-LAB] [source:SEOUL-SMAP-OPEN-LAB].
+
+Mobility Lab Helsinki contributes the sequence from a city need to a bounded street trial with resident and operator feedback; Woven City contributes a human-centred iteration loop. Complete Trip adds cross-organization whole-trip acceptance and DART GoLink adds phased first/last-mile delivery. Private land control, ridership, cost, funding and outcomes do not transfer either [source:HELSINKI-MOBILITY-LAB] [source:WOVEN-CITY-LIVING-LAB].
+
+### One Mobility Commons Receipt | All Seven Links Must Work
+
+The acceptance chain begins with pre-trip information, then covers the building exit, first walking or wheelchair leg, crossing and station entrance, boarding and transfer, last leg, and finally the destination entrance with a return or exit option. One failed link makes the trip incomplete. A strong average elsewhere cannot cancel the failure [source:WHOLE-JOURNEY-DISABILITY-2021] [source:SHANGHAI-WHEELCHAIR-TRANSIT-2025] [source:FHWA-CURBSIDE-MANAGEMENT].
+
+The receipt keeps only the fields needed for review, including the version, grouped need category, seven-link status, barrier type, human-takeover role, alternative route, appeal ID, closure evidence, and next-review date. Sampling must also state who did not enter the sample. People unable to leave a building, reach a station, use a smartphone, or consent to continuous observation can enter the problem register, after consent, through a doorstep or telephone interview, carer-witnessed evidence, or a barrier report without continuous personal traces. None of this field engagement has yet occurred.
+
+| Task | Current package output | Next professional deepening |
+| --- | --- | --- |
+| agent.1 Overall concept and functions | “Jing-Zhang Mobility Commons” with a visual direction of two separable loops and one switch | Apply only to permitted station wayfinding, curb-state signs, and human desks; do not replace the Belt's formal identity |
+| agent.2 Innovation ecosystem | Six public method or project references, dual enterprise-resident ledgers, five factor interfaces, and three-area/two-wing roles | Identify real authorized actors for land, space, finance, talent, compute, data, and scenarios |
+| agent.3 AI+ scenarios | Ten cards, three tests, eight affected-user types, and a scenario-to-space-to-exit mapping | Select an authorized minimum sample in Xiaoyuehe and the three key areas, then publish baselines and stop records |
+| agent.4 Public space and landmarks | Candidate Mobility Timetable at Dazhongsi, Right-to-Arrive Gauge at AI Origin, and Failure Archive Station at Zhongzhiyuan | Check heritage, green-space, fire, road, and ownership constraints before fixing locations or dimensions |
+| agent.5 Cultural narrative | Railway timekeeping, Zhongguancun collaboration, and AI public receipts connect wayfinding with one trip home | Joint review by history, visual-communication, and accessibility professionals |
+| agent.6 Long-term operation | Quarterly complete-trip audit walks, annual Mobility Commons Week, synthetic-data challenge, operator training, and failure review | Confirm organizer, budget, venue, data permission, and public participation |
+
+![Six taskbook outputs: case transfer, two-loop identity, ecosystem handoff, area components, cultural signage and annual calendar](assets/figures/taskbook-deliverables.en.svg)
+
+The board is not a vision collage. The two loops and switch separate continuous public passage, a withdrawable candidate service and visible human takeover. The ecosystem requires public stewardship, rail/bus, residents and disabled users, enterprises/operators, maintenance/data/procurement, and independent review to state what each receives and returns. Components must first provide daily information, expose barriers and record repair before becoming landmarks. The calendar moves through winter/night, accessibility/community, rain/heat/curb, and a public decision; Mobility Commons Week remains `HOLD` until at least one authorized real whole-trip audit is completed and its repair or withdrawal receipt is published. Field observations remain zero [data:visual/assets/taskbook-deliverables.json].
+
+Each candidate landmark performs a daily task. The Mobility Timetable displays transit, human-service, and curb states. The Right-to-Arrive Gauge shows unresolved barriers in the seven-link chain and the next review date. The Failure Archive Station displays only de-identified, replayable stop and repair records. Recognition goes to people and teams that remove public barriers, disclose failure evidence, and maintain human service. The annual program uses the same gate. It completes one real trip audit before exhibitions, challenges, or international communication. These are proposals for professional deepening, without a venue, budget, or organizing commitment [data:visual/assets/taskbook-crosswalk.json] [depth:three_key_area_detailed_design] [depth:phasing_implementation].
+
 ## Design Basis and Source List
 
 The open-call requirements cover three spatial scales, three key areas, AI and mobility scenarios, an innovation ecosystem and reviewable drawings and data layers [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]. The package uses the public provisional site package but replaces the narrative, road attributes, metrics, evidence register and visual boards with an enterprise–resident mobility focus. Both the site and key-area polygons declare `official_boundary=false` and `geometry_role=provisional_constraint` [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001].
@@ -54,7 +93,7 @@ Evidence is separated into `known` geometry values, `unknown` local baselines, `
 
 The regional layer studies the rail, bus, campus, enterprise and residential relationships around the Jing-Zhang corridor. The overall layer translates them into access chains, curb states, public-service interfaces, blue-green fallback and maintenance packages. The key-area layer tests one reversible operational package in each of Zhongzhiyuan, the AI Origin Community and Dazhongsi [depth:three_level_scope_framework] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT].
 
-The three scales share the same provisional `site_boundary`, `key_areas`, `land_use`, `buildings`, `roads`, `green_space`, `public_space`, `constraints` and `phasing` layers. The approximately 11.41 km² area is a design-comparison value only [metric:site_area_sqm]. A future official revision must trigger one coordinated re-render of all geometry, metrics, drawings and visual cards.
+The three scales share the same provisional `site_boundary`, `key_areas`, `land_use`, `buildings`, `roads`, `green_space`, `public_space`, `constraints` and `phasing` layers [data:geometry/key_areas.geojson#PROV-KEY-001]. The approximately 11.41 km² area is a design-comparison value only [metric:site_area_sqm]. A future official revision must trigger one coordinated re-render of all geometry, metrics, drawings and visual cards.
 
 ## Coordinated Research Area: Industry and Future City Research
 
@@ -72,6 +111,8 @@ Autonomous or on-demand shuttles are treated as regulated feeders, not replaceme
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
+### Overall structure: one shared loop, three connection types, four service levels
+
 The overall structure is a shared mobility loop, not a new closed road. Three connection types are used: stable rail/bus interchange, consolidated enterprise/shared feeder services, and human-first accessible walking. Four service levels are measured: route continuity, transfer reliability, orderly curb use and complaint closure. Curb-management research supports treating delivery, ride-hail, shared mobility and public events as competing demands that require joint public/private scheduling and responsibility [source:CURBSPACE-MANAGEMENT-2021].
 
 ### Five ground modes and one conditional air experiment
@@ -88,7 +129,9 @@ Scenarios include weekday AM/PM peaks, off-peak, event days, rain/heat, metro or
 
 Optimization is hard-gate first and Pareto-based afterward. Safety, fire/emergency access, accessibility continuity, public-transport protection, privacy and human service are screened before comparing generalized cost, people-flow conflicts, car vehicle-kilometres, energy, external-commute reliability and worst-group gaps. The result is an explainable candidate set and an unknown `multimodal_system_efficiency_index`, not an uncalibrated claim that one score is “the highest overall efficiency” [metric:person_flow_conflict_rate] [metric:multimodal_system_efficiency_index].
 
-The first intervention is reversible: signs, wayfinding, rain shelters, seats, bicycle parking, accessible ramps, enterprise mobility desks, human service counters and time-window curb markers. The package does not claim a new bridge, road widening, parking supply, building height, floor-area ratio or investment amount. All land-use and building relationships remain conceptual and are tied to the machine layers [data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BUILD-001] [depth:land_use_layout] [depth:development_intensity_controls].
+### Spatial renewal: reversible first, fixed only after evidence
+
+The first intervention is reversible: signs, wayfinding, rain shelters, seats, bicycle parking, accessible ramps, enterprise mobility desks, human service counters and time-window curb markers. The package does not claim a new bridge, road widening, parking supply, building height, floor-area ratio or investment amount. All land-use and building relationships remain conceptual and are tied to the machine layers [data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BUILD-001]. Their design-depth implications remain provisional [depth:land_use_layout] [depth:development_intensity_controls].
 
 ## Detailed Design of Key Areas
 
@@ -97,6 +140,14 @@ Zhongzhiyuan tests enterprise arrival, shuttle consolidation and loading. The AI
 The responsibility-transfer table maps seven resource units to eight affected groups and checks a named receiver, ordinary equivalent, refusal condition and write-back field for each unit. `run-mobility-responsibility-transfer.js` is a supplemental contract audit, not one of the four formal self-check gates; it additionally rejects duplicate, empty, unknown or unmapped groups. `test-mobility-responsibility-transfer.js` replays all four negative fixtures. A pass proves only that the audit contract is complete; it proves no field coverage, authorization, user observation or transport performance [data:visual/assets/mobility-responsibility-transfer.json] [data:visual/assets/run-mobility-responsibility-transfer.js] [data:visual/assets/test-mobility-responsibility-transfer.js].
 
 The first pilot is a small morning and evening window in Zhongzhiyuan, an accessible daily-route comparison in the Origin Community, and a rail/curb separation rehearsal at Dazhongsi. Enterprise bookings cannot become permanent community bans. Shared vehicles cannot occupy a fire route, accessible path or emergency corridor.
+
+### Public-map screening | Start with entrances, crossings and curb windows
+
+This version uses OpenStreetMap/Overpass data accessed on 2026-08-21 as background screening. Around each candidate area it marks a mapped station or entrance, the nearest mapped crossing, and a transit/curb audit window, then links them as a **P0 audit sequence**. The line is not a verified route. Mapped presence does not establish gradient, clear width, signal operation, capacity, accessibility, fire access, right-of-way or permission. Every candidate point and line in the two FeatureCollection audit assets therefore declares `authorization=0`, `field_observations=0`, and `decision=HOLD` [source:OSM-TRANSPORT-CONTEXT] [data:visual/assets/osm-mobility-context.json] [data:visual/assets/mobility-interface-candidates.json].
+
+![Three public-map mobility interfaces: entrances, crossings, curb windows and unverified audit sequences](assets/figures/mobility-spatial-insets.en.svg)
+
+The screening exposes a conflict that must stop premature design: the current rough `PROV-KEY-003` rectangle does not cover the mapped Dazhongsi station; the station is about 2.31 km from the rectangle centroid. This version does not move the rough rectangle to match the name and does not draw the station as an internal facility. It records Dazhongsi station only as an **external public-transfer anchor**. The area relationship, route walk, accessibility/fire review and responsible receiver must be redone after an official or professionally confirmed geometry is available, before locating the Mobility Timetable [data:geometry/key_areas.geojson#PROV-KEY-003] [data:visual/assets/mobility-interface-candidates.json].
 
 ### Readback order for the three interfaces
 
@@ -156,13 +207,33 @@ A door-to-door chain must remain understandable beyond one peak period. The pack
 
 `mobility-continuity-receipt.json` fixes four windows, four handoff seams, twelve receipt fields, four positive controls and six negative fixtures. `run-mobility-continuity-receipt.js` and its regression cases prove only that the contract can be checked offline; they do not prove field continuity. Authorization remains 0, field observations remain 0, the result remains `not_run`, and `performance_results=null`.
 
-To make “what remains after AI is unplugged” a spatial acceptance test rather than a slogan, each key area now has a `BASE → BOOST → BLACKOUT → BEQUEST` public-baseline contract. Zhongzhiyuan leaves a protected route, paper curb register and maintenance card; the AI Origin Community leaves a static/tactile route card, human service directory and correction log; Dazhongsi leaves an interchange map, event-day curb protocol and public withdrawal notice. The five P0–P4 stages define a debugging sequence only and carry no field authorization. The supplemental runner checks three prototypes, four states, five stages and the HOLD boundary; a pass proves contract completeness, not a real route, staff, capacity or performance [data:visual/assets/mobility-public-baseline-contract.json] [data:visual/assets/run-mobility-public-baseline-contract.js] [data:visual/assets/test-mobility-public-baseline-contract.js].
+### Twelve-Week Measurement Gates | Add Denominators to the Release Chain
+
+The release chain above states which receipt each window must leave. This `BASE → BOOST → BLACKOUT → BEQUEST` contract adds minimum observation denominators. Ordinary public service must work independently before AI may aggregate grouped demand or explain a conflict. A network outage, missing receiver or blocked accessible route freezes the digital layer and returns the journey to staff or public transport. Static wayfinding, a maintenance card, a complaint owner and a withdrawal receipt must remain after withdrawal [data:visual/assets/mobility-public-baseline-contract.json].
+
+| Phase | Weeks | Field action | Gate for the next phase |
+| --- | --- | --- | --- |
+| P0 | 1–2 | Freeze ordinary journeys, site boundaries, prohibited fields and six responsibility slots | Authorized scope, a stop owner and a dated evidence boundary |
+| P1 | 3–6 | Complete manual curb observation, ordinary-route attempts and affected-user accessibility walkthroughs first | Every critical journey has a non-AI route and zero unresolved critical access blockers |
+| P2 | 7–8 | Run read-only shadow comparisons without changing basic service | Refusing AI does not reduce basic mobility access |
+| P3 | 9–10 | Rehearse outage, weather, blocked-route and missing-receiver handoffs | Every failure stops safely and records receiver, fallback and restoration actions |
+| P4 | 11–12 | Independently review coverage, group differences, maintenance burden and public bequests | One decision to hold, repair, run a bounded pilot or retire discloses conflicts |
+
+Minimum coverage begins with 48 curb observation windows and 24 ordinary-route attempts [metric:planned_curb_observation_window_count] [metric:planned_ordinary_route_attempt_count]. It also includes 12 accessibility walkthroughs involving affected users without proxy substitution and eight outage or handoff drills [metric:planned_accessibility_walkthrough_count] [metric:planned_blackout_handoff_drill_count]. These are coverage quantities, not a statistical sample or evidence of recruitment, authorization or completion. Curb data separates regulations, events and aggregate metrics, and technology output must be checked against separately collected manual ground truth [source:OMF-CDS-1-1] [source:OMF-CURB-TECH-2025].
+
+Six unconfirmed roles cover public transport, accessibility, curbs, data, public appeal and independent review. No real case record enters the public repository; future coded raw observations may be retained for at most 30 days and non-personal aggregates for at most 365 days. Evaluation covers safety, accessibility, equity, operations and complete task performance without transferring another project's sample or results [source:USDOT-SMART-EVALUATION-2024] [source:SMARTHUBS-INCLUSIVE-KIOSK-2024]. The offline runner and negative cases only check whether this boundary can be reviewed [data:visual/assets/run-mobility-public-baseline-contract.js] [data:visual/assets/test-mobility-public-baseline-contract.js].
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
+### Participants and three industry tests
+
 Personas include enterprise mobility coordinators, residents and carers, wheelchair users, rail and bus operators, logistics and maintenance staff, school and community workers, night-shift staff and transport/privacy/fire professionals. AI aggregates demand, explains conflicts and prepares rollback checklists; it cannot permanently lock a public route.
 
-Three industry tests structure the pilot: enterprise demand aggregation using grouped data; an equal-service comparison between AI, human, telephone and paper routes; and curb/communication-loss fallback during peak, event, snow or rain scenarios. Ten scenario cards cover consolidated enterprise shuttles, public-transport benefits, guaranteed night return, loading reservations, accessible daily routes, the last 500 metres to rail, event-day separation, degraded service and complaint-to-maintenance closure [source:EMPLOYER-TDM-GUIDE] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+Three industry tests structure the pilot: enterprise demand aggregation using grouped data; an equal-service comparison between AI, human, telephone and paper routes; and curb/communication-loss fallback during peak, event, snow or rain scenarios.
+
+### Ten scenario cards
+
+Ten scenario cards cover consolidated enterprise shuttles, public-transport benefits, guaranteed night return, loading reservations, accessible daily routes, the last 500 metres to rail, event-day separation, degraded service and complaint-to-maintenance closure [source:EMPLOYER-TDM-GUIDE] [source:BEIJING-ACCESSIBILITY-REGULATION] [source:SAV-MICROTRANSIT]. The taskbook remains the coverage boundary [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -172,9 +243,17 @@ The existing conceptual building footprints occupy about 2.72% of the provisiona
 
 The conceptual network includes one north–south relationship line of about 9.60 km, three east–west links and a slow-mobility relationship network of about 13.01 km. These are design lengths, not engineered road centrelines or proof of current continuity [metric:design_north_south_spine_length_m] [metric:design_east_west_connector_count] [metric:design_slow_mobility_network_length_m]. Each segment needs a future audit of section, signals, crossings, entrances, gradients, tactile paving, lighting, shade, loading, fire access, drainage, utilities, ownership and maintenance.
 
+### One time-windowed curb ledger
+
 The curb ledger uses `open`, `booked`, `service`, `human-only` and `emergency` states. Every state change has a responsible person, start and end time, service purpose, clearing action, alternative route and complaint entry. Enterprise data is grouped; resident data is service-based. The four operational metrics are accessible-route completion, first/last-mile reliability, curb-window compliance and complaint-closure hours [source:CURBSPACE-MANAGEMENT-2021] [source:NIST-HUMAN-CENTERED-AI]. All local demand, occupancy, delay, passenger, charging and complaint values remain unknown until measured.
 
-Metro and bus are the backbone. Enterprise shuttles and on-demand vehicles feed that backbone. Parking and loading are managed as timed services rather than solved only by more supply. Rain, snow, lighting, charging, information signs and maintenance are entered into one municipal asset register. The Haidian transport document and slow-mobility procurement material provide the checklist for hub, interchange, emergency and construction review [source:BEIJING-HAIDIAN-TRANSIT-HUB-PDF] [source:HAIDIAN-SLOW-MOBILITY-TENDER-2022] [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure].
+### Two-sided demand ledgers and four service levels
+
+Enterprise demand is entered as grouped headcount bands, entrances, service windows, freight and charging needs. Resident demand is entered by service type, time window, accessibility, care and night-return needs. The system may publish only aggregated conflicts and service-level evidence; purpose, retention, deletion responsibility and a human explanation must remain visible. No local demand value is treated as known before consented measurement.
+
+### Rail, parking and municipal interfaces
+
+Metro and bus are the backbone. Enterprise shuttles and on-demand vehicles feed that backbone. Parking and loading are managed as timed services rather than solved only by more supply. Rain, snow, lighting, charging, information signs and maintenance are entered into one municipal asset register. The Haidian transport document and slow-mobility procurement material provide the checklist for hub, interchange, emergency and construction review [source:BEIJING-HAIDIAN-TRANSIT-HUB-PDF] [source:HAIDIAN-SLOW-MOBILITY-TENDER-2022]. These remain design-depth requirements rather than completed engineering [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure].
 
 If an air-mobility experiment becomes eligible, it remains a controlled add-on to the ground system. Metro/bus transfer, walking/wheelchair paths, fire egress, noise and the quiet residential interface must be protected before airspace and operating permissions are reviewed. `air_ground_transfer_reliability`, throughput, cancellation, weather windows, noise, emergency response and insurance responsibility remain `unknown`. Beijing’s low-altitude action plan is policy context; the CAAC unmanned-aircraft regulation is a safety and operating-responsibility gate; neither is a local flight or construction permission [source:BEIJING-LOW-AIR-ECONOMY-2024] [source:CAAC-UAV-REGULATION-2024] [source:UAM-BEIJING-MULTIMODAL-2024].
 
@@ -182,7 +261,7 @@ If an air-mobility experiment becomes eligible, it remains a controlled add-on t
 
 Before field OD, station capacity, signals, people flow and curb counts exist, `visual/assets/movement-simulation.json` runs an interpretable 1,000-person normalized design unit: S0 unmanaged peak, S1 multimodal curb coordination, S2 air candidate blocked by regulatory gates, and S3 ground fallback in extreme weather. The package also includes the dependency-free deterministic runner `visual/assets/run-mobility-simulation.js`; it recomputes the declared design-unit queues and service supply without upgrading papers or synthetic values into a Haidian baseline. S1 is only a provisional design candidate after the proposed hard-gate screen; generalized cost, transfer reliability, people-flow conflicts, external-car inflow, worst-group gap and energy are illustrative inputs, not current Haidian performance. The board exposes the chain: hard gates first, Pareto comparison second, local calibration last [metric:multimodal_system_efficiency_index] [metric:person_flow_conflict_rate] [standard:SUMO-MULTIMODAL-SIMULATION].
 
-The model objects are explicit rather than being a mode checklist: the 1,000-person design unit contains 380 residents, 450 enterprise employees, 60 carers/children, 50 visitors, 40 logistics or maintenance workers and 20 night-shift workers. Five `trip_leg_templates` make external enterprise commuting, resident daily services, enterprise-shuttle transfers, logistics/loading and ground-first air fallback inspectable. The network models metro trains (180 persons per vehicle, 10-minute headway), buses (60 persons per vehicle, 12-minute headway), bicycle parking, car curb service, a continuous walking/wheelchair stream and an air candidate held behind a gate. At 60-second steps it records location, mode, queue, vehicle occupancy, transfer status, curb state, conflicts and accessibility flags, then reports peak queues, station/vehicle load, transfer wait, car curb queues and worst-group gaps. Reviewers can run `node visual/assets/run-mobility-simulation.js` to recalculate mode shares, service supply, queues and calibration fields offline; the values in `model_analysis.derived_readouts` remain synthetic sensitivity outputs, not field observations [source:SUMO-MULTIMODAL-SIMULATION] [source:ATOM-MULTIMODAL-ABM] [source:ACCESS-ACCESSIBILITY-ABM].
+The model objects are explicit rather than being a mode checklist: the 1,000-person design unit contains 380 residents, 450 enterprise employees, 60 carers/children, 50 visitors, 40 logistics or maintenance workers and 20 night-shift workers. Five `trip_leg_templates` make external enterprise commuting, resident daily services, enterprise-shuttle transfers, logistics/loading and ground-first air fallback inspectable. The network models metro trains (180 persons per vehicle, 10-minute headway), buses (60 persons per vehicle, 12-minute headway), bicycle parking, car curb service, a continuous walking/wheelchair stream and an air candidate held behind a gate. At 60-second steps it records location, mode, queue, vehicle occupancy, transfer status, curb state, conflicts and accessibility flags, then reports peak queues, station/vehicle load, transfer wait, car curb queues and worst-group gaps. Reviewers can run `node visual/assets/run-mobility-simulation.js` to recalculate mode shares, service supply, queues and calibration fields offline; the values in `model_analysis.derived_readouts` remain synthetic sensitivity outputs, not field observations [source:SUMO-MULTIMODAL-SIMULATION] [source:ATOM-MULTIMODAL-ABM] [source:ACCESS-ACCESSIBILITY-ABM]. Transfer reliability and both modelling gates still require local calibration [metric:mode_transfer_reliability] [standard:SUMO-MULTIMODAL-SIMULATION] [standard:LOW-AIR-REGULATORY-GATE].
 
 In this normalized sandbox, the unmanaged peak produces a modeled peak curb queue of 86 cars and a station-gate load ratio of 1.05; the multimodal curb candidate produces 0 cars and 0.88; the weather ground fallback produces 47 cars and 0.96. This points to station gates, bus-stop capacity, curb service and accessible crossings as the first calibration targets, not to a construction conclusion. Following open activity/agent-based methods, formal calibration must compare mode share, road/curb volume, door-to-door time, trip distance and grouped accessibility—not only a single efficiency score [source:ATOM-MULTIMODAL-ABM] [source:ACCESS-ACCESSIBILITY-ABM]. Dated cross-boundary OD, headways, sections, parking, conflicts and fire/accessibility review must replace the design inputs before rerunning or claiming performance.
 
@@ -209,9 +288,17 @@ The implementation loop is register → pilot → review → expand or stop. Ope
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
-The package separates file-readable geometry, unknown local baselines and pilot targets. Known values include the provisional area, three key areas, building footprint, green/public ratios and design relationship lengths [metric:site_area_sqm] [metric:key_area_count] [metric:building_footprint_area_sqm] [metric:green_ratio] [metric:public_space_ratio]. Unknown values include enterprise commute demand, external commute OD, resident access, employer multimodal trip rate, parking occupancy, curb compliance, transfer reliability, accessible-route completion, people-flow conflicts, complaint closure, workplace charging gap, multimodal system efficiency, mode-transfer reliability and air-ground transfer reliability.
+### Current file-readable substrate
 
-Pilot targets are not current outcomes: accessible-route completion at least 0.95, transfer reliability at least 0.85, curb-window compliance at least 0.90, a first complaint response within four hours and a status update within 24 hours [metric:accessible_route_completion_ratio] [metric:first_last_mile_transfer_reliability] [metric:curb_time_window_compliance_ratio] [metric:mobility_service_complaint_closure_hours]. Five gates cover authoritative geometry, consented demand, safety, responsibility and equity. The compliance, standards and design-depth matrices bind these claims to the proposal, GeoJSON, drawings and self-check [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:metrics_recalculation] [depth:risk_missing_data].
+The package separates file-readable geometry, unknown local baselines and pilot targets. Known values include the provisional area, three key areas and building footprint [metric:site_area_sqm] [metric:key_area_count] [metric:building_footprint_area_sqm]. Building, green and public-space ratios remain conceptual [metric:building_footprint_ratio] [metric:green_ratio] [metric:public_space_ratio]. Design relationship lengths must be recalculated with an official revision [metric:design_north_south_spine_length_m] [depth:metrics_recalculation]. Unknown values include enterprise commute demand, external commute OD, resident access, employer multimodal trip rate, parking occupancy, curb compliance, transfer reliability, accessible-route completion, people-flow conflicts, complaint closure, workplace charging gap, multimodal system efficiency, mode-transfer reliability and air-ground transfer reliability.
+
+### Transport indicators that still require evidence
+
+Pilot targets are not current outcomes. Accessible-route completion is at least 0.95 and transfer reliability at least 0.85 [metric:accessible_route_completion_ratio] [metric:first_last_mile_transfer_reliability]. Curb-window compliance is at least 0.90, with a first complaint response within four hours and a status update within 24 hours [metric:curb_time_window_compliance_ratio] [metric:mobility_service_complaint_closure_hours]. Five gates cover authoritative geometry, consented demand, safety, responsibility and equity. The standards matrix binds the official brief to the package [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. The depth matrix keeps recalculation and missing data explicit [depth:metrics_recalculation] [depth:risk_missing_data].
+
+### Five validation gates and three traceability matrices
+
+Geometry, demand, safety, responsibility and equity must all pass before a model result can support a release decision. `compliance_matrix.json` maps the call and six taskbook agents; `standard_matrix.json` maps governing standards and methods; `design_depth_matrix.json` maps spatial depth, evidence and professional-review boundaries. A failed hard gate returns the proposal to `HOLD` instead of being averaged away.
 
 ![Enterprise–resident mobility overview with three key areas and five gates](assets/figures/site-overview.en.png)
 ![Two-sided demand registers and time-windowed land-use structure](assets/figures/land-use-structure.en.png)
@@ -227,8 +314,10 @@ Government and tender sources establish policy and responsibility frameworks; pa
 
 ## References
 
-The source register records access date, use and non-use boundaries for the official transport plan, Haidian tender and planning evidence, employer TDM research, curb-management research, shared-mobility research, multimodal simulation documentation, air-mobility methods and the public site package [source:SOURCE-REGISTRY] [source:OSM-TRANSPORT-CONTEXT].
+The source register separates official policy, procurement material, research methods, open-map screening and package design data, recording access date, use and non-use boundaries [source:SOURCE-REGISTRY] [source:OSM-TRANSPORT-CONTEXT] [source:HAIDIAN-ROAD-PARKING-TENDER-2026]. Official policy and tenders establish city direction, service duties and review checklists; they do not provide station capacity, curb occupancy, traffic counts, parking supply or enterprise demand for this study area.
 
-Additional method and policy entries are `BEIJING-LOW-AIR-ECONOMY-2024`, `CAAC-UAV-REGULATION-2024`, `SUMO-MULTIMODAL-DOCS`, `MULTIMODAL-TRAFFIC-REALITY-2025`, `UAM-BEIJING-MULTIMODAL-2024` and `UAM-PUBLIC-TRANSIT-2023`; they are not local baselines or permissions.
+Open-map and provisional geometry support spatial relationships and offline recalculation only. Site-area confidence is now `low`. If an official boundary, station entrance or road record changes, geometry, metrics, figures and reports must be regenerated from the same revision. A diagram cannot establish present continuity or engineering capacity.
 
-**Boundary statement:** this is an auditable concept and reversible pilot framework for enterprise–resident mobility. It is not an approved plan, road-opening announcement, parking permit, enterprise agreement, capacity proof, health claim or construction commitment. The existing first-place project remains untouched.
+The four added method sources respectively constrain curb data structure, pre-procurement validation, multi-dimensional evaluation and complete affected-user task tests. They support the 12-week plan and manual ground-truth checks; they do not prove a Haidian deployment or completed user study. Authorization, recruitment, operator, budget, field observations and complaint logs remain missing. Until those gaps close, every `field_value` remains `null` and the decision remains `HOLD`.
+
+**Boundary statement.** This is an auditable concept and reversible trial framework for enterprise–resident mobility. It is not an approved plan, road-opening announcement, parking permit, enterprise agreement, capacity proof, health claim or construction commitment.

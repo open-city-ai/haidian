@@ -1,25 +1,179 @@
 {
-  "schema_version": "mobility-public-baseline-contract-v1",
-  "contract_id": "MOB-PUBLIC-BASELINE-001",
-  "review_role": "supplemental_design_contract_not_a_field_result",
+  "schema_version": "mobility-public-baseline-contract-v2",
+  "contract_id": "MOB-PUBLIC-BASELINE-002",
+  "iteration": "v2.2-candidate",
+  "review_role": "supplemental_twelve_week_design_contract_not_a_field_result",
+  "method_references": [
+    {
+      "source_id": "OMF-CDS-1-1",
+      "use": "separate curb regulations, activity events and aggregate metrics",
+      "limit": "method vocabulary only; no local CDS deployment or data feed is claimed"
+    },
+    {
+      "source_id": "OMF-CURB-TECH-2025",
+      "use": "define objectives and metrics before procurement and independently validate technology against manual ground truth",
+      "limit": "international implementation guidance; local procurement and validation remain required"
+    },
+    {
+      "source_id": "USDOT-SMART-EVALUATION-2024",
+      "use": "evaluate safety, mobility, accessibility, equity and operational outcomes with declared data sources",
+      "limit": "evaluation resource only; no US programme result is transferred to Haidian"
+    },
+    {
+      "source_id": "SMARTHUBS-INCLUSIVE-KIOSK-2024",
+      "use": "test complete user tasks with affected groups and combine observation with participant feedback",
+      "limit": "research method only; the study sample and results are not local baselines"
+    }
+  ],
   "states": [
-    {"id": "BASE", "meaning": "Ordinary public mobility works without AI, account, network or model.", "required_assets": ["public_transport", "accessible_route", "human_service", "paper_or_phone_entry"]},
-    {"id": "BOOST", "meaning": "AI may aggregate grouped demand and explain a conflict without taking public right-of-way or human authority.", "required_assets": ["grouped_input", "named_receiver", "ordinary_route", "refusal_rule"]},
-    {"id": "BLACKOUT", "meaning": "An outage, weather event or safety conflict freezes the digital layer and returns people to human or public transport service.", "required_assets": ["freeze_action", "fallback_route", "public_notice", "handoff_record"]},
-    {"id": "BEQUEST", "meaning": "After withdrawal, the useful public asset remains independently maintainable and the change is archived.", "required_assets": ["static_wayfinding", "maintenance_card", "complaint_owner", "withdrawal_receipt"]}
+    {
+      "id": "BASE",
+      "meaning": "Ordinary public mobility works without AI, account, network or model.",
+      "required_assets": ["public_transport", "accessible_route", "human_service", "paper_or_phone_entry"]
+    },
+    {
+      "id": "BOOST",
+      "meaning": "AI may aggregate grouped demand and explain a conflict without taking public right-of-way or human authority.",
+      "required_assets": ["grouped_input", "named_receiver", "ordinary_route", "refusal_rule"]
+    },
+    {
+      "id": "BLACKOUT",
+      "meaning": "An outage, weather event or safety conflict freezes the digital layer and returns people to human or public transport service.",
+      "required_assets": ["freeze_action", "fallback_route", "public_notice", "handoff_record"]
+    },
+    {
+      "id": "BEQUEST",
+      "meaning": "After withdrawal, the useful public asset remains independently maintainable and the change is archived.",
+      "required_assets": ["static_wayfinding", "maintenance_card", "complaint_owner", "withdrawal_receipt"]
+    }
   ],
   "prototypes": [
-    {"id": "MB-01", "key_area": "Zhongzhiyuan", "ordinary_service": "rail_or_bus_arrival, walking and staffed loading guidance", "ai_boost": "aggregate enterprise arrival windows and flag curb conflicts", "blackout_action": "freeze shuttle or curb booking and dispatch public transport or a named marshal", "bequest_asset": "paper curb-window register, protected-route sign and maintenance card", "responsible_role": "enterprise mobility role plus transport/accessibility reviewer", "stop_conditions": ["fire_or_access_route_displaced", "no_receiver", "capacity_unknown"]},
-    {"id": "MB-02", "key_area": "AI Origin Community", "ordinary_service": "walk-in, telephone, paper and continuous accessible route for daily needs", "ai_boost": "group service windows and explain an optional detour without retaining continuous traces", "blackout_action": "disable recommendation and keep the staffed route, public transport and complaint desk open", "bequest_asset": "tactile/static route card, human service directory and dated correction log", "responsible_role": "community liaison plus accessibility and privacy reviewer", "stop_conditions": ["basic_access_requires_app", "accessible_alternative_missing", "complaint_owner_missing"]},
-    {"id": "MB-03", "key_area": "Dazhongsi", "ordinary_service": "rail timetable, public crossing, staffed wayfinding and a protected return path", "ai_boost": "compare grouped transfer windows and propose reversible feeder separation", "blackout_action": "remove feeder demand and preserve the public route when headway, crossing or curb evidence is missing", "bequest_asset": "static interchange map, event-day curb protocol and public withdrawal notice", "responsible_role": "rail/bus operations role plus independent safety reviewer", "stop_conditions": ["transfer_capacity_unknown", "crossing_window_blocked", "event_overflow_unmanaged"]}
+    {
+      "id": "MB-01",
+      "key_area": "Zhongzhiyuan",
+      "ordinary_service": "rail_or_bus_arrival, walking and staffed loading guidance",
+      "ai_boost": "aggregate enterprise arrival windows and flag curb conflicts",
+      "blackout_action": "freeze shuttle or curb booking and dispatch public transport or a named marshal",
+      "bequest_asset": "paper curb-window register, protected-route sign and maintenance card",
+      "responsible_role": "enterprise mobility role plus transport/accessibility reviewer",
+      "stop_conditions": ["fire_or_access_route_displaced", "no_receiver", "capacity_unknown"]
+    },
+    {
+      "id": "MB-02",
+      "key_area": "AI Origin Community",
+      "ordinary_service": "walk-in, telephone, paper and continuous accessible route for daily needs",
+      "ai_boost": "group service windows and explain an optional detour without retaining continuous traces",
+      "blackout_action": "disable recommendation and keep the staffed route, public transport and complaint desk open",
+      "bequest_asset": "tactile/static route card, human service directory and dated correction log",
+      "responsible_role": "community liaison plus accessibility and privacy reviewer",
+      "stop_conditions": ["basic_access_requires_app", "accessible_alternative_missing", "complaint_owner_missing"]
+    },
+    {
+      "id": "MB-03",
+      "key_area": "Dazhongsi",
+      "ordinary_service": "rail timetable, public crossing, staffed wayfinding and a protected return path",
+      "ai_boost": "compare grouped transfer windows and propose reversible feeder separation",
+      "blackout_action": "remove feeder demand and preserve the public route when headway, crossing or curb evidence is missing",
+      "bequest_asset": "static interchange map, event-day curb protocol and public withdrawal notice",
+      "responsible_role": "rail/bus operations role plus independent safety reviewer",
+      "stop_conditions": ["transfer_capacity_unknown", "crossing_window_blocked", "event_overflow_unmanaged"]
+    }
   ],
+  "measurement_plan": {
+    "sampling_type": "coverage_oriented_purposive_not_statistical",
+    "population_inference_allowed": false,
+    "curb_observation_windows": {
+      "minimum_count": 48,
+      "formula": "3 key areas x 2 dayparts x 2 day types x 4 baseline weeks",
+      "method": "manual count of regulation, use, dwell, clearing, conflict and protected-route obstruction in a declared observation window",
+      "field_value": null
+    },
+    "ordinary_route_attempts": {
+      "minimum_count": 24,
+      "formula": "3 key areas x 4 journey tasks x 2 dayparts",
+      "journey_tasks": ["arrive", "transfer_or_complete", "recover", "appeal_or_exit"],
+      "field_value": null
+    },
+    "accessibility_walkthroughs": {
+      "minimum_count": 12,
+      "formula": "3 key areas x 2 dayparts x 2 affected-user perspectives",
+      "required_perspectives": ["disabled_or_assistive_technology_user", "older_or_low_digital_capability_user"],
+      "proxy_substitution_allowed": false,
+      "field_value": null
+    },
+    "blackout_and_handoff_drills": {
+      "minimum_count": 8,
+      "formula": "4 trigger families x 2 dayparts",
+      "trigger_families": ["network_or_power_outage", "rain_snow_or_heat", "accessible_route_blocked", "receiver_or_capacity_missing"],
+      "field_value": null
+    },
+    "sampling_limit": "The counts are minimum coverage quantities, not a representative sample or a claim of recruitment, staffing, authorization or field completion."
+  },
   "phase_sequence": [
-    {"id": "P0", "window": "weeks_1_2", "action": "inventory ordinary routes, assets, owners, consent boundaries and dated denominators", "gate": "unknowns remain unknown; no booking"},
-    {"id": "P1", "window": "weeks_3_4", "action": "compare one ordinary route with one optional grouped-demand explanation", "gate": "ordinary route remains available to every group"},
-    {"id": "P2", "window": "weeks_5_6", "action": "run offline shadow and negative fixtures without field authorization", "gate": "all hard failures return to HOLD"},
-    {"id": "P3", "window": "week_7", "action": "rehearse BLACKOUT, handoff, public notice and reservation freeze", "gate": "named receiver and dated restoration record"},
-    {"id": "P4", "window": "weeks_8_12", "action": "audit BEQUEST assets, maintenance burden, complaints and group differences", "gate": "expand, repair or withdraw only after independent review"}
+    {
+      "id": "P0",
+      "weeks": [1, 2],
+      "action": "freeze ordinary journeys, site and rights boundaries, responsible role slots, prohibited data and manual count forms",
+      "gate": "authorized planning scope, named stop owner and dated evidence boundary"
+    },
+    {
+      "id": "P1",
+      "weeks": [3, 4, 5, 6],
+      "action": "collect the planned manual curb windows, ordinary route attempts and accessibility walkthroughs before any AI comparison",
+      "gate": "each critical journey has a usable non-AI route and no unresolved critical access blocker"
+    },
+    {
+      "id": "P2",
+      "weeks": [7, 8],
+      "action": "run read-only shadow comparisons with synthetic or separately authorized grouped data",
+      "gate": "AI remains optional, reversible and unable to reduce basic service"
+    },
+    {
+      "id": "P3",
+      "weeks": [9, 10],
+      "action": "rehearse blackout, weather, blocked-route and missing-receiver handoffs with public notice and reservation freeze",
+      "gate": "every critical failure stops safely and records a dated receiver, fallback and restoration action"
+    },
+    {
+      "id": "P4",
+      "weeks": [11, 12],
+      "action": "independently review coverage, group differences, maintenance burden, complaints and bequest assets",
+      "gate": "one written hold, repair, bounded-pilot or retire decision discloses conflicts and unresolved issues"
+    }
   ],
-  "field_status": {"authorization": 0, "field_observations": 0, "local_baseline": "unknown", "performance_results": null, "decision": "HOLD"},
-  "boundary": "The contract makes ordinary service, bounded AI, withdrawal and retained public assets reviewable. It does not prove a route, staffing, capacity, authorization, user outcome, safety result or operating performance."
+  "gate_thresholds": [
+    {"id": "G-NON-AI", "measure": "declared critical journeys with a usable public, staffed, telephone or paper route", "threshold": "100_percent", "failure_action": "hold"},
+    {"id": "G-ACCESS", "measure": "unresolved critical accessibility blockers on declared routes", "threshold": "zero", "failure_action": "repair_and_repeat"},
+    {"id": "G-PROTECTED", "measure": "observed minutes in which fire, emergency or accessible routes are displaced", "threshold": "zero", "failure_action": "stop_and_clear"},
+    {"id": "G-OPTIONAL", "measure": "cases where refusing AI reduces basic mobility access", "threshold": "zero", "failure_action": "disable_ai_layer"},
+    {"id": "G-DELETE", "measure": "records due for deletion with verified deletion evidence", "threshold": "100_percent", "failure_action": "freeze_data_processing"},
+    {"id": "G-INDEPENDENT", "measure": "independent decision packet with conflicts and dissent disclosed", "threshold": "one_complete_signed_packet", "failure_action": "no_release"}
+  ],
+  "accountability_slots": [
+    {"id": "R-TRANSPORT", "confirmed": false, "duty": "declare routes, timetables, capacity evidence and public-transport fallback"},
+    {"id": "R-ACCESS", "confirmed": false, "duty": "approve affected-user participation and critical-blocker closure"},
+    {"id": "R-CURB", "confirmed": false, "duty": "own curb regulations, clearing, emergency protection and maintenance"},
+    {"id": "R-DATA", "confirmed": false, "duty": "approve purpose, fields, access, retention, deletion and validation"},
+    {"id": "R-PUBLIC", "confirmed": false, "duty": "own notice, complaint, appeal, correction and non-participation"},
+    {"id": "R-INDEPENDENT", "confirmed": false, "duty": "review conflicts and sign hold, repair, bounded-pilot or retire"}
+  ],
+  "data_boundary": {
+    "current_public_repository_case_records": 0,
+    "future_coded_raw_observation_max_days": 30,
+    "future_non_personal_aggregate_max_days": 365,
+    "allowed_fields": ["window_id", "key_area", "daypart", "curb_state", "event_category", "dwell_band", "cleared_or_not", "route_blocker_category"],
+    "prohibited_fields": ["name", "face", "precise_person_trace", "home_address", "health_record", "employment_record", "cross_service_profile"],
+    "independent_validation": "technology output must be compared with separately collected manual ground truth before use in a decision",
+    "repository_rule": "no real participant, vehicle or case-level field record enters the public repository"
+  },
+  "field_status": {
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "performance_results": null,
+    "confirmed_operator": null,
+    "confirmed_budget": null,
+    "decision": "HOLD"
+  },
+  "boundary": "The contract makes ordinary service, manual baseline measurement, bounded AI, withdrawal and retained public assets reviewable. It does not prove a route, staffing, capacity, authorization, user outcome, safety result, operating performance or official score."
 }

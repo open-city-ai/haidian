@@ -1,16 +1,22 @@
 # 方案迭代记录
 
-## v2.4 - 2026-08-21
+## v2.4-candidate - 2026-08-21
 
-- Added a bilingual system-level spatial-options board comparing four alternatives: unmanaged peak, ground-first multimodal, air-first feeder and extreme-weather ground fallback.
-- Added five review scales from `1:5000` to `1:50`, five public-rights rows and five hard-gate results; S1 advances only to professional design review while the package remains `HOLD`.
-- Added a deterministic runner with one positive control and six fail-closed negative fixtures; no numeric construction dimensions, authorization, field claims or performance results were added.
+- Replaced generic taskbook coverage with distinct agent.1–agent.6 deliverables, metrics, sources, assumptions, standards and review gates, plus a machine-readable three-area/two-wing crosswalk.
+- Added six verified complete-trip and curb-management references without transferring foreign institutions, sample shares or performance; specialized all 15 design-depth summaries around inspectable evidence and remaining gaps.
+- Corrected the bilingual land-use board to the GeoJSON-derived 23.4347%, 22.6880%, 29.4943% and 24.3830% shares, and brought the Chinese visual page up to the release-chain, continuity, taskbook and responsibility-transfer evidence level.
+- Added OSM/Overpass background screening for three station/entrance, crossing and transit/curb audit sequences, while keeping authorization and field observations at zero; recorded the 2.308 km mismatch between the mapped Dazhongsi station and the current PROV-KEY-003 rough-box centroid instead of silently moving the provisional boundary.
+- Added six bounded case-transfer cards, a two-loop-and-switch identity direction, six-role ecosystem handoffs, a three-area component catalogue, a cultural-signage grammar and a quarterly operating calendar with the annual event held behind one authorized real complete-trip audit.
+- Rebuilt the English visual as the same 23-card evidence dashboard as the Chinese version and added bilingual spatial/taskbook boards; no field performance, partnership, venue, budget or permit is claimed.
+- Replaced the 17-row generic announcement template with 23 requirement-specific traceability bundles, aligned bilingual heading and card structures, and embedded the SVG-led taskbook, spatial, release and continuity boards as print-safe vector or high-resolution artwork in the A0/A3 PDFs.
+- Integrated three bilingual spatial-interface prototypes for arrival/loading, care/human continuity and rail-to-curb transfer, with `1:500`/`1:50` labels kept explicitly non-dimensional.
+- Integrated the four-option ground-first system comparison across five review scales and five public rights; only S1 advances to professional design review, while authorization, construction, field performance and ranking remain unclaimed.
 
-## v2.3 - 2026-08-21
+## v2.3-candidate - 2026-08-21
 
-- Added three bilingual spatial interface prototypes: Zhongzhiyuan arrival/loading forecourt, AI Origin care/human-continuity loop, and Dazhongsi rail-to-curb transfer porch.
-- Added a `1:500` concept to `1:50` handoff board and a machine-readable contract with ordinary-service-first, named-owner, dated-evidence and stop/return gates.
-- Added positive and fail-closed negative fixtures; kept numeric dimensions null, authorization and field observations at 0, performance null and decision HOLD.
+- Added measurement denominators to the v2.2 release chain: 48 curb windows, 24 ordinary-route attempts, 12 affected-user accessibility walkthroughs and eight blackout/handoff drills over 12 weeks.
+- Added six fail-closed gates, six unconfirmed responsibility slots, a 30/365-day data boundary and independent manual ground-truth validation, while keeping all field values null and the decision at `HOLD`.
+- Corrected the provisional site confidence and the direction of curb-conflict and complaint-time targets, added four bounded primary method sources, removed the duplicated Chinese evidence appendix and restored exact bilingual evidence-marker parity.
 
 ## v2.2 - 2026-08-21
 
@@ -18,17 +24,17 @@
 - Added a seven-dimension reviewer evidence map and a bilingual release-chain board connecting the three spatial interfaces to the HOLD/repair/withdrawal decision.
 - Added a deterministic supplemental runner with a positive control plus four negative fixtures; it proves contract completeness only and does not create field authorization, baseline or performance.
 
-## v2.0 - 2026-08-21
-
-- Closed the responsibility-transfer coverage gap identified in the previous Mobility review: seven resource units now declare explicit mappings to eight affected groups.
-- Hardened the supplemental contract audit against duplicate, empty, unknown and unmapped group IDs, and added four deterministic negative fixtures.
-- Kept this audit separate from the four formal self-check gates; a PASS proves contract completeness only, not field coverage, authorization, user observation or transport performance.
-
 ## v2.1 - 2026-08-21
 
 - Added three key-area public-baseline prototypes with explicit BASE, BOOST, BLACKOUT and BEQUEST states.
 - Added a five-stage P0–P4 sequence and offline negative-fixture runner so the package records what ordinary mobility and maintainable public assets remain after AI withdrawal.
 - Kept every state design-only: authorization and field observations remain zero, baseline unknown, performance null and decision HOLD.
+
+## v2.0 - 2026-08-21
+
+- Closed the responsibility-transfer coverage gap identified in the previous Mobility review: seven resource units now declare explicit mappings to eight affected groups.
+- Hardened the supplemental contract audit against duplicate, empty, unknown and unmapped group IDs, and added four deterministic negative fixtures.
+- Kept this audit separate from the four formal self-check gates; a PASS proves contract completeness only, not field coverage, authorization, user observation or transport performance.
 
 ## v1.9 - 2026-08-21
 
