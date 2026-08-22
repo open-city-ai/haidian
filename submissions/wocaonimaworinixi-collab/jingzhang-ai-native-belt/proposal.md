@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v4.4"
+iteration: "v4.18"
 summary: "以百年京张铁路遗产走廊为骨架，把海淀 AI 产业带重构为一条人与智能体共同使用的原力带：一带三区两翼五门户的空间结构，八处叙事地标，八类人才画像，十二张可审计的 AI+ 场景卡，十六项实施机制与十二个编号更新项目，全部锚定临时边界口径、结构化指标与可复算证据链，并由同一份数据源同时渲染中英文本。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]

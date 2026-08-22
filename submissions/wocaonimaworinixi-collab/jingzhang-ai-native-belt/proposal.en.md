@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v4.10"
+iteration: "v4.18"
 summary: "Using the centennial Jingzhang railway heritage corridor as its frame, the scheme rebuilds the Haidian AI industrial belt into an Origin Force belt shared by people and machine agents: one belt, three zones with two wings and five gates, eight narrative landmarks, eight personas, twelve auditable AI+ scenario cards, sixteen implementation mechanisms and twelve numbered renewal projects, all anchored to a provisional boundary basis, structured metrics and a reproducible evidence chain, with both language versions rendered from one data source."
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
