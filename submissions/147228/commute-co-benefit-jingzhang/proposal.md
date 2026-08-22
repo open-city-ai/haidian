@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把企业错峰、居民照护、对外通勤、地铁、公交、自行车、步行/无障碍、汽车和企业接驳放进同一套可复算活动链；用全区域尺度合成压力屏查比较到岗可靠性、换乘等待、路缘冲突与群体公平，未来空中出行只保留受审批、可撤回、地面接驳优先的实验接口。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.6"
+iteration: "v1.9"
 ---
 
 # 京张通勤共益调度台。企业—居民多模式活动链
@@ -45,6 +45,14 @@ iteration: "v1.6"
 ![全日活动链服务等价回执。六个交接点共用五道扩展前门](assets/figures/commute-service-equivalence-atlas.svg)
 
 图中先看普通路径和人工接管，再看 AI 选项。每次拒绝、撤回和未解决事项都保留回写位置；缺少日期化基线、接收角色或独立复核时，方案停在 HOLD。图件不提供现场客流、居民体验、服务绩效或授权结论 [data:visual/assets/commute-service-equivalence-atlas.json]。
+
+### 可选互操作对照：把活动链字段接到 SEB v0.5.0
+
+本包另外提供一个不改变运行逻辑的 SEB v0.5.0 字段对照：把六个本地活动节点的 `non_ai_equivalent`、人工接管角色、P0/P1/P2 阶段门、`contract_check_only` 状态和责任角色映射到 SEB 的 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode`、`responsible_role`。对照的 source of record 仍是本包的 `commute-service-equivalence-atlas.json` 与 `responsibility-acceptance-contract.json`，不是另一份投稿包；它只用于跨包阅读和字段互操作，不采用外部包的叙事、几何或数据 [source:SEB-V0.5.0] [data:visual/assets/commute-seb-crosswalk.json] [data:visual/assets/run-commute-seb-crosswalk.js]。
+
+六个正向节点和五个负向 fixture 均在离线 runner 中回读。当前 `HOLD`、`authorization=0`、`field_observations=0`、`local_baseline=unknown`、`operational_status=not_authorized_not_run` 保持不变；这项对照不宣称服务等价已经发生、不新增仓库硬门、不构成正式评分项，也不提出公开排名或官方分数 [data:visual/assets/commute-seb-crosswalk-evidence.json]。
+
+![通勤活动链与 SEB 字段对照：六个本地节点、五个互操作字段和 HOLD 边界](assets/figures/commute-seb-crosswalk.svg)
 
 ## 一次空间裁决：先保护公共回程，再决定如何调度
 

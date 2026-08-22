@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v1.9 - 2026-08-22
+
+- 新增可选 SEB v0.5.0 字段对照，把六个活动链节点的人工替代、责任角色、P0/P1/P2 阶段门和 `contract_check_only` 状态映射到 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode`、`responsible_role`。
+- 新增本包 source-of-record 对照、双语图板、离线证据回读和 5 个负向 fixture；6/6 正例与 5/5 负例通过。
+- 明确这是 component-level opt-in，不新增仓库硬门、正式评分项、服务覆盖或现场成效主张；保持 HOLD、0 授权、0 现场观察、unknown 基线和无官方分数主张。
+
 ## v1.7 - 2026-08-21
 
 - 新增“空间裁决”合同：把企业优先路缘、独立接驳窗口、公共脊加可逆路缘窗口三种替代方案按 REJECT / REVISE / ADVANCE_TO_DESIGN_REVIEW 分开记录，避免把单一模型偏好写成空间结论。

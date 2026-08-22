@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "An activity-chain model links employer staggering, resident care, external commuting, metro, bus, bicycle, walking/accessibility, cars and enterprise shuttles; a population-scale synthetic screen compares arrival reliability, transfer waiting, curb conflict and group equity, while future air mobility remains a conditional, reversible, ground-first experiment."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.6"
+iteration: "v1.9"
 ---
 
 # Jing-Zhang Commute Commons: An Enterprise–Resident Activity-Chain Network
@@ -45,6 +45,14 @@ The activity chain is only as strong as its handoffs. Leaving home, first and la
 ![Full-day activity-chain service-equivalence receipt: six handoffs and five gates](assets/figures/commute-service-equivalence-atlas.en.svg)
 
 The board starts with the ordinary route and human takeover, then shows the AI option. Refusals, withdrawals and unresolved items keep a write-back location; missing dated baseline, receiving role or independent review keeps the package at HOLD. The board does not provide field demand, resident experience, service performance or authorisation evidence [data:visual/assets/commute-service-equivalence-atlas.json].
+
+### Optional interoperability crosswalk: activity-chain fields to SEB v0.5.0
+
+This package also provides a non-operational SEB v0.5.0 field crosswalk. It maps each of the six local activity nodes' `non_ai_equivalent`, human-takeover role, P0/P1/P2 phase gate, `contract_check_only` mode and accountable role to SEB's `ai_off_path`, `human_handoff`, `gate_id`, `operating_mode` and `responsible_role`. The source of record remains this package's `commute-service-equivalence-atlas.json` and `responsibility-acceptance-contract.json`, not another submission package; the crosswalk is for cross-package reading and field interoperability only, and adopts no external package narrative, geometry or data [source:SEB-V0.5.0] [data:visual/assets/commute-seb-crosswalk.json] [data:visual/assets/run-commute-seb-crosswalk.js].
+
+All six positive nodes and five negative fixtures are replayed by the offline runner. `HOLD`, `authorization=0`, `field_observations=0`, `local_baseline=unknown` and `operational_status=not_authorized_not_run` remain unchanged. This does not claim that service equivalence has occurred, add a repository hard gate, create a formal score item, or make a public-rank or official-score claim [data:visual/assets/commute-seb-crosswalk-evidence.json].
+
+![Commute activity chain and SEB crosswalk: six local nodes, five interoperability fields and the HOLD boundary](assets/figures/commute-seb-crosswalk.en.svg)
 
 ## Spatial decision: protect the public return before dispatch
 
