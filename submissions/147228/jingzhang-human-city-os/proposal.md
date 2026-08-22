@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v2.6"
-summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v2.6 在既有六类 persona 之外，补充青年初入行者、开发者与研究者、首次到访者与国际访客三类公共利益覆盖，并把受益、影响、人工替代和停止条件做成可回读证据。临时几何、已知指标与 unknown 均保持原值。"
+iteration: "v2.8"
+summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v2.8 在既有六类 persona 和三类公共利益扩展之外，新增三种空间组织方式的裁决、五级尺度链、五项公共权利与五道共享闸门，把人的主线和机器增量接成可离线复核的 HOLD 合同。临时几何、已知指标与 unknown 均保持原值。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -51,6 +51,14 @@ v2.4 不增加新的空间承诺，而是把 23 条公告 / 任务书要求各�
 正式项目取得授权、能源设计、采购凭证与计量后，必须连同图件、HTML、PDF 和 self-check 一起重算。[metric:operational_pue] [metric:green_electricity_share]
 
 这轮增量只改善证据可读性、补料排序和政策边界；不把任何 unknown 升级成结果，也不产生官方评分、政府背书或实施许可结论。[depth:metrics_recalculation] [depth:risk_missing_data]
+
+## v2.8 一次空间裁决｜先保住人的主线，再决定机器如何进入
+
+已有四条价值链、三处重点区和人机接口原型还需要一个明确的空间取舍。这里把同一套城市操作系统的三种组织方式并排审查：**ALT-A 机器优先带**让 API、屏幕和测试廊成为公共默认，普通通行、社区修复和人的判断被推到后面，拒绝；**ALT-B 四条价值链分室**能够分隔项目，但把主线、申诉、维护和公共发布拆散，暂列返修；**ALT-C 人本主线加有界机器车道**把普通、无障碍、人工、社区修复和公共发布放在第一位，API、机器人和低空概念只做可暂停、可撤回、可复演的增量，进入专业深化。选中 ALT-C 不是授权运行，整项裁决仍为 HOLD [data:visual/assets/human-city-spatial-decision.json]。
+
+![图 28｜一次空间裁决：三种替代、五级尺度、三个节点与五项公共权利](assets/figures/human-city-spatial-decision.svg)
+
+图板按 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 逐层追问：先看人的主线和四条价值链，再看三个重点区、普通入口、接管、申诉和可撤机器车道。三个节点共用人的尊严/普通可达、非数字等价/无障碍、同意暂停申诉退出、社区修复保留、公共资产/隐私五项权利；五道共享闸门任何一项不清都停在 HOLD。`run-human-city-spatial-decision.js` 与五个负例只证明设计合同可以离线复核，不证明现场几何、容量、权属、许可、部署、社会结果或官方评分 [data:visual/assets/human-city-spatial-decision.json] [data:visual/assets/run-human-city-spatial-decision.js] [depth:overall_spatial_structure]
 
 ## v2.3 城市 API 六步序列｜把可调用写成可回放的责任链
 
