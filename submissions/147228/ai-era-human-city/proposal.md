@@ -10,7 +10,7 @@ summary: "以人本缓冲、机器可调用的公共规则和可撤回的版本�
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
-iteration: "v2.6"
+iteration: "v2.7"
 tracks: "ai-traffic-walkability,civic-agent-governance,youth-friendly-public-space"
 scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-navigation,ai-cultural-guide,enterprise-service-copilot,public-safety-operations-review"
 ---
@@ -70,6 +70,14 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 ![人本连续性与维护回执。四个状态、三个重点区、七个维护角色和十二个概念复核窗口](assets/figures/ai-era-continuity-maintenance-atlas.svg)
 
 回执把众智园、AI 原点社区和大钟寺的普通入口放进同一套交接规则，另外登记 6 个交接缝、7 个待确认责任角色和 7 个离线组件。W01 至 W12 是概念复核窗口，顺序覆盖来源清点、纸面回放、无屏检查、停用回放、维护交接、公众复演和阶段决定，不代表现场工期或运营承诺。6 个负向夹具均保持 HOLD，4 个正向夹具只证明普通服务、人工选择或公共资产保留可以继续回放；当前仍为 0 授权、0 现场观察、baseline unknown、performance not_run [data:visual/assets/ai-era-continuity-maintenance-contract.json]。
+
+## 一次空间裁决：先保住人的城市，再决定 AI 如何落位
+
+已有普通人旅程和连续性回执还需要一个明确的空间取舍。这里把同一条人本公共脊的三种组织方式并排审查：**ALT-A AI 展台脊**让设备前台占据公共主界面，普通、无屏和人工路径被降级，拒绝；**ALT-B 三个孤立 AI 房间**可以隔离测试风险，却把跨节点维护、申诉和公共资产保留拆散，暂列返修；**ALT-C 人本脊加可撤回服务岛**把普通通行、纸面/人工等价、无障碍连续和公共资产放在第一位，AI 组件只作为可暂停、可移除的增量，进入专业深化。选中 ALT-C 不是授权运行，整项裁决仍为 HOLD [data:visual/assets/ai-era-spatial-decision.json]。
+
+![一次空间裁决：三种替代、五级尺度、三个节点与五项公共权利](assets/figures/ai-era-spatial-decision.svg)
+
+图板按 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 逐层追问：先看人本脊和三处重点区，再看普通入口、接管、申诉和可拆组件。三个节点共用普通可达、非数字等价、无障碍连续、同意/申诉/退出、公共资产/隐私五项权利；五道共享闸门任何一项不清都停在 HOLD。`run-ai-era-spatial-decision.js` 与五个负例只证明这张设计合同可以离线复核，不证明现场几何、服务绩效、许可、部署或官方评分 [data:visual/assets/ai-era-spatial-decision.json] [data:visual/assets/run-ai-era-spatial-decision.js] [depth:overall_spatial_structure]。
 
 ## 设计依据与资料清单
 

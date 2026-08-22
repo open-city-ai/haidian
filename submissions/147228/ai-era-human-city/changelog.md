@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.7 - 2026-08-22
+
+- 新增三替代空间裁决：ALT-A `REJECT`、ALT-B `REVISE`、ALT-C `ADVANCE_TO_DESIGN_REVIEW`，把已有普通路径、三处节点和可撤回维护合同压成一张评审入口。
+- 增加 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 尺度链、五项公共权利、五道共享闸门、中英双语图板、离线 runner 和五个 fail-closed 负例。
+- 保留 G0/HOLD、0 授权、0 现场观察、baseline unknown、not_authorized_not_run 与 provisional 边界；不新增现场事实、工程尺寸、许可、部署或排名主张。
+
 ## v2.6 - 2026-08-21
 
 - 新增人本连续性与维护回执，将 BASE、BOOST、BLACKOUT、BEQUEST 四个状态接到三处重点区、6 个交接缝、7 个维护角色、7 个离线组件和 W01 至 W12 概念复核窗口。
