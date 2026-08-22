@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v4.15"
+iteration: "v4.17"
 summary: "Using the centennial Jingzhang railway heritage corridor as its frame, the scheme rebuilds the Haidian AI industrial belt into an Origin Force belt shared by people and machine agents: one belt, three zones with two wings and five gates, eight narrative landmarks, eight personas, twelve auditable AI+ scenario cards, sixteen implementation mechanisms and twelve numbered renewal projects, all anchored to a provisional boundary basis, structured metrics and a reproducible evidence chain, with both language versions rendered from one data source."
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
@@ -19,24 +19,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 **Scheme codename**: Origin Force. The name comes from the Beijing AI Origin Community, where an origin is not a coordinate but a startup capability that can be reproduced. The scheme upgrades the Jingzhang railway remains from a passive planting strip into an active **interface of the city operating system**: the ground is a park for people, the buildings and the underground carry computing and data, and across the interface run public services that citizens can read, regulators can audit and machine agents can call.
 
 **How to read this document**: thirteen sections follow the order required by the announcement, and every conclusion carries an identifier and an evidence reference. Areas use Z1-Z3 and W1-W2, mechanisms X01-X16, scenarios S01-S12, projects R-01-R-12, landmarks M1-M8 and components K01-K12. Any conclusion can be traced back to material, geometry or a metric entry. The Chinese and English texts are rendered from one data source, so their equivalence is machine-verifiable.
-
-### Design Method Statement
-
-This proposal follows a constraint-first design method. We first enumerate every boundary that must
-not be touched -- heritage fabric, the provisional and coarse boundary, data gaps, and the zones of
-responsibility that an agent submission must not enter -- and only then look for the opportunities
-that maximise public value inside whatever space remains. This is the reverse of the conventional
-planning sequence, which fixes a vision first and then trims reality to fit it. Constraints are not
-the enemy of creativity; they are its coordinate system. Only after it is clear what cannot be done
-does the question of what can be done acquire real force [source:AGENT-TASKBOOK]
-[source:BOUNDARY-SOURCE].
-
-The second method is to write every design decision as a falsifiable proposition. "This belt should
-become the interface of a city operating system" is not a proposition. "Every AI touchpoint deployed
-on this belt must be vetoable by the public" is. A proposition can be tested: either the veto channel
-exists and works, or it does not. This proposal writes its conclusions in the latter form wherever it
-can, and records the test path in the verification field of `evidence-ledger.json`
-[source:PKG-EVIDENCE-LEDGER].
 
 ## Design Basis and Source List
 
@@ -58,26 +40,6 @@ The diagnosis is built on six dimensions: the linear accessibility of the railwa
 - The names, numbering and relative positions of the three key areas follow the registered enumeration; the scheme neither adds nor removes key areas [source:KEY-AREA-SOURCE].
 - Value ranges in the site package bound metric derivation; any value outside a range is labelled an assumption [source:SITE-PACKAGE].
 - Official redlines, a building survey, underground utilities and tenure records are organiser-side data gaps, handled through a reserved recalculation interface [depth:risk_missing_data].
-
-#### Audit path for source provenance
-
-The proposal uses sources in two distinct ways. The first kind is written into structured files and
-can be read back by a script; the second kind appears only as narrative background. The first kind
-covers boundaries, metrics, source identifiers and risk records: each must have a matching entry in
-`sources.json` and an explicit JSON pointer in `claim-provenance.json`. The second kind covers
-historical context and the narrative description of international cases: these never enter metric
-recalculation and must not be extended into any official position. The benefit of this split is that
-a reviewer can close the prose entirely, read only the JSON files and the audit script, and still
-complete a minimal independent trust check [source:SOURCE-REGISTRY] [source:PKG-CLAIM-PROVENANCE].
-
-Every cited source carries four pieces of metadata: authority tier (official / authoritative /
-public / processed), acquisition date, usable scope, and non-usable scope. The prose only draws
-conclusions inside the usable scope. Once the non-usable scope of a source touches spatial precision
-or legal effect, the text switches at that point to a provisional boundary or an explicit assumption.
-The official announcement, for example, is usable for establishing the task scope and the three
-positions, but the coarse boundary attached to it cannot be used to compute a precise plot ratio;
-every area and density figure is therefore marked as a provisional basis
-[source:OFFICIAL-ANNOUNCEMENT] [source:BOUNDARY-SOURCE].
 
 #### Item-by-item findings across the six dimensions
 
@@ -273,7 +235,7 @@ what keeps the proposal implementable while the direction of the industry is sti
 
 ### International cases: what to borrow and where it does not apply
 
-The commonest failure in case study is to record only the merits. This scheme writes an explicit **applicability and non-applicability boundary** for each of eight named cases, because the real design decisions in a corridor usually happen exactly where a borrowed lesson stops working [source:AGENT-TASKBOOK]. All cases are publicly documented city or district practices. Only public features of their spatial organisation and governance are cited; no non-public data is used and no partnership with any operator is claimed.
+The commonest failure in case study is to record only the merits, so this scheme writes an explicit **applicability and non-applicability boundary** for each of eight named cases — the real design decisions in a corridor usually happen exactly where a borrowed lesson stops working [source:AGENT-TASKBOOK].
 
 | ID | Case | Location | Since | Spatial organisation | Applicability and its limits |
 | --- | --- | --- | --- | --- | --- |
@@ -397,11 +359,6 @@ prose entirely and simply run `node visual/assets/evidence-audit.js` to re-check
 consistency of every numerical conclusion in this package in an offline environment. The existence of
 this interface replaces "trust the author" with "re-check the data"
 [source:ASSET-EVIDENCE] [source:PKG-CLAIM-PROVENANCE].
-
-Together the four interfaces state a position: an agent submission should not be a finished product
-waiting to be adopted, but a piece of middleware that can be taken over, replaced and re-checked. Its
-success lies not in being implemented verbatim but in its method and data continuing to do work in
-whatever comes next.
 
 ### Control logic for intensity, height and character
 
