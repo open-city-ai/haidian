@@ -9,7 +9,7 @@ translation_of: "proposal.md"
 license: "CC-BY-4.0"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v2.6"
+iteration: "v2.8"
 ---
 
 # From an AI Showcase to a City for People in the AI Era
@@ -75,6 +75,20 @@ The ordinary-person journey and continuity receipt still need an explicit spatia
 ![One spatial decision: three alternatives, five scales, three nodes and five public rights](assets/figures/ai-era-spatial-decision.en.svg)
 
 The board asks, in order, `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50`: first the commons spine and three key areas, then ordinary entry, takeover, appeal and removable components. All three nodes share five rights: ordinary access, non-digital equivalence, accessible continuity, consent/appeal/exit, and public asset/privacy. Any unclear shared gate keeps the decision at HOLD. `run-ai-era-spatial-decision.js` and five negative fixtures prove only that this design contract can be replayed offline; they do not prove field geometry, service performance, permits, deployment or an official score [data:visual/assets/ai-era-spatial-decision.json] [data:visual/assets/run-ai-era-spatial-decision.js] [depth:overall_spatial_structure].
+
+## From Alternative Choice to One Accountable Pilot: AI Origin Ordinary-Service Node
+
+A scale chain cannot remain a list of questions. To test whether ALT-C resolves into space, this revision turns the AI Origin ordinary-service node inside `PROV-KEY-002` into three design-target drawings. The `1:500` plan establishes a 30 × 18 m parametric envelope, a continuous 3.0 m ordinary route, independent 2.4 m maintenance access, staffed/paper service and a 4 × 3 m removable island with a 2.0 m clear ring. The `1:100` section separates ordinary movement, staffed service, the island and equipment retreat. The `1:50` detail shows a paper receipt, human stop control, removable interface and closed cable retreat. These are participant-authored targets—not surveyed, statutory, engineering, tender or as-built dimensions—and must be recalculated after authorised CAD, title, fire, accessibility, utilities and public-walkthrough evidence arrives [data:visual/assets/ai-era-pilot-dossier.json] [data:geometry/key_areas.geojson#PROV-KEY-002].
+
+![AI Origin ordinary-service node: 1:500 plan, 1:100 interface section and 1:50 handoff detail](assets/figures/ai-era-pilot-node-dossier.en.png)
+
+| Drawing | Design target fixed for review | Why it still cannot be released |
+|---|---|---|
+| 1:500 plan | The ordinary route never enters the island footprint and stays open in BASE, BLACKOUT and CLOSEOUT; capacity remains formula-bound with `release_capacity=null` | No authorised survey, fire/egress, accessibility review, title or verified waiting area |
+| 1:100 section | A 3.0 m ordinary band and 2.4 m staffed band remain independent of removable equipment; blackout isolates power/data without closing staffed or paper service | Height, MEP, structure, acoustic/light conditions, thermal load and maintenance remain unverified |
+| 1:50 detail | Paper-receipt shelf, 0.9–1.1 m human stop control, removable service interface and 0.3 m closed retreat channel make closeout legible | Every number is a low-confidence parameter requiring professional and user calibration |
+
+The drawings are useful because a reviewer can now reject a specific dimension, route or rights relation; they do not pretend the node has been built. `run-ai-era-pilot-dossier.js` and 12 negative fixtures reject fabricated official geometry, field observations, capacity, ownership, costs, SLA or public walkthroughs. The node remains at zero authorisations, zero field observations and HOLD [data:visual/assets/run-ai-era-pilot-dossier.js] [data:visual/assets/test-ai-era-pilot-dossier.js] [depth:three_key_area_detailed_design].
 
 ## Design Basis and Source List
 
@@ -251,6 +265,16 @@ Each project family moves through three phases with explicit responsibility boun
 | G0 problem and authorization | Quarters 0–2 after submission | Local planning, subdistrict, and public-service roles, community seat, accessibility and cultural specialists; complete task crosswalk, source clearance, and human channel | 100% of scenario cards have an accountable role, source, data-minimization and exit protocol; authorization and issue register retained | Unclear authorization, human fallback or rights boundary: remain in research |
 | G1 reversible pilot | Quarters 3–4 after submission | Pilot operator, maintainer, public observer seat, independent reviewer, and data-protection role; complete field baseline and professional review | Group-level participation coverage, human takeover, first redress response, incident records, and accessible-route continuity | Any group harmed, unexplained incident or unresolved complaint: freeze and return to human service |
 | G2 conditional expansion | Quarters 5–8 after submission | Planning, transport, water, accessibility, safety, energy, and cultural professionals with procurement/insurance, operator, and local-accountability roles | Field data, permits, maintenance SLA, privacy/copyright/cultural review and a retrospective report; model output cannot replace field evidence | Any missing prerequisite: withdraw display/stop expansion; never present concept metrics as outcomes |
+
+### AI Origin pilot delivery receipt: keep “who does it” behind the release gate
+
+![AI Origin pilot delivery receipt: six conditional stages, transparent cost formula, unconfirmed RACI, SLA and retirement triggers](assets/figures/ai-era-pilot-delivery-receipt.en.png)
+
+This receipt deepens one pilot only. It proposes a conditional 18-week path after every G0 authorisation and baseline gate passes: confirm the problem, title and accountable owner; complete survey plus accessibility/fire/utilities review; then proceed to competitive procurement, off-site fabrication, blackout/public walkthrough and an independent open/revise/retire decision. Eighteen weeks is not a programme commitment. The clock does not start while any gate lacks a signed record [data:visual/assets/ai-era-pilot-dossier.json].
+
+Costs now expose low-confidence formulas instead of low/medium/high labels. Five CAPEX lines—survey/design/review, reversible fit-out and staffed desk, ordinary route/wayfinding/accessibility, removable AI/offline hardware, and testing/training/closeout—plus 15% contingency produce **CNY 655,500–1,000,500**. Monthly OPEX adds two staffed roles, maintenance, paper/translation/accessibility support and data audit, then 10% reserve, producing **CNY 32,780–54,340 per month**. This is a participant-authored 2026 concept allowance, not a quote, tender control, budget approval or operating offer; it excludes land, taxes, major utility relocation and statutory fees [data:visual/assets/ai-era-pilot-dossier.json].
+
+The RACI separates public route, staffed/paper service, removable island, logs/complaints and reinstatement into five asset accounts, but every organisation remains `role_unconfirmed`. Procurement is a two-stage, performance-based competition after owner confirmation: publish the ordinary-service baseline, rights, dimensions and unknowns; run supplier-neutral market sounding and competitive concept/cost submissions; pay against accepted ordinary-route, blackout, handover and reinstatement evidence. All five SLA rows remain `design_target_not_observed`. Release still requires a named asset owner, professional sign-offs, consented anonymised public walkthrough evidence, confirmed cost, insurance and an independent decision [data:visual/assets/ai-era-pilot-dossier.json] [depth:phasing_implementation].
 
 A four-season Commons Cycle frames public problem release, Xiaoyuehe co-learning walks, developer protocol camp, and annual v0.x health check/release note. The developer mechanism is problem register → office hours → G0 protocol → human/public review → version note; international conversion is multilingual evidence → due diligence → voluntary reversible exchange. [source:AGENT-TASKBOOK] [data:geometry/phasing.geojson#PHASE-03] [metric:scenario_g0_count]
 

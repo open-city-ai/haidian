@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "ai-era-human-city-pilot-dossier-v1",
+  "iteration": "v2.8",
+  "decision": "HOLD",
+  "design_only": true,
+  "official_boundary": false,
+  "authorization_count": 0,
+  "field_observation_count": 0,
+  "result_status": "not_run",
+  "pilot": {
+    "pilot_id": "PILOT-AIORIGIN-ORDINARY-SERVICE-NODE",
+    "name_zh": "AI 原点普通服务节点",
+    "name_en": "AI Origin ordinary-service node",
+    "site_ref": "PROV-KEY-002",
+    "scenario_refs": ["SCN-02", "SCN-03", "SCN-04", "SCN-06"],
+    "selected_alternative": "ALT-C",
+    "public_promise_zh": "普通入口、人工接管、纸面回执和退出路径先于可撤回 AI 服务岛。",
+    "public_promise_en": "Ordinary entry, human takeover, paper receipt and exit come before a removable AI service island."
+  },
+  "dimension_rule": {
+    "status": "participant_authored_design_target",
+    "source": "ALT-C concept translated into a parametric node dossier",
+    "must_recalculate": true,
+    "recalculation_triggers": [
+      "authorized survey or CAD boundary",
+      "verified property and public-access interface",
+      "fire and evacuation review",
+      "accessibility professional review",
+      "utilities and drainage survey",
+      "heritage and community operating constraints"
+    ],
+    "forbidden_upgrade": "No target dimension is a surveyed, statutory, engineering, tender or as-built dimension."
+  },
+  "spatial_dossier": {
+    "scale_chain": ["1:500", "1:100", "1:50"],
+    "plan_1_500": {
+      "envelope_m": [30, 18],
+      "orientation": "ordinary route along the south edge; maintenance access from the north edge",
+      "modules": [
+        {"id": "M01", "name_zh": "连续普通路径", "name_en": "continuous ordinary route", "width_m": 3.0, "depth_m": 30.0, "state": "design_target"},
+        {"id": "M02", "name_zh": "人工服务与纸面回执", "name_en": "staffed service and paper receipt", "width_m": 6.0, "depth_m": 4.0, "state": "design_target"},
+        {"id": "M03", "name_zh": "低刺激等候与语音入口", "name_en": "low-stimulation waiting and voice entry", "width_m": 6.0, "depth_m": 4.0, "state": "design_target"},
+        {"id": "M04", "name_zh": "可撤回 AI 服务岛", "name_en": "removable AI service island", "width_m": 4.0, "depth_m": 3.0, "state": "design_target"},
+        {"id": "M05", "name_zh": "服务岛净空环", "name_en": "service-island clear ring", "width_m": 2.0, "depth_m": 2.0, "state": "design_target"},
+        {"id": "M06", "name_zh": "独立维护通道", "name_en": "independent maintenance access", "width_m": 2.4, "depth_m": 18.0, "state": "design_target"},
+        {"id": "M07", "name_zh": "双向退出口", "name_en": "two-way exit mouths", "width_m": 1.8, "depth_m": 2.0, "quantity": 2, "state": "design_target"}
+      ],
+      "flow_rule": "ordinary route never enters the removable island footprint and remains open in BASE, BLACKOUT and CLOSEOUT",
+      "capacity_formula": "release_capacity = min(fire_review, accessible_route_review, staffed_service_review, verified_waiting_area / approved_person_area)",
+      "release_capacity": null
+    },
+    "section_1_100": {
+      "clear_height_m": 3.6,
+      "bands": [
+        {"id": "S01", "name_zh": "普通通行带", "name_en": "ordinary movement", "width_m": 3.0, "state": "design_target"},
+        {"id": "S02", "name_zh": "人工服务带", "name_en": "staffed service", "width_m": 2.4, "state": "design_target"},
+        {"id": "S03", "name_zh": "可撤回服务岛与净空", "name_en": "removable island and clearance", "width_m": 8.0, "state": "design_target"},
+        {"id": "S04", "name_zh": "维护与设备退避带", "name_en": "maintenance and equipment retreat", "width_m": 2.4, "state": "design_target"}
+      ],
+      "blackout_rule": "isolate power and data at the island, preserve staffed and paper service, keep the 3.0 m ordinary band unobstructed"
+    },
+    "detail_1_50": {
+      "elements": [
+        {"id": "D01", "name_zh": "纸面回执台", "name_en": "paper-receipt shelf", "target_m": 0.75, "state": "design_target"},
+        {"id": "D02", "name_zh": "人工接管与停用控制", "name_en": "human takeover and stop control", "target_range_m": [0.9, 1.1], "state": "design_target"},
+        {"id": "D03", "name_zh": "可拆服务接口", "name_en": "removable service interface", "footprint_m": [1.2, 0.6], "state": "design_target"},
+        {"id": "D04", "name_zh": "封闭线缆退避槽", "name_en": "closed cable-retreat channel", "target_m": 0.3, "state": "design_target"}
+      ],
+      "closeout_rule": "remove island hardware, cap utilities, restore the floor and retain the ordinary route, desk, paper record and complaint contact"
+    }
+  },
+  "delivery_contract": {
+    "delivery_state": "pre_authorization_design_estimate",
+    "organization_status": "unconfirmed",
+    "pilot_window": "18 weeks after all G0 authorisation and baseline gates pass; not a promised calendar",
+    "schedule": [
+      {"id": "W00-02", "work_zh": "授权、权属和公众问题确认", "work_en": "authorisation, title and public-problem confirmation", "release_gate": "named accountable owner and ordinary-service baseline"},
+      {"id": "W03-05", "work_zh": "测绘、无障碍、消防和市政联审", "work_en": "survey, accessibility, fire and utilities review", "release_gate": "signed professional issue register"},
+      {"id": "W06-09", "work_zh": "竞争性采购与样机深化", "work_en": "competitive procurement and prototype detail", "release_gate": "cost, insurance, data and rollback clauses"},
+      {"id": "W10-13", "work_zh": "离线预制、普通路径先行施工", "work_en": "off-site fabrication and ordinary-route-first works", "release_gate": "route and staffed service accepted before AI installation"},
+      {"id": "W14-16", "work_zh": "停用、接管、维护和公众走查", "work_en": "blackout, takeover, maintenance and public walkthrough", "release_gate": "field evidence recorded; any critical failure returns to HOLD"},
+      {"id": "W17-18", "work_zh": "独立复核与启用/返修/退役决定", "work_en": "independent review and open, revise or retire decision", "release_gate": "authorised decision record; no automatic release"}
+    ],
+    "raci": [
+      {"asset": "public route and floor", "responsible": "site works contractor", "accountable": "public-asset owner", "consulted": "accessibility and fire reviewers", "informed": "community observer seat", "status": "role_unconfirmed"},
+      {"asset": "staffed service and paper route", "responsible": "public-service operator", "accountable": "service commissioning body", "consulted": "community and accessibility reviewers", "informed": "data and maintenance roles", "status": "role_unconfirmed"},
+      {"asset": "removable AI island", "responsible": "prototype supplier", "accountable": "pilot operator", "consulted": "data, safety and accessibility reviewers", "informed": "public observer seat", "status": "role_unconfirmed"},
+      {"asset": "data, logs and complaint record", "responsible": "data-protection role", "accountable": "service commissioning body", "consulted": "independent reviewer", "informed": "affected participant", "status": "role_unconfirmed"},
+      {"asset": "decommissioning and reinstatement", "responsible": "maintainer and site works contractor", "accountable": "public-asset owner", "consulted": "operator and community observer seat", "informed": "procurement and insurance roles", "status": "role_unconfirmed"}
+    ],
+    "procurement": {
+      "method": "two-stage, performance-based competitive pilot procurement after owner confirmation",
+      "sequence": [
+        "publish ordinary-service baseline, rights, dimensions and unknowns",
+        "market sounding without preferred supplier or partnership claim",
+        "competitive concept and cost submission with open-book assumptions",
+        "prototype review including accessibility, data, safety, insurance and rollback",
+        "award only after accountable owner and funding authority are confirmed",
+        "pay against accepted ordinary-route, blackout, handover and closeout evidence"
+      ],
+      "forbidden": "No supplier, owner, operator, budget or award is confirmed by this submission."
+    },
+    "capex_design_estimate_cny": {
+      "price_basis": "participant-authored 2026 concept allowance; excludes land, taxes, major utility relocation and statutory fees",
+      "line_items": [
+        {"id": "C01", "name": "survey, design and professional reviews", "lower": 80000, "upper": 120000},
+        {"id": "C02", "name": "reversible fit-out and staffed desk", "lower": 180000, "upper": 260000},
+        {"id": "C03", "name": "ordinary route, wayfinding and accessible interfaces", "lower": 90000, "upper": 150000},
+        {"id": "C04", "name": "removable AI and offline service hardware", "lower": 140000, "upper": 220000},
+        {"id": "C05", "name": "testing, training, closeout and reinstatement", "lower": 80000, "upper": 120000}
+      ],
+      "contingency_rate": 0.15,
+      "formula": "sum(line_items) * (1 + contingency_rate)",
+      "lower": 655500,
+      "upper": 1000500,
+      "confidence": "low_design_estimate_not_tender"
+    },
+    "monthly_opex_design_estimate_cny": {
+      "line_items": [
+        {"id": "O01", "name": "two staffed roles, 160 hours each", "lower": 20800, "upper": 30400},
+        {"id": "O02", "name": "maintenance and call-out allowance", "lower": 4000, "upper": 8000},
+        {"id": "O03", "name": "paper, translation and accessibility support", "lower": 3000, "upper": 6000},
+        {"id": "O04", "name": "data protection and independent audit allowance", "lower": 2000, "upper": 5000}
+      ],
+      "reserve_rate": 0.10,
+      "formula": "sum(line_items) * (1 + reserve_rate)",
+      "lower": 32780,
+      "upper": 54340,
+      "confidence": "low_design_estimate_not_operating_quote"
+    },
+    "service_level_targets": [
+      {"id": "SLA-01", "target": "ordinary route and staffed or paper completion remain available throughout every public service window", "basis": "design_target_not_observed"},
+      {"id": "SLA-02", "target": "a stop trigger isolates the AI island within 2 minutes without closing the ordinary route", "basis": "design_target_not_observed"},
+      {"id": "SLA-03", "target": "a complaint receives acknowledgment within 1 working day and a status within 5 working days", "basis": "design_target_not_observed"},
+      {"id": "SLA-04", "target": "opening and closeout checks are signed for route, desk, paper stock, power isolation and maintenance access", "basis": "design_target_not_observed"},
+      {"id": "SLA-05", "target": "a critical accessibility, fire, privacy or consent failure reduces AI service capacity to zero immediately", "basis": "design_target_not_observed"}
+    ],
+    "insurance_gate": "public liability, professional liability, cyber/data and reinstatement responsibilities require written professional confirmation before procurement award",
+    "acceptance_gate": "release requires authorised owner, verified geometry, professional sign-offs, consented anonymised walkthrough evidence, cost confirmation and an independent decision record",
+    "rollback": "de-energise and remove the AI island, restore finishes, retain ordinary route and staffed/paper service, notify affected users, close complaints and archive the version record"
+  },
+  "field_acceptance": {
+    "status": "not_run",
+    "required_but_missing": [
+      "consented anonymised participant mix",
+      "ordinary and non-digital task completion",
+      "accessibility barrier log and disposition",
+      "subgroup results without identity disclosure",
+      "professional accessibility, fire and safety review",
+      "verified cost and named accountable organisations"
+    ],
+    "rule": "Synthetic fixtures and local runner PASS never satisfy this field-acceptance gate."
+  },
+  "boundary": "Participant-authored design targets and low-confidence cost estimates only; not surveyed geometry, a tender price, a funded project, a partner appointment, field performance, professional approval, official score or release."
+}

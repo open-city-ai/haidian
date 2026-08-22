@@ -10,7 +10,7 @@ summary: "以人本缓冲、机器可调用的公共规则和可撤回的版本�
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
-iteration: "v2.7"
+iteration: "v2.8"
 tracks: "ai-traffic-walkability,civic-agent-governance,youth-friendly-public-space"
 scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-navigation,ai-cultural-guide,enterprise-service-copilot,public-safety-operations-review"
 ---
@@ -78,6 +78,20 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 ![一次空间裁决：三种替代、五级尺度、三个节点与五项公共权利](assets/figures/ai-era-spatial-decision.svg)
 
 图板按 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 逐层追问：先看人本脊和三处重点区，再看普通入口、接管、申诉和可拆组件。三个节点共用普通可达、非数字等价、无障碍连续、同意/申诉/退出、公共资产/隐私五项权利；五道共享闸门任何一项不清都停在 HOLD。`run-ai-era-spatial-decision.js` 与五个负例只证明这张设计合同可以离线复核，不证明现场几何、服务绩效、许可、部署或官方评分 [data:visual/assets/ai-era-spatial-decision.json] [data:visual/assets/run-ai-era-spatial-decision.js] [depth:overall_spatial_structure]。
+
+## 从替代判断到一个可核算试点：AI 原点普通服务节点
+
+尺度链不能只写成五个问题。为检验 ALT-C 是否真的能落到空间，本轮把 `PROV-KEY-002` 中的 AI 原点普通服务节点做成三张设计目标图：`1:500` 平面先固定 30×18 米的参数包络、3.0 米连续普通路径、2.4 米独立维护通道、人工/纸面服务和带 2.0 米净空环的 4×3 米可撤回服务岛；`1:100` 剖面把普通通行、人工服务、服务岛与维护退避分开；`1:50` 细部显示纸面回执、人工停用控制、可拆接口和封闭线缆退避。它们是参赛者提出的设计目标，不是测绘、法定、工程、招标或竣工尺寸；正式 CAD、权属、消防、无障碍、市政和公众走查到位后必须整体重算 [data:visual/assets/ai-era-pilot-dossier.json] [data:geometry/key_areas.geojson#PROV-KEY-002]。
+
+![AI 原点普通服务节点：1:500 平面、1:100 界面剖面与 1:50 交接细部](assets/figures/ai-era-pilot-node-dossier.png)
+
+| 图纸 | 先固定的设计目标 | 仍不能放行的原因 |
+|---|---|---|
+| 1:500 平面 | 普通路径不进入服务岛范围；BASE、BLACKOUT、CLOSEOUT 都保持开放；容量只留公式，`release_capacity=null` | 没有授权测绘、消防疏散、无障碍审查、权属和真实等候面积 |
+| 1:100 剖面 | 3.0 米普通带与 2.4 米人工服务带独立于可撤回设备；停用时断电断数但不关闭人工/纸面服务 | 净高、机电、结构、声光、设备热负荷与维护条件未核验 |
+| 1:50 细部 | 纸面回执台、0.9–1.1 米人工停用控制、可拆服务接口和 0.3 米封闭退避槽形成一条退役链 | 所有数字均为低置信度参数，需专业团队与使用者共同校准 |
+
+图纸的价值不是显得“已经建好”，而是让评审能指出哪一处尺寸、流线或权利关系不成立。`run-ai-era-pilot-dossier.js` 和 12 个负例会拒绝伪造官方边界、现场观察、容量、业主、成本、SLA 或公众走查；当前仍为 0 授权、0 现场观察、HOLD [data:visual/assets/run-ai-era-pilot-dossier.js] [data:visual/assets/test-ai-era-pilot-dossier.js] [depth:three_key_area_detailed_design]。
 
 ## 设计依据与资料清单
 
@@ -300,6 +314,16 @@ P-07、P-08、P-09 不只是名单扩展：它们分别回放青年就业/学习
 | G0 问题与授权 | 提交后第 0–2 季度 | 属地规划、街道与公共服务角色，社区席位，无障碍与文化专业人员；完成任务书映射、来源清权和人工入口 | 100% 场景卡有责任角色、来源、数据最小化和退出协议；保留授权版本与问题清单 | 授权、人工替代或权利边界不清，停在研究 |
 | G1 可撤回试点 | 提交后第 3–4 季度 | 试点运营者、维护者、公众观察席、独立复核人和数据保护角色；完成现场基线与专业审校 | 按群体回读参与覆盖、人工接管、申诉首响、事件记录和无障碍路线连续率 | 任一群体受损、事件无法解释或投诉未处理完成，冻结并回到人工 |
 | G2 条件扩展 | 提交后第 5–8 季度 | 规划、交通、水务、无障碍、安全、能源和文化专业人员，与采购/保险、运营及属地责任角色共同复核 | 现场数据、许可、维护 SLA、隐私/版权/文化审校和复盘报告齐全；模型结果不得替代现场证据 | 任一前置缺失即撤回展示/停止扩展，不把概念指标写成结果 |
+
+### AI 原点试点交付回执：把“谁来做”留在放行门里
+
+![AI 原点试点交付回执：六段条件式路径、透明成本公式、未确认 RACI、SLA 与退役触发](assets/figures/ai-era-pilot-delivery-receipt.png)
+
+这一张回执只深化一个试点。它提出“全部 G0 授权和 baseline 门通过后 18 周”的条件式路径：先确认问题、权属和问责主体，再做测绘及无障碍/消防/市政联审，随后才进入竞争性采购、离线预制、停用与公众走查、独立启用/返修/退役决定。18 周不是承诺工期；任何一关未签字，时钟都不启动 [data:visual/assets/ai-era-pilot-dossier.json]。
+
+成本不再只写高/中/低，而是公开低置信度公式。CAPEX 五项为测绘设计与专业审查、可逆装修与人工台、普通路径/导视/无障碍、可撤回 AI 与离线硬件、测试培训与退役恢复，分项合计后加 15% 预备费，得到 **65.55 万—100.05 万元**；月度 OPEX 将两名人工角色、维护、纸面/翻译/无障碍支持和数据审计相加后留 10% 储备，得到 **3.278 万—5.434 万元/月**。这是参赛者的 2026 概念估算，不是询价、招标控制价、预算批复或运营报价；不含土地、税费、大型管线迁改和法定收费 [data:visual/assets/ai-era-pilot-dossier.json]。
+
+RACI 将公共路径、人工/纸面服务、可撤回 AI 岛、日志/投诉、退役恢复分成五本资产账，但所有机构仍是 `role_unconfirmed`。采购采用“业主确认后的两阶段、绩效导向竞争性试点”：先公开普通服务 baseline、权利、尺寸和未知项，再做无偏好供应商的市场询问与竞争性方案/成本提交，最后按普通路径、停用、交接和恢复证据付款。五条 SLA 也只标为 `design_target_not_observed`；正式放行仍必须补齐具名资产所有者、专业签字、知情同意的匿名公众走查、核定成本、保险和独立决定 [data:visual/assets/ai-era-pilot-dossier.json] [depth:phasing_implementation]。
 
 长期运营以四季京张共创季组织，春季公共问题发布、夏季小月河共学走读、秋季开发者协议营、冬季城市 v0.x 体检与 release note。开发者社区按问题库、公开答疑、G0 协议、人工/公众复核、版本说明运行；国际转换路径为多语问题页、公开证据、专业尽调和自愿可撤回交流。它们不是已确定活动、政策、资金、招引或合作承诺。[source:AGENT-TASKBOOK] [data:geometry/phasing.geojson#PHASE-03] [metric:scenario_g0_count]
 

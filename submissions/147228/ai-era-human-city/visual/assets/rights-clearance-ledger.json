@@ -18,7 +18,7 @@
     {
       "asset_group": "assets/figures/*.png / drawings/*.pdf",
       "author": "投稿作者",
-      "method": "本地 Python/Pillow 以本包 GeoJSON 与结构化表生成；PDF 由包内 ReportLab 脚本排版为栅格化图文页，不嵌入字体文件",
+      "method": "本地 Python/Pillow 与 Node/Sharp 以本包 GeoJSON 和结构化表生成；PDF 由包内 Node/pdf-lib 固定 storyboard 排版为栅格图板页，不嵌入字体文件",
       "third_party_content": "无照片、地图、图标、人物、商标或企业标识",
       "clearance": "author-generated"
     },
@@ -112,6 +112,27 @@
       "method": "本地 Node 确定性状态、交接、维护和负例回放检查脚本",
       "third_party_content": "无网络、无第三方运行时依赖或外部代码",
       "clearance": "author-generated; package audit only"
+    },
+    {
+      "asset_group": "assets/figures/ai-era-pilot-node-dossier*.svg|png / assets/figures/ai-era-pilot-delivery-receipt*.svg|png / visual/assets/ai-era-pilot-dossier.json",
+      "author": "投稿作者",
+      "method": "本地 Node 生成器从投稿者编写的参数化试点合同生成中英双语平面、剖面、细部与交付回执",
+      "third_party_content": "无照片、地图、图标、人物、商标、远程字体或外部数据；尺寸与成本均为投稿者概念目标并声明低置信度",
+      "clearance": "author-generated schematic; design target only; not surveyed, tender, field or official evidence"
+    },
+    {
+      "asset_group": "visual/assets/build-ai-era-pilot-dossier.js / run-ai-era-pilot-dossier.js / test-ai-era-pilot-dossier.js",
+      "author": "投稿作者",
+      "method": "本地 Node 生成、确定性合同校验和 12 个 fail-closed 负例脚本",
+      "third_party_content": "无网络请求、第三方数据或外部代码复制；运行时使用工作区提供的 Sharp",
+      "clearance": "author-generated; package audit only"
+    },
+    {
+      "asset_group": "visual/assets/build-ai-era-review-pdfs.js / visual/assets/ai-era-pdf-equivalence-record.json / drawings/*.pdf",
+      "author": "投稿作者",
+      "method": "本地 Node/Sharp/pdf-lib 从 16 对包内原创图板生成同页序、同方向的中英 A3/A0 PDF",
+      "third_party_content": "无照片、远程字体、模板、地图瓦片或网络资源；Helvetica 由 PDF 标准字体引用",
+      "clearance": "author-generated review delivery; page parity only; not accessibility certification or official score"
     }
   ],
   "font_note_zh": "图面文字在本地渲染后成为 PNG/PDF 栅格内容；未分发或嵌入任何字体文件。HTML 仅使用查看端系统字体回退，未加载远程字体。",
