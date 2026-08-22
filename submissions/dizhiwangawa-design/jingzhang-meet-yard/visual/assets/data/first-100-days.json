@@ -1,0 +1,125 @@
+{
+  "schema_version": "0.1.0",
+  "contract_id": "MY-100D-S03-001",
+  "contract_class": "conceptual_delivery_contract",
+  "status": "concept_draft",
+  "scenario_id": "S03",
+  "title_zh": "S03 骑手—机器人交接湾 · 首个 100 天交付合同（概念建议，非已批准安排）",
+  "objective": "在 100 天内决定：是否在大钟寺试行站/小月河场景翼的交接湾组件（PS-C06-001/002）启动限域试行；决定只有两种合法结果——进入最多 14 天的限域试行，或公开发布 no-go 归档报告。",
+  "duration_days": 100,
+  "spatial_features": [
+    "geometry/public_space.geojson#PS-C06-001",
+    "geometry/public_space.geojson#PS-C06-002",
+    "geometry/public_space.geojson#PS-C07-003"
+  ],
+  "governing_protocol": "meet-protocol.schema.json 七步状态机；未过 HUMAN_REVIEWED 不得进入 PILOTING。",
+  "gates": [
+    {
+      "gate_id": "D1",
+      "days": "D0–D15",
+      "name": "场地与许可研究",
+      "actions": [
+        "确认候选交接湾场地卡片（权属、路权、无障碍、照明、噪声，待核验字段显式标注）",
+        "登记许可、保险、安全值守与应急预案所需审批路径",
+        "确定申请主体、现场安全角色、骑手/商户/行人评议代表"
+      ],
+      "exit_criteria": [
+        "场地卡片与审批路径清单齐备",
+        "三类受影响群体代表已确认参与方式"
+      ],
+      "blocking_if": [
+        "缺少任一许可路径或受影响群体代表",
+        "场地资料无法核验"
+      ],
+      "evidence": [
+        "site_card",
+        "permission_path_list",
+        "stakeholder_roster"
+      ]
+    },
+    {
+      "gate_id": "D2",
+      "days": "D16–D35",
+      "name": "基线测量与劳动/无障碍评议",
+      "actions": [
+        "测行人与配送流线冲突、平均等待、无障碍通过条件、噪声暴露",
+        "记录人工配送基线作为人工替代对照",
+        "骑手与无障碍评议代表对成功/停止阈值提出书面意见"
+      ],
+      "exit_criteria": [
+        "基线测量协议与数据表齐备",
+        "阈值草案经评议校准，停止触发不可由系统自解除"
+      ],
+      "blocking_if": [
+        "基线缺失或不可复现",
+        "未做劳动影响与无障碍评议"
+      ],
+      "evidence": [
+        "baseline_report",
+        "stakeholder_review_log",
+        "threshold_calibration_record"
+      ]
+    },
+    {
+      "gate_id": "D3",
+      "days": "D36–D70",
+      "name": "三次确定性桌面演练",
+      "actions": [
+        "用 meet-protocol.schema.json 合法序列、非法序列、未知状态与停止事件 fixture 演练",
+        "至少演练一次行人冲突和一次骑手劳动争议场景",
+        "记录系统/人工交替、通知与回退路径"
+      ],
+      "exit_criteria": [
+        "3/3 演练通过并归档",
+        "每次演练的 decision_log_id 与回退记录完整"
+      ],
+      "blocking_if": [
+        "任一演练失败且未形成可验证整改",
+        "PAUSED 恢复规则被绕过"
+      ],
+      "evidence": [
+        "tabletop_drill_logs×3",
+        "incident_notice_samples",
+        "rollback_logs"
+      ]
+    },
+    {
+      "gate_id": "D4",
+      "days": "D71–D100",
+      "name": "放行或公开 no-go",
+      "actions": [
+        "人审决定：进入最多 14 天限域试行，或发布 no-go 归档报告",
+        "若试行：确认现场安全角色在岗、停止按钮/人工配送替代就绪、未结事故不得续期",
+        "若 no-go：公开原因、证据、回退路径并归档，供后续场景复用"
+      ],
+      "exit_criteria": [
+        "决定写入 decision_log 并归档",
+        "试行边界、时段、用户数量与停止条件书面明确"
+      ],
+      "blocking_if": [
+        "未结事故未关闭",
+        "无人工替代或无预授权替补"
+      ],
+      "evidence": [
+        "decision_log",
+        "pilot_permit_or_nogo_report",
+        "archive_record"
+      ]
+    }
+  ],
+  "stop_triggers": [
+    "任何人身冲突或越界即停机",
+    "同类有效投诉累计 3 次停试",
+    "无障碍受阻、噪声投诉、失控、审批条件不明"
+  ],
+  "exit_paths": [
+    "停止后恢复人工配送与现场调度",
+    "未结事故不得续期；续期以公开证据为前提",
+    "合同到期未满足放行条件即自动进入 no-go 归档，不默认延期"
+  ],
+  "acceptance_evidence": [
+    "4 个 gate 的证据 ID 全部登记",
+    "D4 决策日志可由第三方按 schema 复核",
+    "合同全程不涉及真实个人隐私数据"
+  ]
+}

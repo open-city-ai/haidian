@@ -19,13 +19,13 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | Reviewer question | Answer | Verifiable artifact |
 | --- | --- | --- |
 | Core proposition | Let AI meet people before it moves the city. Any AI service entering public space must complete the seven-step Meet Yard Protocol; pilots expire by default and renewal requires public evidence | 8-value `status_code` state machine (§06.1); green/amber/red risk levels; 7-role permission matrix |
-| Can third parties verify the mechanism? | Yes. Protocol fields, state enums and log fields are machine-readable; 31 required outputs verified, 40 changelog dispositions resolved, naming stress tests logged | `compliance_matrix.json`, `changelog.md`, `claim_register.json`, `meet-protocol.schema.json` + 14-check deterministic drill |
-| What does it do spatially? | One spine (9.6–9.8 km), three stations (Make / Verify / Trial), two wings, meeting decks at multiple points; 9 GeoJSON layers, 25 EPSG:4548-recomputed metrics | `geometry/*.geojson`, `metrics.json`, `recompute-log.jsonl` |
+| Can third parties verify the mechanism? | Yes. Protocol fields, state enums and log fields are machine-readable; 31 required outputs verified, 40 changelog dispositions resolved, naming stress tests logged | `compliance_matrix.json`, `changelog.md`, `visual/assets/data/claim_register.json`, `visual/assets/data/meet-protocol.schema.json` + 14-check deterministic drill |
+| What does it do spatially? | One spine (9.6–9.8 km), three stations (Make / Verify / Trial), two wings, meeting decks at multiple points; 9 GeoJSON layers, 25 EPSG:4548-recomputed metrics | `geometry/*.geojson`, `metrics.json`, `visual/assets/data/recompute-log.json` |
 | What backs the three service baselines? | Accessible quiet bays and non-digital entrances (C05/C07), human fallback and no anonymous tracking, stop and rollback as protocol steps | Component library C01–C08; scenario cards S01–S14; threshold drafts §06.3.2 |
 | Who benefits? | Any resident may challenge a service reading affecting them (public review and inquiry window); riders, older adults, low-digital-literacy personas bound to components | Personas P01–P07; components PS-C04/05/06; metric OPS-WIN-01 |
-| What can start soon? | Phase 1 is verification only (~400 ha), no construction; light facilities, operations and service platforms first | Phasing §10.3; scenario `record_status=draft` |
+| What can start soon? | Phase 1 is verification only (~400 ha), no construction; light facilities first; S03 has a 100-day delivery contract (4 gates, no default extension); every scenario starts with apply—disclose | Phasing §10.3; §06.3.4 contract; `visual/assets/data/first-100-days.json` |
 | What is deliberately withheld? | FAR, height, density, setbacks, demolition conclusions, engineering alignments, investment estimates — kept unknown or conceptual | unknown metrics; wording gate §12.3 |
-| How trustworthy is the data? | All geometry is provisional; full recalculation on official polygon publication, not patch-by-patch; case sources CS01–CS08 registered with verified URLs | §12.1; `sources.json`; `case-source-ledger.json` |
+| How trustworthy is the data? | All geometry is provisional; full recalculation on official polygon publication, not patch-by-patch; case sources CS01–CS08 registered with verified URLs | §12.1; `sources.json`; `visual/assets/data/case-source-ledger.json` |
 
 ## Sources and Data Discipline
 
@@ -41,12 +41,26 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | Overall design (~11.4 km²) | How to draw industry space, renewal, mobility and townscape | One-spine-three-stations-two-wings structure; nine GeoJSON layers; renewal projects and phasing | `site_boundary.geojson#SITE-001`; SCOPE-OVERALL-01 | Actions without sources or maintenance return to verification |
 | Key areas (~368.4 ha) | How deep to design the three districts | Three station mini-schemes + three-station contract tables + meeting-deck component network | `key_areas.geojson#PROV-KEY-001/002/003`; SCOPE-KEY-01 | Services not past step-4 human review cannot claim piloting |
 
+## Urban Design Boards (P2)
+
+![Board A1 · Urban Design Master Plan](assets/figures/urban-design-masterplan.png)
+
+![Board A2-1 · 1-km Full-Scale Demonstrator](assets/figures/demonstrator-1km.png)
+
+![Board A2-2 · Street Sections](assets/figures/street-sections.png)
+
+The master plan overlays land use, blue-green, mobility and renewal structure; the 1-km demonstrator around Wudaokou–Qinghuayuan organizes a park-edge meeting deck, a station square and a street handover bay. All dimensions and boundaries are conceptual advice on provisional geometry, not engineering or approval conclusions.
+
 ## Concept and Naming (agent.1)
 
 - Unique concept: design the belt as a "meeting yard" — humans, agents, knowledge and industry meet on one public spine by appointment, cross-verify, pilot at low risk, and write results back into a reusable public archive. Tagline: "让智能先会人，再进城 / AI meets people before it moves the city."
 - A space or activity qualifies as a "meeting" only with: two or more affected parties, limited public resources, appointment window, shared context, human release point, stop conditions, manual alternative, and result archiving. Railway vocabulary alone is not a meeting mechanism (mechanism judgement log: `双路签` and `状态灯带` rejected as misleading).
 - Naming hierarchy: MEET YARD (brand) → Meeting Spine → Make/Verify/Trial stations (alongside official names) → Meeting Deck (nodes) → Meet Yard Protocol (governance) → Meet Yard Sessions (rhythm) → Meet Yard Archive (public knowledge).
 - Logo concept: two open trajectories that approach but do not collide, with a central "human review square" — no trains, rails, switchbacks, chips or infinity symbols; recognition required at 16px/24px, signage, A0 sheets and black-and-white print.
+
+## Competitive Map Update (P1)
+
+The 2026-08-16 snapshot (`visual/assets/data/competitive-map-20260816.json`, COMP-20260816-507) shows a same-origin concept already exists: PASSING LOOP (wnz27). MEET YARD no longer claims "no equivalent concept"; it differentiates through four verifiable objects: (1) the 8-value protocol state machine and 14-check deterministic drill; (2) spatial component ID binding (C01–C08 ↔ scenario IDs ↔ metrics); (3) measurement protocols for the six unknown metrics; and (4) the S03 first-100-days delivery contract. Known gaps are registered honestly: drawing depth vs Intelligence Commons V6, bilingual completeness vs Rails AI Belt v1.7, and cultural/policy anchor depth vs JZ-1909.
 
 ## Three Positioning and Five Functions (agent.1/agent.2)
 
@@ -78,16 +92,17 @@ Meeting deck siting rules (v1.4): (1) at intersections of the spine with cross s
 - Public operations board: `record_status` + `status_code`, responsible role type, risk level, data-source classes, last review time, anomalies and rollbacks; privacy-safe summaries only; state index is a static/offline snapshot, text and status codes over colors.
 - Machine artifacts (v1.3): `meet-protocol.schema.json` + deterministic drill `check_meet_protocol.js` — 14 checks all pass (transition legality, reachability, terminal state, PAUSED recovery rule, fixtures), evidence in `meet-protocol-drill.json`; metrics GOV-OBS-04/05/06 (7 steps / 8 codes / 14-14 drill).
 
-## Scenario Cards and Thresholds (agent.3)
+## Scenario Cards, Thresholds and First 100-Day Contract (agent.3)
 
 - S01–S14 cards cover AI+transport, services, consumption, education, law and daily life (10+ cards, 3+ industrial validation as required), each with responsibility, human review, stop triggers, rollback, metrics and privacy boundary; `record_status=draft` initially.
 - Threshold drafts (v1.2, §06.3.2): success/stop thresholds and manual-fallback baselines per card — e.g., S07 model checkup: reproducibility 100%, failure coverage ≥80%, stop on data overreach or non-reproducibility; S13 low-speed shuttle sandbox (red, human-led only): emergency takeover 100%, ≤10 s; S03 handover bay: zero pedestrian conflict, average wait ≤2 min, stop on any conflict or 3 valid complaints. All thresholds are drafts for pilot calibration, not commitments; calibration principle: baseline measurement before pilot, stop triggers not self-resettable, fallback keeps services running, changes re-enter disclosure—cross-verification.
+- First 100-day contract (P1, §06.3.4): S03 rider–robot handover bay (`visual/assets/data/first-100-days.json`, MY-100D-S03-001) — D1 site/permission research (D0–15), D2 baseline and labor/accessibility review (D16–35), D3 three deterministic tabletop drills (D36–70), D4 either a ≤14-day limited pilot or a public no-go archive (D71–100). The contract expires by default; no-go is a legitimate outcome.
 
 ## Components, Landmarks, Culture, Operations (agent.4/5/6)
 
 - Component library C01–C08 (18 spatial nodes in `public_space.geojson`): general deck, meeting deck, evidence window, human-review point, accessible quiet bay, rider–robot handover bay, rollback marker/manual entrance, achievement/failure archive shelf.
 - Landmarks L01–L04: general deck, Centennial Question Platform, Human–AI Cross-Verification Platform, Open Results Gallery — honor display with status distinction, no personal statues.
-- Culture: four methods translating Zhan Tianyou's spirit (local problems, innovation under constraints, system-verified design, autonomy as public capability); the "yield" sub-line (Qinglongqiao passing-loop history) stays `unverified` until cleared sources exist.
+- Culture: four methods translating Zhan Tianyou's spirit (local problems, innovation under constraints, system-verified design, autonomy as public capability); the "yield" sub-line (Qinglongqiao passing-loop history) stays `unverified` until cleared sources exist. A machine-readable timeline and engineering-method→protocol mapping is in `visual/assets/data/cultural-narrative-ledger.json`; the narrative explicitly does not reuse the switchback/train visual motif, and openly admits that first-hand historical sources and heritage-control data remain a weakness versus specialist heritage schemes.
 - Brand visual spec (v1.6): identification hierarchy (base/application/event/authorization), logo variants (dual-color, mono, dark, 24px), color tokens (ink-black, paper-white, jz-brick, signal-amber, civic-blue, eco-green) with semantic use and no color-only encoding.
 - Operations: four rhythms (daily/three shifts, weekly/open meeting day, quarterly/cross-domain week, annual/MEET YARD ASSEMBLY) with renewal-or-exit rules; developer community state machine (visitor→participant→tester→maintainer→partner) with explicit reverse transitions and no zombie partner state.
 
@@ -95,11 +110,11 @@ Meeting deck siting rules (v1.4): (1) at intersections of the spine with cross s
 
 - Renewal project list (7 items, four categories) with type, location, dependencies, responsible role types (TBC) and evidence references; no implementation promises without ownership, funding and approval paths.
 - Phasing: Phase 1 verification only (~400 ha, 0–1 yr) → Phase 2 Make/Verify first (~233.7 ha, 1–3 yr) → Phase 3 limited trials (~288.7 ha, 2–4 yr) → Phase 4 review and expansion (~218.9 ha, from year 4); each phase has accountable role types (TBC), suggested windows, acceptance and exit triggers; expansion only through the cycle, otherwise hold or roll back.
-- Policy and status anchors (v1.5, background): corridor control plan approved (Aug 2026 press), Lanjinglija international exchange center (BJD 2026-08-03), AI Origin Community "from 0 to 1" (BJD), Haidian 3 km² AI district (>70% AI enterprises, June 2026), Haidian Urban Renewal Guideline 2025 formally issued, Jing-Zhang Railway Heritage Park phase 2 fully open (9 km, 2026-08-06) — background narrative only, never upgraded to spatial control conclusions.
+- Policy and status anchors (v1.5 + P2, background): corridor control plan approved (Aug 2026 press), Lanjinglija international exchange center (BJD 2026-08-03), AI Origin Community "from 0 to 1" (BJD), Haidian 3 km² AI district (June 2026), Haidian Urban Renewal Guideline 2025 issued, Jing-Zhang Railway Heritage Park phase 2 fully open (9 km, 2026-08-06). P2 adds five repository-seed anchors pending content verification: park phase 1 completion (≈2.5 km / 16.8 ha, 2023), phase 2 plan (≈9 km, 2024), park registry entry (2025), first four AI innovation blocks including Haidian Origin Community (Jan 2026), and "Origin Boom" series (Apr 2026). All anchors remain background narrative only — never upgraded to spatial control or industrial statistics.
 
 ## Indicator System and Compliance
 
-- 25 metrics across the 15 fixed groups; known metrics recomputed in EPSG:4548 (site 11,412,825 m²; green union 2,176,274.715 m² / 19.07%; land-use coverage 1.0; meeting decks 3; protocol drill 14/14); unknown metrics (GOV-OBS-01/02/03, OPS-WIN-01/02, INCLUSION-SERVICE-01) keep status unknown with draft formulas and data-source commitments — no fabricated target values.
+- 25 metrics across the 15 fixed groups; known metrics recomputed in EPSG:4548 (site 11,412,825 m²; green union 2,176,274.715 m² / 19.07%; land-use coverage 1.0; meeting decks 3; protocol drill 14/14); the six unknown metrics (GOV-OBS-01/02/03, OPS-WIN-01/02, INCLUSION-SERVICE-01) now have complete measurement protocols (`visual/assets/data/measurement-protocol.json`): instrument, sampling frequency, responsible roles, data fields, baseline method and acceptance gates. Values stay unknown/null — protocols are defined, baselines are pending, no target values are fabricated.
 - Compliance: 31 required outputs all `verified`; 40 changelog dispositions resolved; standard matrix 6 mandatory standards; design depth matrix 15 items complete.
 
 ## Risk, Copyright, Compliance
@@ -109,4 +124,4 @@ Meeting deck siting rules (v1.4): (1) at intersections of the spine with cross s
 
 ## References
 
-Complete reference list with grades, URLs and retrieval dates in `sources.json` (official announcement, taskbook, site package, source registry, processed fact pack, provisional boundary sources, 8 global case sources with verified URLs, 6 policy/status anchors); verification details in `case-source-ledger.json`. Global cases (PDD, Kalasatama, Barcelona/Decidim, Marineterrein, Seoul AI Hub, Mila, Turing, Station F) are mechanism references only; quantitative effects and current status remain pending professional review.
+Complete reference list with grades, URLs and retrieval dates in `sources.json` (official announcement, taskbook, site package, source registry, processed fact pack, provisional boundary sources, 8 global case sources with verified URLs, 6 policy/status anchors); verification details in `visual/assets/data/case-source-ledger.json`. Global cases (PDD, Kalasatama, Barcelona/Decidim, Marineterrein, Seoul AI Hub, Mila, Turing, Station F) are mechanism references only; quantitative effects and current status remain pending professional review.
