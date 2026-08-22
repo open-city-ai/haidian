@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.5 - 2026-08-22
+
+- 重做中文离线视觉页，使 v2.2–v2.4 的连续性回执、空间选项、接口原型、公共基线、责任移交与发布链进入同一条评审阅读路径，并保留五张主图、指标状态和 provisional/HOLD 边界。
+- 在英文视觉页补齐对应双语图板与证据边界说明；所有链接仍指向包内本地 JSON、runner、GeoJSON 或图件，不加载远程资源。
+- 本轮只改善可读性和审阅导航，不新增现场事实、授权、容量、权属、许可、绩效或官方评分主张。
+
 ## v2.4 - 2026-08-21
 
 - Added a bilingual system-level spatial-options board comparing four alternatives: unmanaged peak, ground-first multimodal, air-first feeder and extreme-weather ground fallback.
