@@ -8,7 +8,7 @@ translation_of: "proposal.md"
 translation_file: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A city does not chase model versions; it releases its own civic versions. Every AI-assisted urban test must leave a public issue, bounded fork, evidence test, dual review, civic release and repair-or-retire path."
-iteration: "v3.0"
+iteration: "v3.1"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed", "ai-cultural-guide"]
 ---
@@ -40,6 +40,16 @@ Each key area keeps an ordinary service route that does not depend on an account
 | Restore and receipt | Remove the device or digital layer and retain the decision record | Field result unknown |
 
 The replay checks only the links among 14 package scenarios, 8 operating actions, 3 nodes and 8 personas, with four negative fixtures returning to HOLD. It provides no resident experience, service performance, field accessibility, permit, staffing or official-score evidence [data:visual/assets/open-pulse-service-equivalence-atlas.json].
+
+## Spatial Options Before AI Release
+
+The ordinary-route contract says what cannot be sacrificed; the next decision must explain why this spatial organisation is selected. `visual/assets/open-pulse-spatial-decision.json` puts three alternatives on one receipt: OP-A, a single AI spectacle spine, is `REJECT`; OP-B, a single flagship release hall, is `REVISE` until distributed care, appeal and maintenance are added; only OP-C, the three-node civic release network, may `ADVANCE_TO_DESIGN_REVIEW`. Advance means entering the next spatial design review only. It is not approval, construction, procurement, deployment or a ranking claim.
+
+![Spatial decision receipt](assets/figures/open-pulse-spatial-decision.en.svg)
+
+The decision follows `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50`: regional public-service relationships, corridor seams, the three-key-area network, status/route/appeal/maintenance handoffs, and finally whether a person can read, enter, refuse, appeal and leave. The five rights are ordinary access and no-app service, accessibility and care fallback, status/appeal/pause, privacy/refusal/exit, and maintenance/worker safety. The five gates are `BASE` before `BOOST`, three-node continuity, human receiver and maintainer, public status and redress, and `BLACKOUT` returning to `BASE` with a clean closeout. The contract remains `HOLD`, with zero authorization, zero field observations, an `unknown` baseline, empty performance and empty field claims; `numeric_dimensions=null` and the scale chain is not a construction dimension. [data:visual/assets/open-pulse-spatial-decision.json] [source:NIST-AI-RMF-1.0]
+
+`run-open-pulse-spatial-decision.js` and its six negative fixtures reject a non-`HOLD` contract, an invalid option, a broken scale chain, missing rights or field claims. If any shared gate fails, OP-C returns to `BASE` and cannot scale. This adds a reviewer-visible choice and stop path, not new field facts.
 
 ## Design Basis and Source List
 

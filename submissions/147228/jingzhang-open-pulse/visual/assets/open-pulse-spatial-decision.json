@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "OPEN-PULSE-SPATIAL-DECISION-01",
+  "package": "jingzhang-open-pulse",
+  "decision": "HOLD",
+  "design_only": true,
+  "boundary": {
+    "official_boundary": false,
+    "geometry_role": "provisional_constraint",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "operational_status": "not_authorized_not_run",
+    "performance_results": null,
+    "public_rank_claim": false,
+    "field_claims": []
+  },
+  "scale_chain": [
+    {"scale": "1:5000", "question": "What regional public-service relationship must remain ordinary and reachable?"},
+    {"scale": "1:2000", "question": "Which civic corridor and transfer seams need a human fallback?"},
+    {"scale": "1:500", "question": "How do the three key areas share a reversible release network?"},
+    {"scale": "1:100", "question": "Where do route, status, appeal and maintenance interfaces meet?"},
+    {"scale": "1:50", "question": "Can a person read, enter, refuse, appeal and leave without AI?"}
+  ],
+  "scale_status": "design_reference_only",
+  "numeric_dimensions": null,
+  "dimension_rule": "No construction dimension, capacity, permit, ownership or field performance is inferred from this concept chain.",
+  "alternatives": [
+    {
+      "id": "OP-A",
+      "name_zh": "单一 AI 展示轴",
+      "name_en": "Single AI spectacle spine",
+      "decision": "REJECT",
+      "selected": false,
+      "reason": "It makes an AI layer the visible destination and leaves ordinary service, appeal and maintenance as secondary add-ons.",
+      "return_to": "BASE",
+      "fail_if": ["ordinary_route_is_secondary", "no_staffed_receiver", "public_status_is_not_readable"]
+    },
+    {
+      "id": "OP-B",
+      "name_zh": "单点旗舰发布厅",
+      "name_en": "Single flagship release hall",
+      "decision": "REVISE",
+      "selected": false,
+      "reason": "It can explain a release but concentrates access, redress and maintenance in one node; it must be revised into a distributed civic sequence.",
+      "return_to": "OP-C",
+      "fail_if": ["one_node_is_the_only_route", "care_fallback_is_remote", "maintenance_owner_is_unassigned"]
+    },
+    {
+      "id": "OP-C",
+      "name_zh": "三节点公共发布网络",
+      "name_en": "Three-node civic release network",
+      "decision": "ADVANCE_TO_DESIGN_REVIEW",
+      "selected": true,
+      "reason": "It joins ordinary service, public status, human receiving, appeal and maintenance across the three existing key-area interfaces without requiring an AI layer.",
+      "interface_ids": [
+        "I-ZHONGZHIYUAN-RELEASE-PORCH",
+        "I-AIORIGIN-CONSENT-ROOM",
+        "I-DAZHONGSI-VERSION-HALL"
+      ],
+      "return_to": "BASE",
+      "fail_if": ["any_node_loses_ordinary_service", "appeal_or_exit_is_unowned", "blackout_does_not_return_to_base"]
+    }
+  ],
+  "rights": [
+    {"id": "R1", "label": "ordinary_access", "test": "A person can arrive, ask, receive help and leave without an account, app or biometric identifier.", "stop_if": "ordinary_route_or_human_service_is_missing"},
+    {"id": "R2", "label": "accessibility_and_care", "test": "Step-free, staffed and care fallback routes remain available through every state.", "stop_if": "accessible_seam_or_care_fallback_is_blocked"},
+    {"id": "R3", "label": "status_appeal_and_pause", "test": "The public can read status, refusal reason, appeal route and pause action.", "stop_if": "status_or_redress_is_unreadable_or_unowned"},
+    {"id": "R4", "label": "privacy_and_exit", "test": "Participation can be refused or withdrawn, with no uncleared personal trace retained.", "stop_if": "consent_or_withdrawal_boundary_is_unclear"},
+    {"id": "R5", "label": "maintenance_and_worker_safety", "test": "A named maintenance role can inspect, repair, isolate and retire the interface.", "stop_if": "maintenance_window_or_safe_isolation_is_missing"}
+  ],
+  "shared_gates": [
+    {"id": "G1", "label": "BASE_BEFORE_BOOST", "pass": "Ordinary public service is visible and usable before any AI layer is considered."},
+    {"id": "G2", "label": "THREE_NODE_CONTINUITY", "pass": "The three key areas share a reachable route and do not create a single mandatory digital doorway."},
+    {"id": "G3", "label": "HUMAN_RECEIVER_AND_MAINTAINER", "pass": "A human receiving role and a maintenance role are named before design review can advance."},
+    {"id": "G4", "label": "PUBLIC_REDRESS", "pass": "Status, refusal reason, appeal, pause and return-to-normal actions are public and legible."},
+    {"id": "G5", "label": "BLACKOUT_AND_CLOSEOUT", "pass": "A failed or uncertain layer returns to BASE, and closeout removes uncleared traces."}
+  ],
+  "linked_contracts": [
+    "visual/assets/open-pulse-release-chain.json",
+    "visual/assets/open-pulse-release-interface-prototypes.json"
+  ]
+}

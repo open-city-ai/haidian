@@ -7,7 +7,7 @@ bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "城市不追随模型版本，城市发布自己的公共版本。每项 AI 试验都须经过问题单、试验分支、有界测试、双重审查、公共发布和修复或退役，把短期演示转成可复核、可停止、能回到日常的城市能力。"
-iteration: "v3.0"
+iteration: "v3.1"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed", "ai-cultural-guide"]
 ---
@@ -39,6 +39,16 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | 回到日常并留回执 | 撤回设备或数字层，保留决定记录 | 现场结果 unknown |
 
 当前回放只检查包内 14 条场景、8 项运营动作、3 处节点和 8 类画像的连接，4 个负向夹具均应回到 HOLD。它不证明居民体验、服务绩效、现场无障碍、许可、人员值守或官方评分 [data:visual/assets/open-pulse-service-equivalence-atlas.json]。
+
+## 系统选项先于 AI 发布
+
+普通路径已经说明“不能牺牲什么”，还需要说明“为什么选这套空间组织”。`visual/assets/open-pulse-spatial-decision.json` 将三个候选放在同一张回执上：OP-A“单一 AI 展示轴”直接 `REJECT`；OP-B“单点旗舰发布厅”先 `REVISE`，补齐分布式照护、申诉和维护；OP-C“三节点公共发布网络”才允许 `ADVANCE_TO_DESIGN_REVIEW`。这里的 advance 只代表进入下一轮空间设计审查，不代表批准、施工、采购、部署或排名。
+
+![系统选项决策回执](assets/figures/open-pulse-spatial-decision.svg)
+
+决策沿 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 展开：从区域公共服务关系、走廊缝隙、三处重点区网络，到状态/路线/申诉/维护交接，再到一个人能否读懂、进入、拒绝、申诉并离开。五项权利是普通进入与无 App 服务、无障碍与照护回退、状态/申诉/暂停、隐私/拒绝/退出、维护与劳动者安全；五道闸门是 `BASE` 先于 `BOOST`、三节点连续可达、人工接收与维护、公开状态与补救、`BLACKOUT` 回到 `BASE` 并清权收口。当前仍为 `HOLD`、零授权、零现场观察、`unknown` baseline、空绩效和空现场声称；`numeric_dimensions=null`，不把尺度链写成施工尺寸。[data:visual/assets/open-pulse-spatial-decision.json] [source:NIST-AI-RMF-1.0]
+
+`run-open-pulse-spatial-decision.js` 与 6 个负向夹具会拒绝非 `HOLD`、错误选项、断裂尺度链、缺失权利和现场声称。任一共享闸门不通过，OP-C 只能回到 `BASE`，不能扩容。它补的是评审者的选择与止损路径，不是新增现场事实。
 
 ## 设计依据与资料清单
 
