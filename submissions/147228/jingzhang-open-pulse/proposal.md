@@ -7,7 +7,7 @@ bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "城市不追随模型版本，城市发布自己的公共版本。每项 AI 试验都须经过问题单、试验分支、有界测试、双重审查、公共发布和修复或退役，把短期演示转成可复核、可停止、能回到日常的城市能力。"
-iteration: "v3.1"
+iteration: "v3.2"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed", "ai-cultural-guide"]
 ---
@@ -107,6 +107,22 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 三处图形均来自 `geometry/key_areas.geojson` 的临时范围。节点序列是概念性空间与运营合同，不是建筑施工图、工程量、地块审批或已完成体验。[data:visual/assets/key-area-node-plans.json] [depth:three_key_area_detailed_design]
 
+![三处版本站的参数平面、接口剖面与容量门](assets/figures/open-pulse-station-design.png)
+
+### 众智园：测试口袋可以关，公园主链不能断
+
+众智园把一条 2.4—3.6 米的普通步行与无障碍主链作为参数底线，在主链之外依次放置离线状态与人工求助点、可撤回测试口袋、树荫休息与公园返回带。1:50 接口剖面把普通主链、安全缓冲、测试分支和维护复原边分开，避免设备停靠、围挡或检修反向占用日常通行。这些数值是下一轮比较方案的目标区间，不是现场净宽或施工尺寸；河道、防洪、交通、权属、消防和无障碍复核未完成前，容量输入全部为 null，决定保持 HOLD。[data:visual/assets/open-pulse-station-delivery-contract.json]
+
+### AI 原点：清权、人工服务和安静返回在一条街上
+
+AI 原点先保留 2.4—4.0 米的普通与安静返回链，再组织人工服务与清权桌、可关闭发布室、住宅安静边和不消费停留。发布界面有 BASE、TEST_WINDOW、BLACKOUT、CLOSEOUT 四个状态：内容发生权利争议时先隐藏数字层，纸面目录、人工服务、疏散和安静返回不随之关闭。容量不按屏幕或展项数量推定，而取可用面积、疏散、人工服务和安静边承载的最小值；四项输入未核前不发布。[data:visual/assets/open-pulse-station-delivery-contract.json]
+
+### 大钟寺：活动容量可以归零，居民归家路线仍须成立
+
+大钟寺以 3.0—5.0 米的轨道至普通商业归家链为底盘，把安静等候、照护停留、短时发布和清运复原放在可清空的侧向界面。任何消防、客流、积水、噪声或居民通行门越线，活动容量立即降为零；显示与活动停止，但轨道到达、过街、安静座位、普通商业和归家链继续工作。可用面积、轨道与过街、消防疏散、安静路线和人员值守均待专业输入，不以概念图填入人数。[data:visual/assets/open-pulse-station-delivery-contract.json]
+
+三站共登记 12 个参数平面模块、12 段接口剖面、9 处待确认权属接口和三条容量公式。参数让评审者能够比较空间取舍，也把下一轮勘察问题钉在图上；它仍不能代替正式红线、现状测绘、产权、市政、消防、交通、无障碍或施工复核。
+
 ## AI 创新生态、人才画像与 AI+ 场景
 
 五类使用者提供五个独立验收视角，不能被简化为营销画像。周边居民检验日常开放与低扰动；老人、残障者和照护者检验无障碍与无 App 路径；维护人员检验故障、备件和接管；高校师生与开发者检验贡献、复现和撤回；企业与访客检验服务接口、合规和国际沟通。任何平均分都不能掩盖某一组无法使用或承担额外风险。[metric:user_persona_count] [data:visual/assets/persona-and-inclusion-matrix.json]
@@ -158,6 +174,20 @@ S-02 是当前唯一执行过本地合成桌面回放的样例。4/4 夹具、6/
 | P3 复盘与迁移 | 每年 | 比较版本，决定扩展、修复或退役，公开失败档案 | 年度证据账、预算、工单、公众异议和退役清单 | 证据不可复现或长期维护成本失控则退役 |
 
 八项运维包把上述阶段拆成官方边界复核、人的体验基线、风热雨洪验证、具身智能测试、开源清权、大钟寺活动降容、雨洪与夜间运维、年度复盘。参与主体先按证据责任分为组织方资料责任人、交通与无障碍专业团队、社区联络者、场地维护者、测试观察者和独立复核团队；真实主体、预算、采购与 SLA 仍需由后续专业和公共程序确认。P1/P2 首轮只读五项指标：普通路线完成率、人工接管响应时长、投诉闭环率、撤回执行率和维护工单按期率；任一指标没有基线就保持 `unknown`，不发布。[data:visual/assets/operations-matrix.json]
+
+![三处版本站的责任、采购、成本方法、服务目标与退出回执](assets/figures/open-pulse-delivery-readiness.png)
+
+### 责任先写成岗位，不冒认具体单位
+
+每站先设六类责任：设计牵头、最终裁决、窗口运营、资产维护、权利与数据、独立验收。众智园侧重规划景观、测试运营和公园维护；AI 原点侧重城市与服务设计、发布室人工运营、清权归档和居民影响复核；大钟寺侧重站区活动设计、活动控制、公共空间与清运维护、轨道交通和消防复核。这里登记的是责任原型，不是已签约组织；六类岗位均为 unconfirmed，缺一类就不进入窗口。[data:visual/assets/open-pulse-station-delivery-contract.json]
+
+### 采购和成本先写方法，不用假数字制造可实施感
+
+三站采用同一条采购顺序：勘察与方案复核、可逆样机、独立验收、限时服务采购、保留/重做/退出裁决。金额上下限保持 null，待工程量和市场询价后再由造价专业按构件、开放时窗人员、维护周期、清权与数据工作、最终复原责任分别计取。这样可以提前看见成本由谁产生，却不会把没有图纸、数量和授权的估算写成预算承诺。[data:visual/assets/open-pulse-station-delivery-contract.json]
+
+### 服务水平只作为下一轮验收目标，不写成已经达到
+
+三站共设置 9 项服务目标。众智园要求关键障碍立即停、15 分钟内隔离并更新状态；AI 原点要求争议内容先隐藏、1 个工作日受理、5 个工作日给出状态，确认无效后 48 小时内移除或替换；大钟寺要求越线即把活动容量归零、计划闭场后 30 分钟内完成复原检查、14 日内公开缺陷和投诉复盘。这些时间均标为 `design_target_not_observed`。runner 会拒绝把目标改写成现场实绩、填入未经核验的容量或成本、确认不存在的权属主体，或删掉 BLACKOUT/CLOSEOUT 回退。[data:visual/assets/run-open-pulse-station-delivery.js] [data:visual/assets/test-open-pulse-station-delivery.js]
 
 ## 指标体系、面积复算与合规矩阵
 
