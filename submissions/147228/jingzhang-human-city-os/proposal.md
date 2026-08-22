@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v2.8"
-summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v2.8 在既有六类 persona 和三类公共利益扩展之外，新增三种空间组织方式的裁决、五级尺度链、五项公共权利与五道共享闸门，把人的主线和机器增量接成可离线复核的 HOLD 合同。临时几何、已知指标与 unknown 均保持原值。"
+iteration: "v2.9"
+summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v2.9 在 v2.8 空间裁决之上，增加四个公共服务合同到 SEB v0.5.0 五字段的可选互操作 crosswalk，并用正负夹具验证 AI 关闭路径、人工接管、闸门、运行方式和责任角色。临时几何、已知指标与 unknown 均保持原值。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -625,6 +625,14 @@ v0.2 将这 17 张卡从目录升级为可审阅场景卡：每张卡都连接�
 | HC-T04 多语公共服务客厅 | PUBLIC-D-GLOBAL | 经过双语复核的公共信息与人工转接 | 双语不一致或服务范围不明，保留纸面说明 |
 
 四条正样本必须同时满足同意、人工接管、权限范围、最小数据、申诉、双语复核和低影响动作；八条负样本分别拒绝缺少同意、人工入口、最小数据、权限、申诉、低影响边界、双语复核或空间锚点的请求。run-human-city-public-service-tabletop-v1.js --check 在无网络条件下逐项复核 4/4 正样本和 8/8 负样本，并生成预期回执；PASS 只证明合同可拒绝、可回放，不证明服务绩效、排班、许可、无障碍结果、事故安全、公众结果或官方评分。[data:visual/assets/run-human-city-public-service-tabletop-v1.js] [data:visual/assets/human-city-public-service-tabletop-v1-evidence.json] [depth:risk_missing_data]
+
+### v2.9 可选服务等价字段 crosswalk｜把“人工等价”接到可复核字段
+
+本轮把维护者讨论中明确允许的 SEB v0.5.0 组件级采用落到本包自己的字段上：`ai_off_path` 回接 `human_alternative`，`human_handoff` 和 `responsible_role` 回接 `operator_role`，`gate_id` 保留本包 `PHASE-V01/V02` 后保守折算为 SEB `G0`，`operating_mode` 只写 `contract_check_only`。四个 HC 合同的原文仍以本包 `human-city-public-service-tabletop-v1.json` 为 source of record；SEB 只作为带 CC-BY-SA-4.0 署名的公开概念规范参考，不把另一方案的叙事、几何或数据引入本包。[source:SEB-V0.5.0] [data:visual/assets/human-city-seb-crosswalk.json]
+
+这不是认证，也不是把 `manual_service_equivalence_rate` 从 `unknown` 改成结果。`run-human-city-seb-crosswalk.js --check` 通过 4 个正样本和 5 个负样本：线上办理依赖、人工角色缺失、非法闸门、运行方式缺失和 source 字段改写都会拒绝；中英文图板把五个字段、四个节点和当前边界放在同一阅读面。任何真实采用、排班、服务覆盖、现场走读、机构背书或正式评分仍需独立授权和专业复核。[data:visual/assets/run-human-city-seb-crosswalk.js] [data:visual/assets/human-city-seb-crosswalk-evidence.json] [depth:phasing_implementation]
+
+![图 29｜可选互操作层：四个公共服务合同与 SEB 五字段](assets/figures/human-city-seb-crosswalk.svg)
 
 | 项目 | 版本 | 前置条件 | 停止/回滚条件 |
 | --- | --- | --- | --- |

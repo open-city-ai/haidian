@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.9 - 2026-08-22
+
+- 新增 `human-city-seb-crosswalk.json`，采用 SEB v0.5.0 的组件级可选互操作路径，把四个已有公共服务桌面合同回接到 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode` 与 `responsible_role` 五个公开字段；保留 CC-BY-SA-4.0 署名、来源 URL 和无机构背书边界。
+- 新增 `run-human-city-seb-crosswalk.js`、5 个 fail-closed 负例和双语图 29；4/4 正例、5/5 负例通过，来源记录、角色词表、G0/HOLD、contract_check_only、0 授权、0 现场观察和 performance=null 均保持可回读。
+- 同步中英文 proposal、离线 visual index、sources 与 manifest；本轮不把 crosswalk 当作认证、仓库硬门禁、正式评分项、服务覆盖、现场绩效或机构采用，不修改 geometry、metrics、public sorting、`submissions-data.js` 或 `gallery-publication.json`。
+
 ## v2.8 - 2026-08-22
 
 - 新增三替代空间裁决：ALT-A `REJECT`、ALT-B `REVISE`、ALT-C `ADVANCE_TO_DESIGN_REVIEW`，把四条价值链、三处重点区和人机接口原型接成一张评审入口。

@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v2.8"
-summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v2.8 adds a three-alternative spatial decision, a five-scale chain, five public rights, and five shared gates on top of the public-interest coverage work, connecting the human mainline and bounded machine increments as an offline-reviewable HOLD contract. Provisional geometry, known metrics, and unknowns remain unchanged."
+iteration: "v2.9"
+summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v2.9 adds an optional component-level crosswalk from four public-service contracts to five SEB v0.5.0 fields on top of the v2.8 spatial decision, while keeping the package in an offline-reviewable HOLD state. Provisional geometry, known metrics, and unknowns remain unchanged."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -634,6 +634,14 @@ The existing handoff receipt answers how one human-first service can be replayed
 | HC-T04 Multilingual public-service living room | PUBLIC-D-GLOBAL | Provide bilingual-reviewed public information and human routing | Retain paper information when bilingual terms or service scope is unclear |
 
 The four positive fixtures must satisfy consent, human handoff, permission scope, minimum data, appeal, bilingual review, and a low-impact action. Eight negative fixtures reject missing consent, human entry, minimum data, permission, appeal, low-impact boundaries, bilingual review, or a spatial anchor. run-human-city-public-service-tabletop-v1.js --check replays 4/4 positive and 8/8 negative fixtures offline and writes an expected receipt. PASS proves only that the contract is rejectable and replayable; it does not prove service performance, staffing, permits, accessibility outcomes, incident safety, public outcomes, or an official score. [data:visual/assets/run-human-city-public-service-tabletop-v1.js] [data:visual/assets/human-city-public-service-tabletop-v1-evidence.json] [depth:risk_missing_data]
+
+### v2.9 optional service-equivalence field crosswalk | Make “human equivalence” queryable
+
+This increment implements the component-level SEB v0.5.0 adoption path discussed by maintainers using this package's own fields: `ai_off_path` maps to `human_alternative`; `human_handoff` and `responsible_role` map to `operator_role`; `gate_id` retains the package's `PHASE-V01/V02` anchor and conservatively reports SEB `G0`; and `operating_mode` is only `contract_check_only`. The four HC contracts remain sourced from this package's `human-city-public-service-tabletop-v1.json`. SEB is a CC-BY-SA-4.0-attributed public concept reference only; no narrative, geometry, or data from another submission is imported. [source:SEB-V0.5.0] [data:visual/assets/human-city-seb-crosswalk.json]
+
+This is not certification, and it does not turn `manual_service_equivalence_rate` from `unknown` into an outcome. `run-human-city-seb-crosswalk.js --check` passes 4 positive and 5 negative fixtures: online-service dependency, missing human role, invalid gate, missing operating mode, and changed source fields all fail closed. The bilingual board places the five fields, four nodes, and current boundary on one reviewer surface. Institutional adoption, staffing, service coverage, field walk-throughs, endorsement, and formal scoring still require separate authorization and professional review. [data:visual/assets/run-human-city-seb-crosswalk.js] [data:visual/assets/human-city-seb-crosswalk-evidence.json] [depth:phasing_implementation]
+
+![Figure 29 | Optional interoperability layer: four public-service contracts and five SEB fields](assets/figures/human-city-seb-crosswalk.en.svg)
 
 | Project | Release | Prerequisite | Stop or rollback condition |
 | --- | --- | --- | --- |
