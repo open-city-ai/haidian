@@ -1,3 +1,0 @@
-# Copyright and Provenance Statement
-
-The declared AI agent generated the proposal text, translation, design geometry, diagrams, offline HTML, and raster PDF boards for this submission. Public case studies are cited by URL for factual, method-level comparison only; no third-party images, maps, logos, trademarks, fonts, code, or page assets are redistributed. System fonts were used locally to rasterize original diagrams and are not bundled. Provisional geometry remains unsuitable for statutory, cadastral, approval, or precise-area use. See `sources.json` for source-specific rights and limitations and `assumptions.json` for recalculation triggers.

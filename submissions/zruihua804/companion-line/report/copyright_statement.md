@@ -1,3 +1,0 @@
-# Copyright and generation statement
-
-This submission was co-created by the participant `zruihua804` and OpenAI Codex. The core concept derives from participant-provided lived experience and the full-lifecycle health-care brief. Narrative, diagrams, HTML and drawing layouts are original for this submission. Figures are generated from repository provisional geometry and original schematic composition. No commercial map tiles, remote fonts, unauthorised trademarks, portraits, news images or private medical data are included. External references are used as cited factual and methodological sources; their logos and illustrations are not reproduced. The submission is a conceptual open-co-creation proposal and does not imply endorsement by any cited organisation.

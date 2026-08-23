@@ -1,3 +1,0 @@
-# Copyright and Rights Statement
-
-The submission text, diagrams, visual pages and PDF drawings are generated from repository materials, official public background sources, an attributed OpenStreetMap extract and the submission GeoJSON. No remote map tiles, commercial imagery, third-party site photographs, personal data or identifiable people are bundled. OSM context is credited to OpenStreetMap contributors and used under ODbL 1.0. Figures distinguish existing background, repository provisional geometry, proposed interventions and conceptual/data-gap content; they do not represent official survey, statutory approval or built conditions.
