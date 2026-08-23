@@ -5,11 +5,12 @@ language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
+version: "1.9"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "A visitor without a smartphone can enter a reversible service room, speak to a person, leave with a dated paper result, and keep moving during a network outage. Twelve AI services advance to field review only when responsibility, takeover, and stop evidence are complete."
+summary: "A visitor without a smartphone can enter a reversible Works Bay, speak to a person, leave with a dated paper result, and keep moving during a network outage. One shift book joins an eight-hour opening, 21.5 functional-role hours, seven checkpoints, and six quote cards."
 tracks: ["ai-traffic-walkability", "ai-public-services", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.8"
+iteration: "v1.9"
 ---
 
 # JING-ZHANG WORKS / 京张好用
@@ -32,9 +33,11 @@ The Urban Usability Compiler performs a release check. Each of twelve services m
 
 The ninety-day startup ledger holds six cost objects. Field baseline work, paper service, movable interface, controlled testing, staffed operation, and permanent works each have a unit basis, recurring burden, quotation gate, and removal duty. `planned_quantity` and monetary values stay null because the site, opening hours, accountable buyer, and comparable quotations are unconfirmed. All six costs are registered; null blocks aggregation and procurement.[source:V11-IMPLEMENTATION-PLAYBOOK] [metric:startup_cost_line_count]
 
+Version 1.9 compresses opening into one reference shift. Public opening lasts eight hours, with a sixty-minute pre-open check and forty-five-minute closing reconciliation. Duty lead, paper service, accessibility replay, safety-fault, and information-data functions total 21.5 functional-role hours. This measures workload for comparison, not people, roster, wages, or legal working time. Seven checkpoints and six quote cards are specified. Site, date, people, shift count, supplier quotations, total price, permits, and field results remain empty.[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:reference_shift_functional_hour_count]
+
 The stop rehearsal has five categories and six fault cards. Route and life safety, information and network failure, missing staff, a privacy incident, and supplier exit each specify the duty worker's first action and the evidence required to reopen. A network outage and critical information error share the information-and-network category, which explains why the two counts differ. No real site or rostered team has signed or performed the rehearsal.[source:V12-DAY-ONE-DRILL] [metric:stop_drill_category_count]
 
-The current result is a design package ready for field review. Provisional geometry remains marked `official_boundary=false`. Real visitors, field completion rates, and total procurement cost remain empty. The paper-result template, sixteen-page A3 reading path, and fourteen Chinese-English equivalence checks are complete. Independent translation review, public-comprehension testing, and professional approvals remain with a future authorized team.[source:V13-COMPLETE-TASK-RECEIPT] [source:V17-JUROR-PATH] [source:V17-BILINGUAL-AUDIT]
+The current result is a design package ready for field review. Provisional geometry remains marked `official_boundary=false`. Real visitors, field completion rates, and total procurement cost remain empty. The paper-result template, sixteen-page A3 reading path, and fifteen Chinese-English equivalence checks are complete. Independent translation review, public-comprehension testing, and professional approvals remain with a future authorized team.[source:V13-COMPLETE-TASK-RECEIPT] [source:V17-JUROR-PATH] [source:V17-BILINGUAL-AUDIT]
 
 ## Design Basis and Source List
 
@@ -196,18 +199,28 @@ Years three to five may establish a corridor service standard. The six-field con
 
 Five gates divide the ninety days. Weeks 0 to 2 complete the field baseline, signed roles, and risk register. Weeks 3 to 4 install Ask First, takeover marking, a paper route, and the change log, followed by staff drills. Weeks 5 to 8 run two public services and one industry test. Weeks 9 to 11 repair repeated barriers and replay failed tasks. Weeks 12 to 13 decide whether each component is adopted, revised, or retired. S-class resources cover signs, paper service, existing furniture, and staff time. M-class resources cover a movable pavilion, controlled test lane, temporary power, and specialist review. L-class resources are permanent works requiring formal project approval. This package states no unauthorized monetary amount.[source:V11-IMPLEMENTATION-PLAYBOOK]
 
-The ledger establishes measurement before quotation. Field baseline work is measured by six complete routes and twelve fixed observations. Paper service is measured at each opened entry, counter, and exit. The movable interface is one set per authorized site, with rental or adaptation preferred before purchase. The controlled window admits one industry test at a time. Staff cost is measured per open shift, with one named takeover person and a separate independent replay slot. Permanent works have a quantity of zero during the ninety-day pilot and wait for a formally approved project.[source:V11-IMPLEMENTATION-PLAYBOOK] [metric:startup_cost_line_count]
+The ledger establishes measurement before quotation. Field baseline work is measured by six complete routes and twelve fixed observations. Paper service is measured as three stationed sets plus one accessible-format master. The movable interface is one reversible 6.0 by 4.8 metre trial set. The controlled window admits one industry test at a time. Staff cost uses 21.5 functional-role hours for one eight-hour reference opening; an authorized operator must still determine people, roster, and labour compliance. Permanent works have a quantity of zero during the ninety-day pilot and wait for a formally approved project.[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:quote_ready_cost_line_count]
 
 | Startup cost line | How quantity is established | One-off or recurring | Evidence needed before quotation |
 | --- | --- | --- | --- |
 | C01 field baseline | Six task routes and twelve fixed observations | One-off | Route list, privacy boundary, evidence acceptance sheet |
-| C02 paper service | One set at every opened entry, counter, and exit | Recurring | Information owner, expiry rule, print specification |
-| C03 movable public interface | One set for one pilot site | One-off | Site authorization, measured access route, fire review, removal method |
+| C02 paper service | Three stationed sets plus one accessible-format master | Recurring | Information owner, expiry rule, print specification, weekly replacement method |
+| C03 movable public interface | One reversible 6.0 by 4.8 metre trial set | One-off | Site authorization, measured access route, fire review, removal method |
 | C04 controlled test window | One industry test at a time | One-off | Test boundary, named handler, physical stop, restoration deposit |
-| C05 staffed operation | One takeover person per open shift plus independent replay | Recurring | Shift plan, substitute, labour rules, stop authority |
+| C05 staffed operation | 21.5 functional-role hours per eight-hour reference shift | Recurring | Actual people, roster, substitute, labour rules, stop authority |
 | C06 permanent works | Zero during the ninety-day pilot | Formal-project cost | Official geometry, ownership, approved brief, investment decision, professional design |
 
 The buying order is deliberately plain. Rent or adapt before commissioning a bespoke component. Fund human service and independent review before an AI display. Every installation quote includes removal, data deletion, and site restoration. Procurement stops when the operator or recurring budget is absent.[source:V11-IMPLEMENTATION-PLAYBOOK]
+
+### Works Bay One-Shift Opening Book
+
+The reference shift starts sixty minutes before opening, runs through eight public hours, and keeps forty-five minutes for issue reconciliation and deletion of expired test data. The duty lead walks the whole route. Paper-service staff complete the same task on paper. The accessibility replayer repeats the route before opening and at midday. The safety-fault facilitator tests one physical stop. The information-data countersigner verifies sources, expiry, and closing deletion. These five functions total 21.5 hours. The operator still decides how many people provide that coverage, their rotation, breaks, and labour compliance.[source:V19-WORKS-BAY-SHIFT-BOOK]
+
+Seven checkpoints fall at sixty, thirty, and ten minutes before opening, at opening, and two, four, and eight hours afterward. Each leaves route, paper-task, signed-release, operating-state, independent-replay, fault-drill, or closing evidence. Safety, privacy, critical-information, network, or supplier failure changes state before the next public transaction. A human-takeover request must be accepted before paper is issued. An unresolved issue receives an issue identifier, responsible function, and review date before the visitor leaves. Reopening requires the corresponding recovery evidence.[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:shift_checkpoint_count]
+
+Six quote cards map one to one to C01 through C06. Each specifies a reference quantity, acceptance action, work included in the quotation, and exclusions pending authorization. Only the quote objects are ready. Supplier quotations remain zero; formal estimate, tender price, monetary total, and planned shift count stay null. The 21.5 functional-role hours cannot be converted into unconfirmed people or budget.[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:vendor_quote_count]
+
+![One opening shift's clock, functional effort, quote objects, and failure deadlines](assets/figures/shift-evidence.en.png)
 
 The RACI assigns site authorization to the owner or public-space operator, service release to the service owner, on-site takeover to named staff, and stopping or retirement to the safety lead or service owner. Planning, fire, accessibility, data protection, and professional reviewers join as required. Four design targets continue after release. Human takeover must remain visible. A serious safety or privacy event causes immediate suspension. Public information carries a source and expiry. Every published route passes a full no-app replay. These are pilot thresholds and have no measured achievement rate yet.[source:V11-IMPLEMENTATION-PLAYBOOK]
 

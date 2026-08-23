@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.9.0",
+  "mechanism_id": "WB-SHIFT-BOOK-001",
+  "name_zh": "好用服务间一班开门账",
+  "name_en": "Works Bay One-Shift Opening Book",
+  "status": "reference_shift_not_authorized_not_rostered_not_run",
+  "purpose_zh": "把一班开放的时间、功能工时、开门证据、故障响应和六项询价对象放在同一张工作单上，让运营方能先核责任与工作量，再决定是否报价和开放。",
+  "purpose_en": "Put one opening shift's clock, functional effort, release evidence, fault response, and six quote objects on one work order so an operator can verify responsibility and workload before pricing or opening.",
+  "score_dimensions_supported": [
+    "implementation_feasibility",
+    "ai_planning_innovation",
+    "risk_compliance",
+    "expression_completeness"
+  ],
+  "reference_shift": {
+    "public_open_minutes": 480,
+    "pre_open_minutes": 60,
+    "close_and_reconcile_minutes": 45,
+    "planned_shift_count": null,
+    "calendar_date": null,
+    "site": null,
+    "named_people": [],
+    "labour_rule": "The figures below are functional-role minutes for quote comparison. They are not a headcount, roster, employment standard, or permission to place one person on an overlong shift. Actual people, breaks, substitutions, overlap, and labour compliance remain operator decisions.",
+    "functional_role_minutes": [
+      {
+        "role": "duty_lead",
+        "minutes": 585,
+        "coverage": "T-60 route check through T+480 close, plus 45-minute reconciliation",
+        "cannot_self_accept": ["independent_midday_replay", "privacy_deletion_countercheck"]
+      },
+      {
+        "role": "paper_service_operator",
+        "minutes": 540,
+        "coverage": "T-30 manual replay through T+480 close",
+        "cannot_self_accept": ["own_release_exception"]
+      },
+      {
+        "role": "accessibility_replayer",
+        "minutes": 60,
+        "coverage": "pre-open route check and one complete midday no-app replay",
+        "cannot_self_accept": []
+      },
+      {
+        "role": "safety_fault_facilitator",
+        "minutes": 60,
+        "coverage": "physical-stop check and one announced fault-card rehearsal",
+        "cannot_self_accept": ["fault_reopen_decision"]
+      },
+      {
+        "role": "information_and_data_countersigner",
+        "minutes": 45,
+        "coverage": "source and expiry check plus closing deletion countercheck",
+        "cannot_self_accept": []
+      }
+    ],
+    "functional_role_minute_total": 1290,
+    "functional_role_hour_total": 21.5
+  },
+  "seven_checkpoints": [
+    {
+      "clock": "T-60",
+      "human_action": "walk the ordinary and no-app route",
+      "evidence": "opening_route_check",
+      "release_rule": "blocked segment means do not open"
+    },
+    {
+      "clock": "T-30",
+      "human_action": "replay the complete paper task and physical stop",
+      "evidence": "manual_replay_and_stop_record",
+      "release_rule": "failed manual task means no assisted opening"
+    },
+    {
+      "clock": "T-10",
+      "human_action": "read source date, expiry, minimum data, and stop rule with staff",
+      "evidence": "signed_release_sheet",
+      "release_rule": "missing critical fact holds release"
+    },
+    {
+      "clock": "T+00",
+      "human_action": "open only the accepted operating state and show the human point",
+      "evidence": "opening_state_record",
+      "release_rule": "public label must match manual, assisted, degraded, or closed state"
+    },
+    {
+      "clock": "T+120",
+      "human_action": "independently replay one no-app task",
+      "evidence": "midshift_same_task_replay",
+      "release_rule": "failed replay withdraws the affected route"
+    },
+    {
+      "clock": "T+240",
+      "human_action": "run one announced fault card with no unsuspecting visitor",
+      "evidence": "fault_card_record",
+      "release_rule": "failed takeover stops the affected service"
+    },
+    {
+      "clock": "T+480",
+      "human_action": "close, reconcile issues, delete expired test data, and record the next state",
+      "evidence": "closing_deletion_and_next_state_record",
+      "release_rule": "missing close evidence keeps the service closed"
+    }
+  ],
+  "response_boundaries": [
+    {
+      "event": "safety_privacy_or_critical_information_failure",
+      "deadline": "before_the_next_public_transaction",
+      "required_action": "stop the affected assistance, cover the interface, and show the current manual or closed state",
+      "proof": "timestamped state change and issue id"
+    },
+    {
+      "event": "human_takeover_requested",
+      "deadline": "before_any_paper_result_is_issued",
+      "required_action": "a present staff member accepts the task or the service records that it cannot proceed",
+      "proof": "human verifier field or explicit no-issue record"
+    },
+    {
+      "event": "network_model_or_supplier_loss",
+      "deadline": "before_the_next_public_transaction",
+      "required_action": "turn off the affected interface and replay the staffed paper path",
+      "proof": "manual-state label and same-task replay"
+    },
+    {
+      "event": "unresolved_public_issue",
+      "deadline": "before_the_visitor_leaves",
+      "required_action": "give an issue id, responsible functional role, and an accepted next-review date",
+      "proof": "paper issue stub without personal data"
+    },
+    {
+      "event": "end_of_shift",
+      "deadline": "before_closing_signoff",
+      "required_action": "reconcile issue status, expired test data, paper versions, and the next operating state",
+      "proof": "closing counter-signature"
+    },
+    {
+      "event": "reopening_after_a_stop",
+      "deadline": "before_public_reopening",
+      "required_action": "produce the category-specific recovery evidence and an independent same-task replay",
+      "proof": "reopen evidence pack linked to the fault card"
+    }
+  ],
+  "quote_cards": {
+    "currency": "CNY",
+    "vendor_quote_count": 0,
+    "formal_estimate": null,
+    "tender_price": null,
+    "monetary_total": null,
+    "quote_card_ready_count": 6,
+    "cards": [
+      {
+        "id": "Q01",
+        "cost_line": "C01_field_baseline",
+        "reference_quantity": "6 complete task routes + 12 fixed observations",
+        "acceptance": "dated route pack, privacy check, limitations, and evidence acceptance sheet",
+        "quote_must_include": ["human time", "local travel", "redaction", "evidence packaging"],
+        "excluded_until_authorized": ["selected route list", "site access fee"]
+      },
+      {
+        "id": "Q02",
+        "cost_line": "C02_paper_service",
+        "reference_quantity": "3 stationed paper sets + 1 accessible-format master per Works Bay",
+        "acceptance": "source owner, version date, expiry, large-print check, and weekly replacement method",
+        "quote_must_include": ["plain-language edit", "translation", "print proof", "replacement cycle"],
+        "excluded_until_authorized": ["actual opening weeks", "final information owner"]
+      },
+      {
+        "id": "Q03",
+        "cost_line": "C03_movable_public_interface",
+        "reference_quantity": "1 reversible 6.0 m x 4.8 m trial set",
+        "acceptance": "assembly, clear-route, dual-height counter, removal, and surface-restoration checks",
+        "quote_must_include": ["rental or adaptation", "installation", "removal", "restoration"],
+        "excluded_until_authorized": ["measured site adjustment", "fire or structural work"]
+      },
+      {
+        "id": "Q04",
+        "cost_line": "C04_controlled_test_window",
+        "reference_quantity": "1 bounded test article at a time",
+        "acceptance": "physical stop, route bypass, power isolation, equipment removal, and incident replay",
+        "quote_must_include": ["temporary barrier", "stop device", "temporary power", "restoration"],
+        "excluded_until_authorized": ["test article", "insurance premium", "specialist approvals"]
+      },
+      {
+        "id": "Q05",
+        "cost_line": "C05_staffed_operation",
+        "reference_quantity": "21.5 functional-role hours per 8-hour public reference shift",
+        "acceptance": "all seven checkpoints covered, substitutions named, manual route demonstrated, and close reconciled",
+        "quote_must_include": ["training", "functional coverage", "substitution", "fault rehearsal", "closing review"],
+        "excluded_until_authorized": ["headcount", "roster pattern", "wage rate", "labour-rule adjustment", "number of shifts"]
+      },
+      {
+        "id": "Q06",
+        "cost_line": "C06_permanent_works",
+        "reference_quantity": "0 in the reversible ninety-day pilot",
+        "acceptance": "no permanent civil, building, utility, or corridor work enters the pilot quote",
+        "quote_must_include": ["none"],
+        "excluded_until_authorized": ["all permanent works pending a formal project"]
+      }
+    ]
+  },
+  "originality_boundary": "This shift book is rebuilt from JING-ZHANG WORKS' own Works Bay, paper task, seven existing clock checks, six cost lines, and six fault cards. It does not reuse any peer name, field combination, schema, staffing formula, price band, wording, drawing, code, or asset.",
+  "claim_boundary_zh": "这是一份便于询价和排演的参考班次工作单。21.5 小时只表示五类功能覆盖量，不是人数、排班、工资、法定工时或预算。场地、日期、具名人员、班次数、报价、总价、许可和现场结果仍为空。",
+  "claim_boundary_en": "This is a reference-shift work order for quote comparison and rehearsal. The 21.5 hours measure five functional coverage tasks, not headcount, roster, wages, legal hours, or budget. Site, date, named people, shift count, quotations, total price, permits, and field results remain empty."
+}
