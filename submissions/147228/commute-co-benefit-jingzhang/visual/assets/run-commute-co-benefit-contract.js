@@ -27,7 +27,17 @@ function esc(value) {
 }
 
 function text(x, y, value, className, anchor = 'start') {
-  return `<text x="${x}" y="${y}" class="${className}" text-anchor="${anchor}">${esc(value)}</text>`;
+  const colors = {
+    title: '#f4fbff',
+    sub: '#a9c8d1',
+    section: '#77e3c0',
+    row: '#e0eff2',
+    foot: '#a9c8d1',
+    small: '#91b5bf'
+  };
+  const baseClass = className.split(/\s+/)[0];
+  const fill = colors[baseClass] || '#e0eff2';
+  return `<text x="${x}" y="${y}" class="${className}" fill="${fill}" text-anchor="${anchor}">${esc(value)}</text>`;
 }
 
 function groupById(candidate) {
@@ -151,12 +161,12 @@ function createBoard(contract, english = false) {
   const gateRows = english
     ? [`hard gates  ${contract.hard_gates.passed_count}/${contract.hard_gates.total_count} PASS`, 'air candidate  BLOCKED', 'external commute  UNKNOWN until grouped OD', 'any failure  FREEZE → P0; fallback retained']
     : [`硬门  ${contract.hard_gates.passed_count}/${contract.hard_gates.total_count} 通过`, '空中候选  阻断', '对外通勤  待分组 OD，当前未知', '任一失败  冻结 → 回 P0；保留回退'];
-  const column = (x, titleText, rows, color) => `<rect x="${x}" y="190" width="520" height="500" rx="24" fill="#0e2a3c" stroke="${color}" stroke-width="3"/>${text(x + 28, 242, titleText, 'section')}${rows.map((row, i) => `<rect x="${x + 24}" y="${280 + i * 76}" width="472" height="54" rx="12" fill="#102f42"/><text x="${x + 42}" y="${314 + i * 76}" class="${row.length > 32 ? 'row row-tight' : 'row'}">${esc(row)}</text>`).join('')}`;
+  const column = (x, titleText, rows, color) => `<rect x="${x}" y="190" width="520" height="500" rx="24" fill="#0e2a3c" stroke="${color}" stroke-width="3"/>${text(x + 28, 242, titleText, 'section')}${rows.map((row, i) => `<rect x="${x + 24}" y="${280 + i * 76}" width="472" height="54" rx="12" fill="#102f42"/><text x="${x + 42}" y="${314 + i * 76}" class="${row.length > 32 ? 'row row-tight' : 'row'}" fill="#e0eff2">${esc(row)}</text>`).join('')}`;
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100" role="img" aria-labelledby="title desc">
   <title id="title">${esc(title)}</title><desc id="desc">${esc(footer)}</desc>
   <style>.bg{fill:#071a2b}.title{font:800 38px PingFang SC,Microsoft YaHei,Arial,sans-serif;fill:#f4fbff}.sub{font:500 18px PingFang SC,Microsoft YaHei,Arial,sans-serif;fill:#a9c8d1}.section{font:800 19px PingFang SC,Microsoft YaHei,Arial,sans-serif;fill:#77e3c0}.row{font:600 16px PingFang SC,Microsoft YaHei,Arial,sans-serif;fill:#e0eff2}.row-tight{font-size:13px}.foot{font:500 16px PingFang SC,Microsoft YaHei,Arial,sans-serif;fill:#a9c8d1}.small{font:500 14px SFMono-Regular,Consolas,monospace;fill:#91b5bf}</style>
-  <rect width="1800" height="1100" class="bg"/><circle cx="1690" cy="70" r="260" fill="#2a9d8f" opacity=".12"/><circle cx="80" cy="1030" r="250" fill="#5b8def" opacity=".11"/>
+  <rect width="1800" height="1100" class="bg" fill="#071a2b"/><circle cx="1690" cy="70" r="260" fill="#2a9d8f" opacity=".12"/><circle cx="80" cy="1030" r="250" fill="#5b8def" opacity=".11"/>
   ${text(72, 70, title, 'title')}${text(74, 106, subtitle, 'sub')}
   ${column(62, enterpriseTitle, enterpriseRows, '#77e3c0')}${column(640, residentTitle, residentRows, '#79a9ff')}${column(1218, gateTitle, gateRows, '#f6c76b')}
   <rect x="62" y="744" width="1676" height="148" rx="22" fill="#102f42" stroke="#2f6672" stroke-width="2"/>

@@ -18,6 +18,18 @@
 | `identity/*.svg` | 投稿作者 | 本地自绘基础几何与概念识别系统 | 是未注册的方案概念标记，不是主办方、政府、企业或其他组织 Logo；不主张商标权或品牌授权 |
 | `visual/index.html`、`visual/index.en.html` | 投稿作者 | 离线静态 HTML/CSS 与本包相对路径资源 | 不加载 CDN、web font、地图服务、iframe、追踪器或远程 API；只用于审查和公共展示 |
 
+## 本轮新增逐项权利台账
+
+| 资产 | 作者与直接来源 | 转换链 | 许可/展示边界 | 撤回与替代 |
+|---|---|---|---|---|
+| `visual/assets/commute-taskbook-delivery.json` | 投稿作者；任务字段来自公开任务书，案例事实仅按 `sources.json` 的 6 个 `CASE-*` 官方来源摘要 | 人工结构化 6 项任务、6 个机制案例、8 类资源、3 个地标、4 个年度机制与 5 个区域接口 | 原创汇编，案例只迁移机制；不复制网页图文，不表示案例方背书、合作、认证或中国本地有效性 | 删除对应案例和来源 ID，保留本地任务结构或以另一个已登记公开机制替代 |
+| `visual/assets/run-commute-taskbook-delivery.js` | 投稿作者 | 本地读取上述 JSON，校验数量、状态与边界，再输出纯 SVG | 原创脚本；无网络、无第三方依赖、无个人数据 | 删除 runner 及其生成物，不影响原始来源登记 |
+| `assets/figures/commute-taskbook-delivery*.svg` | 投稿作者 | 由本包 JSON 与本地 runner 生成矢量图 | 仅含原创几何、文字与系统字体引用；地标、品牌、区域接口和活动均为概念 | 从提案、HTML、PDF 与 manifest 同步移除后重新打包 |
+| `assets/figures/commute-taskbook-delivery*.png` | 投稿作者 | 由同名 SVG 在本地无网络栅格化 | PNG 只是一致性展示副本，不产生新的第三方权利 | 删除 PNG，改用已登记 SVG 或纯文本表格 |
+| `visual/assets/commute-p0-pilot-evidence-pack.json` | 投稿作者 | 把本包既有 P0/P1/P2、无障碍、数据最小化与人工回退规则整理成 4 个窗口、7 条证据流、5 类责任和 5 道 HOLD 门 | 原创协议模板；0 条现场记录，不包含招募名单、联系方式、个人轨迹或真实运营数据 | 删除模板和引用；继续保持 `not_authorized_not_run`，不得以空值替代证据 |
+| `assets/figures/commute-p0-pilot*.svg` 与 `*.png` | 投稿作者 | 由 P0 JSON 和本地 runner 生成 SVG，再本地栅格化 PNG | 仅展示模板状态；`HOLD`、`UNASSIGNED` 与 `0 RECORDS` 不得删改为通过 | 从提案、HTML、PDF 与 manifest 同步撤下，保留机器可读撤回记录 |
+| 本轮 `proposal.md` / `proposal.en.md` 新增段落与表格 | 投稿作者 | 基于上述原创 JSON、已登记案例来源和既有方案边界重新叙述 | 不复制案例网页长段落；中英文均不构成官方口号、合作、活动排期或现场结果 | 删除相应章节并回读交叉引用，避免孤立主张 |
+
 ## 外部资料、地图与论文的使用边界
 
 `sources.json` 是本包的来源登记入口，记录来源 ID、来源类型、URL、访问日期和本方案中的用途限制。政府公告、交通规划、采购文件和无障碍/步行骑行材料只用于政策、任务覆盖或责任接口背景；论文、开放文档和方法资料只用于方法启发、风险提示或仿真方法说明。它们不提供京张范围内的企业通勤量、居民 OD、站点容量、信号配时、停车占用、路缘流量、事故率、健康效果或无障碍绩效。

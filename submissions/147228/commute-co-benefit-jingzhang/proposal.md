@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把企业错峰、居民照护、对外通勤、地铁、公交、自行车、步行/无障碍、汽车和企业接驳放进同一套可复算活动链；用全区域尺度合成压力屏查比较到岗可靠性、换乘等待、路缘冲突与群体公平，未来空中出行只保留受审批、可撤回、地面接驳优先的实验接口。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.6"
+iteration: "v2.35"
 ---
 
 # 京张通勤共益调度台。企业—居民多模式活动链
@@ -84,6 +84,14 @@ iteration: "v1.6"
 
 这张表把设计图、路缘账本、M-09 回退桌演和 P0/P1/P2 分期接成一条验收流程。4 条合成请求的 PASS 只证明状态机和回滚逻辑可重放，不证明真实客流、无障碍绩效、人员值守、公众接受或安全结果。
 
+## 最小 P0 证据包。先把谁能叫停写清，再谈试点
+
+本轮把“以后补数据”改成可执行的现场协议模板。AI 原点社区照护环被拆成早高峰、社区日间、晚高峰与照护回程、夜间人工回退四个设计窗口；每条记录必须带日期、天气、计数角色、缺测区间和空间版本。七条证据流分别记录分组客流与请求、无障碍逐段走查、路缘与公共路线责任、人工与公共交通回退、数据最小化、参与者门槛签字以及公开状态与结案 [data:visual/assets/commute-p0-pilot-evidence-pack.json]。
+
+![AI 原点社区照护环最小 P0 证据包。当前 0 条现场记录、5 个责任角色未指派、5 道放行门保持 HOLD](assets/figures/commute-p0-pilot.png)
+
+当前状态故意保持在 `HOLD`：7 套模板已就绪，现场记录为 0，场地与数据、交通与无障碍、居民照护与残障使用者、人工服务与公交接管、独立结案复核这 5 类角色均未指派，5 道放行门均未通过。缺少任一群体分母、窗口不可比、路线版本变化或出现未建模障碍时，模型直接失效，不能用平均值把 `unknown` 写成 0，也不能推进 P1。这个协议是参与者控制的证据入口，不是现场结果、招募、排期或授权 [data:visual/assets/commute-p0-pilot-evidence-pack.json] [data:assets/figures/commute-p0-pilot.svg]。
+
 ## 为什么这是京张的公共空间方案。把历史、产业和日常交通放回一条线
 
 “百年京张”在本方案中不靠一张海报来表达。它回应的是到站、换乘、等候、维护和回家的公共记忆。遗址公园、站口、企业入口和社区服务点用同一套导视、遮雨、座椅、无障碍路线和人工服务台连接；人先看得懂怎么走，再决定是否使用任何智能服务 [source:OFFICIAL-ANNOUNCEMENT]。
@@ -131,20 +139,32 @@ iteration: "v1.6"
 
 ## 任务书六项任务如何在本包里落地
 
-任务书的六项任务仍然是整带工作，交通包只对自己能交付的那一段负责。下面先把交通贡献放在前面，再把没有证据的部分明确留给组织方、规划师、文化研究和后续运营团队。完整的机器可读交叉表见 `visual/assets/taskbook-crosswalk.json`，双语图板见 `assets/figures/taskbook-crosswalk-board.svg`。
+本包现在为六项任务各交付一份可单独验收的**概念成果**，而不是只在交通侧留接口。成果包括 3 个定位、5 项功能、3 区 2 翼，6 个全球机制案例、8 类资源与 5 个区域协同接口，10 张场景卡，3 个责任地标，通勤文化与五层导视，以及四季活动—P0/P1/P2—修复退役闭环。完整机器可读交付见 `visual/assets/commute-taskbook-delivery.json`，逐项导航仍见 `visual/assets/taskbook-crosswalk.json`。
 
-![任务书六项任务与交通包交付交叉图](assets/figures/taskbook-crosswalk-board.svg)
+![通勤共益公地任务书交付图谱。六项任务各有独立可见产出，全部保持概念与未承诺边界](assets/figures/commute-taskbook-delivery.png)
 
-| 任务 | 本包交付 | 评审先看 | 仍未声称 |
+| 任务 | 本轮独立交付 | 评审先看 | 仍未声称 |
 | --- | --- | --- | --- |
-| agent.1 总体统筹 | 三层范围、三处节点、轨道公交骨干和可回退交通链 | `mobility-spatial-plan.svg`、总体结构章节 | 整带总品牌、法定红线、控规指标和工程结论 |
-| agent.2 AI 生态 | 企业、居民、对外通勤、车辆、站点、路缘和维护责任的交通侧台账 | `demand-ledger.json`、`resource-pressure-readout.json` | 产业招商、资金安排、企业名单和确定合作 |
+| agent.1 总体统筹 | C↔C 概念识别、3 个定位、5 项功能、3 区 2 翼和总体任务图 | `commute-taskbook-delivery.png`、`mobility-spatial-plan.svg` | 官方品牌、法定红线、控规指标和工程结论 |
+| agent.2 AI 生态 | 6 个全球机制案例、8 类资源交换条件和 5 个区域协同接口 | `commute-taskbook-delivery.json`、`sources.json` | 复制外地制度、招商资金、企业名单或已确定合作 |
 | agent.3 AI+ 场景 | 十张双语场景卡、六类参与者、三项产业测试和逐卡停止条件 | `scenario-cards-board.svg`、启动检查和人员动线章节 | 居民调查、真实 OD、现场运行和公众接受 |
-| agent.4 公共空间 | 站口、候车、坡道、骑行停放、路缘服务台和维护点这些交通接口 | `brand-system-board.svg`、重点区和蓝绿空间章节 | 三个朝圣地标、文保审批、桥隧工程和官方活动 |
-| agent.5 文化叙事 | 到站、换乘、等候、维护和回家的双语公共服务叙事 | 通勤共益调度台公共空间章节和双语图板 | 整带文化系统、历史核验和未授权版权材料 |
-| agent.6 长期运营 | P0 登记、P1 小试、P2 复核、申诉、留存、停止和人工回退 | 责任与验收合同、M-09 准备度证据 | 年度活动、开发者社区、招商转化和运营合同 |
+| agent.4 公共空间 | 京张工程回程标、原点贡献换乘台、四象限责任灯塔 3 个责任地标概念 | 任务书图谱、重点区和蓝绿空间章节 | 地标落位、文保审批、桥隧工程和官方活动 |
+| agent.5 文化叙事 | “每一次智能通勤，都欠城市一条公共回程”主叙事、五层导视和中英表达 | 任务书图谱、公共空间与版权声明 | 历史结论、官方口号、未经授权的肖像商标或材料 |
+| agent.6 长期运营 | 问题开放季、照护与通勤共测周、城市智能体公开复盘、京张回程论坛 4 个年度机制，以及 P0 至 P2 转换 | 任务书图谱、P0 证据包和责任合同 | 已排期活动、开发者社区、预算采购、运营合同或实际效果 |
 
-这张表的作用是让人快速找到证据，也让人快速看到缺口。3,122,000 个合成代理、桌面演练和文件自检仍然只说明模型与状态机能够回放，不能推出居民需求、现场容量、公众同意、项目批准或榜单名次。所有空间仍是 provisional constraint，空中出行在证据和审批不足时保持 blocked [data:visual/assets/taskbook-crosswalk.json]。
+六个案例只迁移“机制”，不复制制度结论。赫尔辛基和阿姆斯特丹提供公共登记与申诉启发，新加坡 AI Verify 提供测试与接管启发 [source:CASE-HELSINKI-AI-REGISTER] [source:CASE-AMSTERDAM-ALGORITHM-REGISTER] [source:CASE-SINGAPORE-AI-VERIFY]。
+
+Decidim 提供多入口参与启发，英国 ATRS 提供公开记录字段启发，首尔 AI 基金会提供问题—小试—复盘启发；它们不等于中国法规、认证、合作或本地有效性 [source:CASE-DECIDIM-BARCELONA] [source:CASE-UK-ATRS] [source:CASE-SEOUL-AI-FOUNDATION]。
+
+| 区域接口 | 设想角色 | 可交换的通勤证据 | 当前状态 |
+| --- | --- | --- | --- |
+| 北纬社区 | 居民日常与照护需求接口 | 分组需求、普通路线、无障碍与修复回读 | 未确认概念接口 |
+| 未来科学城 | 科研人才跨区通勤接口 | 分组 OD、轨道公交链、错峰窗口和无车回退 | 未确认概念接口 |
+| 怀柔科学城 | 长距离科研活动与弹性出行接口 | 活动窗口、换乘可靠性、天气回退和夜间返程 | 未确认概念接口 |
+| 北京经开区 | 制造与产业班次通勤接口 | 班次分组、接驳与公交竞争、物流冲突和容量未知项 | 未确认概念接口 |
+| 京津冀 | 跨城公共交通与人才往返接口 | 城际铁路、首末公里、分组分母和责任交接 | 未确认概念接口 |
+
+这些区域名称只定义后续应向谁、以什么聚合字段核对，当前没有协议、数据交换、合作方或联合实施。3,122,000 个合成代理、桌面演练和文件自检仍然只说明模型与状态机能够回放，不能推出居民需求、现场容量、公众同意、项目批准或榜单名次。所有空间仍是 provisional constraint，空中出行在证据和审批不足时保持 blocked [data:visual/assets/commute-taskbook-delivery.json] [data:visual/assets/taskbook-crosswalk.json]。
 
 ## 读数标签和使用边界
 
