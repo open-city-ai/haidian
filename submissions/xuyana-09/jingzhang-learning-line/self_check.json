@@ -1,54 +1,37 @@
 {
   "schema_version": "0.1.0",
+  "ok": true,
+  "submission_dir": "submissions/xuyana-09/jingzhang-learning-line",
+  "pr_author": "xuyana-09",
+  "stage": "formal",
+  "package_type": "professional_design_package",
+  "review_status": "formal-review-ready",
+  "can_enter_formal_review": true,
+  "deterministic_validation": {"returncode": 0, "ok": true, "stdout": {"result": "PASS", "errors": [], "warnings": []}, "stderr": ""},
+  "spatial_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "result": "PASS",
+      "issues": [
+        {"id": "KEY_AREA_PROVISIONAL", "severity": "info", "message": "Zhongzhiyuan key-area geometry is explicitly provisional pending official polygon replacement."},
+        {"id": "KEY_AREA_PROVISIONAL", "severity": "info", "message": "AI Origin key-area geometry is explicitly provisional pending official polygon replacement."},
+        {"id": "KEY_AREA_PROVISIONAL", "severity": "info", "message": "Dazhongsi key-area geometry is explicitly provisional pending official polygon replacement."}
+      ]
+    },
+    "stderr": ""
+  },
+  "visual_review": {"returncode": 0, "ok": true, "stdout": {"result": "PASS", "issues": []}, "stderr": ""},
+  "professional_review": {"returncode": 0, "ok": true, "stdout": {"result": "PASS", "issues": []}, "stderr": ""},
+  "spatial_issue_ids": ["KEY_AREA_PROVISIONAL", "KEY_AREA_PROVISIONAL", "KEY_AREA_PROVISIONAL"],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "missing_review_dependencies": [],
+  "next_actions": [],
   "checks": [
-    {
-      "check_id": "BOUNDARY_TRUST",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/site_boundary.geojson",
-      "message": "临时边界已明确标注；组织方数据缺口不阻断内容评分，官方 polygon 到位后复算。"
-    },
-    {
-      "check_id": "KEY_AREAS_TRUST",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/key_areas.geojson",
-      "message": "三处 required key area 齐全且明确为 provisional constraint。"
-    },
-    {
-      "check_id": "LAND_USE_TOPOLOGY",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/land_use.geojson",
-      "message": "八个用地分区由同一总体边界与共享切线生成，完整覆盖且无重叠。"
-    },
-    {
-      "check_id": "VISUAL_STATIC",
-      "result": "pass",
-      "severity": "info",
-      "target": "visual/index.html",
-      "message": "离线静态 HTML 已升级为京张智脉专题页面，只引用本地高分辨率图纸与主视觉；固定栏目与三项指标钩子通过视觉审查。"
-    },
-    {
-      "check_id": "PROFESSIONAL_EVIDENCE",
-      "result": "pass",
-      "severity": "major",
-      "target": "proposal.md",
-      "message": "正文引用来源、标准、设计深度、几何、指标、假设并覆盖六项 agent 任务。"
-    },
-    {
-      "check_id": "HUMANISTIC_DEPTH",
-      "result": "pass",
-      "severity": "major",
-      "target": "proposal.md",
-      "message": "新增海淀人文发展谱系、七类人群24小时矩阵、15分钟美好人居网络、六项人本设计控制和18个空间项目。"
-    },
-    {
-      "check_id": "DRAWING_VISUAL_QA",
-      "result": "pass",
-      "severity": "major",
-      "target": "drawings/",
-      "message": "17页A3图册与5张竖版A0展板已逐页栅格化检查；首页主效果图无遮挡，竞赛案例对标内容未进入正式图纸；无裁切、乱码、黑块和明显排版缺陷。"
-    }
+    {"check_id": "DETERMINISTIC_VALIDATION", "result": "pass", "severity": "blocking", "target": "validate_local_submission.py", "message": "deterministic_validation: PASS"},
+    {"check_id": "SPATIAL_REVIEW", "result": "pass", "severity": "blocking", "target": "spatial_review.py", "message": "spatial_review: PASS"},
+    {"check_id": "VISUAL_PACKAGING", "result": "pass", "severity": "blocking", "target": "visual_review.py", "message": "visual_review: PASS"},
+    {"check_id": "PROFESSIONAL_EVIDENCE", "result": "pass", "severity": "blocking", "target": "professional_review.py", "message": "professional_review: PASS"}
   ]
 }
