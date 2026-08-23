@@ -11,6 +11,20 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 ---
 # 会车场 / MEET YARD
 
+> **会车档案 001 号 / `MY-DEMO-001`：概念示意，非真实事件记录。** 本条只演示同一 ID 链如何承接申请、披露、互证、人审、限域试行、回退与归档；不代表真实时间、坐标、机构、审批或已运行服务。英文 companion 使用同一 ID 与同一声明：**Meet Yard Archive 001 / `MY-DEMO-001`: conceptual illustration, not a record of a real event.**
+
+### v1.8 突围增强：内容与机器真源登记
+
+本轮增强只作为既有对象的子记录或呈现约束，不增加地标、组件、场景、指标组、GeoJSON 图层或第 32 个 required output。完整机器记录见 `compliance_matrix.json#enhancements` 与 `changelog.md#CL-v1.8-E01`～`CL-v1.8-E05`；本次未完成 visual/PDF/离线导出和一手复核的项保持 `verification_status=blocked`，不得写成已运行、已批准、法定安排、认证结果、个人评价系统或固定设施。
+
+| enhancement_id | 对外描述（approved descriptor） | 既有父对象与载体 | 证据 / 回退 | 当前状态 |
+| --- | --- | --- | --- | --- |
+| `v1.8-E01` | 会车回执 / `Meet Yard Return Receipt` | `S09/S12`、`C07/C08`、`MY-ARCH-*`；proposal、C07/C08 子记录、visual 离线卡 | `decision_log_id`、`archive_id`、回退人工工单或上一有效版本 | `blocked` |
+| `v1.8-E02` | 异议—修订双账 / `Objection-and-Revision Record` | `S06/S08/S12`、`C04/C08`；compliance matrix、C04/C08 子记录、公共运行板摘要 | `unresolved_objections`、修订记录；未闭合回到 C04 人审或 C07 人工入口 | `blocked` |
+| `v1.8-E03` | 三分钟可复演会车 / `Three-Minute Reproducible Meet` | `MY-DEMO-001`、七步协议、`S07`；proposal、visual、离线 HTML/PDF | `meet-protocol-drill.json` 的 14/14 演练与 `replay_trace_id`；断链即不渲染 | `blocked` |
+| `v1.8-E04` | 人与劳动负担回写 / `Human and Labour Impact Return` | `S03`、`C06/C07`、既有 `INCLUSION-SERVICE`/`OPS-WIN` 研究字段；S03 复盘与 metrics | 等待、接管、异议、无障碍与维护摘要；异议未闭合回退人工配送与现场调度 | `blocked` |
+| `v1.8-E05` | 低带宽会车包 / `Low-Bandwidth Meet Pack` | `S02/S05/S10/S14`、`C01/C05/C07`；离线快照、纸面卡、电话/人工窗口 | `offline_snapshot`、快照 hash、`manual_channel`；失效回退静态说明和人工服务 | `blocked` |
+
 ## 一页评审摘要
 
 > 本表为评审导航，完整证据见后文各章与机器文件；所有空间与指标结论均为 provisional 边界下的概念建议。
@@ -18,8 +32,8 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | 评审会问 | 本方案的回答 | 可核验的东西 |
 | --- | --- | --- |
 | 核心命题是什么 | 让智能先会人，再进城。以铁路"会车"运营纪律为原型：任何 AI 服务进入公共空间前须完成七步会车协议（预约—披露—互证—人审—试行—回退—归档），试点默认到期，续期以公开证据为前提 | 七步协议 8 值 `status_code` 状态机（06.1）；绿/琥珀/红三级风险分级；7 类角色权限矩阵 |
-| 机制能否被第三方检验 | 能。协议字段、状态枚举与日志字段全部登记在机器文件（`decision_log_id`/`credential_exchange_log_id`）；31 条 required_outputs 全 verified、40 条 changelog 处置全 resolved、命名压力测试留日志 | `compliance_matrix.json`、`changelog.md`、`claim_register.json`（机制判定 3 条，2 条 rejected 留档） |
-| 空间上做了什么 | 一脊三站两翼、多点会车：9.6–9.8 km 会车脊；造解站/互证站/试行站三站；9 个 GeoJSON 图层、25 项 EPSG:4548 复算指标（绿地并集率 19.07%、用地覆盖率 1.0、协议演练 14/14） | `geometry/*.geojson`、`metrics.json`、`recompute-log.jsonl` |
+| 机制能否被第三方检验 | 能。协议字段、状态枚举与日志字段全部登记在机器文件（`decision_log_id`/`credential_exchange_log_id`）；合规矩阵 54/54 verified，其中 agent.1–agent.6 的 31/31 条 required outputs 保持 verified；历史 40 条处置已 resolved，v1.8-E01～E05 另列为 blocked 子记录，命名压力测试留日志 | `compliance_matrix.json`、`changelog.md`、`claim_register.json`（机制判定 3 条，2 条 rejected 留档） |
+| 空间上做了什么 | 一脊三站两翼、多点会车：9.6–9.8 km 会车脊；造解站/互证站/试行站三站；9 个 GeoJSON 图层、25 项 EPSG:4548 复算指标（绿地并集率 19.07%、用地覆盖率 1.0、协议演练 14/14） | `geometry/*.geojson`、`metrics.json`、`visual/assets/data/recompute-log.json` |
 | 三条服务底线凭什么可执行 | 无障碍安静湾与非数字入口（C05/C07 组件）、人工替代与"不采用匿名追踪"、停止与回退是协议步骤而非例外 | 组件库 C01–C08；场景卡 S01–S14 的停止触发/回退字段；06.3.2 阈值草案 |
 | 公共价值落在谁身上 | 居民可就影响自己的服务读数发起质询（公共复核与质询窗口）；骑手、老年残障、低数字素养者画像绑定组件 | P01–P07 画像、PS-C04/05/06 组件、OPS-WIN-01 指标（公式待验证） |
 | 近期能做什么 | 阶段一仅核验（约 400 ha），不启动工程；轻量设施、运营活动与服务平台先行；每个场景先"申请—披露"再谈试行 | 10.3 分期计划；场景卡 `record_status=draft` 初始态 |
@@ -1096,11 +1110,11 @@ known 指标全部可由 GeoJSON 或可信来源复算，公式、来源文件�
 
 ### 11.3 合规矩阵、标准矩阵与深度矩阵
 
-`compliance_matrix.json` 覆盖公告任务与 agent_taskbook 的 **31 条 required_outputs，全部 check_status=verified**，主条目集合与任务书精确相等：agent.1（5 条：proposal_narrative、logo_or_visual_identity_direction、overall_structure_diagram、compliance_matrix_entry、visual_index_section）、agent.2（5 条）、agent.3（5 条）、agent.4（5 条）、agent.5（5 条）、agent.6（6 条）。每条记录回指 section_ref、file_path 与 object_id（如 S01..S14 场景卡、P01..P07 画像、C01..C08 组件、L01..L04 地标、s_daily 等节律 id）[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。
+`compliance_matrix.json` 覆盖公告任务与 agent_taskbook 的 **54 条要求，全部 check_status=verified**；其中 agent.1–agent.6 的主条目精确为 **31 条 required_outputs，31/31 verified**，不因 v1.8 增强新增第 32 条。每条记录回指 section_ref、file_path 与 object_id（如 S01..S14 场景卡、P01..P07 画像、C01..C08 组件、L01..L04 地标、s_daily 等节律 id）；五项增强放在同一文件的 `enhancements` 子记录，缺父对象、载体、证据、回退或双语验证时保持 `blocked` [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。
 
 `standard_matrix.json` 覆盖 6 项 mandatory standards：PROJECT-OFFICIAL-ANNOUNCEMENT、PROJECT-AGENT-OPEN-CALL-TASKBOOK、MOHURD-URBAN-DESIGN-MEASURES、MOHURD-CONTROL-DETAILED-PLANNING、MNR-LAND-USE-CLASSIFICATION-GUIDE、MOHURD-ARCH-DESIGN-DEPTH-2016。`design_depth_matrix.json` 的 15 个 required depth item（现状诊断、三层范围、总体结构、用地布局、开发强度、高度体量风貌、拆改留、交通轨道慢行停车、市政新基建、蓝绿公共空间、三重点区详设、更新项目清单、分期实施、指标复算、风险缺资料）全部为 complete，并回指 proposal 章节、图纸与几何证据 [depth:risk_missing_data]。
 
-`changelog.md` 含 **40 条机器可读意见处置记录**：33 条既有评审意见（R-01～R-26、A-01～A-04、O-01～O-03，entry_id 分别为 v1.5-RF-01～26、v1.4-A-01～04、v1.5-RF-27～29）+ 7 条 v1.6 终审收口意见（v1.6-F-01～F-07，entry_id CL-v1.6-F-*）。40 条全部 disposition=resolved 且回指 compliance_matrix.json 中实际存在的矩阵对象；blocking 条目（R-01、R-02、R-03、R-05、R-06、A-01、v1.6-F-01 等）均已关闭。设计契约要求的命名判定日志已落地于 `visual/assets/data/claim_register.json` 的 mechanism_judgements：`双路签 / Twin Staff` 与 `状态灯带 / Signal Ribbon` 均以 `decision=rejected` 记录误读字段并降级为内部 candidate_label，对外统一使用"双向凭证互证界面（凭证互换）"与"状态索引条 / 治理状态索引"；`会车时刻 / The Meet Hour` 以 `accepted_as_candidate` 登记 [source:AGENT-TASKBOOK]。
+`changelog.md` 含 **45 条机器可读记录**：历史 40 条既有评审/终审处置保持原状（其中 40 条 disposition=resolved），另有 `CL-v1.8-E01`～`CL-v1.8-E05` 五条增强登记；五条均显式保留 `verification_status=blocked` 与回退路径，未把未完成执行写成 resolved。所有历史记录回指 `compliance_matrix.json` 中实际存在的矩阵对象，v1.8 另回指 `compliance_matrix.json#enhancements`。设计契约要求的命名判定日志已落地于 `visual/assets/data/claim_register.json` 的 mechanism_judgements：`双路签 / Twin Staff` 与 `状态灯带 / Signal Ribbon` 均以 `decision=rejected` 记录误读字段并降级为内部 candidate_label，对外统一使用"双向凭证互证界面（凭证互换）"与"状态索引条 / 治理状态索引"；`会车时刻 / The Meet Hour` 以 `accepted_as_candidate` 登记 [source:AGENT-TASKBOOK]。
 
 ![图11 指标证据面板：EPSG:4548 复算与合规覆盖（concept，provisional 边界低对比显示）](assets/figures/metrics-evidence.png)
 
@@ -1165,4 +1179,4 @@ known 指标全部可由 GeoJSON 或可信来源复算，公式、来源文件�
 
 专业标准依据见标准矩阵 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES]，设计深度对照见设计深度矩阵 [depth:three_level_scope_framework] [depth:overall_spatial_structure]。
 
-面积与覆盖率等定量主张以 EPSG:4548 复算为准 [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]，全部空间数据可回溯至 `geometry/*.geojson` 对应 feature [data:geometry/site_boundary.geojson#SITE-001]。已知数据缺口（控规条件、权属、文保范围、案例一手来源等）已在各章显式列出并在 `assumptions.json` 与 `visual/assets/data/claim_register.json` 中登记；官方 polygon 发布后需整体重算而非只替换单个文件。评审与修订过程记录于 `changelog.md`（40 条机器可读处置记录）。
+面积与覆盖率等定量主张以 EPSG:4548 复算为准 [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]，全部空间数据可回溯至 `geometry/*.geojson` 对应 feature [data:geometry/site_boundary.geojson#SITE-001]。已知数据缺口（控规条件、权属、文保范围、案例一手来源等）已在各章显式列出并在 `assumptions.json` 与 `visual/assets/data/claim_register.json` 中登记；官方 polygon 发布后需整体重算而非只替换单个文件。评审与修订过程记录于 `changelog.md`（45 条机器可读记录，历史 40 条已处置，v1.8 五条保持 blocked/pending）。

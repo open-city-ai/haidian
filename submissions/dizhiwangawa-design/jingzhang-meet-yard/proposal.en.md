@@ -14,12 +14,26 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 > This is the English companion of the Chinese formal proposal. The Chinese original (`proposal.md`) is authoritative for all claims, figures and machine references. All spatial, engineering, investment and operation statements are conceptual advice pending professional deepening and official review; boundaries are provisional (`official_boundary=false`) until official polygons are published.
 
+> **Meet Yard Archive 001 / `MY-DEMO-001`: conceptual illustration, not a record of a real event.** This adjacent declaration only demonstrates one ID chain across apply, disclose, cross-verify, human review, limited trial, rollback and archive. It does not represent real time, coordinates, institutions, approval, certification or a live service.
+
+### v1.8 Breakthrough Enhancements: Content and Machine Source Register
+
+These enhancements are subrecords or rendering constraints on existing objects. They do not add a landmark, component, scenario, metric group, GeoJSON layer or a 32nd required output. The machine records are in `compliance_matrix.json#enhancements` and `changelog.md#CL-v1.8-E01`–`CL-v1.8-E05`; until visual/PDF/offline exports and first-hand review are complete, each remains `verification_status=blocked` and must not be described as an operating institution, approval, statutory arrangement, certification, personal scoring system or fixed facility.
+
+| enhancement_id | Approved descriptor | Existing parents and carriers | Evidence / rollback | Current status |
+| --- | --- | --- | --- | --- |
+| `v1.8-E01` | Meet Yard Return Receipt | `S09/S12`, `C07/C08`, `MY-ARCH-*`; proposal, C07/C08 subrecords, offline visual card | `decision_log_id`, `archive_id`; manual work order or previous valid version | `blocked` |
+| `v1.8-E02` | Objection-and-Revision Record | `S06/S08/S12`, `C04/C08`; compliance matrix, C04/C08 subrecords, public operations summary | `unresolved_objections` and revision record; C04 human review or C07 manual entry | `blocked` |
+| `v1.8-E03` | Three-Minute Reproducible Meet | `MY-DEMO-001`, seven-step protocol, `S07`; proposal, visual, offline HTML/PDF | 14/14 `meet-protocol-drill.json` checks and `replay_trace_id`; broken chain means no render | `blocked` |
+| `v1.8-E04` | Human and Labour Impact Return | `S03`, `C06/C07`, existing `INCLUSION-SERVICE`/`OPS-WIN` research fields; S03 review and metrics | Aggregated waiting, takeover, objection, accessibility and maintenance summary; unresolved objections roll back to manual dispatch | `blocked` |
+| `v1.8-E05` | Low-Bandwidth Meet Pack | `S02/S05/S10/S14`, `C01/C05/C07`; offline snapshot, paper card, phone/manual window | `offline_snapshot`, snapshot hash and `manual_channel`; stale data rolls back to static explanation and manual service | `blocked` |
+
 ## One-Page Review Summary
 
 | Reviewer question | Answer | Verifiable artifact |
 | --- | --- | --- |
 | Core proposition | Let AI meet people before it moves the city. Any AI service entering public space must complete the seven-step Meet Yard Protocol; pilots expire by default and renewal requires public evidence | 8-value `status_code` state machine (§06.1); green/amber/red risk levels; 7-role permission matrix |
-| Can third parties verify the mechanism? | Yes. Protocol fields, state enums and log fields are machine-readable; 31 required outputs verified, 40 changelog dispositions resolved, naming stress tests logged | `compliance_matrix.json`, `changelog.md`, `visual/assets/data/claim_register.json`, `visual/assets/data/meet-protocol.schema.json` + 14-check deterministic drill |
+| Can third parties verify the mechanism? | Yes. Protocol fields, state enums and log fields are machine-readable; the compliance matrix remains 54/54 verified, including 31/31 agent.1–agent.6 required outputs. The historical 40 dispositions remain resolved; v1.8-E01–E05 are separate blocked subrecords, and naming stress tests are logged | `compliance_matrix.json`, `changelog.md`, `visual/assets/data/claim_register.json`, `visual/assets/data/meet-protocol.schema.json` + 14-check deterministic drill |
 | What does it do spatially? | One spine (9.6–9.8 km), three stations (Make / Verify / Trial), two wings, meeting decks at multiple points; 9 GeoJSON layers, 25 EPSG:4548-recomputed metrics | `geometry/*.geojson`, `metrics.json`, `visual/assets/data/recompute-log.json` |
 | What backs the three service baselines? | Accessible quiet bays and non-digital entrances (C05/C07), human fallback and no anonymous tracking, stop and rollback as protocol steps | Component library C01–C08; scenario cards S01–S14; threshold drafts §06.3.2 |
 | Who benefits? | Any resident may challenge a service reading affecting them (public review and inquiry window); riders, older adults, low-digital-literacy personas bound to components | Personas P01–P07; components PS-C04/05/06; metric OPS-WIN-01 |
@@ -43,11 +57,11 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## Urban Design Boards (P2)
 
-![Board A1 · Urban Design Master Plan](assets/figures/urban-design-masterplan.png)
+![Board A1 · Urban Design Master Plan](assets/figures/urban-design-masterplan.en.png)
 
-![Board A2-1 · 1-km Full-Scale Demonstrator](assets/figures/demonstrator-1km.png)
+![Board A2-1 · 1-km Full-Scale Demonstrator](assets/figures/demonstrator-1km.en.png)
 
-![Board A2-2 · Street Sections](assets/figures/street-sections.png)
+![Board A2-2 · Street Sections](assets/figures/street-sections.en.png)
 
 The master plan overlays land use, blue-green, mobility and renewal structure; the 1-km demonstrator around Wudaokou–Qinghuayuan organizes a park-edge meeting deck, a station square and a street handover bay. All dimensions and boundaries are conceptual advice on provisional geometry, not engineering or approval conclusions.
 
@@ -115,7 +129,7 @@ Meeting deck siting rules (v1.4): (1) at intersections of the spine with cross s
 ## Indicator System and Compliance
 
 - 25 metrics across the 15 fixed groups; known metrics recomputed in EPSG:4548 (site 11,412,825 m²; green union 2,176,274.715 m² / 19.07%; land-use coverage 1.0; meeting decks 3; protocol drill 14/14); the six unknown metrics (GOV-OBS-01/02/03, OPS-WIN-01/02, INCLUSION-SERVICE-01) now have complete measurement protocols (`visual/assets/data/measurement-protocol.json`): instrument, sampling frequency, responsible roles, data fields, baseline method and acceptance gates. Values stay unknown/null — protocols are defined, baselines are pending, no target values are fabricated.
-- Compliance: 31 required outputs all `verified`; 40 changelog dispositions resolved; standard matrix 6 mandatory standards; design depth matrix 15 items complete.
+- Compliance: the matrix contains 54/54 verified requirements, including exactly 31/31 verified agent.1–agent.6 required outputs; the historical 40 changelog dispositions remain resolved, while five v1.8 enhancement entries remain explicitly blocked until their evidence and render gates pass. The standard matrix has 6 mandatory standards and the design depth matrix has 15 complete items.
 
 ## Risk, Copyright, Compliance
 
