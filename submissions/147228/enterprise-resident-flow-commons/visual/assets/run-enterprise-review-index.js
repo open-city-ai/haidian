@@ -21,6 +21,7 @@ const content = {
     badge: 'G0 包内回放 PASS · G1 现场发布 HOLD',
     sections: [
       ['总览地图', '互惠发布门与三处接口', '不是先算总效率，而是先问企业收益有没有挤掉居民最慢路径。四个冲突窗口共享同一组停止条件。', '../assets/figures/site-overview.png', '企业—居民互惠发布门'],
+      ['任务书交付', '品牌、生态、地标、文化与四季运营进入主阅读层', 'F↔C 标志、三大定位、五大功能、三区两翼、六案例、八要素、三处责任地标和四季问题循环各有独立成果；均为概念接口，不声称合作、投资或活动承诺。', '../assets/figures/enterprise-taskbook-delivery.png', '流线公地任务书交付图谱'],
       ['用地分区', '把用地看成服务接口', '企业入口、社区日常与轨道换乘是三种责任界面；所有面积和边界仍来自 provisional 图层，不是法定红线。', '../assets/figures/land-use-structure.png', '概念用地与服务界面'],
       ['重点区域', '三处重点区，三种不同的空间原型', '众智园清河前厅、AI 原点照护环和大钟寺四象限换乘厅分别回应企业门前、居民日常与轨道换乘。每处都把企业请求、居民回报、停止条件和待补证据画在同一张图上；PROV-KEY-003 不是大钟寺站点锚点，不据此平移或发布站点级结论。', '../assets/figures/key-areas.png', '三处重点区空间原型与互惠门'],
       ['空间裁决', '三种备选，五级尺度，居民权利不被挤出图面', 'ALT-A 拒绝，ALT-B 修改，ALT-C 进入设计复核。每一级只回答一个空间问题，所有权利、回退和撤回条件仍保持 HOLD，直到现场资料和责任确认。', '../assets/figures/enterprise-spatial-decision.svg', '企业—居民互惠空间裁决'],
@@ -32,17 +33,19 @@ const content = {
       ['动态偏好', '四个时窗分别判断，不拿平均值盖住最慢一段', '8 类合成人群在 4 个时窗、4 个候选策略中逐格回放；原始满意度最高者也必须通过首末公里、无障碍和非企业群体保护门。', '../assets/figures/dynamic-preference-board.svg', '动态偏好与首末公里完成门'],
       ['方式竞争', '企业接驳不能挤掉轨道公交与居民可达', '方式竞争保护把公共交通替代、接驳份额、车辆公里和最弱群体可达差距设为停止条件；空中与无管理扩张继续 fail closed。', '../assets/figures/mode-competition-guard-board.svg', '方式竞争保护'],
       ['空间图谱', '把合成流量重新落回可审查的空间接口', '空间交通图谱只把组别、时窗与交通方式连接到 provisional 区域和接口；不把分析图当真实站位、客流或法定道路。', '../assets/figures/spatial-mobility-atlas-board.svg', '空间交通图谱'],
+      ['P0 证据包', '先验收 AI 原点照护环，不把协议写成结果', '七套现场模板已备，但现场记录、角色确认、分组签收、校准参数和放行门通过数均为 0；一条普通链和一条无障碍替代链先于企业车辆扩容。', '../assets/figures/enterprise-p0-pilot.png', 'AI 原点照护环最小 P0 证据包'],
       ['自检状态', '包内可复算，现场仍应停止', '互惠发布门 15 项检查与 4 个负例通过；现场审计、责任接受、锁定分母与授权缺一项，G1 继续 HOLD。', '../assets/figures/mobility-failure-governance-board.svg', '失败治理与申诉暂停']
     ],
     metricLabels: ['provisional 工作范围', '概念绿地比例', '概念公共空间比例'],
-    coverageTitle: '六项补充评审索引',
+    coverageTitle: '六项任务书成果索引',
+    scopeNote: '三层范围：统筹研究、总体设计、重点区域；建筑与更新项目继续受 provisional 几何、来源、假设和现场证据约束。',
     coverage: [
-      ['三层范围', '区域—总体—重点区共用同一 provisional 底盘并联动复算。'],
-      ['重点区域', '众智园、AI 原点社区、大钟寺分别承担企业、居民、轨道/路缘接口。'],
-      ['建筑', '入口、候车、坡道、骑行停放和服务台是可逆接口，不发布高度或容积率。'],
-      ['更新项目', 'P0 基线、P1 可逆试点、P2 专业复核后条件扩展；任一硬门失败即回退。'],
-      ['来源', '政策、招标、标准、方法论文与包内数据分级登记，不把方法参考写成本地现状。'],
-      ['假设', '官方边界、权属、交通量、容量、现场可达和公众接受仍待有日期证据。']
+      ['agent.1 总体统筹', '中英文命名、F↔C 标志、三定位五功能和三区两翼回路。'],
+      ['agent.2 产业生态', '六个公开机制案例、八要素回路和不照搬边界。'],
+      ['agent.3 AI+ 场景', '十场景、三产业测试、八类参与者与人工等价服务。'],
+      ['agent.4 公共地标', '三处责任地标、公共路线规则和更正/撤下入口。'],
+      ['agent.5 文化表达', '京张工程—中关村开放—AI 公共回程叙事和五层导视。'],
+      ['agent.6 长期运营', '四季问题—共测—复盘—回程循环，留下工件、责任和退出。']
     ],
     boundary: '边界说明：图上 PASS 只证明包内结构可重放；不证明真实客流、人员值守、无障碍绩效、公众接受、运营许可或实施结果。'
   },
@@ -55,6 +58,7 @@ const content = {
     badge: 'G0 PACKAGE REPLAY PASS · G1 FIELD RELEASE HOLD',
     sections: [
       ['Overview map', 'Reciprocity gate and three interfaces', 'The first question is not total efficiency. It is whether an enterprise benefit displaces the slowest resident path. Four conflict windows share one stop rule.', '../assets/figures/site-overview.en.png', 'Enterprise–resident reciprocity gate'],
+      ['Taskbook delivery', 'Brand, ecosystem, landmarks, culture and annual operations enter the reading layer', 'The F↔C mark, three positions, five functions, three areas and two wings, six cases, eight resources, three responsibility landmarks and four-season problem loop each have a distinct output. All remain conceptual.', '../assets/figures/enterprise-taskbook-delivery.en.png', 'Flow Commons taskbook delivery atlas'],
       ['Land-use zoning', 'Read land use as a service interface', 'Enterprise entrances, daily community access and rail transfer are three responsibility interfaces. Every area and boundary remains provisional.', '../assets/figures/land-use-structure.en.png', 'Conceptual land-use and service interfaces'],
       ['Key areas', 'Three key areas, three spatial prototypes', 'The Zhongzhiyuan River Forecourt, AI Origin Care Loop and Dazhongsi Four-Quadrant Hall address enterprise frontage, resident routines and rail interchange separately. Each board pairs enterprise requests with resident returns, stop rules and missing evidence. PROV-KEY-003 is not a station anchor, so it is neither shifted nor used for station-level claims.', '../assets/figures/key-areas.en.png', 'Three key-area spatial prototypes and reciprocity gates'],
       ['Spatial decision', 'Three alternatives, five scales, resident rights remain visible', 'ALT-A is rejected, ALT-B is sent back for revision and ALT-C advances to design review. Each scale answers one spatial question. Rights, fallback and withdrawal remain on HOLD until field evidence and responsibility are confirmed.', '../assets/figures/enterprise-spatial-decision.en.svg', 'Enterprise–resident reciprocity spatial decision'],
@@ -66,17 +70,19 @@ const content = {
       ['Dynamic preference', 'Evaluate each window without averaging away the slowest segment', 'Eight synthetic groups replay four time windows and four candidate policies. The highest raw satisfaction proxy still has to pass first/last-mile, accessibility and non-enterprise protection gates.', '../assets/figures/dynamic-preference-board.en.svg', 'Dynamic preference and first/last-mile completion guard'],
       ['Mode competition', 'Enterprise feeders cannot displace transit or resident access', 'The guard stops transit displacement, excessive feeder share, vehicle-kilometre growth and worst-group access gaps. Air and unmanaged expansion remain fail closed.', '../assets/figures/mode-competition-guard-board.en.svg', 'Mode-competition guard'],
       ['Spatial atlas', 'Return synthetic flows to reviewable spatial interfaces', 'The atlas links group, time window and mode to provisional areas and interfaces only. It does not turn an analytical graph into observed stations, demand or statutory roads.', '../assets/figures/spatial-mobility-atlas-board.en.svg', 'Spatial mobility atlas'],
+      ['P0 evidence pack', 'Validate the AI Origin Care Loop before calling a protocol a result', 'Seven field templates are ready, while field records, confirmed roles, group sign-offs, calibrated parameters and passed gates remain zero. An ordinary and accessible chain precede enterprise-vehicle expansion.', '../assets/figures/enterprise-p0-pilot.en.png', 'AI Origin Care Loop minimum P0 evidence pack'],
       ['Self-check status', 'Package evidence replays; field release stays stopped', 'The reciprocity gate passes 15 checks and four negative fixtures. Missing audit, accepted transfer, locked denominator or authority keeps G1 on HOLD.', '../assets/figures/mobility-failure-governance-board.en.svg', 'Failure governance and appeal pause']
     ],
     metricLabels: ['provisional working area', 'conceptual green ratio', 'conceptual public-space ratio'],
-    coverageTitle: 'Six additional review indices',
+    coverageTitle: 'Six taskbook output indices',
+    scopeNote: 'Three scales: strategic study, overall design and key areas. Buildings and renewal projects remain bounded by provisional geometry, sources, assumptions and field evidence.',
     coverage: [
-      ['Three-level scope', 'Regional, overall and key-area work share one provisional base and one recalculation trigger.'],
-      ['Key areas', 'Zhongzhiyuan, AI Origin Community and Dazhongsi carry enterprise, resident and rail/curb interfaces.'],
-      ['Buildings', 'Entrances, waiting, ramps, cycle parking and service desks are reversible interfaces; no FAR or height is released.'],
-      ['Renewal projects', 'P0 baseline, P1 reversible pilot and P2 conditional expansion; any hard-gate failure rolls back.'],
-      ['Sources', 'Policy, tenders, standards, methods and package data remain separately classified.'],
-      ['Assumptions', 'Official boundary, rights, counts, capacity, field accessibility and public acceptance still need dated evidence.']
+      ['agent.1 overall system', 'Bilingual name, F↔C mark, three positions, five functions and a three-area/two-wing loop.'],
+      ['agent.2 ecosystem', 'Six public mechanism cases, eight-resource loop and do-not-copy boundaries.'],
+      ['agent.3 AI+ scenarios', 'Ten scenarios, three industry tests, eight participant groups and human equivalents.'],
+      ['agent.4 public landmarks', 'Three responsibility landmarks, public-route rules and correction/removal entries.'],
+      ['agent.5 cultural expression', 'Jing-Zhang engineering, Zhongguancun openness, AI public return and five-layer signage.'],
+      ['agent.6 long-term operations', 'Four-season question, co-test, review and return loop with artifacts, owners and exit.']
     ],
     boundary: 'Boundary: PASS proves only that package structure can be replayed. It does not prove real demand, staffing, accessibility performance, public acceptance, authority or implementation outcomes.'
   }
@@ -95,7 +101,7 @@ function render(language) {
   return `<!doctype html>
 <html lang="${c.lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(c.title)} · review surface</title><style>
 :root{--navy:#071a2c;--deep:#103447;--ink:#163047;--muted:#607487;--paper:#f3f0e9;--card:#fff;--mint:#48cfb2;--coral:#ef7254;--line:#d9e2e7}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC","Helvetica Neue",Arial,sans-serif;line-height:1.6}.hero{background:linear-gradient(135deg,var(--navy),#164d59);color:#fff;padding:52px max(5vw,32px) 38px}.eyebrow{color:#76e5c9;font-weight:900;letter-spacing:.16em;font-size:12px}.hero h1{max-width:1100px;margin:12px 0 8px;font-size:clamp(30px,4vw,56px);line-height:1.08}.hero p{max-width:980px;color:#bdd4da;font-size:17px}.switch{display:inline-block;color:#061d2d;background:#74e3c7;padding:7px 13px;border-radius:999px;text-decoration:none;font-weight:850;font-size:12px}.badge{display:inline-block;margin-left:10px;border:1px solid #f59a85;color:#ffc0b3;padding:6px 12px;border-radius:999px;font-size:11px;font-weight:850}.metrics{max-width:1180px;margin:-22px auto 26px;padding:0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.metric{background:#fff;border:1px solid var(--line);border-radius:18px;padding:19px 22px;box-shadow:0 8px 28px #09223512}.metric strong{display:block;font-size:34px;color:var(--deep)}.metric small{font-size:15px;margin-left:4px}.metric span{display:block;color:var(--muted);font-size:13px}.metric em{display:block;color:#168b77;font-size:9px;font-style:normal;font-weight:850;margin-top:7px;letter-spacing:.08em}nav{max-width:1180px;margin:0 auto 18px;padding:0 24px;display:flex;flex-wrap:wrap;gap:8px}nav a{background:#fff;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 11px;text-decoration:none;font-size:11px}main{max-width:1180px;margin:0 auto;padding:0 24px 70px}.coverage{margin:10px 0 20px;padding:22px;border:1px solid var(--line);border-radius:22px;background:#e9f2f1}.coverage>h2{margin:0 0 12px;color:var(--deep);font-size:20px}.coverage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.coverage article{background:#fff;border:1px solid #d5e1e3;border-radius:14px;padding:13px}.coverage h3{font-size:15px;margin:0;color:#177f70}.coverage p{font-size:12px;color:var(--muted);margin:5px 0 0}.evidence{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;margin:16px 0;box-shadow:0 7px 25px #0922350b}.evidence header span{color:#168b77;font-size:11px;font-weight:900;letter-spacing:.09em}.evidence h2{font-size:25px;margin:3px 0;color:var(--deep)}.evidence p{color:#52697b;margin:8px 0 17px}.evidence img{display:block;width:100%;max-height:650px;object-fit:contain;background:#edf3f4;border:1px solid #d9e4e8;border-radius:15px}.evidence footer{font-size:10px;color:#8999a5;margin-top:9px}.boundary{max-width:1132px;margin:20px auto 0;background:#392a31;color:#ffd7cf;border:1px solid #ed816c;border-radius:18px;padding:16px 20px;font-size:13px}@media(max-width:720px){.metrics,.coverage-grid{grid-template-columns:1fr}.metrics{margin-top:16px}.badge{display:block;margin:10px 0 0}.hero{padding-top:35px}.evidence{padding:16px}}
-</style></head><body><header class="hero"><div class="eyebrow">OPEN CITY / HAIDIAN / 147228 / FLOW COMMONS v2.2</div><h1>${esc(c.title)}</h1><p>${esc(c.subtitle)}</p><a class="switch" href="${c.switchHref}">${esc(c.switchLabel)}</a><span class="badge">${esc(c.badge)}</span></header><div class="metrics">${metricCards}</div><nav>${c.sections.map((item, index) => `<a href="#s${index}">${esc(item[0])}</a>`).join('')}</nav><main><section class="coverage"><h2>${esc(c.coverageTitle)}</h2><div class="coverage-grid">${coverage}</div></section>${sections}<div class="boundary">${esc(c.boundary)}<br>Package replay: ${esc(reciprocity.current_readout.package_replay)} · field release: ${esc(reciprocity.current_readout.field_release)} · accepted transfers: ${reciprocity.current_readout.accepted_responsibility_transfers} · locked denominators: ${reciprocity.current_readout.locked_resource_denominators}</div></main></body></html>
+</style></head><body><header class="hero"><div class="eyebrow">OPEN CITY / HAIDIAN / 147228 / FLOW COMMONS v2.5</div><h1>${esc(c.title)}</h1><p>${esc(c.subtitle)}</p><a class="switch" href="${c.switchHref}">${esc(c.switchLabel)}</a><span class="badge">${esc(c.badge)}</span></header><div class="metrics">${metricCards}</div><nav>${c.sections.map((item, index) => `<a href="#s${index}">${esc(item[0])}</a>`).join('')}</nav><main><section class="coverage"><h2>${esc(c.coverageTitle)}</h2><p>${esc(c.scopeNote)}</p><div class="coverage-grid">${coverage}</div></section>${sections}<div class="boundary">${esc(c.boundary)}<br>Package replay: ${esc(reciprocity.current_readout.package_replay)} · field release: ${esc(reciprocity.current_readout.field_release)} · accepted transfers: ${reciprocity.current_readout.accepted_responsibility_transfers} · locked denominators: ${reciprocity.current_readout.locked_resource_denominators}</div></main></body></html>
 `;
 }
 

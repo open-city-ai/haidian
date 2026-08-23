@@ -5,7 +5,7 @@ translation_of: "proposal.md"
 title: "Jing-Zhang Flow Commons: An Enterprise–Resident Reciprocity Operating System"
 author_github: "147228"
 language: "en"
-iteration: "v2.2-three-spatial-prototypes"
+iteration: "v2.5-taskbook-delivery-and-p0-pack"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Three spatial prototypes—the Zhongzhiyuan River Forecourt, AI Origin Care Loop and Dazhongsi Four-Quadrant Hall—pair enterprise arrival and curb requests with continuous resident access, human entry and appeal rights; missing field evidence means record only, without booking or expansion."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -150,6 +150,43 @@ The board then brings the decision through five design scales. 1:5000 asks about
 
 ALT-C carries five resident rights into every enterprise window. Ordinary access keeps walking and public transport available. Accessible access keeps a continuous route and human help. Rail and bus remain in the denominator. Appeal and pause keep paper, phone and staffed entry. Privacy and exit prohibit continuous personal traces and require uncleared records to be removed. If any right lacks an owner, fallback, stop action and public receipt, the state remains `HOLD` [data:visual/assets/enterprise-spatial-decision.json].
 
+## Taskbook Delivery Atlas: Return the Mobility Theme to a Complete Belt Proposal
+
+“Jing-Zhang Flow Commons” is more than a transport algorithm. Its `F↔C` mark uses two opposing lines that share one release gate: an enterprise request must meet a resident return at the same point. The mark uses only self-authored geometry and system fonts; it is not combined with a government, enterprise or existing trademark. Teal denotes an ordinary and accessible public route, coral an enterprise request, gold human review and pause, and navy evidence, responsibility and version [data:visual/assets/enterprise-taskbook-delivery.json] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+
+The three positions and five functions become one inspectable out-and-return loop. The Centennial Jing-Zhang culture belt keeps correctable engineering questions, repair records and public contributions. The urban AI life-experience belt places a human entry, public return and exit beside each digital service. The AI convergence-innovation belt screens an enterprise test through mobility, equity, responsibility and withdrawal gates. Zhongzhiyuan carries bounded test and human takeover; AI Origin Community carries care, accessibility and open feedback; Dazhongsi carries transfer, event downshift and responsibility closeout. The Zhongguancun Technology Service Wing is a conditional interface for capital, talent, compute, data and professional service; the Xiaoyuehe Scenario Wing reads back public-space, active-travel, blue-green and resident experience. These are conceptual relations, not institutional partnership, land allocation, funding or investment commitments [source:AGENT-TASKBOOK] [data:visual/assets/enterprise-taskbook-delivery.json].
+
+![Flow Commons taskbook delivery atlas](assets/figures/enterprise-taskbook-delivery.en.png)
+
+### Six cases transfer mechanisms, not outcomes
+
+Six public cases complete a register–test–participate–explain–operate chain. Helsinki AI Register and Amsterdam Algorithm Register inform public purpose, accountability, human equivalent and feedback entries. Singapore AI Verify informs the Zhongzhiyuan model card, takeover drill and withdrawal receipt. Decidim informs the parallel use of digital, paper, phone and walk-in participation [source:CASE-HELSINKI-AI-REGISTER] [source:CASE-AMSTERDAM-ALGORITHM-REGISTER] [source:CASE-SINGAPORE-AI-VERIFY].
+
+The UK Algorithmic Transparency Recording Standard informs a nine-field public preflight for an enterprise–resident window. The public Seoul AI Foundation case is used only to compare how research, public service, talent and global collaboration can enter an annual problem loop. None of these cases constitutes a Beijing legal requirement, product certification, partnership or local performance. The structured atlas records a “do not copy” boundary for every case [source:CASE-DECIDIM-BARCELONA] [source:CASE-UK-ATRS] [source:CASE-SEOUL-AI-FOUNDATION].
+
+The mechanisms enter an eight-resource loop—land, space, industry, capital, talent, compute, data and scenario. A resource enters a pilot only when source, responsibility, public return, exit and review conditions are present. The pilot returns failure, appeal, maintenance and withdrawal evidence, not only investment or audience figures [data:visual/assets/enterprise-taskbook-delivery.json].
+
+### Three landmarks are public responsibility interfaces
+
+1. The **Jing-Zhang Return Marker** at a conceptual public edge of the heritage park shows one engineering question, source, ordinary route and removal entry. It displays no historical image or physical intervention before rights and heritage review.
+2. The **Origin Contribution Exchange** at the AI Origin Care Loop pairs developer contributions with resident questions, human help and correction records. A contribution can be corrected or withdrawn; no continuous personal behaviour is retained.
+3. The **Four-Quadrant Responsibility Beacon** at the conceptual Dazhongsi task anchor shows event capacity, ordinary return, owner, pause and restoration state. It is not sited before the official anchor, ownership, fire review and four-quadrant continuity are confirmed.
+
+The cultural story is not “railway appearance plus AI lighting.” It moves from verifiable Jing-Zhang engineering questions, through Zhongguancun's open experimentation, to appealable and withdrawable AI public service. Signage has five layers: heritage question, current public route, active test state, human help, and correction/removal. Its international line is: **Every intelligent service owes the city a public way back.** The system uses self-authored text, system fonts and abstract geometry rather than unlicensed historical images, portraits, trademarks or institutional marks [data:visual/assets/enterprise-taskbook-delivery.json].
+
+### Every season leaves an artifact and an owner
+
+The annual loop is not a promised schedule. Q1 Open Questions Season publishes sources, rights boundaries and problems. Q2 Care and Commute Co-test Week produces segment walks, grouped counts and repair work orders. Q3 Public Urban-Agent Review publishes model cards, failures, appeals, corrections and retirement. Q4 Jing-Zhang Return Forum compares regional cases, the annual evidence ledger and next-year questions. Every season needs a stop rule, public artifact and owned talent/scenario follow-through; attendance, media reach and model scores do not substitute for public benefit or issue closeout [data:visual/assets/enterprise-taskbook-delivery.json].
+
+| Task | Distinct visible output in this package | Acceptance before release |
+| --- | --- | --- |
+| agent.1 | bilingual name, `F↔C` mark, three positions/five functions, three-areas/two-wings loop | no borrowed brand; five spatial roles independently reviewable |
+| agent.2 | six-case mechanism table, eight-resource loop, industry–space interfaces | every case has a public source and “do not copy” boundary |
+| agent.3 | 10 scenario cards, 3 industry tests, 8 participant groups, scenario–space–operation contracts | every scenario has a non-AI equivalent and stop rule |
+| agent.4 | 3 responsibility landmarks, public-route component rules, honor/correction/removal protocol | account-free, accessibility/fire routes open, no heritage or ownership overreach |
+| agent.5 | out-and-return story, five-layer signage, international copy and rights boundary | source, state, human help and removal entry visible together |
+| agent.6 | four-season loop, developer-to-pilot conversion, public review and retirement | each season leaves artifact, owner, stop and continue/exit decision |
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 ### Six participant groups and three industry tests
@@ -216,6 +253,24 @@ Without field data on shade, thermal comfort, water risk, ecology and lighting, 
 ### Implementation–operation contract (conceptual interface, not a commitment)
 
 To make the delivery path auditable, every phase names participating roles, acceptance metrics, human fallback, and a stop/withdrawal rule. P0 is a joint inventory by site/data stewardship, transport/accessibility review, and community liaison roles; P1 is supervised by enterprise mobility, resident/carer observation, rail/bus operations, field maintenance and independent safety/privacy review roles, using accessible-route completion, first/last-mile reliability, curb-window compliance and complaint-response records; P2 can be considered only after traffic, safety, accessibility, privacy, insurance, procurement and maintenance evidence is complete. If a metric remains `unknown`, consent or responsibility is missing, a hard gate fails, or complaints cannot close, the system returns to human/public-transport/telephone-paper fallback, freezes reservations and withdraws movable equipment. These are proposed responsibility interfaces, not confirmed institutions, contracts, funding or permits [depth:phasing_implementation].
+
+### Minimum P0 evidence pack: start with the AI Origin Care Loop
+
+The first P0 does not begin where traffic or enterprise demand appears largest. It begins with the **AI Origin Community Care Loop**, because it can validate daily resident access, an accessible alternative and a human entry before any enterprise-vehicle expansion. It does not depend on the unresolved Dazhongsi task anchor. The scope is one ordinary walking chain, one accessible alternative, one candidate human-service desk and one rail/bus handoff; qualified field reviewers and users must confirm the actual route, sections and desk location [data:visual/assets/p0-pilot-evidence-pack.json] [assumption:A-ACCESSIBILITY-001] [assumption:A-OPERATIONS-001].
+
+![AI Origin Care Loop minimum P0 evidence pack](assets/figures/enterprise-p0-pilot.en.png)
+
+| Evidence stream | Minimum participant-controlled delivery | Condition that blocks release |
+| --- | --- | --- |
+| E1 Grouped flow and request | Two comparable weekdays plus one stress/event window; 15-minute directional counts by mode and service-purpose group, with no device ID or continuous trace | Missing date, weather, counter role, group denominator or missing interval |
+| E2 Segment accessibility walk | Ordinary and accessible chains walked in day and night windows; section, gradient, crossing, obstruction, alternate route and invited-user observation recorded | Any segment remains `UNKNOWN`, the alternative fails, or a participant is unsafe |
+| E3 Curb and public-route responsibility | Every enterprise window has initiator, receiver, clearance, fire/access route and restoration receipt | Receiver unconfirmed, public route cannot be restored, or resource denominator unlocked |
+| E4 Human and transit fallback | One outage/weather/missed-connection replay per window using staffed, phone, paper and rail/bus takeover | No takeover, last-service return invisible, or app-only access |
+| E5 Data minimisation | Purpose, access role, retention, deletion owner and public algorithm note precede collection | Unnecessary personal identifier, no deletion or purpose expansion |
+| E6 Participatory threshold sign-off | Residents, carers, disabled users and night workers can disagree, request correction and read the response | An average hides group decline or forced detour/rejection/waiting is omitted |
+| E7 Public status and closeout | Account-free status board plus paper/phone correction; owner, alternative, repair debt and next review visible | Appeal or repair debt unresolved, or a withdrawn window leaves a rights trace |
+
+The calibration contract also states when the model becomes invalid: incomparable observation windows, missing group denominators, changed route/station versions, more than one unrecorded interval, a field mode or queue outside declared model objects, or an affected group reporting an unmodeled barrier. Seven templates are ready, but field records, confirmed roles, group sign-offs, calibrated parameters and passed release gates are all zero. The state remains `HOLD` and `not_authorized_not_run`; a complete protocol board is not a completed field pilot [data:visual/assets/p0-pilot-evidence-pack.json].
 
 To keep “fallback” from remaining a slogan, this package narrows the existing `M-09 storm/outage degradation` card into one minimum offline tabletop rather than claiming a new operated scenario. `visual/assets/mobility-tabletop-contract.json` fixes four synthetic service requests, four trigger events and five rollback actions; `node visual/assets/run-mobility-tabletop.js --check` replays six checks with no network, personal data, external system or persistent state, producing `mobility-tabletop-evidence.json`. The local rehearsal reports 4/4 requests retaining human/public-transport fallback, reservations frozen, 6/6 checks passed and 5/5 rollback steps replayed. It proves only that state, stop and rollback logic are reviewable—not real staffing, accessibility performance, public acceptance, service availability or safety. `performance_results=null` and `operational_status=not_authorized_not_run`, so the synthetic PASS cannot advance P1/P2 or claim implementation [data:visual/assets/mobility-tabletop-contract.json] [data:visual/assets/mobility-tabletop-evidence.json] [data:visual/assets/run-mobility-tabletop.js].
 
