@@ -6,10 +6,10 @@ author_github: "147228"
 language: "zh"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "把企业到岗与居民日常出行放进同一张可审计的时段路缘账本，用首 168 小时释放链说明如何停和退，再用 12 周最小测量合同检验普通路线、无障碍和人工交接；所有现场值仍为空。"
+summary: "把企业到岗与居民日常出行放进同一张可审计的时段路缘账本，用首 168 小时释放链说明如何停和退；本轮只把同时落在临时 SITE 与对应重点区内的两组站口—过街—路缘候选写入正式几何，大钟寺边界冲突继续 HOLD，所有现场值仍为空。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v2.4-candidate"
+iteration: "v2.5-candidate"
 ---
 
 # 京张共行环：企业—居民交通共益系统
@@ -101,6 +101,8 @@ Helsinki Mobility Lab 只贡献“城市问题—小范围街测—居民与运�
 2. **总体层**：用 `land_use`、`buildings`、`roads`、`green_space`、`public_space`、`constraints` 和 `phasing` 共同定义到站、到岗、到家和服务维护的空间关系；用时段状态而不是永久占用表达路缘。
 3. **重点区层**：在众智园、AI 原点社区、大钟寺 AI 产业聚集区各做一组可逆试点，分别验证企业到岗、居民日常和轨道/路缘换乘。
 
+任务书点名的北纬社区、未来科学城、怀柔科学城、经开区与京津冀，在本方案中是五类**待确认交换接口**，不是既有合作方：北纬社区交换居民日常可达、夜间返程与无障碍问题单；未来科学城交换分组通勤 OD 与企业班车时窗；怀柔科学城交换长距离科研通勤及极端天气回退需求；经开区交换企业轮班、装卸、充电和路缘运行模板；京津冀层面只交换城际轨道、公交衔接时窗与匿名化失接原因。每个接口都必须先确认数据用途、分组粒度、接收责任角色和停止条件；没有具名接收者与书面同意时，只保留空白模板，不写成数据接入、联合试点或合作承诺 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+
 三层共享同一 provisional 约 11.41 km² 工作范围，面积只作为设计比较值 [metric:site_area_sqm]。正式边界发布后，应锁定 revision，重算所有图层、路线、分区、图纸和指标；不得只替换一张效果图。
 
 ## 统筹研究范围产业与未来城市研究
@@ -157,9 +159,13 @@ Helsinki Mobility Lab 只贡献“城市问题—小范围街测—居民与运�
 
 本版用 2026-08-21 访问的 OpenStreetMap/Overpass 数据做背景筛查，在三处候选区周边分别标出已映射的站点或出入口、最近的已映射过街点、公交/路缘观察窗，再用一条虚线把它们连成 **P0 审计顺序**。这条线不是已核验路线；公开地图中的“存在”也不能证明坡度、净宽、信号、容量、无障碍、消防、路权或许可。两份 FeatureCollection 审计资产因此把 `authorization=0`、`field_observations=0`、`decision=HOLD` 写到每个点和线 [source:OSM-TRANSPORT-CONTEXT] [data:visual/assets/osm-mobility-context.json] [data:visual/assets/mobility-interface-candidates.json]。
 
+本轮没有把 12 个筛查要素一股脑写进正式空间图层。只有同时落在临时 SITE 与对应 key-area 内的众智园、AI 原点 6 个候选节点和 2 条审计顺序进入 `public_space.geojson` / `roads.geojson`。节点统一为 `SCENARIO_NODE + confidence=low`，并保留 OSM 锚点、现场观察为 0、接收人未确认和四项启用前置条件 [data:geometry/public_space.geojson#MOB-INTERFACE-ZHONGZHIYUAN-1] [data:geometry/public_space.geojson#MOB-INTERFACE-AI_ORIGIN-1]。
+
+两条线统一为 `p0_audit_sequence_not_a_verified_route`。它们使正式几何能回读“站口—过街—路缘”的待核关系，但没有增加任何现场事实、道路红线或施工尺寸 [data:geometry/roads.geojson#MOB-AUDIT-SEQUENCE-ZHONGZHIYUAN] [data:geometry/roads.geojson#MOB-AUDIT-SEQUENCE-AI_ORIGIN]。
+
 ![公开底图上的三处交通接口：站口、过街、路缘窗口与待核验审计顺序](assets/figures/mobility-spatial-insets.svg)
 
-筛查还发现一处必须先停下来的冲突：当前临时 `PROV-KEY-003` 粗框没有覆盖公开地图中的大钟寺站，站点与粗框中心约相距 2.31 km。这里不移动粗框去“对齐”地名，也不把站点画成区内设施；本版只把大钟寺站登记为**外部公共换乘锚点**。取得官方或专业确认的重点区几何后，必须重做站区关系、路线走查、无障碍/消防复核和责任接收，再决定“共行时刻台”是否有位置 [data:geometry/key_areas.geojson#PROV-KEY-003] [data:visual/assets/mobility-interface-candidates.json]。
+筛查还发现一处必须先停下来的冲突：当前临时 `PROV-KEY-003` 粗框没有覆盖公开地图中的大钟寺站，站点与粗框中心约相距 2.31 km。这里不移动粗框去“对齐”地名，也不把站点画成区内设施；本版只把大钟寺站登记为**外部公共换乘锚点**，并明确不把该组 3 个候选点和 1 条审计序列升格进正式几何。取得官方或专业确认的重点区几何后，必须重做站区关系、路线走查、无障碍/消防复核和责任接收，再决定“共行时刻台”是否有位置 [data:geometry/key_areas.geojson#PROV-KEY-003] [data:visual/assets/mobility-interface-candidates.json]。
 
 每个重点区都要有企业责任人、社区/公共服务责任人、交通专业复核人和维护责任人，记录目标、输入、停止条件和回读证据；现阶段不声称已有合作方或运营许可 [depth:three_key_area_detailed_design] [source:HAIDIAN-ROAD-PARKING-TENDER-2026]。
 

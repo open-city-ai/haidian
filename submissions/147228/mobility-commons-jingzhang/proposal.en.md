@@ -6,10 +6,10 @@ title: "Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating
 author_github: "147228"
 language: "en"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "One auditable curb ledger links enterprise arrival with residents' daily mobility; a first-168-hour release chain explains how to stop and withdraw, while a 12-week minimum measurement contract tests ordinary routes, accessibility and human handoffs with all field values null."
+summary: "One auditable curb ledger links enterprise arrival with residents' daily mobility. This revision promotes only the two entrance–crossing–curb groups that fall inside both the provisional SITE and matching key areas into formal geometry; the Dazhongsi boundary conflict remains HOLD and every field value remains null."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v2.4-candidate"
+iteration: "v2.5-candidate"
 ---
 
 # Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating System
@@ -93,6 +93,8 @@ Evidence is separated into `known` geometry values, `unknown` local baselines, `
 
 The regional layer studies the rail, bus, campus, enterprise and residential relationships around the Jing-Zhang corridor. The overall layer translates them into access chains, curb states, public-service interfaces, blue-green fallback and maintenance packages. The key-area layer tests one reversible operational package in each of Zhongzhiyuan, the AI Origin Community and Dazhongsi [depth:three_level_scope_framework] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT].
 
+The Beiwei Community, Future Science City, Huairou Science City, Beijing E-Town and Beijing–Tianjin–Hebei nodes named by the brief are treated here as five **interfaces awaiting confirmation**, not existing partners. Beiwei would exchange grouped daily-access, night-return and accessibility issue records; Future Science City would exchange grouped commute OD and enterprise-shuttle windows; Huairou Science City would exchange long-distance research-commute and severe-weather fallback needs; Beijing E-Town would exchange enterprise shift, loading, charging and curb-operation templates; and the regional interface would exchange only intercity rail/bus connection windows and anonymized missed-connection causes. Each interface first requires an agreed purpose, aggregation level, accountable receiving role and stop condition. Without a named receiver and written agreement, it remains a blank template—not a data connection, joint pilot or partnership claim [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
+
 The three scales share the same provisional `site_boundary`, `key_areas`, `land_use`, `buildings`, `roads`, `green_space`, `public_space`, `constraints` and `phasing` layers [data:geometry/key_areas.geojson#PROV-KEY-001]. The approximately 11.41 km² area is a design-comparison value only [metric:site_area_sqm]. A future official revision must trigger one coordinated re-render of all geometry, metrics, drawings and visual cards.
 
 ## Coordinated Research Area: Industry and Future City Research
@@ -145,9 +147,13 @@ The first pilot is a small morning and evening window in Zhongzhiyuan, an access
 
 This version uses OpenStreetMap/Overpass data accessed on 2026-08-21 as background screening. Around each candidate area it marks a mapped station or entrance, the nearest mapped crossing, and a transit/curb audit window, then links them as a **P0 audit sequence**. The line is not a verified route. Mapped presence does not establish gradient, clear width, signal operation, capacity, accessibility, fire access, right-of-way or permission. Every candidate point and line in the two FeatureCollection audit assets therefore declares `authorization=0`, `field_observations=0`, and `decision=HOLD` [source:OSM-TRANSPORT-CONTEXT] [data:visual/assets/osm-mobility-context.json] [data:visual/assets/mobility-interface-candidates.json].
 
+This revision does not promote all 12 screened features into formal geometry. Only the six candidate nodes and two audit sequences for Zhongzhiyuan and AI Origin that fall inside both the provisional SITE and their matching key area enter `public_space.geojson` / `roads.geojson`. Nodes are `SCENARIO_NODE + confidence=low` and retain their OSM anchors, zero field observations, unconfirmed receivers and four prerequisites for use [data:geometry/public_space.geojson#MOB-INTERFACE-ZHONGZHIYUAN-1] [data:geometry/public_space.geojson#MOB-INTERFACE-AI_ORIGIN-1].
+
+The two lines are `p0_audit_sequence_not_a_verified_route`. Formal geometry can now read back the entrance–crossing–curb relationship without creating a field fact, road redline or construction dimension [data:geometry/roads.geojson#MOB-AUDIT-SEQUENCE-ZHONGZHIYUAN] [data:geometry/roads.geojson#MOB-AUDIT-SEQUENCE-AI_ORIGIN].
+
 ![Three public-map mobility interfaces: entrances, crossings, curb windows and unverified audit sequences](assets/figures/mobility-spatial-insets.en.svg)
 
-The screening exposes a conflict that must stop premature design: the current rough `PROV-KEY-003` rectangle does not cover the mapped Dazhongsi station; the station is about 2.31 km from the rectangle centroid. This version does not move the rough rectangle to match the name and does not draw the station as an internal facility. It records Dazhongsi station only as an **external public-transfer anchor**. The area relationship, route walk, accessibility/fire review and responsible receiver must be redone after an official or professionally confirmed geometry is available, before locating the Mobility Timetable [data:geometry/key_areas.geojson#PROV-KEY-003] [data:visual/assets/mobility-interface-candidates.json].
+The screening exposes a conflict that must stop premature design: the current rough `PROV-KEY-003` rectangle does not cover the mapped Dazhongsi station; the station is about 2.31 km from the rectangle centroid. This version does not move the rough rectangle to match the name and does not draw the station as an internal facility. It records Dazhongsi station only as an **external public-transfer anchor** and explicitly withholds its three candidate points and one audit sequence from formal geometry. The area relationship, route walk, accessibility/fire review and responsible receiver must be redone after an official or professionally confirmed geometry is available, before locating the Mobility Timetable [data:geometry/key_areas.geojson#PROV-KEY-003] [data:visual/assets/mobility-interface-candidates.json].
 
 ### Readback order for the three interfaces
 

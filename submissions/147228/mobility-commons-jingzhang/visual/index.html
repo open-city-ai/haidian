@@ -64,9 +64,18 @@
     .micro { margin-top: 9px; color: #8794a3; font-family: Menlo, monospace; font-size: 10px; overflow-wrap: anywhere; }
     .modes { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
     .modes span { padding: 6px 10px; border-radius: 999px; color: #fff; background: var(--navy); font-size: 12px; }
+    .review-path { margin: 0 0 26px; padding: 24px; border: 1px solid #b9ddd7; border-radius: 20px; background: #eef8f6; }
+    .review-path h2 { margin-bottom: 8px; }
+    .review-path > p { max-width: 920px; margin: 0 0 16px; color: #475569; }
+    .review-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .review-flow a { min-height: 112px; padding: 15px; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); background: #fff; text-decoration: none; }
+    .review-flow a:hover { border-color: var(--cyan); transform: translateY(-1px); }
+    .review-flow strong { display: block; margin-bottom: 5px; color: var(--navy); }
+    .review-flow span { color: var(--muted); font-size: 12px; }
+    .review-gate { margin-top: 13px; padding: 10px 13px; border-left: 4px solid var(--coral); color: #7c3d24; background: #fff7ed; font-size: 12px; }
     footer { padding: 28px max(6vw, 36px); color: #64748b; border-top: 1px solid var(--line); font-size: 12px; }
     @media (max-width: 820px) {
-      .metrics, .grid { grid-template-columns: 1fr; }
+      .metrics, .grid, .review-flow { grid-template-columns: 1fr; }
       .card.wide { grid-column: auto; }
       .hero { padding-top: 38px; }
     }
@@ -74,13 +83,13 @@
 </head>
 <body>
   <header class="hero">
-    <div class="eyebrow">OPEN CITY / HAIDIAN / 147228 / v2.4 CANDIDATE</div>
+    <div class="eyebrow">OPEN CITY / HAIDIAN / 147228 / v2.5 CANDIDATE</div>
     <h1>京张共行环｜企业—居民交通共益</h1>
     <p>把企业到岗、居民日常、轨道换乘和路缘运营放进同一条可审计的完整行程；凡是现场未测、角色未确认或许可未取得的内容，一律保留为 unknown 或 HOLD。</p>
     <span class="state">临时边界 · 未授权 · 未开展现场试点</span>
   </header>
   <nav aria-label="证据导航">
-    <a href="#overview">总览地图</a><a href="#scope">三层范围</a><a href="#areas">重点区域</a><a href="#landuse">用地分区</a>
+    <a href="#review">五分钟路径</a><a href="#overview">总览地图</a><a href="#scope">三层范围</a><a href="#areas">重点区域</a><a href="#landuse">用地分区</a>
     <a href="#mobility">交通慢行</a><a href="#bluegreen">蓝绿公共空间</a><a href="#building">建筑</a><a href="#phasing">更新项目</a>
     <a href="#ai">AI 场景</a><a href="#metrics">核心指标</a><a href="#tasks">任务覆盖</a><a href="#checks">自检状态</a>
     <a href="#simulation">仿真</a><a href="#interfaces">接口</a><a href="#release">释放链</a><a href="#receipt">回执</a>
@@ -93,6 +102,18 @@
       <div class="metric"><strong data-metric="green_ratio" data-value="0.123423">12.34%</strong><span>提交绿地比，非控规指标</span></div>
       <div class="metric"><strong data-metric="public_space_ratio" data-value="0.073281">7.33%</strong><span>提交公共空间比，非控规指标</span></div>
       <div class="metric"><strong>HOLD</strong><span>默认释放状态</span></div>
+    </section>
+
+    <section id="review" class="review-path" aria-label="五分钟评审路径">
+      <h2>五分钟评审路径：先看人，再看空间，最后看能否放行</h2>
+      <p>这不是把 23 张卡片再做一遍摘要，而是给评审一条不迷路的验收顺序。每一步都能回到包内图件、JSON、runner 或责任记录；缺少现场基线、接收人或授权时，结论保持 HOLD。</p>
+      <div class="review-flow">
+        <a href="#receipt"><strong>01 普通人能否走完</strong><span>先验收早高峰、日常、晚间、断网雨雪下的一日连续性回执。</span></a>
+        <a href="#interfaces"><strong>02 三处接口如何交接</strong><span>再看众智园、AI 原点社区和大钟寺的进入、接管、退出与人工替代。</span></a>
+        <a href="#taskbook"><strong>03 六项任务各交什么</strong><span>核对 agent.1—agent.6 是否各有对象、尺度、证据和未闭合项。</span></a>
+        <a href="#handoff"><strong>04 谁能决定继续或停</strong><span>最后检查责任接收、公共底线、停止线和撤回后仍保留的普通路径。</span></a>
+      </div>
+      <div class="review-gate"><strong>当前闸门：</strong>结构可复核不等于现场有效。授权、完整行程观察、责任确认和专业审查仍为 0，不据此主张绩效、建设条件或官方分数。</div>
     </section>
 
     <div class="grid">
@@ -246,11 +267,11 @@
 
       <section id="spatial" class="card wide">
         <div class="card-head"><span class="no">22</span><h2>公开底图只把 P0 审计点落下来</h2><span class="tag">非现场核验</span></div>
-        <p>公开底图先登记站口、过街与路缘审计顺序，再用三个接口原型说明人如何进入、接管和撤回，最后用四个系统选项裁决地面公共基线。所有尺度都是审阅标签，不证明尺寸、容量、路权、许可或现场绩效。</p>
+        <p>公开底图先登记站口、过街与路缘审计顺序；其中仅众智园、AI 原点 6 点 2 线同时落在临时 SITE 与对应 key-area 内，按低置信设计要素进入正式图层。大钟寺 3 点 1 线因约 2.31 km 边界冲突保持视觉背景。三个接口原型再说明进入、接管和撤回，四个系统选项裁决地面公共基线；所有尺度都是审阅标签。</p>
         <img src="../assets/figures/mobility-spatial-insets.svg" alt="三处公开底图交通接口与待核验审计顺序">
         <img src="../assets/figures/mobility-interface-prototypes.svg" alt="三处空间接口原型与人工接管关系">
         <img src="../assets/figures/mobility-spatial-options.svg" alt="四个系统空间选项、五级尺度与公共权利">
-        <div class="micro">osm-mobility-context.json · mobility-interface-prototypes.json · mobility-spatial-options.json · authorization=0 · field_observations=0</div>
+        <div class="micro">formal geometry 19 → 27 features · public_space.geojson · roads.geojson · Dazhongsi withheld · authorization=0 · field_observations=0</div>
       </section>
 
       <section id="deliverables" class="card wide">
@@ -261,6 +282,6 @@
       </section>
     </div>
   </main>
-  <footer>Package: mobility-commons-jingzhang · v2.4-candidate · 2026-08-21 · Offline local assets only · Geometry, demand and performance remain subject to professional review.</footer>
+  <footer>Package: mobility-commons-jingzhang · v2.5-candidate · 2026-08-23 · Offline local assets only · Geometry, demand and performance remain subject to professional review.</footer>
 </body>
 </html>

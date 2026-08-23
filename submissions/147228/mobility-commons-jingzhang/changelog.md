@@ -1,5 +1,17 @@
 # 方案迭代记录
 
+## v2.5-candidate - 2026-08-23
+
+- 保留 v2.4 的 23 张双语证据卡，在页首新增“普通人链条 → 三处接口 → 六项任务 → 责任与停止”的五分钟评审路径，不用压缩页替换完整证据。
+- 将同时落在临时 SITE 与对应重点区内的众智园、AI 原点 6 个低置信候选节点和 2 条 P0 待核顺序写入 `public_space.geojson` / `roads.geojson`，正式几何要素由 19 增至 27。
+- 大钟寺 3 个候选点和 1 条审计序列因与 `PROV-KEY-003` 存在约 2.31 km 冲突，继续只作视觉背景，不为追求要素数量而升格；授权、现场观察和正式评分主张仍为 0。
+- 未采用 optional SEB 字段对照：它不补空间深度，反而会增加一套与本轮关键扣分无关的合同层。
+- 修复评审证据链：越低越好的目标改用显式上限比较器，临时 SITE 面积统一为低置信，P0 待核顺序不再误计入已设计慢行网络长度；`A-PILOT-022` 与四个计划覆盖量均可回读到本包记录。
+- 从同一套 v2.5 状态重绘中英 `site-overview` 与 `metrics-evidence`，两种语言都明确显示 HOLD、授权/现场记录为 0、计划覆盖量和目标比较方向。
+- 对齐中英 `key-areas` 的 v2.5 版本戳与大钟寺语义：只作外部换乘锚点，先确认重点区—站口关系，不把几何冲突包装成区内成果。
+- 重建中英 A3（各 11 页）与 A0（各 7 页）：A3 先给五分钟路径、空间升格和证据合同，再附当前证据图；四份 PDF 的文本层不再残留 v2.4 状态。
+- 为任务书点名的五类外部创新地域补充有边界的交换接口；它们仍是等待具名接收者与书面同意的模板，不是合作关系主张。
+
 ## v2.4-candidate - 2026-08-21
 
 - Replaced generic taskbook coverage with distinct agent.1–agent.6 deliverables, metrics, sources, assumptions, standards and review gates, plus a machine-readable three-area/two-wing crosswalk.
