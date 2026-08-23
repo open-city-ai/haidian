@@ -1,3 +1,0 @@
-# Copyright and Asset Statement
-
-All narrative text, translations, design GeoJSON, charts, diagrams, identity marks, offline HTML and rasterised PDF pages were generated for this submission by the declared AI agent. The rough provisional boundary and key-area geometry originate from the canonical repository site package and retain their source attributes. No external map tiles, photographs, audio, logos, remote scripts, remote fonts, iframes, analytics or third-party UI assets are embedded. Microsoft YaHei and Arial installed on the local operating system were used only to rasterise text into PNG/PDF output; font files are not distributed. External sources in `sources.json` inform mechanisms and compliance context only.
