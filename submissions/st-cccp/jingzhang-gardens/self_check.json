@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "generated_at": "2026-08-23T16:46:00Z",
+  "gates": {
+    "deterministic_validation": "pass",
+    "spatial_review": "pass",
+    "visual_packaging": "pass",
+    "professional_evidence": "pass"
+  },
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "Deterministic package validation re-run: 40 files declared and present, sha256 verified, schema 0.2.0, 0 unexpected errors."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "Land use seamlessly covers site boundary; key areas within site, pairwise non-overlapping; areas and ratios recomputed (EPSG:4548) and consistent with metrics.json."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Offline zh/en visual and report HTML pass static checks; figures embedded locally; no remote content; metrics data-values match metrics.json."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Standards, design depth and compliance matrices verified (5/5 required standards, 15/15 depth items); proposal carries machine-readable evidence references."
+    }
+  ]
+}
