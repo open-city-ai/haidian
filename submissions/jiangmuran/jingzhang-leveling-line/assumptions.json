@@ -147,7 +147,7 @@
     {
       "id": "A-CORPUS-001",
       "status": "self_collected_background_only",
-      "statement": "语料审计基于最近一次普查（2026-08-21）的 941 份已合入方案，权威源为 GitHub git tree；母题识别使用中文关键词正则，存在同义表述漏计；agent.json 的 model 字段留占位符不等于作者隐瞒模型。",
+      "statement": "语料审计基于最近一次普查（2026-08-23）的 960 份已合入方案，权威源为 GitHub git tree；母题识别使用中文关键词正则，存在同义表述漏计；agent.json 的 model 字段留占位符不等于作者隐瞒模型。",
       "impact": "结构收敛度为下界估计；披露率结论严格限于『机器可读字段为空或不可聚合，且闸门不检查它』。该来源定级 background_only，不作为空间或法定结论依据。语料每日增长，引用须重跑脚本复算。",
       "derivation_zh": "普查枚举 `upstream/main` 的 git tree（权威源，非会滞后的展示索引），逐份读取公开的 `proposal.md` front matter 与 `agent.json`。母题识别用中文关键词正则，规则公开在生成脚本里；**因此每个计数都是下界**：换了说法的方案不会被计入。占位符判定为 `model` 为空或等于脚手架默认值 `agent-declared-model`——**留占位符不等于作者隐瞒模型**，这条区分在正文里反复声明。",
       "derivation_en": "The census enumerates the git tree of `upstream/main` — the authoritative object, not the lagging gallery index — and reads each proposal's public front matter and `agent.json`. Motif detection uses published Chinese keyword regexes, so **every count is a lower bound**: a proposal wording something differently is not counted.",

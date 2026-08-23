@@ -547,8 +547,8 @@ front matter 读取器只认 `tracks: ["a","b"]`，读不到 YAML 块状列表�
 
 | 读数 | 值 | 来源 |
 |---|---|---|
-| 语料规模 | **941 份**（2026-08-21） | `visual/assets/field_map.json` |
-| 本包对语料的读数次数 | 26 次，其中 26 次已提交并可用 `git show` 逐行复核 | `visual/assets/reading_log.json` |
+| 语料规模 | **960 份**（2026-08-23） | `visual/assets/field_map.json` |
+| 本包对语料的读数次数 | 27 次，其中 26 次已提交并可用 `git show` 逐行复核 | `visual/assets/reading_log.json` |
 | 勘误册 | **429 条**；发现者：作者自查 290、外部对抗性复读 45、external 31、本包闸门 29、rival-read 29、外部评审 5 | `visual/assets/errata.json` + `errata-archive.json` |
 | 最常见的缺陷形状 | 同一件事的两份拷贝各自漂移 76 次、检查测了方便测的东西 72 次、交付物在提交前没被看过 38 次、这个说法在这种载体上原理上无法被核对 34 次、声明活得比包的内容久 26 次 | 同上 |
 | 指标证据上限 | 59 条可定上限：provisional 23、background 14、自测 18、official 4、法规 0 | `visual/assets/evidence_ceiling.json` |
