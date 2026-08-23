@@ -1,12 +1,12 @@
 # Jing-Zhang Handover Line · three-minute guided tour (transcript and shot list)
 
-This video introduces no new claim: the audio track is identical to `audio-guide.m4a`, the captions match `guided-tour-en.vtt` sentence for sentence, and every frame comes from a figure already in the package. **Cuts are not evenly spaced but follow what the narration is saying** — F/03 while it describes the three handover yards, F/10 at the public handover table, F/05's 96-cell matrix when it reaches the refusal state of all twelve scenarios.
+This video introduces no new claim. **Three provenance statements need to be separated precisely.** (1) The audio track is the **same synthesised narration in the same alignment** as `audio-guide-en.m4a`, but the two are encoded independently, so the samples are not bit-identical — measured Pearson r = 0.999964 at zero offset, 0.5 s RMS envelope correlation 0.999997, mean absolute difference 17/32768, duration difference 2.9 ms; “identical” overstated it, so the measurement is given instead. (2) The captions match `guided-tour-en.vtt` sentence for sentence, and that file is **byte-identical** to `audio-guide-en.vtt` (same sha256) because it carries the same words. (3) **Not every frame comes from a figure already in the package**: the seven body segments use F/01–F/05 and F/10 from the package, but the opening and closing segments (0–22.8 s and after 167 s, about 21% of the running time) use a **programmatic cover card** — same layout as `assets/media/cover.png` but **without the gpt-image-2 generated illustration background**, and not shipped as a file. **That permits a stronger statement: no generated image material appears anywhere in this video; every frame is programmatically rendered.** The English edition's cover card was in Chinese until 2026-08-22 and has been replaced with the English one (audio stream copied bit-identically, duration unchanged at 176.500 s, body frames unchanged). **Cuts are not evenly spaced but follow what the narration is saying** — F/03 while it describes the three handover yards, F/10 at the public handover table, F/05's 96-cell matrix when it reaches the refusal state of all twelve scenarios.
 
 ## Shot list
 
 | Start | Frame | Note |
 | --- | --- | --- |
-| 0.0s–22.8s | `assets/media/cover.png` | 封面：一句话判据 |
+| 0.0s–22.8s | Programmatic cover card, English edition (same layout as `assets/media/cover.png` but **without the generated illustration background**; rendered by the video build step and **not shipped as a file**) | Cover: the one-line test |
 | 22.8s–42.0s | `assets/figures/metrics-evidence.en.png` | F/05 可复算指标与规则检查矩阵 |
 | 42.0s–48.8s | `assets/figures/site-overview.en.png` | F/01 总平面：一条交接线串起三座交接场 |
 | 48.8s–82.5s | `assets/figures/key-areas.en.png` | F/03 三座交接场放大平面 |
@@ -14,7 +14,7 @@ This video introduces no new claim: the audio track is identical to `audio-guide
 | 89.5s–127.7s | `assets/figures/spatial-prototype.en.png` | F/10 空间原型：公开交接桌 |
 | 127.7s–147.1s | `assets/figures/land-use-structure.en.png` | F/02 用地结构与临时边界 |
 | 147.1s–167.0s | `assets/figures/metrics-evidence.en.png` | F/05 十二个场景的拒收状态 |
-| 167.0s–176.5s | `assets/media/cover.png` | 封面：结语 |
+| 167.0s–176.5s | Programmatic cover card, English edition (as above) | Cover: closing line |
 
 ## Transcript
 

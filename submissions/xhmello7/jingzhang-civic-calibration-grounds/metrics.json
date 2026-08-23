@@ -1,0 +1,268 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary_epsg4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Repository provisional boundary; not official redline."
+      ]
+    },
+    "land_use_area_sum_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(non_overlapping_land_use_partition_areas_epsg4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Small indicative zones plus code-16 data-gap residual."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 23111.138,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(site-contained selected_osm_existing_building_candidates_epsg4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Counts six selected candidates contained by the provisional site. Four Dazhongsi context buildings remain traceable in constraints.geojson because they sit outside that machine boundary; this is not a full inventory."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 207979.325,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(selected_osm_green_context_epsg4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Selected OSM green spaces, some clipped to provisional boundary; not total statutory green area."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.018223299,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm/site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Context ratio only; numerator is a selected OSM subset and denominator is provisional."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1220.414,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(features where include_in_public_space_metric=true, epsg4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Counts only the two V5 Dazhongsi building-free public-space proposals; Zhongzhiyuan and middle-segment polygons remain conceptual intervention zones."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.000106934,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "v5_dazhongsi_public_space_area_sqm/site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A design-layer reference ratio under provisional site geometry, not a statutory public-space ratio."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 625.08,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length where route_type=pedestrian_link, epsg4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Only the three V5 Dazhongsi pedestrian links are counted; all avoid mapped building footprints but still require access and station-interface survey."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA)",
+      "confidence": "high",
+      "assumptions": [
+        "Identities from brief; polygons provisional."
+      ]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(mapped calibration_case nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "Two cases are detailed flagships and two remain a secondary spatial scenario library."
+      ]
+    },
+    "calibration_card_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(SCENARIO_NODE where node_type=calibration_case)",
+      "confidence": "medium",
+      "assumptions": [
+        "Two detailed flagship cases and two secondary mapped cases."
+      ]
+    },
+    "lifecycle_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE where node_type=lifecycle_gate)",
+      "confidence": "medium",
+      "assumptions": [
+        "Rollback and retirement are separate decisions within one physical public-space sequence."
+      ]
+    },
+    "rollback_node_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(lifecycle gates where id=NODE-ROLLBACK-001)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "retirement_node_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(lifecycle gates where id=NODE-RETIRE-001)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "site_specific_segment_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(north_middle_south_spatial_segments)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "dazhongsi_station_link_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD-DZ features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three linked route stages within an approximately 8 ha study window; not road redlines or confirmed station entrances."
+      ]
+    },
+    "selected_existing_building_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(selected OSM building context features across buildings and constraints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Partial context sample; includes four OSM Dazhongsi candidates refreshed on 2026-08-15."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm/official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official FAR, floor-area and official boundary data are unavailable."
+    },
+    "construction_cost_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "requires_scope_quantities_procurement_and_engineering_conditions",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No reliable project quantities, ownership, engineering conditions or procurement model."
+    },
+    "detailed_flagship_case_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(calibration_case where data_status=flagship_case_detailed)",
+      "confidence": "medium",
+      "assumptions": [
+        "Two Dazhongsi cases are detailed; two other cases remain a secondary scenario library."
+      ]
+    }
+  }
+}

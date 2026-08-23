@@ -55,12 +55,21 @@
  *   0 — 全部样例的判定与 expected_verdict 一致 / every verdict matched its expectation
  *   1 — 至少一条样例的判定与期望不一致 / at least one verdict missed its expectation
  *   2 — 兼容失败，不作任何判定：基准版本过低、版本不匹配、词表不合格、
- *       声明的来源文件不可读、基准声明了本工具未支持的规则类型，或本工具可能
- *       给出的判定码未登记在基准的违例码登记表中
+ *       声明的来源文件不可读、基准声明了本工具未支持的规则类型、本工具可能
+ *       给出的判定码未登记在基准的违例码登记表中，或基准与样例文件不可读、
+ *       不是合法 JSON、缺必需组件、样例集为空或声明总数与实跑条目数不等，
+ *       以及运行中任何未捕获的异常
  *       compatibility failure, no verdict issued: baseline too low, version mismatch,
  *       ineligible lexicon, an unreadable declared source file, a rule type this tool
- *       does not support, or a verdict code this tool can emit that the baseline's
- *       violation-code registry does not carry
+ *       does not support, a verdict code this tool can emit that the baseline's
+ *       violation-code registry does not carry, an unreadable or malformed baseline or
+ *       fixtures file, a missing required component, an empty fixture set or a declared
+ *       item count that disagrees with what actually ran, and any uncaught exception
+ *   退出码 1 只承载「判定与期望不一致」一件事：解析失败与结构缺失自 v9.5 起一律
+ *   落在退出码 2，此前两者混用同一个码（审计缺陷 S2-1/S2-2/S3-5）。
+ *   Exit code 1 carries one meaning only — a verdict disagreeing with its expectation.
+ *   From v9.5 parse failures and structural gaps all land on exit code 2; previously the
+ *   two shared one code (audit findings S2-1, S2-2 and S3-5).
  */
 
 "use strict";
@@ -134,10 +143,18 @@ const REASON_TEXT = {
 // suffix stripped). The v0.4.0 codes are not hard-coded here: they are derived from the
 // baseline's own rule objects (see emittableCodes), so pairing this tool with an older
 // snapshot is not refused merely because that registry does not yet carry them.
+// LEVEL_GATE_MISMATCH 与 DENOMINATOR_SAMPLE_DROPPED 不在此表：这两个码本工具在运行时
+// 读自基准的 level_definitions.gate_violation_code 与
+// scoring_definitions.denominator_integrity_violation_code，以字面量登记会让基准把它们
+// 改成未登记的值时自检仍报「全部登记」（见 emittableCodes 末段）。
+// LEVEL_GATE_MISMATCH and DENOMINATOR_SAMPLE_DROPPED are deliberately absent here: the tool
+// reads both from the baseline at run time, and registering them as literals would let a
+// baseline rename them to unregistered values while the self-check still reported "all
+// registered" (see the closing lines of emittableCodes).
 const BASE_EMITTED_CODES = [
   "NODE_FIELD_MISSING", "NODE_ENUM_INVALID", "NODE_CONSTRAINT_VIOLATION", "SOURCE_MISMATCH",
-  "SOURCE_FILE_UNREADABLE", "DENOMINATOR_SAMPLE_DROPPED", "METRIC_ID_UNKNOWN", "LEVEL_UNKNOWN",
-  "LEVEL_BINDING_MISSING", "LEVEL_GATE_MISMATCH", "STOP_NOT_ENFORCED", "RESUME_WITHOUT_EVIDENCE",
+  "SOURCE_FILE_UNREADABLE", "METRIC_ID_UNKNOWN", "LEVEL_UNKNOWN",
+  "LEVEL_BINDING_MISSING", "STOP_NOT_ENFORCED", "RESUME_WITHOUT_EVIDENCE",
   "RISK_ID_UNKNOWN", "ADOPTER_LEXICON_INVALID_TOKEN", "ADOPTER_LEXICON_EVIDENCE_MISSING",
   "ADOPTER_LEXICON_MALFORMED", "RULE_TYPE_UNSUPPORTED",
 ];
@@ -204,6 +221,7 @@ function emittableCodes(spec) {
   const scoring = component(spec, "scoring_definitions");
   const boundary = component(spec, "ai_authority_boundary");
   const ledger = component(spec, "handover_ledger");
+  const levels = component(spec, "level_definitions");
   if (schema && (schema.lifecycle_fields || schema.vendor_independence_field)) {
     codes.add("LIFECYCLE_FIELD_MISSING");
   }
@@ -228,6 +246,19 @@ function emittableCodes(spec) {
   if (stratified) (stratified.violation_codes || []).forEach((code) => codes.add(code));
   if (scoring && scoring.reliability_disclosure_rule_zh) codes.add("SILENT_UNRELIABLE_OUTPUT");
   if (scoring && scoring.sample_sufficiency_rule_zh) codes.add("SAMPLE_INSUFFICIENT_CLAIMED_FAIR");
+  // 运行时从基准读取的两个码，与实际发出的值同源：等级闸门码由 checkLevel 直接发出
+  // （levels.gate_violation_code），分母完整性码由 checkDenominator 直接发出
+  // （scoring.denominator_integrity_violation_code，带类别后缀）。此前两者以字面量登记，
+  // 基准把 gate_violation_code 改成未登记的码时本自检毫无反应（审计缺陷 S1-2）。
+  // The two codes read from the baseline at run time, drawn from the same source as the
+  // values actually emitted: checkLevel emits levels.gate_violation_code and
+  // checkDenominator emits scoring.denominator_integrity_violation_code with a category
+  // suffix. They used to be registered as literals, so a baseline renaming
+  // gate_violation_code to an unregistered code drew no reaction (audit finding S1-2).
+  if (levels && levels.gate_violation_code) codes.add(String(levels.gate_violation_code).split(":")[0]);
+  if (scoring && scoring.denominator_integrity_violation_code) {
+    codes.add(String(scoring.denominator_integrity_violation_code).split(":")[0]);
+  }
   return codes;
 }
 
@@ -241,7 +272,17 @@ function emittableCodes(spec) {
 // the registry never registered).
 function registryProblems(spec) {
   const registry = spec.violation_code_registry && spec.violation_code_registry.codes;
-  if (!registry) return [];
+  // 元检查的输入缺席不是「无问题」：整张登记表不存在时本自检无从执行，必须报出来而不是
+  // 把自己关掉。此前这里返回空数组，删掉整张 violation_code_registry.codes 后输出与干净
+  // 运行逐字节相同且退出 0，而第二实现对同一输入以退出码 2 拒绝（审计缺陷 S1-1、S3-3）。
+  // An absent input to the meta-check is not a clean bill: with no registry at all the
+  // self-check cannot run and must say so instead of switching itself off. This used to
+  // return an empty list, so deleting the whole violation_code_registry.codes table left
+  // byte-identical output at exit 0 while the second implementation refused the same input
+  // at exit 2 (audit findings S1-1 and S3-3).
+  if (!registry) {
+    return ["violation_code_registry.codes 缺失，码集自检无从执行，不作判定 / violation_code_registry.codes is absent, the code self-check cannot run and no verdict is issued"];
+  }
   const known = new Set(Object.keys(registry));
   const problems = [];
   for (const code of emittableCodes(spec)) {
@@ -278,6 +319,95 @@ function resolvePath(root, dotted) {
   );
 }
 
+// 基准的结构性前提：本工具真正解引用的组件与字段路径必须存在。缺失属兼容问题，
+// 以退出码 2 拒绝整次运行，而不是在判定过程中裸抛 TypeError 落到退出码 1
+//（审计缺陷 S2-2：删掉 node_schema 组件曾在第 182 行崩溃并退出 1）。
+// Structural prerequisites of the baseline: every component and field path this tool
+// actually dereferences must exist. An absence is a compatibility matter refusing the run
+// at exit code 2, rather than a bare TypeError mid-verdict landing on exit code 1 (audit
+// finding S2-2: deleting the node_schema component used to crash and exit 1).
+const REQUIRED_SPEC_PATHS = [
+  "node_schema.required_fields",
+  "scoring_definitions.metrics",
+  "scoring_definitions.denominator_integrity_applies_to",
+  "scoring_definitions.denominator_integrity_required_categories",
+  "level_definitions.levels",
+  "level_definitions.level_binding_fields",
+  "decision_rules.risk_entries",
+];
+
+function structureProblems(spec) {
+  if (!spec || !Array.isArray(spec.components)) {
+    return ["SPEC_STRUCTURE_INVALID: 基准缺 components 数组，不作判定 / the baseline carries no components array; no verdict is issued"];
+  }
+  const problems = [];
+  for (const dotted of REQUIRED_SPEC_PATHS) {
+    const parts = String(dotted).split(".");
+    const comp = component(spec, parts[0]);
+    if (!comp) {
+      problems.push(`SPEC_STRUCTURE_INVALID: 基准缺必需组件 ${parts[0]}，不作判定 / required component ${parts[0]} is absent from the baseline; no verdict is issued`);
+      continue;
+    }
+    if (!isPresent(resolvePath(comp, parts.slice(1).join(".")))) {
+      problems.push(`SPEC_STRUCTURE_INVALID: 基准的 ${dotted} 缺失或为空，不作判定 / ${dotted} is absent or empty in the baseline; no verdict is issued`);
+    }
+  }
+  return [...new Set(problems)];
+}
+
+// 样例集的结构性前提与期望总数。空集不是「全部通过」，少一条不得与全部通过在输出上
+// 不可区分：条目总数与正反两侧计数由样例集自身声明（expected_fixture_count /
+// expected_accept_count / expected_reject_count），本工具读入后与实到条目逐项比对，
+// 不等即整次拒绝（审计缺陷 S1-7）。标识唯一性同时在此校验（S2-4），逐样例必备字段
+// 也在此核，避免在判定循环里裸崩（S2-2）。
+// Structural prerequisites of the fixture set, and its declared totals. An empty set is
+// not "everything passed", and one fixture fewer may not be indistinguishable from a full
+// pass: the item total and the two polarity counts are declared by the set itself
+// (expected_fixture_count / expected_accept_count / expected_reject_count), read here and
+// compared item by item against what actually arrived, with any disagreement refusing the
+// run (audit finding S1-7). Identifier uniqueness is checked here too (S2-4), as are the
+// per-fixture mandatory fields, so the verdict loop can no longer crash bare (S2-2).
+function fixtureSetProblems(fixtureFile) {
+  const fixtures = fixtureFile && fixtureFile.fixtures;
+  if (!Array.isArray(fixtures) || fixtures.length === 0) {
+    return ["FIXTURE_SET_INVALID: 样例集为空或不是数组；零条样例不是「全部通过」，不作判定 / the fixture set is empty or not an array; zero fixtures is not a full pass and no verdict is issued"];
+  }
+  const problems = [];
+  const seen = new Set();
+  for (const fixture of fixtures) {
+    const id = fixture && fixture.fixture_id;
+    if (typeof id !== "string" || id.trim() === "") {
+      problems.push("FIXTURE_SET_INVALID: 有样例缺 fixture_id，不作判定 / a fixture carries no fixture_id; no verdict is issued");
+      continue;
+    }
+    if (seen.has(id)) {
+      problems.push(`FIXTURE_SET_INVALID: 样例标识 ${id} 重复，重复条目不得计入总数 / fixture id ${id} appears more than once and duplicates may not count towards the total`);
+    }
+    seen.add(id);
+    if (fixture.expected_verdict !== "accept" && fixture.expected_verdict !== "reject") {
+      problems.push(`FIXTURE_SET_INVALID: ${id} 的 expected_verdict 不是 accept 或 reject / expected_verdict of ${id} is neither accept nor reject`);
+    }
+    if (fixture.expected_reasons !== undefined && !Array.isArray(fixture.expected_reasons)) {
+      problems.push(`FIXTURE_SET_INVALID: ${id} 的 expected_reasons 不是数组 / expected_reasons of ${id} is not an array`);
+    }
+  }
+  const counts = [
+    ["expected_fixture_count", fixtureFile.expected_fixture_count, fixtures.length],
+    ["expected_accept_count", fixtureFile.expected_accept_count,
+      fixtures.filter((item) => item && item.expected_verdict === "accept").length],
+    ["expected_reject_count", fixtureFile.expected_reject_count,
+      fixtures.filter((item) => item && item.expected_verdict === "reject").length],
+  ];
+  for (const [key, declared, actual] of counts) {
+    if (typeof declared !== "number") {
+      problems.push(`FIXTURE_SET_INVALID: 样例集未声明 ${key}，条目总数无从复核，不作判定 / the fixture set declares no ${key}, the item total cannot be re-checked and no verdict is issued`);
+    } else if (declared !== actual) {
+      problems.push(`FIXTURE_SET_INVALID: ${key} 声明 ${declared}，实到 ${actual} / ${key} declares ${declared} but ${actual} arrived`);
+    }
+  }
+  return [...new Set(problems)];
+}
+
 // 兼容校验：基准版本须达到 v0.2，样例须声明与之相同的基准版本。任一不满足即停止，
 // 不作任何判定——这一步本身就是版本治理的执行，不是可选的礼貌检查。
 // Compatibility gate: the baseline must be at least v0.2 and the fixtures must declare
@@ -285,6 +415,14 @@ function resolvePath(root, dotted) {
 // version governance being executed rather than a courtesy check.
 function checkCompatibility(spec, fixtureFile) {
   const problems = [];
+  // 结构性前提先于一切判据：缺组件、缺字段、空样例集或声明总数不符时，后续判据无从执行，
+  // 在此即返回，不再往下解引用。
+  // Structural prerequisites come before every criterion: with a component, a field, the
+  // fixture set or the declared totals missing, nothing below can run, so the run returns
+  // here rather than dereferencing further.
+  problems.push(...structureProblems(spec));
+  problems.push(...fixtureSetProblems(fixtureFile));
+  if (problems.length > 0) return problems;
   if (!versionAtLeast(spec.version, MIN_SPEC_VERSION)) {
     problems.push(
       `基准版本 ${spec.version} 低于本工具要求的 ${MIN_SPEC_VERSION.join(".")}；`
@@ -861,7 +999,7 @@ function checkDecision(decision, rules) {
 // Step 0: any fixture naming a source of record must match the five required fields
 // of the same node in constraints.geojson, verbatim.
 function checkSourceAlignment(fixture, schema, nodeSource) {
-  if (!nodeSource) return { reasons: [], line: null };
+  if (!nodeSource) return { reasons: [], line: null, engaged: false };
   let record = fixture.source_of_record;
   // 强制对齐：样例节点 id 与来源文件中的 feature id 相同时，即使未声明
   // source_of_record 也须逐字对齐——真实节点 id 不得携带被改写的字段值
@@ -874,10 +1012,10 @@ function checkSourceAlignment(fixture, schema, nodeSource) {
       && nodeSource.features.some((item) => item.properties.id === fixture.node.id)) {
     record = { file: nodeSource.__source_label || "node source", feature_id: fixture.node.id };
   }
-  if (!record) return { reasons: [], line: null };
-  if (!fixture.node) return { reasons: [`SOURCE_MISMATCH:${record.feature_id}`], line: null };
+  if (!record) return { reasons: [], line: null, engaged: false };
+  if (!fixture.node) return { reasons: [`SOURCE_MISMATCH:${record.feature_id}`], line: null, engaged: true };
   const feature = nodeSource.features.find((item) => item.properties.id === record.feature_id);
-  if (!feature) return { reasons: [`SOURCE_MISMATCH:${record.feature_id}`], line: null };
+  if (!feature) return { reasons: [`SOURCE_MISMATCH:${record.feature_id}`], line: null, engaged: true };
   const reasons = [];
   for (const field of schema.required_fields) {
     if (feature.properties[field.field] !== fixture.node[field.field]) {
@@ -888,7 +1026,7 @@ function checkSourceAlignment(fixture, schema, nodeSource) {
     ? `    ${fixture.fixture_id} ← ${record.file}#${record.feature_id} : `
       + `${schema.required_fields.length} 个必填字段逐字一致 / ${schema.required_fields.length} required fields match verbatim`
     : `    ${fixture.fixture_id} ← ${record.file}#${record.feature_id} : 不一致 / mismatch`;
-  return { reasons, line };
+  return { reasons, line, engaged: true };
 }
 
 function evaluate(fixture, parts, nodeSource, runContext) {
@@ -914,6 +1052,7 @@ function evaluate(fixture, parts, nodeSource, runContext) {
     verdict: unique.length === 0 ? "accept" : "reject",
     reasons: unique,
     alignmentLine: alignment.line,
+    alignmentEngaged: alignment.engaged === true,
     skipped,
     // 有效等级：仅在基准明文规定回落时给出（REVIEW_OVERDUE 报 L0），其余情形为 null，
     // 即申报等级本身，不由本工具另行折算。
@@ -1001,8 +1140,37 @@ function provenanceLines(parts) {
 }
 
 function main() {
-  const spec = readJson(SPEC_PATH);
-  const fixtureFile = readJson(FIXTURES_PATH);
+  // 解析失败属兼容问题：基准或样例不是合法 JSON 时以退出码 2 拒绝整次运行，不再让
+  // SyntaxError 裸抛并落到与「有样例不一致」同一个退出码 1（审计缺陷 S2-1）。
+  // A parse failure is a compatibility matter: an unreadable or malformed baseline or
+  // fixtures file refuses the run at exit code 2 instead of letting a SyntaxError escape
+  // onto the same exit code 1 that means "a fixture disagreed" (audit finding S2-1).
+  let spec;
+  let fixtureFile;
+  try {
+    spec = readJson(SPEC_PATH);
+  } catch (error) {
+    process.stderr.write("兼容校验未通过，不作任何判定 / compatibility gate failed, no verdict issued\n");
+    process.stderr.write(`    SPEC_UNREADABLE: 基准文件不可读或不是合法 JSON（${path.basename(SPEC_PATH)}）：${error.message} / the baseline file is unreadable or not valid JSON\n`);
+    return 2;
+  }
+  try {
+    fixtureFile = readJson(FIXTURES_PATH);
+  } catch (error) {
+    process.stderr.write("兼容校验未通过，不作任何判定 / compatibility gate failed, no verdict issued\n");
+    process.stderr.write(`    FIXTURES_UNREADABLE: 样例文件不可读或不是合法 JSON（${path.basename(FIXTURES_PATH)}）：${error.message} / the fixtures file is unreadable or not valid JSON\n`);
+    return 2;
+  }
+
+  // 码全集导出：供对拍脚本 seb-crosscheck-run.js 与第二实现的可发码集合作双向比对。
+  // 默认运行不打印此行，正常输出一字不变。
+  // Code-set export: consumed by the cross-check script seb-crosscheck-run.js to compare
+  // this tool's emittable set against the second implementation's, in both directions. A
+  // default run prints none of this and its output is unchanged to the letter.
+  if (process.argv.includes("--print-emittable-codes")) {
+    process.stdout.write(`EMITTABLE_CODES_JSON ${JSON.stringify([...emittableCodes(spec)].sort())}\n`);
+    return 0;
+  }
 
   const compatibility = checkCompatibility(spec, fixtureFile);
   if (compatibility.length > 0) {
@@ -1135,11 +1303,41 @@ function main() {
     out.push("");
   }
 
+  // 各组件本轮实际执行次数：读者据此能看出某组判据本轮是否真的跑过，而不只是「存在」。
+  // 组件在基准中被删除、或样例不再声明其触发输入时，对应计数即降为 0（审计缺陷 S4-1）。
+  // How many times each component actually engaged this round: a reader can see whether a
+  // criteria group ran at all, not merely that it exists. Deleting a component from the
+  // baseline, or fixtures no longer declaring its triggering input, drops the count to 0
+  // (audit finding S4-1).
+  const hasLifecycleFields = Boolean(
+    (parts.schema.lifecycle_fields && parts.schema.lifecycle_fields.length) || parts.schema.vendor_independence_field
+  );
+  const executed = [
+    ["来源对齐 / source_alignment", results.filter((item) => item.result.alignmentEngaged).length],
+    ["节点 schema / node_schema", results.length],
+    ["生命周期 / lifecycle_fields", hasLifecycleFields ? results.filter((item) => item.fixture.level_claim).length : 0],
+    ["评分口径 / scoring_definitions", results.filter((item) => item.fixture.measurement_declaration).length],
+    ["权限边界 / ai_authority_boundary", parts.boundary ? results.filter((item) => item.fixture.authority_declaration).length : 0],
+    ["双联交接 / handover_ledger", parts.ledger ? results.filter((item) => item.fixture.handover_ledger).length : 0],
+    ["等级定义 / level_definitions", results.filter((item) => item.fixture.level_claim).length],
+    ["判定规则 / decision_rules", results.filter((item) => item.fixture.decision).length],
+  ];
+  out.push("[E] 组件执行次数 / Component engagements");
+  executed.forEach(([label, count]) => {
+    out.push(`    ${label} : ${count} / ${results.length}`);
+  });
+  out.push("");
+
   const accepted = results.filter((item) => item.result.verdict === "accept").length;
   out.push("汇总 / Summary");
   out.push(`    通过 / accepted : ${accepted}`);
   out.push(`    拒绝 / rejected : ${results.length - accepted}`);
   out.push(`    与期望一致 / matching expectation : ${matched} / ${results.length}`);
+  out.push(
+    `    条目总数复核 / declared item count : 声明 ${fixtureFile.expected_fixture_count} · 实跑 ${results.length}`
+      + `（正例 ${accepted} / 声明 ${fixtureFile.expected_accept_count}，反例 ${results.length - accepted} / 声明 ${fixtureFile.expected_reject_count}，逐项相等）`
+      + ` / declared ${fixtureFile.expected_fixture_count}, ran ${results.length}, each figure equal`
+  );
   out.push("    本次运行不写入 metrics.json，七项包容性指标保持 unknown");
   out.push("    this run writes nothing to metrics.json; the seven inclusion metrics stay unknown");
 
@@ -1147,4 +1345,15 @@ function main() {
   return matched === results.length ? 0 : 1;
 }
 
-process.exitCode = main();
+// 运行中任何未捕获的异常都是「不作判定」，不是「有样例不一致」：此前样例缺字段一类
+// 结构缺口会裸抛 TypeError 并落在退出码 1，与判定不一致同码（审计缺陷 S2-2、S3-5）。
+// Any uncaught exception means no verdict was issued, never that a fixture disagreed:
+// structural gaps such as a fixture missing a field used to throw a bare TypeError onto
+// exit code 1, the same code as a disagreeing verdict (audit findings S2-2 and S3-5).
+try {
+  process.exitCode = main();
+} catch (error) {
+  process.stderr.write("运行中出现未捕获异常，不作任何判定 / an uncaught exception occurred; no verdict is issued\n");
+  process.stderr.write(`    ${error && error.stack ? error.stack : String(error)}\n`);
+  process.exitCode = 2;
+}

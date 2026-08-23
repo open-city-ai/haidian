@@ -1,0 +1,203 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "participant_browser_execution_receipts",
+  "scope_note_zh": "参赛者本机真实浏览器执行记录：以无头 Chromium 实际驱动 visual/index.html 的令牌交互，逐事件记录观测状态并作哈希链。事件序列与结果可复跑核验；时间戳与摘要因运行而异。这是对本包自述协议的参赛者自测证据，不构成现场证据或运营批准。",
+  "scope_note_en": "Participant-side real-browser execution record: headless Chromium drives the token interaction of visual/index.html, recording each observed state into a hash chain. Event sequences and outcomes are re-runnable checks; timestamps and digests vary per run. This is participant self-test evidence of the package's own stated protocol, not field evidence and not an operating approval.",
+  "environment": {
+    "browser": "chromium",
+    "browser_version": "151.0.7922.34",
+    "viewport": "1440x1000",
+    "headless": true
+  },
+  "artifact_sha256": {
+    "visual/index.html": "cfe11ad040ddd4f368ca562753a5e0e99aa532ce01492ac74922cac118bf2a69",
+    "visual/assets/token-run.js": "555c4c7440fc3fba1d5b8e2a1bb35982065f66ab016aa64523a3de20d9e41a3e",
+    "visual/assets/three-0.160.0.min.js": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa"
+  },
+  "run_count": 3,
+  "event_count": 18,
+  "all_outcomes_ok": true,
+  "runs": [
+    {
+      "run_id": "run1-cycle-and-refusal",
+      "modality": "mouse",
+      "events": [
+        {
+          "seq": 1,
+          "t_mono_ms": 472174735.7,
+          "action": "load_page",
+          "observed_state": "全线空闲：可发出令牌。 Line clear — a token can be issued.",
+          "outcome_ok": true,
+          "note": "scene ready; zero remote requests asserted at run end",
+          "receipt_sha256": "6ca8775358db5e581174cb6b36a957348004a450d5360e8ab3aaf0d122406c35"
+        },
+        {
+          "seq": 2,
+          "t_mono_ms": 472175502.0,
+          "action": "issue_token",
+          "observed_state": "令牌占用 S1 到发场（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S1 Arrival Yard with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "token enters the line (R1 occupancy visible)",
+          "receipt_sha256": "6a8f29e6a2301d274745725999f9ce7d262307d507b21590d0046dcdaef3e5b0"
+        },
+        {
+          "seq": 3,
+          "t_mono_ms": 472192559.6,
+          "action": "issue_second_token_while_out",
+          "observed_state": "令牌占用 S1 到发场（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S1 Arrival Yard with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "R1: second issue refused while first token is out",
+          "receipt_sha256": "dbbbcdcc1c7c9b69c1dac209e3572ae4cfbabc84892948d8b8f4bb42218e8060"
+        },
+        {
+          "seq": 4,
+          "t_mono_ms": 472192561.2,
+          "action": "occupy_S1",
+          "observed_state": "令牌占用 S1 到发场（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S1 Arrival Yard with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "R6 one-token-one-section: exclusive occupancy observed",
+          "receipt_sha256": "406a9bda89aa4bedf18e825da0379ab57b407d166804571fe8c38561bc3368a8"
+        },
+        {
+          "seq": 5,
+          "t_mono_ms": 472194568.8,
+          "action": "occupy_S2",
+          "observed_state": "令牌占用 S2 下行道岔（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S2 Down Switch with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "R6 one-token-one-section: exclusive occupancy observed",
+          "receipt_sha256": "163a67c18b134513f45ba256eeb897fc1df13930ff2fa41e38f8469729b266e9"
+        },
+        {
+          "seq": 6,
+          "t_mono_ms": 472199588.9,
+          "action": "occupy_S3",
+          "observed_state": "令牌占用 S3 区间（3 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S3 Running Section with 3 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "R6 one-token-one-section: exclusive occupancy observed",
+          "receipt_sha256": "4e0e0a20df81fccc0696d39fc3800481f7573d67291bac4030e328c085c59759"
+        },
+        {
+          "seq": 7,
+          "t_mono_ms": 472201602.5,
+          "action": "occupy_S4",
+          "observed_state": "令牌占用 S4 零公里站（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S4 Zero-Kilometre Station with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "R6 one-token-one-section: exclusive occupancy observed",
+          "receipt_sha256": "8c1ecb4e0836c65f0ee00484172c91afaa6cd0111309750cfae3941bdb8b8adc"
+        },
+        {
+          "seq": 8,
+          "t_mono_ms": 472203610.0,
+          "action": "occupy_S5",
+          "observed_state": "令牌占用 S5 上行道岔（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S5 Up Switch with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "R6 one-token-one-section: exclusive occupancy observed",
+          "receipt_sha256": "3d7b396096779eec5c2bcfc75e9696e9dbbc50ef2bf9a88e030c9546f2610816"
+        },
+        {
+          "seq": 9,
+          "t_mono_ms": 472206621.7,
+          "action": "occupy_S6",
+          "observed_state": "令牌占用 S6 编组场（1 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S6 Marshalling Yard with 1 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "R6 one-token-one-section: exclusive occupancy observed",
+          "receipt_sha256": "4ad67acf5a8b8a1dede899cbdb643d7e6101f52271c459a3e10e561f227a6bee"
+        },
+        {
+          "seq": 10,
+          "t_mono_ms": 472209632.1,
+          "action": "full_line_transit",
+          "observed_state": "令牌已在编组场归还，全线空闲：可再发一枚。 Token returned at the Marshalling Yard — line clear, another token may be issued.",
+          "outcome_ok": true,
+          "note": "sections in order: S1>S2>S3>S4>S5>S6",
+          "receipt_sha256": "74b98653041de9c9113820f2e103af4b94c386412442645e656da294d2c155a8"
+        },
+        {
+          "seq": 11,
+          "t_mono_ms": 472209637.9,
+          "action": "token_returned_line_free",
+          "observed_state": "令牌已在编组场归还，全线空闲：可再发一枚。 Token returned at the Marshalling Yard — line clear, another token may be issued.",
+          "outcome_ok": true,
+          "note": "R5: window ends, line returned to public use",
+          "receipt_sha256": "8c0d39f6437978a38ab18434532c03093bb831515f95d7f90a0bccc060a49868"
+        },
+        {
+          "seq": 12,
+          "t_mono_ms": 472210265.2,
+          "action": "reissue_after_return",
+          "observed_state": "令牌占用 S1 到发场（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S1 Arrival Yard with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "next token issuable only after return",
+          "receipt_sha256": "abca0bd588f2b718ce2aebeb126eeaacdc64ed63542ebb25a41c038418376793"
+        },
+        {
+          "seq": 13,
+          "t_mono_ms": 472226683.6,
+          "action": "no_remote_requests",
+          "observed_state": "",
+          "outcome_ok": true,
+          "note": "remote_request_count=0",
+          "receipt_sha256": "ada1062e203ed3c27c52530e9c0b32f1180c8b1330fa4379cc41e89327bf0dc5"
+        },
+        {
+          "seq": 14,
+          "t_mono_ms": 472226683.7,
+          "action": "no_page_errors",
+          "observed_state": "",
+          "outcome_ok": true,
+          "note": "pageerror_count=0",
+          "receipt_sha256": "10bc53e8df2968a8917dd491814f3f22706e8f87bea28dab76ddb97acd810299"
+        }
+      ],
+      "final_digest": "10bc53e8df2968a8917dd491814f3f22706e8f87bea28dab76ddb97acd810299"
+    },
+    {
+      "run_id": "run2-keyboard",
+      "modality": "keyboard",
+      "events": [
+        {
+          "seq": 1,
+          "t_mono_ms": 472229818.6,
+          "action": "keyboard_space_issue",
+          "observed_state": "令牌占用 S1 到发场（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S1 Arrival Yard with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "keyboard equivalence: Space issues a token",
+          "receipt_sha256": "4532d7eb9111ae11e5e8ed85221b3a214b4a451e9856f96134dec64a1dddf7b9"
+        },
+        {
+          "seq": 2,
+          "t_mono_ms": 472246133.3,
+          "action": "keyboard_cycle_complete",
+          "observed_state": "令牌已在编组场归还，全线空闲：可再发一枚。 Token returned at the Marshalling Yard — line clear, another token may be issued.",
+          "outcome_ok": true,
+          "receipt_sha256": "48a9d7dfbc59d7a13fc279785a97b356844b1f70fdd4fd17d9ecf4f8bb049c6f"
+        }
+      ],
+      "final_digest": "48a9d7dfbc59d7a13fc279785a97b356844b1f70fdd4fd17d9ecf4f8bb049c6f"
+    },
+    {
+      "run_id": "run3-reduced-motion",
+      "modality": "reduced_motion",
+      "events": [
+        {
+          "seq": 1,
+          "t_mono_ms": 472249566.7,
+          "action": "reduced_motion_issue",
+          "observed_state": "令牌占用 S1 到发场（2 个场景卡）—— 其余区间此刻不得再发令牌。 Token occupies S1 Arrival Yard with 2 scenario cards; no second token may be issued.",
+          "outcome_ok": true,
+          "note": "prefers-reduced-motion: segment-step traversal",
+          "receipt_sha256": "7f0b877ba78bbe0515f0c71bbab810f8dae92bccc979888e75c4814601df79e0"
+        },
+        {
+          "seq": 2,
+          "t_mono_ms": 472261355.6,
+          "action": "reduced_motion_cycle_complete",
+          "observed_state": "令牌已在编组场归还，全线空闲：可再发一枚。 Token returned at the Marshalling Yard — line clear, another token may be issued.",
+          "outcome_ok": true,
+          "receipt_sha256": "b6f213d5c47164d58e9fea72688ee4cdf676d940046cacebdde13453b7c6a030"
+        }
+      ],
+      "final_digest": "b6f213d5c47164d58e9fea72688ee4cdf676d940046cacebdde13453b7c6a030"
+    }
+  ]
+}

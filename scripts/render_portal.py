@@ -298,7 +298,16 @@ def load_collections(collections_dir: Path | None, cards: list[dict[str, Any]]) 
     if not collections_dir.is_dir():
         raise PortalError(f"{collections_dir}: collections path must be a directory")
 
-    card_lookup = {card["source_path"]: card for card in cards}
+    repo_root = collections_dir.resolve().parent
+
+    def proposal_identity(raw_path: str) -> Path:
+        path = Path(raw_path)
+        return (path if path.is_absolute() else repo_root / path).resolve()
+
+    card_lookup = {
+        proposal_identity(text(card["source_path"])): card
+        for card in cards
+    }
     collections: list[dict[str, Any]] = []
     for path in sorted(collections_dir.glob("*.json")):
         try:
@@ -318,7 +327,7 @@ def load_collections(collections_dir: Path | None, cards: list[dict[str, Any]]) 
             if not isinstance(item, dict):
                 raise PortalError(f"{path}: each collection item must be an object")
             proposal_ref = safe_proposal_ref(item.get("proposal"))
-            matched = card_lookup.get(proposal_ref)
+            matched = card_lookup.get(proposal_identity(proposal_ref))
             rendered_items.append(
                 {
                     "proposal": proposal_ref,

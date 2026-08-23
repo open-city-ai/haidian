@@ -32,7 +32,7 @@ iteration: "v1.0"
 
 三处重点区数量为 3，但 polygon 均为临时粗略约束；获得主办方官方图件后，必须替换边界并重算用地、建筑、公共空间、分期、图件和指标。[data:geometry/key_areas.geojson#PROV-KEY-001] [metric:key_area_count] [source:BOUNDARY-SOURCE]
 
-需要特别披露：仓库 Issue #846 报告临时总体范围与 OSM 测绘的京张铁路遗址公园不相交，最近距离 412.5 米。本方案不把 OSM 当官方线位，也不把图中的脊柱称为遗址公园官方轴线；它只是临时范围内的关系模型，待官方遗产、公园和保护控制资料共同校正。[data:geometry/constraints.geojson#CONSTRAINT-PROV-001] [depth:existing_conditions_diagnosis]
+需要特别披露：仓库 Issue #846 报告临时总体范围与 OSM 测绘的京张铁路遗址公园不相交，最近距离 412.5 米；仓库随后登记的街道中心线交叉核查还显示，公告文字所指边界道路相对临时范围向东偏移约 533–898 米。后者仅作背景核查，不是官方边界，也不据此移动本次几何。本方案不把 OSM 或街道中心线当官方线位，也不把图中的脊柱称为遗址公园官方轴线；它只是临时范围内的关系模型，待官方遗产、公园和保护控制资料共同校正。[data:geometry/constraints.geojson#CONSTRAINT-PROV-001] [source:BOUNDARY-SOURCE] [depth:existing_conditions_diagnosis]
 
 ## 统筹研究范围产业与未来城市研究
 

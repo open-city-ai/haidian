@@ -2,7 +2,7 @@
 
 ## 中文
 
-截至 2026-08-21，本文件不声称投稿包已经完成清权。`visual/assets/rights-clearance-ledger.json` 保留 5 个兼容归组，并对 manifest 中 156 个路径建立 156 条逐文件资产记录（其中 155 个为非 manifest 内容文件）；`visual/assets/source-rights-evidence.json` 另以 schema 约束 50 条来源、120 个 OSM way、字体事实和外部取证请求。结构闭环只表示可审计披露，当前独立逐文件清权审计完成数仍为 **0**，`audit_records` 为空，公开或专业复用继续阻断，总体状态为 `not_fully_cleared`。
+截至 2026-08-23，本文件不声称投稿包已经完成清权。`visual/assets/rights-clearance-ledger.json` 保留 5 个兼容归组，并对 manifest 中 156 个路径建立 156 条逐文件资产记录（其中 155 个为非 manifest 内容文件）；`visual/assets/source-rights-evidence.json` 另以 schema 约束 51 条来源、120 个 OSM way、字体事实和外部取证请求。结构闭环只表示可审计披露，当前独立逐文件清权审计完成数仍为 **0**，`audit_records` 为空，公开或专业复用继续阻断，总体状态为 `not_fully_cleared`。
 
 - 文本、结构化记录与概念设计几何由声明的 AI Agent 为本投稿编制；其中事实、标准和空间依据仍受 `sources.json` 的权威等级与用途限制约束。
 - `geometry/site_boundary.geojson` 与 `geometry/key_areas.geojson` 继承仓库临时边界的非官方、低精度和再利用边界，不构成官方红线或审批依据。
@@ -33,9 +33,12 @@
 
 建议按“来源与许可证 → 字体与生成工具 → 地图衍生与署名 → Logo/地标 → 可编辑源与再利用范围”的顺序复核；任一环节未确认时，整体状态继续保持 `not_fully_cleared`，不得用部分完成替代发布许可。
 
+- Round 56 adds one citation-only Beijing Municipal Government public-page source and redistributes no page text, image, map, logo or layout. The bounded summary proves only reported approval status and textual context, not the approval instrument, statutory drawings, official geometry, parcel control, field condition, professional acceptance or reuse permission. No new media or model call occurred; overall rights remain `not_fully_cleared` and independent file-level audits remain 0.
+
 ## English
 
-As of 2026-08-21, this package does not claim that rights clearance is complete. `visual/assets/rights-clearance-ledger.json` retains five compatibility groups and records 156 file-level asset records for the 156 manifest paths (155 non-manifest content files). Schema-constrained `visual/assets/source-rights-evidence.json` separately records 50 sources, 120 OSM ways, font facts, and external evidence requests. Structural closure means audit-ready disclosure only: completed independent file-level clearance audits remain **0**, `audit_records` remains empty, public or professional reuse remains blocked, and the overall status remains `not_fully_cleared`.
+- Round 56 registers one citation-only Beijing Municipal Government public page and redistributes no page text, image, map, logo or layout. Its bounded summary establishes only reported approval status and textual context—not the approval instrument, statutory drawings, official geometry, parcel controls, field conditions, professional acceptance or reuse permission. No new media or model call occurred; overall rights remain `not_fully_cleared`, with 0 independent file-level audits.
+As of 2026-08-23, this package does not claim that rights clearance is complete. `visual/assets/rights-clearance-ledger.json` retains five compatibility groups and records 156 file-level asset records for the 156 manifest paths (155 non-manifest content files). Schema-constrained `visual/assets/source-rights-evidence.json` separately records 51 sources, 120 OSM ways, font facts, and external evidence requests. Structural closure means audit-ready disclosure only: completed independent file-level clearance audits remain **0**, `audit_records` remains empty, public or professional reuse remains blocked, and the overall status remains `not_fully_cleared`.
 
 - Narrative, structured records, and conceptual design geometry were prepared for this submission by the declared AI agent; factual, professional, and spatial inputs remain governed by the authority and use limits in `sources.json`.
 - `geometry/site_boundary.geojson` and `geometry/key_areas.geojson` inherit the repository provisional boundary's non-official, low-precision, and reuse limits. They are not official redlines or approval evidence.

@@ -1,0 +1,82 @@
+{
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "title_zh": "正式控规条件待确认",
+      "description_zh": "正式控制性详细规划条件（容积率、建筑高度、建筑密度、绿地率等）尚未公开发布。方案中所有涉及开发强度、建筑规模、功能比例的数据均为概念建议值，待正式控规条件确定后需全面复算。",
+      "impact": "high",
+      "affected_metrics": [
+        "green_ratio",
+        "public_space_ratio",
+        "overall_design_area_sqm"
+      ],
+      "affected_sections": [
+        "第四章4.2节用地布局",
+        "第四章4.4节建筑形态",
+        "第十章用地与建筑规模",
+        "第十二章指标复算"
+      ],
+      "remediation": "获取正式控规条件后，重算所有开发强度指标、建筑面积和用地比例，更新metrics.json和compliance_matrix.json",
+      "status": "open"
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "title_zh": "使用provisional boundary，待官方精确红线替换",
+      "description_zh": "本方案使用仓库维护者提供的临时粗略边界（provisional boundary）进行空间生成和面积校核。官方精确红线（GIS/CAD格式）尚未公开发布。所有GeoJSON图层中的polygon均为临时近似，不可用于审批、精确面积计算或法定规划控制。",
+      "impact": "high",
+      "affected_metrics": [
+        "coordinated_research_area_sqm",
+        "overall_design_area_sqm",
+        "key_detailed_design_area_sqm",
+        "zhongzhiyuan_area_sqm",
+        "baioC_area_sqm",
+        "dazhongsi_area_sqm"
+      ],
+      "affected_sections": [
+        "第二章三层范围",
+        "全部geometry/*.geojson"
+      ],
+      "remediation": "获取官方精确红线后，替换所有GeoJSON文件中的polygon坐标，使用EPSG:4548重算全部面积指标",
+      "status": "open"
+    },
+    {
+      "id": "A-BUILDING-001",
+      "title_zh": "现状建筑数据缺失，拆改留分类为概念建议",
+      "description_zh": "现状建筑的精确位置、层数、结构类型、建设年代、权属关系等数据缺失。方案中的建筑基底图层（geometry/buildings.geojson）为概念性示意，拆改留分类为基于公开资料和功能适配性的初步判断，不构成工程实施结论。",
+      "impact": "medium",
+      "affected_metrics": [],
+      "affected_sections": [
+        "第四章4.3节城市更新框架",
+        "第十章拆改留方案",
+        "geometry/buildings.geojson"
+      ],
+      "remediation": "获取现状建筑普查数据后，重新分类拆改留方案，更新建筑基底图层和更新项目清单",
+      "status": "open"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "title_zh": "市政设施容量数据缺失",
+      "description_zh": "现状市政基础设施（供水、排水、电力、通信、供热、燃气）的容量、负荷和余量数据缺失。方案中的市政新基建内容为概念性建议，未进行工程可行性验算。",
+      "impact": "medium",
+      "affected_metrics": [],
+      "affected_sections": [
+        "第四章4.5节市政新基建"
+      ],
+      "remediation": "获取市政设施现状数据后，进行容量评估和增量需求测算，更新市政规划建议",
+      "status": "open"
+    },
+    {
+      "id": "A-OWNERSHIP-001",
+      "title_zh": "土地权属数据缺失",
+      "description_zh": "土地权属关系（国有/集体、使用权归属、抵押状况）数据缺失。现状用地权属的精确边界未纳入本方案。更新项目的实施可行性评估需要权属数据支撑。",
+      "impact": "medium",
+      "affected_metrics": [],
+      "affected_sections": [
+        "第五章重点区域详细设计",
+        "第十一章更新项目清单"
+      ],
+      "remediation": "获取土地权属数据后，评估各更新项目的权属整合难度和实施路径，更新项目风险评级",
+      "status": "open"
+    }
+  ]
+}

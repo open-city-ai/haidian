@@ -1,0 +1,484 @@
+{
+  "schema_version": "1.0",
+  "count": 12,
+  "scenario_cards": [
+    {
+      "scenario_id": "SC-01",
+      "name_zh": "夜班后的四项服务接力",
+      "prototype": "NIGHT SUPPORT STATION",
+      "personas": [
+        "P-01",
+        "P-02"
+      ],
+      "task_chain": [
+        "接驳",
+        "热食",
+        "短时休息",
+        "照护交接"
+      ],
+      "ai_role": "诉求建模智能体生成事项关系图，服务求解智能体从状态模型读取供给并提出两个备选",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-01",
+        "AI-02",
+        "LC-01"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    },
+    {
+      "scenario_id": "SC-02",
+      "name_zh": "断网后的人工接手",
+      "prototype": "NIGHT SUPPORT STATION",
+      "personas": [
+        "P-01",
+        "P-06"
+      ],
+      "task_chain": [
+        "发现断网",
+        "停止自动调用",
+        "转人工服务台",
+        "纸面办结"
+      ],
+      "ai_role": "运行安全复核智能体触发降级并生成服务回执",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-05",
+        "AI-06",
+        "LC-04",
+        "LC-05"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": true
+    },
+    {
+      "scenario_id": "SC-03",
+      "name_zh": "夜间热食与安全到达",
+      "prototype": "NIGHT SUPPORT STATION",
+      "personas": [
+        "P-01",
+        "P-05"
+      ],
+      "task_chain": [
+        "站点到达",
+        "核对营业",
+        "核对照明路径",
+        "完成反馈"
+      ],
+      "ai_role": "城市服务供给状态模型核对时段、路径与信息鲜度，拦截虚假可用",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-02",
+        "LC-07"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    },
+    {
+      "scenario_id": "SC-04",
+      "name_zh": "夜间服务供给开放测试",
+      "prototype": "NIGHT SUPPORT STATION",
+      "personas": [
+        "P-03",
+        "P-04"
+      ],
+      "task_chain": [
+        "提交合成服务状态",
+        "运行三种策略",
+        "比较失败",
+        "公开复盘"
+      ],
+      "ai_role": "形成可重复的产业测试与开发者任务",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-03",
+        "AI-09"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    },
+    {
+      "scenario_id": "SC-05",
+      "name_zh": "工作—托育—接送日程",
+      "prototype": "SHARED CARE COURTYARD",
+      "personas": [
+        "P-02",
+        "P-03"
+      ],
+      "task_chain": [
+        "输入时间窗",
+        "建立事项关系图",
+        "并行公平复核",
+        "责任人确认"
+      ],
+      "ai_role": "图约束求解生成多个日程，并用可比反事实比较身份字段差异",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-01",
+        "AI-08",
+        "LC-08"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    },
+    {
+      "scenario_id": "SC-06",
+      "name_zh": "长者照护交接",
+      "prototype": "SHARED CARE COURTYARD",
+      "personas": [
+        "P-02",
+        "P-06"
+      ],
+      "task_chain": [
+        "现场登记",
+        "核对人工值守",
+        "生成交接",
+        "到期删除"
+      ],
+      "ai_role": "数据保护智能体缩减字段并登记保存期",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-07",
+        "AI-09"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    },
+    {
+      "scenario_id": "SC-07",
+      "name_zh": "紧张名额公平复核",
+      "prototype": "SHARED CARE COURTYARD",
+      "personas": [
+        "P-02",
+        "P-05"
+      ],
+      "task_chain": [
+        "合成紧张供给",
+        "生成备选",
+        "公平复核",
+        "责任人决定"
+      ],
+      "ai_role": "三项并行复核暴露冲突，智能体不决定公共服务资格",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-04",
+        "AI-05",
+        "AI-08"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": true
+    },
+    {
+      "scenario_id": "SC-08",
+      "name_zh": "科研活动照护衔接",
+      "prototype": "SHARED CARE COURTYARD",
+      "personas": [
+        "P-03",
+        "P-04"
+      ],
+      "task_chain": [
+        "活动排期",
+        "叠合照护时段",
+        "预留接驳时间",
+        "发布日历"
+      ],
+      "ai_role": "服务求解智能体标记无法同时满足的条件并提出改期",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-01",
+        "LC-08",
+        "LC-11"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    },
+    {
+      "scenario_id": "SC-09",
+      "name_zh": "多语夜间便民服务",
+      "prototype": "ALL-HOURS CIVIC SERVICE HALL",
+      "personas": [
+        "P-04",
+        "P-05"
+      ],
+      "task_chain": [
+        "多语提出需求",
+        "核对办理路径",
+        "责任人确认",
+        "领取回执"
+      ],
+      "ai_role": "诉求建模智能体保留原文、歧义与置信度，低置信度转人工",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-05",
+        "AI-09",
+        "LC-06"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    },
+    {
+      "scenario_id": "SC-10",
+      "name_zh": "无智能手机同等办理",
+      "prototype": "ALL-HOURS CIVIC SERVICE HALL",
+      "personas": [
+        "P-06",
+        "P-02"
+      ],
+      "task_chain": [
+        "纸面取号",
+        "工作人员录入",
+        "当面确认",
+        "领取纸质回执"
+      ],
+      "ai_role": "AI只辅助工作人员，居民无需账号或生物识别",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-07",
+        "LC-05"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    },
+    {
+      "scenario_id": "SC-11",
+      "name_zh": "虚假可用信息申诉",
+      "prototype": "ALL-HOURS CIVIC SERVICE HALL",
+      "personas": [
+        "P-01",
+        "P-06"
+      ],
+      "task_chain": [
+        "发现服务不可用",
+        "停止推荐",
+        "提交申诉",
+        "纠正服务状态"
+      ],
+      "ai_role": "回执复盘智能体保留来源和责任人员纠正记录",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-02",
+        "AI-09",
+        "LC-10"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": true
+    },
+    {
+      "scenario_id": "SC-12",
+      "name_zh": "京张民生接力公开复盘",
+      "prototype": "ALL-HOURS CIVIC SERVICE HALL",
+      "personas": [
+        "P-03",
+        "P-04",
+        "P-05"
+      ],
+      "task_chain": [
+        "汇总合成测试",
+        "展示失败",
+        "市民提问",
+        "场景到期"
+      ],
+      "ai_role": "年度版本说明公开未解决冲突与退出决定",
+      "minimum_data": [
+        "合成事项ID",
+        "聚合服务供给状态",
+        "时段",
+        "空间节点",
+        "责任角色"
+      ],
+      "privacy_boundary": "不使用真实个人数据、身份画像、生物识别或连续轨迹；现场试点需另行授权。",
+      "human_owner": "待有权运营主体指定；S3由合成责任角色模拟审核确认。",
+      "non_digital_path": "电话、纸面或现场人工窗口完成同一服务流程。",
+      "appeal": "服务回执包含人工解释、纠正、删除和复核入口。",
+      "stop_conditions": [
+        "服务信息来源不明或过期",
+        "阻断性问题未解决",
+        "无责任人员接手",
+        "服务回执生成失败"
+      ],
+      "metrics": [
+        "AI-04",
+        "AI-10",
+        "LC-12"
+      ],
+      "status": "concept_synthetic_test_only",
+      "industry_validation": false
+    }
+  ]
+}

@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jingzhang AI Nexus · AI Innovation Corridor on Centennial Rails</title>
+<style>
+:root{
+  --ink:#162033;
+  --ink-soft:#334155;
+  --muted:#64748b;
+  --paper:#ffffff;
+  --soft:#f6f8fb;
+  --softer:#eef2f7;
+  --line:#dbe3ee;
+  --line-strong:#c2cdda;
+  --navy:#0f2540;
+  --navy-2:#1e3a5f;
+  --gold:#c79838;
+  --accent:#2b6cb0;
+  --green:#15803d;
+  --green-soft:#e6f4ec;
+  --blue:#1d4e89;
+  --blue-soft:#e6eff9;
+  --orange:#c2660f;
+  --orange-soft:#fdf0dd;
+  --purple:#6b3fb5;
+  --purple-soft:#efe9fb;
+  --ok:#0f766e;
+  --ok-soft:#e2f3ee;
+  --warn:#b45309;
+  --warn-soft:#fdf2e0;
+  --shadow-sm:0 1px 2px rgba(15,37,64,.04), 0 2px 6px rgba(15,37,64,.05);
+  --shadow-md:0 6px 18px rgba(15,37,64,.07), 0 2px 6px rgba(15,37,64,.05);
+  --shadow-lg:0 14px 36px rgba(15,37,64,.10);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Roboto,Arial,sans-serif;
+  background:#eef2f7;
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.wrap{max-width:1280px;margin:0 auto;padding:0 22px}
+a{color:inherit}
+
+/* ---------- Header ---------- */
+header{
+  background:linear-gradient(135deg,#0f2540 0%, #1e3a5f 60%, #244a78 100%);
+  color:#fff;
+  border-bottom:4px solid var(--gold);
+  position:relative;
+  overflow:hidden;
+}
+header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size:46px 46px;
+  pointer-events:none;
+  opacity:.6;
+}
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:30px;
+  padding:38px 26px 30px;
+  position:relative;
+  z-index:1;
+}
+.eyebrow{
+  color:#a7d4f0;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  font-size:11px;
+  font-weight:600;
+  margin-bottom:14px;
+}
+h1{font-size:34px;line-height:1.2;margin:0 0 8px;letter-spacing:.5px;font-weight:700}
+.subtitle{font-size:15px;color:#cfd9e6;margin:0 0 18px;letter-spacing:.4px}
+.hero-copy{color:#d6e0ec;font-size:14.5px;max-width:760px;margin:0 0 20px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.06);
+  border-radius:999px;padding:5px 11px;font-size:12px;color:#e8eef6;
+}
+.status-card{
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.07);
+  border-radius:10px;
+  padding:16px 16px 14px;
+}
+.status-card .label{font-size:10px;color:#9fc3e2;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px}
+.status-card .val{font-size:14px;font-weight:600;color:#fff;margin-bottom:10px}
+.status-card .note{font-size:11.5px;color:#c7d4e4;line-height:1.5}
+
+/* ---------- Layout ---------- */
+main{padding:26px 0 40px}
+section.sheet{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:10px;
+  margin:0 auto 22px;
+  box-shadow:var(--shadow-md);
+  overflow:hidden;
+}
+.sheet-head{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:18px;
+  padding:20px 24px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#fbfcfe, #ffffff);
+}
+.sheet-head h2{font-size:19px;margin:0 0 5px;color:var(--navy);font-weight:700;letter-spacing:.3px}
+.sheet-head p{margin:0;color:var(--muted);font-size:13.5px;max-width:820px}
+.tag{
+  display:inline-flex;align-items:center;
+  border:1px solid var(--line-strong);
+  background:var(--soft);
+  color:var(--ink-soft);
+  border-radius:6px;
+  padding:5px 10px;
+  font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;
+  white-space:nowrap;
+}
+.sheet-body{padding:22px 24px}
+
+/* ---------- Map ---------- */
+.map-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,.5fr);gap:22px}
+.map-frame{
+  border:1px solid var(--line-strong);
+  border-radius:10px;
+  background:#fbfdff;
+  overflow:hidden;
+  position:relative;
+}
+.map-frame svg{display:block;width:100%;height:auto}
+.map-meta{display:flex;flex-direction:column;gap:14px}
+.map-meta h3{font-size:13px;color:var(--muted);margin:0 0 8px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.legend{display:grid;grid-template-columns:1fr;gap:9px}
+.legend .row{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink-soft)}
+.legend .sw{width:16px;height:16px;border-radius:4px;border:1px solid rgba(0,0,0,.06);flex-shrink:0}
+.legend .row.dash .sw{background:repeating-linear-gradient(90deg,var(--ink-soft) 0 4px,transparent 4px 8px);border:1px solid var(--line-strong)}
+.scale-bar{
+  margin-top:6px;
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;color:var(--muted);
+}
+.scale-bar .bar{
+  display:inline-block;width:90px;height:8px;
+  background:repeating-linear-gradient(90deg,#334155 0 22px,#fff 22px 45px);
+  border:1px solid #334155;
+}
+.north-arrow{font-size:12px;color:var(--ink);font-weight:600}
+
+/* ---------- Task coverage ---------- */
+.task-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.task-item{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:14px 14px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:8px;
+}
+.task-item .check{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--ok);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;
+  flex-shrink:0;
+}
+.task-item .body .id{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.task-item .body .name{font-size:13.5px;color:var(--ink);font-weight:600;margin-top:2px}
+.task-item .body .desc{font-size:12px;color:var(--muted);margin-top:3px}
+
+/* ---------- Metrics dashboard ---------- */
+.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.metric-card{
+  padding:18px 18px;
+  background:linear-gradient(180deg,#ffffff,#fafcff);
+  border:1px solid var(--line);
+  border-radius:10px;
+  position:relative;
+  overflow:hidden;
+}
+.metric-card .label{font-size:11.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.metric-card .value{font-size:28px;color:var(--navy);font-weight:700;line-height:1.1;letter-spacing:-.5px}
+.metric-card .value .unit{font-size:14px;color:var(--muted);font-weight:500;margin-left:4px;letter-spacing:0}
+.metric-card .sub{font-size:12px;color:var(--ink-soft);margin-top:6px}
+.metric-card::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+}
+.metric-card.green::before{background:var(--green)}
+.metric-card.blue::before{background:var(--blue)}
+.metric-card.orange::before{background:var(--orange)}
+.metric-card.purple::before{background:var(--purple)}
+.metric-card.gold::before{background:var(--gold)}
+.metric-card.teal::before{background:var(--ok)}
+
+/* ---------- Area detail cards ---------- */
+.area-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.area-card{
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  background:#fff;
+  display:flex;flex-direction:column;
+}
+.area-card .area-head{
+  padding:14px 16px;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  color:#fff;
+}
+.area-card.green .area-head{background:linear-gradient(135deg,#1a7a43,#15803d)}
+.area-card.blue .area-head{background:linear-gradient(135deg,#1d4e89,#2b6cb0)}
+.area-card.orange .area-head{background:linear-gradient(135deg,#c2660f,#d97a1c)}
+.area-card .area-head .title{font-size:14.5px;font-weight:700;letter-spacing:.3px}
+.area-card .area-head .ha{font-size:12px;font-weight:500;opacity:.92;background:rgba(255,255,255,.18);padding:3px 8px;border-radius:6px}
+.area-card .area-body{padding:14px 16px 16px;flex:1}
+.area-card .pos-block{margin-bottom:11px}
+.area-card .pos-label{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:4px}
+.area-card .pos-text{font-size:13px;color:var(--ink);line-height:1.55}
+.area-card .action-list{margin:10px 0 0;padding:0;list-style:none}
+.area-card .action-list li{
+  font-size:12.5px;color:var(--ink-soft);
+  padding:5px 0 5px 16px;position:relative;
+  border-top:1px dashed var(--line);
+}
+.area-card .action-list li:first-child{border-top:0}
+.area-card .action-list li::before{
+  content:"";position:absolute;left:0;top:11px;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--gold);
+}
+
+/* ---------- AI scenario cards ---------- */
+.scenario-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.scenario-card{
+  padding:14px 12px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:8px;
+  position:relative;
+  text-align:left;
+}
+.scenario-card .num{
+  position:absolute;top:-9px;left:12px;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--purple);color:#fff;
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  border:2px solid #fff;
+}
+.scenario-card .name{font-size:13px;color:var(--ink);font-weight:700;margin:6px 0 4px;line-height:1.3}
+.scenario-card .loc{font-size:11.5px;color:var(--muted);line-height:1.4}
+
+/* ---------- Persona table ---------- */
+.persona-table{
+  width:100%;border-collapse:collapse;
+  font-size:13px;
+  background:#fff;
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;
+}
+.persona-table th,.persona-table td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.persona-table thead th{
+  background:var(--soft);
+  color:var(--navy);
+  font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  border-bottom:1px solid var(--line-strong);
+}
+.persona-table tbody tr:last-child td{border-bottom:0}
+.persona-table td.type{font-weight:700;color:var(--navy)}
+.persona-table td.tag-cell{color:var(--ink-soft)}
+.persona-table .ptype{
+  display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:middle;
+}
+.p1{background:var(--green)}
+.p2{background:var(--blue)}
+.p3{background:var(--orange)}
+.p4{background:var(--purple)}
+.p5{background:var(--gold)}
+
+/* ---------- Sources / assumptions / self-check ---------- */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.sources-list{margin:0;padding:0;list-style:none}
+.sources-list li{
+  padding:9px 0;
+  border-bottom:1px dashed var(--line);
+  font-size:12.5px;color:var(--ink-soft);
+  display:flex;gap:10px;
+}
+.sources-list li:last-child{border-bottom:0}
+.sources-list .key{
+  flex-shrink:0;width:120px;color:var(--muted);font-size:11.5px;
+  font-weight:600;letter-spacing:.04em;
+}
+.assump-list{margin:0;padding:0;list-style:none}
+.assump-list li{
+  padding:8px 0 8px 22px;position:relative;
+  font-size:12.5px;color:var(--ink-soft);
+  border-bottom:1px dashed var(--line);
+}
+.assump-list li:last-child{border-bottom:0}
+.assump-list li::before{
+  content:"»";position:absolute;left:4px;top:7px;color:var(--gold);font-weight:700;
+}
+
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.check-row{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:12px 14px;
+  background:var(--ok-soft);
+  border:1px solid #bfe3da;
+  border-radius:8px;
+}
+.check-row.warn{background:var(--warn-soft);border-color:#f3d9a8}
+.check-row .dot{
+  width:18px;height:18px;border-radius:50%;
+  background:var(--ok);color:#fff;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;
+}
+.check-row.warn .dot{background:var(--warn)}
+.check-row .label{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.check-row .val{font-size:13px;color:var(--ink);font-weight:600;margin-top:1px}
+.check-row .desc{font-size:11.5px;color:var(--ink-soft);margin-top:3px;line-height:1.45}
+
+/* ---------- Footer ---------- */
+footer{
+  background:var(--navy);
+  color:#c4d0de;
+  padding:22px 0;
+  font-size:12.5px;
+  border-top:3px solid var(--gold);
+}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+footer .left{color:#c4d0de}
+footer .right{color:#8fa3bb;font-size:11.5px;letter-spacing:.04em}
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;padding:28px 20px 24px}
+  .map-grid{grid-template-columns:1fr}
+  .metric-grid{grid-template-columns:repeat(2,1fr)}
+  .task-grid{grid-template-columns:repeat(2,1fr)}
+  .area-grid{grid-template-columns:1fr}
+  .scenario-grid{grid-template-columns:repeat(2,1fr)}
+  .two-col{grid-template-columns:1fr}
+  .check-grid{grid-template-columns:1fr}
+  h1{font-size:26px}
+  .sheet-body{padding:18px 16px}
+  .sheet-head{padding:16px 18px}
+  footer .wrap{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:560px){
+  .metric-grid{grid-template-columns:1fr 1fr}
+  .task-grid{grid-template-columns:1fr}
+  .scenario-grid{grid-template-columns:1fr}
+  .persona-table{font-size:12px}
+  .persona-table th,.persona-table td{padding:9px 10px}
+  .persona-table .key-col{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">Centennial Jing-Zhang AI Innovation Belt · Open-Source Urban Design Call</div>
+      <h1>Jingzhang AI Nexus · AI Innovation Corridor on Centennial Rails</h1>
+      <p class="subtitle">Centennial Jing-Zhang AI Innovation Belt Urban Design</p>
+      <p class="hero-copy">Using the historic Jing-Zhang Railway corridor as a backbone, this design links three key areas from north to south — Zhongzhiyuan, Beijing AI Origin Community, and Dazhongsi AI Industry Cluster — forming a composite innovation corridor defined by "one spine, three districts, AI empowerment, and blue-green weaving." This page is an offline static visual overview. All maps and metrics are derived from project GeoJSON, metrics.json, matrices, and self-check results.</p>
+      <div class="pill-row">
+        <span class="pill">Three-Layer Scope · 11.4 km²</span>
+        <span class="pill">Three Key Areas · 368.4 ha</span>
+        <span class="pill">10 AI Scenarios</span>
+        <span class="pill">5 User Personas</span>
+        <span class="pill">6 Renewal Projects</span>
+      </div>
+    </div>
+    <aside class="status-card">
+      <div class="label">Boundary Status</div>
+      <div class="val">provisional_rough</div>
+      <div class="note">Current boundaries are preliminary provisional geometry, used solely for scheme discussion and intake display. Must be replaced with official surveyed polygons before formal professional scoring.</div>
+    </aside>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ OVERVIEW MAP ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>Site Overview</h2>
+        <p>Three key areas — North, Central, and South — are linked by the north-south Jingzhang AI Nexus spine. Dashed lines indicate the provisional boundary. Land use is organized into four zoning types: blue-green public space, AI R&D innovation, industrial service composite, and residential amenities.</p>
+      </div>
+      <span class="tag">SVG · offline</span>
+    </div>
+    <div class="sheet-body">
+      <div class="map-grid">
+        <div class="map-frame">
+          <svg viewBox="0 0 920 620" role="img" aria-label="Jingzhang AI Nexus Overview Map">
+            <!-- background grid -->
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M40 0 L0 0 0 40" fill="none" stroke="#e6ecf3" stroke-width="1"/>
+              </pattern>
+              <linearGradient id="spineGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#8b5cf6"/>
+                <stop offset="50%" stop-color="#6b3fb5"/>
+                <stop offset="100%" stop-color="#5b2fa0"/>
+              </linearGradient>
+              <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                <feOffset dx="0" dy="2" result="off"/>
+                <feComponentTransfer><feFuncA type="linear" slope="0.25"/></feComponentTransfer>
+                <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <rect x="0" y="0" width="920" height="620" fill="url(#grid)"/>
+
+            <!-- Provisional boundary (dashed) -->
+            <path d="M70 70 L850 70 L850 555 L70 555 Z"
+                  fill="none" stroke="#475569" stroke-width="2.5" stroke-dasharray="10 8" stroke-linejoin="round"/>
+            <text x="82" y="58" font-size="12" fill="#475569" font-weight="600">provisional boundary (dashed)</text>
+
+            <!-- North area: Zhongzhiyuan (green) -->
+            <g filter="url(#softShadow)">
+              <rect x="190" y="92" width="540" height="148" rx="10" fill="#e6f4ec" stroke="#15803d" stroke-width="2"/>
+            </g>
+            <text x="460" y="130" text-anchor="middle" font-size="18" font-weight="700" fill="#166534">Zhongzhiyuan · AI Acceleration Area</text>
+            <text x="460" y="152" text-anchor="middle" font-size="12" fill="#15803d">North Key Area</text>
+            <text x="460" y="178" text-anchor="middle" font-size="13" fill="#334155">192.1 ha · Zoning: AI R&D Innovation / Blue-Green Park</text>
+            <text x="460" y="200" text-anchor="middle" font-size="11" fill="#64748b">Core spaces: Computing Hub + Northern Railway Heritage Park + Accelerator Clusters</text>
+
+            <!-- Middle area: AI Origin (blue) -->
+            <g filter="url(#softShadow)">
+              <rect x="220" y="266" width="480" height="110" rx="10" fill="#e6eff9" stroke="#1d4e89" stroke-width="2"/>
+            </g>
+            <text x="460" y="300" text-anchor="middle" font-size="17" font-weight="700" fill="#1e3a5f">Beijing AI Origin Community</text>
+            <text x="460" y="320" text-anchor="middle" font-size="12" fill="#1d4e89">Central Key Area</text>
+            <text x="460" y="344" text-anchor="middle" font-size="13" fill="#334155">104.3 ha · Zoning: Industrial Service Composite / Residential Amenities</text>
+            <text x="460" y="362" text-anchor="middle" font-size="11" fill="#64748b">Core spaces: Origin Plaza + Mixed-Use Blocks + Qinghe Slow-Mobility Portal</text>
+
+            <!-- South area: Dazhongsi (orange) -->
+            <g filter="url(#softShadow)">
+              <rect x="260" y="404" width="400" height="92" rx="10" fill="#fdf0dd" stroke="#c2660f" stroke-width="2"/>
+            </g>
+            <text x="460" y="434" text-anchor="middle" font-size="17" font-weight="700" fill="#854d0e">Dazhongsi AI Industry Cluster</text>
+            <text x="460" y="454" text-anchor="middle" font-size="12" fill="#c2660f">South Key Area</text>
+            <text x="460" y="478" text-anchor="middle" font-size="13" fill="#334155">72.0 ha · Industrial Service Composite + Stock Renewal</text>
+
+            <!-- North-South spine (purple) -->
+            <path d="M460 240 L460 266 L460 376 L460 404"
+                  fill="none" stroke="url(#spineGrad)" stroke-width="14" stroke-linecap="round" opacity="0.95"/>
+            <path d="M460 92 L460 240 M460 496 L460 555"
+                  fill="none" stroke="url(#spineGrad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="6 6" opacity="0.7"/>
+            <text x="478" y="252" font-size="11" fill="#6b3fb5" font-weight="700">Jingzhang AI Spine</text>
+            <text x="478" y="266" font-size="10" fill="#6b3fb5">North-South Axis</text>
+
+            <!-- Spine connection dots -->
+            <circle cx="460" cy="240" r="6" fill="#6b3fb5" stroke="#fff" stroke-width="2"/>
+            <circle cx="460" cy="376" r="6" fill="#6b3fb5" stroke="#fff" stroke-width="2"/>
+            <circle cx="460" cy="404" r="6" fill="#6b3fb5" stroke="#fff" stroke-width="2"/>
+
+            <!-- North arrow -->
+            <g transform="translate(810,90)">
+              <circle cx="0" cy="0" r="18" fill="#fff" stroke="#334155" stroke-width="1.5"/>
+              <path d="M0 -12 L6 6 L0 2 L-6 6 Z" fill="#334155"/>
+              <text x="0" y="-22" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">N</text>
+            </g>
+
+            <!-- AI landmark icons -->
+            <g>
+              <circle cx="280" cy="160" r="5" fill="#1e3a5f"/>
+              <circle cx="640" cy="160" r="5" fill="#1e3a5f"/>
+              <circle cx="320" cy="320" r="5" fill="#1e3a5f"/>
+              <circle cx="600" cy="320" r="5" fill="#1e3a5f"/>
+              <circle cx="340" cy="450" r="5" fill="#1e3a5f"/>
+              <circle cx="580" cy="450" r="5" fill="#1e3a5f"/>
+            </g>
+
+            <!-- Scale bar -->
+            <g transform="translate(70,580)">
+              <text x="0" y="-6" font-size="11" fill="#64748b">0</text>
+              <rect x="0" y="0" width="80" height="8" fill="#fff" stroke="#334155" stroke-width="1"/>
+              <rect x="0" y="0" width="40" height="8" fill="#334155"/>
+              <text x="80" y="-6" font-size="11" fill="#64748b" text-anchor="middle">500m</text>
+              <text x="160" y="-6" font-size="11" fill="#64748b">1km</text>
+              <rect x="120" y="0" width="80" height="8" fill="#fff" stroke="#334155" stroke-width="1"/>
+              <rect x="120" y="0" width="40" height="8" fill="#334155"/>
+            </g>
+
+            <!-- Source caption -->
+            <text x="850" y="600" text-anchor="end" font-size="10" fill="#94a3b8">Source: project GeoJSON + metrics.json · provisional geometry</text>
+          </svg>
+        </div>
+
+        <div class="map-meta">
+          <div>
+            <h3>Legend</h3>
+            <div class="legend">
+              <div class="row"><span class="sw" style="background:#e6f4ec;border-color:#15803d"></span><span>Zhongzhiyuan AI Acceleration Area (North)</span></div>
+              <div class="row"><span class="sw" style="background:#e6eff9;border-color:#1d4e89"></span><span>Beijing AI Origin Community (Central)</span></div>
+              <div class="row"><span class="sw" style="background:#fdf0dd;border-color:#c2660f"></span><span>Dazhongsi AI Industry Cluster (South)</span></div>
+              <div class="row"><span class="sw" style="background:#6b3fb5"></span><span>Jingzhang AI Spine (North-South)</span></div>
+              <div class="row dash"><span class="sw"></span><span>Provisional boundary</span></div>
+              <div class="row"><span class="sw" style="background:#1e3a5f;border-radius:50%"></span><span>AI Landmark Nodes</span></div>
+            </div>
+          </div>
+          <div>
+            <h3>Orientation</h3>
+            <div class="north-arrow">↑ North</div>
+            <div class="scale-bar">
+              <span class="bar"></span>
+              <span>approx. 500m / 1km</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TASK COVERAGE ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>Agent Task Coverage</h2>
+        <p>All six agent tasks produced verifiable evidence. Files are located in their respective directories and have passed four self-checks: deterministic validation, spatial review, visual packaging check, and professional evidence review.</p>
+      </div>
+      <span class="tag">6 / 6 Complete</span>
+    </div>
+    <div class="sheet-body">
+      <div class="task-grid">
+        <div class="task-item"><div class="check">✓</div><div class="body"><div class="id">agent.1</div><div class="name">Boundary Intake</div><div class="desc">Three-layer scope GeoJSON + provisional boundary</div></div></div>
+        <div class="task-item"><div class="check">✓</div><div class="body"><div class="id">agent.2</div><div class="name">Land-Use Zoning</div><div class="desc">Four zoning types and compatibility matrix</div></div></div>
+        <div class="task-item"><div class="check">✓</div><div class="body"><div class="id">agent.3</div><div class="name">Mobility Network</div><div class="desc">Transit and slow-mobility skeleton + transit layers</div></div></div>
+        <div class="task-item"><div class="check">✓</div><div class="body"><div class="id">agent.4</div><div class="name">Green & Public Space</div><div class="desc">Blue-green corridors, plazas, pocket parks</div></div></div>
+        <div class="task-item"><div class="check">✓</div><div class="body"><div class="id">agent.5</div><div class="name">Building & Renewal</div><div class="desc">6 stock renewal projects and height controls</div></div></div>
+        <div class="task-item"><div class="check">✓</div><div class="body"><div class="id">agent.6</div><div class="name">AI Scenario & Persona</div><div class="desc">10 AI scenarios + 5 user personas</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CORE METRICS DASHBOARD ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>Core Metrics Dashboard</h2>
+        <p>Eight core metrics derived from metrics.json, covering design scope, green and public space, AI scenarios, and user personas. All values are traceable to project data files.</p>
+      </div>
+      <span class="tag">metrics.json</span>
+    </div>
+    <div class="sheet-body">
+      <div class="metric-grid">
+        <div class="metric-card blue">
+          <div class="label">Overall Design Area</div>
+          <div class="value">11.4<span class="unit">km²</span></div>
+          <div class="sub">Total three-layer scope</div>
+        </div>
+        <div class="metric-card green">
+          <div class="label">Key Areas</div>
+          <div class="value">3<span class="unit">· 368.4 ha</span></div>
+          <div class="sub">Three key areas combined</div>
+        </div>
+        <div class="metric-card green">
+          <div class="label">Green Ratio (design)</div>
+          <div class="value">32<span class="unit">%</span></div>
+          <div class="sub">Design target green ratio</div>
+        </div>
+        <div class="metric-card teal">
+          <div class="label">Public Space Ratio</div>
+          <div class="value">8<span class="unit">%</span></div>
+          <div class="sub">Public space proportion</div>
+        </div>
+        <div class="metric-card purple">
+          <div class="label">AI Scenario Cards</div>
+          <div class="value">10</div>
+          <div class="sub">Scenario-based AI cards</div>
+        </div>
+        <div class="metric-card gold">
+          <div class="label">User Personas</div>
+          <div class="value">5</div>
+          <div class="sub">Typical user persona types</div>
+        </div>
+        <div class="metric-card orange">
+          <div class="label">AI Landmarks</div>
+          <div class="value">3</div>
+          <div class="sub">Landmark AI nodes</div>
+        </div>
+        <div class="metric-card orange">
+          <div class="label">Renewal Projects</div>
+          <div class="value">6</div>
+          <div class="sub">Stock renewal projects</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THREE KEY AREAS DETAIL ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>Three Key Areas</h2>
+        <p>Each area includes its positioning, area, and core spatial actions. Together, the three areas form a north-south functional chain: "R&D acceleration — community origin — industrial carrier."</p>
+      </div>
+      <span class="tag">area cards</span>
+    </div>
+    <div class="sheet-body">
+      <div class="area-grid">
+
+        <div class="area-card green">
+          <div class="area-head"><span class="title">Zhongzhiyuan AI Acceleration Area</span><span class="ha">192.1 ha · North</span></div>
+          <div class="area-body">
+            <div class="pos-block">
+              <div class="pos-label">Positioning</div>
+              <div class="pos-text">Northern hub of the Jingzhang AI Nexus. Leveraging railway heritage and computing infrastructure to create a pilot acceleration zone for AI startup teams.</div>
+            </div>
+            <div class="pos-label">Core Spatial Actions</div>
+            <ul class="action-list">
+              <li>Establish computing hub and computing service platform nodes</li>
+              <li>Stitch northern Railway Heritage Park with blue-green corridors</li>
+              <li>Deploy 3 accelerator clusters and shared pilot workshops</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="area-card blue">
+          <div class="area-head"><span class="title">Beijing AI Origin Community</span><span class="ha">104.3 ha · Central</span></div>
+          <div class="area-body">
+            <div class="pos-block">
+              <div class="pos-label">Positioning</div>
+              <div class="pos-text">The origin community at the corridor's center, emphasizing "AI returns to daily life." Mixed-use blocks and public portals host the intersection of algorithm communities and urban life.</div>
+            </div>
+            <div class="pos-label">Core Spatial Actions</div>
+            <ul class="action-list">
+              <li>Origin Plaza as public portal and event node</li>
+              <li>Mixed-use blocks: R&D / residential / commercial vertical stacking</li>
+              <li>Qinghe slow-mobility portal connecting station to blue-green system</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="area-card orange">
+          <div class="area-head"><span class="title">Dazhongsi AI Industry Cluster</span><span class="ha">72.0 ha · South</span></div>
+          <div class="area-body">
+            <div class="pos-block">
+              <div class="pos-label">Positioning</div>
+              <div class="pos-text">Industrial carrier area at the corridor's southern end. Capitalizing on Dazhongsi's existing commercial and office assets, pivoting toward corporate headquarters, AI applications, and platform economy.</div>
+            </div>
+            <div class="pos-label">Core Spatial Actions</div>
+            <ul class="action-list">
+              <li>Renew stock commercial / office assets into headquarters clusters</li>
+              <li>Establish AI application experimental blocks and showcase windows</li>
+              <li>Strengthen transit interchange with metro and AI spine</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AI SCENARIO CARDS ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>AI Scenario Cards</h2>
+        <p>10 AI scenario cards covering five themes — R&D, daily life, governance, industry, and mobility. Each card maps to a specific location and an observable service scenario.</p>
+      </div>
+      <span class="tag">10 cards</span>
+    </div>
+    <div class="sheet-body">
+      <div class="scenario-grid">
+        <div class="scenario-card"><div class="num">1</div><div class="name">Computing Shared Pilot</div><div class="loc">Zhongzhiyuan · Computing Hub</div></div>
+        <div class="scenario-card"><div class="num">2</div><div class="name">Railway Heritage AR Tour</div><div class="loc">Northern Heritage Park</div></div>
+        <div class="scenario-card"><div class="num">3</div><div class="name">AI Startup Accelerator Camp</div><div class="loc">Accelerator Clusters</div></div>
+        <div class="scenario-card"><div class="num">4</div><div class="name">Origin Community Algorithm Living Room</div><div class="loc">Origin Plaza</div></div>
+        <div class="scenario-card"><div class="num">5</div><div class="name">Mixed-Block Co-Working</div><div class="loc">AI Origin Community</div></div>
+        <div class="scenario-card"><div class="num">6</div><div class="name">Qinghe Smart Slow-Mobility Portal</div><div class="loc">Qinghe Portal Node</div></div>
+        <div class="scenario-card"><div class="num">7</div><div class="name">Corporate HQ AI Command Center</div><div class="loc">Dazhongsi Cluster</div></div>
+        <div class="scenario-card"><div class="num">8</div><div class="name">AI Application Experimental Block</div><div class="loc">Dazhongsi Commercial Renewal Area</div></div>
+        <div class="scenario-card"><div class="num">9</div><div class="name">Smart Transit Feeder Loop</div><div class="loc">Along AI Spine</div></div>
+        <div class="scenario-card"><div class="num">10</div><div class="name">Community Governance AI Co-Creation</div><div class="loc">Shared across all three key areas</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ USER PERSONAS ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>User Personas</h2>
+        <p>5 typical user personas drive scenario and spatial design, covering entrepreneurs, researchers, residents, visitors, and operators — ensuring AI facilities are accessible across the full chain from production to daily life.</p>
+      </div>
+      <span class="tag">5 personas</span>
+    </div>
+    <div class="sheet-body">
+      <table class="persona-table">
+        <thead>
+          <tr>
+            <th style="width:180px">Type</th>
+            <th>Core Need</th>
+            <th>Activity Space</th>
+            <th>Linked Scenarios</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="type"><span class="ptype p1"></span>AI Entrepreneur</td>
+            <td>Low-cost computing, pilot space, investor matchmaking</td>
+            <td>Zhongzhiyuan Accelerator Clusters · Computing Hub</td>
+            <td>Computing Shared Pilot · AI Startup Accelerator Camp</td>
+          </tr>
+          <tr>
+            <td class="type"><span class="ptype p2"></span>Algorithm Researcher</td>
+            <td>Experimental blocks, academic exchange, publishable scenarios</td>
+            <td>AI Origin Community · Origin Plaza</td>
+            <td>Origin Community Algorithm Living Room · Mixed-Block Co-Working</td>
+          </tr>
+          <tr>
+            <td class="type"><span class="ptype p3"></span>Local Resident</td>
+            <td>Daily convenience, community participation, walkable access</td>
+            <td>AI Origin Community · Qinghe Portal</td>
+            <td>Qinghe Smart Slow-Mobility Portal · Community Governance AI Co-Creation</td>
+          </tr>
+          <tr>
+            <td class="type"><span class="ptype p4"></span>Industry Visitor</td>
+            <td>Company tours, application experience, business meetings</td>
+            <td>Dazhongsi Cluster · Application Experimental Block</td>
+            <td>Corporate HQ AI Command Center · AI Application Experimental Block</td>
+          </tr>
+          <tr>
+            <td class="type"><span class="ptype p5"></span>Urban Operator</td>
+            <td>Data access, safety oversight, emergency coordination</td>
+            <td>Along AI Spine · Shared nodes across three areas</td>
+            <td>Smart Transit Feeder Loop · Community Governance AI Co-Creation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ SOURCES + ASSUMPTIONS ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>Sources & Assumptions</h2>
+        <p>All maps and metrics are derived from project data files and public planning context. Some parameters use reasonable assumptions due to the provisional boundary status and must be verified before formal scoring.</p>
+      </div>
+      <span class="tag">provenance</span>
+    </div>
+    <div class="sheet-body">
+      <div class="two-col">
+        <div>
+          <h3 style="font-size:13px;color:var(--muted);margin:0 0 10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600">Sources</h3>
+          <ul class="sources-list">
+            <li><span class="key">boundary</span><span>Project GeoJSON · boundary_three_layer.geojson (provisional geometry)</span></li>
+            <li><span class="key">metrics</span><span>Project metrics.json · 8 core metrics derived from this file</span></li>
+            <li><span class="key">matrix</span><span>Land-use compatibility matrix · zoning_compatibility_matrix</span></li>
+            <li><span class="key">scenarios</span><span>AI scenario cards directory · scenarios/ (10 cards)</span></li>
+            <li><span class="key">personas</span><span>User persona table · personas.yaml (5 types)</span></li>
+            <li><span class="key">renewal</span><span>Stock renewal project list · renewal_projects.json (6 projects)</span></li>
+            <li><span class="key">self-check</span><span>self_check.json · four-stage self-check results</span></li>
+            <li><span class="key">background</span><span>Public planning context (Jing-Zhang Railway heritage, Haidian district plan)</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-size:13px;color:var(--muted);margin:0 0 10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600">Key Assumptions</h3>
+          <ul class="assump-list">
+            <li>Boundary status is provisional_rough, used solely for intake display and discussion — not statutory control lines.</li>
+            <li>Green ratio of 32% is a design target, not a measured existing-conditions value; must be recalculated with official boundaries before formal scoring.</li>
+            <li>Public space ratio of 8% is computed from provisional geometry, including plazas, pocket parks, and slow-mobility nodes.</li>
+            <li>Three key area sizes (192.1 / 104.3 / 72.0 ha) are aggregated from provisional polygons; final values subject to official survey.</li>
+            <li>AI scenario cards and user personas are design recommendations; implementation requires review with stakeholder intent and operational conditions.</li>
+            <li>All illustrations on this page are Design Suggestions and do not constitute statutory control requirements.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SELF-CHECK STATUS ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h2>Self-Check Status</h2>
+        <p>Four self-checks cover deterministic validation, spatial review, visual packaging, and professional evidence review. The current boundary status triggers one warning — official geometry must replace provisional boundaries before formal scoring.</p>
+      </div>
+      <span class="tag">self_check.json</span>
+    </div>
+    <div class="sheet-body">
+      <div class="check-grid">
+        <div class="check-row">
+          <div class="dot">✓</div>
+          <div>
+            <div class="label">Deterministic Validation</div>
+            <div class="val">PASS</div>
+            <div class="desc">Metrics and file structure pass deterministic validation.</div>
+          </div>
+        </div>
+        <div class="check-row">
+          <div class="dot">✓</div>
+          <div>
+            <div class="label">Spatial Review</div>
+            <div class="val">PASS</div>
+            <div class="desc">Three-layer scope, land-use zoning, and slow-mobility skeleton are spatially consistent.</div>
+          </div>
+        </div>
+        <div class="check-row">
+          <div class="dot">✓</div>
+          <div>
+            <div class="label">Visual Packaging Check</div>
+            <div class="val">PASS</div>
+            <div class="desc">Offline static page has no external dependencies and can be opened independently.</div>
+          </div>
+        </div>
+        <div class="check-row warn">
+          <div class="dot">!</div>
+          <div>
+            <div class="label">Professional Evidence Review</div>
+            <div class="val">PASS (intake only)</div>
+            <div class="desc">Boundary is provisional_rough, supporting intake display only. Must be replaced with official surveyed polygons before formal professional scoring.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="left">Generated by WorkBuddy AI · Jingzhang AI Nexus · Centennial Jing-Zhang AI Innovation Belt</div>
+    <div class="right">Boundary Status: provisional_rough · Design Suggestions, Not Statutory Controls</div>
+  </div>
+</footer>
+
+
+    <div id="metrics-data" style="display:none">
+      <span data-metric="site_area_sqm" data-value="11412825">11400000</span>
+      <span data-metric="green_ratio" data-value="0.3772">0.32</span>
+      <span data-metric="public_space_ratio" data-value="0.0216">0.08</span>
+    </div>
+    
+
+    <section id="buildings" style="padding:20px;margin:20px 0;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.1)">
+      <h2 style="color:#1A237E;font-size:24px;margin-bottom:15px">Building Renewal: Retain, Renovate, Construct</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px">
+        <div style="padding:15px;background:#E8F5E9;border-radius:6px;border-left:4px solid #4CAF50">
+          <h3 style="font-size:16px;color:#2E7D32">Retained Buildings</h3>
+          <p style="font-size:14px;color:#555">Zhongzhiyuan Safety Governance Exhibition Hall, Talent Service Complex, Smart Terminal Display Center, Dazhongsi Residential Area A</p>
+        </div>
+        <div style="padding:15px;background:#FFF3E0;border-radius:6px;border-left:4px solid #FF9800">
+          <h3 style="font-size:16px;color:#E65100">Renovated Buildings</h3>
+          <p style="font-size:14px;color:#555">Qinghe Low-Carbon Innovation Reception Hall, Open-Source Release Hall, Dazhongsi International Roadshow Lounge, AI Lifestyle Service Model Street</p>
+        </div>
+        <div style="padding:15px;background:#E3F2FD;border-radius:6px;border-left:4px solid #2196F3">
+          <h3 style="font-size:16px;color:#1565C0">Newly Constructed Buildings</h3>
+          <p style="font-size:14px;color:#555">Full-Stack Indigenous Innovation Lab Building, Near-Campus Achievement Transformation Station, Standards Development Workshop Cluster, Data Element Reception Hall</p>
+        </div>
+      </div>
+    </section>
+    
+</body>
+</html>

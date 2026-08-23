@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以多感官通用设计为产业赛道与城市底线，让不同身体、感官和认知方式的人都能独立理解、选择、完成并退出同一项 AI 城市服务。"
 tracks: ["ai-traffic-walkability", "ai-public-services", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
-iteration: "v9.3"
+iteration: "v9.6"
 ---
 
 # 万感京张：每一种身体都能独立使用的 AI 城市 / EVERY SENSE JING-ZHANG
@@ -339,7 +339,7 @@ W3C 的可感知、可操作、可理解与稳健原则用于检视数字和交�
 
 **演示性质声明。现场状态：未获授权 · 未现场运行。** 本章没有真实参与者，没有现场测量，也没有任何一次运行记录。这里做的是一次桌面配对推演：把上一章的服务等价基准施加在文本样例上，看判据能不能被逐条执行、会在哪里失效。因此本章不产生任何绩效指标数值，七项包容性指标在指标文件中保持待实测状态，任何一项都不得依据本章填写 [metric:independent_task_completion_rate] [metric:ai_off_service_equivalence_gap]。本章能够证明的是“制度可执行”——判据写得足够具体，机器可以判、第三方可以复核；它不能证明“结果已达标”，后者需要伦理化的真实测试，属于取得授权之后的事 [depth:phasing_implementation]。把这两件事分开陈述，是本方案对自身适用分母纪律：不能一边要求别人不得删除失败样本，一边把一次推演说成一次试点。
 
-**推演对象与工具。** 推演以场景 S01 多模态无障碍寻路在 OP-01 多模态到达校正点上的一次完整闸门过程为对象 [data:geometry/constraints.geojson#OP-01]。三件工具随包提交，均为零依赖的离线文件：`visual/assets/seb-tabletop-run.js` 是校验器，读取基准与样例并逐条判定；`visual/assets/seb-tabletop-fixtures.json` 是六十条样例，正例二十三条、反例三十七条（v0.4 扩充二十条覆盖生命周期、权限边界与测量声明类判据的正反分支，v0.5 再扩充二十条：十个 OP 节点各一条双联交接实例，与十条按风险台账注入的缺陷变体），每条自带预期判定与双语说明；`visual/assets/seb-change-receipt-sample.json` 是变更回执的格式与两条回执。在 `visual/assets` 目录下执行 `node seb-tabletop-run.js` 可复现本章全部结论，退出码为零表示六十条样例的判定与预期完全一致；校验器在判定之前先校验基准版本与样例声明是否匹配——样例声明的版本须与所用规范快照严格一致，不一致即以退出码二拒绝运行而不作任何判定，采用方按「快照入包」方式采用时快照与样例自然同版，无须随本包演进重跑 [source:PACKAGE-STRUCTURED-EVIDENCE-INDEX]。样例不含任何计数或比例，分母只以“哪些类别被声明”的方式表达，因此工具无法、也不会生成读数 [metric:op_node_count]。
+**推演对象与工具。** 推演以场景 S01 多模态无障碍寻路在 OP-01 多模态到达校正点上的一次完整闸门过程为对象 [data:geometry/constraints.geojson#OP-01]。三件工具随包提交，均为零依赖的离线文件：`visual/assets/seb-tabletop-run.js` 是校验器，读取基准与样例并逐条判定；`visual/assets/seb-tabletop-fixtures.json` 是六十二条样例，正例二十三条、反例三十九条（v0.4 扩充二十条覆盖生命周期、权限边界与测量声明类判据的正反分支，v0.5 再扩充二十条：十个 OP 节点各一条双联交接实例，与十条按风险台账注入的缺陷变体，v9.5 再补两条来源对齐反例），每条自带预期判定与双语说明；`visual/assets/seb-change-receipt-sample.json` 是变更回执的格式与两条回执。在 `visual/assets` 目录下执行 `node seb-tabletop-run.js` 可复现本章全部结论，退出码为零表示六十二条样例的判定与预期完全一致；校验器在判定之前先校验基准版本与样例声明是否匹配——样例声明的版本须与所用规范快照严格一致，不一致即以退出码二拒绝运行而不作任何判定，采用方按「快照入包」方式采用时快照与样例自然同版，无须随本包演进重跑 [source:PACKAGE-STRUCTURED-EVIDENCE-INDEX]。样例不含任何计数或比例，分母只以“哪些类别被声明”的方式表达，因此工具无法、也不会生成读数 [metric:op_node_count]。
 
 推演按 G0、G1、G2 三步进行。每一步的准入条件都不是为本章新写的，而是逐字取自开放机制表中 L0、L1、L2 三行与节点的既有属性；工具在第一步之前先把 L2 样例的五个必填字段与几何文件中 OP-01 的属性逐字比对，比对通过才继续，以免推演落在一个与提交数据不一致的影子节点上 [depth:phasing_implementation] [data:geometry/constraints.geojson#OP-01]。
 
@@ -363,7 +363,7 @@ W3C 的可感知、可操作、可理解与稳健原则用于检视数字和交�
 $ node seb-tabletop-run.js
 SEB 桌面配对推演 / SEB tabletop pairing run
 基准 / Baseline : service-equivalence-baseline v0.5.0 (draft_concept_recommendation)
-样例 / Fixtures : seb-tabletop-fixtures v0.5.0 · 60 条 / items
+样例 / Fixtures : seb-tabletop-fixtures v0.5.0 · 62 条 / items
 运行 / Run      : as_of_date 2026-08-16（复审到期比较基准）
 性质 / Nature   : 方法学演示，无真实参与者，不产生任何绩效指标数值
 
@@ -422,8 +422,9 @@ SEB 桌面配对推演 / SEB tabletop pairing run
 …
 汇总 / Summary
     通过 / accepted : 23
-    拒绝 / rejected : 37
-    与期望一致 / matching expectation : 60 / 60
+    拒绝 / rejected : 39
+    与期望一致 / matching expectation : 62 / 62
+…
     本次运行不写入 metrics.json，七项包容性指标保持 unknown
 ```
 
@@ -533,7 +534,7 @@ OP-04 配对试点全过程证据链复演 / OP-04 paired-pilot evidence-chain r
 [P] 前置校验器 / Prerequisite checker
     命令 / command  : node seb-tabletop-run.js
     退出码 / exit code : 0（入档期望 / archived expectation: 0）
-    摘录 / excerpt  : 与期望一致 / matching expectation : 60 / 60
+    摘录 / excerpt  : 与期望一致 / matching expectation : 62 / 62
 [G] v0.4.0 判据输入域 / v0.4.0 criteria input domain
     扫描声明 / claims scanned : 4（判据函数对每条真实执行 / the criteria functions ran for real against each）
     触发输入 / triggering inputs : level_claim 0 · authority_declaration 0 · measurement_declaration 0（登记表 applies_when：结构性缺席则该码不可能触发 / registry applies_when: structurally absent, so the codes cannot fire）
@@ -944,7 +945,7 @@ L1 可逆试验阶段，构件安装前须在现场与线上同时公告可撤�
 
 **隐私保护与人工复核。** 共同设计和任务测试遵循自愿参加、知情同意、目的限定、最少必要、分级访问、可撤回和到期处置原则；不以人脸、持续定位、健康状况、障碍类别或行为轨迹作为获得基本服务的前提。任何跨模态翻译、机器人、身份核验、活动疏散或自动推荐结果，都须保留可见状态、人工接管、申诉、纠错和退出路径。高影响判断由具备相应责任的人员复核，AI 不替代规划审批、专业审查、公共决策或真实参与者表达 [source:ACCESSIBILITY-LAW-CN]。若后续出现向境内公众提供生成内容的服务，则其内容与投诉处理须按生成式人工智能服务管理暂行办法的适用范围另行判断；本方案不提供也不主张提供此类服务，不据该办法声称已完成任何备案或安全评估，也不从中推导法定响应期限 [standard:GENERATIVE-AI-INTERIM-MEASURES] [source:GENERATIVE-AI-INTERIM-MEASURES-CN]。
 
-**版权与授权。** 文字、图示与离线展示为本方案生成；临时几何与项目材料按登记用途使用，外部案例只作释义与机制比较，不复制网页图像、版式、长段文字、企业标识或未授权字体；来源或授权不清的资产不进入公开成果 [source:SOURCE-REGISTRY]。全部交付资产的逐条权利登记——文件路径、作者与生成方式、工具、字体名称与来源及许可、地图数据许可与坐标系、代码来源与依赖许可、署名方式与复用限制——汇编于 `report/copyright_statement.md` 的「逐资产权利台账」，覆盖 `manifest.json` 登记的全部 152 个文件条目；每一行标明其信息取自本包哪一个既有登记文件，可逐字复核，包内未登记的字段照实写为未登记，不以常见值补齐。台账另收录提交方签署的作者权利保证与限制声明、两份生成服务条款（OpenAI 图像生成与 MiniMax 语音合成）的 Wayback 存档快照指针与原始快照内容指纹、字体许可正本（`visual/assets/font-license-ofl.json`），以及六件场景概念图的完整生成档案 [data:visual/assets/scene-provenance.json]。台账的类别级结论如下，可在本表直接核验：
+**版权与授权。** 文字、图示与离线展示为本方案生成；临时几何与项目材料按登记用途使用，外部案例只作释义与机制比较，不复制网页图像、版式、长段文字、企业标识或未授权字体；来源或授权不清的资产不进入公开成果 [source:SOURCE-REGISTRY]。全部交付资产的逐条权利登记——文件路径、作者与生成方式、工具、字体名称与来源及许可、地图数据许可与坐标系、代码来源与依赖许可、署名方式与复用限制——汇编于 `report/copyright_statement.md` 的「逐资产权利台账」，覆盖 `manifest.json` 登记的全部 153 个文件条目；每一行标明其信息取自本包哪一个既有登记文件，可逐字复核，包内未登记的字段照实写为未登记，不以常见值补齐。台账另收录提交方签署的作者权利保证与限制声明、两份生成服务条款（OpenAI 图像生成与 MiniMax 语音合成）的 Wayback 存档快照指针与原始快照内容指纹、字体许可正本（`visual/assets/font-license-ofl.json`），以及六件场景概念图的完整生成档案 [data:visual/assets/scene-provenance.json]。台账的类别级结论如下，可在本表直接核验：
 
 |资产类别 | 作者/生成方式 | 关键工具 | 许可与署名 | 复用限制|
 |---|---|---|---|---|
@@ -960,7 +961,7 @@ L1 可逆试验阶段，构件安装前须在现场与线上同时公告可撤�
 
 **许可标识 `COMMUNITY-DISPLAY-ONLY` 的读法。** 本包在前置元数据中选择 `COMMUNITY-DISPLAY-ONLY`，该取值是仓库方案 schema 三个许可枚举之一：全包整体仅用于本次征集的社区展示与评审，不放弃任何第三方权利。选它的理由不是保留权利，而是不具备放开的依据——仓库根目录未声明任何可据以推定更宽复用权的许可，在此条件下把全包标为开放复用，等于替第三方权利人作出本方案无权作出的承诺。该标识界定的是复用授权范围，不是评审可见性，不改变本包作为参赛材料被评审、被引用与被公开展示的状态。局部另有单独授出的成熟许可，且只在权利来源明确处生效：服务等价基准 SEB 的规范文本按 CC BY-SA 4.0 授予 [source:CC-BY-SA-4.0-LEGALCODE]，思源黑体按 SIL OFL 1.1 使用 [source:SOURCE-HAN-SANS-OFL]，随包 OSM 精简快照按 ODbL 1.0 分发并在使用它的图面直印署名，展示层唯一第三方组件 three.js r160 按 MIT 随包收录许可正本。两级互不覆盖：局部的开放许可不把全包变成开放复用，全包的展示限定也不收回已经单独授出的开放许可；某一件资产适用哪一级，一律以权利台账的对应行为准。
 
-**输出质量与可及性自查。** 三类自查在提交前完成：按实际输出尺寸量测字号与对比度的校样、双语结构与计数的等价抽检、离线展示页的 HTML 无障碍走查（键盘路径、替代文本、无脚本降级与颜色非唯一编码）。实测结论：二十六张带文字图版在评审接收分辨率（短边 768 像素）下不可读文本占比均为 0%，五张核心图最小字号 12.1–12.3 像素、其余原生图版最小 12 像素，v8.2—v8.3 新增三张图版与 v8.8 新增三张概念推演图按同一口径另测，最小均为 12.0 像素、等效 12.3 像素；A3 双语三十二页页面文本层最小 9.07 pt；对比度按包内色板复算，正文 12.69、警示行 7.13（WCAG 2.1 AA）；双语等价抽检为非空行 675/675 逐行结构一致、表格 307/307 行逐行列数全等、四类证据锚点 278/278 持平（2026-08-21 按当前版本复测）；无障碍走查为键盘路径 61 步无陷阱且反向可逆、交互场景十节点卡全部可用键盘开合且焦点归还、图像替代文本 25/25 非空、禁用脚本后静态后备图实测呈现、颜色非唯一编码十二项逐项通过。方法、工具、日期、逐项结果与局限，连同走查发现的八项问题及其处理去向，登记于 `visual/assets/qa-proofing-record.json` [data:visual/assets/qa-proofing-record.json] [self_check:DETERMINISTIC_VALIDATION] [self_check:VISUAL_PACKAGING]。**该记录是方案方自查，不是第三方认证，也不是辅助技术使用者的实测**；未经屏幕阅读器实测、未经具备资质的译者逐词审校、未做实物印品检查这三项局限已在记录内逐条写明。上述三类自查连同其余八项随包检查固化为十一道自检闸门，每道写明检查什么、怎么判、当前读数，以及该闸门历史上真正查获过的缺陷及其修复登记（合计 30 条，唯一未有登记案例的闸门如实写明「未有登记案例」）[data:visual/assets/package-integrity-gates.json]。
+**输出质量与可及性自查。** 三类自查在提交前完成：按实际输出尺寸量测字号与对比度的校样、双语结构与计数的等价抽检、离线展示页的 HTML 无障碍走查（键盘路径、替代文本、无脚本降级与颜色非唯一编码）。实测结论：二十六张带文字图版在评审接收分辨率（短边 768 像素）下不可读文本占比均为 0%，五张核心图最小字号 12.1–12.3 像素、其余原生图版最小 12 像素，v8.2—v8.3 新增三张图版与 v8.8 新增三张概念推演图按同一口径另测，最小均为 12.0 像素、等效 12.3 像素；A3 双语三十二页页面文本层最小 9.07 pt；对比度按包内色板复算，正文 12.69、警示行 7.13（WCAG 2.1 AA）；双语等价抽检为非空行 676/676 逐行结构一致、表格 307/307 行逐行列数全等、四类证据锚点 278/278 持平（2026-08-21 按当前版本复测）；无障碍走查为键盘路径 61 步无陷阱且反向可逆、交互场景十节点卡全部可用键盘开合且焦点归还、图像替代文本 25/25 非空、禁用脚本后静态后备图实测呈现、颜色非唯一编码十二项逐项通过。方法、工具、日期、逐项结果与局限，连同走查发现的八项问题及其处理去向，登记于 `visual/assets/qa-proofing-record.json` [data:visual/assets/qa-proofing-record.json] [self_check:DETERMINISTIC_VALIDATION] [self_check:VISUAL_PACKAGING]。**该记录是方案方自查，不是第三方认证，也不是辅助技术使用者的实测**；未经屏幕阅读器实测、未经具备资质的译者逐词审校、未做实物印品检查这三项局限已在记录内逐条写明。上述三类自查连同其余八项随包检查固化为十一道自检闸门，每道写明检查什么、怎么判、当前读数，以及该闸门历史上真正查获过的缺陷及其修复登记（合计 30 条，唯一未有登记案例的闸门如实写明「未有登记案例」）[data:visual/assets/package-integrity-gates.json]。
 
 **实施风险与合规责任。** 场地和重点区几何是临时粗略边界，不是官方红线、权属边界、法定控制或精确面积依据；容积率、高度、拆改留、道路线形、桥隧、地下空间、市政管线、能源负荷、投资、开发时序和审批均不作结论 [source:BOUNDARY-SOURCE]。所有空间、活动、品牌、政策与合作均为概念建议、参考方案或供专业团队深化研究，不构成政府审定、批准建设、资金支持、招商承诺或既定活动。方案作者负责主张与来源可追溯，后续专业团队负责规划、工程、安全和无障碍复核，场景运营者负责数据、人员、维护与事故处置，主管部门和人类评审保留最终判断；条件不足时应暂停、降级或退出。
 

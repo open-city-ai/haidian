@@ -149,7 +149,7 @@ Logo 方向是“一条可回到原点的折线 + 三个开放节点”：折线
 
 本轮只用一个真实小场地检验全带原则：清河站西广场/公交到达—地下慢行系统—B1 城市通廊—安检外人工接力。官方资料支持多层关系、地下通道和 B1 综合服务大厅等要素。[source:QH-STATION-MAP-2026] [source:QH-B1-SERVICE-HALL-2024] 官方复核还覆盖无障碍设施要素与真实人工接力个案，但不支持精确入口、转角、距离、标高或岗位位置。[source:QH-ACCESS-AUDIT-2025] [source:QH-HUMAN-HANDOFF-2026] 因此图件永久标注 NTS（非比例、非定位）；没有获准底图或实测时，不进入 1:200 或 1:100。[assumption:A-QH-SCALE-012]
 
-![清河站地上—地下证据关系（NTS）](assets/figures/qinghe-evidence-relationship.png)
+![清河公共接力地上—地下 NTS 连续剖面](assets/figures/qinghe-evidence-relationship.png)
 
 唯一任务是：首次到访、没有智能手机或选择不用手机、需要无台阶路线的乘客，从地面到达后向真人提出“我要去 13 号线，需要无台阶路线”，取得可带走的纸质说明，并在安检/闸机外与既有工作人员完成接力。正常路径为固定总览—既有地下慢行—B1 人工询问—纸质路径卡—既有电梯—人工接力；完成也包括在电梯或 B1 不可用时得到明确限制和现实人工替代，而不是由 AI 编造一条路线。[data:spatial.json#qinghe-ground-arrival] [data:spatial.json#qinghe-human-handoff]
 

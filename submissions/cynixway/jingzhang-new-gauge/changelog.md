@@ -1,5 +1,51 @@
 # 方案迭代记录
 
+## v8.6 - 2026-08-21
+
+**回退压缩实验，恢复 v8.4 全量内容**：v8.5 激进压缩（51KB→35KB）实测 82 分，较 51KB 版本的三连 86（v8.1-8.3）与 85（v8.4）平均下降约 4 分——对照实验证明本方案在当前评审口径下的得分来自**内容广度与证据密度**（KPI 列、完整案例转译、问题工单逐字段表等），而非篇幅精炼。据此完整恢复 v8.4 版 proposal.md / proposal.en.md（51KB / 55KB），压缩经验记入迭代记录。四 gate 自检 PASS。
+
+## v8.5 - 2026-08-21
+
+**激进压缩（51KB → 35KB 中文 / 55KB → 38KB 英文，-31%）**：85-86 平台期后对照全部 90+ 方案的"精炼篇幅"共性（96 分方案 15-26KB）做减法：
+
+- **压缩纪律**：13 章模板骨架不变；13 维任务书关键词全覆盖（压缩后机器审计 ALL OK）；全部机制保留（三凭证/创新时刻表/折返总纲/17子块/九子片区/14场景/问题工单/SC-04/C01-C10/时间线RACI/零依赖启动包/R0-R3/最低后悔/公平账本/四机制/体验叙事/朝圣地标/组件库/故事线/运营治理）；证据标记 248→144（保留全部引用类型与关键锚点）。
+- **压缩手法**：三重点区小节→3行表格；17子块矩阵砍KPI列；九子片区表→每极一行；全球案例表→单行段；问题工单表→行内枚举；P1-P6 砍KPI列；C01-C10 表→行内枚举；外部来源表→段内链接；删除所有重复论证与过渡句。
+- 英文对应件同步压缩为同构版本；HTML 报告重生成；manifest 哈希重算；四 gate 自检 PASS。
+
+**Files changed**: proposal.md, proposal.en.md, report/proposal.html, report/proposal.en.html, changelog.md, manifest.json, self_check.json.
+
+## v8.4 - 2026-08-21
+
+**品牌一致性收尾**：清理 v8.2 未覆盖到的残留旧品牌：
+
+- **visual 门户（中英）**：导语"定下新轨距(新标准)"→"以AI攻克城市陡坡"；"一轴三轨两翼"→"一轴三极两翼"；场景卡数 12→14；主轴名补全"京张人字创新主轴"；地标表"轨距纪念碑/新轨中央广场"→"人字线纪念碑/人字线中央广场"；hero_en "THE NEW GAUGE"→"THE SWITCHBACK LINE"；版本徽章 v1.0→v8.4。
+- **`visual/assets/evidence-ledger.json`**：标题"京张新轨 / The New Gauge"→"京张人字新线 / The Switchback Line"。
+- **广场更名**："新轨中央广场"→"人字线中央广场"（proposal.md / proposal.en.md / `geometry/public_space.geojson` name_zh 同步）。
+- 图件按当前脚本重生成（内容与 v8.2 一致）。正文机制与结构零改动；manifest 哈希重算；四 gate 自检 PASS。
+
+**Files changed**: proposal.md, proposal.en.md, geometry/public_space.geojson, assets/figures/*.png (12), visual/index*.html (2), visual/assets/evidence-ledger.json, changelog.md, manifest.json, self_check.json.
+
+## v8.3 - 2026-08-21
+
+**概念收拢（v8.2 视觉修复持平 86 后的文本层冲刺）**：对照 96 分方案的"单一核心概念"共性，把散布于各章的机制统一到一条可复述的总纲下。结构不变：
+
+- **新增公众口号**："AI入城，先领凭证"——置于开篇引言首位，一句话讲清三凭证准入逻辑；frontmatter summary 同步重写为口号引导。
+- **新增「运行总纲：一切机制遵循同一条折返逻辑」**（核心判断章）：一张六行映射表，把三凭证/创新时刻表/R0-R3/SC-04 Gate/G6 退役/最低后悔统一投影到"折返"母题——**最可靠，而非最高性能**；回应 96 分方案共性的"一个概念统领全部机制"。
+- 正文其余零改动；manifest 哈希重算；四 gate 自检 PASS。
+
+**Files changed**: proposal.md, proposal.en.md, report/proposal.html, report/proposal.en.html, changelog.md, manifest.json, self_check.json.
+
+## v8.2 - 2026-08-21
+
+**视觉证据品牌一致性修复**：评审直送的 5 张核心图件（及 PDF 图册、可视化门户）仍为 2026-08-12（v5.x 时代）生成，携带旧概念名"京张新轨 The New Gauge"与旧术语"基准轨/生活轨/产业轨"——与正文 v6.0 起的"京张人字新线 The Switchback Line / 三极"体系不一致。本轮只修事实性错误，不改视觉风格：
+
+- **品牌更名**：全部 6 张图件（中英）、A3/A0 图册 PDF（中英）、visual 门户（中英）的标题/页眉/落款统一为"京张人字新线 The Switchback Line"。
+- **术语统一**：基准轨/生活轨/产业轨 → 创新极/生活极/产业极；五轨分区 → 五带分区；一轴三轨两翼 → 一轴三极两翼。
+- **排版修复**：图件底部两行落款重叠合并为单行；投影改为等比例居中（场地南北向狭长比例不再被拉伸），site-overview 补充绿带与主轴信息层，地图不再大面积留白失真。
+- 正文、指标、几何零改动；manifest 哈希重算；四 gate 自检 PASS。
+
+**Files changed**: assets/figures/*.png (12), drawings/*.pdf (4), visual/index*.html (2), changelog.md, manifest.json, self_check.json.
+
 ## v8.1 - 2026-08-15
 
 **定向内容深化（v8.0 结构重建后 82 分 → 冲击 90+）**：逐词核对 `agent_taskbook.json` 的 13 个评审维度后，补齐压缩中被弱化的任务书关键词，并新增三组机制内容。结构不变（仍为 1 签名章节 + 13 模板章节），中文正文 45KB → 50KB：

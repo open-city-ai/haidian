@@ -66,6 +66,38 @@ class VisualReviewTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_REMOTE_OR_ACTIVE_CONTENT", {issue.check_id for issue in report.issues})
 
+    def test_string_remote_css_import_fails(self) -> None:
+        for remote_url in ("https://cdn.example.com/theme.css", "//cdn.example.com/theme.css"):
+            with self.subTest(remote_url=remote_url), tempfile.TemporaryDirectory() as tmp:
+                submission = write_valid_visual_package(Path(tmp))
+                html = VALID_HTML.replace(
+                    "</head>", f'<style>@import "{remote_url}";</style></head>'
+                )
+                (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+                report = review_visual(submission)
+
+                self.assertFalse(report.ok)
+                self.assertTrue(
+                    any(
+                        issue.check_id == "VISUAL_REMOTE_OR_ACTIVE_CONTENT"
+                        and "import remote styles" in issue.message
+                        for issue in report.issues
+                    )
+                )
+
+    def test_local_string_css_import_passes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            html = VALID_HTML.replace(
+                "</head>", '<style>@import "assets/theme.css";</style></head>'
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
     def test_fetch_external_url_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission = write_valid_visual_package(Path(tmp))

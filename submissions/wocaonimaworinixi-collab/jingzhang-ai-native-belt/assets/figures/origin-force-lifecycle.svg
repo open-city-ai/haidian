@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 360" font-family="system-ui, -apple-system, 'Segoe UI', 'PingFang SC', sans-serif">
+  <rect width="680" height="360" fill="#ffffff"/>
+  <!-- 标题 -->
+  <text x="340" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="#1a1a2e">Origin Force Node — Full Lifecycle</text>
+  <text x="340" y="62" text-anchor="middle" font-size="11" fill="#6b7280">one product, three checks, one return</text>
+
+  <!-- 定义箭头标记 -->
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#9ca3af"/>
+    </marker>
+    <marker id="arrRet" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#c0504d"/>
+    </marker>
+  </defs>
+
+  <!-- 四个节点 -->
+  <!-- TEST 原得动 -->
+  <g>
+    <rect x="35" y="110" width="130" height="92" rx="12" fill="#eef3fb" stroke="#3b6ea5" stroke-width="2"/>
+    <text x="100" y="150" text-anchor="middle" font-size="22" font-weight="800" fill="#3b6ea5">TEST</text>
+    <text x="100" y="172" text-anchor="middle" font-size="11" fill="#3b6ea5">power up</text>
+    <text x="100" y="188" text-anchor="middle" font-size="9" fill="#6b7280">可复现工况</text>
+  </g>
+  <!-- RELEASE 停得下 -->
+  <g>
+    <rect x="195" y="110" width="130" height="92" rx="12" fill="#eef7f0" stroke="#3e8e5a" stroke-width="2"/>
+    <text x="260" y="150" text-anchor="middle" font-size="22" font-weight="800" fill="#3e8e5a">RELEASE</text>
+    <text x="260" y="172" text-anchor="middle" font-size="11" fill="#3e8e5a">can stop</text>
+    <text x="260" y="188" text-anchor="middle" font-size="9" fill="#6b7280">可停可撤</text>
+  </g>
+  <!-- USE 问得着 -->
+  <g>
+    <rect x="355" y="110" width="130" height="92" rx="12" fill="#fbf6e7" stroke="#c9a227" stroke-width="2"/>
+    <text x="420" y="150" text-anchor="middle" font-size="22" font-weight="800" fill="#c9a227">USE</text>
+    <text x="420" y="172" text-anchor="middle" font-size="11" fill="#c9a227">can question</text>
+    <text x="420" y="188" text-anchor="middle" font-size="9" fill="#6b7280">可问责</text>
+  </g>
+  <!-- RETURN 返回研发 -->
+  <g>
+    <rect x="515" y="110" width="130" height="92" rx="12" fill="#fbf0ef" stroke="#c0504d" stroke-width="2"/>
+    <text x="580" y="150" text-anchor="middle" font-size="22" font-weight="800" fill="#c0504d">RETURN</text>
+    <text x="580" y="172" text-anchor="middle" font-size="11" fill="#c0504d">new condition</text>
+    <text x="580" y="188" text-anchor="middle" font-size="9" fill="#6b7280">新工况返回</text>
+  </g>
+
+  <!-- 正向箭头 -->
+  <line x1="165" y1="156" x2="190" y2="156" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="325" y1="156" x2="350" y2="156" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="485" y1="156" x2="510" y2="156" stroke="#9ca3af" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- 返回箭头（RETURN 底部回到 TEST 底部） -->
+  <path d="M580 202 L580 260 L100 260 L100 207" fill="none" stroke="#c0504d" stroke-width="2" marker-end="url(#arrRet)"/>
+  <text x="340" y="286" text-anchor="middle" font-size="10" fill="#c0504d">failure returns as the next test condition — the city keeps running</text>
+
+  <!-- 底部图例 -->
+  <text x="340" y="330" text-anchor="middle" font-size="9" fill="#9ca3af">public main line stays open · AI side line can be stopped, withdrawn and restored</text>
+</svg>

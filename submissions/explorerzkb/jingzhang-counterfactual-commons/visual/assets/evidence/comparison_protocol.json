@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1.0",
+  "purpose": "Explore relative outcomes and expose trade-offs; never claim prediction or autonomous approval.",
+  "model_documentation": "ODD-inspired: purpose, entities/state variables, process schedule, inputs, initialization, submodels, experiment design and evaluation are published for each test.",
+  "minimum_experiment": {
+    "baseline": "no-AI or current-operation reference",
+    "alternatives": [
+      "A",
+      "B"
+    ],
+    "repetitions": 30,
+    "random_seed_policy": "publish seed set and aggregate distribution, never one favorable run",
+    "outputs": [
+      "median",
+      "P05",
+      "P95",
+      "failure count",
+      "distribution",
+      "assumption sensitivity"
+    ],
+    "unknowns": "never silently imputed; mark missing or use bounded sensitivity range"
+  },
+  "validation_ladder": [
+    {
+      "level": 1,
+      "name": "桌面复算",
+      "rule": "schema, units, topology, seeds and sensitivity checks"
+    },
+    {
+      "level": 2,
+      "name": "角色扮演",
+      "rule": "people enact agent choices and identify wrong behavioral assumptions"
+    },
+    {
+      "level": 3,
+      "name": "1:1可逆试点",
+      "rule": "short, observable, accessible, reversible field test with stop rule"
+    }
+  ],
+  "decision_gate": "A relative advantage may become a pilot recommendation only when the result is robust across the declared sensitivity range, no protected persona is worse on a safety/access threshold, and a named human owner signs the decision record.",
+  "boundary_trigger": "Replace provisional site/key polygons, rerun all layers and metrics, and invalidate prior map-derived comparisons.",
+  "metric_snapshot": {
+    "site_area_sqm": 11412825.386,
+    "building_footprint_area_sqm": 26912.0,
+    "green_ratio": 0.106982,
+    "public_space_ratio": 0.066854,
+    "key_area_count": 3
+  }
+}

@@ -6,16 +6,29 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Universities and leading firms are anchors, the district is an incubator, and community is infrastructure: one axis, three cores and two wings convert talent relations into projects and projects into firms."
+summary: "Universities and leading firms are anchors, the open district is a validation field, first order gates enterprise growth, and public return gates expansion: real problem—bounded validation—first order—independent survival—public return converges one axis, three cores and two wings."
 tracks: ["enterprise-services-ecosystem", "ai-origin-community", "civic-agent-governance"]
 scenarios: ["enterprise-service-copilot", "ai-traffic-walkability", "robot-delivery-low-speed", "public-safety-operations-review"]
 ---
 
 # JINGZHANG GROWTH MESH | An AI Talent and Enterprise Community from Park to City to Network
 
-> **Core proposition: universities and leading firms are anchors, the district is an incubator, and community is infrastructure.** Haidian does not lack innovation sources; it needs urban interfaces that turn talent relations into projects, projects into firms, and growing firms into the next round of shared capacity.
+> **Core proposition: universities and leading firms are anchors, the open district is a validation field, first order gates enterprise growth, and public return gates expansion.** Haidian needs one falsifiable urban interface: real problem—bounded validation—first order—independent survival—public return.
 
-## Original AI-planning mechanism: an auditable multi-agent control plane
+## Enterprise growth contract: one mainline from real problem to public return
+
+The proposal keeps its full seven-part health check, twelve scenarios, fifteen projects, international cases and Agent governance, but gives them one order of precedence: **real problem → bounded validation → first order → independent survival → public return**. Universities and leading firms are anchors that expose real problems; the open district is a bounded validation field; a first order is the first enterprise-growth gate; repeat demand and a transparent non-subsidy unit account test independent survival; a reusable public asset is the condition for expansion. “Independent survival” is not a forecast or profit promise. It is reviewed only after field operation through non-subsidy income, direct cost, repeat/retention and cash-gap evidence.[assumption:A-PUBLIC-RETURN-010]
+
+![Enterprise growth contract](assets/figures/growth-contract.en.png)
+
+Three flagship prototype packages make the contract spatial and operable without deleting the remaining project library: FP-Z combines Z1 shared validation and Z3 bounded testing; FP-O combines O1 open-source clinic and O2 founder residency; FP-D combines D1 first-order service and D3 pre-compliance. Each follows a twelve-week taskbook sequence—baseline, reversible insertion, operation, review/restore—with a named problem owner, professional safety sign-off, operator, non-deprivation safeguard, acceptance evidence and a physical recovery route. Twelve weeks is not an approved construction schedule.[assumption:A-FLAGSHIP-PILOT-009]
+
+![Three flagship prototype contracts](assets/figures/flagship-pilots.en.png)
+
+Expansion is denied unless the pilot returns an open public asset, retains at least 20% affordable service hours, keeps a human/non-AI route open, records failure and exit, and is co-reviewed by the operator, professionals and at least two resident representatives. Public-return assets include de-identified validation protocols, compatibility/failure libraries, open contribution roadmaps, public clinic hours, problem catalogues, procurement-boundary templates and compliance checklists. Field outcomes remain null before real operation and human sign-off.[depth:risk_missing_data]
+
+
+### Supporting method: an auditable multi-agent control plane
 
 The proposal does not treat AI image production as planning innovation. Its original contribution is a six-agent evidence-compilation chain that turns incomplete site signals into reviewable investigation tasks, spatial options, bounded scenarios and operating contracts—without allowing an agent to approve its own output. A1 stewards provenance; A2 compiles the seven-part health check; A3 locates projects and exposes spatial conflicts; A4 designs bounded scenarios with a non-AI equivalent; A5 binds operations to RACI, accounts and acceptance; A6 may veto release when accessibility, affordability or resident safeguards fail. This chain integrates **industry, space, mobility, public service, culture and governance** on one decision record rather than using six disconnected dashboards.
 
@@ -55,8 +68,8 @@ The scheme begins with a **seven-dimensional baseline**, not a drawing. The oper
 | HC-03 | Heritage and place value | Relic survey, age/value appraisal, view corridors, component and archive rights | The rail axis has strong narrative potential, while components, dates, display rights and grades remain unverified. | Survey before design; uncleared content stays off walls and digital channels |
 | HC-04 | Rights and governance conditions | Land/building rights, leases, permits, management limits, stakeholders and claims | Provisional polygons cannot replace rights or management limits; opening, maintenance and revenue duties are unsettled. | No implementation-library entry without named coordinating, delivery, operating and accepting parties |
 | HC-05 | Industry-space fit | Enterprise lifecycle, spatial demand, equipment, service gaps, affordability and alternatives | Haidian has strong innovation sources but weak validation-incubation-first-order interfaces; office supply is not industry service. | No construction investment without a problem owner, real users and operating brief |
-| HC-06 | Access and continuity | Transit exits, walking/cycling, crossings, accessibility, loading, emergency and time conflicts | The north-south spine has continuity potential; east-west links, portals, accessibility and test flows need field checks. | Tests and events may not occupy anonymous passage, accessible or emergency routes |
-| HC-07 | Public realm, ecology and inclusion | Green-blue systems, comfort, stormwater, lighting, stay, all-age use, opening and maintenance survey | Public space can be innovation infrastructure, but comfort, inclusion, maintenance and tech opt-out lack baselines. | Public service cannot depend on data consent; no facility expansion without maintenance funding |
+| HC-06 | Access and continuity | Transit exits, walking/cycling, crossings, accessibility, loading, emergency and time conflicts | Phase 2 is open, forming about 9 km of public space and a fishbone walking network; actual campus/community/transit routes, access, loading and test conflicts still need field checks. | Tests and events may not occupy anonymous passage, accessible or emergency routes |
+| HC-07 | Public realm, ecology and inclusion | Green-blue systems, comfort, stormwater, lighting, stay, all-age use, opening and maintenance survey | The park is now operating publicly; added innovation services depend on field baselines for comfort, all-age rights, maintenance, affordable hours and tech opt-out. | Public service cannot depend on data consent; no facility expansion without maintenance funding |
 
 The current submission records **known, unknown and proposed** separately. Geometry and concept ratios can be recomputed; structure, fire, rights, demand, traffic capacity, investment and approval remain unknown pending official surveys. Unknowns never receive an invented score. Their output is a signed investigation task and a decision gate.[assumption:A-CONTROLS-001]
 
@@ -127,17 +140,27 @@ The Jingzhang Growth Mesh sits on Haidian's Jingzhang rail heritage corridor, no
 
 ## District position and problem evidence
 
-The proposal does not replace site judgment with a generic technology-park image. Official public evidence establishes three safe premises: the roughly 9-km Jingzhang railway heritage park meets Line 13, high-speed rail and cross streets through varied vertical relationships, breaks and difficult crossings; railway, universities, institutes, subdistricts, parks and communities create a multi-owner, phased coordination problem; and the roughly 37-km² AI innovation belt defines three zones, two wings and a 1-2 km urban interface where universities, research, firms, talent and public space overlap.[source:OFFICIAL-JINGZHANG-PLANNING-2021] [source:OFFICIAL-HAIDIAN-AI-BELT-2026]
+This is no longer a blank-site park concept. Official public sources report phase-2 support works complete in July 2026, with the north section at about 30.01 ha and a fishbone walking network; phase 2 opened in August and joined phase 1 into about 9 km of public space. In August 2026, the block-level regulatory plan for the AI innovation district along Jingzhang was publicly reported approved: about 1,668.2 ha, nine blocks and a “one belt, one axis; two centres and multiple nodes” structure.[source:OFFICIAL-PARK-PHASE2-COMPLETE-20260713] [source:OFFICIAL-PARK-PHASE2-OPEN-20260806] [source:OFFICIAL-JINGZHANG-BLOCK-PLAN-APPROVED-20260812]
 
-![District location and innovation anchors](assets/figures/map-a1-regional-location.en.png)
+The proposal therefore works on **operating interfaces**—campus/park, firm/public realm, station/service and community/night activity—rather than redesigning the park as if it did not exist. The approved block structure is the statutory background. “One axis, three cores and two wings” is only an industry-service operating overlay that implements the brief; it does not compete with statutory planning. Because the formal approved drawings and parcel controls are not in this package, no parcel FAR, height, redline, ownership or works conclusion is inferred.[assumption:A-CONTROLS-001]
 
-The health check separates E0 official/primary evidence, E1 provisional derivation and E3 field verification. Complex longitudinal/cross movement, multiple actors and sectional differences are E0; a continuous service chain among the three cores is E1; interface quality, accessibility obstacles, real flows and user needs remain E3 until supported by photographs, observation and interviews. E3 cannot trigger permanent works.
+![Current baseline and interface problem evidence](assets/figures/current-baseline-evidence.en.png)
 
-![Problem evidence and health-check grades](assets/figures/map-a2-evidence-diagnosis.en.png)
+### Three problem cards: known fact, field gap, consequence and reversible response
+
+| Area | Publicly known | E3 field question | Interface consequence | Response / verification / recovery |
+|---|---|---|---|---|
+| Zhongzhiyuan | The park is operating and a walking network exists | Where do public walking/science, testing, loading and emergency flows conflict by time? | An unbounded technology test could deprive public passage or create safety conflict | Count by time and map conflicts; test a closable court and observation edge; remove temporary equipment and restore passage if the gate fails |
+| AI Origin | The corridor is open public space within a mixed urban interface | How do night co-creation, family support and residential quiet interact? | Activity programming may displace residents or become event-only incubation | Interview and record time/noise; test recoverable time-shared rooms; end residency and return rooms to shared use if demand/public safeguards fail |
+| Dazhongsi | The southern interface connects transit, enterprise service and daily public use | Where do transit/daily passage and launch/enterprise-service flows overlap? | “First-order events” may obstruct passage or create non-auditable matchmaking | Verify station exits, passage and egress; test an open-ground desk with booking and recusal; stop matching and restore daily passage on failure |
+
+Service reach is not represented by assumed circles. The field task must first obtain official entrances, a walkable network, barriers/vertical links and opening times, then produce separate 5- and 10-minute network isochrones for normal and event/night conditions. Zhongzhiyuan tests campus/equipment access, AI Origin tests day/night and family-support reach, and Dazhongsi tests station-to-desk reach without mixing transfer and event flows. Current catchment coverage and population served remain null.[assumption:A-CURRENT-BASELINE-008]
+
+E0 official facts, E1 provisional derivation and E3 field verification remain separate. E3 cannot trigger permanent works, investment totals or performance claims. Strategy A—large physical redevelopment—is rejected because the park is operating and a block plan is approved. Strategy B—a technology-display layer—is rejected because gadgets do not produce enterprises or public value. Strategy C—a reversible operating-interface network—is preferred because it can be field-tested, signed, stopped and restored.[assumption:A-CURRENT-BASELINE-008]
 
 ## Masterplan and located project portfolio
 
-The masterplan locates all fifteen projects: Zhongzhiyuan asks whether a technology can be validated credibly; AI Origin asks whether people can become a stable team and project; Dazhongsi asks whether a verified project can secure a first order and grow into an enterprise. The Zhongguancun service wing provides callable compute, data, IP, compliance and capital interfaces; the Xiaoyuehe wing supplies bounded public-realm test settings. Six cross-corridor seams prioritize links among stations, universities, parks, communities and river edges; exact widths, levels and works await survey.
+The masterplan locates all fifteen projects under the growth contract: Zhongzhiyuan turns real problems into bounded validation and signed evidence; AI Origin turns validated contribution into a durable team and cost-bearing project; Dazhongsi turns project evidence into first order, repeat demand and independent-survival review. The Zhongguancun service wing provides callable compute, data, IP, compliance and capital interfaces; the Xiaoyuehe wing supplies bounded public-realm test settings. Six cross-corridor seams remain investigation priorities, not claimed deficiencies: exact entrances, route choice, catchments, levels, flows and works await field/network survey.
 
 ![Masterplan and fifteen located projects](assets/figures/map-a3-masterplan-projects.en.png)
 
@@ -153,6 +176,8 @@ Quantity and cost follow “price only measured quantities; no quantity, no inve
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 The structure is one axis, three cores and two wings. The heritage park is the cultural, walking and innovation-display axis. Zhongzhiyuan validates, the AI Origin Community incubates, and Dazhongsi commercializes. The Zhongguancun wing makes policy, data, compute, IP, compliance and finance callable; the Xiaoyuehe wing turns mobility, environment, community and public-space questions into testable orders.[data:geometry/roads.geojson#ROAD-001] [depth:overall_spatial_structure]
+
+Public reporting in August 2026 confirms approval of the block-level plan with a “one belt, one axis; two centres and multiple nodes” structure. That is the statutory background. “One axis, three cores and two wings” describes only the validation-incubation-conversion service/operating relationship; it creates no statutory centre, parcel control, FAR, height or road redline.[source:OFFICIAL-JINGZHANG-BLOCK-PLAN-APPROVED-20260812] [assumption:A-CONTROLS-001]
 This structure is a direct response to the official taskbook's three positionings, five functions and three-areas-two-wings, not a separate naming system:
 
 | Official taskbook requirement | Proposal response |

@@ -1,0 +1,89 @@
+{
+  "schema_version": "2.0.0",
+  "title_zh": "同一 8.4 米概念带的三种布局对照",
+  "title_en": "Three layouts within the same conceptual 8.4 m band",
+  "evidence_status": "concept_geometry_comparison",
+  "authority_boundary": "All dimensions are participant-authored design targets for comparison. They are not surveyed widths, road redlines, accessibility certification, engineering design, or approved controls.",
+  "common_test_frame": {
+    "segment_length_m": 108,
+    "total_width_m": 8.4,
+    "pedestrian_demand_index": 100,
+    "machine_trip_demand_index": 20,
+    "emergency_test": "A continuous 2.8 m human-priority spine must remain free when every machine is stopped.",
+    "yield_bay_interval_rule": "Bays are tested at 36 m centres; maximum one-way distance to a bay is therefore 18 m.",
+    "comparison_only": true
+  },
+  "alternatives": [
+    {
+      "id": "ALT-A",
+      "name_zh": "全混行",
+      "name_en": "Fully mixed",
+      "bands_m": [
+        {"name": "mixed_public_band", "width": 8.4}
+      ],
+      "protected_human_clear_width_m": 0.0,
+      "human_machine_crossings_per_100m": 6,
+      "max_distance_to_yield_bay_m": 54,
+      "emergency_path_continuity_ratio": 0.0,
+      "machine_path_index": 1.0,
+      "human_spine_continuity_ratio": 0.0,
+      "decision": "reject",
+      "reason_zh": "机器路径最短，但没有连续的人类优先净空，也没有可验证的侧向退出条件。"
+    },
+    {
+      "id": "ALT-B",
+      "name_zh": "中央机器道",
+      "name_en": "Central machine lane",
+      "bands_m": [
+        {"name": "west_human_band", "width": 2.2},
+        {"name": "buffer", "width": 0.6},
+        {"name": "machine_lane", "width": 2.0},
+        {"name": "buffer", "width": 0.6},
+        {"name": "east_human_band", "width": 3.0}
+      ],
+      "protected_human_clear_width_m": 2.2,
+      "human_machine_crossings_per_100m": 4,
+      "max_distance_to_yield_bay_m": 27,
+      "emergency_path_continuity_ratio": 0.5,
+      "machine_path_index": 1.04,
+      "human_spine_continuity_ratio": 0.5,
+      "decision": "reserve",
+      "reason_zh": "机器方向清楚，但人被分到两侧，门户和横向公共服务会重复跨越机器道。"
+    },
+    {
+      "id": "ALT-C",
+      "name_zh": "连续人行脊 + 侧置让路湾",
+      "name_en": "Continuous human spine + side yield bays",
+      "bands_m": [
+        {"name": "continuous_human_spine", "width": 2.8},
+        {"name": "tactile_safety_buffer", "width": 0.6},
+        {"name": "slow_machine_band", "width": 1.6},
+        {"name": "green_furniture_buffer", "width": 1.2},
+        {"name": "yield_handover_bay", "width": 2.2}
+      ],
+      "protected_human_clear_width_m": 2.8,
+      "human_machine_crossings_per_100m": 1,
+      "max_distance_to_yield_bay_m": 18,
+      "emergency_path_continuity_ratio": 1.0,
+      "machine_path_index": 1.18,
+      "human_spine_continuity_ratio": 1.0,
+      "decision": "selected_for_prototype",
+      "reason_zh": "人类路径连续、机器能侧向退出、故障后可恢复普通公共空间；代价是机器路径指数比全混行高 18%。"
+    }
+  ],
+  "selected_tradeoff": {
+    "selected": "ALT-C",
+    "unfavourable_result": "machine_path_index is 1.18, eighteen percent longer than ALT-A",
+    "accepted_because": [
+      "human-machine crossings fall from 6 to 1 per 100 m in the concept test",
+      "a 2.8 m continuous human-priority spine remains available in the power-off test",
+      "every machine position is within 18 m of a side yield bay"
+    ],
+    "switch_rule": "If field survey cannot retain the 2.8 m human spine, or if machine detour creates unsafe service pressure, do not compress the human path: downgrade to time-separated L1 operation or relocate the machine route."
+  },
+  "recalculation": {
+    "script": "visual/assets/v2/build_v2.py",
+    "inputs": ["segment_length_m", "total_width_m", "band widths", "bay interval", "crossing layout"],
+    "field_replacements": ["surveyed clear width", "peak pedestrian count", "accessible route audit", "operator observation", "fire and emergency review"]
+  }
+}

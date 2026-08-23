@@ -10,3 +10,11 @@
 - 生成 5 张双语图件、A3 文册与 A0 展板（中英双语 PDF）、离线双语 visual/index.html，并通过 render_proposal_html.py 渲染 report/proposal.html 与 report/proposal.en.html。
 - 完成 compliance_matrix.json（23 项任务）、standard_matrix.json（9 项标准）、design_depth_matrix.json（15 项深度项）、sources.json 与 assumptions.json；四门本地自检通过后由 finalize_submission.py 与 self_check_submission.py --mark-self-checked 固化为 ready_for_review。
 - 已知限制：官方精确边界、控规条件、现状建筑与权属台账待正式数据补齐；全部空间建议为概念建议，不构成政府审定结论或实施承诺。
+
+## v1.0.1 - 2026-08-15
+
+修订：统一文本文件为 LF 行尾并按 Git 存储字节重算 manifest 哈希（对齐上游新版校验器的 git blob 哈希规则）。
+
+- 将 24 个文本类文件（JSON/GeoJSON/Markdown/HTML）由 CRLF 转为 LF，与 Git 仓库存储形式一致。
+- 用新版 refresh_submission_manifest.py 重算 35 项声明哈希，并重跑 self_check_submission.py --mark-self-checked，四门 gate 保持 PASS。
+- 方案内容、几何、指标与图件无任何实质变更。

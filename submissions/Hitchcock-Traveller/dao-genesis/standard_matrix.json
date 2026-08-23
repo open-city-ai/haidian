@@ -1,0 +1,286 @@
+{
+  "schema_version": "0.1.0",
+  "standards": [
+    {
+      "standard_id": "MOHURD-URBAN-DESIGN-MEASURES",
+      "requirement_zh": "住建部《城市设计管理办法》（2017）：城市设计应体现地域特色、时代特征和民族风格，保护历史文化，塑造城市特色风貌",
+      "professional_dimension": "城市设计与风貌控制",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "1.4 Logo与视觉识别方向",
+        "4.4建筑形态与风貌控制",
+        "第七章蓝绿空间与城市风貌",
+        "第八章文化融合叙事"
+      ],
+      "drawing_refs": [
+        "assets/figures/mobility-bluegreen.png"
+      ],
+      "geometry_refs": [
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm"
+      ],
+      "source_ids": [
+        "MOHURD-URBAN-DESIGN-MEASURES"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "SC-STD-URBAN-DESIGN"
+      ],
+      "evidence_summary_zh": "方案以'道·生'为核心概念，融合京张铁路历史遗产、中关村创新文化和AI未来愿景三重叙事，形成独特地域特色。建筑形态分三区差异化控制，遗址公园沿线低层通透，体现历史文化保护要求。视觉识别系统融合篆书'道'字与铁路轨道意象，兼具传统与当代。"
+    },
+    {
+      "standard_id": "MOHURD-CONTROL-DETAILED-PLANNING",
+      "requirement_zh": "住建部《城市、镇控制性详细规划编制审批办法》：控规应确定用地性质、开发强度、建筑高度、绿地率、基础设施和公共服务设施配套等控制指标",
+      "professional_dimension": "控制性详细规划深度",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "4.2用地布局概念",
+        "4.4建筑形态与风貌控制",
+        "第十章用地与建筑规模",
+        "第十二章指标体系与面积复算"
+      ],
+      "drawing_refs": [
+        "assets/figures/land-use-structure.png"
+      ],
+      "geometry_refs": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": [
+        "green_ratio",
+        "public_space_ratio",
+        "overall_design_area_sqm"
+      ],
+      "source_ids": [
+        "MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "SC-STD-CONTROL-PLAN"
+      ],
+      "evidence_summary_zh": "方案按控规深度提出概念性用地布局（6大功能类型及比例）、建筑高度分区建议和绿地率/公共空间比例概念值。因正式控规条件未发布，开发强度指标为概念建议，已在assumptions.json中标注A-CONTROLS-001并说明复算路径。用地分类参照MNR-LAND-USE-CLASSIFICATION标准。"
+    },
+    {
+      "standard_id": "MNR-LAND-USE-CLASSIFICATION",
+      "requirement_zh": "自然资源部《国土空间调查、规划、用途管制用地用海分类指南》（2023）：统一用地分类标准，确保规划用地的规范性和可比性",
+      "professional_dimension": "用地分类与功能布局",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "4.2用地布局概念",
+        "geometry/land_use.geojson"
+      ],
+      "drawing_refs": [
+        "assets/figures/land-use-structure.png"
+      ],
+      "geometry_refs": [
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "green_ratio"
+      ],
+      "source_ids": [
+        "MNR-LAND-USE-CLASSIFICATION"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "SC-STD-LAND-USE"
+      ],
+      "evidence_summary_zh": "用地布局参照2023版分类指南，设置产业研发（0702/0803方向）、商业服务（0701方向）、教育科研（0801方向）、公共空间（11方向）、居住配套（0703方向）、绿地水系（1101方向）6大功能类型。GeoJSON图层中feature的function_type字段与分类指南代码对应。"
+    },
+    {
+      "standard_id": "ACCESSIBILITY-STANDARD",
+      "requirement_zh": "无障碍环境建设要求：公共空间和交通设施应满足无障碍设计规范，保障残障人士、老年人等群体的通行权益",
+      "professional_dimension": "无障碍与包容性设计",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "6.2 AI场景卡——场景9无障碍出行",
+        "4.5慢行系统"
+      ],
+      "drawing_refs": [
+        "assets/figures/mobility-bluegreen.png"
+      ],
+      "geometry_refs": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "ai_scenario_nodes"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "self_check_ids": [
+        "SC-STD-ACCESSIBILITY"
+      ],
+      "evidence_summary_zh": "方案设置AI+无障碍出行专项场景（场景9），覆盖AI实时导航、无障碍路径规划、智能轮椅协同等功能。慢行系统设计强调连续性，沿京张遗址公园和小月河设置无障碍通道。公共空间组件库中包含无障碍设施要素。"
+    },
+    {
+      "standard_id": "HERITAGE-PROTECTION",
+      "requirement_zh": "文物保护与历史遗产保护要求：涉及文保单位和历史建筑的建设活动应满足相关保护法规和管控要求",
+      "professional_dimension": "文化遗产保护",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "4.3城市更新总体框架——活化利用类",
+        "8.1三代传承叙事",
+        "7.3 AI朝圣地标",
+        "geometry/constraints.geojson"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/constraints.geojson"
+      ],
+      "metric_refs": [
+        "pilgrimage_landmarks"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "self_check_ids": [
+        "SC-STD-HERITAGE"
+      ],
+      "evidence_summary_zh": "方案将京张铁路遗址作为核心文化资产保护与活化，提出'保留提升、功能转换、活化利用'三类策略。约束图层（constraints.geojson）标注概念性文保范围。4个朝圣地标中2个直接致敬铁路遗产（人字纪、道·生之门），更新项目中文保审批列为关键依赖条件。"
+    },
+    {
+      "standard_id": "PRIVACY-DATA-GOVERNANCE",
+      "requirement_zh": "数据安全与个人隐私保护：AI场景应用涉及数据采集和处理的，应满足个人信息保护法和数据安全法的要求",
+      "professional_dimension": "AI治理与数据伦理",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "6.2 AI场景卡（每个场景均含隐私边界）",
+        "6.3场景-空间-运营映射"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": [
+        "scenario_cards"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "self_check_ids": [
+        "SC-STD-PRIVACY"
+      ],
+      "evidence_summary_zh": "12个AI场景卡均设置'隐私边界'字段，明确数据处理原则：脱敏处理、用户可选择退出、不存储个人位置、不涉及人脸采集等。场景-空间-运营映射表包含'人工复核'列，确保AI决策有人工兜底。方案明确提出'算法透明、公众监督'的治理原则。"
+    },
+    {
+      "standard_id": "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+      "requirement_zh": "自然资源部《国土空间调查、规划、用途管制用地用海分类指南》（2023）：统一用地分类标准",
+      "professional_dimension": "用地分类与功能布局",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "4.2用地布局概念"
+      ],
+      "drawing_refs": [
+        "assets/figures/land-use-structure.png"
+      ],
+      "geometry_refs": [
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "green_ratio"
+      ],
+      "source_ids": [
+        "MNR-LAND-USE-CLASSIFICATION-GUIDE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "SC-STD-LAND-USE-GUIDE"
+      ],
+      "evidence_summary_zh": "用地布局参照2023版分类指南，设置6大功能类型。"
+    },
+    {
+      "standard_id": "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+      "requirement_zh": "百年京张AI创新带城市设计Agent公开征集任务书",
+      "professional_dimension": "任务书合规",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "设计依据与资料清单"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "coordinated_research_area_sqm",
+        "overall_design_area_sqm"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "self_check_ids": [
+        "SC-TASKBOOK-COMPLIANCE"
+      ],
+      "evidence_summary_zh": "方案严格按照Agent公开征集任务书要求提交。"
+    },
+    {
+      "standard_id": "PROJECT-OFFICIAL-ANNOUNCEMENT",
+      "requirement_zh": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "professional_dimension": "公告要求覆盖",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": [
+        "设计依据与资料清单"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "metric_refs": [
+        "coordinated_research_area_sqm"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "self_check_ids": [
+        "SC-ANNOUNCEMENT-COVERAGE"
+      ],
+      "evidence_summary_zh": "方案完全响应官方公告要求。"
+    }
+  ]
+}

@@ -92,7 +92,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 实施采用 G0 付费共创、G1 权属/消防/可达核验、G2 90天可逆试点、G3 独立隐私/劳动/无障碍审计、G4 扩大—修正—停止五道门。相对 CAPEX/OPEX 仅用于比较工作量，不是投资估算；牵头方写为主体类型，不冒充已确认单位。
 
-![实施、运营与停用条件](assets/figures/implementation-operations.png)
+![实施、运营与停用条件](assets/figures/metrics-evidence.png)
 
 核心审计指标包括：人工升级可用率、无扫码服务完成率、交接中位时长、无障碍路线闭合时长、付费共创场次、申诉处理 SLA 和停机演练通过率。若出现个人评分、情绪识别、隐蔽追踪、自动惩罚或人工入口缺失，试点必须停止。
 

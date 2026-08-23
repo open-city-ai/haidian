@@ -1,0 +1,29 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-13",
+ "title_zh": "禁止官方背书表述",
+ "title_en": "No claim of official endorsement",
+ "domain": "governance",
+ "status": "design_target",
+ "source_ids": [
+  "OFFICIAL-ANNOUNCEMENT",
+  "SITE-PACKAGE"
+ ],
+ "inputs": [
+  "proposal.md",
+  "proposal.en.md",
+  "report/proposal.html"
+ ],
+ "procedure": [
+  "全文不得出现宣称已获批准、已获背书、可省略审批环节或必然建成的表述。",
+  "所有制度设想写为建议或设计目标，并带条件状语。",
+  "用 evidence-audit.js 的正则清单自查，命中即改写。"
+ ],
+ "pass_rule": "自查脚本无命中，且所有制度句式带条件状语。",
+ "stop_rule": "出现任一背书式表述时停止提交。",
+ "owner": "compliance officer",
+ "non_ai_equivalent": "宣传口径审查",
+ "evidence_output": "wording_scan_report",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

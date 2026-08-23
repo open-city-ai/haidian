@@ -316,14 +316,24 @@ code {
 <figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标证据图：面积复算与核心指标"><figcaption>指标证据图：面积复算与核心指标</figcaption></figure>
 <h3>指标体系（概念建议，全部为建议值非法定值 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="indicator_system" title="深度：indicator_system">深度</sup>）</h3>
 <div class="proposal-table"><table><thead><tr><th>指标</th><th>概念目标</th><th>说明</th></tr></thead><tbody><tr><td>概念绿地率</td><td>≥25%（复算 33.2%）</td><td>绿廊+口袋公园，provisional</td></tr><tr><td>慢行贯通率</td><td>记忆轨主轴全线贯通</td><td>缝合口数量≥6 处（概念）</td></tr><tr><td>15 分钟站区生活圈覆盖率</td><td>三站站域 100%（概念）</td><td>半径 800 m</td></tr><tr><td>场景覆盖</td><td>12 张场景卡、3 个测试场</td><td>全部概念建议</td></tr><tr><td>人才公寓</td><td>站区生活圈配建（概念）</td><td>规模待官方数据</td></tr><tr><td>AI 企业密度</td><td>待官方数据后设定基线</td><td>不虚构基线</td></tr></tbody></table></div>
-<h3>合规矩阵摘要</h3>
+<h3>Baseline and claim audit</h3>
+<ul>
+<li>Official text facts: 43.6 km2 coordinated research area, 11.4 km2 overall design area, and 368.4 ha key detailed-design area. These are announcement values, not polygon-derived survey facts <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="design_brief.json" title="空间数据：design_brief.json">空间数据</sup>.</li>
+<li>Provisional derived values: site area 11,412,825 m2, key-area union 3,692,893 m2, green ratio 33.2%, full land-use coverage, and 66 conceptual building features. These are recalculated from written GeoJSON in EPSG:4548 and remain provisional <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>.</li>
+<li>Unknown baselines: 15-minute service coverage, AI enterprise density, talent-housing supply, traffic demand, parking, utility capacity, flood performance, and operational KPI baselines. They are not treated as facts; see <code>baseline_registry.json</code>.</li>
+<li>Conceptual targets: annual visitors, enterprise retention, scenario adoption, contributor counts and safety red lines are future operator targets, not observed performance. Each requires a data owner, denominator, collection period, audit method and annual review before implementation.</li>
+</ul>
 <ul>
 <li>公告任务逐条映射：见 <code>compliance_matrix.json</code>（1.3.1-1.3.11 与 agent.1-agent.6 全覆盖，含章节/图层/指标/图纸证据链）。</li>
 <li>十条共创原则执行情况（任务书 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>）：公共利益优先（全部建议为公共空间与公共数据服务）、公开资料边界（仅用 registry 登记资料）、概念建议属性（全文标注）、AI 原生创新（场景全部 AI 原生）、结构化与可读并重（JSON+MD+HTML+PDF 双语）、生成方法披露（agent.json 声明模型，sources.json 记录来源）、人类最终判断（本包为建议）、公共知识沉淀（成果开源）、贡献可记忆（GitHub 名刻碑）、人本治理（无障碍与适老化设计）。</li>
-<li>标准覆盖：<code>standard_matrix.json</code> 覆盖 7 项登记标准（公告、任务书、城市设计管理办法、控规编制审批办法、用地用海分类指南、生成式AI暂行办法、无障碍环境建设法），均标注 addressed；缺官方标准文件的条目按数据缺口处理。</li>
+<li><strong>权利台账</strong>：逐资产类别的权利与待人工核验记录见 <code>rights_ledger.json</code>；它不把“公开可访问”自动升级为“可再分发”。</li>
+<li><strong>基线登记</strong>：<code>baseline_registry.json</code> 区分官方事实、临时几何派生值、概念目标与完全未知基线；未验证的 15 分钟生活圈、企业密度、人才住房和运营 KPI 不得被解释为观察事实。</li>
+<li><strong>人工复核清单</strong>：<code>human_review_checklist.md</code> 明确空间、规划、无障碍、AI 治理、权利、来源、双语和逐页 PDF 复核项；自动 gate PASS 不替代这些复核。</li>
+<li><strong>证据图谱</strong>：<code>evidence_atlas.md</code> 明确哪些图层是官方文字/临时上下文、哪些是概念干预、哪些专业证据仍缺失。</li>
 </ul>
 <h2>风险、版权与合规说明</h2>
-<p><strong>修订记录</strong>：v1.1（2026-08-12）——按首轮评审意见补充：区域协同（北纬社区、未来科学城/怀柔、亦庄、京津冀）、场景—空间—运营—数据—责任矩阵、Logo 图形母版（assets/figures/logo.png）；英文图件与英文 visual 页面去除残留中文；来源登记增至 14 条（含对标案例集合）。</p>
+<p><strong>修订记录</strong>：v1.3（2026-08-14）——执行优先改进计划：新增权利台账、基线与 claim audit、证据图谱、人工复核要求；逐案登记六个 benchmark URL；将未验证 KPI 明确降级为目标；补充 existing/context 与 conceptual intervention 的证据边界。</p>
+<p><strong>v1.3 package note</strong>：the JSON package carries the full rights ledger, baseline registry, human-review checklist, and evidence-atlas content because the current participant schema permits only predefined AI package files.</p>
 <h3>主要风险与缓解</h3>
 <div class="proposal-table"><table><thead><tr><th>风险</th><th>说明</th><th>缓解</th></tr></thead><tbody><tr><td>边界精度</td><td>全包基于 provisional 边界</td><td>全文标注、官方发布后重算全部图层与指标</td></tr><tr><td>法定指标缺失</td><td>FAR/高度/密度/绿地率/退线官方值缺失</td><td>只给概念区间，不虚构法定值</td></tr><tr><td>权属与现状底图缺失</td><td>拆改留为概念判断</td><td>标注假设、以官方更新计划为准</td></tr><tr><td>场景落地不确定性</td><td>AI 场景依赖技术与合规演进</td><td>全部标注「概念建议·需测试验证」</td></tr><tr><td>生成内容幻觉</td><td>LLM 生成内容可能出错</td><td>每个数字可复算、每条来源可追溯、自检通过</td></tr></tbody></table></div>
 <h3>版权与合规</h3>
@@ -339,7 +349,8 @@ code {
 <li><code>brief/site-package/design_brief.json</code>、<code>agent_taskbook.json</code>、<code>allowed_design_space.json</code>、<code>sources.json</code>、<code>enums/</code>、<code>ranges/planning_limits.json</code>、<code>schemas/</code>、<code>standards/standards.json</code>（含 7 项标准参考快照）、<code>visual_style_recommendations.json</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup></li>
 <li><code>brief/site-package/geometry/provisional_boundaries.geojson</code>（provisional）<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup></li>
 <li><code>data/source_registry.json</code>（9 条登记来源）</li>
-<li>公开对标案例（硅谷、国王十字、纬壹科技城、云栖小镇、首尔 DMC 等，基于公开资料，未纳入 sources.json 形式登记）</li>
+<li><code>rights_ledger.json</code>、<code>baseline_registry.json</code>、<code>human_review_checklist.md</code>、<code>evidence_atlas.md</code></li>
+<li>公开对标案例：<code>sources.json</code> 的 <code>BENCHMARK-SET</code>（6 条逐案 URL/发布者/claim scope/licence limitation；background-only）</li>
 <li>合并方案参考：silvaling/jingzhang-stack（同行参考，未复制内容）</li>
 </ul>
 </main>

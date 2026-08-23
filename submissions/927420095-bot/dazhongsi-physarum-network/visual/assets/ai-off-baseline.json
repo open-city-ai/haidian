@@ -1,0 +1,80 @@
+{
+  "schema_version": "0.1.0",
+  "name": "AI-off Equivalence Baseline",
+  "name_zh": "AI-off 等价基准（AEB）",
+  "version": "0.1.0",
+  "license": "CC BY-SA 4.0（建议；最终许可待授权主体确认）",
+  "provenance": {
+    "origin": "本基准由本方案「普通路径先行」治理命题生长而来：在任一 AI 场景到达能力极限前，必须停车并证明 AI 关闭后城市仍可用。普通路径（无账号、无模型、无网络的步行 / 人工 / 手推车路径）永远可用，AI 只做可撤回、可停止、可回退的增益。非抄袭任何外部「退出机制」概念。",
+    "status_disclaimer": "本基准是概念建议，托管主体、发布渠道与许可的最终确定均待授权主体确认；本方案不代表任何机构发布该基准，也不声称其已被任何一方采用。"
+  },
+  "components": [
+    {
+      "component": "node_schema",
+      "title_zh": "AI-off 等价点 schema",
+      "spec_zh": "每个 AI 场景必须声明五个字段：ai_off_path（AI 关闭后的等价路径）、human_handoff（人工接管角色）、gate_id（当前所处闸门）、operating_mode（运行方式）、responsible_role（责任主体）；缺任一字段的场景不得计入服务覆盖。",
+      "machine_readable_location": "simulation.json 的 test_scenarios 及产业测试场景字段（ai_off_path / human_handoff / gate_id / operating_mode / responsible_role）",
+      "must_accept_constraints": [
+        "五个字段为必填而非可选",
+        "ai_off_path 不得填写仍依赖同一算法系统的路径（例如「引导至线上办理」）；拒绝依据以本基准的 constraint_machine_rule 写明，不由校验工具自行解释"
+      ],
+      "applies_to": "8 个已声明场景（3 测试验证 + 3 产业测试 + 2 公共 AI 场景）"
+    },
+    {
+      "component": "scoring_criteria",
+      "title_zh": "评分口径",
+      "spec_zh": "等价性与兜底指标的分子与分母定义，覆盖 ai_off_path 完备率、人工接管指定率与 AI 开关服务等价差。",
+      "machine_readable_location": "metrics.json 中 ai_off_path_completeness / human_handoff_designation_rate / ai_off_service_equivalence_gap 的 formula 字段",
+      "must_accept_constraints": [
+        "分母不得删除失败样本：撤回、技术故障与非完成原因必须与完成数一并报告，删除任何一类即视为该次测量作废",
+        "适用范围由 applies_to 明文界定；不适用项连同排除理由一并写下"
+      ],
+      "applies_to": "参与者任务型指标；文件完整性型覆盖率不适用并已注明"
+    },
+    {
+      "component": "level_definition",
+      "title_zh": "等级定义（闸门）",
+      "spec_zh": "G0 普通路径常开、G1 本地复算、G2 专业复核、G3 有限现场窗口共四级，每级绑定准入条件、停止条件、恢复证据与责任主体；等级以「场景」为单位，允许降级，降级不附加额外程序门槛。",
+      "machine_readable_location": "risk.json 的 dimensions + governance-raci.json 的 gates + 正文「治理与放行」节闸门表",
+      "must_accept_constraints": [
+        "每级所处闸门以结构化声明，不由工具推断",
+        "任一级不满足即退回上一级，不设自动恢复；回到 G0 普通路径始终可用"
+      ],
+      "applies_to": "全部 8 个已声明场景"
+    },
+    {
+      "component": "decision_rules",
+      "title_zh": "判定规则",
+      "spec_zh": "data_privacy 等 8 项风险维度各自的停止条件（mitigation）与恢复证据（human_review），构成「什么时候必须停、拿什么才能重开」的完整规则集。",
+      "machine_readable_location": "risk.json 中 8 项 dimensions 的 mitigation 与 human_review 字段",
+      "must_accept_constraints": [
+        "停止条件触发即停止，不以「限期整改」替代停止",
+        "恢复须提交证据而不是承诺"
+      ],
+      "applies_to": "8 项风险维度全部"
+    }
+  ],
+  "version_governance": {
+    "rule": "任何一次变更必须同时提交失败样本登记与受影响指标的复算说明；只改条文不交证据的修订不予合并；版本号仅在判据本身变化时递增，措辞与译文修订不递增。",
+    "change_receipts_ref": "visual/assets/governance-receipts.json",
+    "turned_once": true,
+    "note_zh": "版本治理在本方案内部已转过一圈：R15 因算法管线挤占定位锚定导致评审 71 分回归，R16 以回退元叙事（净 -36 行）恢复 75 分；这一「方向错了→纠偏」的过程登记于 governance-receipts.json 的回执，证明治理是跑过的机制，不是承诺。"
+  },
+  "reuse_scenarios": [
+    {
+      "actor": "中关村科学城 AI 初创团队",
+      "takes": "node_schema 的 ai_off_path 与 human_handoff 两项",
+      "use_zh": "为早期产品做一次「AI 关闭后仍可用」的自测，不需等待任何平台或授权。"
+    },
+    {
+      "actor": "海淀区智慧交通项目组",
+      "takes": "scoring_criteria 中的 ai_off_service_equivalence_gap 一项",
+      "use_zh": "把「信号绿波 AI 失效后固定相位仍可用」这一默认前提放到可测量的位置。"
+    },
+    {
+      "actor": "任意城市的政务大厅",
+      "takes": "level_definition 的 G0 至 G2 三级",
+      "use_zh": "不改造任何空间先完成一轮本地复算与专业复核，得到本厅的服务等价差读数。"
+    }
+  ]
+}

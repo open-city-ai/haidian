@@ -82,10 +82,18 @@ tracks: ["civic-agent-governance"]
             collections = load_collections(collections_dir, [card])
             html = render_portal([card], "Collection Portal", collections=collections)
 
+            collection_item = collections[0]["items"][0]
+            self.assertTrue(collection_item["loaded"])
+            self.assertEqual(
+                collection_item["url"],
+                "../examples/agent-civic-loop/index.html",
+            )
             self.assertIn("精选专题", html)
             self.assertIn("最佳 AI 治理", html)
             self.assertIn("治理闭环", html)
             self.assertIn("Collection Test", html)
+            self.assertIn('../examples/agent-civic-loop/index.html', html)
+            self.assertNotIn("未载入 portal", html)
 
 
 if __name__ == "__main__":

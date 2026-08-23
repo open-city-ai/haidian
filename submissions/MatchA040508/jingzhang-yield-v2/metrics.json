@@ -1,0 +1,239 @@
+{
+  "schema_version": "0.1.0",
+  "units": {"length": "m", "area": "sqm", "time": "s"},
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known", "value": 11412825.386, "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)", "confidence": "medium",
+      "assumptions": ["A-BOUNDARY-001"], "reason": "Computable from the submitted provisional polygon; not an official precise-area basis."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known", "value": 310807.184, "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "sum(polygon_area(participant_authored_design_footprints, EPSG:4548))", "confidence": "low",
+      "assumptions": ["A-DESIGN-GEOMETRY-001"], "reason": "Illustrative design geometry, not a surveyed building inventory."
+    },
+    "green_ratio": {
+      "status": "known", "value": 0.123423, "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "design_green_union_area / provisional_site_area", "confidence": "medium",
+      "assumptions": ["A-BOUNDARY-001", "A-DESIGN-GEOMETRY-001"], "reason": "Illustrative submitted-design ratio, not an existing or statutory target."
+    },
+    "public_space_ratio": {
+      "status": "known", "value": 0.073281, "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "design_public_space_union_area / provisional_site_area", "confidence": "medium",
+      "assumptions": ["A-BOUNDARY-001", "A-DESIGN-GEOMETRY-001"], "reason": "Illustrative submitted-design ratio, not an existing or statutory target."
+    },
+    "floor_area_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "authoritative_total_floor_area / official_site_area", "confidence": "unknown",
+      "assumptions": ["A-CONTROLS-001"], "reason": "Approved controls, official boundary and surveyed floor area are unavailable."
+    },
+    "key_area_count": {
+      "status": "known", "value": 3, "unit": "count", "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(required_key_areas)", "confidence": "high", "assumptions": ["A-BOUNDARY-001"],
+      "reason": "The announcement names three areas; submitted polygons remain provisional."
+    },
+    "scenario_node_count": {
+      "status": "known", "value": 12, "unit": "count",
+      "source_files": ["geometry/public_space.geojson", "visual/assets/v2/scenario-contracts.json"],
+      "formula": "count(SCENARIO_NODE features) and count(scenario contracts)", "confidence": "high",
+      "assumptions": ["A-DESIGN-GEOMETRY-001"], "reason": "Counts proposed nodes/contracts, not implemented services."
+    },
+    "landmark_count": {
+      "status": "known", "value": 3, "unit": "count", "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(scenario_nodes with landmark_id)", "confidence": "high",
+      "assumptions": ["A-DESIGN-GEOMETRY-001"], "reason": "Counts three conceptual, reversible pilgrimage landmarks."
+    },
+    "industry_validation_scenario_count": {
+      "status": "known", "value": 3, "unit": "count", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "count(scenarios where industry_validation=true)", "confidence": "high",
+      "assumptions": ["A-PROTOCOL-001"], "reason": "Counts controlled concept-stage validation contracts, not accredited test institutions."
+    },
+    "spatial_prototype_count": {
+      "status": "known", "value": 3, "unit": "count",
+      "source_files": ["geometry/key_areas.geojson", "visual/assets/v2/implementation-contracts.json"],
+      "formula": "count(distinct key-area spatial archetypes)", "confidence": "high",
+      "assumptions": ["A-PROOF-SEGMENT-001"], "reason": "One non-isomorphic prototype is assigned to each provisional key area."
+    },
+    "physical_component_count": {
+      "status": "known", "value": 5, "unit": "count", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "count(ALT-C.bands_m)", "confidence": "high", "assumptions": ["A-PROOF-SEGMENT-001"],
+      "reason": "Counts five participant-authored components in the selected reference section."
+    },
+    "layout_alternative_count": {
+      "status": "known", "value": 3, "unit": "count", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "count(alternatives)", "confidence": "high", "assumptions": ["A-PROOF-SEGMENT-001"],
+      "reason": "Three same-width concept layouts are compared using one declared frame."
+    },
+    "comparison_segment_length_m": {
+      "status": "known", "value": 108, "unit": "m", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "common_test_frame.segment_length_m", "confidence": "high", "assumptions": ["A-PROOF-SEGMENT-001"],
+      "reason": "Participant-selected reference length, not surveyed geometry."
+    },
+    "comparison_total_width_m": {
+      "status": "known", "value": 8.4, "unit": "m", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "sum(ALT-C band widths)", "confidence": "high", "assumptions": ["A-PROOF-SEGMENT-001"],
+      "reason": "Participant-selected total reference width, not an observed site width."
+    },
+    "selected_protected_human_width_m": {
+      "status": "known", "value": 2.8, "unit": "m", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "ALT-C.protected_human_clear_width_m", "confidence": "high", "assumptions": ["A-PROOF-SEGMENT-001"],
+      "reason": "Concept target to be replaced by survey and professional accessibility/fire review."
+    },
+    "selected_crossings_per_100m": {
+      "status": "known", "value": 1, "unit": "count_per_100m", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "count(planned human-machine crossings in ALT-C per 100 m)", "confidence": "high",
+      "assumptions": ["A-PROOF-SEGMENT-001"], "reason": "Concept geometry comparison, not a field conflict count."
+    },
+    "selected_max_yield_distance_m": {
+      "status": "known", "value": 18, "unit": "m", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "36 m bay centre spacing / 2", "confidence": "high", "assumptions": ["A-PROOF-SEGMENT-001"],
+      "reason": "Concept target under the declared bay-spacing rule, not an as-built distance."
+    },
+    "selected_emergency_path_continuity_ratio": {
+      "status": "known", "value": 1.0, "unit": "ratio", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "continuous human-spine length in power-off layout / test length", "confidence": "high",
+      "assumptions": ["A-PROOF-SEGMENT-001"], "reason": "Diagrammatic continuity test only; not fire or accessibility certification."
+    },
+    "selected_machine_path_index": {
+      "status": "known", "value": 1.18, "unit": "index", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "ALT-C conceptual machine path / ALT-A conceptual machine path", "confidence": "high",
+      "assumptions": ["A-PROOF-SEGMENT-001"], "reason": "The selected layout is intentionally worse for machine path length than fully mixed ALT-A."
+    },
+    "machine_path_penalty_ratio": {
+      "status": "known", "value": 0.18, "unit": "ratio", "source_files": ["visual/assets/v2/layout-comparison.json"],
+      "formula": "selected_machine_path_index - 1", "confidence": "high", "assumptions": ["A-PROOF-SEGMENT-001"],
+      "reason": "Explicit adverse trade-off accepted for continuous human priority and physical recovery."
+    },
+    "scenario_contract_count": {
+      "status": "known", "value": 12, "unit": "count", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "count(scenarios)", "confidence": "high", "assumptions": ["A-PROTOCOL-001"],
+      "reason": "Counts machine-readable concept contracts, not deployed services."
+    },
+    "same_task_human_baseline_coverage_ratio": {
+      "status": "known", "value": 1.0, "unit": "ratio", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "contracts with same_task_human_baseline / 12", "confidence": "high", "assumptions": ["A-PROTOCOL-001"],
+      "reason": "Contract-field coverage only; real baseline-service availability is unknown."
+    },
+    "operator_role_coverage_ratio": {
+      "status": "known", "value": 1.0, "unit": "ratio", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "contracts with operator_role / 12", "confidence": "high", "assumptions": ["A-OPERATIONS-001"],
+      "reason": "Every contract names a suggested role; no appointment is claimed."
+    },
+    "stop_recovery_coverage_ratio": {
+      "status": "known", "value": 1.0, "unit": "ratio", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "contracts with stop_conditions and recovery / 12", "confidence": "high", "assumptions": ["A-PROTOCOL-001"],
+      "reason": "Contract completeness only; field recoverability remains unknown."
+    },
+    "persona_count": {
+      "status": "known", "value": 7, "unit": "count", "source_files": ["visual/assets/v2/personas-acceptance.json"],
+      "formula": "count(personas)", "confidence": "high", "assumptions": ["A-FIELDWORK-001"],
+      "reason": "Design lenses, not interviewed or observed people."
+    },
+    "scenario_persona_acceptance_cell_count": {
+      "status": "known", "value": 84, "unit": "count", "source_files": ["visual/assets/v2/personas-acceptance.json"],
+      "formula": "12 scenarios × 7 personas", "confidence": "high", "assumptions": ["A-FIELDWORK-001"],
+      "reason": "Counts planned acceptance questions; no field acceptance is claimed."
+    },
+    "yield_tabletop_fixture_count": {
+      "status": "known", "value": 84, "unit": "count", "source_files": ["visual/assets/v2/tabletop-results.json"],
+      "formula": "count(decisions)", "confidence": "high", "assumptions": ["A-PROTOCOL-001"],
+      "reason": "Twelve contracts × seven synthetic conditions; not a participant sample."
+    },
+    "yield_tabletop_negative_fixture_count": {
+      "status": "known", "value": 72, "unit": "count", "source_files": ["visual/assets/v2/tabletop-results.json"],
+      "formula": "count(decisions where negative=true)", "confidence": "high", "assumptions": ["A-PROTOCOL-001"],
+      "reason": "Six synthetic negative conditions per scenario."
+    },
+    "yield_tabletop_unsafe_release_count": {
+      "status": "known", "value": 0, "unit": "count", "source_files": ["visual/assets/v2/tabletop-results.json"],
+      "formula": "count(negative decisions where actual=proceed_with_ai_assist)", "confidence": "high",
+      "assumptions": ["A-PROTOCOL-001"], "reason": "Zero in the deterministic script only; not a field safety claim."
+    },
+    "yield_tabletop_pass_ratio": {
+      "status": "known", "value": 1.0, "unit": "ratio",
+      "source_files": ["visual/assets/v2/tabletop-results.json", "visual/assets/v2/run_tabletop.js"],
+      "formula": "count(decisions where pass=true) / 84", "confidence": "high", "assumptions": ["A-PROTOCOL-001"],
+      "reason": "Expected/actual match for participant-authored deterministic rules only."
+    },
+    "implementation_package_count": {
+      "status": "known", "value": 8, "unit": "count", "source_files": ["visual/assets/v2/implementation-contracts.json"],
+      "formula": "count(packages)", "confidence": "high", "assumptions": ["A-OPERATIONS-001"],
+      "reason": "Counts suggested delivery packages, not approved projects."
+    },
+    "first_100_day_work_package_count": {
+      "status": "known", "value": 5, "unit": "count", "source_files": ["visual/assets/v2/first-100-days.json"],
+      "formula": "count(work_packages)", "confidence": "high", "assumptions": ["A-OPERATIONS-001"],
+      "reason": "Suggested pre-authorisation sequence only."
+    },
+    "raci_role_count": {
+      "status": "known", "value": 6, "unit": "count", "source_files": ["visual/assets/v2/first-100-days.json"],
+      "formula": "count(roles)", "confidence": "high", "assumptions": ["A-OPERATIONS-001"],
+      "reason": "Counts role types, not appointed organisations or people."
+    },
+    "resource_band_count": {
+      "status": "known", "value": 3, "unit": "count", "source_files": ["visual/assets/v2/first-100-days.json"],
+      "formula": "count(resource_bands)", "confidence": "high", "assumptions": ["A-COST-001"],
+      "reason": "Relative L1/L2/L3 complexity only, with no currency or funding claim."
+    },
+    "annual_program_month_count": {
+      "status": "known", "value": 12, "unit": "count", "source_files": ["visual/assets/v2/implementation-contracts.json"],
+      "formula": "count(programme_12_months)", "confidence": "high", "assumptions": ["A-OPERATIONS-001"],
+      "reason": "Suggested month-by-month gates, not an approved schedule."
+    },
+    "public_ledger_field_count": {
+      "status": "known", "value": 10, "unit": "count", "source_files": ["visual/assets/v2/first-100-days.json"],
+      "formula": "count(annual_public_ledger_fields)", "confidence": "high", "assumptions": ["A-OPERATIONS-001"],
+      "reason": "Fields in a proposed public ledger; the ledger is not operating."
+    },
+    "local_official_context_source_count": {
+      "status": "known", "value": 5, "unit": "count", "source_files": ["sources.json"],
+      "formula": "count(source ids prefixed LOCAL-)", "confidence": "high", "assumptions": ["A-LOCAL-CONTEXT-001"],
+      "reason": "Five public official or official-republication pages used within stated limits."
+    },
+    "global_case_count": {
+      "status": "known", "value": 8, "unit": "count", "source_files": ["sources.json"],
+      "formula": "count(source ids prefixed CASE-)", "confidence": "high", "assumptions": [],
+      "reason": "Eight mechanism references; no local statistics or policy transfer."
+    },
+    "field_human_wait_seconds": {
+      "status": "unknown", "value": null, "unit": "s", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "median(observed completion time with ordinary human baseline)", "confidence": "unknown",
+      "assumptions": ["A-FIELDWORK-001"], "reason": "Requires authorised field observation and an agreed same-task baseline."
+    },
+    "field_recovery_seconds": {
+      "status": "unknown", "value": null, "unit": "s", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "time from stop trigger to restored ordinary service", "confidence": "unknown",
+      "assumptions": ["A-FIELDWORK-001"], "reason": "No field drill has been run."
+    },
+    "field_accessible_route_pass_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio", "source_files": ["visual/assets/v2/personas-acceptance.json"],
+      "formula": "professionally accepted accessible-route checks / checks run", "confidence": "unknown",
+      "assumptions": ["A-FIELDWORK-001", "A-CONTROLS-001"], "reason": "Requires survey, professional review and user participation."
+    },
+    "field_no_account_completion_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "same-task completions without account/device / eligible attempts", "confidence": "unknown",
+      "assumptions": ["A-FIELDWORK-001"], "reason": "Contract parity is specified, but no public service has been trialled."
+    },
+    "field_near_miss_count": {
+      "status": "unknown", "value": null, "unit": "count", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "operator-verified human-machine near misses per authorised test window", "confidence": "unknown",
+      "assumptions": ["A-FIELDWORK-001"], "reason": "No device or field window exists."
+    },
+    "field_rain_night_pass_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio", "source_files": ["visual/assets/v2/scenario-contracts.json"],
+      "formula": "accepted rain/night recovery drills / drills run", "confidence": "unknown",
+      "assumptions": ["A-FIELDWORK-001"], "reason": "Rain/night behaviour remains a test requirement, not observed evidence."
+    },
+    "field_public_acceptance_ratio": {
+      "status": "unknown", "value": null, "unit": "ratio", "source_files": ["visual/assets/v2/personas-acceptance.json"],
+      "formula": "accepted scenario-persona cells / valid field cells reviewed", "confidence": "unknown",
+      "assumptions": ["A-FIELDWORK-001"], "reason": "The 84-cell matrix is planned, not completed participation."
+    }
+  }
+}

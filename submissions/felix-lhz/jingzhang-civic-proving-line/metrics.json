@@ -48,7 +48,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.026327,
+      "value": 0.02892,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -583,6 +583,76 @@
         "visual/assets/prototype-model.json"
       ],
       "formula": "count(detail_refs across three prototypes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "official_planning_area_ha": {
+      "status": "known",
+      "value": 1668.2,
+      "unit": "ha",
+      "source_files": [
+        "sources.json",
+        "visual/assets/spatial-atlas.json"
+      ],
+      "formula": "published figure; not recomputed from submitted geometry",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "official_green_belt_length_km": {
+      "status": "known",
+      "value": 9,
+      "unit": "km",
+      "source_files": [
+        "sources.json",
+        "visual/assets/spatial-atlas.json"
+      ],
+      "formula": "published figure",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "submitted_provisional_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted provisional geometry)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "exchange_contract_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-atlas.json"
+      ],
+      "formula": "count(exchange_contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "cultural_component_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-atlas.json"
+      ],
+      "formula": "count(cultural_components)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ordinary_open_day_step_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/two-answers.json"
+      ],
+      "formula": "count(ordinary_open_day.steps)",
       "confidence": "high",
       "assumptions": []
     }

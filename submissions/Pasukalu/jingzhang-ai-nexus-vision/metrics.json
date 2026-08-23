@@ -1,0 +1,207 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson#SITE-001"
+      ],
+      "formula": "polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界，待正式数据发布后复算"
+      ],
+      "label_zh": "总体设计范围面积"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count features with layer=KEY_AREA",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "重点区域数量"
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "formula": "provisional polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "公告公布面积"
+      ],
+      "label_zh": "众智园面积"
+    },
+    "ai_origin_area_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "formula": "provisional polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "公告公布面积"
+      ],
+      "label_zh": "AI原点社区面积"
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "formula": "provisional polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "公告公布面积"
+      ],
+      "label_zh": "大钟寺面积"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.3772,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时边界和设计建议分区"
+      ],
+      "label_zh": "绿地率"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0216,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "基于设计建议"
+      ],
+      "label_zh": "公共空间比例"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1119272,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum of all building footprint polygon areas in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "基于14栋代表性建筑"
+      ],
+      "label_zh": "建筑基底总面积"
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of renewal projects",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "更新项目数量"
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of AI scenario cards",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "AI场景卡数量"
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of industry test scenarios",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "产业测试验证场景数量"
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of user persona types",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "用户画像类型数量"
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of AI pilgrimage landmarks",
+      "confidence": "high",
+      "assumptions": [],
+      "label_zh": "AI朝圣地标数量"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area / site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "待正式控规条件确认"
+      ],
+      "reason": "缺少官方控规条件",
+      "label_zh": "容积率"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "official height control",
+      "confidence": "unknown",
+      "assumptions": [
+        "待正式控规条件确认"
+      ],
+      "reason": "缺少官方建筑高度控制条件",
+      "label_zh": "建筑高度控制"
+    }
+  }
+}

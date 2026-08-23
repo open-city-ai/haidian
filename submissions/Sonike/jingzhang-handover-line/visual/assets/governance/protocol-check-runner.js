@@ -12,6 +12,7 @@
  *
  * 只读三个随包文件，不写任何东西，不联网，不依赖任何第三方包：
  *   shift-ledger-suite.json   输入夹具：12 条合成交接账
+ *   shift-ledger.schema.json  协议 schema（17 个枚举定义，300 个实例逐个校验）
  *   rule-check-report.json    随包发布的 96 条规则检查结果
  *   ../../../simulation.json  随包发布的 12 任务 / 48 断言结果
  *
@@ -170,11 +171,160 @@ for (const t of sim.tasks) {
   }
 }
 
+/* ---- schema 枚举一致性 ＋ fail-closed 结构断言（2026-08-21 加） -------------
+   此前本脚本完全不读 shift-ledger.schema.json：schema 声明了 17 个枚举，但包内
+   没有任何脚本验证 12 条账的取值是否落在枚举内。这个洞在 2026-08-21 当场被证实
+   —— 为做模型 shadow 测试手造扰动时用了 assigned / attested /
+   official_and_field_confirmed 三个**不在枚举里**的取值，包内无一处能拦下。
+
+   两条硬规则在这里都必须守：
+   ① 每个实例无条件登记：字段读不到就判该项失败并写明原因，不是跳过；
+   ② 规模写死在被审对象之外——17 个枚举字段、300 个实例是常量。夹具少几条账、
+      schema 少几个枚举定义，都会让退出码变 1，而不是「比对条数跟着变少但仍一致」。
+
+   fail-closed 结构断言：smart_layer_state_after_decision 的枚举必须**逐位等于**
+   ["off","sandbox_preview","limited_trial"]。这条协议因此在 schema 层面就无法
+   表达「已全面启用」——不是承诺，是结构性不可能。谁往枚举里加一个更高的状态，
+   这条断言立刻失败。 */
+const schema = read("shift-ledger.schema.json");
+const ENUM_SCALE = { enum_fields: 18, enum_instances: 360 };
+const REASON_SCALE = { codes: 5, compat_rows: 4, compat_pairs: 7 };
+const FAIL_CLOSED_SMART_LAYER = ["off", "sandbox_preview", "limited_trial"];
+
+const enumDefs = new Map();
+/* 只收「字段值约束」型枚举：路径必须一路走 properties/items/$defs，
+   **不能穿过 if/then/else/not**——2026-08-22 加兼容表时这里咬了一口：
+   allOf[i].if.properties.receiver_disposition.enum 是一个条件判据，不是
+   字段的取值域，旧版收集器把它当约束写进去、还覆盖了真正的四值枚举，
+   于是十二条账里合法的 "refused" 被判成越界。 */
+const COND_KEYS = new Set(["if", "then", "else", "not"]);
+(function collectEnums(node, name, inCond) {
+  if (Array.isArray(node)) { node.forEach((v) => collectEnums(v, name, inCond)); return; }
+  if (!node || typeof node !== "object") return;
+  if (!inCond && Array.isArray(node.enum) && name) enumDefs.set(name, node.enum);
+  for (const [k, v] of Object.entries(node)) {
+    const passthrough = k === "properties" || k === "items" || k === "$defs";
+    collectEnums(v, passthrough ? name : k, inCond || COND_KEYS.has(k));
+  }
+})(schema, null, false);
+
+const enumInstances = [];
+(function walkInstances(node) {
+  if (Array.isArray(node)) { node.forEach(walkInstances); return; }
+  if (!node || typeof node !== "object") return;
+  for (const [k, v] of Object.entries(node)) {
+    if (!enumDefs.has(k)) { walkInstances(v); continue; }
+    /* 枚举约束既可能落在标量上，也可能落在字符串数组的每一项上
+       （refusal_reasons 就是后者，2026-08-22 由自由字符串收紧为枚举）。 */
+    if (typeof v === "string") {
+      enumInstances.push({ field: k, value: v, ok: enumDefs.get(k).includes(v) });
+    } else if (Array.isArray(v) && v.every((x) => typeof x === "string")) {
+      for (const x of v) enumInstances.push({ field: k, value: x, ok: enumDefs.get(k).includes(x) });
+    } else {
+      walkInstances(v);
+    }
+  }
+})(suite.ledgers);
+
+const enumViolations = enumInstances.filter((x) => !x.ok)
+  .map((x) => `${x.field} = ${JSON.stringify(x.value)} 不在枚举 ${JSON.stringify(enumDefs.get(x.field))} 内`);
+
+const smartEnum = enumDefs.get("smart_layer_state_after_decision") || null;
+const failClosedOk = Array.isArray(smartEnum)
+  && smartEnum.length === FAIL_CLOSED_SMART_LAYER.length
+  && smartEnum.every((v, i) => v === FAIL_CLOSED_SMART_LAYER[i]);
+const failClosedProblems = [];
+if (!smartEnum) {
+  failClosedProblems.push("schema 里找不到 smart_layer_state_after_decision 的枚举定义");
+} else if (!failClosedOk) {
+  failClosedProblems.push(
+    `smart_layer_state_after_decision 枚举为 ${JSON.stringify(smartEnum)}，`
+    + `应逐位等于 ${JSON.stringify(FAIL_CLOSED_SMART_LAYER)}——fail-closed 上限被改动`);
+}
+
+/* ---- 拒收理由码与「处置 × 智能层」兼容表（2026-08-22 加）------------------
+   起因是同一次模型影子测试的另两处发现：
+   · SHADOW-F1：refusal_reasons 只有正则、没有枚举，同一套协议交给独立判断者时
+     约 5 个概念被拼成 14 个不同码（单是「场地未确认」四种拼法），使「按理由分类
+     公布拒收分布」失效。**这个缺陷本来就在包内**：随包例样用的是
+     SITE_SCOPE_UNCONFIRMED 与 ROUTE_NOT_HUMAN_VERIFIED，与十二条账的四个码
+     是两套词汇。
+   · SHADOW-F3：协议记录的四个码里没有一个对应「人工兜底未验证」，而十二条账
+     全部 must_exist_before_smart_layer=true 且 proof_state=not_observed——
+     12/12 漏报了这一条理由。现补入 HUMAN_FLOOR_NOT_PROVEN。
+   另补一张此前根本不存在的表：schema 原先只强制 refused ⇒ off，其余三种处置对
+   智能层毫无约束，因此「附条件接受」在结构上可以直接跳到 limited_trial。
+   规模（5 码／4 行／7 对）写死参与退出码：目录被删几条时「逐条一致」仍成立。 */
+const REASON_FIELD = "refusal_reasons";
+const reasonProblems = [];
+const catalog = schema.refusal_reason_catalog || {};
+const catCodes = (catalog.codes || []).map((c) => c.code).sort();
+const enumCodes = (enumDefs.get(REASON_FIELD) || []).slice().sort();
+if (catCodes.length !== REASON_SCALE.codes) {
+  reasonProblems.push(`理由码目录 ${catCodes.length} 条，应为 ${REASON_SCALE.codes} 条`);
+}
+if (enumCodes.length !== REASON_SCALE.codes) {
+  reasonProblems.push(`refusal_reasons 枚举 ${enumCodes.length} 值，应为 ${REASON_SCALE.codes} 值`);
+}
+if (catCodes.join("|") !== enumCodes.join("|")) {
+  reasonProblems.push(`目录与枚举分岔：目录 ${JSON.stringify(catCodes)} vs 枚举 ${JSON.stringify(enumCodes)}`);
+}
+const compat = schema.disposition_smart_layer_compatibility || {};
+const rows = compat.table || [];
+const compatMap = new Map(rows.map((r) => [r.receiver_disposition, r.permitted_smart_layer_state_after_decision || []]));
+const pairCount = rows.reduce((n, r) => n + (r.permitted_smart_layer_state_after_decision || []).length, 0);
+if (rows.length !== REASON_SCALE.compat_rows) {
+  reasonProblems.push(`兼容表 ${rows.length} 行，应为 ${REASON_SCALE.compat_rows} 行`);
+}
+if (pairCount !== REASON_SCALE.compat_pairs) {
+  reasonProblems.push(`兼容表 ${pairCount} 对，应为 ${REASON_SCALE.compat_pairs} 对`);
+}
+for (const d of (enumDefs.get("receiver_disposition") || [])) {
+  if (!compatMap.has(d)) reasonProblems.push(`处置 ${d} 在兼容表里没有对应行`);
+}
+for (const l of suite.ledgers) {
+  const ta = l.transfer_attempt || {};
+  const allowed = compatMap.get(ta.receiver_disposition);
+  if (!allowed) {
+    reasonProblems.push(`${l.ledger_id}: 处置 ${ta.receiver_disposition} 不在兼容表内`);
+  } else if (!allowed.includes(ta.smart_layer_state_after_decision)) {
+    reasonProblems.push(`${l.ledger_id}: ${ta.receiver_disposition} × ${ta.smart_layer_state_after_decision} 违反兼容表（许可 ${JSON.stringify(allowed)}）`);
+  }
+  const hasReasons = (ta[REASON_FIELD] || []).length > 0;
+  const mustHave = ta.receiver_disposition === "refused" || ta.receiver_disposition === "deferred";
+  if (hasReasons !== mustHave) {
+    reasonProblems.push(`${l.ledger_id}: refusal_reasons 非空(${hasReasons}) 与处置 ${ta.receiver_disposition} 的不变式不符`);
+  }
+}
+
+/* ---- 回滚证据一致性（2026-08-21 加，起因是模型影子测试） --------------------
+   schema 不禁止 execution_state: observed_pass 与 evidence_pointer: null 并存——
+   也就是「声称演练通过、却没有任何可核证据」。这个状态是影子测试的扰动无意造出来
+   的，模型在 P4／P5 档共 8 次点出它（见 model-shadow-run.json#SHADOW-F2）。
+   规则：execution_state 一旦是 observed_pass 或 observed_fail，evidence_pointer
+   与 executed_at 必须非空。12 条账逐条检查，条数写死参与退出码。 */
+const OBSERVED = ["observed_pass", "observed_fail"];
+const rollbackEvidenceProblems = [];
+let rollbackEvidenceChecked = 0;
+for (const L of suite.ledgers) {
+  rollbackEvidenceChecked += 1;
+  const rb = (L || {}).rollback_rehearsal;
+  const id = ((L || {}).scenario_anchor || {}).scenario_id || "?";
+  if (!rb) { rollbackEvidenceProblems.push(`${id}: 缺 rollback_rehearsal 段`); continue; }
+  if (!OBSERVED.includes(rb.execution_state)) continue;   // 未执行态无需证据指针
+  if (rb.evidence_pointer === null || rb.evidence_pointer === undefined || rb.evidence_pointer === "") {
+    rollbackEvidenceProblems.push(`${id}: execution_state=${rb.execution_state} 但 evidence_pointer 为空`);
+  }
+  if (rb.executed_at === null || rb.executed_at === undefined || rb.executed_at === "") {
+    rollbackEvidenceProblems.push(`${id}: execution_state=${rb.execution_state} 但 executed_at 为空`);
+  }
+}
+
 /* 规模守卫。上面三个计数全部由被审数据自己推出——夹具少几条账、发布结果少几条检查，
    比对的条数就跟着变少，而「逐条一致」仍然成立：那样脚本会以 40/40、exit 0 通过，
    正文声明的 96 与 48 却已经不成立。所以把本包声明的规模写死在这里参与退出码。
    同类的洞 2026-08-20 在 claims-audit.js 上被外部复核实测到过（见该文件 Z 段注释）。 */
-const EXPECTED_SCALE = { ledgers: 12, rule_checks: 96, assertions: 48 };
+const EXPECTED_SCALE = { ledgers: 12, rule_checks: 96, assertions: 48, rollback_evidence_checks: 12 };
 const scaleProblems = [];
 if (suite.ledgers.length !== EXPECTED_SCALE.ledgers) {
   scaleProblems.push(`交接账 ${suite.ledgers.length} 条，应为 ${EXPECTED_SCALE.ledgers} 条`);
@@ -184,6 +334,15 @@ if (report.checks.length !== EXPECTED_SCALE.rule_checks) {
 }
 if (assertRun !== EXPECTED_SCALE.assertions) {
   scaleProblems.push(`接管断言 ${assertRun} 项，应为 ${EXPECTED_SCALE.assertions} 项`);
+}
+if (enumDefs.size !== ENUM_SCALE.enum_fields) {
+  scaleProblems.push(`schema 枚举字段 ${enumDefs.size} 个，应为 ${ENUM_SCALE.enum_fields} 个`);
+}
+if (enumInstances.length !== ENUM_SCALE.enum_instances) {
+  scaleProblems.push(`枚举实例 ${enumInstances.length} 个，应为 ${ENUM_SCALE.enum_instances} 个`);
+}
+if (rollbackEvidenceChecked !== EXPECTED_SCALE.rollback_evidence_checks) {
+  scaleProblems.push(`回滚证据检查 ${rollbackEvidenceChecked} 条，应为 ${EXPECTED_SCALE.rollback_evidence_checks} 条`);
 }
 
 const out = {
@@ -195,12 +354,27 @@ const out = {
   assertions_recomputed: assertRun,
   assertions_matching_published: assertRun - assertMismatches.length,
   expected_scale: EXPECTED_SCALE,
+  enum_scale: ENUM_SCALE,
+  enum_fields_in_schema: enumDefs.size,
+  enum_instances_checked: enumInstances.length,
+  enum_instances_valid: enumInstances.length - enumViolations.length,
+  enum_violations: enumViolations,
+  reason_scale: REASON_SCALE,
+  reason_code_catalogue: catCodes,
+  reason_problems: reasonProblems,
+  fail_closed_smart_layer_enum: smartEnum,
+  fail_closed_ok: failClosedOk,
+  fail_closed_problems: failClosedProblems,
+  rollback_evidence_checked: rollbackEvidenceChecked,
+  rollback_evidence_problems: rollbackEvidenceProblems,
   scale_ok: scaleProblems.length === 0,
   scale_problems: scaleProblems,
   rule_mismatches: ruleMismatches,
   assertion_mismatches: assertMismatches,
   all_match: ruleMismatches.length === 0 && assertMismatches.length === 0
-             && scaleProblems.length === 0,
+             && scaleProblems.length === 0 && enumViolations.length === 0
+             && reasonProblems.length === 0
+             && failClosedProblems.length === 0 && rollbackEvidenceProblems.length === 0,
   field_rehearsal_tasks_completed: sim.summary.field_rehearsal_tasks_completed,
   scope_note_zh: "只重算协议逻辑，不证明现场绩效、安全、合规或获批；现场演练仍为 0/12。",
 };
@@ -211,10 +385,17 @@ if (process.argv.includes("--json")) {
   console.log(`交接账 ${out.ledgers} 条`);
   console.log(`规则检查 ${out.rule_checks_matching_published}/${out.rule_checks_recomputed} 与随包结果一致`);
   console.log(`接管断言 ${out.assertions_matching_published}/${out.assertions_recomputed} 与随包结果一致`);
+  console.log(`schema 枚举取值 ${out.enum_instances_valid}/${out.enum_instances_checked} 合法（${out.enum_fields_in_schema} 个枚举字段）`);
+  console.log(`拒收理由码 ${out.reason_code_catalogue.length}/${REASON_SCALE.codes} 与目录一致；兼容表 ${REASON_SCALE.compat_rows} 行／${REASON_SCALE.compat_pairs} 对，十二条账逐条符合`);
+  console.log(`fail-closed 上限 ${out.fail_closed_ok ? "未被改动" : "已被改动"}：smart_layer 枚举 ${JSON.stringify(out.fail_closed_smart_layer_enum)}`);
+  console.log(`回滚证据一致性 ${out.rollback_evidence_checked - out.rollback_evidence_problems.length}/${out.rollback_evidence_checked}（observed_* 必须带 evidence_pointer 与 executed_at）`);
   console.log(`现场演练 ${out.field_rehearsal_tasks_completed}/12（未授权，未执行）`);
   for (const m of out.rule_mismatches) console.log("  规则不一致:", JSON.stringify(m));
   for (const m of out.assertion_mismatches) console.log("  断言不一致:", JSON.stringify(m));
   for (const m of out.scale_problems) console.log("  规模不符:", m);
+  for (const m of out.enum_violations) console.log("  枚举越界:", m);
+  for (const m of out.fail_closed_problems) console.log("  fail-closed 断言失败:", m);
+  for (const m of out.rollback_evidence_problems) console.log("  回滚证据不一致:", m);
   console.log(out.all_match ? "全部一致" : "存在不一致");
 }
 process.exit(out.all_match ? 0 : 1);

@@ -157,7 +157,7 @@
     },
     "test_scenario_count": {
       "status": "known",
-      "value": 3,
+      "value": 8,
       "unit": "count",
       "source_files": [
         "simulation.json"
@@ -165,8 +165,46 @@
       "formula": "count(test_scenarios) in simulation.json",
       "confidence": "high",
       "assumptions": [
-        "Three proposed validation scenarios (TOD interchange, stormwater resilience, community accessibility); not yet executed, marked status=proposed."
+        "Eight declared scenarios (3 test_validation + 3 industrial + 2 public_ai), each bound to the five ai-off fields; all marked status=proposed, none deployed."
       ]
+    },
+    "ai_off_path_completeness": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(test_scenarios with non-empty ai_off_path) / test_scenario_count = 8/8",
+      "confidence": "high",
+      "assumptions": [
+        "Every declared scenario declares an equivalent physical/manual path when the AI component is off; baseline is 1.0 by construction, not by field measurement."
+      ]
+    },
+    "human_handoff_designation_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(test_scenarios with named human_handoff) / test_scenario_count = 8/8",
+      "confidence": "high",
+      "assumptions": [
+        "Every declared scenario names a human takeover role; baseline is 1.0 by construction."
+      ]
+    },
+    "ai_off_service_equivalence_gap": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "1 - (ai_off_service_level / ai_on_service_level) measured at the bounded field pilot (G3)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No deployment yet; the equivalence gap can only be read from the bounded field pilot, so it remains unknown until the first reading."
     }
   }
 }

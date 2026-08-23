@@ -6,7 +6,7 @@ language: "en"
 chinese_translation: "included"
 translation_file: "proposal.zh.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v1.10"
+iteration: "v1.11"
 summary: "On single-track railways a driver could enter a section only while holding its token, and no second token was released until the first came back. Token Block applies that hundred-year-old safety rule to urban AI governance: the Jing-Zhang heritage corridor becomes one continuously operated, publicly bookable AI test track — one token, one section, returned before the next is issued — with three stations, two switches, and an evidence chain that lets any professional team recompute every claim."
 summary_zh: "单线铁路上，司机必须持有区间令牌才能进入，令牌未归还前发不出第二枚。本方案把这条百年行车安全规则用于城市AI治理：把京张遗址公园全线做成一条持续运营、公众可预约的AI测试轨道——一枚令牌，一个区间，归还之后才发下一枚——三站两岔、一线到底，并附可被专业团队逐项复算的证据链。全部空间建议均为概念建议，不替代法定规划。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]
@@ -15,13 +15,13 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 
 
-# Token Block — Centennial Jing-Zhang AI Innovation Belt
-
-**京张令牌 · 百年京张AI创新带**
-
 ![Concept impression of the corridor — one line, three stations, two switches](assets/figures/concept-hero-wide.jpg)
 
 *AI-generated concept impression (gpt-image-2), layout referenced from `geometry/*.geojson`; full provenance and limits are registered per image in `manifest.json`.*
+
+# Token Block — Centennial Jing-Zhang AI Innovation Belt
+
+**京张令牌 · 百年京张AI创新带**
 
 A century ago the Jing-Zhang line was built to *carry* things. This proposal argues that the same alignment should now *run* things.
 
@@ -77,7 +77,20 @@ The transmission between levels is explicit and checkable. The line is divided i
 
 **Three areas, two wings, one loop.** The synergy is designed as a closed circuit, not an adjacency diagram. Research capability originates at the Zero-Kilometre Station's campus edge, is hardened into standards, evaluation and full-stack autonomy at the Marshalling Yard, is tested in public along the line under the test-track protocol, is converted into products and international exposure at the Arrival Yard, and is fed back by the two switches — the Zhongguancun technology service wing supplying capital, IP, legal and global-allocation services at S5, the Xiaoyuehe scenario-empowerment wing supplying real everyday demand and real users at S2. A loop with a feedback path is the difference between an innovation district and an innovation *system*.
 
-**Eight global references, read for mechanism rather than for imagery.** Kendall Square shows what happens when a campus edge is allowed to become a commercial-conversion zone rather than a buffer. Station F shows single-operator concentration producing a legible front door. The King's Cross knowledge quarter shows heritage infrastructure carrying research institutions without becoming a museum. Yangjae AI Hub shows a public-sector-led single-purpose AI address. Zhangjiang AI Island shows a compact waterfront cluster used as a permanent exhibition of its own industry. Shenzhen Bay shows service-facility density as the actual attractor. Shibuya QWS shows a station-integrated open-membership innovation room. Tel Aviv shows an academia-to-startup pipeline that works because the distance is short. These are qualitative design references drawn from publicly known international practice; **this package makes no quantitative claim about any of them**, cites none of them as authoritative data, and uses none of them to justify a numeric target. The transferable mechanism is the same in all eight: shorten the distance between where knowledge is made and where it is used, and make that distance publicly visible.
+**Case-study table — eight global references, read for mechanism rather than for imagery.**
+
+| Reference | Mechanism read | What Token Block transfers |
+| --- | --- | --- |
+| Kendall Square | A campus edge allowed to become a commercial-conversion zone rather than a buffer | The Zero-Kilometre Station's campus-facing interface (S4) |
+| Station F | Single-operator concentration producing a legible front door | One Line Operator, one booking calendar |
+| King's Cross knowledge quarter | Heritage infrastructure carrying research institutions without becoming a museum | The heritage park as a working test track, not an exhibit |
+| Yangjae AI Hub | A public-sector-led single-purpose AI address | The belt as one nameable public AI address |
+| Zhangjiang AI Island | A compact cluster used as a permanent exhibition of its own industry | The arrival board publishing what the line produces |
+| Shenzhen Bay | Service-facility density as the actual attractor | Service wings stitched in at the two switches (S2/S5) |
+| Shibuya QWS | A station-integrated open-membership innovation room | Platform plazas as open interfaces at the three stations |
+| Tel Aviv | An academia-to-startup pipeline that works because the distance is short | The whole belt as a distance-shortening instrument |
+
+These are qualitative design references drawn from publicly known international practice; **this package makes no quantitative claim about any of them**, cites none of them as authoritative data, and uses none of them to justify a numeric target. The transferable mechanism is the same in all eight: shorten the distance between where knowledge is made and where it is used, and make that distance publicly visible. The ecosystem map itself is the closed loop above — origination (S4) → hardening (S6) → public verification (line) → conversion (S1) → feedback (S2/S5) — drawn to geometry in the spatial-structure figure below.
 
 **Naming and identity: the mark is the plan.** The belt's name is **Token Block｜京张令牌**, and its identity is a single device — a solid rule broken by three gaps. That device is not a graphic invented to sit above the plan; it *is* the plan reduced to one line. The three gaps are the three key areas at their true relative positions along the corridor, and the two diamonds above the rule are the two wings. The construction rule therefore has a hard constraint that no design refresh may relax: **change the number or position of the gaps and you have changed the scheme, not the logo.** The naming system extends the same railway lexicon into wayfinding — kilometre marks along the spine, platform edges at stations, switch markers at the wings, and an arrival board that publishes what the line has produced. Signage is specified as physical, high-contrast and multi-modal, never as an app. The identity is a direction for professional teams to develop, not a registered trademark; no third-party typeface, image or mark is used [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [data:geometry/key_areas.geojson#PROV-KEY-001].
 
@@ -127,7 +140,7 @@ All three carry the same caveat: the polygons are provisional, so parcel-level c
 
 **The token protocol.** Every scenario below runs under one published protocol, built directly on the railway token rule: **one token, one section, returned before the next is issued.** A token grants a named operator exclusive use of one bookable segment for one window, and carries with it a stated data boundary, a human review point, and a defined end date after which the space returns to ordinary public use. The interlock is the important part — a segment cannot issue a second token while the first is out, which is what stops an "open scenario district" from silently becoming a permanently occupied one. No scenario in this package requires non-public data, individual profiling, or a designated vendor as a precondition. No scenario claims approved operating status.
 
-**Five-plus user personas and what each needs from space.**
+**Eight user personas (taskbook minimum: five) and what each needs from space.**
 
 | Persona | What they need | Where the belt answers it | Privacy and review boundary |
 | --- | --- | --- | --- |
@@ -175,7 +188,7 @@ North–south, the main line greenway runs the full length of the spine as a con
 
 Two honesty constraints apply. First, road area and road area ratio are `unknown`, because redline widths and cross-sections are not published — a centreline length cannot be converted into an area without them. Second, how each stitch physically crosses the corridor — at grade, over, or under — is an engineering question this package explicitly does not answer; the stitches are located and justified, not engineered [data:geometry/constraints.geojson#TRACK-S3].
 
-Municipal and new-infrastructure strategy follows the same track logic: edge compute, distributed energy and service platforms are proposed as *station equipment* attached to the three stations and two switches rather than as a uniform grid, so that capacity is added where it is used and where it can be publicly accounted for. Utilities capacity, drainage, flood control, fire access and energy load are prerequisites for deepening, not conclusions of this package [depth:municipal_new_infrastructure].
+Municipal and new-infrastructure strategy follows the same track logic: edge compute, distributed energy and service platforms are proposed as *station equipment* attached to the three stations and two switches rather than as a uniform grid, so that capacity is added where it is used and where it can be publicly accounted for. Edge-compute stops and data-element services share the token ledger's public accounting fields (see the measurement plans), so compute and data provision are audited by the same instrument as space. Utilities capacity, drainage, flood control, fire access and energy load are prerequisites for deepening, not conclusions of this package [depth:municipal_new_infrastructure].
 
 ![Slow mobility, rail connection, blue-green continuity and AI scenario nodes](assets/figures/mobility-bluegreen.png)
 
@@ -239,6 +252,16 @@ The separation is the point. The Line Operator has an incentive to fill the cale
 
 **Stop conditions — what would pause or reverse this.** A proposal that cannot say how it fails is not implementable. The line should pause a scenario, or the programme, when: an objection is unresolved past its published deadline; a scenario is found to have collected data outside its declared boundary; the non-digital equivalent is unavailable while the digital one runs; a booking has enclosed a station plaza beyond its published window; the step-free route is broken by an installation; or official regulatory, heritage or rail data arrives that contradicts a spatial assumption in this package. The last one is the most likely, and it is a reason to recompute, not a reason to argue [depth:phasing_implementation] [depth:risk_missing_data] [source:PROCESSED-FACT-PACK].
 
+**The delivery frame at a glance** (registered in `visual/assets/implementation.json`):
+
+| Instrument | Count | What it fixes |
+| --- | --- | --- |
+| First-100-days work packages | [metric:work_package_count] | Precondition, dependency and evidence output per package |
+| Exit gates G0–G4 | [metric:exit_gate_count] | Start, boundary, safety, governance and handover stop rules |
+| Procurement themes | [metric:procurement_theme_count] | Scope categories only — no amounts claimed |
+| Monitoring windows (3/12/36 months) | [metric:monitoring_window_count] | When each performance metric starts accruing real data |
+| Measurement plans | [metric:measurement_plan_count] | Observation source, sampling, statistic, degradation rule, ledger fields |
+
 **From ninety days of narrative to one hundred days of packages.** The pilot description above
 is now carried by a machine-readable delivery frame, `visual/assets/implementation.json`, so that "what happens
 first" can be audited the same way the token protocol is. It registers
@@ -271,6 +294,15 @@ by the Line Operator once the year-one baseline is published.
 
 **Operations and the annual system.** The belt is proposed to run an annual Global AI Week using the line itself as the venue, a rolling scenario-open calendar publishing which segments are bookable, a developer community anchored at the Zero-Kilometre release hall, and a conversion pathway that moves a team from open-source contributor to bookable-track user to tenant. Brand assets accumulate in the belt rather than in any single event: the line, the station names, the marker, the board. All of this is an operating proposal for professional and operating teams to develop — not a confirmed government programme, funding commitment, investment arrangement or approved event schedule.
 
+**International communication copy (proposed, bilingual).** The belt's outward-facing line is
+one sentence in either language: *"One token, one section, returned before the next is issued —
+Beijing's century-old railway opens as the world's first publicly bookable urban AI test track."*
+「一枚令牌，一个区间，归还之后才发下一枚——百年京张，向世界开放为第一条可公开预约的城市AI测试轨道。」
+Every use of the copy carries the belt's status vocabulary — *submitted / reviewed / selected /
+implemented* — so that international audiences always see which stage a claim belongs to; the
+attraction-and-conversion path it serves is the contributor → bookable-track user → tenant
+pathway above.
+
 **Offline protocol replay — the rules are executable, not rhetorical.** The token block
 protocol is not only prose: `simulation.json` records [metric:simulation_task_count] synthetic
 replay tasks executed by a deterministic script against this package's own data, with a machine-
@@ -289,7 +321,12 @@ and [metric:audit_completeness] audit-complete receipts. Governance coverage is 
 recomputable from the geometry layer: [metric:scenario_data_boundary_count] scenario cards carry
 a declared data boundary and [metric:scenario_human_review_count] carry an uncancellable human
 review point. These replays are synthetic checks of this package's own stated rules — they are
-not field evidence, not a safety proof, and not an approval of any operation.
+not field evidence, not a safety proof, and not an approval of any operation. Beyond the
+synthetic replay, the interactive protocol page itself has been driven in a real headless
+browser: three runs — mouse, keyboard and reduced-motion — recorded eighteen hash-chained event
+receipts (`visual/assets/execution-receipts.json`), including the refusal of a second token
+while one is out and the ordered S1→S6 exclusive occupancy; participant self-test evidence,
+re-runnable from the shipped files.
 
 ## Metrics, Area Recalculation, and Compliance Matrix｜指标体系、面积复算与合规矩阵
 

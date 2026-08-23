@@ -60,6 +60,25 @@ The overall structure is a “resonance loop”: a heritage-and-public-space spi
 
 The priority is consistent from north to south: **continuous movement first, legible explanation second, bounded service third, technology display last**. A service appears only when adjacent walking, accessibility, lighting, staffed access and maintenance are verifiable. If construction, weather, crowding, rights or safety interrupt any segment, it returns to the previous segment or becomes offline/staffed. In this way railway culture, Zhongguancun’s collaborative culture and new AI culture do not merely coexist on one masterplan; each takes its turn along the same everyday route.
 
+### R04 Flagship Node: One Spatial Decision, Not Another Service List
+
+The AI Origin “open knowledge front desk” does not aim to add more screens or service points. It judges space by three questions: **does public walking remain unbroken; can a first-time visitor receive staffed help without login; can a result be withdrawn?** Three relations are compared on the same concept interface. R04-A, a “central display island”, places digital display in the movement centre and is rejected because it compresses ordinary walking. R04-B, “distributed service points”, preserves movement but fragments explanation, rights and takeover responsibility, so it returns for revision. R04-C, the “side knowledge front desk”, keeps the public route continuous and brings reversible result cards, rights notes, staffed help and a shared table to one edge front desk; it advances for conceptual detailing.
+
+![R04 Open Knowledge Front Desk spatial decision: central display island rejected, distributed service points revised, side knowledge front desk advanced because it keeps the public route, staffed handoff and reversible service legible](assets/figures/r04-spatial-decision.en.svg)
+
+This is not a survey, building permit or engineering proposal for an existing parcel. The alternatives test only five concept relations: continuous public route, no-login arrival at staffed help, readable responsibility, readable withdrawal and a removable optional information layer. The three alternatives are reproducible as [metric:r04_spatial_alternative_count]. R04-C’s four design-relation checks and zero field results are recorded in `visual/assets/r04-spatial-decision.json`, as [metric:r04_design_relation_check_count] and [metric:r04_field_result_count]. Any future plan dimensions, clear widths, fire conditions, equipment, tenure, trees, drainage, permits, costs and operating performance require official information and professional review.
+
+![R04 Open Knowledge Front Desk four-part detail: concept plan, section of public baseline and removable information layer, four states from ordinary opening to pause and return, and four design-relation checks](assets/figures/r04-node-detail.en.svg)
+
+| R04 state | Public baseline visible on site | Optional information / AI layer | When to stop | What remains after pause |
+| --- | --- | --- | --- | --- |
+| OPEN ordinary opening | No-login walking, physical orientation, staffed help, seating and shade | Not required | N/A | Every ordinary service exists independently |
+| TRIAL bounded use | Public route and staffed access must not shrink | Edge result cards, optional explanation and staffed table | Rights unclear, misleading information, blocked movement, no takeover or absent maintenance | Move immediately to PAUSE |
+| PAUSE review | Static orientation and staffed help continue | Remove optional service layer | Review cannot state a revision route | Risk is not answered by “continue testing” |
+| RETURN ordinary service | Public route, physical information and staffed help return as the only front desk | May be discussed later only if conditions support it | No repeat trial presumed | Revision rationale and non-identifying aggregate record |
+
+R04 prevents AI+ education, open-source transfer and rights service from becoming a functional collage: every result display obeys an ordinary public route that already exists, and every digital layer can leave without taking staffed help away. The node is only a concept prototype under the provisional key-area index; transport, accessibility, site, heritage, building and operating decisions stay with later professional review [data:geometry/key_areas.geojson#PROV-KEY-002] [depth:three_key_area_detailed_design].
+
 ### Six Interface Delivery Cards: Turning a Public Interface into Verifiable Place Actions
 
 To keep the six-part chain from remaining a narrative only, this edition arranges it as **six delivery cards, R01–R06**. Each card is tied only to the submitted provisional study extent, key-area index, road/public-space layers and items awaiting site verification. An “anchor” identifies the type of existing interface to be checked; it is **not a coordinate, works boundary or permit**. Every segment begins with an everyday question and ends with a retained benefit that does not depend on an algorithm continuing to run.

@@ -1,0 +1,29 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-03",
+ "title_zh": "图层嵌套与互斥规则",
+ "title_en": "Layer nesting and mutual-exclusion rule",
+ "domain": "spatial",
+ "status": "design_target",
+ "source_ids": [
+  "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+  "SITE-PACKAGE"
+ ],
+ "inputs": [
+  "geometry/land_use.geojson",
+  "geometry/green_space.geojson",
+  "geometry/public_space.geojson"
+ ],
+ "procedure": [
+  "land_use 只表达用地分区，不表达地块；green_space 层内互斥；public_space 嵌套于公园或街区内部。",
+  "逐层核查同层要素两两不相交，跨层核查绿地不落入非绿地分区。",
+  "输出层间关系说明并写入图层 META。"
+ ],
+ "pass_rule": "同层零重叠，跨层嵌套关系在 META 中显式声明。",
+ "stop_rule": "同层出现重叠或绿地压占非绿地分区时停止出图。",
+ "owner": "urban designer",
+ "non_ai_equivalent": "人工套图与图层压盖检查",
+ "evidence_output": "layer_topology_report",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

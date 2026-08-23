@@ -1235,7 +1235,7 @@
       "registry_review_status": "not_in_central_registry",
       "usable_for_formal": "background_only",
       "usable_for_formal_basis": "participant_self_assessed",
-      "independent_verification": "打开 url，检索“1909年10月2日”“青龙桥”“完全自己勘测”三处原句即可逐条对读；本包对它的处理可用 `grep -c SRC-JINGZHANG-1909 proposal.md` → 2（正文史实表 1 处、参考资料 1 处），且 `python3 -c \"import json;print('jingzhang_opening_1909' in open('metrics.json').read())\"` → False，确认未进入指标。"
+      "independent_verification": "打开 url，检索「1909年10月2日」「青龙桥」「完全自己勘测」三处原句即可逐条对读。本包对它的处理可当场核验：`grep -c SRC-JINGZHANG-1909 proposal.md` → **2**（第 61 行史实表 1 处、参考资料一节 1 处），且 `python3 -c \"import json;print('jingzhang_opening_1909' in open('metrics.json').read())\"` → False，确认该年份未进入指标。**这条核验说明本身错过两次，值得留个记号。** 第一次：声明 2 而实测已是 3——当时任务书总对照表里还有一处，写这条时漏算了；该节 2026-08-21 精简正文时删去，实测回到 2。第二次（2026-08-22 修）：上一次改动的末尾又写了「删去任务书总对照与参考资料两节后实测为 1」——**参考资料一节并没有被删**（曾误删一次，因触发「missing required section」当轮已完整恢复），所以那句既与同段前面的「→ 2」自相矛盾，数也是错的。**教训：这类「命令 → 期望值」的核验说明，改正文后必须重新实测并把旧句改掉，不能在后面追加一句了事——追加会造出一段自己跟自己矛盾的文字。**"
     },
     {
       "id": "SRC-QINGHUAYUAN-STATION",
@@ -1719,7 +1719,7 @@
       "retrieved_at": "2026-08-18",
       "accessed_date": "2026-08-18",
       "collection_method": "2026-08-18 打开市规自委海淀规划类公告页，转录规划名称、层面、年限与公示起止日期；不转录草案内的任何指标或控制内容。",
-      "source_locator": "通告标题与公示起止日期",
+      "source_locator": "通告标题、正文第一段的草案全称与公示起止日期",
       "spatial_coverage": "京张铁路遗址公园沿线（人工智能创新街区重点地区），与本方案范围**不等同**",
       "temporal_coverage": "2024-12-19/2025-01-19（公示期）；规划年限 2022—2035",
       "public_access_status": "official_public_html",
@@ -1728,10 +1728,10 @@
       "observations": [
         {
           "id": "corridor_ctrl_plan_title",
-          "value": "京张铁路遗址公园沿线（人工智能创新街区重点地区）街区控制性详细规划（街区层面）（2022年—2035年）",
+          "value": "北京海淀区京张铁路遗址公园沿线（人工智能创新街区重点地区）HD00-1601等街区控制性详细规划（街区层面）（2022年—2035年）",
           "unit": "text",
           "scope": "京张铁路遗址公园沿线",
-          "source_text": "《京张铁路遗址公园沿线（人工智能创新街区重点地区）街区控制性详细规划》（草案）公示采信情况的通告",
+          "source_text": "为加大公众参与力度、广泛听取公众意见，于2024年12月19日至2025年1月19日期间，对《北京海淀区京张铁路遗址公园沿线（人工智能创新街区重点地区）HD00-1601等街区控制性详细规划（街区层面）（2022年—2035年）》（草案）进行了网上公示。",
           "not_spatially_allocable": true
         }
       ],
@@ -1749,7 +1749,7 @@
       "registry_review_status": "not_in_central_registry",
       "usable_for_formal": "background_only",
       "usable_for_formal_basis": "participant_self_assessed",
-      "independent_verification": "打开 url 核对通告标题与公示起止日期；本包正文对它的引用仅一处且只述其存在，可用 `grep -c SRC-HD-CORRIDOR-CTRL-PLAN proposal.md` 核对引用次数。"
+      "independent_verification": "打开 url 核对通告标题与公示起止日期；2026-08-22 复核了正文第一段的草案全称，确认全称含「北京海淀区」与「HD00-1601等」两段限定，且该页性质为草案公示采信情况通告、页面未出现任何空间结构表述与范围面积数字。本包正文对它的引用仅一处且只述其存在，可用 `grep -c SRC-HD-CORRIDOR-CTRL-PLAN proposal.md` 核对引用次数。"
     },
     {
       "id": "IMAGEGEN-COVER-ILLUSTRATION",
@@ -1892,7 +1892,7 @@
       "registry_review_status": "not_in_central_registry",
       "usable_for_formal": "background_only",
       "usable_for_formal_basis": "participant_self_assessed",
-      "independent_verification": "打开 url，检索「自北京北站至清河间全线并行」「数次变换着与城市地面的竖向关系」「13号线桥下空间纳入公园设计」「全长约9公里」「超过800家/km²」五处原句；本包未把 9、800、20、1.7 任一数值写入 metrics.json，可用 `python3 -c \"import json;print([k for k,v in json.load(open('metrics.json'))['metrics'].items() if v.get('value') in (800,20,1.7)])\"` → [] 确认。"
+      "independent_verification": "打开 url，检索「自北京北站至清河间全线并行」「数次变换着与城市地面的竖向关系」「13号线桥下空间纳入公园设计」「全长约9公里」「超过800家/km²」五处原句；本包**未把该来源的任何数值当作指标依据**，可按来源指针核验：`python3 -c \"import json;m=json.load(open('metrics.json'))['metrics'];print([k for k,v in m.items() if 'SRC-CORRIDOR-PLANNING-READING-2021' in json.dumps(v,ensure_ascii=False)])\"` → **[]**（`source_files`、`formula`、`assumptions` 三处均无该来源）。⚠️ **此前这条写的是「未把 9、800、20、1.7 任一数值写入 metrics.json」并给出按取值筛的命令 → []，2026-08-22 实测该命令返回 `['renewal_cell_count']`，断言不成立。** 原因是数值碰巧相同而非引用：`renewal_cell_count = 20` 的 `formula` 是 `count(conceptual typology cells)`、`source_files` 只有 `geometry/buildings.geojson`（该图层恰有 20 个要素），与本来源无关；9、800、1.7 三个数逐一实测确实不在 metrics.json 里。**按取值筛会把巧合误报成引用，因此判据改为按来源指针筛**——那才是「有没有引用」的正确测法。"
     },
     {
       "id": "SRC-RAIL13-SPLIT-NAMING-2025",

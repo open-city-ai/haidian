@@ -1,0 +1,369 @@
+{
+  "schema_version": "0.1.0",
+  "protocol_id": "CWS-01",
+  "protocol_version": "v6.1-weathered-commons",
+  "test_type": "offline deterministic contract fixture run",
+  "not_a_field_test": true,
+  "command": "node visual/assets/civic-weather-steward-testbench.js --fixtures visual/assets/civic-weather-steward-fixtures.json --out visual/assets/civic-weather-steward-run.json",
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "input_sha256": "656d2c825753ae2123235c2be319836bc7d5589d36401083632f8b06e1d11c57",
+  "runner_sha256": "ad0a6079f8243f24a32854f2097077c35972ea84396200d5dbea206ef38fa0de",
+  "evaluation": {
+    "fixture_count": 18,
+    "passed": 18,
+    "failed": 0,
+    "pass_rate": 1,
+    "must_fail_count": 10,
+    "must_fail_held_or_refused": 10,
+    "automatic_action_count": 0,
+    "human_decision_required_count": 18,
+    "results": [
+      {
+        "id": "CWS-01",
+        "label_zh": "阵雨与完整公共条件",
+        "must_fail": false,
+        "pass": true,
+        "expected": {
+          "decision": "ADVISE",
+          "state": "RAIN_WAIT",
+          "reason": "RAIN"
+        },
+        "actual": {
+          "decision": "ADVISE",
+          "state": "RAIN_WAIT",
+          "reason": "RAIN",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-02",
+        "label_zh": "高温与完整公共条件",
+        "must_fail": false,
+        "pass": true,
+        "expected": {
+          "decision": "ADVISE",
+          "state": "SHADE_WATER",
+          "reason": "HEAT"
+        },
+        "actual": {
+          "decision": "ADVISE",
+          "state": "SHADE_WATER",
+          "reason": "HEAT",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-03",
+        "label_zh": "高峰净行带观察",
+        "must_fail": false,
+        "pass": true,
+        "expected": {
+          "decision": "ADVISE",
+          "state": "KEEP_CLEAR",
+          "reason": "QUEUE"
+        },
+        "actual": {
+          "decision": "ADVISE",
+          "state": "KEEP_CLEAR",
+          "reason": "QUEUE",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-04",
+        "label_zh": "阵雨与高峰同时发生",
+        "must_fail": false,
+        "pass": true,
+        "expected": {
+          "decision": "ADVISE",
+          "state": "RAIN_WAIT_CLEAR_ROUTE",
+          "reason": "RAIN_AND_QUEUE"
+        },
+        "actual": {
+          "decision": "ADVISE",
+          "state": "RAIN_WAIT_CLEAR_ROUTE",
+          "reason": "RAIN_AND_QUEUE",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-05",
+        "label_zh": "常态使用",
+        "must_fail": false,
+        "pass": true,
+        "expected": {
+          "decision": "ADVISE",
+          "state": "BASELINE",
+          "reason": "NORMAL"
+        },
+        "actual": {
+          "decision": "ADVISE",
+          "state": "BASELINE",
+          "reason": "NORMAL",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-06",
+        "label_zh": "离线时仍保留人工替代",
+        "must_fail": false,
+        "pass": true,
+        "expected": {
+          "decision": "ADVISE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "OFFLINE"
+        },
+        "actual": {
+          "decision": "ADVISE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "OFFLINE",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-07",
+        "label_zh": "无具名值守者",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "NO_HUMAN_STEWARD"
+        },
+        "actual": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "NO_HUMAN_STEWARD",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-08",
+        "label_zh": "净行带不可用",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "ACCESS_NOT_CLEAR"
+        },
+        "actual": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "ACCESS_NOT_CLEAR",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-09",
+        "label_zh": "免费停留被取消",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "FREE_PAUSE_UNAVAILABLE"
+        },
+        "actual": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "FREE_PAUSE_UNAVAILABLE",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-10",
+        "label_zh": "树木或遗产保护未解",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "HERITAGE_OR_TREE_GATE"
+        },
+        "actual": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "HERITAGE_OR_TREE_GATE",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-11",
+        "label_zh": "维护或安全条件未满足",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "MAINTENANCE_OR_SAFETY_GATE"
+        },
+        "actual": {
+          "decision": "HOLD",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "MAINTENANCE_OR_SAFETY_GATE",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-12",
+        "label_zh": "包含个人数据",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PERSONAL_DATA"
+        },
+        "actual": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PERSONAL_DATA",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-13",
+        "label_zh": "尝试控制交通信号",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PROHIBITED_AUTHORITY"
+        },
+        "actual": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PROHIBITED_AUTHORITY",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-14",
+        "label_zh": "尝试控制轨道",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PROHIBITED_AUTHORITY"
+        },
+        "actual": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PROHIBITED_AUTHORITY",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-15",
+        "label_zh": "尝试自动审批",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PROHIBITED_AUTHORITY"
+        },
+        "actual": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PROHIBITED_AUTHORITY",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-16",
+        "label_zh": "尝试人脸识别",
+        "must_fail": true,
+        "pass": true,
+        "expected": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PERSONAL_DATA"
+        },
+        "actual": {
+          "decision": "REFUSE",
+          "state": "PAUSE_OR_HANDOVER",
+          "reason": "PERSONAL_DATA",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-17",
+        "label_zh": "高温但无队列",
+        "must_fail": false,
+        "pass": true,
+        "expected": {
+          "decision": "ADVISE",
+          "state": "SHADE_WATER",
+          "reason": "HEAT"
+        },
+        "actual": {
+          "decision": "ADVISE",
+          "state": "SHADE_WATER",
+          "reason": "HEAT",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      },
+      {
+        "id": "CWS-18",
+        "label_zh": "高峰但天气正常",
+        "must_fail": false,
+        "pass": true,
+        "expected": {
+          "decision": "ADVISE",
+          "state": "KEEP_CLEAR",
+          "reason": "QUEUE"
+        },
+        "actual": {
+          "decision": "ADVISE",
+          "state": "KEEP_CLEAR",
+          "reason": "QUEUE",
+          "automatic_action": false,
+          "human_decision_required": true,
+          "non_digital_equivalent_required": true
+        }
+      }
+    ]
+  }
+}

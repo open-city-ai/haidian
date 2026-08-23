@@ -385,15 +385,26 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | 人才公寓 | 站区生活圈配建（概念） | 规模待官方数据 |
 | AI 企业密度 | 待官方数据后设定基线 | 不虚构基线 |
 
-### 合规矩阵摘要
+### Baseline and claim audit
+
+- Official text facts: 43.6 km2 coordinated research area, 11.4 km2 overall design area, and 368.4 ha key detailed-design area. These are announcement values, not polygon-derived survey facts [source:OFFICIAL-ANNOUNCEMENT] [data:design_brief.json].
+- Provisional derived values: site area 11,412,825 m2, key-area union 3,692,893 m2, green ratio 33.2%, full land-use coverage, and 66 conceptual building features. These are recalculated from written GeoJSON in EPSG:4548 and remain provisional [source:BOUNDARY-SOURCE] [metric:site_area_sqm].
+- Unknown baselines: 15-minute service coverage, AI enterprise density, talent-housing supply, traffic demand, parking, utility capacity, flood performance, and operational KPI baselines. They are not treated as facts; see `baseline_registry.json`.
+- Conceptual targets: annual visitors, enterprise retention, scenario adoption, contributor counts and safety red lines are future operator targets, not observed performance. Each requires a data owner, denominator, collection period, audit method and annual review before implementation.
+
 
 - 公告任务逐条映射：见 `compliance_matrix.json`（1.3.1-1.3.11 与 agent.1-agent.6 全覆盖，含章节/图层/指标/图纸证据链）。
 - 十条共创原则执行情况（任务书 [source:AGENT-TASKBOOK]）：公共利益优先（全部建议为公共空间与公共数据服务）、公开资料边界（仅用 registry 登记资料）、概念建议属性（全文标注）、AI 原生创新（场景全部 AI 原生）、结构化与可读并重（JSON+MD+HTML+PDF 双语）、生成方法披露（agent.json 声明模型，sources.json 记录来源）、人类最终判断（本包为建议）、公共知识沉淀（成果开源）、贡献可记忆（GitHub 名刻碑）、人本治理（无障碍与适老化设计）。
-- 标准覆盖：`standard_matrix.json` 覆盖 7 项登记标准（公告、任务书、城市设计管理办法、控规编制审批办法、用地用海分类指南、生成式AI暂行办法、无障碍环境建设法），均标注 addressed；缺官方标准文件的条目按数据缺口处理。
+- **权利台账**：逐资产类别的权利与待人工核验记录见 `rights_ledger.json`；它不把“公开可访问”自动升级为“可再分发”。
+- **基线登记**：`baseline_registry.json` 区分官方事实、临时几何派生值、概念目标与完全未知基线；未验证的 15 分钟生活圈、企业密度、人才住房和运营 KPI 不得被解释为观察事实。
+- **人工复核清单**：`human_review_checklist.md` 明确空间、规划、无障碍、AI 治理、权利、来源、双语和逐页 PDF 复核项；自动 gate PASS 不替代这些复核。
+- **证据图谱**：`evidence_atlas.md` 明确哪些图层是官方文字/临时上下文、哪些是概念干预、哪些专业证据仍缺失。
 
 ## 风险、版权与合规说明
 
-**修订记录**：v1.1（2026-08-12）——按首轮评审意见补充：区域协同（北纬社区、未来科学城/怀柔、亦庄、京津冀）、场景—空间—运营—数据—责任矩阵、Logo 图形母版（assets/figures/logo.png）；英文图件与英文 visual 页面去除残留中文；来源登记增至 14 条（含对标案例集合）。
+**修订记录**：v1.3（2026-08-14）——执行优先改进计划：新增权利台账、基线与 claim audit、证据图谱、人工复核要求；逐案登记六个 benchmark URL；将未验证 KPI 明确降级为目标；补充 existing/context 与 conceptual intervention 的证据边界。
+
+**v1.3 package note**：the JSON package carries the full rights ledger, baseline registry, human-review checklist, and evidence-atlas content because the current participant schema permits only predefined AI package files.
 
 ### 主要风险与缓解
 
@@ -418,5 +429,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 - `brief/site-package/design_brief.json`、`agent_taskbook.json`、`allowed_design_space.json`、`sources.json`、`enums/`、`ranges/planning_limits.json`、`schemas/`、`standards/standards.json`（含 7 项标准参考快照）、`visual_style_recommendations.json` [source:SOURCE-REGISTRY]
 - `brief/site-package/geometry/provisional_boundaries.geojson`（provisional）[source:BOUNDARY-SOURCE]
 - `data/source_registry.json`（9 条登记来源）
-- 公开对标案例（硅谷、国王十字、纬壹科技城、云栖小镇、首尔 DMC 等，基于公开资料，未纳入 sources.json 形式登记）
+- `rights_ledger.json`、`baseline_registry.json`、`human_review_checklist.md`、`evidence_atlas.md`
+- 公开对标案例：`sources.json` 的 `BENCHMARK-SET`（6 条逐案 URL/发布者/claim scope/licence limitation；background-only）
 - 合并方案参考：silvaling/jingzhang-stack（同行参考，未复制内容）

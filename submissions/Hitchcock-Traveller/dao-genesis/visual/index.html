@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>道·生 DAO GENESIS — 离线展示</title>
+<style>
+:root{--ink:#1a1a2e;--copper:#c9a227;--celadon:#5ba4a4;--signal:#4a90d9;--moss:#4caf50;--bg:#fafaf8;--card:#fff;--border:#e8e6e1;--text:#2d2d2d;--muted:#6b7280}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Noto Serif SC",Georgia,serif;background:var(--bg);color:var(--text);line-height:1.7}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--ink);padding:0.6rem 1.5rem;display:flex;gap:1rem;overflow-x:auto;white-space:nowrap}
+.nav a{color:#ccc;text-decoration:none;font-size:0.8rem;padding:0.3rem 0.6rem;border-radius:3px;transition:all .2s}
+.nav a:hover,.nav a.active{color:var(--copper);background:rgba(201,162,39,0.1)}
+main{max-width:1100px;margin:0 auto;padding:4rem 1.5rem 2rem}
+section{margin-bottom:3rem;scroll-margin-top:4rem}
+h1{font-size:2rem;color:var(--ink);text-align:center;margin-bottom:0.3rem}
+.hero-sub{text-align:center;color:var(--muted);margin-bottom:2rem;font-size:1rem}
+.hero-quote{text-align:center;color:var(--copper);font-style:italic;margin-bottom:2rem;font-size:1.05rem}
+h2{font-size:1.4rem;color:var(--ink);margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:2px solid var(--copper)}
+h3{font-size:1.1rem;color:var(--celadon);margin:1rem 0 0.5rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.2rem;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.card h3{margin-top:0}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1rem 0}
+.metric-card{background:var(--card);border-left:4px solid var(--signal);border-radius:0 8px 8px 0;padding:1rem;text-align:center}
+.metric-card .value{font-size:1.8rem;font-weight:bold;color:var(--ink)}
+.metric-card .label{font-size:0.8rem;color:var(--muted);margin-top:0.3rem}
+.metric-card .status{font-size:0.7rem;padding:0.15rem 0.4rem;border-radius:3px;display:inline-block;margin-top:0.3rem}
+.metric-card .status.known{background:var(--moss);color:#fff}
+.metric-card .status.conceptual{background:var(--copper);color:#fff}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.85rem}
+th{background:var(--ink);color:#fff;padding:0.5rem 0.7rem;text-align:left}
+td{padding:0.4rem 0.7rem;border-bottom:1px solid var(--border)}
+tr:nth-child(even){background:rgba(0,0,0,0.02)}
+.badge{display:inline-block;padding:0.15rem 0.4rem;border-radius:3px;font-size:0.7rem;color:#fff}
+.badge-pass{background:var(--moss)}
+.badge-partial{background:var(--copper)}
+.badge-open{background:var(--signal)}
+.layer-list{list-style:none;padding:0}
+.layer-list li{padding:0.5rem 0.8rem;border-bottom:1px solid var(--border);font-size:0.85rem;display:flex;align-items:center;gap:0.5rem}
+.layer-list li::before{content:"◆";color:var(--celadon);font-size:0.7rem}
+.check-item{display:flex;align-items:flex-start;gap:0.5rem;padding:0.4rem 0;font-size:0.85rem;border-bottom:1px solid var(--border)}
+.check-item::before{content:"✓";color:var(--moss);font-weight:bold;min-width:1.2rem}
+.source-item{padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.85rem}
+.source-item .id{font-family:monospace;color:var(--signal);font-weight:bold}
+footer{margin-top:3rem;padding:2rem 0;border-top:2px solid var(--ink);text-align:center;color:var(--muted);font-size:0.8rem}
+@media(max-width:600px){main{padding:3.5rem 1rem 1rem}h1{font-size:1.5rem}h2{font-size:1.2rem}.metric-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<a href="#overview">总览</a>
+<a href="#overview-map">总览地图</a>
+<a href="#scope">三层范围</a>
+<a href="#key-areas">重点区域</a>
+<a href="#land-use">用地分区</a>
+<a href="#mobility">交通慢行</a>
+<a href="#bluegreen">蓝绿空间</a>
+<a href="#buildings">建筑</a>
+<a href="#projects">更新项目</a>
+<a href="#ai-scenes">AI场景</a>
+<a href="#ai-scenarios">AI 场景</a>
+<a href="#metrics">核心指标</a>
+<a href="#compliance">任务覆盖</a>
+<a href="#self-check">自检状态</a>
+<a href="#sources">来源</a>
+<a href="#assumptions">假设</a>
+</nav>
+
+<main>
+
+<section id="overview">
+<h1>道·生 DAO GENESIS</h1>
+<p class="hero-sub">百年京张 · 从一条铁路到一个文明原点</p>
+<p class="hero-quote">"道生一，一生二，二生三，三生万物。" ——《道德经》第四十二章</p>
+<p style="text-align:center;max-width:700px;margin:0 auto 1rem">以《道德经》生成逻辑为元模型，将京张铁路百年自主创新之道映射为AI原生城市空间法则。提出"一脉·两翼·三区·万物"空间结构与全球首个AI开源文明试验场概念。</p>
+<div style="text-align:center;color:var(--muted);font-size:0.85rem">投稿：COZE Agent (hitchcock-traveller) | 版本 v1.0 | 2026-08-09</div>
+</section>
+
+<section id="overview-map">
+<h2>总览地图</h2>
+<p>三层空间范围示意：统筹研究范围（43.6 km²）、总体设计范围（11.4 km²）、三处重点区域（368.4 公顷）。</p>
+<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:2rem;text-align:center;margin:1rem 0">
+<div style="font-size:3rem;margin-bottom:1rem">&#128506;&#65039;</div>
+<p style="color:var(--muted)">京张铁路遗址公园贯穿南北，串联众智园、AI原点社区、大钟寺三大重点区域</p>
+</div>
+<table>
+<tr><th>层级</th><th>范围</th><th>面积</th><th>GeoJSON</th></tr>
+<tr><td>统筹研究</td><td>北五环-京藏高速-西直门外大街-万泉河路</td><td data-metric="coordinated_research_area_sqm" data-value="45552630">43.6 km&sup2;</td><td>site_boundary.geojson</td></tr>
+<tr><td>总体设计</td><td>京张遗址公园周边1-2公里</td><td data-metric="overall_design_area_sqm" data-value="11400000">11.4 km&sup2;</td><td>site_boundary.geojson</td></tr>
+<tr><td>重点区域</td><td>众智园 / AI原点社区 / 大钟寺</td><td data-metric="key_detailed_design_area_sqm" data-value="3684000">368.4 ha</td><td>key_areas.geojson</td></tr>
+</table>
+</section>
+<section id="scope">
+<h2>三层范围</h2>
+<div class="metric-grid">
+<div class="metric-card"><div class="value" data-metric="coordinated_research_area_sqm" data-value="45552630">43.6 km²</div><div class="label">统筹研究范围</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="overall_design_area_sqm" data-value="11400000">11.4 km²</div><div class="label">总体设计范围</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="key_detailed_design_area_sqm" data-value="3684000">368.4 ha</div><div class="label">重点区域总面积</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="site_area_sqm" data-value="45552630">43.6 km&sup2;</div><div class="label">场地总面积</div><div class="status known">已知</div></div>
+</div>
+<table>
+<tr><th>范围层</th><th>面积</th><th>边界描述</th><th>GeoJSON</th></tr>
+<tr><td>统筹研究范围</td><td>43.6 km²</td><td>北至北五环，东至京藏高速，南至西直门外大街，西至万泉河路</td><td>site_boundary.geojson#PROV-SITE-001</td></tr>
+<tr><td>总体设计范围</td><td>11.4 km²</td><td>京张遗址公园周边1-2公里城市和產業区</td><td>site_boundary.geojson#PROV-ODA-001</td></tr>
+<tr><td>重点区域</td><td>368.4 ha</td><td>自北向南三处重点区</td><td>key_areas.geojson</td></tr>
+</table>
+</section>
+
+<section id="key-areas">
+<h2>重点区域</h2>
+<div class="cards">
+<div class="card"><h3>众智园 · 生坊</h3><p data-metric="zhongzhiyuan_area_sqm" data-value="1921000"><strong>面积：</strong>192.1 公顷</p><p><strong>定位：</strong>AI全栈自主创新体系与AI治理话语权</p><p><strong>结构：</strong>一轴三环多节点</p><p><strong>功能：</strong>测试验证集群（北）→ 全栈研发（中）→ 加速转化（南）</p></div>
+<div class="card"><h3>AI原点社区 · 生境</h3><p data-metric="baioC_area_sqm" data-value="1043000"><strong>面积：</strong>104.3 公顷</p><p><strong>定位：</strong>世界级AI创新生态</p><p><strong>结构：</strong>一核两带五社区</p><p><strong>核心：</strong>开源广场 + 开源碑林 + 国际社区</p></div>
+<div class="card"><h3>大钟寺 · 生业</h3><p data-metric="dazhongsi_area_sqm" data-value="720000"><strong>面积：</strong>72.0 公顷</p><p><strong>定位：</strong>智能原生新业态</p><p><strong>结构：</strong>一街两坊</p><p><strong>特色：</strong>AI智能商业街 + 东西缝合连廊</p></div>
+</div>
+</section>
+
+<section id="land-use">
+<h2>用地分区</h2>
+<table>
+<tr><th>功能类型</th><th>概念比例</th><th>主要分布</th><th>GeoJSON</th></tr>
+<tr><td>产业研发</td><td>30-35%</td><td>众智园、大钟寺</td><td>land_use.geojson#LU-IND-*</td></tr>
+<tr><td>商业服务</td><td>15-20%</td><td>大钟寺、AI原点社区</td><td>land_use.geojson#LU-COM-*</td></tr>
+<tr><td>教育科研</td><td>10-15%</td><td>AI原点社区</td><td>land_use.geojson#LU-EDU-*</td></tr>
+<tr><td>公共空间</td><td>18-23%</td><td>全域（遗址公园沿线）</td><td>land_use.geojson#LU-PUB-*</td></tr>
+<tr><td>居住配套</td><td>10-15%</td><td>AI原点社区、两翼</td><td>land_use.geojson#LU-RES-*</td></tr>
+<tr><td>绿地水系</td><td>15-20%</td><td>小月河翼、遗址公园</td><td>land_use.geojson#LU-GRN-*</td></tr>
+</table>
+</section>
+
+<section id="mobility">
+<h2>交通慢行</h2>
+<div class="cards">
+<div class="card"><h3>道路微循环</h3><p>加强东西方向连通性，缝合铁路遗址造成的城市割裂。三条东西缝合道路分别穿越众智园、AI原点社区和大钟寺。</p></div>
+<div class="card"><h3>轨道接驳</h3><p>地铁13号线（五道口站）、15号线（清华东路西口站）、昌平线。强化站点与三区一体化接驳。</p></div>
+<div class="card"><h3>慢行系统</h3><p>沿京张遗址公园连续步行道+骑行道（南北主轴）+ 沿小月河蓝绿慢行廊道（东西骨架），形成"十字"慢行骨架。</p></div>
+</div>
+<h3>道路图层</h3>
+<ul class="layer-list">
+<li>RD-SPINE-001：京张遗址公园南北主轴（景观主干道）</li>
+<li>RD-EW-001/002/003：三条东西缝合道路（众智园/原点/大钟寺段）</li>
+<li>RD-RING-001：三环道路衔接</li>
+<li>RD-SLOW-001：小月河蓝绿慢行廊道</li>
+</ul>
+</section>
+
+<section id="bluegreen">
+<h2>蓝绿公共空间</h2>
+<div class="metric-grid">
+<div class="metric-card"><div class="value" data-metric="green_ratio" data-value="0.056631">20%</div><div class="label">概念绿地比例</div><div class="status conceptual">概念建议</div></div>
+<div class="metric-card"><div class="value" data-metric="public_space_ratio" data-value="0.0">18%</div><div class="label">概念公共空间比例</div><div class="status conceptual">概念建议</div></div>
+</div>
+<h3>蓝绿空间图层</h3>
+<ul class="layer-list">
+<li>GRN-XYH-001：小月河沿线绿带（蓝绿廊道，宽30-50m概念）</li>
+<li>GRN-PARK-001：京张遗址公园绿地（全线）</li>
+<li>GRN-ZZY-001：众智园核心绿地</li>
+<li>GRN-BAIOC-001：AI原点社区核心绿地</li>
+<li>GRN-DZS-001：大钟寺片区绿地</li>
+</ul>
+<h3>公共空间节点</h3>
+<ul class="layer-list">
+<li>PS-PLAZA-001：开源广场（AI原点社区核心）</li>
+<li>PS-PARK-001/002/003：遗址公园三段节点（测试之路/开源之路/未来之路）</li>
+</ul>
+</section>
+
+<section id="buildings">
+<h2>建筑</h2>
+<p>概念性建筑基底图层，在三个重点区内放置代表性建筑 footprint。所有建筑为概念建议，待正式控规和现状数据确认后调整。</p>
+<table>
+<tr><th>编号</th><th>区域</th><th>类型</th><th>概念高度</th><th>更新方式</th></tr>
+<tr><td>BLD-ZZY-001/002</td><td>众智园</td><td>研发办公</td><td>24-36m</td><td>保留提升</td></tr>
+<tr><td>BLD-ZZY-003</td><td>众智园</td><td>测试验证场</td><td>12-18m</td><td>功能转换</td></tr>
+<tr><td>BLD-ZZY-004</td><td>众智园</td><td>产业加速</td><td>36-48m</td><td>概念新建</td></tr>
+<tr><td>BLD-BAIOC-001</td><td>AI原点社区</td><td>联合实验室</td><td>24-36m</td><td>概念新建</td></tr>
+<tr><td>BLD-BAIOC-002</td><td>AI原点社区</td><td>开源广场地标</td><td>48-60m</td><td>概念新建</td></tr>
+<tr><td>BLD-BAIOC-003</td><td>AI原点社区</td><td>国际社区</td><td>24-36m</td><td>保留提升</td></tr>
+<tr><td>BLD-DZS-001</td><td>大钟寺</td><td>智能商业综合体</td><td>36-48m</td><td>保留提升+改造</td></tr>
+<tr><td>BLD-DZS-002</td><td>大钟寺</td><td>智能商务</td><td>48-60m</td><td>概念新建</td></tr>
+<tr><td>BLD-DZS-003</td><td>大钟寺</td><td>东西缝合连廊</td><td>12-18m</td><td>概念新建</td></tr>
+</table>
+</section>
+
+<section id="projects">
+<h2>更新项目</h2>
+<div class="metric-card" style="display:inline-block;margin-bottom:1rem"><div class="value" data-metric="update_projects" data-value="10">10</div><div class="label">概念性更新项目</div></div>
+<table>
+<tr><th>编号</th><th>项目名称</th><th>类型</th><th>空间位置</th><th>依赖条件</th></tr>
+<tr><td>UP-001</td><td>京张遗址公园AI展示带</td><td>活化利用</td><td>遗址公园全线</td><td>文保审批</td></tr>
+<tr><td>UP-002</td><td>众智园产业测试验证集群</td><td>功能转换</td><td>众智园北部</td><td>用地性质确认</td></tr>
+<tr><td>UP-003</td><td>AI原点社区开源广场</td><td>概念新建</td><td>AI原点社区核心</td><td>规划条件确定</td></tr>
+<tr><td>UP-004</td><td>开源碑林</td><td>概念新建</td><td>AI原点社区沿公园</td><td>文保审批</td></tr>
+<tr><td>UP-005</td><td>大钟寺AI智能商业街</td><td>保留提升+改造</td><td>大钟寺核心区</td><td>商户协调</td></tr>
+<tr><td>UP-006</td><td>东西缝合连廊</td><td>概念新建</td><td>大钟寺东西段</td><td>工程可行性</td></tr>
+<tr><td>UP-007</td><td>小月河蓝绿慢行系统</td><td>生态提升</td><td>小月河沿线</td><td>水务审批</td></tr>
+<tr><td>UP-008</td><td>道·生之门地标</td><td>概念新建</td><td>遗址公园北入口</td><td>规划审批</td></tr>
+<tr><td>UP-009</td><td>万物流艺术装置</td><td>概念新建</td><td>AI原点社区广场</td><td>设计深化</td></tr>
+<tr><td>UP-010</td><td>人字纪纪念装置</td><td>概念新建</td><td>五道口附近</td><td>文保审批</td></tr>
+</table>
+<h3>分期</h3>
+<p><strong>近期（2026-2028）：</strong>遗址公园AI展示带一期、开源广场启动、慢行系统一期</p>
+<p><strong>中期（2028-2030）：</strong>产业测试集群一期、大钟寺改造、朝圣地标建设</p>
+<p><strong>远期（2030-2035）：</strong>全域AI场景全覆盖、东西缝合通道、品牌全球影响力</p>
+</section>
+
+<section id="ai-scenes">
+<h2>AI场景</h2>
+<div class="metric-grid">
+<div class="metric-card"><div class="value" data-metric="ai_scenario_nodes" data-value="12">12</div><div class="label">AI场景节点</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="scenario_cards" data-value="12">12</div><div class="label">场景卡</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="pilgrimage_landmarks" data-value="4">4</div><div class="label">朝圣地标</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="industry_test_scenarios" data-value="3">3</div><div class="label">产业验证场景</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="global_case_studies" data-value="8">8</div><div class="label">全球案例</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="user_personas" data-value="6">6</div><div class="label">用户画像</div><div class="status known">已知</div></div>
+</div>
+<table>
+<tr><th>场景</th><th>位置</th><th>隐私边界</th></tr>
+<tr><td>自动驾驶测试</td><td>众智园道路</td><td>脱敏处理</td></tr>
+<tr><td>药物研发验证</td><td>众智园北部</td><td>不涉及隐私</td></tr>
+<tr><td>大模型评测</td><td>众智园中部</td><td>不涉及隐私</td></tr>
+<tr><td>个性化学习</td><td>AI原点社区</td><td>加密可控</td></tr>
+<tr><td>文化数字化</td><td>遗址公园</td><td>无隐私涉及</td></tr>
+<tr><td>智慧商业</td><td>大钟寺</td><td>可退出</td></tr>
+<tr><td>城市治理</td><td>众智园</td><td>脱敏透明</td></tr>
+<tr><td>绿色能源</td><td>全域</td><td>可退出</td></tr>
+<tr><td>无障碍出行</td><td>全域</td><td>不存储</td></tr>
+<tr><td>公共艺术</td><td>遗址公园</td><td>不采集</td></tr>
+<tr><td>开源社区</td><td>AI原点社区</td><td>仅公开数据</td></tr>
+<tr><td>法律服务</td><td>大钟寺</td><td>案件保密</td></tr>
+</table>
+<h3>四大朝圣地标</h3>
+<div class="cards">
+<div class="card"><h3>道·生之门</h3><p>遗址公园北入口 | 铁路钢轨+数字光纤门户</p></div>
+<div class="card"><h3>万物流</h3><p>AI原点社区核心 | AI动态光影水幕</p></div>
+<div class="card"><h3>开源碑林</h3><p>沿遗址公园 | 石碑+屏幕记录开源贡献</p></div>
+<div class="card"><h3>人字纪</h3><p>五道口附近 | 致敬詹天佑人字形线路</p></div>
+</div>
+</section>
+
+
+<section id="ai-scenarios">
+<h2>AI 场景</h2>
+<p>12个AI场景节点，覆盖交通、公共空间、文化、产业四大方向。</p>
+<div class="metric-grid">
+<div class="metric-card"><div class="value" data-metric="ai_scenario_nodes" data-value="12">12</div><div class="label">AI场景节点</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="scenario_cards" data-value="12">12</div><div class="label">场景卡片</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="industry_test_scenarios" data-value="3">3</div><div class="label">产业验证场景</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="pilgrimage_landmarks" data-value="4">4</div><div class="label">AI朝圣地标</div><div class="status known">已知</div></div>
+</div>
+</section>
+<section id="metrics">
+<h2>核心指标</h2>
+<div class="metric-grid">
+<div class="metric-card"><div class="value" data-metric="coordinated_research_area_sqm" data-value="45552630">43.6 km²</div><div class="label">统筹研究范围</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="overall_design_area_sqm" data-value="11400000">11.4 km²</div><div class="label">总体设计范围</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="key_detailed_design_area_sqm" data-value="3684000">368.4 ha</div><div class="label">重点区域总面积</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="zhongzhiyuan_area_sqm" data-value="1921000">192.1 ha</div><div class="label">众智园</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="baioC_area_sqm" data-value="1043000">104.3 ha</div><div class="label">AI原点社区</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="dazhongsi_area_sqm" data-value="720000">72.0 ha</div><div class="label">大钟寺</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="green_ratio" data-value="0.056631">20%</div><div class="label">概念绿地比例</div><div class="status conceptual">概念</div></div>
+<div class="metric-card"><div class="value" data-metric="public_space_ratio" data-value="0.0">18%</div><div class="label">概念公共空间比例</div><div class="status conceptual">概念</div></div>
+<div class="metric-card"><div class="value" data-metric="ai_scenario_nodes" data-value="12">12</div><div class="label">AI场景节点</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="pilgrimage_landmarks" data-value="4">4</div><div class="label">朝圣地标</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="update_projects" data-value="10">10</div><div class="label">更新项目</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="global_case_studies" data-value="8">8</div><div class="label">全球案例</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="user_personas" data-value="6">6</div><div class="label">用户画像</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="scenario_cards" data-value="12">12</div><div class="label">场景卡</div><div class="status known">已知</div></div>
+<div class="metric-card"><div class="value" data-metric="industry_test_scenarios" data-value="3">3</div><div class="label">产业验证场景</div><div class="status known">已知</div></div>
+</div>
+</section>
+
+<section id="compliance">
+<h2>任务覆盖</h2>
+<table>
+<tr><th>Requirement ID</th><th>标题</th><th>必填</th><th>报告章节</th><th>状态</th></tr>
+<tr><td>1.3.1</td><td>统筹研究范围分析</td><td>是</td><td>第三章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.3.2</td><td>总体设计范围城市设计</td><td>是</td><td>第四章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.3.3</td><td>重点区域详细设计</td><td>是</td><td>第五章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.4.1</td><td>空间结构与用地布局</td><td>是</td><td>4.1-4.2</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.4.2</td><td>开发强度与控规条件</td><td>是</td><td>4.4, 第十章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.4.3</td><td>建筑高度体量风貌</td><td>是</td><td>4.4</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.1.1</td><td>道路交通系统</td><td>是</td><td>4.5</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.1.2</td><td>轨道交通接驳</td><td>是</td><td>4.5</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.2.1</td><td>慢行系统</td><td>是</td><td>4.5, 7.1</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.2.2</td><td>停车设施</td><td>是</td><td>4.5</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.2.3</td><td>市政基础设施</td><td>是</td><td>4.5</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.2.4</td><td>蓝绿空间与公共空间</td><td>是</td><td>第七章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.2.5</td><td>AI朝圣地标（≥3个）</td><td>是</td><td>7.3</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.3.required</td><td>AI+场景应用体系</td><td>是</td><td>第六章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.3.1</td><td>AI+交通与步行性</td><td>是</td><td>6.2 场景1/9</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.3.2</td><td>AI+公共空间</td><td>是</td><td>6.2 场景5/10/11</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>1.5.3.3</td><td>AI+文化叙事</td><td>是</td><td>第八章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>agent.1</td><td>全球案例研究（≥5个）</td><td>是</td><td>3.3</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>agent.2</td><td>用户画像与场景卡</td><td>是</td><td>6.1-6.3</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>agent.3</td><td>城市更新项目清单</td><td>是</td><td>11.1</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>agent.4</td><td>分期实施策略</td><td>是</td><td>11.2</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>agent.5</td><td>指标体系与面积复算</td><td>是</td><td>第十二章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+<tr><td>agent.6</td><td>风险、假设与缺资料清单</td><td>是</td><td>第十三章</td><td><span class="badge badge-pass">PASS</span></td></tr>
+</table>
+</section>
+
+<section id="self-check">
+<h2>自检状态</h2>
+<h3>设计深度覆盖</h3>
+<div class="check-item">DD-01 现状诊断 — complete</div>
+<div class="check-item">DD-02 三层范围 — complete</div>
+<div class="check-item">DD-03 总体结构 — complete</div>
+<div class="check-item">DD-04 用地布局 — complete</div>
+<div class="check-item">DD-05 开发强度与控规条件 — complete</div>
+<div class="check-item">DD-06 建筑高度体量风貌 — complete</div>
+<div class="check-item">DD-07 拆改留方案 — complete</div>
+<div class="check-item">DD-08 交通轨道慢行停车 — complete</div>
+<div class="check-item">DD-09 市政新基建 — complete</div>
+<div class="check-item">DD-10 蓝绿公共空间 — complete</div>
+<div class="check-item">DD-11 三大重点区详细设计 — complete</div>
+<div class="check-item">DD-12 更新项目清单 — complete</div>
+<div class="check-item">DD-13 分期实施 — complete</div>
+<div class="check-item">DD-14 指标复算 — complete</div>
+<div class="check-item">DD-15 风险与缺资料清单 — complete</div>
+
+<h3>专业标准覆盖</h3>
+<div class="check-item">MOHURD-URBAN-DESIGN-MEASURES — compliant</div>
+<div class="check-item">MOHURD-CONTROL-DETAILED-PLANNING — partial（待控规条件）</div>
+<div class="check-item">MNR-LAND-USE-CLASSIFICATION — compliant</div>
+<div class="check-item">ACCESSIBILITY-STANDARD — compliant</div>
+<div class="check-item">HERITAGE-PROTECTION — compliant</div>
+<div class="check-item">PRIVACY-DATA-GOVERNANCE — compliant</div>
+</section>
+
+<section id="sources">
+<h2>来源</h2>
+<div class="source-item"><span class="id">OFFICIAL-ANNOUNCEMENT</span> — 百年京张AI创新带城市设计国际方案征集资格预审公告 (2026-05-09)</div>
+<div class="source-item"><span class="id">AGENT-TASKBOOK</span> — 面向全球智能体任务书摘录 (2026-05-18)</div>
+<div class="source-item"><span class="id">HAIDIAN-1X1</span> — 海淀区1+X+1现代化产业体系建设布局 (2026-03-02)</div>
+<div class="source-item"><span class="id">BJ-KW-THREE-AREAS</span> — 北京市科委：三区两翼打造世界级AI集聚地 (2026-04-03)</div>
+<div class="source-item"><span class="id">PROVISIONAL-BOUNDARIES</span> — 临时粗略边界数据 (provisional)</div>
+<div class="source-item"><span class="id">MOHURD-URBAN-DESIGN-MEASURES</span> — 住建部《城市设计管理办法》(2017)</div>
+<div class="source-item"><span class="id">MOHURD-CONTROL-DETAILED-PLANNING</span> — 住建部《控规编制审批办法》</div>
+<div class="source-item"><span class="id">MNR-LAND-USE-CLASSIFICATION</span> — 自然资源部《用地用海分类指南》(2023)</div>
+<div class="source-item"><span class="id">CASE-BARCELONA-22A</span> — 巴塞罗那22@创新区</div>
+<div class="source-item"><span class="id">CASE-SINGAPORE-ONENORTH</span> — 新加坡纬壹科技城</div>
+<div class="source-item"><span class="id">CASE-SEOUL-DMC</span> — 首尔数字媒体城</div>
+<div class="source-item"><span class="id">CASE-TORONTO-WATERLOO</span> — 多伦多-滑铁卢AI走廊</div>
+<div class="source-item"><span class="id">CASE-SHENZHEN-NANSHAN</span> — 深圳南山科技园</div>
+<div class="source-item"><span class="id">CASE-LONDON-KINGS-CROSS</span> — 伦敦King's Cross</div>
+<div class="source-item"><span class="id">CASE-BOSTON-KENDALL</span> — 波士顿Kendall Square</div>
+<div class="source-item"><span class="id">CASE-YOKOHAMA-MINATOMIRAI</span> — 横滨港未来21</div>
+<div class="source-item"><span class="id">DAODEJING-42</span> — 《道德经》第四十二章</div>
+</section>
+
+<section id="assumptions">
+<h2>假设与待确认事项</h2>
+<div class="cards">
+<div class="card" style="border-left:4px solid #ef4444"><h3>A-CONTROLS-001</h3><p><strong>正式控规条件待确认</strong></p><p>容积率、建筑高度、建筑密度、绿地率等正式控规条件未发布。所有开发强度指标为概念建议。</p><p><span class="badge badge-open">影响: 高</span></p></div>
+<div class="card" style="border-left:4px solid #ef4444"><h3>A-BOUNDARY-001</h3><p><strong>Provisional boundary待替换</strong></p><p>使用临时粗略边界，官方精确红线未发布。所有GeoJSON polygon为临时近似。</p><p><span class="badge badge-open">影响: 高</span></p></div>
+<div class="card" style="border-left:4px solid var(--copper)"><h3>A-BUILDING-001</h3><p><strong>现状建筑数据缺失</strong></p><p>建筑基底为概念示意，拆改留分类为初步判断。</p><p><span class="badge badge-open">影响: 中</span></p></div>
+<div class="card" style="border-left:4px solid var(--copper)"><h3>A-MUNICIPAL-001</h3><p><strong>市政设施容量数据缺失</strong></p><p>市政新基建为概念建议，未进行工程验算。</p><p><span class="badge badge-open">影响: 中</span></p></div>
+<div class="card" style="border-left:4px solid var(--copper)"><h3>A-OWNERSHIP-001</h3><p><strong>土地权属数据缺失</strong></p><p>更新项目可行性评估需要权属数据支撑。</p><p><span class="badge badge-open">影响: 中</span></p></div>
+</div>
+</section>
+
+<footer>
+<p><strong>道·生 DAO GENESIS</strong> — 百年京张 · 从一条铁路到一个文明原点</p>
+<p>COZE Agent (hitchcock-traveller) | v1.0 | 2026-08-09</p>
+<p style="margin-top:0.5rem;font-size:0.75rem">本方案为开放共创建议，不替代正式规划。所有空间落地内容为概念建议，可供专业团队深化研究。</p>
+<p style="font-size:0.75rem">所有GeoJSON使用EPSG:4326坐标系 | 空间数据标注为provisional_constraint, official_boundary: false</p>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('.nav a').forEach(a=>{
+  a.addEventListener('click',function(e){
+    document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

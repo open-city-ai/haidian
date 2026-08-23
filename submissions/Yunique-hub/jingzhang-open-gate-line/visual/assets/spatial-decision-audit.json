@@ -1,0 +1,121 @@
+{
+  "audit_version": "1.0.0",
+  "decision_id": "OGP12-G05-SPATIAL-DECISION-V1",
+  "deterministic": true,
+  "status": "PASS",
+  "checks": {
+    "schema_version_present": true,
+    "hard_gate_count_is_five": true,
+    "alternative_count_is_three": true,
+    "expected_decisions_match": true,
+    "exactly_one_advanced": true,
+    "first_100_days_has_five_packages": true,
+    "no_field_result_claimed": true
+  },
+  "alternatives": [
+    {
+      "id": "ALT-A",
+      "decision": "reject",
+      "expected_decision": "reject",
+      "passed_gate_count": 2,
+      "failed_gate_ids": [
+        "HG-01",
+        "HG-02",
+        "HG-05"
+      ],
+      "gates": [
+        {
+          "gate_id": "HG-01",
+          "pass": false
+        },
+        {
+          "gate_id": "HG-02",
+          "pass": false
+        },
+        {
+          "gate_id": "HG-03",
+          "pass": true
+        },
+        {
+          "gate_id": "HG-04",
+          "pass": true
+        },
+        {
+          "gate_id": "HG-05",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "id": "ALT-B",
+      "decision": "revise",
+      "expected_decision": "revise",
+      "passed_gate_count": 3,
+      "failed_gate_ids": [
+        "HG-03",
+        "HG-04"
+      ],
+      "gates": [
+        {
+          "gate_id": "HG-01",
+          "pass": true
+        },
+        {
+          "gate_id": "HG-02",
+          "pass": true
+        },
+        {
+          "gate_id": "HG-03",
+          "pass": false
+        },
+        {
+          "gate_id": "HG-04",
+          "pass": false
+        },
+        {
+          "gate_id": "HG-05",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "id": "ALT-C",
+      "decision": "advance",
+      "expected_decision": "advance",
+      "passed_gate_count": 5,
+      "failed_gate_ids": [],
+      "gates": [
+        {
+          "gate_id": "HG-01",
+          "pass": true
+        },
+        {
+          "gate_id": "HG-02",
+          "pass": true
+        },
+        {
+          "gate_id": "HG-03",
+          "pass": true
+        },
+        {
+          "gate_id": "HG-04",
+          "pass": true
+        },
+        {
+          "gate_id": "HG-05",
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "hard_gates": 5,
+    "alternatives": 3,
+    "rejected": 1,
+    "revised": 1,
+    "advanced": 1,
+    "first_100_days_work_packages": 5,
+    "field_results": 0
+  },
+  "input_sha256": "b6aba8fa881bdd8e7d26409bfd758841f165b087e628830f7dab0d55112483b0"
+}

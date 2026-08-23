@@ -119,9 +119,12 @@
     "physarum_heritage_crossing_count": { "value": 0, "source": "run7 heritage_conflicts.protection_scope = 0 (g1 hard constraint)", "note": "g1 hard-constraint behavior only. Run7 also records class_I_control = 0 and class_IV_control = 4, and f3≡f2 because no official heritage geometry is supplied; this value is NOT an independent in-site heritage-protection compliance conclusion." },
     "physarum_recommended_plan_uds": { "value": 80.34, "source": "phase5 round2 expert review mean score for plan_03 (城市融合), round2_summary.md", "note": "plan_03 genotype = D (综合均衡) fused with C (覆盖优先); skeleton_n_edges = 167, skeleton_total_length_m = 8813.1." }
   },
+  "test_scenario_count": 8,
+  "ai_off_note": "8 个已声明场景（3 测试验证 + 3 产业测试 + 2 公共 AI）逐场景绑定五字段 ai_off_path / human_handoff / gate_id / operating_mode / responsible_role，判据见 visual/assets/ai-off-baseline.json 的 node_schema；缺任一字段的场景不得计入服务覆盖。",
   "test_scenarios": [
     {
       "scenario_id": "test-tod-interchange",
+      "scenario_type": "test_validation",
       "name": "大钟寺站 TOD 换乘验证 (Dazhongsi station TOD interchange)",
       "status": "proposed",
       "object": "Dazhongsi station (Beijing Subway Line 13) four-quadrant pedestrian connectivity and rail interchange",
@@ -129,10 +132,16 @@
       "metric_target": "Barrier-free interchange flow throughout; station feeder axis aligned to the conceptual primary vein (geometry/roads.geojson ROAD-001)",
       "method": "Walkability network analysis + barrier-free interchange flow check",
       "data_pending": "Official station CAD/redline",
+      "ai_off_path": "全程无障碍物理路径（缘石坡道 + 连续盲道 + 无障碍电梯/坡道）常开；AI 换乘引导仅作可选叠加，关闭后换乘仍可独立完成",
+      "human_handoff": "站务引导员 / 现场导览员",
+      "gate_id": "G0",
+      "operating_mode": "物理路径常开 + AI 导航可选叠加",
+      "responsible_role": "轨道运营单位 + 区交通委",
       "note": "Suggested validation scenario; not yet executed. Await official station geometry."
     },
     {
       "scenario_id": "test-stormwater-resilience",
+      "scenario_type": "test_validation",
       "name": "小月河雨洪韧性验证 (Xiaoyue River stormwater resilience)",
       "status": "proposed",
       "object": "Blue-green corridor and permeable paving along Xiaoyue River",
@@ -140,10 +149,16 @@
       "metric_target": "Recommended Plan03 design values: permeable paving ratio 0.691 (69.1%), green penetration 0.2517 (25.2%) — author Phase4 output plan_03_fusion_round2, pending official review",
       "method": "Catchment runoff-coefficient calculation + permeability recheck",
       "data_pending": "River blue line and pipe network data",
+      "ai_off_path": "物理浮子溢流阀 + 重力自流排水 + 蓝绿海绵自然渗透",
+      "human_handoff": "水务运维班组 / 区防办值班员",
+      "gate_id": "G0",
+      "operating_mode": "自然渗透常开 + 智能调蓄可选叠加",
+      "responsible_role": "区水务局",
       "note": "Suggested validation scenario; not yet executed. Design values are the author's Phase4 output, not an official acceptance metric."
     },
     {
       "scenario_id": "test-community-accessibility",
+      "scenario_type": "test_validation",
       "name": "AI 原点社区可达性验证 (AI Origin community accessibility)",
       "status": "proposed",
       "object": "Campus-park-block slow stitching of the Beijing AI Origin community",
@@ -151,7 +166,77 @@
       "metric_target": "Slow loops of the three key areas cover community-service and outcome-conversion nodes; continuous barrier-free passage",
       "method": "Slow-network connectivity and barrier-free continuity check",
       "data_pending": "Existing road network and ownership data",
+      "ai_off_path": "连续盲道 + 缘石坡道 + 慢行环物理路径",
+      "human_handoff": "社区导览员 / 网格员",
+      "gate_id": "G0",
+      "operating_mode": "物理慢行环常开 + 无障碍感知可选叠加",
+      "responsible_role": "区交通委 + 社区",
       "note": "Suggested validation scenario; not yet executed. Await existing network and ownership data."
+    },
+    {
+      "scenario_id": "industrial-accessible-sensing",
+      "scenario_type": "industrial",
+      "name": "边缘算力感知盲道 (Edge tactile-paving sensing, 京张绿廊)",
+      "status": "proposed",
+      "object": "Tactile paving continuity and damage alerting on the Jingzhang green corridor",
+      "ai_off_path": "网格员定期现场巡检盲道 + 视障用户反馈",
+      "human_handoff": "网格员 + 无障碍专员",
+      "gate_id": "G2",
+      "operating_mode": "端侧算力节点就近推理，不采集个人身份",
+      "responsible_role": "区科信局 + 无障碍专家组",
+      "note": "产业测试场；尚未部署，需无障碍专业复核（G2）后方可进入有限现场试点。"
+    },
+    {
+      "scenario_id": "industrial-unmanned-cleaning",
+      "scenario_type": "industrial",
+      "name": "无人清扫与物流走廊 (Unmanned cleaning & logistics, 众智园)",
+      "status": "proposed",
+      "object": "Low-speed unmanned cleaning and fixed-route logistics dispatch in the Zhongzhi campus",
+      "ai_off_path": "环卫工人定时作业 + 固定站点人工配送",
+      "human_handoff": "现场安全员 + 环卫班组",
+      "gate_id": "G3",
+      "operating_mode": "低速无人设备 + 远程监控，非高峰作业",
+      "responsible_role": "运营主体 + 园区管理方",
+      "note": "产业测试场；低速无人设备需有限现场窗口（G3）试点，异常即人工接管。"
+    },
+    {
+      "scenario_id": "industrial-encroachment-governance",
+      "scenario_type": "industrial",
+      "name": "视觉识别违占治理 (Visual encroachment governance, 大钟寺商业街区)",
+      "status": "proposed",
+      "object": "Public-space occupation detection and dispatch work orders in the Dazhongsi commercial block",
+      "ai_off_path": "网格员现场巡查 + 人工复核派单",
+      "human_handoff": "网格员 + 申诉纠错专员",
+      "gate_id": "G2",
+      "operating_mode": "边缘识别 + 政务网格派单，人工复核后再处置",
+      "responsible_role": "区城管 + 政务网格中心",
+      "note": "产业测试场；涉及公共空间占用图像，需数据隐私与专业复核（G2），误判以人工兜底。"
+    },
+    {
+      "scenario_id": "public-ai-navigation",
+      "scenario_type": "public_ai",
+      "name": "AI 慢行导航 (AI slow-mobility navigation)",
+      "status": "proposed",
+      "object": "Explainable wayfinding and low-intrusion sensing for slow-mobility breakpoints, crowding and accessibility needs",
+      "ai_off_path": "物理盲文铭牌 + 语音广播 + 静态导视牌，不依赖手机",
+      "human_handoff": "社区导览员",
+      "gate_id": "G1",
+      "operating_mode": "端侧算力 + 离线静态地图",
+      "responsible_role": "运营主体 + 区交通委",
+      "note": "公共 AI 场景；算力/网络失效时以静态物理设施兜底。"
+    },
+    {
+      "scenario_id": "public-heritage-guide",
+      "scenario_type": "public_ai",
+      "name": "文化导视与遗产智能导览 (Heritage wayfinding & digital guide, 大钟寺数字钟楼)",
+      "status": "proposed",
+      "object": "Digital interpretation and wayfinding anchored at the Dazhongsi digital bell tower; no new physical structure",
+      "ai_off_path": "静态导视牌 + 现场人工讲解",
+      "human_handoff": "讲解员 / 导览员",
+      "gate_id": "G0",
+      "operating_mode": "数字展陈 + 物理导视，不新建实体建筑",
+      "responsible_role": "遗产管理单位",
+      "note": "公共 AI 场景；数字展陈仅作遗产展示与导览起点，关闭后物理导视与人工讲解常开。"
     }
   ]
 }

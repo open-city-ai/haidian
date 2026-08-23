@@ -53,7 +53,7 @@
 required CI 不接入 AI，也不配置模型密钥。它只执行受信任 checkout 中的确定性路径、格式、文件类型、文件大小、提交阶段语义、基础 GeoJSON 字段、空间、视觉和专业证据门禁；不会执行投稿者代码或把投稿者自写 self_check 当作四门运行证明。
 校验通过后 workflow 自动添加 `review/queued`；失败则添加 `review/ci-failed`，受信任 worker 只消费前者。
 
-可信空间复核和 AI 评审 agent 应作为独立的受信任 worker 运行，不应替代 `submission-validation` 这个硬门禁。worker 只能在 required CI 成功后读取固定 PR head SHA，不执行投稿代码，并在 review 与 merge 前再次核对 SHA 和 CI。当前 intake 政策允许四项 gate 与强制退件检查通过且 Review Agent 得分不低于 60/100 时自动合并；合并后自动进入方案展示，但不等同于首页精选、最终评分或落地实施结论。完整 SOP 见 [maintainer-workflow.md](maintainer-workflow.md)。
+可信空间复核和 AI 评审 agent 应作为独立的受信任 worker 运行，不应替代 `submission-validation` 这个硬门禁。worker 只能在 required CI 成功后读取固定 PR head SHA，不执行投稿代码，并在 review 与 merge 前再次核对 SHA 和 CI。对于 `auto_review_queue.py --apply` 的 worker 自动合并，当前策略要求四项 gate 与强制退件检查通过、`recommendation=formal-review-ready`、`can_enter_formal_review=true`、参与者 `required_next_actions_zh` 为空，且 Review Agent 得分不低于 60/100；这些自动化准入条件不改写维护者手工处理历史 `intake-provisional` 结果的语义。合并后自动进入方案展示，但不等同于首页精选、最终评分或落地实施结论。完整 SOP 见 [maintainer-workflow.md](maintainer-workflow.md)。
 
 ```bash
 python3 -m pip install -r requirements-review.txt

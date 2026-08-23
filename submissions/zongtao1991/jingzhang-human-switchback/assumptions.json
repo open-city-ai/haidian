@@ -1,0 +1,278 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "assumption_id": "A-BOUNDARY-001",
+      "status": "pending_official_geometry",
+      "statement": "SITE-001 and PROV-KEY-001..003 are repository-maintained provisional rough polygons, not official redlines.",
+      "basis": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "inputs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "all dependent areas are projected to EPSG:4548 and recomputed from these temporary polygons",
+      "confidence": "low",
+      "uncertainty": "boundary location and precision; every derived area and ratio may change",
+      "affected_files": [
+        "geometry/*.geojson",
+        "metrics.json"
+      ],
+      "recalculation_trigger": "official or rights-cleared site/key-area GIS or CAD polygons become available",
+      "impact": "Suitable for concept comparison and spatial QA only; unsuitable for approval, land title, compensation or precise official area claims."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "assumption_id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Official regulatory controls, parcels/ownership, existing buildings, roads/rail, heritage, water, utilities, fire, geotechnical and hazard geometry are unavailable.",
+      "basis": "brief/site-package/ranges/planning_limits.json and geometry/constraints.geojson data-gap register",
+      "inputs": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "not applicable; unavailable controls remain explicit unknowns and are never spatially fabricated",
+      "confidence": "high",
+      "uncertainty": "implementation feasibility, retain/renovate/demolish decisions, approved development capacity and engineering interfaces",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "metrics.json"
+      ],
+      "recalculation_trigger": "any corresponding official or cleared dataset is supplied",
+      "impact": "The spatial model is a non-statutory design proposal and must be recalibrated by licensed professional teams before implementation use."
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "assumption_id": "A-LANDUSE-001",
+      "status": "design_model",
+      "statement": "The land-use layer is a topology-complete conceptual allocation derived from the provisional site, not an approved regulatory plan.",
+      "basis": "design narrative plus MNR classification terminology; no site-specific statutory land-use control is claimed",
+      "inputs": [
+        "SITE-001",
+        "design road buffers",
+        "design green/public-space polygons",
+        "five programme bands split about the canonical straight spine"
+      ],
+      "formula": "SITE - ROAD_AREA - GREEN_SPACE - PUBLIC_SPACE, then topology-safe orthogonal split into programme cells",
+      "confidence": "low",
+      "uncertainty": "parcel, existing use, ownership, public-service demand and statutory code allocation",
+      "affected_files": [
+        "geometry/land_use.geojson",
+        "metrics.json"
+      ],
+      "recalculation_trigger": "official parcels, current land-use survey or regulatory-plan controls become available",
+      "impact": "Every square metre is labelled for auditability, while codes remain design intentions rather than permissions."
+    },
+    {
+      "id": "A-ROAD-001",
+      "assumption_id": "A-ROAD-001",
+      "status": "design_model",
+      "statement": "Roads are low-curvature proposed centre-lines with assumed design widths and are not existing roads, surveyed rail alignments or road redlines.",
+      "basis": "one weighted straight fit to the provisional site/key-area centres, two constant 330 m offsets and six key-area/spacing-derived orthogonal links; OSM remains background only",
+      "inputs": {
+        "parallel_street_offset_m": 330,
+        "maximum_cross_link_spacing_m": 1800,
+        "secondary_width_m": 18,
+        "branch_width_m": 14,
+        "greenway_width_m": 8
+      },
+      "formula": "ROAD_AREA = union(buffer(ROAD_CENTERLINE, design_width_m / 2)) clipped to SITE-001",
+      "confidence": "low",
+      "uncertainty": "alignment, cross-section, intersection, parking, traffic capacity, fire access and property impacts",
+      "affected_files": [
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ],
+      "recalculation_trigger": "official road redlines, traffic survey, access/fire review or detailed cross-sections are supplied",
+      "impact": "Road length/area metrics are design-model quantities only."
+    },
+    {
+      "id": "A-GREEN-PUBLIC-001",
+      "assumption_id": "A-GREEN-PUBLIC-001",
+      "status": "design_model",
+      "statement": "The axis-linked green system, five aligned green rooms, paired plazas and twelve nodes are conceptual public-realm allocations with no fabricated surveyed watercourse; green polygons separate at road crossings.",
+      "basis": "canonical low-curvature public-interest spine, three key-area rooms, two portal rooms and six paired cross-link stations",
+      "inputs": {
+        "green_spine_half_width_m": 60,
+        "key_area_green_room_radii_m": [
+          200,
+          130
+        ],
+        "portal_green_room_radii_m": [
+          130,
+          90
+        ],
+        "station_plaza_nominal_size_m": [
+          110,
+          86
+        ],
+        "scenario_node_count": 12
+      },
+      "formula": "green/public-space union areas are clipped to SITE-001 and made mutually exclusive with ROAD_AREA",
+      "confidence": "low",
+      "uncertainty": "blue line, hydrology, flood/groundwater, utilities, accessibility gradients, ownership and detailed landscape design",
+      "affected_files": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ],
+      "recalculation_trigger": "surveyed water/terrain, blue line, drainage model, accessibility audit or public-space ownership becomes available",
+      "impact": "Green and public-space ratios are reproducible design-model ratios, not approved controls."
+    },
+    {
+      "id": "A-MASSING-001",
+      "assumption_id": "A-MASSING-001",
+      "status": "design_model",
+      "statement": "Building polygons are concept massing aligned to one orthogonal spine frame for the three provisional key areas, not surveyed existing buildings, parcel decisions or construction footprints.",
+      "basis": "distinct conceptual morphology for accelerator campus, shared community blocks and compact industry cluster without arbitrary angle rotation",
+      "inputs": {
+        "alignment": "parallel_to_canonical_low_curvature_spine",
+        "key_area_floor_ranges": {
+          "PROV-KEY-001": [
+            3,
+            6
+          ],
+          "PROV-KEY-002": [
+            4,
+            7
+          ],
+          "PROV-KEY-003": [
+            5,
+            8
+          ]
+        },
+        "storey_height_design_m": 4.2,
+        "clearance_from_non_buildable_m": 6
+      },
+      "formula": "floor_area_sqm_design_model = footprint_area_sqm * floors_design_model",
+      "confidence": "low",
+      "uncertainty": "existing condition, retain/renovate/demolish status, buildability, height/FAR/density controls, fire/daylight/energy/structure and cost",
+      "affected_files": [
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ],
+      "recalculation_trigger": "cleared existing-building survey, official parcels and development controls become available",
+      "impact": "Only design-model counts, areas and ratios may be quoted; no existing-building or approved-capacity claim is valid."
+    },
+    {
+      "id": "A-PHASING-001",
+      "assumption_id": "A-PHASING-001",
+      "status": "design_model",
+      "statement": "The three non-overlapping phase polygons form a complete spatial sequence for discussion, not a committed delivery programme.",
+      "basis": "pilot the central origin community, extend south, then complete the northern accelerator network",
+      "inputs": {
+        "site_fraction_cuts_from_south": [
+          0.37,
+          0.66
+        ]
+      },
+      "formula": "three horizontal topology-safe partitions whose union equals SITE-001",
+      "confidence": "low",
+      "uncertainty": "ownership, funding, approvals, dependencies, market, infrastructure, construction logistics and schedule",
+      "affected_files": [
+        "geometry/phasing.geojson",
+        "metrics.json"
+      ],
+      "recalculation_trigger": "project list, ownership, cost, funding and delivery dependencies are professionally confirmed",
+      "impact": "Phase areas are auditable concept allocations only."
+    },
+    {
+      "id": "A-APPROVED-PLAN-DATA-GAP-001",
+      "assumption_id": "A-APPROVED-PLAN-DATA-GAP-001",
+      "status": "pending_approved_plan_files",
+      "statement": "The 2026-08-12 Beijing government webpage confirms public approval status and textual planning context, but the approved plan document, maps and machine-readable controls have not been obtained.",
+      "basis": "DATA-SRC-JINGZHANG-CONTROL-PLAN-APPROVAL-20260812",
+      "inputs": [
+        "official government news webpage",
+        "repository provisional geometry"
+      ],
+      "formula": "no spatial or regulatory control is derived from the news text; existing provisional geometry remains separately labelled",
+      "confidence": "high",
+      "uncertainty": "official boundary, parcel controls, road/rail/heritage interfaces, FAR, height, density, setback and implementation conditions",
+      "affected_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/*.geojson",
+        "metrics.json",
+        "compliance_matrix.json",
+        "design_depth_matrix.json"
+      ],
+      "recalculation_trigger": "the approved control-plan document, rights-cleared maps or official GIS/CAD and control tables become available",
+      "impact": "The approval report may guide narrative alignment only; it cannot validate or replace any submitted geometry or design-model metric."
+    },
+    {
+      "id": "A-OSM-CONTEXT-LIMIT-001",
+      "assumption_id": "A-OSM-CONTEXT-LIMIT-001",
+      "status": "background_context_only",
+      "statement": "The 2026-08-21 OpenStreetMap / Overpass extract is used only as open-data background context and is not treated as a surveyed existing-condition base, legal redline, statutory plan, approval map or engineering input.",
+      "basis": "DATA-SRC-OSM-OVERPASS-CONTEXT-20260821",
+      "inputs": {
+        "bbox_wgs84_south_west_north_east": [
+          39.936,
+          116.3365,
+          40.0295,
+          116.3585
+        ],
+        "osm_base_timestamp": "2026-08-20T20:52:15Z",
+        "feature_count": 4940,
+        "feature_classes": [
+          "BASE_BUILDING",
+          "BASE_ROAD",
+          "BASE_GREEN",
+          "BASE_RAIL",
+          "BASE_TRANSIT_POINT",
+          "BASE_WATER",
+          "BASE_PUBLIC_FACILITY"
+        ]
+      },
+      "formula": "three grouped Overpass queries within the registered WGS84 bbox; clip to bbox; transform to EPSG:4548; simplify polygons at 0.9 m and other geometries at 0.6 m with topology preserved; make valid when required; return to EPSG:4326",
+      "confidence": "low",
+      "uncertainty": "crowdsourced coverage, tagging, positional accuracy, completeness and snapshot currency; asset condition, legal status and survey precision are not established",
+      "affected_files": [
+        "sources.json",
+        "proposal.md",
+        "proposal.en.md",
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "report/copyright_statement.md"
+      ],
+      "recalculation_trigger": "a new attributed OSM snapshot is deliberately adopted, or official/rights-cleared existing-condition GIS, field survey or professional mapping becomes available",
+      "impact": "The extract may improve contextual legibility and help frame survey questions, but it cannot validate any submitted boundary, land-use allocation, road/rail alignment, key-area limit, existing-building count, metric or implementation conclusion."
+    },
+    {
+      "id": "A-COLLAB-001",
+      "assumption_id": "A-COLLAB-001",
+      "status": "proposal_only_pending_partner_confirmation",
+      "statement": "All regional-coordination interfaces, activity brands, developer-community roles, international-communication routes, and pilot-conversion roles are conceptual suggestions; no named counterpart has confirmed participation and no government, institution, company, host, site, data, funding, compute, procurement, investment, or implementation commitment is claimed.",
+      "basis": "DATA-SRC-AGENT-TASKBOOK-20260518 requires regional synergy and long-term operations while prohibiting invented partnerships, resources, events, recruitment, funding, or government commitments.",
+      "inputs": [
+        "brief/site-package/agent_taskbook.json",
+        "proposal.md",
+        "proposal.en.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "not applicable; each proposed interface advances only through recorded authorisation, rights/data review, accountable roles, a non-AI baseline, a timebox, verification evidence, and an executable exit/restoration condition",
+      "confidence": "high",
+      "uncertainty": "counterpart interest, mandate, lawful data/rights basis, responsible bodies, site access, dates, resources, funding, compute, delivery route, and approval status",
+      "affected_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "report/narrative.md"
+      ],
+      "recalculation_trigger": "a named counterpart supplies a public or rights-cleared written scope, authorised responsible roles, resource/site conditions, and a reviewable test protocol, or declines/withdraws participation",
+      "impact": "The matrices are auditable collaboration briefs and no-go gates, not evidence of an existing partnership, scheduled event, recruitment result, procurement, investment, approval, or implementation."
+    }
+  ]
+}

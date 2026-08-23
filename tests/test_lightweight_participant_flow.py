@@ -168,6 +168,7 @@ class LightweightParticipantFlowTests(unittest.TestCase):
                 "--json",
             ],
             REPO_ROOT,
+            encoding="utf-8",
         )
         self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
         report = json.loads(completed.stdout)

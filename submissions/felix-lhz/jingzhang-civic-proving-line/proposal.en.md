@@ -14,21 +14,15 @@ scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "enterpris
 # JING-ZHANG TWO ANSWERS / 京张双答
 
 
-> **BUILDABLE CIVIC CROSS.** Turn “do not sacrifice the public route” into an enterable, maintainable, closable and recoverable civic space. The public cross and staffed service stand alone; AI enters one reversible bay; every decision remains visible in the Receipt Porch.[data:visual/assets/prototype-model.json] [data:visual/assets/spatial-decision.json]
+> **Build a civic-adoption layer on the approved spatial structure.** Public information released in August 2026 identifies an approximately 1,668.2 ha block-plan context, a 9 km Jing-Zhang green belt and “**one belt, one axis, two centres and multiple nodes**”, with Dazhongsi as one of the two centres. Phase II supporting works are complete and form a fishbone slow-mobility network.[source:BEIJING-BLOCK-PLAN-APPROVED-20260812] [source:BEIJING-JZ-PHASE2-COMPLETE-20260714]
 
-One architectural-ground system contains five locatable parts: the all-day public cross, one-sided trial bay, staffed Receipt Porch, blue-green edge and independent back-of-house. A single model generates 1:5000 context, 1:2000 plan, 1:500 architectural-ground plan, two 1:200 sections, a 1:50 porch node and three 1:20 prototype details. Every dimension is a design assumption pending survey, structural, fire, foundation and durability review.[data:visual/assets/prototype-model.json] [depth:three_key_area_detailed_design]
+“One spine, three stations and two wings” is therefore not a competing statutory plan. It is a **selectable, stoppable and removable operating overlay** embedded in the Jing-Zhang green belt and aligned with Dazhongsi centre and the innovation axis. The official 1,668.2 ha context and the 11.4 sq km provisional submission geometry are registered separately and never substituted.[data:visual/assets/spatial-atlas.json] [metric:official_planning_area_ha] [metric:submitted_provisional_area_sqm]
 
-The material family uses bolted galvanized steel frames, perforated-metal sun screens, dry precast ballast, permeable precast paving and replaceable evidence panels. The permanent public layer is built first; removable AI plug-ins assemble only after permits close; after a stop, equipment leaves on an independent service route while the porch remains staffed public service.[metric:architectural_prototype_count] [metric:material_system_count] [metric:architectural_detail_count]
+The Dazhongsi Receipt Porch adapts between the existing park, a directional rail interface and an urban-renewal frontage. It remains **G0 NO-GO**: published context is not survey, title, permit, construction or field operation by this proposal. Government-reported public use is context, not participant observation.[data:visual/assets/e2-readiness.json]
 
-ALT-A is **REJECTED** for severing the public cross; ALT-B is **REVISED** because supervision, fire and removal access fragment; ALT-C advances into architectural development. The spatial decision answers “why this option”; twelve measurement contracts answer “how to verify it after construction”. Neither is field evidence.[metric:rejected_spatial_alternative_count] [metric:revised_spatial_alternative_count] [metric:advanced_spatial_alternative_count]
+![Approved spatial structure and Jing-Zhang operating overlay](assets/figures/site-overview.en.png)
 
-**The present implementation decision remains G0 NO-GO.** Precise survey, title, eight permits, four independent duty posts and seven consecutive ordinary-service days are incomplete; 0/8 permits and 0/7 days are closed, so AI trial may not begin.[data:visual/assets/e2-readiness.json] [metric:current_trial_open_gate_count] [metric:pending_trial_permit_count]
-
-Design evidence has three classes: **known design** means reproducible geometry, quantities and document coverage; **synthetic verification** means rule-driven desktop cases; **field unknown** includes footfall, safety performance, efficiency, satisfaction, energy, cost and recovery duration.[depth:existing_conditions_diagnosis]
-
-The 84 synthetic cases record input hashes, rule versions, expected and observed states, accountable triggers and recovery exits, but produce no claim of institutional partnership, investment, permit closure or field performance.[data:visual/assets/tabletop-results.json] [metric:synthetic_design_verification_case_count] [metric:field_verification_result_count]
-
-![Overall urban design and three architectural landmarks](assets/figures/site-overview.en.png)
+![Continuous ground interface of approved context, public service and timed trial](assets/figures/land-use-structure.en.png)
 
 <!-- V11_DECISION_START -->
 ## One Real Spatial Decision
@@ -70,17 +64,9 @@ The 43.6 km² coordinated research context organises capability exchange; the ro
 
 ## Coordinated Research Area: Industry and Future City Research
 
-The regional diagram exchanges problems, evidence and capabilities: Beiwei for founder and alumni service; Future Science City for application demand; Huairou for research facilities and instruments.[source:REGION-BEIWEI] [source:REGION-FUTURE-SCIENCE-CITY] [source:REGION-HUAIROU]
+Five exchange contracts replace generic regional arrows with fallible evidence exchange. Beiwei community supplies resident problems and accessibility baselines; Future Science City supplies research tasks and open-model capability; Huairou Science City supplies instruments and reproduction conditions; Beijing E-Town supplies manufacturing, device-safety and maintenance interfaces; the Jing-Jin-Ji interface carries cross-regional problems, compute and knowledge reuse. Each contract records problem input, capability, validation place, evidence product, four owner roles and a failure exit. Institutions are proposed roles, not partnership claims.[data:visual/assets/spatial-atlas.json]
 
-E-Town connects engineering, manufacturing and scenarios; Beijing–Tianjin–Hebei connects facilities, computing and industrial transfer. Every interface stays conceptual until accountable parties and agreements exist.[source:REGION-ETOWN] [source:REGION-CAPITAL-CIRCLE]
-
-Seven primary/official references transfer one mechanism each: long-term shared operations from one-north; renewal plus knowledge district from 22@; and evidence-led scenarios from Paris-Saclay.[source:CASE-ONE-NORTH] [source:CASE-BARCELONA] [source:CASE-PARIS-SACLAY]
-
-Brainport contributes shared labs, Helsinki a public AI register, and Woven City a controlled test course.[source:CASE-BRAINPORT] [source:CASE-HELSINKI] [source:CASE-WOVEN]
-
-Toronto Quayside is used only for binding public-interest and phase commitments. None proves a Beijing control condition.[source:CASE-QUAYSIDE]
-
-![Regional exchange and spatial structure](assets/figures/land-use-structure.en.png)
+Validation places are the Xiaoyuehe wing, Verification Ring, Translation Gate and Receipt Porch. Any failed permit, data right or ordinary baseline stops exchange and returns to ordinary service; both success and failure enter the public knowledge base.
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
@@ -196,9 +182,9 @@ The blue-green system retains mature trees, rail memory and continuous open spac
 
 ### Three receipt landmarks, the evidence mile and international communication
 
-The landmarks share a heritage-graphite trace, public-green baseline, AI-amber joint and evidence-blue receipt plate, yet ring, gate and porch keep independent silhouettes. A City Evidence Mile along the baseline spine sequences “pose a problem—test publicly—decide humanly—leave a receipt”, linking verified Jing-Zhang railway memory, Zhongguancun's experimental culture and accountable AI without copying corporate marks or inventing history.[data:visual/assets/spatial-atlas.json] [metric:key_area_count]
+The evidence mile turns the published rail, gantry crane, narrow gauge, whistle and rail-garden resources into five component types. Each follows “heritage fact—static bilingual/tactile/phone-free interpretation—optional AI enhancement—public correction—staff-reviewed receipt”. AI may not rewrite unsourced history or invent exact resource locations.[data:visual/assets/spatial-atlas.json]
 
-Every stop offers Chinese/English, high-contrast, tactile, paper and staffed access. The honour wall records only task, evidence level, decision, review date and contributor role—never an unverified technology ranking. International communication publishes reviewable receipts and failure reasons and never turns a proposed role into an institutional commitment.[source:JINGZHANG-PLAN-OFFICIAL] [source:ZHONGGUANCUN-HISTORY-OFFICIAL]
+Verification Ring, Translation Gate and Receipt Porch share heritage graphite, public green, AI amber and evidence blue, but not silhouettes. The honour interface records only task, evidence tier, decision, review date and contributor; it never becomes an unverified technology leaderboard.
 
 ### Industry, talent and future-city programme
 
@@ -206,9 +192,9 @@ The operating loop is problem register → ordinary baseline → capability repr
 
 ## Global AI Innovation Programme and Long-Term Operation
 
-The Civic Adoption Year turns a one-off exhibition into four public cycles: spring audits baseline/accessibility; summer opens capability and developer tests; autumn hosts civic trials and Public Adoption Week; winter publishes annual receipts, inventories assets and reviews exits. Every cycle records site, users, proposed accountable role, permit gate, ordinary service, AI increment, evidence output, stop event and archived knowledge. The cycles share one public-ledger schema, but no field record is invented.[data:visual/assets/two-answers.json] [metric:paired_scenario_count]
+An “Ordinary Open Day” runs public routes, accessibility, ordinary feeder, shaded waiting, staffed service and static guidance first, then checks developer permits, independent posts and the ordinary baseline. Morning opens and records the baseline; midday checks admission only; afternoon publishes state, failure and staff intervention; closing stops plug-ins, restores space, reviews manually and archives. Any missing item holds OPEN and blocks TRIAL.[data:visual/assets/two-answers.json]
 
-Developer participation is not unrestricted access. Controlled tests begin only after permits, provenance, ordinary service and safety posts are ready; outputs must include reproduction conditions, failure reason, stop state and a publishable summary. People can inspect, appeal and request review through a staffed desk, paper receipt or no-account page. Annual knowledge is archived as problem card—baseline record—trial summary—human decision—review date.[data:visual/assets/two-answers.json] [metric:field_verification_result_count]
+Each Civic Adoption Year season produces one reusable knowledge asset: spring accessibility audit, summer capability reproduction record, autumn public-trial receipt set, and winter asset-and-exit review. Government-reported daily use is background, not public participation or field performance completed by this proposal.[source:BEIJING-JZ-PUBLIC-USE-20260730]
 
 ## Renewal Projects, Implementation Policy, and Phasing
 

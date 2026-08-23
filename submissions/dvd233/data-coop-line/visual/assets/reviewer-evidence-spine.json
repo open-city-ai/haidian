@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0.0",
+  "submission_id": "dvd233/data-coop-line",
+  "spine_id": "DATA-COOP-REVIEW-SPINE-01",
+  "generated_at": "2026-08-21",
+  "branch_freeze": {
+    "upstream_main_sha": "9782df83a8f2a58ebe79823fe8001f18d129b975",
+    "observed_at": "2026-08-21T21:14:57+08:00",
+    "relevance_since_previous_observation": "unrelated_submission_only",
+    "gate_scripts_from_this_freeze": true
+  },
+  "purpose": {
+    "theme_zh": "五分钟评审证据脊柱",
+    "theme_en": "Five-minute reviewer evidence spine",
+    "reviewer_question_zh": "五分钟内能否从来源权限走到空间量、可演练 MVP、现场责任和失败关闭证据，并清楚区分已验证、待验证与禁止推断？",
+    "reviewer_question_en": "Can a reviewer move from source authority to spatial quantities, the rehearsable MVP, field responsibility, and fail-closed evidence in five minutes while distinguishing verified, pending, and prohibited inferences?",
+    "direction_change": false,
+    "new_source_or_license_boundary": false,
+    "changes_geometry_or_metrics": false
+  },
+  "status_boundary": {
+    "package_state": "ready_for_review",
+    "evidence_classes": [
+      "repository_frozen_source_and_provisional_geometry",
+      "recalculated_concept_metrics",
+      "rehearsable_design_contract",
+      "unobserved_field_template",
+      "synthetic_fail_closed_tests"
+    ],
+    "must_not_be_inferred": [
+      "official_redline_or_statutory_control",
+      "site_access_or_field_observation",
+      "confirmed_operator_or_partner",
+      "permission_or_implementation_commitment",
+      "risk_clearance_or_operability"
+    ],
+    "statement_zh": "该脊柱只压缩既有证据的评审路径，不提升任何来源权威，不把临时几何、合成通过或 not_observed 改写为批准、现场事实或实施承诺。",
+    "statement_en": "This spine only shortens the review path through existing evidence. It does not elevate source authority or turn provisional geometry, synthetic passes, or not_observed states into approval, field fact, or implementation commitment."
+  },
+  "route_duration_seconds": 300,
+  "steps": [
+    {
+      "step_id": "R1-AUTHORITY",
+      "order": 1,
+      "duration_seconds": 45,
+      "title_zh": "来源权限与控制缺口",
+      "title_en": "Source authority and control-data gap",
+      "question_zh": "哪些事实可用于正式表达，哪些控制几何仍缺失？",
+      "question_en": "Which facts may support formal statements, and which control geometries remain missing?",
+      "verified_zh": "4/4 临时范围 geometry 与冻结源一致；来源哈希与许可边界 18/18 通过；官方控制 geometry 仍为 0 feature、6 类缺口。",
+      "verified_en": "4/4 provisional scope geometries match the frozen source; 18/18 source-hash and use-boundary checks pass; official-control geometry remains 0 features with six missing classes.",
+      "boundary_zh": "0 feature 表示缺口已核验，不表示现实中不存在控制。",
+      "boundary_en": "Zero features records a verified gap; it does not mean controls do not exist.",
+      "references": [
+        { "path": "visual/assets/site-evidence-register.json", "pointer": "/", "role": "machine_register" },
+        { "path": "visual/assets/site-evidence-audit.js", "pointer": "command", "role": "fail_loud_audit" },
+        { "path": "geometry/constraints.geojson", "pointer": "/data_gap", "role": "verified_gap" },
+        { "path": "sources.json", "pointer": "/sources", "role": "allowed_and_prohibited_uses" }
+      ]
+    },
+    {
+      "step_id": "R2-SPATIAL",
+      "order": 2,
+      "duration_seconds": 55,
+      "title_zh": "空间量与复算签名",
+      "title_en": "Spatial quantities and recalculation signature",
+      "question_zh": "图、文和指标是否来自同一 GeoJSON 计算链？",
+      "question_en": "Do figures, prose, and metrics come from one GeoJSON calculation chain?",
+      "verified_zh": "EPSG:4548 联合复算：临时总体范围 11,412,825.386 m²、建筑基底 40,063.344 m²、概念绿地 2,384,747.221 m²、概念公共空间 98,164.982 m²；证据签名 c880c438…a45bbf。",
+      "verified_en": "EPSG:4548 union recalculation gives 11,412,825.386 sq m of provisional overall scope, 40,063.344 sq m of concept footprint, 2,384,747.221 sq m of concept green, and 98,164.982 sq m of concept public space; evidence signature c880c438…a45bbf.",
+      "boundary_zh": "这些值只在临时计算包内成立，不是法定面积、容量或工程量。",
+      "boundary_en": "These values hold only inside the provisional computation package; they are not statutory areas, capacities, or quantities.",
+      "references": [
+        { "path": "geometry/site_boundary.geojson", "pointer": "/features/0", "role": "spatial_source" },
+        { "path": "metrics.json", "pointer": "/metrics", "role": "metric_registry" },
+        { "path": "visual/assets/evidence-snapshot.json", "pointer": "/evidence_signature", "role": "recalculation_snapshot" },
+        { "path": "visual/assets/evidence-consistency.js", "pointer": "command", "role": "cross_carrier_audit" }
+      ]
+    },
+    {
+      "step_id": "R3-MVP",
+      "order": 3,
+      "duration_seconds": 65,
+      "title_zh": "空间—运营可演练 MVP",
+      "title_en": "Spatial-operational rehearsable MVP",
+      "question_zh": "核心主张是否落到可定位、可停机、可复算的单一样板？",
+      "question_en": "Does the core claim reach one locatable, stoppable, and recalculable prototype?",
+      "verified_zh": "DAZHONGSI-MVP-01 把 SCN-05/09/10 接成用途票—撤回回执—公共回报三阶段；临时重点区 720,454.219 m²、两处房间测试基底 13,361.508 m²、公共回执空间 32,739.258 m²、概念线网 1,614.218 m，3/3 场景要求人工复核与无数据等价。",
+      "verified_en": "DAZHONGSI-MVP-01 joins SCN-05/09/10 as purpose ticket—withdrawal receipt—public return: 720,454.219 sq m provisional key area, 13,361.508 sq m across two room test fits, 32,739.258 sq m public receipt space, 1,614.218 m concept network, and human review plus no-data equivalence for 3/3 scenarios.",
+      "boundary_zh": "空间量是概念关系校核；站口、路权、无障碍和工程可行性仍待现场与专业证据。",
+      "boundary_en": "The quantities check concept relationships; entrance, right-of-way, accessibility, and engineering feasibility remain pending field and professional evidence.",
+      "references": [
+        { "path": "geometry/public_space.geojson", "pointer": "SCN-05,SCN-09,SCN-10", "role": "scenario_contract" },
+        { "path": "geometry/key_areas.geojson", "pointer": "PROV-KEY-003", "role": "provisional_scope" },
+        { "path": "geometry/buildings.geojson", "pointer": "BLDG-005,BLDG-006", "role": "reversible_room_test_fits" },
+        { "path": "geometry/roads.geojson", "pointer": "ROAD-001,ROAD-003", "role": "concept_routes" }
+      ]
+    },
+    {
+      "step_id": "R4-FIELD-CONTROL",
+      "order": 4,
+      "duration_seconds": 70,
+      "title_zh": "现场责任、证据槽位与停机",
+      "title_en": "Field responsibility, evidence slots, and stop control",
+      "question_zh": "未知状态、唯一问责、开始/停止/恢复条件是否可核对？",
+      "question_en": "Are unknown states, single accountability, and start/stop/resume conditions checkable?",
+      "verified_zh": "DAZHONGSI-FIELD-OPS-01 包含 5 个待采集点、3 条待核验路线、6 个 RACI 角色、6—6—4 闸门、11 份回执与 6 个签署位；审计 215/215 通过。",
+      "verified_en": "DAZHONGSI-FIELD-OPS-01 contains five pending collection points, three routes to verify, six RACI roles, 6—6—4 gates, eleven receipts, and six sign-off slots; its audit passes 215/215.",
+      "boundary_zh": "现场授权 unknown，工作流 not_observed；所有实测值、主体和签署保持 null / unknown / not_observed / not_signed。",
+      "boundary_en": "Field authorization is unknown and workflow is not_observed; all field values, entities, and signatures remain null / unknown / not_observed / not_signed.",
+      "references": [
+        { "path": "visual/assets/dazhongsi-field-validation-pack.json", "pointer": "/", "role": "field_template" },
+        { "path": "visual/assets/dazhongsi-field-validation-audit.js", "pointer": "command", "role": "template_audit" }
+      ]
+    },
+    {
+      "step_id": "R5-FAIL-CLOSED",
+      "order": 5,
+      "duration_seconds": 65,
+      "title_zh": "失败关闭与投稿门禁",
+      "title_en": "Fail-closed tests and submission gates",
+      "question_zh": "少跑、断链、误填或条件不足时，套件和投稿门禁会不会显式失败？",
+      "question_en": "Do the suite and submission gates fail loudly when a case is skipped, a link breaks, a field is filled incorrectly, or a condition is missing?",
+      "verified_zh": "DAZHONGSI-DRILL-01 的 21/21 合成用例通过，8/8 负向夹具 fail-closed；最终投稿还必须通过 deterministic、spatial、visual、professional 四门与 preflight。",
+      "verified_en": "DAZHONGSI-DRILL-01 passes 21/21 synthetic cases and all 8/8 negative fixtures fail closed; the final submission must also pass deterministic, spatial, visual, and professional gates plus preflight.",
+      "boundary_zh": "合成通过只证明契约逻辑可复现，不证明场地可进入、服务可运营、许可成立或风险已排除。",
+      "boundary_en": "Synthetic passing proves only reproducible contract logic, not site access, service operability, permission, or risk clearance.",
+      "references": [
+        { "path": "visual/assets/dazhongsi-drill-tests.json", "pointer": "/expected_case_ids", "role": "synthetic_test_ledger" },
+        { "path": "visual/assets/dazhongsi-drill-test-runner.js", "pointer": "command", "role": "fail_closed_runner" },
+        { "path": "self_check.json", "pointer": "/checks", "role": "four_gate_result" },
+        { "path": "manifest.json", "pointer": "/validation_claim", "role": "review_ready_state" }
+      ]
+    }
+  ],
+  "carrier_contract": {
+    "primary": [
+      "proposal.md",
+      "proposal.en.md"
+    ],
+    "derived": [
+      "report/proposal.html",
+      "report/proposal.en.html",
+      "visual/index.html",
+      "visual/index.en.html",
+      "assets/figures/reviewer-evidence-spine.png",
+      "assets/figures/reviewer-evidence-spine.en.png",
+      "drawings/a3-booklet.pdf",
+      "drawings/a3-booklet.en.pdf",
+      "drawings/a0-boards.pdf",
+      "drawings/a0-boards.en.pdf"
+    ]
+  },
+  "verification": {
+    "script": "visual/assets/reviewer-evidence-spine-audit.js",
+    "command": "node visual/assets/reviewer-evidence-spine-audit.js --json",
+    "expected_exit_code": 0,
+    "requires_complete_self_check": true
+  }
+}

@@ -52,14 +52,21 @@
  * Zero dependencies, Node built-ins only (Node >= 18), no network access, reads only
  * this package; runner version 0.4.0.
  * 退出码 0 = 全部一致；1 = 有读数不符或判定不通过；2 = 兼容失败（基准版本不足、词表
- * 不合格、几何超出支持范围、前置校验器未通过、可发判定码未登记在基准登记表内，或
- * v0.4.0 生命周期／权限／测量声明判据在本档案输入上命中而档案期望词汇无法归档该结论），
- * 不作任何判定。
+ * 不合格、几何超出支持范围、前置校验器未通过、可发判定码未登记在基准登记表内、
+ * v0.4.0 生命周期／权限／测量声明判据在本档案输入上命中而档案期望词汇无法归档该结论、
+ * 读入的文件不可读或不是合法 JSON、档案自定容差超出实现侧上界，以及运行中任何未捕获
+ * 的异常），不作任何判定。
+ * 退出码 1 只承载「读数或判定与入档不符」一件事：解析失败与结构缺口自 v9.5 起一律落在
+ * 退出码 2，此前两者混用同一个码（审计缺陷 S2-1、S3-5）。
  * Exit 0 = all agree; 1 = a figure or a verdict disagrees; 2 = compatibility failure
  * (baseline too low, ineligible lexicon, unsupported geometry, a failed prerequisite
- * checker, an emittable verdict code the baseline registry does not carry, or a v0.4.0
+ * checker, an emittable verdict code the baseline registry does not carry, a v0.4.0
  * lifecycle / authority / measurement criterion firing on this archive's input where the
- * archive's expectation vocabulary cannot record the conclusion) with no verdict issued.
+ * archive's expectation vocabulary cannot record the conclusion, an unreadable or
+ * malformed input file, an archive tolerance above the implementation's ceiling, and any
+ * uncaught exception) with no verdict issued. Exit code 1 carries one meaning only — a
+ * figure or verdict disagreeing with the archive; from v9.5 parse failures and structural
+ * gaps all land on exit code 2 (audit findings S2-1 and S3-5).
  */
 
 "use strict";
@@ -72,7 +79,32 @@ const HERE = __dirname;
 const PKG = path.resolve(HERE, "..", "..");
 const GEO = path.join(PKG, "geometry");
 
-const readJson = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
+// 运行中任何未捕获的异常都是「不作判定」，不是「读数不符」：此前基准组件缺失一类结构
+// 缺口会裸抛 TypeError 并落在退出码 1，与读数不符同码（审计缺陷 S2-2、S3-5）。
+// Any uncaught exception means no verdict was issued, never that a figure disagreed:
+// structural gaps such as a missing baseline component used to throw a bare TypeError onto
+// exit code 1, the same code as a disagreeing figure (audit findings S2-2 and S3-5).
+process.on("uncaughtException", (error) => {
+  console.log("[!] 复演在执行中抛出未捕获异常，不作任何判定 / an uncaught exception occurred during the replay; no verdict is issued");
+  console.log("    " + (error && error.stack ? error.stack : String(error)));
+  process.exit(2);
+});
+
+// 解析失败属兼容问题：读入的任一文件不是合法 JSON 时以退出码 2 拒绝整次复演，不再让
+// SyntaxError 裸抛并落到与「读数不符」同一个退出码 1（审计缺陷 S2-1）。
+// A parse failure is a compatibility matter: any input file that is not valid JSON refuses
+// the replay at exit code 2 instead of letting a SyntaxError escape onto the same exit code
+// 1 that means "a figure disagreed" (audit finding S2-1).
+const readJson = (p) => {
+  try {
+    return JSON.parse(fs.readFileSync(p, "utf8"));
+  } catch (error) {
+    console.log("[!] 文件不可读或不是合法 JSON，不作任何判定 / a file is unreadable or not valid JSON; no verdict is issued");
+    console.log("    " + p);
+    console.log("    " + error.message);
+    process.exit(2);
+  }
+};
 const geo = (n) => readJson(path.join(GEO, n + ".geojson"));
 const r3 = (v) => (v === null || v === undefined ? null : Math.round(v * 1000) / 1000);
 
@@ -604,9 +636,24 @@ console.log("[G] v0.4.0 判据输入域 / v0.4.0 criteria input domain");
   // 判定码自检：本实现可能给出的每一个码都必须登记在基准的违例码登记表中。
   // Code self-check: every code this implementation can emit must be registered.
   const registry = (spec.violation_code_registry || {}).codes || {};
-  const emitted = new Set(["NODE_FIELD_MISSING", "NODE_ENUM_INVALID", "NODE_CONSTRAINT_VIOLATION",
-    "LEVEL_UNKNOWN", "LEVEL_GATE_MISMATCH", "RULE_TYPE_UNSUPPORTED", "ADOPTER_LEXICON_INVALID_TOKEN",
+  // 种子集只放本实现自己拼出的字面量码；凡运行时从基准读取的码一律读规范值登记，
+  // 与 ruleNode 实际发出的值同源。此前 NODE_CONSTRAINT_VIOLATION 与 LEVEL_GATE_MISMATCH
+  // 以字面量登记，基准把 gate_violation_code 改成未登记的码时本自检照常打印「全部登记」，
+  // 而实际发出的是那个未登记的值（审计缺陷 S1-2、S3-2）。
+  // The seed set holds only the literals this implementation composes itself; every code
+  // read from the baseline at run time is registered from the baseline value, the same
+  // source ruleNode emits. NODE_CONSTRAINT_VIOLATION and LEVEL_GATE_MISMATCH used to sit
+  // here as literals, so a baseline renaming gate_violation_code to an unregistered code
+  // still printed "all registered" while that unregistered value was what got emitted
+  // (audit findings S1-2 and S3-2).
+  const emitted = new Set(["NODE_FIELD_MISSING", "NODE_ENUM_INVALID",
+    "LEVEL_UNKNOWN", "RULE_TYPE_UNSUPPORTED", "ADOPTER_LEXICON_INVALID_TOKEN",
     "ADOPTER_LEXICON_EVIDENCE_MISSING", "ADOPTER_LEXICON_MALFORMED"]);
+  (lcSchema.required_fields || []).forEach((f) => {
+    const code = f.constraint_machine_rule && f.constraint_machine_rule.violation_code;
+    if (code) emitted.add(String(code).split(":")[0]);
+  });
+  if (lcLevels && lcLevels.gate_violation_code) emitted.add(String(lcLevels.gate_violation_code).split(":")[0]);
   const lifecycleGroup = (lcSchema.lifecycle_fields || []).slice();
   if (lcSchema.vendor_independence_field) lifecycleGroup.push(lcSchema.vendor_independence_field);
   if (lifecycleGroup.length) emitted.add("LIFECYCLE_FIELD_MISSING");
@@ -632,6 +679,15 @@ console.log("[G] v0.4.0 判据输入域 / v0.4.0 criteria input domain");
     console.log("[!] 判定码未登记在基准的违例码登记表中，不作任何判定 / verdict codes absent from the baseline registry; no verdict is issued");
     unregistered.forEach((c) => console.log("    " + c));
     process.exit(2);
+  }
+  // 码全集导出：供对拍脚本 seb-crosscheck-run.js 与第一实现的可发码集合作双向比对。
+  // 默认运行不打印此行，正常输出一字不变。
+  // Code-set export: consumed by the cross-check script seb-crosscheck-run.js to compare
+  // this implementation's emittable set against the first one's, in both directions. A
+  // default run prints none of this and its output is unchanged to the letter.
+  if (process.argv.includes("--print-emittable-codes")) {
+    console.log("EMITTABLE_CODES_JSON " + JSON.stringify([...emitted].sort()));
+    process.exit(0);
   }
   console.log("    扫描声明 / claims scanned : " + units.length
     + "（判据函数对每条真实执行 / the criteria functions ran for real against each）");
@@ -684,7 +740,15 @@ console.log("");
 /* --- [0] 选点依据核对 --- */
 console.log("[0] 选点依据 / Node selection");
 const allNodes = geo("constraints").features.map((f) => f.properties);
-for (const key of Object.keys(arc.node.selection_checks)) {
+// 下界断言：选点依据一条不剩时，逐条循环什么也不跑却照常收敛于「全部一致」。
+// 零条检查不是通过（审计缺陷 S1-7）。
+// Floor assertion: with no selection check left, the loop below runs nothing yet still
+// converges on "everything agrees". Zero checks is not a pass (audit finding S1-7).
+const selectionKeys = Object.keys(arc.node.selection_checks || {});
+if (selectionKeys.length === 0) {
+  fail("选点依据一条未声明；零条检查不是「全部一致」 / no selection check is declared, and zero checks is not agreement");
+}
+for (const key of selectionKeys) {
   const chk = arc.node.selection_checks[key];
   const got = allNodes.filter((p) => p[chk.field] === chk.value).map((p) => p.id).sort();
   const want = chk.expected_matching_node_ids.slice().sort();
@@ -730,11 +794,27 @@ geo("constraints").features.forEach((f) => {
   nodesById[f.properties.id] = { p: f.properties, xy: project(f.geometry.coordinates[0], f.geometry.coordinates[1]) };
 });
 const base = arc.stage_1_open_data_baseline.measured_baseline;
+// 集合双向比对：此前只正向遍历几何里的 road，几何少一条路时该路的长度与分类校验
+// 直接消失，而收尾照常打印「五条中心线长度逐条与入档一致」（审计缺陷 S1-8、S3-1）。
+// 三处 id 集合——几何、入档长度表、AI 关闭态分类表——必须逐个双向相等。
+// Set comparison in both directions: the loop used to walk only the roads present in the
+// geometry, so a road missing from it took its length and classification checks with it
+// while the summary still printed "all five centreline lengths match" (audit findings S1-8
+// and S3-1). The three id sets — geometry, archived lengths, AI-off classification — must
+// each equal the others in both directions.
+const geomRoadIds = roads.map((r) => r.id).sort();
+const archRoadIds = Object.keys(base.road_lengths_m || {}).sort();
+const classRoadIds = Object.keys(rule.classification || {}).sort();
+const setDiff = (a, b) => a.filter((id) => b.indexOf(id) === -1);
+setDiff(archRoadIds, geomRoadIds).forEach((id) => fail("入档长度表登记的 " + id + " 不在 roads.geojson 中 / " + id + " is archived with a length but absent from roads.geojson"));
+setDiff(geomRoadIds, archRoadIds).forEach((id) => fail("roads.geojson 中的 " + id + " 未登记入档长度 / " + id + " is in roads.geojson but carries no archived length"));
+setDiff(classRoadIds, geomRoadIds).forEach((id) => fail("AI 关闭态分类表登记的 " + id + " 不在 roads.geojson 中 / " + id + " is classified but absent from roads.geojson"));
+setDiff(geomRoadIds, classRoadIds).forEach((id) => fail("roads.geojson 中的 " + id + " 未登记 AI 关闭态分类 / " + id + " is in roads.geojson but carries no AI-off classification"));
 for (const r of roads) {
   const exp = base.road_lengths_m[r.id];
   if (r3(r.len) !== exp) fail(r.id + " 长度 " + r3(r.len) + " ≠ 入档 " + exp);
 }
-if (failures === 0) ok("五条中心线长度逐条与入档一致 / all five centreline lengths match");
+if (failures === 0) ok(roads.length + " 条中心线长度逐条与入档一致 / all " + roads.length + " centreline lengths match");
 const offNetLen = r3(roads.filter((r) => r.aiOff).reduce((s, r) => s + r.len, 0));
 if (offNetLen !== base.ai_off_declared_network_length_m) {
   fail("AI 关闭态声明网络长度 " + offNetLen + " ≠ 入档 " + base.ai_off_declared_network_length_m);
@@ -810,7 +890,24 @@ const STATE_EDGES = {
   ALT_A_OFF: () => roads.filter((r) => r.aiOff).map(edgeOf).concat([edgeOf(altA)]),
   ALT_B_OFF: () => roads.filter((r) => r.aiOff).map(edgeOf).concat([edgeOf(altB)])
 };
+// 计算值与档案值之间唯一一道比对的阈值来自被审档案自身，因此必须有实现侧上界：
+// 档案把 tolerance_m 调大即可让全部空间读数比对失效（审计实测：容差改为 10000、
+// 全线读数平移 50 m，复演器仍报「读数不符项 0」——审计缺陷 S1-3）。毫米级取整下
+// 1 cm 已远宽于任何合理的浮点余量，超过即拒绝整次复演。
+// The threshold of the only comparison between computed and archived values comes from the
+// archive under audit, so the implementation must cap it: raising tolerance_m disables
+// every spatial comparison (measured in the audit: tolerance 10000 with every figure moved
+// 50 m still reported "0 disagreeing figures" — audit finding S1-3). Against millimetre
+// rounding, 1 cm is already far wider than any legitimate floating-point margin, and
+// anything above it refuses the replay.
+const MAX_TOLERANCE_M = 0.01;
 const tol = arc.stage_4_ai_off_counterfactual.expected_results.tolerance_m;
+if (typeof tol !== "number" || !isFinite(tol) || tol < 0 || tol > MAX_TOLERANCE_M) {
+  console.log("[!] 档案自定的比对容差超出实现侧上界，不作任何判定 / the archive's self-declared tolerance exceeds the implementation ceiling; no verdict is issued");
+  console.log("    tolerance_m = " + tol + "，实现侧上界 / implementation ceiling = " + MAX_TOLERANCE_M
+    + "（档案不得自定超限容差 / an archive may not set its own tolerance above this）");
+  process.exit(2);
+}
 const near = (a, b) => a === null || b === null ? a === b : Math.abs(a - b) <= tol;
 /* fixed physical interfaces, resolved once on the full submitted network */
 const gFull = buildGraph(STATE_EDGES.BASE_ON());
@@ -820,7 +917,29 @@ for (const nid of Object.keys(nodesById)) {
   anchors[nid] = { roadId: best.s.id, stub: best.d };
 }
 const STATE_ADDED = { BASE_ON: [], BASE_OFF: [], ALT_A_OFF: [altA.id], ALT_B_OFF: [altB.id] };
-for (const row of arc.stage_4_ai_off_counterfactual.expected_results.rows) {
+// 行覆盖断言：应有的行数不由被审档案自己说了算，而由实现侧的状态集与档案的任务清单
+// 交叉相乘得出。此前逐行遍历完全由档案驱动，删掉一行即少核一行而收尾照常报「读数不符
+// 项 0」（审计缺陷 S1-7）。
+// Row coverage: how many rows there should be is not the audited archive's own word but the
+// cross product of the implementation's state set and the archive's task list. The loop used
+// to be driven entirely by the archive, so deleting a row simply checked one row fewer while
+// the summary still reported "0 disagreeing figures" (audit finding S1-7).
+const rows = arc.stage_4_ai_off_counterfactual.expected_results.rows || [];
+const stateIdsAll = Object.keys(STATE_EDGES);
+const taskIdsAll = arc.stage_2_ai_analysis.tasks.map((t) => t.task_id);
+const rowKeys = rows.map((r) => r.state_id + " " + r.task_id);
+const wantRowKeys = [];
+stateIdsAll.forEach((st) => taskIdsAll.forEach((tk) => wantRowKeys.push(st + " " + tk)));
+setDiff(wantRowKeys, rowKeys).forEach((k) => fail("stage-4 缺行 " + k + "（应为 " + stateIdsAll.length + " 态 × " + taskIdsAll.length + " 任务 = " + wantRowKeys.length + " 行）/ row " + k + " is missing"));
+setDiff(rowKeys, wantRowKeys).forEach((k) => fail("stage-4 多出行 " + k + " / row " + k + " is not part of the state-by-task grid"));
+rowKeys.filter((k, i) => rowKeys.indexOf(k) !== i).forEach((k) => fail("stage-4 行 " + k + " 重复 / row " + k + " appears more than once"));
+// 计算值留存：本段之后的行程比、增量与接入比一律读这里的计算值，不再读档案 rows 的
+// 期望值——档案除以档案是档案内部自洽，不是复演（审计缺陷 S1-4）。
+// Computed values are kept: every ratio, delta and approach figure below reads these, not
+// the archive's own rows. Archive divided by archive is the archive agreeing with itself,
+// not a replay (audit finding S1-4).
+const computed = {};
+for (const row of rows) {
   const G = buildGraph(STATE_EDGES[row.state_id]());
   const stateIds = new Set(STATE_EDGES[row.state_id]().map((e) => e.id));
   const added = STATE_ADDED[row.state_id];
@@ -835,24 +954,71 @@ for (const row of arc.stage_4_ai_off_counterfactual.expected_results.rows) {
   const net = o && d ? shortest(G, o.key, d.key) : null;
   const total = net === null ? null : o.stub + net + d.stub;
   const label = row.state_id + " " + row.task_id + " " + t.origin + "→" + t.destination;
+  computed[row.state_id + " " + row.task_id] = {
+    total: total === null ? null : r3(total),
+    destStub: d ? r3(d.stub) : null,
+    originStub: o ? r3(o.stub) : null,
+    destAttachedTo: d ? d.roadId : null,
+    reachable: net !== null
+  };
   let bad = false;
-  if (!near(o ? r3(o.stub) : null, row.origin_access_stub_m !== undefined ? row.origin_access_stub_m : arc.stage_4_ai_off_counterfactual.expected_results.origin_access_stub_m)) { fail(label + " 起点接入段 " + (o ? r3(o.stub) : "null")); bad = true; }
+  // 行级缺字段不得无声落到全局默认值：此前这里有两层回退，一行没写 origin_access_stub_m
+  // 时比对对象会静默换成 expected_results 的全局值（审计缺陷 S4-3）。缺字段即报缺字段。
+  // A row missing the field may not silently fall back to a global default: this used to carry
+  // a two-level fallback, so a row without origin_access_stub_m was compared against the global
+  // value of expected_results instead (audit finding S4-3). An absent field is now reported.
+  if (row.origin_access_stub_m === undefined) {
+    fail(label + " 缺 origin_access_stub_m，行级读数不得回退到全局默认值 / the row declares no origin_access_stub_m and may not fall back to a global default"); bad = true;
+  } else if (!near(o ? r3(o.stub) : null, row.origin_access_stub_m)) { fail(label + " 起点接入段 " + (o ? r3(o.stub) : "null") + " ≠ " + row.origin_access_stub_m); bad = true; }
   if (!near(d ? r3(d.stub) : null, row.destination_access_stub_m)) { fail(label + " 终点接入段 " + (d ? r3(d.stub) : "null") + " ≠ " + row.destination_access_stub_m); bad = true; }
   if ((d ? d.roadId : null) !== row.destination_attached_to) { fail(label + " 终点挂接于 " + (d ? d.roadId : "null") + " ≠ " + row.destination_attached_to); bad = true; }
   if ((net !== null) !== row.reachable) { fail(label + " 可达性 " + (net !== null) + " ≠ " + row.reachable); bad = true; }
   if (!near(net === null ? null : r3(net), row.network_m)) { fail(label + " 网络行程 " + (net === null ? "null" : r3(net)) + " ≠ " + row.network_m); bad = true; }
   if (!near(total === null ? null : r3(total), row.total_m)) { fail(label + " 全程 " + (total === null ? "null" : r3(total)) + " ≠ " + row.total_m); bad = true; }
   if (!bad) {
-    console.log("    " + label.padEnd(34) + (row.reachable
-      ? "全程 / total " + row.total_m + " m（接入 " + row.destination_access_stub_m + " m，挂接 " + row.destination_attached_to + "）"
+    // 打印的是本次算出来的数，不是档案里写着的数：此前这三个数直接取自 row，读者看到的
+    // 全程与接入距离其实是被审档案的期望值（审计缺陷 S1-4）。
+    // These are the figures computed in this run, not the ones written in the archive: the
+    // three used to be read straight off the row, so what a reader saw as the trip and
+    // approach distances were the audited archive's own expectations (audit finding S1-4).
+    const c = computed[row.state_id + " " + row.task_id];
+    console.log("    " + label.padEnd(34) + (c.reachable
+      ? "全程 / total " + c.total + " m（接入 " + c.destStub + " m，挂接 " + c.destAttachedTo + "）"
       : "不可达 / unreachable（接口线不在 AI 关闭边集 / interface line absent from the AI-off edge set）"));
   }
 }
-const der = arc.stage_4_ai_off_counterfactual.expected_results.derived;
-const totalOf = (st, tk) => arc.stage_4_ai_off_counterfactual.expected_results.rows
-  .find((r) => r.state_id === st && r.task_id === tk).total_m;
-const stubOf = (st, tk) => arc.stage_4_ai_off_counterfactual.expected_results.rows
-  .find((r) => r.state_id === st && r.task_id === tk).destination_access_stub_m;
+const der = arc.stage_4_ai_off_counterfactual.expected_results.derived || {};
+// derived 必检键清单：此前每组比值都写成 if (der.<key>) { ... }，档案删掉那个子键，
+// 对应的整块校验随之消失且不留任何痕迹（审计缺陷 S1-6）。键在此逐个点名，缺一即报。
+// 三项行程读数在任何档案版次下都必检；接入距离比在 v0.2 与 v0.3 两种口径下键名不同，
+// 因此要求两者至少声明其一，而不是两者都可以不声明。
+// The required key list for derived: each ratio group used to be written as
+// if (der.<key>) { ... }, so deleting that sub-key from the archive made the whole block
+// disappear without a trace (audit finding S1-6). The keys are named here one by one and any
+// absence is reported. The three trip figures are required under every archive revision; the
+// approach ratio carries different key names under the v0.2 and v0.3 conventions, so at least
+// one of the two must be declared rather than both being optional.
+const DERIVED_REQUIRED_KEYS = ["alt_a_trip_ratio_over_ai_on", "alt_b_trip_ratio_over_ai_on", "alt_b_trip_delta_m"];
+const DERIVED_APPROACH_KEYS = ["ai_off_approach_ratio_over_ai_on", "alt_b_approach_ratio_over_ai_on"];
+DERIVED_REQUIRED_KEYS.filter((k) => der[k] === undefined)
+  .forEach((k) => fail("stage-4 derived 缺必检键 " + k + " / required derived key " + k + " is absent"));
+if (!DERIVED_APPROACH_KEYS.some((k) => der[k] !== undefined)) {
+  fail("stage-4 derived 未声明任何接入距离比键（" + DERIVED_APPROACH_KEYS.join(" 或 ") + "）/ derived declares neither approach-ratio key");
+}
+// 比值一律由计算值得出：此前 totalOf/stubOf 直接读档案 rows 的期望值，整段是档案除以
+// 档案的内部自洽检查，计算值从不参与（审计缺陷 S1-4、S1-3 的实测放大器）。
+// Every ratio is derived from computed values: totalOf/stubOf used to read the archive rows'
+// own expectations, making the whole section an internal consistency check of archive over
+// archive in which the computed values never took part (audit findings S1-4, and the
+// amplifier behind the S1-3 measurement).
+const cell = (st, tk) => {
+  const c = computed[st + " " + tk];
+  if (c) return c;
+  fail("stage-4 缺 " + st + " " + tk + " 的计算结果，比值无从复核 / no computed result for " + st + " " + tk + "; the ratios cannot be re-checked");
+  return { total: null, destStub: null };
+};
+const totalOf = (st, tk) => cell(st, tk).total;
+const stubOf = (st, tk) => cell(st, tk).destStub;
 for (const tk of ["T1", "T2"]) {
   const rA = r3(totalOf("ALT_A_OFF", tk) / totalOf("BASE_ON", tk));
   const rB = r3(totalOf("ALT_B_OFF", tk) / totalOf("BASE_ON", tk));
@@ -863,7 +1029,7 @@ for (const tk of ["T1", "T2"]) {
   console.log("    " + tk + " 行程比 / trip ratio : ALT-A " + rA.toFixed(3) + " · ALT-B " + rB.toFixed(3)
     + "（+" + dB.toFixed(3) + " m）");
 }
-if (der.ai_off_approach_ratio_over_ai_on) {
+if (der.ai_off_approach_ratio_over_ai_on !== undefined) {
   /* v0.2 archives: AI-off re-attachment ratio (meaningful only under the old
      nearest-in-state rule, where an off attachment still existed) */
   for (const tk of ["T1", "T2"]) {
@@ -873,7 +1039,7 @@ if (der.ai_off_approach_ratio_over_ai_on) {
     console.log("    " + dest + " 接入距离比 关闭/开启 / approach ratio off over on : " + ratio.toFixed(3));
   }
 }
-if (der.alt_b_approach_ratio_over_ai_on) {
+if (der.alt_b_approach_ratio_over_ai_on !== undefined) {
   /* v0.3 archives: under the fixed-interface rule BASE_OFF has no attachment
      at all, so the meaningful access-cost ratio is ALT-B (the new interface)
      against the AI-on baseline */
@@ -928,11 +1094,41 @@ function ruleNode(claim) {
   return { verdict: reasons.length ? "REJECT" : "ACCEPT", reasons };
 }
 
+// 声明集合的下界与唯一性：零条声明不是「全部一致」，重复标识不得重复计入总数
+//（审计缺陷 S1-7、S2-4）。反例覆盖下界同样在此：一组全是正例的声明证明不了判据会拒。
+// Floor and uniqueness for the claim set: zero claims is not agreement and a duplicate id may
+// not count twice towards the total (audit findings S1-7 and S2-4). The negative-coverage
+// floor sits here too: a claim set of positives only proves nothing about refusal.
+const claims = arc.stage_5_dual_review.machine_review.claims || [];
+if (!Array.isArray(claims) || claims.length === 0) {
+  fail("stage-5 机器复核一条声明都没有；零条声明不是「全部一致」 / the machine review declares no claim at all, and zero claims is not agreement");
+}
+const claimIds = claims.map((c) => c.claim_id);
+claimIds.filter((id, i) => claimIds.indexOf(id) !== i)
+  .forEach((id) => fail("声明标识 " + id + " 重复 / claim id " + id + " appears more than once"));
+if (claims.length > 0 && !claims.some((c) => c.expected_verdict === "REJECT")) {
+  fail("stage-5 一条反例也没有；只有正例的声明集证明不了判据会拒 / the claim set holds no REJECT case, and positives alone prove nothing about refusal");
+}
+
 let claimMatched = 0;
-for (const claim of arc.stage_5_dual_review.machine_review.claims) {
+for (const claim of claims) {
   const res = ruleNode(claim);
-  const agree = res.verdict === claim.expected_verdict
-    && (!claim.expected_reason_code || res.reasons.indexOf(claim.expected_reason_code) !== -1);
+  // 反例必须携带期望理由码：此前写成 (!claim.expected_reason_code || ...)，档案删掉这个键
+  // 即静默降级为只比对 verdict，REJECT 只要是 REJECT 就算过，理由是什么不再受检
+  //（审计缺陷 S1-5）。缺席不再是放行条件，而是本条声明不合格。
+  // A counterexample must carry its expected reason code: the test used to read
+  // (!claim.expected_reason_code || ...), so deleting the key silently degraded it to a
+  // verdict-only comparison in which any REJECT counted as agreement whatever its reason
+  // (audit finding S1-5). An absent code is now a defect in the claim, not a free pass.
+  const needsCode = claim.expected_verdict === "REJECT";
+  const hasCode = typeof claim.expected_reason_code === "string" && claim.expected_reason_code.trim() !== "";
+  if (needsCode && !hasCode) {
+    fail(claim.claim_id + " 期望为 REJECT 却未声明 expected_reason_code / " + claim.claim_id + " expects REJECT but declares no expected_reason_code");
+  }
+  const codeAgree = needsCode
+    ? hasCode && res.reasons.indexOf(claim.expected_reason_code) !== -1
+    : (!hasCode || res.reasons.indexOf(claim.expected_reason_code) !== -1);
+  const agree = res.verdict === claim.expected_verdict && codeAgree;
   if (agree) claimMatched += 1; else fail(claim.claim_id + " 判定 " + res.verdict + "/" + res.reasons.join(",") + " ≠ 期望");
   console.log("    " + claim.claim_id + "  " + claim.desc_zh);
   console.log("      判定 / verdict : " + res.verdict + "   期望 / expected : " + claim.expected_verdict
@@ -974,7 +1170,7 @@ console.log("");
 console.log("汇总 / Summary");
 console.log("    前置校验器退出码 / prerequisite exit code : " + preCode);
 console.log("    声明判定与期望一致 / claims matching expectation : " + claimMatched + " / "
-  + arc.stage_5_dual_review.machine_review.claims.length);
+  + claims.length);
 console.log("    读数不符项 / disagreeing figures : " + failures);
 console.log("    本次运行不写入 metrics.json，七项包容性指标保持 unknown");
 console.log("    this run writes nothing to metrics.json; the seven inclusion metrics stay unknown");
@@ -982,4 +1178,4 @@ console.log("");
 console.log("    本轮结论 / ruling this round :");
 console.log("    " + arc.stage_5_dual_review.adjudication.conclusion_zh);
 
-process.exit(failures === 0 && claimMatched === arc.stage_5_dual_review.machine_review.claims.length ? 0 : 1);
+process.exit(failures === 0 && claims.length > 0 && claimMatched === claims.length ? 0 : 1);

@@ -1,0 +1,456 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2613312.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space_features)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.22898,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 337500.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space_features)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.029572,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1041863.109,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念设计模型量（agent 生成），非现状建筑普查值。"
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.091289,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "概念设计模型量；非法定建筑密度控制值。"
+   ]
+  },
+  "road_area_sqm": {
+   "status": "known",
+   "value": 3469783.922,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=1207)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "road_area_ratio": {
+   "status": "known",
+   "value": 0.304025,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "road_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "total_floor_area_sqm": {
+   "status": "known",
+   "value": 11734525,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(b) * b.floors_concept) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "概念设计模型量：以 floors_concept 概念层数估算，非法定建筑面积。"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "官方容积率控制条件未在公开资料包中提供；待正式控规条件补齐后确认。概念体量仅见于 total_floor_area_sqm。"
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official height control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "官方建筑高度控制未公开；不做任何高度法定结论。"
+  },
+  "phasing_area_phase1_sqm": {
+   "status": "known",
+   "value": 3762045.503,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PH-001) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。",
+    "概念分期建议。"
+   ]
+  },
+  "phasing_area_phase2_sqm": {
+   "status": "known",
+   "value": 2119411.166,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PH-002) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。",
+    "概念分期建议。"
+   ]
+  },
+  "phasing_area_phase3_sqm": {
+   "status": "known",
+   "value": 5256636.066,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PH-003) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。",
+    "概念分期建议。"
+   ]
+  },
+  "land_use_area_0701_sqm": {
+   "status": "known",
+   "value": 2032051.984,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0701)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0702_sqm": {
+   "status": "known",
+   "value": 132573.619,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0702)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0802_sqm": {
+   "status": "known",
+   "value": 1492005.928,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0802)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0803_sqm": {
+   "status": "known",
+   "value": 67500.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0803)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0804_sqm": {
+   "status": "known",
+   "value": 253880.29,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0804)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0805_sqm": {
+   "status": "known",
+   "value": 45000.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0805)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0806_sqm": {
+   "status": "known",
+   "value": 90000.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0806)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0901_sqm": {
+   "status": "known",
+   "value": 157500.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0901)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0902_sqm": {
+   "status": "known",
+   "value": 510771.706,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0902)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_0903_sqm": {
+   "status": "known",
+   "value": 45000.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=0903)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_1207_sqm": {
+   "status": "known",
+   "value": 3469783.922,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=1207)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_1401_sqm": {
+   "status": "known",
+   "value": 2109918.69,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=1401)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_1402_sqm": {
+   "status": "known",
+   "value": 503393.41,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=1402)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_1403_sqm": {
+   "status": "known",
+   "value": 337500.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=1403)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "land_use_area_16_sqm": {
+   "status": "known",
+   "value": 165785.037,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features where land_use_code=16)) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+   "status": "known",
+   "value": 1929201.877,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "key_area_beijing_ai_origin_community_sqm": {
+   "status": "known",
+   "value": 1043236.909,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(beijing_ai_origin_community) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  },
+  "key_area_dazhongsi_ai_industry_cluster_sqm": {
+   "status": "known",
+   "value": 720454.219,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(dazhongsi_ai_industry_cluster) @EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "依据仓库临时粗略边界（provisional constraint）计算；不适用于官方面积复算，正式边界发布后须重算。"
+   ]
+  }
+ }
+}

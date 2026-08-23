@@ -6,12 +6,14 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "In 1909 Zhan Tianyou invented the '人'-shaped switchback line to climb the impossible Badaling grade. In 2026 cities face three steep grades: productivity, quality of life, and global competition. The Switchback Line uses AI as this era's switchback: one spine, three poles, two wings, a 17-parcel design matrix, 14 AI scenario cards, an Innovation Timetable service contract, and a minimal executable pilot — every urban AI service can be publicly accepted, paused, and retired."
+summary: "AI enters the city, vouchers first. In 1909 Zhan Tianyou invented the '人'-shaped switchback line to climb the impossible Badaling grade; in 2026 cities face three steep grades: productivity, quality of life, and global competition. The Switchback Line uses AI as this era's switchback: one spine, three poles, two wings, three running vouchers, the Innovation Timetable, a 17-parcel design matrix and 14 AI scenario cards — every mechanism follows one fold-back logic: most reliable, not highest performance."
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
 ---
 
 # The Switchback Line: using AI to overcome urban steep grades
+
+> **Public slogan: AI enters the city, vouchers first.** Every urban AI service entering public space opens with one of three running vouchers — Test Receipt / Release Ticket / Public Verdict; when a voucher fails the service folds back, and everyday city life continues.
 
 > **The Switchback Line** — In 1909, Zhan Tianyou faced the Badaling grade and did not brute-force it. At Qinglongqiao he designed the '人'-shaped switchback line, **using creativity to overcome what seemed an impossible slope** `[source:HISTORY-ZHAN-TIANYOU]`. In 2026, the Centennial Jing-Zhang AI Innovation Belt is not asking "how to build another AI park"; it is asking: **when cities face the triple steep grade, can AI be this era's switchback line — intelligent creativity to overcome the urban grades?** `[source:HISTORY-JINGZHANG-1909]`
 
@@ -36,6 +38,17 @@ A railway runs only when track, signal, timetable and accountability hold at the
 | **Industry Pole · Dazhongsi** | The non-AI path must be no longer than the AI path; complaint points and trials share the public main chain | Public Verdict | Adoption stays closed; devices return, commerce and human service continue |
 
 The three vouchers do not substitute for one another: a technical pass cannot override a rights judgment or a public decision, and an old failure cannot be erased by a new pass — the same engineering logic as the '人'-shaped switchback: **changing direction is not erasing the path already travelled, but folding back while preserving the previous state** `[source:HISTORY-ZHAN-TIANYOU]`.
+
+**Operating doctrine: every mechanism follows the same fold-back logic.** Zhan Tianyou's switchback was not a compromise — it was how a train keeps climbing an impossible grade. Each mechanism in this proposal is the same logic projected onto a different layer — **most reliable, not highest performance**:
+
+| Mechanism | Fold-back action | Folds back to |
+|---|---|---|
+| Three vouchers (Test / Release / Public Verdict) | voucher fails → service stays closed | everyday city mode |
+| Innovation Timetable six steps | any step fails → degrade to human | human and non-digital channels |
+| R0-R3 resilience states | rain / offline / power loss → pause | physical signage + human fallback |
+| SC-04 seven gates | any gate lacks evidence → stay in prior state | sandbox and synthetic orders |
+| G6 retirement | pilot expires → revoke, purge data, restore site | original site condition + public receipt |
+| Minimum-regret priority | unacceptable worst case → degrade or stop | P-ensure physical fallback |
 
 Every urban AI service entering public space follows the same **Innovation Timetable** (borrowing the openness and accountability of a railway timetable, turning abstract "AI governance" into a public contract that is visible in space and traceable in operations; not a statutory indicator, but a reference scheme calibrated by professionals, operators and the public `[assumption:A-IMPLEMENTATION-001]`):
 
@@ -275,7 +288,7 @@ Land use follows the five-band zoning refined into 17 parcels (matrix in the key
 
 ## Blue-green space, public space and urban character
 
-**Blue-green system** `[depth:blue_green_public_space]`: heritage park green band (north–south `[data:geometry/green_space.geojson#GR-001]`) + three-area green rings, green ratio `[metric:green_ratio]`; sponge/retention is directional, pending hydrology `[assumption:A-GREEN-BLUE-CONCEPT-001]`. **Public space**: New Gauge Central Plaza `[data:geometry/public_space.geojson#PS-001]` + three pole plazas, public-space ratio `[metric:public_space_ratio]`.
+**Blue-green system** `[depth:blue_green_public_space]`: heritage park green band (north–south `[data:geometry/green_space.geojson#GR-001]`) + three-area green rings, green ratio `[metric:green_ratio]`; sponge/retention is directional, pending hydrology `[assumption:A-GREEN-BLUE-CONCEPT-001]`. **Public space**: Switchback Line Central Plaza `[data:geometry/public_space.geojson#PS-001]` + three pole plazas, public-space ratio `[metric:public_space_ratio]`.
 
 **AI pilgrimage landmarks** (agent.4; three; conceptual, rights-cleared assets required `[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]`): ① Switchback Monument (central plaza, minimal engineering art on the '人' motif); ② Switchback Experience Hall (AI Origin; rail heritage + AI history); ③ Benchmark Field Viewing Platform (Zhongzhi Garden; public honor node watching AI benchmarks run). **Honor display system** (agent.4): along the spine — benchmark leaderboard wall (Zhongzhi) — developer contribution constellation (Origin) — enterprise innovation gallery (Dazhongsi), unified visuals, publicly auditable.
 

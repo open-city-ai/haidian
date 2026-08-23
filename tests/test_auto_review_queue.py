@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from auto_review_queue import (  # noqa: E402
     Decision,
     WorkerError,
+    acquire_worker_lock,
     apply_review,
     ci_state,
     decide,
@@ -67,13 +68,19 @@ class AutoReviewQueueTests(unittest.TestCase):
                         ],
                         cwd=ROOT,
                     )
+                    review_command = next(
+                        call.args[0]
+                        for call in run_mock.call_args_list
+                        if call.args[0][:3] == ["gh", "pr", "review"]
+                    )
+                    self.assertIn("review readiness passed", review_command[-1])
 
     def test_default_image_budget_matches_bilingual_packet(self) -> None:
         with patch.object(sys, "argv", ["auto_review_queue"]):
             args = parse_args()
         self.assertEqual(18, args.max_images)
 
-    def test_accepts_score_at_threshold_when_all_gates_pass(self) -> None:
+    def test_accepts_score_at_threshold_when_intake_ready_even_if_not_publishable(self) -> None:
         review = {
             "mandatory_rejection": {"result": "pass"},
             "gate_checks": {
@@ -85,8 +92,75 @@ class AutoReviewQueueTests(unittest.TestCase):
                     "professional_evidence_review",
                 ]
             },
+            "recommendation": "formal-review-ready",
+            "can_enter_formal_review": True,
+            "required_next_actions_zh": [],
         }
-        self.assertEqual("accept", decide(review, {"weighted_score_100": 60}, 60).action)
+        decision = {
+            "weighted_score_100": 60,
+            "publication_recommendation": "do-not-publish",
+        }
+        self.assertEqual("accept", decide(review, decision, 60).action)
+
+    def test_non_formal_recommendation_blocks_intake(self) -> None:
+        review = {
+            "mandatory_rejection": {"result": "pass"},
+            "gate_checks": {
+                name: {"status": "pass"}
+                for name in [
+                    "deterministic_validation",
+                    "spatial_review",
+                    "visual_review",
+                    "professional_evidence_review",
+                ]
+            },
+            "recommendation": "request-changes",
+            "can_enter_formal_review": True,
+            "required_next_actions_zh": [],
+        }
+        outcome = decide(review, {"weighted_score_100": 90}, 60)
+        self.assertEqual("request-changes", outcome.action)
+        self.assertEqual("intake blocked by review fields: recommendation", outcome.reason)
+
+    def test_false_formal_review_flag_blocks_intake(self) -> None:
+        review = {
+            "mandatory_rejection": {"result": "pass"},
+            "gate_checks": {
+                name: {"status": "pass"}
+                for name in [
+                    "deterministic_validation",
+                    "spatial_review",
+                    "visual_review",
+                    "professional_evidence_review",
+                ]
+            },
+            "recommendation": "formal-review-ready",
+            "can_enter_formal_review": False,
+            "required_next_actions_zh": [],
+        }
+        outcome = decide(review, {"weighted_score_100": 90}, 60)
+        self.assertEqual("request-changes", outcome.action)
+        self.assertEqual("intake blocked by review fields: can_enter_formal_review", outcome.reason)
+
+    def test_required_participant_actions_block_intake(self) -> None:
+        review = {
+            "mandatory_rejection": {"result": "pass"},
+            "gate_checks": {
+                name: {"status": "pass"}
+                for name in [
+                    "deterministic_validation",
+                    "spatial_review",
+                    "visual_review",
+                    "professional_evidence_review",
+                ]
+            },
+            "recommendation": "formal-review-ready",
+            "can_enter_formal_review": True,
+            "required_next_actions_zh": ["补充权属证明。"],
+        }
+        outcome = decide(review, {"weighted_score_100": 90}, 60)
+        self.assertEqual("request-changes", outcome.action)
+        self.assertEqual("intake blocked by review fields: required_next_actions_zh", outcome.reason)
 
     def test_low_score_is_not_merged(self) -> None:
         review = {
@@ -124,6 +198,18 @@ class AutoReviewQueueTests(unittest.TestCase):
         self.assertEqual("submissions/Alice/plan", submission_dir_from_files(paths, "alice"))
         with self.assertRaises(WorkerError):
             submission_dir_from_files(paths + ["README.md"], "alice")
+
+    def test_worker_lock_rejects_second_holder_until_released(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            lock_path = Path(tmp) / ".worker.lock"
+            first = acquire_worker_lock(lock_path)
+            try:
+                with self.assertRaises(WorkerError):
+                    acquire_worker_lock(lock_path)
+            finally:
+                first.close()
+            third = acquire_worker_lock(lock_path)
+            third.close()
 
     def test_pr_file_paths_preserve_unicode_from_paginated_json(self) -> None:
         payload = [[
@@ -262,11 +348,15 @@ class AutoReviewQueueTests(unittest.TestCase):
                         "professional_evidence_review",
                     ]
                 },
+                "recommendation": "formal-review-ready",
+                "can_enter_formal_review": True,
+                "required_next_actions_zh": [],
             }
             decision = {
                 "submission_dir": "submissions/alice/plan",
                 "reviewed_package_sha256": digest,
                 "weighted_score_100": 61,
+                "publication_recommendation": "publish-qualified",
                 "dry_run": False,
                 "model_output_schema_valid": True,
             }

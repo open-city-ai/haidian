@@ -88,7 +88,7 @@ Stations use four **non-statutory prototype bands**: S (18–25 sqm), M (45–70
 
 Delivery uses five gates: G0 paid co-design, G1 title/fire/access checks, G2 a 90-day reversible pilot, G3 independent privacy/labor/accessibility audit, and G4 scale—revise—stop. Relative CAPEX/OPEX compares effort, not cost; leads are actor types, not confirmed appointees.
 
-![Delivery, operations and stop conditions](assets/figures/implementation-operations.en.png)
+![Delivery, operations and stop conditions](assets/figures/metrics-evidence.en.png)
 
 Auditable KPIs include staffed-escalation uptime, no-scan completion, median handover time, accessible-route closure hours, paid co-design sessions, appeal SLA and shutdown-drill pass rate. Personal scoring, emotion recognition, covert tracking, automated punishment or missing staffed access triggers shutdown.
 

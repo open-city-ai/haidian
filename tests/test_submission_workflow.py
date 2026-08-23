@@ -2381,6 +2381,35 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertIn("HTML report must not load remote resources", errors)
             self.assertIn("missing rendered figure reference `../assets/figures/land-use-structure.png`", errors)
 
+    def test_inline_string_remote_css_imports_fail_validation(self) -> None:
+        cases = (
+            (
+                "report/proposal.html",
+                "https://cdn.example.com/report.css",
+                "HTML report CSS must not import remote styles",
+            ),
+            (
+                "visual/index.html",
+                "//cdn.example.com/visual.css",
+                "visual HTML/CSS must not import remote styles",
+            ),
+        )
+        for rel_path, remote_url, expected in cases:
+            with self.subTest(rel_path=rel_path), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                base = "submissions/alice/ai-urban-loop"
+                changed = self.write_minimal_ai_package(root, base)
+                path = root / base / rel_path
+                html = path.read_text(encoding="utf-8").replace(
+                    "</head>", f'<style>@import "{remote_url}";</style></head>'
+                )
+                path.write_text(html, encoding="utf-8")
+
+                report = validate_submission(root, "alice", changed)
+
+                self.assertFalse(report.ok)
+                self.assertIn(expected, "\n".join(report.errors))
+
     def test_privacy_pattern_fails_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

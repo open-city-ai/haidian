@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.1.0",
+  "protocol_id": "CWS-01",
+  "protocol_version": "v6.1-weathered-commons",
+  "title_zh": "共檐服务员：公共空间状态建议协议",
+  "title_en": "Civic Weather Steward: public-space state-advice protocol",
+  "status": "conceptual_deterministic_contract",
+  "governance_alignment": {
+    "parent_protocol": "simulation.json#public_space_agent_admission_exit_protocol (AGENT-GOV-01)",
+    "alignment_note_zh": "CWS-01是AGENT-GOV-01在天气、无障碍与维护服务状态上的窄域实例；如两者边界冲突，以更严格的禁止权限、人工接管、申诉与停止条件为准。",
+    "alignment_note_en": "CWS-01 is a narrow weather, accessibility, and maintenance service-state instance of AGENT-GOV-01. Where boundaries differ, the stricter prohibition, human takeover, appeal, and stop condition governs."
+  },
+  "purpose_zh": "把天气、聚合人工观察和维护报告转成一条可被具名值守者接受、修改或拒绝的公共空间服务建议；它不控制城市系统。",
+  "purpose_en": "Turn weather, aggregate manual observations and maintenance reports into one public-space service suggestion that a named steward may accept, amend or refuse; it does not control urban systems.",
+  "design_role_zh": "服务共享檐与四角客厅的雨天候行、阴影饮水、净行带和离线切换，不替代空间设计、公共决策或专业审批。",
+  "source_ids": [
+    "SRC-JINGZHANG-MIDTERM-2026",
+    "SRC-2026-BEIJING-AGENT-MEASURES",
+    "SRC-BEIJING-ACCESSIBILITY-2021"
+  ],
+  "permitted_inputs": [
+    {
+      "id": "public_weather",
+      "description_zh": "公开天气预报或现场公开气象提示。"
+    },
+    {
+      "id": "aggregate_manual_observation",
+      "description_zh": "不含个人身份、轨迹或影像的人工观察：净行带、排队、遮阴和服务需求。"
+    },
+    {
+      "id": "maintenance_report",
+      "description_zh": "已登记的雨棚、座椅、饮水、排水和照明可用性报告。"
+    }
+  ],
+  "prohibited_inputs": [
+    "facial_recognition",
+    "biometrics",
+    "individual_profile",
+    "individual_trajectory",
+    "private_location_data",
+    "unreviewed_camera_stream"
+  ],
+  "permitted_outputs": [
+    "BASELINE",
+    "RAIN_WAIT",
+    "SHADE_WATER",
+    "KEEP_CLEAR",
+    "RAIN_WAIT_CLEAR_ROUTE",
+    "PAUSE_OR_HANDOVER"
+  ],
+  "prohibited_authorities": [
+    "traffic_signal_control",
+    "rail_control",
+    "automatic_approval",
+    "service_denial",
+    "individual_routing_or_pricing",
+    "automatic_physical_actuation"
+  ],
+  "human_authority": {
+    "required_role_zh": "具名现场值守者或授权公共服务人员",
+    "may_do": [
+      "accept",
+      "amend",
+      "refuse",
+      "pause",
+      "hand_over"
+    ],
+    "must_record": [
+      "decision",
+      "reason",
+      "time_window",
+      "fallback_used",
+      "next_review"
+    ]
+  },
+  "non_digital_equivalent": [
+    "static_bilingual_schedule",
+    "paper_wayfinding",
+    "visible_free_pause_space",
+    "staffed_help_point"
+  ],
+  "hard_stops": [
+    "no_named_human_steward",
+    "clear_access_route_unavailable",
+    "free_pause_space_unavailable",
+    "heritage_or_tree_protection_unresolved",
+    "maintenance_or_safety_unavailable",
+    "prohibited_personal_data",
+    "prohibited_system_authority"
+  ],
+  "boundary_note_zh": "本协议的离线夹具验证只检验规则是否按声明拒绝、暂停或给出建议；它不是现场试点、公众同意、算法效能、安全认证、交通工程或运营批准。",
+  "boundary_note_en": "Its offline fixtures test only whether the declared rules advise, hold or refuse as specified. They are not a field pilot, public consent, algorithm-performance proof, safety certification, traffic engineering result or operating approval."
+}

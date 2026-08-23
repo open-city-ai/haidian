@@ -1,9 +1,9 @@
 {
   "report_version": "2.0.0",
-  "checked_at": "2026-08-09T02:13:18+08:00",
+  "checked_at": "2026-08-22T18:01:58+08:00",
   "validator": {
     "implementation": "python-jsonschema",
-    "implementation_version": "4.25.0",
+    "implementation_version": "4.26.0",
     "schema_dialect": "https://json-schema.org/draft/2020-12/schema",
     "format_checker_enabled": true
   },
@@ -11,11 +11,11 @@
     "shift_ledger": {
       "schema": {
         "path": "shift-ledger.schema.json",
-        "sha256": "c6fbc7f67c98664313a333fa28c3c59a992765398684e9f51d679c42866fe1cd"
+        "sha256": "20ee8bf5c0373fad881bc2cf979a2e6a420973c0ff2d58b6d66bbdc7233c539a"
       },
       "instance": {
         "path": "example-scn05-shift-ledger.json",
-        "sha256": "cfa4e44d1286712ad34065248c3d6f7763d35df65652b99c9a8c71800e6a30c9"
+        "sha256": "620d9d998c1a8fd10fbe0247bff3ee08abaccef55c4345274fd8692605337748"
       }
     },
     "role_spec": {
@@ -31,12 +31,17 @@
     "measurement_protocol": {
       "schema": {
         "path": "measurement-protocol.schema.json",
-        "sha256": "937c1fb84097080abe9cfbe691321c364ce87c19041945d43c7cdb9e087709c8"
+        "sha256": "52f2c503f6b6654d3e660e6efafc8013f278b2d22649613c3c043a6294891b81"
       },
       "instance": {
         "path": "measurement-protocol.json",
-        "sha256": "3b35bafd3c250364a4f7cf494c83340f527c52f94f416c053ba4b2540c598556"
+        "sha256": "280fbb48096038729e988c2d2ef70180009360bdbde21c03d20adb91bfd76eb6"
       }
+    },
+    "shift_ledger_suite": {
+      "path": "shift-ledger-suite.json",
+      "sha256": "106ef9124fa19e72815b667621a162b6033fe6832b0a53e851ac11b9a0104ea9",
+      "ledger_count": 12
     }
   },
   "checks": [
@@ -81,6 +86,13 @@
       "method": "role ids, metric coverage, null baseline/target and unassigned status checked across the three instances",
       "passed": true,
       "errors": []
+    },
+    {
+      "check_id": "SHIFT_LEDGER_SUITE_INSTANCE_VALIDATION",
+      "method": "Draft202012Validator with FormatChecker, all 12 ledgers",
+      "note_zh": "2026-08-22 新增。此前本报告只校验单个例样，十二条随包账从未进过这份报告——而 refusal_reasons 收紧为枚举、以及新增的「处置 × 智能层」兼容表，正是要靠逐条校验十二条账才算真的成立。",
+      "passed": true,
+      "errors": []
     }
   ],
   "source_consistency_review": {
@@ -113,5 +125,12 @@
     "Performance results and rollback observations are intentionally null because no field test or rehearsal was executed.",
     "The example uses synthetic conditions, contains no personal data and connects to no live public service."
   ],
-  "scope_notice": "本报告只证明三对 schema 与实例可被机器解析、互相引用完整、baseline 与 target 仍为 null。它不证明任何角色已被任命、任何指标已有数值、任何场景已运行或任何做法已获许可。role-spec.json 与 measurement-protocol.json 均为未执行、未授权的规格文件。"
+  "scope_notice": "本报告只证明三对 schema 与实例可被机器解析、互相引用完整、baseline 与 target 仍为 null。它不证明任何角色已被任命、任何指标已有数值、任何场景已运行或任何做法已获许可。role-spec.json 与 measurement-protocol.json 均为未执行、未授权的规格文件。",
+  "history": [
+    {
+      "date": "2026-08-22",
+      "note_zh": "本报告 2026-08-22 被真正重跑了一次（而不是只改时间戳），当场查出两处：① MEASUREMENT_PROTOCOL_INSTANCE_VALIDATION 一直记为 passed，而实际有 17 处错——measurement-protocol.schema.json 的 $defs/protocol 只声明 17 个属性并带 additionalProperties: false，实例每条已用 26 个（9 个英文对照 ＋ aggregation_method 一对），顶层还多一个 aggregation_method_notice，**也就是说这个 passed 从写下起就不可能为真**；② 补齐属性后又暴露 protocols[12]／[13] 的 data_source_type 用了不在枚举内的 operational_record。两处均已修，并新增第八项检查把十二条随包账纳入本报告。",
+      "note_en": "This report was actually re-run on 2026-08-22 rather than having its timestamp bumped, which surfaced two defects: MEASUREMENT_PROTOCOL_INSTANCE_VALIDATION had been recorded as passed while the instance in fact produced 17 errors, because $defs/protocol declared 17 properties under additionalProperties: false while every entry already used 26 — so that pass could never have been true; and completing the properties then exposed data_source_type values outside the enum in protocols[12] and [13]. Both fixed, and an eighth check was added to bring the twelve shipped ledgers into this report."
+    }
+  ]
 }

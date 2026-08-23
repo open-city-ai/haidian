@@ -278,6 +278,87 @@
       "confidence": "high",
       "assumptions": ["States are concept simulations, not measured operating results."]
     },
+    "osm_context_feature_count": {
+      "status": "known",
+      "value": 1978,
+      "unit": "count",
+      "source_files": ["visual/assets/osm-context-20260822.json"],
+      "formula": "sum(feature_counts by railway, road, water, green)",
+      "confidence": "medium",
+      "assumptions": ["OpenStreetMap is a contributor-maintained directional context snapshot and is not used for formal quantities or approval claims."]
+    },
+    "spatial_alternative_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["visual/assets/spatial-decision.json", "visual/assets/spatial-decision-audit.json"],
+      "formula": "count(alternatives)",
+      "confidence": "high",
+      "assumptions": ["Alternatives are synthetic design options, not constructed or field-tested works."]
+    },
+    "rejected_spatial_alternative_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": ["visual/assets/spatial-decision-audit.json"],
+      "formula": "count(alternatives where decision == reject)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "revised_spatial_alternative_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": ["visual/assets/spatial-decision-audit.json"],
+      "formula": "count(alternatives where decision == revise)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "advanced_spatial_alternative_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": ["visual/assets/spatial-decision-audit.json"],
+      "formula": "count(alternatives where decision == advance)",
+      "confidence": "high",
+      "assumptions": ["Advance means advance to professional design development, not approval, procurement or implementation."]
+    },
+    "ordinary_route_clear_width_m": {
+      "status": "known",
+      "value": 2.4,
+      "unit": "m",
+      "source_files": ["visual/assets/spatial-decision.json"],
+      "formula": "ALT-C design input",
+      "confidence": "low",
+      "assumptions": ["Concept control value pending survey and accessibility, fire, heritage, structural and operational review."]
+    },
+    "max_estop_to_staff_m": {
+      "status": "known",
+      "value": 22,
+      "unit": "m",
+      "source_files": ["visual/assets/spatial-decision.json"],
+      "formula": "ALT-C design input",
+      "confidence": "low",
+      "assumptions": ["Concept control value pending survey and safety/operations review; no response-time claim is made."]
+    },
+    "first_100_days_work_package_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": ["visual/assets/spatial-decision.json"],
+      "formula": "count(first_100_days)",
+      "confidence": "high",
+      "assumptions": ["Work packages are a proposed sequence and do not imply an authorized schedule or named institutional commitment."]
+    },
+    "field_verification_result_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": ["visual/assets/spatial-decision.json"],
+      "formula": "count(field_results)",
+      "confidence": "high",
+      "assumptions": ["No survey, installed prototype, recruited-user test, permission or operating result exists in this submission."]
+    },
     "scheduled_opening_rate": {
       "status": "unknown",
       "value": null,

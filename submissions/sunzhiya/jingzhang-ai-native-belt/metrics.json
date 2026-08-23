@@ -1,0 +1,401 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm",
+    "energy": "kWh",
+    "time": "s"
+  },
+  "boundary_basis": {
+    "official_boundary_available": false,
+    "geometry_role": "provisional_constraint",
+    "statement": "No official precise redline exists in the public site package. Every area and ratio below is computed from the provisional rough boundary and is a provisional measure only. These values must not be used as a statutory area basis, nor for approval, tendering, or investment decisions.",
+    "planar_approximation": "M_PER_DEG_LAT=110540; M_PER_DEG_LON=111320*cos(39.98275). One documented constant pair is used for every derived area and length in this package.",
+    "recalculation_interface": "Replace geometry/site_boundary.geojson with the official geometry and re-run the recalculation; all derived metrics update without any change to the proposal text."
+  },
+  "metric_families": {
+    "spatial": "Derived from the nine GeoJSON layers with a single documented planar approximation.",
+    "blocked": "Deliberately left unknown because the public site package does not contain the statutory input.",
+    "harness": "Derived from the offline deterministic replay recorded in simulation.json."
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "confidence": "low",
+      "basis": "provisional_boundary",
+      "official_basis": false,
+      "recalculation_status": "pending_official_boundary",
+      "status": "known",
+      "value": 11345200.508,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "shoelace_area(site_boundary, planar_approximation)",
+      "assumptions": [
+        "Computed from the provisional rough boundary registered in the site package; official_boundary=false and geometry_role=provisional_constraint.",
+        "Planar approximation uses M_PER_DEG_LAT=110540 and M_PER_DEG_LON=111320*cos(39.98275); the same constants are used for every derived area in this package.",
+        "Not a statutory or precise area basis; usable only to explain method and relative relationships."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "confidence": "low",
+      "basis": "schematic_key_volumes_without_official_survey",
+      "official_basis": false,
+      "recalculation_status": "pending_building_survey",
+      "status": "known",
+      "value": 294487.731,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(shoelace_area(building_footprints))",
+      "assumptions": [
+        "Sums the 26 schematic key volumes proposed by the scheme; this is not a survey of the existing building stock, so the value is far below a real built-up figure.",
+        "Indicates order of magnitude and relative placement only."
+      ]
+    },
+    "green_space_area_sqm": {
+      "confidence": "low",
+      "basis": "provisional_boundary",
+      "official_basis": false,
+      "recalculation_status": "pending_official_boundary",
+      "status": "known",
+      "value": 2745665.818,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(shoelace_area(green_space))",
+      "assumptions": [
+        "Sums the 14 mutually exclusive features of the green-system layer.",
+        "Green features never sit inside a non-green land-use zone, so no area is counted twice."
+      ]
+    },
+    "public_space_area_sqm": {
+      "confidence": "low",
+      "basis": "provisional_boundary",
+      "official_basis": false,
+      "recalculation_status": "pending_official_boundary",
+      "status": "known",
+      "value": 697815.875,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(shoelace_area(public_space))",
+      "assumptions": [
+        "Sums the 16 mutually exclusive public rooms of the public-space system layer.",
+        "Public rooms nest inside the park spine or the blocks; the ratio is summed once from this layer only."
+      ]
+    },
+    "green_ratio": {
+      "confidence": "low",
+      "basis": "provisional_boundary",
+      "official_basis": false,
+      "recalculation_status": "pending_official_boundary",
+      "status": "known",
+      "value": 0.242011,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "assumptions": [
+        "The denominator is the provisional site area, so the ratio inherits its provisional status.",
+        "Expresses structural intent about the park-led green frame; it is not evidence of compliance with any green-line requirement."
+      ]
+    },
+    "public_space_ratio": {
+      "confidence": "low",
+      "basis": "provisional_boundary",
+      "official_basis": false,
+      "recalculation_status": "pending_official_boundary",
+      "status": "known",
+      "value": 0.061508,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "assumptions": [
+        "The denominator is the provisional site area, so the ratio inherits its provisional status.",
+        "Used to compare the public-space orientation of alternatives, never as a control indicator."
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "confidence": "low",
+      "basis": "provisional_boundary",
+      "official_basis": false,
+      "recalculation_status": "pending_official_boundary",
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(land_use_zone_area) / site_area_sqm",
+      "assumptions": [
+        "v4.7 起用地层是对临时设计边界的完整、无重叠剖分：全部分区裁剪至边界内，剩余范围由留白用地（代码 16）闭合，因此覆盖率按定义为 1.0。",
+        "v4.6 及以前的 0.690497 把外溢到设计边界之外的分区面积计入分子，属口径错误，已在 v4.7 更正。",
+        "其中主动策划分区占 63.09%，留白用地占 36.91%；分区是用地单元而非可出让地块。"
+      ]
+    },
+    "road_network_length_m": {
+      "confidence": "low",
+      "basis": "concept_network_alignment",
+      "official_basis": false,
+      "recalculation_status": "pending_official_road_redlines",
+      "status": "known",
+      "value": 62156.4,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(polyline_length(road_centerlines))",
+      "assumptions": [
+        "Sums the 20 concept alignments of the slow-mobility and connection network.",
+        "An alignment expresses a network relationship; it is never a road redline or an engineering centreline."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "basis": "not_derivable",
+      "official_basis": false,
+      "recalculation_status": "blocked_missing_official_controls",
+      "assumptions": [],
+      "reason": "Approved FAR controls and the official site boundary are both absent from the public site package. The scheme deliberately makes no estimate, because a floor area ratio conclusion would exceed the responsibility boundary declared for machine-agent submissions."
+    },
+    "building_height_limit_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(approved_building_height)",
+      "confidence": "unknown",
+      "basis": "not_derivable",
+      "official_basis": false,
+      "recalculation_status": "blocked_missing_official_controls",
+      "assumptions": [],
+      "reason": "No approved height control is published for the belt. The scheme states a height and massing intent in words and refuses to publish a numeric limit that a reader could mistake for a statutory control."
+    },
+    "resident_population": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "sources.json#SITE-PACKAGE"
+      ],
+      "formula": "official_population_register(site_extent)",
+      "confidence": "unknown",
+      "basis": "not_derivable",
+      "official_basis": false,
+      "recalculation_status": "blocked_missing_official_data",
+      "assumptions": [],
+      "reason": "No population figure for the belt extent exists in the public site package, and inferring one from open sources would create a false precision about real residents."
+    },
+    "parking_supply_spaces": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "not_applicable_at_concept_stage",
+      "confidence": "unknown",
+      "basis": "out_of_scope",
+      "official_basis": false,
+      "recalculation_status": "not_applicable",
+      "assumptions": [],
+      "reason": "Parking supply is a control-detailed-planning output. At urban-design concept stage the scheme sets a parking policy direction in words instead of a number."
+    },
+    "key_area_count": {
+      "confidence": "medium",
+      "basis": "provisional_boundary",
+      "official_basis": false,
+      "recalculation_status": "pending_official_boundary",
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "assumptions": [
+        "The three key areas required by the taskbook are represented by provisional polygons pending the official release."
+      ]
+    },
+    "auditable_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "spatial.json"
+      ],
+      "formula": "count(auditable_scenarios_described_in_proposal)",
+      "confidence": "high",
+      "basis": "declared_in_proposal",
+      "official_basis": false,
+      "recalculation_status": "not_required",
+      "assumptions": [
+        "Counts the scenarios that carry a full evidence, review and exit description in the proposal."
+      ]
+    },
+    "industrial_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industrial_validation_scenarios)",
+      "confidence": "high",
+      "basis": "declared_in_proposal",
+      "official_basis": false,
+      "recalculation_status": "not_required",
+      "assumptions": [
+        "Counts the scenarios that reach industrial validation in the Dazhongsi cluster."
+      ]
+    },
+    "numbered_renewal_project_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered_renewal_projects)",
+      "confidence": "high",
+      "basis": "declared_in_proposal",
+      "official_basis": false,
+      "recalculation_status": "not_required",
+      "assumptions": [
+        "Counts the numbered renewal projects in the project list."
+      ]
+    },
+    "simulation_task_count": {
+      "confidence": "high",
+      "basis": "offline_deterministic_replay",
+      "official_basis": false,
+      "recalculation_status": "not_required_offline_harness",
+      "status": "known",
+      "value": 48,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "len(simulation.tasks)",
+      "assumptions": [
+        "Six official scenarios multiplied by eight task templates; every record is fixed data, so the count is reproducible offline."
+      ]
+    },
+    "simulation_success_rate": {
+      "confidence": "high",
+      "basis": "offline_deterministic_replay",
+      "official_basis": false,
+      "recalculation_status": "not_required_offline_harness",
+      "status": "known",
+      "value": 0.8541666666666666,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(outcome == success or outcome endswith _success) / len(tasks)",
+      "assumptions": [
+        "41 of 48 tasks close successfully; blocked and refused tasks are deliberately not counted as success.",
+        "Tasks blocked by a missing official dataset stay blocked, because reporting them as success would hide the data gap."
+      ]
+    },
+    "tool_schema_pass_rate": {
+      "confidence": "high",
+      "basis": "offline_deterministic_replay",
+      "official_basis": false,
+      "recalculation_status": "not_required_offline_harness",
+      "status": "known",
+      "value": 0.9791666666666666,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(dispatch_schema_valid) / len(tasks)",
+      "assumptions": [
+        "47 of 48 dispatches validate against the tool schema; the single malformed dispatch is kept in the record rather than removed."
+      ]
+    },
+    "energy_budget_violations": {
+      "confidence": "high",
+      "basis": "offline_deterministic_replay",
+      "official_basis": false,
+      "recalculation_status": "not_required_offline_harness",
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(energy_used_kwh > energy_budget_kwh)",
+      "assumptions": [
+        "Two heavy replans exceed the per-task budget and are published as violations instead of being averaged away."
+      ]
+    },
+    "audit_completeness": {
+      "confidence": "high",
+      "basis": "offline_deterministic_replay",
+      "official_basis": false,
+      "recalculation_status": "not_required_offline_harness",
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(audit_complete) / len(tasks)",
+      "assumptions": [
+        "All 48 tasks emit a complete audit record, including the blocked and refused ones."
+      ]
+    },
+    "high_risk_intercept_rate": {
+      "confidence": "high",
+      "basis": "offline_deterministic_replay",
+      "official_basis": false,
+      "recalculation_status": "not_required_offline_harness",
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(high_risk_intercepted) / count(high_risk_flagged)",
+      "assumptions": [
+        "13 of 13 flagged tasks are intercepted before any action is taken.",
+        "Interception means the task stops and waits for a human reviewer; it never means the task silently continues."
+      ]
+    },
+    "replan_p95_seconds": {
+      "confidence": "high",
+      "basis": "offline_deterministic_replay",
+      "official_basis": false,
+      "recalculation_status": "not_required_offline_harness",
+      "status": "known",
+      "value": 7.7,
+      "unit": "s",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "nearest_rank_p95(sorted(replan_seconds))",
+      "assumptions": [
+        "Nearest-rank p95 at position 46 of 48 sorted values, so a reviewer can recompute it by counting."
+      ]
+    }
+  }
+}

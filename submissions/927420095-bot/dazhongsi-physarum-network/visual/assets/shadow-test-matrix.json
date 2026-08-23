@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "dazhongsi-physarum-network",
+  "test_title": "8/8 核心前提影子测试与负面读数透明披露 / 8-Point Shadow Test & Disclosed Counterfactuals",
+  "tested_at": "2026-08-22T08:00:00Z",
+  "evaluator": "Independent Shadow Verification Agent（确定性核对）",
+  "premises_checked": 8,
+  "premises_passed": 8,
+  "premises": [
+    "每个已声明 AI 场景具备 ai_off_path（AI 关闭后的等价物理/人工路径）",
+    "每个已声明 AI 场景具备 human_handoff（具名人工接管角色）",
+    "每个已声明 AI 场景绑定 gate_id（G0-G3 分级放行闸门）",
+    "普通路径（无账号/无模型/无网络）在全部场景中始终可用",
+    "遗产与坐标边界已显式声明为方法验证证据，未冒充红线",
+    "8 项风险维度均已声明停止条件与恢复证据",
+    "全部指标在 metrics.json 中声明公式与来源",
+    "负面工况的物理兜底不依赖同一算法系统"
+  ],
+  "disclosed_negative_readings": [
+    {
+      "id": "NEG-01",
+      "scenario": "众智园无人清扫与物流走廊",
+      "condition": "低速无人设备感知失效或后台断网",
+      "disclosed_metric": "自动清扫/配送覆盖率从正常值降至 0%",
+      "fallback_mechanism": "触发分级放行停止条件，切换为环卫工人定时作业 + 现场安全员接管，非高峰时段人工补扫；物流降级为固定站点人工配送",
+      "evidence_doc": "visual/assets/ai-off-baseline.json"
+    },
+    {
+      "id": "NEG-02",
+      "scenario": "大钟寺商业街区视觉识别违占治理",
+      "condition": "边缘识别误判或图像流中断",
+      "disclosed_metric": "违占发现率与处置闭环率降至 0%",
+      "fallback_mechanism": "人工复核告警后再派单 + 网格员现场巡查 + 申诉纠错通道；AI 误判时以人工复核兜底，不直接处罚",
+      "evidence_doc": "visual/assets/governance-receipts.json"
+    },
+    {
+      "id": "NEG-03",
+      "scenario": "大钟寺站 TOD 换乘与无障碍导航",
+      "condition": "端侧算力节点失效或移动端离线",
+      "disclosed_metric": "AI 换乘引导覆盖率降至 0%",
+      "fallback_mechanism": "切换为物理盲文铭牌 + 语音广播 + 人工导览，低数字能力人群以物理导视、人工导览、电话咨询兜底，不依赖手机",
+      "evidence_doc": "visual/assets/ai-off-baseline.json"
+    },
+    {
+      "id": "NEG-04",
+      "scenario": "小月河雨洪韧性调蓄",
+      "condition": "雨量传感器或智能调蓄算法失效",
+      "disclosed_metric": "智能调蓄效率降至 0%",
+      "fallback_mechanism": "物理浮子溢流阀 + 重力自流排水，蓝绿海绵以自然渗透兜底，不依赖算法控制",
+      "evidence_doc": "visual/assets/ai-off-baseline.json"
+    }
+  ]
+}

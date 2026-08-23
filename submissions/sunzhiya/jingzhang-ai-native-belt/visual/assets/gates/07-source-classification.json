@@ -1,0 +1,27 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-07",
+ "title_zh": "来源分级与可用边界",
+ "title_en": "Source tiering and usability boundary",
+ "domain": "data",
+ "status": "design_target",
+ "source_ids": [
+  "SOURCE-REGISTRY",
+  "SITE-PACKAGE"
+ ],
+ "inputs": [
+  "sources.json"
+ ],
+ "procedure": [
+  "每条来源标注 authority_level、evidence_class、usable_for 与 not_usable_for。",
+  "禁止用背景类来源支撑法定结论。",
+  "对不可核验来源标注为 agent_generated 或 background。"
+ ],
+ "pass_rule": "49 条来源全部具备可用/不可用双向声明。",
+ "stop_rule": "出现无分级或越级引用的来源时停止发布。",
+ "owner": "evidence officer",
+ "non_ai_equivalent": "资料来源清册与引用规范审查",
+ "evidence_output": "source_tier_register",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

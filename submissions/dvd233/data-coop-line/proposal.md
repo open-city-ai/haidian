@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以京张铁路遗址公园为公共数据合作主线，通过集体议定、临时用途权、受控计算、派生链撤回回执与公共回报结算，把AI创新转化为可选择、可追溯且设有无数据等价服务的城市制度空间。"
+summary: "以京张铁路遗址公园为公共数据合作主线，用一张会到期、会撤回、会披露残余影响并回报公共价值的数据票，把受控计算转化为可选择、可追溯且设有无数据等价服务的城市制度空间。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -14,6 +14,51 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 # 共数京张 / THE DATA CO-OP LINE
 
 “共数”不是要求每个人交出更多数据，而是让谁提出问题、谁贡献材料、谁运行计算、谁取得收益、谁承担纠错责任都被看见。方案把京张铁路曾经组织人流与货流的线性基础设施，转译为组织用途许可、受控计算、公共回报和撤回回执的城市合作线；与此同时，任何人都可走一条不提供可选个人数据、仍获得同等核心服务的“无数据等价正线”。这是一套供专业团队和公众继续深化的城市设计与运营参考，不是已批准规划、已成立法人或已承诺实施的项目。
+
+## 五分钟评审入口 · P2-03
+
+`DATA-COOP-REVIEW-SPINE-01` 把既有证据压缩为一条 **300 秒、5 步**的评审路径；唯一事实源是 `visual/assets/reviewer-evidence-spine.json`，SHA-256 为 `966cd7eed4227078342f4bcd5aacf039438f7720a1049fcebe9a67413411e7ee`。本轮分支冻结于 `upstream/main@9782df83a8f2a58ebe79823fe8001f18d129b975`。该入口不改变方案方向、GeoJSON、metrics、来源或许可边界；它只让评审者更快区分“已验证”“待验证”和“禁止推断”。临时几何不升级为官方红线，合成通过不升级为现场事实，`not_observed` 不解释为风险已排除。
+
+| 时间 | 评审问题 | 直接证据 | 停止推断的位置 |
+| --- | --- | --- | --- |
+| 0:00—0:45 | 哪些事实可正式表达，哪些控制几何仍缺失 | `site-evidence-register.json` + `site-evidence-audit.js`：4/4 geometry、18/18 检查、0 official-control feature / 6 类缺口 | 空集表示缺口已核验，不表示现实中无控制 |
+| 0:45—1:40 | 图、文与指标是否来自同一计算链 | `evidence-snapshot.json` + `metrics.json` + `evidence-consistency.js`：EPSG:4548 复算与签名 `c880c438…a45bbf` | 仅为临时计算包内的概念量，不是法定面积或工程量 |
+| 1:40—2:45 | 核心主张是否落到可定位、可停机的样板 | `DAZHONGSI-MVP-01`：`SCN-05/09/10`、两处房间测试基底、公共回执空间与两条概念线 | 站口、路权、无障碍与工程可行性仍待实证 |
+| 2:45—3:55 | 未知状态、唯一问责与停机条件是否清楚 | `DAZHONGSI-FIELD-OPS-01`：5 点、3 路、6 角色、6—6—4 闸门、11 回执、6 签署位；215/215 审计通过 | 现场授权 `unknown`、工作流 `not_observed`，主体与实测值均未确认 |
+| 3:55—5:00 | 少跑、断链或条件不足时是否显式失败 | `DAZHONGSI-DRILL-01`：21/21 合成用例、8/8 负向夹具 fail-closed；随后核对四门 self-check 与 preflight | 合成通过不证明可进入、可运营、许可成立或风险已排除 |
+
+复现命令为 `node visual/assets/reviewer-evidence-spine-audit.js --json`；`--self-test --json` 会删除末步的内存夹具并证明审计 fail-closed。该审计只读、仅用 Node 内置库；最终载体仍须经过 manifest refresh 后的完整 self-check，而不能预写通过状态。
+
+![共数京张五分钟评审证据脊柱；从来源权限到失败关闭，明确已验证、待验证与禁止推断](assets/figures/reviewer-evidence-spine.png)
+
+## P1-05｜已获批街区控规的文本级对齐与证据边界
+
+2026-08-22 的证据升级把官方公开版页面纳入证据链：海淀区人民政府门户网站于 2026-08-17 发布该控规（公开版）文本页，总则条款可直接核验；仍不把任何文本升级为空间数据。唯一事实源 `visual/assets/planning-alignment-register.json` 的 Register ID 为 `DATA-COOP-PLAN-ALIGNMENT-01`，SHA-256 为 `daea14242a25926bebbe781d948571117e71c418304dc7a7c7951e49b37e2f7d`；分支冻结于 `upstream/main@c79854e90b2e9a641d367c9e91f3f3031e20c127`。该台账同时钉死完整 `metrics.json` 与九个 GeoJSON 哈希，任何借“对齐”改变 geometry 或 metrics 的操作都会显式失败；C-01/C-02/C-04 合成容量包络增加六项非空间 E2 治理指标后，台账已重新认证整份 `metrics.json`，九个 geometry 哈希与证据签名保持不变。
+
+| 证据层 | 可核验文本事实 | 本轮不可推断 |
+| --- | --- | --- |
+| 海淀分局 2025-02-08 官方公示采信通告 | 2022—2035 年版本草案于 2024-12-19 至 2025-01-19 网上公示，并记录公众意见研究与采纳 [source:JINGZHANG-PLAN-PARTICIPATION-NOTICE-20250208] | 不是最终批复文件，不能证明批复日期、法定图则、polygon 或未载明控制值 |
+| 北京日报经人民网转载的 2026-08-12 报道 | 报道称 2024—2035 年版本街区控规获批；文字范围为东至新街口外大街、西至中关村大街、北至成府路、南至西直门外大街，共 9 个街区、约 1668.2 公顷 [source:JINGZHANG-PLAN-APPROVAL-REPORT-20260812] | 报道不是批复文件本身；报道面积口径（约 1668.2 公顷）与官方公开版口径（16.7 平方公里）分别归因，均不进入 `metrics.json` |
+| 海淀区人民政府门户网站 2026-08-17 发布的控规（公开版）文本页 | 官方公开页标题确认获批版本为 2024—2035 年；总则载明四至、HD00—1601 等九个街区编码、规划总面积 16.7 平方公里、75 个主导功能分区，且规划成果（文本、图纸、图则）均为法定审批文件 [source:JINGZHANG-PLAN-OFFICIAL-PUBLICATION-20260817] | 页面未载官方批复文号与确切批复日期；全文 PDF 附件于 2026-08-22 检索返回 HTTP 404，法定图则与清权 vector 仍未取得；文字四至不用于绘制 polygon |
+| 同一报道的结构概括 | “一带一轴、两心多点”：京张铁路遗址公园产业创新带、中关村大街创新发展轴、大钟寺与五道口两中心及知春路、四道口等节点 [source:JINGZHANG-PLAN-APPROVAL-REPORT-20260812] | 不能据此把本方案的“一线、三区、两翼、多站”说成官方采用，也不能推导项目实施或政府背书 |
+
+2025 官方过程通告使用 2022—2035 年标签；2026-08-17 官方公开版文本确认获批版本为 2024—2035 年标签，草案标签仍归属早期公示通告，不推断修编链或确切批复日期。文本对齐带来四项**不改方向的校准**：遗址公园绿色公共空间与产业创新带支持继续把“合作线”作为公共利益服务层，且官方公开版总则确认该规划结合京张铁路遗址公园与海淀人工智能创新街区建设；大钟寺被报道为两中心之一，支持继续把 `DAZHONGSI-MVP-01` 作为单一样板，但 `PROV-KEY-003` 绝不是官方中心边界；南北贯通、东西连通的慢行方向支持无数据等价步行骑行正线与公共缝合线，但不确认站口、路权或无障碍绩效；官方公开版总则确认以存量更新为主要方式，支持“先调查、再适应性再利用、可逆 test-fit”，但不确认任何真实建筑、产权、容量或时序 [assumption:A-PLAN-ALIGNMENT-001]。
+
+![共数京张 P1-05 控规文本级对齐：证据层级、报道事实、设计响应与不可推断边界](assets/figures/planning-alignment.png)
+
+复现命令为 `node visual/assets/planning-alignment-audit.js --json`；`--self-test --json` 把“已取得官方批复文件”错误翻转为 true，审计必须 fail-closed。该规划对齐动作不改变核心价值主张、投稿许可、GeoJSON、metrics 或证据签名，也不复制外部图片、附件或长段文字；“控规获批”与“官方公开版发布”只描述所引用的街区控规信息，不描述本投稿状态。
+
+## P2-04｜离线体验与媒体：服务旅程短片、交互旅程与原创封面
+
+本轮把方案的「进入—使用—退出」旅程做成可直接体验的离线媒体，全部内容为本包原创生成，不引入外部素材、不改变任何已登记数值。
+
+- `assets/media/experience.mp4`：44 秒无声概念短片（1280×720，H.264），沿无数据正线走过三座治理站与六道可复核闸门，并展开 12+3 场景矩阵；配 `experience.vtt` 中英双语字幕、`experience.md` 文字稿与权利说明、`experience-poster.webp` 海报帧。
+- `visual/index.html` 与 `index.en.html` 新增「服务旅程」区段：键盘 ←/→ 可达的六闸门步进器（WAI-ARIA tablist 语义、reduced-motion 降级、无 JS 时全部面板静态可读），并内嵌带字幕的视频播放器。
+- `assets/media/cover.webp`：原创 Gallery 封面（线、三站、六闸门与核心指标），经 `manifest.cover_image` 登记；不代表官方渲染或获批效果。
+
+![共数京张服务旅程海报：无数据正线、三座治理站与六道闸门的概念旅程](assets/media/experience-poster.webp)
+
+视频与封面只承担概念沟通；权威数据仍以 GeoJSON、metrics、矩阵与审计台账为准 [data:geometry/public_space.geojson] [metric:no_data_equivalent_service_target_ratio]。
 
 ## 设计依据与资料清单
 
@@ -51,9 +96,20 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 统筹研究范围产业与未来城市研究
 
-方案提出三大定位。第一，**公共利益导向的数据合作试验廊**：不是出售数据的市场，而是先集体议定问题，再授予有期限、有目的、可审计的临时用途权。第二，**数据劳动者友好的 AI 验证社区**：把采集、清洗、标注、纠错、解释和撤回视为劳动，让贡献者在任务规则、报酬或公共回报、质量争议和退出方式上拥有席位。第三，**京张文化可读的未来城市客厅**：把车票、时刻表、运单和站台转译为用途票、计算时段、派生链清单和回执，使抽象治理成为可步行、可学习的城市体验。这三项是任务书下的概念建议，不是新设行政区、法人或法定制度 [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+任务书的正式“三定位、五功能”与本方案的设计命题必须分层。**公共利益导向的数据合作试验廊、数据劳动者友好的 AI 验证社区、京张文化可读的未来城市客厅**是“共数京张”的三项设计表达，不替代正式原项。正式原项逐项进入同一条“议定—票—计算—到期或撤回—残余披露—公共回报”链：
 
-五大功能依次构成一条服务链：**共同议定**负责公开征集议题并记录反对意见；**临时用途权与受控计算**让原始数据原则上留在控制域内，只把经过审批的查询或模型带入计算室；**产业测试验证**用合成、匿名、志愿或最小必要数据比较模型表现；**撤回与公共回报结算**发布派生链状态、停止未来使用并确认可兑现的公共收益；**学习传播与年度运营**通过展览、课程、复盘和开放日持续更新规则。临时用途权在这里是设计协议概念，不等于对现行数据权属、知识产权或个人信息权利作出法律认定。
+| 正式任务书原项 | 共数京张的可核验响应 |
+| --- | --- |
+| 百年京张文化带 | 将车票、时刻表、运单、打孔与站台钟转译为用途许可、期限、派生链、执行日志与自动到期，不伪造历史事实 |
+| 都市AI生活体验带 | 把无数据等价、人工、纸面与离线通道放在同一入口，使拒绝可选数据者仍取得同等核心服务 |
+| AI融合创新带 | 用受控计算把用途、输入、输出、到期、撤回与工作停机写成同一份可复演契约 |
+| AI全栈自主创新体系 | 以控制域、获准 query/model/container、执行日志与输出闸组成可审计技术栈 |
+| 世界级AI创新生态 | 用多角色 RACI、唯一问责与单方停止权降低有边界试验的进入成本 |
+| AI+场景赋能新范式 | 让 `SCN-06` 从“受控计算房间”变成带输入、输出、角色、阈值、回退与证据产物的完整场景 |
+| 智能化AI活力城市 | 同时验收两条正线、人工接管和投诉补救，不以采集量代替城市服务质量 |
+| AI治理全球话语权 | 公开双语、机器可读的到期—撤回—残余—回报协议，同时公开不能声称的 E3/E4/E5 边界 |
+
+本方案自己的五步服务链仍是**共同议定、临时用途权与受控计算、产业测试验证、撤回与公共回报结算、学习传播与年度运营**；它们是落实正式功能的空间—运营方法，而不是另一套“官方五功能”。临时用途权也只是设计协议概念，不对数据权属、知识产权或个人信息权利作法律认定 [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [data:visual/assets/expiring-data-ticket-protocol.json#EXPIRING-DATA-TICKET-01]。
 
 | 对照案例 | 可借鉴机制 | 不可越过的边界 |
 | --- | --- | --- |
@@ -82,6 +138,25 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 ## 重点区域详细设计
 
 **众智园 AI 自主创新加速区——“受控计算与标准验证枢纽”。** 片区建议将临清河的创新展示界面与内部受控计算设施分层组织：公共首层解释测试任务、能源消耗和输出规则，中层布置可变测试舱与专业复核席，后场布置隔离网络、设备和废热回收接口。产业团队带算法或查询进入，原始数据原则上留在数据提供方控制域；测试结果需经过偏差、安全、隐私与可解释性复核。地标“算力灯塔”以低分辨率光带显示计算是否开放、暂停或进入审计，不显示个人或商业数据。范围仍为临时重点区 [data:geometry/key_areas.geojson#PROV-KEY-001]。
+
+### 众智园：会到期、可撤回、披露残余并回报公共价值的数据票
+
+`EXPIRING-DATA-TICKET-01` 把 `SCN-06` 从原则说明压缩为一份可机读、可复演、失败即停的 E2 契约。它严格限定在 `SCN-06 / PROV-KEY-001` 单节点：不跨节点传票、传数，也不移交角色或单方停机权；AI 原点社区只是分立能力参照，大钟寺 `DAZHONGSI-FIELD-OPS-01` 是独立包。未来若要跨节点运行，必须另建有版本的交接契约、目的角色映射、接收回执与 SLA、拒收升级路径，并取得授权 E3 测试和 E4 主体/法律确认。`BLDG-002` 只能作为待专业深化的概念宿主候选，因为当前点位并不在该 polygon 内，不得写成同址或已落入建筑。协议不增加真实个人数据、场地进入或运营承诺 [data:visual/assets/expiring-data-ticket-protocol.json#EXPIRING-DATA-TICKET-01] [assumption:A-EXPIRING-TICKET-001]。
+
+**一张票，两套耦合状态机。** 治理生命周期固定为 `draft → co_decided → active → expired | withdrawn → residual_disclosed → return_accepted → closed`；执行状态另行记录为 `not_started / running / paused / stopping / stopped / closed`。到期或撤回必须在同一事件原子进入 `stopping`，立即禁止新 query 与输出，只允许 teardown，并在合成目标 **60 秒内**进入 `stopped`。只有票为 `active` 才能释放新输出；到期或撤回后不得重新激活。随后才盘点派生物、披露不能彻底回滚的影响，并在交付物、价值指标和证据均通过后验收公共回报、关闭票。“撤回”从不等于承诺从既有模型、人类记忆或合法留存中彻底抹除影响。
+
+| 票的关口 | 必须读到的字段或证据 | Fail-closed 动作 |
+| --- | --- | --- |
+| 议定与激活 | 中英用途、允许/禁止用途、期限、来源/许可、最小输入、控制域、获准 query/model/container、唯一问责 | 任一来源、许可、角色或开始条件不明，不激活 |
+| 运行与输出 | 执行日志、最小聚合阈值、输出审查、无数据等价、人工接管 | 非 active、未授权 query、原始记录外流或两线不等价，阻断输出并停机 |
+| 到期或撤回 | 机器停止、人工/纸面/离线受理、停止回执、撤回后 query 拒绝 | 任何到期后输出、派生链断点或撤回通道不可用，审计失败 |
+| 残余与回报 | 派生清单与残余披露；双语公共审计卡；受益对象、期限、价值指标、复算公式、证据指针、验收范围与未兑现状态 | 未映射派生项、交付物缺失、指标不达标、证据为空、残余披露不全或把回报说成购买同意，不得关闭 |
+
+**无数据等价不是口号。** 每条正线至少跑 30 次合成尝试；无数据线相对数据线的 P90 时间必须同时满足差值不超过 120 秒、比值不超过 1.10，价格溢价为 0，失败率差不超过 2 个百分点；核心输出字段与安全告警匹配率为 100%，人工接管必须成功且不超过 120 秒。无障碍不再使用自报“保障匹配率”：屏幕阅读器、纯键盘、低视力、行动受限、认知/语言和无智能手机六类任务，均须在数据线与无数据线形成可解析的合成夹具，12 / 12 路线任务全部完成、关键输出回读与投诉/停机回执均可用。该覆盖率只证明 E2 要求与夹具齐全，观察用户数仍为 0，不证明真实可用性；两线同样不可用也必须失败。审计从 `observation_batches` 与任务记录独立复算后再套用阈值，以上不是实测 SLA [assumption:A-EXPIRING-TICKET-THRESHOLDS-001]。
+
+**两条演练覆盖正常与困难路径。** `CASE-NORMAL-EXPIRY-01` 每线 50 次，P90 为 600 / 650 秒、价格 0 / 0、失败 1 / 1；10:00 到期同刻进入 `stopping` 并禁新调用，30 秒后 `stopped`。`CASE-MIDSTREAM-WITHDRAWAL-01` 把时间比值和失败率差放在 1.10 与 2 个百分点边界；11:20 撤回同刻进入 `stopping`，20 秒后 `stopped`，11:21 注入 query 被拒绝且输出为 0，并披露“无法从人类记忆追回已查看合成摘要”的残余。两案均交付双语公共审计卡，价值实绩由无数据规则通过数 / 评估数独立复算为 1.0；`impact_observation` 仍为 `not_observed`，不把交付一致性冒充公共影响。2 / 2 案例、12 类条件证据通过；后期放行、原始导出、小群体、派生缺口、缺 `stopping`、回报空壳、越界节点及两线同败无障碍任务等 10 种内存变异 10 / 10 被拒绝 [metric:expiring_ticket_synthetic_case_passed] [metric:expiring_ticket_negative_path_fail_closed_total]。
+
+**责任可以定位，主体仍未知。** 九类角色组成八项 RACI，每项恰好一个 `A`；参与者代表、数据域托管、无数据服务与权利—伦理—安全复核四类角色保留单方停止权，不必先等问责角色同意。所有实体分配仍为 `null / unknown`。场地、运营主体、消防、供电散热网络、网络安全、无障碍、法律伦理与专业审查八项阻断条件未关闭前，不进入 Gate 2；证据等级严格保持 **E2**，不冒充 E3 现场、E4 主体确认或 E5 实施 [metric:expiring_ticket_conditional_artifact_coverage_ratio] [assumption:A-EXPIRING-TICKET-001]。
 
 **北京 AI 原点社区——“数据劳动与共同议定枢纽”。** 近校创新不只服务创业者，也服务标注员、社区工作者、学生、残障使用者和选择退出的人。沿成果转化与生活服务界面，建议嵌入议题厨房、用途票门诊、数据劳动教室、纠错工位、无数据服务台和小型发布空间；同一任务的采集、标注规则、报酬或公共回报、质量争议与撤回条件先在此公开讨论。地标“第一张回执亭”用铁路票夹形式展示一份匿名化的用途到期或撤回流程，说明回执确认了什么、没有确认什么，尤其不承诺从既有训练模型中彻底抹除影响。范围仍为临时重点区 [data:geometry/key_areas.geojson#PROV-KEY-002]。
 
@@ -121,7 +196,19 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ![大钟寺待授权现场运营责任与证据模板信息图；不是地图或现场记录，全部现场结果未观测](assets/figures/dazhongsi-field-validation-pack.png)
 
-![三处重点区域、三地标与治理链图](assets/figures/key-areas.png)
+### P1-04 · 大钟寺合成演练与失败测试
+
+**边界与状态。** `DAZHONGSI-DRILL-01` 是对 `DAZHONGSI-FIELD-OPS-01` 模板契约的合成演练与失败测试套件，声明性台账为 `visual/assets/dazhongsi-drill-tests.json`，配套运行器为 `visual/assets/dazhongsi-drill-test-runner.js`（仅用 Node 内置库、只读）。台账 SHA-256 为 `86ebfa7655e4cc79fb9d155d22cb62c821a131ec5e4882d71153e7dd13bd5507`。全部输入为合成或纸面夹具；模板中的现场值仍为 `null / unknown / not_observed / not_signed`。测试通过只证明契约逻辑可复现执行，不证明场地可进入、服务可运营或风险已排除 [assumption:A-DAZHONGSI-DRILL-001]。
+
+**六类 21 项用例。** 正例验证全部开始条件齐备时三阶段链路、11 份回执与唯一问责可通；负例验证任一开始条件未 `verified` 即拒绝开始、模板空值纪律、`not_observed` 不得解释为风险已排除；撤回验证任一阶段的撤回都有回执槽位与停机覆盖、公共回报不得被表述为购买同意；服务中断验证六项停止触发器逐项触发即暂停或停止并阻断阶段推进；恢复验证四项条件与三方共同签署缺一不可且须按同一口径复测；无障碍任务测试验证无数据等价与人工复核覆盖全部 MVP 场景、离线正线与人工接管在契约中可定位 [data:visual/assets/dazhongsi-drill-tests.json#DRILL-META-01] [metric:dazhongsi_drill_category_coverage_ratio]。
+
+**元检查与负向自测。** 运行器把实际执行的用例 ID 全集与钉死清单逐一比对（含元检查自身），少跑一项即失败，「少跑一项」与「全部通过」在输出上不可区分的情况被阻断；`--self-test` 对 8 个变异夹具（删回执、填入观测值、断证据链、重复回执 ID、删撤回停止条件、加第二问责、删用例 ID、关闭无数据等价）逐一验证运行器必然以退出码 1 失败。当前 21/21 用例通过、8/8 负向夹具全部 fail-closed [metric:dazhongsi_drill_case_passed] [metric:dazhongsi_drill_negative_fixture_fail_closed_total]。
+
+**复现。** `node visual/assets/dazhongsi-drill-test-runner.js --json` 退出码 0 为通过；`--self-test --json` 输出每个夹具的 fail-closed 证据。该套件是模板契约级的合成验证；官方数据或现场证据到位后，按同一链条整包复算，不得以合成通过替代现场证据。
+
+![大钟寺合成演练与失败测试证据图；合成夹具，非现场记录](assets/figures/dazhongsi-drill-tests.png)
+
+![单节点到期数据票与分立能力参照：SCN-06 在众智园完成签发、计算、停止、残余披露和公共回报；AI 原点与大钟寺不共享票、数据、角色或停机权](assets/figures/key-areas.png)
 
 三处片区合起来完成“一次合作的全旅程”：原点社区形成议题和劳动规则，众智园执行受控计算与模型验证，大钟寺完成应用互操作、公共回报披露和公众体验；任一环节都可因证据不足、风险超限或参与者撤回而暂停。三地标不是纪念技术公司的广告装置，而是把计算状态、退出边界和共同作者关系变成城市记忆。其建筑形态、消防、容量、造价、运营主体与审批均需专业团队继续深化，不能从概念图直接推导实施结论 [depth:three_key_area_detailed_design]。
 
@@ -197,6 +284,10 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | C-07 派生链回执服务 | 版本清单、撤回状态、不可回滚说明 | 数据映射、技术审计、申诉流程 | 近期原型；成本待测算 |
 | C-08 三地标与遗产导引 | 灯塔、回执亭、共同作者广场及双线导视 | 规划、文保、景观、版权和运维 | 中长期；成本待测算 |
 | C-09 蓝绿慢行断点修补 | 无障碍、遮阴、停留、换乘与生态恢复 | 道路、河道、树木、市政专项 | 依专项推进；成本待测算 |
+
+**C-01 / C-02 / C-04 合成容量准入包络。** `SCN06-C010204-SYNTHETIC-CAPACITY-01` 用同一份 60 分钟、12 个到达请求的投稿自有合成夹具检查三项目怎样共同接住一个 `SCN-06` 服务窗口：C-01 的 4 个抽象并行服务单元按每请求 15 分钟复算为容量 16、余量 4；C-02 将 6 个数据线请求和 6 个无数据线请求分别交给两组不可互借的 2 单元，各自容量 10、余量 4，因此**无数据专用容量**与数据线容量比为 1.0；C-04 的 4 单元中先保护 1 单元用于拆卸与恢复，只以 3 单元承接工作，容量 9、余量 3 [metric:synthetic_capacity_resource_gate_total] [metric:synthetic_capacity_minimum_headroom_requests] [metric:synthetic_capacity_no_data_to_data_capacity_ratio]。
+
+审计不采信手填合计，而是从服务时长、可用单元和需求独立复算容量、余量与利用率：目前 4 / 4 资源闸门、3 / 3 项目闸门通过；篡改计算、让需求超过容量、借走无数据单元、移除停止预留或伪造现场确认等 5 / 5 负向变体均 fail-closed [metric:synthetic_capacity_resource_gate_passed] [metric:synthetic_capacity_project_gate_passed] [metric:synthetic_capacity_negative_path_fail_closed_total]。这些“单元”不是人员、服务器、供配电、散热、网络、场地、消防或造价数量；真实运营主体、容量、采购、审批与专业确认仍为 `null / unknown`，现场决定固定为 `not_ready_for_field_operation`。因此它只把资源约束从 E0 叙述提升为可复算 E2 准入证据，不构成 E3 实测、E4 确认或实施承诺 [assumption:A-SYNTHETIC-CAPACITY-001]。
 
 所有项目共用七条政策闸门：用途必须可读且可集体修改；许可按目的和期限拆分；原始数据优先不出控制域；数据劳动的工时、质量争议和回报规则事前公开；模型、特征、报告和公开输出建立派生链；撤回回执区分“删除受控副本”“停止未来使用”“公开输出下架”“模型需重评”和“无法保证抹除”；形成经济或非经济收益时，项目启动前就约定可审计的公共回报选项。任何项目未提供无数据等价正线、人工复核和停止条件，均不得进入下一阶段。
 

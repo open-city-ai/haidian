@@ -69,7 +69,8 @@
         "ELDERLY-SMART-TECH-PLAN-2020-45",
         "GENERATIVE-AI-INTERIM-MEASURES",
         "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
-        "PROJECT-OFFICIAL-ANNOUNCEMENT"
+        "PROJECT-OFFICIAL-ANNOUNCEMENT",
+        "WCAG-CONTRAST"
       ],
       "assumption_ids": [
         "A-BASELINE-001",
@@ -267,9 +268,11 @@
         "ELDERLY-SMART-TECH-PLAN-2020-45",
         "GENERATIVE-AI-INTERIM-MEASURES",
         "MOHURD-ARCH-DESIGN-DEPTH-2016",
+        "MOHURD-CONTROL-DETAILED-PLANNING",
         "MOHURD-URBAN-DESIGN-MEASURES",
         "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
-        "PROJECT-OFFICIAL-ANNOUNCEMENT"
+        "PROJECT-OFFICIAL-ANNOUNCEMENT",
+        "WCAG-CONTRAST"
       ],
       "assumption_ids": [
         "A-OPERATIONS-001",
@@ -642,8 +645,13 @@
         "BARRIER-FREE-ENVIRONMENT-LAW",
         "ELDERLY-SMART-TECH-PLAN-2020-45",
         "GENERATIVE-AI-INTERIM-MEASURES",
+        "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+        "MOHURD-ARCH-DESIGN-DEPTH-2016",
+        "MOHURD-CONTROL-DETAILED-PLANNING",
+        "MOHURD-URBAN-DESIGN-MEASURES",
         "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
-        "PROJECT-OFFICIAL-ANNOUNCEMENT"
+        "PROJECT-OFFICIAL-ANNOUNCEMENT",
+        "WCAG-CONTRAST"
       ],
       "assumption_ids": [
         "A-OPERATIONS-001",
@@ -725,10 +733,15 @@
         "PROCESSED-FACT-PACK"
       ],
       "standard_ids": [
+        "BARRIER-FREE-ENVIRONMENT-LAW",
+        "ELDERLY-SMART-TECH-PLAN-2020-45",
+        "GENERATIVE-AI-INTERIM-MEASURES",
         "MNR-LAND-USE-CLASSIFICATION-GUIDE",
         "MOHURD-CONTROL-DETAILED-PLANNING",
         "MOHURD-URBAN-DESIGN-MEASURES",
-        "PROJECT-OFFICIAL-ANNOUNCEMENT"
+        "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+        "PROJECT-OFFICIAL-ANNOUNCEMENT",
+        "WCAG-CONTRAST"
       ],
       "assumption_ids": [
         "A-BASELINE-001",
@@ -804,7 +817,8 @@
         "MNR-LAND-USE-CLASSIFICATION-GUIDE",
         "MOHURD-ARCH-DESIGN-DEPTH-2016",
         "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
-        "PROJECT-OFFICIAL-ANNOUNCEMENT"
+        "PROJECT-OFFICIAL-ANNOUNCEMENT",
+        "WCAG-CONTRAST"
       ],
       "assumption_ids": [
         "A-BUILDING-001",
@@ -878,6 +892,8 @@
         "BARRIER-FREE-ENVIRONMENT-LAW",
         "ELDERLY-SMART-TECH-PLAN-2020-45",
         "GENERATIVE-AI-INTERIM-MEASURES",
+        "MOHURD-ARCH-DESIGN-DEPTH-2016",
+        "MOHURD-CONTROL-DETAILED-PLANNING",
         "PROJECT-OFFICIAL-ANNOUNCEMENT"
       ],
       "assumption_ids": [
@@ -1353,6 +1369,10 @@
         "OFFICIAL-ANNOUNCEMENT"
       ],
       "standard_ids": [
+        "GENERATIVE-AI-INTERIM-MEASURES",
+        "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+        "MOHURD-CONTROL-DETAILED-PLANNING",
+        "MOHURD-URBAN-DESIGN-MEASURES",
         "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
         "PROJECT-OFFICIAL-ANNOUNCEMENT"
       ],
@@ -1440,8 +1460,11 @@
         "HAIDIAN-2025-STATISTICAL-BULLETIN"
       ],
       "standard_ids": [
+        "BARRIER-FREE-ENVIRONMENT-LAW",
         "ELDERLY-SMART-TECH-PLAN-2020-45",
-        "PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+        "GENERATIVE-AI-INTERIM-MEASURES",
+        "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+        "WCAG-CONTRAST"
       ],
       "assumption_ids": [
         "A-CASES-001",
@@ -1529,8 +1552,11 @@
         "BARRIER-FREE-ENVIRONMENT-LAW",
         "ELDERLY-SMART-TECH-PLAN-2020-45",
         "GENERATIVE-AI-INTERIM-MEASURES",
+        "MOHURD-ARCH-DESIGN-DEPTH-2016",
+        "MOHURD-CONTROL-DETAILED-PLANNING",
         "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
-        "PROJECT-OFFICIAL-ANNOUNCEMENT"
+        "PROJECT-OFFICIAL-ANNOUNCEMENT",
+        "WCAG-CONTRAST"
       ],
       "assumption_ids": [
         "A-OPERATIONS-001"
@@ -1820,7 +1846,7 @@
   ],
   "gate_scope_note_zh": "requirements[].gate_ids 只登记「该闸门失效会使这一条的证据失效」的闸门；对全部 23 条同样成立、无法按条目区分的包级闸门登记在 package_level_gates。闸门定义与判定规则见 visual/assets/governance/package-integrity-gates.json。",
   "gate_scope_note_en": "requirements[].gate_ids lists only the gates whose failure would invalidate that row's evidence; gates that hold identically for all 23 rows are recorded in package_level_gates. Definitions and decision rules live in visual/assets/governance/package-integrity-gates.json.",
-  "cross_reference_derivation_zh": "standard_ids、geometry_feature_ids、scenario_ids、gate_ids、report_sections_en、visual_sections_en 六个字段由包内文件推导，不手工填写：standard_ids 取 standard_matrix.json 中 proposal_sections 与本条 report_sections 相交的标准，外加公告条款对 PROJECT-OFFICIAL-ANNOUNCEMENT、智能体任务对 PROJECT-AGENT-OPEN-CALL-TASKBOOK 的定义性挂接；geometry_feature_ids 取本条所属章节正文中 [data:geometry/<层>#<ID>] 命中且该层已在 geojson_layers 声明的要素；scenario_ids 取同一章节正文出现的 SCN 编号；report_sections_en 与 visual_sections_en 按中英标题的同序位置映射，不是机器翻译。title_en 为本包自译，组织方仅发布中文条款标题。",
+  "cross_reference_derivation_zh": "本表各字段的来源分两类。此前的说明写成「六个字段全部由包内文件推导，不手工填写」，2026-08-22 逐字段复算后确认该说法对其中三个字段不成立，现按实测改写。\n\n**（一）机械推导，可逐条复算。** `standard_ids` 的下界由规则确定：取 `standard_matrix.json` 中 `proposal_sections` 与本条 `report_sections` 有交集的标准。**复算发现该规则此前只跑了一部分**——8 个标准共 26 处应得引用缺失，其中 `WCAG-CONTRAST` 按规则应挂 7 条、实际挂 0 条（全包唯一无人引用的标准），已按规则补齐，现 10 条标准全部被至少一条要求引用。补齐后 `standard_ids` 声明总数 **112** ＝ 规则导出 **92** ＋ 定义性挂接 **12** ＋ 实质相关性挂接 **8**，三段可分别复算。① 定义性挂接 12 处，落在两个项目级标准上——公告条款挂 `PROJECT-OFFICIAL-ANNOUNCEMENT`（声明 19、规则导出 10、额外 9）、智能体任务挂 `PROJECT-AGENT-OPEN-CALL-TASKBOOK`（声明 14、规则导出 11、额外 3），二者按定义覆盖全部相关条目，因此声明次数多于交集导出的次数；② 实质相关性挂接 8 处，全部落在 `agent.4`／`agent.5`／`agent.6` 上——这三条智能体任务的章节（公共空间与风貌、文化叙事与导视、长期运营与国际传播）与任一标准的 `proposal_sections` 均无交集，但无障碍环境建设法、适老化智能技术方案、生成式 AI 暂行办法与建筑设计深度规定对这些章节有实质约束，故按相关性登记。**判据：规则导出的标准必须全部在位（可复算），额外挂接必须能指出实质约束理由。**\n\n`report_sections_en` 与 `visual_sections_en` 按中英标题的同序位置映射，不是机器翻译；中英正文各 65 个标题逐行对齐，映射可用标题序号逐条核对（已复算：全部同序）。\n\n**（二）人工登记的实质关联，不由正文标记推导。** `geometry_feature_ids` 登记本条要求在空间上实际落到的要素，取自本条 `geojson_layers` 声明的图层，每个 id 都能在对应 geojson 的 `properties.id` 解析。**它不等于「正文里带 `[data:]` 标记的要素」**——全集 18 个要素中，8 个在正文以 `[data:geometry/<层>#<ID>]` 显式标记（BLDG-001、LANDMARK-01、LANDMARK-03、LU-001、PHASE-001、PROV-KEY-001、ROAD-001、SCN-01），4 个仅以裸编号出现（BLDG-017、LANDMARK-02、LANDMARK-04、SCN-11），6 个只出现在结构化文件与图件中、正文未提（GREEN-01、LU-002、LU-005、PROV-KEY-002、PROV-KEY-003、PUBLIC-01）。`scenario_ids` 同理：登记本条要求实质涉及的场景，88 处引用中有 25 处的编号并不出现在该条自己的 `report_sections` 正文里（例如 1.3.2 的六个章节共 276 行，一个 `SCN-` 都没有），所以它是关联登记而不是正文抽取。十二个场景编号在 `proposal.md` 全文均有出现，且与 `geometry/public_space.geojson` 的 12 个 `layer=SCENARIO_NODE` 要素一一对应。\n\n`title_en` 为本包自译，组织方仅发布中文条款标题。",
   "self_check_expectations": [
     {
       "expectation_id": "DETERMINISTIC_VALIDATION",
@@ -1943,10 +1969,10 @@
     },
     {
       "expectation_id": "GOVERNANCE_SCHEMA_VALIDATION",
-      "assertion_zh": "治理类结构化文件都能通过自带 schema 的校验，不是自由格式 JSON。",
+      "assertion_zh": "治理类结构化文件都能通过自带 schema 的校验，不是自由格式 JSON。**这条断言 2026-08-22 之前并不成立，是那天真正重跑校验报告（而不是只改时间戳）才发现的**：`measurement-protocol.schema.json` 的 `$defs/protocol` 只声明 17 个属性并带 `additionalProperties: false`，而实例每条已用 26 个（9 个英文对照 ＋ `aggregation_method` 一对），顶层还多一个 `aggregation_method_notice`——实例有 17 处校验错，而报告里 `MEASUREMENT_PROTOCOL_INSTANCE_VALIDATION` 一直记着 `passed: true`，**这个 pass 从写下起就不可能为真**。补齐属性后又暴露 `protocols[12]／[13]` 的 `data_source_type` 用了不在枚举内的 `operational_record`；两项实际都从双联交接账的交接与拒收记录里量，故按实际改为新增的 `handover_ledger_record`，而不是把含糊值塞进枚举。两处均已修，现 8 项检查全部通过。",
       "evidence_in_package": "visual/assets/governance/validation-report.json",
       "covered_by_self_check_id": "PROFESSIONAL_EVIDENCE",
-      "independent_verification_zh": "该报告记录每个治理文件对应的 schema 与校验结果，可用 jsonschema 重跑。"
+      "independent_verification_zh": "该报告记录每个治理文件对应的 schema 与校验结果，可用 jsonschema 重跑：`python3 -c \"import json,jsonschema;G='visual/assets/governance';S=json.load(open(f'{G}/measurement-protocol.schema.json'));I=json.load(open(f'{G}/measurement-protocol.json'));print(len(list(jsonschema.Draft202012Validator(S).iter_errors(I))))\"` 应输出 0。报告 2026-08-22 由 7 项扩到 **8 项**：新增 `SHIFT_LEDGER_SUITE_INSTANCE_VALIDATION`，把**十二条随包交接账**逐条纳入校验——此前本报告只校验单个例样，十二条账从未进过这份报告，而 `refusal_reasons` 收紧为枚举与新增的「处置 × 智能层」兼容表，正要靠逐条校验十二条账才算真的成立。报告的 `history` 字段逐条记着这次重跑查出什么。"
     },
     {
       "expectation_id": "DRAWING_VERSION_CONSISTENCY",
@@ -1964,24 +1990,24 @@
     },
     {
       "expectation_id": "PROTOCOL_RECOMPUTATION",
-      "assertion_zh": "96 条规则检查与 48 项接管断言可由随包脚本当场重算，且与随包发布结果逐条一致。规则谓词按 rule-check-report.json 的规则表述独立重写，不是原生成脚本的搬运，因此一致构成独立复现。另有一道规模守卫：12 账／96 规则／48 断言的规模写死在脚本里，条数变少即退出 1——夹具被删几条时「逐条一致」仍会成立，这道守卫专防那种情形。",
+      "assertion_zh": "96 条规则检查与 48 项接管断言可由随包脚本当场重算，且与随包发布结果逐条一致。规则谓词按 rule-check-report.json 的规则表述独立重写，不是原生成脚本的搬运，因此一致构成独立复现。另有一道规模守卫：12 账／96 规则／48 断言的规模写死在脚本里，条数变少即退出 1——夹具被删几条时「逐条一致」仍会成立，这道守卫专防那种情形。　另有两项 2026-08-21 加：**schema 枚举一致性**——按 `shift-ledger.schema.json` 的枚举定义，把 12 条账里全部受枚举约束的字段实例逐个校验，越界 0 个（当时 17 个枚举定义／300 个实例；2026-08-22 `refusal_reasons` 收紧为枚举后为 **18 个／360 个**）；以及一条 **fail-closed 结构断言**——`smart_layer_state_after_decision` 的枚举必须逐位等于 `[\"off\",\"sandbox_preview\",\"limited_trial\"]`，**该枚举没有任何表示完全启用的取值**，所以「智能层不得越过有限试用」是结构性不可能而不是承诺；往枚举里加更高状态即退出 1。枚举字段数与实例数同样写死在脚本里参与退出码（现为 18 与 360）。**加这两项的起因是一次自己犯的错**：为做模型影子测试手造扰动时用了 `assigned`／`attested`／`official_and_field_confirmed` 三个不在枚举里的取值，而当时包内无一处能拦下。　另加一条**回滚证据一致性**：execution_state 一旦是 observed_pass／observed_fail，evidence_pointer 与 executed_at 必须非空，12 条账逐条检查、条数写死参与退出码。这条的起因是模型影子测试——schema 原本不禁止「声称通过却无证据指针」，见 model-shadow-run.json#SHADOW-F2。",
       "evidence_in_package": "visual/assets/governance/protocol-check-runner.js",
       "covered_by_self_check_id": null,
-      "independent_verification_zh": "`node visual/assets/governance/protocol-check-runner.js` 输出「规则检查 96/96」「接管断言 48/48」且退出码 0；任何一条不一致即退出 1 并打印发布值与重算值。**该脚本不在 CI 或 preflight 中被调用**（投稿 PR 不得改 scripts/ 与 .github/），须手动执行。"
+      "independent_verification_zh": "`node visual/assets/governance/protocol-check-runner.js` 输出「规则检查 96/96」「接管断言 48/48」且退出码 0；任何一条不一致即退出 1 并打印发布值与重算值。**该脚本不在 CI 或 preflight 中被调用**（投稿 PR 不得改 scripts/ 与 .github/），须手动执行。　枚举一致性与 fail-closed 断言的输出为「schema 枚举取值 360/360 合法（18 个枚举字段）」与「fail-closed 上限 未被改动」；2026-08-22 另增一行「拒收理由码 5/5 与目录一致；兼容表 4 行／7 对，十二条账逐条符合」。"
     },
     {
       "expectation_id": "CLAIM_AUDIT",
-      "assertion_zh": "正文里可复算的数值与结构声明共 54 项，逐条与结构化文件一致。含正文↔数据的逐行核对（落点表每一行的类型与东西侧）、断面表算术（含「容器子段不得重复相加」）、三个矩阵的交叉引用完整性，以及一项断言 ID 全集无缺项的元检查 Z1。**Z1 自己也在那份 54 项全集内，且退出码另由一道不走登记函数的结构性守卫决定**——一条检查查不到自己被删掉，所以守卫必须站在检查清单之外。",
+      "assertion_zh": "正文里可复算的数值与结构声明共 60 项，逐条与结构化文件一致。含正文↔数据的逐行核对（落点表每一行的类型与东西侧）、断面表算术（含「容器子段不得重复相加」）、三个矩阵的交叉引用完整性，以及一项断言 ID 全集无缺项的元检查 Z1。**Z1 自己也在那份 60 项全集内，且退出码另由一道不走登记函数的结构性守卫决定**——一条检查查不到自己被删掉，所以守卫必须站在检查清单之外。　2026-08-22 另增 G4：四套图纸的每个 ToUnicode CMap 都必须是恒等 bfrange——用 Node 内置 zlib 解开 Flate 压缩的流后逐个检查，防止 v1.11 那种 code→字形索引错映被后续总装静默带回（本包真发生过一次：修好后又被覆盖）。　2026-08-22 另增 P11：四季活动只有一套名称——《年度活动体系》表恰 4 行、四个名字在正文另有引用、三套并存时的退役名（开源交班／维护者之夜／夜班维护者之夜／年度复盘班）零出现。　2026-08-22 另增 J2：核本文件自陈的 `standard_ids` 推导规则——下界＝本条 `report_sections` 与 `standard_matrix.json` 的 `proposal_sections` 之交集。复算发现该规则此前只跑了一部分，8 个标准共 26 处应得引用缺失（`WCAG-CONTRAST` 应挂 7 条实挂 0 条，是全包唯一无人引用的标准），已补齐；三段分解 112 ＝ 92 ＋ 12 ＋ 8 的规模写死在脚本里。　2026-08-22 增 P10：落点表垂距一列的四个统计量（区间／平均／中位／合计）与正文摘要一致，**中位按偶数个取值取第 10、11 项之均值**——此前摘要句写「中位 337」是把第 11 项本身当成中位数，而当时只有区间被钉住。",
       "evidence_in_package": "visual/assets/governance/claims-audit.js",
       "covered_by_self_check_id": null,
-      "independent_verification_zh": "`node visual/assets/governance/claims-audit.js` 输出「49/49 条声明与包内数据一致」且退出码 0。阴性测试已做成随包脚本，不再是自述：见同目录 audit-selftest.js（AUDITOR_SELFTEST 一条）。**该脚本不在 CI 或 preflight 中被调用**，须手动执行。"
+      "independent_verification_zh": "`node visual/assets/governance/claims-audit.js` 输出「60/60 条声明与包内数据一致」且退出码 0。阴性测试已做成随包脚本，不再是自述：见同目录 audit-selftest.js（AUDITOR_SELFTEST 一条）。**该脚本不在 CI 或 preflight 中被调用**，须手动执行。"
     },
     {
       "expectation_id": "AUDITOR_SELFTEST",
-      "assertion_zh": "上面两条自检脚本本身经过回归测试：注入已知缺陷时它们必须退出 1 并报出指定的那一项。**加这一条的理由是本包两次栽在「自检只会通过」上**：一次条件式 add() 让两项检查在正文措辞改动后从清单里消失、脚本报 47/47 通过；一次元检查的 ID 全集不含元检查自己、删掉它后脚本报 48/48 通过。两次都是「检查悄悄没跑」而非「检查判错」，所以判据不能与被测对象同处一文件。共 20 例：2 例正向（含规模与 ID 序列须与本脚本独立记录的那份全集逐位相同）＋ 18 例阴性。",
+      "assertion_zh": "上面两条自检脚本本身经过回归测试：注入已知缺陷时它们必须退出 1 并报出指定的那一项。**加这一条的理由是本包两次栽在「自检只会通过」上**：一次条件式 add() 让两项检查在正文措辞改动后从清单里消失、脚本报 47/47 通过；一次元检查的 ID 全集不含元检查自己、删掉它后脚本报 48/48 通过。两次都是「检查悄悄没跑」而非「检查判错」，所以判据不能与被测对象同处一文件。共 20 例：2 例正向（含规模与 ID 序列须与本脚本独立记录的那份全集逐位相同）＋ 18 例阴性。　2026-08-21 增三例阴性，打新加的枚举校验与 fail-closed 断言：夹具里把 `assignment_state` 写成不在枚举里的 `assigned` 须报枚举越界；schema 里给 `smart_layer_state_after_decision` 加 `fully_enabled` 须报 fail-closed 断言失败；删掉 schema 里任一枚举定义须报枚举规模不符。　再增一例：夹具里把回滚演练改成 observed_pass 却把 evidence_pointer 留空须报回滚证据不一致。　再增一例：把摘要句的垂距中位改回 337 须报 P10。",
       "evidence_in_package": "visual/assets/governance/audit-selftest.js",
       "covered_by_self_check_id": null,
-      "independent_verification_zh": "`node visual/assets/governance/audit-selftest.js` 输出「20/20 例通过（2 正向 ＋ 18 阴性）」且退出码 0；任何一例未通过即退出 1 并打印该例期望与实得（例如「仍以退出码 0 通过」）。缺陷注入一律写进系统临时目录，**包内文件不被改动**，跑完即删。**该脚本同样不在 CI 或 preflight 中被调用**，须手动执行；已就此向上游提 Issue #3571 建议 participant_preflight.py 支持运行本节声明的自检命令。"
+      "independent_verification_zh": "`node visual/assets/governance/audit-selftest.js` 输出「36/36 例通过（2 正向 ＋ 34 阴性）」且退出码 0；任何一例未通过即退出 1 并打印该例期望与实得（例如「仍以退出码 0 通过」）。缺陷注入一律写进系统临时目录，**包内文件不被改动**，跑完即删。**该脚本同样不在 CI 或 preflight 中被调用**，须手动执行；已就此向上游提 Issue #3571 建议 participant_preflight.py 支持运行本节声明的自检命令。"
     }
   ],
   "self_check_expectations_note_zh": "三个矩阵的 self_check_ids 引用的就是本表的 expectation_id。此前这些标签只在矩阵里出现、包内没有定义，而本包的 G01 闸门声称「三个矩阵里的每一条引用都必须能在包内解析到实体」——该自陈对其中 16 个标签（81 处引用）并不成立。本表把它们逐条定义在矩阵自身，因此引用与定义同文件可解析。covered_by_self_check_id 只取 self_check.json 中真实存在的四个 check_id。",

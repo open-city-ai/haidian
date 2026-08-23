@@ -1,0 +1,412 @@
+{
+  "schema_version": "0.3.0",
+  "protocol": "switchback-protocol",
+  "title_zh": "折返协议——人字线场景卡统一运营合约(机器可读)",
+  "title_en": "The Switchback Protocols — machine-readable operating contract for all RENLINE scenario cards",
+  "license": {
+    "spdx_id": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "scope": "protocol_spec_only",
+    "scope_note_zh": "许可仅覆盖折返协议规范本身(字段结构/枚举/语义,见 open-city-ai/haidian Issue #1119);不包含本提交包的叙事、图面、几何与数据,后者仍为 COMMUNITY-DISPLAY-ONLY。",
+    "scope_note_en": "Covers the Switchback Protocol specification itself (field structure, enums, semantics; see open-city-ai/haidian Issue #1119). Does NOT cover this submission package's narrative, figures, geometry or data, which remain COMMUNITY-DISPLAY-ONLY.",
+    "attribution_required": true,
+    "attribution_text": "Switchback Protocol by chucky1102 / RENLINE (open-city-ai/haidian Issue #1119)"
+  },
+  "status_enum": {
+    "green": "常态运行 normal operation",
+    "yellow": "受控试点 controlled pilot (gates: virtual_evaluation -> controlled_site -> limited_real_street)",
+    "red": "折返 switchback: revert to last stable state with public explanation",
+    "green_candidate": "预备态(非运行状态):协议字段齐备、待核准;低风险场景核准后可直接转绿,涉试点门槛的须先入黄 pre-operational candidate — fields complete, pending approval; low-risk cards may go green on approval, gated cards enter yellow first"
+  },
+  "field_semantics": {
+    "takeover_max_minutes": {
+      "number": "真人接管时限设计目标值(分钟) design-target ceiling in minutes for human takeover",
+      "null": "空值须由同卡 takeover_status 字段消歧 null must be disambiguated by the card's takeover_status field"
+    },
+    "takeover_status": {
+      "not_applicable": "无自主运行闭环或非实时服务,接管概念不适用 no autonomous/real-time operating loop; the takeover concept does not apply",
+      "unknown": "接管适用但尚无实测基线,一期实测后定值并公开 takeover applies but no measured baseline yet; set from Phase-1 measurements, then published"
+    },
+    "anchor": {
+      "anchor_type=geojson_ref": "anchor_ref 给出 file#feature_id,可对包内几何做空间校验 anchor_ref carries file#feature_id, spatially verifiable against package geometry",
+      "anchor_type=text_only": "仅文字描述,不得当作几何证据使用 textual description only; must not be treated as geometry evidence"
+    }
+  },
+  "interop": {
+    "purpose_zh": "声明折返协议与相邻开放标准的对照关系、唯一互转轴与已知不对称,供同时采用两套标准的方案做机器校验。本块为附加层,不改变任何既有字段语义;不做互操作的读者可整块忽略。",
+    "purpose_en": "Declares how this protocol crosswalks to adjacent open standards, names the conversion axis, and registers known asymmetries, so packages adopting both can machine-check the pairing. Additive layer; no existing field semantics change.",
+    "crosswalk_axis": {
+      "external_name": "gate_id",
+      "resolves_to_local_field": "gate",
+      "do_not_confuse_with": "ascent_grade",
+      "note_zh": "外部接口对照(Issue #1119, lqqk7, 2026-08-13)把互转轴称作 gate_id,并假定该字段位于本协议卡片层。更正:本协议卡片层没有 gate_id,而有两个不同字段——`gate` 是卡片当前所处的验证阶梯位置(virtual_evaluation / controlled_site / limited_real_street),承担等级排序,它才是互转轴;`ascent_grade`(G0-G3)是该卡**已经达成**的证据等级,与外部 gate_id 共用 G0-G3 值域但语义不同(达成 vs 绑定)。把 ascent_grade 直接当 gate_id 用,会允许一张只有 G0 纸面证据的卡片认领 L3 开放等级,即 R4「纸面证据不得冒充现场证据」在互操作层的同型违例。规则 R5 即为此而设。",
+      "note_en": "The external interface comparison (Issue #1119, lqqk7, 2026-08-13) named the conversion axis gate_id and assumed that field sits on this protocol's card layer. Correction: there is no gate_id on the card layer. There are two distinct fields. `gate` is the card's current position on the verification ladder (virtual_evaluation / controlled_site / limited_real_street) and carries level ordering — that is the conversion axis. `ascent_grade` (G0-G3) is the evidence grade the card has ALREADY ATTAINED; it shares the G0-G3 value space with the external gate_id but not its meaning (attainment vs binding). Equating ascent_grade with gate_id would let a card holding only G0 paper evidence claim open level L3 — the interop-layer twin of an R4 violation. Rule R5 exists to reject exactly that."
+    },
+    "status_crosswalk": {
+      "direction_zh": "单向可算:给定外部 (open_level_id, gate_id) 可唯一推出本协议三色;反向 yellow 至少覆盖 L1-L3,须补 `gate` 才能定位到具体一级。",
+      "direction_en": "One-way computable: an external (open_level_id, gate_id) pair maps to exactly one colour here; in reverse, yellow spans L1-L3 and needs `gate` to disambiguate.",
+      "rows": [
+        {
+          "status": "green_candidate",
+          "gate": null,
+          "open_level_id": "L0",
+          "binds_grade": "G0",
+          "note": "pre-operational: fields complete, pending approval"
+        },
+        {
+          "status": "yellow",
+          "gate": "virtual_evaluation",
+          "open_level_id": "L1",
+          "binds_grade": "G1",
+          "note": "reversible prototype"
+        },
+        {
+          "status": "yellow",
+          "gate": "controlled_site",
+          "open_level_id": "L2",
+          "binds_grade": "G2",
+          "note": "closed paired testing"
+        },
+        {
+          "status": "yellow",
+          "gate": "limited_real_street",
+          "open_level_id": "L3",
+          "binds_grade": "G3",
+          "note": "limited open operation"
+        },
+        {
+          "status": "green",
+          "gate": null,
+          "open_level_id": "L4",
+          "binds_grade": "G3",
+          "note": "adoption and normal operation; L3 and L4 bind the same grade and are separated by entry and stop conditions, not by gate number"
+        },
+        {
+          "status": "red",
+          "gate": null,
+          "open_level_id": null,
+          "binds_grade": null,
+          "note": "switchback is a downgrade, not a level; corresponds to downgrade_allowed=true on the external side"
+        }
+      ]
+    },
+    "known_asymmetries": [
+      {
+        "id": "IA-1",
+        "zh": "`expiry_date`(本协议留痕条目必填)在 SEB 侧无对应字段。两侧同用时须由采用方自行补齐,本协议不代为假定。",
+        "en": "`expiry_date`, required on this protocol's ledger entries, has no counterpart on the SEB side. Adopters using both must supply it themselves; this protocol does not assume one."
+      },
+      {
+        "id": "IA-2",
+        "zh": "本协议留痕登记的是**事件**(near_miss / switchback / decommission),SEB 变更回执登记的是**判据变更与被删样本**。二者是同一份档案的两列,不是两份档案,不得互相替代。",
+        "en": "This protocol's ledger registers EVENTS (near_miss / switchback / decommission); SEB change receipts register CRITERION CHANGES and dropped samples. They are two columns of one archive, not two archives, and must not substitute for each other."
+      },
+      {
+        "id": "IA-3",
+        "zh": "L3 与 L4 绑定同一 G3,差别由准入与停止条件划出,不由闸门编号划出。因此 gate_id 单独不足以区分 L3/L4,须同时读 status。",
+        "en": "L3 and L4 bind the same G3; they are separated by entry and stop conditions, not by gate number. gate_id alone cannot distinguish L3 from L4 — status must be read alongside it."
+      }
+    ],
+    "registered_baselines": [
+      {
+        "id": "SEB",
+        "name_zh": "服务等价基准 Service Equivalence Baseline",
+        "publisher": "lqqk7 / 万感京张 EVERY SENSE JING-ZHANG",
+        "registry": "open-city-ai/haidian Issue #2549",
+        "license": "CC-BY-SA-4.0",
+        "relation": "adjacent_layer",
+        "relation_note_zh": "不在同一层,可在同一张卡片上共存:本协议是运行期状态机,SEB 是开放等级阶梯与判据集,字段不重叠、语义不冲突。本条是**接口对照登记,不是采用登记**——本包未采用任何 SEB 字段,亦未认领任何 SEB 开放等级。",
+        "relation_note_en": "Not the same layer; the two can coexist on one card. This protocol is a run-time state machine; SEB is an open-level ladder and criteria set. Fields do not overlap and semantics do not conflict. This is an INTERFACE REGISTRATION, NOT AN ADOPTION — this package adopts no SEB field and claims no SEB open level.",
+        "crosswalk_verified_against": "the structured gate_binding of seb-spec as cited in the interface comparison of 2026-08-13; SEB has since advanced to v0.5.0 and this crosswalk has not been re-verified against the later revisions",
+        "self_declaration": "none — no card in this package declares an interop mapping; the crosswalk table and rule R5 are supplied for adopters who do"
+      }
+    ],
+    "boundary_zh": "对照与校验通过只证明两套标准之间的字段映射自洽,不证明任一方案的现场成效、批准或任何政府承诺,也不表示两套标准的发布方之间存在合作关系。",
+    "boundary_en": "A passing crosswalk validation certifies only that the field mapping between the two standards is self-consistent. It proves no field performance, approval or government commitment for either package, and implies no partnership between the two publishers."
+  },
+  "belt_wide_defaults": {
+    "human_takeover_max_minutes": 5,
+    "non_smart_fallback": "15-minute-walk ordinary-equivalent service path; non-smartphone and accessible paths designed in parallel",
+    "appeal_acknowledge_working_days": 1,
+    "appeal_resolve_working_days": 7,
+    "public_review_cycle_days": 90,
+    "review_options": [
+      "renew",
+      "reduce",
+      "pause",
+      "switch_back"
+    ],
+    "unreviewed_auto_red_after_cycles": 2,
+    "ledger": "Switchback Ledger entries published at quarterly Switchback Days as the counterpart of the honor wall",
+    "disclaimer_zh": "全部时限为设计目标值,非政府承诺;正式时限以运营协议为准。所有场景为概念建议,不表述为已批准运营。",
+    "disclaimer_en": "All time limits are design targets, not government commitments; formal limits per operating agreements. All scenarios are conceptual suggestions, never described as approved operations.",
+    "switchback_trigger": "one safety-grade event requiring human takeover, OR 90-day complaint/takeover-failure rate above threshold; thresholds set from Phase-1 measured baselines, then published (no fictitious pre-filled numbers)",
+    "recovery_condition": "two consecutive clean review cycles + one yellow observation period before returning to green; switchback judgement decides reversion only, not effectiveness"
+  },
+  "roles_model": {
+    "accountable_operator": "single named operator per pilot (to be named at pilot approval; null until then)",
+    "safety_officer": "may pause on site",
+    "data_steward": "data-minimization checklist owner",
+    "public_redress": "appeal intake and human arbitration",
+    "independent_reviewer": "required for G4/G5 ascent"
+  },
+  "cards": [
+    {
+      "id": "T1",
+      "name_zh": "绿脊自动接驳与无人配送走廊",
+      "name_en": "Autonomous shuttle & unmanned delivery corridor",
+      "type": "industry_test",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "greenway lane K2-K8",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-SPINE",
+      "takeover_max_minutes": 5,
+      "fallback": "ordinary bus/walk path parallel to lane; delivery reverts to human courier",
+      "data_boundary": "no facial capture; anonymized trajectories",
+      "human_review": "safety steward on board / remote supervision; incident reports public",
+      "ascent_grade": "G1",
+      "next_gate_needs": "controlled-site trial report + insurance filing",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "T2",
+      "name_zh": "具身机器人开放测试场",
+      "name_en": "Embodied-robot open proving ground",
+      "type": "industry_test",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "enclosed site, Zhongzhiyuan south",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-GW",
+      "takeover_max_minutes": 5,
+      "fallback": "physical enclosure; manual e-stop",
+      "data_boundary": "in-enclosure testing; livestreams blurred",
+      "human_review": "ethics-board admission; per-session safety sign-off",
+      "ascent_grade": "G0",
+      "next_gate_needs": "ethics board charter + site availability",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "T3",
+      "name_zh": "市政设施AI体检",
+      "name_en": "Municipal-asset AI health check",
+      "type": "industry_test",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "Dazhongsi existing blocks",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-AW",
+      "takeover_max_minutes": 5,
+      "fallback": "routine manual inspection continues in parallel",
+      "data_boundary": "asset-state data only; no personal data",
+      "human_review": "work orders signed by humans",
+      "ascent_grade": "G1",
+      "next_gate_needs": "municipal operator partnership",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C4",
+      "name_zh": "K标AR历史层",
+      "name_en": "K-mark AR history layer",
+      "type": "culture",
+      "status": "green_candidate",
+      "anchor": "K0-K9 milestones",
+      "anchor_type": "text_only",
+      "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
+      "fallback": "physical signage tells the same story without a phone",
+      "data_boundary": "on-device rendering; no image upload",
+      "human_review": "historian-vetted content",
+      "ascent_grade": "G1",
+      "next_gate_needs": "content authorization from archives",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C5",
+      "name_zh": "开发者街面",
+      "name_en": "Developer streetfront",
+      "type": "ecosystem",
+      "status": "green_candidate",
+      "anchor": "Origin Community frontages",
+      "anchor_type": "text_only",
+      "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
+      "fallback": "walk-in desk booking at human counter",
+      "data_boundary": "real-name booking, anonymous display; aggregated business data public",
+      "human_review": "operator curation",
+      "ascent_grade": "G0",
+      "next_gate_needs": "frontage conversion pilot block",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C6",
+      "name_zh": "多语言AI导览与无障碍副驾",
+      "name_en": "Multilingual guide & accessibility copilot",
+      "type": "public_service",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "belt-wide greenway and stations",
+      "anchor_type": "text_only",
+      "takeover_max_minutes": 5,
+      "fallback": "human info desk; printed multilingual maps",
+      "data_boundary": "on-device speech; explainable routing",
+      "human_review": "human service fallback staffed",
+      "ascent_grade": "G0",
+      "next_gate_needs": "accessibility co-design review",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C7",
+      "name_zh": "社区养老AI陪伴与基层诊疗辅助",
+      "name_en": "Elder-care companion & primary-care assistant",
+      "type": "livelihood",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "Beixiaguan renewal area",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-BE",
+      "takeover_max_minutes": 5,
+      "fallback": "community worker home visit; existing clinic path unchanged",
+      "data_boundary": "informed consent; minimal health data; emergency-only reporting",
+      "human_review": "AI gives hints only, physicians decide; family + social-worker double review",
+      "ascent_grade": "G0",
+      "next_gate_needs": "clinical governance sign-off",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C8",
+      "name_zh": "校企双向实习智能体匹配",
+      "name_en": "Campus-industry internship matching",
+      "type": "academia_industry",
+      "status": "green_candidate",
+      "anchor": "Xueyuan Rd open belt",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-FW",
+      "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
+      "fallback": "regular career-fair channel unchanged",
+      "data_boundary": "students own resumes; explainable matches",
+      "human_review": "humans decide hiring",
+      "ascent_grade": "G0",
+      "next_gate_needs": "two pilot universities + consent flows",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C9",
+      "name_zh": "夜间经济智能治理",
+      "name_en": "Night-economy governance",
+      "type": "governance",
+      "status": "yellow",
+      "gate": "virtual_evaluation",
+      "anchor": "Wudaokou consumption area",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-EE",
+      "takeover_max_minutes": 5,
+      "fallback": "existing district joint-meeting mechanism",
+      "data_boundary": "aggregated footfall and noise only",
+      "human_review": "measures via district consultation",
+      "ascent_grade": "G1",
+      "next_gate_needs": "merchant-resident council formation",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C10",
+      "name_zh": "智能体市集",
+      "name_en": "Agent marketplace",
+      "type": "ecosystem",
+      "status": "green_candidate",
+      "anchor": "Origin Plaza (K5)",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/public_space.geojson#PS-PLZ-3",
+      "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
+      "fallback": "offline market stalls operate without the platform",
+      "data_boundary": "listed agents registered and reviewed",
+      "human_review": "disputes arbitrated by humans",
+      "ascent_grade": "G0",
+      "next_gate_needs": "listing review charter",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C11",
+      "name_zh": "生态传感与鸟类友好照明",
+      "name_en": "Eco sensing & bird-friendly lighting",
+      "type": "ecology",
+      "status": "green_candidate",
+      "anchor": "full spine",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-SPINE",
+      "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
+      "fallback": "standard park lighting profile",
+      "data_boundary": "environmental sensing only",
+      "human_review": "lighting strategy peer-reviewed by ecologists",
+      "ascent_grade": "G1",
+      "next_gate_needs": "seasonal baseline monitoring",
+      "evidence_status": "design_target"
+    },
+    {
+      "id": "C12",
+      "name_zh": "AI编钟共创",
+      "name_en": "AI chime co-creation",
+      "type": "culture",
+      "status": "green_candidate",
+      "anchor": "Dazhongsi cultural area",
+      "anchor_type": "geojson_ref",
+      "anchor_ref": "geometry/land_use.geojson#LU-AE",
+      "takeover_max_minutes": null,
+      "takeover_status": "not_applicable",
+      "fallback": "museum's ordinary exhibition unchanged",
+      "data_boundary": "bell samples require museum authorization; AI participation labeled",
+      "human_review": "museum curatorial review",
+      "ascent_grade": "G0",
+      "next_gate_needs": "museum authorization agreement",
+      "evidence_status": "design_target"
+    }
+  ],
+  "acknowledgment": "Machine-readable operating-contract practice acknowledges 147228/jingzhang-open-pulse's operational-assurance-contract.json; independently translated into RENLINE terms; no peer text reused. Trigger/recovery criteria acknowledge jiangmuran/jingzhang-leveling-line and phtphtpht/jingzhang-near-miss-line; ledger tiers acknowledge JIQINGFENG0818/jingzhang-gauge and deepcsv/jingzhang-with-credits; all independently translated. v0.2 compatibility fixes respond to 147228's machine-readability review and the maintainer's guidance in Issue #1119, and to anchor-typing findings surfaced by loml13/switchback-line's adoption package.",
+  "note": "This file is a presentation-layer companion to proposal.md; authoritative narrative and citations live in the proposal, matrices and metrics.json.",
+  "ledger_tiers": {
+    "near_miss": "no harm caused but credible harm path revealed; pre-harm signals enter the ledger",
+    "switchback": "reverted scenarios/projects with public explanation",
+    "decommission": "permanently retired assets incl. dismantling method and data destruction"
+  },
+  "ledger_disciplines": {
+    "write_back": "every review-born design change must be written back into its scenario card",
+    "auto_review_queue": "model update / source withdrawal / authorization expiry -> dependent scenarios auto-enqueue for review; high-risk services degraded to human operation until cleared",
+    "entry_fields": [
+      "stable_citable_id",
+      "expiry_date",
+      "named_reviewer"
+    ]
+  },
+  "evidence_status_enum": {
+    "known": "recomputable in EPSG:4548",
+    "design_target": "design target, not a government commitment",
+    "unknown": "officially unpublished, unclaimed",
+    "blocked": "requires tenure/heritage/engineering prerequisites"
+  },
+  "migration": {
+    "from_version": "0.2.0",
+    "to_version": "0.3.0",
+    "changes": [
+      "top-level interop block added: conversion axis, status crosswalk table, known asymmetries, registered adjacent baselines, boundary",
+      "conversion axis named precisely: the external gate_id resolves to the local field `gate`, NOT to `ascent_grade` (attainment is not binding)",
+      "optional per-card interop object ({baseline, open_level_id}) accepted; absent from every card in this package by design",
+      "contract rule R5 added: a declared open_level_id must match a status/gate crosswalk row AND be backed by an ascent_grade of at least that level's bound grade"
+    ],
+    "crosswalk": "All v0.2 fields are unchanged and every v0.2 file stays valid under v0.3. The interop block and the per-card interop object are both optional; a consumer that ignores them reads a v0.3 file exactly as it read v0.2. Adopters who declare an interop mapping thereby accept rule R5. Adopters keep their own sources, authorizations and field unknowns; template targets must never be presented as measured values or official commitments.",
+    "previous_migration": {
+      "from_version": "0.1.0",
+      "to_version": "0.2.0",
+      "changes": [
+        "file-level machine-readable license/attribution block added (CC-BY-4.0, protocol spec only)",
+        "green_candidate formally declared in status_enum as a pre-operational readiness state",
+        "cards with takeover_max_minutes=null now carry takeover_status (not_applicable | unknown)",
+        "anchors typed via anchor_type (geojson_ref | text_only) with anchor_ref for the former; anchor text retained unchanged for backward compatibility"
+      ],
+      "crosswalk": "All v0.1 fields are unchanged; new fields are additive. Consumers reading v0.1-era files should default a missing anchor_type to text_only, and treat takeover_max_minutes=null without takeover_status as unknown (conservative default). Adopters keep their own sources, authorizations and field unknowns; template targets must never be presented as measured values or official commitments."
+    }
+  }
+}

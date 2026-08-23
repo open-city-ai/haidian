@@ -1,0 +1,75 @@
+{
+  "schema_version": "2.0.0",
+  "status": "conceptual_pre_authorisation_plan",
+  "authority_boundary": "Suggested delivery sequence and RACI only; not an approved programme, budget, procurement, assignment of government duty, or construction schedule.",
+  "work_packages": [
+    {
+      "id": "D01-15",
+      "name_zh": "资料锁定",
+      "action": "evidence_lock",
+      "outputs": ["正式边界/权属/管线/文保资料缺口登记", "三处重点区现场踏勘底图", "数据责任与版权登记"],
+      "exit": "授权边界不清、资料涉密或无法建立普通人行路径"
+    },
+    {
+      "id": "D16-30",
+      "name_zh": "同任务基线",
+      "action": "listen_and_measure",
+      "outputs": ["纸质/现场/无设备意见日志", "12 场景同任务人工基线", "雨夜与无障碍冲突清单"],
+      "exit": "参与过程排除无设备、老年或无障碍用户"
+    },
+    {
+      "id": "D31-55",
+      "name_zh": "1:1 可逆样机",
+      "action": "mock_up",
+      "outputs": ["一段 8.4 m 参考断面样机", "2.8 m 人行脊与侧置让路湾", "断网/断电/拆除/复原记录"],
+      "exit": "人行、消防、无障碍或维护通道被阻断"
+    },
+    {
+      "id": "D56-80",
+      "name_zh": "三处演练",
+      "action": "tabletop_and_field_rehearsal",
+      "outputs": ["网络丢失、错误输出、人员缺席演练", "人工接管与恢复计时", "三种布局复核与公众反馈"],
+      "exit": "普通服务不能恢复或负面用例触发不安全放行"
+    },
+    {
+      "id": "D81-100",
+      "name_zh": "继续/修改/退出",
+      "action": "decide",
+      "outputs": ["带证据的继续/修改/退出记录", "下一道闸门责任人与失效日期", "首年公开台账基线"],
+      "exit": "无具名责任人、无维护资源或无可执行退役方案"
+    }
+  ],
+  "roles": [
+    {"id": "R1", "name_zh": "授权规划牵头", "boundary": "负责协调与专业深化，不以本方案替代审批"},
+    {"id": "R2", "name_zh": "场地运营", "boundary": "负责日常值守、维护、停机和复原"},
+    {"id": "R3", "name_zh": "高校/产业测试", "boundary": "负责受控技术试验，不接管公共服务责任"},
+    {"id": "R4", "name_zh": "社区与无障碍小组", "boundary": "拥有拒绝、纠错、暂停建议和同任务验收权"},
+    {"id": "R5", "name_zh": "安全/权利复核", "boundary": "复核数据、网络、无障碍与申诉边界"},
+    {"id": "R6", "name_zh": "遗产/公共空间专业", "boundary": "复核遗产环境、景观、导视与公共空间影响"}
+  ],
+  "raci": [
+    {"workstream": "boundary_ownership_heritage", "A": "R1", "R": "R6", "C": ["R2", "R4", "R5"], "I": ["R3"]},
+    {"workstream": "ordinary_human_route", "A": "R4", "R": "R2", "C": ["R1", "R5", "R6"], "I": ["R3"]},
+    {"workstream": "ai_service_contract", "A": "R1", "R": "R3", "C": ["R2", "R4", "R5"], "I": ["R6"]},
+    {"workstream": "accessibility_acceptance", "A": "R4", "R": "R5", "C": ["R1", "R2", "R6"], "I": ["R3"]},
+    {"workstream": "data_appeal_exit", "A": "R5", "R": "R2", "C": ["R1", "R3", "R4"], "I": ["R6"]},
+    {"workstream": "annual_recovery_drill", "A": "R2", "R": "R3", "C": ["R4", "R5", "R6"], "I": ["R1"]}
+  ],
+  "resource_bands": [
+    {"id": "L1", "meaning_zh": "既有空间内的标识、纸质工单、可移动家具与人工值守；不设置永久机电。"},
+    {"id": "L2", "meaning_zh": "可拆 1:1 样机、临时供电与限定时段测试；需要明确运营与复原资源。"},
+    {"id": "L3", "meaning_zh": "半永久节点；只有完成专业设计、审批、采购与长期维护授权后才讨论。"}
+  ],
+  "annual_public_ledger_fields": [
+    "scenario_id",
+    "site_and_operator",
+    "human_baseline_status",
+    "data_scope",
+    "accessibility_findings",
+    "incident_and_near_miss_count",
+    "takeover_and_recovery_time",
+    "complaint_resolution",
+    "renew_modify_or_exit_decision",
+    "next_review_and_expiry_date"
+  ]
+}

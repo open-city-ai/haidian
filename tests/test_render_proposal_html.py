@@ -37,6 +37,30 @@ class RenderProposalHtmlTests(unittest.TestCase):
             )
             self.assertNotIn("0.4 <em>", html)
 
+    def test_render_html_wraps_unbroken_inline_code_without_reformatting_fenced_code(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            long_token = "urn:haidian:data-coop:" + ("A" * 256)
+            (submission_dir / "proposal.md").write_text(
+                f"Short `SCN-06`.\n\nInline `{long_token}`.\n\n```text\n{long_token}\n```\n",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn("<code>SCN-06</code>", html)
+            self.assertIn(f"<code>{long_token}</code>", html)
+            self.assertIn(f"<pre><code>{long_token}</code></pre>", html)
+            self.assertIn(
+                ":not(pre) > code {\n"
+                "  display: inline-block;\n"
+                "  max-width: 100%;\n"
+                "  overflow-wrap: anywhere;\n"
+                "  word-break: break-word;\n"
+                "}",
+                html,
+            )
+
     def test_render_html_supports_blockquotes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission_dir = Path(tmp)

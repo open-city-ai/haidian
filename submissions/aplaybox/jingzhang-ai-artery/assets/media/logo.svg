@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="railGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C0392B" stop-opacity="1.0"/>
+      <stop offset="100%" stop-color="#8B1A1A" stop-opacity="1.0"/>
+    </linearGradient>
+    <linearGradient id="neuronGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2980B9" stop-opacity="1.0"/>
+      <stop offset="100%" stop-color="#1A5276" stop-opacity="1.0"/>
+    </linearGradient>
+    <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#2980B9" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#2980B9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background: transparent circle -->
+  <circle cx="200" cy="200" r="195" fill="none" stroke="#BDC3C7" stroke-width="1" opacity="0.3"/>
+
+  <!-- Steel rail I-beam cross-section (simplified, centered) -->
+  <!-- Rail head (top) -->
+  <path d="M 110 70 L 290 70 L 290 100 L 270 100 L 270 130 L 270 270 L 290 270 L 290 300 L 110 300 L 110 270 L 130 270 L 130 130 L 110 130 Z"
+        fill="url(#railGradient)" stroke="#2C3E50" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Rail web (middle thin part) -->
+  <rect x="170" y="100" width="60" height="200" fill="url(#railGradient)" stroke="#2C3E50" stroke-width="1.5"/>
+  <!-- Rail base (bottom flange, simplified - already in main path above) -->
+
+  <!-- Highlight on rail to suggest 3D -->
+  <path d="M 130 80 L 270 80 L 270 90 L 130 90 Z" fill="#FFFFFF" opacity="0.2"/>
+  <path d="M 175 105 L 225 105 L 225 295 L 175 295 Z" fill="#FFFFFF" opacity="0.15"/>
+
+  <!-- Neural network nodes overlay (inside rail web) -->
+  <!-- 5 nodes vertical chain -->
+  <g opacity="0.95">
+    <!-- Node positions: along the rail web center line -->
+    <circle cx="200" cy="135" r="14" fill="url(#nodeGlow)" stroke="#2980B9" stroke-width="2"/>
+    <circle cx="200" cy="170" r="11" fill="url(#nodeGlow)" stroke="#2980B9" stroke-width="2"/>
+    <circle cx="200" cy="200" r="16" fill="url(#nodeGlow)" stroke="#2980B9" stroke-width="2.5"/>
+    <circle cx="200" cy="230" r="11" fill="url(#nodeGlow)" stroke="#2980B9" stroke-width="2"/>
+    <circle cx="200" cy="265" r="14" fill="url(#nodeGlow)" stroke="#2980B9" stroke-width="2"/>
+
+    <!-- Side nodes (lateral connections) -->
+    <circle cx="150" cy="200" r="9" fill="#27AE60" stroke="#2C3E50" stroke-width="1.5"/>
+    <circle cx="250" cy="200" r="9" fill="#27AE60" stroke="#2C3E50" stroke-width="1.5"/>
+
+    <!-- Connection lines (synapses) -->
+    <line x1="200" y1="135" x2="200" y2="170" stroke="#2980B9" stroke-width="2" opacity="0.7"/>
+    <line x1="200" y1="170" x2="200" y2="200" stroke="#2980B9" stroke-width="2.5" opacity="0.85"/>
+    <line x1="200" y1="200" x2="200" y2="230" stroke="#2980B9" stroke-width="2.5" opacity="0.85"/>
+    <line x1="200" y1="230" x2="200" y2="265" stroke="#2980B9" stroke-width="2" opacity="0.7"/>
+
+    <!-- Lateral connections -->
+    <line x1="200" y1="200" x2="150" y2="200" stroke="#27AE60" stroke-width="2" opacity="0.7"/>
+    <line x1="200" y1="200" x2="250" y2="200" stroke="#27AE60" stroke-width="2" opacity="0.7"/>
+    <line x1="150" y1="200" x2="200" y2="170" stroke="#27AE60" stroke-width="1.5" opacity="0.5"/>
+    <line x1="150" y1="200" x2="200" y2="230" stroke="#27AE60" stroke-width="1.5" opacity="0.5"/>
+    <line x1="250" y1="200" x2="200" y2="170" stroke="#27AE60" stroke-width="1.5" opacity="0.5"/>
+    <line x1="250" y1="200" x2="200" y2="230" stroke="#27AE60" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- Inner dot of each main node (suggests activation) -->
+    <circle cx="200" cy="135" r="5" fill="#FFFFFF"/>
+    <circle cx="200" cy="170" r="4" fill="#FFFFFF"/>
+    <circle cx="200" cy="200" r="6" fill="#FFFFFF"/>
+    <circle cx="200" cy="230" r="4" fill="#FFFFFF"/>
+    <circle cx="200" cy="265" r="5" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Bottom label: 京张100 · AI 大动脉 -->
+  <text x="200" y="345" text-anchor="middle" font-family="LXGW WenKai, Noto Serif SC, sans-serif"
+        font-size="28" font-weight="700" fill="#2C3E50">京张100 · AI 大动脉</text>
+  <text x="200" y="375" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+        font-size="14" font-weight="400" fill="#BDC3C7" letter-spacing="2">JINGZHANG 100 · AI ARTERY</text>
+
+  <!-- Year markers on left/right of rail (suggesting timeline) -->
+  <text x="60" y="80" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#BDC3C7" opacity="0.7">1909</text>
+  <text x="60" y="305" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#BDC3C7" opacity="0.7">2026</text>
+  <line x1="55" y1="85" x2="55" y2="295" stroke="#BDC3C7" stroke-width="0.5" opacity="0.5" stroke-dasharray="2,3"/>
+</svg>

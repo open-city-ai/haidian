@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "fixture_id": "MARX-ZHANG-CROSSWALK-INVALID-EXTERNAL-LEVEL-001",
+  "expected_result": "reject",
+  "adoption_mode": "optional_crosswalk_only",
+  "source_of_record": "visual/assets/three-area-operations-audit.json",
+  "snapshot_manifest": "visual/assets/protocol_snapshots/manifest.json",
+  "snapshot_ids": ["SEB-V050", "SWITCHBACK-V030", "SWITCHBACK-V030-SCHEMA"],
+  "area_id": "OA-ZZY-001",
+  "crosswalk_rules_used": ["CW-01", "CW-02", "CW-03", "CW-04"],
+  "local_state": {
+    "ai_off_path": "paper_or_cash_route_available",
+    "human_handoff": "findable_staffed_role",
+    "gate_id": "G0",
+    "operating_mode": "reversible_session",
+    "responsible_role": "staffed_escalation_role",
+    "status": "yellow",
+    "ascent_grade": "G0",
+    "review_cycle": "90_days"
+  },
+  "field_map": {
+    "ai_off_path": "SEB.ai_off_path",
+    "human_handoff": "SEB.human_handoff",
+    "gate_id": "SEB.node_schema: gate_or_stop_recovery_identifier",
+    "operating_mode": "SEB.node_schema: status_or_operating_mode",
+    "responsible_role": "SEB.node_schema: owner_or_operator_role"
+  },
+  "boundaries": {
+    "external_level_claim": true,
+    "external_open_level_id": "L3",
+    "field_data": false,
+    "performance_results": null,
+    "official_endorsement": false,
+    "deployment_authorized": false
+  }
+}

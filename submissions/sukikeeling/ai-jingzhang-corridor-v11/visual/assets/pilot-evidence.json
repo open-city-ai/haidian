@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "pilot_id": "OP-01",
+  "type": "desktop_paired_method_demo",
+  "scenario_id": "SC-01",
+  "switchback_node": "SWB-01",
+  "location_zh": "五道口 / AI原点社区（provisional 近似点位）",
+  "data_disclaimer_zh": "本档案为方法学演示，使用合成测试用例，非真实世界普查基线。其价值在于：方法与数据公开，任何人可逐项复算等价差读数，验证测量方法本身是否成立。真实基线在 K3-K6 一期普查建立后填入，建立前不冒充真实测量。",
+  "method_zh": "配对测试：同一组无障碍路线请求，在 (A) AI开启 与 (B) AI关闭（ai_off_path=线下无障碍引导岗+纸质大字街区图+触觉导引带）两种条件下各跑一遍，记录是否完成。撤回、技术故障与非完成原因与完成数一并登记，不删除失败样本。",
+  "test_cases": [
+    { "case_id": "C-01", "request_zh": "轮椅用户从五道口站到开源穹顶的最短无障碍路线", "ai_on_completed": true, "ai_off_completed": true, "note": "引导岗现场指认+纸质图，与AI建议路径一致" },
+    { "case_id": "C-02", "request_zh": "视障用户从街角到议事厅的触觉导引路线", "ai_on_completed": true, "ai_off_completed": true, "note": "触觉导引带独立成立，不依赖AI" },
+    { "case_id": "C-03", "request_zh": "临时通行坡道被占用的绕行路线", "ai_on_completed": true, "ai_off_completed": false, "note": "AI基于实时占用数据重算绕行；关闭后引导岗未掌握实时占用，返回'待现场确认'" },
+    { "case_id": "C-04", "request_zh": "老人从社区节点到健康服务导航点", "ai_on_completed": true, "ai_off_completed": true, "note": "固定解说牌+人工指认完成" },
+    { "case_id": "C-05", "request_zh": "夜间无引导岗时段的路线请求", "ai_on_completed": true, "ai_off_completed": false, "note": "AI夜间可用；ai_off_path的引导岗不在岗，纸质图可用但无人工兜底——记为完成但降质" },
+    { "case_id": "C-06", "request_zh": "多段换乘含电梯的无障碍路线", "ai_on_completed": true, "ai_off_completed": true, "note": "电梯状态由运营方电话核实，完成" },
+    { "case_id": "C-07", "request_zh": "雨后临时改道的路线", "ai_on_completed": true, "ai_off_completed": false, "note": "AI接入积水上报；关闭后引导岗未及时获知，记非完成" },
+    { "case_id": "C-08", "request_zh": "游客从遗址公园到消费翻译点的路线", "ai_on_completed": true, "ai_off_completed": true, "note": "纸质折页+定时讲解完成" },
+    { "case_id": "C-09", "request_zh": "听障用户需视觉指引的路线", "ai_on_completed": true, "ai_off_completed": true, "note": "视觉指引牌+图卡独立成立" },
+    { "case_id": "C-10", "request_zh": "施工封路需大幅绕行的路线", "ai_on_completed": true, "ai_off_completed": false, "note": "AI基于封路数据重算；关闭后引导岗需电话多方核实，超时记非完成" },
+    { "case_id": "C-11", "request_zh": "标准主干无障碍路线", "ai_on_completed": true, "ai_off_completed": true, "note": "主干路线触觉导引带完备，完成" },
+    { "case_id": "C-12", "request_zh": "需跨街区经天桥的路线", "ai_on_completed": true, "ai_off_completed": true, "note": "天桥直梯状态电话核实后完成" }
+  ],
+  "computed": {
+    "n_total": 12,
+    "ai_on_completed_count": 12,
+    "ai_off_completed_count": 8,
+    "ai_off_incomplete_due_to_realtime_gap": 4,
+    "ai_on_completion_rate": 1.0,
+    "ai_off_completion_rate": 0.6667,
+    "equivalence_gap": 0.3333,
+    "formula": "equivalence_gap = (ai_on_completion_rate - ai_off_completion_rate) / ai_on_completion_rate",
+    "interpretation_zh": "方法演示读数：AI关闭时等价差为 0.333，缺口集中在'需实时数据重算'的路线（C-03/05/07/10）。这不是真实基线，但它把'哪些路线在AI关闭后仍可用、哪些不可'变成了可逐案核对的数据——而可逐案核对正是折返等价基准要证明的事。真实运行后，实时数据补齐与引导岗扩窗是缩小该缺口的具体方向。"
+  },
+  "replay_zh": "任何人可用 test_cases 数组重算 ai_on_completion_rate、ai_off_completion_rate 与 equivalence_gap；分母包含全部 12 案（含 4 个非完成），未删除失败样本。复算脚本：count(ai_on_completed==true)/12 与 count(ai_off_completed==true)/12。"
+}

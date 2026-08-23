@@ -14,17 +14,15 @@ scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "enterpris
 # 京张双答 / JING-ZHANG TWO ANSWERS
 
 
-> **可建造的公共十字 / BUILDABLE CIVIC CROSS。** 把“不牺牲公共路径”建成一段可进入、可维护、可关闭、可恢复的城市空间：公共十字和人工服务先独立成立，AI 只进入一侧可逆试验湾，所有决定留在可见的回执廊。[data:visual/assets/prototype-model.json] [data:visual/assets/spatial-decision.json]
+> **在已批空间结构上建立城市采纳层。** 2026年8月公开的街区控规背景明确约1668.2公顷、9公里京张绿带与“**一带一轴、两心多点**”，大钟寺被列为两处中心之一；二期配套工程已完工并形成鱼骨状慢行联系。[source:BEIJING-BLOCK-PLAN-APPROVED-20260812] [source:BEIJING-JZ-PHASE2-COMPLETE-20260714]
 
-同一建筑—地面系统包含五个可定位部分：全天公共十字、单侧试验湾、有人值守的回执廊、蓝绿边界和独立维护后场。统一模型同时生成 1:5000 城市联系、1:2000 总平面、1:500 场地与建筑平面、两道 1:200 剖面、1:50 门廊节点和三项 1:20 原型详图。尺寸均为待测绘、结构、消防、基础和耐久复核的设计假设。[data:visual/assets/prototype-model.json] [depth:three_key_area_detailed_design]
+“一脊三站两翼”因此不再冒充另一套控规，而是嵌入京张绿带、对接大钟寺中心与创新发展轴的 **可选择、可停止、可撤除运营叠加层**。官方1668.2公顷街区范围与本投稿11.4平方公里临时几何分别登记，绝不互换。[data:visual/assets/spatial-atlas.json] [metric:official_planning_area_ha] [metric:submitted_provisional_area_sqm]
 
-材料家族采用螺栓连接镀锌钢框架、穿孔金属遮阳屏、干式预制压重基础、透水预制铺装和可更换证据面板。永久公共层先建；可拆 AI 插件在许可齐全后装配；试验停止时设备沿独立后勤线撤出，门廊继续作为人工公共服务。[metric:architectural_prototype_count] [metric:material_system_count] [metric:architectural_detail_count]
+大钟寺回执廊适配“既有公园—轨道方向性接口—城市更新界面”，当前仍为 **G0 NO-GO**：已公布空间背景不等于本方案完成测绘、权属、许可、搭建或现场运行。政府门户报道的公共使用是公开背景，不是本团队踏勘。[data:visual/assets/e2-readiness.json]
 
-ALT-A 因切断公共十字被 **REJECT**，ALT-B 因监督、消防与撤场碎片化被 **REVISE**，ALT-C 单侧可逆湾进入建筑深化。空间裁决只回答“为什么选择”；十二份测量契约回答“建成后如何验证”。两者均不冒充现场结果。[metric:rejected_spatial_alternative_count] [metric:revised_spatial_alternative_count] [metric:advanced_spatial_alternative_count]
+![已批空间结构与京张双答运营叠加层](assets/figures/site-overview.png)
 
-**当前实施决定仍是 G0 NO-GO。** 精确测绘、权属、八类许可、四个独立岗位和连续 7 日普通服务基线尚未完成；当前关闭许可 0/8、基线 0/7 日，AI 试验不得开始。[data:visual/assets/e2-readiness.json] [metric:current_trial_open_gate_count] [metric:pending_trial_permit_count]
-
-![总体城市设计与三座建筑地标](assets/figures/site-overview.png)
+![已批规划背景下的连续首层、公共服务与临时试验界面](assets/figures/land-use-structure.png)
 
 <!-- V11_DECISION_START -->
 ## 一次真正的空间裁决
@@ -74,17 +72,9 @@ ALT-C 同时把最远急停—人工岗位距离控制为 24.3 米的原型假�
 
 ## 统筹研究范围产业与未来城市研究
 
-区域协同采用“问题—证据—能力”交换，而非把所有设施搬进基地：北纬社区连接个体创业与校友服务；未来科学城连接场景需求与央企能力；怀柔科学城连接基础研究与仪器。[source:REGION-BEIWEI] [source:REGION-FUTURE-SCIENCE-CITY] [source:REGION-HUAIROU]
+五条交换合同把区域协同从泛化连线改成可失败的证据交换：北纬社区提供居民问题与无障碍基线；未来科学城提供研究任务与开放模型能力；怀柔科学城提供仪器和复现条件；经开区提供制造、设备安全和维护接口；京津冀接口承接跨区域问题、算力与知识复用。每条合同都记录问题输入、能力提供、验证场所、证据产品、四类责任角色和失败出口；机构仅为建议角色，不代表合作承诺。[data:visual/assets/spatial-atlas.json]
 
-经开区连接工程中试、制造与场景证据；京津冀连接设施、算力和产业转化。每条接口都要记录问题所有者、数据边界、接收证据和人工责任，未签协议前仅为概念协作线。[source:REGION-ETOWN] [source:REGION-CAPITAL-CIRCLE]
-
-七个国际案例各只转译一种机制：one-north 的长期运营与共享创新服务；22@Barcelona 的知识区与存量更新；Paris-Saclay 的规划/环境情景决策。[source:CASE-ONE-NORTH] [source:CASE-BARCELONA] [source:CASE-PARIS-SACLAY]
-
-Brainport 提供共享实验和区域协作，Helsinki AI Register 提供公开登记与反馈，Woven City 提供受控实景测试，Toronto Quayside 提供公共空间与分期公共利益条款。这些机制只用于提问，不用于证明北京的空间红线或许可条件。[source:CASE-BRAINPORT] [source:CASE-HELSINKI] [source:CASE-WOVEN]
-
-Quayside 的协议机制另作开发责任对照，不引用其空间形态。[source:CASE-QUAYSIDE]
-
-![区域协同与空间用地结构](assets/figures/land-use-structure.png)
+验证场所分别落在小月河翼、验真环、共译门和回执廊。任一许可、数据权利或普通基线不成立，交换立即停止并退回普通服务；成功与失败均进入公共知识库。
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -208,9 +198,9 @@ S7 的普通公共十字和人工服务必须先完成测绘与 7 个连续运�
 
 ### 三座回执地标、文化里程与国际传播
 
-三座地标共用“遗产石墨轨迹 + 公共绿色基线 + AI 琥珀接头 + 证据蓝回执牌”，但分别以环、门、廊形成独立轮廓。公共基线脊上的“城市证据里程”按“提出问题—公开验证—人工决定—留下回执”组织连续停靠点，把京张铁路记忆、中关村试验文化和 AI 公共责任串联起来，而不复制企业标识或发明历史事件。[data:visual/assets/spatial-atlas.json] [metric:key_area_count]
+文化里程以公开资料中的铁轨、龙门吊、窄轨、汽笛和铁轨花园建立五类构件目录。每项遵循“历史事实—静态双语/触觉/无手机讲解—AI可选增强—公众纠错—人工复核回执”；AI不得改写来源不明的历史，也不虚构资源精确位置。[data:visual/assets/spatial-atlas.json]
 
-每个停靠点同时提供中英文、高对比、触觉、纸质和人工入口；荣誉墙只登记任务、证据等级、决定、复核日期和贡献者角色，不展示未经证明的技术排名。国际传播以可复核回执和失败原因作为内容，不把合作建议写成机构承诺。[source:JINGZHANG-PLAN-OFFICIAL] [source:ZHONGGUANCUN-HISTORY-OFFICIAL]
+验真环、共译门、回执廊共享遗产石墨、公共绿色、AI琥珀和证据蓝，但不共享轮廓。荣誉界面只登记任务、证据等级、决定、复核日期和贡献者，不设未经证明的技术排行榜。
 
 ### 产业生态、人才与未来城市研究
 
@@ -220,9 +210,9 @@ S7 的普通公共十字和人工服务必须先完成测绘与 7 个连续运�
 
 ## 一带全球 AI 创新活动体系与长期运营设计
 
-“城市采纳年”把一次性竞赛展陈改成四季公开程序：春季完成公共基线与无障碍审计；夏季开展能力验证和开发者开放测试；秋季组织城市场景试用与公众采纳周；冬季发布年度回执、盘点资产并复盘退出。每季活动都登记场地、用户、建议主责角色、许可门、普通服务、AI 增量、证据输出、停止事件和知识归档；四季共用同一公共台账字段，但当前没有虚构现场记录。[data:visual/assets/two-answers.json] [metric:paired_scenario_count]
+“普通开放日”先运行公共路径、无障碍、常规接驳、遮阴候车、人工服务和静态导视，再核验开发者许可、独立岗位与普通基线。上午开放检查与基线记录；中午只做准入核验；下午公开状态、失败和人工干预；闭场后插件停机、空间复位、人工复核并归档。任何缺项都保持 OPEN，不进入 TRIAL。[data:visual/assets/two-answers.json]
 
-开发者参与不是“自由试用”：只有许可、数据来源、普通服务和安全岗位齐备才进入受控测试；输出必须包括可复现条件、失败原因、停止状态和可公开摘要。公众可通过人工窗口、纸质回执或无账户网页查看、申诉和要求复核；年度知识资产按“问题卡—基线记录—试验摘要—人类决定—复核日期”归档。[data:visual/assets/two-answers.json] [metric:field_verification_result_count]
+城市采纳年每季产生一种可复用知识资产：春季无障碍基线审计、夏季能力复现记录、秋季公众试用回执、冬季资产与退出复盘。公开报道的日常使用仅作为背景，不是本方案已完成公众参与或现场绩效。[source:BEIJING-JZ-PUBLIC-USE-20260730]
 
 ## 更新项目清单、实施政策与分期计划
 

@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "decision_id": "OGP12-G05-SPATIAL-DECISION-V1",
+  "title_zh": "零号门 1:1 样机空间备选裁决",
+  "title_en": "Origin Gate 1:1 prototype spatial decision",
+  "status": "synthetic_design_review_not_field_run",
+  "scope": "One reversible gate prototype within a provisional key-area context; dimensions are design inputs pending survey and professional review.",
+  "hard_gates": [
+    {
+      "id": "HG-01",
+      "label_zh": "无设备普通路径连续",
+      "label_en": "Continuous no-device baseline route",
+      "field": "ordinary_route_clear_width_m",
+      "operator": ">=",
+      "threshold": 1.8,
+      "unit": "m"
+    },
+    {
+      "id": "HG-02",
+      "label_zh": "试验区不占用公共路径",
+      "label_en": "Trial bay does not occupy the public route",
+      "field": "trial_bay_intrudes_public_route",
+      "operator": "==",
+      "threshold": false,
+      "unit": "boolean"
+    },
+    {
+      "id": "HG-03",
+      "label_zh": "人工岗位可看见入口与退出",
+      "label_en": "Staff post sees both entry and exit",
+      "field": "staff_sees_entry_and_exit",
+      "operator": "==",
+      "threshold": true,
+      "unit": "boolean"
+    },
+    {
+      "id": "HG-04",
+      "label_zh": "最远急停到人工岗位不超过 25 米",
+      "label_en": "Farthest emergency stop is within 25 m of staff",
+      "field": "max_estop_to_staff_m",
+      "operator": "<=",
+      "threshold": 25,
+      "unit": "m"
+    },
+    {
+      "id": "HG-05",
+      "label_zh": "构件可逆并有独立撤场路线",
+      "label_en": "Components are reversible with an independent removal path",
+      "field": "reversible_with_independent_removal",
+      "operator": "==",
+      "threshold": true,
+      "unit": "boolean"
+    }
+  ],
+  "alternatives": [
+    {
+      "id": "ALT-A",
+      "name_zh": "中央跨线门",
+      "name_en": "Central spanning gate",
+      "ordinary_route_clear_width_m": 1.2,
+      "trial_bay_intrudes_public_route": true,
+      "staff_sees_entry_and_exit": true,
+      "max_estop_to_staff_m": 18,
+      "reversible_with_independent_removal": false,
+      "expected_decision": "reject",
+      "reason_zh": "门架和试验区跨越连续通行线，普通服务与撤场路线均被试验占用。",
+      "reason_en": "The frame and trial bay cross the continuous public route, so both ordinary service and removal depend on the trial."
+    },
+    {
+      "id": "ALT-B",
+      "name_zh": "双侧分散门",
+      "name_en": "Split twin-bay gate",
+      "ordinary_route_clear_width_m": 2.4,
+      "trial_bay_intrudes_public_route": false,
+      "staff_sees_entry_and_exit": false,
+      "max_estop_to_staff_m": 31,
+      "reversible_with_independent_removal": true,
+      "expected_decision": "revise",
+      "reason_zh": "普通路径成立，但双侧设备分散导致值守视线和最远急停距离不合格。",
+      "reason_en": "The ordinary route works, but split equipment breaks staff sightlines and exceeds the emergency-stop distance."
+    },
+    {
+      "id": "ALT-C",
+      "name_zh": "单侧外挂门",
+      "name_en": "Single sidecar gate",
+      "ordinary_route_clear_width_m": 2.4,
+      "trial_bay_intrudes_public_route": false,
+      "staff_sees_entry_and_exit": true,
+      "max_estop_to_staff_m": 22,
+      "reversible_with_independent_removal": true,
+      "expected_decision": "advance",
+      "reason_zh": "普通路径、人工台、试验湾和撤场路线并列，AI 关闭或撤除后基本任务仍可完成。",
+      "reason_en": "The ordinary route, staffed desk, trial bay and removal path sit in parallel, so the basic task survives AI shutdown or removal."
+    }
+  ],
+  "first_100_days": [
+    {
+      "id": "WP-01",
+      "days": "D0-D15",
+      "action_zh": "锁定测绘、权属、文保、消防、无障碍与运营责任清单",
+      "action_en": "Lock survey, ownership, heritage, fire, accessibility and operating-responsibility checklists",
+      "exit_condition": "all_missing_inputs_named_and_owned"
+    },
+    {
+      "id": "WP-02",
+      "days": "D16-D30",
+      "action_zh": "与使用者和维护者复核同任务人工基线，记录现状而不预填成功值",
+      "action_en": "Review same-task human baselines with users and maintainers without pre-filling success values",
+      "exit_condition": "baseline_protocol_approved_by_named_humans"
+    },
+    {
+      "id": "WP-03",
+      "days": "D31-D60",
+      "action_zh": "搭建一座不附着文物的可逆 1:1 样机，保留连续无设备路径",
+      "action_en": "Build one reversible 1:1 mock-up away from heritage fabric while preserving a continuous no-device route",
+      "exit_condition": "mockup_and_removal_method_professionally_checked"
+    },
+    {
+      "id": "WP-04",
+      "days": "D61-D85",
+      "action_zh": "主动演练断电、断网、责任人缺席、拥挤、无障碍受阻和投诉积压六类负例",
+      "action_en": "Actively rehearse power, network, staff, crowding, accessibility and appeal failures",
+      "exit_condition": "all_zero_tolerance_failures_stop_and_recover"
+    },
+    {
+      "id": "WP-05",
+      "days": "D86-D100",
+      "action_zh": "由具名人类责任方决定继续、修改、缩小或退出，并公开理由",
+      "action_en": "Named human authorities decide to continue, revise, narrow or exit and publish the reason",
+      "exit_condition": "signed_human_decision_and_public_record"
+    }
+  ],
+  "field_results": [],
+  "limitations": [
+    "No site survey, permission, procurement, installation, recruited-user test or operating result is claimed.",
+    "The 1.8 m and 25 m thresholds are proposal design gates, not approved engineering controls.",
+    "Official geometry and professional review must replace provisional coordinates and dimensions before implementation."
+  ]
+}

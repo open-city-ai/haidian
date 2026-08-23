@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "status": "conceptual_design_verification_not_field_test",
+  "title_zh": "R04 开源知识前台：三案空间裁决与四态服务规则",
+  "title_en": "R04 Open Knowledge Front Desk: Three Spatial Alternatives and Four-State Service Rule",
+  "scope_note": "The alternatives are conceptual interface arrangements within the provisional AI Origin key-area index. They are not surveys, permitted plans, construction drawings, operational records or statutory controls.",
+  "common_public_baseline": [
+    "continuous no-login walking route",
+    "readable static orientation",
+    "staffed help and rights consultation",
+    "seating, shade and accessible stopping",
+    "withdrawal and correction route"
+  ],
+  "alternatives": [
+    {
+      "id": "R04-A",
+      "name_zh": "中央展示岛",
+      "decision": "reject_design",
+      "reason_zh": "数字展示被置于公共慢行主线中心，普通穿行与人工问询被迫绕行；不满足公共路径连续优先。",
+      "failed_rules": ["P01_public_route_continuity", "P02_no_login_access"]
+    },
+    {
+      "id": "R04-B",
+      "name_zh": "分散服务点",
+      "decision": "revise_design",
+      "reason_zh": "公共路径保留，但成果解释、权利咨询与人工接管被分散，首次到访者难以判断责任与撤回入口。",
+      "failed_rules": ["P03_single_human_handoff", "P04_clear_withdrawal"]
+    },
+    {
+      "id": "R04-C",
+      "name_zh": "边侧知识前台",
+      "decision": "advance_design",
+      "reason_zh": "公共慢行线保持连续；可撤回成果卡与可拆工作台置于边侧，人工服务、权利说明和静态导向可被同一前台读取。",
+      "passed_rules": ["P01_public_route_continuity", "P02_no_login_access", "P03_single_human_handoff", "P04_clear_withdrawal", "P05_reversible_plugin"]
+    }
+  ],
+  "states": [
+    {"id": "OPEN", "name_zh": "普通开放", "rule_zh": "仅公共基线：路径、静态导向、人工咨询、坐憩与遮阴可独立成立。"},
+    {"id": "TRIAL", "name_zh": "有限试用", "rule_zh": "在不压缩公共路径的前提下，边侧启用可撤回成果卡与人工说明。"},
+    {"id": "PAUSE", "name_zh": "暂停并复核", "rule_zh": "出现权利不清、误导、通行受阻、无人工接管或维护缺席时，撤下可选服务。"},
+    {"id": "RETURN", "name_zh": "回到普通服务", "rule_zh": "恢复静态信息与人工咨询；记录修订理由，不把暂停解释为使用者失败。"}
+  ],
+  "synthetic_checks": [
+    {"id": "CHK-01", "rule": "ordinary_route_remains_open", "expected": "pass", "scope": "design_relation_only"},
+    {"id": "CHK-02", "rule": "no_login_route_reaches_staffed_desk", "expected": "pass", "scope": "design_relation_only"},
+    {"id": "CHK-03", "rule": "optional_display_can_be_removed_without_losing_static_guidance", "expected": "pass", "scope": "design_relation_only"},
+    {"id": "CHK-04", "rule": "rights_or_safety_failure_transitions_to_pause_then_return", "expected": "pass", "scope": "design_relation_only"}
+  ],
+  "field_results": {"count": 0, "status": "not_field_run"}
+}

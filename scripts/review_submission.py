@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -158,18 +159,28 @@ def script_path(repo_root: Path, name: str) -> Path:
 
 
 def run_json_command(command: list[str]) -> dict:
-    completed = subprocess.run(command, capture_output=True, text=True, check=False)
-    if completed.stdout.strip():
+    completed = subprocess.run(
+        command,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"},
+        check=False,
+    )
+    stdout = completed.stdout or ""
+    stderr = completed.stderr or ""
+    if stdout.strip():
         try:
-            parsed = json.loads(completed.stdout)
+            parsed = json.loads(stdout)
         except json.JSONDecodeError:
-            parsed = {"raw_stdout": completed.stdout}
+            parsed = {"raw_stdout": stdout}
     else:
         parsed = {}
     return {
         "returncode": completed.returncode,
         "stdout": parsed,
-        "stderr": completed.stderr.strip(),
+        "stderr": stderr.strip(),
     }
 
 

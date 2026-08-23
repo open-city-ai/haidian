@@ -596,6 +596,9 @@ def run_trusted_review_gates(
                 cwd=trusted_repo_root,
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
+                env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"},
                 timeout=TRUSTED_REVIEW_GATE_TIMEOUT_SECONDS,
                 check=False,
             )

@@ -1,0 +1,30 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-01",
+ "title_zh": "官方边界交接与全量复算",
+ "title_en": "Official boundary handoff and full recomputation",
+ "domain": "spatial",
+ "status": "design_target",
+ "source_ids": [
+  "BOUNDARY-SOURCE",
+  "SITE-PACKAGE",
+  "PROCESSED-FACT-PACK"
+ ],
+ "inputs": [
+  "geometry/site_boundary.geojson",
+  "geometry/key_areas.geojson",
+  "metrics.json"
+ ],
+ "procedure": [
+  "核对官方 polygon 的来源编号、版本、坐标系与 official_boundary 标识，并与本包 provisional_constraint 逐点比对。",
+  "替换边界后按 geometry→metrics→figures→proposal→PDF 顺序重算，任一环节失败即中止。",
+  "留存复算前后差异表、执行人、时间戳与 sha256。"
+ ],
+ "pass_rule": "来源编号、坐标系、精度与全部派生 hash 可回读，且差异表覆盖 8 项面积类指标。",
+ "stop_rule": "边界来源不明、坐标系未声明或派生面积未全部重算时停止发布。",
+ "owner": "spatial data steward",
+ "non_ai_equivalent": "人工 GIS 版本核对与面积复算",
+ "evidence_output": "boundary_handoff_receipt",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

@@ -15,6 +15,9 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  # The canonical maintenance ref is bootstrapped once through the repository
+  # ruleset. The workflow may update it, but it must fail closed if a ruleset
+  # or cleanup removes it instead of depending on a historical PR branch.
   MAINTENANCE_BRANCH: automation/gallery-snapshot
 
 jobs:
@@ -31,6 +34,7 @@ jobs:
 
       - name: Generate and publish maintenance branch
         id: snapshot
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
@@ -40,24 +44,61 @@ jobs:
 
           # This workflow runs only for the canonical repository's trusted main
           # push. It never checks out or executes a contributor PR head.
-          # The repository ruleset requires an administrator to bootstrap this
-          # maintenance ref once. Do not attempt a create-only push with the
-          # GITHUB_TOKEN: it cannot satisfy the admin-only branch-creation rule.
+          # The repository ruleset may reject the workflow token when this
+          # purpose-bound ref is absent. Do not attempt an unguarded create-only
+          # push; use the generated, source-SHA-pinned maintainer handoff.
           if ! git ls-remote --exit-code origin "refs/heads/${branch}" >/dev/null 2>&1; then
-            message="${branch} does not exist. An administrator must create it from trusted main before this workflow can publish a review PR."
-            {
-              echo "### Gallery snapshot maintenance blocked"
-              echo
-              echo "${message}"
-              echo
-              echo "One-time bootstrap (run with administrator bypass):"
-              echo 'git fetch origin main'
-              echo "git push origin origin/main:refs/heads/${branch}"
-              echo
-              echo "Then re-run this workflow with workflow_dispatch."
-            } >> "${GITHUB_STEP_SUMMARY}"
+          message="${branch} does not exist. The workflow token is not allowed to create refs; use the standard maintainer bootstrap handoff from trusted main, then dispatch this workflow again."
+          handoff_dir="${RUNNER_TEMP}/gallery-snapshot-bootstrap-handoff"
+          rm -rf "${handoff_dir}"
+          mkdir -p "${handoff_dir}"
+          cat > "${handoff_dir}/bootstrap-maintenance-ref.sh" <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          repository="${1:?repository is required}"
+          maintenance_branch="${2:?maintenance branch is required}"
+          source_main_sha="${3:?source main SHA is required}"
+
+          test "$(git rev-parse --is-inside-work-tree)" = true
+          git fetch origin main
+          actual_main_sha="$(git rev-parse refs/remotes/origin/main)"
+          if [[ "${actual_main_sha}" != "${source_main_sha}" ]]; then
+            echo "main moved from ${source_main_sha} to ${actual_main_sha}; re-run the workflow and use its newer handoff." >&2
+            exit 2
+          fi
+          if git ls-remote --exit-code origin "refs/heads/${maintenance_branch}" >/dev/null 2>&1; then
+            echo "${maintenance_branch} already exists; no creation is needed."
+            exit 0
+          fi
+          echo "Creating ${maintenance_branch} from trusted ${source_main_sha} using the normal repository ruleset."
+          git push origin "${source_main_sha}:refs/heads/${maintenance_branch}"
+          echo "Ref created. Re-run gallery-snapshot-maintenance with workflow_dispatch."
+          EOF
+          chmod +x "${handoff_dir}/bootstrap-maintenance-ref.sh"
+          {
+            echo "### Gallery snapshot maintenance blocked"
+            echo
+            echo "${message}"
+            echo
+            echo "One-time bootstrap through the normal repository ruleset:"
+            echo "Run the artifact's bootstrap-maintenance-ref.sh from a clean checkout with a credential already permitted to create this purpose-bound ref."
+            echo "bash bootstrap-maintenance-ref.sh ${GITHUB_REPOSITORY} ${branch} ${GITHUB_SHA}"
+            echo "The script refuses a moved main SHA and never uses a bypass flag or an all-zero lease."
+            echo
+            echo "Then re-run this workflow with workflow_dispatch."
+          } >> "${GITHUB_STEP_SUMMARY}"
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "source_main_sha=${GITHUB_SHA}"
+            echo "maintenance_branch=${branch}"
+            echo "generated_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "status=bootstrap-required"
+          } > "${handoff_dir}/metadata.txt"
+            printf '%s\n' "${message}" > "${handoff_dir}/bootstrap-required.txt"
+            echo "handoff_dir=${handoff_dir}" >> "${GITHUB_OUTPUT}"
             echo "::error title=Maintenance branch bootstrap required::${message}"
-            echo "bootstrap-required=true" >> "${GITHUB_OUTPUT}"
+            echo "bootstrap_required=true" >> "${GITHUB_OUTPUT}"
             exit 1
           fi
           git fetch origin "refs/heads/${branch}:refs/remotes/origin/${branch}"
@@ -82,13 +123,73 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: refresh generated gallery snapshot"
 
+          handoff_dir="${RUNNER_TEMP}/gallery-snapshot-handoff"
+          rm -rf "${handoff_dir}"
+          mkdir -p "${handoff_dir}"
+          git show --format= --binary HEAD -- submissions-data.js > "${handoff_dir}/submissions-data.patch"
+          cp submissions-data.js "${handoff_dir}/submissions-data.js"
+          {
+            echo "repository=${GITHUB_REPOSITORY}"
+            echo "source_main_sha=${GITHUB_SHA}"
+            echo "maintenance_branch=${branch}"
+            echo "maintenance_commit=$(git rev-parse HEAD)"
+            echo "generated_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } > "${handoff_dir}/metadata.txt"
+          cat > "${handoff_dir}/open-maintenance-pr.sh" <<'EOF'
+          #!/usr/bin/env bash
+          set -euo pipefail
+
+          repository="${1:?repository is required}"
+          branch="${2:?maintenance branch is required}"
+          expected_commit="${3:?maintenance commit is required}"
+          title="chore: refresh generated gallery snapshot"
+          body="This is an automated maintainer-only refresh of submissions-data.js from trusted main. Review and merge it through the normal repository gate."
+
+          actual_commit="$(git ls-remote origin "refs/heads/${branch}" | awk 'NR == 1 { print $1 }')"
+          test "${actual_commit}" = "${expected_commit}"
+          existing="$(gh pr list --repo "${repository}" --head "${branch}" --base main --state open --json number --jq '.[0].number // empty')"
+          if [[ -n "${existing}" ]]; then
+            gh pr edit "${existing}" --repo "${repository}" --title "${title}" --body "${body}"
+          else
+            gh pr create --repo "${repository}" --base main --head "${branch}" --draft --title "${title}" --body "${body}"
+          fi
+          EOF
+          chmod +x "${handoff_dir}/open-maintenance-pr.sh"
+          echo "handoff_dir=${handoff_dir}" >> "${GITHUB_OUTPUT}"
+
           expected="$(git rev-parse --verify "refs/remotes/origin/${branch}")"
           git push --force-with-lease="refs/heads/${branch}:${expected}" \
             origin "HEAD:refs/heads/${branch}"
           echo "changed=true" >> "${GITHUB_OUTPUT}"
 
+      - name: Upload bootstrap handoff when maintenance ref is unavailable
+        if: always() && steps.snapshot.outputs.bootstrap_required == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: gallery-snapshot-bootstrap-handoff-${{ github.sha }}
+          path: ${{ steps.snapshot.outputs.handoff_dir }}
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Fail closed when maintenance ref bootstrap is required
+        if: always() && steps.snapshot.outputs.bootstrap_required == 'true'
+        shell: bash
+        run: |
+          echo "Fail closed: the canonical gallery maintenance ref is missing."
+          echo "The bootstrap handoff artifact contains the exact source main SHA and a normal-ruleset maintainer bootstrap script."
+          exit 1
+
+      - name: Fail closed when snapshot generation fails
+        if: always() && steps.snapshot.outcome == 'failure' && steps.snapshot.outputs.bootstrap_required != 'true'
+        shell: bash
+        run: |
+          echo "Fail closed: gallery snapshot generation or publication failed before a review handoff was ready."
+          exit 1
+
       - name: Open or update snapshot maintenance PR
+        id: pr
         if: steps.snapshot.outputs.changed == 'true'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
@@ -112,3 +213,20 @@ jobs:
             gh pr create --repo "${GITHUB_REPOSITORY}" --base main --head "${branch}" \
               --draft --title "${title}" --body "${body}"
           fi
+
+      - name: Upload maintainer handoff when PR creation is unavailable
+        if: steps.snapshot.outputs.changed == 'true' && steps.pr.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: gallery-snapshot-maintainer-handoff-${{ github.sha }}
+          path: ${{ steps.snapshot.outputs.handoff_dir }}
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Fail closed when snapshot PR creation is unavailable
+        if: steps.snapshot.outputs.changed == 'true' && steps.pr.outcome == 'failure'
+        shell: bash
+        run: |
+          echo "Fail closed: the gallery snapshot branch was updated, but GitHub Actions could not open or update its Draft PR."
+          echo "The maintainer handoff artifact contains the exact snapshot commit, patch, and an open-maintenance-pr.sh handoff using normal maintainer credentials."
+          exit 1

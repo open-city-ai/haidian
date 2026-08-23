@@ -1,0 +1,28 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-02",
+ "title_zh": "坐标系与量算口径固化",
+ "title_en": "Coordinate frame and measurement convention lock",
+ "domain": "spatial",
+ "status": "design_target",
+ "source_ids": [
+  "SITE-PACKAGE",
+  "ASSET-GEOMETRY"
+ ],
+ "inputs": [
+  "geometry/land_use.geojson",
+  "geometry/green_space.geojson"
+ ],
+ "procedure": [
+  "声明 WGS84 经纬度输入与等距投影常数（每纬度米、每经度米按场地中纬度取值）。",
+  "所有面积用同一 shoelace 实现，禁止图上量取。",
+  "把常数写入 metrics.json 的 formula 字段供第三方复核。"
+ ],
+ "pass_rule": "任意第三方按公开常数可复现全部面积，误差 <0.5%。",
+ "stop_rule": "出现两套量算口径或常数未公开时停止引用面积结论。",
+ "owner": "geospatial engineer",
+ "non_ai_equivalent": "测绘单位统一投影与量算规程",
+ "evidence_output": "measurement_convention_note",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

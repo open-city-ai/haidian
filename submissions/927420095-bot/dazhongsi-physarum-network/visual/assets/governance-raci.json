@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0.0",
+  "matrix_name_zh": "普通路径先行五关 RACI 责任分配矩阵",
+  "matrix_name_en": "Ordinary-Path-First Five-Gate RACI Responsibility Matrix",
+  "legend": {
+    "R": "Responsible (执行责任人)",
+    "A": "Accountable (最终核准与否决责任人)",
+    "C": "Consulted (咨询与复核专家)",
+    "I": "Informed (知会与信息公示对象)"
+  },
+  "roles": [
+    { "id": "ROLE-OWNER", "name_zh": "场景所有者/开发企业", "name_en": "Scenario Owner / Developer" },
+    { "id": "ROLE-TECH-REVIEW", "name_zh": "技术与安全独立评测组", "name_en": "Independent Technical & Safety Review Group" },
+    { "id": "ROLE-CIVIC-REP", "name_zh": "公众与无障碍代表（享否决权）", "name_en": "Public & Accessibility Representatives (Veto Power)" },
+    { "id": "ROLE-PUBLIC-STEWARD", "name_zh": "公共价值委员会/运营秘书处", "name_en": "Public Value Committee / Operations Secretariat" },
+    { "id": "ROLE-SPECIALIST", "name_zh": "空间/文保/交通规划专家组", "name_en": "Spatial / Heritage / Traffic Planning Specialists" }
+  ],
+  "gates": [
+    {
+      "gate_id": "G0",
+      "gate_name_zh": "普通路径常开",
+      "gate_name_en": "Ordinary Path Always Available",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "I",
+        "ROLE-CIVIC-REP": "I",
+        "ROLE-PUBLIC-STEWARD": "A",
+        "ROLE-SPECIALIST": "I"
+      },
+      "deliverable": "无账号/无模型/无网络的步行、人工、手推车路径常开清单"
+    },
+    {
+      "gate_id": "G1",
+      "gate_name_zh": "本地复算",
+      "gate_name_en": "Local Reproduction",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "A",
+        "ROLE-CIVIC-REP": "I",
+        "ROLE-PUBLIC-STEWARD": "C",
+        "ROLE-SPECIALIST": "C"
+      },
+      "deliverable": "simulation.json 参数（seed=42）可复现报告、五字段初表"
+    },
+    {
+      "gate_id": "G2",
+      "gate_name_zh": "专业复核",
+      "gate_name_en": "Professional Review",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "C",
+        "ROLE-CIVIC-REP": "C",
+        "ROLE-PUBLIC-STEWARD": "C",
+        "ROLE-SPECIALIST": "A"
+      },
+      "deliverable": "无障碍/安全/许可/维护四类专业独立复核报告、风险停止/恢复规则核对"
+    },
+    {
+      "gate_id": "G3",
+      "gate_name_zh": "有限现场窗口",
+      "gate_name_en": "Bounded Field Pilot",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "C",
+        "ROLE-CIVIC-REP": "A",
+        "ROLE-PUBLIC-STEWARD": "A",
+        "ROLE-SPECIALIST": "C"
+      },
+      "deliverable": "限定时段运行数据、现场工单、公众反馈与停用表决记录"
+    },
+    {
+      "gate_id": "G4",
+      "gate_name_zh": "常态运行/归档回执",
+      "gate_name_en": "Steady Operation / Archive Receipt",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "C",
+        "ROLE-CIVIC-REP": "I",
+        "ROLE-PUBLIC-STEWARD": "A",
+        "ROLE-SPECIALIST": "I"
+      },
+      "deliverable": "K 标版本更新回执、长期运营与退出审计日志（governance-receipts.json）"
+    }
+  ]
+}

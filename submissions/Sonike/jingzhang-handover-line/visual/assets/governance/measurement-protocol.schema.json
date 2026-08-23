@@ -5,9 +5,17 @@
   "description": "For every indicator this package leaves unassigned, the protocol that would produce a value: definition, source type, collecting role, sampling unit and scope, frequency, denominator, missing-value handling, quality checks, dispute review, privacy and retention, and the gate that must pass before publication. baseline and target stay null wherever no public evidence exists; a protocol is a method, not a commitment.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["protocol_version", "null_value_notice", "protocols"],
+  "required": [
+    "protocol_version",
+    "null_value_notice",
+    "protocols",
+    "aggregation_method_notice"
+  ],
   "properties": {
-    "protocol_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+    "protocol_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
     "null_value_notice": {
       "type": "string",
       "minLength": 60,
@@ -17,7 +25,14 @@
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": { "$ref": "#/$defs/protocol" }
+      "items": {
+        "$ref": "#/$defs/protocol"
+      }
+    },
+    "aggregation_method_notice": {
+      "type": "string",
+      "minLength": 40,
+      "description": "Standing notice on how aggregation is reported; added 2026-08 and previously absent from this schema."
     }
   },
   "$defs": {
@@ -41,7 +56,16 @@
         "publication_gate",
         "baseline",
         "target",
-        "assignment_precondition"
+        "assignment_precondition",
+        "aggregation_method_zh",
+        "aggregation_method_en",
+        "sampling_unit_en",
+        "sampling_scope_en",
+        "frequency_or_trigger_en",
+        "denominator_en",
+        "quality_checks_en",
+        "privacy_and_retention_en",
+        "publication_gate_en"
       ],
       "properties": {
         "metric_id": {
@@ -49,24 +73,32 @@
           "pattern": "^[a-z0-9_]{4,48}$",
           "description": "Must match a key in metrics.json whose status is not known."
         },
-        "definition_zh": { "type": "string", "minLength": 8 },
-        "definition_en": { "type": "string", "minLength": 8 },
+        "definition_zh": {
+          "type": "string",
+          "minLength": 8
+        },
+        "definition_en": {
+          "type": "string",
+          "minLength": 8
+        },
         "data_source_type": {
           "type": "array",
           "minItems": 1,
           "items": {
             "type": "string",
             "enum": [
-              "statutory_survey",
-              "official_statistics",
-              "competent_authority_decision",
               "cadastral_or_ownership_record",
+              "competent_authority_decision",
+              "complaint_and_appeal_register",
+              "handover_ledger_record",
+              "not_yet_identifiable",
+              "official_statistics",
               "on_site_manual_count",
               "public_contribution_ledger",
               "scenario_operation_log",
-              "complaint_and_appeal_register",
-              "not_yet_identifiable"
-            ]
+              "statutory_survey"
+            ],
+            "description": "数据来源类型。2026-08-22 增 handover_ledger_record：上线历时与返工轮次两项由独立复核方从双联交接账的交接与拒收记录里量，既不是场景运行日志也不是公众贡献账；此前实例用的是不在枚举内的 operational_record，一并改准。"
           }
         },
         "collecting_role": {
@@ -74,11 +106,23 @@
           "pattern": "^R-[A-Z0-9-]{3,28}$",
           "description": "Role id from role-spec.json; unassigned like every other role."
         },
-        "sampling_unit": { "type": "string", "minLength": 4 },
-        "sampling_scope": { "type": "string", "minLength": 4 },
-        "frequency_or_trigger": { "type": "string", "minLength": 4 },
+        "sampling_unit": {
+          "type": "string",
+          "minLength": 4
+        },
+        "sampling_scope": {
+          "type": "string",
+          "minLength": 4
+        },
+        "frequency_or_trigger": {
+          "type": "string",
+          "minLength": 4
+        },
         "denominator": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Explicit denominator for ratio indicators; null for counts and absolute quantities."
         },
         "missing_value_handling": {
@@ -89,7 +133,10 @@
         "quality_checks": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 6 }
+          "items": {
+            "type": "string",
+            "minLength": 6
+          }
         },
         "dispute_review": {
           "type": "string",
@@ -104,7 +151,10 @@
         "publication_gate": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 6 },
+          "items": {
+            "type": "string",
+            "minLength": 6
+          },
           "description": "Every condition that must hold before the value may be published; failing any one keeps the value unassigned."
         },
         "baseline": {
@@ -119,8 +169,68 @@
           "type": "string",
           "minLength": 10,
           "description": "The single missing input whose arrival would let this indicator be computed."
+        },
+        "aggregation_method_zh": {
+          "type": "string",
+          "minLength": 8,
+          "description": "How individual readings are aggregated for publication; added 2026-08 and previously absent from this schema."
+        },
+        "aggregation_method_en": {
+          "type": "string",
+          "minLength": 8
+        },
+        "sampling_unit_en": {
+          "type": "string",
+          "minLength": 3
+        },
+        "sampling_scope_en": {
+          "type": "string",
+          "minLength": 3
+        },
+        "frequency_or_trigger_en": {
+          "type": "string",
+          "minLength": 3
+        },
+        "denominator_en": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "English counterpart of denominator; null for counts and absolute quantities."
+        },
+        "quality_checks_en": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 6
+          }
+        },
+        "privacy_and_retention_en": {
+          "type": "string",
+          "minLength": 6
+        },
+        "publication_gate_en": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 6
+          }
         }
       }
     }
-  }
+  },
+  "schema_change_log": [
+    {
+      "date": "2026-08-22",
+      "note_zh": "补 9 个协议字段与 1 个顶层字段。此前 $defs/protocol 只声明 17 个属性并带 additionalProperties: false，而实例每条已用 26 个——**也就是说这份 schema 从写下起就不可能通过这份实例**，而 validation-report.json 里 MEASUREMENT_PROTOCOL_INSTANCE_VALIDATION 一直写着 passed: true。这处是 2026-08-22 重跑那份报告（而不是只改时间戳）时暴露出来的。",
+      "note_en": "Added nine protocol fields and one top-level field. $defs/protocol previously declared 17 properties with additionalProperties: false while every instance entry already used 26, so this schema could never have validated this instance — yet validation-report.json had recorded MEASUREMENT_PROTOCOL_INSTANCE_VALIDATION as passed. Surfaced on 2026-08-22 by actually re-running that report instead of only bumping its timestamp."
+    },
+    {
+      "date": "2026-08-22",
+      "note_zh": "data_source_type 枚举增 handover_ledger_record（9 → 10 值）。实例里 protocols[12]／[13]（handover_to_service_days、handover_rework_rounds）原用 operational_record——不在枚举内，是这两项指标新增那一轮漏改的；且该词含糊，两项实际都从双联交接账的交接与拒收记录里量，故按实际改为 handover_ledger_record，而不是把含糊值塞进枚举。",
+      "note_en": "Added handover_ledger_record to the data_source_type enum (9 to 10 values). protocols[12] and [13] previously used operational_record, which was outside the enum and vague; both are in fact measured from the dual-signature handover ledger's transfer and refusal records, so the instance was corrected rather than the enum widened to accept a vague value."
+    }
+  ]
 }

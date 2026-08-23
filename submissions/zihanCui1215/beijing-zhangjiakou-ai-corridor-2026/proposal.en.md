@@ -8,7 +8,7 @@ translation_of: "proposal.md"
 translation_method: "human-authored English edition, substantive parity per section measured by visual/assets/parity_check.js (0.66 words/char, floor 0.588)"
 summary: "A verifiable, take-over-able, exitable urban AI proving belt on the Jing-Zhang rail heritage: every scenario ships its spatial carrier, ordinary-service path, measurement method and public receipt."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]
-iteration: "v7"
+iteration: "v8"
 ---
 
 # Beijing-Zhangjiakou AI Innovation Corridor Urban Design
@@ -58,9 +58,14 @@ All spatial figures are recomputed under EPSG:4548 from the provisional geometry
 
 **One-page reading: what this belt becomes on the ground.** Four layers. **Spatial:** one axis, three cores, two wings — the 7.5 km heritage axis carries continuous public space; Zhongzhiyuan / AI Origin / Dazhongsi respectively carry full-stack verification, campus-to-city conversion and first-floor urban application; the two wings plug in universities, enterprises and communities. **Service:** every AI scenario keeps an ordinary-service path — when recommendation engines stop, counters, wayfinding, greens and accessible routes still work. **Verification:** the twelve scenario cards each register measured object, comparison method, human takeover and stop conditions (scenario_cards.json + check_cards.js). **Operations:** public questions re-enter an annual public-value audit through sandbox -> evidence -> review -> scale-up-or-exit (operations.json + check_ops.js). Before any AI scenario enters public space it must answer six questions: where it lands, how ordinary service survives, what is measured, who reviews, when humans take over, and how it exits.
 
-**One-page reading: what this belt becomes on the ground.** Four layers. **Spatial:** one axis, three cores, two wings — the 7.5 km heritage axis carries continuous public space; Zhongzhiyuan / AI Origin / Dazhongsi respectively carry full-stack verification, campus-to-city conversion and first-floor urban application; the two wings plug in universities, enterprises and communities. **Service:** every AI scenario keeps an ordinary-service path — when recommendation engines stop, counters, wayfinding, greens and accessible routes still work. **Verification:** the twelve scenario cards each register measured object, comparison method, human takeover and stop conditions (scenario_cards.json + check_cards.js). **Operations:** public questions re-enter an annual public-value audit through sandbox -> evidence -> review -> scale-up-or-exit (operations.json + check_ops.js). Before any AI scenario enters public space it must answer six questions: where it lands, how ordinary service survives, what is measured, who reviews, when humans take over, and how it exits.
+Each key area carries a one-sentence spatial promise under a shared "verb-space-evidence-fallback" grammar:
 
-**One-page reading: what this belt becomes on the ground.** Four layers. **Spatial:** one axis, three cores, two wings — the 7.5 km heritage axis carries continuous public space; Zhongzhiyuan / AI Origin / Dazhongsi respectively carry full-stack verification, campus-to-city conversion and first-floor urban application; the two wings plug in universities, enterprises and communities. **Service:** every AI scenario keeps an ordinary-service path — when recommendation engines stop, counters, wayfinding, greens and accessible routes still work. **Verification:** the twelve scenario cards each register measured object, comparison method, human takeover and stop conditions (scenario_cards.json + check_cards.js). **Operations:** public questions re-enter an annual public-value audit through sandbox -> evidence -> review -> scale-up-or-exit (operations.json + check_ops.js). Before any AI scenario enters public space it must answer six questions: where it lands, how ordinary service survives, what is measured, who reviews, when humans take over, and how it exits.
+| Area | Core verb | Minimal visible delivery | Evidence required before scale-up | City state if AI fails |
+| --- | --- | --- | --- | --- |
+| Zhongzhiyuan | **Verify** | River-test courtyard-standard gallery sequence | Red-team results, takeover logs, same-task energy | Ordinary garden block and continuous walking line |
+| AI Origin | **Transfer** | Campus interface-transfer street-open hall sequence | Before/after service comparison, rights review, user retest | Ordinary public hall, human advisors, shared workshops |
+| Dazhongsi | **Apply** | Station mouth-reception hall-experience street-public green sequence | Peak/off-peak walk audit, shutdown drill, complaint log | Ordinary commerce, human counters, public green |
+
 
 *All quantitative goals are scenario targets pending official baselines, not forecasts or commitments.*
 
@@ -75,8 +80,8 @@ All spatial figures are recomputed under EPSG:4548 from the provisional geometry
 | | Building density (recomputed) | 8.7 | % |
 | Industry | Research land (0802) share, two bands | 27.6 | % |
 | | Commercial land (05) share, two bands | 18.4 | % |
-| Population | Employment capacity (from recomputed GFA) | 10-12 | 10k persons |
-| | Residential capacity | 5-6 | 10k persons |
+| Population | Employment capacity (scenario-based, see assumptions.json) | 15-20 | 10k persons |
+| | Residential capacity (scenario-based, see assumptions.json) | 8-10 | 10k persons |
 | Facilities | Education facility radius | 500 | m |
 | | Medical facility radius | 1,000 | m |
 | | Park green 500m coverage | 100 | % |
@@ -94,6 +99,33 @@ All spatial figures are recomputed under EPSG:4548 from the provisional geometry
 Baseline values remain pending first measurement. Each is published with its definition, sampling boundary and responsible role; official boundary changes only recompute spatial metrics, never measurement rules.
 
 ## Three-Level Scope Framework
+
+The three-level scope is organised as a strategy - structure - project - feedback chain, not a simple scaling of drawings across three plan scales. The 43.6 km2 coordinated research area (announcement figure) answers the strategic question: how Haidian's AI capability forms a cross-regional innovation network instead of another collection of parks. Its output is organisational - a six-link industry chain and shared wings for compute, legal and investment services - with the announcement basis cited as [source:S003]. The 11.41 km2 overall design area (geometrically recomputed under EPSG:4548) answers the structural question: how three cores, two wings and one axis land on concrete land-use bands. Boundary geometry and the recomputation method are documented in [data:geometry/site_boundary.geojson]; total area and average floor-area ratio are taken from [metric:site_area_sqm] and [metric:average_far]. The three key detailed-design areas (3.68 km2 combined) answer the project question: how each square-kilometre-scale piece of space is verified, translated and applied - the three core verbs of this proposal. Per-area recomputation is documented in [data:geometry/key_areas.geojson]. The levels are linked by metrics rather than by zooming drawings: operational data observed at lower levels only calibrates upper-level assumptions and pilot lists, and never directly produces statutory planning conclusions. Scope boundaries are provisional under the current baseline; official boundaries follow approval documents issued by the planning authority, and once they change only geometric metrics are recomputed while measurement rules remain untouched [source:S001]. This keeps one chain of evidence legible across all three levels: strategy sets the network, structure fixes the bands and cores, projects carry the verbs, and measured feedback flows back up the chain instead of accumulating as unmanaged promises.
+
+
+
+## Coordinated Research Area: Industry and Future City Research
+
+At the 43.6 km² research level, the question is how Haidian's AI capability forms a cross-regional innovation network rather than a collection of parks. The answer here is organisational: a six-link industry chain (research - open source - incubation - verification - scale-up - city feedback), with Zhongzhiyuan carrying research and open source, AI Origin carrying incubation and verification, and Dazhongsi carrying scale-up and city feedback; the two wings share compute access, legal/IP, investment, exhibition, education and living services to avoid duplication.
+
+### Global Cases Translated into Design (agent.2, 8 verifiable cases) [source:S010]
+
+Cases are not decorative citations: each row extracts one lesson directly relevant to this proposal and lands it in a specific design decision. Source URLs and per-case analysis in sources.json S010.
+
+| Case | Key fact | Design decision translated |
+|------|---------|----------------------|
+| Sand Hill Road (US) | VC agglomeration, fragmented urban space | Capital services embedded in the Zhongzhiyuan accelerator walking circle; no separate financial district |
+| King's Cross London (UK) | Rail heritage regenerated as urban core | Heritage park as the axis linking three cores; low-rise transition along the corridor |
+| Adlershof Berlin (DE) | Research-industry symbiosis | Zhongzhiyuan lab-pilot-HQ gradient in the same district |
+| Nanshan Sci-Tech Park (CN) | High density, jobs-housing imbalance | AI Origin keeps 11.9% residential land and low-cost workstations |
+| Hangzhou Future Sci-Tech City (CN) | Government-led rapid agglomeration | Open-source community self-governance instead of single-operator government (operations.json) |
+| one-north Singapore (SG) | Mixed use avoids dormitory city | 11 mixed-use bands; no single function exceeds 30% of any band |
+| Kashiwa-no-ha (JP) | City-wide environmental tech experiments | Three test platforms + scenario-card sandbox (SC-07/08 + OPS-3) |
+| Kendall Square (US) | MIT industry-research at zero distance | Education and research land in adjacent bands; shared laboratory nodes |
+
+*Method: for each case ask "which spatial mechanism succeeded or failed here", then map that mechanism onto our land-use bands, operations structure or scenario cards. Generic "drawing on international experience" citations are rejected.*
+
+## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 ### 3.1 Spatial Structure: Three Cores, Two Wings, One Axis
 
@@ -144,58 +176,9 @@ The eleven bands read north to south as a deliberate sequence: northern research
 
 **Height imagery** (conceptual, non-statutory): Zhongzhiyuan ~45-95 m; Dazhongsi ~35-80 m; AI Origin ~18-45 m; a ~100 m low-rise transition zone (≤24 m) flanking the heritage corridor. Formal controls await heritage protection zones, airport clearance and planning conditions.
 
-## Coordinated Research Area: Industry and Future City Research
-
-### Global Cases Translated into Design (agent.2, 8 verifiable cases) [source:S010]
-
-Cases are not decorative citations: each yields one mechanism lesson, mapped to a specific design decision in this proposal. Source URLs and per-case analysis live in sources.json S010.
-
-| Case | Key fact | Design decision translated |
-|------|----------|---------------------------|
-| Sand Hill Road, Silicon Valley (US) | VC density with fragmented urban space | Capital services embedded in the Zhongzhiyuan accelerator walkshed; no separate financial district |
-| King's Cross, London (UK) | Rail heritage regenerated into urban core | Heritage Park as the threading spine; low-rise transition flanking the corridor |
-| Adlershof, Berlin (DE) | Research and industry co-located | Lab-to-pilot-to-HQ gradient within Zhongzhiyuan, same-district transfer |
-| Nanshan Science Park, Shenzhen | Dense innovation, jobs-housing imbalance | AI Origin keeps 11.9% residential land and affordable workpoints |
-| Future Sci-Tech City, Hangzhou | Government-led rapid agglomeration | Open-source community self-governance replaces single-operator government management (operations.json) |
-| one-north, Singapore | Mixed use avoids dormitory town | 11 mixed bands; no single-function band above 30% |
-| Kashiwa-no-ha (JP) | Citywide environmental-tech experimentation | Three test platforms + scenario-card sandboxes (SC-07/08 + OPS-3) |
-| Kendall Square, Cambridge (US) | MIT-industry zero distance | Education and research bands adjacent; shared-laboratory nodes |
-
-*Method: for each case we first ask "which spatial mechanism did it succeed or fail at", then map that mechanism onto a land band, an operating structure or a scenario card here. Generic "learning from global experience" is rejected.*
-
-### Industry Status and Trends [source:S003] [source:S006] [source:S010]
-
-The coordinated research area covers 43.6 km² (announcement basis) across Haidian's core innovation corridor, hosting Zhongguancun Science Park, Tsinghua Science Park and Peking University Science Park (roster in S006). Enterprise counts and output values await official statistical bulletins; this proposal asserts no unverified figures and discusses agglomeration trends only at the scenario level (assumptions.json A002). Land analysis shows current industrial land at ~28%, concentrated mid-corridor.
-
-### Future City Strategy [standard:STD-BEIJING-MP]
-
-Guided by the Beijing Master Plan's innovation-centre positioning, three directions: (1) AI source innovation — an algorithm/compute/data agglomeration zone on Zhongguancun's gene; (2) AI+ industry fusion demonstrations; (3) smart-city pilot governance, data-driven and sensing-based [standard:MOHURD-URBAN-DESIGN-MEASURES].
-
-### Industry Spatial Layout [data:geometry/key_areas.geojson] [data:geometry/phasing.geojson]
-
-"Three cores leading, two wings extending." The wings: the Zhongguancun Science-Service Wing reaching north to the Qinghuayuan innovation node, and the Xiaoyuehe Scenario-Empowerment Wing extending south to the Xizhimen hub business district [data:geometry/key_areas.geojson]. Phasing [data:geometry/phasing.geojson]: Phase 1 (~3.42 km², [metric:phase_1_area_sqm]) concentrates AI innovation carriers; Phase 2 (~4.57 km²) completes the support system; Phase 3 (~3.42 km²) raises urban quality — three phases of nearly equal geometric weight, a deliberate hedge against any single era's technology bet. All three key areas are provisional extents to be recomputed when formal boundaries arrive; the corridor logic itself is boundary-tolerant because it hangs on the rail axis, which is fixed history, not provisional geometry.
-
-## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
-
-### Regulatory-Depth Indicator System [standard:MOHURD-CONTROL-DETAILED-PLANNING]
-
-Organised to regulatory-plan depth as a conceptual design (not a statutory regulatory plan): average FAR 1.13 [metric:average_far], building density 8.7% [metric:building_density], green ratio 44.4% [metric:green_ratio] (full-layer basis), public-space provision 8.2% [metric:public_space_ratio]. Land classification per the MNR 2023 guide [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE], coded feature-by-feature in [data:geometry/land_use.geojson].
-
-### Urban Renewal Strategy [depth:existing_conditions_diagnosis] [depth:retain_renovate_demolish]
-
-From the buildings audit [data:geometry/buildings.geojson]: retain ~55% (heritage and recent quality stock), renovate ~30% (ageing low-efficiency space into AI carriers), demolish ~15% (dangerous and plan-incompatible stock) [depth:retain_renovate_demolish]. Project list in the implementation chapter.
-
-### Spatial Structure and Skyline [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:height_massing_character]
-
-Following the urban-design management measures, the "three cores, two wings" structure is expressed vertically as a three-tier skyline imagery (conceptual suggestion, not statutory control): Zhongzhiyuan ~45-95 m, Dazhongsi ~35-80 m, AI Origin ~18-45 m preserving street scale, with a ~100 m low-rise transition band (≤24 m) flanking the rail heritage corridor [depth:height_massing_character]. Architectural character continues the Jing-Zhang industrial idiom — pitched roof profiles reinterpreted, brick and steel textures re-used — while intelligent construction and AI-generated design studies are encouraged in key areas as research topics, not as approved methods.
-
-### Land-Use Subdivision and Intensity [depth:land_use_layout] [depth:development_intensity_controls]
-
-Land subdivides into 11 band types under the 2023 MNR codes [depth:land_use_layout] (see [data:geometry/land_use.geojson]). Intensity is controlled per band [depth:development_intensity_controls]: the Dazhongsi industrial band recomputes to FAR ~2.30, Zhongzhiyuan ~1.89, AI Origin ~0.63, corridor average 1.13. Public-space provision 8.2% [metric:public_space_ratio]; the road band (1207) holds ~9.8%. The FAR gradient deliberately puts density where the transit capacity is, and keeps it low where the heritage fabric demands respect.
-
 ## Detailed Design of Key Areas
 
-### 5.1 Zhongzhiyuan AI Self-Innovation Acceleration Area
+### 4.1 Zhongzhiyuan AI Self-Innovation Acceleration Area — hero sequence: River–Courtyard–Gallery
 
 **Positioning.** The cradle of AI hard-tech self-innovation (named per the taskbook and official boundary files; earlier drafts said "Zhongguancun AI Acceleration Core" — deprecated): leaning on Tsinghua, PKU and the national laboratories, focused on large models, chips and algorithms, building the complete innovation chain from basic research through technology transfer to industrial conversion — the place where a paper becomes a platform and a platform becomes an industry. (Named per the taskbook and official boundary files; earlier drafts said "Zhongguancun AI Acceleration Core" — deprecated.)
 
@@ -218,7 +201,7 @@ Land subdivides into 11 band types under the 2023 MNR codes [depth:land_use_layo
 
 **Spatial design highlights (Acceleration Area):** three-dimensional innovation blocks with basement logistics, ground-floor public interfaces and skybridge exchange decks (conceptual section); an open campus whose walls dissolve into city streets; mixed R&D-office-housing-commerce for a working balance of jobs and homes; intelligent infrastructure including full 5G/6G coverage, smart logistics and autonomous-vehicle test roads threaded through the district.
 
-### 5.2 Beijing AI Origin Community
+### 4.2 Beijing AI Origin Community — hero sequence: Campus–Street–Hall
 
 **Positioning.** The spiritual home of global open-source developers — organised around the three ideas of openness, sharing and collaboration, building the developer ecology, the open-source community and the talent-cultivation system together, so that every code contributor finds belonging and honor here, not merely a workplace.
 
@@ -248,7 +231,7 @@ Land subdivides into 11 band types under the 2023 MNR codes [depth:land_use_layo
 | Annual developer visits (target) | ≥100,000 |
 | Training capacity | ≥5,000 persons/yr |
 
-### 5.3 Dazhongsi AI Industry Cluster
+### 4.3 Dazhongsi AI Industry Cluster — hero sequence: Station–Hall–Street–Green
 
 **Positioning.** The highland where AI technology reaches industrial application — focused on AI+healthcare, AI+education and AI+commerce, constructing the complete chain of industrial application, scenario verification and commercial conversion, so that AI genuinely serves urban development and livelihood improvement rather than remaining in demonstration rooms. It is also the corridor's commercial gateway.
 
@@ -366,66 +349,6 @@ All synergy items are conceptual suggestions for the respective authorities to c
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
-### 5.1 Ecological Chain Design
-
-The innovation ecology is a four-layer chain, each layer feeding the next:
-
-**Layer one — fundamental research:** universities and institutes → national laboratories → large-scale research installations; outputs are original theory, core technology and algorithmic breakthroughs, moving down through technology-transfer platforms. **Layer two — applied R&D:** start-ups → growth companies → unicorns; outputs are applied technology, product prototypes and solutions, moving down through incubators and accelerators. **Layer three — industrial application:** industry clusters → industry testing → scenario validation; outputs are deployed applications, commercial products and market value, moving down through investment-and-financing services. **Layer four — capital markets:** venture capital → industry funds → listing channels; outputs are capital support, market recognition and sustained development feeding back into layer one.
-
-**Four support elements run through all layers:** open-source community support (code, data and models lowering the entry threshold); talent supply (universities, enterprise training, international recruitment); infrastructure (compute, data and testing platforms); and policy instruments (talent, industry and innovation policy optimising the institutional environment).
-
-The complete innovation ecosystem runs through four layers, each feeding the next:
-
-```
-Layer 1: Basic research — universities, national laboratories, large-scale
-         compute installations → theories, core technologies, algorithmic
-         breakthroughs; handed down through technology-transfer platforms.
-Layer 2: Applied R&D — start-ups, growth firms, unicorns → application
-         technologies, prototypes, solutions; handed down through
-         incubators and accelerators.
-Layer 3: Industrial application — clusters, industrial testing, scenario
-         verification → products, commercial value; financed by
-Layer 4: Capital markets — venture capital, industrial funds, IPO
-         financing → sustained development.
-```
-
-**Key support elements:** (1) open-source community — code, data and models lowering the innovation threshold; (2) talent supply — university programmes, enterprise practice, international recruitment; (3) infrastructure — compute, data and test platforms; (4) policy instruments — talent, industry and innovation policies.
-
-### 5.2 User Personas and Scenario Cards
-
-**Persona 1 — AI researcher, Li Ming (35).** Associate professor at a university AI school; research in large models and multimodal learning. Needs: high-performance compute, large datasets, collaboration spaces. Trajectory: laboratory → conferences → industry engagement. Cares about research transfer, academic impact, student mentoring.
-
-**Persona 2 — Open-source developer, Zhang Xue (28).** Independent developer and active community contributor; Python/PyTorch/distributed systems. Needs: community belonging, peer exchange, honor recognition. Trajectory: remote work → developer conferences → hackathons. Cares about contribution records, community standing, career growth.
-
-**Persona 3 — Start-up founder, Wang Qiang (32).** Founder of an AI-medical company; product: AI-assisted diagnosis. Needs: office space, investor access, clinical validation, policy support. Trajectory: office → roadshows → hospital partnerships → team building. Cares about growth, market share, funding progress.
-
-**Persona 4 — Venture capitalist, Zhao Lin (40).** VC partner focused on AI: large-model applications, AI infrastructure, AI healthcare. Needs: quality deal flow, industry research, post-investment services. Trajectory: due diligence → investment decisions → portfolio management. Cares about returns, trends, deal quality.
-
-**Persona 5 — AI user-professional, Dr Chen (45).** Chief physician applying AI diagnosis and imaging analysis. Needs: reliable products, clinical evidence, training. Trajectory: clinic → surgery → training → feedback. Cares about diagnostic efficiency, patient satisfaction, safety.
-
-The five industry personas above are the compressed narrative of the nine-type persona table in the Chinese edition (researcher, open-source developer, founder, investor, physician, teacher, student, elder and service worker) — the four added types carry the inclusion agenda: the elder and the service worker test whether the corridor works for people who never write code, and the teacher and student carry the AI-literacy programme. Each persona's daily trajectory is traceable to specific anchors: the researcher's lab-to-conference path runs through the Zhongzhiyuan seminar commons; the developer's remote-work-to-hackathon path ends at the Exchange Centre; the physician's clinic loop closes at the clinical-validation platform; the service worker's day is anchored by the 800 m service stations.
-
-**Scenario details (ten flagship scenes):**
-
-1. **AI Diagnosis Centre** (Dazhongsi healthcare park, 2 ha): three functions — AI-assisted diagnosis (imaging recognition, pathology analysis, record interpretation), telemedicine linking grassroots hospitals to expert-level care, and personalised treatment grounded in de-identified histories and genomic data. Users: physicians, patients, medical-AI developers. Validation: clinical trials with tertiary hospitals, diagnostic accuracy target ≥95% (SC-01).
-2. **Adaptive Learning Lab** (education base, 1.5 ha): personalised learning paths adjusted to each student's demonstrated ability; a 24/7 intelligent tutoring system with instant feedback; learning-outcome prediction enabling early intervention. Users: students, teachers, education-AI developers. Validation: five-school pilot with tracked outcomes, learning-efficiency gain ≥30%, no individual profiling (SC-02).
-3. **Smart Retail Street** (500 m, commerce zone): scan-based checkout, shelf recommendations — no biometric recognition by default, staffed counters always retained (SC-03); personalised marketing on anonymous aggregates only.
-4. **Autonomous Driving Test Road** (5 km, Dazhongsi test platform): full-scenario testing across urban roads, expressway links, night and adverse weather; V2X infrastructure (roadside units, on-board units), adaptive signal control with priority passage, and high-precision mapping at ≤10 cm refresh accuracy; a safety-supervision regime of 24-hour monitoring, emergency response and black-box liability tracing. Users: AV enterprises, transport authorities, passengers. Validation: cumulative ≥1,000,000 test-km with zero major safety incidents (SC-08).
-5. **Open-source Code Review Station** (0.5 ha, Origin community): AI-assisted code quality and vulnerability detection; contribution-value assessment; code provenance tracing. Accuracy target ≥90%, efficiency gain ≥50%.
-6. **AI Art Creation Studio** (0.8 ha, heritage park): generative painting, music and literature; human-machine co-creation; immersive digital exhibition.
-7. **Smart Eldercare Community** (within residential bands): opt-in wearable health monitoring, emergency response covering fall detection, cardiac-event warning and automatic alerting, and companion robots offering emotional support and health management. Users: elders, chronic-disease patients, families. Validation: pilot-community satisfaction ≥90%, emergency response ≤5 minutes — all under SC-04 boundaries: no health profiling, unconditional opt-out.
-8. **Robot Service Streets** (district-wide): delivery, cleaning and guidance robots on designated lanes (SC-07), with remote human operators and takeover protocols.
-9. **Data Labelling Factory** (1 ha, Dazhongsi): image/speech/text labelling services with AI-assisted quality control and human verification; labelling accuracy target ≥98%.
-10. **AI Ethics Review Centre** (0.3 ha): ethics review of AI applications (privacy, bias, safety); standards development; public education. Beyond these ten flagship scenes, the full set runs to twelve structured cards (SC-01 to SC-12, machine-readable in scenario_cards.json) adding the transit hub (SC-09) and the city digital twin (SC-12); each card binds the same eight fields — anchor layer and feature, personas served, data sources, model boundary, human review, failure degradation, KPI and exit condition — so that every scene is an auditable commitment rather than an illustration.
-
-### 5.3 Industry Test and Verification Platforms (detail)
-
-**Platform 1 — Medical AI clinical validation** (Dazhongsi): five-hospital consortium; pipeline of application → ethics committee review → 100-500-case trial → 1,000-5,000-case expansion → published validation report; standards: diagnostic accuracy ≥95%, response ≤5 s, physician acceptance ≥85%; ≥10 products validated annually.
-
-**Platform 2 — Autonomous-driving open test roads**: 3 km urban + 2 km expressway link; normal / complex / extreme scenario suites; roadside units and on-board units; adaptive signal priority; high-precision maps refreshed to ≤10 cm; a 24-hour monitoring centre, remote-takeover contingency and black-box liability tracing; cumulative target ≥1 M test-km with zero major incidents.
-
-**Platform 3 — Smart-campus pilot zone** (five schools around the Origin community): AI-assisted teaching, personalised assignments and intelligent assessment; campus safety with card-based (non-biometric) access, AI-assisted anomaly alerts and emergency alarms — explicitly no facial recognition or behavioural profiling of students (see privacy_review_matrix.json); health management with nutrition analysis and counselling. Targets: learning efficiency +30%, teacher workload −20%, parent satisfaction ≥90%.
-
 ### Land Use Layout
 
 The layout optimises the 11.41 km² overall design area [metric:site_area_sqm] under the MNR 2023 classification (the 43.6 km² research area stays at strategy level with no land balance). Recomputed from [data:geometry/land_use.geojson]: research (0802) totals 315.0 ha / 27.6%; commercial (05) 209.4 ha / 18.4%; park green (1401) 153.7 ha / 13.5%; residential (0701) 135.5 ha / 11.9%; culture (0803) 62.3 ha / 5.5%; education (0804) 63.2 ha / 5.5%; sports (0805) 38.0 ha / 3.3%; roads (1207) 112.1 ha / 9.8%; strategic reserve (16) 51.8 ha / 4.5% — summing to exactly 100%.
@@ -440,17 +363,10 @@ Corridor-wide recomputed average FAR 1.13 [metric:average_far], building density
 
 Retain historic buildings and cultural relics (the Qinghuayuan Station ruins and peers); renovate ageing industrial workshops into AI innovation space; demolish illegal construction and inefficient buildings. Corridor-average split aligned with the renewal strategy: retain ~55% (historic and quality stock), renovate ~30% (ageing low-efficiency space), demolish ~15% (unsafe and illegal stock), per [depth:retain_renovate_demolish].
 
-### Ecological Chain Design (context)
-
-The eleven-band plan (3.2) is a complete partition, not scattered zoning: bands tile the site with zero gap and total 100.0%. Research bands (0802) total 315.0 ha / 27.6%; commercial bands (05) total 209.4 ha / 18.4%; road band (1207) 112.1 ha / 9.8% — each recomputable via verify.js.
-
-Building scale: 593 generated building masses, footprint 99.1 ha (density 8.7% [metric:building_density]), GFA 12.89 M m², average FAR 1.13 [metric:average_far]. Heights follow the three-tier imagery with the heritage-corridor transition band; all massing is conceptual and awaits formal controls.
-
-Retain-renovate-demolish: 55/30/15 as a corridor-average scenario band, declared per-project in the renewal list, gated by heritage constraints and existing-community continuity. The retained 55% concentrates in the heritage fabric and recent quality stock; the renovated 30% targets ageing low-efficiency space whose structure can carry new AI uses (workshops into labs, dormitories into studios); the demolished 15% is confined to structurally unsafe or plan-incompatible buildings, replaced at no net loss of affordable community services. Every demolition-adjacent household gets the pre-assessment and resettlement options described in the Inclusive Design chapter.
-
-**Land-use discipline:** the eleven bands are a partition, not a collage — they tile the 11.41 km² site with zero gap, total exactly 100.0%, and every band's area is recomputable from land_use.geojson via verify.js. No band exceeds 30% of the site, implementing the one-north lesson against single-function superblocks; research (27.6%) and commerce (18.4%) together carry the innovation-belt program while residential (11.9%) and green (13.5%) keep the district livable at night, avoiding the Nanshan jobs-housing trap.
 
 ## 6. Transportation and Infrastructure
+
+## Transport, Rail, Municipal Infrastructure, and Public Services
 
 ### 6.1 Integrated Transport
 
@@ -483,7 +399,6 @@ Retain-renovate-demolish: 55/30/15 as a corridor-average scenario band, declared
 **Community services:** one-stop convenience centres in every community handling government, life and consultation services; eldercare stations in every residential quarter for day care and health management; childcare centres resolving the dual-earner family's hardest constraint — all configured to the 15-minute life circle and retaining full non-digital channels per the inclusion indicators.
 
 
-
 Five-tier road hierarchy: expressways (Jingzang, North 4th Ring), arterials (Zhongguancun Street, Xueyuan Road), secondaries, branches and slow-traffic paths. Rail: Line 13, Changping Line and the planned corridor express, with eight station-access nodes. Eight schematic road features ship in [data:geometry/roads.geojson].
 
 Municipal: smart utility networks, utility tunnels, 5G/6G base stations, distributed energy — all as conceptual provisioning; capacity figures await official utility baselines.
@@ -491,12 +406,6 @@ Municipal: smart utility networks, utility tunnels, 5G/6G base stations, distrib
 Rail detail: Line 13 serves Wudaokou, Zhichunlu and Xizhimen; the Changping Line interchanges at Xi'erqi; Line 4 serves Haidian Huangzhuang and Zhongguancun. Eight station-access nodes turn these interchanges into corridor gateways — each node bundles bike docks, shuttle stops, wayfinding and robot kerb zones so that the last 500 m between rail and workplace is designed space, not leftover space.
 
 Public services to the 15-minute life-circle standard: education (500 m radius), medical (1,000 m), culture and sports facilities, community services with eldercare stations and childcare centres.
-
-## Transport, Rail, Municipal Infrastructure, and Public Services
-
-![Transport and blue-green systems](assets/figures/mobility-bluegreen.en.png)
-
-This chapter consolidates the corridor's mobility and utility frame. The five-tier road hierarchy (expressways — Jingzang and the North Fourth Ring; arterials — Zhongguancun Street, Xueyuan Road; secondaries; branches; slow-traffic paths) is carried in [data:geometry/roads.geojson] as eight schematic features. Rail transit rests on Line 13, the Changping Line and a planned corridor express, with eight station-access nodes converting interchanges into designed gateways. Municipal infrastructure — smart water and drainage networks, utility tunnels, 5G/6G base stations, distributed energy — is provisioned conceptually, with all capacity figures awaiting official utility baselines. Public services follow the 15-minute life-circle standard at full coverage: education at 500 m, medical at 1,000 m, culture and sports facilities, and community services with eldercare stations and childcare centres in every residential quarter.
 
 ## Inclusive Design and Social Impact
 
@@ -667,17 +576,19 @@ All four are standard-library-only, offline and deterministic. Current results: 
 
 **Industry:** research land (0802, two bands) 315.0 ha / 27.6%; commercial land (05, two bands) 209.4 ha / 18.4%; combined 46.0% carrying the innovation-belt program. Scenario targets: ≥500 AI enterprises by Phase 2; high-tech share ≥60%; Phase-2 output scenario 500+ billion yuan (assumptions.json).
 
-**Population (scenario, not forecast):** employment capacity 15-20万 on the recomputed GFA with density assumptions; residential capacity 8-10万; daily activity 25-30万 including visitors.
+**Population (scenario, not forecast):** employment capacity 15-20 (10k persons) on the recomputed GFA with density assumptions; residential capacity 8-10 (10k persons); daily activity 25-30 (10k persons) including visitors.
 
 **Metric discipline in one paragraph:** geometric metrics are recomputed from shipped GeoJSON under EPSG:4548 and are reproducible by verify.js; scenario metrics (enterprises, output, population) live in assumptions.json and are never mixed into the geometric set; aspirational service metrics (coverage rates) are labelled targets with phase gates. The three types are visually and syntactically distinct throughout — a reviewer can tell within one line which class of number a sentence carries.
 
 **Facilities:** education 500 m / medical 1,000 m / park green 500 m coverage all targeted at 100%; rail-station 800 m coverage ≥80% in core areas.
 
+**First-year baseline plan (B01-B05):** facility coverage figures are static accessibility computations; operational performance is judged against five measured baselines — B01 axis walking-break inventory, B02 accessibility continuity (AI / paper map / human escort, three paths compared), B03 non-commercial availability of public space, B04 complaint and takeover logs, B05 AI-closed-day drills per scenario each half-year. Baseline values stay pending-first-measurement: each first publication carries its definition, sampling boundary, missing-data handling and responsible role, and a formal boundary change recomputes only the spatial metrics, never the measurement rules.
+
 **Coverage targets behind the table:** education facilities at a 500 m radius and medical facilities at a 1,000 m radius both target 100% coverage; park green within 500 m targets full coverage; rail stations cover ≥80% of the core areas at an 800 m radius. All are aspirational service targets with phase gates, distinct in kind from the recomputed geometric set.
 
 ### 9.2 Compliance Matrix (detail)
 
-Spatial: site 11.41 km²; GFA 12.89 M m²; average FAR 1.13; density 8.7%; green 506.9 ha / 44.4% (full-layer basis); roads 112.1 ha / 9.8%. Industry: research 315.0 ha (27.6%), commercial 209.4 ha (18.4%). Population (scenario): employment 15-20k-capacity basis in assumptions.json; residential 8-10万 scenario; facilities coverage per the 2.3 table. Full table with sources: metrics.json; every figure recomputable via verify.js.
+Spatial: site 11.41 km²; GFA 12.89 M m²; average FAR 1.13; density 8.7%; green 506.9 ha / 44.4% (full-layer basis); roads 112.1 ha / 9.8%. Industry: research 315.0 ha (27.6%), commercial 209.4 ha (18.4%). Population (scenario): employment 15-20 (10k persons) scenario basis in assumptions.json; residential 8-10 (10k persons) scenario; facilities coverage per the 2.3 table. Full table with sources: metrics.json; every figure recomputable via verify.js.
 
 ### Compliance Matrix (summary)
 
@@ -763,26 +674,18 @@ May those who walk the Heritage Park a century from now, reading the names on th
 
 ---
 
-**END OF DOCUMENT**
-
-![Site overview](assets/figures/site-overview.en.png)
-
-![Key areas](assets/figures/key-areas.en.png)
-
-![Metrics evidence](assets/figures/metrics-evidence.en.png)
-
 ## References
 
-1. Overall-design-area provisional boundary (organiser, provisional use only) [source:S001] [data:geometry/site_boundary.geojson]
-2. Key-area provisional boundaries (organiser, provisional use only) [source:S002] [data:geometry/key_areas.geojson]
-3. Call announcement (scope figures) [source:S003]
+1. Overall design area provisional boundary (organiser) [source:S001] [data:geometry/site_boundary.geojson]
+2. Three key-area provisional boundaries (organiser) [source:S002] [data:geometry/key_areas.geojson]
+3. Open-call announcement (scope and key-area figures) [source:S003]
 4. Beijing Master Plan 2016-2035 [source:S004] [standard:STD-BEIJING-MP]
 5. Haidian 14th Five-Year Plan [source:S005]
-6. Zhongguancun innovation carriers (public common knowledge) [source:S006]
-7. GB 50180-2018 Residential planning standard [source:S007] [standard:STD-GB50180]
-8. GB 50220-95 Urban road transport planning [source:S008] [standard:STD-GB50220]
-9. GB 50420-2007 Urban green space design [source:S009] [standard:STD-GB50420]
-10. Global AI-innovation-district case comparison (8 cases, linked) [source:S010]
+6. Zhongguancun national innovation-zone carriers (public facts) [source:S006]
+7. GB 50180-2018 residential planning standard [source:S007] [standard:STD-GB50180]
+8. GB 50220-95 urban road traffic planning [source:S008] [standard:STD-GB50220]
+9. GB 50420-2007 urban green space design [source:S009] [standard:STD-GB50420]
+10. Global AI innovation-district case comparison (8 cases, linked) [source:S010]
 11. Noto Sans SC font licence (SIL OFL 1.1) [source:S011]
 
-Reference discipline: items 1-2 are provisional geometries for generation, visualisation and self-checks only; items 4-5 are public policy documents cited for context; items 7-9 are engaged as design references, not claims of statutory compliance; item 10 is a case-comparison table with per-case links. Where the call shipped no verifiable dataset, this proposal asserts no figures — the discipline is stated once here and kept everywhere in the text.
+Each numbered source is registered in sources.json with its licence, access date and usage scope; standards carry their standard-matrix anchors; geometry files are provisional-organiser data awaiting formal release. Scenario-card, operations and metrics evidence files live under visual/assets/ and are verified by the four shipped scripts.

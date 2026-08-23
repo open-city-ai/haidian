@@ -309,7 +309,15 @@
           "uniqueItems": true,
           "items": {
             "type": "string",
-            "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+            "pattern": "^[A-Z][A-Z0-9_]{2,63}$",
+            "enum": [
+              "DUAL_ROLE_NOT_APPOINTED",
+              "HUMAN_FLOOR_NOT_PROVEN",
+              "PUBLIC_INTEREST_REVIEW_PENDING",
+              "ROLLBACK_REHEARSAL_NOT_OBSERVED",
+              "SITE_AUTHORITY_NOT_GRANTED"
+            ],
+            "description_zh": "拒收或暂缓的理由码。2026-08-22 由自由字符串收紧为固定枚举：本包的模型影子测试（SHADOW-F1）实测发现，同一套协议交给独立判断者时，约 5 个概念被拼成 14 个不同码（单是「场地未确认」就有 4 种拼法），使「按理由分类公布拒收分布」这件事失效。五个码与协议的四道阻断门＋人工兜底一一对应，见本文件 refusal_reason_catalog。"
           }
         },
         "smart_layer_state_after_decision": {
@@ -350,11 +358,117 @@
           },
           "then": {
             "properties": {
+              "smart_layer_state_after_decision": {
+                "enum": [
+                  "off"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "receiver_disposition": {
+                "const": "deferred"
+              }
+            },
+            "required": [
+              "receiver_disposition"
+            ]
+          },
+          "then": {
+            "properties": {
+              "smart_layer_state_after_decision": {
+                "enum": [
+                  "off"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "receiver_disposition": {
+                "const": "accepted_with_conditions"
+              }
+            },
+            "required": [
+              "receiver_disposition"
+            ]
+          },
+          "then": {
+            "properties": {
+              "smart_layer_state_after_decision": {
+                "enum": [
+                  "off",
+                  "sandbox_preview"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "receiver_disposition": {
+                "const": "accepted"
+              }
+            },
+            "required": [
+              "receiver_disposition"
+            ]
+          },
+          "then": {
+            "properties": {
+              "smart_layer_state_after_decision": {
+                "enum": [
+                  "off",
+                  "sandbox_preview",
+                  "limited_trial"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "receiver_disposition": {
+                "const": "refused"
+              }
+            },
+            "required": [
+              "receiver_disposition"
+            ]
+          },
+          "then": {
+            "properties": {
               "refusal_reasons": {
                 "minItems": 1
-              },
-              "smart_layer_state_after_decision": {
-                "const": "off"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "receiver_disposition": {
+                "enum": [
+                  "accepted",
+                  "accepted_with_conditions"
+                ]
+              }
+            },
+            "required": [
+              "receiver_disposition"
+            ]
+          },
+          "then": {
+            "properties": {
+              "refusal_reasons": {
+                "maxItems": 0
               }
             }
           }
@@ -721,5 +835,68 @@
         }
       }
     }
+  },
+  "refusal_reason_catalog": {
+    "note_zh": "拒收／暂缓理由码的唯一权威清单。任何新增码必须先进本目录与 transferAttempt.refusal_reasons.items.enum，两处同时改；脚本按本目录逐条校验，两处分岔即报错。",
+    "note_en": "The single authoritative list of refusal/deferral reason codes. A new code must enter this catalogue and the enum together; the checker compares both and fails on divergence.",
+    "codes": [
+      {
+        "code": "DUAL_ROLE_NOT_APPOINTED",
+        "meaning_zh": "双联两侧角色未指派——任一侧 `assignment_state` 为 unassigned_concept_role"
+      },
+      {
+        "code": "HUMAN_FLOOR_NOT_PROVEN",
+        "meaning_zh": "人工服务底线未验证——`human_service_floor.proof_state` 为 not_observed，而 must_exist_before_smart_layer 为 true"
+      },
+      {
+        "code": "PUBLIC_INTEREST_REVIEW_PENDING",
+        "meaning_zh": "公共利益复核未完成——人工路径复核或无障碍专业复核不是 complete"
+      },
+      {
+        "code": "ROLLBACK_REHEARSAL_NOT_OBSERVED",
+        "meaning_zh": "回滚演练未实际执行——`rollback_rehearsal.execution_state` 不是 observed_pass"
+      },
+      {
+        "code": "SITE_AUTHORITY_NOT_GRANTED",
+        "meaning_zh": "场地授权未取得——`site_authority.status` 不是 officially_confirmed"
+      }
+    ],
+    "count": 5,
+    "provenance_zh": "四个阻断门码取自随包 12 条账的实际取值（各 12 次）；第五个 HUMAN_FLOOR_NOT_PROVEN 取自影子测试 P4 档的确定性基准，SHADOW-F3 指出协议此前记录的四个码里没有任何一个对应「人工兜底未验证」，本次一并补入。"
+  },
+  "disposition_smart_layer_compatibility": {
+    "note_zh": "接收结论与决定后智能层状态的兼容表。**这张表此前不存在**——schema 只强制了 refused ⇒ off 一条，其余三种处置对智能层没有任何约束，因此「附条件接受」在结构上可以直接跳到 limited_trial。2026-08-22 按 fail-closed 原则补齐并逐条强制：处置越保守，智能层上限越低；拒收与暂缓一律 off。",
+    "note_en": "Compatibility table between the receiving conclusion and the smart-layer state after the decision. Only refused implies off was enforced before; the other three dispositions were unconstrained. Completed and enforced on 2026-08-22 on a fail-closed basis.",
+    "table": [
+      {
+        "receiver_disposition": "refused",
+        "permitted_smart_layer_state_after_decision": [
+          "off"
+        ]
+      },
+      {
+        "receiver_disposition": "deferred",
+        "permitted_smart_layer_state_after_decision": [
+          "off"
+        ]
+      },
+      {
+        "receiver_disposition": "accepted_with_conditions",
+        "permitted_smart_layer_state_after_decision": [
+          "off",
+          "sandbox_preview"
+        ]
+      },
+      {
+        "receiver_disposition": "accepted",
+        "permitted_smart_layer_state_after_decision": [
+          "off",
+          "sandbox_preview",
+          "limited_trial"
+        ]
+      }
+    ],
+    "invariant_zh": "refusal_reasons 非空 ⟺ receiver_disposition ∈ {refused, deferred}；任一阻断门未满足时 smart_layer_state_after_decision 必须为 off。",
+    "pair_count": 7
   }
 }

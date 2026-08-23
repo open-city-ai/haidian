@@ -27,6 +27,11 @@
   "accept": "五个基准组件逐项通过，该样例可以进入下一步；不表示服务已达标。",
   "reject": "至少一个基准组件被违反，该样例在桌面阶段即被拒绝，理由逐条给出。"
  },
+ "expected_fixture_count": 62,
+ "expected_accept_count": 23,
+ "expected_reject_count": 39,
+ "expected_counts_note_zh": "本样例集的条目总数与正反两侧计数在此声明；校验器读入后与本轮实跑条目数逐项比对，不等或条目数为零即以退出码 2 拒绝整次运行。此前样例集少一条与全部通过在输出上不可区分，声明总数把「跑了多少条」变成可被机器复核的读数。",
+ "expected_counts_note_en": "The item total and the two polarity counts of this fixture set are declared here; the checker reads them and compares them item by item against what it actually ran, refusing the whole run at exit code 2 on any mismatch or on an empty set. Previously one fixture fewer and all fixtures passing were indistinguishable in the output, and declaring the total turns how many items ran into a figure a machine can re-check.",
  "fixtures": [
   {
    "fixture_id": "TT-P1",
@@ -4850,6 +4855,54 @@
    "injected_risk_resume_condition_en": "A signed renewal with a new review_due.",
    "baseline_fixture_id": "HL-P9",
    "expected_effective_level": "L0"
+  },
+  {
+   "fixture_id": "SM-N1",
+   "polarity": "negative",
+   "title_zh": "OP-02 的节点 id 携带被改写的 operating_mode",
+   "title_en": "The OP-02 node id carries a rewritten operating_mode",
+   "note_zh": "来源对齐判据的反例之一，检验强制对齐一侧：样例节点 id 与 geometry/constraints.geojson 中的要素 id 相同，未声明 source_of_record，按 source_alignment_rule 的条文语义仍须逐字对齐。五个必填字段中四个取自该点位原文，operating_mode 一项被改写为另一种运行方式。真实节点 id 不得携带被改写的字段值，因此桌面阶段即被拒绝。此前来源对齐判据没有任何反例样例，整条判据从实现中摘除后输出与干净运行逐字节相同。",
+   "note_en": "One of two counterexamples for the source-alignment criterion, covering the forced-alignment side: the fixture's node id equals a feature id in geometry/constraints.geojson and no source_of_record is declared, so verbatim alignment still applies per the stated semantics of source_alignment_rule. Four of the five required fields are verbatim from that feature and operating_mode is rewritten to a different mode of operation. A real node id may not carry rewritten field values, so the fixture is rejected at the tabletop stage. Until now the source-alignment criterion had no counterexample at all, and removing it wholesale from the implementation left output byte-identical to a clean run.",
+   "node": {
+    "id": "OP-02",
+    "scenario_id": "S02",
+    "ai_off_path": "静态低刺激路线、纸质提示与安静停靠",
+    "human_handoff": "现场服务人员提供非数字引导与退出协助",
+    "gate_id": "G1",
+    "operating_mode": "AI开关成对任务测试",
+    "responsible_role": "未来经授权的场地运营与共同设计协调团队"
+   },
+   "measurement_declaration": null,
+   "expected_verdict": "reject",
+   "expected_reasons": [
+    "SOURCE_MISMATCH:operating_mode"
+   ]
+  },
+  {
+   "fixture_id": "SM-N2",
+   "polarity": "negative",
+   "title_zh": "声明来源为 OP-03 的样例改写了 responsible_role",
+   "title_en": "A fixture declaring OP-03 as its source rewrites responsible_role",
+   "note_zh": "来源对齐判据的反例之二，检验声明来源一侧：样例节点 id 是推演用标识，不与任何要素 id 相同，强制对齐不适用；样例自行声明 source_of_record 指向 geometry/constraints.geojson#OP-03，因此按声明执行逐字比对。五个必填字段中四个取自该点位原文，responsible_role 一项被改写为另一支专业团队。声明了来源即不得与来源不符，因此桌面阶段即被拒绝。",
+   "note_en": "The second counterexample for the source-alignment criterion, covering the declared-source side: the fixture's node id is a run-local identifier equal to no feature id, so forced alignment does not apply; the fixture declares source_of_record pointing at geometry/constraints.geojson#OP-03, and the verbatim comparison runs on that declaration. Four of the five required fields are verbatim from that feature and responsible_role is rewritten to a different professional team. A declared source may not be disagreed with, so the fixture is rejected at the tabletop stage.",
+   "source_of_record": {
+    "file": "../../geometry/constraints.geojson",
+    "feature_id": "OP-03"
+   },
+   "node": {
+    "id": "TT-NODE-SM2",
+    "scenario_id": "S03",
+    "ai_off_path": "易读文本、书面流程与人工解释",
+    "human_handoff": "具备相应服务能力的人工人员核对、解释与纠错",
+    "gate_id": "G2",
+    "operating_mode": "AI开关成对任务测试",
+    "responsible_role": "未来经授权的场地运营与共同设计协调团队"
+   },
+   "measurement_declaration": null,
+   "expected_verdict": "reject",
+   "expected_reasons": [
+    "SOURCE_MISMATCH:responsible_role"
+   ]
   }
  ],
  "adopter_lexicon": [

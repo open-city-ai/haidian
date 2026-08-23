@@ -1,0 +1,2942 @@
+{
+  "schema_version": "1.0.0",
+  "submission_id": "dvd233/data-coop-line",
+  "protocol_id": "EXPIRING-DATA-TICKET-01",
+  "version": "1.1.0",
+  "scenario_id": "SCN-06",
+  "generated_at": "2026-08-23T02:58:25+08:00",
+  "frozen_main_sha": "a8f150d86480f8efc0716069ece406edf013502b",
+  "evidence_boundary": {
+    "evidence_level": "E2",
+    "evidence_nature": "synthetic_recalculable_contract_and_negative_path_test",
+    "field_observation_status": "not_observed",
+    "entity_confirmation_status": "unknown",
+    "professional_confirmation_status": "unknown",
+    "implementation_status": "not_implemented",
+    "field_or_stakeholder_evidence": "not_collected",
+    "allowed_claims": [
+      "ticket lifecycle rules are machine-readable",
+      "synthetic expiry and withdrawal paths are reproducible",
+      "declared thresholds fail closed under the checked fixtures",
+      "synthetic C-01, C-02 and C-04 service-capacity admission gates are independently reproducible"
+    ],
+    "prohibited_claims": [
+      "field performance",
+      "site access or operability",
+      "confirmed operator or legal role",
+      "professional approval",
+      "implemented service",
+      "E3, E4 or E5 evidence",
+      "confirmed staffing, compute, facility, engineering or operating capacity"
+    ],
+    "phasing_status": {
+      "gate_0": "synthetic_contract_only",
+      "gate_1": "reversible_synthetic_rehearsal",
+      "gate_2": "not_entered_pending_E3_E4",
+      "gate_3": "not_entered"
+    }
+  },
+  "status_enums": {
+    "assignment_status": [
+      "unknown",
+      "confirmed"
+    ],
+    "field_status": [
+      "not_observed",
+      "observed"
+    ],
+    "decision": [
+      "allowed",
+      "denied",
+      "paused",
+      "stopped"
+    ],
+    "artifact_status": [
+      "not_required",
+      "required",
+      "produced",
+      "accepted"
+    ]
+  },
+  "concept_refs": {
+    "key_area_id": "PROV-KEY-001",
+    "scenario_id": "SCN-06",
+    "building_host_candidate_id": "BLDG-002",
+    "route_ids": [
+      "ROAD-001",
+      "ROAD-005"
+    ],
+    "wing_ids": [
+      "zhongguancun_technology_service_wing",
+      "xiaoyuehe_scenario_empowerment_wing"
+    ],
+    "spatial_relationships": [
+      {
+        "from": "SCN-06",
+        "to": "PROV-KEY-001",
+        "relation": "point_within_provisional_polygon",
+        "verified_in_package": true,
+        "boundary": "Both geometries are provisional package evidence, not official planning control."
+      },
+      {
+        "from": "SCN-06",
+        "to": "BLDG-002",
+        "relation": "conceptual_host_candidate",
+        "verified_in_package": false,
+        "boundary": "The SCN-06 point is not inside the current BLDG-002 polygon; no co-location claim is allowed."
+      }
+    ]
+  },
+  "operational_scope": {
+    "mode": "single_node_E2",
+    "scenario_id": "SCN-06",
+    "key_area_id": "PROV-KEY-001",
+    "cross_node_handoff_in_scope": false,
+    "ticket_transfer_allowed": false,
+    "data_transfer_allowed": false,
+    "role_or_stop_authority_transfer_allowed": false,
+    "related_area_refs": [
+      {
+        "key_area_id": "PROV-KEY-002",
+        "relationship": "illustrative_capability_reference_only",
+        "shared_ticket_or_case": false
+      },
+      {
+        "key_area_id": "PROV-KEY-003",
+        "pack_id": "DAZHONGSI-FIELD-OPS-01",
+        "relationship": "separate_package_no_handoff",
+        "shared_ticket_or_case": false
+      }
+    ],
+    "future_scope_expansion_requires": [
+      "versioned_handoff_contract",
+      "destination_role_mapping",
+      "ack_receipt_and_sla",
+      "reject_and_escalation_path",
+      "authorized_E3_test",
+      "E4_entity_and_legal_confirmation"
+    ]
+  },
+  "ticket_template": {
+    "required_fields": [
+      "ticket_id",
+      "version",
+      "supersedes",
+      "purpose",
+      "term",
+      "input_contract",
+      "compute_contract",
+      "output_contract",
+      "withdrawal_contract",
+      "derivative_chain",
+      "no_data_equivalent_contract",
+      "public_return_contract"
+    ],
+    "ticket_id": null,
+    "version": null,
+    "supersedes": null,
+    "purpose": {
+      "statement_zh": null,
+      "statement_en": null,
+      "allowed_uses": [],
+      "prohibited_uses": []
+    },
+    "term": {
+      "issued_at": null,
+      "valid_from": null,
+      "expires_at": null,
+      "timezone": "Asia/Shanghai"
+    },
+    "input_contract": {
+      "data_categories": [],
+      "provenance_and_licence_records": [],
+      "minimisation_rule": "Only fields indispensable to the co-decided purpose may enter the controlled domain.",
+      "controlled_domain": null,
+      "raw_record_export_allowed": false
+    },
+    "compute_contract": {
+      "allowed_queries_models_or_containers": [],
+      "operator_role_type": "CONTROLLED-COMPUTE-OPERATOR",
+      "assigned_entity": null,
+      "assignment_status": "unknown"
+    },
+    "output_contract": {
+      "allowed_outputs": [],
+      "prohibited_outputs": [],
+      "review_required": true,
+      "minimum_aggregate_group_size": null,
+      "output_release_requires_active_ticket": true
+    },
+    "withdrawal_contract": {
+      "channels": [
+        "staffed",
+        "paper",
+        "offline",
+        "machine"
+      ],
+      "effective_at": null,
+      "complete_erasure_promised": false
+    },
+    "derivative_chain": {
+      "classes": [
+        "source_material",
+        "controlled_copy",
+        "feature",
+        "model",
+        "report",
+        "public_output"
+      ],
+      "unmapped_item_count": null
+    },
+    "no_data_equivalent_contract": {
+      "same_core_output_schema": true,
+      "price_premium_allowed": false,
+      "staffed_paper_and_offline_routes_required": true
+    },
+    "public_return_contract": {
+      "beneficiary": null,
+      "due_at": null,
+      "acceptance_method": null,
+      "undelivered_state": null,
+      "deliverable": {
+        "deliverable_id": null,
+        "description_zh": null,
+        "description_en": null,
+        "content_ref": null
+      },
+      "value_metric": {
+        "metric_id": null,
+        "unit": null,
+        "operator": null,
+        "target_value": null,
+        "formula": null
+      },
+      "evidence_refs": [],
+      "is_payment_for_consent": false
+    },
+    "confirmed_legal_role": null,
+    "confirmed_signatory": null,
+    "confirmed_capacity": null
+  },
+  "ticket_state_machine": {
+    "initial_state": "draft",
+    "terminal_state": "closed",
+    "states": [
+      "draft",
+      "co_decided",
+      "active",
+      "expired",
+      "withdrawn",
+      "residual_disclosed",
+      "return_accepted",
+      "closed"
+    ],
+    "allowed_transitions": [
+      {
+        "from": "draft",
+        "to": "co_decided",
+        "trigger": "collective_decision_recorded"
+      },
+      {
+        "from": "draft",
+        "to": "withdrawn",
+        "trigger": "withdrawal_before_decision"
+      },
+      {
+        "from": "co_decided",
+        "to": "active",
+        "trigger": "activation_conditions_pass"
+      },
+      {
+        "from": "co_decided",
+        "to": "withdrawn",
+        "trigger": "withdrawal_before_activation"
+      },
+      {
+        "from": "active",
+        "to": "expired",
+        "trigger": "clock_reaches_expires_at"
+      },
+      {
+        "from": "active",
+        "to": "withdrawn",
+        "trigger": "valid_withdrawal_received"
+      },
+      {
+        "from": "expired",
+        "to": "residual_disclosed",
+        "trigger": "derivative_inventory_and_residual_notice_complete"
+      },
+      {
+        "from": "withdrawn",
+        "to": "residual_disclosed",
+        "trigger": "derivative_inventory_and_residual_notice_complete"
+      },
+      {
+        "from": "residual_disclosed",
+        "to": "return_accepted",
+        "trigger": "public_return_acceptance_recorded"
+      },
+      {
+        "from": "residual_disclosed",
+        "to": "closed",
+        "trigger": "no_public_return_obligation"
+      },
+      {
+        "from": "return_accepted",
+        "to": "closed",
+        "trigger": "closure_artifact_complete"
+      }
+    ],
+    "forbidden_transitions": [
+      [
+        "expired",
+        "active"
+      ],
+      [
+        "withdrawn",
+        "active"
+      ],
+      [
+        "closed",
+        "active"
+      ]
+    ],
+    "invariants": [
+      "new_output_release_requires_ticket_active",
+      "withdrawn_does_not_mean_all_effects_deleted",
+      "closed_requires_residual_disclosure",
+      "return_acceptance_is_not_payment_for_consent"
+    ]
+  },
+  "execution_state_machine": {
+    "initial_state": "not_started",
+    "terminal_states": [
+      "stopped",
+      "closed"
+    ],
+    "states": [
+      "not_started",
+      "running",
+      "paused",
+      "stopping",
+      "stopped",
+      "closed"
+    ],
+    "allowed_transitions": [
+      {
+        "from": "not_started",
+        "to": "running",
+        "requires_ticket_state": "active"
+      },
+      {
+        "from": "running",
+        "to": "paused",
+        "trigger": "recoverable_pause_trigger_detected"
+      },
+      {
+        "from": "running",
+        "to": "stopping",
+        "trigger": "ticket_expired_or_withdrawn"
+      },
+      {
+        "from": "paused",
+        "to": "running",
+        "trigger": "same_method_retest_and_joint_signoff"
+      },
+      {
+        "from": "paused",
+        "to": "stopping",
+        "trigger": "remediation_failed_or_ticket_not_active"
+      },
+      {
+        "from": "stopping",
+        "to": "stopped",
+        "trigger": "teardown_completed_within_60_seconds"
+      },
+      {
+        "from": "stopped",
+        "to": "closed",
+        "trigger": "conditional_artifacts_complete"
+      }
+    ],
+    "invariants": [
+      "running_requires_ticket_active",
+      "expiry_or_withdrawal_atomically_enters_stopping_and_blocks_new_query_or_output",
+      "stopping_allows_teardown_only_and_reaches_stopped_within_60_seconds",
+      "resume_requires_same_method_retest_no_active_trigger_and_joint_signoff",
+      "ticket_closure_requires_execution_stopped_or_closed"
+    ]
+  },
+  "workflow_steps": [
+    {
+      "step_id": "STEP-01",
+      "name_zh": "共同议定用途",
+      "name_en": "Co-decide the purpose",
+      "ticket_transition": "draft_to_co_decided",
+      "required_artifact_ids": [
+        "ART-TICKET-SNAPSHOT",
+        "ART-CO-DECISION"
+      ]
+    },
+    {
+      "step_id": "STEP-02",
+      "name_zh": "激活票并进入受控计算",
+      "name_en": "Activate the ticket and enter controlled compute",
+      "ticket_transition": "co_decided_to_active",
+      "required_artifact_ids": [
+        "ART-ACTIVATION",
+        "ART-EXECUTION-LOG"
+      ]
+    },
+    {
+      "step_id": "STEP-03",
+      "name_zh": "审查并释放最少输出",
+      "name_en": "Review and release the minimum output",
+      "requires_ticket_state": "active",
+      "required_artifact_ids": [
+        "ART-OUTPUT-REVIEW",
+        "ART-NO-DATA-PARITY"
+      ]
+    },
+    {
+      "step_id": "STEP-04",
+      "name_zh": "到期或撤回即停",
+      "name_en": "Stop on expiry or withdrawal",
+      "required_artifact_ids": [
+        "ART-STOP-DECISION",
+        "ART-EXPIRY-OR-WITHDRAWAL"
+      ]
+    },
+    {
+      "step_id": "STEP-05",
+      "name_zh": "披露派生链与残余影响",
+      "name_en": "Disclose the derivative chain and residual effects",
+      "required_artifact_ids": [
+        "ART-DERIVATIVE-INVENTORY",
+        "ART-RESIDUAL-DISCLOSURE"
+      ]
+    },
+    {
+      "step_id": "STEP-06",
+      "name_zh": "验收公共回报并关闭",
+      "name_en": "Accept public return and close",
+      "required_artifact_ids": [
+        "ART-PUBLIC-RETURN",
+        "ART-CLOSURE"
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "role_id": "COLLECTIVE-AGENDA-CHAIR",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    },
+    {
+      "role_id": "PARTICIPANT-REP",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    },
+    {
+      "role_id": "DATA-DOMAIN-CUSTODIAN",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    },
+    {
+      "role_id": "CONTROLLED-COMPUTE-OPERATOR",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    },
+    {
+      "role_id": "MODEL-OR-QUERY-TEAM",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    },
+    {
+      "role_id": "NO-DATA-SERVICE-OPERATOR",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    },
+    {
+      "role_id": "RIGHTS-ETHICS-SAFETY-REVIEWER",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    },
+    {
+      "role_id": "EVIDENCE-CUSTODIAN",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    },
+    {
+      "role_id": "PUBLIC-RETURN-REP",
+      "assigned_entity": null,
+      "assignment_status": "unknown",
+      "legal_role_confirmed": false
+    }
+  ],
+  "raci": {
+    "boundary": "Role types are design placeholders, not confirmed entities or statutory/legal assignments.",
+    "activities": [
+      {
+        "activity_id": "ACT-CO-DECIDE",
+        "accountable": "COLLECTIVE-AGENDA-CHAIR",
+        "responsible": [
+          "PARTICIPANT-REP"
+        ],
+        "consulted": [
+          "RIGHTS-ETHICS-SAFETY-REVIEWER",
+          "NO-DATA-SERVICE-OPERATOR"
+        ],
+        "informed": [
+          "EVIDENCE-CUSTODIAN"
+        ]
+      },
+      {
+        "activity_id": "ACT-ACTIVATE",
+        "accountable": "CONTROLLED-COMPUTE-OPERATOR",
+        "responsible": [
+          "DATA-DOMAIN-CUSTODIAN"
+        ],
+        "consulted": [
+          "RIGHTS-ETHICS-SAFETY-REVIEWER"
+        ],
+        "informed": [
+          "PARTICIPANT-REP",
+          "EVIDENCE-CUSTODIAN"
+        ]
+      },
+      {
+        "activity_id": "ACT-RUN",
+        "accountable": "CONTROLLED-COMPUTE-OPERATOR",
+        "responsible": [
+          "MODEL-OR-QUERY-TEAM",
+          "DATA-DOMAIN-CUSTODIAN"
+        ],
+        "consulted": [
+          "RIGHTS-ETHICS-SAFETY-REVIEWER"
+        ],
+        "informed": [
+          "PARTICIPANT-REP",
+          "EVIDENCE-CUSTODIAN"
+        ]
+      },
+      {
+        "activity_id": "ACT-NO-DATA-SERVICE",
+        "accountable": "NO-DATA-SERVICE-OPERATOR",
+        "responsible": [
+          "NO-DATA-SERVICE-OPERATOR"
+        ],
+        "consulted": [
+          "PARTICIPANT-REP",
+          "RIGHTS-ETHICS-SAFETY-REVIEWER"
+        ],
+        "informed": [
+          "EVIDENCE-CUSTODIAN"
+        ]
+      },
+      {
+        "activity_id": "ACT-STOP",
+        "accountable": "CONTROLLED-COMPUTE-OPERATOR",
+        "responsible": [
+          "CONTROLLED-COMPUTE-OPERATOR",
+          "DATA-DOMAIN-CUSTODIAN"
+        ],
+        "consulted": [
+          "RIGHTS-ETHICS-SAFETY-REVIEWER"
+        ],
+        "informed": [
+          "PARTICIPANT-REP",
+          "NO-DATA-SERVICE-OPERATOR",
+          "EVIDENCE-CUSTODIAN"
+        ]
+      },
+      {
+        "activity_id": "ACT-PRESERVE-EVIDENCE",
+        "accountable": "EVIDENCE-CUSTODIAN",
+        "responsible": [
+          "EVIDENCE-CUSTODIAN"
+        ],
+        "consulted": [
+          "DATA-DOMAIN-CUSTODIAN",
+          "RIGHTS-ETHICS-SAFETY-REVIEWER"
+        ],
+        "informed": [
+          "PARTICIPANT-REP"
+        ]
+      },
+      {
+        "activity_id": "ACT-ACCEPT-RETURN",
+        "accountable": "PUBLIC-RETURN-REP",
+        "responsible": [
+          "PUBLIC-RETURN-REP"
+        ],
+        "consulted": [
+          "PARTICIPANT-REP",
+          "COLLECTIVE-AGENDA-CHAIR"
+        ],
+        "informed": [
+          "EVIDENCE-CUSTODIAN"
+        ]
+      },
+      {
+        "activity_id": "ACT-CLOSE",
+        "accountable": "COLLECTIVE-AGENDA-CHAIR",
+        "responsible": [
+          "EVIDENCE-CUSTODIAN"
+        ],
+        "consulted": [
+          "PARTICIPANT-REP",
+          "PUBLIC-RETURN-REP",
+          "RIGHTS-ETHICS-SAFETY-REVIEWER"
+        ],
+        "informed": [
+          "CONTROLLED-COMPUTE-OPERATOR",
+          "NO-DATA-SERVICE-OPERATOR"
+        ]
+      }
+    ],
+    "unilateral_stop_authorities": [
+      {
+        "role_id": "PARTICIPANT-REP",
+        "scope": "withdrawal or material mismatch affecting represented participants"
+      },
+      {
+        "role_id": "DATA-DOMAIN-CUSTODIAN",
+        "scope": "source, permission, export or derivative-chain breach"
+      },
+      {
+        "role_id": "NO-DATA-SERVICE-OPERATOR",
+        "scope": "no-data equivalence or human-service failure"
+      },
+      {
+        "role_id": "RIGHTS-ETHICS-SAFETY-REVIEWER",
+        "scope": "rights, ethics, safety or unresolved residual-impact breach"
+      }
+    ]
+  },
+  "no_data_equivalence": {
+    "threshold_status": "design_threshold_pending_professional_and_field_confirmation",
+    "evidence_level": "E2",
+    "thresholds": {
+      "minimum_attempts_per_route": 30,
+      "p90_time_absolute_delta_max_seconds": 120,
+      "p90_time_ratio_max": 1.1,
+      "price_premium_max_cny": 0,
+      "failure_rate_delta_max": 0.02,
+      "core_output_schema_match_ratio_min": 1.0,
+      "safety_alert_match_ratio_min": 1.0,
+      "accessibility_task_fixture_coverage_ratio_min": 1.0,
+      "human_takeover_required": true,
+      "human_takeover_response_max_seconds": 120,
+      "staffed_paper_offline_complaint_channels_required": true
+    },
+    "accessibility_task_contract": {
+      "claim_scope": "E2_synthetic_fixture_coverage_not_usability_performance",
+      "observed_user_count": 0,
+      "field_test_status": "not_observed",
+      "professional_confirmation_status": "unknown",
+      "required_tasks": [
+        {
+          "task_id": "A11Y-READ-TICKET-SCREEN-READER",
+          "mode": "screen_reader"
+        },
+        {
+          "task_id": "A11Y-WITHDRAW-KEYBOARD-ONLY",
+          "mode": "keyboard_only"
+        },
+        {
+          "task_id": "A11Y-READ-RECEIPT-LOW-VISION",
+          "mode": "low_vision"
+        },
+        {
+          "task_id": "A11Y-REACH-STAFFED-FALLBACK",
+          "mode": "reduced_mobility"
+        },
+        {
+          "task_id": "A11Y-UNDERSTAND-RESIDUAL",
+          "mode": "cognitive_or_language"
+        },
+        {
+          "task_id": "A11Y-COMPLETE-NO-SMARTPHONE",
+          "mode": "no_smartphone"
+        }
+      ],
+      "required_route_ids": [
+        "data_route",
+        "no_data_route"
+      ],
+      "required_result_fields": [
+        "result_type",
+        "attempt_count",
+        "completed_count",
+        "help_request_count",
+        "wait_seconds",
+        "detour_count",
+        "human_takeover_available",
+        "critical_output_readback_fixture_passed",
+        "complaint_or_stop_receipt_available",
+        "evidence_refs"
+      ]
+    },
+    "evaluation_rule": "Every threshold must pass; the time test requires both absolute-delta and ratio conditions. Accessibility measures requirement-fixture coverage only, with zero observed users and no usability-performance claim.",
+    "field_replacement_trigger": "Authorized E3 field test and E4 professional/operator confirmation replace synthetic inputs and may tighten or reject these design thresholds."
+  },
+  "service_level_targets": {
+    "status": "synthetic_protocol_design_target_pending_E3_E4",
+    "targets": [
+      {
+        "target_id": "SLA-EXECUTION-TEARDOWN",
+        "max_seconds": 60,
+        "starts_at": "expiry_or_withdrawal_effective_at"
+      },
+      {
+        "target_id": "SLA-HUMAN-WITHDRAWAL-ACK",
+        "max_seconds": 900,
+        "starts_at": "staffed_paper_or_offline_request_received"
+      },
+      {
+        "target_id": "SLA-DERIVATIVE-INVENTORY",
+        "max_seconds": 14400,
+        "starts_at": "expiry_or_withdrawal_effective_at"
+      },
+      {
+        "target_id": "SLA-CONTROLLABLE-PUBLIC-OUTPUT-REMOVAL",
+        "max_seconds": 86400,
+        "starts_at": "expiry_or_withdrawal_effective_at"
+      },
+      {
+        "target_id": "SLA-RESIDUAL-DISCLOSURE",
+        "max_seconds": 86400,
+        "starts_at": "expiry_or_withdrawal_effective_at"
+      },
+      {
+        "target_id": "SLA-COMPLAINT-FIRST-RESPONSE",
+        "max_seconds": 172800,
+        "starts_at": "complaint_received"
+      }
+    ],
+    "public_return_closure": "Use the due_at value written on each ticket; no uniform real-world duration is claimed."
+  },
+  "stop_controls": {
+    "triggers": [
+      {
+        "trigger_id": "STOP-UNPROVEN-SOURCE-OR-LICENCE",
+        "field": "unproven_source_or_licence_count",
+        "operator": ">",
+        "threshold": 0
+      },
+      {
+        "trigger_id": "STOP-LIVE-HIGH-RISK-RECORD",
+        "field": "live_personal_trajectory_payment_or_covert_identifier_count",
+        "operator": ">",
+        "threshold": 0
+      },
+      {
+        "trigger_id": "STOP-RAW-EXPORT",
+        "field": "raw_record_export_count",
+        "operator": ">",
+        "threshold": 0
+      },
+      {
+        "trigger_id": "STOP-UNAUTHORIZED-QUERY",
+        "field": "unauthorized_query_attempt_count",
+        "operator": ">",
+        "threshold": 0
+      },
+      {
+        "trigger_id": "STOP-SMALL-GROUP-OUTPUT",
+        "field": "output_group_size",
+        "operator": "<",
+        "threshold_ref": "ticket.output_contract.minimum_aggregate_group_size"
+      },
+      {
+        "trigger_id": "STOP-NO-DATA-PARITY",
+        "field": "no_data_equivalence_all_rules_pass",
+        "operator": "==",
+        "threshold": false
+      },
+      {
+        "trigger_id": "STOP-HUMAN-TAKEOVER",
+        "field": "human_takeover_available_and_within_threshold",
+        "operator": "==",
+        "threshold": false
+      },
+      {
+        "trigger_id": "STOP-UNMAPPED-DERIVATIVE",
+        "field": "unmapped_derivative_item_count",
+        "operator": ">",
+        "threshold": 0
+      },
+      {
+        "trigger_id": "STOP-POST-TERM-OUTPUT",
+        "field": "released_output_after_expiry_or_withdrawal_count",
+        "operator": ">",
+        "threshold": 0
+      },
+      {
+        "trigger_id": "STOP-RESIDUAL-DISCLOSURE",
+        "field": "residual_disclosure_complete_within_target",
+        "operator": "==",
+        "threshold": false
+      }
+    ],
+    "action_chain": [
+      "block_output",
+      "pause_or_stop_execution",
+      "preserve_log",
+      "issue_stop_receipt",
+      "notify_role_types",
+      "remediate",
+      "same_method_retest",
+      "joint_signoff"
+    ],
+    "resume_conditions": [
+      "ticket_state_is_active",
+      "all_stop_triggers_cleared",
+      "same_method_retest_passed",
+      "participant_custodian_and_safety_signoff_recorded"
+    ]
+  },
+  "audit_artifact_catalog": [
+    {
+      "artifact_id": "ART-TICKET-SNAPSHOT",
+      "required_when": "ticket_created_or_versioned",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-CO-DECISION",
+      "required_when": "draft_to_co_decided",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-ACTIVATION",
+      "required_when": "co_decided_to_active",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-EXECUTION-LOG",
+      "required_when": "execution_started_or_state_changed",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-OUTPUT-REVIEW",
+      "required_when": "output_considered_for_release",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-NO-DATA-PARITY",
+      "required_when": "route_pair_rehearsed",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-STOP-DECISION",
+      "required_when": "stop_trigger_or_term_end",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-EXPIRY-OR-WITHDRAWAL",
+      "required_when": "ticket_expired_or_withdrawn",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-DERIVATIVE-INVENTORY",
+      "required_when": "ticket_expired_or_withdrawn",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-RESIDUAL-DISCLOSURE",
+      "required_when": "ticket_expired_or_withdrawn",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-PUBLIC-RETURN",
+      "required_when": "public_return_obligation_exists",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    },
+    {
+      "artifact_id": "ART-CLOSURE",
+      "required_when": "ticket_closes",
+      "minimum_fields": [
+        "ticket_id",
+        "case_id",
+        "recorded_at",
+        "role_type",
+        "before_state",
+        "after_state",
+        "input_refs",
+        "decision",
+        "reason_code",
+        "content_ref"
+      ]
+    }
+  ],
+  "implementation_envelope": {
+    "current_gate": "gate_1_reversible_synthetic_rehearsal",
+    "field_entry_blockers": [
+      {
+        "blocker_id": "FIELD-SITE-ACCESS",
+        "status": "unknown"
+      },
+      {
+        "blocker_id": "FIELD-OPERATING-ENTITY",
+        "status": "unknown"
+      },
+      {
+        "blocker_id": "FIELD-FIRE-SAFETY",
+        "status": "unknown"
+      },
+      {
+        "blocker_id": "FIELD-POWER-COOLING-NETWORK",
+        "status": "unknown"
+      },
+      {
+        "blocker_id": "FIELD-CYBERSECURITY",
+        "status": "unknown"
+      },
+      {
+        "blocker_id": "FIELD-ACCESSIBILITY",
+        "status": "unknown"
+      },
+      {
+        "blocker_id": "FIELD-LEGAL-ETHICS",
+        "status": "unknown"
+      },
+      {
+        "blocker_id": "FIELD-PROFESSIONAL-REVIEW",
+        "status": "unknown"
+      }
+    ],
+    "gate_2_rule": "Every blocker must be confirmed by an authorized source and all E3 field tests and E4 professional/operator confirmations must pass before any controlled live scenario.",
+    "synthetic_capacity_envelope_status": "passed_for_E2_rehearsal_only",
+    "field_capacity_status": "unknown"
+  },
+  "synthetic_capacity_envelope": {
+    "envelope_id": "SCN06-C010204-SYNTHETIC-CAPACITY-01",
+    "version": "1.0.0",
+    "evidence_level": "E2",
+    "status": "synthetic_planning_envelope_not_confirmed_capacity",
+    "scope": {
+      "scenario_id": "SCN-06",
+      "key_area_id": "PROV-KEY-001",
+      "project_ids": [
+        "C-01",
+        "C-02",
+        "C-04"
+      ],
+      "window_minutes": 60,
+      "unit_definition": "abstract_parallel_service_unit_for_rehearsal_only",
+      "excludes": [
+        "named_or_counted_real_staff",
+        "physical_compute_hardware",
+        "power_cooling_or_network_engineering",
+        "facility_or_fire_capacity",
+        "cost_budget_procurement_or_approval"
+      ]
+    },
+    "demand_fixture": {
+      "source": "submission_owned_synthetic_fixture",
+      "arrivals_per_window": 12,
+      "route_split": {
+        "data_route": 6,
+        "no_data_route": 6
+      },
+      "observed_arrivals": null,
+      "field_observation_status": "not_observed"
+    },
+    "real_world_confirmations": {
+      "operator_entity": null,
+      "staffing_assignment": null,
+      "site_capacity": null,
+      "power_kw": null,
+      "cooling_kw": null,
+      "network_bandwidth": null,
+      "cost_cny": null,
+      "procurement_status": "unknown",
+      "approval_status": "unknown",
+      "professional_confirmation_status": "unknown"
+    },
+    "resource_models": [
+      {
+        "model_id": "CAP-C01-PURPOSE-TICKET-REVIEW",
+        "project_id": "C-01",
+        "service_role": "purpose_ticket_review",
+        "route_id": "all_requests",
+        "demand_requests_per_window": 12,
+        "service_minutes_per_request": 15,
+        "declared_parallel_units": 4,
+        "protected_reserve_units": 0,
+        "available_parallel_units": 4,
+        "capacity_requests_per_window": 16,
+        "headroom_requests": 4,
+        "utilization_ratio": 0.75,
+        "dedicated_to_route": false,
+        "borrowable_by_other_route": false,
+        "reserve_purpose": null
+      },
+      {
+        "model_id": "CAP-C02-DATA-ROUTE",
+        "project_id": "C-02",
+        "service_role": "equivalent_service_delivery",
+        "route_id": "data_route",
+        "demand_requests_per_window": 6,
+        "service_minutes_per_request": 12,
+        "declared_parallel_units": 2,
+        "protected_reserve_units": 0,
+        "available_parallel_units": 2,
+        "capacity_requests_per_window": 10,
+        "headroom_requests": 4,
+        "utilization_ratio": 0.6,
+        "dedicated_to_route": true,
+        "borrowable_by_other_route": false,
+        "reserve_purpose": "preserve_route_capacity"
+      },
+      {
+        "model_id": "CAP-C02-NO-DATA-ROUTE",
+        "project_id": "C-02",
+        "service_role": "equivalent_service_delivery",
+        "route_id": "no_data_route",
+        "demand_requests_per_window": 6,
+        "service_minutes_per_request": 12,
+        "declared_parallel_units": 2,
+        "protected_reserve_units": 0,
+        "available_parallel_units": 2,
+        "capacity_requests_per_window": 10,
+        "headroom_requests": 4,
+        "utilization_ratio": 0.6,
+        "dedicated_to_route": true,
+        "borrowable_by_other_route": false,
+        "reserve_purpose": "protect_no_data_equivalence"
+      },
+      {
+        "model_id": "CAP-C04-CONTROLLED-COMPUTE",
+        "project_id": "C-04",
+        "service_role": "controlled_compute_job",
+        "route_id": "data_route",
+        "demand_requests_per_window": 6,
+        "service_minutes_per_request": 20,
+        "declared_parallel_units": 4,
+        "protected_reserve_units": 1,
+        "available_parallel_units": 3,
+        "capacity_requests_per_window": 9,
+        "headroom_requests": 3,
+        "utilization_ratio": 0.666667,
+        "dedicated_to_route": true,
+        "borrowable_by_other_route": false,
+        "reserve_purpose": "teardown_and_recovery_only"
+      }
+    ],
+    "admission_rule_ids": [
+      "ASSERT-CAPACITY-RECALCULATION",
+      "ASSERT-CAPACITY-DEMAND-HEADROOM",
+      "ASSERT-CAPACITY-NO-DATA-RESERVE",
+      "ASSERT-CAPACITY-STOP-RESERVE",
+      "ASSERT-CAPACITY-E2-BOUNDARY"
+    ],
+    "negative_mutations": [
+      {
+        "mutation_id": "MUT-CAPACITY-DECLARED-CALCULATION-DRIFT",
+        "mutation": "Set C-01 declared capacity_requests_per_window from 16 to 15.",
+        "required_audit_result": "fail",
+        "expected_failed_assertion_id": "ASSERT-CAPACITY-RECALCULATION"
+      },
+      {
+        "mutation_id": "MUT-CAPACITY-DEMAND-EXCEEDS-C01",
+        "mutation": "Set C-01 demand_requests_per_window from 12 to 17.",
+        "required_audit_result": "fail",
+        "expected_failed_assertion_id": "ASSERT-CAPACITY-DEMAND-HEADROOM"
+      },
+      {
+        "mutation_id": "MUT-CAPACITY-BORROW-NO-DATA-UNITS",
+        "mutation": "Make one no-data route unit borrowable by the data route.",
+        "required_audit_result": "fail",
+        "expected_failed_assertion_id": "ASSERT-CAPACITY-NO-DATA-RESERVE"
+      },
+      {
+        "mutation_id": "MUT-CAPACITY-REMOVE-STOP-RESERVE",
+        "mutation": "Set C-04 protected_reserve_units to zero and expose all units to live work.",
+        "required_audit_result": "fail",
+        "expected_failed_assertion_id": "ASSERT-CAPACITY-STOP-RESERVE"
+      },
+      {
+        "mutation_id": "MUT-CAPACITY-FALSE-FIELD-CONFIRMATION",
+        "mutation": "Invent an operator entity and change the field operation decision to ready.",
+        "required_audit_result": "fail",
+        "expected_failed_assertion_id": "ASSERT-CAPACITY-E2-BOUNDARY"
+      }
+    ],
+    "expected_result": {
+      "resource_gate_total": 4,
+      "resource_gate_passed": 4,
+      "project_gate_passed": 3,
+      "negative_path_fail_closed_total": 5,
+      "minimum_headroom_requests": 3,
+      "no_data_to_data_capacity_ratio": 1.0,
+      "synthetic_admission_decision": "pass_for_E2_rehearsal_only",
+      "field_operation_decision": "not_ready_for_field_operation"
+    },
+    "field_replacement_trigger": "Authorized E3 demand and service observations plus E4 operator, accessibility and professional confirmation must replace or reject every synthetic input before Gate 2."
+  },
+  "crosswalk": {
+    "official_three_positioning": [
+      {
+        "official_item_zh": "百年京张文化带",
+        "official_item_en": "Centennial Jing-Zhang Cultural Belt",
+        "protocol_response": "Rail ticket, timetable, waybill, punch and station clock become purpose permission, term, derivative chain, execution log and automatic expiry."
+      },
+      {
+        "official_item_zh": "都市AI生活体验带",
+        "official_item_en": "Urban AI Life Experience Belt",
+        "protocol_response": "The same core service remains available through no-data, staffed, paper and offline routes."
+      },
+      {
+        "official_item_zh": "AI融合创新带",
+        "official_item_en": "AI Integration Innovation Belt",
+        "protocol_response": "Controlled compute is bound to explicit purpose, input, output, expiry, withdrawal and working-stop contracts."
+      }
+    ],
+    "official_five_functions": [
+      {
+        "official_item_zh": "AI全栈自主创新体系",
+        "official_item_en": "Full-stack Independent AI Innovation System",
+        "protocol_response": "Controlled domain, approved query/model/container, execution log and output gate form one auditable stack."
+      },
+      {
+        "official_item_zh": "世界级AI创新生态",
+        "official_item_en": "World-class AI Innovation Ecosystem",
+        "protocol_response": "A nine-role RACI opens bounded testing while preserving single accountability and unilateral stop authority."
+      },
+      {
+        "official_item_zh": "AI+场景赋能新范式",
+        "official_item_en": "New AI+ Scenario-Empowerment Paradigm",
+        "protocol_response": "SCN-06 turns controlled compute into a locatable, reversible and testable urban service scenario."
+      },
+      {
+        "official_item_zh": "智能化AI活力城市",
+        "official_item_en": "Vibrant Intelligent AI City",
+        "protocol_response": "No-data equivalence and human takeover keep daily service open when optional data is declined or automation fails."
+      },
+      {
+        "official_item_zh": "AI治理全球话语权",
+        "official_item_en": "Global Voice in AI Governance",
+        "protocol_response": "The bilingual machine-readable expiry-withdrawal-residual-return contract makes limits and failures portable for review."
+      }
+    ],
+    "agent_tasks": [
+      {
+        "task_id": "agent.1",
+        "impact": "supporting",
+        "response": "Connects one corridor-scale governance loop to a scenario and two supporting wings."
+      },
+      {
+        "task_id": "agent.2",
+        "impact": "primary",
+        "response": "Defines a bounded full-stack controlled-compute and innovation-ecosystem contract."
+      },
+      {
+        "task_id": "agent.3",
+        "impact": "primary",
+        "response": "Makes SCN-06 operable through explicit inputs, outputs, roles, thresholds and fallback."
+      },
+      {
+        "task_id": "agent.4",
+        "impact": "supporting",
+        "response": "Treats BLDG-002 only as a conceptual host candidate and keeps the public interface reversible."
+      },
+      {
+        "task_id": "agent.5",
+        "impact": "supporting",
+        "response": "Translates railway time and receipt language into legible governance without claiming historic fact."
+      },
+      {
+        "task_id": "agent.6",
+        "impact": "primary",
+        "response": "Defines expiry, withdrawal, residual disclosure, return acceptance and closure as an annual operating evidence chain."
+      }
+    ],
+    "scope_and_gate_refs": [
+      "43.6_sq_km_coordinated_research_scope",
+      "11.4_sq_km_overall_design_scope",
+      "three_key_areas",
+      "gate_0_evidence_and_co_decision",
+      "gate_1_reversible_prototype",
+      "gate_2_controlled_scenario",
+      "gate_3_spatial_deepening"
+    ],
+    "service_gates": [
+      "minimum_data",
+      "shortest_term",
+      "minimum_output",
+      "human_review",
+      "working_stop"
+    ],
+    "project_policy_gates": [
+      "readable_and_collectively_amendable_purpose",
+      "purpose_and_term_separation",
+      "raw_data_stays_in_controlled_domain_by_preference",
+      "data_labour_terms_disclosed_before_work",
+      "derivative_chain_recorded",
+      "withdrawal_receipt_discloses_nonrollback_states",
+      "public_return_terms_set_before_value_creation"
+    ]
+  },
+  "synthetic_rehearsals": [
+    {
+      "case_id": "CASE-NORMAL-EXPIRY-01",
+      "case_type": "normal_expiry",
+      "scope": {
+        "scenario_id": "SCN-06",
+        "key_area_id": "PROV-KEY-001",
+        "handoff_id": null
+      },
+      "ticket_id": "SYN-TICKET-EXPIRY-01",
+      "ticket": {
+        "ticket_id": "SYN-TICKET-EXPIRY-01",
+        "version": "1.0.0",
+        "supersedes": null,
+        "purpose": {
+          "statement_zh": "仅用合成路线夹具比较有数据与无数据服务，并在到期后停止未来调用。",
+          "statement_en": "Compare data and no-data service routes using synthetic fixtures only, then stop future calls at expiry.",
+          "allowed_uses": [
+            "synthetic_route_parity_test"
+          ],
+          "prohibited_uses": [
+            "live_person_tracking",
+            "raw_record_export",
+            "post_term_output_release"
+          ]
+        },
+        "term": {
+          "issued_at": "2026-08-22T08:50:00+08:00",
+          "valid_from": "2026-08-22T09:10:00+08:00",
+          "expires_at": "2026-08-22T10:00:00+08:00",
+          "timezone": "Asia/Shanghai"
+        },
+        "input_contract": {
+          "data_categories": [
+            "synthetic_route_attempt"
+          ],
+          "provenance_and_licence_records": [
+            {
+              "source": "case_local_synthetic_fixture",
+              "licence": "submission_owned_synthetic_data"
+            }
+          ],
+          "minimisation_rule": "Only the route-parity fields evaluated by this rehearsal may enter the controlled domain.",
+          "controlled_domain": "synthetic_rehearsal_sandbox",
+          "raw_record_export_allowed": false
+        },
+        "compute_contract": {
+          "allowed_queries_models_or_containers": [
+            "route_parity_calculator_v1"
+          ],
+          "operator_role_type": "CONTROLLED-COMPUTE-OPERATOR",
+          "assigned_entity": null,
+          "assignment_status": "unknown"
+        },
+        "output_contract": {
+          "allowed_outputs": [
+            "aggregate_synthetic_route_parity_report"
+          ],
+          "prohibited_outputs": [
+            "raw_attempt_record",
+            "output_after_expiry_or_withdrawal"
+          ],
+          "review_required": true,
+          "minimum_aggregate_group_size": 10,
+          "output_release_requires_active_ticket": true
+        },
+        "withdrawal_contract": {
+          "channels": [
+            "staffed",
+            "paper",
+            "offline",
+            "machine"
+          ],
+          "effective_at": null,
+          "complete_erasure_promised": false
+        },
+        "derivative_chain": {
+          "classes": [
+            "source_material",
+            "controlled_copy",
+            "feature",
+            "model",
+            "report",
+            "public_output"
+          ],
+          "items": [
+            {
+              "item_id": "DERIV-EXPIRY-REPORT-01",
+              "class": "report",
+              "post_term_state": "retained_as_disclosed_synthetic_evaluation"
+            },
+            {
+              "item_id": "DERIV-EXPIRY-PUBLIC-01",
+              "class": "public_output",
+              "post_term_state": "removed_from_controllable_channel"
+            }
+          ],
+          "unmapped_item_count": 0
+        },
+        "no_data_equivalent_contract": {
+          "same_core_output_schema": true,
+          "price_premium_allowed": false,
+          "staffed_paper_and_offline_routes_required": true
+        },
+        "public_return_contract": {
+          "beneficiary": "synthetic_public_cohort",
+          "due_at": "2026-08-22T10:30:00+08:00",
+          "acceptance_method": "synthetic_public_return_receipt",
+          "undelivered_state": "ticket_cannot_close",
+          "deliverable": {
+            "deliverable_id": "DELIV-PUBLIC-AUDIT-CARD-01",
+            "description_zh": "双语公共审计卡：披露到期或撤回、无数据规则、残余影响与问责边界。",
+            "description_en": "Bilingual public audit card disclosing expiry or withdrawal, no-data rules, residual effects, and accountability boundaries.",
+            "content_ref": "/public_return/deliverable"
+          },
+          "value_metric": {
+            "metric_id": "VALUE-NO-DATA-RULE-COVERAGE-01",
+            "unit": "ratio",
+            "operator": ">=",
+            "target_value": 1.0,
+            "formula": "passed_no_data_rules / evaluated_no_data_rules"
+          },
+          "evidence_refs": [
+            "/route_pair",
+            "/public_return/deliverable",
+            "/public_return/value_measurement"
+          ],
+          "is_payment_for_consent": false
+        },
+        "confirmed_legal_role": null,
+        "confirmed_signatory": null,
+        "confirmed_capacity": null
+      },
+      "ticket_state_sequence": [
+        "draft",
+        "co_decided",
+        "active",
+        "expired",
+        "residual_disclosed",
+        "return_accepted",
+        "closed"
+      ],
+      "execution_state_sequence": [
+        "not_started",
+        "running",
+        "stopping",
+        "stopped",
+        "closed"
+      ],
+      "route_pair": {
+        "data_route": {
+          "observation_batches": [
+            {
+              "attempt_count": 45,
+              "time_seconds": 600,
+              "price_cny": 0,
+              "failure_count": 1,
+              "core_output_schema_match_ratio": 1.0,
+              "safety_alert_match_ratio": 1.0
+            },
+            {
+              "attempt_count": 5,
+              "time_seconds": 620,
+              "price_cny": 0,
+              "failure_count": 0,
+              "core_output_schema_match_ratio": 1.0,
+              "safety_alert_match_ratio": 1.0
+            }
+          ],
+          "attempts": 50,
+          "p90_time_seconds": 600,
+          "price_cny": 0,
+          "failures": 1,
+          "core_output_schema_match_ratio": 1.0,
+          "safety_alert_match_ratio": 1.0
+        },
+        "no_data_route": {
+          "observation_batches": [
+            {
+              "attempt_count": 45,
+              "time_seconds": 650,
+              "price_cny": 0,
+              "failure_count": 1,
+              "core_output_schema_match_ratio": 1.0,
+              "safety_alert_match_ratio": 1.0
+            },
+            {
+              "attempt_count": 5,
+              "time_seconds": 700,
+              "price_cny": 0,
+              "failure_count": 0,
+              "core_output_schema_match_ratio": 1.0,
+              "safety_alert_match_ratio": 1.0
+            }
+          ],
+          "attempts": 50,
+          "p90_time_seconds": 650,
+          "price_cny": 0,
+          "failures": 1,
+          "core_output_schema_match_ratio": 1.0,
+          "safety_alert_match_ratio": 1.0
+        },
+        "human_takeover": {
+          "available": true,
+          "response_seconds": 90
+        },
+        "complaint_channels": {
+          "staffed": true,
+          "paper": true,
+          "offline": true
+        },
+        "accessibility_task_fixture_coverage_ratio": 1.0,
+        "accessibility_task_fixtures": {
+          "claim_scope": "E2_synthetic_fixture_coverage_not_usability_performance",
+          "observed_user_count": 0,
+          "field_test_status": "not_observed",
+          "professional_confirmation_status": "unknown",
+          "tasks": [
+            {
+              "task_id": "A11Y-READ-TICKET-SCREEN-READER",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/purpose", "/artifact_records/5"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/purpose", "/artifact_records/5"]
+              }
+            },
+            {
+              "task_id": "A11Y-WITHDRAW-KEYBOARD-ONLY",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/withdrawal_contract", "/artifact_records/5"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/withdrawal_contract", "/artifact_records/5"]
+              }
+            },
+            {
+              "task_id": "A11Y-READ-RECEIPT-LOW-VISION",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/public_return/deliverable", "/artifact_records/5"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/public_return/deliverable", "/artifact_records/5"]
+              }
+            },
+            {
+              "task_id": "A11Y-REACH-STAFFED-FALLBACK",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/route_pair/human_takeover", "/route_pair/complaint_channels"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/route_pair/human_takeover", "/route_pair/complaint_channels"]
+              }
+            },
+            {
+              "task_id": "A11Y-UNDERSTAND-RESIDUAL",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/residual_effects", "/artifact_records/5"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/residual_effects", "/artifact_records/5"]
+              }
+            },
+            {
+              "task_id": "A11Y-COMPLETE-NO-SMARTPHONE",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/withdrawal_contract", "/route_pair/complaint_channels"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/withdrawal_contract", "/route_pair/complaint_channels"]
+              }
+            }
+          ]
+        }
+      },
+      "events": [
+        {
+          "at": "2026-08-22T09:00:00+08:00",
+          "event": "co_decided"
+        },
+        {
+          "at": "2026-08-22T09:10:00+08:00",
+          "event": "activated"
+        },
+        {
+          "at": "2026-08-22T09:30:00+08:00",
+          "event": "output_reviewed",
+          "decision": "allowed",
+          "output_group_size": 50,
+          "released_output_count": 1
+        },
+        {
+          "at": "2026-08-22T10:00:00+08:00",
+          "event": "automatic_expiry",
+          "execution_state_after": "stopping",
+          "new_query_or_output_allowed": false,
+          "teardown_only": true
+        },
+        {
+          "at": "2026-08-22T10:00:30+08:00",
+          "event": "execution_stopped",
+          "execution_state_after": "stopped",
+          "teardown_completed": true
+        },
+        {
+          "at": "2026-08-22T10:03:00+08:00",
+          "event": "derivative_inventory_completed",
+          "unmapped_item_count": 0
+        },
+        {
+          "at": "2026-08-22T10:04:00+08:00",
+          "event": "controllable_public_output_removed",
+          "removed_output_count": 1
+        },
+        {
+          "at": "2026-08-22T10:05:00+08:00",
+          "event": "residual_disclosed"
+        },
+        {
+          "at": "2026-08-22T10:20:00+08:00",
+          "event": "public_return_accepted"
+        },
+        {
+          "at": "2026-08-22T10:21:00+08:00",
+          "event": "closed"
+        }
+      ],
+      "sla_observations": [
+        {
+          "target_id": "SLA-EXECUTION-TEARDOWN",
+          "start_event": "automatic_expiry",
+          "end_event": "execution_stopped"
+        },
+        {
+          "target_id": "SLA-DERIVATIVE-INVENTORY",
+          "start_event": "automatic_expiry",
+          "end_event": "derivative_inventory_completed"
+        },
+        {
+          "target_id": "SLA-CONTROLLABLE-PUBLIC-OUTPUT-REMOVAL",
+          "start_event": "automatic_expiry",
+          "end_event": "controllable_public_output_removed"
+        },
+        {
+          "target_id": "SLA-RESIDUAL-DISCLOSURE",
+          "start_event": "automatic_expiry",
+          "end_event": "residual_disclosed"
+        }
+      ],
+      "residual_effects": [
+        {
+          "derivative_item_id": "DERIV-EXPIRY-REPORT-01",
+          "class": "aggregate_benchmark_summary",
+          "rollback_status": "retained_as_disclosed_synthetic_evaluation",
+          "complete_erasure_promised": false
+        }
+      ],
+      "public_return": {
+        "obligation_exists": true,
+        "obligation_survives_withdrawal": true,
+        "beneficiary": "synthetic_public_cohort",
+        "due_at": "2026-08-22T10:30:00+08:00",
+        "accepted_at": "2026-08-22T10:20:00+08:00",
+        "acceptance_method": "synthetic_public_return_receipt",
+        "deliverable": {
+          "deliverable_id": "DELIV-PUBLIC-AUDIT-CARD-01",
+          "description_zh": "双语公共审计卡：披露到期或撤回、无数据规则、残余影响与问责边界。",
+          "description_en": "Bilingual public audit card disclosing expiry or withdrawal, no-data rules, residual effects, and accountability boundaries.",
+          "content_ref": "/public_return/deliverable",
+          "status": "delivered",
+          "delivered_at": "2026-08-22T10:20:00+08:00"
+        },
+        "value_measurement": {
+          "metric_id": "VALUE-NO-DATA-RULE-COVERAGE-01",
+          "unit": "ratio",
+          "value": 1.0,
+          "status": "synthetic_recalculated",
+          "source_ref": "/route_pair"
+        },
+        "evidence_refs": [
+          "/route_pair",
+          "/public_return/deliverable",
+          "/public_return/value_measurement"
+        ],
+        "acceptance_scope": "synthetic_delivery_and_contract_conformance_only",
+        "impact_observation": {
+          "status": "not_observed",
+          "value": null,
+          "next_trigger": "authorized_E3_E4_test"
+        },
+        "accepted": true,
+        "is_payment_for_consent": false
+      },
+      "produced_artifact_ids": [
+        "ART-TICKET-SNAPSHOT",
+        "ART-CO-DECISION",
+        "ART-ACTIVATION",
+        "ART-EXECUTION-LOG",
+        "ART-OUTPUT-REVIEW",
+        "ART-NO-DATA-PARITY",
+        "ART-STOP-DECISION",
+        "ART-EXPIRY-OR-WITHDRAWAL",
+        "ART-DERIVATIVE-INVENTORY",
+        "ART-RESIDUAL-DISCLOSURE",
+        "ART-PUBLIC-RETURN",
+        "ART-CLOSURE"
+      ],
+      "artifact_records": [
+        {
+          "artifact_id": "ART-TICKET-SNAPSHOT",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T08:50:00+08:00",
+          "role_type": "EVIDENCE-CUSTODIAN",
+          "before_state": "draft",
+          "after_state": "draft",
+          "input_refs": [
+            "/ticket"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_ticket_created",
+          "content_ref": "/ticket"
+        },
+        {
+          "artifact_id": "ART-CO-DECISION",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T09:00:00+08:00",
+          "role_type": "COLLECTIVE-AGENDA-CHAIR",
+          "before_state": "draft",
+          "after_state": "co_decided",
+          "input_refs": [
+            "/ticket/purpose"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_purpose_co_decided",
+          "content_ref": "/events/0"
+        },
+        {
+          "artifact_id": "ART-ACTIVATION",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T09:10:00+08:00",
+          "role_type": "CONTROLLED-COMPUTE-OPERATOR",
+          "before_state": "co_decided",
+          "after_state": "active",
+          "input_refs": [
+            "/ticket/term",
+            "/ticket/compute_contract"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_activation_conditions_passed",
+          "content_ref": "/events/1"
+        },
+        {
+          "artifact_id": "ART-EXECUTION-LOG",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T09:10:00+08:00",
+          "role_type": "CONTROLLED-COMPUTE-OPERATOR",
+          "before_state": "not_started",
+          "after_state": "running",
+          "input_refs": [
+            "/events/1"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_execution_started",
+          "content_ref": "/events/1"
+        },
+        {
+          "artifact_id": "ART-OUTPUT-REVIEW",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T09:30:00+08:00",
+          "role_type": "RIGHTS-ETHICS-SAFETY-REVIEWER",
+          "before_state": "active",
+          "after_state": "active",
+          "input_refs": [
+            "/ticket/output_contract",
+            "/route_pair"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_minimum_output_review_passed",
+          "content_ref": "/events/2"
+        },
+        {
+          "artifact_id": "ART-NO-DATA-PARITY",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T09:30:00+08:00",
+          "role_type": "NO-DATA-SERVICE-OPERATOR",
+          "before_state": "active",
+          "after_state": "active",
+          "input_refs": [
+            "/route_pair"
+          ],
+          "decision": "allowed",
+          "reason_code": "all_synthetic_parity_thresholds_passed",
+          "content_ref": "/route_pair"
+        },
+        {
+          "artifact_id": "ART-STOP-DECISION",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T10:00:30+08:00",
+          "role_type": "CONTROLLED-COMPUTE-OPERATOR",
+          "before_state": "stopping",
+          "after_state": "stopped",
+          "input_refs": [
+            "/events/3"
+          ],
+          "decision": "stopped",
+          "reason_code": "ticket_expired",
+          "content_ref": "/events/4"
+        },
+        {
+          "artifact_id": "ART-EXPIRY-OR-WITHDRAWAL",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T10:00:00+08:00",
+          "role_type": "EVIDENCE-CUSTODIAN",
+          "before_state": "active",
+          "after_state": "expired",
+          "input_refs": [
+            "/ticket/term"
+          ],
+          "decision": "stopped",
+          "reason_code": "automatic_expiry_reached",
+          "content_ref": "/events/3"
+        },
+        {
+          "artifact_id": "ART-DERIVATIVE-INVENTORY",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T10:03:00+08:00",
+          "role_type": "DATA-DOMAIN-CUSTODIAN",
+          "before_state": "expired",
+          "after_state": "expired",
+          "input_refs": [
+            "/ticket/derivative_chain"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_derivative_inventory_complete",
+          "content_ref": "/events/5"
+        },
+        {
+          "artifact_id": "ART-RESIDUAL-DISCLOSURE",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T10:05:00+08:00",
+          "role_type": "RIGHTS-ETHICS-SAFETY-REVIEWER",
+          "before_state": "expired",
+          "after_state": "residual_disclosed",
+          "input_refs": [
+            "/ticket/derivative_chain",
+            "/residual_effects"
+          ],
+          "decision": "allowed",
+          "reason_code": "non_erasure_boundary_disclosed",
+          "content_ref": "/residual_effects"
+        },
+        {
+          "artifact_id": "ART-PUBLIC-RETURN",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T10:20:00+08:00",
+          "role_type": "PUBLIC-RETURN-REP",
+          "before_state": "residual_disclosed",
+          "after_state": "return_accepted",
+          "input_refs": [
+            "/ticket/public_return_contract",
+            "/public_return/deliverable",
+            "/public_return/value_measurement"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_public_return_accepted",
+          "content_ref": "/public_return"
+        },
+        {
+          "artifact_id": "ART-CLOSURE",
+          "ticket_id": "SYN-TICKET-EXPIRY-01",
+          "case_id": "CASE-NORMAL-EXPIRY-01",
+          "recorded_at": "2026-08-22T10:21:00+08:00",
+          "role_type": "COLLECTIVE-AGENDA-CHAIR",
+          "before_state": "return_accepted",
+          "after_state": "closed",
+          "input_refs": [
+            "/public_return",
+            "/residual_effects"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_closure_conditions_passed",
+          "content_ref": "/events/9"
+        }
+      ],
+      "expected_result": {
+        "pass": true,
+        "ticket_final_state": "closed",
+        "execution_final_state": "closed",
+        "released_output_after_expiry_or_withdrawal_count": 0
+      }
+    },
+    {
+      "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+      "case_type": "midstream_withdrawal_with_residual_effect",
+      "scope": {
+        "scenario_id": "SCN-06",
+        "key_area_id": "PROV-KEY-001",
+        "handoff_id": null
+      },
+      "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+      "ticket": {
+        "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+        "version": "1.0.0",
+        "supersedes": null,
+        "purpose": {
+          "statement_zh": "仅用合成路线夹具比较两条服务路径，并验证中途撤回后拒绝新查询。",
+          "statement_en": "Compare two service routes using synthetic fixtures only and verify that new queries are denied after midstream withdrawal.",
+          "allowed_uses": [
+            "synthetic_route_parity_test"
+          ],
+          "prohibited_uses": [
+            "live_person_tracking",
+            "raw_record_export",
+            "post_term_output_release"
+          ]
+        },
+        "term": {
+          "issued_at": "2026-08-22T10:50:00+08:00",
+          "valid_from": "2026-08-22T11:10:00+08:00",
+          "expires_at": "2026-08-22T13:00:00+08:00",
+          "timezone": "Asia/Shanghai"
+        },
+        "input_contract": {
+          "data_categories": [
+            "synthetic_route_attempt"
+          ],
+          "provenance_and_licence_records": [
+            {
+              "source": "case_local_synthetic_fixture",
+              "licence": "submission_owned_synthetic_data"
+            }
+          ],
+          "minimisation_rule": "Only the route-parity fields evaluated by this rehearsal may enter the controlled domain.",
+          "controlled_domain": "synthetic_rehearsal_sandbox",
+          "raw_record_export_allowed": false
+        },
+        "compute_contract": {
+          "allowed_queries_models_or_containers": [
+            "route_parity_calculator_v1"
+          ],
+          "operator_role_type": "CONTROLLED-COMPUTE-OPERATOR",
+          "assigned_entity": null,
+          "assignment_status": "unknown"
+        },
+        "output_contract": {
+          "allowed_outputs": [
+            "aggregate_synthetic_route_parity_report"
+          ],
+          "prohibited_outputs": [
+            "raw_attempt_record",
+            "output_after_expiry_or_withdrawal"
+          ],
+          "review_required": true,
+          "minimum_aggregate_group_size": 10,
+          "output_release_requires_active_ticket": true
+        },
+        "withdrawal_contract": {
+          "channels": [
+            "staffed",
+            "paper",
+            "offline",
+            "machine"
+          ],
+          "effective_at": "2026-08-22T11:20:00+08:00",
+          "complete_erasure_promised": false
+        },
+        "derivative_chain": {
+          "classes": [
+            "source_material",
+            "controlled_copy",
+            "feature",
+            "model",
+            "report",
+            "public_output"
+          ],
+          "items": [
+            {
+              "item_id": "DERIV-WITHDRAWAL-VIEWED-01",
+              "class": "report",
+              "post_term_state": "cannot_guarantee_recall_from_human_memory"
+            },
+            {
+              "item_id": "DERIV-WITHDRAWAL-PUBLIC-01",
+              "class": "public_output",
+              "post_term_state": "removed_from_controllable_channel"
+            }
+          ],
+          "unmapped_item_count": 0
+        },
+        "no_data_equivalent_contract": {
+          "same_core_output_schema": true,
+          "price_premium_allowed": false,
+          "staffed_paper_and_offline_routes_required": true
+        },
+        "public_return_contract": {
+          "beneficiary": "synthetic_public_cohort",
+          "due_at": "2026-08-22T12:00:00+08:00",
+          "acceptance_method": "synthetic_public_return_receipt",
+          "undelivered_state": "ticket_cannot_close",
+          "deliverable": {
+            "deliverable_id": "DELIV-PUBLIC-AUDIT-CARD-01",
+            "description_zh": "双语公共审计卡：披露到期或撤回、无数据规则、残余影响与问责边界。",
+            "description_en": "Bilingual public audit card disclosing expiry or withdrawal, no-data rules, residual effects, and accountability boundaries.",
+            "content_ref": "/public_return/deliverable"
+          },
+          "value_metric": {
+            "metric_id": "VALUE-NO-DATA-RULE-COVERAGE-01",
+            "unit": "ratio",
+            "operator": ">=",
+            "target_value": 1.0,
+            "formula": "passed_no_data_rules / evaluated_no_data_rules"
+          },
+          "evidence_refs": [
+            "/route_pair",
+            "/public_return/deliverable",
+            "/public_return/value_measurement"
+          ],
+          "is_payment_for_consent": false
+        },
+        "confirmed_legal_role": null,
+        "confirmed_signatory": null,
+        "confirmed_capacity": null
+      },
+      "ticket_state_sequence": [
+        "draft",
+        "co_decided",
+        "active",
+        "withdrawn",
+        "residual_disclosed",
+        "return_accepted",
+        "closed"
+      ],
+      "execution_state_sequence": [
+        "not_started",
+        "running",
+        "stopping",
+        "stopped",
+        "closed"
+      ],
+      "route_pair": {
+        "data_route": {
+          "observation_batches": [
+            {
+              "attempt_count": 45,
+              "time_seconds": 600,
+              "price_cny": 0,
+              "failure_count": 1,
+              "core_output_schema_match_ratio": 1.0,
+              "safety_alert_match_ratio": 1.0
+            },
+            {
+              "attempt_count": 5,
+              "time_seconds": 620,
+              "price_cny": 0,
+              "failure_count": 0,
+              "core_output_schema_match_ratio": 1.0,
+              "safety_alert_match_ratio": 1.0
+            }
+          ],
+          "attempts": 50,
+          "p90_time_seconds": 600,
+          "price_cny": 0,
+          "failures": 1,
+          "core_output_schema_match_ratio": 1.0,
+          "safety_alert_match_ratio": 1.0
+        },
+        "no_data_route": {
+          "observation_batches": [
+            {
+              "attempt_count": 45,
+              "time_seconds": 660,
+              "price_cny": 0,
+              "failure_count": 2,
+              "core_output_schema_match_ratio": 1.0,
+              "safety_alert_match_ratio": 1.0
+            },
+            {
+              "attempt_count": 5,
+              "time_seconds": 700,
+              "price_cny": 0,
+              "failure_count": 0,
+              "core_output_schema_match_ratio": 1.0,
+              "safety_alert_match_ratio": 1.0
+            }
+          ],
+          "attempts": 50,
+          "p90_time_seconds": 660,
+          "price_cny": 0,
+          "failures": 2,
+          "core_output_schema_match_ratio": 1.0,
+          "safety_alert_match_ratio": 1.0
+        },
+        "human_takeover": {
+          "available": true,
+          "response_seconds": 120
+        },
+        "complaint_channels": {
+          "staffed": true,
+          "paper": true,
+          "offline": true
+        },
+        "accessibility_task_fixture_coverage_ratio": 1.0,
+        "accessibility_task_fixtures": {
+          "claim_scope": "E2_synthetic_fixture_coverage_not_usability_performance",
+          "observed_user_count": 0,
+          "field_test_status": "not_observed",
+          "professional_confirmation_status": "unknown",
+          "tasks": [
+            {
+              "task_id": "A11Y-READ-TICKET-SCREEN-READER",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/purpose", "/artifact_records/5"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/purpose", "/artifact_records/5"]
+              }
+            },
+            {
+              "task_id": "A11Y-WITHDRAW-KEYBOARD-ONLY",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/withdrawal_contract", "/artifact_records/5"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/withdrawal_contract", "/artifact_records/5"]
+              }
+            },
+            {
+              "task_id": "A11Y-READ-RECEIPT-LOW-VISION",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/public_return/deliverable", "/artifact_records/5"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/public_return/deliverable", "/artifact_records/5"]
+              }
+            },
+            {
+              "task_id": "A11Y-REACH-STAFFED-FALLBACK",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/route_pair/human_takeover", "/route_pair/complaint_channels"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/route_pair/human_takeover", "/route_pair/complaint_channels"]
+              }
+            },
+            {
+              "task_id": "A11Y-UNDERSTAND-RESIDUAL",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/residual_effects", "/artifact_records/5"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/residual_effects", "/artifact_records/5"]
+              }
+            },
+            {
+              "task_id": "A11Y-COMPLETE-NO-SMARTPHONE",
+              "data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/withdrawal_contract", "/route_pair/complaint_channels"]
+              },
+              "no_data_route": {
+                "result_type": "synthetic_fixture",
+                "attempt_count": 1,
+                "completed_count": 1,
+                "help_request_count": 0,
+                "wait_seconds": 0,
+                "detour_count": 0,
+                "human_takeover_available": true,
+                "critical_output_readback_fixture_passed": true,
+                "complaint_or_stop_receipt_available": true,
+                "evidence_refs": ["/ticket/withdrawal_contract", "/route_pair/complaint_channels"]
+              }
+            }
+          ]
+        }
+      },
+      "events": [
+        {
+          "at": "2026-08-22T11:00:00+08:00",
+          "event": "co_decided"
+        },
+        {
+          "at": "2026-08-22T11:10:00+08:00",
+          "event": "activated"
+        },
+        {
+          "at": "2026-08-22T11:15:00+08:00",
+          "event": "output_reviewed",
+          "decision": "allowed",
+          "output_group_size": 50,
+          "released_output_count": 1
+        },
+        {
+          "at": "2026-08-22T11:19:30+08:00",
+          "event": "withdrawal_request_received",
+          "channel": "staffed"
+        },
+        {
+          "at": "2026-08-22T11:19:45+08:00",
+          "event": "withdrawal_acknowledged",
+          "channel": "staffed"
+        },
+        {
+          "at": "2026-08-22T11:20:00+08:00",
+          "event": "withdrawal_effective",
+          "execution_state_after": "stopping",
+          "new_query_or_output_allowed": false,
+          "teardown_only": true
+        },
+        {
+          "at": "2026-08-22T11:20:20+08:00",
+          "event": "execution_stopped",
+          "execution_state_after": "stopped",
+          "teardown_completed": true
+        },
+        {
+          "at": "2026-08-22T11:21:00+08:00",
+          "event": "post_withdrawal_query_attempt",
+          "decision": "denied",
+          "released_output_count": 0
+        },
+        {
+          "at": "2026-08-22T11:25:00+08:00",
+          "event": "derivative_inventory_completed",
+          "unmapped_item_count": 0
+        },
+        {
+          "at": "2026-08-22T11:26:00+08:00",
+          "event": "controllable_public_output_removed",
+          "removed_output_count": 1
+        },
+        {
+          "at": "2026-08-22T11:30:00+08:00",
+          "event": "residual_disclosed"
+        },
+        {
+          "at": "2026-08-22T11:31:00+08:00",
+          "event": "complaint_received"
+        },
+        {
+          "at": "2026-08-22T11:35:00+08:00",
+          "event": "complaint_first_response"
+        },
+        {
+          "at": "2026-08-22T11:40:00+08:00",
+          "event": "public_return_accepted"
+        },
+        {
+          "at": "2026-08-22T11:41:00+08:00",
+          "event": "closed"
+        }
+      ],
+      "sla_observations": [
+        {
+          "target_id": "SLA-HUMAN-WITHDRAWAL-ACK",
+          "start_event": "withdrawal_request_received",
+          "end_event": "withdrawal_acknowledged"
+        },
+        {
+          "target_id": "SLA-EXECUTION-TEARDOWN",
+          "start_event": "withdrawal_effective",
+          "end_event": "execution_stopped"
+        },
+        {
+          "target_id": "SLA-DERIVATIVE-INVENTORY",
+          "start_event": "withdrawal_effective",
+          "end_event": "derivative_inventory_completed"
+        },
+        {
+          "target_id": "SLA-CONTROLLABLE-PUBLIC-OUTPUT-REMOVAL",
+          "start_event": "withdrawal_effective",
+          "end_event": "controllable_public_output_removed"
+        },
+        {
+          "target_id": "SLA-RESIDUAL-DISCLOSURE",
+          "start_event": "withdrawal_effective",
+          "end_event": "residual_disclosed"
+        },
+        {
+          "target_id": "SLA-COMPLAINT-FIRST-RESPONSE",
+          "start_event": "complaint_received",
+          "end_event": "complaint_first_response"
+        }
+      ],
+      "residual_effects": [
+        {
+          "derivative_item_id": "DERIV-WITHDRAWAL-VIEWED-01",
+          "class": "already_viewed_synthetic_summary",
+          "rollback_status": "cannot_guarantee_recall_from_human_memory",
+          "complete_erasure_promised": false
+        }
+      ],
+      "public_return": {
+        "obligation_exists": true,
+        "obligation_survives_withdrawal": true,
+        "beneficiary": "synthetic_public_cohort",
+        "due_at": "2026-08-22T12:00:00+08:00",
+        "accepted_at": "2026-08-22T11:40:00+08:00",
+        "acceptance_method": "synthetic_public_return_receipt",
+        "deliverable": {
+          "deliverable_id": "DELIV-PUBLIC-AUDIT-CARD-01",
+          "description_zh": "双语公共审计卡：披露到期或撤回、无数据规则、残余影响与问责边界。",
+          "description_en": "Bilingual public audit card disclosing expiry or withdrawal, no-data rules, residual effects, and accountability boundaries.",
+          "content_ref": "/public_return/deliverable",
+          "status": "delivered",
+          "delivered_at": "2026-08-22T11:40:00+08:00"
+        },
+        "value_measurement": {
+          "metric_id": "VALUE-NO-DATA-RULE-COVERAGE-01",
+          "unit": "ratio",
+          "value": 1.0,
+          "status": "synthetic_recalculated",
+          "source_ref": "/route_pair"
+        },
+        "evidence_refs": [
+          "/route_pair",
+          "/public_return/deliverable",
+          "/public_return/value_measurement"
+        ],
+        "acceptance_scope": "synthetic_delivery_and_contract_conformance_only",
+        "impact_observation": {
+          "status": "not_observed",
+          "value": null,
+          "next_trigger": "authorized_E3_E4_test"
+        },
+        "accepted": true,
+        "is_payment_for_consent": false,
+        "reason": "A separately agreed public obligation is not cancelled by withdrawal and cannot be used to purchase consent."
+      },
+      "produced_artifact_ids": [
+        "ART-TICKET-SNAPSHOT",
+        "ART-CO-DECISION",
+        "ART-ACTIVATION",
+        "ART-EXECUTION-LOG",
+        "ART-OUTPUT-REVIEW",
+        "ART-NO-DATA-PARITY",
+        "ART-STOP-DECISION",
+        "ART-EXPIRY-OR-WITHDRAWAL",
+        "ART-DERIVATIVE-INVENTORY",
+        "ART-RESIDUAL-DISCLOSURE",
+        "ART-PUBLIC-RETURN",
+        "ART-CLOSURE"
+      ],
+      "artifact_records": [
+        {
+          "artifact_id": "ART-TICKET-SNAPSHOT",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T10:50:00+08:00",
+          "role_type": "EVIDENCE-CUSTODIAN",
+          "before_state": "draft",
+          "after_state": "draft",
+          "input_refs": [
+            "/ticket"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_ticket_created",
+          "content_ref": "/ticket"
+        },
+        {
+          "artifact_id": "ART-CO-DECISION",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:00:00+08:00",
+          "role_type": "COLLECTIVE-AGENDA-CHAIR",
+          "before_state": "draft",
+          "after_state": "co_decided",
+          "input_refs": [
+            "/ticket/purpose"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_purpose_co_decided",
+          "content_ref": "/events/0"
+        },
+        {
+          "artifact_id": "ART-ACTIVATION",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:10:00+08:00",
+          "role_type": "CONTROLLED-COMPUTE-OPERATOR",
+          "before_state": "co_decided",
+          "after_state": "active",
+          "input_refs": [
+            "/ticket/term",
+            "/ticket/compute_contract"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_activation_conditions_passed",
+          "content_ref": "/events/1"
+        },
+        {
+          "artifact_id": "ART-EXECUTION-LOG",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:10:00+08:00",
+          "role_type": "CONTROLLED-COMPUTE-OPERATOR",
+          "before_state": "not_started",
+          "after_state": "running",
+          "input_refs": [
+            "/events/1"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_execution_started",
+          "content_ref": "/events/1"
+        },
+        {
+          "artifact_id": "ART-OUTPUT-REVIEW",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:15:00+08:00",
+          "role_type": "RIGHTS-ETHICS-SAFETY-REVIEWER",
+          "before_state": "active",
+          "after_state": "active",
+          "input_refs": [
+            "/ticket/output_contract",
+            "/route_pair"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_minimum_output_review_passed",
+          "content_ref": "/events/2"
+        },
+        {
+          "artifact_id": "ART-NO-DATA-PARITY",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:15:00+08:00",
+          "role_type": "NO-DATA-SERVICE-OPERATOR",
+          "before_state": "active",
+          "after_state": "active",
+          "input_refs": [
+            "/route_pair"
+          ],
+          "decision": "allowed",
+          "reason_code": "all_synthetic_parity_thresholds_passed",
+          "content_ref": "/route_pair"
+        },
+        {
+          "artifact_id": "ART-STOP-DECISION",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:20:20+08:00",
+          "role_type": "PARTICIPANT-REP",
+          "before_state": "stopping",
+          "after_state": "stopped",
+          "input_refs": [
+            "/events/5"
+          ],
+          "decision": "stopped",
+          "reason_code": "participant_withdrawal_effective",
+          "content_ref": "/events/6"
+        },
+        {
+          "artifact_id": "ART-EXPIRY-OR-WITHDRAWAL",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:20:00+08:00",
+          "role_type": "EVIDENCE-CUSTODIAN",
+          "before_state": "active",
+          "after_state": "withdrawn",
+          "input_refs": [
+            "/ticket/withdrawal_contract",
+            "/events/3"
+          ],
+          "decision": "stopped",
+          "reason_code": "valid_withdrawal_received",
+          "content_ref": "/events/5"
+        },
+        {
+          "artifact_id": "ART-DERIVATIVE-INVENTORY",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:25:00+08:00",
+          "role_type": "DATA-DOMAIN-CUSTODIAN",
+          "before_state": "withdrawn",
+          "after_state": "withdrawn",
+          "input_refs": [
+            "/ticket/derivative_chain"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_derivative_inventory_complete",
+          "content_ref": "/events/8"
+        },
+        {
+          "artifact_id": "ART-RESIDUAL-DISCLOSURE",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:30:00+08:00",
+          "role_type": "RIGHTS-ETHICS-SAFETY-REVIEWER",
+          "before_state": "withdrawn",
+          "after_state": "residual_disclosed",
+          "input_refs": [
+            "/ticket/derivative_chain",
+            "/residual_effects"
+          ],
+          "decision": "allowed",
+          "reason_code": "non_erasure_boundary_disclosed",
+          "content_ref": "/residual_effects"
+        },
+        {
+          "artifact_id": "ART-PUBLIC-RETURN",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:40:00+08:00",
+          "role_type": "PUBLIC-RETURN-REP",
+          "before_state": "residual_disclosed",
+          "after_state": "return_accepted",
+          "input_refs": [
+            "/ticket/public_return_contract",
+            "/public_return/deliverable",
+            "/public_return/value_measurement"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_public_return_accepted_after_withdrawal",
+          "content_ref": "/public_return"
+        },
+        {
+          "artifact_id": "ART-CLOSURE",
+          "ticket_id": "SYN-TICKET-WITHDRAWAL-01",
+          "case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+          "recorded_at": "2026-08-22T11:41:00+08:00",
+          "role_type": "COLLECTIVE-AGENDA-CHAIR",
+          "before_state": "return_accepted",
+          "after_state": "closed",
+          "input_refs": [
+            "/public_return",
+            "/residual_effects"
+          ],
+          "decision": "allowed",
+          "reason_code": "synthetic_closure_conditions_passed",
+          "content_ref": "/events/14"
+        }
+      ],
+      "expected_result": {
+        "pass": true,
+        "illegal_action_blocked": true,
+        "ticket_final_state": "closed",
+        "execution_final_state": "closed",
+        "released_output_after_expiry_or_withdrawal_count": 0
+      }
+    }
+  ],
+  "fail_closed_assertions": [
+    {
+      "assertion_id": "ASSERT-EXACT-TICKET-STATES",
+      "rule": "The ticket state set and allowed transition set exactly match this protocol."
+    },
+    {
+      "assertion_id": "ASSERT-EXACT-EXECUTION-STATES",
+      "rule": "The execution state set and allowed transition set exactly match this protocol."
+    },
+    {
+      "assertion_id": "ASSERT-SINGLE-NODE-OPERATIONAL-SCOPE",
+      "rule": "Every E2 rehearsal stays at SCN-06 / PROV-KEY-001 and transfers no ticket, data, role or stop authority to another node."
+    },
+    {
+      "assertion_id": "ASSERT-INSTANTIATED-TICKET",
+      "rule": "Every rehearsal instantiates every required ticket field, uses only synthetic controlled inputs, preserves unknown entity and legal assignments, and binds expiry or withdrawal events to its own term."
+    },
+    {
+      "assertion_id": "ASSERT-MONOTONIC-EVENTS",
+      "rule": "Every rehearsal event timestamp is valid and strictly monotonic; event-derived ticket and execution states exactly match complete initial-to-terminal sequences."
+    },
+    {
+      "assertion_id": "ASSERT-SLA-OBSERVATIONS",
+      "rule": "Every SLA target is exercised by at least one event-to-event synthetic observation and every elapsed duration is recomputed against the pinned target."
+    },
+    {
+      "assertion_id": "ASSERT-TICKET-EXECUTION-COUPLING",
+      "rule": "Expiry or withdrawal atomically enters stopping, immediately blocks every new query or output, permits teardown only, and reaches stopped within 60 seconds."
+    },
+    {
+      "assertion_id": "ASSERT-ONE-ACCOUNTABLE",
+      "rule": "Every RACI activity has exactly one accountable role and every referenced role exists."
+    },
+    {
+      "assertion_id": "ASSERT-NO-DATA-ALL-THRESHOLDS",
+      "rule": "Every synthetic route pair passes every no-data equivalence threshold, including both time conditions."
+    },
+    {
+      "assertion_id": "ASSERT-ACCESSIBILITY-TASK-CONTRACT",
+      "rule": "All six accessibility tasks have valid paired-route synthetic fixtures and resolvable evidence; coverage is not usability performance and observed users remain zero."
+    },
+    {
+      "assertion_id": "ASSERT-POST-TERM-OUTPUT-BLOCKED",
+      "rule": "No output may be released after expiry or withdrawal; the withdrawal case must deny its injected query."
+    },
+    {
+      "assertion_id": "ASSERT-RESIDUAL-NOT-ERASURE",
+      "rule": "Every expiry or withdrawal case discloses residual effects and never promises complete erasure."
+    },
+    {
+      "assertion_id": "ASSERT-PUBLIC-RETURN-SUBSTANTIATED",
+      "rule": "Return acceptance requires a delivered bilingual public audit card, independently recalculated value meeting its target, resolvable evidence pointers, and an explicit not-observed impact boundary."
+    },
+    {
+      "assertion_id": "ASSERT-ARTIFACT-COVERAGE",
+      "rule": "Every conditionally required artifact has one valid record whose minimum fields, role, state, timestamp and content pointers resolve against the case."
+    },
+    {
+      "assertion_id": "ASSERT-E2-BOUNDARY",
+      "rule": "The protocol remains E2, with field, entity, professional and implementation states unconfirmed."
+    },
+    {
+      "assertion_id": "ASSERT-CAPACITY-RECALCULATION",
+      "rule": "Every declared available unit, throughput, headroom and utilization value must be recomputed from the pinned 60-minute synthetic fixture."
+    },
+    {
+      "assertion_id": "ASSERT-CAPACITY-DEMAND-HEADROOM",
+      "rule": "Every C-01, C-02 route and C-04 model must retain non-negative headroom under the synthetic demand fixture."
+    },
+    {
+      "assertion_id": "ASSERT-CAPACITY-NO-DATA-RESERVE",
+      "rule": "The no-data route keeps two dedicated non-borrowable abstract units and at least the same synthetic throughput as the data route."
+    },
+    {
+      "assertion_id": "ASSERT-CAPACITY-STOP-RESERVE",
+      "rule": "C-04 keeps one abstract unit outside live work for teardown and recovery; it is not a confirmed hardware or staffing reserve."
+    },
+    {
+      "assertion_id": "ASSERT-CAPACITY-E2-BOUNDARY",
+      "rule": "All real entities, staffing, site, engineering, cost, procurement and approval fields stay null or unknown and field operation remains blocked."
+    }
+  ],
+  "negative_mutations": [
+    {
+      "mutation_id": "MUT-RELEASE-OUTPUT-AFTER-WITHDRAWAL",
+      "base_case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+      "mutation": "Set released_output_count on post_withdrawal_query_attempt to 1 and decision to allowed.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-POST-TERM-OUTPUT-BLOCKED"
+    },
+    {
+      "mutation_id": "MUT-ALLOW-RAW-EXPORT",
+      "base_case_id": "CASE-NORMAL-EXPIRY-01",
+      "mutation": "Set ticket.input_contract.raw_record_export_allowed to true.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-INSTANTIATED-TICKET"
+    },
+    {
+      "mutation_id": "MUT-SMALL-GROUP-OUTPUT",
+      "base_case_id": "CASE-NORMAL-EXPIRY-01",
+      "mutation": "Set output_reviewed.output_group_size below the ticket minimum aggregate group size.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-INSTANTIATED-TICKET"
+    },
+    {
+      "mutation_id": "MUT-UNMAPPED-DERIVATIVE",
+      "base_case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+      "mutation": "Set ticket.derivative_chain.unmapped_item_count to 1.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-INSTANTIATED-TICKET"
+    },
+    {
+      "mutation_id": "MUT-OMIT-STOPPING-STATE",
+      "base_case_id": "CASE-NORMAL-EXPIRY-01",
+      "mutation": "Set automatic_expiry.execution_state_after to running instead of stopping.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-TICKET-EXECUTION-COUPLING"
+    },
+    {
+      "mutation_id": "MUT-MISSING-PUBLIC-RETURN-DELIVERABLE",
+      "base_case_id": "CASE-NORMAL-EXPIRY-01",
+      "mutation": "Delete public_return.deliverable while leaving accepted true.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-PUBLIC-RETURN-SUBSTANTIATED"
+    },
+    {
+      "mutation_id": "MUT-PUBLIC-RETURN-BELOW-TARGET",
+      "base_case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+      "mutation": "Set public_return.value_measurement.value below the contracted target.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-PUBLIC-RETURN-SUBSTANTIATED"
+    },
+    {
+      "mutation_id": "MUT-EMPTY-PUBLIC-RETURN-EVIDENCE",
+      "base_case_id": "CASE-MIDSTREAM-WITHDRAWAL-01",
+      "mutation": "Replace public_return.evidence_refs with an empty array.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-PUBLIC-RETURN-SUBSTANTIATED"
+    },
+    {
+      "mutation_id": "MUT-CROSS-NODE-WITHOUT-HANDOFF",
+      "base_case_id": "CASE-NORMAL-EXPIRY-01",
+      "mutation": "Move case scope to SCN-10 / PROV-KEY-003 while handoff_id remains null.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-SINGLE-NODE-OPERATIONAL-SCOPE"
+    },
+    {
+      "mutation_id": "MUT-BOTH-ROUTES-FAIL-SCREEN-READER-TASK",
+      "base_case_id": "CASE-NORMAL-EXPIRY-01",
+      "mutation": "Set completed_count to 0 for both routes of A11Y-READ-TICKET-SCREEN-READER while leaving declared coverage at 1.0.",
+      "required_audit_result": "fail",
+      "expected_failed_assertion_id": "ASSERT-ACCESSIBILITY-TASK-CONTRACT"
+    }
+  ],
+  "recalculation_contract": {
+    "runner": "visual/assets/evidence-consistency.js",
+    "command": "node visual/assets/evidence-consistency.js --json",
+    "negative_test": "The runner clones the two ticket cases and the synthetic capacity envelope in memory. It must reject all ten ticket mutations plus five capacity mutations covering a drifted calculation, demand above C-01 capacity, borrowed no-data units, a removed C-04 stop reserve, and a false field confirmation.",
+    "expected_metrics": {
+      "expiring_ticket_synthetic_case_total": 2,
+      "expiring_ticket_synthetic_case_passed": 2,
+      "expiring_ticket_negative_path_fail_closed_total": 10,
+      "expiring_ticket_no_data_rule_coverage_ratio": 1.0,
+      "expiring_ticket_conditional_artifact_coverage_ratio": 1.0,
+      "synthetic_capacity_resource_gate_total": 4,
+      "synthetic_capacity_resource_gate_passed": 4,
+      "synthetic_capacity_project_gate_passed": 3,
+      "synthetic_capacity_negative_path_fail_closed_total": 5,
+      "synthetic_capacity_minimum_headroom_requests": 3,
+      "synthetic_capacity_no_data_to_data_capacity_ratio": 1.0
+    },
+    "manifest_integrity": "The canonical protocol file is covered by manifest sha256; it contains no self-hash or invented artifact hash."
+  }
+}

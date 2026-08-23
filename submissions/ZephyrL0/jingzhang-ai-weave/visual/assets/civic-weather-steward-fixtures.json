@@ -1,0 +1,126 @@
+{
+  "schema_version": "0.1.0",
+  "fixture_set_id": "CWS-01-fixtures-v6.1",
+  "test_type": "offline deterministic contract fixtures",
+  "not_a_field_test": true,
+  "fixtures": [
+    {
+      "id": "CWS-01",
+      "label_zh": "阵雨与完整公共条件",
+      "input": {"weather": "rain", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "ADVISE", "state": "RAIN_WAIT", "reason": "RAIN"}
+    },
+    {
+      "id": "CWS-02",
+      "label_zh": "高温与完整公共条件",
+      "input": {"weather": "heat", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "ADVISE", "state": "SHADE_WATER", "reason": "HEAT"}
+    },
+    {
+      "id": "CWS-03",
+      "label_zh": "高峰净行带观察",
+      "input": {"weather": "clear", "queue": "elevated", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "ADVISE", "state": "KEEP_CLEAR", "reason": "QUEUE"}
+    },
+    {
+      "id": "CWS-04",
+      "label_zh": "阵雨与高峰同时发生",
+      "input": {"weather": "rain", "queue": "elevated", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "ADVISE", "state": "RAIN_WAIT_CLEAR_ROUTE", "reason": "RAIN_AND_QUEUE"}
+    },
+    {
+      "id": "CWS-05",
+      "label_zh": "常态使用",
+      "input": {"weather": "clear", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "ADVISE", "state": "BASELINE", "reason": "NORMAL"}
+    },
+    {
+      "id": "CWS-06",
+      "label_zh": "离线时仍保留人工替代",
+      "input": {"weather": "offline", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "ADVISE", "state": "PAUSE_OR_HANDOVER", "reason": "OFFLINE"}
+    },
+    {
+      "id": "CWS-07",
+      "label_zh": "无具名值守者",
+      "must_fail": true,
+      "input": {"weather": "rain", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": false, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "HOLD", "state": "PAUSE_OR_HANDOVER", "reason": "NO_HUMAN_STEWARD"}
+    },
+    {
+      "id": "CWS-08",
+      "label_zh": "净行带不可用",
+      "must_fail": true,
+      "input": {"weather": "rain", "queue": "normal", "access_clear": false, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "HOLD", "state": "PAUSE_OR_HANDOVER", "reason": "ACCESS_NOT_CLEAR"}
+    },
+    {
+      "id": "CWS-09",
+      "label_zh": "免费停留被取消",
+      "must_fail": true,
+      "input": {"weather": "heat", "queue": "normal", "access_clear": true, "free_pause": false, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "HOLD", "state": "PAUSE_OR_HANDOVER", "reason": "FREE_PAUSE_UNAVAILABLE"}
+    },
+    {
+      "id": "CWS-10",
+      "label_zh": "树木或遗产保护未解",
+      "must_fail": true,
+      "input": {"weather": "clear", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": false, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "HOLD", "state": "PAUSE_OR_HANDOVER", "reason": "HERITAGE_OR_TREE_GATE"}
+    },
+    {
+      "id": "CWS-11",
+      "label_zh": "维护或安全条件未满足",
+      "must_fail": true,
+      "input": {"weather": "rain", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": false, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "HOLD", "state": "PAUSE_OR_HANDOVER", "reason": "MAINTENANCE_OR_SAFETY_GATE"}
+    },
+    {
+      "id": "CWS-12",
+      "label_zh": "包含个人数据",
+      "must_fail": true,
+      "input": {"weather": "heat", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": true, "attempted_authority": "none"},
+      "expected": {"decision": "REFUSE", "state": "PAUSE_OR_HANDOVER", "reason": "PERSONAL_DATA"}
+    },
+    {
+      "id": "CWS-13",
+      "label_zh": "尝试控制交通信号",
+      "must_fail": true,
+      "input": {"weather": "clear", "queue": "elevated", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "traffic_signal_control"},
+      "expected": {"decision": "REFUSE", "state": "PAUSE_OR_HANDOVER", "reason": "PROHIBITED_AUTHORITY"}
+    },
+    {
+      "id": "CWS-14",
+      "label_zh": "尝试控制轨道",
+      "must_fail": true,
+      "input": {"weather": "rain", "queue": "elevated", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "rail_control"},
+      "expected": {"decision": "REFUSE", "state": "PAUSE_OR_HANDOVER", "reason": "PROHIBITED_AUTHORITY"}
+    },
+    {
+      "id": "CWS-15",
+      "label_zh": "尝试自动审批",
+      "must_fail": true,
+      "input": {"weather": "clear", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "automatic_approval"},
+      "expected": {"decision": "REFUSE", "state": "PAUSE_OR_HANDOVER", "reason": "PROHIBITED_AUTHORITY"}
+    },
+    {
+      "id": "CWS-16",
+      "label_zh": "尝试人脸识别",
+      "must_fail": true,
+      "input": {"weather": "clear", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": true, "attempted_authority": "facial_recognition"},
+      "expected": {"decision": "REFUSE", "state": "PAUSE_OR_HANDOVER", "reason": "PERSONAL_DATA"}
+    },
+    {
+      "id": "CWS-17",
+      "label_zh": "高温但无队列",
+      "input": {"weather": "heat", "queue": "normal", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "ADVISE", "state": "SHADE_WATER", "reason": "HEAT"}
+    },
+    {
+      "id": "CWS-18",
+      "label_zh": "高峰但天气正常",
+      "input": {"weather": "clear", "queue": "elevated", "access_clear": true, "free_pause": true, "heritage_tree_safe": true, "maintenance_safe": true, "human_steward": true, "personal_data": false, "attempted_authority": "none"},
+      "expected": {"decision": "ADVISE", "state": "KEEP_CLEAR", "reason": "QUEUE"}
+    }
+  ]
+}

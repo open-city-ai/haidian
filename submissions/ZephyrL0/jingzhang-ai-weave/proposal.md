@@ -6,26 +6,48 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以保留为始、以缝合为形、以可撤回AI为制度；公开证据修正11.4平方公里总体规划，五缝、三区与两项拳头公共设计共同形成可审查、可重放、可止损的城市更新协议。"
-iteration: "v5.2-depth"
+summary: "以保留为始、以缝合为形、以具名人工负责的AI为制度；在11.4平方公里概念总体框架内，以五缝、三类公共试验、两项完整旗舰和可重放、可停止的服务员状态协议，形成可审查的城市更新提案。"
+iteration: "v6.1-weathered-commons"
 ---
 
 # 京张共檐：一条由公共生活组织的AI创新带
 ## 设计依据与资料清单
 
-本轮不从通用的“未来AI城市”想象出发，而先复核海淀已有公共规划。分区规划强调减量集约与科技、人文、生态融合；园林绿化专项规划提出“森林里的中关村，公园里的科学城”；城市更新指引强调无界首层、拆墙透绿、全龄共享与人机友好。清华东路“学院路会客厅”和中关村大街公共空间更新进一步证明，海淀倾向用渐进、实用、可共享的公共空间连接高校、社区、公园和商业，而不是用一座孤立巨构代表创新。[source:SRC-HAIDIAN-DISTRICT-PLAN] [source:SRC-HAIDIAN-GREEN-PLAN] [source:SRC-HAIDIAN-URBAN-RENEWAL]
+V6.1把“京张共檐”从一个概念口号推进为一套可被看见、使用和停止的公共基础设施：北端清河以基准花园公开树木—雨水—养护关系，中段AI原点以共享檐提供全天候学习、修理、照护与人工帮助，南端大钟寺以四角客厅处理站城到达、等待与夜间求助。它们不以炫技地标竞争，而以“少淋雨、少绕路、有人可问、能停下来”的日常完成度定义AI创新。[source:SRC-JINGZHANG-PHASE1-OPS-2026] [source:SRC-HAIDIAN-15TH-2026]
 
-项目边界和三处重点区仍是临时约束范围，只用于概念生成、面积复算和自检；共享檐与四角客厅只确定空间类型和运营逻辑，不指认权属地块、道路工程或文保改造。[source:SRC-PROVISIONAL-BOUNDARIES-2026] [depth:existing_conditions_diagnosis]
+V6.1把近期公开提出的“人机共融实验场”、五分钟生活与可体验公共AI场景转译成一条更严格的设计命题：AI只能帮助人把公共空间切换到合适的服务状态，不能替代人、控制道路或把居民变成数据。共享檐与四角客厅由此成为有低技术基线的“天气—照护—到达”公共房间，而不是科技展示橱窗。[source:SRC-JINGZHANG-MIDTERM-2026]
+
+这不是从零开始的公园想象。最新公开报道将九公里遗址公园描述为服务近70个社区、约45万居民、十余所高校和40余家科研机构的全龄公共走廊；这些数值只说明走廊级民生与知识密度，不能替代本方案临时范围的人口、客流或需求计算。因而V6.1优先把可停留、可绕行、可照护、可人工解释的公共界面做实，而不是把既有日常误写成未来AI展示。[source:SRC-JINGZHANG-PHASE2-CIVIC-LIFE-2026]
+
+地方依据也决定了形式：海淀公共规划强调减量集约、科技人文生态融合与无界首层。[source:SRC-HAIDIAN-DISTRICT-PLAN] [source:SRC-HAIDIAN-GREEN-PLAN]
+
+校城共享、全龄服务和人机友好使公共界面成为更新的先决条件；近期获批街区控规所述“一带一轴、两心多点”只作为区域协同背景，不替换征集边界或法定指标。[source:SRC-HAIDIAN-URBAN-RENEWAL] [source:SRC-2026-JINGZHANG-CONTROL-PLAN-APPROVAL]
+
+项目边界和三处重点区仍是临时约束范围，只用于概念生成、面积复算和自检；共享檐与四角客厅只确定空间类型和运营逻辑，不指认权属地块、道路工程、文保改造或已批准选址。[source:SRC-PROVISIONAL-BOUNDARIES-2026] [data:assumptions.json#A-APPROVED-CONTROL-PLAN-CONTEXT-001] [depth:existing_conditions_diagnosis]
 
 ![总体概念与地方设计基因](assets/figures/site-overview.png)
 
-v3把公众证据分成三级：公开政府咨询与已有正式反馈为A类，经同意的现场走读、访谈和共创为B类，Agent旅程为C类待验证假设。C类只能帮助发现问题，不能被写成居民同意或公众接受率。[source:SRC-JINGZHANG-COCREATION-2021] [source:REF-UNHABITAT-PUBLIC-SPACE]
+![清华园共享檐的概念氛围图：雨后树下的轻型公共屋檐、保留轨迹与雨水边](assets/media/common-eave-v6-concept.png)
 
-v4重新按官方公告复核尺度：本项目不是几个公共装置的征集，而是43.6平方公里产业与未来城市研究、11.4平方公里总体城市设计以及368.4公顷三处重点区详细设计的嵌套任务。v3的两项公共原型保留，但它们必须由完整的用地、更新、交通、市政、蓝绿、风貌与运营体系支撑。[source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [depth:three_level_scope_framework]
+*V6.1概念氛围图只用来说明“低技、可停留、可维护”的公共空间意图；它不是现场照片、批准效果、测绘落位、工程尺寸或公众意见证据。生成方法与权利边界见版权说明。*
 
-v5新增北京市与海淀区十五五正式纲要、北京2035总规、海淀2025统计公报和第七次人口普查五项官方依据。政策用于确认城市职能和公共问题，区级统计只提供背景；二者都不能替代场地人口、客流、权属、工程与公众参与资料。[source:SRC-BEIJING-15TH-2026] [source:SRC-HAIDIAN-15TH-2026] [source:SRC-HAIDIAN-STATS-2025]
+![共享檐V6.1概念氛围图：保留轨迹旁的六跨雨天公共房间](assets/media/shared-eave-v61-concept.png)
 
-v5.2把矩阵扩展到13篇论文：11篇已完成全文、完整稿件、全文网页或逐页可视审阅，2篇仍仅摘要筛选。[metric:academic_research_source_count] 一期论文核实约2.4公里、16.8公顷和2023开放状态，因此方案把三道一绿、东西缝合、铁路展示和专业运营列为既有底盘，而非Agent原创；北京热环境论文只提供待复测变量。[source:REF-JINGZHANG-HERITAGE-PARK-2024] [source:REF-BEIJING-LINEAR-PARK-THERMAL-2017] [source:REF-BEIJING-GREEN-COOLING-2016]
+![四角客厅V6.1概念氛围图：地面优先的到达、照护、停留与人工帮助](assets/media/four-corner-v61-concept.png)
+
+*两张V6.1原创生成式概念图只检验人的尺度、材料、雨天使用和地面连续性，不是现状、效果审批、测绘落位、交通工程或绩效证据。*
+
+本案仍遵守三层证据纪律：公开政府咨询和正式反馈为A类，经同意的现场走读、访谈与共创为B类，Agent旅程为C类待验证假设；C类绝不被写成居民同意或公众接受率。[source:SRC-JINGZHANG-COCREATION-2021] [source:REF-UNHABITAT-PUBLIC-SPACE]
+
+本项目也不是几个公共装置的征集，而是43.6平方公里产业与未来城市研究、11.4平方公里总体城市设计、368.4公顷三处重点区详细设计的嵌套任务。[source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [depth:three_level_scope_framework]
+
+政策用于确认城市职能和公共问题，区级统计只提供背景；二者都不能替代场地人口、客流、权属、工程与公众参与资料。[source:SRC-BEIJING-15TH-2026] [source:SRC-HAIDIAN-15TH-2026] [source:SRC-HAIDIAN-STATS-2025]
+
+现有研究矩阵包含13篇论文，其中11篇完成全文、完整稿件、全文网页或逐页可视审阅，2篇仍只作摘要筛选。[metric:academic_research_source_count]
+
+一期论文核实约2.4公里、16.8公顷和2023开放状态，因此“三道一绿”、东西缝合、铁路展示和专业运营是既有底盘，不被包装为Agent原创。[source:REF-JINGZHANG-HERITAGE-PARK-2024]
+
+北京热环境论文只提供待复测变量，不构成热舒适绩效承诺。[source:REF-BEIJING-LINEAR-PARK-THERMAL-2017] [source:REF-BEIJING-GREEN-COOLING-2016]
 
 地铁论文要求四角客厅逐出入口象限记录真实路线，六站样本平均8分钟仅作比较而非服务标准；两项老年研究共同要求客观审计、主观感知、住房社区分层，并主动纳入行动不便者。[source:REF-BEIJING-METRO-WALKING-2016] [source:REF-BEIJING-OLDER-ADULTS-BE-2024] [source:REF-BEIJING-OLDER-ADULTS-PERCEIVED-BE-2024]
 
@@ -37,27 +59,31 @@ v5.2把矩阵扩展到13篇论文：11篇已完成全文、完整稿件、全文
 
 ## 三层范围工作框架
 
-统筹研究范围回答“海淀的AI优势如何成为公共价值”；总体设计范围回答“九公里遗址公园如何从纵向绿带变成纵横连通的公共房间”；三处重点区回答“怎样把概念做成可画、可测、可运营的原型”。正式边界到位后，所有图层、比例、图纸和指标必须整包重算。[source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [depth:three_level_scope_framework]
+统筹研究范围回答“海淀的AI优势如何成为公共价值”；总体设计范围回答“九公里遗址公园如何从纵向绿带变成纵横连通的公共房间”；三处重点区回答“怎样把概念做成可画、可测、可运营的原型”。[source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [depth:three_level_scope_framework]
+
+近期公开的约37平方公里综合语境和1668.2公顷获批街区控规提示了更大的区域协同，但不替换任务书明确的43.6/11.4平方公里与三处重点区工作尺度。[source:SRC-2026-JINGZHANG-CONTROL-PLAN-APPROVAL] [data:assumptions.json#A-APPROVED-CONTROL-PLAN-CONTEXT-001]
+
+正式边界到位后，所有图层、比例、图纸和指标必须整包重算；每条引用还须按来源、尺度、许可、哈希与失效条件复核，不能在证据失效后沿用旧结论。[data:assumptions.json#A-EVIDENCE-INVALIDATION-001]
 
 “京张共檐”不是沿九公里连续盖顶，而是一套共同空间语法：每个关键节点至少能够停留、避雨或遮荫、坐靠、饮水、找到厕所、停自行车、获得人工帮助，并为行动不便者保留连续地面。这些基本服务比屏幕和机器人更优先。[data:geometry/public_space.geojson#PUBLIC-001] [depth:overall_spatial_structure]
 
 ![三层范围与海淀式空间骨架](assets/figures/land-use-structure.png)
 
-v4提出‘一条公共气候脊、五条横向城市缝、三个创新街区、两翼要素回路、十个更新工作包’。公共气候脊把遗产、慢行、生态和日常服务叠合；五条城市缝以清河、小月河、校城与轨道接口为公共联系目标；三区分别承担全栈治理、策源转化和智能原生城市经济；两翼让专业服务与真实场景公测形成闭环。[metric:cross_city_seam_count] [metric:renewal_work_package_count]
+总体结构由一条公共气候脊、五条横向城市缝、三个创新街区、两翼要素回路和十个更新工作包组成。公共气候脊把遗产、慢行、生态和日常服务叠合；五条城市缝以清河、小月河、校城与轨道接口为公共联系目标；三区分别承担全栈治理、策源转化和智能原生城市经济；两翼让专业服务与真实场景公测形成闭环。国际铁路遗产再利用案例提示，线性公共性来自多入口、连续公共房间和长期运营，不来自把全线做成同一景观皮肤。[metric:cross_city_seam_count] [metric:renewal_work_package_count] [source:CASE-GOODS-LINE-ULTIMO]
 
 ![三层范围与区域创新协同](assets/figures/regional-synergy.png)
 
 ![一脊五缝三城两翼总体结构](assets/figures/overall-framework.png)
 
-v5把京张在更大格局中的角色定义为‘北京AI城市中试与公共价值认证走廊’。北京层面，它把国际科技创新中心、历史文化名城、花园城市和人民城市四种要求叠合；海淀层面，它在‘两区一带’中承担南北联动、成果转译、真实场景验证和公众解释；场地层面，任何AI在扩展前都必须经过无障碍、隐私最小化、能耗、气候、维护、包容和退出七类检查。这是政策的空间转译，不是政府正式授名或审批。[source:SRC-BEIJING-15TH-2026] [source:SRC-HAIDIAN-15TH-2026] [metric:public_value_test_domain_count]
+京张在更大格局中承担“AI城市中试与公共价值认证走廊”的概念角色：北京层面叠合国际科技创新中心、历史文化名城、花园城市和人民城市的要求；海淀层面在“两区一带”中承担南北联动、成果转译、真实场景验证和公众解释；场地层面，任何AI在扩展前都必须经过无障碍、隐私最小化、能耗、气候、维护、包容和退出七类检查。这是政策的空间转译，不是政府正式授名或审批。[source:SRC-BEIJING-15TH-2026] [source:SRC-HAIDIAN-15TH-2026] [metric:public_value_test_domain_count]
 
 ![北京—海淀—京张三级战略角色](assets/figures/regional-synergy.png)
 
-v5.2不再从造型开始，而从证据角色开始：正式公告与政策是O层，公开遥感和经范围限定的公众意见是P层，可复算分析是D层，Agent概念是C层。四层不互相冒充。ESA WorldCover 2021的1248个100米聚合单元不是现场调查，但它第一次让公开观察信号参与总体规划，并实际推翻了部分宽绿带假设。[metric:public_observation_grid_cell_count] [source:DATA-ESA-WORLDCOVER-2021-V200-N39E114]
+本版从证据角色而非造型开始：正式公告与政策是O层，公开遥感和经范围限定的公众意见是P层，可复算分析是D层，Agent概念是C层；四层不互相冒充。ESA WorldCover 2021的1248个100米聚合单元不是现场调查，但它让公开观察信号参与总体规划，并推翻了部分宽绿带假设。[metric:public_observation_grid_cell_count] [source:DATA-ESA-WORLDCOVER-2021-V200-N39E114]
 
 ![证据先于造型](assets/figures/jury_01_evidence.png)
 
-总体设计压缩成一句可执行判断：**以保留为始、以缝合为形、以可撤回AI为制度。** 这使创新不再等于新建筑，连续不再等于宽绿带，智能不再等于自动审批。[metric:evidence_driven_design_correction_count]
+总体设计压缩成一句可执行判断：**以保留为始、以缝合为形、以具名人工负责的AI为制度。** 这使创新不再等于新建筑，连续不再等于宽绿带，智能不再等于自动审批。[metric:evidence_driven_design_correction_count]
 
 ![一句话总体设计](assets/figures/jury_02_thesis.png)
 
@@ -79,7 +105,7 @@ v5.2不再从造型开始，而从证据角色开始：正式公告与政策是O
 
 三座地标都拒绝巨构：北端清河基准花园公开绿色AI与生态养护的聚合结果；中段清华园共享檐承接校城共享；南端大钟寺四角客厅成为站城到达和智能经济的公共门厅。[metric:landmark_count] [depth:blue_green_public_space]
 
-v4不再用四条贯穿全长的色带代替总体规划，而把同一临时边界切分为20个拓扑连续的概念规划单元。五个南北片段表达城市角色，四类东西程序表达研发转化、遗产绿脊、智能服务和人才生活；单元完整覆盖临时范围但不对应宗地、权属和法定用地。十个更新工作包进一步把总体结构转成可讨论的项目组合。[metric:planning_unit_count] [data:geometry/land_use.geojson#LU-010] [depth:land_use_layout]
+本方案不再用四条贯穿全长的色带代替总体规划，而把同一临时边界切分为20个拓扑连续的概念规划单元。五个南北片段表达城市角色，四类东西程序表达研发转化、遗产绿脊、智能服务和人才生活；单元完整覆盖临时范围但不对应宗地、权属和法定用地。十个更新工作包进一步把总体结构转成可讨论的项目组合。[metric:planning_unit_count] [data:geometry/land_use.geojson#LU-010] [depth:land_use_layout]
 
 ![用地、产业角色与十个更新工作包](assets/figures/landuse-renewal.png)
 
@@ -101,7 +127,7 @@ v4不再用四条贯穿全长的色带代替总体规划，而把同一临时边
 
 ![三区角色与三座非巨构地标](assets/figures/key-areas.png)
 
-共享檐被深化为与遗产脱离的线性市民客厅：六个无墙房间不再并列摆放，而以安静、照护、后勤和夜间可见性重新排序；四类剖面分别处理遗产邻接、树下学习、雨天干燥通路和夜间人工服务。图上的尺度是概念深化链，不是基于正式测绘的施工图。[source:SRC-HERITAGE-PROTECTION-2021] [metric:flagship_section_type_count]
+共享檐被深化为与遗产脱离的线性市民客厅：六个无墙房间以安静学习、开放课程、修理共餐、人工帮助、照护停留和雨天候行为序；概念1:500级平面、1:200级纵剖和1:50级单跨节点把遗产脱离、树冠、干行带、雨水边和可隔离维护同时画出。尺度只表达专业深化方向，不是基于正式测绘的施工图或已校核的工程尺寸。[source:SRC-HERITAGE-PROTECTION-2021] [depth:height_massing_character]
 
 ![清华园共享檐：概念平面、四类剖面与专业门](assets/figures/shared-eave-section.png)
 
@@ -117,7 +143,7 @@ v4不再用四条贯穿全长的色带代替总体规划，而把同一临时边
 
 ![三处重点区三种制度](assets/figures/jury_05_areas.png)
 
-两项拳头设计的完整度不靠夸张造型，而靠断面、材料、天气和运营互相锁定。共享檐以概念6米节拍和3米子模块容纳学习、修理、照护等候与人工服务；四角客厅转为300米站点一体化审查框架下的地面协议。大钟寺报告的3190人/小时只代表5.03公顷蓝景项目预测高峰，被明确限制为局部压力情景；排队侵占净行带或人工接管超时就降载。[source:SRC-DAZHONGSI-BLUE-SCENE-TRANSPORT-2026]
+两项拳头设计的完整度不靠夸张造型，而靠平面、剖面、天气、时间和运营互相锁定。共享檐的六跨只是一种可按跨隔离、维护和拆除的公共构件语法；四角客厅则以站点一体化审查框架下的地面公共协议组织四种时段。大钟寺报告的3190人/小时只代表5.03公顷蓝景项目预测高峰，被严格限制为局部压力情景；排队侵占净行带或人工接管超时就降载。[source:SRC-DAZHONGSI-BLUE-SCENE-TRANSPORT-2026] [data:assumptions.json#A-DAZHONGSI-STRESS-001]
 
 ![两项拳头设计深化](assets/figures/flagship_detail.png)
 
@@ -127,13 +153,19 @@ v4不再用四条贯穿全长的色带代替总体规划，而把同一临时边
 
 十个场景包括三项产业测试——绿色AI全栈能效对照、端侧设备互操作、低速机器人受控共行——以及共享檐服务分流、多语知识共译、老年人非数字服务陪伴、遮阴与等候舒适提示、四象限分时路缘协商、京张史料证据导览、公共设施维护闭环。每项必须填写“公共问题、最小数据、人工责任人、离线替代、暂停阈值、学习回执”六字段后方可进入试点讨论。[metric:scenario_count] [metric:agent_service_contract_fields]
 
+“共檐服务员”是V6.1唯一被画成空间服务接口的Agent：输入只限公开天气、聚合人工观察和维护报告；输出只是一条服务状态建议，例如开启雨天等候、调整临时座椅、提示绕行或召唤人工帮助。具名值守者可以接受、修改或拒绝，纸质时段表、静态双语导向和人工台始终等价可用。它拒绝人脸识别、个体画像、信号控制、轨道控制和自动审批；当无障碍、免费停留、树木/遗产保护、维护能力或人工值守任一失败时，试点必须缩小或退出。[source:SRC-2026-BEIJING-AGENT-MEASURES] [data:assumptions.json#A-CIVIC-WEATHER-STEWARD-001]
+
+V6.1将这条边界写成CWS-01离线状态协议，而不是一项模型能力承诺：18个确定性夹具全部通过，其中10个故意设置个人数据、越权控制、无人值守或公共条件失败，必须HOLD或REFUSE；18个输出均要求具名人工决定且自动行动为0。该结果只证明声明的规则没有自相矛盾，不证明现场效果、公众同意、安全认证或运营授权。[source:SRC-JINGZHANG-MIDTERM-2026] [metric:civic_weather_steward_fixture_count] [metric:civic_weather_steward_automatic_action_count]
+
+共檐服务员之外，AGENT-GOV-01把公共空间AI的准入、申诉与退出写为可审查的状态机：个人识别或轨迹、道路或轨道控制，以及没有具名接管人与线下替代的自动服务，都在三项离线治理夹具中被规定为拒绝。三项治理夹具和18项CWS夹具都只是规则审计，不是部署证据。[data:simulation.json#public_space_agent_admission_exit_protocol]
+
 Agent不是一只包办城市的“总管”，而是十个有边界的协作岗位。空间Agent只读脱敏后的设施状态和人工报修，给维护人员排出建议次序；服务Agent只做多语问答、现场分流和预约辅助，无法拒绝线下服务；交通Agent只形成冲突预警与分时建议，最终决定始终由现场人员和主管部门作出。每个试点公开一张学习回执：问题是否缓解、谁受益、谁可能被遗漏、发生过什么失败、下一轮继续还是退出。这样，AI创新从“用了什么模型”转为“能否让公共问题被持续发现、共同判断并可逆地改进”。
 
-v3新增“京张反方设计室”。无障碍与照护、北京气候、遗产与场所、运营与维护、公共利益红队五类Agent不冒充市民，也不批准方案；它们读取清权证据，对两项旗舰提出反对意见，记录设计响应和人工裁决。十二项任务包含三个故意错误样本：遮雨却阻断轮椅、商业座位替代免费停留、Agent越权改变真实信号，系统必须明确拒绝。[source:REF-PLANGPT-2025] [metric:simulation_task_count] [metric:negative_test_count]
+“京张反方设计室”由无障碍与照护、北京气候、遗产与场所、运营与维护、公共利益红队五类Agent组成；它们不冒充市民，也不批准方案，而是读取清权证据，对两项旗舰提出反对意见，记录设计响应和人工裁决。十二项任务包含三个故意错误样本：遮雨却阻断轮椅、商业座位替代免费停留、Agent越权改变真实信号，系统必须明确拒绝。[source:REF-PLANGPT-2025] [metric:simulation_task_count] [metric:negative_test_count]
 
 ![京张反方设计室：五类Agent与可回放设计循环](assets/figures/adversarial-studio.png)
 
-海淀2025年常住人口311.1万，常住外来人口占33%；2020年七普中60岁及以上占18.5%。这些区级数字说明高流动创新人口与老龄化、少子化问题同时存在，但不能直接推出项目范围居民比例。v5因此不制造‘典型海淀人’，而提出八类待验证流动：沿线居民、老幼照护、高校师生、AI研发创业、OPC小团队、公共服务维护、跨区通勤和国际文化访客，并为每类人明确到达方式、要完成的任务和服务失败点。[source:SRC-HAIDIAN-STATS-2025] [source:SRC-HAIDIAN-CENSUS-2020] [metric:people_flow_group_count]
+海淀2025年常住人口311.1万，常住外来人口占33%；2020年七普中60岁及以上占18.5%。这些区级数字说明高流动创新人口与老龄化、少子化问题同时存在，但不能直接推出项目范围居民比例。因此本方案不制造‘典型海淀人’，而提出八类待验证流动：沿线居民、老幼照护、高校师生、AI研发创业、OPC小团队、公共服务维护、跨区通勤和国际文化访客，并为每类人明确到达方式、要完成的任务和服务失败点。[source:SRC-HAIDIAN-STATS-2025] [source:SRC-HAIDIAN-CENSUS-2020] [metric:people_flow_group_count]
 
 ![八类人群、一日流动与规划周期](assets/figures/people-policy-time.png)
 
@@ -159,9 +191,13 @@ Agent特色不是生成更多概念，而是把反方设计室做成可重放协
 
 十二条市民旅程把设计从“有设施”推进到“能完成一件事”：共享檐检验冬日不用手机、雨天轮椅、儿童照护、断网访客和单湾维护；四角客厅检验高峰换乘、自行车冲突、免费停留、夜间到达、活动日离线和暴雨客流。旅程是Agent检查输入，不是民意调查。[source:SRC-BEIJING-ACCESSIBILITY-2021] [metric:citizen_journey_count]
 
+市民旅程不能代替公众协商。零阶段应以分层招募、知情同意、匿名最小记录、可撤回与线下渠道组织居民、沿线单位、维护人员和非数字使用者；结果只用于校正问题与服务，不构成项目认可或单一群体否决。[data:assumptions.json#A-ZERO-PHASE-PUBLIC-001]
+
 ![十二条市民旅程与待验证公共问题](assets/figures/citizen-journeys.png)
 
-v4把交通、蓝绿、市政和公共服务视为四张共用责任链的网络。纵向步行轮椅主脊与骑行伴行线承担南北连续；五条横向城市缝承担校—园—河—站联系；西侧高校与专业服务接驳链、东侧社区与轨道接驳链组织公共交通转换。水、能、端侧算力和设备维护不被画成未经核实的工程线，而进入每个更新工作包的资料门与人工接管清单。[metric:mobility_link_count] [data:geometry/roads.geojson#ROAD-005] [depth:municipal_new_infrastructure]
+本方案把交通、蓝绿、市政和公共服务视为四张共用责任链的网络。纵向步行轮椅主脊与骑行伴行线承担南北连续；五条横向城市缝承担校—园—河—站联系；西侧高校与专业服务接驳链、东侧社区与轨道接驳链组织公共交通转换。水、能、端侧算力和设备维护不被画成未经核实的工程线，而进入每个更新工作包的资料门与人工接管清单。[metric:mobility_link_count] [data:geometry/roads.geojson#ROAD-005] [depth:municipal_new_infrastructure]
+
+五条缝在逐路段、逐入口、逐15分钟的真实路线审计之前，只能称为待验证的概念联系；若净行带、照明、等候或绕行不合格，必须停下重测，而不能把图线延伸为连续无障碍的结论。[data:assumptions.json#A-FIVE-SEAM-ROUTE-AUDIT-001]
 
 ![交通、市政、蓝绿与公共服务共同责任链](assets/figures/infrastructure-support.png)
 
@@ -170,6 +206,8 @@ v4把交通、蓝绿、市政和公共服务视为四张共用责任链的网络
 海淀的风格不是一套材料表，而是一种取舍：绿地先服务日常，科技先解决摩擦，文化进入长期使用。方案用铁路基础设施的节制、耐久和可维护性作为形态语言，避免赛博霓虹、巨屏和网红装置；新增构件以暖灰、深蓝、清河绿和少量信号金组织，夜景克制并保留暗环境。[source:SRC-HAIDIAN-GREEN-PLAN] [depth:blue_green_public_space]
 
 蓝绿策略由纵向遗产绿脊和横向校城河站连接共同构成。概念图层中的绿地与公共空间分别复算，不把雨水花园、树阵或可渗透铺装虚报成法定绿地；正式阶段还需补树木普查、积水点、海绵指标、日照风环境、生境和地下管线。共享檐优先利用既有树荫和可逆遮蔽，四角客厅以连续无障碍地面、排水坡向、照明暗区控制和雨天候行组成最低服务包。[data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001]
+
+树木—雨洪—无障碍底图须在地籍、现状和权属明确后联合核验；WorldCover或论文不能证明具体树木、排水或通行状况，发现矛盾即收回相应推断并调整策略。[data:assumptions.json#A-TREE-RAIN-EVIDENCE-001]
 
 AI最好“无感”：用户首先感到少淋雨、少绕路、有人可问、能坐下来，之后才知道后台Agent在做分流、翻译、维护与复盘。微气候提示只使用聚合环境数据，不能替代现场树木、排水和结构设计；若技术停止，座椅、雨棚、饮水、厕所导向和人工服务仍然可用。
 
@@ -191,7 +229,7 @@ AI最好“无感”：用户首先感到少淋雨、少绕路、有人可问、
 
 每项旗舰使用相同的四道门：资料门补齐边界、测绘、权属、文保、交通、树木、排水与使用基线；可逆试点门只做家具、导向、人工服务和临时遮蔽；专业深化门进入建筑、结构、消防、交通、市政、景观、无障碍与文保专项；扩展门只复制被证明有公共价值且可维护的组件。投资与年度运营成本在选址、服务目录和主体未明确前保持未知。[metric:annual_operations_cost_cny] [depth:phasing_implementation]
 
-v4的十个更新工作包均经过四道门：资料门确认边界、权属、文保、测绘、客流、树木和管线；可逆试点只允许家具、导向、人工服务和临时遮蔽；专业深化进入规划、建筑、交通、市政、景观、无障碍与运营；公共价值复核询问谁受益、谁被遗漏、谁维护以及是否退出。P1/P2/P3仅表达研究优先级，不构成投资或开发时序承诺。[data:geometry/phasing.geojson#UP-01] [metric:renewal_work_package_count] [depth:phasing_implementation]
+十个更新工作包均经过四道门：资料门确认边界、权属、文保、测绘、客流、树木和管线；可逆试点只允许家具、导向、人工服务和临时遮蔽；专业深化进入规划、建筑、交通、市政、景观、无障碍与运营；公共价值复核询问谁受益、谁被遗漏、谁维护以及是否退出。P1/P2/P3仅表达研究优先级，不构成投资或开发时序承诺。[data:geometry/phasing.geojson#UP-01] [metric:renewal_work_package_count] [depth:phasing_implementation]
 
 ![十个工作包与四道实施门](assets/figures/implementation-roadmap.png)
 
@@ -199,13 +237,13 @@ v4的十个更新工作包均经过四道门：资料门确认边界、权属、
 
 2026—2030对应已正式发布的十五五实施窗口：先补人口、客流、气候、权属和运维基线，再运行清河基准花园、小月河公测岸、四角客厅三类中试场，深化共享檐与四角客厅，并逐年公开学习回执。2031—2035只设置‘2035适配窗口’：截至2026年8月尚无可用于本案的十六五正式文件，必须待十五五评估和国家、北京、海淀十六五发布后，才决定保留、调整、扩展或退出。[source:SRC-HAIDIAN-15TH-2026] [source:SRC-BEIJING-MASTER-2035] [metric:policy_horizon_count]
 
-v5.2新增六项责任账本，为每类工作记录牵头主体类型、专业许可门、相对成本带、运维、阶段和停止条件。S/M/L不是投资估算；尚未明确法定申请人、专业造价、运维预算和代表性公众授权时，不得把概念成熟度写成可开工。[metric:responsibility_ledger_record_count]
+六项责任账本为每类工作记录牵头主体类型、专业许可门、相对成本带、运维、阶段和停止条件。S/M/L不是投资估算；尚未明确法定申请人、专业造价、运维预算和代表性公众授权时，不得把概念成熟度写成可开工。[metric:responsibility_ledger_record_count]
 
 ![责任与实施账本](assets/figures/implementation_ledger.png)
 
 ## 指标体系、面积复算与合规矩阵
 
-官方intake、professional与visual校验已通过；本轮另以依赖无关脚本完成结构和明显拓扑错误审计，但当前环境未安装Shapely/PyProj，不能声称完成仓库专业空间复核。临时总体面积、绿地、公共空间和建筑基底均可由GeoJSON复算，容积率、高度、退线和法定绿地率保持未知。官方边界替换时，九个图层、指标、图件、HTML和PDF同时重算。[metric:site_area_sqm] [depth:metrics_recalculation]
+官方intake、professional与visual校验已通过；仓库专业空间复核已在声明依赖的隔离环境中持久化为PASS，依赖无关脚本仅补充结构和明显拓扑错误审计，不能替代专业复核。临时总体面积、绿地、公共空间和建筑基底均可由GeoJSON复算，容积率、高度、退线和法定绿地率保持未知。官方边界替换时，九个图层、指标、图件、HTML和PDF同时重算。[metric:site_area_sqm] [depth:metrics_recalculation]
 
 评委视角的自评重点不是“有没有填满任务”，而是两项公共设计是否在任务契合、原创性、AI规划创新、可实施性、包容性、风险合规和表达完整度上形成同一条证据链。[source:SRC-PEER-CATALOG-20260810] [metric:flagship_public_design_count]
 
@@ -213,13 +251,15 @@ v5.2新增六项责任账本，为每类工作记录牵头主体类型、专业�
 
 反方设计室现有12项任务、3个负样本，任务记录的dispatch schema与审计字段完整率均为100%。这些是从simulation.json逐项复算的包内质量指标，只证明记录可回放；平均绕行改善、遮蔽覆盖、真实公众接受和运营成本仍为unknown。[metric:simulation_success_rate] [metric:tool_schema_pass_rate] [metric:audit_completeness]
 
-v4新增20个规划单元、5条横向城市缝、10个更新工作包、12类建筑公共界面、9条概念交通联系和11个蓝绿组件的包内可复算指标。它们证明规划系统不是只存在于文字中；但由于总体边界、宗地、控规、现状建筑和工程底数仍缺，所有比例只用于概念比较，不形成法定规划结论。[metric:planning_unit_count] [metric:cross_city_seam_count] [metric:green_network_component_count]
+共檐服务员测试台补充但不取代反方设计室：它公开输入、允许输出、禁止权限、人工接管和18条夹具的准确命令；任何现场试点仍须先经数据字典、隐私安全、无障碍、文保树木、消防排水、人员排班与经同意公众参与审查。[metric:civic_weather_steward_must_fail_count] [metric:civic_weather_steward_test_pass_rate] [data:assumptions.json#A-CIVIC-WEATHER-STEWARD-TESTBENCH-001]
 
-v5重新审计六个既定目标。v3—v4已落实空间协同、居民日常、产业学习、文化气候和风险治理；本轮补齐此前最弱的北京—海淀区域职能，并为六项目标建立空间或结构化证据。下一轮不应继续堆概念，而应优先补现场人口、匿名客流、气候、设施和运维基线。[metric:strategic_goal_implemented_count] [metric:policy_translation_count]
+包内可复算指标包括20个规划单元、5条横向城市缝、10个更新工作包、12类建筑公共界面、9条概念交通联系和11个蓝绿组件。它们证明规划系统不是只存在于文字中；但由于总体边界、宗地、控规、现状建筑和工程底数仍缺，所有比例只用于概念比较，不形成法定规划结论。[metric:planning_unit_count] [metric:cross_city_seam_count] [metric:green_network_component_count]
+
+本版复核六个既定目标：空间协同、居民日常、产业学习、文化气候、风险治理和北京—海淀区域职能均有空间或结构化证据。下一步不是继续堆概念，而是补现场人口、匿名客流、气候、设施和运维基线。[metric:strategic_goal_implemented_count] [metric:policy_translation_count]
 
 ![六项目标实施复核](assets/figures/goal-audit.png)
 
-v5.2延续并复核九个必需GeoJSON的结构、属性、边界匹配、覆盖、重叠和越界检查。仓库临时边界记录的既有EPSG:4548投影面积为11,412,825平方米；本轮依赖无关近似复算为11,399,523平方米，两者相差约0.117%，都只用于核对公告约11.4平方公里。20个概念用地单元完整覆盖且无正面积重叠，所有设计要素已裁切在临时范围内。但空间包仍有67个Agent概念要素、0个公共观测要素，12个建筑多边形也只是界面类型，因此只能称为可复算概念骨架，不能称为现状GIS、法定控规或工程线位。[metric:geojson_design_feature_count] [metric:geojson_public_observation_feature_count] [data:geometry/site_boundary.geojson#SITE-001]
+本版持续复核九个必需GeoJSON的结构、属性、边界匹配、覆盖、重叠和越界检查。仓库临时边界记录的既有EPSG:4548投影面积为11,412,825平方米；依赖无关近似复算为11,399,523平方米，两者相差约0.117%，都只用于核对公告约11.4平方公里。20个概念用地单元完整覆盖且无正面积重叠，所有设计要素已裁切在临时范围内。但空间包仍有67个Agent概念要素、0个公共观测要素，12个建筑多边形也只是界面类型，因此只能称为可复算概念骨架，不能称为现状GIS、法定控规或工程线位。[metric:geojson_design_feature_count] [metric:geojson_public_observation_feature_count] [data:geometry/site_boundary.geojson#SITE-001]
 
 需特别区分：九个必需GeoJSON仍是设计包，因此其中公共观测要素仍为0；1248个P层观察单元因仓库单文件限制分成`visual/assets/worldcover-grid-01.json`至`04.json`，避免把观察与建议混入同一空间角色。这不是指标包装，而是证据链治理。[metric:geojson_public_observation_feature_count] [metric:public_observation_grid_cell_count]
 
@@ -229,10 +269,14 @@ v5.2延续并复核九个必需GeoJSON的结构、属性、边界匹配、覆盖
 
 风险按“空间、运营、数据、算法、社会影响”五类进入闸门。空间闸门要求正式边界、权属、测绘、文保、消防、结构、交通和市政意见齐备；运营闸门要求明确值守、维修、保险、采购和长期资金；数据闸门执行最小收集、目的限定、保存期限和访问记录；算法闸门要求离线替代、人工接管、暂停阈值和错误申诉；社会影响闸门检查数字排斥、无障碍、儿童与老年人风险、租金及原有使用者迁移影响。任何一闸不通过，试点只能缩小、延期或退出。[data:risk.json#equity_inclusion]
 
-图解、排版与空间数据由本地程序确定性生成；另有两张明确标注的AI概念氛围图，只表达人的使用体验，不是现场照片、工程落位或尺寸证据。包内不嵌入第三方照片、地图、商标或肖像。公开案例和海淀政策仅以链接文字作为方法依据；相邻参赛方案只用于主题差异化统计，不复制其文本、图件或机制。309项目录统计只说明关键词分布，不代表评委意见、质量排序或未来稳定总量。公开展示许可、署名方式、来源允许用途和禁止推断均在sources.json与版权声明中记录。
+图解、排版与空间数据由本地程序确定性生成；另有五张明确标注的AI概念氛围图，只表达人的使用体验，不是现场照片、工程落位或尺寸证据。包内不嵌入第三方照片、地图、商标或肖像。公开案例和海淀政策仅以链接文字作为方法依据；相邻参赛方案只用于主题差异化统计，不复制其文本、图件或机制。309项目录统计只说明关键词分布，不代表评委意见、质量排序或未来稳定总量。公开展示许可、署名方式、来源允许用途和禁止推断均在sources.json与版权声明中记录。
 
 ## 参考资料
 
-资料分为四层。第一层是征集公告、Agent任务书、评审标准和仓库临时边界，用于确认三层范围、必交结构、证据契约和不可越过的正式资料缺口；第二层是海淀分区规划、园林绿化专项规划和城市更新实施指引，用于提炼减量集约、公园里的科学城、无界首层、校城共享和人机友好的地方取向；第三层是清华东路学院路会客厅、中关村大街公共空间和AI+养老政策资料，用于验证横向连接、全龄服务及非数字替代的真实问题；第四层是五个国际案例和309项公开投稿目录，只用于机制转译与差异化统计。[source:SRC-HAIDIAN-DISTRICT-PLAN] [source:SRC-HAIDIAN-GREEN-PLAN] [source:SRC-HAIDIAN-URBAN-RENEWAL]
+资料分为五层。第一层是征集公告、Agent任务书、评审标准和仓库临时边界，用于确认三层范围、必交结构、证据契约和不可越过的正式资料缺口；第二层是已获批街区控规的公开新闻和海淀十五五，用于识别区域协同但绝不替换边界。[source:SRC-2026-JINGZHANG-CONTROL-PLAN-APPROVAL]
+
+第三层是海淀分区规划、园林绿化专项规划和城市更新实施指引，用于提炼减量集约、公园里的科学城、无界首层、校城共享和人机友好的地方取向。[source:SRC-HAIDIAN-DISTRICT-PLAN] [source:SRC-HAIDIAN-GREEN-PLAN] [source:SRC-HAIDIAN-URBAN-RENEWAL]
+
+第四层是清华东路学院路会客厅、中关村大街公共空间和AI+养老政策资料，用于验证横向连接、全龄服务及非数字替代的真实问题；第五层是国际案例和公开投稿目录，只用于机制转译与差异化统计。[source:CASE-GOODS-LINE-ULTIMO]
 
 每条来源在sources.json中记录发布机构、URL、允许用途和禁止推断。政策文字不能替代现场调查，公开项目不能证明本方案具体落位可行，国际案例不能直接套用治理制度，参赛目录不能用来评价他人优劣。正式边界、控规、文保范围、建筑测绘、客流、管线、树木、权属、人口和运营成本仍是待补资料；取得后应重新运行空间复算、合规矩阵、风险闸门并更新所有图件与PDF。[source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [source:CASE-SEOUL-AI-HUB]

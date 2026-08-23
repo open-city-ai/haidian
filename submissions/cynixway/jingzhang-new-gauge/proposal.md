@@ -6,12 +6,14 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "1909年詹天佑发明'人'字形折返线攻克八达岭陡坡；2026年城市面临生产力、生活品质、全球竞争三重陡坡。京张人字新线以AI为这个时代的折返线：一轴三极两翼、17子块设计矩阵、14张AI场景卡、创新时刻表服务契约与最小可执行试点，每项城市AI都要能被公众验收、暂停与退回。"
+summary: "AI入城，先领凭证。1909年詹天佑发明'人'字形折返线攻克八达岭陡坡；2026年城市面临生产力、生活品质、全球竞争三重陡坡。京张人字新线以AI为这个时代的折返线：一轴三极两翼、三张运行凭证、创新时刻表、17子块设计矩阵与14张AI场景卡——每个机制遵循同一条折返逻辑：最可靠，而非最高性能。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
 ---
 
 # 京张人字新线：以AI攻克城市陡坡
+
+> **公众口号：AI入城，先领凭证。** 每一项进入公共空间的城市AI服务，凭 Test Receipt / Release Ticket / Public Verdict 三张凭证之一开门；凭证失效，服务折返，城市日常继续。
 
 > **人字新线 / The Switchback Line** — 1909年，詹天佑面对八达岭的陡坡没有蛮干。他在青龙桥设计了"人"字形折返线，**用创造力攻克了看似不可能的坡度** `[source:HISTORY-ZHAN-TIANYOU]`。2026年，百年京张AI创新带要回答的问题不是"再建一个AI园区"，而是：**当城市面临三重陡坡时，我们能否以AI为这个时代的人字线，用智能创造力攻克城市陡坡？** `[source:HISTORY-JINGZHANG-1909]`
 
@@ -36,6 +38,17 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 | **产业极·大钟寺** | 人工非AI路径不长于AI路径，投诉点与试用同接公共主链 | Public Verdict（公众判定） | 采用不开；设备折返，商业与人工服务继续 |
 
 三张凭证互不替代：技术通过不能覆盖权利判断或公众决定，旧的失败记录不能被新的通过抹去——这与"人"字形折返的工程逻辑一致：**改变方向不是抹去来路，而是保留前段状态后折返** `[source:HISTORY-ZHAN-TIANYOU]`。
+
+**运行总纲：一切机制遵循同一条折返逻辑。** 詹天佑的折返线不是妥协，而是让列车在不可能的坡度上继续前进的方案；本方案的每个机制都是同一条逻辑在不同层的投影——**最可靠，而非最高性能**：
+
+| 机制 | 折返动作 | 折返回到哪里 |
+|---|---|---|
+| 三凭证（Test/Release/Public Verdict） | 凭证不成立→服务不开 | 城市日常模式 |
+| 创新时刻表六步 | 任一步失效→降级转人工 | 人工与非数字通道 |
+| R0-R3 韧性态 | 雨/断网/断电→服务暂停 | 物理标识+人工兜底 |
+| SC-04 七道 Gate | 任一 Gate 缺证据→停留上一状态 | 沙箱与合成工单 |
+| G6 退役 | 试点到期→停权、清数据、恢复场地 | 场地原状+公开回执 |
+| 最低后悔优先级 | 最差情况不可接受→降级或停止 | P-确保级物理兜底 |
 
 每项进入公共空间的城市AI服务，遵守同一张**创新时刻表**（借鉴铁路时刻表的公开性与可问责性，把抽象的"AI治理"转化为空间中可见、运营中留痕的公共契约；它不是法定指标，是可由专业团队、运营主体与公众共同校准的参考方案 `[assumption:A-IMPLEMENTATION-001]`）：
 
@@ -275,7 +288,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-na
 
 ## 蓝绿空间、公共空间与城市风貌
 
-**蓝绿系统** `[depth:blue_green_public_space]`：京张遗址公园绿带（南北向 `[data:geometry/green_space.geojson#GR-001]`）+三区绿环，绿地率 `[metric:green_ratio]`；海绵/调蓄为概念方向，须水文模型 `[assumption:A-GREEN-BLUE-CONCEPT-001]`。**公共空间**：新轨中央广场 `[data:geometry/public_space.geojson#PS-001]`+三区广场，公共空间率 `[metric:public_space_ratio]`。
+**蓝绿系统** `[depth:blue_green_public_space]`：京张遗址公园绿带（南北向 `[data:geometry/green_space.geojson#GR-001]`）+三区绿环，绿地率 `[metric:green_ratio]`；海绵/调蓄为概念方向，须水文模型 `[assumption:A-GREEN-BLUE-CONCEPT-001]`。**公共空间**：人字线中央广场 `[data:geometry/public_space.geojson#PS-001]`+三区广场，公共空间率 `[metric:public_space_ratio]`。
 
 **AI朝圣地标**（agent.4，3个，概念建议须清权 `[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]`）：①人字线纪念碑（中央广场，"人"字形折返母题的极简工程艺术装置）；②人字线体验馆（AI原点社区，铁路遗产+AI历史的可体验节点）；③基准测试场观景台（众智园，可观摩AI基准测试的公共荣誉展示节点）。**荣誉展示体系**（agent.4）：沿主轴设基准测试排行榜墙（众智园）—开发者贡献星谱（AI原点）—企业创新荣誉廊（大钟寺），统一视觉、公开可审计。
 

@@ -1,5 +1,13 @@
 # 方案迭代记录
 
+## v4.1 - 2026-08-22（本地协议快照与可离线 crosswalk fixture）
+
+- **快照**：将 SEB v0.5.0 规范、Switchback v0.3.0 规范与 schema 按字节快照放入 `visual/assets/protocol_snapshots/`，并登记来源提交、SHA-256、许可与署名边界。
+- **fixture**：新增一个可通过的组件级 crosswalk 正例和一个必须拒绝的外部等级冒认负例；字段范围限定为 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode`、`responsible_role`。
+- **校验**：新增零依赖 `check-protocol-crosswalk.js`，验证快照完整性、source-of-record、登记状态、字段映射和安全边界。
+- **体积**：移除与 `metrics-evidence` 内容逐字节相同的 `implementation-operations` 重复图像，并将原有中英文引用切换到保留资产；不改变展示像素或图注语义，以满足仓库 40 MiB 提交包上限。
+- **边界**：仍为 `optional_crosswalk_concept_only`；不认领外部开放等级，不声明现场数据、性能结果、部署授权或官方背书，也不改变几何与既有 G0-G4 口径。
+
 ## v4.0 - 2026-08-20（证据锚点与协议交叉映射）
 
 - **锚点**：移除不存在的 `constraints.geojson#CONSTRAINTS` 引用；空约束图层不推导法定控制。

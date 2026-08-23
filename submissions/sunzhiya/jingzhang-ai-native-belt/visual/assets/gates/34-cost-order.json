@@ -1,0 +1,28 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-34",
+ "title_zh": "投资量级与不确定性",
+ "title_en": "Cost order of magnitude and uncertainty",
+ "domain": "delivery",
+ "status": "design_target",
+ "source_ids": [
+  "AGENT-TASKBOOK",
+  "PROCESSED-FACT-PACK"
+ ],
+ "inputs": [
+  "assumptions.json",
+  "risk.json"
+ ],
+ "procedure": [
+  "投资只给量级区间与不确定度来源，不给精确造价。",
+  "把运维成本作为独立风险维度。",
+  "标注需造价专业复核。"
+ ],
+ "pass_rule": "投资表述均为区间且标注不确定度来源。",
+ "stop_rule": "出现精确造价数字而无依据时停止表述。",
+ "owner": "cost planner",
+ "non_ai_equivalent": "投资估算与经济评价",
+ "evidence_output": "cost_uncertainty_note",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

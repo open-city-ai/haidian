@@ -1,5 +1,25 @@
 # 方案迭代记录
 
+## v0.3 - 2026-08-22
+
+R18「治理脊柱机器化」：把治理从正文散文升级为「机器可读 + 可逐点核验」的结构化资产，同时收敛正文重复。评审对照：R17 三分治理散文插入平盘 75/100，诊断真实差距在结构化治理资产（对标 94 分标杆与 86 分 peer 的 swb-spec / 回执账本 / RACI / 影子测试 / 工作包），而非散文重复。
+
+| 模块 | 交付物 | 状态 | 关键说明 |
+| --- | --- | --- | --- |
+| G1 风险停机规则 | `risk.json`（根级，version=1） | 完成 | 8 项风险维度各含 score/note/mitigation，得分 ≥4 的两项（policy_uncertainty、spatial_dispute）附 human_review |
+| G2 AI-off 等价基准 | `visual/assets/ai-off-baseline.json` | 完成 | 五字段 node_schema + 评分口径 + G0-G3 等级定义 + 判定规则 + 版本治理（标注 provenance 非抄袭） |
+| G3 治理回执账本 | `visual/assets/governance-receipts.json` | 完成 | K0-K3 版本链 + 3 条回执（R15 71 回归→R16 回退 75→R17 平盘→R18 转向），证明治理跑过 |
+| G4 影子测试 | `visual/assets/shadow-test-matrix.json` | 完成 | 8/8 前提 + 4 项负面读数透明披露（NEG-01..04 物理兜底不依赖算法） |
+| G5 责任矩阵 | `visual/assets/governance-raci.json` | 完成 | 5 角色 × 5 闸门（G0-G4）RACI，公众代表享否决权 |
+| G6 交付工作包 | `visual/assets/delivery-workpackages.json` | 完成 | WP-P0..P3，仅 2965.5 万路网 + 218.7 万试点有硬口径，余项 null 不估 |
+| H1 场景绑定 | `simulation.json.test_scenarios` | 完成 | 从 3 扩到 8（3 测试验证 + 3 产业测试 + 2 公共 AI），逐场景补齐五字段 |
+| H2 指标 | `metrics.json` | 完成 | `test_scenario_count` 3→8；新增 `ai_off_path_completeness`=1.0、`human_handoff_designation_rate`=1.0（known）、`ai_off_service_equivalence_gap`（unknown 待试点首读数） |
+| H3 正文收敛 | `proposal.md` / `proposal.en.md` | 完成 | 治理三处散文（执行摘要/方法论/测试场景）收敛为「一处权威定义 + 机器资产引用」 |
+
+**未改动 / 冻结项**：方法核心代码 `inject_physarum.py`、`code/phase6_h/*.py`；正式几何图层 `geometry/*.geojson`；冻结指标（最优效率 19.20、Run7 2.802、基线 1.143、Plan03 UDS 80.34、167 边、透水铺装率 69.1%、绿色渗透率 25.2%）；三大定位锚定与「一核·三区·一界面·一衔接」空间结构未动。
+
+**诚实边界**：`ai_off_path_completeness` 与 `human_handoff_designation_rate` 为「按构造即 1.0」的声明性基线（8 场景均已声明五字段），非实测；`ai_off_service_equivalence_gap` 须待 G3 有限现场窗口试点取得首读数后方可转为 known。
+
 ## v0.2 - 2026-08-15
 
 Round 3「科学严谨性 + 可实施性深化 + 视觉叙事优化」增强包。所有增强基于作者本机真实运行记录与公开可查证资料；禁止编造政策文件、禁止虚构审批结果、禁止捏造案例细节，不确定项标注「待确认 / 建议性框架」。

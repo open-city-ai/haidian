@@ -279,6 +279,231 @@
         "Conceptual governance target; operating and legal arrangements are unconfirmed."
       ],
       "metric_kind": "design_target"
+    },
+    "dazhongsi_drill_case_total": {
+      "status": "known",
+      "value": 21,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/dazhongsi-drill-tests.json",
+        "visual/assets/dazhongsi-drill-test-runner.js"
+      ],
+      "formula": "dazhongsi-drill-tests.json expected_case_count; recompute: node visual/assets/dazhongsi-drill-test-runner.js --json",
+      "confidence": "low",
+      "assumptions": [
+        "Synthetic contract tests over the DAZHONGSI-FIELD-OPS-01 template only; they prove reproducible contract logic, not field truth, site access, permission, or operability."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "dazhongsi_drill_case_passed": {
+      "status": "known",
+      "value": 21,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/dazhongsi-drill-tests.json",
+        "visual/assets/dazhongsi-drill-test-runner.js"
+      ],
+      "formula": "runner summary.passed while exit code = 0; any failed case forces exit 1 and this value is invalid",
+      "confidence": "low",
+      "assumptions": [
+        "Synthetic contract tests over the DAZHONGSI-FIELD-OPS-01 template only; they prove reproducible contract logic, not field truth, site access, permission, or operability."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "dazhongsi_drill_negative_fixture_fail_closed_total": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/dazhongsi-drill-tests.json",
+        "visual/assets/dazhongsi-drill-test-runner.js"
+      ],
+      "formula": "negative fixtures that make the runner exit 1 under --self-test / all 8 declared fixtures",
+      "confidence": "low",
+      "assumptions": [
+        "Synthetic contract tests over the DAZHONGSI-FIELD-OPS-01 template only; they prove reproducible contract logic, not field truth, site access, permission, or operability."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "dazhongsi_drill_category_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/dazhongsi-drill-tests.json",
+        "visual/assets/dazhongsi-drill-test-runner.js"
+      ],
+      "formula": "covered required categories (positive, negative, withdrawal, service_interruption, recovery, accessibility) / 6",
+      "confidence": "low",
+      "assumptions": [
+        "Synthetic contract tests over the DAZHONGSI-FIELD-OPS-01 template only; they prove reproducible contract logic, not field truth, site access, permission, or operability."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "expiring_ticket_synthetic_case_total": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "count(EXPIRING-DATA-TICKET-01.synthetic_rehearsals); recompute: node visual/assets/evidence-consistency.js --json",
+      "confidence": "low",
+      "assumptions": [
+        "E2 synthetic contract cases only; no field or stakeholder evidence has been collected."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "expiring_ticket_synthetic_case_passed": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "cases whose instantiated ticket, single-node scope, event-derived ticket/execution coupling, observation-batch parity, six paired accessibility fixtures, applicable SLA observations, substantiated public return, residual crosswalk and artifact records all pass; any failure forces audit exit 1",
+      "confidence": "low",
+      "assumptions": [
+        "E2 synthetic pass status does not prove site access, operating performance, a legal role, professional approval or implementation."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "expiring_ticket_negative_path_fail_closed_total": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "declared in-memory mutations rejected / ten declared mutations: post-term unauthorized release, raw export, undersized aggregate output, unmapped derivative, missing stopping coupling, missing public-return deliverable, below-target public value, empty return evidence, unauthorized cross-node scope, and both routes failing the same accessibility task",
+      "confidence": "low",
+      "assumptions": [
+        "The passing result means the illegal synthetic action was blocked; it is not evidence that withdrawal fails."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "expiring_ticket_no_data_rule_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "passed no-data equivalence checks / all applicable checks (22 / 22 across two cases): attempts, both time conditions, price, failures, core schema, safety alerts, 6 tasks x 2 routes of synthetic accessibility-fixture coverage, human takeover and complaint channels; no observed usability performance",
+      "confidence": "low",
+      "assumptions": [
+        "Thresholds are executable E2 design gates pending authorized E3 field measurement and E4 professional/operator confirmation."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "expiring_ticket_conditional_artifact_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "valid artifact records / conditionally required records (24 / 24 across two cases); each record must satisfy minimum fields, identity, role, state, timestamp and resolvable content pointers",
+      "confidence": "low",
+      "assumptions": [
+        "Synthetic record coverage proves a machine-readable E2 evidence contract, not that field artifacts or responsible entities exist."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "synthetic_capacity_resource_gate_total": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "count(SCN06-C010204-SYNTHETIC-CAPACITY-01.resource_models); recompute: node visual/assets/evidence-consistency.js --json",
+      "confidence": "low",
+      "assumptions": [
+        "E2 synthetic admission envelope only; no real staffing, hardware, engineering, facility, cost, operator, approval or field capacity is confirmed."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "synthetic_capacity_resource_gate_passed": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "resource models whose available units, 60-minute throughput, headroom and utilization recompute exactly and whose applicable reserve gate passes / 4",
+      "confidence": "low",
+      "assumptions": [
+        "E2 synthetic admission envelope only; no real staffing, hardware, engineering, facility, cost, operator, approval or field capacity is confirmed."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "synthetic_capacity_project_gate_passed": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "unique project_ids (C-01, C-02, C-04) for which every synthetic resource and route-reserve gate passes",
+      "confidence": "low",
+      "assumptions": [
+        "E2 synthetic admission envelope only; no real staffing, hardware, engineering, facility, cost, operator, approval or field capacity is confirmed."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "synthetic_capacity_negative_path_fail_closed_total": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "declared in-memory capacity mutations rejected / five declared mutations: calculation drift, demand above capacity, borrowed no-data units, removed stop reserve and false field confirmation",
+      "confidence": "low",
+      "assumptions": [
+        "E2 synthetic admission envelope only; no real staffing, hardware, engineering, facility, cost, operator, approval or field capacity is confirmed."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "synthetic_capacity_minimum_headroom_requests": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "min(floor(60 * (declared_parallel_units - protected_reserve_units) / service_minutes_per_request) - demand_requests_per_window) over four synthetic resource models",
+      "confidence": "low",
+      "assumptions": [
+        "E2 synthetic admission envelope only; no real staffing, hardware, engineering, facility, cost, operator, approval or field capacity is confirmed."
+      ],
+      "metric_kind": "synthetic_contract_test"
+    },
+    "synthetic_capacity_no_data_to_data_capacity_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/expiring-data-ticket-protocol.json",
+        "visual/assets/evidence-consistency.js"
+      ],
+      "formula": "recalculated C-02 no-data-route capacity_requests_per_window / recalculated C-02 data-route capacity_requests_per_window",
+      "confidence": "low",
+      "assumptions": [
+        "E2 synthetic admission envelope only; no real staffing, hardware, engineering, facility, cost, operator, approval or field capacity is confirmed."
+      ],
+      "metric_kind": "synthetic_contract_test"
     }
   }
 }

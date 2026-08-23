@@ -272,6 +272,8 @@ def ocr_image(path: Path, source_language: str) -> str:
             ["tesseract", str(path), "stdout", "-l", language, "--psm", psm],
             capture_output=True,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             check=False,
         )
         if completed.returncode != 0:

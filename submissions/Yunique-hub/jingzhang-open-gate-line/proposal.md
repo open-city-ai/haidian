@@ -21,6 +21,10 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 法定容积率、高度、建筑密度、绿地率、退线、道路红线、产权、市政容量与消防条件均未在公开包中形成可直接采用的地块控制值；方案不填造数字，相关指标标为待官方资料确认 [metric:floor_area_ratio] [depth:development_intensity_controls]。全球案例只用于机制研究：one-north 的跨时段场地活动与试验平台、STATION F 的共享服务社区、Kendall Square 的公共空间网络 [source:CASE-ONE-NORTH] [source:CASE-STATION-F] [source:CASE-KENDALL]；Kalasatama 的生活实验室、Seoul AI Hub 的产学研平台、MaRS 的创新社区构成另一组参考 [source:CASE-KALASATAMA] [source:CASE-SEOUL-AI-HUB] [source:CASE-MARS]。其规模、绩效和制度不外推为京张事实。
 
+本轮把方案放回真实城市背景。北京市公开规划材料将京张铁路遗址公园描述为西直门至北五环约 9 公里、约 70 公顷的连续绿廊，并提出打通 9 条城市支路和东西向慢行联系 [source:JINGZHANG-PARK-PLAN-20240920]。2026 年 7 月的公开报道记录二期新增 3 条慢行联系，周边约 70 个社区、45 万居民；这是有日期的公开背景，不是本团队踏勘或当前开放证明 [source:JINGZHANG-PARK-PHASE2-20260730]。`osm-context-20260822.json` 冻结了暂定范围内 1,978 个铁路、道路、水体、绿地和车站源要素，并以约 1—2 米容差概化线条供复现显示；它只回答“设计叠加在什么城市关系上”，不进入红线、用地面积、建筑量或绩效计算 [source:OPENSTREETMAP-CONTEXT-20260822] [metric:osm_context_feature_count] [assumption:A-OSM-CONTEXT-001]。
+
+![真实城市背景、暂定重点区与概念门点位叠加](assets/figures/site-context.png)
+
 ![暂定研究边界与开门线总览](assets/figures/site-overview.png)
 
 ## 三层范围工作框架
@@ -53,7 +57,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 总体设计范围城市更新与控规深度城市设计
 
-总体结构以暂定总体边界内的南北遗产线为骨架，以东西向步行缝合为肋。土地用途图层采用 AI 研发、公园开敞、产业服务、社区配套四类概念分区，只作为方案结构，不构成地类认定或用地调整建议 [data:geometry/land_use.geojson] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。更新优先级是“留用—共享—微改—必要时新建”：先盘活首层、院落、连廊和边角空间，再讨论建筑增量。
+总体结构以暂定总体边界内的南北遗产线为骨架，以东西向步行缝合为肋。土地用途图层采用 AI 研发、公园开敞、产业服务、社区配套四类概念分区，只作为方案结构，不构成地类认定或用地调整建议 [data:geometry/land_use.geojson] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。其中“创新服务与共享配套”按 2026 年 8 月修正后的项目枚举使用 `0904` 其他商业服务业用地，不再误用代表湿地的 `05`；该代码只保持机器语义正确，不表达已获准改变用地。更新优先级是“留用—共享—微改—必要时新建”：先盘活首层、院落、连廊和边角空间，再讨论建筑增量。
 
 十二门按三种空间原型实施：庭院门适合小型验证、课程和维修；廊道门连接慢行、展陈与公共服务；大厅门承载预约接待、社区议题与国际交流。每处都设置双向可见的开放状态、无台阶路径、等候避雨、照明和紧急关闭；设备采用可拆卸构造，避免把试验变成永久占用。建筑高度、体量、风貌以尊重遗产尺度、控制首层界面、避免压迫公园为原则，具体限值待控规与专业审查 [depth:height_massing_character]。
 
@@ -75,6 +79,16 @@ AI 原点重点区设置 G05 科学家会客门、G06 轨道市集门、G07 雨�
 
 ![零号门、水尺门与开门钟的概念平面、剖面和人工接管点](assets/figures/representative-gates.png)
 
+### 一次能淘汰自身方案的空间裁决
+
+G05 零号门不再从单一造型直接进入深化，而是让同一任务、同一使用者和同一组概念条件生成三种 1:1 样机备选，再接受五道硬门：无设备普通路径净宽不小于 1.8 米；试验湾不占用公共路径；人工岗位同时看见入口与退出；最远急停到人工岗位不超过 25 米；构件可逆且有独立撤场路线 [data:visual/assets/spatial-decision.json] [metric:spatial_alternative_count] [assumption:A-PROTOTYPE-DIMENSIONS-001]。
+
+ALT-A“中央跨线门”把门架与试验区压在公共路线之上，普通路径、试验占用和独立撤场三项失败，淘汰；ALT-B“双侧分散门”保住通行，却因值守视线断裂、最远急停距离 31 米而退修；ALT-C“单侧外挂门”把 2.4 米无设备路径、人工台、试验湾和撤场路线并列，五项全过，只进入专业深化而不是获准建设 [metric:rejected_spatial_alternative_count] [metric:revised_spatial_alternative_count] [metric:advanced_spatial_alternative_count]。确定性脚本复算的结论为 1 淘汰、1 退修、1 深化；现场结果仍为 0 [metric:field_verification_result_count]。
+
+![三种门型的硬门裁决与首百日路径](assets/figures/spatial-decision.png)
+
+![单侧外挂门的概念 1:50 平面、剖面与五道空间硬门](assets/figures/gate-kit-1to50.png)
+
 ## AI 创新生态、人才画像与 AI+ 场景
 
 五类核心人物是：研究员林澄需要安全、可复现的真实场景；照护者周敏带儿童使用夜间与周末服务；行动不便的陈伯需要无台阶到达、可坐等候和人工求助；创业者兼国际访客 Maya 需要双语规则、临时展示和合作入口；设施管家韩师傅关心钥匙、能耗、清洁、保险和谁来收尾。方案用同一张门卡同时描述使用者收益与管理者负担，避免只为“创新者”设计 [depth:personas_scenarios]。
@@ -84,6 +98,8 @@ AI 原点重点区设置 G05 科学家会客门、G06 轨道市集门、G07 雨�
 本次修订用 `visual/assets/gate-protocol.json` 将十二个场景升级为 OGP-12 京张开门协议 [data:visual/assets/gate-protocol.json] [metric:gate_protocol_record_count]。它与常见的“智慧园区平台”有三个根本差异：第一，空间不是传感器容器，而是每项算法的安全边界、人工接管点和恢复资产；第二，算法不追求统一画像或全域最优，而只处理一个被授权的公共任务；第三，协议从关闭状态开始，任何数据、值守、无障碍或安全条件不满足时，服务不升级、可以暂停并回退。十二门对应遗产讲述、无障碍换乘、社区共餐、青年原型、科学会客、轨道市集、雨洪花园、夜行安全、儿童探索、低碳能源、生物多样性与区域协同，完整记录由机器脚本复核。
 
 状态机为“关闭 → 观察 → 试开 → 开放”，并允许从任何运行状态进入“暂停”或“回退”。AI 可以建议是否具备条件，却不能把状态推进到试开或开放；这两个动作只由门卡列明的人工责任人签发。六条不可协商底线是：不做生物识别、不做个人信用评分、不自动拒绝准入、不导出个人原始轨迹、始终保留可达的人工服务、必须有公开日志与申诉渠道 [assumption:A-DATA-001]。协议审计要求人工权限、手工回退和最小数据全部达到 100% 覆盖 [metric:human_authority_coverage] [metric:manual_fallback_coverage] [metric:data_minimization_coverage]；二元启动条件、停止触发、责任主体与退出资产也必须逐门齐备 [metric:binary_start_gate_coverage]。
+
+每项试点还必须与“无 AI、同人员、同场地、同开放时段”的基线并行比较：固定导视、纸本名额、人工排班和机械钥匙先构成可独立运行的公共服务；AI 只有在不降低安全、公平与可达性的前提下，证明能减少等待、漏报或重复劳动，才保留在下一轮。若没有净公共价值，节点保留空间改造和人工服务，撤除模型而不是撤除基本通行。
 
 | 门 | 公共任务 | AI 的有限作用 | 最小数据 | 人工最终权限 / 无 AI 回退 | 关键停止条件 |
 |---|---|---|---|---|---|
@@ -146,6 +162,8 @@ TVS-01 用预约上限、现场计数、排队长度和疏散时间判断容量�
 
 一期（0—12 个月）先完成 P01—P04 与 P08：核验官方边界和权属，建立遗产档案、连续无障碍骨架、雨洪—夜行安全底座和三座可逆示范门，同时把公开审计与申诉台先于算法上线。二期（1—3 年）实施 P05—P07，在三个原型通过 KPI 后才扩展到十二门；三期（3 年以后）实施 P09，并依据年度报告固化、迁移或退出节点 [data:geometry/phasing.geojson] [depth:phasing_implementation]。项目数量由协议文件核对 [metric:implementation_project_count]。
 
+首 100 天不以“上线 AI”为终点，而以五个可核验工作包为交付：第 1—20 天冻结官方底图、权属与审批问题清单；第 21—40 天完成 1:1 胶带放样、轮椅与推车通行、视线和急停步测；第 41—60 天搭建 ALT-C 可逆无设备样机；第 61—80 天运行无 AI 基线并公开取消原因；第 81—100 天才进行影子模式比较并由公共利益评审组作出保留、退修或撤除决定 [data:visual/assets/spatial-decision.json] [metric:first_100_days_work_package_count]。任何实测值都要在获准现场后另行登记，当前包没有把概念尺寸伪装成实测。
+
 | 项目包 | 牵头责任类型 | 成本等级 | 开工门槛 | 阶段验收 / 退出资产 |
 |---|---|---:|---|---|
 | P01 遗产底图与公众档案 | 文保与公园团队 | L | 权利与事实审查通过 | 可追溯档案索引；争议时保留经审数据 |
@@ -170,7 +188,7 @@ TVS-01 用预约上限、现场计数、排队长度和疏散时间判断容量�
 
 协议完整性记录 12 条机器可读门卡、人工权限与手工回退 100% 覆盖 [metric:gate_protocol_record_count] [metric:human_authority_coverage] [metric:manual_fallback_coverage]。实施能力记录 9 个项目包、5 条区域路径与 4 个年度事件，真实运营质量与公平指标保持待测。
 
-空间项由提交的 GeoJSON 复算，协议项由 `verify-gate-protocol.js` 确定性检查并输出 `protocol-audit.json`；运营、公平指标在真实试点前保持“待测”，不得填造基线。容积率同样保持未知 [metric:floor_area_ratio]。所有数值都附来源文件、公式、单位、置信度与假设；完整任务覆盖见 `compliance_matrix.json`，标准覆盖见 `standard_matrix.json`，专业深度见 `design_depth_matrix.json` [depth:metrics_recalculation]。
+空间项由提交的 GeoJSON 复算；协议项由 `verify-gate-protocol.js` 检查并输出 `protocol-audit.json`；空间比选由 `verify-spatial-decision.js` 检查并输出 `spatial-decision-audit.json`。后者必须同时证明三种方案均被评价、至少出现一次淘汰、退修和深化、五道硬门完整、首百日工作包齐备，而且现场验证记录数仍为 0 [metric:field_verification_result_count]。运营、公平指标在获准试点前保持“待测”，不得填造基线；容积率同样保持未知 [metric:floor_area_ratio]。所有数值都附来源文件、公式、单位、置信度与假设；完整任务覆盖见 `compliance_matrix.json`，标准覆盖见 `standard_matrix.json`，专业深度见 `design_depth_matrix.json` [depth:metrics_recalculation]。
 
 ![指标、证据与停止条件](assets/figures/metrics-evidence.png)
 
@@ -180,7 +198,7 @@ TVS-01 用预约上限、现场计数、排队长度和疏散时间判断容量�
 
 运营风险通过责任门卡、值守签到、机械回退、容量上限、事故记录和恢复预算控制；邻里风险通过噪声与夜间时段约束、投诉响应和季度复盘控制；生态风险通过轻介入、可逆基础和施工前树木水文调查控制。公众可以查看开放规则、数据字段、保存期和申诉路径。对未知项的诚实披露是方案的一部分，不是设计空白 [depth:risk_missing_data]。
 
-所有文字、矢量化示意图、离线网页和排版脚本为本次提交原创生成；封面使用 OpenAI 图像生成工具按原创提示生成，来源与生成说明记录于 `sources.json` 和 `report/copyright_statement.md`。不嵌入未授权照片、第三方标志或受限字体文件。成果按仓库要求以 `COMMUNITY-DISPLAY-ONLY` 提交，不将案例网页内容或政府材料版权转授。
+除明确署名的 OpenStreetMap 背景要素外，所有文字、矢量化示意图、离线网页和排版脚本均为本次提交原创生成；封面使用 OpenAI 图像生成工具按原创提示生成。OSM 冻结快照依据 OpenStreetMap contributors、ODbL，仅作为底图参照；北京市政府公开材料只被摘要为有日期的事实，不复制其图片或大段文本。完整来源、许可和生成说明记录于 `sources.json` 与 `report/copyright_statement.md`。不嵌入未授权照片、第三方标志或受限字体文件。成果按仓库要求以 `COMMUNITY-DISPLAY-ONLY` 提交，该许可不覆盖 OSM 数据，也不转授案例网页或政府材料版权。
 
 ## 参考资料
 
@@ -188,5 +206,7 @@ TVS-01 用预约上限、现场计数、排队长度和疏散时间判断容量�
 - 征集仓库场地包与智能体任务书 [source:SITE-PACKAGE] [source:AGENT-TASKBOOK]；来源登记与处理事实包 [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]。
 - 《城市设计管理办法（试行）》、控制性详细规划与国土空间调查规划用地分类相关本地标准快照；本方案只依据仓库内登记的公开或本地快照 [source:SOURCE-REGISTRY] 建立合规检查，不把标准标题当作场地已获批结论 [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
 - JTC one-north、STATION F 与 City of Cambridge Kendall Square 官方或机构页面 [source:CASE-ONE-NORTH] [source:CASE-STATION-F] [source:CASE-KENDALL]；Forum Virium Helsinki Kalasatama、Seoul Metropolitan Government Seoul AI Hub 与 MaRS Discovery District 页面 [source:CASE-KALASATAMA] [source:CASE-SEOUL-AI-HUB] [source:CASE-MARS]。
+- 北京市 2024 年公园规划、2026 年二期开放与“三区两翼”公开材料 [source:JINGZHANG-PARK-PLAN-20240920] [source:JINGZHANG-PARK-PHASE2-20260730] [source:JINGZHANG-THREE-ZONES-20260403]；AI 原点社区更新材料 [source:AI-ORIGIN-COMMUNITY-20260401]。
+- OpenStreetMap contributors，2026-08-22 冻结的背景参照要素，Open Database License；只作可复现的城市关系底图 [source:OPENSTREETMAP-CONTEXT-20260822]。
 
-机器可读索引：`manifest.json`、`sources.json`、`assumptions.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`self_check.json`，以及 `visual/assets/gate-protocol.json`、`verify-gate-protocol.js` 与 `protocol-audit.json`。
+机器可读索引：`manifest.json`、`sources.json`、`assumptions.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`self_check.json`；协议资产 `visual/assets/gate-protocol.json`、`verify-gate-protocol.js`、`protocol-audit.json`；空间裁决资产 `visual/assets/spatial-decision.json`、`verify-spatial-decision.js`、`spatial-decision-audit.json`；以及背景快照 `visual/assets/osm-context-20260822.json`。

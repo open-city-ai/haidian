@@ -118,8 +118,18 @@
       "statement_en": "Shipped figures must be byte-reproducible from their generators; anything that is not must be recorded as such.",
       "checks": "assets/figures/*.png 与 drawings/*.pdf 各页",
       "decision_rule_zh": "以未改动的生成器重跑，sha256 须与包内文件相同；PDF 用 72–100 dpi 逐页渲染后比对差异像素比例。",
-      "current_result": "本轮验证：site-overview（中英）与 mobility-bluegreen（中文）重生成后 sha256 逐字节相同",
+      "current_result": "2026-08-22 逐图重测（五张送审图件 ＋ 两套图纸首页），结果分三档，如实记录：**字节相同 3 张**——land-use-structure（`fig_land_use_structure.py`）、key-areas（`render_figures.py key-areas`）、mobility-bluegreen（`fig_mobility_bluegreen.py`）；**不可复现 4 项**——site-overview（`fig_site_overview.py` 差异像素 3.67%、包围盒占全图 24.2%，原因是生成器在 2026-08-18 加了用地／蓝绿／更新单元三层底图与三条图例，而包内是回滚后的版本）、metrics-evidence（`fig_metrics_evidence.py` 差异 40.60%、包围盒 81.4%；`.bak` 亦差 39.45%；仓库外工具链 git 历史中该文件只有一个版本且无变体开关，产出包内那版的生成器已丢失）、A0 首页 B/01（当前 `sheet_a0_b1.py` 差 8.36%、`.bak` 与 `.bak2` 各差 10.70%；已排除字体干扰——包内 PDF 嵌 NotoSerifSC 子集而新 sheet 用未嵌入的 STSong-Light；决定性证据是文本比对：包内首页含 SPACE-TO-ROLLBACK／12/12／48/48／0/12，不含 IDENTITY／COLOUR／分期条件门，三个候选全部相反）、A3 首页 JZ/01（见下方 2026-08-16 记录，生成器停在已撤回的任务书对照页版本）。⚠️ **2026-08-21 曾把这三张改为「展开取景」版（由 `*_v2.py` 生成、同样字节可复现）；2026-08-22 已整体回退到 v1 版本，本条随之改准**——回退理由与判据见 changelog 同日条目。口径与 sources.json 一致：**本包不主张逐字节可复现**，只主张几何与指标可由公式与源文件独立复算；本闸门的作用是把三档如实分开，而不是宣称全部可复现。",
       "caught_real_defects": [
+        {
+          "when": "2026-08-22",
+          "what": "图件整体回退后，本条 `current_result` 里三张「字节相同」的生成器名仍写着 `*_v2.py`——而包内已换回 v1 产物，那三个名字当场变成假的。**这是同一处字段在两天内第二次因外部改动而失真**（前一次是它把不可复现的 site-overview 说成可复现），说明凡是「随包状态而变」的结论字段，改包时必须与图件同批复核。已按 2026-08-22 的逐图实测改准，并把回退这件事写进本字段。",
+          "note": "回退后三张图在 v1 生成器下逐一实测 sha256 相同，已复验。"
+        },
+        {
+          "when": "2026-08-21",
+          "what": "本闸门抓到的是**它自己那句 current_result**：原文写「本轮验证：site-overview（中英）与 mobility-bluegreen（中文）重生成后 sha256 逐字节相同」——**而 site-overview 恰恰是不可复现的那一张**（差异 3.67%，同一份工具链 README 早已记为「生成器更新」）。同时它**完全没有记 metrics-evidence 与 A0 首页两项不可复现**，而本闸门自己的规则写着「不能复现的要如实记为不可复现」。已按 2026-08-21 的逐图实测重写为三档分列。",
+          "note": "这一处与 sources.json 的「本包不主张逐字节可复现」原本三方不一致：规则说要记、结果说全对、来源说不主张。同一形状（新工作做完、旧字段没同步）在本包已出现第六次，因此改法不是只改那一句，而是把 current_result 的结构从「一句话结论」改成「三档逐项 ＋ 测量值 ＋ 原因」，让下次再变时无处藏。"
+        },
         {
           "when": "2026-08-16",
           "what": "查出 A3 图纸第 1 页（JZ/01）的生成器 sheet_a3_01.py 停在已撤回的「任务书对照页」版本——重生成与现页面差异 24% 像素，会把撤回的设计复活。**该项如实记为不可复现，不做也不假装做完。**",

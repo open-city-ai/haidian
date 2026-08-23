@@ -1,0 +1,320 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "LCK-01",
+  "concept": "京张民生接力 / JING-ZHANG CIVIC SERVICE RELAY",
+  "technical_subsystem": "城市民生协同智能体系统 / CIVIC SERVICE COORDINATION AGENT SYSTEM",
+  "technical_claim": "把跨空间、跨时段、跨服务主体的民生事项表达为可约束求解、可并行复核、可由责任人员确认、可通过服务回执复盘的城市服务合同。",
+  "non_claims": [
+    "不声称已接入政府、企业或社区真实系统",
+    "不处理真实个人数据",
+    "不替代法定规划、专业审查或高影响公共决策",
+    "不把离线合成测试写成现场绩效"
+  ],
+  "core_objects": [
+    {
+      "object_id": "OBJ-01",
+      "name": "民生事项关系图 / LivingTaskGraph",
+      "purpose": "把一件生活小事拆成步骤、前后依赖、时间窗、无障碍、同意范围和线下替代方式",
+      "minimum_fields": [
+        "task_id",
+        "persona_id",
+        "steps",
+        "dependencies",
+        "time_window",
+        "accessibility_needs",
+        "consent",
+        "fallback"
+      ]
+    },
+    {
+      "object_id": "OBJ-02",
+      "name": "城市服务供给状态模型 / CapacityTwin",
+      "purpose": "登记地点、时段、名额、人工值守、责任主体、可信程度和更新时间，不建立个人孪生",
+      "minimum_fields": [
+        "capacity_id",
+        "place_id",
+        "service",
+        "available_slots",
+        "freshness",
+        "owner",
+        "human_channel",
+        "confidence"
+      ]
+    },
+    {
+      "object_id": "OBJ-03",
+      "name": "可追溯服务回执 / LifeCapacityReceipt",
+      "purpose": "记录输入来源、两个候选、三项复核、责任人员决定、替代路径、申诉、版本和有效期",
+      "minimum_fields": [
+        "receipt_id",
+        "request_summary",
+        "data_classes",
+        "proposal",
+        "critic_findings",
+        "human_decision",
+        "fallback",
+        "appeal",
+        "expiry",
+        "provenance"
+      ]
+    }
+  ],
+  "agents": [
+    {
+      "agent_id": "AG-01",
+      "name": "诉求建模智能体",
+      "role": "把多模态或人工窗口输入整理为事项关系图和缺失信息清单",
+      "can": [
+        "提取任务步骤",
+        "标记缺失约束",
+        "请求人工澄清"
+      ],
+      "cannot": [
+        "决定公共资源资格",
+        "补造待核验的服务名额"
+      ]
+    },
+    {
+      "agent_id": "AG-02",
+      "name": "服务求解智能体",
+      "role": "把事项图与服务状态模型交给约束求解器，生成两个候选或明确无解",
+      "can": [
+        "约束求解",
+        "生成多个候选",
+        "标记不可满足约束"
+      ],
+      "cannot": [
+        "越过闭馆或满额状态",
+        "自行扩大服务供给"
+      ]
+    },
+    {
+      "agent_id": "AG-03",
+      "name": "公平复核智能体",
+      "role": "在可比反事实情境中检查完成率、等待、照护衔接和线下同等办理差异",
+      "can": [
+        "比较群体差异",
+        "要求替代方案",
+        "阻断明显不公平候选"
+      ],
+      "cannot": [
+        "从敏感属性推断个人资格"
+      ]
+    },
+    {
+      "agent_id": "AG-04",
+      "name": "运行安全复核智能体",
+      "role": "检查信息鲜度、断网、空间冲突、人员接管、服务过载和失效恢复",
+      "can": [
+        "触发降级",
+        "要求人工值守",
+        "触发停止测试"
+      ],
+      "cannot": [
+        "签署工程或安全许可"
+      ]
+    },
+    {
+      "agent_id": "AG-05",
+      "name": "数据保护智能体",
+      "role": "检查目的限定、最小字段、同意、保存期、可撤回和申诉",
+      "can": [
+        "删减数据字段",
+        "阻断越权调用",
+        "要求删除证明"
+      ],
+      "cannot": [
+        "代替法务和有权主体批准"
+      ]
+    },
+    {
+      "agent_id": "AG-06",
+      "name": "回执复盘智能体",
+      "role": "生成可追溯服务回执并保存版本、来源和可重放事件",
+      "can": [
+        "汇总证据",
+        "标注置信度",
+        "登记版本和到期"
+      ],
+      "cannot": [
+        "修改复核意见或责任人员决定"
+      ]
+    }
+  ],
+  "decision_protocol": {
+    "mode": "parallel-critics-before-human-release",
+    "steps": [
+      "多模态需求理解并形成民生事项关系图",
+      "读取城市服务供给状态模型",
+      "图约束求解生成两个备选或明确无解",
+      "公平、运行安全、数据保护三项并行复核",
+      "阻断项最多触发一次限额修订",
+      "责任人员确认、降级、转人工或拒绝发布",
+      "生成可追溯服务回执并开放申诉",
+      "依据冻结夹具、事件或资料变化离线重放"
+    ],
+    "maximum_revision_rounds": 1,
+    "unresolved_conflict_action": "human_review_or_no_release",
+    "high_impact_action": "human_decision_required"
+  },
+  "stop_conditions": [
+    "服务信息过期或来源不明",
+    "智能体声称有名额但人工系统无法确认",
+    "三项并行复核中任一项发现阻断性问题",
+    "无法提供线下或人工替代渠道",
+    "涉及健康、安全、权益或资格决定且无责任人员",
+    "申诉入口或服务回执生成失败"
+  ],
+  "spatial_interfaces": [
+    {
+      "prototype": "NIGHT SUPPORT STATION",
+      "place_zh": "众智园·夜间安心驿站",
+      "visible_components": [
+        "服务状态牌",
+        "边缘降级点",
+        "人工服务台",
+        "故障注入区"
+      ],
+      "primary_task": "夜班结束后在有限时窗内完成接驳、热食、短时恢复和照护交接",
+      "primary_test": "TEST-AI-01",
+      "technical_identity": "城市智能体韧性运行实验站",
+      "fault_injection": [
+        "断网",
+        "信息过期",
+        "服务中断"
+      ]
+    },
+    {
+      "prototype": "SHARED CARE COURTYARD",
+      "place_zh": "AI原点社区·共享照护小院",
+      "visible_components": [
+        "事项关系图协同桌",
+        "服务时段墙",
+        "三项复核提示",
+        "人工个案室"
+      ],
+      "primary_task": "把研究、轮班、托育、长者照护和接送约束求解为可执行日程",
+      "primary_test": "TEST-AI-02",
+      "technical_identity": "多智能体约束求解实验场",
+      "fault_injection": [
+        "名额紧张",
+        "日程冲突",
+        "无障碍约束"
+      ]
+    },
+    {
+      "prototype": "ALL-HOURS CIVIC SERVICE HALL",
+      "place_zh": "大钟寺·全时便民服务厅",
+      "visible_components": [
+        "多模态受理台",
+        "歧义与置信度提示",
+        "回执重放区",
+        "申诉与人工服务窗"
+      ],
+      "primary_task": "在夜间、跨语言或无智能手机条件下完成到达、查询、办理和申诉",
+      "primary_test": "TEST-AI-03",
+      "technical_identity": "多模态可信交互实验厅",
+      "fault_injection": [
+        "低置信翻译",
+        "虚假可用",
+        "申诉纠正"
+      ]
+    }
+  ],
+  "industry_tests": [
+    {
+      "test_id": "TEST-AI-01",
+      "name": "服务中断与人工接手对照",
+      "variants": [
+        "rule-only",
+        "single-planner",
+        "life-capacity-kernel"
+      ],
+      "fixtures": "synthetic",
+      "failure_injection": [
+        "service_outage",
+        "stale_capacity",
+        "no_network"
+      ],
+      "required_metrics": [
+        "AI-02",
+        "AI-05",
+        "AI-06",
+        "AI-09",
+        "LC-04",
+        "LC-05"
+      ]
+    },
+    {
+      "test_id": "TEST-AI-02",
+      "name": "服务供给紧张时的工作—照护约束与公平对照",
+      "variants": [
+        "first-come-rule",
+        "single-objective-planner",
+        "life-capacity-kernel"
+      ],
+      "fixtures": "synthetic",
+      "failure_injection": [
+        "capacity_scarcity",
+        "conflicting_schedules",
+        "accessibility_constraint"
+      ],
+      "required_metrics": [
+        "AI-01",
+        "AI-04",
+        "AI-08",
+        "LC-01",
+        "LC-08",
+        "LC-11"
+      ]
+    },
+    {
+      "test_id": "TEST-AI-03",
+      "name": "多语与无障碍办理对照",
+      "variants": [
+        "static-directory",
+        "single-agent",
+        "life-capacity-kernel"
+      ],
+      "fixtures": "synthetic",
+      "failure_injection": [
+        "ambiguous_request",
+        "false_availability",
+        "appeal_required"
+      ],
+      "required_metrics": [
+        "AI-02",
+        "AI-05",
+        "AI-08",
+        "AI-09",
+        "LC-06",
+        "LC-10"
+      ]
+    }
+  ],
+  "implementation_boundary": {
+    "stage3_build": [
+      "JSON合同",
+      "合成任务夹具",
+      "确定性基线",
+      "可重放事件日志",
+      "五张可见图",
+      "双语HTML和PDF"
+    ],
+    "deferred": [
+      "真实API接入",
+      "真实个人数据",
+      "实时设备控制",
+      "生产级身份与权限系统",
+      "真实场地运营"
+    ],
+    "preferred_modules": [
+      "OR-Tools for constraint scheduling when locally available",
+      "NetworkX for task graph",
+      "Shapely/PyProj for spatial checks"
+    ],
+    "fallback": "依赖集成成本过高时使用小型确定性求解与JSON事件回放，不牺牲可复核结果。"
+  },
+  "public_category": "城市多智能体协同实验带 / URBAN MULTI-AGENT COLLABORATION TESTBED",
+  "technical_alias": "LCK-01; internal identifiers retained for deterministic replay"
+}

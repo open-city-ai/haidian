@@ -1,0 +1,1430 @@
+{
+  "schema_version": "0.1.0",
+  "harness_zh": "城市智能体离线回放台架：六个官方场景 × 八类任务模板，全部为固定数据，不含随机数、不联网、不使用个人信息。",
+  "harness_en": "Offline replay harness for the urban agent: six official scenarios by eight task templates. Every record is fixed data with no randomness, no network access and no personal information.",
+  "reproducibility_zh": "任何评审都可以用 simulation.json 的 tasks 数组手工重算全部聚合值；公式写在 metrics.json 的 formula 字段里。",
+  "reproducibility_en": "Any reviewer can recompute every aggregate by hand from the tasks array; the formulas are written in the formula field of metrics.json.",
+  "task_count": 48,
+  "scenario_registry_ref": "scenarios/*.json",
+  "derived": {
+    "simulation_task_count": 48,
+    "simulation_success_rate": 0.8541666666666666,
+    "tool_schema_pass_rate": 0.9791666666666666,
+    "energy_budget_violations": 2,
+    "audit_completeness": 1.0,
+    "high_risk_intercept_rate": 1.0,
+    "replan_p95_seconds": 7.7
+  },
+  "derivation_witness": {
+    "successful_tasks": 41,
+    "schema_valid_tasks": 47,
+    "audit_complete_tasks": 48,
+    "high_risk_flagged": 13,
+    "high_risk_intercepted": 13,
+    "p95_nearest_rank_position": 46
+  },
+  "baselines": {
+    "urban_llm_harness": {
+      "success_rate": 0.8541666666666666,
+      "tool_schema_pass_rate": 0.9791666666666666,
+      "high_risk_intercept_rate": 1.0,
+      "energy_budget_violations": 2,
+      "replan_p95_seconds": 7.7,
+      "audit_completeness": 1.0
+    }
+  },
+  "tasks": [
+    {
+      "id": "SIM-001",
+      "scenario_id": "ai-traffic-walkability",
+      "scenario_zh": "AI+交通慢行评估",
+      "scenario_en": "AI mobility and walkability review",
+      "template": "intake",
+      "task_zh": "AI+交通慢行评估：受理并结构化一条公众诉求",
+      "task_en": "AI mobility and walkability review: Intake and structure one public request",
+      "tool_chain": [
+        "parse_request",
+        "classify_intent",
+        "attach_evidence"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-traffic-walkability.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.42,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 2.4,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-002",
+      "scenario_id": "ai-traffic-walkability",
+      "scenario_zh": "AI+交通慢行评估",
+      "scenario_en": "AI mobility and walkability review",
+      "template": "evidence",
+      "task_zh": "AI+交通慢行评估：为结论绑定可回溯证据",
+      "task_en": "AI mobility and walkability review: Bind traceable evidence to a conclusion",
+      "tool_chain": [
+        "lookup_source_register",
+        "check_authority_level",
+        "emit_claim_provenance"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-traffic-walkability.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.43,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.45,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-003",
+      "scenario_id": "ai-traffic-walkability",
+      "scenario_zh": "AI+交通慢行评估",
+      "scenario_en": "AI mobility and walkability review",
+      "template": "spatial",
+      "task_zh": "AI+交通慢行评估：在概念层做一次空间对位",
+      "task_en": "AI mobility and walkability review: Perform one concept-level spatial match",
+      "tool_chain": [
+        "load_geojson",
+        "check_geometry_role",
+        "flag_provisional_boundary"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-traffic-walkability.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.44,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.5,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-004",
+      "scenario_id": "ai-traffic-walkability",
+      "scenario_zh": "AI+交通慢行评估",
+      "scenario_en": "AI mobility and walkability review",
+      "template": "threshold",
+      "task_zh": "AI+交通慢行评估：对照阈值做一次可否判断",
+      "task_en": "AI mobility and walkability review: Run one go / no-go check against a threshold",
+      "tool_chain": [
+        "load_threshold",
+        "compare_metric",
+        "emit_gate_result"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-traffic-walkability.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.45,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.55,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-005",
+      "scenario_id": "ai-traffic-walkability",
+      "scenario_zh": "AI+交通慢行评估",
+      "scenario_en": "AI mobility and walkability review",
+      "template": "fallback",
+      "task_zh": "AI+交通慢行评估：在数据缺口下走降级路径",
+      "task_en": "AI mobility and walkability review: Take the degraded path under a data gap",
+      "tool_chain": [
+        "detect_missing_input",
+        "switch_to_manual_path",
+        "log_gap"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-traffic-walkability.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "blocked_missing_official_data",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.46,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.55,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-006",
+      "scenario_id": "ai-traffic-walkability",
+      "scenario_zh": "AI+交通慢行评估",
+      "scenario_en": "AI mobility and walkability review",
+      "template": "appeal",
+      "task_zh": "AI+交通慢行评估：受理一次异议并回写",
+      "task_en": "AI mobility and walkability review: Receive one objection and write it back",
+      "tool_chain": [
+        "open_appeal",
+        "notify_human_reviewer",
+        "close_loop"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-traffic-walkability.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.47,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.8,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-007",
+      "scenario_id": "ai-traffic-walkability",
+      "scenario_zh": "AI+交通慢行评估",
+      "scenario_en": "AI mobility and walkability review",
+      "template": "energy",
+      "task_zh": "AI+交通慢行评估：在能耗预算内完成一次重规划",
+      "task_en": "AI mobility and walkability review: Replan once inside the energy budget",
+      "tool_chain": [
+        "estimate_cost",
+        "replan",
+        "verify_budget"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-traffic-walkability.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.67,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 8.95,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-008",
+      "scenario_id": "ai-traffic-walkability",
+      "scenario_zh": "AI+交通慢行评估",
+      "scenario_en": "AI mobility and walkability review",
+      "template": "audit",
+      "task_zh": "AI+交通慢行评估：输出一次可审计记录",
+      "task_en": "AI mobility and walkability review: Emit one auditable record",
+      "tool_chain": [
+        "collect_trace",
+        "hash_record",
+        "publish_digest"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-traffic-walkability.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.49,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.9,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-009",
+      "scenario_id": "ai-cultural-guide",
+      "scenario_zh": "AI导览与文化叙事",
+      "scenario_en": "AI guiding and cultural narrative",
+      "template": "intake",
+      "task_zh": "AI导览与文化叙事：受理并结构化一条公众诉求",
+      "task_en": "AI guiding and cultural narrative: Intake and structure one public request",
+      "tool_chain": [
+        "parse_request",
+        "classify_intent",
+        "attach_evidence"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-cultural-guide.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.5,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.15,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-010",
+      "scenario_id": "ai-cultural-guide",
+      "scenario_zh": "AI导览与文化叙事",
+      "scenario_en": "AI guiding and cultural narrative",
+      "template": "evidence",
+      "task_zh": "AI导览与文化叙事：为结论绑定可回溯证据",
+      "task_en": "AI guiding and cultural narrative: Bind traceable evidence to a conclusion",
+      "tool_chain": [
+        "lookup_source_register",
+        "check_authority_level",
+        "emit_claim_provenance"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-cultural-guide.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.51,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.2,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-011",
+      "scenario_id": "ai-cultural-guide",
+      "scenario_zh": "AI导览与文化叙事",
+      "scenario_en": "AI guiding and cultural narrative",
+      "template": "spatial",
+      "task_zh": "AI导览与文化叙事：在概念层做一次空间对位",
+      "task_en": "AI guiding and cultural narrative: Perform one concept-level spatial match",
+      "tool_chain": [
+        "load_geojson",
+        "check_geometry_role",
+        "flag_provisional_boundary"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-cultural-guide.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.52,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 2.4,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-012",
+      "scenario_id": "ai-cultural-guide",
+      "scenario_zh": "AI导览与文化叙事",
+      "scenario_en": "AI guiding and cultural narrative",
+      "template": "threshold",
+      "task_zh": "AI导览与文化叙事：对照阈值做一次可否判断",
+      "task_en": "AI guiding and cultural narrative: Run one go / no-go check against a threshold",
+      "tool_chain": [
+        "load_threshold",
+        "compare_metric",
+        "emit_gate_result"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-cultural-guide.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.53,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.45,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-013",
+      "scenario_id": "ai-cultural-guide",
+      "scenario_zh": "AI导览与文化叙事",
+      "scenario_en": "AI guiding and cultural narrative",
+      "template": "fallback",
+      "task_zh": "AI导览与文化叙事：在数据缺口下走降级路径",
+      "task_en": "AI guiding and cultural narrative: Take the degraded path under a data gap",
+      "tool_chain": [
+        "detect_missing_input",
+        "switch_to_manual_path",
+        "log_gap"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-cultural-guide.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "blocked_missing_official_data",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.54,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 6.3,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-014",
+      "scenario_id": "ai-cultural-guide",
+      "scenario_zh": "AI导览与文化叙事",
+      "scenario_en": "AI guiding and cultural narrative",
+      "template": "appeal",
+      "task_zh": "AI导览与文化叙事：受理一次异议并回写",
+      "task_en": "AI guiding and cultural narrative: Receive one objection and write it back",
+      "tool_chain": [
+        "open_appeal",
+        "notify_human_reviewer",
+        "close_loop"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-cultural-guide.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.55,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.55,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-015",
+      "scenario_id": "ai-cultural-guide",
+      "scenario_zh": "AI导览与文化叙事",
+      "scenario_en": "AI guiding and cultural narrative",
+      "template": "energy",
+      "task_zh": "AI导览与文化叙事：在能耗预算内完成一次重规划",
+      "task_en": "AI guiding and cultural narrative: Replan once inside the energy budget",
+      "tool_chain": [
+        "estimate_cost",
+        "replan",
+        "verify_budget"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-cultural-guide.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.56,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 2.75,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-016",
+      "scenario_id": "ai-cultural-guide",
+      "scenario_zh": "AI导览与文化叙事",
+      "scenario_en": "AI guiding and cultural narrative",
+      "template": "audit",
+      "task_zh": "AI导览与文化叙事：输出一次可审计记录",
+      "task_en": "AI guiding and cultural narrative: Emit one auditable record",
+      "tool_chain": [
+        "collect_trace",
+        "hash_record",
+        "publish_digest"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-cultural-guide.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.57,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.8,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-017",
+      "scenario_id": "ai-health-service-navigation",
+      "scenario_zh": "AI+医疗健康服务导航",
+      "scenario_en": "AI health-service navigation",
+      "template": "intake",
+      "task_zh": "AI+医疗健康服务导航：受理并结构化一条公众诉求",
+      "task_en": "AI health-service navigation: Intake and structure one public request",
+      "tool_chain": [
+        "parse_request",
+        "classify_intent",
+        "attach_evidence"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-health-service-navigation.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.58,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.9,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-018",
+      "scenario_id": "ai-health-service-navigation",
+      "scenario_zh": "AI+医疗健康服务导航",
+      "scenario_en": "AI health-service navigation",
+      "template": "evidence",
+      "task_zh": "AI+医疗健康服务导航：为结论绑定可回溯证据",
+      "task_en": "AI health-service navigation: Bind traceable evidence to a conclusion",
+      "tool_chain": [
+        "lookup_source_register",
+        "check_authority_level",
+        "emit_claim_provenance"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-health-service-navigation.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.42,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.1,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-019",
+      "scenario_id": "ai-health-service-navigation",
+      "scenario_zh": "AI+医疗健康服务导航",
+      "scenario_en": "AI health-service navigation",
+      "template": "spatial",
+      "task_zh": "AI+医疗健康服务导航：在概念层做一次空间对位",
+      "task_en": "AI health-service navigation: Perform one concept-level spatial match",
+      "tool_chain": [
+        "load_geojson",
+        "check_geometry_role",
+        "flag_provisional_boundary"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-health-service-navigation.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.43,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.15,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-020",
+      "scenario_id": "ai-health-service-navigation",
+      "scenario_zh": "AI+医疗健康服务导航",
+      "scenario_en": "AI health-service navigation",
+      "template": "threshold",
+      "task_zh": "AI+医疗健康服务导航：对照阈值做一次可否判断",
+      "task_en": "AI health-service navigation: Run one go / no-go check against a threshold",
+      "tool_chain": [
+        "load_threshold",
+        "compare_metric",
+        "emit_gate_result"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-health-service-navigation.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.44,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.2,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-021",
+      "scenario_id": "ai-health-service-navigation",
+      "scenario_zh": "AI+医疗健康服务导航",
+      "scenario_en": "AI health-service navigation",
+      "template": "fallback",
+      "task_zh": "AI+医疗健康服务导航：在数据缺口下走降级路径",
+      "task_en": "AI health-service navigation: Take the degraded path under a data gap",
+      "tool_chain": [
+        "detect_missing_input",
+        "switch_to_manual_path",
+        "log_gap"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-health-service-navigation.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "blocked_missing_official_data",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.45,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.2,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-022",
+      "scenario_id": "ai-health-service-navigation",
+      "scenario_zh": "AI+医疗健康服务导航",
+      "scenario_en": "AI health-service navigation",
+      "template": "appeal",
+      "task_zh": "AI+医疗健康服务导航：受理一次异议并回写",
+      "task_en": "AI health-service navigation: Receive one objection and write it back",
+      "tool_chain": [
+        "open_appeal",
+        "notify_human_reviewer",
+        "close_loop"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-health-service-navigation.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "human_review_success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.46,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.45,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-023",
+      "scenario_id": "ai-health-service-navigation",
+      "scenario_zh": "AI+医疗健康服务导航",
+      "scenario_en": "AI health-service navigation",
+      "template": "energy",
+      "task_zh": "AI+医疗健康服务导航：在能耗预算内完成一次重规划",
+      "task_en": "AI health-service navigation: Replan once inside the energy budget",
+      "tool_chain": [
+        "estimate_cost",
+        "replan",
+        "verify_budget"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-health-service-navigation.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.47,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.5,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-024",
+      "scenario_id": "ai-health-service-navigation",
+      "scenario_zh": "AI+医疗健康服务导航",
+      "scenario_en": "AI health-service navigation",
+      "template": "audit",
+      "task_zh": "AI+医疗健康服务导航：输出一次可审计记录",
+      "task_en": "AI health-service navigation: Emit one auditable record",
+      "tool_chain": [
+        "collect_trace",
+        "hash_record",
+        "publish_digest"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/ai-health-service-navigation.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.48,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.55,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-025",
+      "scenario_id": "enterprise-service-copilot",
+      "scenario_zh": "企业服务Copilot",
+      "scenario_en": "Enterprise service copilot",
+      "template": "intake",
+      "task_zh": "企业服务Copilot：受理并结构化一条公众诉求",
+      "task_en": "Enterprise service copilot: Intake and structure one public request",
+      "tool_chain": [
+        "parse_request",
+        "classify_intent",
+        "attach_evidence"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/enterprise-service-copilot.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.49,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.8,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-026",
+      "scenario_id": "enterprise-service-copilot",
+      "scenario_zh": "企业服务Copilot",
+      "scenario_en": "Enterprise service copilot",
+      "template": "evidence",
+      "task_zh": "企业服务Copilot：为结论绑定可回溯证据",
+      "task_en": "Enterprise service copilot: Bind traceable evidence to a conclusion",
+      "tool_chain": [
+        "lookup_source_register",
+        "check_authority_level",
+        "emit_claim_provenance"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/enterprise-service-copilot.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.5,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.85,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-027",
+      "scenario_id": "enterprise-service-copilot",
+      "scenario_zh": "企业服务Copilot",
+      "scenario_en": "Enterprise service copilot",
+      "template": "spatial",
+      "task_zh": "企业服务Copilot：在概念层做一次空间对位",
+      "task_en": "Enterprise service copilot: Perform one concept-level spatial match",
+      "tool_chain": [
+        "load_geojson",
+        "check_geometry_role",
+        "flag_provisional_boundary"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/enterprise-service-copilot.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.51,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.9,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-028",
+      "scenario_id": "enterprise-service-copilot",
+      "scenario_zh": "企业服务Copilot",
+      "scenario_en": "Enterprise service copilot",
+      "template": "threshold",
+      "task_zh": "企业服务Copilot：对照阈值做一次可否判断",
+      "task_en": "Enterprise service copilot: Run one go / no-go check against a threshold",
+      "tool_chain": [
+        "load_threshold",
+        "compare_metric",
+        "emit_gate_result"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/enterprise-service-copilot.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.52,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.1,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-029",
+      "scenario_id": "enterprise-service-copilot",
+      "scenario_zh": "企业服务Copilot",
+      "scenario_en": "Enterprise service copilot",
+      "template": "fallback",
+      "task_zh": "企业服务Copilot：在数据缺口下走降级路径",
+      "task_en": "Enterprise service copilot: Take the degraded path under a data gap",
+      "tool_chain": [
+        "detect_missing_input",
+        "switch_to_manual_path",
+        "log_gap"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/enterprise-service-copilot.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "blocked_missing_official_data",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.53,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.95,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-030",
+      "scenario_id": "enterprise-service-copilot",
+      "scenario_zh": "企业服务Copilot",
+      "scenario_en": "Enterprise service copilot",
+      "template": "appeal",
+      "task_zh": "企业服务Copilot：受理一次异议并回写",
+      "task_en": "Enterprise service copilot: Receive one objection and write it back",
+      "tool_chain": [
+        "open_appeal",
+        "notify_human_reviewer",
+        "close_loop"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/enterprise-service-copilot.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.54,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.2,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-031",
+      "scenario_id": "enterprise-service-copilot",
+      "scenario_zh": "企业服务Copilot",
+      "scenario_en": "Enterprise service copilot",
+      "template": "energy",
+      "task_zh": "企业服务Copilot：在能耗预算内完成一次重规划",
+      "task_en": "Enterprise service copilot: Replan once inside the energy budget",
+      "tool_chain": [
+        "estimate_cost",
+        "replan",
+        "verify_budget"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/enterprise-service-copilot.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": false,
+      "energy_used_kwh": 0.55,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 2.4,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-032",
+      "scenario_id": "enterprise-service-copilot",
+      "scenario_zh": "企业服务Copilot",
+      "scenario_en": "Enterprise service copilot",
+      "template": "audit",
+      "task_zh": "企业服务Copilot：输出一次可审计记录",
+      "task_en": "Enterprise service copilot: Emit one auditable record",
+      "tool_chain": [
+        "collect_trace",
+        "hash_record",
+        "publish_digest"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/enterprise-service-copilot.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.56,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.45,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-033",
+      "scenario_id": "public-safety-operations-review",
+      "scenario_zh": "公共安全与活动运营复核",
+      "scenario_en": "Public-safety and event operations review",
+      "template": "intake",
+      "task_zh": "公共安全与活动运营复核：受理并结构化一条公众诉求",
+      "task_en": "Public-safety and event operations review: Intake and structure one public request",
+      "tool_chain": [
+        "parse_request",
+        "classify_intent",
+        "attach_evidence"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/public-safety-operations-review.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.57,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.55,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-034",
+      "scenario_id": "public-safety-operations-review",
+      "scenario_zh": "公共安全与活动运营复核",
+      "scenario_en": "Public-safety and event operations review",
+      "template": "evidence",
+      "task_zh": "公共安全与活动运营复核：为结论绑定可回溯证据",
+      "task_en": "Public-safety and event operations review: Bind traceable evidence to a conclusion",
+      "tool_chain": [
+        "lookup_source_register",
+        "check_authority_level",
+        "emit_claim_provenance"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/public-safety-operations-review.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.58,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 2.75,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-035",
+      "scenario_id": "public-safety-operations-review",
+      "scenario_zh": "公共安全与活动运营复核",
+      "scenario_en": "Public-safety and event operations review",
+      "template": "spatial",
+      "task_zh": "公共安全与活动运营复核：在概念层做一次空间对位",
+      "task_en": "Public-safety and event operations review: Perform one concept-level spatial match",
+      "tool_chain": [
+        "load_geojson",
+        "check_geometry_role",
+        "flag_provisional_boundary"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/public-safety-operations-review.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.42,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.8,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-036",
+      "scenario_id": "public-safety-operations-review",
+      "scenario_zh": "公共安全与活动运营复核",
+      "scenario_en": "Public-safety and event operations review",
+      "template": "threshold",
+      "task_zh": "公共安全与活动运营复核：对照阈值做一次可否判断",
+      "task_en": "Public-safety and event operations review: Run one go / no-go check against a threshold",
+      "tool_chain": [
+        "load_threshold",
+        "compare_metric",
+        "emit_gate_result"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/public-safety-operations-review.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "refused_out_of_responsibility_scope",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.43,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.85,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-037",
+      "scenario_id": "public-safety-operations-review",
+      "scenario_zh": "公共安全与活动运营复核",
+      "scenario_en": "Public-safety and event operations review",
+      "template": "fallback",
+      "task_zh": "公共安全与活动运营复核：在数据缺口下走降级路径",
+      "task_en": "Public-safety and event operations review: Take the degraded path under a data gap",
+      "tool_chain": [
+        "detect_missing_input",
+        "switch_to_manual_path",
+        "log_gap"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/public-safety-operations-review.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "blocked_missing_official_data",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.44,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 7.7,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-038",
+      "scenario_id": "public-safety-operations-review",
+      "scenario_zh": "公共安全与活动运营复核",
+      "scenario_en": "Public-safety and event operations review",
+      "template": "appeal",
+      "task_zh": "公共安全与活动运营复核：受理一次异议并回写",
+      "task_en": "Public-safety and event operations review: Receive one objection and write it back",
+      "tool_chain": [
+        "open_appeal",
+        "notify_human_reviewer",
+        "close_loop"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/public-safety-operations-review.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "human_review_success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.45,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.1,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-039",
+      "scenario_id": "public-safety-operations-review",
+      "scenario_zh": "公共安全与活动运营复核",
+      "scenario_en": "Public-safety and event operations review",
+      "template": "energy",
+      "task_zh": "公共安全与活动运营复核：在能耗预算内完成一次重规划",
+      "task_en": "Public-safety and event operations review: Replan once inside the energy budget",
+      "tool_chain": [
+        "estimate_cost",
+        "replan",
+        "verify_budget"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/public-safety-operations-review.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.46,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.15,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-040",
+      "scenario_id": "public-safety-operations-review",
+      "scenario_zh": "公共安全与活动运营复核",
+      "scenario_en": "Public-safety and event operations review",
+      "template": "audit",
+      "task_zh": "公共安全与活动运营复核：输出一次可审计记录",
+      "task_en": "Public-safety and event operations review: Emit one auditable record",
+      "tool_chain": [
+        "collect_trace",
+        "hash_record",
+        "publish_digest"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/public-safety-operations-review.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.47,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.2,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-041",
+      "scenario_id": "robot-delivery-low-speed",
+      "scenario_zh": "机器人低速配送",
+      "scenario_en": "Low-speed robot delivery",
+      "template": "intake",
+      "task_zh": "机器人低速配送：受理并结构化一条公众诉求",
+      "task_en": "Low-speed robot delivery: Intake and structure one public request",
+      "tool_chain": [
+        "parse_request",
+        "classify_intent",
+        "attach_evidence"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/robot-delivery-low-speed.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.48,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.45,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-042",
+      "scenario_id": "robot-delivery-low-speed",
+      "scenario_zh": "机器人低速配送",
+      "scenario_en": "Low-speed robot delivery",
+      "template": "evidence",
+      "task_zh": "机器人低速配送：为结论绑定可回溯证据",
+      "task_en": "Low-speed robot delivery: Bind traceable evidence to a conclusion",
+      "tool_chain": [
+        "lookup_source_register",
+        "check_authority_level",
+        "emit_claim_provenance"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/robot-delivery-low-speed.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.49,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.5,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-043",
+      "scenario_id": "robot-delivery-low-speed",
+      "scenario_zh": "机器人低速配送",
+      "scenario_en": "Low-speed robot delivery",
+      "template": "spatial",
+      "task_zh": "机器人低速配送：在概念层做一次空间对位",
+      "task_en": "Low-speed robot delivery: Perform one concept-level spatial match",
+      "tool_chain": [
+        "load_geojson",
+        "check_geometry_role",
+        "flag_provisional_boundary"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/robot-delivery-low-speed.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.5,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.55,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-044",
+      "scenario_id": "robot-delivery-low-speed",
+      "scenario_zh": "机器人低速配送",
+      "scenario_en": "Low-speed robot delivery",
+      "template": "threshold",
+      "task_zh": "机器人低速配送：对照阈值做一次可否判断",
+      "task_en": "Low-speed robot delivery: Run one go / no-go check against a threshold",
+      "tool_chain": [
+        "load_threshold",
+        "compare_metric",
+        "emit_gate_result"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/robot-delivery-low-speed.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.51,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 2.75,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-045",
+      "scenario_id": "robot-delivery-low-speed",
+      "scenario_zh": "机器人低速配送",
+      "scenario_en": "Low-speed robot delivery",
+      "template": "fallback",
+      "task_zh": "机器人低速配送：在数据缺口下走降级路径",
+      "task_en": "Low-speed robot delivery: Take the degraded path under a data gap",
+      "tool_chain": [
+        "detect_missing_input",
+        "switch_to_manual_path",
+        "log_gap"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/robot-delivery-low-speed.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "blocked_missing_official_data",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.52,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 5.6,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-046",
+      "scenario_id": "robot-delivery-low-speed",
+      "scenario_zh": "机器人低速配送",
+      "scenario_en": "Low-speed robot delivery",
+      "template": "appeal",
+      "task_zh": "机器人低速配送：受理一次异议并回写",
+      "task_en": "Low-speed robot delivery: Receive one objection and write it back",
+      "tool_chain": [
+        "open_appeal",
+        "notify_human_reviewer",
+        "close_loop"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/robot-delivery-low-speed.json"
+      ],
+      "human_review_required": true,
+      "human_review_path": "专业评审 + 公众复盘会（线下人工窗口同时受理）",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.53,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 4.85,
+      "high_risk_flagged": true,
+      "high_risk_intercepted": true
+    },
+    {
+      "id": "SIM-047",
+      "scenario_id": "robot-delivery-low-speed",
+      "scenario_zh": "机器人低速配送",
+      "scenario_en": "Low-speed robot delivery",
+      "template": "energy",
+      "task_zh": "机器人低速配送：在能耗预算内完成一次重规划",
+      "task_en": "Low-speed robot delivery: Replan once inside the energy budget",
+      "tool_chain": [
+        "estimate_cost",
+        "replan",
+        "verify_budget"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/robot-delivery-low-speed.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.67,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 10.0,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    },
+    {
+      "id": "SIM-048",
+      "scenario_id": "robot-delivery-low-speed",
+      "scenario_zh": "机器人低速配送",
+      "scenario_en": "Low-speed robot delivery",
+      "template": "audit",
+      "task_zh": "机器人低速配送：输出一次可审计记录",
+      "task_en": "Low-speed robot delivery: Emit one auditable record",
+      "tool_chain": [
+        "collect_trace",
+        "hash_record",
+        "publish_digest"
+      ],
+      "input_refs": [
+        "sources.json#SITE-PACKAGE",
+        "sources.json#PROCESSED-FACT-PACK",
+        "scenarios/robot-delivery-low-speed.json"
+      ],
+      "human_review_required": false,
+      "human_review_path": "not_required",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "energy_used_kwh": 0.55,
+      "energy_budget_kwh": 0.6,
+      "audit_complete": true,
+      "replan_seconds": 3.1,
+      "high_risk_flagged": false,
+      "high_risk_intercepted": false
+    }
+  ]
+}

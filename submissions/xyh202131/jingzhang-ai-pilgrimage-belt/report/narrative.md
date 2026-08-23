@@ -12,6 +12,13 @@ Ordinary—verification—failure—recovery changes only the verification overl
 
 ## 版本与验收附录
 
+## Round 56 approved-plan alignment and front-stage figure de-duplication / 第 56 轮已批规划对位与前台图件去重
+
+官方公开页已核实街区控规获批状态及高层文字方向，本轮据此把“双轨京张”明确为既有法定规划方向上的可逆公共服务叠层，而不是第二套法定结构。约 1668.2 公顷公开规划范围与 11,412,825.386 m² 临时设计模型明确不等量、未套合、不得互换。双语 proposal 各由 15 张前台图收束为 9 张；`key-areas` 只出现一次，`spatial-atlas` 从 proposal 与 visual 前台下沉但原文件和后台证据不删除。无新媒体或页面，geometry／metrics、12/8/3/36、G0／NO-GO、非 AI 连续性、恢复非授权、专业否决和权利阻断保持冻结。
+
+The official public page now supports the reported control-plan approval status and high-level textual directions. Twin-Track is consequently framed as a reversible public-service overlay on the approved statutory direction, not a second statutory structure. The reported 1,668.2-hectare plan extent and the 11,412,825.386 m² provisional design model are unequal, unregistered and non-substitutable. Each bilingual proposal falls from 15 front-stage images to 9; `key-areas` appears once and `spatial-atlas` leaves the proposal/visual front stage without deleting its file or back-stage evidence. No medium or page is added; geometry/metrics, 12/8/3/36, G0/NO-GO, non-AI continuity, non-authorising recovery, professional veto and rights blocks stay frozen.
+
+
 ### Package-local acceptance reference / 投稿包内验收参考
 
 > 本文件只服务于 `submissions/xyh202131/jingzhang-ai-pilgrimage-belt/`，是投稿内可复制参考，不是仓库级 reusable template、公共 PR template 或维护者规范。复制到其他提交或后续 PR 时，不得继承任何 `[x]`。

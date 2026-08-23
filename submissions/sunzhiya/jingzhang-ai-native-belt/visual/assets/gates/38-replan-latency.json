@@ -1,0 +1,28 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-38",
+ "title_zh": "重规划时延约束",
+ "title_en": "Replanning latency constraint",
+ "domain": "technology",
+ "status": "design_target",
+ "source_ids": [
+  "PKG-SIMULATION",
+  "AGENT-TASKBOOK"
+ ],
+ "inputs": [
+  "simulation.json",
+  "metrics.json"
+ ],
+ "procedure": [
+  "统计重规划时延 p95 并设定上限。",
+  "超限任务进入降级或人工路径。",
+  "时延统计方法公开可复算。"
+ ],
+ "pass_rule": "p95 可由脚本复算并与声明值一致。",
+ "stop_rule": "出现时延统计口径不公开时停止引用。",
+ "owner": "ai engineer",
+ "non_ai_equivalent": "系统性能测试",
+ "evidence_output": "latency_report",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

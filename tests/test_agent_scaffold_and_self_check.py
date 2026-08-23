@@ -136,6 +136,27 @@ class SelfCheckEncodingTests(unittest.TestCase):
                 self.assertFalse(result["ok"])
                 self.assertIn(expected_error, result["stderr"])
 
+    @unittest.skipIf(sys.platform == "win32", "LC_ALL does not select the Windows code page")
+    def test_force_utf8_output_prints_chinese_under_non_utf8_locale(self) -> None:
+        chinese_section = "设计依据与资料清单"
+        script = (
+            f"import sys; sys.path.insert(0, {ascii(str(REPO_ROOT / 'scripts'))});"
+            "import self_check_submission as module;"
+            "module.force_utf8_output();"
+            f"print({ascii(chinese_section)})"
+        )
+        environment = os.environ.copy()
+        environment.update({"LC_ALL": "C", "PYTHONUTF8": "0", "PYTHONCOERCECLOCALE": "0"})
+        completed = subprocess.run(
+            [sys.executable, "-c", script],
+            capture_output=True,
+            encoding="utf-8",
+            env=environment,
+            check=False,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        self.assertIn(chinese_section, completed.stdout)
+
 
 def run_scaffold(output_dir: Path, stage: str = "formal", cwd: Path = REPO_ROOT) -> subprocess.CompletedProcess:
     return subprocess.run(

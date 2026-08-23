@@ -41,6 +41,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -91,7 +92,16 @@ def add_check(checks: list[dict[str, Any]], name: str, ok: bool, message: str, d
 
 
 def run_command(repo_root: Path, command: list[str]) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(command, cwd=repo_root, capture_output=True, text=True, check=False)
+    return subprocess.run(
+        command,
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"},
+        check=False,
+    )
 
 
 def check_generated_data(repo_root: Path, checks: list[dict[str, Any]]) -> None:

@@ -1,0 +1,90 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "boundary_status": "provisional_constraint",
+  "calculation_crs": "EPSG:4548",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Exact relative to submitted provisional geometry; not an official redline area."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 26912.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(reference_prototype_polygon_area, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "All footprints are lightweight reference prototypes, not an existing-building inventory or approved development quantum."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.106982,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(green_space_area_sqm) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Mathematically recomputed from design geometry; official boundary, vegetation and water surveys will change the value."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.066854,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(public_space_area_sqm) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public-realm envelope; access, ownership and existing-condition surveys are pending."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, official boundary and building inventory are not in the public package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(submitted_provisional_key_area_polygons)",
+      "confidence": "low",
+      "assumptions": [
+        "Count is official in the task brief; polygon positions and shapes are provisional."
+      ]
+    }
+  }
+}

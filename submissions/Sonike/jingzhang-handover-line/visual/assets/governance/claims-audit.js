@@ -61,8 +61,8 @@ const add = (id, claim, pass, actual) => checks.push({ id, claim, pass: !!pass, 
 /* A. metrics.json 的自陈与内部一致性 */
 const valued = Object.values(metrics).filter((m) => m.value !== null && m.value !== undefined).length;
 const pending = Object.keys(metrics).length - valued;
-add("M1", "58 项指标 ＝ 44 已赋值 ＋ 14 待测",
-    Object.keys(metrics).length === 58 && valued === 44 && pending === 14,
+add("M1", "70 项指标 ＝ 56 已赋值 ＋ 14 待测",
+    Object.keys(metrics).length === 70 && valued === 56 && pending === 14,
     `${Object.keys(metrics).length} ＝ ${valued} ＋ ${pending}`);
 
 const phaseSum = val("phase_1_area_sqm") + val("phase_2_area_sqm") + val("phase_3_area_sqm");
@@ -196,6 +196,59 @@ add("P8", "正文写出了「西收东放」这条横向语法", proseHas("西�
     `×${prose.split("西收东放").length - 1}`);
 add("P9", "正文写出了三处重点区的断面实取值 15.4／17.1／15.1", proseHas("15.4／17.1／15.1"),
     `×${prose.split("15.4／17.1／15.1").length - 1}`);
+
+/* P10：二十个单元垂距的四个统计量，全部由落点表那一列当场算出。
+   2026-08-22 加。此前只钉住区间「245–414」，而摘要句里的「中位 337」在偶数个取值下
+   把第 11 项本身当成了中位数（正确口径是第 10、11 项之均值 = 330），**无人拦下**。
+   四个数一并钉住，且合计必须等于正文另一处声明的接入段合计 6596 m —— 两处互为校验。 */
+{
+  const col = (l) => l.replace(/^\|/, "").split("|").map((x) => x.trim());
+  const dists = tableRows.map((l) => Number(col(l)[6].replace(/,/g, ""))).sort((a, b) => a - b);
+  const sum = dists.reduce((a, b) => a + b, 0);
+  const mean = sum / dists.length;
+  const med = dists.length % 2 === 0
+    ? (dists[dists.length / 2 - 1] + dists[dists.length / 2]) / 2
+    : dists[(dists.length - 1) / 2];
+  const near = (a, b, t) => Math.abs(a - b) <= t;
+  const allNum = dists.length === 20 && dists.every((x) => Number.isFinite(x));
+  add("P10", "落点表垂距一列的四个统计量与正文摘要一致（区间／平均／中位／合计），中位按偶数个取值取第 10、11 项之均值",
+      allNum && near(dists[0], 245, 0.5) && near(dists[19], 414, 0.5)
+      && near(mean, 330, 0.5) && near(med, 330, 0.5) && sum === 6596
+      && proseHas("245–414") && proseHas("平均 330 m") && proseHas("中位 330 m")
+      && proseHas("6596 m"),
+      allNum
+        ? `表内 min ${dists[0]} / max ${dists[19]} / 平均 ${mean.toFixed(1)} / 中位 ${med} / 合计 ${sum}`
+        : `落点表垂距列解析失败：解析到 ${dists.length} 个值`);
+}
+
+/* P11. 四季活动名的单一权威。2026-08-22 查出正文里有两套四季活动：
+   《年度活动体系》一节的表给出 开放问题周／验证开放日／全球交接周／年度交接账发布，
+   而《条件分期》一节写的是 开源交班／维护者之夜／全球交接周／（冬季无名），只有一个对上；
+   F/08 图件上的活动 IP 又是第三套（含 夜班维护者之夜、年度复盘班，两者全文 0 次）。
+   已统一到表为准。这一项盯三件事：表恰 4 行、每个名字在正文另一处也出现、退役名零出现。
+   4 这个规模写死——表少一行时「逐名一致」仍会成立。 */
+{
+  const head = "| 时节 | 活动 | 对应环节 | 留下的公共产物 |";
+  const i = prose.indexOf(head);
+  const rows = i < 0 ? [] : prose.slice(i, prose.indexOf("\n\n", i)).split("\n")
+    .filter((l) => l.startsWith("|")).slice(2);
+  const names = rows.map((l) => {
+    const cell = l.split("|").map((x) => x.trim())[2] || "";
+    return cell.split(/[：:]/)[0].replace(/\*+/g, "").trim();
+  }).filter(Boolean);
+  const retired = ["开源交班", "维护者之夜", "夜班维护者之夜", "年度复盘班"];
+  const stillThere = retired.filter((n) => prose.includes(n));
+  const onlyOnce = names.filter((n) => (prose.split(n).length - 1) < 2);
+  add("P11", "四季活动只有一套名称：《年度活动体系》表恰 4 行，四个名字在正文另有引用，三套并存时的退役名零出现",
+      names.length === 4 && stillThere.length === 0 && onlyOnce.length === 0,
+      names.length !== 4
+        ? `四季表解析到 ${names.length} 行，应为 4 行`
+        : stillThere.length
+          ? `退役活动名仍在正文：${stillThere.join("、")}`
+          : onlyOnce.length
+            ? `只在表里出现一次、正文别处未引用：${onlyOnce.join("、")}`
+            : `${names.join("／")}；退役名 0 处`);
+}
 
 /* F. 断面表的算术。
    本包第一处硬错就出在这里：通用断面表把「建筑退线」定义为 A1＋A2＋A3＋余量（一个容器），
@@ -363,6 +416,50 @@ add("G2", "正文的 [standard:] 标记全部能在 standard_matrix.json 里解�
 add("G3", "正文的 [depth:] 标记全部能在 design_depth_matrix.json 里解析到",
     badDep.length === 0, badDep.length ? badDep.join("、") : `${usedDep.length} 个全部命中`);
 
+/* G4. 四套图纸的 ToUnicode 必须是恒等映射。2026-08-22 修好一处真错：v1.11 用
+   Ghostscript 换嵌中文字体时生成的 ToUnicode 写的是 code→字形索引（<0020>→<003f>、
+   <0030>→<004f>、<6eda>→<4aff>），渲染正确但文本抽取全是乱码——四套图纸里凡用 CID
+   中文字体排的文字都受影响，英文本里错映成拉丁形状（ihmfLyg`mf 应为 JING-ZHANG）。
+   **这处此前被修过一次又被后续总装静默覆盖回来**，所以需要一道回归守卫：本项直接读
+   PDF 字节、用 Node 内置 zlib 解开 FlateDecode 流，凡含 begincmap 的流都必须只有一条
+   恒等 bfrange。不引入第三方依赖。 */
+{
+  const zlib = require("zlib");
+  const PDFS = ["a0-boards.pdf", "a3-booklet.pdf", "a0-boards.en.pdf", "a3-booklet.en.pdf"];
+  const bad = [];
+  let cmapCount = 0;
+  for (const name of PDFS) {
+    let buf;
+    try { buf = fs.readFileSync(resolveIn(PKG, path.join("drawings", name))); }
+    catch (e) { bad.push(`${name}: 读不到（${e.code}）`); continue; }
+    let from = 0;
+    for (;;) {
+      const s0 = buf.indexOf("stream", from);
+      if (s0 < 0) break;
+      let b = s0 + 6;
+      if (buf[b] === 0x0d) b += 1;
+      if (buf[b] === 0x0a) b += 1;
+      const e0 = buf.indexOf("endstream", b);
+      if (e0 < 0) break;
+      from = e0 + 9;
+      const raw = buf.subarray(b, e0);
+      let text = null;
+      try { text = zlib.inflateSync(raw).toString("latin1"); }
+      catch (_) { text = raw.toString("latin1"); }
+      if (!text.includes("begincmap")) continue;
+      cmapCount += 1;
+      const flat = text.replace(/[\s]/g, "");
+      if (!flat.includes("<0000><ffff><0000>")) {
+        const n = (text.match(/<[0-9a-fA-F]{4}>/g) || []).length;
+        bad.push(`${name}: 一个 ToUnicode 流不是恒等映射（含 ${n} 个码位项）`);
+      }
+    }
+  }
+  add("G4", "四套图纸的每个 ToUnicode CMap 都是恒等 bfrange，文本抽取不会再回到 code→字形索引的乱码",
+      bad.length === 0 && cmapCount >= 13,
+      bad.length ? bad.slice(0, 4).join("；") : `扫到 ${cmapCount} 个 CMap 流，全部为 <0000><ffff><0000>`);
+}
+
 /* H. sources.json 的字段深度——CLAUDE.md 记为与分数相关性最高的特征，缺一栏就是缺证据 */
 const sources = readPkg("sources.json").sources || [];
 const REQF = ["authority_level", "evidence_class", "collection_method", "spatial_coverage",
@@ -515,6 +612,212 @@ for (const x of sources) {
 add("J1", `sources.json 里 ${sup.size} 条已自陈作废的登记，没有被任何现行登记当作现行依据引用（引用须明标历史）`,
     badPtr.length === 0, badPtr.length ? badPtr.join("；") : `作废 ${[...sup].join("、")}；现行条目零处误引`);
 
+/* J2. 矩阵自陈的推导规则。compliance_matrix.json 写着「standard_ids 的下界＝本条
+   report_sections 与 standard_matrix.proposal_sections 的交集」——2026-08-22 复算发现
+   该规则此前只跑了一部分：8 个标准共 26 处应得引用缺失，其中 WCAG-CONTRAST 按规则
+   应挂 7 条、实挂 0 条（全包唯一无人引用的标准）。补齐后由这一项盯着，防止再次漂移。
+   三段分解的规模写死在这里：夹具少几条时「逐条一致」仍会成立而总数变小，
+   所以 N 必须来自被审对象之外（同 protocol-check-runner.js 的 EXPECTED_SCALE）。 */
+const cmJ2 = readPkg("compliance_matrix.json");
+const smJ2 = readPkg("standard_matrix.json");
+const secOfJ2 = new Map((smJ2.standards || []).map((s) => [s.standard_id, new Set(s.proposal_sections || [])]));
+const DEFN_J2 = new Set(["PROJECT-OFFICIAL-ANNOUNCEMENT", "PROJECT-AGENT-OPEN-CALL-TASKBOOK"]);
+let derivedPairs = 0, declaredPairs = 0, defnExtra = 0, relExtra = 0;
+const notInPlace = [];
+for (const r of cmJ2.requirements || []) {
+  const secs = new Set(r.report_sections || []);
+  const derived = new Set();
+  for (const [sid, ps] of secOfJ2) {
+    for (const s of secs) if (ps.has(s)) { derived.add(sid); break; }
+  }
+  derivedPairs += derived.size;
+  const declared = new Set(r.standard_ids || []);
+  declaredPairs += declared.size;
+  for (const sid of derived) if (!declared.has(sid)) notInPlace.push(`${r.requirement_id}:${sid}`);
+  for (const sid of declared) if (!derived.has(sid)) { if (DEFN_J2.has(sid)) defnExtra++; else relExtra++; }
+}
+add("J2", "compliance_matrix 自陈的 standard_ids 推导规则成立：规则导出的每一对 (要求,标准) 都已声明，且三段分解与自陈一致（92 规则导出 ＋ 12 定义性挂接 ＋ 8 实质相关性挂接 ＝ 112）",
+    notInPlace.length === 0 && derivedPairs === 92 && declaredPairs === 112
+    && defnExtra === 12 && relExtra === 8,
+    notInPlace.length
+      ? `规则导出但未声明 ${notInPlace.length} 处：${notInPlace.slice(0, 6).join("、")}`
+      : `声明 ${declaredPairs} ＝ 规则导出 ${derivedPairs} ＋ 定义性 ${defnExtra} ＋ 相关性 ${relExtra}`);
+
+/* L1. 许可块的机器读取入口必须自足，且复制出来的授权正文不得与原文漂移。
+   2026-08-22 按严格口径的 risk_compliance repair 补了 license.effective_grant——
+   把「当前即时生效的完整授权」做成机器可读（SPDX 表达式 ＋ 条件 ＋ 禁止项 ＋
+   未发布条款只能收紧不能放宽的上界规则），因为只读 identifier 的工具会拿到一个
+   组织方未发布条款的枚举值、得不到任何可执行条款。
+   **补它的代价是把授权正文复制了一份，复制就会漂移**，所以这一项把两处钉在一起：
+   effective_grant.full_text_zh/en 必须与 author_grant_zh/en 逐字节相同。
+   顺带钉住三个布尔／表达式，防止「未发布条款可以放宽」这条被悄悄改掉。 */
+{
+  const lic = readPkg("manifest.json").license || {};
+  const eg = lic.effective_grant || {};
+  const probs = [];
+  if (lic.identifier_is_operative !== false) probs.push("identifier_is_operative 不为 false");
+  if (eg.depends_on_unpublished_terms !== false) probs.push("effective_grant.depends_on_unpublished_terms 不为 false");
+  if (eg.expression !== "CC-BY-NC-4.0") probs.push(`effective_grant.expression = ${JSON.stringify(eg.expression)}，应为 "CC-BY-NC-4.0"`);
+  if (eg.full_text_zh !== lic.author_grant_zh) probs.push("effective_grant.full_text_zh 与 author_grant_zh 已漂移");
+  if (eg.full_text_en !== lic.author_grant_en) probs.push("effective_grant.full_text_en 与 author_grant_en 已漂移");
+  for (const [k, needle] of [["future_terms_rule_zh", "更宽"], ["future_terms_rule_en", "looser"]]) {
+    if (!String(eg[k] || "").includes(needle)) probs.push(`${k} 里找不到「更宽时仍按本条范围授权」那一层`);
+  }
+  add("L1", "许可块的机器读取入口自足：identifier 明标为非实际条款，effective_grant 给出当前即时生效的完整授权（SPDX 表达式 ＋ 条件 ＋ 禁止项 ＋ 未发布条款只能收紧的上界），且复制的授权正文与 author_grant 逐字节相同",
+      probs.length === 0,
+      probs.length ? probs.join("；") : `expression ${eg.expression}；授权正文两处逐字节相同；未发布条款为上界规则在位`);
+}
+
+/* J3. sources.json 里「`grep -c X <文件>` → N」这类可执行核验声明必须真的等于 N。
+   2026-08-22 修掉一处：SRC-JINGZHANG-1909 的核验字段同段先写「→ 2（史实表 1 处、
+   参考资料 1 处）」，末尾又写「删去任务书总对照与参考资料两节后实测为 1」——参考资料
+   一节并没有被删（曾误删一次、当轮已恢复），所以那段自己跟自己矛盾，数也是错的。
+   成因是上一次改正文后**在旧句后面追加了一句**而没有把旧句改掉。
+   本项按 grep -c 的语义算「命中的行数」（不是出现次数），支持 `\|` 交替；
+   声明条数 4 写死参与退出码——某条声明被悄悄删掉时「逐条一致」仍会成立。 */
+{
+  const srcs = readPkg("sources.json").sources || [];
+  const re = /`grep -c\s+([^\s`]+)\s+([A-Za-z0-9_.\/-]+)`\s*(?:→|->)\s*\*{0,2}(\d+)/g;
+  const claims = [];
+  for (const s of srcs) {
+    for (const [k, v] of Object.entries(s)) {
+      if (typeof v !== "string") continue;
+      let m;
+      re.lastIndex = 0;
+      while ((m = re.exec(v)) !== null) {
+        claims.push({ id: s.id, field: k, token: m[1].replace(/^['"]|['"]$/g, ""), file: m[2], want: Number(m[3]) });
+      }
+    }
+  }
+  const bad = [];
+  for (const c of claims) {
+    let text;
+    try { text = fs.readFileSync(resolveIn(PKG, c.file), "utf8"); }
+    catch (e) { bad.push(`${c.id}: 读不到 ${c.file}`); continue; }
+    const alts = c.token.split("\\|").filter(Boolean);
+    const got = text.split("\n").filter((line) => alts.some((t) => line.includes(t))).length;
+    if (got !== c.want) bad.push(`${c.id}.${c.field}: grep -c ${c.token} ${c.file} 声明 ${c.want}，实为 ${got}`);
+  }
+  add("J3", "sources.json 里可执行的「grep -c X 文件 → N」核验声明逐条成立（按 grep -c 的行计数语义复算），且声明条数恰为 4",
+      bad.length === 0 && claims.length === 4,
+      bad.length ? bad.join("；") : (claims.length !== 4 ? `抽到 ${claims.length} 条声明，应为 4 条` : `4 条逐条相符：${claims.map((c) => c.id + "→" + c.want).join("、")}`));
+}
+
+/* G5. 场景卡的「空间载体」声明 vs 几何逐点复算。
+   2026-08-22 抓到的一类真错：四张场景卡把落点写成某座交接场内部（「开源交接场授权台」
+   「城市交接场维修驿／社区照护桌／口述史亭」），而 public_space.geojson 里这四个点全在
+   三处重点区之外，其中三个的最近重点区还是另一座交接场——SCN-08 距大钟寺 3127 m、距原点
+   社区仅 611 m。同一份正文的重点区复算表（「场景节点」那一行）反而与几何一致，即同一文档
+   内两处口径互斥。已按几何把落点改写为「连续公共交接面 ＋ 连接段里程」。
+   本项把它变成机器判定：容器判定用射线法，在 WGS84 经纬度下即可精确判断包含关系（多边形
+   简单、尺度小，「含不含」与投影无关）；里程用本站纬度上的局部等距近似复算（1° 纬 111195 m、
+   1° 经 111195·cos φ，10 km 尺度上误差 <0.1%，远优于「约 X.X km」的有效位数）。
+   三类声明的条数 5／4／3 与卡片总数 12 写死参与退出码——某张卡被悄悄删掉时
+   「逐条一致」仍会成立。 */
+{
+  const ks = readPkg("geometry/key_areas.geojson").features;
+  const ps = readPkg("geometry/public_space.geojson").features;
+  const rd = readPkg("geometry/roads.geojson").features;
+
+  const inRing = (pt, ring) => {
+    let hit = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if ((yi > pt[1]) !== (yj > pt[1]) &&
+          pt[0] < ((xj - xi) * (pt[1] - yi)) / (yj - yi) + xi) hit = !hit;
+    }
+    return hit;
+  };
+  const contains = (g, pt) => {
+    const polys = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+    return polys.some((rr) => inRing(pt, rr[0]) && !rr.slice(1).some((h) => inRing(pt, h)));
+  };
+  const centroidOf = (g) => {
+    const pts = [];
+    const walk = (c) => (typeof c[0] === "number" ? pts.push(c) : c.forEach(walk));
+    walk(g.coordinates);
+    return [pts.reduce((s, q) => s + q[0], 0) / pts.length,
+            pts.reduce((s, q) => s + q[1], 0) / pts.length];
+  };
+
+  const yardOf = {};
+  for (const f of ks) {
+    const n = f.properties.name_zh || "";
+    const short = ["众智园", "原点社区", "大钟寺"].find((s) => n.includes(s));
+    if (short) yardOf[short] = f.geometry;
+  }
+
+  // 主轴折线 → 局部米制，累计里程（0 = 折线起点，即南端）
+  const spine = rd.find((f) => f.properties.id === "ROAD-001");
+  const sc = spine ? spine.geometry.coordinates : [];
+  const phi0 = sc.length ? sc.reduce((s, c) => s + c[1], 0) / sc.length : 0;
+  const kx = 111195 * Math.cos((phi0 * Math.PI) / 180);
+  const toM = ([lon, lat]) => [lon * kx, lat * 111195];
+  const P = sc.map(toM);
+  const cum = [0];
+  for (let i = 1; i < P.length; i++) {
+    cum.push(cum[i - 1] + Math.hypot(P[i][0] - P[i - 1][0], P[i][1] - P[i - 1][1]));
+  }
+  const mileageM = (pt) => {
+    const q = toM(pt);
+    let best = { d: Infinity, m: 0 };
+    for (let i = 1; i < P.length; i++) {
+      const a = P[i - 1];
+      const b = P[i];
+      const vx = b[0] - a[0];
+      const vy = b[1] - a[1];
+      const L2 = vx * vx + vy * vy;
+      let s = L2 === 0 ? 0 : ((q[0] - a[0]) * vx + (q[1] - a[1]) * vy) / L2;
+      s = Math.max(0, Math.min(1, s));
+      const d = Math.hypot(q[0] - (a[0] + s * vx), q[1] - (a[1] + s * vy));
+      if (d < best.d) best = { d, m: cum[i - 1] + s * Math.sqrt(L2) };
+    }
+    return best;
+  };
+
+  const YARD_ALIAS = { "研制交接场": "众智园", "开源交接场": "原点社区", "城市交接场": "大钟寺" };
+  const cards = [];
+  const rowRe = /^\|\s*(SCN-\d\d)\s*\|([^|]*)\|([^|]*)\|/gm;
+  let mm;
+  while ((mm = rowRe.exec(prose)) !== null) cards.push({ id: mm[1], carrier: mm[3].trim() });
+
+  const bad = [];
+  let nYard = 0;
+  let nLink = 0;
+  let nSpine = 0;
+  for (const c of cards) {
+    const f = ps.find((x) => x.properties.id === c.id);
+    if (!f) { bad.push(`${c.id}：public_space.geojson 无此要素`); continue; }
+    const pt = centroidOf(f.geometry);
+    const inside = Object.keys(yardOf).filter((k) => contains(yardOf[k], pt));
+    const alias = Object.keys(YARD_ALIAS).find((a) => c.carrier.includes(a));
+    if (alias) {
+      nYard++;
+      if (!inside.includes(YARD_ALIAS[alias])) {
+        bad.push(`${c.id} 卡片写「${alias}」，几何实落在 ${inside.length ? inside.join("／") : "三区之外"}`);
+      }
+    } else if (c.carrier.includes("连续公共交接面")) {
+      nLink++;
+      if (inside.length) {
+        bad.push(`${c.id} 卡片写「连续公共交接面…连接段」，几何却落在 ${inside.join("／")} 之内`);
+      }
+      const km = c.carrier.match(/([\d.]+)\s*km/);
+      if (!km) bad.push(`${c.id}：连接段卡片未给里程`);
+      else {
+        const got = mileageM(pt).m / 1000;
+        if (Math.abs(got - Number(km[1])) > 0.1) {
+          bad.push(`${c.id} 声明里程 ${km[1]} km，复算 ${got.toFixed(2)} km`);
+        }
+      }
+    } else nSpine++;
+  }
+  add("G5", "十二张场景卡的空间载体声明与 public_space.geojson 逐点复算一致：5 张声称落在某座交接场内的确在该区内，4 张声称落在连接段的确在三区之外且里程复算相符（±0.1 km），3 张只声称沿主轴、不作容器断言",
+      bad.length === 0 && cards.length === 12 && nYard === 5 && nLink === 4 && nSpine === 3,
+      bad.length ? bad.join("；")
+        : `12 张（交接场内 ${nYard}／连接段 ${nLink}／沿主轴 ${nSpine}）全部相符`);
+}
+
 /* Z. 元检查：断言检查清单本身没有缺项。
    审计器最危险的失效方式不是「某一项判错」，而是「某一项悄悄没跑」——
    条件式 add() 会让检查总数变少而 all_match 仍为真。2026-08-20 实测过这个洞：
@@ -531,10 +834,10 @@ const EXPECTED_IDS = [
   "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8",
   "S1", "S2", "S3", "S4",
   "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11",
-  "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9",
+  "P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10", "P11",
   "F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10",
-  "G1", "G2", "G3", "H1", "I1",
-  "K1", "K2", "K3", "K4", "J1",
+  "G1", "G2", "G3", "G4", "H1", "I1",
+  "K1", "K2", "K3", "K4", "J1", "J2", "L1", "J3", "G5",
   "Z1",
 ];
 {

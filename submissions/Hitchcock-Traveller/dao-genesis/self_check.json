@@ -1,0 +1,120 @@
+{
+  "schema_version": "0.1.0",
+  "submission_dir": "submissions/Hitchcock-Traveller/dao-genesis",
+  "pr_author": "Hitchcock-Traveller",
+  "stage": "formal",
+  "package_type": "professional_design_package",
+  "review_status": "ready_for_review",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "deterministic_validation": {
+    "result": "pass",
+    "manifest_schema_version": "0.2.0",
+    "all_files_present": true,
+    "all_sha256_match": true,
+    "tracks_valid": true,
+    "scenarios_valid": true,
+    "png_signatures_valid": true
+  },
+  "spatial_review": {
+    "result": "pass",
+    "site_boundary_present": true,
+    "key_areas_complete": true,
+    "land_use_topology_valid": true,
+    "metrics_recomputed": true,
+    "provisional_boundary_noted": true
+  },
+  "visual_review": {
+    "result": "pass",
+    "all_png_valid": true,
+    "bilingual_figures_distinct": true,
+    "html_offline_static": true,
+    "pdfs_present": true
+  },
+  "professional_review": {
+    "result": "pass",
+    "compliance_matrix_complete": true,
+    "standard_matrix_complete": true,
+    "design_depth_matrix_complete": true,
+    "sources_documented": true,
+    "copyright_clean": true
+  },
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "Manifest schema 0.2.0 validates against published schema; all 38 declared files exist with matching SHA-256; track and scenario IDs are all valid; all 10 PNG figures have valid PNG signatures (89 50 4E 47).",
+      "suggested_fix": "No action required."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Proposal uses [source:], [standard:], [depth:], [data:], [metric:] citations linking every claim to registered sources, mandatory standards, design depth items, geometry layers, and metrics. compliance_matrix.json covers all required tasks; standard_matrix.json and design_depth_matrix.json are complete.",
+      "suggested_fix": "No action required."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "All 9 geometry layers present (site_boundary, key_areas, land_use, buildings, roads, green_space, public_space, constraints, phasing). Land use polygons form a complete non-overlapping partition within the provisional boundary. Three key areas (Zhongzhiyuan, BAIOC, Dazhongsi) are mapped. Provisional boundary use is explicitly documented in assumptions.json.",
+      "suggested_fix": "Replace provisional geometries and recalculate metrics when official redline is published."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "assets/figures/, report/, visual/, drawings/",
+      "message": "All 5 bilingual figure pairs (10 PNGs total) are valid PNG files with correct signatures; English versions are byte-distinct. HTML rendering pages are offline-static with no remote dependencies. A3 booklet and A0 board PDFs present in both Chinese and English.",
+      "suggested_fix": "No action required."
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Site boundary uses repository provisional polygon (PROV-SITE-001). official_boundary=false. EPSG:4548 area is documented as provisional; official redline not yet published.",
+      "suggested_fix": "Recalculate all geometry and metrics when official boundary is released."
+    },
+    {
+      "check_id": "SOURCE_DISCIPLINE",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "All sources registered with usage constraints; no speculative financial or enterprise data from background-only sources.",
+      "suggested_fix": "No action required."
+    },
+    {
+      "check_id": "COPYRIGHT_CLEAN",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "Package contains no third-party fonts, images, photos, trademarks, or map tiles. All figures are programmatically generated; license is COMMUNITY-DISPLAY-ONLY.",
+      "suggested_fix": "No action required."
+    },
+    {
+      "check_id": "CONTROL_CONDITIONS_MISSING",
+      "result": "unknown",
+      "severity": "minor",
+      "target": "assumptions.json",
+      "message": "Official control conditions (FAR, height limits, setbacks, road redlines, municipal capacity, heritage protection zones) are not yet available. Development intensity is documented as pending confirmation rather than speculative values.",
+      "suggested_fix": "Supplement control conditions after approved detailed planning data is obtained."
+    }
+  ],
+  "spatial_issue_ids": [],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "missing_review_dependencies": [
+    "official_site_boundary",
+    "approved_detailed_planning_conditions"
+  ],
+  "next_actions": [
+    "Replace provisional boundary with official redline when published",
+    "Recalculate geometry-dependent metrics after boundary update",
+    "Supplement official control conditions (FAR, height limits, setbacks)"
+  ]
+}

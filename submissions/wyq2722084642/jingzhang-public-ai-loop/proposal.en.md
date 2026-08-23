@@ -145,7 +145,7 @@ Dazhongsi remains a conceptual civic interface for industry service, explainable
 
 One real small site now tests the whole-belt principle: west-square/bus arrival, the existing underground walking system, the B1 city corridor, and a human handoff outside fare/security control. Official evidence supports the multi-level relationship, underpass and B1 service-hall elements. [source:QH-STATION-MAP-2026] [source:QH-B1-SERVICE-HALL-2024] Official review also covers accessibility elements and a real human-handoff case, but not an exact entrance, turn, distance, level or post. [source:QH-ACCESS-AUDIT-2025] [source:QH-HUMAN-HANDOFF-2026] Every drawing is therefore NTS: not to scale and not positioned. Without an authorised base or survey, no 1:200 or 1:100 drawing follows. [assumption:A-QH-SCALE-012]
 
-![Qinghe ground-underground evidence relationship (NTS)](assets/figures/qinghe-evidence-relationship.en.png)
+![Qinghe civic handoff ground-underground NTS section](assets/figures/qinghe-evidence-relationship.en.png)
 
 The sole task is for a first-time passenger without a smartphone, or choosing not to use one, to say “I need a step-free route to Line 13,” receive a paper explanation and reach a human handoff outside security/fare control. The ordinary chain is fixed overview—existing underground passage—B1 human inquiry—paper route card—existing lift—human handoff. Completion also includes a clear limitation and real human alternative when a lift or B1 is unavailable; AI may never invent a route. [data:spatial.json#qinghe-ground-arrival] [data:spatial.json#qinghe-human-handoff]
 

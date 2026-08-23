@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v1.8 - 2026-08-20
+
+- Added the bilingual R04 Open Knowledge Front Desk flagship node: three alternative interface arrangements are explicitly rejected, revised or advanced through public-route, no-login, human-handoff, withdrawal and reversibility rules.
+- Added bilingual R04 decision and four-part node-detail drawings, including concept plan, public-baseline section, OPEN/TRIAL/PAUSE/RETURN service rule and clearly bounded design-relation checks; all field outcomes remain 0 / not field-run.
+- Rebuilt review entry points as three A0 boards and ten A3 booklet pages per language, putting the six interfaces, R04 spatial decision and twelve reversible micro-projects into the first visible review sequence.
+
 ## v1.7 - 2026-08-17
 
 - Turned the six-part public-interface chain into six bilingual R01–R06 delivery cards: each card now states an observable everyday question, a reversible first action, an offline retained benefit and an explicit stop / rollback condition.

@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "matrix_name_zh": "折返治理六关 RACI 责任分配矩阵",
+  "matrix_name_en": "Switchback Governance Six-Gate RACI Responsibility Matrix",
+  "legend": {
+    "R": "Responsible (执行责任人)",
+    "A": "Accountable (最终核准与否决责任人)",
+    "C": "Consulted (咨询与复核专家)",
+    "I": "Informed (知会与信息公示对象)"
+  },
+  "roles": [
+    { "id": "ROLE-OWNER", "name_zh": "场景所有者/开发企业", "name_en": "Scenario Owner / Developer" },
+    { "id": "ROLE-TECH-REVIEW", "name_zh": "技术与安全独立评测组", "name_en": "Independent Technical & Safety Review Group" },
+    { "id": "ROLE-CIVIC-REP", "name_zh": "公众与无障碍代表 (享否决权)", "name_en": "Public & Accessibility Representatives (Veto Power)" },
+    { "id": "ROLE-PUBLIC-STEWARD", "name_zh": "公共价值委员会/运营秘书处", "name_en": "Public Value Committee / Operations Secretariat" },
+    { "id": "ROLE-SPECIALIST", "name_zh": "空间/文保/交通规划专家组", "name_en": "Spatial / Heritage / Traffic Planning Specialists" }
+  ],
+  "gates": [
+    {
+      "gate_id": "G0",
+      "gate_name_zh": "资料清权与需求提出",
+      "gate_name_en": "Data Clearance & Intake",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "C",
+        "ROLE-CIVIC-REP": "I",
+        "ROLE-PUBLIC-STEWARD": "A",
+        "ROLE-SPECIALIST": "C"
+      },
+      "deliverable": "需求工单、数据合规声明、五字段初表"
+    },
+    {
+      "gate_id": "G1",
+      "gate_name_zh": "伦理与安全预审",
+      "gate_name_en": "Ethics & Safety Pre-Screening",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "A",
+        "ROLE-CIVIC-REP": "C",
+        "ROLE-PUBLIC-STEWARD": "C",
+        "ROLE-SPECIALIST": "C"
+      },
+      "deliverable": "算法风险评估报告、拟定坡度分级"
+    },
+    {
+      "gate_id": "G2",
+      "gate_name_zh": "沙盒与拔线配对测试",
+      "gate_name_en": "Sandbox & Unplugged Pairing Test",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "A",
+        "ROLE-CIVIC-REP": "C",
+        "ROLE-PUBLIC-STEWARD": "I",
+        "ROLE-SPECIALIST": "C"
+      },
+      "deliverable": "OP-01 类配对测试日志、等价差读数报告"
+    },
+    {
+      "gate_id": "G3",
+      "gate_name_zh": "现场限定开放与公众体验",
+      "gate_name_en": "Field Limited Pilot & Civic Experience",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "C",
+        "ROLE-CIVIC-REP": "R",
+        "ROLE-PUBLIC-STEWARD": "A",
+        "ROLE-SPECIALIST": "C"
+      },
+      "deliverable": "限定时段运行数据、现场工单与公众反馈表"
+    },
+    {
+      "gate_id": "G4",
+      "gate_name_zh": "折返点三方联合审议",
+      "gate_name_en": "Switchback Node Three-Party Review",
+      "raci_assignments": {
+        "ROLE-OWNER": "C",
+        "ROLE-TECH-REVIEW": "A",
+        "ROLE-CIVIC-REP": "A",
+        "ROLE-PUBLIC-STEWARD": "A",
+        "ROLE-SPECIALIST": "C"
+      },
+      "deliverable": "三方联合会签决议 (放行/折返/入段)"
+    },
+    {
+      "gate_id": "G5",
+      "gate_name_zh": "正线常态运行/入段检修/归档",
+      "gate_name_en": "Mainline Operation / Depot Maintenance / Archive",
+      "raci_assignments": {
+        "ROLE-OWNER": "R",
+        "ROLE-TECH-REVIEW": "C",
+        "ROLE-CIVIC-REP": "I",
+        "ROLE-PUBLIC-STEWARD": "A",
+        "ROLE-SPECIALIST": "I"
+      },
+      "deliverable": "K标版本更新回执、长期运营与退出审计日志"
+    }
+  ]
+}

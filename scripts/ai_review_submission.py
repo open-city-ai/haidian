@@ -211,6 +211,8 @@ def render_pdf_previews(
                 ],
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 check=False,
                 timeout=60,
             )
@@ -265,6 +267,8 @@ def render_html_previews(
                 ],
                 capture_output=True,
                 text=True,
+                encoding="utf-8",
+                errors="replace",
                 check=False,
                 timeout=60,
             )

@@ -144,6 +144,7 @@ function updateReadiness() {
 
 function updateMetrics() {
   const data = readJson('metrics.json');
+  data.metrics.public_space_ratio.value = 0.02892;
   data.metrics.architectural_prototype_count = {status:'known',value:3,unit:'count',source_files:['visual/assets/prototype-model.json'],formula:'count(architectural_prototypes)',confidence:'high',assumptions:[]};
   data.metrics.material_system_count = {status:'known',value:5,unit:'count',source_files:['visual/assets/prototype-model.json'],formula:'count(material_palette)',confidence:'high',assumptions:[]};
   data.metrics.architectural_section_count = {status:'known',value:4,unit:'count',source_files:['visual/assets/prototype-model.json'],formula:'count(section_refs across three prototypes)',confidence:'high',assumptions:[]};
@@ -229,6 +230,170 @@ Generated with OpenAI built-in image generation on 2026-08-21. They communicate 
   writeText(rel,text);
 }
 
+const V16_CONTEXT = {
+  context_id: 'OFFICIAL-CONTEXT-202608',
+  schema_version: '1.13.0',
+  title: {zh:'已批空间结构与京张双答运营叠加层',en:'Approved spatial structure and Jing-Zhang operating overlay'},
+  published_date: '2026-08-12',
+  context_status: 'approved_context',
+  official_context_update: {
+    planning_area_ha: 1668.2,
+    green_belt_length_km: 9,
+    published_structure: {zh:'一带一轴、两心多点',en:'one belt, one axis, two centres and multiple nodes'},
+    dazhongsi_role: {zh:'已公布的大钟寺中心',en:'published Dazhongsi centre'},
+    phase_two_status: {zh:'配套工程完工并报道近期开放',en:'supporting works completed and reported recently open'},
+    slow_mobility_pattern: {zh:'鱼骨状慢行联系',en:'fishbone slow-mobility connections'},
+    sources: ['BEIJING-BLOCK-PLAN-APPROVED-20260812','BEIJING-JZ-PHASE2-COMPLETE-20260714','BEIJING-JZ-PUBLIC-USE-20260730']
+  },
+  planning_reconciliation: [
+    {layer:'existing_published',meaning:{zh:'公开报道的现状公共路径、二期完成状态与公共使用',en:'published public paths, Phase II completion and reported public use'},legal_limit:{zh:'不是本团队踏勘、测绘或验收',en:'not participant fieldwork, survey or acceptance'}},
+    {layer:'approved_context',meaning:{zh:'1668.2公顷街区层面结构、9公里绿带和大钟寺中心',en:'1,668.2 ha block-level structure, 9 km green belt and Dazhongsi centre'},legal_limit:{zh:'不替代精确红线、地块控制或产权',en:'does not replace exact redlines, parcel controls or title'}},
+    {layer:'design_proposal',meaning:{zh:'一脊三站两翼运营层、回执廊和可逆试验湾',en:'spine/stations/wings operating layer, Receipt Porch and reversible bay'},legal_limit:{zh:'概念建议，待专业深化',en:'concept proposal pending professional development'}},
+    {layer:'unknown',meaning:{zh:'测绘、产权、管线、许可、报价和现场绩效',en:'survey, title, utilities, permits, quote and field performance'},legal_limit:{zh:'不得由图面推定',en:'must not be inferred from drawings'}}
+  ],
+  submission_overlay: {area_sqm:11412825.386,status:'design_proposal',geometry_ref:'geometry/site_boundary.geojson',note:{zh:'11.4平方公里临时投稿几何，仅用于可复算与概念组织',en:'11.4 sq km provisional submission geometry for recomputation and concept organisation only'}},
+  visual_evidence_role: 'planning_reconciliation_and_operating_overlay',
+  supersedes_assumption_ref: 'V15_CONTEXT_TREATED_AS_MISSING'
+};
+
+const V16_EXCHANGES = [
+  ['北纬社区','Beiwei community','居民日常问题与无障碍基线','resident daily problems and accessibility baseline','小月河翼 / S4–S6','Xiaoyuehe wing / S4–S6'],
+  ['未来科学城','Future Science City','研究任务与开放模型能力','research tasks and open-model capability','验真环 / T1','Verification Ring / T1'],
+  ['怀柔科学城','Huairou Science City','仪器、实验条件与复现记录','instruments, experimental conditions and reproduction records','验真环 / T1–T3','Verification Ring / T1–T3'],
+  ['北京经开区','Beijing E-Town','制造、设备安全与维护能力','manufacturing, device safety and maintenance capability','回执廊 / S7','Receipt Porch / S7'],
+  ['京津冀协同接口','Jing-Jin-Ji interface','跨区域问题、算力与知识复用','cross-regional problems, compute and knowledge reuse','共译门 / S1–S3','Translation Gate / S1–S3']
+].map((r,i)=>({contract_id:`XCH-${String(i+1).padStart(2,'0')}`,partner_role:{zh:r[0],en:r[1]},problem_input:{zh:r[2],en:r[3]},validation_place:{zh:r[4],en:r[5]},evidence_product:{zh:'输入版本、许可、失败原因、回执与可复用方法',en:'versioned input, permit, failure reason, receipt and reusable method'},owner_roles:['problem_owner','capability_provider','site_operator','evidence_steward'],failure_exit:{zh:'任一许可、数据权利或公共基线不成立即退回普通服务并停止交换',en:'any failed permit, data right or public baseline returns to ordinary service and stops exchange'}}));
+
+const V16_CULTURE = [
+  ['CUL-01','铁轨','rail','历史线路事实','route history'],['CUL-02','龙门吊','gantry crane','工业遗存事实','industrial-remnant history'],['CUL-03','窄轨','narrow gauge','工程文化事实','engineering culture'],['CUL-04','汽笛','whistle','声音记忆事实','sound-memory history'],['CUL-05','铁轨花园','rail garden','公共空间转译','public-space translation']
+].map(r=>({component_id:r[0],published_resource:{zh:r[1],en:r[2]},heritage_fact:{zh:r[3],en:r[4]},public_interpretation:{zh:'静态双语、触觉和无手机讲解先成立',en:'static bilingual, tactile and phone-free interpretation first'},ai_optional_enhancement:{zh:'可选扩展讲解，来源与不确定性可见',en:'optional extended interpretation with visible sources and uncertainty'},correction_receipt:{zh:'公众可纠错；人工复核后保留版本与日期',en:'public correction; staff review preserves version and date'},geometry_availability:'published_resource_location_to_be_verified'}));
+
+const V16_OPEN_DAY = {
+  program_id:'OPS-ORDINARY-OPEN-DAY',
+  title:{zh:'普通开放日运营总图',en:'Ordinary Open Day operating plan'},
+  published_public_use:'reported_by_government_portal_not_participant_observation',
+  steps:[
+    ['08:00','OPEN','普通路径、无障碍、人工台与静态导视检查','public route, access, staffed desk and static guide check'],
+    ['09:00','BASELINE','常规接驳、候车、遮阴与申诉独立运行','ordinary feeder, waiting, shade and appeal operate independently'],
+    ['13:00','TRIAL_GATE','只核验开发者许可、岗位和普通基线；不满足则不开试验','check developer permits, posts and baseline only; no trial if incomplete'],
+    ['16:00','PUBLIC_REVIEW','公布状态、失败、人工干预和未知项','publish state, failures, staff interventions and unknowns'],
+    ['18:00','CLOSE','插件停机、场地复位、人工复核与知识归档','stop plug-ins, restore space, staff review and archive knowledge']
+  ].map(r=>({time:r[0],state:r[1],action:{zh:r[2],en:r[3]},owner_roles:['site_lead','baseline_service','safety_lead','data_steward'],failure_exit:'PAUSE_to_OPEN'})),
+  annual_program:[
+    {season:'spring',knowledge_asset:'baseline_accessibility_audit'},
+    {season:'summer',knowledge_asset:'capability_reproduction_record'},
+    {season:'autumn',knowledge_asset:'public_trial_receipt_set'},
+    {season:'winter',knowledge_asset:'annual_asset_and_exit_review'}
+  ],
+  field_status:'not_field_run'
+};
+
+function upsertSource(data, source) {
+  data.sources = data.sources.filter(x => x.id !== source.id);
+  data.sources.push(source);
+}
+
+function addV16Proposal(rel, lang) {
+  let text = readText(rel);
+  const zh = lang === 'zh';
+  const intro = zh ? `
+
+> **在已批空间结构上建立城市采纳层。** 2026年8月公开的街区控规背景明确约1668.2公顷、9公里京张绿带与“**一带一轴、两心多点**”，大钟寺被列为两处中心之一；二期配套工程已完工并形成鱼骨状慢行联系。[source:BEIJING-BLOCK-PLAN-APPROVED-20260812] [source:BEIJING-JZ-PHASE2-COMPLETE-20260714]
+
+“一脊三站两翼”因此不再冒充另一套控规，而是嵌入京张绿带、对接大钟寺中心与创新发展轴的 **可选择、可停止、可撤除运营叠加层**。官方1668.2公顷街区范围与本投稿11.4平方公里临时几何分别登记，绝不互换。[data:visual/assets/spatial-atlas.json] [metric:official_planning_area_ha] [metric:submitted_provisional_area_sqm]
+
+大钟寺回执廊适配“既有公园—轨道方向性接口—城市更新界面”，当前仍为 **G0 NO-GO**：已公布空间背景不等于本方案完成测绘、权属、许可、搭建或现场运行。政府门户报道的公共使用是公开背景，不是本团队踏勘。[data:visual/assets/e2-readiness.json]
+
+![已批空间结构与京张双答运营叠加层](assets/figures/site-overview.png)
+
+![已批规划背景下的连续首层、公共服务与临时试验界面](assets/figures/land-use-structure.png)
+
+` : `
+
+> **Build a civic-adoption layer on the approved spatial structure.** Public information released in August 2026 identifies an approximately 1,668.2 ha block-plan context, a 9 km Jing-Zhang green belt and “**one belt, one axis, two centres and multiple nodes**”, with Dazhongsi as one of the two centres. Phase II supporting works are complete and form a fishbone slow-mobility network.[source:BEIJING-BLOCK-PLAN-APPROVED-20260812] [source:BEIJING-JZ-PHASE2-COMPLETE-20260714]
+
+“One spine, three stations and two wings” is therefore not a competing statutory plan. It is a **selectable, stoppable and removable operating overlay** embedded in the Jing-Zhang green belt and aligned with Dazhongsi centre and the innovation axis. The official 1,668.2 ha context and the 11.4 sq km provisional submission geometry are registered separately and never substituted.[data:visual/assets/spatial-atlas.json] [metric:official_planning_area_ha] [metric:submitted_provisional_area_sqm]
+
+The Dazhongsi Receipt Porch adapts between the existing park, a directional rail interface and an urban-renewal frontage. It remains **G0 NO-GO**: published context is not survey, title, permit, construction or field operation by this proposal. Government-reported public use is context, not participant observation.[data:visual/assets/e2-readiness.json]
+
+![Approved spatial structure and Jing-Zhang operating overlay](assets/figures/site-overview.en.png)
+
+![Continuous ground interface of approved context, public service and timed trial](assets/figures/land-use-structure.en.png)
+
+`;
+  text = replaceIntro(text, intro);
+  const exchange = zh ? `## 统筹研究范围产业与未来城市研究
+
+五条交换合同把区域协同从泛化连线改成可失败的证据交换：北纬社区提供居民问题与无障碍基线；未来科学城提供研究任务与开放模型能力；怀柔科学城提供仪器和复现条件；经开区提供制造、设备安全和维护接口；京津冀接口承接跨区域问题、算力与知识复用。每条合同都记录问题输入、能力提供、验证场所、证据产品、四类责任角色和失败出口；机构仅为建议角色，不代表合作承诺。[data:visual/assets/spatial-atlas.json]
+
+验证场所分别落在小月河翼、验真环、共译门和回执廊。任一许可、数据权利或普通基线不成立，交换立即停止并退回普通服务；成功与失败均进入公共知识库。` : `## Coordinated Research Area: Industry and Future City Research
+
+Five exchange contracts replace generic regional arrows with fallible evidence exchange. Beiwei community supplies resident problems and accessibility baselines; Future Science City supplies research tasks and open-model capability; Huairou Science City supplies instruments and reproduction conditions; Beijing E-Town supplies manufacturing, device-safety and maintenance interfaces; the Jing-Jin-Ji interface carries cross-regional problems, compute and knowledge reuse. Each contract records problem input, capability, validation place, evidence product, four owner roles and a failure exit. Institutions are proposed roles, not partnership claims.[data:visual/assets/spatial-atlas.json]
+
+Validation places are the Xiaoyuehe wing, Verification Ring, Translation Gate and Receipt Porch. Any failed permit, data right or ordinary baseline stops exchange and returns to ordinary service; both success and failure enter the public knowledge base.`;
+  text = replaceSection(text, zh?'## 统筹研究范围产业与未来城市研究':'## Coordinated Research Area: Industry and Future City Research', zh?'## 总体设计范围城市更新与控规深度城市设计':'## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design', exchange);
+  const culture = zh ? `### 三座回执地标、文化里程与国际传播
+
+文化里程以公开资料中的铁轨、龙门吊、窄轨、汽笛和铁轨花园建立五类构件目录。每项遵循“历史事实—静态双语/触觉/无手机讲解—AI可选增强—公众纠错—人工复核回执”；AI不得改写来源不明的历史，也不虚构资源精确位置。[data:visual/assets/spatial-atlas.json]
+
+验真环、共译门、回执廊共享遗产石墨、公共绿色、AI琥珀和证据蓝，但不共享轮廓。荣誉界面只登记任务、证据等级、决定、复核日期和贡献者，不设未经证明的技术排行榜。` : `### Three receipt landmarks, the evidence mile and international communication
+
+The evidence mile turns the published rail, gantry crane, narrow gauge, whistle and rail-garden resources into five component types. Each follows “heritage fact—static bilingual/tactile/phone-free interpretation—optional AI enhancement—public correction—staff-reviewed receipt”. AI may not rewrite unsourced history or invent exact resource locations.[data:visual/assets/spatial-atlas.json]
+
+Verification Ring, Translation Gate and Receipt Porch share heritage graphite, public green, AI amber and evidence blue, but not silhouettes. The honour interface records only task, evidence tier, decision, review date and contributor; it never becomes an unverified technology leaderboard.`;
+  text = replaceSection(text, zh?'### 三座回执地标、文化里程与国际传播':'### Three receipt landmarks, the evidence mile and international communication', zh?'### 产业生态、人才与未来城市研究':'### Industry, talent and future-city programme', culture);
+  const ops = zh ? `## 一带全球 AI 创新活动体系与长期运营设计
+
+“普通开放日”先运行公共路径、无障碍、常规接驳、遮阴候车、人工服务和静态导视，再核验开发者许可、独立岗位与普通基线。上午开放检查与基线记录；中午只做准入核验；下午公开状态、失败和人工干预；闭场后插件停机、空间复位、人工复核并归档。任何缺项都保持 OPEN，不进入 TRIAL。[data:visual/assets/two-answers.json]
+
+城市采纳年每季产生一种可复用知识资产：春季无障碍基线审计、夏季能力复现记录、秋季公众试用回执、冬季资产与退出复盘。公开报道的日常使用仅作为背景，不是本方案已完成公众参与或现场绩效。[source:BEIJING-JZ-PUBLIC-USE-20260730]` : `## Global AI Innovation Programme and Long-Term Operation
+
+An “Ordinary Open Day” runs public routes, accessibility, ordinary feeder, shaded waiting, staffed service and static guidance first, then checks developer permits, independent posts and the ordinary baseline. Morning opens and records the baseline; midday checks admission only; afternoon publishes state, failure and staff intervention; closing stops plug-ins, restores space, reviews manually and archives. Any missing item holds OPEN and blocks TRIAL.[data:visual/assets/two-answers.json]
+
+Each Civic Adoption Year season produces one reusable knowledge asset: spring accessibility audit, summer capability reproduction record, autumn public-trial receipt set, and winter asset-and-exit review. Government-reported daily use is background, not public participation or field performance completed by this proposal.[source:BEIJING-JZ-PUBLIC-USE-20260730]`;
+  text = replaceSection(text, zh?'## 一带全球 AI 创新活动体系与长期运营设计':'## Global AI Innovation Programme and Long-Term Operation', zh?'## 更新项目清单、实施政策与分期计划':'## Renewal Projects, Implementation Policy, and Phasing', ops);
+  text = text.replaceAll('V15 不虚构','V16 不虚构').replaceAll('V15 therefore','V16 therefore');
+  writeText(rel,text);
+}
+
+function updateV16() {
+  const model=readJson('visual/assets/prototype-model.json');
+  const atlas=readJson('visual/assets/spatial-atlas.json');
+  const scenes=readJson('visual/assets/two-answers.json');
+  model.schema_version=atlas.schema_version=scenes.schema_version='1.13.0';
+  atlas.official_context_update=V16_CONTEXT;
+  atlas.exchange_contracts=V16_EXCHANGES;
+  atlas.cultural_components=V16_CULTURE;
+  atlas.interface_status=['existing_published','approved_context','design_proposal','unknown'];
+  atlas.planning_reconciliation=V16_CONTEXT.planning_reconciliation;
+  scenes.official_context_update=V16_CONTEXT;
+  scenes.ordinary_open_day=V16_OPEN_DAY;
+  scenes.planning_reconciliation=V16_CONTEXT.planning_reconciliation;
+  writeJson('visual/assets/prototype-model.json',model);
+  writeJson('visual/assets/spatial-atlas.json',atlas);
+  writeJson('visual/assets/two-answers.json',scenes);
+  const metrics=readJson('metrics.json');
+  metrics.metrics.official_planning_area_ha={status:'known',value:1668.2,unit:'ha',source_files:['sources.json','visual/assets/spatial-atlas.json'],formula:'published figure; not recomputed from submitted geometry',confidence:'high',assumptions:[]};
+  metrics.metrics.official_green_belt_length_km={status:'known',value:9,unit:'km',source_files:['sources.json','visual/assets/spatial-atlas.json'],formula:'published figure',confidence:'high',assumptions:[]};
+  metrics.metrics.submitted_provisional_area_sqm={status:'known',value:11412825.386,unit:'sqm',source_files:['geometry/site_boundary.geojson'],formula:'polygon_area(submitted provisional geometry)',confidence:'medium',assumptions:['A-BOUNDARY-001']};
+  metrics.metrics.exchange_contract_count={status:'known',value:5,unit:'count',source_files:['visual/assets/spatial-atlas.json'],formula:'count(exchange_contracts)',confidence:'high',assumptions:[]};
+  metrics.metrics.cultural_component_count={status:'known',value:5,unit:'count',source_files:['visual/assets/spatial-atlas.json'],formula:'count(cultural_components)',confidence:'high',assumptions:[]};
+  metrics.metrics.ordinary_open_day_step_count={status:'known',value:5,unit:'count',source_files:['visual/assets/two-answers.json'],formula:'count(ordinary_open_day.steps)',confidence:'high',assumptions:[]};
+  writeJson('metrics.json',metrics);
+  const sources=readJson('sources.json');
+  upsertSource(sources,{id:'BEIJING-BLOCK-PLAN-APPROVED-20260812',publisher:'北京市人民政府门户网站',date:'2026-08-12',url:'https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202608/t20260812_4819212.html',source_type:'official_public',license:'Public information; quotation subject to publisher terms',usage:'Published 1,668.2 ha block-plan context, 9 km green belt, one-belt/one-axis/two-centres/multiple-nodes structure and Dazhongsi centre.',limitations:'Published planning context only; no exact redline, parcel control, title, survey or field-performance evidence.'});
+  upsertSource(sources,{id:'BEIJING-JZ-PHASE2-COMPLETE-20260714',publisher:'北京市园林绿化局',date:'2026-07-14',url:'https://yllhj.beijing.gov.cn/zwgk/zwxx/202607/t20260714_4761226.shtml',source_type:'official_public',license:'Public information; quotation subject to publisher terms',usage:'Published completion status of Phase II supporting works, approximately 30.01 ha north section and fishbone slow-mobility connections.',limitations:'Does not prove participant survey, construction acceptance of this proposal, or exact interfaces for design components.'});
+  upsertSource(sources,{id:'BEIJING-JZ-PUBLIC-USE-20260730',publisher:'北京市人民政府门户网站',date:'2026-07-30',url:'https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202607/t20260730_4799453.html',source_type:'official_public',license:'Public information; quotation subject to publisher terms',usage:'Published context on reported everyday public use and surrounding communities.',limitations:'Third-party published report only; not participant fieldwork, consultation, traffic count or satisfaction evidence.'});
+  upsertSource(sources,{id:'BEIJING-HD-BLOCK-PLAN-PARTICIPATION-20250207',publisher:'北京市规划和自然资源委员会',date:'2025-02-07',url:'https://ghzrzyw.beijing.gov.cn/chengxiangguihua/ghlgg/hd_ghlgg/202502/t20250207_4005553.html',source_type:'official_public',license:'Public information; quotation subject to publisher terms',usage:'Planning public-participation background and process context.',limitations:'Does not establish final parcel boundaries or participant-specific approval.'});
+  upsertSource(sources,{id:'LANJINGLI-RENEWAL-20260612',publisher:'北京市规划和自然资源委员会',date:'2026-06-12',url:'https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/zxzt/csgx/csgxfjszt/fjsztalzs/202606/t20260612_4698370.html',source_type:'official_public',license:'Public information; quotation subject to publisher terms',usage:'Published urban-renewal interface context near the corridor.',limitations:'Context only; no partnership, title, exact fit or implementation commitment is claimed.'});
+  writeJson('sources.json',sources);
+  addV16Proposal('proposal.md','zh');
+  addV16Proposal('proposal.en.md','en');
+  let log=readText('changelog.md');
+  if(!log.includes('## V16 - 在已批空间结构上建立城市采纳层')) log=log.replace(/^(# .*\n)/,`$1## V16 - 在已批空间结构上建立城市采纳层\n\n- 登记2026年公布的1668.2公顷街区背景、9公里绿带、“一带一轴、两心多点”、大钟寺中心与二期完工状态。\n- 将一脊三站两翼降为运营叠加层，明确官方街区范围与11.4平方公里临时投稿几何不可互换。\n- 将Agent 2/5/6补强为五条交换合同、五类文化构件、普通开放日及四季知识资产。\n- 四种图面状态固定为 existing_published / approved_context / design_proposal / unknown；现场绩效继续未知。\n\n`);
+  writeText('changelog.md',log);
+}
+
 function run() {
   updateReadiness();
   updateMetrics();
@@ -237,7 +402,8 @@ function run() {
   updateProposal('proposal.en.md', 'en');
   updateChangelog();
   updateRights();
-  console.log('V15 architecture, structured evidence and G0 NO-GO content written');
+  updateV16();
+  console.log('V16 approved-context alignment, structured evidence and G0 NO-GO content written');
 }
 
 module.exports = {run};

@@ -406,10 +406,11 @@
       "unit": "count",
       "source_files": [
         "visual/assets/governance/shift-ledger-suite.json",
-        "visual/assets/governance/rule-check-report.json",
-        "visual/assets/governance/validation-report.json"
+        "visual/assets/governance/shift-ledger.schema.json",
+        "visual/assets/governance/protocol-check-runner.js"
       ],
-      "formula": "count(synthetic shift-ledger instances validating against shift-ledger.schema.json with 0 errors)",
+      "formula": "count(ledgers in shift-ledger-suite.json whose enum-constrained fields all conform to shift-ledger.schema.json, recomputed in-package by protocol-check-runner.js)",
+      "scope_note": "在包内被独立复算的是**枚举符合性**：12 条账、360 个受枚举约束的字段实例、18 个枚举定义，越界 0 个；另有拒收理由码 5 值与「处置 × 智能层」兼容表 7 对，重跑器要求目录与枚举逐条一致。**完整的 Draft 2020-12 校验（含 required／type／format）只在仓库外对单个示例实例 example-scn05-shift-ledger.json 执行过一次**，记录在 validation-report.json——该报告从未覆盖 shift-ledger-suite.json 的 12 条账。此前本指标的公式写成「12 个实例通过 schema 校验」并把该报告列为来源，对证据范围夸大了 12 倍，2026-08-21 改准。",
       "confidence": "high",
       "assumptions": [
         "A-OPERATIONS-001"
@@ -1019,6 +1020,174 @@
         "baseline": null,
         "target": null
       }
+    },
+    "shift_protocol_enum_instance_count": {
+      "status": "known",
+      "value": 360,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/shift-ledger-suite.json",
+        "visual/assets/governance/shift-ledger.schema.json",
+        "visual/assets/governance/protocol-check-runner.js"
+      ],
+      "formula": "count(enum-constrained string field instances across the 12 shift ledgers, over the 18 enumerations declared in shift-ledger.schema.json)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "shift_protocol_enum_violation_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/protocol-check-runner.js"
+      ],
+      "formula": "count(enum-constrained field instances whose value is outside its declared enumeration)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "smart_layer_state_enum_size": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/shift-ledger.schema.json",
+        "visual/assets/governance/protocol-check-runner.js"
+      ],
+      "formula": "len(shift-ledger.schema.json#$defs.transferAttempt.properties.smart_layer_state_after_decision.enum) — off | sandbox_preview | limited_trial",
+      "scope_note": "该枚举**没有任何表示完全启用或已上线的取值**，因此「智能层不得越过有限试用」在 schema 层面就是结构性不可能，而不是一句承诺。protocol-check-runner.js 把这三个取值逐位写死并参与退出码，往枚举里加任何更高的状态都会立刻判失败。",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "model_shadow_case_count": {
+      "status": "known",
+      "value": 36,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/model-shadow-run.json"
+      ],
+      "formula": "count(cases in the model shadow run: 12 shift ledgers x 3 clearance variants, one independent model call each)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "model_shadow_deterministic_hold_case_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/model-shadow-run.json"
+      ],
+      "formula": "count(shadow cases whose deterministic outcome is smart_layer_state = off, i.e. variants P0 and P4)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "model_shadow_hold_upheld_by_model_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/model-shadow-run.json"
+      ],
+      "formula": "count(deterministic-hold cases in which the independent model also returned smart_layer_state = off)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "scope_note": "24/24。这是本方案核心前提（智能层可被确定性闸门拦住）第一次由一个不受规则约束的独立判断者验证，而不是由本方案自己的重放脚本验证。"
+    },
+    "model_shadow_more_permissive_case_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/model-shadow-run.json"
+      ],
+      "formula": "count(shadow cases in which the model returned a smart_layer_state strictly above the deterministic outcome)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "scope_note": "0 例。模型无一例想让智能层越过确定性闸门给出的状态。"
+    },
+    "model_shadow_smart_layer_agreement_count": {
+      "status": "known",
+      "value": 36,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/model-shadow-run.json"
+      ],
+      "formula": "count(shadow cases in which the model's smart_layer_state equals the deterministic outcome)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "model_shadow_reason_set_divergence_case_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/model-shadow-run.json"
+      ],
+      "formula": "count(shadow cases in which the model's refusal_reasons set differs from the deterministic set)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "scope_note": "分歧集中在理由码的命名与覆盖，不在结论上——这些分歧正是 model-shadow-run.json 里四条设计发现的来源。"
+    },
+    "model_shadow_distinct_reason_codes_produced": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/model-shadow-run.json"
+      ],
+      "formula": "count(distinct refusal reason codes produced by the model across 36 cases; the protocol itself records 4)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "scope_note": "14 对 4。同一概念被拼成多种写法（「场地未确认」有 4 种），因为 refusal_reasons 在 schema 里没有枚举约束——见 SHADOW-F1。"
+    },
+    "shift_protocol_refusal_reason_code_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/shift-ledger-suite.json",
+        "visual/assets/governance/shift-ledger.schema.json",
+        "visual/assets/governance/protocol-check-runner.js"
+      ],
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "value": 5,
+      "formula": "len(shift-ledger.schema.json#$defs.transferAttempt.properties.refusal_reasons.items.enum)"
+    },
+    "shift_protocol_disposition_smart_layer_pair_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/shift-ledger-suite.json",
+        "visual/assets/governance/shift-ledger.schema.json",
+        "visual/assets/governance/protocol-check-runner.js"
+      ],
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "value": 7,
+      "formula": "sum(len(row.permitted_smart_layer_state_after_decision) for row in shift-ledger.schema.json#disposition_smart_layer_compatibility.table)"
     }
   },
   "precision_policy_zh": "本文件所有由几何推算的数值，其小数位都是算法输出，不是实测精度。输入几何为组织方临时粗略范围（`geometry/site_boundary.geojson`，official_boundary=false），因此**面积类数值的有效位数实际只到公顷级、长度类只到百米级**；保留完整小数位的唯一目的是让任何人用同一公式与同一投影（EPSG:4548）逐位复算校对。官方几何到位后按同一公式原样复算，只换输入不改公式。**不要把这些小数位当作场地的精确程度来读。**",

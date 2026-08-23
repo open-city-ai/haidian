@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.12.0",
+  "schema_version": "1.13.0",
   "dataset_id": "jingzhang-two-answers",
   "title": {
     "zh": "京张双答：三站一历",
@@ -7234,5 +7234,247 @@
     "field_status": "not_field_run"
   },
   "current_implementation_gate": "G0_no_go_pending_survey_and_permits",
-  "prototype_model_ref": "visual/assets/prototype-model.json"
+  "prototype_model_ref": "visual/assets/prototype-model.json",
+  "official_context_update": {
+    "context_id": "OFFICIAL-CONTEXT-202608",
+    "schema_version": "1.13.0",
+    "title": {
+      "zh": "已批空间结构与京张双答运营叠加层",
+      "en": "Approved spatial structure and Jing-Zhang operating overlay"
+    },
+    "published_date": "2026-08-12",
+    "context_status": "approved_context",
+    "official_context_update": {
+      "planning_area_ha": 1668.2,
+      "green_belt_length_km": 9,
+      "published_structure": {
+        "zh": "一带一轴、两心多点",
+        "en": "one belt, one axis, two centres and multiple nodes"
+      },
+      "dazhongsi_role": {
+        "zh": "已公布的大钟寺中心",
+        "en": "published Dazhongsi centre"
+      },
+      "phase_two_status": {
+        "zh": "配套工程完工并报道近期开放",
+        "en": "supporting works completed and reported recently open"
+      },
+      "slow_mobility_pattern": {
+        "zh": "鱼骨状慢行联系",
+        "en": "fishbone slow-mobility connections"
+      },
+      "sources": [
+        "BEIJING-BLOCK-PLAN-APPROVED-20260812",
+        "BEIJING-JZ-PHASE2-COMPLETE-20260714",
+        "BEIJING-JZ-PUBLIC-USE-20260730"
+      ]
+    },
+    "planning_reconciliation": [
+      {
+        "layer": "existing_published",
+        "meaning": {
+          "zh": "公开报道的现状公共路径、二期完成状态与公共使用",
+          "en": "published public paths, Phase II completion and reported public use"
+        },
+        "legal_limit": {
+          "zh": "不是本团队踏勘、测绘或验收",
+          "en": "not participant fieldwork, survey or acceptance"
+        }
+      },
+      {
+        "layer": "approved_context",
+        "meaning": {
+          "zh": "1668.2公顷街区层面结构、9公里绿带和大钟寺中心",
+          "en": "1,668.2 ha block-level structure, 9 km green belt and Dazhongsi centre"
+        },
+        "legal_limit": {
+          "zh": "不替代精确红线、地块控制或产权",
+          "en": "does not replace exact redlines, parcel controls or title"
+        }
+      },
+      {
+        "layer": "design_proposal",
+        "meaning": {
+          "zh": "一脊三站两翼运营层、回执廊和可逆试验湾",
+          "en": "spine/stations/wings operating layer, Receipt Porch and reversible bay"
+        },
+        "legal_limit": {
+          "zh": "概念建议，待专业深化",
+          "en": "concept proposal pending professional development"
+        }
+      },
+      {
+        "layer": "unknown",
+        "meaning": {
+          "zh": "测绘、产权、管线、许可、报价和现场绩效",
+          "en": "survey, title, utilities, permits, quote and field performance"
+        },
+        "legal_limit": {
+          "zh": "不得由图面推定",
+          "en": "must not be inferred from drawings"
+        }
+      }
+    ],
+    "submission_overlay": {
+      "area_sqm": 11412825.386,
+      "status": "design_proposal",
+      "geometry_ref": "geometry/site_boundary.geojson",
+      "note": {
+        "zh": "11.4平方公里临时投稿几何，仅用于可复算与概念组织",
+        "en": "11.4 sq km provisional submission geometry for recomputation and concept organisation only"
+      }
+    },
+    "visual_evidence_role": "planning_reconciliation_and_operating_overlay",
+    "supersedes_assumption_ref": "V15_CONTEXT_TREATED_AS_MISSING"
+  },
+  "ordinary_open_day": {
+    "program_id": "OPS-ORDINARY-OPEN-DAY",
+    "title": {
+      "zh": "普通开放日运营总图",
+      "en": "Ordinary Open Day operating plan"
+    },
+    "published_public_use": "reported_by_government_portal_not_participant_observation",
+    "steps": [
+      {
+        "time": "08:00",
+        "state": "OPEN",
+        "action": {
+          "zh": "普通路径、无障碍、人工台与静态导视检查",
+          "en": "public route, access, staffed desk and static guide check"
+        },
+        "owner_roles": [
+          "site_lead",
+          "baseline_service",
+          "safety_lead",
+          "data_steward"
+        ],
+        "failure_exit": "PAUSE_to_OPEN"
+      },
+      {
+        "time": "09:00",
+        "state": "BASELINE",
+        "action": {
+          "zh": "常规接驳、候车、遮阴与申诉独立运行",
+          "en": "ordinary feeder, waiting, shade and appeal operate independently"
+        },
+        "owner_roles": [
+          "site_lead",
+          "baseline_service",
+          "safety_lead",
+          "data_steward"
+        ],
+        "failure_exit": "PAUSE_to_OPEN"
+      },
+      {
+        "time": "13:00",
+        "state": "TRIAL_GATE",
+        "action": {
+          "zh": "只核验开发者许可、岗位和普通基线；不满足则不开试验",
+          "en": "check developer permits, posts and baseline only; no trial if incomplete"
+        },
+        "owner_roles": [
+          "site_lead",
+          "baseline_service",
+          "safety_lead",
+          "data_steward"
+        ],
+        "failure_exit": "PAUSE_to_OPEN"
+      },
+      {
+        "time": "16:00",
+        "state": "PUBLIC_REVIEW",
+        "action": {
+          "zh": "公布状态、失败、人工干预和未知项",
+          "en": "publish state, failures, staff interventions and unknowns"
+        },
+        "owner_roles": [
+          "site_lead",
+          "baseline_service",
+          "safety_lead",
+          "data_steward"
+        ],
+        "failure_exit": "PAUSE_to_OPEN"
+      },
+      {
+        "time": "18:00",
+        "state": "CLOSE",
+        "action": {
+          "zh": "插件停机、场地复位、人工复核与知识归档",
+          "en": "stop plug-ins, restore space, staff review and archive knowledge"
+        },
+        "owner_roles": [
+          "site_lead",
+          "baseline_service",
+          "safety_lead",
+          "data_steward"
+        ],
+        "failure_exit": "PAUSE_to_OPEN"
+      }
+    ],
+    "annual_program": [
+      {
+        "season": "spring",
+        "knowledge_asset": "baseline_accessibility_audit"
+      },
+      {
+        "season": "summer",
+        "knowledge_asset": "capability_reproduction_record"
+      },
+      {
+        "season": "autumn",
+        "knowledge_asset": "public_trial_receipt_set"
+      },
+      {
+        "season": "winter",
+        "knowledge_asset": "annual_asset_and_exit_review"
+      }
+    ],
+    "field_status": "not_field_run"
+  },
+  "planning_reconciliation": [
+    {
+      "layer": "existing_published",
+      "meaning": {
+        "zh": "公开报道的现状公共路径、二期完成状态与公共使用",
+        "en": "published public paths, Phase II completion and reported public use"
+      },
+      "legal_limit": {
+        "zh": "不是本团队踏勘、测绘或验收",
+        "en": "not participant fieldwork, survey or acceptance"
+      }
+    },
+    {
+      "layer": "approved_context",
+      "meaning": {
+        "zh": "1668.2公顷街区层面结构、9公里绿带和大钟寺中心",
+        "en": "1,668.2 ha block-level structure, 9 km green belt and Dazhongsi centre"
+      },
+      "legal_limit": {
+        "zh": "不替代精确红线、地块控制或产权",
+        "en": "does not replace exact redlines, parcel controls or title"
+      }
+    },
+    {
+      "layer": "design_proposal",
+      "meaning": {
+        "zh": "一脊三站两翼运营层、回执廊和可逆试验湾",
+        "en": "spine/stations/wings operating layer, Receipt Porch and reversible bay"
+      },
+      "legal_limit": {
+        "zh": "概念建议，待专业深化",
+        "en": "concept proposal pending professional development"
+      }
+    },
+    {
+      "layer": "unknown",
+      "meaning": {
+        "zh": "测绘、产权、管线、许可、报价和现场绩效",
+        "en": "survey, title, utilities, permits, quote and field performance"
+      },
+      "legal_limit": {
+        "zh": "不得由图面推定",
+        "en": "must not be inferred from drawings"
+      }
+    }
+  ]
 }

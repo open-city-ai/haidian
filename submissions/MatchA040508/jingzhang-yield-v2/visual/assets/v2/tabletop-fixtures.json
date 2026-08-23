@@ -1,0 +1,1265 @@
+{
+  "schema_version": "2.0.0",
+  "fixtures": [
+    {
+      "id": "SC-01-NORMAL",
+      "scenario_id": "SC-01",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-01-NO_ACCOUNT",
+      "scenario_id": "SC-01",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-01-NETWORK_LOSS",
+      "scenario_id": "SC-01",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-01-TAKEOVER_REQUEST",
+      "scenario_id": "SC-01",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-01-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-01",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-01-PATH_OBSTRUCTION",
+      "scenario_id": "SC-01",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-01-OPERATOR_ABSENT",
+      "scenario_id": "SC-01",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-02-NORMAL",
+      "scenario_id": "SC-02",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-02-NO_ACCOUNT",
+      "scenario_id": "SC-02",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-02-NETWORK_LOSS",
+      "scenario_id": "SC-02",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-02-TAKEOVER_REQUEST",
+      "scenario_id": "SC-02",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-02-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-02",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-02-PATH_OBSTRUCTION",
+      "scenario_id": "SC-02",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-02-OPERATOR_ABSENT",
+      "scenario_id": "SC-02",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-03-NORMAL",
+      "scenario_id": "SC-03",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-03-NO_ACCOUNT",
+      "scenario_id": "SC-03",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-03-NETWORK_LOSS",
+      "scenario_id": "SC-03",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-03-TAKEOVER_REQUEST",
+      "scenario_id": "SC-03",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-03-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-03",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-03-PATH_OBSTRUCTION",
+      "scenario_id": "SC-03",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-03-OPERATOR_ABSENT",
+      "scenario_id": "SC-03",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-04-NORMAL",
+      "scenario_id": "SC-04",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-04-NO_ACCOUNT",
+      "scenario_id": "SC-04",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-04-NETWORK_LOSS",
+      "scenario_id": "SC-04",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-04-TAKEOVER_REQUEST",
+      "scenario_id": "SC-04",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-04-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-04",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-04-PATH_OBSTRUCTION",
+      "scenario_id": "SC-04",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-04-OPERATOR_ABSENT",
+      "scenario_id": "SC-04",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-05-NORMAL",
+      "scenario_id": "SC-05",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-05-NO_ACCOUNT",
+      "scenario_id": "SC-05",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-05-NETWORK_LOSS",
+      "scenario_id": "SC-05",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-05-TAKEOVER_REQUEST",
+      "scenario_id": "SC-05",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-05-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-05",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-05-PATH_OBSTRUCTION",
+      "scenario_id": "SC-05",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-05-OPERATOR_ABSENT",
+      "scenario_id": "SC-05",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-06-NORMAL",
+      "scenario_id": "SC-06",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-06-NO_ACCOUNT",
+      "scenario_id": "SC-06",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-06-NETWORK_LOSS",
+      "scenario_id": "SC-06",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-06-TAKEOVER_REQUEST",
+      "scenario_id": "SC-06",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-06-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-06",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-06-PATH_OBSTRUCTION",
+      "scenario_id": "SC-06",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-06-OPERATOR_ABSENT",
+      "scenario_id": "SC-06",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-07-NORMAL",
+      "scenario_id": "SC-07",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-07-NO_ACCOUNT",
+      "scenario_id": "SC-07",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-07-NETWORK_LOSS",
+      "scenario_id": "SC-07",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-07-TAKEOVER_REQUEST",
+      "scenario_id": "SC-07",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-07-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-07",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-07-PATH_OBSTRUCTION",
+      "scenario_id": "SC-07",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-07-OPERATOR_ABSENT",
+      "scenario_id": "SC-07",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-08-NORMAL",
+      "scenario_id": "SC-08",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-08-NO_ACCOUNT",
+      "scenario_id": "SC-08",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-08-NETWORK_LOSS",
+      "scenario_id": "SC-08",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-08-TAKEOVER_REQUEST",
+      "scenario_id": "SC-08",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-08-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-08",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-08-PATH_OBSTRUCTION",
+      "scenario_id": "SC-08",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-08-OPERATOR_ABSENT",
+      "scenario_id": "SC-08",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-09-NORMAL",
+      "scenario_id": "SC-09",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-09-NO_ACCOUNT",
+      "scenario_id": "SC-09",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-09-NETWORK_LOSS",
+      "scenario_id": "SC-09",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-09-TAKEOVER_REQUEST",
+      "scenario_id": "SC-09",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-09-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-09",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-09-PATH_OBSTRUCTION",
+      "scenario_id": "SC-09",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-09-OPERATOR_ABSENT",
+      "scenario_id": "SC-09",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-10-NORMAL",
+      "scenario_id": "SC-10",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-10-NO_ACCOUNT",
+      "scenario_id": "SC-10",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-10-NETWORK_LOSS",
+      "scenario_id": "SC-10",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-10-TAKEOVER_REQUEST",
+      "scenario_id": "SC-10",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-10-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-10",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-10-PATH_OBSTRUCTION",
+      "scenario_id": "SC-10",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-10-OPERATOR_ABSENT",
+      "scenario_id": "SC-10",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-11-NORMAL",
+      "scenario_id": "SC-11",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-11-NO_ACCOUNT",
+      "scenario_id": "SC-11",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-11-NETWORK_LOSS",
+      "scenario_id": "SC-11",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-11-TAKEOVER_REQUEST",
+      "scenario_id": "SC-11",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-11-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-11",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-11-PATH_OBSTRUCTION",
+      "scenario_id": "SC-11",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-11-OPERATOR_ABSENT",
+      "scenario_id": "SC-11",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-12-NORMAL",
+      "scenario_id": "SC-12",
+      "case_id": "NORMAL",
+      "negative": false,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "proceed_with_ai_assist"
+    },
+    {
+      "id": "SC-12-NO_ACCOUNT",
+      "scenario_id": "SC-12",
+      "case_id": "NO_ACCOUNT",
+      "negative": true,
+      "state": {
+        "account_available": false,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-12-NETWORK_LOSS",
+      "scenario_id": "SC-12",
+      "case_id": "NETWORK_LOSS",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": false,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-12-TAKEOVER_REQUEST",
+      "scenario_id": "SC-12",
+      "case_id": "TAKEOVER_REQUEST",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": true,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "use_same_task_human_baseline"
+    },
+    {
+      "id": "SC-12-DATA_SCOPE_VIOLATION",
+      "scenario_id": "SC-12",
+      "case_id": "DATA_SCOPE_VIOLATION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": false,
+        "human_spine_clear": true,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-12-PATH_OBSTRUCTION",
+      "scenario_id": "SC-12",
+      "case_id": "PATH_OBSTRUCTION",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": false,
+        "operator_present": true
+      },
+      "expected": "stop_and_record"
+    },
+    {
+      "id": "SC-12-OPERATOR_ABSENT",
+      "scenario_id": "SC-12",
+      "case_id": "OPERATOR_ABSENT",
+      "negative": true,
+      "state": {
+        "account_available": true,
+        "network_available": true,
+        "human_takeover_requested": false,
+        "data_scope_valid": true,
+        "human_spine_clear": true,
+        "operator_present": false
+      },
+      "expected": "stop_and_record"
+    }
+  ]
+}

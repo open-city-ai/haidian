@@ -1,0 +1,29 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-40",
+ "title_zh": "自审脚本可运行",
+ "title_en": "Self-audit script runnability",
+ "domain": "evaluation",
+ "status": "design_target",
+ "source_ids": [
+  "PKG-EVIDENCE-LEDGER",
+  "PKG-CLAIM-PROVENANCE",
+  "PKG-GATES"
+ ],
+ "inputs": [
+  "visual/assets/evidence-audit.js",
+  "visual/assets/claim-provenance.json"
+ ],
+ "procedure": [
+  "提供离线可运行脚本重算全部可核验断言。",
+  "脚本失败即阻断提交。",
+  "脚本输出与本包声明一致。"
+ ],
+ "pass_rule": "脚本以 node 单命令运行且全部断言通过。",
+ "stop_rule": "出现脚本不可运行或断言失败时停止提交。",
+ "owner": "evidence officer",
+ "non_ai_equivalent": "内部审计与复核",
+ "evidence_output": "self_audit_report",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

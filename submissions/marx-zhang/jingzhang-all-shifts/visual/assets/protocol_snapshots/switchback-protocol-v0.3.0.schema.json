@@ -1,0 +1,160 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "renline-switchback-protocol-0.3.0",
+  "title": "Switchback Protocol card contract 折返协议卡片合同",
+  "description": "Machine-checkable contract for RENLINE Switchback Protocol files (schema_version 0.3.0, opened as a community standard in open-city-ai/haidian Issue #1119, CC-BY-4.0 protocol spec only). Validation passing certifies protocol logic only — never field performance, approval or government commitment. 校验通过只证明协议逻辑自洽,不证明现场成效、批准或任何政府承诺。",
+  "type": "object",
+  "required": ["schema_version", "protocol", "license", "status_enum", "belt_wide_defaults", "roles_model", "cards", "field_semantics", "migration"],
+  "properties": {
+    "schema_version": { "const": "0.3.0" },
+    "protocol": { "const": "switchback-protocol" },
+    "license": {
+      "type": "object",
+      "required": ["spdx_id", "url", "scope", "attribution_required", "attribution_text"],
+      "properties": {
+        "spdx_id": { "const": "CC-BY-4.0" },
+        "scope": { "const": "protocol_spec_only" },
+        "attribution_required": { "const": true }
+      }
+    },
+    "status_enum": {
+      "type": "object",
+      "required": ["green", "yellow", "red", "green_candidate"]
+    },
+    "belt_wide_defaults": {
+      "type": "object",
+      "required": ["human_takeover_max_minutes", "appeal_acknowledge_working_days", "appeal_resolve_working_days", "public_review_cycle_days", "switchback_trigger", "recovery_condition", "disclaimer_zh", "disclaimer_en"]
+    },
+    "roles_model": {
+      "type": "object",
+      "required": ["accountable_operator", "safety_officer", "data_steward", "public_redress", "independent_reviewer"]
+    },
+    "cards": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/card" }
+    },
+    "field_semantics": { "type": "object" },
+    "interop": {
+      "description": "Optional crosswalk declaration to adjacent open standards. Absent in v0.2 files; ignoring it reads the file exactly as v0.2. 可选互操作声明,忽略即等同 v0.2 读法。",
+      "type": "object",
+      "required": ["crosswalk_axis", "status_crosswalk", "registered_baselines", "boundary_zh", "boundary_en"],
+      "properties": {
+        "crosswalk_axis": {
+          "type": "object",
+          "required": ["external_name", "resolves_to_local_field", "do_not_confuse_with"],
+          "properties": {
+            "resolves_to_local_field": { "const": "gate" },
+            "do_not_confuse_with": { "const": "ascent_grade" }
+          }
+        },
+        "status_crosswalk": {
+          "type": "object",
+          "required": ["rows"],
+          "properties": {
+            "rows": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["status", "gate", "open_level_id", "binds_grade"],
+                "properties": {
+                  "status": { "enum": ["green", "yellow", "red", "green_candidate"] },
+                  "gate": { "type": ["string", "null"] },
+                  "open_level_id": { "type": ["string", "null"], "pattern": "^L[0-4]$" },
+                  "binds_grade": { "type": ["string", "null"], "pattern": "^G[0-5]$" }
+                }
+              }
+            }
+          }
+        },
+        "registered_baselines": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "publisher", "license", "relation", "self_declaration"],
+            "properties": {
+              "relation": { "enum": ["adjacent_layer", "same_layer", "superseded_by"] }
+            }
+          }
+        }
+      }
+    },
+    "migration": { "type": "object" }
+  },
+  "definitions": {
+    "card": {
+      "type": "object",
+      "required": ["id", "name_zh", "name_en", "type", "status", "anchor", "anchor_type", "takeover_max_minutes", "fallback", "data_boundary", "human_review", "ascent_grade", "evidence_status"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Z]+[0-9]+$" },
+        "status": { "enum": ["green", "yellow", "red", "green_candidate"] },
+        "anchor_type": { "enum": ["geojson_ref", "text_only"] },
+        "anchor_ref": { "type": "string", "pattern": "^geometry/[a-z_]+\\.geojson#[A-Za-z0-9_-]+$" },
+        "takeover_max_minutes": { "type": ["number", "null"] },
+        "takeover_status": { "enum": ["not_applicable", "unknown"] },
+        "fallback": { "type": "string", "minLength": 8 },
+        "data_boundary": { "type": "string", "minLength": 8 },
+        "human_review": { "type": "string", "minLength": 8 },
+        "ascent_grade": { "type": "string", "pattern": "^G[0-5]$" },
+        "evidence_status": { "enum": ["known", "design_target", "unknown", "blocked"] },
+        "interop": {
+          "description": "Optional. Declares that this card also carries an adjacent standard's open level. Declaring it accepts rule R5. 可选;声明即接受 R5 校验。",
+          "type": "object",
+          "required": ["baseline", "open_level_id"],
+          "properties": {
+            "baseline": { "type": "string", "minLength": 2 },
+            "open_level_id": { "type": "string", "pattern": "^L[0-4]$" }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "description": "R1: yellow cards must declare a numeric human-takeover ceiling and a verification gate 黄灯卡必须声明数字接管上限与验证门",
+          "if": { "properties": { "status": { "const": "yellow" } } },
+          "then": { "required": ["gate"], "properties": { "takeover_max_minutes": { "type": "number" } } }
+        },
+        {
+          "description": "R2: a null takeover ceiling must be disambiguated by takeover_status 接管空值必须由 takeover_status 消歧",
+          "if": { "properties": { "takeover_max_minutes": { "type": "null" } } },
+          "then": { "required": ["takeover_status"] }
+        },
+        {
+          "description": "R3: geojson_ref anchors must carry a resolvable anchor_ref 几何锚点必须携带可解析引用",
+          "if": { "properties": { "anchor_type": { "const": "geojson_ref" } } },
+          "then": { "required": ["anchor_ref"] }
+        },
+        {
+          "description": "R4: no card may claim an ascent grade above G2 while evidence_status is design_target 证据仍为设计目标值的卡不得声称G3及以上",
+          "if": { "properties": { "evidence_status": { "const": "design_target" } } },
+          "then": { "properties": { "ascent_grade": { "pattern": "^G[0-2]$" } } }
+        },
+        {
+          "description": "R5/L0: a card mapped to open level L0 must be green_candidate 认领 L0 的卡必须是预备态",
+          "if": { "required": ["interop"], "properties": { "interop": { "properties": { "open_level_id": { "const": "L0" } } } } },
+          "then": { "properties": { "status": { "const": "green_candidate" } } }
+        },
+        {
+          "description": "R5/L1: L1 requires a yellow card at the virtual_evaluation gate backed by an attained grade of at least G1 认领 L1 须黄灯、门为虚拟评估、已达 G1",
+          "if": { "required": ["interop"], "properties": { "interop": { "properties": { "open_level_id": { "const": "L1" } } } } },
+          "then": { "required": ["gate"], "properties": { "status": { "const": "yellow" }, "gate": { "const": "virtual_evaluation" }, "ascent_grade": { "pattern": "^G[1-5]$" } } }
+        },
+        {
+          "description": "R5/L2: L2 requires a yellow card at the controlled_site gate backed by an attained grade of at least G2 认领 L2 须黄灯、门为封闭场地、已达 G2",
+          "if": { "required": ["interop"], "properties": { "interop": { "properties": { "open_level_id": { "const": "L2" } } } } },
+          "then": { "required": ["gate"], "properties": { "status": { "const": "yellow" }, "gate": { "const": "controlled_site" }, "ascent_grade": { "pattern": "^G[2-5]$" } } }
+        },
+        {
+          "description": "R5/L3: L3 requires a yellow card at the limited_real_street gate backed by an attained grade of at least G3 认领 L3 须黄灯、门为限定实街、已达 G3",
+          "if": { "required": ["interop"], "properties": { "interop": { "properties": { "open_level_id": { "const": "L3" } } } } },
+          "then": { "required": ["gate"], "properties": { "status": { "const": "yellow" }, "gate": { "const": "limited_real_street" }, "ascent_grade": { "pattern": "^G[3-5]$" } } }
+        },
+        {
+          "description": "R5/L4: L4 requires a green card backed by an attained grade of at least G3 认领 L4 须绿灯且已达 G3",
+          "if": { "required": ["interop"], "properties": { "interop": { "properties": { "open_level_id": { "const": "L4" } } } } },
+          "then": { "properties": { "status": { "const": "green" }, "ascent_grade": { "pattern": "^G[3-5]$" } } }
+        }
+      ]
+    }
+  }
+}

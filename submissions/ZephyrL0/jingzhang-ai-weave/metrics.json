@@ -20,7 +20,7 @@
     },
     "green_space_area_sqm": {
       "status": "known",
-      "value": 3159125.179,
+      "value": 3159036.712482,
       "unit": "sqm",
       "source_files": [
         "geometry/green_space.geojson"
@@ -33,7 +33,7 @@
     },
     "public_space_area_sqm": {
       "status": "known",
-      "value": 879157.451,
+      "value": 879132.939325,
       "unit": "sqm",
       "source_files": [
         "geometry/public_space.geojson"
@@ -46,7 +46,7 @@
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 1672759.049,
+      "value": 1672787.919572,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
@@ -59,7 +59,7 @@
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.276805,
+      "value": 0.276797077467,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
@@ -73,7 +73,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.077032,
+      "value": 0.077030262848,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -223,7 +223,7 @@
       "formula": "count(public_designs.flagships[].section_types)",
       "confidence": "high",
       "assumptions": [
-        "Four concept section types per flagship; not construction drawings."
+        "Eight programmed section/time types across the two concept flagships; not construction drawings."
       ]
     },
     "negative_test_count": {
@@ -530,7 +530,7 @@
         "sources.json",
         "report/narrative.md"
       ],
-      "formula": "count(user-provided full texts or manuscripts reviewed in v5.2)",
+      "formula": "count(user-provided full texts or manuscripts reviewed in the evidence matrix)",
       "confidence": "high",
       "assumptions": []
     },
@@ -704,6 +704,60 @@
       "confidence": "medium",
       "assumptions": [
         "2021 ESA WorldCover signal on provisional key-area polygons."
+      ]
+    },
+    "civic_weather_steward_fixture_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/civic-weather-steward-fixtures.json",
+        "visual/assets/civic-weather-steward-run.json"
+      ],
+      "formula": "evaluation.fixture_count in CWS-01 offline deterministic contract run",
+      "confidence": "high",
+      "assumptions": [
+        "Fixtures verify declared rule behavior only; they are not a field test or proof of model performance."
+      ]
+    },
+    "civic_weather_steward_must_fail_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/civic-weather-steward-fixtures.json",
+        "visual/assets/civic-weather-steward-run.json"
+      ],
+      "formula": "evaluation.must_fail_count where intentional hard-stop cases must HOLD or REFUSE",
+      "confidence": "high",
+      "assumptions": [
+        "Includes privacy, prohibited authority, no steward, access, free pause, tree/heritage and maintenance gates."
+      ]
+    },
+    "civic_weather_steward_test_pass_rate": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-weather-steward-run.json"
+      ],
+      "formula": "evaluation.passed / evaluation.fixture_count in CWS-01 offline deterministic contract run",
+      "confidence": "high",
+      "assumptions": [
+        "A pass means fixture-rule agreement, not public, operational or technical performance."
+      ]
+    },
+    "civic_weather_steward_automatic_action_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/civic-weather-steward-run.json"
+      ],
+      "formula": "evaluation.automatic_action_count in CWS-01 offline deterministic contract run",
+      "confidence": "high",
+      "assumptions": [
+        "Every output remains a human-mediated suggestion with non-digital equivalence."
       ]
     }
   }

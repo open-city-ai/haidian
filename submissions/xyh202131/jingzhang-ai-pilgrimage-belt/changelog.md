@@ -1,5 +1,16 @@
 # 方案迭代记录 / Changelog
 
+## v56.0 - 2026-08-23
+
+**已批规划语境对位与前台图件去重 / Approved-Plan Alignment and Front-stage Figure De-duplication**
+
+- 串行门：PR #3646 已 `MERGED`，merge `082f0ee8020e92a294e81bb30254c0e0faac38f8` 已进入 canonical `main@dfd84b4a2dae043e38ca4f6fdde711435c65c9a2`；同包开放 PR 为 0，工作树洁净。开工前重新同步并复读最新仓库规则、Skill、任务书、source registry、formal guide、Issues/PR 与验证脚本。
+- 修复前 RED：双语 proposal 各嵌 15 张前台图，`key-areas` 各重复 2 次，`spatial-atlas` 各再重复三处主答案；六项 visual 导航同时保留“公共地面”和“三处原型”，但 2026-08-12 官方“街区控规获批”公开页未登记，已批文字方向—本方案增量—仍缺官方／专业资料之间没有唯一桥梁。这是桌面来源与编辑冷读审查，不是公众反馈、专家意见或评审结果。
+- 新增 1 条 citation-only 官方公开来源，明确只引用获批状态、2024—2035、9 街区、约 1668.2 公顷、“一带一轴、两心多点”及公开的更新／慢行／公共服务方向；不取得或推断批复正文、图则、官方 GIS/CAD、地块控制、道路红线、建筑指标、市政容量、权属、现场或专业结论。
+- 新增双语对位表，把双轨限定为已批公共空间与更新方向上的可逆服务叠层，不是第二套法定结构。公开约 16.682 km² 规划范围与本包 11,412,825.386 m² 临时模型明确不等量、未套合、不得互换；九份 geometry 与 `metrics.json` 字节冻结。
+- 双语 proposal 前台图各由 15 张收束为 9 张，`key-areas` 各只保留一次，`spatial-atlas` 退出 proposal／visual 前台但文件和后台证据仍保留；visual 仍为六项导航，以“已批规划对位”替换重复入口。无新媒体、页面、场景、项目、重点区、合同、成熟度或现实结果。
+- G0、NO-GO、provisional、12/8/3/36、完整非 AI 路径、故障只停验证叠层、恢复不授权／不批准／不重启／不进入 G1、专业否决、`not_fully_cleared` 与独立逐文件清权 0 保持不变。
+
 ## v55.0 - 2026-08-21
 
 **海淀日常证据化与前后台压缩 / Lived Haidian Evidence and Front/Back-stage Compression**

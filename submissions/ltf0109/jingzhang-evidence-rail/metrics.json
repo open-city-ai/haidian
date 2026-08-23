@@ -13,9 +13,9 @@
     "geometry/site_boundary.geojson"
    ],
    "formula": "polygon_area(submitted_site_boundary)",
-   "confidence": "high",
+   "confidence": "medium",
    "assumptions": [
-    "Trusted official boundary is present in the site package."
+    "面积基于 provisional site_boundary（组织方官方 polygon 未发布）的 EPSG:4548 重算，为临时估算，非官方红线/精确面积依据；官方几何发布后须重算"
    ]
   },
   "building_footprint_area_sqm": {
@@ -45,9 +45,9 @@
   },
   "public_space_ratio": {
    "status": "known",
-   "value": 0.002542,
+   "value": 0.117777,
    "unit": "ratio",
-   "formula": "public_space.area/site.area in EPSG:4548",
+   "formula": "union(public_space.geometry).area/site.area in EPSG:4548",
    "source_files": [
     "geometry/public_space.geojson",
     "geometry/site_boundary.geojson"
@@ -114,7 +114,7 @@
    "formula": "count(renewal projects JZ-01..JZ-07 in proposal.md)",
    "confidence": "high",
    "assumptions": [
-    "JZ-01 京张遗址公园活力带 / JZ-02 AI原点社区 / JZ-03 大钟寺 / JZ-04 节点更新 / JZ-05 慢行系统 / JZ-06 智慧设施 / JZ-07 OPC 一人公司产业园试点"
+    "JZ-01 京张遗址公园慢行断点缝合 / JZ-02 众智园清河创新界面 / JZ-03 原点社区近校成果转化街 / JZ-04 大钟寺站四象限步行连通 / JZ-05 AI公共服务与端侧算力节点 / JZ-06 全球AI活动周公共路线 / JZ-07 OPC 一人公司产业园试点（与 proposal.md 项目表一致）"
    ]
   },
   "scenario_node_count": {
@@ -342,14 +342,16 @@
   },
   "public_space_area_sqm": {
    "status": "known",
-   "value": 29015.22,
+   "value": 1344166.894,
    "unit": "sqm",
-   "formula": "sum(public_space.geometry.area) in EPSG:4548",
+   "formula": "union(public_space.geometry).area in EPSG:4548",
    "source_files": [
     "geometry/public_space.geojson"
    ],
    "confidence": "high",
-   "assumptions": []
+   "assumptions": [
+    "含京张遗址公园活力带（GREEN-001 兼作公共空间主轴，D1 修复）"
+   ]
   }
  }
 }

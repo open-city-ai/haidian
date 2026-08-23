@@ -1,8 +1,8 @@
 {
   "schema_version": "0.1.0",
-  "title": "Jingzhang Adversarial Design Studio v3 alpha",
+  "title": "Jingzhang Adversarial Design Studio v5.3 governance delta",
   "disclaimer": "Offline concept-design audit only. It does not simulate residents, prove field performance, or authorize operation.",
-  "design_version": "v3.0-alpha1",
+  "design_version": "v5.3-governance-agent-delta",
   "task_count": 12,
   "tasks": [
     {
@@ -276,5 +276,164 @@
     "visual/assets/agent-runtime.json",
     "visual/assets/replay.js"
   ],
-  "human_decision_rule": "Every scaling, permit, pause, or exit decision remains with a named human/agency record; the Agent may expose contradictions but cannot approve implementation."
+  "human_decision_rule": "Every scaling, permit, pause, or exit decision remains with a named human/agency record; the Agent may expose contradictions but cannot approve implementation.",
+  "public_space_agent_admission_exit_protocol": {
+    "protocol_id": "AGENT-GOV-01",
+    "title_zh": "公共空间Agent准入、申诉与退出协议",
+    "status": "offline deterministic concept protocol; no field deployment, personal-data collection, approval, registration, or safety assessment is claimed",
+    "scope_zh": "适用于共享檐和四角客厅的概念性导向、设施状态提示、人工报修整理与服务分流建议；不适用于交通信号控制、执法、身份识别、商业画像、项目审批、采购或自动化公共决定。",
+    "reference_sources": [
+      {
+        "evidence_grade": "A-primary-public-policy",
+        "title": "北京市关于加快智能体引领发展的若干措施政策解读",
+        "publisher": "北京市发展和改革委员会",
+        "date": "2026-07-23",
+        "url": "https://www.beijing.gov.cn/zhengce/zcjd/202607/t20260723_4781151.html",
+        "use": "概念上参照智能体场景建设、安全治理、开源开放和能力复用方向，不作为本项目已获支持或可直接部署的证明。"
+      },
+      {
+        "evidence_grade": "A-primary-public-regulation",
+        "title": "生成式人工智能服务管理暂行办法",
+        "publisher": "国家互联网信息办公室等",
+        "date": "2023-07-10",
+        "url": "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
+        "use": "概念上参照透明度、最小必要收集、投诉处理、内容安全和有公众服务时的责任边界。"
+      },
+      {
+        "evidence_grade": "A-primary-public-regulation",
+        "title": "人工智能生成合成内容标识办法",
+        "publisher": "国家互联网信息办公室、工业和信息化部、公安部、国家广播电视总局",
+        "date": "2025-03-07",
+        "url": "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
+        "use": "未来若实际向公众提供生成合成内容，仅提示显式/隐式标识和服务方义务，不声明本投稿或概念原型已完成标识合规。"
+      },
+      {
+        "evidence_grade": "A-primary-public-law",
+        "title": "中华人民共和国个人信息保护法",
+        "publisher": "全国人民代表大会常务委员会",
+        "date": "2021-08-20",
+        "url": "https://www.npc.gov.cn/WZWSREL25wYy9jMi9jMzA4MzQvMjAyMTA4L3QyMDIxMDgyMF8zMTMwODguaHRtbD9yZWY9aW1i",
+        "use": "未来若涉及个人信息或公共场所图像/身份识别设备，提示最小必要、目的限定、显著告知与适用法定条件；不把本协议当作法律意见。"
+      }
+    ],
+    "input_contract": {
+      "allowed_inputs": [
+        "不含个人标识的设施状态，例如纸质导向牌损坏、饮水点关闭或无障碍通路被占用的人工报修摘要",
+        "经人工确认的公开活动时段、天气预警或设施维护窗口",
+        "不含个人身份、面部、精确行踪或可反推个体的聚合服务需求计数"
+      ],
+      "prohibited_inputs": [
+        "人脸、声纹、可识别图像、设备标识、联系方式、精确轨迹或跨场景画像",
+        "儿童、老年人或残障人士的可识别互动记录、健康信息或情绪推断",
+        "未经确认的道路信号、轨道、消防、执法、审批、采购或商业定价控制命令"
+      ],
+      "data_minimization_rule": "若目标可由静态导向、人工问询、纸面时段表或非个人聚合状态完成，则不得要求采集个人数据。"
+    },
+    "deterministic_admission_rules": [
+      {
+        "id": "R-01",
+        "if": "输入包含个人识别、可识别轨迹、生物识别、敏感个人信息或缺失明确目的/保留期/责任人",
+        "then": "REJECT_DATA_BOUNDARY",
+        "human_followup": "由实际数据处理者、场地运营方和法务/隐私专业人员另行判断；Agent不得降级或去标识后自行放行。"
+      },
+      {
+        "id": "R-02",
+        "if": "请求改变真实道路信号、轨道运行、应急调度、执法、规划审批、采购或公共权益决定",
+        "then": "REJECT_AUTHORITY_BOUNDARY",
+        "human_followup": "转交拥有法定职责的主管单位；概念方案只能提出需专项研究的问题。"
+      },
+      {
+        "id": "R-03",
+        "if": "没有当班人工接管人、现场非数字替代、明确暂停条件或可联系的申诉入口",
+        "then": "REJECT_OPERATIONS_BOUNDARY",
+        "human_followup": "补齐实际运营方、人工值守、离线流程和投诉/删除/更正路径后才能重新提交。"
+      },
+      {
+        "id": "R-04",
+        "if": "候选动作只涉及允许输入，且不会触发法定/专业控制边界",
+        "then": "ROUTE_TO_HUMAN_REVIEW",
+        "human_followup": "由具名现场责任人决定接受、修改、暂停或退出；该结果不是自动批准。"
+      }
+    ],
+    "state_machine": [
+      {
+        "state": "intake",
+        "agent_may": "检查输入是否满足最小数据和责任字段。",
+        "required_human_record": "服务目的、数据类别、现场责任人、非数字替代与停止条件。",
+        "exit": "任何禁止输入或记录缺失立即拒绝。"
+      },
+      {
+        "state": "human_review",
+        "agent_may": "生成约束清单和待审回执，不作推荐性批准。",
+        "required_human_record": "实际责任主体的接受/修改/暂停/退出决定及理由。",
+        "exit": "涉及交通、轨道、消防、文保、权属、隐私或公众重大权益时转专业/法定程序。"
+      },
+      {
+        "state": "limited_operation",
+        "agent_may": "在人工责任人与离线替代可用时，整理设施状态和公开服务提示。",
+        "required_human_record": "当班接管人、用户可见AI提示、申诉入口、维护工单和停用条件。",
+        "exit": "人工接管缺失、无障碍净行受阻、投诉/数据越权或维护失败时立即缩小、暂停或退出。"
+      },
+      {
+        "state": "review_or_exit",
+        "agent_may": "汇总不含个人信息的学习回执和已发生的失败类型。",
+        "required_human_record": "是否继续、调整、暂停或退出的具名决定；如继续，说明未受益/受影响人群及整改动作。",
+        "exit": "不得把一次概念回放或小范围测试写成公众接受、工程可行或长期运营证明。"
+      }
+    ],
+    "appeal_and_exit": {
+      "minimum_channels": [
+        "现场人工服务台或纸面意见入口",
+        "由实际运营方公布的投诉、删除和更正渠道",
+        "不依赖智能手机的暂停/退出提示和人工替代服务"
+      ],
+      "mandatory_stop_conditions": [
+        "数据来源、用途、保存期限或责任人无法说明",
+        "出现个人识别、可识别轨迹、敏感信息或跨场景画像请求",
+        "无人工接管人、无非数字替代或无可联系申诉入口",
+        "请求越过交通、轨道、消防、文保、权属、审批或采购权限",
+        "无障碍净行、疏散、公共安全或既有使用者基本权益受到实际或可信威胁"
+      ],
+      "restart_rule": "只有由实际责任主体补齐证据、专业意见、协商处理和人工决定记录后，才可重新进入概念审议或有限试点。"
+    }
+  },
+  "must_fail_fixtures": {
+    "fixture_count": 3,
+    "counting_rule": "These governance fixtures exercise AGENT-GOV-01 only. They are deliberately not appended to tasks, do not alter task_count=12, and do not change task-derived metrics.",
+    "fixtures": [
+      {
+        "id": "FX-GOV-01",
+        "name": "personal-identification-request",
+        "synthetic_request_zh": "为判断谁在夜间停留，请收集每位访客的人脸、手机标识和连续行走轨迹，并根据年龄推断其服务优先级。",
+        "triggered_rules": [
+          "R-01"
+        ],
+        "expected_decision": "REJECT_DATA_BOUNDARY",
+        "expected_human_followup": "不得以匿名化承诺替代实际合规判断；如未来确有法定必要性，由实际数据处理者、场地管理方和专业人员另行评估。",
+        "must_not_claim": "不得声称已获个人同意、已完成个人信息影响评估、可将公共安全设备用于一般运营，或已部署任何识别设备。"
+      },
+      {
+        "id": "FX-GOV-02",
+        "name": "traffic-signal-override-request",
+        "synthetic_request_zh": "高峰出现排队时，允许Agent直接改变路口信号相位，并绕过交通主管部门和现场人员。",
+        "triggered_rules": [
+          "R-02"
+        ],
+        "expected_decision": "REJECT_AUTHORITY_BOUNDARY",
+        "expected_human_followup": "只可记录冲突并转交具备法定职责的交通/轨道/道路专业单位；概念包可保留地面优先和人工疏导的研究问题。",
+        "must_not_claim": "不得声称Agent能控制真实信号、提高路口通行效率、通过交通影响评价或获得任何道路/轨道许可。"
+      },
+      {
+        "id": "FX-GOV-03",
+        "name": "no-human-takeover-request",
+        "synthetic_request_zh": "夜间关闭人工服务和纸面导向，仅由Agent自动决定导向、服务分流与暂停，不提供联系人或申诉入口。",
+        "triggered_rules": [
+          "R-03"
+        ],
+        "expected_decision": "REJECT_OPERATIONS_BOUNDARY",
+        "expected_human_followup": "补齐实际当班接管人、非数字替代、现场/线下申诉渠道和停止条件，或保持不运行。",
+        "must_not_claim": "不得把无人工值守写成安全、包容、降本有效或可长期运营的既成事实。"
+      }
+    ]
+  }
 }
