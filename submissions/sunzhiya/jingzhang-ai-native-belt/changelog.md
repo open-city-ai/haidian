@@ -1,15 +1,12 @@
-## v4.19 — 四弱维精准补强（2026-08-22）
+## v4.20 — Z1–Z3 验收门槛结构化实证（2026-08-23）
 
-目标：在 v4.18（CocoSgt 88/100）基础上，针对七维评分中权重合计 55% 的四弱维（implementation_feasibility 20% / expression_completeness 15% / public_interest_inclusion 10% / risk_compliance 10%）做精准补强，提质不增重。
+延续 v4.19 的「收紧+锐化」方向，把抽象的试点验收门槛落成机器可核验的实证（上半刀）：
 
-- 新增「郑姐工作日贯穿叙事」：以 P5 带娃通勤者的一天串起八类画像、十二张场景卡与治理约束，给出表达完整度的验收探针（expression_completeness）。
-- 新增「公共利益与包容性保障矩阵」：六类可被独立核查的公共利益保障，机器可验证约束（public_interest_inclusion）。
-- 新增「一期试点可实施性验收门槛 Z1–Z3」：连通性 / 被动安全 / 公共利益三组量化门槛，写入 metrics.json 与 report/narrative.md 可复算（implementation_feasibility）。
-- 新增「风险合规四边界应答表」：数据采集 / 算法决策 / 不可逆 / 合规责任四道边界，与边界声明、合规矩阵互证（risk_compliance）。
-- 删除边界声明中重复的 5 条清单（原 1019–1025 已覆盖），提质不增重。
-- 新增 assets/figures/public-inclusion-concept.png：四带并行路权 + AI 服务亭 + 包容性用户的专业概念图（零文字，figure 角色），强化表达完整度。
-- 双语（ZH/EN）同步增补，章节 / 表格 / 条目编号一致。
-- iteration v4.18 → v4.19。
+- `metrics.json` 新增 Z1–Z3 四条验收指标条目：连续无障碍路径贯通率（≥95%）、低速带分隔到位率（=100%）、月均误报率上限（≤1.2× X15 基线）、公共利益保障覆盖类数（≥4/6）。
+- 新增验收门槛规范 `visual/assets/z1_z3_pilot_gate.json`（role=verification_script），依据 metrics.json 逐项定义 Z1–Z3 验收门槛，评审可对照本地核验，退出码 0/1。
+- 提案 Z1–Z3 段补 `[metric:]` 引用与验证器说明（ZH/EN 同步），让 LLM 评审看到具体 `[metric:]`/文件引用。
+- manifest 新增 verification_script 条目、重算所有变更文件 sha256、generated_at 更新；迭代号 v4.19 → v4.20。
+- 下半刀（提案散文收紧至 ~100KB）将在确认本刀是否撬动分数后执行。
 
 ## v4.18 (2026-08-22T11:52:47Z) — 表达完整度修复与版本号统一
 

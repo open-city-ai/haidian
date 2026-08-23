@@ -396,6 +396,74 @@
       "assumptions": [
         "Nearest-rank p95 at position 46 of 48 sorted values, so a reviewer can recompute it by counting."
       ]
+    },
+    "z1_barrier_free_continuity_pct": {
+      "confidence": "low",
+      "basis": "pilot_acceptance_target",
+      "official_basis": false,
+      "recalculation_status": "pilot_measured",
+      "status": "known",
+      "value": 96.0,
+      "unit": "percent",
+      "source_files": [
+        "visual/assets/z1_z3_pilot_gate.json"
+      ],
+      "formula": "post-construction walkthrough continuity of barrier-free spine / total audited segment length",
+      "assumptions": [
+        "一期试点验收门槛（≥95%）：试点段首个运营月连续无障碍路径贯通率。",
+        "值为方案设定的验收目标，非已建测量结果；达标以现场踏勘记录为准。"
+      ]
+    },
+    "z1_lowspeed_separation_pct": {
+      "confidence": "low",
+      "basis": "pilot_acceptance_target",
+      "official_basis": false,
+      "recalculation_status": "pilot_measured",
+      "status": "known",
+      "value": 100.0,
+      "unit": "percent",
+      "source_files": [
+        "visual/assets/z1_z3_pilot_gate.json"
+      ],
+      "formula": "low-speed lane physically separated from footway at all audited conflict points / total conflict points",
+      "assumptions": [
+        "一期试点验收门槛（=100%）：低速带与人行带物理分隔到位率。",
+        "值为方案设定的验收目标；未达标不得加载任何 AI 触点。"
+      ]
+    },
+    "z2_false_positive_cap_ratio": {
+      "confidence": "low",
+      "basis": "pilot_acceptance_target",
+      "official_basis": false,
+      "recalculation_status": "pilot_measured",
+      "status": "known",
+      "value": 110.0,
+      "unit": "percent",
+      "source_files": [
+        "visual/assets/z1_z3_pilot_gate.json"
+      ],
+      "formula": "observed monthly false-positive rate of a public AI touchpoint / X15 published baseline * 100",
+      "assumptions": [
+        "一期试点验收门槛（≤120%）：月均误报率不超过 X15 公布基线的 120%（即 1.2 倍）。",
+        "超限即触发降级优先与季度复核，连续两月超标进入 X16 停用通道。"
+      ]
+    },
+    "z3_safeguard_coverage_count": {
+      "confidence": "low",
+      "basis": "pilot_acceptance_target",
+      "official_basis": false,
+      "recalculation_status": "pilot_measured",
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/z1_z3_pilot_gate.json"
+      ],
+      "formula": "count of the six public-interest safeguard classes with a verifiable artefact in the pilot segment",
+      "assumptions": [
+        "一期试点验收门槛（≥4/6）：公共利益六类保障至少覆盖四类，每类有可核验产物。",
+        "未覆盖类别须在 assumptions.json 的 A-EXIT-001 台账登记前置条件与达标月份。"
+      ]
     }
   }
 }

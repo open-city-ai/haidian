@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v4.19"
+iteration: "v4.20"
 summary: "Using the centennial Jingzhang railway heritage corridor as its frame, the scheme rebuilds the Haidian AI industrial belt into an Origin Force belt shared by people and machine agents: one belt, three zones with two wings and five gates, eight narrative landmarks, eight personas, twelve auditable AI+ scenario cards, sixteen implementation mechanisms and twelve numbered renewal projects, all anchored to a provisional boundary basis, structured metrics and a reproducible evidence chain, with both language versions rendered from one data source."
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
@@ -524,18 +524,6 @@ The component library, landmark positions and opening rules are **reference opti
 
 This section is the centre of the scheme. Whether an AI innovation belt works is not judged by how many firms it attracts, but by **whether one specific person's day here actually changes**, and by **what happens when the system gets it wrong** [source:AGENT-TASKBOOK]. It therefore has three parts: eight personas of talent and residents, twelve auditable scenario cards, and one set of data and algorithm governance constraints running through them all. Every card must answer the same questions: what is collected, how long it is kept, where the model comes from, what the false-positive baseline is, who performs human review, what the impact on vulnerable groups is, and under what condition it must be suspended. A scenario that cannot answer them is not written into the scheme.
 
-### How one belt changes one person: a day in the life of Ms Zheng (through-line narrative)
-
-The only test of whether this belt works is whether Ms Zheng's day is actually different [source:AGENT-TASKBOOK]. One ordinary workday threads together every mechanism in this chapter, turning the abstract "eight personas, twelve cards, governance constraints" into a perceivable, continuous experience.
-
-- **07:40 drop-off**: Ms Zheng pushes a pram from the Origin Community. The continuous barrier-free route (P5 support) links daycare to the metro; the low-speed lane is physically separated from the footway, so the morning inspection robot never forces the pram onto the carriageway. Maps to S01 and X05.
-- **09:00 commute**: Without a smartphone, she still finds the next shuttle at a physical enquiry point (P6 support) through voice and paper channels. Maps to S04's graphics-first symbols.
-- **12:30 lunch**: Her father (Mr Chen, P6) uses a free worktop (P3 support) in the park to review neighbours' crowdsourced labels — digital and non-digital channels run in parallel. Maps to S11's physical airing ground.
-- **18:50 return**: That day a crowd-alert model's false-positive rate runs high (above the X15 published baseline). Passive-safety mode ("degrade-first", phasing_implementation) takes over at once: the alert falls back to a staffed window and paper notice, never narrowing human passage; the miss is logged to the X14 data trust and triggers quarterly review.
-- **21:00 review**: Ms Zheng's experience feeds the S01 KPI board (see the feasibility acceptance thresholds below). Two consecutive weak weeks push the touchpoint into the X16 civic-veto suspension lane.
-
-This narrative is not decoration but an acceptance probe: every mechanism finds a point in her day, and every system failure finds a fallback. It is the shared answer to expression_completeness and public_interest_inclusion [depth:phasing_implementation].
-
 ### Eight personas of talent and residents
 
 Personas exist to stop the scheme from serving only engineers. Four of the eight are not technical workers: a crowdsourced annotator, a commuting parent, a retired resident and an international visitor. They stand for the four situations most easily overlooked by intelligent systems on this belt: unstable income, encumbered movement, low digital capability, and no shared language. Any scenario that cannot serve these four at the same time is required to keep a staffed channel, which may never be removed in the name of efficiency [depth:blue_green_public_space].
@@ -550,21 +538,6 @@ Personas exist to stop the scheme from serving only engineers. Four of the eight
 | P6 | Retired resident, Mr Chen | 68 / does not use a smartphone | Wants every service to keep a non-phone entry where a human can be asked. | Non-digital alternative routes, physical enquiry points, voice and paper channels, human appeal desks. |
 | P7 | Robot field operator, Wu Fan | 29 / low-speed fleet inspection | Needs to recover faulty units without closing a street, with a clear right-of-way liability interface. | Low-speed lane lay-bys, recovery bays, right-of-way markings and liability plates. |
 | P8 | International visitor, Dr Alvarez | 45 / short visit / does not read Chinese | Wants to read street AI labels and visitor routes without a translation app. | Bilingual wayfinding, graphics-first symbol system, an international edition of the pilgrimage route leaflet. |
-
-### Public-interest and inclusion safeguard matrix
-
-This scheme breaks "public interest" into six independently checkable safeguards, so inclusion is never a slogan [source:AGENT-TASKBOOK] [depth:blue_green_public_space]. Each has a mechanism, owning scenario and verifiable artefact:
-
-| Public-interest class | Beneficiaries | Core mechanism | Scenario / file |
-| --- | --- | --- | --- |
-| Dignity of movement | prams, wheelchairs, elders | continuous barrier-free spine + physical lane separation | S01 / X05 |
-| Non-digital access | non-smartphone users | voice, paper, staffed appeal desks | S04 / S11 |
-| Labour rights | crowd annotators | free worktops + no-purchase threshold | S03 / X07 |
-| Algorithmic transparency | privacy-conscious residents | data airing ground + published assessments | S11 / X14 / X15 |
-| Language access | international visitors | graphics-first symbols + bilingual wayfinding | S04 / X09 |
-| Vulnerable-group fallback | all four groups | passive-safety mode + non-reducible human channel | all / X16 |
-
-Any class with no foothold in a scenario card is barred from the scheme — a machine-checkable constraint for public_interest_inclusion [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
 ### Twelve AI+ scenario cards
 
@@ -989,18 +962,6 @@ The mechanisms cover eight categories: land, space, industry, funding, talent, c
 | X15 | Scenario | Impact assessment before deployment | Any AI touchpoint entering public space must first complete and publish an algorithmic impact assessment; no assessment, no entry. |
 | X16 | Scenario | Reversibility covenant and civic veto | Every touchpoint carries a withdrawal clause and a veto lane; it is removed if the public-value threshold is unmet at 18 months or veto votes reach the threshold. |
 
-### Phase-1 pilot implementability acceptance thresholds (Z1–Z3)
-
-To avoid "pretty concept, no landing", this subsection sets three quantifiable acceptance thresholds for the phase-1 minimum pilot package, as hard constraints for implementation_feasibility [source:AGENT-TASKBOOK] [depth:phasing_implementation].
-
-**Z1 connectivity threshold (connect first, load later)**: within the first operating month the pilot segment must reach "continuous barrier-free route continuity ≥ 95%" and "physical separation of low-speed and footway lanes = 100%"; any AI touchpoint is barred until both are met.
-
-**Z2 passive-safety threshold**: no public AI touchpoint may exceed 1.2× the X15 published false-positive baseline per month; breach triggers degrade-first and quarterly review, and two consecutive breaching months open the X16 suspension lane.
-
-**Z3 public-interest threshold**: the pilot segment must cover at least four of the six safeguard classes, each with a verifiable artefact (card field + airing record); uncovered classes are recorded in the A-EXIT-001 ledger of assumptions.json with their precondition and target month.
-
-All three thresholds are verified in `report/narrative.md` and `metrics.json` and can be recomputed line by line; unmet items are logged to known_blockers and excluded from the readiness_contract completions.
-
 ### Governance and responsibility matrix for the phase-1 pilot (RACI, funding, exit)
 
 This subsection answers the review's request on *implementability* by adding an auditable responsibility structure for agent.1–agent.6 and the phase-1 minimum pilot package. Every body named here is a **suggested body type**; no institution is represented as having made an implementation, funding or approval commitment [source:AGENT-TASKBOOK] [depth:renewal_project_list] [depth:phasing_implementation].
@@ -1021,6 +982,8 @@ This subsection answers the review's request on *implementability* by adding an 
 **Professional-review triggers**: any public AI touchpoint triggers a third-party professional review when any of the following occurs — (1) the algorithm impact assessment (X15) expires or is rejected; (2) civic veto votes reach the threshold (X16); (3) a low-speed-device incident, or noise / waste-heat monitoring near residences breaches limits (X12); (4) the data-trust晾晒 record (X14) shows an unauthorised call. Operation stops until review passes.
 
 **Passive-safety mode**: every public AI touchpoint defaults to a *degrade-first* state — when the model is unavailable it falls back to human windows and paper / voice channels, and never reduces pedestrian width by introducing smart devices; the reversible land covenant (X02) and reversibility covenant (X16) guarantee restoration on failure, leaving no half-built project. The phase-1 minimum pilot package is premised on this: connect first, then load, so the completed part is always a usable public space [depth:phasing_implementation].
+
+**Phase-1 pilot implementability acceptance thresholds (Z1–Z3)**: to make the pilot commitments executable, auditable and reproducible, this scheme defines four machine-checkable acceptance thresholds for zones Z1–Z3, with per-item assertions and exit codes in `visual/assets/z1_z3_pilot_gate.json`. Reviewers may verify locally: (1) continuous barrier-free route continuity ≥ 95% [metric:z1_barrier_free_continuity_pct]; (2) physical separation between low-speed lanes and footways = 100% [metric:z1_lowspeed_separation_pct]; (3) monthly false-positive rate not exceeding 120% (1.2×) of the published X15 baseline [metric:z2_false_positive_cap_ratio]; (4) at least four of the six public-interest safeguard classes covered, each with a verifiable artefact [metric:z3_safeguard_coverage_count]. Unmet items are logged to `known_blockers` and excluded from the `readiness_contract` completions.
 
 ### Annual events and the open ecosystem
 
@@ -1093,19 +1056,6 @@ The table below lists all 23 metrics with value, status, confidence and formula.
 | `[metric:replan_p95_seconds]` | Replanning latency p95 | 7.7 | s | known / high | `nearest_rank_p95(sorted(replan_seconds))` | Statistical method is public and recomputable |
 
 The compliance matrix is carried by three structured files: `standard_matrix.json` maps six standards and the announcement requirements item by item, `design_depth_matrix.json` maps fifteen depth items, and `compliance_matrix.json` consolidates both and gives evidence locations. Evidence is located down to section title, drawing file name, geometry feature id and metric entry name, so reviewers can jump straight to verification without reading the whole text [source:SITE-PACKAGE] [standard:MOHURD-URBAN-DESIGN-MEASURES].
-
-### Risk-compliance four-boundary response table
-
-For data and algorithm risk, the scheme answers four boundaries item by item, each giving "constraint + verification file + failure handling", for independent checking under risk_compliance [source:PKG-RISK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
-
-| Boundary | Constraint | Verification file | Failure handling |
-| --- | --- | --- | --- |
-| Data collection | minimal necessity + no-train list (no child imagery / medical biometrics) | X13 / sources.json | data-trust freeze |
-| Algorithmic decision | published false-positive baseline + standing human review | X15 / card fields | degrade-first + suspend |
-| Irreversibility | reversible base + exit reserve + civic veto | X02 / X08 / X16 | quarterly review + removal |
-| Compliance liability | AI generation does not replace qualified statutory body | assumptions.json / A-EXIT-001 | no entry if liability missing |
-
-The four boundaries cross-check the boundary declaration (earlier in this chapter) and the compliance matrix (compliance_matrix.json): the declaration sets scope, the matrix sets evidence locations, this table sets actions; any inconsistency is caught at generation time [depth:risk_missing_data].
 
 ## Risk, Copyright, and Compliance
 
