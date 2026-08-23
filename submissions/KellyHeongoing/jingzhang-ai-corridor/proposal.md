@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以『智序』统领京张百年时序与城市新序：启·序章（北站起点）、承·序脉（13km 遗产带）、创·序貌（三重点区）、尚·序风（青年共创与智慧生活），用 AI 重新梳理百年铁路走廊的时空秩序。基于 provisional boundary 生成，保留精度警示，组织方数据缺口不阻断内容评分。"
+summary: "总概念：《京张·智序》——AI启京张 · AI续京张 · AI创京张 · AI尚京张，以『智序』统领京张百年时序与城市新序，用 AI 重新梳理百年铁路走廊的时空秩序。基于 provisional boundary 生成，保留精度警示，组织方数据缺口不阻断内容评分。"
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]
 scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
 ---
@@ -44,6 +44,12 @@ scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-na
 | 重点区域范围 | 三处片区如何达到详细设计深度 | 众智园（创·序貌）、原点社区（创·序貌+承·序脉交汇）、大钟寺（尚·序风）分别深化 | [data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/key_areas.geojson#PROV-KEY-002]、[data:geometry/key_areas.geojson#PROV-KEY-003] |
 
 ## 总体概念：京张·智序
+
+> **总概念：《京张·智序》**
+>
+> **AI启京张 · AI续京张 · AI创京张 · AI尚京张**
+
+
 
 ### 概念释义
 

@@ -6,7 +6,7 @@ translation_of: "proposal.md"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Led by the concept of Zhixu (Order of Intelligence), this proposal re-sequences a century of Jing-Zhang history and establishes a new urban order: Opening (Prologue at Beijing North Station), Continuation (the 13km heritage thread), Creation (three key areas re-formed), and Aspiration (youth co-creation and smart living). Generated on provisional boundaries with precision caveats; the organizer's data gaps do not block content scoring."
+summary: "Master Concept: Jingzhang·ZhiXu — AI Opens Jing-Zhang · AI Continues Jing-Zhang · AI Creates Jing-Zhang · AI Elevates Jing-Zhang. The proposal uses Zhixu (Order of Intelligence) to re-sequence a century of Jing-Zhang history and establish a new urban order. Generated on provisional boundaries with precision caveats; the organizer's data gaps do not block content scoring."
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]
 scenarios: ["jingzhang-time-axis", "ar-heritage-overlay", "open-source-publishing-hub", "smart-slow-mobility", "youth-co-creation-plaza", "smart-living-block"]
 ---
@@ -44,6 +44,12 @@ The three levels are not disconnected drawing sets. The Coordinated Research Are
 | Key-Area Detailed Design | How to reach detailed-design depth in the three districts | Zhongzhiyuan (Creation), AI Origin Community (Creation × Continuation), Dazhongsi (Aspiration) are deepened respectively | [data:geometry/key_areas.geojson#PROV-KEY-001], [data:geometry/key_areas.geojson#PROV-KEY-002], [data:geometry/key_areas.geojson#PROV-KEY-003] |
 
 ## Overall Concept: Jing-Zhang · Zhixu
+
+> **Master Concept: Jingzhang·ZhiXu**
+>
+> **AI Opens Jing-Zhang · AI Continues Jing-Zhang · AI Creates Jing-Zhang · AI Elevates Jing-Zhang**
+
+
 
 ### Concept Definition
 
