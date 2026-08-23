@@ -60,6 +60,21 @@ The three levels are not disconnected drawing sets. The Coordinated Research Are
 
 The four orders are not scattered points but different dimensions of the same "Xu": Opening/Continuation/Creation form the **factual layer** (what AI does to the corridor), and Aspiration forms the **value layer** (what the corridor becomes). The scheme thereby rises from "functional renewal" to "cultural leadership," addressing the cultural-narrative and scenario-experience review dimensions.
 
+
+### Naming System and Visual Identity Direction
+
+The scheme uses “Jingzhang·ZhiXu” as the primary name and “Jingzhang·ZhiXu AI Innovation Belt” as the English name, with “ZhiXu Belt” as the short form. The naming system is organized as one spine, four orders, and three zones:
+
+| Level | Naming | Meaning |
+| --- | --- | --- |
+| One Spine | Centennial Jing-Zhang AI Innovation Belt | The overall corridor brand anchored by the Jing-Zhang Railway Heritage Park |
+| Four Orders | Opening · The Prologue / Continuation · The Heritage Thread / Creation · The New Form / Aspiration · The New Ethos | Temporal origin, heritage continuity, spatial transformation, and value leadership |
+| Three Zones | Zhongzhiyuan / AI Origin Community / Dazhongsi | Acceleration, incubation, and industrialization anchors |
+
+The tagline is “From Rail Order to AI Order” (Chinese: 百年时序，AI 新序), emphasizing that the Jing-Zhang Railway once defined China’s engineering order and AI will define a new urban order here.
+
+The logo and visual identity proposal takes a “Dual-Track Order Mark” direction: a bronze rail line (centennial timeline) and an AI data-blue line (intelligent interaction) run parallel and cross to suggest the character “Xu,” symbolizing the meeting of historical and digital tracks in the same corridor. The wayfinding system continues the time-track / intelligence-track dual system for timeline coding, AR interfaces, digital milestones, and event visuals. This identity system is a concept direction; fonts, images, corporate marks, and public art must be cleared and professionally developed before implementation [source:AGENT-TASKBOOK].
+
 ### Spatial Structure: One Spine, Four Orders
 
 The Jing-Zhang Railway Heritage Park vitality belt is the spatial spine (One Spine), along which the four orders are organized (Four Orders):
