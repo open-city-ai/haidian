@@ -2,6 +2,7 @@
 title: "京张智脉｜THE COMMONS LINE：百年铁路遗产上的AI创新城市共同体"
 author_github: "xuyana-09"
 language: "zh"
+bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张精神为时间纵轴，以全龄生活为价值坐标，以遗产、知识、社区、生态和可信技术五层系统构建AI创新城市共同体，让海淀科学城的创新能力转化为可共享、可照护、可持续的美好人居。"
