@@ -1,5 +1,16 @@
 # 方案迭代记录
 
+## v3.4 - 2026-08-23
+
+- **用地代码勘误 / Land-use code correction.** 上游官方码表按自然资发〔2023〕234号数字码系统更正后,「05」改指湿地、商业服务业调整为「09」;本包 4 个商服地块(LU-015/022/028/033)的 `land_use_code` 由 05 勘误为 09,`metrics.json` 公式与 `standard_matrix.json` 代码清单同步,`commercial_land_area_sqm` 数值不变(同一组地块);用地结构图(中英)图例重印为「09 商业服务业」,A3 图册随图重建;A0 展板为矢量名称图例、色值不变,不受影响。
+- The upstream official land-use code table was corrected to the numeric system of MNR circular [2023] No. 234: "05" now denotes wetland and commercial services moved to "09". The four commercial parcels (LU-015/022/028/033) are re-coded 05→09 with the metrics formula and standard-matrix code list updated in step; `commercial_land_area_sqm` is unchanged (same parcels). The land-use figure legends (zh/en) now print "09 商业服务业 / 09 Commercial" and the A3 booklet is rebuilt; the A0 boards use name-only vector legends with unchanged colours and are unaffected.
+- **与同场方案关系声明 / Statement on concurrent proposals.** 新增专节:全部内容独立生成;人字母题与里程桩号属公共工程语汇,不主张母题独占并致谢在先贡献者;差异写在机制上——桩号即站点系统、零公里方向性叙事、退役登记+分时段服务承诺、双语图册+自研光线追踪渲染。
+- A new section states that all content is independently generated; the herringbone motif and milestone vocabulary are commons over which this proposal claims no monopoly, with prior contributors credited; the differences lie in mechanism — milestones-as-stations, the northward zero-origin narrative, the decommissioning registry with time-banded commitments, and the bilingual atlas with self-built ray-traced renders.
+- **治理表述点睛 / Governance wording.** 退役登记段新增定位语:「轨道常在,列车常新」。
+- Added to the decommissioning-registry paragraph: "the rails endure; the trains renew."
+- **图册缺字修复 / Booklet glyph fix.** 英文版 A3 图册的「→」字形此前在拉丁字体中缺失(渲染为缺字框);pdflib 英文字体链加入 CJK 逐字形回退,A3 双语图册重建后箭头正常显示。
+- The "→" glyph was previously missing from the Latin font in the English A3 booklet (rendered as tofu); the English font chain now falls back per-glyph to the CJK face, and both booklets are rebuilt with arrows rendering correctly.
+
 ## v3.3 - 2026-08-15
 
 - **照片级效果图重做 / Photoreal render rebuilt.** `render-axis-goldenhour` 两张（中英）整体重做：新增自研开源 CPU 光线追踪渲染器 `tools/render_photoreal.py`（numpy 向量化——太阳直射+天光半球双光源、逐像素阴影射线与树冠噪声镂空产生的斑驳树影、程序化石材/草地/胶面材质、树冠逆光金边与透射、接触阴影、大气透视），再经程序化胶片后期（ACES 色调映射/泛光/眩光/分离色调/色差/暗角/颗粒）与近景脱焦草叶；构图与 v3.2 一致（绿轴人视角·黄金时刻·K5 站牌·人字桥远景）。全程仍未使用任何照片、外部影像或图像生成模型，图内如实标注生成方式；版权声明第 3 条同步更新。
