@@ -45,7 +45,6 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import fcntl
 import json
 import os
 import shutil
@@ -55,6 +54,14 @@ import threading
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+try:
+    import fcntl
+except ImportError:  # Windows has no fcntl; the worker lock uses msvcrt there.
+    fcntl = None
+    import msvcrt
+else:
+    msvcrt = None
 
 from generate_submissions_data import package_sha256
 
@@ -200,7 +207,20 @@ def decide(review: dict[str, Any], decision: dict[str, Any], threshold: float) -
         raise WorkerError("AI decision has no numeric weighted_score_100")
     if float(score) < threshold:
         return Decision("low-quality", float(score), f"score below {threshold:g}")
-    return Decision("accept", float(score), "threshold and all gates passed")
+    intake_blocks = []
+    if review.get("recommendation") != "formal-review-ready":
+        intake_blocks.append("recommendation")
+    if review.get("can_enter_formal_review") is not True:
+        intake_blocks.append("can_enter_formal_review")
+    if review.get("required_next_actions_zh") != []:
+        intake_blocks.append("required_next_actions_zh")
+    if intake_blocks:
+        return Decision(
+            "request-changes",
+            float(score),
+            f"intake blocked by review fields: {', '.join(intake_blocks)}",
+        )
+    return Decision("accept", float(score), "threshold, gates, and intake readiness passed")
 
 
 def pr_meta(repo: str, number: int, cwd: Path) -> dict[str, Any]:
@@ -310,7 +330,8 @@ def apply_review(
             raise WorkerError("PR became conflicting before merge")
         body = (
             f"{marker}\nMaintainer intake decision: Review Agent score {outcome.score:g}/100. "
-            "Mandatory rejection and all four local gates passed. Accepted for repository intake only; "
+            "Mandatory rejection, all four local gates, and review readiness passed. "
+            "Accepted for repository intake only; "
             "this is not gallery publication, award selection, implementation approval, or government endorsement."
         )
         run(["gh", "pr", "review", str(number), "--repo", repo, "--approve", "--body", body], cwd=cwd)
@@ -437,6 +458,37 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
                 run(["git", "worktree", "remove", "--force", str(worktree)], cwd=repo_root)
 
 
+def acquire_worker_lock(lock_path: Path) -> Any:
+    """Hold a non-blocking inter-process lock on the worker lock file.
+
+    The lock is released when the file object is closed or the process
+    exits, matching the previous flock lifetime. Raises WorkerError when
+    another live worker already holds the lock.
+    """
+    lock_file = lock_path.open("a+", encoding="utf-8")
+    if fcntl is not None:
+        try:
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError as exc:
+            lock_file.close()
+            raise WorkerError("another auto-review worker is already running") from exc
+        return lock_file
+    # Windows fallback: lock one byte at the start of the file. The byte is
+    # written only when the file is still empty; touching a byte range held
+    # by another worker fails, and any such OSError means contention.
+    try:
+        lock_file.seek(0, os.SEEK_END)
+        if lock_file.tell() == 0:
+            lock_file.write("0")
+            lock_file.flush()
+        lock_file.seek(0)
+        msvcrt.locking(lock_file.fileno(), msvcrt.LK_NBLCK, 1)
+    except OSError as exc:
+        lock_file.close()
+        raise WorkerError("another auto-review worker is already running") from exc
+    return lock_file
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", default="open-city-ai/haidian")
@@ -476,11 +528,7 @@ def main() -> int:
     if args.concurrency < 1:
         raise WorkerError("--concurrency must be at least 1")
     args.audit_root.mkdir(parents=True, exist_ok=True)
-    lock_file = (args.audit_root / ".worker.lock").open("w", encoding="utf-8")
-    try:
-        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except BlockingIOError as exc:
-        raise WorkerError("another auto-review worker is already running") from exc
+    lock_file = acquire_worker_lock(args.audit_root / ".worker.lock")
     candidates = queued_prs(args.repo, args.label, repo_root)
     selected = []
     results = []
