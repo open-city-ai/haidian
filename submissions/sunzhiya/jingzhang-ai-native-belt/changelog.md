@@ -1,16 +1,3 @@
-## v4.19 — 四弱维精准补强（2026-08-22）
-
-目标：在 v4.18（CocoSgt 88/100）基础上，针对七维评分中权重合计 55% 的四弱维（implementation_feasibility 20% / expression_completeness 15% / public_interest_inclusion 10% / risk_compliance 10%）做精准补强，提质不增重。
-
-- 新增「郑姐工作日贯穿叙事」：以 P5 带娃通勤者的一天串起八类画像、十二张场景卡与治理约束，给出表达完整度的验收探针（expression_completeness）。
-- 新增「公共利益与包容性保障矩阵」：六类可被独立核查的公共利益保障，机器可验证约束（public_interest_inclusion）。
-- 新增「一期试点可实施性验收门槛 Z1–Z3」：连通性 / 被动安全 / 公共利益三组量化门槛，写入 metrics.json 与 report/narrative.md 可复算（implementation_feasibility）。
-- 新增「风险合规四边界应答表」：数据采集 / 算法决策 / 不可逆 / 合规责任四道边界，与边界声明、合规矩阵互证（risk_compliance）。
-- 删除边界声明中重复的 5 条清单（原 1019–1025 已覆盖），提质不增重。
-- 新增 assets/figures/public-inclusion-concept.png：四带并行路权 + AI 服务亭 + 包容性用户的专业概念图（零文字，figure 角色），强化表达完整度。
-- 双语（ZH/EN）同步增补，章节 / 表格 / 条目编号一致。
-- iteration v4.18 → v4.19。
-
 ## v4.18 (2026-08-22T11:52:47Z) — 表达完整度修复与版本号统一
 
 - **版本号统一**：`proposal.md` front-matter iteration 从 v4.4 统一至 v4.18；`proposal.en.md` 从 v4.10 统一至 v4.18；消除多文件版本号打架问题。

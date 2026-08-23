@@ -1,0 +1,40 @@
+{
+  "schema": "verification_gate_spec_v1",
+  "name": "Z1-Z3 一期试点可实施性验收门槛",
+  "description": "依据 metrics.json 中 Z1-Z3 条目，逐项断言是否达到 v4.20 设定的试点验收门槛。评审可把本文件与 visual/assets/z1_z3_pilot_gate.py 本地脚本对照本地复算。",
+  "entry_point": "visual/assets/z1_z3_pilot_gate.py",
+  "thresholds": [
+    {
+      "metric": "z1_barrier_free_continuity_pct",
+      "op": ">=",
+      "threshold": 95.0,
+      "unit": "percent",
+      "description": "一期试点验收门槛：连续无障碍路径贯通率 ≥ 95%"
+    },
+    {
+      "metric": "z1_lowspeed_separation_pct",
+      "op": "==",
+      "threshold": 100.0,
+      "unit": "percent",
+      "description": "一期试点验收门槛：低速带与人行带物理分隔到位率 = 100%"
+    },
+    {
+      "metric": "z2_false_positive_cap_ratio",
+      "op": "<=",
+      "threshold": 120.0,
+      "unit": "percent",
+      "description": "一期试点验收门槛：月均误报率不超过 X15 公布基线的 120%（即 1.2 倍）"
+    },
+    {
+      "metric": "z3_safeguard_coverage_count",
+      "op": ">=",
+      "threshold": 4,
+      "unit": "count",
+      "description": "一期试点验收门槛：公共利益六类保障至少覆盖四类"
+    }
+  ],
+  "exit_codes": {
+    "0": "ALL PASS — 四项门槛全部达标",
+    "1": "NOT MET — 存在未达标项，具体项见 each threshold 的 assertion"
+  }
+}
