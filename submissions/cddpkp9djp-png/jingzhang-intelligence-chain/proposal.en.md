@@ -22,7 +22,7 @@ Spatial data use the repository-maintained `provisional_boundaries.geojson` [dat
 
 Complete source records, metric formulas, compliance matrix, standard matrix, and design-depth matrix are in `sources.json`, `metrics.json`, `compliance_matrix.json`, `standard_matrix.json`, and `design_depth_matrix.json`.
 
-![Overall concept and spatial structure](assets/figures/site-overview.png)
+![Overall concept and spatial structure](assets/figures/site-overview.en.png)
 
 ## Three-Level Scope Framework
 
@@ -34,7 +34,7 @@ The proposal adopts the three nested scopes required by the announcement [source
 
 All three scopes use provisional polygons; their precision is provisional rough and intended only for AI generation, visualization, and self-check. Areas and ratios are design-model values pending official polygon release [assumption:ASSUMPTION-001].
 
-![Three-level scope and land-use structure](assets/figures/land-use-structure.png)
+![Three-level scope and land-use structure](assets/figures/land-use-structure.en.png)
 
 ## Coordinated Research Area: Industry and Future-City Research
 
@@ -58,9 +58,32 @@ The proposal implements the five functions in the taskbook [source:DATA-SRC-AGEN
 
 The "three areas and two wings" form a closed loop: the cores provide industrial content and spatial carriers; the east wing supplies capital, IP, and professional services; the west wing hosts scenario testing and public experience [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS].
 
-### Global Case References
+### Regional Synergy Matrix
 
-The proposal draws on 5–8 global AI innovation districts, including Barcelona 22@, Toronto Waterfront/Sidewalk, Pittsburgh Robotics Row, Paris Station F, and Shenzhen Nanshan Science Park. Transferable lessons include preserving industrial heritage for spatial identity, using public platforms to lower innovation transaction costs, sustaining community vitality through annual events, and retaining talent through housing and public services [source:DATA-SRC-AGENT-TASKBOOK-20260518].
+Building on the internal synergy of the three areas and two wings, the proposal establishes conceptual collaboration interfaces with surrounding strategic nodes [source:DATA-SRC-AGENT-TASKBOOK-20260518]. All entries below are conceptual directions, not agreements or government commitments; specific cooperation requires separate negotiation among property owners, management agencies, and market entities.
+
+| Synergy node | Relative location | Potential collaboration interface | Spatial/industrial carrier | Source status |
+|---|---|---|---|---|
+| Beiwei Community | Northwest of coordinated research area | Talent housing, international schools, international living services | Reserved residential and service land north of Zhongzhiyuan | Conceptual; pending official planning confirmation |
+| Future Science City | Approx. 15 km north | Compute hub, large scientific-facility linkage, enterprise headquarters/second headquarters | Jingzang/Jingxin expressway corridor, intercity connection | Conceptual; pending official planning confirmation |
+| Huairou Science City | Approx. 40 km northeast | Basic-to-applied research transfer, shared research instruments, talent exchange | Jing-Zhang high-speed rail, suburban express rail, academic networks | Conceptual; pending official planning confirmation |
+| E-Town (Yizhuang) | Approx. 20 km southeast | Intelligent manufacturing, embodied-intelligence testing, supply-chain support | Beijing-Tianjin intercity, expressway network, industrial enclave | Conceptual; pending official planning confirmation |
+| Beijing-Tianjin-Hebei city cluster | Regional scale | Mutual standard recognition, scenario interoperability, joint branding, talent mobility | Jing-Zhang high-speed rail, Jingzang expressway, Beijing-Tianjin-Hebei coordination mechanism | Conceptual; pending official planning confirmation |
+
+### Global Case References and Comparison
+
+The proposal draws on six global AI and innovation-ecosystem cases, forming a transferable-experience matrix. Case facts are drawn from public materials or official releases; the table is for conceptual reference only and does not constitute a complete evaluation of those cases.
+
+| Case | Location | Core characteristics | Transferable lessons | Source status |
+|---|---|---|---|---|
+| Barcelona 22@ | Barcelona, Spain | Industrial district turned innovation neighbourhood; mixed office, residential, education, and commerce; industrial heritage preserved | Industrial heritage as spatial identity; small-block dense street network; cultural events activating public space | Public case materials |
+| Toronto Waterfront / Sidewalk Labs (concept) | Toronto, Canada | Data-driven urban experiment; public participation; digital infrastructure pilot | City-scale data-governance sandbox; public-engagement mechanism; modular urban infrastructure | Public case materials |
+| Pittsburgh Robotics Row / Oakland | Pittsburgh, USA | CMU–enterprise–government collaboration; autonomous-driving and robotics test fields | University technology spillover; real-world urban testing; industry–academia–policy linkage | Public case materials |
+| Paris Station F | Paris, France | Entrepreneur community operation; event brand; large-enterprise–startup symbiosis | Shared workspace; community event brand; corporate mentors and accelerators | Public case materials |
+| Shenzhen Nanshan Science Park | Shenzhen, China | Industrial-chain clustering; talent housing; government–market collaboration | Dragon-head + SME ecosystem; talent housing and public services locking in innovation population; rapid iterative policy | Public case materials |
+| London King's Cross / Google Campus | London, UK | High-density knowledge district around transport node; cultural facilities and public-space network | Railway-heritage district regeneration; pedestrian network; cultural facilities mixed with tech industry | Public case materials |
+
+Local application paths in this proposal: the Jing-Zhang Railway heritage park corresponds to "industrial-heritage spatial identity"; the three-core plazas and open-source release hall correspond to "public platforms lowering transaction costs"; Global AI Week and Developer Festival correspond to "annual events sustaining community vitality"; talent apartments and community service centres correspond to "talent housing and public services locking in the innovation population" [source:DATA-SRC-AGENT-TASKBOOK-20260518].
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
@@ -116,7 +139,7 @@ Positioned as an urban intelligent-economy district, focusing on AI agents, smar
 - **Public space**: Agent Plaza for experience and launches; street-level low-carbon compute stations and data-factor theater.
 - **Implementation risk**: Dazhongsi Station integration involves rail operations and underground-space ownership; specialized study is required.
 
-![Detailed design index of the three key areas](assets/figures/key-areas.png)
+![Detailed design index of the three key areas](assets/figures/key-areas.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -132,7 +155,7 @@ The proposal defines five core user types [source:DATA-SRC-AGENT-TASKBOOK-202605
 
 ### AI+ Scenario Cards
 
-The proposal provides 13 AI scenario nodes, satisfying the requirement of at least 10 scenario cards and 3 industry test/validation scenarios [data:geometry/scenario_nodes.geojson]:
+The proposal provides 13 AI scenario nodes, satisfying the requirement of at least 10 scenario cards and 3 industry test/validation scenarios [source:DATA-SRC-AGENT-TASKBOOK-20260518]:
 
 | ID | Scenario | Location | Users | Privacy & Review |
 |---|---|---|---|---|
@@ -152,6 +175,30 @@ The proposal provides 13 AI scenario nodes, satisfying the requirement of at lea
 
 Each scenario specifies data sources, privacy boundaries, human-review mechanisms, and operating entities, avoiding excessive surveillance or unreviewable automation [source:DATA-SRC-AGENT-TASKBOOK-20260518].
 
+### Full Scenario-Card Fields (illustrated by SC-002 Urban Agent Sandbox)
+
+| Field | Content |
+|---|---|
+| Scenario name | Urban Agent Sandbox |
+| Location | AI Origin Open-Source Plaza and surrounding bounded blocks |
+| Users | Urban-governance research institutes, AI enterprises, municipal management agencies |
+| Technology readiness | TRL 5–7 (proof of concept to operational-environment validation) |
+| Data provenance | Municipal open data, anonymized traffic flow, meteorological data |
+| Privacy boundary | No collection of personal identity, faces, or plaintext licence plates; data is anonymized before entering the sandbox |
+| Human-review mechanism | Test plans pass ethics and safety review; real-time operation includes a human takeover button |
+| Operating entity (conceptual) | AI Origin Community operations platform + municipal management agencies |
+| KPIs | Number of test projects, human-takeover rate, issue-closure time, public complaint rate |
+| Failure threshold | Testing is paused if the human-takeover rate exceeds 5% for three consecutive periods or a privacy breach occurs |
+| Exit criteria | After six months of stable operation and evaluation, projects may apply to enter the demonstration segment |
+
+The remaining 12 scenarios are registered in `compliance_matrix.json` using the same template fields: scenario name, location, users, data source, privacy boundary, human review, operating entity, KPIs, failure threshold, and exit criteria.
+
+### Public-Space Component Library and Pilgrimage Landmark Catalog
+
+- **Public-space component library**: modular seating (wireless charging and info screen), rain gardens, AI interactive installations, multilingual information kiosks, accessible ramps and tactile paving, temporary event display frames, railway-heritage exhibition units.
+- **Pilgrimage landmark catalog**: Jing-Zhang Wisdom-Source Tower (annual open-source contributors and AI breakthroughs), Open-Source Release Hall (global model/framework launch landmark), Agent Plaza (embodied intelligence and smart-terminal display), Jing-Zhang Memory Route (railway-heritage cultural pilgrimage route), Data Factor Theater (data-factor circulation showcase window).
+- **Honour-display system**: Annual open-source contributor wall, AI safety-governance certification list, Global AI Week permanent exhibition gallery.
+
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 ### Land Areas
@@ -159,8 +206,8 @@ Each scenario specifies data sources, privacy boundaries, human-review mechanism
 `geometry/land_use.geojson` provides a topologically seamless partition of the overall design area. Land-use types and areas are recorded in `metrics.json` and Figure 5. Key metrics include:
 
 - Overall design area: 11.41 km² (recalculated from submitted boundary)
-- Green ratio: approx. 11.3% [metric:green_ratio]
-- Public-space ratio: approx. 9.9% [metric:public_space_ratio]
+- Green ratio: approx. 16.16% [metric:green_ratio]
+- Public-space ratio: approx. 5.69% [metric:public_space_ratio]
 
 ### Building Scale
 
@@ -181,7 +228,7 @@ The proposal follows a "transit-led, slow-mobility-first, east-west stitched" st
 
 The proposal integrates distributed energy, edge-compute stations, and sponge-city facilities, but specific utility lines, drainage, power, gas, and fire-access data are missing; current content is conceptual [assumption:ASSUMPTION-003]. Public services include talent apartments, community centers, educational facilities, and cultural/sports facilities distributed according to land-use zones and estimated population needs.
 
-![Mobility, blue-green and public-space composite system](assets/figures/mobility-bluegreen.png)
+![Mobility, blue-green and public-space composite system](assets/figures/mobility-bluegreen.en.png)
 
 ## Blue-Green Network, Public Space, and Urban Character
 
@@ -195,7 +242,7 @@ The Jing-Zhang Railway heritage park is the core blue-green spine. The design tr
 
 ### Public Space
 
-Public space comprises the central pedestrian path, three key-area plazas, east-west wing community living rooms, and six east-west connectors [data:geometry/public_space.geojson]. Total public space is approximately 112 ha, about 9.9% of the site. These spaces support innovation exchange, AI scenario testing, cultural display, and daily citizen life.
+Public space comprises the central pedestrian path, three key-area plazas, east-west wing community living rooms, and six east-west connectors [data:geometry/public_space.geojson]. Total public space is approximately 64.93 ha, about 5.69% of the site. These spaces support innovation exchange, AI scenario testing, cultural display, and daily citizen life.
 
 ### AI Pilgrimage Landmarks
 
@@ -229,12 +276,42 @@ Character guidance follows the *Urban Design Management Measures* on building he
 
 Policy directions include innovative mixed land use, existing-building functional conversion, talent housing set-asides, AI scenario open-test sandboxes, compliant data-factor circulation, and green low-carbon incentives. These are conceptual directions, not government commitments or approved arrangements [source:DATA-SRC-AGENT-TASKBOOK-20260518].
 
-### Long-Term Operations
+### Long-Term Operations and Brand Assets
 
-- **Annual event system**: Global AI Week, Developer Festival, Scenario Open Days, competitions, roadshows, and urban experience routes.
-- **Developer community operation**: Sustained community through the Open-Source Release Hall, AI Origin Community, and online platforms.
-- **Brand assets**: Jing-Zhang Intelligence Chain naming system, Logo direction, wayfinding system, and digital content library.
-- **International communication**: Attract global talent and enterprises through the narrative of "centennial railway + AI future."
+#### Annual Operations Calendar (conceptual framework)
+
+| Month | Flagship activity | Operational objective | Spatial carrier | Responsible entity (conceptual) |
+|---|---|---|---|---|
+| Jan–Feb | Annual open-source contributor awards; AI safety-governance white-paper workshop | Community consolidation and standards voice | Open-Source Release Hall, AI Safety Governance Corridor | Developer community, standards bodies |
+| Mar–Apr | Scenario Open Days (traffic signals, shared research instruments) | Enterprise–city matchmaking | East of Zhongzhiyuan, west-wing test fields | Enterprises, traffic authorities, universities |
+| May | Global AI Week, Developer Festival | Brand peak and international communication | Central spine, three-core plazas | Operations platform, international organizations |
+| Jun–Jul | Embodied-delivery open testing; summer intern camp | Technology validation and talent pipeline | Dazhongsi, AI Origin Community | Enterprises, universities, property managers |
+| Aug–Sep | Urban-agent sandbox roadshows and competitions | Innovation project incubation | AI Origin Open-Source Plaza | Incubators, investors |
+| Oct–Nov | Jing-Zhang Memory Culture Festival, International AI Governance Forum | Cultural narrative and policy dialogue | Central spine, Zhongzhiyuan | Cultural institutions, think tanks |
+| Dec | Annual results release; next-cycle budget and KPI review | Performance evaluation and continuous improvement | Open-Source Release Hall | Operations alliance |
+
+#### Brand Assets and Visual Identity (conceptual direction)
+
+- **Naming system**: Chinese "京张智链" (Jing-Zhang Intelligence Chain), English "Jing-Zhang Intelligence Chain", abbreviation "JZIC".
+- **Logo direction**: The Jing-Zhang Railway "人"-shaped switchback is abstracted into a neural synapse; railway-sleeper lines become data streams, forming a symbol of "centennial track × AI neural network". Primary colours: deep blue (technology), rust red (industrial heritage), light green (ecology).
+- **Signage family**: Wayfinding uses sleeper-module units scalable to plaza signs, street furniture, digital interfaces, and event graphics; multilingual information boards in Chinese, English, Braille, and QR code.
+- **Railway-heritage cultural grammar**: Tracks, points, signals, platforms, and other industrial elements are preserved and displayed through landscape, signage, and artistic interpretation.
+- **Application examples**: Event key visuals, plaza floor engravings, talent cards, open-source contributor honour wall, AI scenario-node wayfinding signs.
+- **Accessible typography rules**: Chinese body text in sans-serif Heiti, minimum 14 pt; English in sans-serif; key information provided as both icon and text; high-contrast colour schemes.
+
+#### Developer Community and Governance Mechanism (conceptual model)
+
+- **Developer-community operation**: Open-Source Release Hall as the offline hub, AI Origin Community providing talent apartments and co-working space, and an online platform hosting code repositories, model releases, and discussion forums.
+- **Scenario-access process**: Enterprise/research institute submits test application → Sandbox management committee conducts safety and privacy review → Test within bounded time/space domain → De-identified evaluation report → Outstanding results may enter the demonstration segment.
+- **Talent/enterprise conversion pathway**: Young researcher → open-source contributor → startup team → incubator/enterprise R&D centre → participation in Global AI Week → talent apartment and policy support.
+- **Funding assumptions (conceptual)**: Near term relies mainly on government-guided funds and university research budgets; mid term introduces industrial funds and social capital; long term achieves partial self-sustainability through scenario operations, brand licensing, and professional services.
+- **Long-term KPIs (conceptual)**: Annual open-source contributors, AI scenario-test projects, international conferences and events, talent-apartment occupancy, green-travel share, public-satisfaction surveys.
+
+#### International Communication Funnel
+
+- **Core narrative**: "Centennial railway + AI future" — from Zhan Tianyou's "人"-shaped switchback to today's AI neural network.
+- **Channels**: Global AI Week, international open-source conferences, overseas social media, bilingual website and visual index.
+- **Experience products**: Jing-Zhang AI experience route, developer pilgrimage tour, international student research camp.
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
@@ -243,8 +320,8 @@ Policy directions include innovative mixed land use, existing-building functiona
 All known metrics in `metrics.json` are recalculated from submitted geometry. Key metrics include [metric:site_area_sqm][metric:green_ratio][metric:public_space_ratio]:
 
 - Overall design area: 11,412,825 m²
-- Green ratio: 11.33%
-- Public-space ratio: 9.85%
+- Green ratio: 16.16%
+- Public-space ratio: 5.69%
 - AI scenario nodes: 13
 - Industry test/validation scenarios: 3
 
@@ -254,7 +331,7 @@ Metrics depending on official regulatory controls, such as FAR, building density
 
 `compliance_matrix.json` covers all announcement items 1.3, 1.4, 1.5 and agent tasks 1–6; `standard_matrix.json` covers the announcement, taskbook, Urban Design Management Measures, Regulatory Detailed Planning Measures, and Land-Sea Use Classification Guide; `design_depth_matrix.json` marks items such as existing-conditions diagnosis, three-level scope, overall structure, land-use layout, key-area detailed design, transport/blue-green, building renewal, metric recalculation, and risk/compliance as `complete`, noting limitations imposed by provisional boundaries and missing regulatory data [depth:metrics_recalculation].
 
-![Core metrics recalculation and evidence chain](assets/figures/metrics-evidence.png)
+![Core metrics recalculation and evidence chain](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright, and Compliance
 
