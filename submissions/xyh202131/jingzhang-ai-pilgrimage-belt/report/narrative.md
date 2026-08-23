@@ -12,6 +12,16 @@ Ordinary—verification—failure—recovery changes only the verification overl
 
 ## 版本与验收附录
 
+## Round 57 publication legibility and mobile cold read / 第 57 轮出版可读性与移动冷读
+
+第 57 轮只修复可复现的评审阅读断点：visual 把六项导航、三档阅读路径和“双轨／三处／四态／边界”四项摘要前置，真实 390×844 中英文设备仿真无页面级横向溢出；A3 的三处平面／剖面及总体、场景、项目横幅改为更大的并排或满宽阅读，A0 的三处深化与运营板减少重复和低价值留白。四份 PDF 仍为 14+14+8+8 页，使用既有包内资产，两次新进程逐文件字节一致，44 页全页与修改页细节 QA 通过。
+
+本轮没有新增方案、事实、主张、来源、媒体、页面、geometry、metric、场景、项目、重点区、合同或成熟度。完整 RED、最终 SHA、移动端／出版 QA 与冻结边界见 `changelog.md#v570---2026-08-24`、`agent.json#round_57_provenance` 和 `visual/assets/review-handoff-index.json#publication_mobile_read_r57`。这些结果只是编辑与出版复核，不是公众、专家、现场、批准、建成、无障碍或权利清除证据；本轮无新媒体。
+
+Round 57 repairs only reproducible jury-reading breaks. The visual moves six navigation entries, three reading depths and a Twin-Track / three-place / four-state / boundary summary ahead of the first section; true 390×844 device emulation has no page-level horizontal overflow in either language. A3 enlarges place plans/sections and overall, scene and project landscape pairs; A0 removes repeated reduced plans from the deepening board and reduces dead space on the operations board. The four PDFs remain 14+14+8+8 pages, use existing package assets, are byte-identical across two fresh processes and pass 44-page plus changed-detail QA.
+
+No proposal, fact, claim, source, medium, page, geometry, metric, scene, project, key area, contract or maturity is added. Full RED evidence, final hashes, mobile/publication QA and frozen boundaries are recorded in the three references above. These are editorial and publication checks—not public, expert, field, approval, built, accessibility or rights-clearance evidence. This round adds no media.
+
 ## Round 56 approved-plan alignment and front-stage figure de-duplication / 第 56 轮已批规划对位与前台图件去重
 
 官方公开页已核实街区控规获批状态及高层文字方向，本轮据此把“双轨京张”明确为既有法定规划方向上的可逆公共服务叠层，而不是第二套法定结构。约 1668.2 公顷公开规划范围与 11,412,825.386 m² 临时设计模型明确不等量、未套合、不得互换。双语 proposal 各由 15 张前台图收束为 9 张；`key-areas` 只出现一次，`spatial-atlas` 从 proposal 与 visual 前台下沉但原文件和后台证据不删除。无新媒体或页面，geometry／metrics、12/8/3/36、G0／NO-GO、非 AI 连续性、恢复非授权、专业否决和权利阻断保持冻结。

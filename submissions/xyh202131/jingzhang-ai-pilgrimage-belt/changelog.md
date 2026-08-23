@@ -1,5 +1,23 @@
 # 方案迭代记录 / Changelog
 
+## v57.0 - 2026-08-24
+
+**出版可读性与移动冷读 / Publication Legibility and Mobile Cold Read**
+
+- 串行门：PR #3812 已 `MERGED`，merge `c64be2829bde7965021795724bcddbf5c5a502e5` 已进入开工时 canonical `main@68f39f2883e1f593e9b1c1208dc70b8356d4ce86`；同包开放 PR 为 0，原工作树洁净。开工前重新同步并完整复读最新 README、Skill、任务书、source registry、formal guide、涉及 references、Issues/PR 与验证脚本。
+- 修复前 RED：visual 的六项主导航与 30 秒／3 分钟／15 分钟入口位于首个长节之后，四个最小决策答案没有同一前台摘要；A3 P4—P6 把三处平面和剖面上下压进窄栏，A3 P9、P11、P12 的横幅图并排后留下大面积低价值空白；A0 P4 重复缩小平面而剖面过弱，A0 P6 三张横幅图被等宽竖栏进一步缩小。这些是桌面、390 px 设备仿真、缩略图、全尺寸与定页出版的编辑性审查，不是公众反馈、专家意见、现场观察或评审结果。
+- visual 保持六项主导航和既有内容，把导航、三档阅读路径与四项决策摘要前置到首个空间节之前；390×844 中英文设备仿真确认页面级横向溢出为 0。无 JavaScript、键盘、减少动态、打印、静态回退、非自动播放与 48 秒仅为展示节奏的边界不变。
+- 四份 PDF 不增页重排。A3 P4—P6 以平面／首层剖面并排放大三处不可互换关系，P9、P11、P12 改为满宽上下阅读；A0 P4 以三处剖面主导“地面—阈值—普通任务”，P6 改为两项并读、全年运营横向展开。全部使用既有包内 SVG/PNG/WebP，不新增事实、图像、媒体或来源。
+- 两次独立新进程逐文件字节一致：中文 A3 `5f77099efe14cea4c4ca945ad4945552da0ce7214bc57a3879be1d0fb442c68e`、英文 A3 `fc2a8067b1549a3f21ef4eac50df93da3ab4422c4c21ca2bdb2328a0903a0f73`、中文 A0 `1d9b42c7c2b9fb9ab33942608921b8bc8bead6edc345df2cc9aa784699755c4b`、英文 A0 `2df220d6c041f19ce446e2d215b34257ac4f193cc2617efd7ff94adae0bc53d5`。44 页全页和修改页细节 QA 无空白、缺页或加密页。
+- 本轮没有新增方案方向、品牌、场景、项目、重点区、治理合同、成熟度、路径、页面、来源或媒体。九份 geometry、`metrics.json`、12/8/3/36、唯一“双轨京张”、三处不可互换原型、JZ-AIOS、G0—G3、四轴、三载体、G0、NO-GO、provisional、现实结果 0、完整非 AI 路径、故障只停验证叠层、恢复非授权／批准／重启／G1、专业否决、`not_fully_cleared` 与独立逐文件清权 0 全部冻结；本轮无新媒体。
+
+- Serial gate: PR #3812 was `MERGED`, and merge `c64be2829bde7965021795724bcddbf5c5a502e5` was contained in canonical `main@68f39f2883e1f593e9b1c1208dc70b8356d4ce86`; no same-package PR was open and the original worktree was clean. The latest README, Skill, taskbook, source registry, formal guide, relevant references, Issues/PRs and validators were reread after synchronization.
+- Pre-repair RED: the six-item visual navigation and 30-second / 3-minute / 15-minute entries came after the first long section, with no single four-answer decision summary. A3 P4–P6 compressed each plan and section into stacked narrow strips; side-by-side landscape figures left low-value dead space on P9, P11 and P12. A0 P4 repeated reduced plans while sections remained weak, and A0 P6 further reduced three landscape figures inside equal vertical columns. These are desktop, 390 px device-emulation, thumbnail, full-size and fixed-page editorial findings—not public feedback, expert opinion, field observation or jury results.
+- The visual keeps six primary entries and all existing content while moving navigation, three reading depths and a four-answer decision rail before the first spatial section. Chinese and English 390×844 device emulation records zero page-level horizontal overflow. No-JavaScript, keyboard, reduced-motion, print, static fallback, non-autoplay and the “48 seconds is presentation pacing only” boundary remain.
+- Four PDFs are recomposed without page growth. A3 P4–P6 enlarge each non-interchangeable plan and ground/section side by side; P9, P11 and P12 use full-width stacked reading. A0 P4 lets the three sections carry ground–threshold–ordinary-task relations; P6 reads two items together and expands year-round operations horizontally. Only existing package SVG/PNG/WebP assets are used; no fact, image, medium or source is added.
+- Two independent fresh processes produce byte-identical outputs: ZH A3 `5f77099efe14cea4c4ca945ad4945552da0ce7214bc57a3879be1d0fb442c68e`, EN A3 `fc2a8067b1549a3f21ef4eac50df93da3ab4422c4c21ca2bdb2328a0903a0f73`, ZH A0 `1d9b42c7c2b9fb9ab33942608921b8bc8bead6edc345df2cc9aa784699755c4b`, and EN A0 `2df220d6c041f19ce446e2d215b34257ac4f193cc2617efd7ff94adae0bc53d5`. All 44 pages and changed-page details have no blank, missing or encrypted page.
+- No design direction, brand, scene, project, key area, governance contract, maturity, path, page, source or medium is added. Nine geometry files, `metrics.json`, 12/8/3/36, the sole Twin-Track master idea, three non-interchangeable prototypes, JZ-AIOS, G0–G3, four axes, three carriers, G0, NO-GO, provisional status, zero real outcomes, complete non-AI paths, verification-only failure stop, non-authorising/non-approving/non-restarting/non-G1 recovery, professional veto, `not_fully_cleared` and zero independent file-level audits remain frozen. This round adds no media.
+
 ## v56.0 - 2026-08-23
 
 **已批规划语境对位与前台图件去重 / Approved-Plan Alignment and Front-stage Figure De-duplication**
