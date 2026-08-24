@@ -1,0 +1,25 @@
+{
+  "schema_version": "0.1.0",
+  "units": {"length":"m","area":"sqm"},
+  "metrics": {
+    "site_area_sqm":{"status":"known","value":11412825,"unit":"sqm","source_files":["geometry/site_boundary.geojson"],"formula":"projected_area(submitted_provisional_site_boundary, EPSG:4548), published to 1 sqm while retaining full internal calculation precision","confidence":"low","assumptions":["A-BOUNDARY-001"]},
+    "green_space_area_sqm":{"status":"known","value":2204265,"unit":"sqm","source_files":["geometry/green_space.geojson"],"formula":"sum(projected_area(green_space_features), EPSG:4548), published to 1 sqm","confidence":"low","assumptions":["A-BOUNDARY-001","A-CONTROLS-001"]},
+    "public_space_area_sqm":{"status":"known","value":2023722,"unit":"sqm","source_files":["geometry/public_space.geojson"],"formula":"union_projected_area(public_space_features, EPSG:4548), published to 1 sqm","confidence":"low","assumptions":["A-BOUNDARY-001","A-CONTROLS-001"]},
+    "building_footprint_area_sqm":{"status":"known","value":241863,"unit":"sqm","source_files":["geometry/buildings.geojson"],"formula":"sum(projected_area(conceptual_building_footprints), EPSG:4548), published to 1 sqm","confidence":"low","assumptions":["A-BUILDING-001"]},
+    "public_space_ratio":{"status":"known","value":0.17732,"unit":"ratio","source_files":["geometry/public_space.geojson","geometry/site_boundary.geojson"],"formula":"public_space_area_sqm/site_area_sqm","confidence":"low","assumptions":["A-BOUNDARY-001","A-CONTROLS-001"]},
+    "announced_overall_design_area_sqm":{"status":"known","value":11400000,"unit":"sqm","source_files":["brief/site-package/design_brief.json"],"formula":"official announced approximate area","confidence":"high","assumptions":["A-BOUNDARY-001"]},
+    "announced_key_area_total_sqm":{"status":"known","value":3684000,"unit":"sqm","source_files":["brief/site-package/design_brief.json"],"formula":"1921000+1043000+720000","confidence":"high","assumptions":["A-BOUNDARY-001"]},
+    "key_area_count":{"status":"known","value":3,"unit":"count","source_files":["geometry/key_areas.geojson"],"formula":"feature_count(KEY_AREA)","confidence":"medium","assumptions":["A-BOUNDARY-001"]},
+    "scenario_count":{"status":"known","value":12,"unit":"count","source_files":["proposal.md"],"formula":"count(scenario_cards)","confidence":"high","assumptions":[]},
+    "industry_test_scenario_count":{"status":"known","value":3,"unit":"count","source_files":["proposal.md"],"formula":"count(scenario_cards where type=industry_test)","confidence":"high","assumptions":[]},
+    "persona_count":{"status":"known","value":5,"unit":"count","source_files":["proposal.md"],"formula":"count(personas)","confidence":"high","assumptions":[]},
+    "pilgrimage_landmark_count":{"status":"known","value":3,"unit":"count","source_files":["proposal.md"],"formula":"count(landmarks)","confidence":"high","assumptions":[]},
+    "pilot_protocol_count":{"status":"known","value":3,"unit":"count","source_files":["simulation.json"],"formula":"count(preregistered_90_day_protocols)","confidence":"high","assumptions":[]},
+    "pilot_duration_days":{"status":"known","value":90,"unit":"day","source_files":["simulation.json"],"formula":"declared_duration_for_each_protocol","confidence":"high","assumptions":[]},
+    "technical_section_count":{"status":"known","value":3,"unit":"count","source_files":["assets/figures/tech-origin-interface.svg","assets/figures/tech-dazhongsi-crossing.svg","assets/figures/tech-zhongzhiyuan-test-garden.svg"],"formula":"count(concept_technical_sections)","confidence":"high","assumptions":[]},
+    "ai_hard_gate_override_count":{"status":"known","value":1,"unit":"count","source_files":["simulation.json"],"formula":"count(documented_weighted_screen_rank_1_rejected_by_hard_gate)","confidence":"high","assumptions":[]},
+    "floor_area_ratio":{"status":"unknown","value":null,"unit":"ratio","source_files":[],"formula":"total_floor_area/site_area","confidence":"unknown","assumptions":["A-CONTROLS-001"],"reason":"正式控规及建筑底数尚未提供。"},
+    "building_height_m":{"status":"unknown","value":null,"unit":"m","source_files":[],"formula":"official planning control","confidence":"unknown","assumptions":["A-CONTROLS-001"],"reason":"正式高度控制尚未提供。"},
+    "green_ratio":{"status":"known","value":0.193139,"unit":"ratio","source_files":["geometry/green_space.geojson","geometry/site_boundary.geojson"],"formula":"green_space_area_sqm/site_area_sqm","confidence":"low","assumptions":["A-BOUNDARY-001","A-CONTROLS-001"],"reason":"由临时概念图层复算，仅用于方案比较；不是法定绿地率。"}
+  }
+}

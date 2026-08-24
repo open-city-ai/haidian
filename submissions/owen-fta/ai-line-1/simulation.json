@@ -1,0 +1,50 @@
+{
+  "schema_version": "0.1.0",
+  "status": "preregistered_concept_validation_and_option_audit",
+  "important_note_zh": "以下数值是启动前预注册判定线或内部概念比选方法演示，不是现状成绩、比赛评分、官方结论或已运行AI模型输出。T0须在第0周现场实测并锁定；硬约束优先于软性加权排序。",
+  "task_count": 4,
+  "tasks": [
+    {"task_id":"P90-ORIGIN-LIVING-ROOM","outcome":"protocol_preregistered_success","dispatch_schema_valid":true,"audit_complete":true},
+    {"task_id":"P90-DAZHONGSI-PUBLIC-INTERFACE","outcome":"protocol_preregistered_success","dispatch_schema_valid":true,"audit_complete":true},
+    {"task_id":"P90-ZHONGZHIYUAN-SAFETY-GARDEN","outcome":"protocol_preregistered_success","dispatch_schema_valid":true,"audit_complete":true},
+    {"task_id":"AI-OVERRIDE-DAZHONGSI-001","outcome":"hard_gate_override_success","dispatch_schema_valid":true,"audit_complete":true}
+  ],
+  "pilot_protocols": [
+    {
+      "pilot_id": "P90-ORIGIN-LIVING-ROOM", "site": "AI原点社区", "prototype": "开放客厅＋概念验证服务", "duration_days": 90,
+      "measurement_points": ["T0", "D30", "D60", "D90"], "minimum_sample": {"unique_participants": 120, "public_sessions": 8, "poc_teams": 6},
+      "pass_rules": ["重复参与≥30%", "≥2个团队完成可追溯验证或转介", "体验中位数≥4/5", "重大隐私或安全事件=0"],
+      "stop_rules": ["未关闭重大隐私或安全事件", "无人工服务或非商业公共时段"],
+      "owner_roles": ["场景业主", "原点运营团队", "独立数据与无障碍复核人"],
+      "data_minimization": "仅记录去标识参与编号、活动类型、转介状态和自愿反馈。"
+    },
+    {
+      "pilot_id": "P90-DAZHONGSI-PUBLIC-INTERFACE", "site": "大钟寺", "prototype": "公共首层＋辅助路/到达段连续步行原型", "duration_days": 90,
+      "measurement_points": ["T0连续7天基线", "D30", "D60", "D90"], "minimum_sample": {"crossing_observations": 240, "intercept_surveys": 120, "observation_periods": 18},
+      "pass_rules": ["无障碍检查100%", "绕行或到达时间中位数较T0改善≥20%", "冲突率不恶化且目标改善≥20%", "重大交通事件=0"],
+      "stop_rules": ["冲突率恶化或重大安全事件", "交通、消防或无障碍复核未通过"],
+      "owner_roles": ["属地运营主体", "交通与无障碍专业团队", "公众观察员"],
+      "scope_boundary": "只验证辅助路、支路、站点到达段和公共首层可逆措施；不认定北三环主路、铁路或跨路结构工程可行。"
+    },
+    {
+      "pilot_id": "P90-ZHONGZHIYUAN-SAFETY-GARDEN", "site": "众智园", "prototype": "具身智能可围合安全测试花园", "duration_days": 90,
+      "measurement_points": ["T0空载与急停演练", "D30", "D60", "D90"], "minimum_sample": {"supervised_test_sessions": 30, "participating_teams": 5, "emergency_stop_drills": 10},
+      "pass_rules": ["登记与责任签认100%", "急停成功100%", "未受控越界=0", "人工接管中位≤30秒", "事件按期关闭100%"],
+      "stop_rules": ["急停失败、未受控越界或重大人身风险", "重大事件未关闭或责任主体退出"],
+      "owner_roles": ["园区测试运营人", "设备团队安全责任人", "独立安全观察员"],
+      "data_minimization": "保留设备编号、测试任务、事件等级、人工接管和处置结果；公众区域不做人脸识别。"
+    }
+  ],
+  "ai_override_audit": {
+    "audit_id": "AI-OVERRIDE-DAZHONGSI-001", "site": "大钟寺", "decision_question": "资料不完整时，什么近期干预最能改善跨三环到达与公共创新界面？",
+    "weights": {"connectivity": 25, "public_value": 20, "brand_visibility": 15, "reversibility": 15, "deliverability_under_known_data": 25},
+    "options": [
+      {"weighted_screen_rank": 1, "id": "A", "name": "标志性跨三环桥站一体结构", "concept_screen_score": 86, "hard_gate": "REJECT", "reason": "缺少道路/铁路红线、权属、结构、消防、无障碍、造价、运营与审批资料，且不可逆。"},
+      {"weighted_screen_rank": 2, "id": "B", "name": "辅助路/到达段连续步行＋公共首层＋导视原型", "concept_screen_score": 82, "hard_gate": "PASS_WITH_REVIEW", "reason": "可逆且可在90天内测量；实施仍须专业审查与审批。"},
+      {"weighted_screen_rank": 3, "id": "C", "name": "扩大地下通道与商业连廊", "concept_screen_score": 74, "hard_gate": "HOLD", "reason": "待地下空间、管线、消防、权属和客流资料补齐。"}
+    ],
+    "final_human_decision": "B进入90天概念验证；A拒绝进入近期项目池；C待补数。",
+    "accountability": ["城市设计负责人签认硬约束", "交通与无障碍专业团队复核", "实施主体对启动/停止负责"],
+    "reopen_condition": "正式红线、权属、交通、结构、消防、无障碍、造价和运营资料齐备并通过专项论证。"
+  }
+}
