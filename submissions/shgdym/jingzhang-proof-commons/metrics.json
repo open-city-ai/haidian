@@ -370,18 +370,31 @@
       "assumptions": [],
       "precision_note": "Protocol acceptance target, not measured operational performance."
     },
-    "minimum_pilot_duration_days": {
+    "controlled_operating_shift_days": {
       "status": "known",
-      "value": 90,
+      "value": 14,
       "unit": "days",
       "source_files": [
         "proposal.md",
         "proposal.en.md"
       ],
-      "formula": "proposed_city_design_pilot_window",
+      "formula": "D14 - D1 + 1",
       "confidence": "high",
       "assumptions": [],
-      "precision_note": "Proposed 90-day planning window with four phases; field operation remains unauthorised and unrun."
+      "precision_note": "Only the proposed controlled field-operating shift. It remains unauthorised and unrun."
+    },
+    "pre_pilot_readiness_review_window_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "calendar_days",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "readiness + 14_day_controlled_operation + evaluation + restoration",
+      "confidence": "high",
+      "assumptions": [],
+      "precision_note": "Planning and review window, not a minimum pilot duration or continuous field operation. It cannot start while any pre-pilot readiness item remains blocked."
     },
     "reversible_pilot_kit_type_count": {
       "status": "known",

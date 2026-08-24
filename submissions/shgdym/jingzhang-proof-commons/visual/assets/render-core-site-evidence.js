@@ -16,6 +16,7 @@ const results = read('visual/assets/site-context-results.json');
 const keyAreas = read('geometry/key_areas.geojson');
 const landUse = read('geometry/land_use.geojson');
 const roads = read('geometry/roads.geojson');
+const contracts = read('visual/assets/three-station-flagship-contracts.json');
 
 const W = 2000;
 const H = 1200;
@@ -80,6 +81,14 @@ function footer(lang) {
   return `<line x1="58" y1="1142" x2="1942" y2="1142" stroke="${C.line}"/>
     ${text(58, 1172, note, 15, C.muted)}
     ${text(1942, 1172, 'X JINGZHANG · PUBLIC CONTEXT / CONCEPT ACTION', 14, C.muted, 600, 'end')}`;
+}
+
+function conceptNotice(lang, x, y, width) {
+  const label = lang === 'zh'
+    ? 'AI / 生成式概念图 · 非现场照片 · 非规划或实施批准'
+    : 'AI / GENERATIVE CONCEPT IMAGE · NOT A SITE PHOTOGRAPH · NOT PLANNING OR IMPLEMENTATION APPROVAL';
+  return `<rect x="${x}" y="${y}" width="${width}" height="34" fill="${C.ink}" fill-opacity=".94"/>
+    ${text(x + 12, y + 23, label, lang === 'zh' ? 12 : 9, C.white, 700)}`;
 }
 
 function extentForRing(ring, pad = 0.08) {
@@ -149,6 +158,12 @@ function ringOverlay(ring, extent, rect, color, label) {
 
 function svgWrap(content) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="${W}" height="${H}" fill="${C.paper}"/>${content}</svg>`;
+}
+
+function placedImage(name, x, y, w, h, clipId, align = 'xMidYMid') {
+  const payload = fs.readFileSync(path.join(FIGURES, name)).toString('base64');
+  return `<defs><clipPath id="${clipId}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5"/></clipPath></defs>
+    <image x="${x}" y="${y}" width="${w}" height="${h}" href="data:image/png;base64,${payload}" preserveAspectRatio="${align} slice" clip-path="url(#${clipId})"/>`;
 }
 
 function keyAreasFigure(lang) {
@@ -445,12 +460,12 @@ function metricsFigure(lang) {
   const colors = [C.cyan, C.blue, C.green, C.coral];
   const values = zh ? [
     ['6,266 条 OSM要素', '3处重点区现状切片', '450个建筑基底落入临时框', '时间戳随包保存'],
-    ['3站 / 3张票', '12场景 / 4产业验证', '90天最小试点', '14单元 / 10缝合'],
+    ['3站 / 3张票', '12场景 / 4产业验证', '14日运行 / 90日准备评估', '14单元 / 10缝合'],
     ['生命周期 24 / 24', '站点拓扑 29 / 29', '旗舰合同 37 / 37', 'OSM复算 5 / 5'],
     ['official polygon', '权属 / 道路红线 / 管线', '现场尺寸 / 人流 / 无障碍', '预算 / 保险 / 许可 / 主体'],
   ] : [
     ['6,266 OSM features', 'three key-area context slices', '450 mapped footprints in rough boxes', 'source timestamp shipped'],
-    ['3 stations / 3 tickets', '12 scenarios / 4 industry tests', '90-day minimum pilots', '14 units / 10 stitches'],
+    ['3 stations / 3 tickets', '12 scenarios / 4 industry tests', '14-day operation / 90-day readiness review', '14 units / 10 stitches'],
     ['lifecycle 24 / 24', 'station topology 29 / 29', 'flagship contracts 37 / 37', 'OSM recomputation 5 / 5'],
     ['official polygons', 'ownership / redlines / utilities', 'site dimensions / flows / access', 'budget / insurance / permits / actors'],
   ];
@@ -492,214 +507,359 @@ function metricsFigure(lang) {
 
 function pilotFigure(lang) {
   const zh = lang === 'zh';
-  let body = header(5, '90天试点：失败也留下城市资产', '90-DAY PILOTS: FAILURE STILL LEAVES CITY ASSETS', '面积、构件、主体、停止、撤出与保留均按城市设计量级判断', 'PLANNING-SCALE AREA, KIT, ACTORS, STOP, EXIT AND RETAINED VALUE', lang);
+  let body = header(5, '90日准备与评估窗口：现场运行仅D1—D14', '90-DAY READINESS + REVIEW: FIELD OPERATION IS D1-D14', '准备、运行、评估三种时间口径唯一且不互换', 'READINESS, OPERATION AND REVIEW ARE DISTINCT', lang);
   const pilots = zh ? [
-    ['众智园 / TEST', '800–1,500 m²', '轻建造级 · 数百万元级', '可拆围界 / 观察台 / 急停 / 撤机路', '场地运营 / 产品 / 安全 / 独立观察', '越界、急停失效或公众线冲突', '公众院落 / 安全模块 / 失败档案'],
-    ['AI原点 / RELEASE', '300–800 m²', '家具+轻改造 · 百万元级', '发布双台 / 权利墙 / 撤回台 / 旁观阶梯', '场地运营 / 权利复核 / 发布 / 社区代表', '许可HOLD、撤回失灵或普通使用受阻', '公共长桌 / 教学空间 / 开放方法档案'],
-    ['大钟寺 / USE', '500–1,000 m²', '家具+轻建造 · 百万至数百万元级', '人工窗口 / 触觉导引 / 投诉台 / 储位', '公共服务 / 无障碍 / 维护 / 用户代表', '无AI服务中断、无障碍受阻或异议未闭环', '人工窗口 / 触觉地图 / 座椅与普通商业'],
+    ['众智园 / TEST', '准备门', '运营、许可、保险、安全、数据、无障碍、复原资金全部有责任人', '可拆边界 / 急停 / 观察 / 撤出路径', 'D1—D14：封闭测试、独立复测、问题共同修改', '越界、急停失效或公众主链冲突', '普通院落 / 公开工况 / 失败记录'],
+    ['AI原点 / RELEASE', '准备门', '运营、场地、权利复核、数据控制与撤回责任全部签注', '原型长桌 / 权利说明 / 人工撤回 / 旁观阶梯', 'D1—D14：方法复现、许可核对、有限开放', '许可HOLD、版本错配或无人撤回', '公共长桌 / 教学 / 开放方法档案'],
+    ['大钟寺 / USE', '准备门', '运营、场地、保险、安全、人工服务、无障碍与复原责任全部落实', '人工窗口 / 无障碍主链 / 投诉点 / 设备退出', 'D1—D14：有限使用、匿名异议、人工等价服务', '人工缺席、无障碍受阻或重大异议未闭合', '人工窗口 / 座椅 / 普通商业与休息'],
   ] : [
-    ['ZHONGZHI / TEST', '800–1,500 m²', 'LIGHT BUILD · MULTI-MILLION CNY BAND', 'REMOVABLE EDGE / VIEWING / E-STOP / EXIT ROUTE', 'SITE OPS / PRODUCT / SAFETY / INDEPENDENT OBSERVER', 'BOUNDARY BREACH, STOP FAILURE OR CIVIC CONFLICT', 'CIVIC COURT / SAFETY KIT / FAILURE ARCHIVE'],
-    ['AI ORIGIN / RELEASE', '300–800 m²', 'FURNITURE + LIGHT RETROFIT · MILLION CNY BAND', 'DUAL TABLE / RIGHTS WALL / WITHDRAWAL / STEPS', 'SITE OPS / RIGHTS / RELEASE / COMMUNITY', 'LICENCE HOLD, WITHDRAWAL FAILURE OR CIVIC USE BLOCKED', 'PUBLIC TABLE / LEARNING / OPEN METHOD ARCHIVE'],
-    ['DAZHONGSI / USE', '500–1,000 m²', 'FURNITURE + LIGHT BUILD · LOW–MULTI MILLION CNY', 'STAFFED WINDOW / TACTILE WAY / COMPLAINT / STORAGE', 'PUBLIC SERVICE / ACCESS / MAINTENANCE / USERS', 'NON-AI OUT, ACCESS BLOCKED OR OPEN COMPLAINT', 'STAFFED WINDOW / TACTILE MAP / SEATING + COMMERCE'],
+    ['ZHONGZHI / TEST', 'READINESS GATE', 'OPERATOR, PERMIT, INSURANCE, SAFETY, DATA, ACCESS AND RESTORATION OWNERS NAMED', 'REMOVABLE EDGE / E-STOP / VIEWING / EXIT ROUTE', 'D1-D14: CLOSED TEST, INDEPENDENT RETEST, CO-DEVELOP CONDITIONS', 'BOUNDARY BREACH, STOP FAILURE OR CIVIC-LINE CONFLICT', 'ORDINARY COURT / OPEN CONDITIONS / FAILURE RECORD'],
+    ['AI ORIGIN / RELEASE', 'READINESS GATE', 'OPERATOR, SITE, RIGHTS, DATA CONTROL AND WITHDRAWAL DUTIES SIGNED', 'PROTOTYPE TABLE / RIGHTS NOTICE / STAFFED WITHDRAWAL / STEPS', 'D1-D14: REPRODUCTION, LICENCE REVIEW, LIMITED OPENING', 'LICENCE HOLD, VERSION MISMATCH OR NO WITHDRAWAL OWNER', 'PUBLIC TABLE / LEARNING / OPEN METHOD ARCHIVE'],
+    ['DAZHONGSI / USE', 'READINESS GATE', 'OPERATOR, SITE, INSURANCE, SAFETY, STAFFED SERVICE, ACCESS AND RESTORATION READY', 'STAFFED WINDOW / ACCESSIBLE CHAIN / COMPLAINT / DEVICE EXIT', 'D1-D14: LIMITED USE, ANONYMOUS OBJECTION, NON-AI EQUIVALENCE', 'ABSENT STAFF, ACCESS BLOCK OR UNRESOLVED MAJOR OBJECTION', 'STAFFED WINDOW / SEATING / ORDINARY COMMERCE + REST'],
   ];
-  const phaseLabels = zh ? ['01–14 基线', '15–45 建造', '46–75 开放', '76–90 退出'] : ['01–14 BASE', '15–45 BUILD', '46–75 OPEN', '76–90 EXIT'];
+  const phaseLabels = zh ? ['W01–30 准备', 'W31–44 运行', 'W45–75 评估', 'W76–90 复原决定'] : ['W01–30 READY', 'W31–44 OPERATE', 'W45–75 REVIEW', 'W76–90 RESTORE'];
   pilots.forEach((pilot, index) => {
     const x = 58 + index * 636;
     const color = stationColors[index];
     body += `<rect x="${x}" y="160" width="606" height="930" rx="5" fill="white" stroke="${C.line}"/><rect x="${x}" y="160" width="606" height="10" fill="${color}"/>
-      ${text(x+26, 218, pilot[0], 24, C.ink, 700)}${text(x+26, 270, pilot[1], 30, color, 700)}${text(x+26, 307, pilot[2], 13, C.muted, 700)}`;
+      ${text(x+26, 218, pilot[0], 24, C.ink, 700)}${text(x+26, 270, pilot[1], 20, color, 700)}${lines(x+26, 304, zh ? [pilot[2].slice(0, 31), pilot[2].slice(31)] : wrapWords(pilot[2], 54), zh ? 12 : 9, C.muted, 700, 1.4)}`;
     phaseLabels.forEach((phase, phaseIndex) => {
       const px = x + 26 + phaseIndex * 139;
       body += `<rect x="${px}" y="350" width="128" height="58" rx="5" fill="${phaseIndex === 3 ? C.paleCoral : [C.paleBlue,C.paleGreen,C.paleAmber][index]}" stroke="${phaseIndex === 3 ? C.coral : color}"/>${text(px+64, 384, phase, zh ? 13 : 11, phaseIndex === 3 ? C.coral : C.ink, 700, 'middle')}`;
     });
-    const rows = zh ? [['构件',pilot[3]],['所需主体类型',pilot[4]],['立即停止',pilot[5]]] : [['KIT',pilot[3]],['REQUIRED ACTORS',pilot[4]],['STOP NOW',pilot[5]]];
+    const rows = zh ? [['空间动作',pilot[3]],['14日运行班次',pilot[4]],['立即停止',pilot[5]]] : [['SPATIAL ACTION',pilot[3]],['14-DAY OPERATING SHIFT',pilot[4]],['STOP NOW',pilot[5]]];
     rows.forEach((row, rowIndex) => {
       const y = 472 + rowIndex * 150;
       body += text(x+26, y, row[0], 13, C.muted, 700) + lines(x+26, y+38, [row[1]], zh ? 16 : 13, C.ink, 600, 1.5) + `<line x1="${x+26}" y1="${y+104}" x2="${x+580}" y2="${y+104}" stroke="${C.line}"/>`;
     });
-    body += `<rect x="${x+26}" y="920" width="554" height="126" rx="5" fill="${C.paleGreen}" stroke="${C.green}"/>${text(x+48, 957, zh ? '90天后留下' : 'LEFT AFTER DAY 90', 14, C.green, 700)}${lines(x+48, 992, [pilot[6]], zh ? 16 : 13, C.ink, 650, 1.5)}`;
+    body += `<rect x="${x+26}" y="920" width="554" height="126" rx="5" fill="${C.paleGreen}" stroke="${C.green}"/>${text(x+48, 957, zh ? '窗口结束后的普通状态' : 'ORDINARY STATE AFTER THE WINDOW', 14, C.green, 700)}${lines(x+48, 992, zh ? [pilot[6]] : wrapWords(pilot[6], 52), zh ? 16 : 12, C.ink, 650, 1.5)}`;
   });
-  body += text(58, 1128, zh ? '量级声明：面积、实施强度与投资不是测绘、概算、招标预算或实施承诺；正式条件到位后由专业团队重建。' : 'BAND NOTE: AREA, BUILD INTENSITY AND COST ARE NOT SURVEY, COST PLAN, TENDER OR DELIVERY COMMITMENT; PROFESSIONAL TEAMS REBUILD AFTER FORMAL EVIDENCE.', 14, C.muted, 500);
+  body += text(58, 1128, zh ? '时间定义：90日是准备与评估窗口；其中只有W31—44（D1—D14）为受控运行。180日仅是获批后的可选复核节点，不是运行时长。' : 'TIME MODEL: 90 DAYS IS A READINESS + REVIEW WINDOW; ONLY W31-44 (D1-D14) IS CONTROLLED OPERATION. DAY 180 IS AN OPTIONAL FOLLOW-UP REVIEW, NOT OPERATION DURATION.', zh ? 13 : 10, C.muted, 500);
   return svgWrap(body + footer(lang));
 }
 
 function innovationLineFigure(lang) {
   const zh = lang === 'zh';
   const extent = [116.337, 39.937, 116.359, 40.029];
-  const rect = { x: 58, y: 160, w: 1160, h: 930 };
+  const rect = { x: 58, y: 160, w: 1192, h: 930 };
   let body = header(1,
-    '让城市的问题进入研发，让AI的答案回到生活',
-    'CITY QUESTIONS IN. AI ANSWERS BACK TO LIFE.',
-    '一条京张公共创新线 × 三个不可互换的城市站点',
-    'ONE PUBLIC INNOVATION LINE × THREE URBAN STATIONS', lang);
-  body += `<defs>
-    <marker id="innov-arrow-${lang}" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="${C.cyan}"/></marker>
-    <marker id="question-arrow-${lang}" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="${C.coral}"/></marker>
-  </defs>`;
-  body += `<rect x="58" y="160" width="1160" height="930" rx="5" fill="white" stroke="${C.line}"/>`;
+    '九公里城市，就是九公里AI研发环境',
+    'THE CITY IS THE AI DEVELOPMENT ENVIRONMENT',
+    '六类城市知识接口 × 三处深度共同开发场',
+    'SIX URBAN KNOWLEDGE INTERFACES × THREE CO-DEVELOPMENT GROUNDS', lang);
+  body += `<rect x="58" y="160" width="1192" height="930" rx="5" fill="white" stroke="${C.line}"/>`;
   body += mapLayer(extent, rect, `innovation-${lang}`, { lightBuildings: true });
   body += drawDesignNetwork(extent, rect);
+  const interfaces = zh ? [
+    ['社区 X', '照护与日常服务', C.coral], ['校园 X', '研究方法与人才', C.blue],
+    ['轨道 X', '高频出行工况', C.amber], ['生态 X', '河岸与气候知识', C.green],
+    ['产业 X', '工程制造与维护', C.cyan], ['文化 X', '工程史与公众记忆', C.ink],
+  ] : [
+    ['COMMUNITY X', 'CARE + DAILY SERVICE', C.coral], ['CAMPUS X', 'RESEARCH + TALENT', C.blue],
+    ['TRANSIT X', 'MOBILITY CONDITIONS', C.amber], ['ECOLOGY X', 'RIVER + CLIMATE', C.green],
+    ['INDUSTRY X', 'ENGINEERING + REPAIR', C.cyan], ['CULTURE X', 'MEMORY + INTERPRETATION', C.ink],
+  ];
+  const ys = [270, 405, 540, 675, 810, 945];
+  interfaces.forEach((item, index) => {
+    const fromLeft = index % 2 === 0;
+    const x1 = fromLeft ? rect.x + 34 : rect.x + rect.w - 34;
+    const x2 = fromLeft ? rect.x + rect.w * .64 : rect.x + rect.w * .36;
+    const labelX = fromLeft ? rect.x + 20 : rect.x + rect.w - 244;
+    body += `<line x1="${x1}" y1="${ys[index]}" x2="${x2}" y2="${ys[index]}" stroke="white" stroke-width="12" opacity=".92"/>
+      <line x1="${x1}" y1="${ys[index]}" x2="${x2}" y2="${ys[index]}" stroke="${item[2]}" stroke-width="5" stroke-dasharray="12 8"/>
+      <rect x="${labelX}" y="${ys[index]-32}" width="224" height="64" rx="4" fill="white" stroke="${item[2]}" stroke-width="2"/>
+      ${text(labelX+14, ys[index]-6, item[0], zh ? 16 : 13, item[2], 700)}
+      ${text(labelX+14, ys[index]+18, item[1], zh ? 13 : 10, C.ink, 500)}`;
+  });
   const centers = keyAreas.features.map((area) => {
     const ring = area.geometry.coordinates[0].slice(0, -1);
     const center = ring.reduce((acc, point) => [acc[0] + point[0] / ring.length, acc[1] + point[1] / ring.length], [0, 0]);
     return project(center, extent, rect);
   });
-  const [z, a, d] = centers;
-  body += `<path d="M${d[0]-42},${d[1]} C${d[0]-190},${d[1]-80} ${z[0]-190},${z[1]+80} ${z[0]-42},${z[1]}" fill="none" stroke="white" stroke-width="18" opacity=".92"/>`;
-  body += `<path d="M${d[0]-42},${d[1]} C${d[0]-190},${d[1]-80} ${z[0]-190},${z[1]+80} ${z[0]-42},${z[1]}" fill="none" stroke="${C.coral}" stroke-width="8" stroke-dasharray="15 10" marker-end="url(#question-arrow-${lang})"/>`;
-  body += `<path d="M${z[0]+38},${z[1]} L${a[0]+38},${a[1]} L${d[0]+38},${d[1]}" fill="none" stroke="white" stroke-width="20" opacity=".92"/>`;
-  body += `<path d="M${z[0]+38},${z[1]} L${a[0]+38},${a[1]} L${d[0]+38},${d[1]}" fill="none" stroke="${C.cyan}" stroke-width="10" marker-end="url(#innov-arrow-${lang})"/>`;
-  const stationRole = zh ? ['共研 / BUILD', '开放 / OPEN', '使用 / LIVE'] : ['CO-DEVELOP / BUILD', 'OPEN / OPEN', 'USE / LIVE'];
+  const stationRole = zh ? ['把公众知识变成工程材料', '让任何团队都能接着做', '让日常生活继续改产品'] : ['TURN PUBLIC KNOWLEDGE INTO ENGINEERING', 'LET ANY TEAM CONTINUE THE WORK', 'LET DAILY LIFE KEEP CHANGING IT'];
   centers.forEach((point, index) => {
-    body += `<circle cx="${point[0]}" cy="${point[1]}" r="24" fill="${stationColors[index]}" stroke="white" stroke-width="7"/>`;
-    body += `<rect x="${point[0]+34}" y="${point[1]-38}" width="${zh ? 212 : 250}" height="76" rx="4" fill="white" stroke="${stationColors[index]}"/>`;
-    body += text(point[0]+50, point[1]-8, stationNames[lang][index], zh ? 18 : 15, C.ink, 700);
-    body += text(point[0]+50, point[1]+20, stationRole[index], 13, stationColors[index], 700);
+    const cardW = zh ? 270 : 310;
+    const cardX = index === 2 ? point[0] - cardW - 34 : point[0] + 34;
+    body += `<circle cx="${point[0]}" cy="${point[1]}" r="39" fill="${stationColors[index]}" fill-opacity=".18" stroke="white" stroke-width="12"/>
+      <circle cx="${point[0]}" cy="${point[1]}" r="22" fill="${stationColors[index]}" stroke="white" stroke-width="6"/>
+      <rect x="${cardX}" y="${point[1]-40}" width="${cardW}" height="80" rx="4" fill="white" stroke="${stationColors[index]}" stroke-width="2"/>
+      ${text(cardX+16, point[1]-11, stationNames[lang][index], zh ? 18 : 15, C.ink, 700)}
+      ${text(cardX+16, point[1]+20, stationRole[index], zh ? 13 : 10, stationColors[index], 700)}`;
   });
-  const lateral = zh ? [
-    ['高校 / 科研园区', 120, 300, z[0]-18, z[1]],
-    ['社区 / 小月河', 940, 390, a[0]+18, a[1]],
-    ['轨道 / 商业 / 日常服务', 870, 930, d[0]+18, d[1]],
-  ] : [
-    ['UNIVERSITIES / R&D', 105, 300, z[0]-18, z[1]],
-    ['COMMUNITIES / XIAOYUE', 915, 390, a[0]+18, a[1]],
-    ['TRANSIT / COMMERCE / DAILY LIFE', 805, 930, d[0]+18, d[1]],
-  ];
-  lateral.forEach((item, index) => {
-    body += `<rect x="${item[1]}" y="${item[2]-30}" width="${index === 2 ? 300 : 230}" height="54" rx="4" fill="${C.ink}"/>`;
-    body += text(item[1]+14, item[2]+5, item[0], zh ? 14 : 12, C.white, 650);
+  body += `<rect x="1280" y="160" width="662" height="930" rx="5" fill="white" stroke="${C.line}"/>
+    ${text(1316, 216, zh ? 'AI由城市共同做成' : 'AI IS MADE WITH THE CITY', zh ? 28 : 24, C.ink, 700)}
+    ${lines(1316, 254, zh ? ['不是把生活变成测试场，而是让生活经验、', '研究方法和工程能力共享同一张研发桌。'] : ['Urban life is not a testing ground.', 'Experience, research and engineering', 'share the same development table.'], zh ? 16 : 14, C.muted, 500, 1.45)}`;
+  const photos = ['experience-zhongzhi.png', 'experience-ai-origin.png', 'experience-dazhongsi.png'];
+  const photoLabels = zh ? ['公共实验花园', '公共共研大厅', '城市生活客厅'] : ['PUBLIC EXPERIMENT GARDEN', 'PUBLIC CO-DEVELOPMENT HALL', 'CITY LIFE ROOM'];
+  photos.forEach((photo, index) => {
+    const y = 360 + index * 218;
+    body += placedImage(photo, 1316, y, 590, 188, `innovation-photo-${lang}-${index}`, index === 2 ? 'xMaxYMid' : 'xMidYMid');
+    body += conceptNotice(lang, 1316, y, 590);
+    body += `<rect x="1316" y="${y+140}" width="590" height="48" fill="${C.ink}" fill-opacity=".86"/>`;
+    body += text(1334, y+171, `${stationNames[lang][index]} · ${photoLabels[index]}`, zh ? 15 : 12, C.white, 700);
   });
-  body += `<rect x="1248" y="160" width="694" height="930" rx="5" fill="white" stroke="${C.line}"/>`;
-  body += text(1284, 218, zh ? '一条创新链，不是一套门禁' : 'AN INNOVATION LINE, NOT AN ACCESS GATE', zh ? 24 : 21, C.ink, 700);
-  const steps = zh ? [
-    ['01 城市出题', '居民、服务人员、园区与河岸把困难写成可工作的任务', C.coral],
-    ['02 众智园共研', '开发者把任务做成工况、原型与开放测试方法', C.blue],
-    ['03 AI原点开放', '高校、企业与公众复现、解释、修改并形成公共能力', C.green],
-    ['04 大钟寺使用', '成果进入通勤、商业和社区服务，判断是否真正改善生活', C.amber],
-    ['05 带题返回', '现场反馈成为下一版研发输入，而不是停在投诉端', C.coral],
-  ] : [
-    ['01 FRAME THE QUESTION', 'Residents, staff, campuses and the river edge turn difficulty into a workable brief.', C.coral],
-    ['02 CO-DEVELOP AT ZHONGZHI', 'Developers turn the brief into conditions, prototypes and open test methods.', C.blue],
-    ['03 OPEN AT AI ORIGIN', 'Universities, enterprises and the public reproduce, explain and improve it.', C.green],
-    ['04 USE AT DAZHONGSI', 'The answer meets transit, commerce and community life to prove real value.', C.amber],
-    ['05 RETURN WITH A QUESTION', 'Field feedback becomes the next research input instead of ending as a complaint.', C.coral],
-  ];
-  steps.forEach((step, index) => {
-    const y = 278 + index * 145;
-    body += `<circle cx="1299" cy="${y+29}" r="18" fill="${step[2]}"/>`;
-    if (index < steps.length-1) body += `<line x1="1299" y1="${y+50}" x2="1299" y2="${y+132}" stroke="${C.line}" stroke-width="4"/>`;
-    body += text(1333, y+21, step[0], zh ? 18 : 15, step[2], 700);
-    body += lines(1333, y+57, zh ? [step[1]] : wrapWords(step[1], 48), zh ? 16 : 13, C.ink, 500, 1.45);
-  });
-  body += `<rect x="1284" y="1010" width="622" height="54" rx="4" fill="${C.ink}"/>`;
-  body += text(1595, 1044, zh ? 'X = 城市问题 × AI能力' : 'X = CITY QUESTION × AI CAPABILITY', zh ? 18 : 16, C.white, 700, 'middle');
+  body += `<rect x="1316" y="1028" width="590" height="38" rx="3" fill="${C.ink}"/>`;
+  body += text(1611, 1054, zh ? 'X = 不同城市知识共享一张研发桌' : 'X = URBAN KNOWLEDGE SHARES ONE DEVELOPMENT TABLE', zh ? 15 : 12, C.white, 700, 'middle');
   return svgWrap(body + footer(lang));
 }
 
 function stationInnovationFigure(lang) {
   const zh = lang === 'zh';
   let body = header(3,
-    '三站城市空间：做东西、开放东西、真正使用东西',
-    'THREE URBAN STATIONS: MAKE, OPEN, USE',
-    '创新活动是空间主体；治理合同是安全底盘',
-    'INNOVATION IS THE SPATIAL PROGRAMME; GOVERNANCE IS THE FOUNDATION', lang);
-  const titles = zh ? ['众智园｜把问题做成原型', 'AI原点｜把原型变成公共能力', '大钟寺｜让公共能力进入生活'] : ['ZHONGZHI | TURN QUESTIONS INTO PROTOTYPES', 'AI ORIGIN | TURN PROTOTYPES INTO PUBLIC CAPABILITY', 'DAZHONGSI | PUT CAPABILITY INTO DAILY LIFE'];
-  const users = zh ? ['开发者 · 企业 · 居民 · 孩子', '高校 · 开发者 · 创业者 · 社区', '通勤者 · 老人 · 儿童 · 商户'] : ['DEVELOPERS · ENTERPRISES · RESIDENTS · CHILDREN', 'UNIVERSITIES · DEVELOPERS · START-UPS · COMMUNITY', 'COMMUTERS · OLDER PEOPLE · CHILDREN · SHOPS'];
-  const spaces = zh ? [
-    ['城市问题厅', '开发者工作台', '开放实验庭院', '观察廊', '机器人测试街', '清河生态工况'],
-    ['城市问题墙', '开放实验大厅', '原型工坊', '开源剧场', '开发者阶梯', '人才生活庭院'],
-    ['轨道到达厅', '城市服务街', '人工服务岛', '社区问题桌', '终端工坊', '公共活动客厅'],
+    '三种共同开发关系，三种值得到访的城市空间',
+    'THREE WAYS TO CO-DEVELOP IN THE CITY',
+    '公众不在流程末端反馈，而在研发桌边共同修改',
+    'THE PUBLIC CHANGES THE WORK AT THE DEVELOPMENT TABLE', lang);
+  const titles = zh ? ['众智园｜和城市一起做', 'AI原点｜让别人接着做', '大钟寺｜让生活继续改'] : ['ZHONGZHI | MAKE WITH THE CITY', 'AI ORIGIN | LET OTHERS CONTINUE', 'DAZHONGSI | LET LIFE KEEP CHANGING IT'];
+  const photos = ['experience-zhongzhi.png', 'experience-ai-origin.png', 'experience-dazhongsi.png'];
+  const relations = zh ? [
+    ['公众知识', '全尺度工况桌', '共同改原型'],
+    ['一个团队的成果', '公共原型长桌', '另一个团队接手'],
+    ['日常使用经验', '社区共研桌', '下一轮研发任务'],
   ] : [
-    ['QUESTION HALL', 'DEVELOPER BENCHES', 'OPEN LAB COURT', 'OBSERVATION', 'ROBOT TEST STREET', 'QINGHE ECO FIXTURES'],
-    ['QUESTION WALL', 'OPEN LAB HALL', 'PROTOTYPE WORKSHOP', 'OPEN-SOURCE THEATRE', 'DEVELOPER STEPS', 'TALENT-LIFE COURT'],
-    ['TRANSIT ARRIVAL', 'CITY SERVICE STREET', 'STAFFED ISLAND', 'COMMUNITY QUESTION DESK', 'TERMINAL WORKSHOP', 'PUBLIC ACTIVITY ROOM'],
+    ['PUBLIC KNOWLEDGE', 'FULL-SCALE CONDITION TABLE', 'CHANGE THE PROTOTYPE TOGETHER'],
+    ['ONE TEAM\'S WORK', 'PUBLIC PROTOTYPE TABLE', 'THE NEXT TEAM CONTINUES'],
+    ['LIVED EXPERIENCE', 'NEIGHBOURHOOD WORKTABLE', 'THE NEXT DEVELOPMENT TASK'],
   ];
-  const foundations = zh ? ['TEST：边界、急停、撤出', 'RELEASE：方法、权利、责任', 'USE：人工服务、无障碍、返回'] : ['TEST: LIMIT · STOP · EXIT', 'RELEASE: METHOD · RIGHTS · OWNER', 'USE: STAFF · ACCESS · RETURN'];
+  const spaces = zh ? [
+    ['公共实验花园', '机器人开放测试庭', '开发者工坊', '河岸生态样场'],
+    ['公共共研大厅', '透明实验室', '开源剧场', '开发者阶梯与咖啡'],
+    ['轨道到达客厅', '人工服务岛', '终端工坊', '商业休息与社区活动'],
+  ] : [
+    ['PUBLIC EXPERIMENT GARDEN', 'OPEN ROBOT COURT', 'MAKER WORKSHOP', 'RIVERSIDE ECO FIELD'],
+    ['PUBLIC CO-DEVELOPMENT HALL', 'TRANSPARENT LABS', 'OPEN-SOURCE THEATRE', 'STEPS + COFFEE'],
+    ['TRANSIT ARRIVAL ROOM', 'STAFFED SERVICE ISLAND', 'TERMINAL WORKSHOP', 'COMMERCE + COMMUNITY'],
+  ];
+  const foundations = zh ? ['TEST：安全边界、急停、撤出', 'RELEASE：方法、权利、责任', 'USE：人工服务、无障碍、返回'] : ['TEST: LIMIT · STOP · EXIT', 'RELEASE: METHOD · RIGHTS · OWNER', 'USE: STAFF · ACCESS · RETURN'];
   keyAreas.features.forEach((area, index) => {
     const x = 58 + index * 636;
     const color = stationColors[index];
-    const mapRect = { x: x+20, y: 214, w: 566, h: 250 };
-    const ring = area.geometry.coordinates[0];
-    const extent = extentForRing(ring, 0.14);
     body += `<rect x="${x}" y="160" width="606" height="930" rx="5" fill="white" stroke="${C.line}"/><rect x="${x}" y="160" width="606" height="10" fill="${color}"/>`;
-    body += text(x+24, 203, titles[index], zh ? 20 : 15, C.ink, 700);
-    body += mapLayer(extent, mapRect, `station-innovation-${lang}-${index}`, { lightBuildings: true });
-    body += ringOverlay(ring, extent, mapRect, color, stationNames[lang][index]);
-    body += text(x+24, 500, users[index], zh ? 14 : 11, color, 700);
-    const px = x+24, py = 542, pw = 558, ph = 354;
-    body += `<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="5" fill="${[C.paleBlue,C.paleGreen,C.paleAmber][index]}" stroke="${color}"/>`;
-    if (index === 0) {
-      body += `<rect x="${px+26}" y="${py+26}" width="188" height="92" fill="white" stroke="${color}"/><rect x="${px+232}" y="${py+26}" width="296" height="92" fill="white" stroke="${color}"/>`;
-      body += `<rect x="${px+26}" y="${py+140}" width="502" height="58" fill="white" stroke="${C.green}"/><rect x="${px+26}" y="${py+218}" width="96" height="108" fill="white" stroke="${C.green}"/><rect x="${px+140}" y="${py+218}" width="388" height="108" fill="white" stroke="${C.coral}" stroke-width="3"/>`;
-      body += text(px+40,py+64,spaces[index][0],13,C.ink,700)+text(px+246,py+64,spaces[index][1],13,C.ink,700)+text(px+40,py+176,spaces[index][2],13,C.ink,700)+text(px+40,py+256,spaces[index][3],zh?12:10,C.ink,700)+text(px+154,py+256,spaces[index][4],zh?13:11,C.ink,700)+text(px+154,py+294,spaces[index][5],zh?12:10,C.green,700);
-    } else if (index === 1) {
-      body += `<rect x="${px+26}" y="${py+26}" width="80" height="302" fill="${C.ink}"/><rect x="${px+124}" y="${py+26}" width="184" height="138" fill="white" stroke="${color}"/><rect x="${px+326}" y="${py+26}" width="202" height="138" fill="white" stroke="${color}"/>`;
-      body += `<path d="M${px+142},${py+242} L${px+278},${py+180} L${px+414},${py+242}" fill="none" stroke="${color}" stroke-width="14"/><rect x="${px+124}" y="${py+262}" width="404" height="66" rx="30" fill="white" stroke="${C.green}"/>`;
-      body += text(px+66,py+178,spaces[index][0],zh?12:9,C.white,700,'middle')+text(px+140,py+67,spaces[index][1],zh?12:10,C.ink,700)+text(px+342,py+67,spaces[index][2],zh?12:10,C.ink,700)+text(px+250,py+224,spaces[index][3],zh?12:10,C.ink,700,'middle')+text(px+430,py+224,spaces[index][4],zh?12:10,C.ink,700,'middle')+text(px+326,py+302,spaces[index][5],zh?12:10,C.green,700,'middle');
-    } else {
-      body += `<rect x="${px+26}" y="${py+26}" width="502" height="74" fill="white" stroke="${C.blue}" stroke-width="3"/><rect x="${px+26}" y="${py+122}" width="502" height="64" fill="white" stroke="${color}"/>`;
-      body += `<circle cx="${px+120}" cy="${py+256}" r="55" fill="white" stroke="${C.green}" stroke-width="3"/><rect x="${px+196}" y="${py+210}" width="142" height="94" fill="white" stroke="${C.coral}"/><rect x="${px+356}" y="${py+210}" width="172" height="94" fill="white" stroke="${color}"/>`;
-      body += text(px+277,py+70,spaces[index][0],13,C.ink,700,'middle')+text(px+277,py+162,spaces[index][1],13,C.ink,700,'middle')+text(px+120,py+260,spaces[index][2],zh?11:9,C.green,700,'middle')+text(px+267,py+250,spaces[index][3],zh?11:9,C.coral,700,'middle')+text(px+442,py+250,spaces[index][4],zh?11:9,C.ink,700,'middle')+text(px+442,py+280,spaces[index][5],zh?11:9,C.ink,700,'middle');
-    }
-    for (let i=0; i<7; i++) {
-      const cx=px+54+i*74, cy=py+ph-18-(i%2)*9;
-      body += `<circle cx="${cx}" cy="${cy-10}" r="6" fill="${color}"/><line x1="${cx}" y1="${cy-2}" x2="${cx}" y2="${cy+13}" stroke="${color}" stroke-width="3"/>`;
-    }
-    body += `<rect x="${x+24}" y="934" width="558" height="74" rx="4" fill="${C.ink}"/>`;
-    body += text(x+44, 966, zh ? '安全底盘' : 'SAFETY FOUNDATION', 12, '#a9bed1', 700);
-    body += text(x+44, 992, foundations[index], zh ? 15 : 12, C.white, 650);
-    body += text(x+24, 1052, zh ? ['看见问题怎样变成原型','加入方法怎样被共同改进','让日常使用产生下一道题'][index] : ['SEE A QUESTION BECOME A PROTOTYPE','JOIN THE OPEN IMPROVEMENT','TURN DAILY USE INTO THE NEXT QUESTION'][index], zh ? 15 : 12, color, 700);
+    body += placedImage(photos[index], x+18, 178, 570, 360, `station-photo-${lang}-${index}`, index === 2 ? 'xMaxYMid' : 'xMidYMid');
+    body += conceptNotice(lang, x+18, 178, 570);
+    body += `<rect x="${x+18}" y="458" width="570" height="80" fill="${C.ink}" fill-opacity=".88"/>`;
+    body += text(x+38, 494, titles[index], zh ? 20 : 15, C.white, 700);
+    body += text(x+38, 520, stationNames[lang][index], 12, '#b8c8da', 700);
+    const y = 594;
+    relations[index].forEach((label, relIndex) => {
+      const cx = x + 84 + relIndex * 218;
+      body += `<circle cx="${cx}" cy="${y}" r="19" fill="${color}" fill-opacity="${relIndex === 1 ? 1 : .18}" stroke="${color}" stroke-width="3"/>`;
+      if (relIndex < 2) body += `<line x1="${cx+24}" y1="${y}" x2="${cx+194}" y2="${y}" stroke="${color}" stroke-width="3"/>`;
+      body += text(cx, y+58, label, zh ? 13 : 10, relIndex === 1 ? color : C.ink, 700, 'middle');
+    });
+    body += `<line x1="${x+28}" y1="690" x2="${x+578}" y2="690" stroke="${C.line}"/>`;
+    body += text(x+28, 730, zh ? '持续开放的日常城市用途' : 'EVERYDAY URBAN PROGRAMME', zh ? 15 : 11, C.muted, 700);
+    spaces[index].forEach((label, spaceIndex) => {
+      const sy = 774 + spaceIndex * 47;
+      body += `<circle cx="${x+38}" cy="${sy-5}" r="5" fill="${color}"/>${text(x+55, sy, label, zh ? 15 : 12, C.ink, 600)}`;
+    });
+    body += `<rect x="${x+24}" y="974" width="558" height="68" rx="4" fill="${C.ink}"/>`;
+    body += text(x+44, 1002, zh ? '质量保障层' : 'QUALITY FOUNDATION', 11, '#a9bed1', 700);
+    body += text(x+44, 1028, foundations[index], zh ? 14 : 11, C.white, 650);
+    body += text(x+24, 1070, zh ? ['公众知识直接进入工程','成果留下让别人继续','生活经验生成下一版'][index] : ['PUBLIC KNOWLEDGE ENTERS ENGINEERING','WORK REMAINS OPEN FOR THE NEXT TEAM','LIVED EXPERIENCE WRITES THE NEXT VERSION'][index], zh ? 14 : 11, color, 700);
   });
   return svgWrap(body + footer(lang));
 }
 
 function cityQuestionJourneyFigure(lang) {
   const zh = lang === 'zh';
-  const extent = [116.337, 39.937, 116.359, 40.029];
-  const rect = { x: 58, y: 160, w: 850, h: 930 };
   let body = header(2,
-    '一个城市问题，如何变成AI能力，又如何回来继续改变它',
-    'ONE CITY QUESTION CHANGES AN AI ANSWER',
-    '概念演练：大钟寺无障碍到达 × 72岁非数字用户',
-    'DAZHONGSI ACCESS × A 72-YEAR-OLD NON-DIGITAL USER', lang);
-  body += `<defs><marker id="journey-arrow-${lang}" markerWidth="12" markerHeight="12" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="${C.coral}"/></marker></defs>`;
-  body += `<rect x="58" y="160" width="850" height="930" rx="5" fill="white" stroke="${C.line}"/>` + mapLayer(extent, rect, `question-journey-${lang}`, { lightBuildings: true }) + drawDesignNetwork(extent, rect);
-  const centers = keyAreas.features.map((area) => {
-    const ring = area.geometry.coordinates[0].slice(0,-1);
-    return project(ring.reduce((acc,p)=>[acc[0]+p[0]/ring.length,acc[1]+p[1]/ring.length],[0,0]), extent, rect);
-  });
-  const [z,a,d]=centers;
-  body += `<path d="M${d[0]-20},${d[1]} C${d[0]-160},${d[1]-110} ${z[0]-160},${z[1]+110} ${z[0]-20},${z[1]} L${a[0]+28},${a[1]} L${d[0]+28},${d[1]}" fill="none" stroke="white" stroke-width="18" opacity=".9"/>`;
-  body += `<path d="M${d[0]-20},${d[1]} C${d[0]-160},${d[1]-110} ${z[0]-160},${z[1]+110} ${z[0]-20},${z[1]} L${a[0]+28},${a[1]} L${d[0]+28},${d[1]}" fill="none" stroke="${C.coral}" stroke-width="8" stroke-dasharray="13 9" marker-end="url(#journey-arrow-${lang})"/>`;
-  centers.forEach((point,index)=>body += `<circle cx="${point[0]}" cy="${point[1]}" r="20" fill="${stationColors[index]}" stroke="white" stroke-width="6"/>`);
-  body += `<rect x="940" y="160" width="1002" height="930" rx="5" fill="white" stroke="${C.line}"/>`;
-  body += text(980,214,zh?'问题主角：不是机器人，而是一次真实到达':'THE PROTAGONIST IS AN ARRIVAL PROBLEM, NOT A ROBOT',zh?23:19,C.ink,700);
-  const stages = zh ? [
-    ['01 大钟寺提出问题','72岁的周阿姨不用手机，能否在复杂到达环境中获得连续、有人支持的无障碍服务？',C.amber],
-    ['02 众智园把问题做成工况','拥挤、设备停靠、围观、轮椅优先和人工接管被组合成可重复任务；SC-03只是候选工具。',C.blue],
-    ['03 0.8失败也产生知识','意外穿越触发急停；失败没有被抹掉，而是改进测试边界和下一版原型。',C.coral],
-    ['04 AI原点开放共同改进','开发者和无障碍专业人员复现方法、检查边界并修改接口，0.9才进入有限使用。',C.green],
-    ['05 大钟寺真实使用','设备无碰撞，但停靠与围观仍侵入优先路线；人工服务继续，周阿姨线下提出问题。',C.amber],
-    ['06 带着新问题返回','0.10携带“停靠 + 围观 + 轮椅优先”新工况返回众智园，城市生活改变下一轮研发。',C.coral],
-  ] : [
-    ['01 DAZHONGSI FRAMES THE QUESTION','Can 72-year-old Ms Zhou complete accessible arrival without a phone, with clear and staffed support?',C.amber],
-    ['02 ZHONGZHI MAKES CONDITIONS','Crowding, parking, spectators, wheelchair priority and takeover become a repeatable task; SC-03 is one tool.',C.blue],
-    ['03 VERSION 0.8 FAILS USEFULLY','An unexpected crossing triggers a stop. Failure changes the boundary and next prototype instead of disappearing.',C.coral],
-    ['04 AI ORIGIN OPENS IMPROVEMENT','Developers and access specialists reproduce the method, inspect limits and revise the interface before 0.9 use.',C.green],
-    ['05 DAZHONGSI USES IT','No collision occurs, yet parking and spectators invade the priority route. Staff remain; Ms Zhou reports offline.',C.amber],
-    ['06 RETURN WITH A NEW QUESTION','Version 0.10 carries parking + spectators + wheelchair priority back to Zhongzhi for the next research cycle.',C.coral],
+    '不是一个产品通关，而是一群人共同改同一个问题',
+    'ONE CITY QUESTION, CHANGED TOGETHER',
+    '周阿姨的无障碍到达 × 城市共同开发',
+    'MS ZHOU\'S ACCESSIBLE ARRIVAL × URBAN CO-DEVELOPMENT', lang);
+  const panels = [
+    { photo: 'experience-dazhongsi.png', align: 'xMinYMid', color: C.amber },
+    { photo: 'experience-zhongzhi.png', align: 'xMidYMid', color: C.blue },
+    { photo: 'experience-ai-origin.png', align: 'xMidYMid', color: C.green },
+    { photo: 'experience-dazhongsi.png', align: 'xMaxYMid', color: C.coral },
   ];
-  stages.forEach((stage,index)=>{
-    const y=258+index*126;
-    body += `<circle cx="992" cy="${y+17}" r="15" fill="${stage[2]}"/>`;
-    if(index<stages.length-1) body += `<line x1="992" y1="${y+35}" x2="992" y2="${y+116}" stroke="${C.line}" stroke-width="4"/>`;
-    body += text(1024,y+12,stage[0],zh?17:14,stage[2],700);
-    const desc=stage[1];
-    const chunks=zh?[desc]:wrapWords(desc, 72);
-    body += lines(1024,y+48,chunks,zh?15:12,C.ink,500,1.42);
+  const stages = zh ? [
+    ['大钟寺｜共同定义', '周阿姨、轮椅使用者与服务人员把“连续到达”写成城市任务，不假定未经核验的现场断点。', '使用者决定什么算改善'],
+    ['众智园｜共同制作', '公众与开发者一起移动路缘、停靠位和人群标记，把身体经验变成可重复工况。', '使用者直接改路线和原型'],
+    ['AI原点｜共同接续', '方法、接口和限制留在公共原型长桌；另一团队复现、拆解并继续修改。', '成果成为别人能继续做的能力'],
+    ['大钟寺｜生活继续改', '设备没有碰撞，停靠与围观却影响转弯；人工服务继续，新问题回到研发桌。', '终点立刻成为下一题起点'],
+  ] : [
+    ['DAZHONGSI | DEFINE TOGETHER', 'Ms Zhou, wheelchair users and staff frame continuous arrival without inventing an unsurveyed defect.', 'USERS DECIDE WHAT COUNTS AS IMPROVEMENT'],
+    ['ZHONGZHI | MAKE TOGETHER', 'Participants and developers move kerbs, parking and crowd markers, turning body knowledge into repeatable conditions.', 'USERS CHANGE THE ROUTE AND PROTOTYPE'],
+    ['AI ORIGIN | CONTINUE TOGETHER', 'Method, interfaces and limits remain on a public table for another team to reproduce, dismantle and change.', 'WORK BECOMES A CAPABILITY OTHERS CAN CONTINUE'],
+    ['DAZHONGSI | LIFE KEEPS CHANGING IT', 'No collision occurs, yet parking and spectators restrict turning. Staff remain and the new issue returns.', 'THE END BECOMES THE NEXT QUESTION'],
+  ];
+  panels.forEach((panel, index) => {
+    const x = 58 + index * 471;
+    body += `<rect x="${x}" y="160" width="441" height="900" rx="5" fill="white" stroke="${C.line}"/><rect x="${x}" y="160" width="441" height="9" fill="${panel.color}"/>`;
+    body += placedImage(panel.photo, x+14, 181, 413, 430, `journey-photo-${lang}-${index}`, panel.align);
+    body += conceptNotice(lang, x+14, 181, 413);
+    body += `<rect x="${x+14}" y="526" width="413" height="85" fill="${C.ink}" fill-opacity=".88"/>`;
+    body += text(x+32, 565, stages[index][0], zh ? 18 : 13, C.white, 700);
+    body += text(x+32, 590, index === 1 ? 'SC-03 IS A TOOL, NOT THE PROTAGONIST' : '', 9, '#b9cadc', 700);
+    body += lines(x+28, 670, zh ? [stages[index][1].slice(0, 29), stages[index][1].slice(29, 58), stages[index][1].slice(58)] : wrapWords(stages[index][1], 44), zh ? 15 : 12, C.ink, 500, 1.55);
+    body += `<line x1="${x+28}" y1="820" x2="${x+413}" y2="820" stroke="${C.line}"/>`;
+    body += `<circle cx="${x+48}" cy="874" r="18" fill="${panel.color}"/>`;
+    body += lines(x+78, 865, zh ? [stages[index][2]] : wrapWords(stages[index][2], 34), zh ? 14 : 11, panel.color, 700, 1.4);
+    const actors = zh ? ['周阿姨 · 轮椅使用者 · 服务人员', '使用者 · 开发者 · 工程师', '居民 · 高校 · 团队 · 开发者', '通勤者 · 商户 · 服务人员 · 开发者'][index] : ['MS ZHOU · WHEELCHAIR USERS · STAFF', 'USERS · DEVELOPERS · ENGINEERS', 'RESIDENTS · UNIVERSITIES · TEAMS', 'COMMUTERS · SHOPS · STAFF · DEVELOPERS'][index];
+    body += `<rect x="${x+28}" y="960" width="385" height="58" rx="4" fill="${[C.paleAmber,C.paleBlue,C.paleGreen,C.paleCoral][index]}"/>`;
+    body += text(x+220, 995, actors, zh ? 12 : 9, C.ink, 700, 'middle');
   });
-  body += `<rect x="980" y="1014" width="926" height="54" rx="4" fill="${C.ink}"/>`;
-  body += text(1443,1048,zh?'RETURN = 真实生活为下一轮研发重新出题':'RETURN = DAILY LIFE WRITES THE NEXT RESEARCH BRIEF',zh?17:15,C.white,700,'middle');
+  body += `<rect x="58" y="1034" width="1854" height="38" rx="3" fill="${C.ink}"/>`;
+  body += text(985, 1060, zh ? '城市问题不是一次输入：公众始终坐在研发桌边' : 'A CITY QUESTION IS NOT A ONE-OFF INPUT: THE PUBLIC STAYS AT THE DEVELOPMENT TABLE', zh ? 16 : 13, C.white, 700, 'middle');
+  return svgWrap(body + footer(lang));
+}
+
+function stationExperiencesFigure(lang) {
+  const zh = lang === 'zh';
+  let body = header(3, '三站体验：共同开发发生在真实公共生活旁边', 'THREE STATION EXPERIENCES', '写实画面仅表达概念空间、活动关系与设计意向', 'REALISTIC VIEWS SHOW CONCEPT SPACE, ACTIVITY AND INTENT ONLY', lang);
+  const photos = ['experience-zhongzhi.png', 'experience-ai-origin.png', 'experience-dazhongsi.png'];
+  const titles = zh ? ['众智园｜和城市一起做', 'AI原点｜让别人接着做', '大钟寺｜让生活继续改'] : ['ZHONGZHI | MAKE WITH THE CITY', 'AI ORIGIN | LET OTHERS CONTINUE', 'DAZHONGSI | LET LIFE KEEP CHANGING IT'];
+  const notes = zh ? [
+    ['公众路径连续；测试庭独立关闭', '急停、观察与撤出路径现场可见'],
+    ['开放实验大厅与公共原型长桌', '成果可复现、可接续，也可人工撤回'],
+    ['无障碍主链与人工服务优先', '有限试用退出后，通勤、休息与商业继续'],
+  ] : [
+    ['CONTINUOUS CIVIC PATH; TEST COURT CLOSES ALONE', 'STOP, OBSERVATION AND EXIT REMAIN VISIBLE'],
+    ['OPEN LAB HALL + PUBLIC PROTOTYPE TABLE', 'WORK CAN BE CONTINUED OR WITHDRAWN BY STAFF'],
+    ['ACCESSIBLE CHAIN + STAFFED SERVICE FIRST', 'TRANSIT, REST AND COMMERCE CONTINUE AFTER EXIT'],
+  ];
+  photos.forEach((photo, index) => {
+    const x = 58 + index * 636;
+    const color = stationColors[index];
+    body += `<rect x="${x}" y="160" width="606" height="930" rx="5" fill="white" stroke="${C.line}"/><rect x="${x}" y="160" width="606" height="10" fill="${color}"/>`;
+    body += placedImage(photo, x + 18, 180, 570, 630, `experience-${lang}-${index}`, index === 2 ? 'xMaxYMid' : 'xMidYMid');
+    body += conceptNotice(lang, x + 18, 180, 570);
+    body += `<rect x="${x+18}" y="690" width="570" height="120" fill="${C.ink}" fill-opacity=".88"/>`;
+    body += text(x + 42, 744, titles[index], zh ? 20 : 14, C.white, 700);
+    body += text(x + 42, 780, stationNames[lang][index], 12, color, 700);
+    notes[index].forEach((note, noteIndex) => {
+      body += `<circle cx="${x+42}" cy="${875 + noteIndex * 72}" r="6" fill="${color}"/>`;
+      body += lines(x + 62, 882 + noteIndex * 72, zh ? [note] : wrapWords(note, 55), zh ? 15 : 11, C.ink, 600, 1.35);
+    });
+    body += text(x + 34, 1040, zh ? '概念空间；不是现状、边界、权属、工程或审批证据' : 'CONCEPT SPACE; NOT SITE, BOUNDARY, OWNERSHIP, ENGINEERING OR APPROVAL EVIDENCE', zh ? 12 : 9, C.coral, 700);
+  });
+  return svgWrap(body + footer(lang));
+}
+
+function personaDayFigure(lang) {
+  const zh = lang === 'zh';
+  let body = header(12, '周阿姨的一天：不用手机，也直接改变下一版', 'MS ZHOU: NO PHONE, DIRECT INPUT TO THE NEXT VERSION', '合成人物与概念旅程；不对应真实居民、服务或试点', 'COMPOSITE PERSONA + CONCEPT JOURNEY; NOT A REAL RESIDENT OR PILOT', lang);
+  body += `<rect x="58" y="160" width="760" height="900" rx="5" fill="white" stroke="${C.line}"/>`;
+  body += placedImage('experience-dazhongsi.png', 76, 178, 724, 864, `persona-${lang}`, 'xMidYMid');
+  body += conceptNotice(lang, 76, 178, 724);
+  body += `<rect x="76" y="846" width="724" height="196" fill="${C.ink}" fill-opacity=".88"/>`;
+  body += lines(104, 900, zh ? ['她不是被观察的“用户画像”。', '她移动停靠位、指出转弯冲突，', '并参与下一轮路线与工况复测。'] : ['SHE IS NOT AN OBSERVED USER PROFILE.', 'SHE MOVES THE STOPPING POSITION, IDENTIFIES', 'THE TURNING CONFLICT AND JOINS THE RETEST.'], zh ? 20 : 15, C.white, 700, 1.45);
+  body += `<rect x="850" y="160" width="1092" height="900" rx="5" fill="white" stroke="${C.line}"/>`;
+  const steps = zh ? [
+    ['01 到达', '沿无障碍主链进入，不要求手机或账号'], ['02 选择', '看见人工服务与纸质路线，先完成日常事务'],
+    ['03 提题', '把停靠、围观和转弯冲突写成城市问题'], ['04 共做', '在众智园与开发者共同移动路缘和停靠标记'],
+    ['05 开放', 'AI原点公开方法、接口、限制和责任'], ['06 使用', '大钟寺有限使用，人工等价服务始终存在'],
+    ['07 异议', '匿名指出新冲突，现场先停设备并恢复通行'], ['08 返回', '新问题成为下一轮工况，回到众智园复测'],
+  ] : [
+    ['01 ARRIVE', 'ENTER ON THE ACCESSIBLE CHAIN; NO PHONE OR ACCOUNT'], ['02 CHOOSE', 'USE STAFFED SERVICE AND A PAPER ROUTE FIRST'],
+    ['03 FRAME', 'TURN PARKING, CROWD AND TURNING CONFLICT INTO A CITY QUESTION'], ['04 MAKE', 'MOVE KERBS AND STOPPING MARKERS WITH DEVELOPERS AT ZHONGZHI'],
+    ['05 OPEN', 'AI ORIGIN SHARES METHOD, INTERFACE, LIMIT AND RESPONSIBILITY'], ['06 LIVE', 'LIMITED USE AT DAZHONGSI; STAFFED EQUIVALENCE REMAINS'],
+    ['07 OBJECT', 'ANONYMOUSLY FLAG A NEW CONFLICT; STAFF STOP AND CLEAR THE PATH'], ['08 RETURN', 'THE NEW ISSUE BECOMES A RETEST CONDITION AT ZHONGZHI'],
+  ];
+  steps.forEach((step, index) => {
+    const col = index % 2;
+    const row = Math.floor(index / 2);
+    const x = 884 + col * 510;
+    const y = 214 + row * 196;
+    const color = [C.amber, C.blue, C.green, C.coral][row];
+    body += `<rect x="${x}" y="${y}" width="476" height="158" rx="5" fill="${row % 2 ? C.paper : '#ffffff'}" stroke="${C.line}"/><rect x="${x}" y="${y}" width="8" height="158" fill="${color}"/>`;
+    body += text(x + 28, y + 44, step[0], zh ? 18 : 14, color, 700);
+    body += lines(x + 28, y + 82, zh ? [step[1]] : wrapWords(step[1], 48), zh ? 14 : 10, C.ink, 550, 1.4);
+  });
+  return svgWrap(body + footer(lang));
+}
+
+function failureAtlasFigure(lang) {
+  const zh = lang === 'zh';
+  let body = header(8, '三类失败：先恢复公共使用，再决定产品能否回来', 'THREE FAILURES: RESTORE PUBLIC USE BEFORE RE-ENTRY', '技术、权利与公众使用失败具有不同现场动作', 'TECHNICAL, RIGHTS AND PUBLIC-USE FAILURES CHANGE DIFFERENT THINGS', lang);
+  const cards = zh ? [
+    ['技术失败', '众智园', '越界、失联或急停失败', '人员急停并冻结版本', '关闭机器口袋；公众主链不断', '同版本独立复测后才能再申请'],
+    ['权利失败', 'AI原点', '许可不清、版本错配或无人撤回', '人工HOLD并停止分发', '撤下发布界面；教学与协作继续', '权利、哈希和责任闭合后重签'],
+    ['公众使用失败', '大钟寺', '人工缺席、无AI服务中断或通行受阻', '先停设备并切换人工服务', '清空交叉口；无障碍主链恢复', '用户主导复测；新问题返回研发'],
+  ] : [
+    ['TECHNICAL FAIL', 'ZHONGZHI', 'BOUNDARY BREACH, LINK LOSS OR STOP FAILURE', 'STAFF STOP AND FREEZE THE VERSION', 'CLOSE MACHINE POCKET; CIVIC CHAIN STAYS OPEN', 'INDEPENDENT SAME-VERSION RETEST BEFORE RE-ENTRY'],
+    ['RIGHTS FAIL', 'AI ORIGIN', 'UNCLEAR LICENCE, VERSION MISMATCH OR NO WITHDRAWAL OWNER', 'STAFF HOLD AND STOP DISTRIBUTION', 'WITHDRAW RELEASE INTERFACE; LEARNING CONTINUES', 'RIGHTS, HASH AND DUTY CLOSE BEFORE A NEW TICKET'],
+    ['PUBLIC-USE FAIL', 'DAZHONGSI', 'ABSENT STAFF, BROKEN NON-AI SERVICE OR BLOCKED PATH', 'STOP DEVICE AND SWITCH TO STAFFED SERVICE', 'CLEAR CROSSING; RESTORE ACCESSIBLE CHAIN', 'USER-LED RETEST; NEW ISSUE RETURNS TO DEVELOPMENT'],
+  ];
+  const photos = ['experience-zhongzhi.png', 'experience-ai-origin.png', 'experience-dazhongsi.png'];
+  cards.forEach((card, index) => {
+    const x = 58 + index * 636;
+    const color = [C.blue, C.green, C.coral][index];
+    body += `<rect x="${x}" y="160" width="606" height="930" rx="5" fill="white" stroke="${C.line}"/><rect x="${x}" y="160" width="606" height="10" fill="${color}"/>`;
+    body += placedImage(photos[index], x + 18, 180, 570, 300, `failure-${lang}-${index}`, 'xMidYMid');
+    body += conceptNotice(lang, x + 18, 180, 570);
+    body += `<rect x="${x+18}" y="408" width="570" height="72" fill="${C.ink}" fill-opacity=".88"/>`;
+    body += text(x + 38, 450, `${card[0]} · ${card[1]}`, zh ? 20 : 14, C.white, 700);
+    const rowLabels = zh ? ['触发', '人工决定', '空间复原', '重新进入'] : ['TRIGGER', 'HUMAN DECISION', 'SPATIAL RESTORE', 'RE-ENTRY'];
+    card.slice(2).forEach((value, row) => {
+      const y = 540 + row * 128;
+      body += text(x + 28, y, rowLabels[row], 12, color, 700);
+      body += lines(x + 28, y + 37, zh ? [value] : wrapWords(value, 56), zh ? 15 : 11, C.ink, 600, 1.4);
+      if (row < 3) body += `<line x1="${x+28}" y1="${y+92}" x2="${x+578}" y2="${y+92}" stroke="${C.line}"/>`;
+    });
+  });
+  return svgWrap(body + footer(lang));
+}
+
+function aerialDesignKeyFigure(lang) {
+  const zh = lang === 'zh';
+  let body = header(4, '总体鸟瞰如何对应可检查的空间动作', 'HOW THE AERIAL MAPS TO CHECKABLE SPATIAL MOVES', '鸟瞰表达意向；GeoJSON与相对拓扑承担证据', 'THE AERIAL SHOWS INTENT; GEOJSON + TOPOLOGY CARRY EVIDENCE', lang);
+  body += `<rect x="58" y="160" width="1260" height="930" rx="5" fill="white" stroke="${C.line}"/>`;
+  body += placedImage('site-overview.png', 76, 178, 1224, 894, `aerial-${lang}`, 'xMidYMid');
+  body += conceptNotice(lang, 76, 178, 1224);
+  body += `<rect x="1348" y="160" width="594" height="930" rx="5" fill="white" stroke="${C.line}"/>`;
+  const actions = zh ? [
+    ['01 公共创新主线', '连续公园、铁路遗产与日常通行'], ['02 六类X接口', '社区、校园、轨道、生态、产业、文化'],
+    ['03 三处共同开发场', '众智园做、AI原点开放、大钟寺继续改'], ['04 东西缝合', '横向城市资源与问题进入主线'],
+    ['05 蓝绿慢行', '小月河、绿地与无障碍公共链'],
+  ] : [
+    ['01 PUBLIC INNOVATION SPINE', 'CONTINUOUS PARK, RAIL HERITAGE + DAILY MOVEMENT'], ['02 SIX X INTERFACES', 'COMMUNITY, CAMPUS, TRANSIT, ECOLOGY, INDUSTRY, CULTURE'],
+    ['03 THREE CO-DEVELOPMENT GROUNDS', 'MAKE AT ZHONGZHI, OPEN AT AI ORIGIN, CHANGE AT DAZHONGSI'], ['04 EAST-WEST STITCHES', 'URBAN QUESTIONS + CAPABILITY ENTER THE SPINE'],
+    ['05 BLUE-GREEN ACCESS', 'XIAOYUE RIVER, GREEN SPACE + ACCESSIBLE CIVIC CHAIN'],
+  ];
+  actions.forEach((action, index) => {
+    const y = 220 + index * 158;
+    const color = [C.cyan, C.coral, C.blue, C.amber, C.green][index];
+    body += `<rect x="1380" y="${y}" width="530" height="126" rx="5" fill="${index % 2 ? C.paper : '#ffffff'}" stroke="${C.line}"/><rect x="1380" y="${y}" width="8" height="126" fill="${color}"/>`;
+    body += text(1408, y + 40, action[0], zh ? 17 : 13, color, 700);
+    body += lines(1408, y + 75, zh ? [action[1]] : wrapWords(action[1], 48), zh ? 14 : 10, C.ink, 550, 1.35);
+  });
+  body += `<rect x="1380" y="1030" width="530" height="42" rx="3" fill="${C.paleCoral}"/>`;
+  body += text(1645, 1057, zh ? '临时几何 · 非法定总平 · 非实施批准' : 'PROVISIONAL GEOMETRY · NOT STATUTORY PLAN OR APPROVAL', zh ? 13 : 10, C.coral, 700, 'middle');
+  return svgWrap(body + footer(lang));
+}
+
+function flagshipContractsFigure(lang) {
+  const zh = lang === 'zh';
+  let body = header(15, '三站质量底盘：共同开发开放，但不是无规则开放', 'THREE-STATION QUALITY FOUNDATION', '90日为准备评估窗口；14日为唯一受控运行班次', '90 DAYS IS READINESS + REVIEW; 14 DAYS IS THE CONTROLLED OPERATING SHIFT', lang);
+  contracts.contracts.forEach((item, index) => {
+    const x = 58 + index * 636;
+    const color = stationColors[index];
+    const question = zh ? item.question_zh : item.question_en;
+    const move = zh ? item.spatial_contract.distinctive_move_zh : item.spatial_contract.distinctive_move_en;
+    body += `<rect x="${x}" y="160" width="606" height="930" rx="5" fill="white" stroke="${C.line}"/><rect x="${x}" y="160" width="606" height="10" fill="${color}"/>`;
+    body += text(x + 28, 224, `${stationNames[lang][index]} / ${item.stage}`, 23, C.ink, 700);
+    body += lines(x + 28, 276, zh ? [question] : wrapWords(question, 48), zh ? 18 : 14, color, 700, 1.4);
+    const blocks = zh ? [
+      ['空间合同', move], ['准备门', '运营主体、场地许可、保险、安全、数据控制、无障碍复核与复原资金全部闭合'],
+      ['14日运行', index === 0 ? '封闭测试与独立复测' : index === 1 ? '方法复现、权利核对与有限开放' : '有限使用、人工等价服务与匿名异议'],
+      ['RETURN后', item.spatial_contract.ordinary_use_after_return],
+    ] : [
+      ['SPATIAL CONTRACT', move], ['READINESS GATE', 'OPERATOR, SITE PERMIT, INSURANCE, SAFETY, DATA CONTROL, ACCESS REVIEW AND RESTORATION FUNDING CLOSED'],
+      ['14-DAY OPERATION', index === 0 ? 'CLOSED TEST + INDEPENDENT RETEST' : index === 1 ? 'REPRODUCE METHOD, REVIEW RIGHTS, LIMITED OPENING' : 'LIMITED USE, STAFFED EQUIVALENCE, ANONYMOUS OBJECTION'],
+      ['AFTER RETURN', item.spatial_contract.ordinary_use_after_return],
+    ];
+    blocks.forEach((block, row) => {
+      const y = 360 + row * 165;
+      body += text(x + 28, y, block[0], 12, color, 700);
+      body += lines(x + 28, y + 38, zh ? [block[1].slice(0, 34), block[1].slice(34)] : wrapWords(block[1], 54), zh ? 14 : 10, C.ink, 550, 1.4);
+      if (row < 3) body += `<line x1="${x+28}" y1="${y+118}" x2="${x+578}" y2="${y+118}" stroke="${C.line}"/>`;
+    });
+    body += `<rect x="${x+28}" y="1020" width="550" height="42" rx="3" fill="${C.ink}"/>`;
+    body += text(x + 303, 1047, zh ? '仓库PASS不等于现场批准' : 'REPOSITORY PASS IS NOT FIELD APPROVAL', zh ? 13 : 10, C.white, 700, 'middle');
+  });
   return svgWrap(body + footer(lang));
 }
 
@@ -722,6 +882,18 @@ const jobs = [
   ['station-design-atlas.en.png', stationSpatialFigure('en')],
   ['land-use-structure.png', landUseFigure('zh')],
   ['land-use-structure.en.png', landUseFigure('en')],
+  ['implementation-roadmap.png', pilotFigure('zh')],
+  ['implementation-roadmap.en.png', pilotFigure('en')],
+  ['station-experiences.png', stationExperiencesFigure('zh')],
+  ['station-experiences.en.png', stationExperiencesFigure('en')],
+  ['persona-day.png', personaDayFigure('zh')],
+  ['persona-day.en.png', personaDayFigure('en')],
+  ['failure-atlas.png', failureAtlasFigure('zh')],
+  ['failure-atlas.en.png', failureAtlasFigure('en')],
+  ['aerial-design-key.png', aerialDesignKeyFigure('zh')],
+  ['aerial-design-key.en.png', aerialDesignKeyFigure('en')],
+  ['three-station-flagship-contracts.png', flagshipContractsFigure('zh')],
+  ['three-station-flagship-contracts.en.png', flagshipContractsFigure('en')],
 ];
 
 for (const [name, svg] of jobs) {
