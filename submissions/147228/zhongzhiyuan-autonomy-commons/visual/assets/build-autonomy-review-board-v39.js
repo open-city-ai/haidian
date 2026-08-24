@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
- * Autonomy Commons v3.9 reviewer-entry builder.
+ * Autonomy Commons v4.0 reviewer-entry builder (legacy filename retained).
  *
  * The board makes the proposal's public-space choice visible before the
  * governance appendix: one ordinary route, three proof yards, six official
@@ -151,7 +151,7 @@ function board(english) {
     '<style>.title{font:700 48px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#102A43}.subtitle{font:22px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#627D98}.section{font:700 23px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#16324F}.head{font:700 22px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#16324F}.body{font:19px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#27445F}.small{font:16px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#627D98}.chip{font:700 17px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#16324F}.lighthead{font:700 22px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#FFFFFF}.lightsmall{font:16px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#D9E2EC}.lightchip{font:700 17px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#FFFFFF}.foot{font:15px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#C94C4C}</style>',
     `<text x="84" y="72" class="title">${esc(t.title)}</text>`,
     `<text x="84" y="113" class="subtitle">${esc(t.sub)}</text>`,
-    `<text x="2316" y="72" text-anchor="end" class="small">AUTONOMY COMMONS · v3.9</text>`,
+    `<text x="2316" y="72" text-anchor="end" class="small">AUTONOMY COMMONS · v4.0</text>`,
     `<text x="2316" y="105" text-anchor="end" class="foot">${esc(english ? 'CONCEPT / PROVISIONAL' : '概念 / 临时约束')}</text>`,
     `<text x="84" y="178" class="section">${esc(t.section)}</text>`,
     `<rect x="84" y="215" width="1000" height="915" rx="20" fill="${colors.paper}" stroke="${colors.line}" stroke-width="2"/>`,
@@ -228,7 +228,7 @@ async function main() {
     });
   }
   const payload = {
-    schema_version: '0.1.0', package_iteration: 'v3.9',
+    schema_version: '0.1.0', package_iteration: 'v4.0',
     generated_by: 'visual/assets/build-autonomy-review-board-v39.js',
     boundary: 'concept_and_provisional_not_authorized_not_run', reports,
   };

@@ -42,6 +42,16 @@ The “Jing-Zhang Autonomous Commons” mark is not a vehicle brand and does not
 
 This is a public narrative and operating entrance, not a registered trademark, building, enterprise partnership or field result. If the mark cannot show an owner, a stop action and the ordinary route, the service window is withdrawn while the human path remains.
 
+### Railway memory—public recognition—AI return: one withdrawable spatial narrative
+
+The cultural line uses no uncleared historical image, and it does not treat company exposure or model rank as “AI culture.” It joins three civic capabilities: Jing-Zhang railway continuity, engineering care and public passage as **public memory**; Zhongguancun reproducible methods, open collaboration and failure repair as the **contribution rule**; and the returned ordinary route, public receipt and next review date after every trial as **AI public return**. Public sources establish only the open-call and park context; interpretation, display and construction still require later rights and professional review [source:JINGZHANG-PUBLIC-FEEDBACK] [source:JINGZHANG-PARK-CATALOG].
+
+Each landmark carries one withdrawable recognition receipt. The Zhongzhiyuan Curb Lighthouse shows version, gate, accountable role, pause reason, repair state and review date. The AI Origin Human-Takeover Marker records rejection, return to staffed service and completed repair. The Dazhongsi Transfer Receipt Wall places rail, walking, wheelchair, freight and staffed service in one complete journey. Every display must state the contribution, evidence receipt, independent-review role, rights/licence status, maintenance owner and expiry date. A missing field or any break in the ordinary route withdraws the display and reopens review. Five wayfinding layers run from site and public memory through ordinary route, status/consent, service/handover, and redress/archive/return. The yearly cycle repeats Q1 calibration, Q2 complete-route audit, Q3 bounded staffed demonstration and Q4 publication of repair, withdrawal or conditional continuation. Its international line is **Build to test; publish to repair; return to public use.** [data:visual/assets/culture-honor-return-system.json]
+
+![Jing-Zhang public memory, recognition and AI public-return system](assets/figures/culture-honor-system.en.png)
+
+This figure is the shared entry for agent.4 recognition, agent.5 cultural narrative and agent.6 long-term operation. It is not an approved artwork, sponsorship, event or construction arrangement.
+
 ## Resource and decision board — confirm the public floor before scaling automation
 
 The autonomy proposal needed one delivery surface that answers who holds the public floor, which resources may enter, and who can pause. `resource-decision-board.json` separates human service and accessibility, curb and reversible space, safety and independent evaluation, data and bounded compute, and exit and restoration. Each class records a proposed confirmation route, the public floor it holds, minimum evidence, and veto conditions [data:visual/assets/resource-decision-board.json] [depth:phasing_implementation].
@@ -107,6 +117,14 @@ The review rule is: `known` means only that a value is readable from package fil
 ## Coordinated Research Area: Industry and Future City Research
 
 The coordinated research area connects AI industry, talent, rail, community, public governance and future-city research through public value rather than a single vendor. Enterprises may provide controlled test capacity, universities and students may participate in audit, communities provide real needs and redress, and rail and staffed service desks provide non-app entry points [source:AGENT-TASKBOOK]. The design intent is to make automation usable by residents, handover-ready for maintainers and reviewable by professionals. Spatially this assigns roles to the public axis and three yards; metrically it prioritises accessible continuity, equivalent human service, rollback and complaint closure, not vehicle count or model accuracy. Liability agreements, budgets, insurance, staffing and demand distribution remain unknown, so the industry chain is a coordination hypothesis rather than a partnership or implementation claim.
+
+### Five regional interfaces: transfer mechanisms, not partnership claims
+
+Five unconfirmed regional interfaces each state what enters and what returns. Zhongguancun Science City and Haidian universities bring knowledge, talent, open methods and public questions. Huairou Science City brings basic science, research facilities and compute. Future Science City brings energy, materials and engineering verification. Beijing E-Town contributes manufacturing and scale discipline. The Beijing-Tianjin-Hebei network contributes diverse contexts and comparison. The Jing-Zhang Belt accepts only booked, bounded tests and public evidence, returning reusable methods, failure/repair records and maintainability requirements. The eight mechanisms—land, space, industry, capital, talent, compute, data and scenario—remain interfaces to confirm; they assert no partner, funding, land allocation or government commitment [data:visual/assets/regional-ecosystem.json].
+
+An explicit public loop sits inside the belt. Zhongzhiyuan first turns incoming capability into bounded safety questions. The AI Origin Community adds resident needs, accessibility, consent, redress and equivalent human service to the test conditions. “North Latitude Community,” named by the taskbook, is shown separately as a **community-coordination interface whose identity and extent await organiser confirmation**; it records where questions go, why they are accepted or declined, and what remains unresolved. Dazhongsi then tests rail-curb-walking continuity. Evidence, repairs and unresolved items return to the five external interfaces along the same path. This proposal does not treat AI Origin and North Latitude as the same entity, nor infer resident representation, partnership or operating authority. Until the organiser confirms identity and accountability, North Latitude remains a taskbook needs interface only [data:visual/assets/regional-ecosystem.json#internal_public_return_loop].
+
+![Five regional interfaces, eight resource mechanisms and an auditable return loop](assets/figures/regional-ecosystem.en.png)
 
 ## 2. Spatial structure: one public axis, three test yards, two safety nets
 
@@ -268,9 +286,9 @@ Phasing is: **P0 legible curbs and accessibility audit**; **P1 approved, low-spe
 
 Caption: The metrics board separates the P0 readable-curb, P1 restricted-trial and P2 conditional-expansion gates, while showing `unknown`, `design_target` and rollback as different states.
 
-![Autonomy readiness: scenarios, nodes, gates, evidence routes and metric status](assets/figures/autonomy-readiness.en.png)
+![Autonomy evidence queue: scenarios, nodes, gates, evidence routes and metric status](assets/figures/autonomy-readiness.en.png)
 
-Caption: The readiness board connects scenario cards, test yards, gates and evidence routes so a reader can see where missing evidence stops progress; readiness is not deployed capability.
+Caption: The evidence queue connects scenario cards, proof yards, gates and evidence routes. `7 / 11` means seven autonomy-specific metrics await field evidence; it is not a project-quality, maturity, safety, readiness or performance score.
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
