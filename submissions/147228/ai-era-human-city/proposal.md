@@ -10,7 +10,7 @@ summary: "以人本缓冲、机器可调用的公共规则和可撤回的版本�
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
-iteration: "v2.8"
+iteration: "v2.9"
 tracks: "ai-traffic-walkability,civic-agent-governance,youth-friendly-public-space"
 scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-navigation,ai-cultural-guide,enterprise-service-copilot,public-safety-operations-review"
 ---
@@ -81,7 +81,9 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 
 ## 从替代判断到一个可核算试点：AI 原点普通服务节点
 
-尺度链不能只写成五个问题。为检验 ALT-C 是否真的能落到空间，本轮把 `PROV-KEY-002` 中的 AI 原点普通服务节点做成三张设计目标图：`1:500` 平面先固定 30×18 米的参数包络、3.0 米连续普通路径、2.4 米独立维护通道、人工/纸面服务和带 2.0 米净空环的 4×3 米可撤回服务岛；`1:100` 剖面把普通通行、人工服务、服务岛与维护退避分开；`1:50` 细部显示纸面回执、人工停用控制、可拆接口和封闭线缆退避。它们是参赛者提出的设计目标，不是测绘、法定、工程、招标或竣工尺寸；正式 CAD、权属、消防、无障碍、市政和公众走查到位后必须整体重算 [data:visual/assets/ai-era-pilot-dossier.json] [data:geometry/key_areas.geojson#PROV-KEY-002]。
+尺度链不能只写成五个问题。为检验 ALT-C 是否真的能落到空间，本轮把 AI 原点普通服务节点做成三张设计目标图：`1:500` 平面先固定 30×18 米的参数包络、3.0 米连续普通路径、2.4 米独立维护通道、人工/纸面服务和带 2.0 米净空环的 4×3 米可撤回服务岛；`1:100` 剖面把普通通行、人工服务、服务岛与维护退避分开；`1:50` 细部显示纸面回执、人工停用控制、可拆接口和封闭线缆退避。它们是参赛者提出的设计目标，不是测绘、法定、工程、招标或竣工尺寸；正式 CAD、权属、消防、无障碍、市政和公众走查到位后必须整体重算 [data:visual/assets/ai-era-pilot-dossier.json] [data:geometry/key_areas.geojson#PROV-KEY-002]。
+
+v2.9 把这张相对平面写进会被正式空间审查读取的 `geometry/public_space.geojson` 图层，形成 9 个低置信对象。30×18 米包络以区内已有的 `SCN-03` 概念点为中心，整体须落在 `PUBLIC-03` 和临时 `PROV-KEY-002` 内；普通路径、人工台、低刺激等候、服务岛、净空环、维护带和两个退出口均可逐项回读。现有 `PUBLIC-02/SCN-02` 位于临时重点区外，只保留为跨区技能情境，不再作为本节点选址证据 [data:geometry/public_space.geojson#PILOT-AIORIGIN-ENVELOPE] [data:geometry/public_space.geojson#PUBLIC-03] [data:geometry/constraints.geojson#SCN-03]。
 
 ![AI 原点普通服务节点：1:500 平面、1:100 界面剖面与 1:50 交接细部](assets/figures/ai-era-pilot-node-dossier.png)
 
@@ -91,7 +93,7 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 | 1:100 剖面 | 3.0 米普通带与 2.4 米人工服务带独立于可撤回设备；停用时断电断数但不关闭人工/纸面服务 | 净高、机电、结构、声光、设备热负荷与维护条件未核验 |
 | 1:50 细部 | 纸面回执台、0.9–1.1 米人工停用控制、可拆服务接口和 0.3 米封闭退避槽形成一条退役链 | 所有数字均为低置信度参数，需专业团队与使用者共同校准 |
 
-图纸的价值不是显得“已经建好”，而是让评审能指出哪一处尺寸、流线或权利关系不成立。`run-ai-era-pilot-dossier.js` 和 12 个负例会拒绝伪造官方边界、现场观察、容量、业主、成本、SLA 或公众走查；当前仍为 0 授权、0 现场观察、HOLD [data:visual/assets/run-ai-era-pilot-dossier.js] [data:visual/assets/test-ai-era-pilot-dossier.js] [depth:three_key_area_detailed_design]。
+图纸让评审可以指出具体哪一处尺寸、流线或权利关系不成立。`run-ai-era-pilot-dossier.js` 会验证 9 个 formal refs、宿主包含关系、目标尺寸、普通路径与服务岛分离、净空环以及区外情境排除；16 个负例拒绝伪造官方边界、现场观察、容量、业主、成本、SLA、公众走查或空间绑定。当前仍为 0 授权、0 现场观察、HOLD [data:visual/assets/run-ai-era-pilot-dossier.js] [data:visual/assets/test-ai-era-pilot-dossier.js] [depth:three_key_area_detailed_design]。
 
 ## 设计依据与资料清单
 
@@ -161,12 +163,12 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 
 ## v1.3 空间关系读数｜让节点级接口可复核但不冒充路线
 
-上一节回答三处重点区要比较哪些公共性与可逆关系；本节继续压低表达尺度，只读成一条节点序列：**普通到达 → 人工解释/服务 → 受控状态 → 冻结复盘或退出**。`visual/assets/ai-era-spatial-interface-plans.json` 为每处重点区登记现有 provisional geometry 锚点、功能带、进入前证据和停止条件；它不填写尺寸，不改变 geometry，也不把概念界面升级为现状设施或工程方案。[data:visual/assets/ai-era-spatial-interface-plans.json] [depth:overall_spatial_structure]
+上一节回答三处重点区要比较哪些公共性与可逆关系；本节继续压低表达尺度，只读成一条节点序列：**普通到达 → 人工解释/服务 → 受控状态 → 冻结复盘或退出**。`visual/assets/ai-era-spatial-interface-plans.json` 为每处重点区登记 v1.3 的 provisional geometry 情境锚点、功能带、进入前证据和停止条件；其中 AI 原点的 `PUBLIC-02/SCN-02` 只保留为跨区技能情境，不作 v2.9 试点选址。它不填写尺寸，不改变 geometry，也不把概念界面升级为现状设施或工程方案。[data:visual/assets/ai-era-spatial-interface-plans.json] [depth:overall_spatial_structure]
 
-| 节点 | 现有锚点序列 | 功能带（无尺度，仅表达状态与先后） | 失效时的空间动作 |
+| 节点 | v1.3 情境锚点（不作 v2.9 试点选址） | 功能带（无尺度，仅表达状态与先后） | 失效时的空间动作 |
 |---|---|---|---|
 | 众智园 | `MOBILITY-05` → `PUBLIC-01` → `SCN-06` → `GREEN-02` | 普通到达/观察 → 人工解释/接管 → 受限 API 模拟 → 冻结复盘/安全退避 | 缺少授权、责任、日志或接管时冻结接口，保留普通路径和纸面规则 |
-| AI 原点社区 | `MOBILITY-04` → `PUBLIC-02` → `SCN-02` → `GREEN-03` | 日常到达/停留 → 纸面电话人工服务 → 技能再造/代际共学 → 无屏恢复/退出 | 人工入口不可用或普通路径被切断时改回人工服务；结果保持 `unknown` |
+| AI 原点社区（跨区技能情境） | `MOBILITY-04` → `PUBLIC-02` → `SCN-02` → `GREEN-03` | 日常到达/停留 → 纸面电话人工服务 → 技能再造/代际共学 → 无屏恢复/退出 | 人工入口不可用或普通路径被切断时改回人工服务；结果保持 `unknown` |
 | 大钟寺 | `PUBLIC-05` → `SCN-05` → `SERVICE-ZONE-02` → `PUBLIC-04` | 文化到达/通行 → 多语解释/授权前台 → 可撤回展示/受控服务 → 申诉冻结/夜间回退 | 越权、不可解释或未清权时关闭展示，保留普通通行和人工回退 |
 
 为避免“有锚点”仍停留在口号，本轮增加一份从同一组 GeoJSON 复算的临时关系读数。它取相邻锚点要素顶点之间的最小地理间距，四舍五入到 10 m，供评审复核顺序、近邻和明显断裂；它不是路线长度、服务半径、无障碍结论或工程尺寸，三段数值也不能相加为通行距离。正式边界、道路和现场走测到位后，读数、图件、指标、HTML、PDF 与自检必须一起重算。[data:visual/assets/ai-era-provisional-spatial-readout.json] [metric:provisional_spatial_readout_segment_count]

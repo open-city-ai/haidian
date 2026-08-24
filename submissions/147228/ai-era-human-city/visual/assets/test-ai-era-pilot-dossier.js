@@ -12,10 +12,20 @@ const original = JSON.parse(fs.readFileSync(contractPath, 'utf8'));
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
 function run(candidate) {
-  const tempPath = path.join(os.tmpdir(), `ai-era-pilot-${process.pid}-${Math.random().toString(16).slice(2)}.json`);
+  const mutateGeometry = arguments[1];
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'ai-era-pilot-dossier-'));
+  const assetRoot = path.join(tempRoot, 'visual', 'assets');
+  const geometryRoot = path.join(tempRoot, 'geometry');
+  fs.mkdirSync(assetRoot, { recursive: true });
+  fs.mkdirSync(geometryRoot, { recursive: true });
+  const tempPath = path.join(assetRoot, 'ai-era-pilot-dossier.json');
   fs.writeFileSync(tempPath, JSON.stringify(candidate));
-  const result = spawnSync(process.execPath, [runnerPath, tempPath], { encoding: 'utf8' });
-  fs.unlinkSync(tempPath);
+  for (const file of ['constraints.geojson', 'key_areas.geojson', 'public_space.geojson']) {
+    fs.copyFileSync(path.join(__dirname, '..', '..', 'geometry', file), path.join(geometryRoot, file));
+  }
+  if (mutateGeometry) mutateGeometry(tempRoot);
+  const result = spawnSync(process.execPath, [runnerPath, tempPath, '--root', tempRoot], { encoding: 'utf8' });
+  fs.rmSync(tempRoot, { recursive: true, force: true });
   return result.status === 0;
 }
 
@@ -34,8 +44,31 @@ const missingSla = clone(original); missingSla.delivery_contract.service_level_t
 const observedSla = clone(original); observedSla.delivery_contract.service_level_targets[0].basis = 'field_observed'; fixtures.push(['observed-sla-claim', observedSla]);
 const noRollback = clone(original); noRollback.delivery_contract.rollback = ''; fixtures.push(['missing-rollback', noRollback]);
 const fakeWalkthrough = clone(original); fakeWalkthrough.field_acceptance.status = 'pass'; fixtures.push(['fabricated-public-walkthrough', fakeWalkthrough]);
+const brokenHost = clone(original); brokenHost.geometry_binding.host_refs.public_space = 'geometry/public_space.geojson#PUBLIC-02'; fixtures.push(['outside-host-substitution', brokenHost]);
+fixtures.push(['missing-formal-feature', clone(original), (root) => {
+  const file = path.join(root, 'geometry', 'public_space.geojson');
+  const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+  value.features.pop();
+  fs.writeFileSync(file, JSON.stringify(value));
+}]);
+fixtures.push(['island-on-ordinary-route', clone(original), (root) => {
+  const file = path.join(root, 'geometry', 'public_space.geojson');
+  const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const ordinary = value.features.find((feature) => feature.properties.id === 'PILOT-AIORIGIN-M01-ORDINARY-ROUTE');
+  const island = value.features.find((feature) => feature.properties.id === 'PILOT-AIORIGIN-M04-AI-ISLAND');
+  island.geometry = JSON.parse(JSON.stringify(ordinary.geometry));
+  fs.writeFileSync(file, JSON.stringify(value));
+}]);
+fixtures.push(['invalid-clear-ring-clearance', clone(original), (root) => {
+  const file = path.join(root, 'geometry', 'public_space.geojson');
+  const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const ring = value.features.find((feature) => feature.properties.id === 'PILOT-AIORIGIN-M05-CLEAR-RING');
+  const island = value.features.find((feature) => feature.properties.id === 'PILOT-AIORIGIN-M04-AI-ISLAND');
+  ring.geometry.coordinates[0] = JSON.parse(JSON.stringify(island.geometry.coordinates[0]));
+  fs.writeFileSync(file, JSON.stringify(value));
+}]);
 
-const unexpected = fixtures.filter(([, fixture]) => run(fixture)).map(([name]) => name);
+const unexpected = fixtures.filter(([, fixture, mutateGeometry]) => run(fixture, mutateGeometry)).map(([name]) => name);
 if (unexpected.length) throw new Error(`negative fixtures unexpectedly passed: ${unexpected.join(', ')}`);
 
 console.log(JSON.stringify({ status: 'PASS', positive_controls: 1, negative_fixtures: fixtures.length, rejected: fixtures.map(([name]) => name) }, null, 2));

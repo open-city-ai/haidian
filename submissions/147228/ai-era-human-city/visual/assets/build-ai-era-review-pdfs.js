@@ -44,7 +44,7 @@ async function build(output, pageSize, language) {
   const font = await pdf.embedFont(StandardFonts.Helvetica);
   const [pageWidth, pageHeight] = pageSize;
   const margin = Math.min(pageWidth, pageHeight) * 0.032;
-  pdf.setTitle('Jing-Zhang AI-era Human City v2.8 canonical review storyboard');
+  pdf.setTitle('Jing-Zhang AI-era Human City v2.9 canonical review storyboard');
   pdf.setAuthor('147228 / Codex');
   pdf.setSubject('Sixteen page-identical bilingual review boards; design targets only; HOLD');
   for (const [index, [boardId, stem, extension]] of storyboard.entries()) {
@@ -58,7 +58,7 @@ async function build(output, pageSize, language) {
     const page = pdf.addPage(pageSize);
     page.drawRectangle({ x: 0, y: 0, width: pageWidth, height: pageHeight, color: rgb(20 / 255, 33 / 255, 61 / 255) });
     page.drawImage(image, { x: (pageWidth - width) / 2, y: (pageHeight - height) / 2, width, height });
-    const footer = `V2.8  ${boardId}  ${index + 1}/${storyboard.length}  ${language.toUpperCase()}  HOLD`;
+    const footer = `V2.9  ${boardId}  ${index + 1}/${storyboard.length}  ${language.toUpperCase()}  HOLD`;
     const fontSize = Math.max(7, Math.min(pageWidth, pageHeight) * 0.0085);
     const footerWidth = font.widthOfTextAtSize(footer, fontSize);
     page.drawText(footer, { x: pageWidth - margin - footerWidth, y: margin * 0.30, size: fontSize, font, color: rgb(0.65, 0.72, 0.80) });
@@ -76,7 +76,7 @@ async function main() {
   await build('a0-boards.pdf', sizes.A0, 'zh');
   await build('a0-boards.en.pdf', sizes.A0, 'en');
   const record = {
-    schema_version: '1.0.0', status: 'canonical_storyboard_generated', iteration: 'v2.8',
+    schema_version: '1.0.0', status: 'canonical_storyboard_generated', iteration: 'v2.9',
     board_ids: storyboard.map(([id]) => id), page_count_each: storyboard.length,
     orientation: 'landscape', order_identical: true, source_board_pairs: storyboard.length,
     manual_visual_review: 'pending_after_generation',

@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "version": 1,
   "disclaimer": "concept-only",
-  "summary": "The crosswalk makes each G0 scenario readable against existing package geometry. It records references only; it does not assign coordinates, legal boundaries, capacity, permission, or field performance.",
+  "summary": "The crosswalk makes each G0 scenario readable against existing package geometry. One v2.9 pilot geometry set in the spatially reviewed public-space layer translates the AI Origin relative plan into low-confidence design coordinates around SCN-03 inside PUBLIC-03 and PROV-KEY-002; it does not establish surveyed siting, legal boundaries, capacity, permission or field performance.",
   "items": [
     {"id": "scn-01-community-desk", "type": "node", "title": "Community continuity desk", "summary": "A provisional public-space reference for the community continuity scenario.", "source": "spatial.json#SCN-01", "public_level": "provisional", "geometry": {"mode": "concept", "label": "PUBLIC-01 / LAND-01 / FOOTPRINT-01"}},
     {"id": "scn-02-skills-corridor", "type": "corridor", "title": "Skills corridor", "summary": "A provisional corridor reference for the reskilling scenario.", "source": "spatial.json#SCN-02", "public_level": "provisional", "geometry": {"mode": "concept", "label": "PUBLIC-02 / LAND-03 / MOBILITY-04"}},
@@ -15,6 +15,22 @@
     {"id": "scn-09-flood-observation", "type": "area", "title": "Flood-simulation observation", "summary": "A provisional blue-green reference for explainable flood simulation.", "source": "spatial.json#SCN-09", "public_level": "provisional", "geometry": {"mode": "concept", "label": "GREEN-01 / MOBILITY-03 / LAND-04 / GREEN-03"}},
     {"id": "scn-10-energy-heat-ledger", "type": "area", "title": "Compute, energy and heat ledger", "summary": "A provisional data-governance and phasing reference for an auditable ledger.", "source": "spatial.json#SCN-10", "public_level": "provisional", "geometry": {"mode": "concept", "label": "FOOTPRINT-05 / LAND-05 / SERVICE-ZONE-02 / PHASE-02"}}
   ],
+  "pilot_spatial_binding": {
+    "pilot_id": "PILOT-AIORIGIN-ORDINARY-SERVICE-NODE",
+    "path": "geometry/public_space.geojson",
+    "feature_count": 9,
+    "host_refs": [
+      "geometry/key_areas.geojson#PROV-KEY-002",
+      "geometry/public_space.geojson#PUBLIC-03",
+      "geometry/constraints.geojson#SCN-03"
+    ],
+    "excluded_siting_refs": [
+      "geometry/public_space.geojson#PUBLIC-02",
+      "geometry/constraints.geojson#SCN-02"
+    ],
+    "status": "participant_authored_low_confidence_design_binding",
+    "boundary": "The host and module coordinates support package readback only and must be recalculated after authorised survey, ownership, accessibility, fire, utilities and public-walkthrough evidence."
+  },
   "boundary": {
     "official_boundary": false,
     "geometry_role": "provisional_constraint",

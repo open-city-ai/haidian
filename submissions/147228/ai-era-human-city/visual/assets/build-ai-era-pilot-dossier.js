@@ -75,7 +75,7 @@ function start(title) {
 
 function header(code, titleValue, subtitle, lang) {
   let out = text(78, 68, code, 20, { fill: C.teal, weight: 700, letter: 1.2 });
-  out += text(2322, 68, 'V2.8 / DESIGN TARGET / HOLD', 19, { anchor: 'end', fill: C.orange, weight: 700 });
+  out += text(2322, 68, 'V2.9 / LOW-CONFIDENCE GEOMETRY / HOLD', 19, { anchor: 'end', fill: C.orange, weight: 700 });
   out += text(78, 145, titleValue, lang === 'zh' ? 52 : 44, { weight: 760 });
   out += text(78, 198, subtitle, lang === 'zh' ? 23 : 19, { fill: C.muted });
   out += line(78, 232, 2322, 232, { stroke: C.line, sw: 2 });
@@ -112,7 +112,8 @@ function planBoard(lang) {
   out += dimension(px - 34, py, px - 34, py + ph, '18.0 m', true);
   out += dimension(px, py + ph + 45, px + 3 * s, py + ph + 45, '3.0 m');
   out += text(148, 1010, zh ? '两处 1.8 m 退出口｜容量公式保持 HOLD，release_capacity=null' : 'Two 1.8 m exit mouths · capacity formula stays HOLD · release_capacity=null', zh ? 18 : 15, { fill: C.muted, weight: 600 });
-  out += text(148, 1050, zh ? '位置锚点：PROV-KEY-002；正式测绘、消防、无障碍、市政和权属资料到位后整体重算。' : 'Anchor: PROV-KEY-002; recalculate after authorised survey, fire, accessibility, utilities and title evidence.', zh ? 17 : 14, { fill: C.orange });
+  out += text(148, 1050, zh ? '低置信宿主：PROV-KEY-002 / PUBLIC-03 / SCN-03；9 个 formal features 可回读。' : 'Low-confidence hosts: PROV-KEY-002 / PUBLIC-03 / SCN-03; 9 formal features resolve.', zh ? 17 : 14, { fill: C.orange });
+  out += text(148, 1082, zh ? 'PUBLIC-02 / SCN-02 位于临时重点区外，不作本节点选址证据；正式资料到位后整体重算。' : 'PUBLIC-02 / SCN-02 are outside the provisional key area and are not siting evidence; recalculate after formal data.', zh ? 16 : 13, { fill: C.red, weight: 650 });
 
   out += rect(1155, 270, 1167, 500, { fill: C.white, stroke: C.blue, sw: 3, radius: 26 });
   out += text(1190, 325, zh ? '1:100 界面剖面设计目标' : '1:100 INTERFACE SECTION TARGET', zh ? 29 : 24, { weight: 730 });
@@ -148,7 +149,7 @@ function planBoard(lang) {
 
   out += rect(78, 1200, 2244, 88, { fill: C.navy, stroke: C.navy, radius: 18 });
   out += text(112, 1240, zh ? '证据边界' : 'EVIDENCE BOUNDARY', 17, { fill: C.gold, weight: 800 });
-  out += wrapped(360, 1238, zh ? '以上均为参赛者提出的概念尺寸，不是测绘、法定、工程、招标或竣工尺寸；0 授权、0 现场观察、HOLD。' : 'Participant-authored concept dimensions only—not surveyed, statutory, engineering, tender or as-built dimensions; 0 authorisations, 0 field observations, HOLD.', zh ? 17 : 14, zh ? 74 : 137, { fill: C.white, maxRows: 2 });
+  out += wrapped(360, 1238, zh ? '以上均为参赛者提出的概念尺寸，不是测绘、法定、工程、招标或竣工尺寸；0 授权、0 现场观察、HOLD。' : 'Participant-authored concept dimensions only—not surveyed, statutory, engineering, tender or as-built dimensions; 0 authorisations, 0 field observations, HOLD.', zh ? 17 : 14, zh ? 74 : 190, { fill: C.white, maxRows: 2 });
   return out + '</g></svg>\n';
 }
 

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "contract_id": "ai-era-human-city-pilot-dossier-v1",
-  "iteration": "v2.8",
+  "iteration": "v2.9",
   "decision": "HOLD",
   "design_only": true,
   "official_boundary": false,
@@ -17,6 +17,50 @@
     "selected_alternative": "ALT-C",
     "public_promise_zh": "普通入口、人工接管、纸面回执和退出路径先于可撤回 AI 服务岛。",
     "public_promise_en": "Ordinary entry, human takeover, paper receipt and exit come before a removable AI service island."
+  },
+  "geometry_binding": {
+    "status": "participant_authored_low_confidence_design_binding",
+    "formal_geometry_file": "geometry/public_space.geojson",
+    "formal_feature_count": 9,
+    "host_refs": {
+      "key_area": "geometry/key_areas.geojson#PROV-KEY-002",
+      "public_space": "geometry/public_space.geojson#PUBLIC-03",
+      "scenario_node": "geometry/constraints.geojson#SCN-03"
+    },
+    "envelope_ref": "geometry/public_space.geojson#PILOT-AIORIGIN-ENVELOPE",
+    "module_refs": {
+      "M01": ["geometry/public_space.geojson#PILOT-AIORIGIN-M01-ORDINARY-ROUTE"],
+      "M02": ["geometry/public_space.geojson#PILOT-AIORIGIN-M02-STAFFED-SERVICE"],
+      "M03": ["geometry/public_space.geojson#PILOT-AIORIGIN-M03-LOW-STIM-WAITING"],
+      "M04": ["geometry/public_space.geojson#PILOT-AIORIGIN-M04-AI-ISLAND"],
+      "M05": ["geometry/public_space.geojson#PILOT-AIORIGIN-M05-CLEAR-RING"],
+      "M06": ["geometry/public_space.geojson#PILOT-AIORIGIN-M06-MAINTENANCE-ACCESS"],
+      "M07": [
+        "geometry/public_space.geojson#PILOT-AIORIGIN-M07-EXIT-WEST",
+        "geometry/public_space.geojson#PILOT-AIORIGIN-M07-EXIT-EAST"
+      ]
+    },
+    "placement_rule": "Centre the parametric envelope on the existing SCN-03 concept point and require the whole envelope to remain inside PUBLIC-03 and PROV-KEY-002 for package-level design readback.",
+    "context_not_used_for_siting": [
+      {
+        "ref": "geometry/public_space.geojson#PUBLIC-02",
+        "reason": "The current concept polygon is outside PROV-KEY-002 and remains cross-area skills context only."
+      },
+      {
+        "ref": "geometry/constraints.geojson#SCN-02",
+        "reason": "The current concept point is outside PROV-KEY-002 and remains cross-area skills context only."
+      }
+    ],
+    "acceptance_checks": [
+      "all nine formal feature refs resolve",
+      "the envelope is contained by PUBLIC-03 and PROV-KEY-002",
+      "SCN-03 is contained by the envelope",
+      "all module geometries remain inside the envelope",
+      "the removable island does not overlap the ordinary route",
+      "the clear ring contains the removable island as a hole",
+      "PUBLIC-02 and SCN-02 remain outside the provisional key area and cannot be used as siting evidence"
+    ],
+    "boundary": "This binding makes the participant-authored relative plan inspectable against package geometry. It is not surveyed siting, an approved public-space layout, a legal boundary or engineering placement."
   },
   "dimension_rule": {
     "status": "participant_authored_design_target",
