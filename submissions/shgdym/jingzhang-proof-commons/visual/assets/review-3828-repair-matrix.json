@@ -1,0 +1,164 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_at": "2026-08-24T10:10:53+08:00",
+  "baseline_git_sha": "a0169bfa22370e65b65b4fb9c0988b31333bb65f",
+  "scope_note": "Stored under visual/assets because the deterministic submission contract permits only fixed filenames under report/. Summary is also included in report/copyright_statement.md.",
+  "issues": [
+    {
+      "issue": "Chinese HTML square glyphs",
+      "review_evidence": "Review screenshot showed missing Chinese glyphs.",
+      "root_cause": "HTML depended on host fonts and the old subset missed later text.",
+      "files_affected": [
+        "visual/assets/cjk-font.css",
+        "report/proposal.html",
+        "visual/index.html"
+      ],
+      "repair": "Embedded current-text Noto Sans CJK SC subsets and verified 979/979 required CJK codepoints.",
+      "verification": "fontTools decode + static HTML audit + full rendered-page review",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "14/90-day conflict",
+      "review_evidence": "Fourteen and ninety days were both presented as minimum pilot duration.",
+      "root_cause": "Operating shift and readiness/review checkpoints were conflated.",
+      "files_affected": [
+        "proposal.md",
+        "proposal.en.md",
+        "metrics.json",
+        "compliance_matrix.json",
+        "assets/figures/implementation-roadmap.png"
+      ],
+      "repair": "One time model: 90-day readiness-review window, D1-D14 only field operation, day 180 optional follow-up.",
+      "verification": "Repository phrase scan + bilingual QA + rebuilt PDF page 16/A0-05",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "Generation service/model metadata",
+      "review_evidence": "Provider/model evidence was absent.",
+      "root_cause": "Legacy images had no verifiable provenance.",
+      "files_affected": [
+        "report/copyright_statement.md",
+        "agent.json",
+        "sources.json"
+      ],
+      "repair": "Removed legacy pixels; regenerated with OpenAI built-in image generation in Codex; model accurately remains unknown because the tool did not surface it.",
+      "verification": "Asset register, prompt record, date and SHA-256 integrity record",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "Output rights terms",
+      "review_evidence": "No applicable output-rights terms/version.",
+      "root_cause": "Legacy ledger stated only an unknown web interface.",
+      "files_affected": [
+        "report/copyright_statement.md",
+        "sources.json"
+      ],
+      "repair": "Recorded official OpenAI Terms of Use effective 2026-01-01 and bounded what they do and do not establish.",
+      "verification": "OPENAI-TERMS-20260101 registry entry",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "Redistribution permission",
+      "review_evidence": "Repository redistribution basis was unclear.",
+      "root_cause": "Asset rights and publication policy were not connected.",
+      "files_affected": [
+        "report/copyright_statement.md",
+        "sources.json"
+      ],
+      "repair": "Recorded submission/repository redistribution basis subject to terms and law without claiming complete copyright.",
+      "verification": "Terms + Sharing Policy entries and asset-level redistribution status",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "Visible generative labels",
+      "review_evidence": "Realistic images lacked prominent embedded labels.",
+      "root_cause": "Warnings were absent or only in surrounding text.",
+      "files_affected": [
+        "assets/figures/*.png",
+        "visual/index.html",
+        "drawings/*.pdf"
+      ],
+      "repair": "Embedded source labels and repeated language-appropriate notices in derivatives, HTML and PDF layouts.",
+      "verification": "Manual source/derivative/contact-sheet inspection",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "Manual bilingual equivalence",
+      "review_evidence": "Automatic mapping did not prove substantive equivalence.",
+      "root_cause": "No persistent section-level QA record.",
+      "files_affected": [
+        "visual/assets/bilingual-qa.json"
+      ],
+      "repair": "Compared 15 substantive categories including numbers, status, time, rights, captions and RETURN.",
+      "verification": "15/15 PASS or FIXED; 0 open",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "A3 full-page QA",
+      "review_evidence": "Only first-page preview was visible.",
+      "root_cause": "No persistent evidence for all pages.",
+      "files_affected": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a3-booklet.en.pdf",
+        "visual/assets/visual-qa.json"
+      ],
+      "repair": "Rebuilt and raster-checked all 22+22 pages.",
+      "verification": "44 page records; 44 inspected",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "A0 full-board QA",
+      "review_evidence": "Full boards were not evidenced.",
+      "root_cause": "No board-by-board record.",
+      "files_affected": [
+        "drawings/a0-boards.pdf",
+        "drawings/a0-boards.en.pdf",
+        "visual/assets/visual-qa.json"
+      ],
+      "repair": "Rebuilt and raster-checked all 5+5 boards.",
+      "verification": "10 board records; 10 inspected",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "HTML full visual QA",
+      "review_evidence": "Chinese/English proposal and visual HTML lacked complete visual evidence.",
+      "root_cause": "Host font dependency and one missing English hero asset.",
+      "files_affected": [
+        "report/proposal.html",
+        "report/proposal.en.html",
+        "visual/index.html",
+        "visual/index.en.html"
+      ],
+      "repair": "Fixed fonts/path/captions; rendered and inspected all four static documents; audited every resource.",
+      "verification": "92/92 images, 0 missing resources, 0 replacement characters",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "Accessibility QA",
+      "review_evidence": "Machine visual checks did not prove basic accessibility.",
+      "root_cause": "No explicit DOM/read-order audit.",
+      "files_affected": [
+        "visual/assets/visual-qa.json",
+        "visual/index.html",
+        "visual/index.en.html"
+      ],
+      "repair": "Checked language, alt, heading order, table headers, links, contrast and static keyboard order; no tagged-PDF claim.",
+      "verification": "Accessibility section in visual-qa.json",
+      "status": "CLOSED"
+    },
+    {
+      "issue": "Pre-pilot responsible parties",
+      "review_evidence": "Operator, permission, insurance, safety, data control, access review and restoration funding are unconfirmed.",
+      "root_cause": "External appointments and commitments do not exist in the evidence package.",
+      "files_affected": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "repair": "Organised all seven as a PRE-PILOT READINESS GATE and kept every item TBD/BLOCKED; no field clock starts before closure.",
+      "verification": "Explicit bilingual gate and 14/90 model",
+      "status": "BLOCKED_EXTERNAL_PRE_PILOT"
+    }
+  ],
+  "package_result": "CLOSED_FOR_FORMAL_REVIEW",
+  "field_pilot_result": "BLOCKED_UNTIL_EXTERNAL_READINESS_GATE_CLOSES"
+}

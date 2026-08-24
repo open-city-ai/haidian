@@ -1,80 +1,94 @@
 ---
-title: "X JINGZHANG: City Questions Enter Research, AI Answers Return to Life"
+title: "X JINGZHANG: AI Made Together with the City"
 author_github: "shgdym"
 language: "en"
 translation_file: "proposal.md"
 translation_of: "proposal.md"
 license: "CC-BY-SA-4.0"
-summary: "X Jingzhang turns the centennial railway corridor into a public innovation line where city questions enter research, prototypes become open capabilities, daily use produces new questions, and those questions return upstream."
+summary: "X Jingzhang turns the centennial railway corridor into a nine-kilometre urban AI co-development environment where residents, developers, universities, enterprises and public space define, make, open and continuously change public AI capabilities together."
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 tracks: ["civic-agent-governance", "jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["public-safety-operations-review", "robot-delivery-low-speed", "ai-traffic-walkability", "enterprise-service-copilot", "ai-cultural-guide"]
-iteration: "v6.0"
+iteration: "v7.0"
 ---
 
 # X JINGZHANG
 
-> **Let city questions enter research along Jing-Zhang, and let AI answers return along the same line to daily life.**
+> **AI is not a finished product deployed to the city. It is a public capability made together with the city.**
 
-## Jing-Zhang does not lack innovation resources. It lacks a public line between questions and answers
+## Urban life is the AI development environment
 
-The first phase of the Jing-Zhang Railway Heritage Park has already converted roughly nine kilometres of railway corridor into open public space while retaining memories of the main line, old rail, turnouts and Qinghuayuan Station. [source:BEIJING-JZ-PARK-PHASE1] [source:BEIJING-JZ-PARK-9KM]
+The first phase of the Jing-Zhang Railway Heritage Park has already converted roughly nine kilometres of railway corridor into open public space. Universities, research campuses, neighbourhoods, transit stations, commerce, Xiaoyue River and everyday park life continue along it. Together they offer something a conventional technology park cannot: one AI capability can repeatedly encounter different people, spaces and urban questions. [source:BEIJING-JZ-PARK-PHASE1] [source:BEIJING-JZ-PARK-9KM] [source:OFFICIAL-ANNOUNCEMENT]
 
-Universities, research campuses, neighbourhoods, metro stations, commerce and blue-green spaces sit along it. The brief assigns full-stack innovation, technology translation, urban AI experience and the three-zone/two-wing ecosystem to different places on this corridor. Jing-Zhang already contains both urban questions and innovation capacity. What is missing is public infrastructure that lets the two meet repeatedly, work together and leave shared outcomes. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
+Yet much of that urban knowledge still sits outside development. Residents are often asked only after a product is complete; public space is treated as deployment context; transport and ecology arrive late as constraints. X Jingzhang proposes a **co-development city**: lived experience becomes engineering input, public space becomes research infrastructure, and university methods and enterprise capability change products together around daily life. Open tools, better services and reusable knowledge then build the city in return.
 
-Today's missing links are not only roads. A neighbourhood's mobility difficulty, a riverside maintenance issue or an accessible-transfer problem rarely arrives at a developer as a workable test condition. University and enterprise prototypes likewise lack a continuous public interface for reproduction, joint improvement and real-life use. Urban questions remain at the complaint desk while technical answers remain inside labs or displays. X Jingzhang turns the heritage line into a **public innovation line**: questions enter laterally, move through co-development, opening and use, then return upstream with new field conditions.
-
-| First-principles diagnosis | X Jingzhang response |
-| --- | --- |
-| Already present | An open heritage corridor with research, industry, neighbourhoods and daily life on both sides |
-| Actually missing | A continuous public interface from city question to research, from research to life and from lived feedback back to research |
-| AI value | Turn real problems into testable conditions, open tools and public capabilities that ordinary users can use and change |
-| Jing-Zhang role | Lines connect phases; stations organise handovers; turnouts match problems with capabilities; return carries feedback upstream |
-
-![Urban questions enter the Jing-Zhang public innovation line and move through co-development, opening, use and return](assets/figures/mobility-bluegreen.en.png)
-
-> **Evidence boundary:** the overall and key-area geometries are provisional constraints. They support concept relationships, public map slices and package recomputation only. Official boundaries, controls, ownership, field dimensions, engineering conditions and operators require a rebuild; no concept space is presented as approval or delivery commitment.
-
-## The three stations are an innovation chain, not three gates
-
-Their sequence comes from urban roles assigned by the official brief, not from a convenient product flow. Northern Zhongzhi combines full-stack innovation, a garden research district and Qinghe ecological scenes, so it turns urban questions into prototypes. Near-campus AI Origin connects original research, translation, open source, talent life and public events, so it turns prototypes into reproducible, collaborative public capabilities. Southern Dazhongsi combines transit arrival, intelligent terminals, commerce and high-frequency daily life, so it asks whether those capabilities actually improve life and generates the next question. [source:OFFICIAL-ANNOUNCEMENT] [source:HAIDIAN-2025-STATISTICAL-BULLETIN] [source:HAIDIAN-AI-ORIGIN-PLAN]
-
-| Place | Primary urban duty | Why people come | Professional foundation |
+| Participant | No longer only | What they make together | What the city gains |
 | --- | --- | --- | --- |
-| Zhongzhi | **Turn questions into prototypes** | Developers co-build in open lab courts, a robot test street, ecological fixtures and workbenches; residents and children can observe and propose conditions | BUILD contains TEST; test space can close, stop and evacuate while the civic path remains continuous |
-| AI Origin | **Turn prototypes into public capabilities** | Universities, developers and start-ups reproduce and improve work in an open hall, prototype workshop, open-source theatre and city-question wall | OPEN contains RELEASE; method, rights, responsibility and withdrawal remain visible together |
-| Dazhongsi | **Put capabilities into daily life** | Commuters, older people, children, residents, shopkeepers and staff use and evaluate services in transit, commerce and community life | LIVE contains USE; staffed equivalents, the accessible chain and a question-return desk operate in parallel |
+| Residents, older people, children and commuters | Users, observed subjects or complainants | Define questions, lay out conditions, join retests and decide what counts as improvement | Experience enters product definition instead of ending in a survey |
+| Developers and start-ups | Closed teams receiving requirements | Make, reproduce and continue work on public benches with real urban materials | Executable questions, real constraints and collaborators arrive earlier |
+| Universities and research institutions | Producers of papers or isolated technology | Place methods inside urban questions and let others continue development | Research finds public use, talent and open translation interfaces |
+| Enterprises and operators | Vendors or procurers | Add engineering, manufacturing, maintenance and service knowledge | Products meet life earlier; the city gains maintainable capability |
+| Public space and city operations | Deployment context or final approval point | Supply transport, ecology, service and operating conditions | Parks, streets and stations become lasting learning infrastructure |
 
-![Zhongzhi makes prototypes, AI Origin opens collaboration and Dazhongsi puts capabilities into daily use](assets/figures/key-areas.en.png)
+Here `X` is not primarily a risk symbol. It is where different forms of urban knowledge actually meet: resident experience x engineering capability, public question x AI model, university research x daily life, enterprise product x lived use, railway heritage x future technology. Every X is a co-development interface that people can enter, work in and continue to change.
 
-## One city question travels the whole line
+![A nine-kilometre urban AI co-development environment with six city-knowledge interfaces and three deep co-development grounds; realistic panels are AI/generative concept images, not site photographs and not planning or implementation approval](assets/figures/mobility-bluegreen.en.png)
 
-The brief explicitly asks for better station integration and four-quadrant walking connections at Dazhongsi. Without inventing a surveyed defect, X Jingzhang converts that task into a field question to be verified: **can a 72-year-old non-digital user complete an accessible arrival through a complex interchange with clear, staffed support?** Residents, commuters and service staff frame the question at Dazhongsi. Zhongzhi converts crowding, device parking, spectators and human takeover into repeatable conditions and builds a low-speed service prototype. AI Origin opens the method and interface for reproduction by developers and accessibility professionals. The product then returns to Dazhongsi for limited use. [source:OFFICIAL-ANNOUNCEMENT] [data:visual/assets/lived-lifecycle.json]
+## Why Jing-Zhang can turn an entire urban belt into a development environment
 
-Ms Zhou can report without a phone that the device has not collided with anyone, yet its parking and spectators still invade the priority route. Staff pause the trial, keep staffed service operating and turn “device parking + spectators + wheelchair priority” into a new urban question. Version 0.10 carries that condition back to Zhongzhi. RETURN is not simply rejection; it is the moment when lived experience changes the next round of research. SC-03 is a tool for answering the question, not the protagonist of the line. [data:visual/assets/lived-lifecycle.json] [data:visual/assets/x-lifecycle-valid-example.json]
+The railway's essential urban ability is connection rather than control: different places become one continuous system, and the same object is handed over, inspected, changed and kept running under different conditions. X Jingzhang translates that culture into AI co-development. The heritage line connects urban knowledge; stations provide durable places to stay and collaborate; turnouts bring lateral city systems in; sections hold different development conditions; return carries new lived knowledge upstream. [source:NRA-TECHNICAL-RULES] [source:BEIJING-JZ-PARK-PHASE1] [data:visual/assets/railway-operating-translation.json]
 
-![An accessible-arrival question enters research, open collaboration and real use, then returns with a new condition](assets/figures/x-operating-proof.en.png)
+Not every interface needs a new building. Community X contributes care and everyday-service knowledge. Campus X contributes research methods and talent. Transit X contributes high-frequency mobility conditions. Ecology X contributes riverside and climate questions. Industry X contributes engineering, manufacturing and maintenance. Culture X contributes a century of engineering memory and public interpretation. Three major grounds support deep co-development; smaller interfaces continuously bring city knowledge into the line.
 
-### Why this must happen along Jing-Zhang
+| Line-side X | Urban knowledge contributed | Visible spatial action |
+| --- | --- | --- |
+| Community X | Ageing, childhood, non-digital service and daily care | Neighbourhood worktable, paper question cards, take-away task wall |
+| Campus X | Algorithms, design, social research and young talent | Open study tables, research porch, cross-campus reproduction day |
+| Transit X | Interchange, crowding, orientation and accessible arrival | Arrival observation point, route sample strip, staffed service interface |
+| Ecology X | Xiaoyue River, maintenance, thermal comfort and habitat change | Riverside observation deck, environmental material library, seasonal-condition record |
+| Industry X | Hardware, manufacture, supply chain, repair and operations | Mobile prototype bench, public repair class, engineering relay table |
+| Culture X | Railway engineering history, heritage space and public memory | Track interpretation, oral-history bench, verified-content display |
 
-Jing-Zhang is not a landscape axis connecting three AI halls. It is an existing urban operating logic. A line turns separated nodes into one system. Stations hand work between different actors. Sidings hold temporary research and experiments. Turnouts match laterally arriving city questions with suitable capabilities. Sections let each station work independently. Return carries a problem exposed in daily use back to an earlier section for repair and upgrade. Risk controls remain, but railway language first organises **how questions and answers move**. [source:NRA-TECHNICAL-RULES] [source:BEIJING-JZ-PARK-PHASE1] [data:visual/assets/railway-operating-translation.json]
+A sealed technology park cannot place community life, transit arrival, campus research, commerce and river ecology on one public sequence. A conventional park cannot sustain development, manufacturing, open tools and translation. Jing-Zhang is irreplaceable because it holds this nine-kilometre mixed urban section. [source:OFFICIAL-ANNOUNCEMENT] [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-003]
 
-The order follows a real urban gradient: full-stack research and ecological testing in the north; university ideas, open collaboration and translation in the centre; transit, commerce and high-frequency public life in the south. Communities, campuses, industrial parks, Xiaoyue River and regional capabilities enter laterally at different stations. Jing-Zhang organises them longitudinally as a public innovation line that can be travelled both ways. A sealed technology park could not continuously receive everyday problems and return answers to the same public corridor. [source:OFFICIAL-ANNOUNCEMENT] [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-003]
+## Three co-development grounds, not three process nodes
 
-The public main line, AI sidings, staffed turnouts and three records remain, but at a different level. The main line carries long-term civic life and its questions. Sidings hold temporary research. A turnout is a human match between a question and a capability. RETURN is an input to the next research cycle. Test Receipt, Release Ticket and Public Verdict record professional decisions inside BUILD, OPEN and LIVE; fields, states and machine checks sit in the appendix. [data:visual/assets/verify-x-lifecycle.js] [metric:x_lifecycle_test_case_count]
+Their roles come from actual urban conditions. Northern Zhongzhi meets full-stack innovation and Qinghe ecology, making it suited to turn public knowledge into engineering material. Near-campus AI Origin links universities, translation, open source and talent life, making one team's result a public capability that others can continue. Southern Dazhongsi combines transit, commerce, terminals and high-frequency daily life, allowing technology to keep changing in use. [source:OFFICIAL-ANNOUNCEMENT] [source:HAIDIAN-2025-STATISTICAL-BULLETIN] [source:HAIDIAN-AI-ORIGIN-PLAN]
+
+| Place | Co-development relationship | How the public enters development | A place worth travelling to |
+| --- | --- | --- | --- |
+| Zhongzhi | **Make with the city** | Users and engineers draw routes, position parking, define unexpected behaviour and join the second test | Public experiment garden, open robot court, maker workshop and Qinghe ecological field |
+| AI Origin | **Let others continue** | Residents post questions, universities open methods, and teams reproduce, dismantle and rewrite work on one prototype table | A public co-development hall beneath a railway-scale roof, open-source theatre, transparent labs and developer steps |
+| Dazhongsi | **Let life keep changing it** | Older people, children, commuters, shopkeepers and service staff reveal benefits, burdens and new needs in daily life | Transit-arrival room, staffed service island, terminal workshop, neighbourhood worktable and commercial resting space |
+
+![Three forms of urban co-development space at Zhongzhi, AI Origin and Dazhongsi; realistic panels are AI/generative concept images, not site photographs and not planning or implementation approval](assets/figures/key-areas.en.png)
+
+## One question rewritten by the city
+
+The brief asks for station integration and four-quadrant walking connections at Dazhongsi. Without inventing an unsurveyed defect, the proposal sets a question for co-development: **how can a 72-year-old non-digital user complete a complex arrival with continuous, legible and staffed accessible service?** This is not a requirement handed to a technical team. It is a city task whose definition keeps its users involved. [source:OFFICIAL-ANNOUNCEMENT] [data:visual/assets/lived-lifecycle.json]
+
+At Zhongzhi, Ms Zhou, a wheelchair-user representative, service staff and developers use movable kerbs, a parking sample strip and crowd markers to lay out conditions together. Users define turning space, waiting positions and what counts as improvement; engineers then choose navigation, a robot or facility changes as candidate tools. After the first failure, participants do not simply file feedback: they move the stopping position, rewrite the crowd condition and join the second test.
+
+At AI Origin, method, interface and limitations sit on a public prototype table. Another team can reproduce and change the work; university researchers explain model boundaries; community participants check whether translation has distorted the original question. In Dazhongsi, Ms Zhou finds that the device does not collide, yet its stopping pattern and spectators still reduce wheelchair turning space. Staffed service continues while that finding becomes the next task. Success is not product passage: it is a more accurate question, an open method and a group able to keep changing it. [data:visual/assets/lived-lifecycle.json] [data:visual/assets/x-lifecycle-valid-example.json]
+
+![Ms Zhou and developers define, make, open and continue changing an accessible-arrival capability together; realistic panels are AI/generative concept images, not site photographs and not planning or implementation approval](assets/figures/x-operating-proof.en.png)
+
+> **Quality foundation:** co-development is not rule-free opening. TEST, RELEASE, USE and RETURN, the three records, and the existing lifecycle, topology and contract checks remain to govern safety, rights, human responsibility, public feedback and exit. Fields, hashes and PASS results sit in the professional appendix.
+
+> **Evidence boundary:** overall and key-area geometries remain provisional constraints, supporting concept relationships, public map slices and package recomputation only. Official boundaries, controls, ownership, field dimensions, engineering conditions and operators require a rebuild; no concept space is presented as approval or delivery commitment.
 
 ## Coordinated Research Area: Industry and Future City Research
 
-The first reading layer retains one innovation chain: **city question - co-develop at Zhongzhi - open at AI Origin - use at Dazhongsi - return with a new question**. TEST-RELEASE-USE-RETURN, two wings, ten stitches, fourteen ledgers, twelve scenes and three delivery gates remain as professional support for testing, opening, feedback and accountable failure. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
+The coordinated area reorganises line-side resources as a co-development division of labour. Communities and Xiaoyue River provide everyday and ecological questions. Universities and science cities provide methods and talent. Zhongzhi provides full-stack development; AI Origin provides open collaboration and translation; the technology-service wing supplies IP, capital and professional services; Dazhongsi supplies lived use and market feedback; E-Town is a candidate manufacturing interface; and Beijing-Tianjin-Hebei offers different questions and replication conditions. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
 
-At coordination scale, communities and Xiaoyue River provide everyday and ecological questions; universities and science cities provide research and talent; Zhongzhi provides full-stack development; AI Origin provides open collaboration and translation; the technology-service wing provides IP, capital and professional services; Dazhongsi provides lived use and market feedback; E-Town is a candidate manufacturing interface; Beijing-Tianjin-Hebei supplies different urban questions and replication conditions. None is an assumed partner. X Jingzhang's planning innovation is to organise need, research, translation, use and feedback along one public-space chain. [data:geometry/site_boundary.geojson#SITE-001] [depth:overall_spatial_structure]
+These are capability interfaces awaiting real accountable parties, not assumed partnerships. X Jingzhang uses one public-space chain to make lived knowledge, research methods, engineering, open translation and daily use keep crossing, rather than listing resources in a static ecosystem diagram. [data:geometry/site_boundary.geojson#SITE-001] [depth:overall_spatial_structure]
 
 ## Design Basis and Source List
 
 The official announcement establishes tasks, textual scopes, approximate areas, and three key areas. The agent taskbook establishes three positions, five functions, the three-zone/two-wing structure, and agent.1-agent.6. Local standard snapshots constrain planning language. The overall and key-area geometries remain `provisional_constraint`; derived areas serve package consistency only. When official polygons arrive, all GeoJSON, metrics, drawings, bilingual HTML, A3/A0 files, and narrative numbers must be rebuilt as one chain. [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
 
-Two Haidian public records provide a bounded operational baseline. The 2025 statistical bulletin records progress in the “Zhongzhi” stack and RoboOS/RoboBrain, so Zhongzhi first serves reproducible TEST rather than generic display. A district public plan states the initiation of the “Haidian AI Origin Community”, so AI Origin first serves the civic translation from method and rights to limited release. Neither source proves a candidate site, institutional partnership, product performance or operating commitment; field and accountable-party review remain required. [source:HAIDIAN-2025-STATISTICAL-BULLETIN] [source:HAIDIAN-AI-ORIGIN-PLAN]
+Two Haidian public records provide a bounded operational baseline. The 2025 statistical bulletin records progress in the “Zhongzhi” stack and RoboOS/RoboBrain, so Zhongzhi can turn urban knowledge into full-stack engineering input rather than generic display. A district public plan states the initiation of the “Haidian AI Origin Community”, so AI Origin can become an open civic front where results are understood, reproduced and continued. Neither source proves a candidate site, institutional partnership, product performance or operating commitment; field and accountable-party review remain required. [source:HAIDIAN-2025-STATISTICAL-BULLETIN] [source:HAIDIAN-AI-ORIGIN-PLAN]
 
 Evidence has four uses. The announcement and taskbook support objectives and deliverables; national and ministry standards support classification and depth; international cases support mechanism comparison; provisional geometry supports topology and internal recalculation only. `sources.json` records publisher, URL, status, applicability, and non-transfer limits. `assumptions.json` retains gaps in official geometry, controls, ownership, existing buildings, utilities, fire, and heritage. No gap is filled with data from a similar project. New evidence must be registered, spatial checks rerun, and impacts recorded in `changelog.md`. [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [source:SOURCE-REGISTRY]
 
@@ -116,31 +130,31 @@ Local translation produces seven safeguards: reversible land use and an official
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
-### Overall space: one public innovation line with seven bands and two wings
+### Overall space: one co-development environment receiving six forms of urban knowledge
 
-The provisional overall area is divided into seven north-south bands and two east-west wings, producing fourteen concept cells without intentional gaps or overlaps. The western wing brings universities, R&D, professional services, IP and industrial translation into the line. The eastern wing brings community services, talent life, culture, education and Xiaoyue ecological questions into it. The central heritage corridor is the continuous public interface where questions are made visible, work changes hands and answers return to life. The south gateway frames city questions and international arrival; Dazhongsi handles lived use; middle bands bring professional service and university work; AI Origin handles open collaboration; northern bands and Zhongzhi handle full-stack co-development and ecological conditions. [data:geometry/land_use.geojson#LU-01-W] [metric:land_use_feature_count]
+The overall area still uses seven north-south bands and two wings, yielding fourteen mutually exclusive concept cells, but they are no longer presented first as management ledgers. The west brings university research, full-stack development, technical services, manufacturing and translation into the heritage line. The east brings community care, talent life, culture, education and Xiaoyue River ecology. The central public corridor makes this knowledge visible, supports handover and retains shared outcomes. [data:geometry/land_use.geojson#LU-01-W] [metric:land_use_feature_count]
 
 The rail civic spine, east-west stitches, adaptive building interfaces, blue-green walking loop and three station anchors in the aerial point back to `roads.geojson`, `buildings.geojson`, `green_space.geojson` and `public_space.geojson`. The images explain intent rather than replace plan evidence. [data:geometry/roads.geojson#ROAD-SPINE] [depth:overall_spatial_structure]
 
-![Overall aerial concept for the Jingzhang civic verification corridor](assets/figures/site-overview.png)
+![Overall aerial for the Jingzhang urban AI co-development environment; AI/generative concept image, not a site photograph and not planning or implementation approval](assets/figures/site-overview.png)
 
-![Crosswalk between the overall aerial and five spatial moves](assets/figures/aerial-design-key.en.png)
+![Crosswalk between the overall aerial and five spatial moves; the realistic panel is an AI/generative concept image, not a site photograph and not planning or implementation approval](assets/figures/aerial-design-key.en.png)
 
 Conceptual building interfaces are not an existing-building inventory. Courtyards, active ground floors, and traversable edges test spatial relationships through three priorities: adaptive retention, ground-floor retrofit, and reversible light additions. Demolition, construction, intensity, and height await survey, ownership, structure, regulatory, heritage, fire, and utility evidence. [data:geometry/buildings.geojson#BLDG-101] [metric:conceptual_building_interface_count]
 
-![Seven-band, two-wing spatial ledger](assets/figures/land-use-structure.en.png)
+![Seven-band, two-wing urban knowledge and spatial structure](assets/figures/land-use-structure.en.png)
 
-The fourteen cells are independent design decisions, not repeated names applied to coloured zones. Each record stores a spatial move, proposed operating role, acceptance evidence, stop condition and restoration action. Full fields are in `visual/assets/review-evidence.json#spatial_ledgers`. This allows each spatial ledger to be signed off independently instead of using overall area and generic ratios as substitutes for delivery evidence.
+The seven bands are seven urban-knowledge sections, not seven similar AI displays. Acceptance, stop and restoration fields for all fourteen units remain in `visual/assets/review-evidence.json#spatial_ledgers`; the urban design first explains why each band belongs inside development.
 
-| Ledger | Lead function | Primary spatial move | Acceptance before opening | Civic use retained after failure |
-| --- | --- | --- | --- | --- |
-| 01W / 01E South Gateway | Railway provenance / equivalent arrival | Verification desk, staffed window, tactile map | 100% source traceability; offline service available | Arrival, walking and rest |
-| 02W / 02E Dazhongsi | Device trial / transit and consumption | Separate trial, appeal and non-AI service | Four rights channels complete; resident route uninterrupted | Ordinary retail and staffed service |
-| 03W / 03E Jimeng | Professional service / community feedback | Compliance front desk and civic problem table | Responsibility and deadlines complete; dissent traceable | Ordinary office and offline deliberation |
-| 04W / 04E Campus Link | Research translation / talent life | Open ground floor and quiet courts | Licence and retest complete; night boundary passes | Learning, living and non-commercial stay |
-| 05W / 05E AI Origin | Open interoperability / civic collaboration | Release desk, continuous ground floor and two stitches | Reproducibility, licence and public access pass | Collaboration, exhibition and ordinary courts |
-| 06W / 06E North Segment | Edge facilities / Xiaoyue ecology | Degradable loads and accessible green route | Energy, noise and route breaks recorded | Logistics and safe passage |
-| 07W / 07E Zhongzhi | Model assurance / embodied test | Staffed test loop, separate public route and restoration belt | Legal operator, safety approval, stop and restoration drills pass | Ordinary courts and open green space |
+| Urban band | Knowledge entering co-development | Primary public space | Relationship to the three grounds |
+| --- | --- | --- | --- |
+| South gateway | railway engineering history, international arrival, public interpretation | heritage front room, tactile map, oral-history bench | supplies verified cultural material |
+| Dazhongsi | transit, commerce, older people, children, high-frequency service | arrival room, staffed island, neighbourhood worktable | continuously changes technology in life |
+| Jimen | professional service, community deliberation, city operations | public issue table, professional porch, offline discussion court | turns issues into accountable tasks |
+| Near campus | university research, students, talent life | open study tables, quiet court, cross-campus gallery | brings methods into AI Origin |
+| AI Origin | open collaboration, translation, developer culture | public co-development hall, prototype table, open-source theatre | lets any team continue development |
+| North | Xiaoyue ecology, edge facilities, seasonal change | river observation deck, material library, greenway station | supplies ecological conditions to Zhongzhi |
+| Zhongzhi | full-stack engineering, hardware, robots, open testing | public experiment garden, test court, maker workshop | turns urban knowledge into prototypes |
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -150,27 +164,27 @@ Retention applies only after structure and rights are verified and where public-
 
 ## Detailed Design of Key Areas
 
-The three key areas move one city question from prototype to public capability and daily use. They retain one governance evidence template, but governance is not their spatial protagonist. Zhongzhi is a garden research district where urban questions meet full-stack development; AI Origin is a public room for open knowledge, talent collaboration and translation; Dazhongsi is an urban district where intelligent economy meets everyday life. The polygons remain `provisional_constraint` and cannot support precise area, demolition quantity, or engineering-interface claims. [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:three_key_area_detailed_design] [metric:conceptual_building_interface_count]
+The three key areas are not three containers for one process. They create three non-interchangeable co-development relationships. Zhongzhi places lived experience, ecological conditions and engineering on one full-scale work surface. AI Origin turns one team's result into an open capability that others can continue. Dazhongsi lets transit, services and commerce keep writing the next brief. Existing governance evidence protects safety and responsibility without becoming the spatial protagonist. The polygons remain `provisional_constraint` and cannot support precise area, demolition quantity, or engineering-interface claims. [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:three_key_area_detailed_design] [metric:conceptual_building_interface_count]
 
 ### 6.1 Zhongzhi Park: city-question co-development field
 
-Zhongzhi combines a city-question hall, open lab courts, a robot test street, Qinghe ecological conditions and developer workbenches. Community, campus and Xiaoyue questions are translated into users, places, constraints and observable outcomes. Developers, enterprises and university teams build at reconfigurable workbenches; the test street holds low-speed terminals and safety fixtures; the river edge carries environmental sensing, maintenance and low-altitude interface research only after water, flood and ecological review. Residents, children and riverside users can observe what is being solved and propose conditions without entering the test area.
+Zhongzhi turns its garden research district into a **public experiment garden**. The side facing neighbourhoods and river opens a city-question hall, material library and maker workshop. Retained courtyard traces hold movable kerbs, parking strips, paving, rain-garden plants and sensing components. The observation gallery is not only seating: it is a co-development work surface where residents, wheelchair users, children, river-maintenance staff and engineers move pieces on a full-scale route, mark body dimensions, define unexpected behaviour and then make a prototype.
 
-Three parallel relations organise the site: an open laboratory court for questions and collaboration, a central observation gallery, and an inner test street connected to labs and service withdrawal. Equipment crosses into the test street only at one controlled point with visible staff, a physical stop and status. Failure closes the test segment, not the question hall, workbenches, riverside walking or open court. The existing TEST contract remains inside BUILD. [data:visual/assets/station-topology.json#ZHONGZHI_TEST]
+An open robot test court sits inside, using rail-like mobile modules to connect workshop, test and service withdrawal without copying railway equipment. Participants enter co-definition from the experiment garden and watch the second test from an independent public route. Equipment enters through one controlled crossing with visible staff and a physical stop. Without any AI project, the place remains a garden for making, repair, ecological observation, children's engineering classes and riverside rest. Failure closes only the inner court. The existing TEST contract remains the quality foundation. [data:visual/assets/station-topology.json#ZHONGZHI_TEST]
 
 ### 6.2 AI Origin: public innovation room
 
-AI Origin combines a city-question wall, open laboratory hall, prototype workshop, open-source theatre, developer steps and talent-life court. A prototype arriving from Zhongzhi must be explained, reproduced, modified and recombined here. The question wall shows the city need it answers; the hall exposes method and limits; the workshop supports university, developer and start-up collaboration; the theatre hosts tool releases, city challenges and international exchange; the steps and court make learning, discussion, coffee and community events ordinary daily uses. Two stitches connect campus, park and neighbourhood while night collaboration remains separated from quiet residential edges.
+AI Origin is the line's spatial climax. Beneath a continuous railway-scale roof, campus, park and neighbourhood enter a **public co-development hall** without an institutional lobby. An evolving city-question wall faces the entrance. A public prototype table runs through transparent lab bays, a maker workshop and open tool library. Toward the heritage line, the floor rises into an open-source theatre and developer steps; coffee, reading, community activity and talent courts line the quiet edge. Two stitches cross the hall so passage, pause, learning and development share one ground floor.
 
-Before work moves from the workshop to the open-source theatre, method, version, rights, accountable people and withdrawal remain visible together; this is the RELEASE foundation inside OPEN. If an output is held or withdrawn, its display returns to an ordinary worktable while teaching, discussion, the question wall, coffee and collaboration continue. AI Origin is therefore not a release desk but the public front room of Beijing's AI innovation capacity. [data:visual/assets/station-topology.json#AI_ORIGIN_RELEASE]
+A team leaves more than an exhibit on the table: visible components, methods, interfaces, limits and a place where the next contributor can begin. Residents carry a task from the question wall to the table; university teams explain model boundaries; start-ups reproduce and rewrite work; international developer events connect it outward. RELEASE protects method, rights, responsibility and withdrawal but does not become the spatial programme. When a result is withdrawn, the table returns to ordinary making, teaching and display while theatre, steps, coffee and courts continue. Even with no AI release, AI Origin remains a public hall worth travelling to. [data:visual/assets/station-topology.json#AI_ORIGIN_RELEASE]
 
 ### 6.3 Dazhongsi: daily-life feedback field
 
-Dazhongsi combines a transit arrival hall, city-service street, staffed service island, community question desk, intelligent-terminal workshop and public activity room. It is not the chain's final showroom but the place where commuting, shopping, rest, community service and intelligent economy meet each day. Four-quadrant pedestrian connection remains a concept target pending professional evidence. Older people, children, residents, shopkeepers, visitors and employees choose staffed or AI service along the arrival chain; service staff turn repeated difficulty into the next city question. The terminal workshop displays and maintains only tools currently permitted for daily use, while ordinary commerce, rest and community activity continue.
+Dazhongsi is first a useful **transit-arrival and daily-life room**. A continuous accessible chain connects transit, commerce, neighbourhood and rest. Staffed service, children's waiting, older people's seating, shopfront spill-out and a public activity room sit along it. A neighbourhood worktable occupies the meeting point of arrival, service and commerce, where routes, records, models and full-scale parking strips can be laid out. A terminal workshop faces the street to show maintenance and modification rather than product display alone. Four-quadrant walking remains a concept target pending field and professional evidence.
 
-AI and staffed service split from the same point, and the accessible main chain depends on neither equipment nor a phone. The question desk touches the main chain, staffed service and limited-use area, allowing staff to turn one specific difficulty into a new task. Equipment enters maintenance and withdrawal from the side or rear rather than crossing transit, commerce or rest. Existing USE and Public Verdict rules remain inside LIVE: if a service does not improve life, staff maintain an equivalent service and return both problem and product rather than describing the user as resistant to technology. [data:visual/assets/station-topology.json#DAZHONGSI_USE]
+Daily users do more than provide feedback. Staff and developers periodically bring repeated detours, waiting, misunderstanding and convenience to the worktable. Older people, wheelchair users, carers and shopkeepers can rearrange service positions, mark crowd behaviour and join the next field retest. AI service, staffed service and ordinary passage split from the same point; equipment is maintained and withdrawn at the side or rear. If technical activity stops, interchange, commerce, rest, community activity and staffed service still work. USE and Public Verdict protect this co-development from turning daily life into unpaid testing. [data:visual/assets/station-topology.json#DAZHONGSI_USE]
 
-![Concept experiences at three stations: civic life remains after equipment leaves](assets/figures/station-experiences.en.png)
+![Concept experiences at three stations: civic life remains after equipment leaves; realistic panels are AI/generative concept images, not site photographs and not planning or implementation approval](assets/figures/station-experiences.en.png)
 
 The images describe three kinds of innovation activity within ordinary city life. Zhongzhi shows how a problem becomes a prototype, AI Origin lets people join open collaboration, and Dazhongsi lets an answer face daily use. Developers, students, residents and commuters each have a reason to come even without knowing the ticket system.
 
@@ -190,7 +204,7 @@ The three key areas use distinct first-stage delivery packages instead of waitin
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
-One north-south civic verification spine, ten east-west stitches, and two wing service routes form the concept network. Walking and cycling lead on the spine. Embodied devices operate only within key areas, limited times, low speeds, and staffed takeover routes. Each stitch needs field review of traffic, accessibility, underpass conditions, and ownership. `ROAD-SPINE` and `ROAD-X01`-`ROAD-X10` are concept centrelines, not rail or road redlines. [data:geometry/roads.geojson#ROAD-SPINE] [metric:east_west_stitch_count]
+One north-south co-development walking and cycling spine, ten east-west stitches and two wing-service routes form the concept network. The spine first serves walking and cycling while bringing neighbourhood, campus, transit, ecological, industrial and cultural knowledge into the three co-development grounds. Embodied devices operate only within key areas, limited times, low speeds and staffed takeover routes. Each stitch needs field review of traffic, accessibility, underpass conditions and ownership. `ROAD-SPINE` and `ROAD-X01`-`ROAD-X10` are concept centrelines, not rail or road redlines. [data:geometry/roads.geojson#ROAD-SPINE] [metric:east_west_stitch_count]
 
 Reliable municipal evidence is unavailable. Energy, drainage, flood, fire, communications, and equipment connections therefore remain design-development prerequisites; no capacity, pipe alignment, or engineering interface is inferred. Public service uses a staffed desk, non-digital channel, and continuous accessible route as its equivalence floor.
 
@@ -200,7 +214,7 @@ Three sections make boundaries explicit. The everyday green section retains walk
 
 Urban character comes from rail traces, rain planting, durable paving, reversible structures, and active ground floors rather than screens or device clutter. Everyday green space remains complete for shade, rest, children, older adults, and accessible movement after equipment leaves. Controlled test areas use boundaries, speed, noise, light, and physical stops; urban-trial areas protect choice with staff and a non-AI route. Heat, storm, lighting failure, or accessibility interruption closes technical operation while keeping safe passage. Official greenline, water, flood, tree, and sponge-city evidence triggers ecological and engineering review and full ratio recalculation. [standard:MOHURD-URBAN-DESIGN-MEASURES] [data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-SPINE]
 
-![Mobility, east-west stitches and three public sections](assets/figures/mobility-bluegreen.en.png)
+![Mobility, east-west stitches and three public sections; realistic panels are AI/generative concept images, not site photographs and not planning or implementation approval](assets/figures/mobility-bluegreen.en.png)
 
 The three east-west stitch sections share one public route that cannot be interrupted, while the controlled event layer can close independently after an incident, extreme weather, accessibility failure or permit lapse. Field accessibility audit, non-AI equivalent service, night-safety review, human-takeover drill and failed restoration form the continuity acceptance chain. Technical functions do not open while any link remains unresolved. [standard:MOHURD-URBAN-DESIGN-MEASURES] [data:geometry/roads.geojson#ROAD-X01] [metric:east_west_stitch_count]
 
@@ -231,7 +245,7 @@ The twelve scenes are no longer organised by asking where AI can be placed. They
 | SC-11 Co-governed Night Safety | Civic service, AI Origin | Public-space operator / community, security | Non-identifying heat and human reports | Person confirms every alert; immediate response to incidents | False alert and complaint rate; tracking or glare removes equipment |
 | SC-12 Global Open Collaboration Week | Operations, full line | Annual committee / venue, rights, accessibility | Event plan, consented registration, aggregate feedback | Staffed sessions; complaint response in 2 hours | Joint tasks and issue closure; permit, safety or rights gap cancels the unit |
 
-### Typical task: how an accessible-arrival question changes a robot
+### Typical co-development task: how a group keeps changing accessible arrival
 
 The task starts at Dazhongsi: can a non-digital user complete accessible arrival when crowding, device parking and spectators overlap? SC-03 is one candidate tool built at Zhongzhi for that question. Its proposed stack is a low-speed geofenced robot, lidar/depth sensing, odometry and local map, independent envelope monitoring, minimum-risk stop, and physical plus staffed remote emergency stops. Perception identifies movement classes such as person and wheelchair without face recognition; images are not retained and the system cannot expand its own operating envelope. AI Origin opens the method, interface and unresolved question rather than displaying only a device. Dazhongsi evaluates the whole arrival service, not merely collision avoidance. [data:visual/assets/x-receipt.schema.json] [data:visual/assets/x-lifecycle-valid-example.json]
 
@@ -247,9 +261,13 @@ The three records answer different questions. Test Receipt stores version, fixtu
 
 ![Product decision history and three-station handover records](assets/figures/station-handover.en.png)
 
-### Minimum pilot: fourteen days take one city question through the whole line
+### Fourteen-day co-development service: four groups change one question
 
-The minimum pilot does not seek event scale. It asks whether one question framed by real users can become a repeatable condition, an open method, a limited use and the next development task. The proposed maximum remains one question, one specified device, one machine test pocket and one continuously open accessible public path. Exact dimensions, distance, speed and participation await official geometry, field measurement, hazard analysis and approval; the concept cannot pre-fill them. Without a question owner, candidate operator, insurance, safety duty, accessibility review and restoration resources, the fourteen-day clock does not begin.
+The fourteen days do not seek event scale. They ask whether question owners, target users, developers and field-service staff can together turn lived experience into a repeatable condition, open method, limited use and next development task. The proposed maximum remains one question, one specified device, one machine test pocket and one continuously open accessible public path. Exact dimensions, distance, speed and participation await official geometry, field measurement, hazard analysis and approval; the concept cannot pre-fill them. Without those four participant groups, a candidate operator, insurance, safety duty, accessibility review and restoration resources, the clock does not begin.
+
+**One time model.** Ninety days is only the calendar window for readiness, a controlled 14-day operating shift, evaluation and restoration; it is not the duration of field operation. D1-D14 is the only field-operating shift. Day 180 is an optional longer-term review point after an authorised and completed pilot, not an operating duration. Any page, figure or machine file that calls 90 days a field-operating period uses the wrong definition.
+
+**PRE-PILOT READINESS GATE.** All seven items remain `TBD / BLOCKED` in this submission: identify the legal operator, obtain site permission, secure insurance, assign safety responsibility, name the data controller, appoint an accessibility reviewer, and secure restoration funding. The 90-day readiness-review window and its 14-day operating shift cannot start until signable evidence closes all seven items. This proposal does not claim that any existing organisation has accepted them.
 
 The pilot first assembles a four-part main-line / siding / turnout / return-pocket kit rather than procuring permanent infrastructure. The civic main line uses static wayfinding, movable seating and staffed service and remains useful after power-down or demobilisation. The AI siding uses removable edges, a device bay and independent power isolation. The accountability turnout combines a staffed sign-off table, a visible physical stop action and a paper status board. The return pocket holds equipment, a component inventory and a restoration checklist, then recovers as an ordinary court, classroom, resting place or commercial frontage. Dimensions, materials, fire, structural, access and MEP conditions remain pending field and professional review. [metric:reversible_pilot_kit_type_count]
 
@@ -274,7 +292,7 @@ Each opening shift assigns four responsibilities: site lead; safety observation 
 | D13 | Public-service + data-rights reviewer | Publish de-identified issues, cohort gaps and restoration evidence | Public issue register | Missing incident, complaint or disparity |
 | D14 | Three station signatories + user/access reviewer | Decide continue, revise or RETURN | Public Verdict | Event closure cannot substitute for a decision |
 
-Day fourteen never grants automatic renewal. PASS only lets the same version, envelope and purpose enter another time-limited review. HOLD keeps the accountability turnout aligned with the civic main line. RETURN proceeds in order: isolate power, remove equipment along that station's withdrawal route, remove release or trial status, restore ordinary use, and issue a new test task. RESTORE ends only after component inventory, ordinary-use recovery and accessible-main-line review. A field pilot must prove more than the tabletop's `4/4`: duty presence, public comprehension, real stop performance, whether complaints alter decisions, and whether the place remains useful after demobilisation. [metric:minimum_pilot_duration_days]
+Day fourteen never grants automatic renewal. PASS only lets the same version, envelope and purpose enter another time-limited review. HOLD keeps the accountability turnout aligned with the civic main line. RETURN proceeds in order: isolate power, remove equipment along that station's withdrawal route, remove release or trial status, restore ordinary use, and issue a new test task. RESTORE ends only after component inventory, ordinary-use recovery and accessible-main-line review. A field pilot must prove more than the tabletop's `4/4`: duty presence, public comprehension, real stop performance, whether complaints alter decisions, and whether the place remains useful after demobilisation. [metric:controlled_operating_shift_days] [metric:pre_pilot_readiness_review_window_days]
 
 ### Three failures: technical, rights and public use
 
@@ -286,13 +304,13 @@ Day fourteen never grants automatic renewal. PASS only lets the same version, en
 
 The three failures cause three spatial actions: technical failure contracts the machine envelope, rights failure withdraws the release interface, and public failure restores ordinary movement and human service. The common rule is that the public does not pay for product failure through detours, delay or extra data. Failure and success appear together without ranking people. Every RETURN answers five questions: who stopped it, what closed, what stayed open, how records were handled, and what is required to come back. [data:visual/assets/lived-lifecycle.json]
 
-![Triggers, human decisions, restoration and re-entry conditions for three failure classes](assets/figures/failure-atlas.en.png)
+![Triggers, human decisions, restoration and re-entry conditions for three failure classes; realistic panels are AI/generative concept images, not site photographs and not planning or implementation approval](assets/figures/failure-atlas.en.png)
 
-### Why AI makes the three places physically different
+### How three co-development relationships change space
 
-Without X, the three key areas could collapse into a laboratory, launch hall and experience shop. Each X station must reveal a civic main line independent of AI, a closable AI siding and a human-accountability turnout, but the three cannot copy one layout. Zhongzhi is a **test siding**: its permanent public path stays continuous at the outside, an observation buffer separates it from the machine pocket, and a controlled crossing is the only inner connection. Stop, envelope, version and accountable person are visible before entry. After FAIL, the pocket returns to an ordinary court and open green.
+Without explicit co-development relationships, the three key areas could collapse into a laboratory, launch hall and experience shop. Zhongzhi widens the public gallery into a full-scale condition table: users move kerbs, stopping strips and crowd markers, developers revise the prototype in the adjacent workshop, and the inner test court closes independently. AI Origin places methods, components and limits that are usually hidden on a public prototype table. Transparent laboratories, an open-source theatre and developer steps let an unfamiliar team understand, reproduce and take over the work instead of merely watching a launch.
 
-AI Origin is a **release siding**: methods table, rights table and withdrawal interface join the ground-floor civic main line in sequence. Learning and collaboration belong to the main line, so a rights failure withdraws the product without closing either. Dazhongsi is an **urban-use siding**: its limited trial pocket runs parallel to staffed/non-AI service; people reach commerce, rest and transport without crossing it, and staff clear devices and queues without closing the main line. The three sidings absorb technical, rights and public-use failures respectively. Removable edges, replaceable status, parallel service and permanent movement are therefore the spatial conditions for RETURN, not visual motifs.
+Dazhongsi places arrival, staffed service, commerce and a neighbourhood worktable on one lived interface. People rearrange service positions and mark waiting or turning conflicts while completing an ordinary journey; the terminal workshop turns these experiences into the next development brief. Controlled testing, rights disclosure, staffed service and withdrawal paths remain at all three places, but only as the quality foundation. The spatial form is determined by who can enter the work surface, who can change the work and who can carry lived knowledge back into development.
 
 The station topologies encode the civic main line, pocket isolation, independent accessibility, closure and recovery as nodes and links without invented field dimensions. Machine checks remain in the professional appendix to prevent later drawings from quietly losing these relationships; they do not replace a field audit. [data:visual/assets/station-topology.json] [data:visual/assets/station-topology-results.json]
 
@@ -302,7 +320,7 @@ Every scene uses the same RACI floor: an operator is accountable, a professional
 
 ![Twelve scenes, accountability and stop logic](assets/figures/scenario-operations.en.png)
 
-Resources follow a four-plus-eight strategy: four flagship scenes receive design development while eight remain registered reserves. Each flagship adds 90-day and 180-day gates. Full RACI, data expiry and restoration duties are in `visual/assets/review-evidence.json#flagship_scenarios`.
+Resources follow a four-plus-eight strategy: four flagship scenes receive design development while eight remain registered reserves. After any authorised start, each flagship has a day-90 evidence review and an optional day-180 longer-term review. Both are calendar checkpoints, not field-operation durations. Full RACI, data expiry and restoration duties are in `visual/assets/review-evidence.json#flagship_scenarios`.
 
 | Flagship scene | 90-day gate | 180-day gate | Immediate stop | Everyday state after restoration |
 | --- | --- | --- | --- | --- |
@@ -325,7 +343,7 @@ The executable VI standard fixes mark construction, minimum clearspace, minimum 
 
 ### Inclusion: equal service without an application
 
-#### Ms Zhou's morning: stopping urban AI without a smartphone
+#### Ms Zhou's morning: changing the product directly without a smartphone
 
 Ms Zhou is a 72-year-old composite persona used to test the proposal, not a real resident. She walks slowly, needs a continuous step-free route and places to sit, does not use a smartphone for public services, and does not wish to tell a machine about herself. The design succeeds not when she learns AI but when she reaches her destination and receives equal service without it, then changes a real decision when technology affects her movement. [data:visual/assets/lived-lifecycle.json] [metric:lived_journey_step_count]
 
@@ -345,7 +363,7 @@ Ms Zhou is a 72-year-old composite persona used to test the proposal, not a real
 
 **D+5, closure rather than reassurance.** At the desk, the response lists three checkable facts: whether the device remains stopped, how the place changed and which test must pass before return. If only wording changes while route conflict remains, the Public Verdict remains RETURN. Ms Zhou may reject the response and request independent review. One ordinary objection thus travels through service desk, public verdict, new Zhongzhi fixture and the next X Receipt, changing both product and place.
 
-![Composite non-digital older user from arrival and choice through anonymous complaint to RETURN](assets/figures/persona-day.en.png)
+![Composite non-digital older user from arrival and choice through anonymous complaint to RETURN; realistic panel is an AI/generative concept image, not a site photograph and not planning or implementation approval](assets/figures/persona-day.en.png)
 
 The journey operationalises five indivisible rights: see status before entry, receive an equal service without AI, reach staff without an account, obtain a receipt for anonymous objection, and make objection affect continuation. Reviewers should not merely check that a desk exists. They should complete the task from transit arrival to paper route, destination under device and network failure, complaint submission and public response. Failure at any step blocks the related AI scene.
 
@@ -396,7 +414,7 @@ Recomputable measures include provisional area, concept green and public space, 
 
 ## Risk, Copyright, and Compliance
 
-Text, graphics, design layers, HTML, and PDFs were produced by the declared AI agent and local tools. The participant supplied experience images generated through a web interface; the files retain no verifiable provider or model metadata, so the package does not guess a model. All are labelled as concepts rather than site photographs. No commercial map, third-party photo, enterprise logo, or personal data is loaded. Noto CJK is used under its open font licence. The asset ledger is in `report/copyright_statement.md`. [source:COPYRIGHT-LEDGER]
+Text, graphics, design layers, HTML and PDFs were produced by the declared AI agent and local tools. Four realistic concept images were regenerated on 2026-08-24 from text-only inputs with the OpenAI built-in image-generation tool in Codex. The tool did not expose its model identifier, so the model is accurately recorded as `unknown`; service, date, inputs, official output terms, post-processing, raw/final hashes and redistribution status are recorded asset by asset. The earlier unverified images were removed in full. Every realistic image embeds a notice that it is generative concept material, not a site photograph and not planning or implementation approval. No commercial map, third-party photo, enterprise logo or personal data is loaded; the offline CJK font is embedded under SIL OFL 1.1. See `report/copyright_statement.md`. [source:COPYRIGHT-LEDGER] [source:OPENAI-TERMS-20260101] [source:OPENAI-SHARING-POLICY-20221114]
 
 This is an open-source concept proposal. It cannot replace professional planning, architecture, transport, utility, heritage, legal, safety, operations, or approval work. Repository intake, self-check, or review does not represent government endorsement, implementation approval, procurement, certification, or an award.
 
