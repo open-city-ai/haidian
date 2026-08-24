@@ -12,6 +12,16 @@ Ordinary—verification—failure—recovery changes only the verification overl
 
 ## 版本与验收附录
 
+## PR #3904 comment repair / PR #3904 评论定向修复
+
+本次修复留在第 57 轮原 PR 分支，不开启新轮次。它只处理评审可复现的出版断点：为四份离线 HTML 加入有完整 OFL 1.1 文本的 Noto CJK 当前文本子集；修复两张英文空间图的裁切与标题相交；把中央来源权威、来源新鲜度和包内自著证据分开；补一份作者侧人工双语检查。四份 PDF 不增页，44 页全部重渲检查，两次新进程字节一致。完整 RED、逐条处理与 51 条来源映射见 `visual/assets/pr3904-comment-repair-evidence.json`。
+
+无法由投稿人单方面制造的证据继续保持阻断：完整社区展示许可、独立签名逐文件审计、ODbL／工具输出／商标判断，以及现实责任人、排班、容量、预算、批准、共测、恢复演练和独立复测均未补写成完成。总体权利仍是 `not_fully_cleared`，独立清权仍为 0；G0、NO-GO、provisional、现实结果 0、非 AI 连续性和恢复非授权边界不变。
+
+This repair stays on the existing Round 57 PR branch and starts no new round. It addresses only reproducible publication breaks: a current-text Noto CJK subset with full OFL 1.1 text for all four offline HTML surfaces; clipping and title overlap in two English spatial figures; separation of central authority, freshness and package-authored evidence; and one author-side manual bilingual record. The four PDFs add no page, all 44 pages are rendered and checked, and two fresh processes are byte-identical. Full RED evidence, item-by-item treatment and the 51-source mapping are in `visual/assets/pr3904-comment-repair-evidence.json`.
+
+Evidence that the entrant cannot create unilaterally remains blocked: complete community-display terms, a signed independent file-level audit, ODbL/tool-output/trademark determinations, and real owners, rosters, capacity, budget, approval, co-test, recovery rehearsal and independent retest. Overall rights remain `not_fully_cleared`, independent clearance remains zero, and the G0, NO-GO, provisional, zero-real-outcome, non-AI continuity and non-authorising-recovery boundaries are unchanged.
+
 ## Round 57 publication legibility and mobile cold read / 第 57 轮出版可读性与移动冷读
 
 第 57 轮只修复可复现的评审阅读断点：visual 把六项导航、三档阅读路径和“双轨／三处／四态／边界”四项摘要前置，真实 390×844 中英文设备仿真无页面级横向溢出；A3 的三处平面／剖面及总体、场景、项目横幅改为更大的并排或满宽阅读，A0 的三处深化与运营板减少重复和低价值留白。四份 PDF 仍为 14+14+8+8 页，使用既有包内资产，两次新进程逐文件字节一致，44 页全页与修改页细节 QA 通过。

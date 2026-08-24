@@ -1,5 +1,12 @@
 # 方案迭代记录 / Changelog
 
+## PR #3904 comment repair - 2026-08-24
+
+**定向修复，不开启下一轮 / Targeted repair, no next round**
+
+- 针对 reviewed head `be04258e...eb00` 修复四份 HTML 的 CJK 缺字、两张英文空间图的裁切／标题相交、来源权威与新鲜度混读，以及人工双语记录缺口。包内 Noto CJK 当前文本子集附完整 OFL 1.1；两张 SVG/PNG 与英文 A3/A0 原位重建；四份 PDF 双进程字节一致并完成 44 页 QA；51 条来源映射与 1+13 章人工核查见 `visual/assets/pr3904-comment-repair-evidence.json`。
+- This targeted repair fixes four-surface CJK portability, two clipped/overlapping English figures, authority-versus-freshness ambiguity, and the manual bilingual evidence gap. Full RED, font provenance, 51-source mapping, browser results and four-PDF hashes are in `pr3904-comment-repair-evidence.json`. No new round, direction, factual medium or page is added; G0/NO-GO/provisional/12/8/3/36 and `not_fully_cleared` with zero independent audits remain frozen, while external licence, ODbL, tool-output, trademark and real implementation evidence stay blocked rather than fabricated.
+
 ## v57.0 - 2026-08-24
 
 **出版可读性与移动冷读 / Publication Legibility and Mobile Cold Read**

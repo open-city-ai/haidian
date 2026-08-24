@@ -115,6 +115,8 @@ scenarios:
 
 - 第四级是国家数据、AI 内容标识和“人工智能+”政策，与六个全球案例一起用于机制启发和治理边界 [source:NATIONAL-DATA-INFRA-2025] [source:AI-CONTENT-LABEL-2025] [source:AI-PLUS-2025]。
 
+**权威等级与新鲜度分开判断。** 只有中央 `data/source_registry.json` 中 `review_status=approved` 且 `usable_for_formal=yes` 的记录，才能在其 `allowed_uses` 内承担正式依据；`provisional_only` 永远不能升级为正式红线，`background_only` 和尚未进入中央登记的外部公开来源只作背景或机制启发。包内自著记录只能证明本方案的方法、图面与合同关系。访问成功、发布日期较新或刷新审计通过都不能抬高权威等级；本包 51 条来源的逐条映射、别名和未登记状态见 `visual/assets/pr3904-comment-repair-evidence.json`，未登记来源在维护者完成中央登记审查前不得支撑新的正式事实。
+
 ### 证据不是一次性快照：失效必须向下游传播
 
 `sources.json` 已记录 51 条来源及访问日期，但同一天访问不等于内容永久有效，也不能发现修订、替代、失联或临时边界被正式资料取代。`visual/assets/evidence-freshness-policy.json` 把来源分成项目资料、临时空间数据、城市背景、政策标准、案例参考和包内概念/方法材料六类，规定复核触发点、建议最长未核时间、责任角色和失效动作；来源变为 `review_due`、`superseded` 或 `unavailable` 时，受影响主张、矩阵项和场景门级必须同步降级或冻结。第 21 轮首次执行该机制：50 条来源逐条复核，48 条为 `verified_current`（包内/仓库内路径 SHA-256 或 HTTP 重取摘要），2 条为 `review_due`（CASE-22AT 证书校验失败、CASE-KINGS-CROSS 返回 403，均按访问未确认冻结升级、不删除陈述），逐条记录与摘要见 `refresh_records` [data:visual/assets/evidence-freshness-policy.json#refresh_records]。完成刷新审计数为 48，`review_due` 来源在下一门级推进前必须由责任角色重新复核，临时空间数据无论多新也仍然只是 `provisional_only` [data:visual/assets/evidence-freshness-policy.json#FRESH-01] [data:visual/assets/evidence-freshness-policy.json#FRESH-02] [data:visual/assets/evidence-freshness-policy.json#FRESH-06]。
@@ -577,7 +579,7 @@ AI 与公共价值指标同样按核验问题拆开：
 - AI 与数据风险：偏差、幻觉、隐私泄露、越权自动化和供应商锁定通过最小数据、源端保留、日志、人工责任、复测、到期和退役控制；不得自动执法、诊断或替代正式审批。
 - 安全与韧性风险：机器人、车辆和设备测试只在授权范围；实体急停、现场安全员、离线人工和 L0/L1/L2 降级必须可用。能源和恢复指标未实测时保持未知。
 - 文化与历史风险：史实、人物、文物和工程资料需由官方/馆藏/清权来源复核；AI 生成内容显式与元数据标识，争议内容可纠错、下架和追溯 [assumption:A-CULTURE-CONTENT-006]。
-- 版权与品牌风险：本次提交的最终文件集合为 manifest/package 中 156 个路径（其中 155 个为非 manifest 内容文件）；权利台账含 156 条逐文件资产记录，即 156 条逐文件权利记录；它们与 51 条来源证据记录只证明披露和链接闭合，覆盖完整性只在 manifest 与权利状态台账从最终 Git blobs 刷新并通过校验后成立。当前独立逐文件清权审计完成数为 0，总体状态为 `not_fully_cleared`。`submission-use-rights-matrix.json` 已逐条记录公告 8.1、仓库评审、主办方项目内使用、投稿人对外展示、跨项目复用和第三方组件的当前决策，但本包未证明正式公告条款与本次 GitHub 开源 Agent 征集具有完全相同的适用关系；`COMMUNITY-DISPLAY-ONLY` 完整条款、书面同意、OSM ODbL 义务、PDF 字体、Node.js 运行时与生成工具条款以及 Logo/地标商标仍待复核，不能声称已经全部清权 [data:visual/assets/rights-clearance-ledger.json#RIGHTS-01] [data:visual/assets/submission-use-rights-matrix.json#JZ-SUBMISSION-USE-RIGHTS-V1]。
+- 版权与品牌风险：本次提交的最终文件集合为 manifest/package 中 158 个路径（其中 157 个为非 manifest 内容文件）；权利台账含 158 条逐文件资产记录，即 158 条逐文件权利记录；它们与 51 条来源证据记录只证明披露和链接闭合，覆盖完整性只在 manifest 与权利状态台账从最终 Git blobs 刷新并通过校验后成立。当前独立逐文件清权审计完成数为 0，总体状态为 `not_fully_cleared`。`submission-use-rights-matrix.json` 已逐条记录公告 8.1、仓库评审、主办方项目内使用、投稿人对外展示、跨项目复用和第三方组件的当前决策，但本包未证明正式公告条款与本次 GitHub 开源 Agent 征集具有完全相同的适用关系；`COMMUNITY-DISPLAY-ONLY` 完整条款、书面同意、OSM ODbL 义务、PDF 字体、Node.js 运行时与生成工具条款以及 Logo/地标商标仍待复核，不能声称已经全部清权 [data:visual/assets/rights-clearance-ledger.json#RIGHTS-01] [data:visual/assets/submission-use-rights-matrix.json#JZ-SUBMISSION-USE-RIGHTS-V1]。
 - 外部协同风险：未来科学城、怀柔科学城、经开区、其他创新街区和京津冀只作为可选复测角色，未经书面确认不得写成合作方、投资方或落地承诺 [assumption:A-EXTERNAL-COLLAB-005]。
 - 运营与公平风险：活动热度不能替代居民满意、可达、公平与投诉闭环；贡献荣誉不得用于流量排名、就业筛选或行政评价。
 - 工具与证据风险：机器检查只验证结构、拓扑、引用和一致性，不替代规划、建筑、交通、市政、景观、生态、消防、铁路、数据安全、无障碍、社区与法律专业判断 [depth:risk_missing_data]。

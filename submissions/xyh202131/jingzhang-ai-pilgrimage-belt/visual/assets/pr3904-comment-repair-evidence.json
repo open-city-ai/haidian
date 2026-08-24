@@ -1,0 +1,829 @@
+{
+  "schema_version": "1.0.0",
+  "evidence_id": "PR3904-COMMENT-REPAIR-EVIDENCE-V1",
+  "reviewed_pr": 3904,
+  "reviewed_head": "be04258e25f2453e9cfde6ff4c274ae40ed3eb00",
+  "repair_scope": "Targeted repair on the existing PR branch; not a new round and not a new design direction.",
+  "review_nature": "Author-side editorial and technical repair evidence. It is not public feedback, an expert opinion, an independent rights audit, or a jury result.",
+  "repair_matrix": [
+    {
+      "id": "PR3904-HTML-01",
+      "before_red": "AI review reported tofu/missing CJK glyphs in Chinese report HTML and Chinese names in English HTML at reviewed_head.",
+      "classification": "reproducible_portability_defect",
+      "action": "Embed one current-text Noto Sans CJK SC WOFF2 subset in local cjk-font.css, link all four offline HTML files, place it first in the computed stack, and include the complete OFL 1.1 text.",
+      "verification_target": "All four HTML pages report document.fonts loaded and fontReady=true for 双轨京张众智园原点社区大钟寺; zero remote dependency.",
+      "status": "repaired_local_verification_pass_exact_head_binding_pending"
+    },
+    {
+      "id": "PR3904-FIGURE-01",
+      "before_red": "site-overview.en subtitle exceeded the 1800 px canvas and the provisional boundary crossed the local plan title.",
+      "classification": "reproducible_layout_defect",
+      "action": "Wrap the subtitle into two controlled lines and lower the provisional boundary while preserving all planning relations and disclaimers.",
+      "verification_target": "Editable SVG and 1800x1100 PNG show complete text with no title/boundary overlap; PDFs are rebuilt in place.",
+      "status": "repaired_local_verification_pass_exact_head_binding_pending"
+    },
+    {
+      "id": "PR3904-FIGURE-02",
+      "before_red": "land-use-structure.en subtitle exceeded the 1800 px canvas.",
+      "classification": "reproducible_layout_defect",
+      "action": "Wrap the subtitle into two controlled lines without changing the 36 envelopes, six cross-links, or functional-family claims.",
+      "verification_target": "Editable SVG and 1800x1100 PNG show the complete subtitle; PDFs are rebuilt in place.",
+      "status": "repaired_local_verification_pass_exact_head_binding_pending"
+    },
+    {
+      "id": "PR3904-SOURCE-01",
+      "before_red": "Package authority labels and the freshness register could be read as upgrading sources not admitted to the central registry.",
+      "classification": "evidence_hierarchy_ambiguity",
+      "action": "State in both proposals that central authority and freshness are independent and add a 51-record mapping to central registry status.",
+      "verification_target": "Every package source has one authority row; unregistered public sources are background pending review and package-authored sources prove methods only.",
+      "status": "repaired_local_verification_pass_exact_head_binding_pending"
+    },
+    {
+      "id": "PR3904-BILINGUAL-01",
+      "before_red": "AI review requested a manual bilingual checklist beyond structural automation.",
+      "classification": "missing_manual_editorial_evidence",
+      "action": "Record author-side manual checks across all 13 formal chapters, front-stage concept, four-state sequence, numerical invariants, disclaimers, HTML, and fixed-page PDFs.",
+      "verification_target": "Checklist below remains PASS after exact-head automated structural and PDF checks.",
+      "status": "repaired_local_verification_pass_exact_head_binding_pending"
+    },
+    {
+      "id": "PR3904-RIGHTS-01",
+      "before_red": "Complete COMMUNITY-DISPLAY-ONLY terms and an independent signed file-level audit are absent.",
+      "classification": "external_evidence_blocker",
+      "action": "Do not invent terms, signatures, or clearance; preserve not_fully_cleared, zero independent audits, and blocked public/professional reuse.",
+      "verification_target": "Rights files explicitly retain the blocker and distinguish the newly licensed HTML font subset from unresolved PDF/tool/map/trademark rights.",
+      "status": "blocked_external_not_misrepresented_as_fixed"
+    },
+    {
+      "id": "PR3904-IMPLEMENT-01",
+      "before_red": "Real owners, staffing, capacity, budget, approval, accessibility co-test, recovery drill, and independent retest remain 0 or unknown.",
+      "classification": "real_world_evidence_blocker",
+      "action": "No synthetic repair: retain G0, NO-GO, unknown/provisional fields, and the professional handoff gates.",
+      "verification_target": "No new real-world outcome, approval, responsible party, budget, duration, or G1 claim appears.",
+      "status": "blocked_external_not_misrepresented_as_fixed"
+    },
+    {
+      "id": "PR3904-PDF-01",
+      "before_red": "The AI review interface exposed first-page previews only, so later-page legibility was not evidenced in the comment.",
+      "classification": "review_surface_evidence_gap_not_page_loss",
+      "action": "Rebuild all four fixed-page PDFs after figure repair and render every page for full-page plus detail QA; do not add pages.",
+      "verification_target": "A3 remains 14+14 pages and A0 remains 8+8 pages; two fresh builds are byte-identical.",
+      "status": "repaired_local_verification_pass_exact_head_binding_pending"
+    }
+  ],
+  "figure_before_after": [
+    {
+      "path": "assets/figures/site-overview.en.svg",
+      "reviewed_head_sha256": "0b3dcbb6141f02d43477f7c47b6741737456b736f2bdc358fbafe55fdfb92036",
+      "repaired_worktree_sha256": "e61b23f6affff317cea2a9966c80c11c9234f48ae85285d250e4b8803ac87042"
+    },
+    {
+      "path": "assets/figures/site-overview.en.png",
+      "reviewed_head_sha256": "fdd3eb7bf99d1258d96b219ad838eed27fad4f6d8a19336f2adbd79cbc832bbf",
+      "repaired_worktree_sha256": "5a7b3ab2754735438c1ace08f5e998c0a80d6b99e823ec1d6be35412e41d9863"
+    },
+    {
+      "path": "assets/figures/land-use-structure.en.svg",
+      "reviewed_head_sha256": "a205d97d8b7c068839c897185892cd1bd5db01b1d80574257e9ee21bab9e1869",
+      "repaired_worktree_sha256": "0ae436af04f52bbfcafa13d54170bd41d14f1e01a0d7dce3580feadfffe67a3a"
+    },
+    {
+      "path": "assets/figures/land-use-structure.en.png",
+      "reviewed_head_sha256": "d70701d86dab9b2882ad1c80690e74393fc7af85d16e3d3a6ba94f69cf530507",
+      "repaired_worktree_sha256": "e26bdfe9e31c4ba1ead09c2e9fa60615de4003b7f4bc85431ec1c7158626ff4e"
+    }
+  ],
+  "bilingual_manual_qa": {
+    "method": "Author-side cold read of the complete Chinese and English source pair plus rendered HTML and fixed-page publication pair. Automated checks are supporting evidence, not a substitute for this editorial pass.",
+    "reviewer_role": "submission_author_editorial_review",
+    "not_claimed": [
+      "independent_translation_certification",
+      "public_feedback",
+      "jury_result",
+      "professional_approval"
+    ],
+    "chapter_counts": {
+      "front_stage_spatial_decision": {
+        "zh": 1,
+        "en": 1
+      },
+      "formal_chapters": {
+        "zh": 13,
+        "en": 13
+      },
+      "total_h2": {
+        "zh": 14,
+        "en": 14
+      }
+    },
+    "checks": [
+      {
+        "id": "BI-01",
+        "scope": "13 formal chapter order and unique primary answers",
+        "result": "PASS",
+        "note": "Both sources retain 13 H2 chapters in the same answer order."
+      },
+      {
+        "id": "BI-02",
+        "scope": "30-second front-stage concept",
+        "result": "PASS",
+        "note": "Twin-Track Jing-Zhang remains the only front-stage thesis in both languages."
+      },
+      {
+        "id": "BI-03",
+        "scope": "three non-interchangeable prototypes",
+        "result": "PASS",
+        "note": "Zhongzhiyuan TEST, Origin Community DELIBERATE, and Dazhongsi PUBLISH keep distinct spatial and operating relationships."
+      },
+      {
+        "id": "BI-04",
+        "scope": "ordinary-verification-fault-recovery",
+        "result": "PASS",
+        "note": "The four operating states are equivalent and are not rewritten as G0-G3 maturity."
+      },
+      {
+        "id": "BI-05",
+        "scope": "non-AI and staffed handoff",
+        "result": "PASS",
+        "note": "Ordinary routes and same-task non-AI/staffed paths remain available in every state; real staffing stays unknown."
+      },
+      {
+        "id": "BI-06",
+        "scope": "recovery boundary",
+        "result": "PASS",
+        "note": "Recovery restores ordinary use but does not mean authorization, approval, restart permission, G1, or a 48-second real duration."
+      },
+      {
+        "id": "BI-07",
+        "scope": "frozen numbers and pages",
+        "result": "PASS_PENDING_EXACT_HEAD",
+        "note": "12 scenarios, 8 projects, 3 key areas, 36 concept envelopes, A3 14+14, and A0 8+8 are frozen for final validation."
+      },
+      {
+        "id": "BI-08",
+        "scope": "truth and rights markers",
+        "result": "PASS",
+        "note": "G0, NO-GO, provisional geometry, zero real results, not_fully_cleared, and zero independent file-level audits remain equivalent."
+      },
+      {
+        "id": "BI-09",
+        "scope": "visual and report language switch",
+        "result": "PASS_PENDING_EXACT_HEAD",
+        "note": "Four HTML surfaces expose local language counterparts and the embedded CJK subset covers Chinese place names on English surfaces."
+      },
+      {
+        "id": "BI-10",
+        "scope": "new media disclosure",
+        "result": "PASS",
+        "note": "This repair adds no image-generation, video, audio, model call, or remote media; it repairs two package-authored diagrams and one licensed font subset."
+      }
+    ]
+  },
+  "source_authority_audit": {
+    "central_registry_snapshot": {
+      "path": "data/source_registry.json",
+      "schema_version": "0.1.0",
+      "updated_date": "2026-08-09",
+      "record_count": 9
+    },
+    "policy": {
+      "formal_rule": "central review_status=approved AND usable_for_formal=yes, limited to allowed_uses",
+      "provisional_rule": "provisional_only never becomes official by freshness or repeated use",
+      "background_rule": "background_only and unregistered external public sources cannot establish new formal facts",
+      "authored_rule": "package-authored records evidence methods and design relationships only",
+      "freshness_rule": "freshness can downgrade or freeze use but never upgrades authority"
+    },
+    "summary": {
+      "package_source_count": 51,
+      "formal_evidence_eligible_count": 5,
+      "not_registered_count": 20,
+      "package_authored_count": 20
+    },
+    "records": [
+      {
+        "source_id": "SITE-PACKAGE",
+        "package_authority_label": "project_primary",
+        "central_mapping": "project_internal_not_central_bibliographic_record",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "project_input_or_navigation_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-REGISTRY",
+        "package_authority_label": "project_primary",
+        "central_mapping": "project_internal_not_central_bibliographic_record",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "project_input_or_navigation_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "PROCESSED-FACT-PACK",
+        "package_authority_label": "project_processed",
+        "central_mapping": "project_internal_not_central_bibliographic_record",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "project_input_or_navigation_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "package_authority_label": "provisional",
+        "central_mapping": "direct",
+        "central_source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "central_review_status": "provisional",
+        "central_usable_for_formal": "provisional_only",
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "provisional_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "PROVISIONAL-BOUNDARY-BASIS",
+        "package_authority_label": "provisional_background",
+        "central_mapping": "alias",
+        "central_source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "central_review_status": "provisional",
+        "central_usable_for_formal": "provisional_only",
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "provisional_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "package_authority_label": "official_primary",
+        "central_mapping": "direct",
+        "central_source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "central_review_status": "approved",
+        "central_usable_for_formal": "yes",
+        "formal_evidence_eligible": true,
+        "allowed_claim_level": "formal_within_central_allowed_uses",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "AGENT-TASKBOOK",
+        "package_authority_label": "project_primary",
+        "central_mapping": "alias",
+        "central_source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+        "central_review_status": "approved",
+        "central_usable_for_formal": "yes",
+        "formal_evidence_eligible": true,
+        "allowed_claim_level": "formal_within_central_allowed_uses",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "OSM-CONTEXT",
+        "package_authority_label": "open_background",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "CASE-KENDALL",
+        "package_authority_label": "official_case",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "CASE-ONE-NORTH",
+        "package_authority_label": "official_case",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "CASE-22AT",
+        "package_authority_label": "official_case",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "CASE-KINGS-CROSS",
+        "package_authority_label": "case_primary",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "CASE-STATION-F",
+        "package_authority_label": "case_primary",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "CASE-MARS",
+        "package_authority_label": "case_primary",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "BEIJING-AI-ORIGIN-2026",
+        "package_authority_label": "official_background",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "BEIJING-AI-DISTRICTS-2026",
+        "package_authority_label": "official_background",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "NATIONAL-DATA-INFRA-2025",
+        "package_authority_label": "official_policy",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "AI-CONTENT-LABEL-2025",
+        "package_authority_label": "official_regulation",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "AI-PLUS-2025",
+        "package_authority_label": "official_policy",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "JZ-PARK-2023",
+        "package_authority_label": "official_background",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "JZ-COCREATION-2021",
+        "package_authority_label": "official_background",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "STD-URBAN-DESIGN",
+        "package_authority_label": "official_standard_reference",
+        "central_mapping": "alias",
+        "central_source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+        "central_review_status": "approved",
+        "central_usable_for_formal": "yes",
+        "formal_evidence_eligible": true,
+        "allowed_claim_level": "formal_within_central_allowed_uses",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "STD-CONTROL-PLAN",
+        "package_authority_label": "official_standard_reference",
+        "central_mapping": "alias",
+        "central_source_id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+        "central_review_status": "approved",
+        "central_usable_for_formal": "yes",
+        "formal_evidence_eligible": true,
+        "allowed_claim_level": "formal_within_central_allowed_uses",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "STD-LAND-USE",
+        "package_authority_label": "official_standard_reference",
+        "central_mapping": "alias",
+        "central_source_id": "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311",
+        "central_review_status": "approved",
+        "central_usable_for_formal": "yes",
+        "formal_evidence_eligible": true,
+        "allowed_claim_level": "formal_within_central_allowed_uses",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "STD-ARCH-DEPTH-GAP",
+        "package_authority_label": "project_gap_record",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "HAIDIAN-JZ-PHASE2-OPEN-2026",
+        "package_authority_label": "official_background",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "HAIDIAN-AI-TRIAL-FIELD-2026",
+        "package_authority_label": "official_background",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "HAIDIAN-JZ-MIDTERM-2026",
+        "package_authority_label": "official_background",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "HAIDIAN-15FYP-2026",
+        "package_authority_label": "official_policy",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-TIME-MUSEUM-G0-V1",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-CENTURY-TIMELINE-Figure",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-PORTABLE-TEMPORAL-EDUCATION-PEDAGOGY",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-MISSION-ECONOMY-G0-V1",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-INDUSTRY-PUBLIC-VALUE-FIGURE",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-MISSION-ECONOMY-PROPOSAL",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-CIVIC-OPERATIONS-G0-V1",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-YEAR-ROUND-CIVIC-OPERATIONS-FIGURE",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-CIVIC-OPERATIONS-PROPOSAL",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-REVIEW-HANDOFF-V1",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-REVIEW-PROFESSIONAL-HANDOFF-FIGURE",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-REVIEW-HANDOFF-PROPOSAL",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-ORDINARY-LIFE-MEDIA-REGISTER-R12",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-ORDINARY-LIFE-MEDIA-R12",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-ORDINARY-LIFE-PROPOSAL-R12",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-REVERSIBLE-REGISTER-R13",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-REVERSIBLE-FIGURE-R13",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-REVIEW-WALK-R14",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-FIELD-INTAKE-CONTRACT-R15",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-FIELD-INTAKE-FIGURE-R15",
+        "package_authority_label": "submission_author",
+        "central_mapping": "package_authored",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "package_method_or_design_evidence_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "SOURCE-JZ-COMMONS-LOOP-METHOD-R15",
+        "package_authority_label": "peer_method_only",
+        "central_mapping": "peer_method_not_central",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "peer_method_comparison_only",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      },
+      {
+        "source_id": "BEIJING-JZ-CONTROL-PLAN-APPROVAL-20260812",
+        "package_authority_label": "official_approval_status_and_textual_context",
+        "central_mapping": "not_registered",
+        "central_source_id": null,
+        "central_review_status": null,
+        "central_usable_for_formal": null,
+        "formal_evidence_eligible": false,
+        "allowed_claim_level": "public_background_pending_central_registry_review",
+        "freshness_effect": "freshness may downgrade or freeze use; it never upgrades authority"
+      }
+    ]
+  },
+  "local_verification_snapshot": {
+    "font_subset": {
+      "family": "JZ Noto CJK Offline",
+      "source_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+      "subset_sha256": "025483a65421284a0ad88e1acf48c907e80b901b3f89ec0b08a3bb4ad7b6374a",
+      "subset_bytes": 291504,
+      "corpus_unique_characters": 1159,
+      "four_html_font_status": "loaded",
+      "four_html_chinese_sample_ready": true,
+      "remote_requests": 0
+    },
+    "browser_qa": {
+      "surfaces": [
+        "visual/index.html",
+        "visual/index.en.html",
+        "report/proposal.html",
+        "report/proposal.en.html"
+      ],
+      "desktop_width": 1280,
+      "mobile_viewport": "390x844",
+      "page_level_horizontal_overflow_count": 0,
+      "visual_primary_navigation_items": 6,
+      "note": "Browser checks use package-local HTTP only. Final validators separately check offline and no-JavaScript fallback contracts."
+    },
+    "pdf_determinism_and_full_page_qa": {
+      "fresh_process_builds": 2,
+      "byte_identical_per_file": true,
+      "total_pages_rendered": 44,
+      "blank_pages": 0,
+      "replacement_glyph_pages": 0,
+      "out_of_page_text_blocks": 0,
+      "size_mismatches": 0,
+      "files": {
+        "drawings/a3-booklet.pdf": {
+          "pages": 14,
+          "sha256": "5f77099efe14cea4c4ca945ad4945552da0ce7214bc57a3879be1d0fb442c68e"
+        },
+        "drawings/a3-booklet.en.pdf": {
+          "pages": 14,
+          "sha256": "93dad61c141e641a5056e8b502c860796369045c24a06b2a9e400847636a5d63"
+        },
+        "drawings/a0-boards.pdf": {
+          "pages": 8,
+          "sha256": "1d9b42c7c2b9fb9ab33942608921b8bc8bead6edc345df2cc9aa784699755c4b"
+        },
+        "drawings/a0-boards.en.pdf": {
+          "pages": 8,
+          "sha256": "33f5439ba04bd1d6e8454b0125208579386b6c021845f09c7be9d6d4ed267e2c"
+        }
+      }
+    }
+  },
+  "immutable_truth_boundaries": {
+    "geometry_and_metrics_changed": false,
+    "new_media_or_model_call": false,
+    "maturity": "G0",
+    "approvals": 0,
+    "known_real_world_outcomes": 0,
+    "rights_status": "not_fully_cleared",
+    "completed_independent_file_level_audits": 0,
+    "next_round_started": false
+  },
+  "exact_head_binding": "Final gate outputs, PDF hashes, manifest Git-blob digests, and PR status are bound after the final commit and reported in the PR comment; this file does not claim a self-referential final head."
+}

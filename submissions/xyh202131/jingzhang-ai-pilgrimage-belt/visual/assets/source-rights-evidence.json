@@ -4938,14 +4938,9 @@
     },
     {
       "font_id": "FONT-HTML-R19-SYSTEM-STACK",
-      "scope": [
-        "../../visual/index.html",
-        "../../visual/index.en.html",
-        "../../report/proposal.html",
-        "../../report/proposal.en.html"
-      ],
-      "embedding_state": "referenced_not_embedded",
-      "source_or_resolution": "Round 19 offline HTML requests local CSS system font stacks and makes no remote font request. The concrete local fonts selected by each browser and operating system are environment-dependent and were not fixed or packaged; a system-stack reference is not a licence-compliance finding.",
+      "scope": [],
+      "embedding_state": "historical_system_stack_superseded_for_four_html_surfaces_by_pr3904_subset",
+      "source_or_resolution": "Historical system-stack record. PR #3904 adds a local Noto Sans CJK SC current-text subset to all four HTML surfaces; the old stack remains fallback only and this record establishes no licence conclusion for other outputs.",
       "evidence_state": "resolution_unrecorded",
       "independent_review_status": "not_started",
       "unresolved_item_ids": [
@@ -4986,6 +4981,24 @@
         "RIGHTS-OPEN-02",
         "RIGHTS-OPEN-04"
       ]
+    },
+    {
+      "font_id": "FONT-HTML-PR3904-NOTO-SUBSET",
+      "scope": [
+        "../../visual/index.html",
+        "../../visual/index.en.html",
+        "../../report/proposal.html",
+        "../../report/proposal.en.html",
+        "cjk-font.css"
+      ],
+      "embedding_state": "embedded_current_text_woff2_subset_in_local_css",
+      "source_or_resolution": "Noto Sans CJK SC Regular from the official notofonts/noto-cjk repository, source Git blob dc15562470b4f842321894787a0d066879ccff8b, source SHA-256 2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b; deterministic current-text WOFF2 subset SHA-256 025483a65421284a0ad88e1acf48c907e80b901b3f89ec0b08a3bb4ad7b6374a. Complete SIL OFL 1.1 text is embedded in cjk-font.css.",
+      "evidence_state": "source_integrity_and_public_license_text_recorded_html_scope_only",
+      "independent_review_status": "not_started",
+      "unresolved_item_ids": [
+        "RIGHTS-OPEN-02"
+      ],
+      "limitation": "This closes the reproducible HTML glyph-availability defect and records the subset licence basis only. It does not clear PDF fonts, SVG-to-PNG renderer fonts, generated output terms, OSM obligations, trademarks, or the package as a whole."
     }
   ],
   "external_dependency_requests": [
