@@ -1,0 +1,369 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "官方公告值，以资格预审公告为准"
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "官方公告值"
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "sum_of_three_key_area_declared_values",
+      "confidence": "high",
+      "assumptions": [
+        "官方公告三处重点片区面积之和"
+      ]
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "临时范围，面积按公告值"
+      ]
+    },
+    "beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "临时范围，面积按公告值"
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "declared_official_value",
+      "confidence": "high",
+      "assumptions": [
+        "临时范围，面积按公告值"
+      ]
+    },
+    "ai_scenario_cards_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "cards",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design_proposal_count",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议数量，满足≥10张要求"
+      ]
+    },
+    "ai_pilgrimage_landmarks_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "nodes",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design_proposal_count",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议数量，满足≥3处要求"
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "personas",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design_proposal_count",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议数量，满足≥5类要求"
+      ]
+    },
+    "industry_test_scenarios_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "scenarios",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design_proposal_count",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建议数量，满足≥3个要求"
+      ]
+    },
+    "agent_task_coverage": {
+      "status": "known",
+      "value": 6,
+      "unit": "tasks",
+      "source_files": [
+        "agent_taskbook.json",
+        "compliance_matrix.json"
+      ],
+      "formula": "count_required_tasks",
+      "confidence": "high",
+      "assumptions": [
+        "覆盖 agent.1–agent.6 全部六项任务"
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum_of_site_boundary_polygon_area",
+      "confidence": "medium",
+      "assumptions": [
+        "基于提交几何 site_boundary.geojson 计算；当前为临时粗略边界，待官方边界后重算"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.199046,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "蓝绿面积由提交几何计算，绿地率 = 蓝绿面积 / 站点计算总面积；临时边界，待复算"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.118606,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间面积由提交几何计算，公共空间率 = 公共空间面积 / 站点计算总面积；临时边界，待复算"
+      ]
+    },
+    "reference_case_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "cases",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count_public_reference_cases",
+      "confidence": "high",
+      "assumptions": [
+        "公开资料汇编的标杆参考案例数，非本项目参与方"
+      ]
+    },
+    "ecosystem_actor_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "actors",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count_ecosystem_actor_types",
+      "confidence": "high",
+      "assumptions": [
+        "角色类型节点，非具体企业名单"
+      ]
+    },
+    "ecosystem_relation_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "relations",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count_ecosystem_edges",
+      "confidence": "high",
+      "assumptions": [
+        "生态协同关系数"
+      ]
+    },
+    "regional_coordination_link_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "links",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count_regional_coordination_relations",
+      "confidence": "high",
+      "assumptions": [
+        "基于真实北京科创格局的协同关系，非法定区域规划"
+      ]
+    },
+    "industry_space_mapping_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "mappings",
+      "source_files": [
+        "proposal.md",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "count_industry_space_mappings",
+      "confidence": "high",
+      "assumptions": [
+        "面积为官方公告值，产业-空间落位为概念建议"
+      ]
+    },
+    "annual_event_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "events",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count_annual_events",
+      "confidence": "high",
+      "assumptions": [
+        "概念建议的年度活动体系，非已确定事项"
+      ]
+    },
+    "test_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "scenarios",
+      "source_files": [
+        "proposal.md",
+        "proposal.md"
+      ],
+      "formula": "count_test_validation_scenarios",
+      "confidence": "high",
+      "assumptions": [
+        "满足 agent.3 要求 ≥3 个 AI 产业测试验证场景"
+      ]
+    },
+    "public_component_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "components",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count_public_space_components",
+      "confidence": "high",
+      "assumptions": [
+        "概念模块，工程以专业深化为准"
+      ]
+    },
+    "accessibility_group_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "groups",
+      "source_files": [
+        "proposal.md",
+        "metrics.json"
+      ],
+      "formula": "count_accessibility_groups",
+      "confidence": "high",
+      "assumptions": [
+        "参照 GB 50763 与公共空间指标设定"
+      ]
+    },
+    "mechanism_verification_scenario_total": {
+      "status": "known",
+      "value": 12,
+      "unit": "scenarios",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "mechanism_state_machine_scenarios",
+      "confidence": "high",
+      "assumptions": [
+        "12 张 AI 场景卡对应 12 个状态机演练场景"
+      ]
+    },
+    "mechanism_verification_scenario_passed": {
+      "status": "known",
+      "value": 12,
+      "unit": "scenarios",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "mechanism_state_machine_passed",
+      "confidence": "high",
+      "assumptions": [
+        "12/12 场景离线演练通过"
+      ]
+    },
+    "mechanism_verification_assertion_total": {
+      "status": "known",
+      "value": 48,
+      "unit": "assertions",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "12_scenarios_x_4_assertions",
+      "confidence": "high",
+      "assumptions": [
+        "每条场景 4 条断言: 离线可演练/人字闸必在/回程票必在/交接记录必在"
+      ]
+    },
+    "mechanism_verification_assertion_passed": {
+      "status": "known",
+      "value": 48,
+      "unit": "assertions",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "mechanism_state_machine_assertions_passed",
+      "confidence": "high",
+      "assumptions": [
+        "48/48 断言通过"
+      ]
+    }
+  }
+}
