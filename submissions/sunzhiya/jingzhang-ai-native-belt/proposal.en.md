@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v4.19"
+iteration: "v4.21"
 summary: "Using the centennial Jingzhang railway heritage corridor as its frame, the scheme rebuilds the Haidian AI industrial belt into an Origin Force belt shared by people and machine agents: one belt, three zones with two wings and five gates, eight narrative landmarks, eight personas, twelve auditable AI+ scenario cards, sixteen implementation mechanisms and twelve numbered renewal projects, all anchored to a provisional boundary basis, structured metrics and a reproducible evidence chain, with both language versions rendered from one data source."
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
@@ -19,6 +19,10 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 **Scheme codename**: Origin Force. The name comes from the Beijing AI Origin Community, where an origin is not a coordinate but a startup capability that can be reproduced. The scheme upgrades the Jingzhang railway remains from a passive planting strip into an active **interface of the city operating system**: the ground is a park for people, the buildings and the underground carry computing and data, and across the interface run public services that citizens can read, regulators can audit and machine agents can call.
 
 **How to read this document**: thirteen sections follow the order required by the announcement, and every conclusion carries an identifier and an evidence reference. Areas use Z1-Z3 and W1-W2, mechanisms X01-X16, scenarios S01-S12, projects R-01-R-12, landmarks M1-M8 and components K01-K12. Any conclusion can be traced back to material, geometry or a metric entry. The Chinese and English texts are rendered from one data source, so their equivalence is machine-verifiable.
+
+### Through-narrative thread: Origin Force Quad-Phase
+
+This proposal carries one through-narrative that can be traced chapter by chapter; see [`report/narrative.md`](report/narrative.md). The one-line claim "people and machine agents share one city" is unfolded into the **Origin Force Quad-Phase** -- ① CO-DESIGN → ② TRIAL → ③ CO-GOVERN → ④ REVERSIBLE. Each phase binds specific sections, evidence files and an exit condition; if any phase fails, the whole scheme can be downgraded or withdrawn without irreversible consequences. This thread is also the unifying index for the five-interface region coordination matrix (`visual/assets/region-coordination-matrix.json`) and the asset-level rights ledger (`visual/assets/asset-rights-ledger.json`).
 
 ### Design Method Statement
 
@@ -301,6 +305,10 @@ The corridor's competitiveness depends on whether its division of labour with ne
 | Beijing-Tianjin-Hebei | Standards spillover | Opens the touchpoint labelling system, impact-assessment template and scenario-card format as public texts other regional cities can cite. |
 
 The regional judgements above are research conclusions at the coordinated level. They inform **conceptual suggestions** on function selection and facility sharing. They assign no tasks to any district, park or enterprise and do not substitute for the statutory procedures of cross-district coordination [depth:three_level_scope_framework].
+
+### Five-interface region coordination matrix (responsibility + evidence + exit)
+
+The hard part of regional coordination is not listing items but ensuring every interface has an accountable actor, independently checkable evidence, and an exit condition for when that interface must not proceed. The scheme therefore defines five interfaces -- Organiser↔Participant, Public↔Agent, Enterprise↔Community, Heritage↔Development, Data/Compute↔Urban Governance -- and gives each interface's responsible actor, evidence files and exit condition in [`visual/assets/region-coordination-matrix.json`](visual/assets/region-coordination-matrix.json). This matrix cross-checks the coordination table in this section and the four-boundary response table in Chapter 12, and supports the "③ CO-GOVERN" phase of the narrative thread [source:AGENT-TASKBOOK].
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
@@ -1106,6 +1114,8 @@ For data and algorithm risk, the scheme answers four boundaries item by item, ea
 | Compliance liability | AI generation does not replace qualified statutory body | assumptions.json / A-EXIT-001 | no entry if liability missing |
 
 The four boundaries cross-check the boundary declaration (earlier in this chapter) and the compliance matrix (compliance_matrix.json): the declaration sets scope, the matrix sets evidence locations, this table sets actions; any inconsistency is caught at generation time [depth:risk_missing_data].
+
+The scheme's asset ownership, source and licensing boundaries are recorded item by item in [`visual/assets/asset-rights-ledger.json`](visual/assets/asset-rights-ledger.json): every asset class (text, drawings, geometry, figures, identity, structured data, scripts, fonts, AI-generated content) declares ownership, source, licence type, redistribution and commercial-use boundary, so that the "④ REVERSIBLE" phase is independently checkable at the asset layer too [source:AGENT-TASKBOOK].
 
 ## Risk, Copyright, and Compliance
 

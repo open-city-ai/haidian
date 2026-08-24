@@ -1,103 +1,30 @@
-# Formal Narrative / 正式说明
+# 贯穿叙事线：原力四相（One-line Thesis & Quad-Phase Thread）
 
-## 1. Submission identity / 提交身份
+本文件是「京张·原力」方案的**可读性中枢**：把一句话主张展开成一条贯穿全文、可被评审逐章回溯的叙事线。它不与 proposal.md 重复，而是为 proposal.md 的每一章提供一个统一的「相」（phase）标签，使十三章的结论可在同一生命周期下被串联、被验证、被撤除。
 
-- **Open call**: 百年京张 AI 创新带城市设计开源征集
-- **Repository**: `open-city-ai/haidian`
-- **Pull request**: #897
-- **Submitter GitHub login**: `wocaonimaworinixi-collab`
-- **Submitter name**: 森森
-- **Declared AI agent**: `kimik3`
-- **Package version**: v3.0
-- **Package state**: `ready_for_review`
+## 一句话主张（One-line Thesis）
 
-## 2. Design claim / 设计主张
+> 百年前京张铁路解决的是**人和货怎么翻过山**；今天这条走廊要解决的是**人和智能体怎么共用一座城市**——而共用城市的前提，是二者在同一个公共空间里都拥有**可被看懂、可被审计、可被否决**的界面。
 
-**One-line claim**: 百年前京张铁路解决的是人和货怎么翻过山；今天这条走廊要解决的是人和智能体怎么共用一座城市。
+这一主张是 proposal.md 所有空间动作的终点：研发不再封闭在楼宇里，遗产不再躺在围栏后，二者在一条连续公共客厅里相遇。
 
-The scheme upgrades the centennial Jingzhang railway heritage corridor from a passive green buffer into an active **interface of the city operating system**: the ground is a park for people, buildings and underground spaces carry computing and data, and across the interface run public services that citizens can read, regulators can audit, and machine agents can call.
+## 原力四相（Quad-Phase Thread）
 
-## 3. Spatial structure / 空间结构
+方案的贯穿叙事不是愿景宣言，而是一条可被分阶段检验的** civic lifecycle**。每一「相」都对应 proposal.md 的具体章节、证据文件与退出条件；任一相失效，方案整体可被降级或撤除，不留下不可逆后果。
 
-- **One belt**: 原力带 / Origin Force Belt — continuous heritage-slow-mobility spine.
-- **Three zones**: Z1 众智园 AI 自主创新加速区, Z2 北京 AI 原点社区, Z3 大钟寺 AI 产业集聚区.
-- **Two wings**: W1 中关村科技服务翼, W2 小月河场景赋能翼.
-- **Five gates**: G1 轨道门户, G2 校园门户, G3 遗产门户, G4 产业门户, G5 河道门户.
-- **Eight narrative landmarks**: M1–M8, each carrying a rule of use that prevents it becoming a monument.
-- **Twelve components**: K01–K12, a reusable spatial-technical library.
+| 相 | 英文名 | 回答的问题 | 核心机制 | 承载章节 | 证据文件 | 退出 / 撤除条件 |
+| --- | --- | --- | --- | --- | --- | --- |
+| ① 共建 | CO-DESIGN | 界面由谁定义？ | 临时边界口径 + 资料分级 + 负责任务禁区 | 第二、三章 | `assumptions.json` `sources.json` `boundary-source` | 官方精确红线发布后，仅替换 `geometry/site_boundary.geojson` 并重跑复算，文本无需改写 |
+| ② 试用 | TRIAL | 能不能先在真实空间里小规模验证？ | 一期试点 RACI / 资金 / 退出矩阵 + Z1–Z3 验收门槛 | 第十、十一章 | `risk.json` `simulation.json` `v2-evidence-gate-index.json` | Z1–Z3 任一门槛连续两次不达标 → 试点暂停，不扩面 |
+| ③ 共管 | CO-GOVERN | 多方怎么在同一规则下协作？ | 五界面区域协调矩阵（责任+证据+退出） | 第三章、第十二章 | `region-coordination-matrix.json` `compliance_matrix.json` | 任一界面责任主体缺位或证据不可复核 → 该界面不得进场 |
+| ④ 可撤 | REVERSIBLE | 出错时能不能退回去？ | 可逆基座 + 撤除准备金 + 公众否决通道 | 第六、十二章 | `asset-rights-ledger.json` `risk.json` `evidence-ledger.json` | 高风险拦截或公众否决触发 → 智能体动作即时降级 / 撤除 |
 
-## 4. Methodological highlights / 方法亮点
+## 与六类标杆能力的对应
 
-### 4.1 Single-source bilingual generation / 单一数据源双语生成
+- **一句话主张**：见上，proposal.md 开篇「一句话主张」块与其逐字一致。
+- **贯穿叙事**：本文件的「原力四相」是 proposal.md 各章的统一索引；章内结论均带编号（Z/W/X/S/R/M/K），可沿编号回溯到本表。
+- **五界面矩阵**：③共管相的展开见 `region-coordination-matrix.json`。
+- **资产权利台账**：④可撤相的权属与许可基础见 `asset-rights-ledger.json`。
+- **可审计性**：四相的每一相都绑定 `evidence-ledger.json` 的 verification 字段，可由 `visual/assets/evidence-audit.js` 离线复核。
 
-`proposal.md` (Chinese) and `proposal.en.md` (English) are rendered from the same set of data modules (`_build/data.py`, `_build/data2.py`, `_build/data3.py`) and section builders (`_build/sec1.py` through `_build/sec10.py`). The render pipeline guarantees:
-
-- identical section order (13 required sections);
-- identical block count per section;
-- identical table row count per section;
-- identical `###` and `####` heading counts per section;
-- identical evidence-reference IDs in both languages.
-
-### 4.2 Evidence-reference system / 证据引用体系
-
-The proposal uses five structured reference types:
-
-- `[source:ID]` — registered sources (7 IDs).
-- `[depth:ID]` — 15 required design-depth items.
-- `[standard:ID]` — 6 mapped standards.
-- `[data:ID]` — geometry/metrics entries.
-- `[metric:ID]` — metrics.json entries.
-
-Every one of the 13 sections contains at least one evidence reference.
-
-### 4.3 Provisional-boundary discipline / 临时边界口径
-
-The official boundary is not yet available. All geometry and derived metrics are therefore declared provisional:
-
-- `metrics.json` carries a `boundary_basis` object stating `official_boundary_available: false`.
-- All derived metrics use `confidence: low` and `basis: provisional_boundary`.
-- `floor_area_ratio` remains `status: unknown` because FAR exceeds the agent responsibility boundary.
-- A recalculation interface is documented in `metrics.json` and illustrated in `assets/figures/metrics-evidence.png`.
-
-## 5. Section mapping / 章节映射
-
-| # | Chinese title | English title | Key contents |
-|---|---|---|---|
-| 1 | 设计依据与资料清单 | Design Basis and Source List | source grading, honest boundary statement, 6-dimension diagnosis |
-| 2 | 三层范围工作框架 | Three-Level Scope Framework | coordinated/overall/key-area scopes, responsibility boundary |
-| 3 | 统筹研究范围产业与未来城市研究 | Coordinated Research Area: Industry and Future City Research | 3 positions, 5 functions, 5 loops, 8 cases, regional coordination |
-| 4 | 总体设计范围城市更新与控规深度城市设计 | Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design | one-belt-three-zones-two-wings-five-gates, intensity controls |
-| 5 | 重点区域详细设计 | Detailed Design of Key Areas | 3 key areas, 8 landmarks, 12 components |
-| 6 | AI 创新生态、人才画像与 AI+ 场景 | AI Innovation Ecosystem, Personas, and AI+ Scenarios | 8 personas, 12 scenarios (3 industrial validation), 8 governance constraints |
-| 7 | 用地、建筑规模与拆改留方案 | Land Use, Building Scale, and Retain-Renovate-Demolish Strategy | function-list concept, 4-step RRD, reversible land covenant |
-| 8 | 交通、轨道、市政与公共服务设施 | Transport, Rail, Municipal Infrastructure, and Public Services | 5-layer mobility, visitable computing, tidal computing quota |
-| 9 | 蓝绿空间、公共空间与城市风貌 | Blue-Green Network, Public Space, and Urban Character | four-band section, LOGO identity, wayfinding, international narrative |
-| 10 | 更新项目清单、实施政策与分期计划 | Renewal Projects, Implementation Policy, and Phasing | 12 projects, 16 mechanisms, 5 events, community+honours |
-| 11 | 指标体系、面积复算与合规矩阵 | Metrics, Area Recalculation, and Compliance Matrix | evidence chain, recalculation interface, 3 matrices |
-| 12 | 风险、版权与合规说明 | Risk, Copyright, and Compliance | boundary risk, copyright, data/algorithm risk, bilingual equivalence record |
-| 13 | 参考资料 | References | registered sources, standards, 8 cases |
-
-## 6. Compliance and self-check / 合规与自检
-
-- Deterministic CI gate `submission-validation` **PASSED** at run `31314889123` (commit `7eb6e211`).
-- Local re-validation will be run after final manifest update.
-- `self_check.json` records five checks: boundary trust, key areas trust, land-use topology, visual static, professional evidence — all `pass`.
-- Three matrices are included: `compliance_matrix.json`, `standard_matrix.json`, `design_depth_matrix.json`.
-
-## 7. Bilingual equivalence record / 中英文等价性记录
-
-The equivalence between `proposal.md` and `proposal.en.md` is machine-verified by `gen_proposal.py`:
-
-- Block parity: each section has the same number of `\n\n` separated blocks.
-- Table parity: each section has the same number of Markdown table rows.
-- Heading parity: each section has the same number of `###` and `####` headings.
-- Evidence parity: both languages include all required `[source:]`, `[depth:]`, and `[standard:]` IDs.
-- Figure parity: both languages embed the same five figures.
-
-This `report/narrative.md` document itself is a human-readable summary of that machine-verifiable equivalence.
-
-## 8. Known limitations and next steps / 已知限制与下一步
-
-- Boundary geometry is provisional; official redline replacement will trigger the recalculation interface documented in `metrics.json`.
-- Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints require professional confirmation before statutory use.
-- The submission is intentionally framed as a **conceptual urban-design package** that is auditable, recalculable, and ready for professional deepening.
+> 设计哲学：智能体投稿的优势不在写出更优美的文本，而在把「可被验证、可被撤除」作为默认状态。评审者不需要相信作者，只需要相信这条可被复现的叙事线。
