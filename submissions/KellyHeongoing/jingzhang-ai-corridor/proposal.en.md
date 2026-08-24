@@ -8,10 +8,28 @@ bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Master Concept: Jingzhang·ZhiXu — AI Opens Jing-Zhang · AI Continues Jing-Zhang · AI Creates Jing-Zhang · AI Elevates Jing-Zhang. The proposal uses Zhixu (Order of Intelligence) to re-sequence a century of Jing-Zhang history and establish a new urban order. Generated on provisional boundaries with precision caveats; the organizer's data gaps do not block content scoring."
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]
-scenarios: ["jingzhang-time-axis", "ar-heritage-overlay", "open-source-publishing-hub", "smart-slow-mobility", "youth-co-creation-plaza", "smart-living-block"]
+scenarios: ["ai-spacetime-prologue", "ai-quadrant-living-room", "ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
 ---
 
 # Jing-Zhang · Zhixu — The New Order of Intelligence
+
+> **Design manifesto: turn the linear heritage of the century-old railway into the public operating system of an AI city.**
+
+Zhixu does not paste AI onto the city. It translates the Jingzhang Railway’s legacy of connection, collaboration, and self-reliant innovation into a walkable, participatory, and governable public-space system: **one spine** (the 13km Centennial Timeline Walk), **three civic living rooms** (the Prologue Platform, the Innovation Interface, and the Four-Quadrant Lounge), and **four protocols** (sense — collaborate — govern — communicate). The proposal follows three implementation rules: public value before industry, pilots before scale, and explainability before automation. Every AI scenario must have a spatial carrier, defined users, a data boundary, human review, and an exit mechanism.
+
+This turns the Jingzhang AI Innovation Belt from a heritage line to be viewed into an urban innovation infrastructure to be used: people can walk through history, exchange knowledge, test technologies, co-govern public space, and experience how AI improves everyday urban life.
+
+### Spatial Experience Images: From Concept to Use
+
+These are conceptual visualizations showing atmosphere, scale, material, and use. They are not existing-condition photographs, official renderings, or approved construction proposals.
+
+![Qi · Prologue | Spacetime Prologue Platform](assets/media/scene-prologue-v2.png)
+
+![Chuang · Form | Qinghe Innovation Interface](assets/media/scene-innovation-interface-v2.png)
+
+![Shang · Trend | Four-Quadrant Lounge](assets/media/scene-four-quadrant-lounge-v2.png)
+
+![Cheng · Heritage | Centennial Timeline Walk](assets/media/scene-timeline-walk-v2.png)
 
 ## Design Basis and Material Inventory
 
@@ -69,6 +87,8 @@ The four orders are not scattered points but different dimensions of the same "X
 
 ### Naming System and Visual Identity Direction
 
+![Jingzhang·ZhiXu JZ dual-track order mark](assets/media/logo-mark-jz.png)
+
 The scheme uses “Jingzhang·ZhiXu” as the primary name and “Jingzhang·ZhiXu AI Innovation Belt” as the English name, with “ZhiXu Belt” as the short form. The naming system is organized as one spine, four orders, and three zones:
 
 | Level | Naming | Meaning |
@@ -121,6 +141,20 @@ The spatial skeleton of the Overall Design Area is "One Spine, Four Orders": wit
 
 ## Key-Area Detailed Design
 
+### Key-Area Spatial Deepening, Public Routes and AI Operations Evidence
+
+![Three key-area spatial prototypes: prove, make and exchange](assets/figures/key-area-deepening.en.png)
+
+The three key areas do not repeat one program list. They form a connected professional division of labour: Zhongzhiyuan is **PROVE**, hosting the safety-governance sandbox, Qinghe sponge interface and edge-compute/energy interfaces; the Beijing AI Origin Community is **MAKE**, stitching campus, park and district through an open-source forum and talent services; Dazhongsi is **EXCHANGE**, where the four-quadrant civic lounge, transit-cycle interchange, global roadshows and night-time public life complete the industry exchange. Every prototype states its ground-level public role, below-ground resilience service and above-ground low-carbon connection. They remain conceptual baselines pending official boundary, tenure and engineering confirmation [depth:three_key_area_detailed_design] [data:geometry/key_areas.geojson#PROV-KEY-001].
+
+![Daily people routes and ground-below-above integrated section](assets/figures/people-section-routes.en.png)
+
+Public space is organised over 24 hours rather than around one professional group: Gen Z follows “learn - co-create - night release”; millennials follow “transit arrival - roadshow - business service”; silver users and children follow “slow walk - archive/learning - nature garden”; frontline operators follow “service bay - inspection - night work order.” The ground plane remains an open walk, rain garden and rest network; below-ground space supplies auditable water, energy, compute and maintenance interfaces; above-ground elements are limited to shade, wayfinding and safe connection [depth:inclusive_public_space] [depth:traffic_organization].
+
+![Operations loops for three core AI scenarios](assets/figures/ai-operations-evidence.en.png)
+
+The three core AI scenarios use one public-service loop: **user -> spatial carrier -> minimum necessary data -> AI assistance -> human review -> public metric / stop condition**. The safety-governance sandbox is jointly operated by district public management and a laboratory; the edge-compute point by platform and property teams; and the four-quadrant interface by transit and community-service operators. Every pilot retains a human service, static wayfinding or manual workflow as fallback; no AI output replaces planning approval, enforcement or public decision [depth:privacy_human_review] [depth:ai_scenario_cards].
+
 Key-Area Detailed Design is mandatory. The three key areas become the spatial carriers of "Zhixu":
 
 **Zhongzhiyuan AI Independent Innovation Acceleration Area (Creation · New Form)**: Detailed schemes address national AI platforms, full-stack independent innovation, standard setting, safety governance, industry display, external transport, Qinghe water-culture, low-carbon green innovation exchange environments, and AI scenarios in green space. Spatial actions: strengthen the Qinghe waterfront as an "Innovation Beacon" lounge; green space carries open testing and standards-governance display; low-carbon computing experience and a safety-governance sandbox (scenario card 07) are organized [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:three_key_area_detailed_design].
@@ -140,6 +174,41 @@ Key-Area Detailed Design is mandatory. The three key areas become the spatial ca
 The scheme builds spatial-demand profiles for AI talent and enterprises, covering R&D offices, open-source collaboration, achievement publication, enterprise services, talent housing, social learning, consumer life, sports and leisure, and international exchange. AI-enabled scenarios address the transport, services, consumption, healthcare, education, law, and life-services directions proposed in the announcement, forming both industry-development scenarios and AI-empowered city-function scenarios. Each scenario states its service users, spatial location, data sources, privacy boundaries, human-review mechanism, and operating entity.
 
 AI scenarios land on spatial and governance boundaries: public-space scenarios cite [data:geometry/public_space.geojson#PUBLIC-001]; slow-mobility and traffic scenarios cite [data:geometry/roads.geojson#ROAD-001]; open-space scenarios cite [data:geometry/green_space.geojson#GREEN-001] with [metric:public_space_ratio] and [metric:green_ratio]. This scheme provides 10 scenario cards, 3 testing-and-validation scenarios, and 5 user profiles, covering the taskbook requirements.
+
+The scheme also integrates ground, below-ground, and above-ground spatial layers, expanding the audience from “tech talent” to a multi-generational public that can be served, seen, and invited to co-create.
+
+### People Spectrum: One Corridor, Eight Ways In
+
+The audience matrix overlays identity, generation, occupation, and cross-city mobility. Nationality and region shape language, cultural translation, and international exchange only; they are never used for personal identification or commercial profiling.
+
+| Group | Age / generation | Identity and occupation | Mobility attribute | Core task | Spatial and service response |
+| --- | --- | --- | --- | --- | --- |
+| Millennial innovation managers | 30–45, Millennials | Founders, product leads, research managers | Beijing-based / intercity business travel | Meetings, roadshows, recruitment, transfer | Dazhongsi International Roadshow Lounge, bookable meeting pods, transit and multilingual wayfinding |
+| Gen Z creators | 16–29, Gen Z | Students, developers, designers, content creators | Local youth / exchange / short-term stay | Learning, co-creation, display, social life, night events | Youth plaza, open-source hub, graded night lighting, low-threshold stage interfaces |
+| Beta-generation children | Born after 2025, Gen Beta | Children and family users | Local and international families | Play-based learning, nature sensing, accessible companionship | AI education points, low-stimulation play, visible safety edges, parent rest nodes |
+| Silver railway-memory users | 60+ | Residents, retired railway workers, community volunteers | Long-term local residents | Memory sharing, slow mobility, health, neighborhood life | Heritage archive corners, continuous seating, accessible loop, memory collection |
+| Open-source developers and researchers | 22–40 | Faculty, students, researchers, engineers | Chinese and global open-source communities | Testing, contribution, compute, peer review | Origin Community, edge-compute stations, safety sandbox, auditable booking |
+| Startups and industry services | 25–50 | Startups, investors, legal/IP and enterprise services | Beijing-Tianjin-Hebei / national visitors | Incubation, funding, standards, compliance, testing | Zhongzhiyuan test field, standards workshops, enterprise assistant, replaceable exhibits |
+| International visitors and cross-border teams | 25–55 | Global companies, visiting scholars, cultural/design institutions | Asian, European, North American and other multilingual visitors | Visits, exchange, roadshows, cultural understanding | Chinese-English base, scalable multilingual wayfinding, international lounge, welcome route |
+| Frontline operators and maintenance teams | 20–60 | Cleaning, security, landscape, transport and facility operations | Local employment / shift-based mobility | Maintenance, inspection, emergency, night operation | Back-of-house nodes, below-ground equipment rooms, digital work orders, human review |
+
+The design principle is “one space, multiple readings”: every node offers child-readable graphics, youth participation interfaces, continuous resting edges for older users, bilingual information for international visitors, and executable work orders for operators.
+
+### Three-Dimensional Strategy: Public Ground, Resilient Below, Connected Above
+
+| Spatial layer | Design theme | Main carriers | Key actions | Verifiable outcome |
+| --- | --- | --- | --- | --- |
+| Ground | Make the city visible and usable | 13km Timeline Walk, three living rooms, youth plazas, Qinghe interface | Slow-mobility priority, heritage narrative, blue-green stormwater, adaptable exhibits, all-day programming | Walking continuity, public nodes, event frequency, and accessibility can be reviewed |
+| Below ground | Make systems safe, low-carbon, and maintainable | Utility corridors, equipment rooms, stormwater storage, shared parking/loading, edge compute and energy interfaces | Replaceable equipment, energy tiers, stormwater-first, separate service and public flows | Utility/fire/ownership conditions to be confirmed; work orders and energy auditable |
+| Above ground | Make information and ecology cross boundaries | Lightweight bridges, shade canopies, green trellises, wayfinding light bands, low-power data interfaces | Stitch crossings, shade and rain cover, bird-friendly lighting, low-energy displays, graded night use | Priority gaps become safer crossings; lighting, energy, and landscape maintenance enter operations |
+
+The three-dimensional strategy follows “public first, intelligent second; maintainable first, automated second.” Ground carries public life, below ground carries resilience and infrastructure, and above ground carries crossing, shelter, and communication. Below-ground and above-ground engineering remain conceptual recommendations pending utility, fire, structural, ownership, and management confirmation.
+
+### LOGO and Wayfinding: The Dual-Track Order Mark
+
+The logo uses a bronze time track and an electric-blue intelligence track: bronze represents railway heritage since 1909, while blue represents AI data and future services. Their central crossing abstracts the character “Xu.” The Chinese lock-up is “京张·智序”; the English lock-up is “Jingzhang·ZhiXu”; the descriptor is “AI开启京张 · AI续京张 · AI创京张 · AI尚京张.”
+
+Identity rules: charcoal `#0A1119`, railway bronze `#D1A85A`, electric cyan `#64D5E8`, emerald `#55C7AA`, and coral amber `#F0B44C`. Wayfinding uses a time-track/intelligence-track dual code: 1909, 1920s, and 2020s for eras; S01–S10 for scenario nodes. Node IDs use `JZ–order–scenario`, for example `JZ–QI–S02`. Graphics, fonts, corporate marks, and public art require rights, trademark, and typeface clearance before implementation [source:AGENT-TASKBOOK] [depth:brand_wayfinding_system].
 
 ### User Profiles (5)
 
