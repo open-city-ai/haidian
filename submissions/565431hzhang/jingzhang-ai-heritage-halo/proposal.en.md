@@ -54,8 +54,8 @@ Many parameters in this proposal (building counts, function mixes, heights, reta
 | Parameter | Stage | Evidence Grade | Basis / Pending Condition |
 |-----------|-------|----------------|---------------------------|
 | Site area 11,412,825 m² | Overall | **A Structured recalculation** | Recalculated from site_boundary + land_use [metric:site_area_sqm]; provisional boundary, recalculate after official redline |
-| Green ratio 48.7%, public space ratio 2.5% | Overall | **A Structured recalculation** | Recalculated from green_space / public_space layers |
-| Building coverage 5.7%, roads 42.3 km | Overall | **A Structured recalculation** | Recalculated from buildings / roads layers |
+| Green ratio 30.4%, public space ratio 2.5% | Overall | **A Structured recalculation** | Recalculated from green_space / public_space layers |
+| Building coverage 5.7%, roads 52.6 km | Overall | **A Structured recalculation** | Recalculated from buildings / roads layers |
 | Three key-area extents 368.4 ha | Overall | **A Structured recalculation** | Recalculated from key_areas layer [metric:key_area_count] |
 | Building counts 80-100 / 40-50 / 30-40 | Key areas | **B Conceptual indication** | Conceptual massing; pending current-building survey and regulatory plan |
 | Function mixes (R&D office 60%, etc.) | Key areas | **B Conceptual indication** | Inferred from industry positioning; pending demand model and current tenure calibration |
