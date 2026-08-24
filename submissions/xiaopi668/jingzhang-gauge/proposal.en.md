@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Modeled on the century-old 'structure gauge' discipline of the Jing-Zhang Railway, this proposal sets an on-line protocol for urban AI services: one heritage-park datum spine, three gauge zones (G0/G1/G2), six gauge gates and an out-of-gauge depot, so that every generation of AI can run safely inside the city's clearance envelope."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["ai-cultural-guide", "robot-delivery-low-speed"]
-iteration: "v0.1"
+iteration: "v0.2"
 ---
 
 # THE JING-ZHANG GAUGE: Fit the Gauge, Join the Line / 京张限界
@@ -49,6 +49,22 @@ The naming system unfolds as: the Belt (the century Jing-Zhang AI innovation bel
 Seven global cases inform the mechanism design (publicly reported background material only): the Helsinki AI Register and Amsterdam Algorithm Register prove city-scale algorithm transparency is feasible — the direct inspiration for our gate display screens; Singapore's Model AI Governance Framework and AI Verify supply operational testing toolkits — matched by our Recalibration Loop; the EU AI Act regulatory-sandbox approach supports the legality path of tiered G0/G1/G2 on-boarding; Toronto's Sidewalk Labs Quayside offers the cautionary lesson that super-innovation without a data-governance consensus loses its social license — the real-world footnote of "fix the gauge before raising speed"; Beijing's high-level autonomous-driving demonstration zone shows staged expansion with a unified service platform works administratively; Barcelona's Decidim shows the technical shape of co-governance tooling for the Developer Village.
 
 On this basis the package proposes the **Coupler Standard** as the ecosystem mechanism: the Janney coupler promoted in Zhan Tianyou's era let cars from different makers couple safely; today's AI innovation needs standardized hooks — a unified data-interface catalogue, model registration fields, safety-test report formats, and exit procedures. Any team, any model, once it passes the gate's envelope check, can couple onto the urban train; uncoupling exits cleanly without disturbing the mainline [source:SOURCE-REGISTRY]. Land, space, capital, talent, compute, data, and scenarios all organize around this standard: industrial space prioritizes G2 test zones, compute pools through the open compute center, data enters under minimal-necessity through gates, and the annual open scenario list is renewed by recalibration results [depth:overall_spatial_structure].
+
+**The Gauge Operating Manual (auditable admission and exit):** every AI service goes on-line in seven steps — (1) registration (model, accountable entity, data inventory); (2) envelope self-check; (3) gate sampling; (4) 14-day public disclosure; (5) licence to operate; (6) annual recalibration; (7) downgrade or exit. Auditability rules: G2 test reports are retained for 90 days; appeals go through third-party re-inspection arranged by the industry alliance; two consecutive failed recalibrations trigger automatic demotion back to the depot; annual aggregates are all published in the Urban Gauge White Paper. Tiered inspection cadence — G0 exempt (zero-collection facilities only), G1 annually, G2 quarterly — turns "fit the gauge, join the line" into a checkable procedure rather than a slogan [data:geometry/constraints.geojson#SN-005].
+
+### Regional synergy matrix (conceptual)
+
+The belt's innovative capacity must be tested inside its regional network. Five conceptual input-output interfaces:
+
+| Direction | Partner | Content (conceptual) | Interface mechanism |
+|---|---|---|---|
+| West | Zhongguancun Science City | capital, IP and enterprise scenario demand | mutual-recognition catalogue of the Coupler Standard |
+| North | Future Science City | compute pooling and energy coordination | open-compute dispatch protocol |
+| Northeast | Huairou Science City | large-facility data and research validation | joint sandbox testing memorandum |
+| East | Beijing E-Town high-level autonomous-driving zone | staged roll-out and unified-platform experience | recalibration-report format recognition (background reference) |
+| Region | Beijing-Tianjin-Hebei city cluster | scenario hinterland and manufacturing base; outward export of the open-source "urban gauge" text | annual open-source white-paper release |
+
+All synergies are conceptual suggestions implying no inter-governmental, inter-park or inter-corporate commitment until counterparts opt in [source:AGENT-TASKBOOK].
 
 Future-city hypothesis: urban competitiveness in the AI era depends less on how many enterprises a district contains than on how fast a trustworthy AI service can legally go on-line and become part of daily life. The future urban form is therefore a network whose nodes are tested public spaces and whose skeleton is re-testable corridors — precisely this proposal's structure.
 
@@ -97,6 +113,8 @@ All three key areas use the repository's rough provisional scopes; designs below
 
 The scenario-space-operation mapping rule is "no card without a gate": every card's deployment requires passing the corresponding gate level, and each card names its visualization layers (scenario_nodes / ai_service_zones) for supervision [data:geometry/constraints.geojson#AZ-G2-002].
 
+**Data operations spec ("minimal necessary" made executable):** each card's boundary resolves into five fields — (1) data category (location / image / voice / transaction); (2) retention (G1 transactions ≤90 days and de-identified at capture; G2 imagery deleted immediately); (3) access (least-privilege operator roles; cross-party pulls logged and approved); (4) notice and consent (conspicuous entry-point labeling + one-tap revocation); (5) incident response (suspected leaks double-notified to the street office and affected parties within 72 hours with related flows frozen). Independent review rotates between the community co-governance committee and the industry association; review records enter the annual white paper [standard:GENERATIVE-AI-INTERIM-MEASURES].
+
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 Land use is expressed as 13 seamlessly partitioned conceptual parcels: park green spreads continuously along the spine as the G0 material base; research land concentrates in northern Zhongzhiyuan and the eastern flank of the Origin Community; commercial land gathers at Dazhongsi; residential stabilizes the western living belt; two reserved white parcels keep long-term flexibility [depth:land_use_layout]. Classification follows the national land-use survey codes [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE].
@@ -113,9 +131,23 @@ Public services follow the fifteen-minute circle: the community AI station and c
 
 ## Blue-Green Network, Public Space, and Urban Character
 
-Blue-green systems comprise ≈1.519 million m² of green space, a green ratio of about 13.3% [metric:green_ratio]; the heritage spine dominates, and together with plazas forms ≈148,000 m² of walkable public space, a ratio of about 1.30% [metric:public_space_ratio]. All values are recomputed from this package's geometry in EPSG:4548 — conceptual values on a provisional boundary [depth:blue_green_public_space].
+Blue-green systems comprise ≈1,514,451 m² of green space, a green ratio of about 13.27% [metric:green_ratio]; the heritage spine dominates, and together with plazas forms ≈148,000 m² of walkable public space, a ratio of about 1.30% [metric:public_space_ratio]. All values are recomputed from this package's geometry in EPSG:4548 — conceptual values on a provisional boundary [depth:blue_green_public_space].
 
 **AI pilgrimage landmarks (three or more):** first, the **Gauge Gate Zero** — a tunnel-profile portal at Xizhimen terminus serving as the belt's zero-kilometre marker and the ceremony backdrop for every service launch; second, the **Recalibration Ring** — a "ren"-shaped ring plaza at Zhongzhiyuan's north end where commemorative rail sleepers record each year's assembly, anchoring the developer honor system; third, the **Coupler Standards Hall** — a museum of interface standards at Dazhongsi telling the story from the Janney coupler to API protocols, doubling as certification center. A supplementary node, the Tsinghuayuan Timetable Gallery, displays today's AI "departure boards" through vintage timetable typography [data:geometry/public_space.geojson#PS-003]. All landmarks are conceptual proposals; nothing constitutes a decided government project [standard:PROJECT-OFFICIAL-ANNOUNCEMENT].
+
+**Public-space component library (agent.4 componentization):** beyond landmarks, the belt deploys a standardized, reversible, replicable kit of street-scale components so the gauge can be assembled anywhere along the line:
+
+| Component | Function | Zone |
+|---|---|---|
+| Gate frame | service testing and launch ceremony backdrop | G1/G2 entries |
+| Disclosure screen (readable-algorithm edition) | registrations, test digests, complaint entries | G1/G2 plazas |
+| Honor sleepers | engraved for teams passing recalibration; honor display system | Recalibration Ring |
+| Silent lamp pole | light-sensing illumination, zero collection, no advertising | G0 spine |
+| Reversible test bay | temporary occupancy markings kept or removed by evaluation | G2 streets |
+| Accessible guide post | voice + braille + tactile map channels | all stations |
+| Human fallback counter | physical anchor of the non-digital alternative | community station |
+
+Components indicate design directions only; final selection requires accessibility-specific and public-space review [standard:BARRIER-FREE-ENVIRONMENT-LAW].
 
 Culturally, the proposal braids three lineages: Jing-Zhang engineering discipline (surveying, gauge, on-time delivery); Zhongguancun pioneering spirit (first-mover courage, tolerance of failure); and accountable innovation for the AI era (transparent, testable, exittable). Wayfinding borrows railway signal vocabulary: signal red means "do not couple," staff blue means "controlled passage," green appears only at the instant of passing recalibration — turning governance rules into street-readable urban theatre. The international narrative compresses to: *"A railway that taught China to build; a gauge that teaches AI to belong."* [depth:height_massing_character]
 
@@ -131,11 +163,13 @@ Projects are organized into three independently pausable packages mapped to the 
 
 Policy tools include an annually published scenario list, gate-testing fee vouchers, remediation grace periods for out-of-gauge services, and a "pause-is-stop-loss" clause allowing any phase to pause independently. These are conceptual suggestions; implementing bodies, cost estimates, and approval paths require professional feasibility work and constitute no settled government arrangement [depth:renewal_project_list].
 
+**Stage gates (go/no-go) and long-term operating indicators:** P1 starts only when the official redline is released and tenure coordination completes, with a pause-is-stop-loss trigger — any quarter whose public complaint rate exceeds the hearing-set threshold freezes expansion; P2 requires P1 recalibration passed plus community hearing approval; P3 is trigger-based, requiring both prior phases to pass. Four indicators published yearly keep operations accountable: average gate-testing lead time (target set after professional feasibility work), full disclosure coverage, human-fallback answer rate at or above 95%, and out-of-gauge remediation success rate with recalibration participation counts [data:geometry/phasing.geojson#PH-003].
+
 **Global event system and long-term operations (agent.6):** the annual calendar centers on Gauge Day (each June, releasing the Urban Gauge White Paper and recalibration report), plus the September Opening Festival (city ritual for newly launched services), quarterly Switch-House Workshops (developer co-creation camps), and the winter Jing-Zhang AI Marathon. Event branding extends the arched-gauge visual in both languages. The developer community runs on membership and credits: gate-certified teams earn compute credits and scenario priority. International outreach relies on the English white paper, overseas campus tours, and a "Partner Cities of the Urban Gauge" initiative — writing Haidian's rules as open-source text other cities can cite. Sustainability is judged by recalibration results: two consecutive failed recalibrations automatically demote or retire a scenario [source:AGENT-TASKBOOK].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
-The metric philosophy is "every number returns to geometry": site_area_sqm ≈11,412,825 m², green_space_area_sqm ≈1,518,623 m², public_space_area_sqm ≈147,977 m², building_footprint_area_sqm ≈237,503 m², all recomputed from GeoJSON in EPSG:4548 [metric:site_area_sqm] [depth:metrics_recalculation].
+The metric philosophy is "every number returns to geometry": site_area_sqm ≈11,412,825 m², green_space_area_sqm ≈1,514,451 m², public_space_area_sqm ≈147,977 m², building_footprint_area_sqm ≈237,503 m², all recomputed from GeoJSON in EPSG:4548 [metric:site_area_sqm] [depth:metrics_recalculation].
 
 Two honesty bottom lines: first, floor_area_ratio and building_height_m are recorded as pending official data, with reasons and recalculation triggers in metrics.json — no fabricated values appear anywhere; second, the 1.233 million m² conceptual volume is a low-confidence design quantity (assumed storeys × conceptual footprint), not a statutory control [metric:conceptual_gross_floor_area_sqm]. Ratios include green_ratio ≈13.31% and public_space_ratio ≈1.30%, both within sensible ranges [metric:green_ratio] [metric:public_space_ratio]. The compliance matrix covers announcement items 1.3/1.4/1.5 and agent.1–agent.6; the standard matrix covers the six mandatory standards plus three reference standards; the depth matrix covers all fifteen required items [standard:GENERATIVE-AI-INTERIM-MEASURES].
 

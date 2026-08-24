@@ -13,7 +13,7 @@
 
 ## 2. 字体与工具
 
-- 图件与看板使用开源字体 Noto Sans CJK（SIL Open Font License 1.1）。
+- 图件与看板使用开源字体 Noto Sans CJK（SIL Open Font License 1.1）；PDF 与看板内嵌字体为 JetBrains Maple Mono NF（SIL Open Font License 1.1，经子集化嵌入，无远程请求）。
 - 制图与排版使用开源工具链：matplotlib、shapely、pyproj、reportlab。
 - 未使用需商业授权的字体、图库素材或地图瓦片；未使用商业地图截图。
 
