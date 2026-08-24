@@ -5,12 +5,12 @@ language: "zh"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
-version: "1.9"
+version: "1.10"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "一个不用智能手机的人也能走进可撤回的服务间，问到人，拿到有日期的纸质结果，断网时照常离开。一班开门账把八小时开放、21.5 个功能工时、七个节点和六张询价卡放在同一张工作单上。"
+summary: "一个不用智能手机的人也能走进可撤回的服务间，问到人，拿到有日期的纸质结果，断网时照常离开。首班开门闸盒要求七张双人回执，少一张，相关服务就保持关闭。"
 tracks: ["ai-traffic-walkability", "ai-public-services", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.9"
+iteration: "v1.10"
 ---
 
 # 京张好用 / JING-ZHANG WORKS
@@ -37,9 +37,11 @@ iteration: "v1.9"
 
 v1.9 把开门问题压进一个参考班次。公共开放八小时，开门前六十分钟检查，关门后四十五分钟对账。值班负责人、纸质服务、无障碍复演、安全故障和信息数据五类工作合计 21.5 个功能工时。这个数只供比较工作量，不代表人数、班表、工资或法定工时。七个时间节点和六张询价卡已经写明，场地、日期、人员、班次数、供应商报价、总价、许可和现场结果仍为空。[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:reference_shift_functional_hour_count]
 
+v1.10 再把这张工作单装进一只放在柜台上的橙色 A5 闸盒。首班开门前，场地时段、通行安全、纸质同任务、信息数据、当班接手、询价下单、开门关场各有一张纸质回执。责任人先签，另一个职能角色复演后再签；同一个人不能包办两把钥匙。回执少一张或过期，值班负责人只能亮出人工、降级或关闭状态，数字界面没有自行放行权。当前七张回执全部未签，场地、人员、三家报价、采购许可和现场结果仍为空。[source:V110-FIRST-SHIFT-GATE-WALLET] [metric:first_shift_gate_receipt_required_count]
+
 停用演练分为五类，底层共有六张故障卡。路线与生命安全、信息与网络、人员缺岗、隐私事件、供应商退出都写有当班人员的第一步动作和重新开放所需证据。网络故障和关键信息错误同属信息与网络类，所以类别数与卡片数相差一。演练尚未由真实场地和排班人员签字执行。[source:V12-DAY-ONE-DRILL] [metric:stop_drill_category_count]
 
-当前成果是一套可以进入现场复核的设计包。临时边界继续标记 `official_boundary=false`，真实访客数、现场完成率和采购总额继续为空。纸质结果模板、十六页 A3 阅读路径和十五组中英等义审计已经完成，独立译审、公众理解测试和专业审批仍待授权团队执行。[source:V13-COMPLETE-TASK-RECEIPT] [source:V17-JUROR-PATH] [source:V17-BILINGUAL-AUDIT]
+当前成果是一套可以进入现场复核的设计包。临时边界继续标记 `official_boundary=false`，真实访客数、现场完成率和采购总额继续为空。纸质结果模板、十六页 A3 阅读路径和十六组中英等义审计已经完成，独立译审、公众理解测试和专业审批仍待授权团队执行。[source:V13-COMPLETE-TASK-RECEIPT] [source:V17-JUROR-PATH] [source:V17-BILINGUAL-AUDIT]
 
 ## 设计依据与资料清单
 
@@ -221,6 +223,8 @@ v1.9 把开门问题压进一个参考班次。公共开放八小时，开门前
 七个节点分别落在开门前六十分钟、三十分钟、十分钟，开门时，两小时、四小时和八小时。每次都要留下路线、纸质任务、签字放行、运行状态、独立复演、故障演练或关场记录。安全、隐私、关键信息、网络或供应商故障要在下一笔公众业务前切换状态。访客提出人工接手时，纸质结果发出前必须由现场人员承接。未解决的问题要在访客离开前交付问题编号、责任角色和复查日期。重新开放之前还要补齐对应恢复证据。[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:shift_checkpoint_count]
 
 六张询价卡逐一对应 C01 至 C06。每张卡写明参考数量、验收动作、报价应包含的工作和授权前排除项。当前只达到询价对象清楚，供应商报价仍为零，正式估算、投标价、货币总额和计划班次数保持空值。任何人都不能把 21.5 个功能工时换算成未经确认的人数或预算。[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:vendor_quote_count]
+
+首班开门闸盒把“谁来确认”变成柜台上的实物动作。场地控制人和当班负责人核对使用时段，安全负责人和无障碍复演人一起走通路线，服务责任人和纸质服务员办完同一件事。信息数据、替岗接手和采购也分别需要两种职能签字。关场时，值班负责人不能把当天回执沿用到下一班，只能写下继续人工、修复复演或保持关闭。七张回执现在都是空白模板，没有哪一张可以当作授权结果。[source:V110-FIRST-SHIFT-GATE-WALLET]
 
 ![一班开放的时间、功能工时、询价对象与故障时限](assets/figures/shift-evidence.png)
 

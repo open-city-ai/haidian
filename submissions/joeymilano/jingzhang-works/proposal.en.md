@@ -5,12 +5,12 @@ language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
-version: "1.9"
+version: "1.10"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "A visitor without a smartphone can enter a reversible Works Bay, speak to a person, leave with a dated paper result, and keep moving during a network outage. One shift book joins an eight-hour opening, 21.5 functional-role hours, seven checkpoints, and six quote cards."
+summary: "A visitor without a smartphone can enter a reversible Works Bay, speak to a person, leave with a dated paper result, and keep moving during a network outage. A first-shift gate wallet requires seven two-person receipts; a missing receipt keeps the affected service closed."
 tracks: ["ai-traffic-walkability", "ai-public-services", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.9"
+iteration: "v1.10"
 ---
 
 # JING-ZHANG WORKS / 京张好用
@@ -35,9 +35,11 @@ The ninety-day startup ledger holds six cost objects. Field baseline work, paper
 
 Version 1.9 compresses opening into one reference shift. Public opening lasts eight hours, with a sixty-minute pre-open check and forty-five-minute closing reconciliation. Duty lead, paper service, accessibility replay, safety-fault, and information-data functions total 21.5 functional-role hours. This measures workload for comparison, not people, roster, wages, or legal working time. Seven checkpoints and six quote cards are specified. Site, date, people, shift count, supplier quotations, total price, permits, and field results remain empty.[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:reference_shift_functional_hour_count]
 
+Version 1.10 puts that work order into an orange A5 gate wallet kept at the counter. Before the first shift, site and time, access and safety, the same task on paper, information and data, shift takeover, quotation and purchase, and opening and closing each require a paper receipt. The accountable owner signs first; a different functional role replays the evidence and signs the second key. One person cannot hold both keys. A missing or expired receipt leaves the duty lead only the manual, degraded, or closed state. The digital interface has no authority to release itself. All seven receipts are currently unsigned; site, people, three comparable quotations, purchase permission, and field results remain empty.[source:V110-FIRST-SHIFT-GATE-WALLET] [metric:first_shift_gate_receipt_required_count]
+
 The stop rehearsal has five categories and six fault cards. Route and life safety, information and network failure, missing staff, a privacy incident, and supplier exit each specify the duty worker's first action and the evidence required to reopen. A network outage and critical information error share the information-and-network category, which explains why the two counts differ. No real site or rostered team has signed or performed the rehearsal.[source:V12-DAY-ONE-DRILL] [metric:stop_drill_category_count]
 
-The current result is a design package ready for field review. Provisional geometry remains marked `official_boundary=false`. Real visitors, field completion rates, and total procurement cost remain empty. The paper-result template, sixteen-page A3 reading path, and fifteen Chinese-English equivalence checks are complete. Independent translation review, public-comprehension testing, and professional approvals remain with a future authorized team.[source:V13-COMPLETE-TASK-RECEIPT] [source:V17-JUROR-PATH] [source:V17-BILINGUAL-AUDIT]
+The current result is a design package ready for field review. Provisional geometry remains marked `official_boundary=false`. Real visitors, field completion rates, and total procurement cost remain empty. The paper-result template, sixteen-page A3 reading path, and sixteen Chinese-English equivalence checks are complete. Independent translation review, public-comprehension testing, and professional approvals remain with a future authorized team.[source:V13-COMPLETE-TASK-RECEIPT] [source:V17-JUROR-PATH] [source:V17-BILINGUAL-AUDIT]
 
 ## Design Basis and Source List
 
@@ -219,6 +221,8 @@ The reference shift starts sixty minutes before opening, runs through eight publ
 Seven checkpoints fall at sixty, thirty, and ten minutes before opening, at opening, and two, four, and eight hours afterward. Each leaves route, paper-task, signed-release, operating-state, independent-replay, fault-drill, or closing evidence. Safety, privacy, critical-information, network, or supplier failure changes state before the next public transaction. A human-takeover request must be accepted before paper is issued. An unresolved issue receives an issue identifier, responsible function, and review date before the visitor leaves. Reopening requires the corresponding recovery evidence.[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:shift_checkpoint_count]
 
 Six quote cards map one to one to C01 through C06. Each specifies a reference quantity, acceptance action, work included in the quotation, and exclusions pending authorization. Only the quote objects are ready. Supplier quotations remain zero; formal estimate, tender price, monetary total, and planned shift count stay null. The 21.5 functional-role hours cannot be converted into unconfirmed people or budget.[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:vendor_quote_count]
+
+The First Authorized Shift Gate Wallet turns “who confirms this?” into an action at the counter. The site controller and duty lead check the opening window. The safety owner and accessibility replayer walk the route together. The service owner and paper operator complete the same task. Information and data, substitute takeover, and procurement each require two functional signatures as well. At closing, the duty lead cannot carry the day's receipts into another shift; the record can only retain manual service, require repair and replay, or keep the service closed. Every receipt is currently a blank template, not an authorization result.[source:V110-FIRST-SHIFT-GATE-WALLET]
 
 ![One opening shift's clock, functional effort, quote objects, and failure deadlines](assets/figures/shift-evidence.en.png)
 

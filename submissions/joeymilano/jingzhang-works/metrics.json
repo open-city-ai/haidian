@@ -477,7 +477,7 @@
   },
     "bilingual_audited_pair_count": {
       "status": "known",
-      "value": 15,
+      "value": 16,
     "unit": "artifact_pair",
     "source_files": [
       "visual/assets/bilingual_equivalence_audit.json"
@@ -512,6 +512,33 @@
     "confidence": "high_for_blank_template_only",
     "assumptions": [],
     "claim_boundary": "Fields in a blank paper-result template; no real receipt has been issued."
+  },
+  "first_shift_gate_receipt_required_count": {
+    "status": "known",
+    "value": 7,
+    "unit": "gate_receipt",
+    "source_files": [
+      "visual/assets/first_authorized_shift_packet.json"
+    ],
+    "formula": "count(gates)",
+    "confidence": "high_for_participant_authored_printable_mechanism",
+    "assumptions": [
+      "A-DELIVERY-001",
+      "A-OPERATIONS-001"
+    ],
+    "claim_boundary": "Seven required blank templates, not seven authorizations or executed acceptances."
+  },
+  "first_shift_gate_receipt_signed_count": {
+    "status": "known",
+    "value": 0,
+    "unit": "signed_gate_receipt",
+    "source_files": [
+      "visual/assets/first_authorized_shift_packet.json"
+    ],
+    "formula": "current_gate_register.gate_receipts_signed",
+    "confidence": "high_for_registered_submission_files",
+    "assumptions": [],
+    "claim_boundary": "No gate receipt has been signed; the first public shift is not released."
   }
 }
 }
