@@ -24,7 +24,7 @@ scenarios:
 
 # Twin-Track Jing-Zhang
 
-- Chinese name: `双轨京张`
+- Chinese title: `Twin-Track Jing-Zhang` (the native-script wordmark is retained in the paired Chinese edition and rasterized concept cover)
 - Back-stage audit system: JZ-AIOS (Jing-Zhang Auditable Innovation Operating System)
 
 ![Twin-Track Jing-Zhang final cover: continuous ordinary track, side-positioned intermittent proof track, and three switchyards; a synthetic conceptual presentation, not field evidence, a confirmed viewpoint, built condition, approved design, accessibility result, or resident feedback](assets/media/twin-track-cover.webp)
@@ -54,6 +54,8 @@ Twin-Track Jing-Zhang is not a matter of drawing two lines more brightly. It mak
 ![Twin-Track Jing-Zhang civic-ground structure: one continuous ordinary spine and six cross-links connect three non-interchangeable prototypes while side verification, staffed handoff, and failure objects stay off the ordinary path; G0, provisional, not to scale](assets/figures/site-overview.en.png)
 
 The audit reading routes, eight-question answer map, synthetic replay, and itemized professional handoff remain available at the sole back-stage entry: [review handoff](visual/index.en.html#review-handoff). They support traceability only; they are not public feedback, expert opinion, field results, authorization, or maturity advancement. The proposal still retains 12 scenarios, 8 projects, 3 key areas, and 36 conceptual land-use cells; all 13 formal chapters and their order remain unchanged.
+
+> **Two-axis readiness.** The four local machine gates and `self_check.json`'s `can_enter_formal_review=true` mean only that package structure, references, drawings, and file consistency passed the participant-controlled self-check. They do not unlock formal professional scoring. `manifest.validation_claim.known_blockers` deliberately retains the rights P0 items, central source-registry admission, and publication-reuse blockers; professional scoring and public/professional reuse therefore remain **BLOCKED**. These external matters cannot be replaced by rendering, PR review, or merge.
 
 > **Formal proposal · Chapters 1–12 of 13.** The following twelve chapters retain the required headings and order. Chapter 13, “References,” resumes after the extended evidence.
 
@@ -218,6 +220,20 @@ Eight resource types follow a “public foundation + conditional access” model
 | MaRS | Coupling laboratories, offices, events, and community services | Co-locate publication, compliance advice, and staffed service at Dazhongsi | Success rate of human handoff and follow-up services | Healthcare, investment, and institutional systems [source:CASE-MARS] |
 
 Regional coordination uses a “testing relay,” not a vague alliance. The Future Science City is proposed for retesting in basic science or frontier equipment; Huairou Science City for verification related to major scientific facilities; the Beijing Economic-Technological Development Area for engineering retests in manufacturing and embodied systems; other first-batch innovation districts for cultural or industrial scenarios in which they specialize; and Beijing–Tianjin–Hebei nodes for cross-regional replicability checks. Each relay transmits only tasks, protocols, anonymized results, and failure records; it does not require the transfer of raw sensitive data. The publicly stated “one core, multiple points” pattern only shows that this division of work has a basis for discussion; it does not mean that any node has agreed to participate [source:BEIJING-AI-DISTRICTS-2026].
+
+### Regional coordination: input–retest–stop matrix
+
+The table turns the “testing relay” into a handoff-ready proposal contract. All five nodes are unconfirmed roles, not partners, accountable owners, budget sources, or approved sites. If a row lacks written acceptance, an approved scope, an ordinary-task field baseline, data-safety evidence, stop/recovery records, and an independent retest, it remains G0 / NO-GO. The relay carries only task IDs, versioned protocols, anonymized aggregates, and failure records; it does not carry raw sensitive data.
+
+| Proposed node (unconfirmed) | Proposed role | Input boundary | Retest output | Stop condition | Current status |
+|---|---|---|---|---|---|
+| Beiwei Community | Reference everyday services and community co-creation to check Origin Community’s non-AI same-task route | Consented task description, non-identifying protocol version, and aggregate thresholds only | Same-task completion / abandonment / staffed handoff / withdrawal records and correction receipt | Non-AI route lengthens or breaks; screen-free entry is missing; withdrawal or handoff fails | `unconfirmed`; not resident feedback or a partnership claim |
+| Future Science City | Receive offline / shadow retests for basic science or frontier equipment | Test protocol, equipment class, and anonymized failure class only; no raw data or unapproved device | Versioned technical result, failure cause, and return-to-G0 decision pack | Stale or conflicting source, no safety duty acceptance, or ordinary task affected | `unconfirmed`; not a partner or site confirmation |
+| Huairou Science City | Receive reproducibility checks related to scientific facilities | Protocol, synthetic or authorized aggregates, and retest prerequisites only | Independent retest summary, deviation register, and stop/recovery recommendation | Facility condition, approval scope, data safety, or professional duty is missing | `unconfirmed`; not facility access |
+| Beijing E-Town | Receive engineering retests for manufacturing, robotics, and embodied systems | Interface contract, anonymized performance band, and failure class only; no production or personal data | Engineering retest pack, fault-isolation record, staffed takeover, and place-return conclusion | Safety boundary unclear, staffed takeover fails, ordinary movement is affected, or independent retest is absent | `unconfirmed`; not a manufacturing pilot |
+| Beijing–Tianjin–Hebei nodes | Check protocol, source, and ordinary-service parity under cross-regional replication | Task / protocol version, anonymized result, and failure record only; no cross-region authorization claim | Replicability difference table, local gaps, and retain-NO-GO recommendation | Rules, sources, rights, ordinary path, or accountability boundaries cannot align | `unconfirmed`; not regional cooperation or implementation commitment |
+
+The matrix supports professional handoff and later evidence replacement only; it adds no scene, project, governance contract, or maturity. Formal source authority still comes from the central `data/source_registry.json`; unregistered sources cannot support new formal facts [assumption:A-EXTERNAL-COLLAB-005] [data:visual/assets/implementation-handoff-matrix.json#regional_synergy_retest_matrix].
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 

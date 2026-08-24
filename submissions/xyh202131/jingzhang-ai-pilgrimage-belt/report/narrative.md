@@ -1125,3 +1125,11 @@ The final publications were built twice in fresh Python processes with a fixed f
 本轮新增 1 个双语图对、1 个结构化合同和 1 个基线哈希记录；12 场景、8 项目、3 重点区、99 槽、geometry、metrics、全部 G0、临时边界、NO-GO 与 `not_fully_cleared` 不变。基线记录证明文件字节冻结，不证明其中空间信息已成为官方或现实真值。
 
 This round adds one bilingual figure pair, one structured contract and one baseline-hash record. Twelve scenes, eight projects, three key areas, 99 slots, geometry, metrics, all-G0 status, provisional boundaries, NO-GO and `not_fully_cleared` remain unchanged. The baseline record freezes file bytes; it does not make their spatial content official or true in the field.
+
+## PR #3904 targeted review repair / PR #3904 定向评审修复
+
+本次是同一 PR 的定向修复，不是下一轮方案。评审提出的“正式评分就绪”与权利阻断冲突已拆成两轴：四门机器自检仍为 PASS，但 `manifest.validation_claim.known_blockers` 明示权利、来源登记和发布复用阻断，故正式专业评分与公共／专业复用仍为 BLOCKED。五节点区域协同现在有同构的输入边界、复测输出、停止条件和 `unconfirmed` 状态，未制造合作承诺或现实结果。
+
+This is a targeted repair on the same PR, not a new design round. The apparent conflict between “ready” and the unresolved rights boundary is now expressed on two axes: the four participant-controlled machine gates remain PASS, while `manifest.validation_claim.known_blockers` explicitly blocks rights, source admission and public/professional reuse; formal professional scoring therefore remains BLOCKED. Five regional relay nodes now share an input, retest, stop-condition and `unconfirmed` contract without creating a partner commitment or real-world result.
+
+The four fixed-page PDFs were rebuilt in two fresh processes with byte-identical outputs: A3 14+14, A0 8+8, 44 pages rendered, no blank/replacement/out-of-page/encrypted pages. The font tofu finding was not reproducible under the exact local file:// Chromium renderer, but the local CJK subset now blocks first-paint fallback and the English switch uses Latin text to remove unnecessary first-screen glyph dependence.

@@ -77,6 +77,8 @@ As of 2026-08-24, this package does not claim that rights clearance is complete.
 
 The ledger supports transparent repository review, but it is not legal advice, proof of ownership, or a public-release license. Before external display, professional deepening, or other reuse, the applicable `RIGHTS-OPEN-01`—`RIGHTS-OPEN-05` items must be completed and confirmed by maintainers or qualified rights professionals.
 
+PR #3904's targeted repair adds no new media or external source. The local HTML font subset is still disclosed separately from the unresolved PDF font, SVG rasterization, OSM, generated-output, logo and landmark questions. `manifest.validation_claim.known_blockers` is authoritative for the current publication block; machine self-check PASS does not close these rights or reuse gates.
+
 Review in this order: sources and licenses → fonts and generation tools → map derivatives and attribution → logo and landmarks → editable sources and reuse scope. If any step is unconfirmed, the overall status remains `not_fully_cleared`; partial completion must not be treated as a release license.
 
 - Round 13 reversible assembly/restoration register and bilingual SVG/PNG figures are package-authored conceptual relations. They remain `not_fully_cleared`; repository review does not grant public/professional reuse and proves no engineering or approval status.
