@@ -5,12 +5,12 @@ language: "zh"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
-version: "1.10"
+version: "1.11"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "一个不用智能手机的人也能走进可撤回的服务间，问到人，拿到有日期的纸质结果，断网时照常离开。首班开门闸盒要求七张双人回执，少一张，相关服务就保持关闭。"
 tracks: ["ai-traffic-walkability", "ai-public-services", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.10"
+iteration: "v1.11"
 ---
 
 # 京张好用 / JING-ZHANG WORKS
@@ -38,6 +38,8 @@ iteration: "v1.10"
 v1.9 把开门问题压进一个参考班次。公共开放八小时，开门前六十分钟检查，关门后四十五分钟对账。值班负责人、纸质服务、无障碍复演、安全故障和信息数据五类工作合计 21.5 个功能工时。这个数只供比较工作量，不代表人数、班表、工资或法定工时。七个时间节点和六张询价卡已经写明，场地、日期、人员、班次数、供应商报价、总价、许可和现场结果仍为空。[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:reference_shift_functional_hour_count]
 
 v1.10 再把这张工作单装进一只放在柜台上的橙色 A5 闸盒。首班开门前，场地时段、通行安全、纸质同任务、信息数据、当班接手、询价下单、开门关场各有一张纸质回执。责任人先签，另一个职能角色复演后再签；同一个人不能包办两把钥匙。回执少一张或过期，值班负责人只能亮出人工、降级或关闭状态，数字界面没有自行放行权。当前七张回执全部未签，场地、人员、三家报价、采购许可和现场结果仍为空。[source:V110-FIRST-SHIFT-GATE-WALLET] [metric:first_shift_gate_receipt_required_count]
+
+v1.11 只修复正式评审指出的两处可见交付问题。概念用地图把六个分区名称全部移到临时边界外，边界内只留编号；双语视觉页的工作单小字也加入同一套本地中文字体作为后备。四份 HTML 按正式评审的 1440 × 1600 窗口重放，未观察到方框替代字形或外部请求。这个结果是参赛者视觉复核，不替代独立译审或公众理解测试。[source:V111-EXPRESSION-REPAIR]
 
 停用演练分为五类，底层共有六张故障卡。路线与生命安全、信息与网络、人员缺岗、隐私事件、供应商退出都写有当班人员的第一步动作和重新开放所需证据。网络故障和关键信息错误同属信息与网络类，所以类别数与卡片数相差一。演练尚未由真实场地和排班人员签字执行。[source:V12-DAY-ONE-DRILL] [metric:stop_drill_category_count]
 

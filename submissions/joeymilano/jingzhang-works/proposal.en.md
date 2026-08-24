@@ -5,12 +5,12 @@ language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
-version: "1.10"
+version: "1.11"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A visitor without a smartphone can enter a reversible Works Bay, speak to a person, leave with a dated paper result, and keep moving during a network outage. A first-shift gate wallet requires seven two-person receipts; a missing receipt keeps the affected service closed."
 tracks: ["ai-traffic-walkability", "ai-public-services", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.10"
+iteration: "v1.11"
 ---
 
 # JING-ZHANG WORKS / 京张好用
@@ -36,6 +36,8 @@ The ninety-day startup ledger holds six cost objects. Field baseline work, paper
 Version 1.9 compresses opening into one reference shift. Public opening lasts eight hours, with a sixty-minute pre-open check and forty-five-minute closing reconciliation. Duty lead, paper service, accessibility replay, safety-fault, and information-data functions total 21.5 functional-role hours. This measures workload for comparison, not people, roster, wages, or legal working time. Seven checkpoints and six quote cards are specified. Site, date, people, shift count, supplier quotations, total price, permits, and field results remain empty.[source:V19-WORKS-BAY-SHIFT-BOOK] [metric:reference_shift_functional_hour_count]
 
 Version 1.10 puts that work order into an orange A5 gate wallet kept at the counter. Before the first shift, site and time, access and safety, the same task on paper, information and data, shift takeover, quotation and purchase, and opening and closing each require a paper receipt. The accountable owner signs first; a different functional role replays the evidence and signs the second key. One person cannot hold both keys. A missing or expired receipt leaves the duty lead only the manual, degraded, or closed state. The digital interface has no authority to release itself. All seven receipts are currently unsigned; site, people, three comparable quotations, purchase permission, and field results remain empty.[source:V110-FIRST-SHIFT-GATE-WALLET] [metric:first_shift_gate_receipt_required_count]
+
+Version 1.11 repairs only the two visible-delivery issues named by the formal review. The concept land-use figure moves all six zone names outside the provisional frame and leaves only numbers inside it. Monospaced micro-labels on both visual pages now fall back to the same local Chinese font. All four HTML files were replayed at the formal 1440 × 1600 review window with no observed square replacement glyph or external request. This is participant visual QA, not independent translation or public-comprehension testing.[source:V111-EXPRESSION-REPAIR]
 
 The stop rehearsal has five categories and six fault cards. Route and life safety, information and network failure, missing staff, a privacy incident, and supplier exit each specify the duty worker's first action and the evidence required to reopen. A network outage and critical information error share the information-and-network category, which explains why the two counts differ. No real site or rostered team has signed or performed the rehearsal.[source:V12-DAY-ONE-DRILL] [metric:stop_drill_category_count]
 

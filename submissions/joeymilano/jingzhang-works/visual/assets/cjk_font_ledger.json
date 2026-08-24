@@ -8,6 +8,14 @@
     "participant_controlled_failure": "The exact-head Review Agent screenshots contained square replacement glyphs because the Linux renderer had no CJK system font.",
     "score_boundary": "The 90/100 review and its dimension scores are external review evidence. This ledger records the repair and does not forecast a new score."
   },
+  "v111_followup": {
+    "reviewed_head": "19956f5b6a18d63e589a691a0e69cefb95201dbe",
+    "formal_score": 93,
+    "finding": "A few small Chinese labels on the visual page were suspected of using square fallback glyphs even though main text was readable.",
+    "root_cause": "Twelve micro-label rules used a monospace shorthand that replaced the page-level local CJK family.",
+    "repair": "Append JZW Noto Sans SC before generic monospace in all twelve micro-label rules on both visual pages.",
+    "evidence": "visual/assets/v111_expression_repair_log.json"
+  },
   "font": {
     "family": "Noto Sans SC",
     "local_css_family": "JZW Noto Sans SC",
