@@ -15,10 +15,11 @@ for (const file of ['mobility-first-168h.json', 'mobility-first-12-weeks.json', 
   fs.copyFileSync(path.join(packageRoot, 'visual', 'assets', file), path.join(assetRoot, file));
 }
 for (const file of ['mobility-release-chain.svg', 'mobility-release-chain.en.svg']) fs.writeFileSync(path.join(figureRoot, file), '<svg/>');
-for (const file of ['proposal.md', 'sources.json', 'assumptions.json', 'metrics.json', 'visual/index.html', 'geometry/key_areas.geojson', 'visual/assets/implementation-operation-contract.json']) {
+for (const file of ['proposal.md', 'sources.json', 'assumptions.json', 'metrics.json', 'visual/index.html', 'geometry/key_areas.geojson', 'geometry/roads.geojson', 'geometry/public_space.geojson', 'visual/assets/implementation-operation-contract.json']) {
   const target = path.join(tempRoot, file);
   fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.writeFileSync(target, '{}');
+  if (file.startsWith('geometry/')) fs.copyFileSync(path.join(packageRoot, file), target);
+  else fs.writeFileSync(target, '{}');
 }
 
 function assertFixture(name, mutate) {
@@ -53,4 +54,10 @@ assertFixture('unauthorized-state', root => {
 });
 assertFixture('missing-artifact', root => {
   fs.unlinkSync(path.join(root, 'assets/figures/mobility-release-chain.svg'));
+});
+assertFixture('broken-spatial-binding', root => {
+  const file = path.join(root, 'visual/assets/mobility-first-168h.json');
+  const value = JSON.parse(fs.readFileSync(file, 'utf8'));
+  value.spatial_binding_contract.formal_geometry_bindings[0].scenario_node_refs[0] = 'geometry/public_space.geojson#MISSING-NODE';
+  fs.writeFileSync(file, JSON.stringify(value));
 });

@@ -7,6 +7,50 @@
   "local_baseline": "unknown",
   "result_status": "not_run",
   "purpose": "A bounded first-168-hour review chain for making an ordinary public route, its human fallback and its withdrawal decision legible before any pilot request.",
+  "spatial_binding_contract": {
+    "status": "design_only",
+    "declared_formal_feature_count": 8,
+    "formal_geometry_bindings": [
+      {
+        "interface_id": "ZHONGZHIYUAN",
+        "key_area_feature_id": "PROV-KEY-001",
+        "audit_sequence_ref": "geometry/roads.geojson#MOB-AUDIT-SEQUENCE-ZHONGZHIYUAN",
+        "scenario_node_refs": [
+          "geometry/public_space.geojson#MOB-INTERFACE-ZHONGZHIYUAN-1",
+          "geometry/public_space.geojson#MOB-INTERFACE-ZHONGZHIYUAN-2",
+          "geometry/public_space.geojson#MOB-INTERFACE-ZHONGZHIYUAN-3"
+        ]
+      },
+      {
+        "interface_id": "AI_ORIGIN",
+        "key_area_feature_id": "PROV-KEY-002",
+        "audit_sequence_ref": "geometry/roads.geojson#MOB-AUDIT-SEQUENCE-AI_ORIGIN",
+        "scenario_node_refs": [
+          "geometry/public_space.geojson#MOB-INTERFACE-AI_ORIGIN-1",
+          "geometry/public_space.geojson#MOB-INTERFACE-AI_ORIGIN-2",
+          "geometry/public_space.geojson#MOB-INTERFACE-AI_ORIGIN-3"
+        ]
+      }
+    ],
+    "external_anchor_only": {
+      "interface_id": "DAZHONGSI",
+      "key_area_feature_id": "PROV-KEY-003",
+      "formal_geometry_promotion": "withheld",
+      "candidate_refs": [
+        "visual/assets/mobility-interface-candidates.json#MOB-AUDIT-SEQUENCE-DAZHONGSI",
+        "visual/assets/mobility-interface-candidates.json#MOB-INTERFACE-DAZHONGSI-1",
+        "visual/assets/mobility-interface-candidates.json#MOB-INTERFACE-DAZHONGSI-2",
+        "visual/assets/mobility-interface-candidates.json#MOB-INTERFACE-DAZHONGSI-3"
+      ],
+      "reason": "The mapped station remains about 2.31 km from the centroid of the provisional PROV-KEY-003 rough box, so these candidates remain visual screening evidence rather than in-bound formal geometry.",
+      "rebind_gate": [
+        "official_or_professionally_confirmed_key_area_geometry",
+        "dated_station_area_route_walk",
+        "accessibility_and_fire_review",
+        "named_responsible_receiver"
+      ]
+    }
+  },
   "horizons": [
     {
       "id": "H0",
@@ -22,11 +66,11 @@
     {
       "id": "H1",
       "window": "24-72h",
-      "objective": "register the three spatial interfaces and the evidence needed to inspect them",
+      "objective": "bind the two in-bound spatial interfaces to eight formal geometry objects and keep Dazhongsi as a withheld external anchor",
       "owner_role": "transport, accessibility and community review roles (proposed)",
-      "inputs": ["official geometry revision or an explicit missing-data record", "three-node route-service atlas", "grouped-demand privacy rule"],
-      "outputs": ["dated route and curb inventory request", "station/route walk audit template", "grouped demand and consent register"],
-      "acceptance_checks": ["each node has a non-AI equivalent", "each handoff has a receiving role and a refusal path", "no personal trajectory is collected"],
+      "inputs": ["two audit-sequence refs in geometry/roads.geojson", "six scenario-node refs in geometry/public_space.geojson", "explicit Dazhongsi geometry-conflict record", "grouped-demand privacy rule"],
+      "outputs": ["machine-readable eight-object binding", "dated route and curb inventory request", "station/route walk audit template", "grouped demand and consent register"],
+      "acceptance_checks": ["all eight formal refs resolve to the declared GeoJSON features", "all four Dazhongsi candidates remain absent from formal roads and public-space layers", "each node has a non-AI equivalent", "each handoff has a receiving role and a refusal path", "no personal trajectory is collected"],
       "stop_conditions": ["geometry, route ownership or access responsibility is unresolved", "a node has no human fallback", "consent or data minimization is unresolved"],
       "public_artifact": "visual/assets/mobility-route-service-atlas.json"
     },

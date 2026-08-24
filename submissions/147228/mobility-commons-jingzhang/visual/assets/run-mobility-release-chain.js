@@ -7,6 +7,14 @@ function readJson(root, relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 }
 
+function featureIds(featureCollection) {
+  return new Set((featureCollection?.features || []).map(feature => feature?.properties?.id || feature?.id).filter(Boolean));
+}
+
+function refId(ref) {
+  return String(ref || '').split('#')[1] || '';
+}
+
 function validate(root) {
   const checks = [];
   const fail = (id, detail) => checks.push({ id, ok: false, detail });
@@ -55,6 +63,36 @@ function validate(root) {
     }
     if (first168.decision?.default === 'HOLD' && first168.decision?.forbidden_shortcut) pass('168h_default_hold', 'default decision is HOLD');
     else fail('168h_default_hold', '168-hour chain must default to HOLD');
+    try {
+      const roads = readJson(root, 'geometry/roads.geojson');
+      const publicSpace = readJson(root, 'geometry/public_space.geojson');
+      const roadsIds = featureIds(roads);
+      const publicSpaceIds = featureIds(publicSpace);
+      const contract = first168.spatial_binding_contract;
+      const bindings = contract?.formal_geometry_bindings || [];
+      const roadRefs = bindings.map(item => item.audit_sequence_ref);
+      const nodeRefs = bindings.flatMap(item => item.scenario_node_refs || []);
+      const declaredCount = contract?.declared_formal_feature_count;
+      if (bindings.length === 2 && roadRefs.length === 2 && nodeRefs.length === 6 && declaredCount === 8) {
+        pass('168h_spatial_binding_shape', 'two audit sequences plus six scenario nodes declared');
+      } else {
+        fail('168h_spatial_binding_shape', 'expected two bindings, two audit sequences, six nodes and declared count 8');
+      }
+      const missingRoadRefs = roadRefs.filter(ref => !roadsIds.has(refId(ref)));
+      const missingNodeRefs = nodeRefs.filter(ref => !publicSpaceIds.has(refId(ref)));
+      if (!missingRoadRefs.length && !missingNodeRefs.length) pass('168h_formal_refs_resolve', 'all eight formal geometry refs resolve');
+      else fail('168h_formal_refs_resolve', `missing refs: ${[...missingRoadRefs, ...missingNodeRefs].join(', ')}`);
+      const external = contract?.external_anchor_only;
+      const withheldIds = (external?.candidate_refs || []).map(refId);
+      const promotedByMistake = withheldIds.filter(id => roadsIds.has(id) || publicSpaceIds.has(id));
+      if (external?.interface_id === 'DAZHONGSI' && external?.formal_geometry_promotion === 'withheld' && withheldIds.length === 4 && !promotedByMistake.length) {
+        pass('168h_dazhongsi_withheld', 'four Dazhongsi candidates remain outside formal geometry');
+      } else {
+        fail('168h_dazhongsi_withheld', `Dazhongsi withholding contract failed: ${promotedByMistake.join(', ')}`);
+      }
+    } catch (error) {
+      fail('168h_spatial_binding_files', error.message);
+    }
   }
   if (first12) {
     const ids = (first12.weeks || []).map(item => item.id);

@@ -6,10 +6,10 @@ title: "Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating
 author_github: "147228"
 language: "en"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "One auditable curb ledger links enterprise arrival with residents' daily mobility. This revision promotes only the two entrance–crossing–curb groups that fall inside both the provisional SITE and matching key areas into formal geometry; the Dazhongsi boundary conflict remains HOLD and every field value remains null."
+summary: "One auditable curb ledger links enterprise arrival with residents' daily mobility. The first-168-hour contract binds two audit sequences and six candidate nodes at Zhongzhiyuan and AI Origin to formal geometry, while Dazhongsi remains an external anchor because of the boundary conflict; every field value remains null."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v2.5-candidate"
+iteration: "v2.6-candidate"
 ---
 
 # Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating System
@@ -34,7 +34,9 @@ This table connects the design boards, curb ledger, M-09 fallback tabletop and P
 
 ### First 168 hours and first 12 weeks: turn “can this proceed?” into an exit receipt
 
-High-scoring packages often compress a vision into a delivery chain that a reviewer can interrogate one step at a time. This version adds two time receipts, while keeping them explicitly as design contracts rather than completed work: `visual/assets/mobility-first-168h.json` binds 0–24, 24–72, 72–120, and 120–168 hours to the ordinary route, the three interfaces, failure tabletop, and independent review; `visual/assets/mobility-first-12-weeks.json` connects W01–02 boundary and consent, W03–04 route audit, W05–07 ordinary-service parity, W08–09 failure tabletop, W10–11 professional review, and W12 HOLD/repair/withdrawal.
+High-scoring packages often compress a vision into a delivery chain that a reviewer can interrogate one step at a time. This version keeps two time receipts as design contracts rather than completed work. `visual/assets/mobility-first-168h.json` binds 0–24, 24–72, 72–120, and 120–168 hours to the ordinary route, spatial interfaces, failure tabletop, and independent review. `visual/assets/mobility-first-12-weeks.json` connects W01–02 boundary and consent, W03–04 route audit, W05–07 ordinary-service parity, W08–09 failure tabletop, W10–11 professional review, and W12 HOLD/repair/withdrawal.
+
+H1 no longer registers “three interfaces” generically. It cites two audit sequences and six candidate nodes for Zhongzhiyuan and AI Origin, creating eight formal-geometry bindings that the existing validator resolves against `roads.geojson` and `public_space.geojson`. The three Dazhongsi points and one line sit under `external_anchor_only`; they remain public-map screening evidence and must stay outside formal geometry until confirmed key-area geometry, a dated route walk, accessibility/fire review and a responsible receiver are available [data:visual/assets/mobility-first-168h.json] [data:geometry/roads.geojson#MOB-AUDIT-SEQUENCE-ZHONGZHIYUAN] [data:geometry/roads.geojson#MOB-AUDIT-SEQUENCE-AI_ORIGIN].
 
 Every window states four things: **who receives the handoff, what evidence is retained, what stops the work, and which ordinary path remains after the stop**. The “12 weeks” is therefore not an operating promise, and an offline replay is not field performance; authorization, field observation, and the local baseline remain zero or `unknown`. The default output of the first 168 hours is `HOLD`, a request for evidence, repair, or withdrawal—not service opening. The bilingual overview is `assets/figures/mobility-release-chain.svg` and `.en.svg`.
 

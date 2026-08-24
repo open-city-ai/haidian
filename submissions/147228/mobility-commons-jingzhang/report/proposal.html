@@ -112,7 +112,7 @@ code {
 <main>
 <section class="hero">
 <h1>京张共行环：企业—居民交通共益系统</h1>
-<p class="summary">把企业到岗与居民日常出行放进同一张可审计的时段路缘账本，用首 168 小时释放链说明如何停和退；本轮只把同时落在临时 SITE 与对应重点区内的两组站口—过街—路缘候选写入正式几何，大钟寺边界冲突继续 HOLD，所有现场值仍为空。</p>
+<p class="summary">把企业到岗与居民日常出行放进同一张可审计的时段路缘账本；首 168 小时合同将众智园、AI 原点的 2 条待核顺序和 6 个候选点绑定到正式几何，大钟寺因边界冲突只作外部锚点，所有现场值仍为空。</p>
 <p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
 </section>
 <h1>京张共行环：企业—居民交通共益系统</h1>
@@ -123,7 +123,8 @@ code {
 <div class="proposal-table"><table><thead><tr><th>步骤</th><th>普通人看到的空间/服务</th><th>必须留存的证据</th><th>失效即闭环的动作</th></tr></thead><tbody><tr><td>1. 选择</td><td>站口导向、连续步行/轮椅路线、人工/电话/纸面入口与共享接驳候选并列展示</td><td>选择方式、服务窗口、无障碍需求类别和版本号；不留连续个人轨迹</td><td>数字入口不可用时保留人工等价路径；没有等价路径就不开放</td></tr><tr><td>2. 请求</td><td>公共交通换乘、班车/小巴候选、路缘装卸或社区日常服务台</td><td>请求 ID、服务对象分组、起止时间窗、责任人和替代路线</td><td>权属、责任人、容量或同意边界未知时只登记、不预约</td></tr><tr><td>3. 接管</td><td>错过衔接、断网、雨雪、无障碍受阻或路缘冲突后，现场人员指向轨道/公交或人工路线</td><td>触发事件、接管人、到达/转交时间、清场动作和投诉入口</td><td>冻结自动预约，优先人工/公共交通；无人可接管时停止服务</td></tr><tr><td>4. 退出</td><td>消息牌、人工窗口和纸面/电话申诉让人能改道、回家或取消</td><td>取消原因、替代路线、未解决项和 <code>not_authorized_not_run</code> 状态</td><td>消防、无障碍、隐私或安全硬门失败时不扩容、不写成达标</td></tr><tr><td>5. 复核</td><td>独立复核者回放一条到站—到家链，比较是否继续、修复或撤回</td><td>原始最小日志、分组结果、投诉关闭证据、版本和复核意见</td><td>证据缺失或最慢群体变差时回到 P0 调查与人工服务</td></tr></tbody></table></div>
 <p>这张表把设计图、路缘账本、M-09 回退桌演和 P0/P1/P2 分期接成同一个验收入口；4 条合成请求的 PASS 只证明状态机和回滚逻辑可重放，不证明真实客流、无障碍绩效、人员值守、公众接受或安全结果。</p>
 <h3>首 168 小时与首 12 周：把“能不能做”先变成退出票据</h3>
-<p>高分方案常把愿景压缩成评审者可以逐项追问的交付链。本版新增两张时间票据，但它们仍是设计合同，不是已经发生的工作：<code>visual/assets/mobility-first-168h.json</code> 把首 0–24、24–72、72–120、120–168 小时分别绑定到普通路线、三处接口、失效桌演和独立复核；<code>visual/assets/mobility-first-12-weeks.json</code> 再把 W01–02 的边界与同意、W03–04 的路线审计、W05–07 的普通服务等价、W08–09 的失效桌演、W10–11 的专业复核和 W12 的 HOLD/修复/撤回接起来。</p>
+<p>高分方案常把愿景压缩成评审者可以逐项追问的交付链。本版保留两张设计票据，不把它们写成已经发生的工作。<code>visual/assets/mobility-first-168h.json</code> 把首 0–24、24–72、72–120、120–168 小时分别绑定到普通路线、空间接口、失效桌演和独立复核；<code>visual/assets/mobility-first-12-weeks.json</code> 再把 W01–02 的边界与同意、W03–04 的路线审计、W05–07 的普通服务等价、W08–09 的失效桌演、W10–11 的专业复核和 W12 的 HOLD/修复/撤回接起来。</p>
+<p>其中 H1 不再笼统登记“三处接口”。它逐项引用众智园、AI 原点的 2 条待核顺序和 6 个候选点，共 8 个正式几何对象；现有校验器会核对这些引用能否在 <code>roads.geojson</code> 与 <code>public_space.geojson</code> 中回读。大钟寺的 3 个点和 1 条线则列入 <code>external_anchor_only</code>，只作公开底图筛查证据，且必须保持在正式图层之外，直到重点区几何、路线走查、无障碍与消防复核、责任接收者四项条件齐备 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="visual/assets/mobility-first-168h.json" title="空间数据：visual/assets/mobility-first-168h.json">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#MOB-AUDIT-SEQUENCE-ZHONGZHIYUAN" title="空间数据：geometry/roads.geojson#MOB-AUDIT-SEQUENCE-ZHONGZHIYUAN">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#MOB-AUDIT-SEQUENCE-AI_ORIGIN" title="空间数据：geometry/roads.geojson#MOB-AUDIT-SEQUENCE-AI_ORIGIN">空间数据</sup>。</p>
 <p>时间表每一段都写四件事：<strong>谁接收、要留下什么证据、什么情况必须停、停下后回到哪条普通路径</strong>。因此它不把“12 周”写成承诺，也不把离线回放写成现场绩效；授权、现场观察和本地 baseline 仍为 0 或 <code>unknown</code>。首 168 小时的默认产出是 <code>HOLD</code>、补证据、修复或撤回，而不是开通服务。双语总览见 <code>assets/figures/mobility-release-chain.svg</code> 与 <code>.en.svg</code>。</p>
 <figure class="proposal-figure"><img src="../assets/figures/mobility-release-chain.svg" alt="首 168 小时到首 12 周的交通服务交付链与退出条件"><figcaption>首 168 小时到首 12 周的交通服务交付链与退出条件</figcaption></figure>
 <p><code>visual/assets/mobility-release-evidence-map.json</code> 把普通人旅程、三处空间接口、交付维护、来源边界、治理权责、可逆性和视觉导航七个评审问题绑定到具体文件；每个维度的 <code>field_claims</code> 保持为空。这样评审者可以先看一张板，再沿同一条路径回到 JSON、图纸、假设与负例，而不会把“文件很多”误读成“已经运营”。</p>

@@ -6,10 +6,10 @@ author_github: "147228"
 language: "zh"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "把企业到岗与居民日常出行放进同一张可审计的时段路缘账本，用首 168 小时释放链说明如何停和退；本轮只把同时落在临时 SITE 与对应重点区内的两组站口—过街—路缘候选写入正式几何，大钟寺边界冲突继续 HOLD，所有现场值仍为空。"
+summary: "把企业到岗与居民日常出行放进同一张可审计的时段路缘账本；首 168 小时合同将众智园、AI 原点的 2 条待核顺序和 6 个候选点绑定到正式几何，大钟寺因边界冲突只作外部锚点，所有现场值仍为空。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v2.5-candidate"
+iteration: "v2.6-candidate"
 ---
 
 # 京张共行环：企业—居民交通共益系统
@@ -34,7 +34,9 @@ iteration: "v2.5-candidate"
 
 ### 首 168 小时与首 12 周：把“能不能做”先变成退出票据
 
-高分方案常把愿景压缩成评审者可以逐项追问的交付链。本版新增两张时间票据，但它们仍是设计合同，不是已经发生的工作：`visual/assets/mobility-first-168h.json` 把首 0–24、24–72、72–120、120–168 小时分别绑定到普通路线、三处接口、失效桌演和独立复核；`visual/assets/mobility-first-12-weeks.json` 再把 W01–02 的边界与同意、W03–04 的路线审计、W05–07 的普通服务等价、W08–09 的失效桌演、W10–11 的专业复核和 W12 的 HOLD/修复/撤回接起来。
+高分方案常把愿景压缩成评审者可以逐项追问的交付链。本版保留两张设计票据，不把它们写成已经发生的工作。`visual/assets/mobility-first-168h.json` 把首 0–24、24–72、72–120、120–168 小时分别绑定到普通路线、空间接口、失效桌演和独立复核；`visual/assets/mobility-first-12-weeks.json` 再把 W01–02 的边界与同意、W03–04 的路线审计、W05–07 的普通服务等价、W08–09 的失效桌演、W10–11 的专业复核和 W12 的 HOLD/修复/撤回接起来。
+
+其中 H1 不再笼统登记“三处接口”。它逐项引用众智园、AI 原点的 2 条待核顺序和 6 个候选点，共 8 个正式几何对象；现有校验器会核对这些引用能否在 `roads.geojson` 与 `public_space.geojson` 中回读。大钟寺的 3 个点和 1 条线则列入 `external_anchor_only`，只作公开底图筛查证据，且必须保持在正式图层之外，直到重点区几何、路线走查、无障碍与消防复核、责任接收者四项条件齐备 [data:visual/assets/mobility-first-168h.json] [data:geometry/roads.geojson#MOB-AUDIT-SEQUENCE-ZHONGZHIYUAN] [data:geometry/roads.geojson#MOB-AUDIT-SEQUENCE-AI_ORIGIN]。
 
 时间表每一段都写四件事：**谁接收、要留下什么证据、什么情况必须停、停下后回到哪条普通路径**。因此它不把“12 周”写成承诺，也不把离线回放写成现场绩效；授权、现场观察和本地 baseline 仍为 0 或 `unknown`。首 168 小时的默认产出是 `HOLD`、补证据、修复或撤回，而不是开通服务。双语总览见 `assets/figures/mobility-release-chain.svg` 与 `.en.svg`。
 
