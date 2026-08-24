@@ -20,8 +20,8 @@ The per-asset details below are for informational purposes and do not override t
 | **Source registry** | `sources.json` | Collected from public sources. | Per-entry license | See individual license fields in sources.json. |
 | **Visualization (HTML)** | `visual/index.html` / `index.en.html` | Self-generated static HTML. No remote assets, scripts, iframes, forms, or external APIs. | COMMUNITY-DISPLAY-ONLY | All CSS and JS are inline. |
 | **Fonts** | DejaVu Sans (used in PDFs and PNG figures) | Pre-installed system font, Bitstream Vera Fonts Copyright. | Free / open-source | Provided with matplotlib; subset embedded in PDFs. |
-| **Satellite imagery reference** | `geometry/*.geojson` (visual reference only) | Sentinel-2, ESA Copernicus program, 2025-2026. | CC BY-SA 3.0 IGO | Used only as visual reference for geometry tracing; not embedded in submission. |
-| **OpenStreetMap reference** | `geometry/*.geojson` (road/rail alignment reference) | OSM 2025-12 snapshot. | ODbL 1.0 | © OpenStreetMap contributors. Derived data (geometry tracing) is not a substantial extract under ODbL; attribution provided above. |
+| **Satellite imagery reference** | `geometry/*.geojson` (visual reference only) | Not used. | CC BY-SA 3.0 IGO | Used only as visual reference for geometry tracing; not embedded in submission. |
+| **OpenStreetMap reference** | `geometry/*.geojson` (road/rail alignment reference) | Not used. | ODbL 1.0 | © OpenStreetMap contributors. Derived data (geometry tracing) is not a substantial extract under ODbL; attribution provided above. |
 
 ## Licensing Notes
 
