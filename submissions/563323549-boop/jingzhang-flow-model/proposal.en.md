@@ -23,7 +23,7 @@ The core contribution of this proposal is a **dynamic crowd-flow control model a
 
 Source usage boundaries follow the repository registry [source:SOURCE-REGISTRY]: formal sources answer task requirements, background-only materials remain background, and provisional geometry yields only conceptual values. Gaps are logged in `assumptions.json` and the repository's `missing_data_checklist.csv` [source:SITE-PACKAGE].
 
-![Evidence chain and package overview](assets/figures/site-overview.png)
+![Evidence chain and package overview](assets/figures/site-overview.en.png)
 
 ## Three-Level Scope Framework
 
@@ -33,7 +33,7 @@ Work deepens across levels: mechanism research at the research scale, conceptual
 
 Once official redlines and key-area plans are released, everything listed in `assumptions.json` must be recomputed: all area-based indicators, node locations, and drawings [source:SITE-PACKAGE].
 
-![Three-level scope and working framework](assets/figures/land-use-structure.png)
+![Three-level scope and working framework](assets/figures/land-use-structure.en.png)
 
 ## Coordinated Research Area: Industry and Future City Research
 
@@ -48,6 +48,10 @@ The logo direction embeds a continuous crowd-flow waveform between two parallel 
 Full responses live in `compliance_matrix.json`; here we state the model's position. Under the "intelligent, AI-vibrant city" positioning, the model is the safety operating system of public space. Under "AI+ scenario empowerment," it is among the most immediately deployable scenarios because it runs on anonymous aggregated data alone. Under "global voice in AI governance," a privacy-first, human-reviewable, fully switchable-off crowd management method is itself a governance narrative that can be shared internationally [source:AGENT-TASKBOOK].
 
 Across the three-areas-two-wings loop, the model supplies "one shared state language": campus flows at the AI Origin Community, test-range flows at Zhongzhiyuan, commercial flows at Dazhongsi, and event flows along both wings all read from the same rating levels and review procedures.
+
+### Coordination Mechanisms with Neighboring Innovation Nodes (Optional Interfaces)
+
+Three optional interfaces — conceptual suggestions only, constituting no confirmed cooperation — are reserved for Beiwei Community, Future Science City, Huairou Science City, the Economic-Technological Development Area, and Beijing-Tianjin-Hebei collaboration: first, a **scenario interface**, where the thermometer grading protocol serves as an open specification any park can adopt to speak the same state language; second, a **talent-and-events interface**, opening annual co-creation camps and academic week slots to these nodes; third, a **data-specification interface**, publishing the minimal anonymous-aggregate field definitions for reuse in cross-region comparative studies. Activation requires a node's own initiative plus a signed data contract [source:AGENT-TASKBOOK].
 
 ### Global Case Studies
 
@@ -92,7 +96,7 @@ Community carrier of a world-class ecosystem. What matters here is lingering: en
 
 Adjacent to metro stations with the heaviest flows, Dazhongsi is the model's extreme-condition proving ground. The station plaza presets three scripts (weekday / weekend / event day); movable interfaces let commercial spill-out expand and contract with the state level [data:geometry/public_space.geojson#PUB-002]. Rules proven here generalize to the whole belt.
 
-![Key-area index and design tasks](assets/figures/key-areas.png)
+![Key-area index and design tasks](assets/figures/key-areas.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -148,9 +152,26 @@ At the contributor's request, the core computation logic of the Passenger-Flow T
 
 All parameter values follow public industry standards and field-measurable attributes (equipment throughput, time-period and station-type factors), enabling full recalculation without any operator-internal data. The contributor retains authorship of the method and agrees to make it available for review, recalculation, and implementation within this project's open-source context.
 
+#### Passenger-Flow Thermometer Model Card
+
+**State mapping**: the computation layer outputs five states (<40 normal, 40–60 watch, 60–75 Level-3 crowd, 75–90 Level-2 crowd, ≥90 Level-1 crowd); the public interface consolidates them into a four-color language — normal & watch → cold blue, Level-3 → teal, Level-2 → warm orange, Level-1 → deep red — with shape symbols ●▲◆■ as non-color coding for color-vision-deficient users.
+
+**Parameter dictionary**:
+
+| Parameter | Meaning | Source |
+|---|---|---|
+| upstream / downstream | sectional flows by time interval | sectional counting devices (simulated demo values here) |
+| enter / exit with r_enter / r_exit | station entry/exit volumes and directional allocation factors | terminals assigned in full; intermediate stations split by factors |
+| transfer_in / transfer_out | transfer volumes | public rail-transit statistics conventions |
+| C_line | line sectional capacity baseline | public rolling-stock capacity and headway data |
+| P_evac | sectional evacuation capacity | escalator/stair unit throughput × count × damage factor |
+| αt / αs | time-of-day / station-type correction | public standard clauses and field-measurable attributes |
+
+**Testing and operating boundaries**: before deployment, false-positive/false-negative baselines are tested on simulated scenario sets and archived; when inputs are missing or below quality thresholds the system degrades to a "data insufficient" notice instead of guessing values; every public-facing state is confirmed by an operator; one switch-off reverts the space to ordinary static signage, and spatial function never depends on the system [source:SOURCE-REGISTRY].
+
 For municipal and new infrastructure, restraint is the principle: perception uses minimal sectional-counting devices only; no new data center; computing reuses existing government cloud; every fixture degrades into ordinary street furniture on power or network loss — space keeps functioning when the system switches off [depth:municipal_infrastructure].
 
-![Mobility and blue-green composite system](assets/figures/mobility-bluegreen.png)
+![Mobility and blue-green composite system](assets/figures/mobility-bluegreen.en.png)
 
 ## Blue-Green Network, Public Space, and Urban Character
 
@@ -174,6 +195,8 @@ Phase one (southern section) lands the model's minimum loop: one node plaza, one
 
 Annual event system (concept only): spring Jing-Zhang AI Festival, summer developer 48-hour co-creation camp, autumn park academic week, winter light-art season. Developer-community operations combine scenario openness, data sandbox, and honor incentives; the conversion path runs testbed users → co-builders → tenant enterprises. Nothing here constitutes a confirmed government commitment [source:AGENT-TASKBOOK].
 
+**Implementation and operations framework for the Phase-1 minimal loop (conceptual suggestion)**: responsibilities — organizer and sub-district office steer site coordination (accountable); the technology provider maintains algorithms and devices (responsible); station and park operators execute on-site actions and human review (consulted); community and enterprise users stay informed (informed). Service-level targets: state refresh within 15 minutes; device faults answered within 24 hours. Effectiveness is tracked annually via two KPIs — graded-action script compliance and peak-period warning lead time. Annual review decides scaling; any party may exit, after which the space returns to conventional management with no abandoned hardware. All conceptual; no government commitment or procurement arrangement [depth:existing_conditions_diagnosis].
+
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 The three required core metrics recalculate as follows, each independently reproducible from the submitted geometry [metric:site_area_sqm]:
@@ -190,11 +213,13 @@ Scope note: green and public space currently concentrate inside the demonstratio
 
 These are the taskbook's mandatory core visual metrics [source:AGENT-TASKBOOK]. Other indicators: FAR, height, and totals remain unknown pending official controls; per-capita space and demand forecasts need field data and are deliberately left unnumbered rather than fabricated [source:SITE-PACKAGE]. The visualization page's numeric declarations match `metrics.json` exactly [metric:green_ratio] [metric:public_space_ratio].
 
-![Metric recalculation and evidence chain](assets/figures/metrics-evidence.png)
+![Metric recalculation and evidence chain](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright, and Compliance
 
-**Data and privacy**: the model handles only anonymous, aggregated, minimized movement states — no facial recognition, no individual trajectories, no retrievable location records; all demonstration figures are simulated. The contributor's practical background is stated only as methodological experience; no non-public operational data, internal reports, or uncleared material is included [data:geometry/site_boundary.geojson#SITE-FLOW-001].
+**Data and privacy**: the model handles only anonymous, aggregated, minimized movement states — no facial recognition, no individual trajectories, no retrievable location records; all demonstration figures are simulated.
+
+**Inclusion and accessibility**: the four crowd states carry shape symbols (●▲◆■) as non-color coding; critical alerts always pair with on-site human guidance and non-digital fallbacks; accessible navigation and missing-person assistance keep purely human service channels, collecting only minimal necessary fields whose access, retention, and deletion rules are published with the operations plan; under weak networks or power loss everything degrades to static signage without harming spatial use. The contributor's practical background is stated only as methodological experience; no non-public operational data, internal reports, or uncleared material is included [data:geometry/site_boundary.geojson#SITE-FLOW-001].
 
 **Boundary precision**: all spatial judgments rest on the repository's provisional rough boundaries, not official redlines; full recalculation follows official releases and may adjust the proposal [source:SOURCE-REGISTRY].
 
