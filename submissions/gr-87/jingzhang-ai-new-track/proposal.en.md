@@ -47,8 +47,8 @@ The spatial base map is inferred from the announcement's four boundaries and re-
 | Tier | Design question | Proposal answer | Data anchor |
 | --- | --- | --- | --- |
 | Integrated research scope (≈43.6 km²) | How to organize the industry ecosystem and future urban form | Five-loop chain: university incubation—open-source collaboration—enterprise commercialization—public experience—international dissemination [source:AGENT-TASKBOOK] | [metric:site_area_sqm], standard_matrix.json |
-| Overall design scope (≈11.4 km²) | How to map space, renewal, and transport | "One Belt, Three Cores, Two Wings, Seven Axes" [depth:overall_spatial_structure] | [data:geometry/land_use.geojson#LU-001], [data:geometry/roads.geojson#ROAD-001] |
-| Key area scope (≈368.4 ha) | Detailed design of the three districts | Positioning, spatial moves, intensity ranges, and switchback pilot segments [depth:three_key_area_detailed_design] | [data:geometry/key_areas.geojson#PROV-KEY-001], [data:geometry/key_areas.geojson#PROV-KEY-001] |
+| Overall design scope (≈11.4 km²) | How to map space, renewal, and transport | "One Belt, Three Cores, Two Wings, Seven Axes" [depth:overall_spatial_structure] | [data:geometry/land_use.geojson#LU-001], roads.geojson |
+| Key area scope (≈368.4 ha) | Detailed design of the three districts | Positioning, spatial moves, intensity ranges, and switchback pilot segments [depth:three_key_area_detailed_design] | [data:geometry/key_areas.geojson#PROV-KEY-001], [data:geometry/key_areas.geojson#PROV-KEY-002], [data:geometry/key_areas.geojson#PROV-KEY-003] |
 
 The three tiers are not a fragmented set of drawings: the integrated scope sets the industry judgment, the overall scope places the renewal projects, and the key areas test feasibility; the provisional boundary is ≈11.41 km², pending re-computation against the official boundary [metric:site_area_sqm] [source:BOUNDARY-SOURCE].
 
@@ -114,7 +114,7 @@ The overall design scope organizes its concept response at the control plan's **
 
 **Renewal framework and retain/renovate/demolish logic**: the building layer expresses 21 representative base parcels in three categories—retain, renovate, and new-build [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]. Principle: **no survey, no demolition** [source:PROCESSED-FACT-PACK].
 
-**Development intensity**: FAR, height, density, green ratio, setback, and red-line remain unknown pending the official control plan [metric:floor_area_ratio] [metric:building_height_m]. Concept ranges (not approved): FAR 1.5–3.0, height 18–45 m, statutory green ratio ≥30%, setback tiered by the control plan, see `assumptions.json` A-CONTROLS-002 [depth:assumption_ranges].
+**Development intensity**: FAR, height, density, statutory green ratio, setback, and red-line remain unknown pending the official control plan [metric:floor_area_ratio] [metric:building_height_m]. Concept ranges (not approved): FAR 1.5–3.0, height 18–45 m, concept green ratio target/assumption ≥30% (statutory green ratio unknown), setback tiered by the control plan, see `assumptions.json` A-CONTROLS-002 [depth:assumption_ranges].
 
 **Adverse Spatial and Jurisdictional Constraints Honestly Disclosed**:
 1. Physical severance of North-South pedestrian traffic by Line 13 ground tracks and acoustic buffer zones, requiring dedicated underpass and overpass engineering deepening [data:geometry/constraints.geojson#CON-002].
@@ -216,7 +216,7 @@ The JingZhang Railway was built in 1905–1909, with Zhan Tianyou as chief engin
 
 Counterexamples N1–N5 & N13–N16: missing evidence must not enter normal, human unavailability must be paused, one qualified period must not skip tiers, partial corrections forbidden, concealment forces retirement, cross-district unauthorized intercept R12, stakeholder disagreement rejection R13, critical obstacle fuse R6, night noise violation degradation R14 [depth:fallback_states]. Schema in `switchback-protocol.schema.json`.
 
-**Switchback pilot segments**: JZ-SW1 Crowd-Wisdom Park (SC-02), JZ-SW2 Origin Community (SC-04/09/11), JZ-SW3 Big Bell Temple (SC-12), all `concept_only` [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:validation_windows] [source:PROCESSED-FACT-PACK].
+**Switchback pilot segments**: JZ-SW1 Crowd-Wisdom Park (SC-02) [data:geometry/key_areas.geojson#PROV-KEY-001], JZ-SW2 Origin Community (SC-04/09/11) [data:geometry/key_areas.geojson#PROV-KEY-002], JZ-SW3 Big Bell Temple (SC-12) [data:geometry/key_areas.geojson#PROV-KEY-003], all `concept_only` [depth:validation_windows] [source:PROCESSED-FACT-PACK].
 
 **Evidence-status discipline**: complete fields only prove design coverage; offline replay only proves the rules are re-runnable; real operation, licensing, and performance remain unknown [depth:evidence_discipline].
 
@@ -264,7 +264,7 @@ The annual main brand "JingZhang AI Innovation Week" sets five activity categori
 
 ## Indicator System, Area Re-computation, and Compliance Matrix
 
-Core indicators are managed in three classes—"geometric re-computation / official control plan / operational calibration" [depth:metrics_recalculation]. Spatially re-computable ones are already given: site 11.41 km², green ratio 21.7%, building footprint 0.98 km², roads 39.8 km, three-phase areas [metric:site_area_sqm] [metric:green_ratio] [metric:building_footprint_area_sqm]. Official-control-plan items (FAR, height, statutory green ratio, setback, red line) are unknown, with concept ranges in assumptions [metric:floor_area_ratio] [metric:building_height_m]. Operational-calibration items define methods only, filling no fabricated baselines [source:AGENT-TASKBOOK].
+Core indicators are managed in three classes—"geometric re-computation / official control plan / operational calibration" [depth:metrics_recalculation]. Spatially re-computable ones are already given: site 11.41 km², green ratio 21.7%, building footprint 0.98 km², roads 40.7 km (recomputed in EPSG:4548), three-phase areas [metric:site_area_sqm] [metric:green_ratio] [metric:building_footprint_area_sqm]. Official-control-plan items (FAR, height, statutory green ratio, setback, red line) are unknown, with concept green ratio target/assumption ≥30%, concept ranges in assumptions [metric:floor_area_ratio] [metric:building_height_m]. Operational-calibration items define methods only, filling no fabricated baselines [source:AGENT-TASKBOOK].
 
 **Operational KPI method**: complaint closure ratio, human takeover success ratio, exit completeness, human-equivalent availability—status=unknown, defining formulas only [metric:complaint_closure_ratio] [metric:human_takeover_success_ratio].
 

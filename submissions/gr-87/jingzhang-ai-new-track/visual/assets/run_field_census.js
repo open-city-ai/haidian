@@ -7,7 +7,7 @@
  * 与我方（gr-87 / jingzhang-ai-new-track）同赛道、同场景的有多少？
  * 哪些"测项覆盖"在全场是空白（human_fallback / 退出阈值 / 法条引用）？
  *
- * 只读约束（v0.5）：全部经 git ls-tree / git show / git rev-parse / git grep 读取
+ * 只读约束（v0.6）：全部经 git ls-tree / git show / git rev-parse / git grep 读取
  * upstream/main（或 CENSUS_FIELD_REF 指定的 ref），绝不 checkout / switch；
  * 默认不写任何文件，只把结果打印到 stdout；显式传入 --write 才更新
  * field-census-evidence.json（复演命令不会破坏 manifest SHA-256）。
@@ -38,7 +38,7 @@ const MY_PKG_RELPATH = 'submissions/gr-87/jingzhang-ai-new-track'; // 我方方�
 const FIELD_REF = process.env.CENSUS_FIELD_REF || 'upstream/main';
 const OUT_FILE = process.env.CENSUS_OUT_FILE ||
   path.join(SCRIPT_DIR, 'field-census-evidence.json');
-const WRITE_MODE = process.argv.includes('--write'); // v0.5: 默认只读
+const WRITE_MODE = process.argv.includes('--write'); // v0.6: 默认只读
 
 /* ---------- 仓库根定位（向上找 .git） ---------- */
 function findRepoRoot(start) {
@@ -317,7 +317,7 @@ try {
   grepCrossCheck = { error: String(e.message || e) };
 }
 
-/* 我方位置（v0.5：按 main 上实际文件存在性判定，不硬编码） */
+/* 我方位置（v0.6：按 main 上实际文件存在性判定，不硬编码） */
 const myTrackIntersectN = stats.same_track.length;
 const myScenarioIntersectN = stats.same_scenario.length;
 const myProposalOnMain = readFileAt(FIELD_REF, MY_PKG_RELPATH + '/proposal.md');
@@ -330,7 +330,7 @@ if (myProposalOnMain) {
 const myPosition = {
   merged_on_main: myProposalOnMain !== null && myManifestOnMain !== null,
   note: myProposalOnMain
-    ? 'upstream/main 已包含历史版本（iteration=' + mainIteration + '）；本次测量针对本地 v0.5 工作区声明，仅用于同场对照。'
+    ? 'upstream/main 已包含历史版本（iteration=' + mainIteration + '）；本次测量针对本地 v0.6 工作区声明，仅用于同场对照。'
     : 'upstream/main 未包含该方案；本次测量针对本地工作区声明。',
   declared_tracks: myTracks,
   declared_scenarios: myScenarios,

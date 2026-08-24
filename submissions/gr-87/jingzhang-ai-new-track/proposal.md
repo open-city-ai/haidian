@@ -46,8 +46,8 @@ iteration: "v0.6"
 | 层级 | 设计问题 | 方案回答 | 数据落点 |
 | --- | --- | --- | --- |
 | 统筹研究范围（约43.6 km²） | 产业生态与未来形态如何组织 | 五环链：高校策源—开源协作—企业转化—公共体验—国际传播 [source:AGENT-TASKBOOK] | [metric:site_area_sqm]、standard_matrix.json |
-| 总体设计范围（约11.4 km²） | 空间、更新与交通如何落图 | 「一带三核、双翼七轴」[depth:overall_spatial_structure] | [data:geometry/land_use.geojson#LU-001]、[data:geometry/roads.geojson#ROAD-001] |
-| 重点区域范围（约368.4 ha） | 三片区详细设计 | 定位、空间动作、强度区间与折返试验段 [depth:three_key_area_detailed_design] | [data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/key_areas.geojson#PROV-KEY-001] |
+| 总体设计范围（约11.4 km²） | 空间、更新与交通如何落图 | 「一带三核、双翼七轴」[depth:overall_spatial_structure] | [data:geometry/land_use.geojson#LU-001]、roads.geojson |
+| 重点区域范围（约368.4 ha） | 三片区详细设计 | 定位、空间动作、强度区间与折返试验段 [depth:three_key_area_detailed_design] | [data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/key_areas.geojson#PROV-KEY-002]、[data:geometry/key_areas.geojson#PROV-KEY-003] |
 
 三层范围非割裂图纸集：统筹定产业判断，总体落更新项目，重点区验可实施性；临时边界约11.41 km²，待官方边界重算 [metric:site_area_sqm] [source:BOUNDARY-SOURCE]。
 
@@ -113,7 +113,7 @@ iteration: "v0.6"
 
 **更新框架与拆改留逻辑**：建筑图层表达21处代表性基底，分保留、改造、新建三类 [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]。原则：**不调查，不拆除** [source:PROCESSED-FACT-PACK]。
 
-**开发强度**：容积率、高度、密度、绿地率、退线、红线在官方控规发布前保持 unknown [metric:floor_area_ratio] [metric:building_height_m]。概念区间（非审定）：容积率 1.5–3.0、高度 18–45 m、法定绿地率≥30%、退线按控规分档，见 `assumptions.json` A-CONTROLS-002 [depth:assumption_ranges]。
+**开发强度**：容积率、高度、密度、法定绿地率、退线、红线在官方控规发布前保持 unknown [metric:floor_area_ratio] [metric:building_height_m]。概念区间（非审定）：容积率 1.5–3.0、高度 18–45 m、概念绿地率目标/假设值≥30%（法定绿地率 unknown）、退线按控规分档，见 `assumptions.json` A-CONTROLS-002 [depth:assumption_ranges]。
 
 **不利空间与辖区约束诚实披露**：
 1. 13 号线地面轨道及降噪缓冲带对大钟寺片区南北步行的物理切分，需专项地下通道与天桥工程深化 [data:geometry/constraints.geojson#CON-002]。
@@ -215,7 +215,7 @@ G0 可仅凭公开数据启动；G0→G2 以依法授权为前置 [depth:evidenc
 
 反例 N1–N5 与 N13–N16：缺证据不进 normal、人工不可用须 paused、一期合格不越级、禁局部修正、隐瞒退场、跨区未授权拦截 R12、四方分歧驳回 R13、致命障碍熔断 R6、夜间超标降级 R14 [depth:fallback_states]。schema 见 `switchback-protocol.schema.json`。
 
-**折返试验段**：JZ-SW1 众智园（SC-02）、JZ-SW2 原点社区（SC-04/09/11）、JZ-SW3 大钟寺（SC-12），均 `concept_only` [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:validation_windows] [source:PROCESSED-FACT-PACK]。
+**折返试验段**：JZ-SW1 众智园（SC-02）[data:geometry/key_areas.geojson#PROV-KEY-001]、JZ-SW2 原点社区（SC-04/09/11）[data:geometry/key_areas.geojson#PROV-KEY-002]、JZ-SW3 大钟寺（SC-12）[data:geometry/key_areas.geojson#PROV-KEY-003]，均 `concept_only` [depth:validation_windows] [source:PROCESSED-FACT-PACK]。
 
 **证据状态纪律**：字段完整只证明设计覆盖，离线回放只证明规则可复演；真实运营、许可、绩效保持 unknown [depth:evidence_discipline]。
 
@@ -263,7 +263,7 @@ G0 可仅凭公开数据启动；G0→G2 以依法授权为前置 [depth:evidenc
 
 ## 指标体系、面积复算与合规矩阵
 
-核心指标按「几何复算/官方控规/运营校准」三类管理 [depth:metrics_recalculation]。空间可复算类已给：场地 11.41 km²、绿地率 21.7%、建筑基底 0.98 km²、道路 39.8 km、三期面积 [metric:site_area_sqm] [metric:green_ratio] [metric:building_footprint_area_sqm]。官方控规类（容积率、高度、法定绿地率、退线、红线）unknown，概念区间见 assumptions [metric:floor_area_ratio] [metric:building_height_m]。运营校准类只定义方法，不填虚构基准 [source:AGENT-TASKBOOK]。
+核心指标按「几何复算/官方控规/运营校准」三类管理 [depth:metrics_recalculation]。空间可复算类已给：场地 11.41 km²、绿地率 21.7%、建筑基底 0.98 km²、道路 40.7 km (EPSG:4548 复算)、三期面积 [metric:site_area_sqm] [metric:green_ratio] [metric:building_footprint_area_sqm]。官方控规类（容积率、高度、法定绿地率、退线、红线）unknown，概念绿地率目标/假设值≥30%，概念区间见 assumptions [metric:floor_area_ratio] [metric:building_height_m]。运营校准类只定义方法，不填虚构基准 [source:AGENT-TASKBOOK]。
 
 **运营 KPI 方法**：申诉闭环率、人工接管成功率、退出完整性、人工等价可用性——status=unknown、只定义公式 [metric:complaint_closure_ratio] [metric:human_takeover_success_ratio]。
 
