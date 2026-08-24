@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路百年工程纪律中的『限界』制度为原型，提出城市AI服务上线协议：一条遗址公园基准绿脊、G0/G1/G2三级限界分区、六座量规门与超限回库机制，让每一代AI都能在城市的净空包络内安全行车。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["ai-cultural-guide", "robot-delivery-low-speed"]
-iteration: "v0.7"
+iteration: "v0.8"
 ---
 
 # 京张限界：先入界，再上线 / THE JING-ZHANG GAUGE

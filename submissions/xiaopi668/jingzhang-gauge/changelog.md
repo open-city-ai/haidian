@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v0.8 - 2026-08-24
+
+- 依据对多个已合并中文方案的对比分析：其 report/visual HTML 均使用常规系统中文字体栈、无 @font-face 内嵌，且渲染正常。本包此前的大体积 data-URI 字体反而可能在评审截图管线中被截断损坏，导致方框。
+- 据此将四个 HTML 页面恢复为与已合并方案一致的系统字体栈（PingFang SC / Microsoft YaHei / Noto Sans CJK SC / sans-serif），文件体积从 ~2MB 回落至 15–52KB。
+- PDF 维持内嵌 JetBrains Maple Mono TrueType 子集不变——自 v0.2 起各轮评审未再出现 PDF 缺字问题。
+
 ## v0.7 - 2026-08-24
 
 - 历史断言补源与弱化：1909年关沟段、首条自主干线铁路、自动车钩等表述改为"据公开史料记载"并新增 BG-HIST-JINGZHANG-RAILWAY 背景来源登记（中英同步）。
