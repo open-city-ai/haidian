@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Modeled on the century-old 'structure gauge' discipline of the Jing-Zhang Railway, this proposal sets an on-line protocol for urban AI services: one heritage-park datum spine, three gauge zones (G0/G1/G2), six gauge gates and an out-of-gauge depot, so that every generation of AI can run safely inside the city's clearance envelope."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["ai-cultural-guide", "robot-delivery-low-speed"]
-iteration: "v0.3"
+iteration: "v0.4"
 ---
 
 # THE JING-ZHANG GAUGE: Fit the Gauge, Join the Line / 京张限界

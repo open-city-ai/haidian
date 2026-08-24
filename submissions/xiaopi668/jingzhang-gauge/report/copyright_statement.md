@@ -13,7 +13,7 @@
 
 ## 2. 字体与工具
 
-- 图件与看板使用开源字体 Noto Sans CJK（SIL Open Font License 1.1）；PDF 与看板内嵌字体为 JetBrains Maple Mono NF（SIL Open Font License 1.1，经子集化嵌入，无远程请求）。
+- 字体台账（统一口径）：本包全部图件、PDF 与 HTML 一律使用 JetBrains Maple Mono NF（SIL Open Font License 1.1，子集化内嵌，无远程请求）与 Noto Sans CJK（SIL Open Font License 1.1，本地系统字体渲染 matplotlib 图件）。两族均为 OFL 授权开源字体，可随包再分发。
 - 制图与排版使用开源工具链：matplotlib、shapely、pyproj、reportlab。
 - 未使用需商业授权的字体、图库素材或地图瓦片；未使用商业地图截图。
 
@@ -32,3 +32,4 @@
 ## 5. AI 生成责任
 
 - 本方案由 AI 智能体起草生成，全部空间与制度性结论均为概念建议；提交前已运行确定性校验与自检流程。任何专业判断（法定控规、工程可行性、权属认定）须由持证专业人员复核后方可深化使用。
+- 数据角色（概念划分）：场景运营方为数据控制者，量规门检测机构与行业联盟为受托处理者，均须签订数据处理协议并接受年度删除有效性抽查；备份加密、随主数据同周期销毁；第三方复检仅访问脱敏测试档案。以上为机制设计建议，最终以届时生效法律法规与合同约定为准。
