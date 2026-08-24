@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v4.19"
+iteration: "v4.21"
 summary: "以百年京张铁路遗产走廊为骨架，把海淀 AI 产业带重构为一条人与智能体共同使用的原力带：一带三区两翼五门户的空间结构，八处叙事地标，八类人才画像，十二张可审计的 AI+ 场景卡，十六项实施机制与十二个编号更新项目，全部锚定临时边界口径、结构化指标与可复算证据链，并由同一份数据源同时渲染中英文本。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
@@ -20,6 +20,10 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **本文档的读法**：全文十三章按公告要求的顺序排列，章内所有结论都带编号与证据引用。区段用 Z1–Z3、W1–W2，机制用 X01–X16，场景用 S01–S12，项目用 R-01–R-12，地标用 M1–M8，构件用 K01–K12。任一结论都可沿编号回溯到资料、几何要素或指标条目。中英文两份文本由同一份数据源渲染，等价性可被机器复核。
 
+
+### 贯穿叙事线：原力四相（One-line Thesis & Quad-Phase Thread）
+
+本方案有一条可被逐章回溯的贯穿叙事线，详见 [`narrative-thread.md`](narrative-thread.md)：一句话主张「人和智能体共用城市」被展开为**原力四相**——①共建 CO-DESIGN → ②试用 TRIAL → ③共管 CO-GOVERN → ④可撤 REVERSIBLE。每一相都绑定具体章节、证据文件与退出条件；任一相失效，方案整体可被降级或撤除，不留下不可逆后果。这条线也是五界面区域协调矩阵（`region-coordination-matrix.json`）与资产级权利台账（`asset-rights-ledger.json`）的统一索引。
 
 ### 设计方法声明
 
@@ -255,6 +259,10 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 以上区域判断属于统筹层的研究结论，用于指导功能取舍与设施共享的**概念建议**，不构成对任何行政区、园区或企业的任务分配，也不替代跨区协调的法定程序 [depth:three_level_scope_framework]。
 
 协同关系的实现依赖两个接口：一是**人才服务互认接口**，让在一地注册的人才身份、信用记录与福利权益可以在带内其他节点被识别，但不强制要求各区改变现有行政边界；二是**场景预约共享接口**，让高校、企业与公众可以在同一平台上预约带内的开放测试段位，避免重复建设与资源闲置。两个接口都以开放文本形式发布，任何区域城市都可以选择接入或独立实现，不形成技术锁定 [source:AGENT-TASKBOOK] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。
+
+### 五界面区域协调矩阵（责任 + 证据 + 退出）
+
+区域协同的真正难点不在「列清单」，而在「每条界面都有可追责的主体、可被复核的证据，以及该界面不得进场的退出条件」。本方案据此建立五条界面——组织方↔投稿方、公众↔智能体、企业↔社区、遗产保护↔更新开发、数据算力↔城市治理——并以 [`region-coordination-matrix.json`](region-coordination-matrix.json) 给出每条界面的责任主体、证据文件与退出条件。该矩阵与本章协同表、第十二章风险合规四边界应答表三者互证，并支撑叙事线的「③共管」相 [source:AGENT-TASKBOOK]。
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -1089,6 +1097,8 @@ AI 产业的空间需求变化速度远快于用地性质的调整速度。一�
 | 合规责任边界 | AI 生成不替代法定资质主体 | assumptions.json / A-EXIT-001 | 责任缺位不得进场 |
 
 四道边界与边界声明（本章前文）、合规矩阵（compliance_matrix.json）三者互证：声明给出范围，矩阵给出证据落点，本表给出处置动作，任一处不一致都会在生成阶段被检出 [depth:risk_missing_data]。
+
+本方案的资产权属、来源与许可边界另以 [`asset-rights-ledger.json`](asset-rights-ledger.json) 逐项台账记录：每一项资产（文本、图纸、几何、图示、标识、结构化数据、脚本、字体、AI 生成内容）均写明所有权、来源、许可类型、再分发与商用边界，确保「④可撤」相在资产层同样可被独立复核 [source:AGENT-TASKBOOK]。
 
 ### 双语等价性记录
 
