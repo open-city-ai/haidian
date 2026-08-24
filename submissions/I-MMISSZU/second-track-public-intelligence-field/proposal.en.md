@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.1"
+iteration: "v0.2"
 summary: "Jing-Zhang evolves from a railway heritage park into public innovation infrastructure for the AI era; AI is the engine, public realm the interface, and people and planet the goal."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
@@ -47,6 +47,18 @@ OPEN, SHARED and OPEN SOURCE describe rising levels of publicness: people may fi
 
 ![First Track, Second Track, switches and field structure](assets/figures/land-use-structure.png)
 
+### Taskbook Mapping Diagram: Three Positions, Five Functions, Three Areas and Two Wings
+
+The Second Track does not create a separate park vocabulary. It organizes the taskbook's three positions, five functions, and three-areas-two-wings structure into one collaboration loop. The Centennial Jing-Zhang Culture Belt is carried by the First Track, heritage switches and the memory rail. The Urban AI Life Experience Belt is carried by the wellness loop, dual-channel services and Dazhongsi public life. The AI Fusion Innovation Belt is supported by Zhongzhiyuan trusted testing, AI Origin open-source translation and the Zhongguancun Technology Service Wing. All relationships are conceptual proposals pending confirmed partners, official boundaries and professional inputs.[source:AGENT-TASKBOOK] [depth:three_level_scope_framework] [metric:taskbook_function_count]
+
+![Taskbook mapping: three positions, five functions, three areas and two wings, and regional collaboration](assets/figures/taskbook-collaboration.en.png)
+
+| Taskbook layer | Second Track response | Space-industry-operation loop |
+| --- | --- | --- |
+| Three positions | Centennial Jing-Zhang Culture Belt, Urban AI Life Experience Belt, AI Fusion Innovation Belt | The First Track provides cultural ground, the Second Track organizes civic innovation interfaces, and versioning sustains operations. |
+| Five functions | Full-stack innovation, world-class ecosystem, AI+ scenarios, intelligent vibrant city, AI governance voice | Trusted tests, knowledge sharing, scenario opening, public services and the Version Assembly feed one another. |
+| Three areas and two wings | Zhongzhiyuan, AI Origin, Dazhongsi, Zhongguancun Technology Service Wing, Xiaoyuehe Scenario Empowerment Wing | Three key areas host prototypes; two wings provide service inputs and scenario corridors; the annual assembly closes the feedback loop. |
+
 ## Coordinated Research Area: Industry and Future City Research
 
 Competitiveness here is not isolated growth in enterprise counts. It is a short loop among foundational research, open collaboration, trustworthy testing, translation, enterprise services and public feedback. Zhongzhiyuan hosts pausable real-world validation; AI Origin shortens the knowledge distance among universities, communities and start-ups; Dazhongsi places agent economies, cultural content and consumption behind visible, contestable and human-takeover interfaces.[source:AGENT-TASKBOOK] [metric:industry_test_scenario_count]
@@ -54,6 +66,18 @@ Competitiveness here is not isolated growth in enterprise counts. It is a short 
 AI operates mainly as invisible infrastructure supporting research collaboration, industrial innovation, public services, cultural experience, ecological management, urban operations and public participation. Technological identity does not depend on robots, screens or cyberpunk devices. Shared rooms, test courts, learning loops, ecology switches, dual-channel service points and an annual version assembly make responsibility, inputs, pause and exit legible.
 
 World cases are not copied as forms or performance promises. Each contributes one testable mechanism, a Jing-Zhang translation and an explicit limit. None supplies ownership, investment, energy, footfall, statutory controls or government commitments for this project.
+
+### Regional Collaboration Framework: No Claimed Partnership
+
+Regional collaboration is framed as exchange interfaces, not as confirmed agreements. Beiwei Community may exchange talent-life services, mixed public services and community feedback. Future Science City may exchange frontier research questions and research-ethics dialogue. Huairou Science City may exchange big-science, basic-research and science-communication agendas. Beijing E-Town may exchange engineering validation, supply-chain and manufacturing translation. Jing-Jin-Ji may exchange replicable scenarios, talent mobility and shared public questions. Each item must receive real authorization, rights clearance and professional review before it becomes a project.[source:AGENT-TASKBOOK] [metric:regional_interface_count]
+
+| Collaboration object | Possible exchange | Second Track interface | Boundary |
+| --- | --- | --- | --- |
+| Beiwei Community | Talent life, daily services, community feedback, cultural events | AI Origin and the wellness loop | Conceptual proposal; no community authorization claimed. |
+| Future Science City | Frontier research questions, ethics, young-talent exchange | Open-source translation studio and Version Assembly | Conceptual proposal; no institutional partnership claimed. |
+| Huairou Science City | Basic research, science communication, big-science agenda translation | Knowledge switches and public classrooms | Conceptual proposal; no research data transferred. |
+| Beijing E-Town | Engineering validation, supply chain, manufacturing scenarios, standardization review | Zhongzhiyuan test commons and production switches | Conceptual proposal; no industrial landing commitment. |
+| Jing-Jin-Ji | Scenario replication, public-service lessons, talent and event flows | Open-source rule library and regional version log | Conceptual proposal; not a regional plan. |
 
 ### Eight mechanism references
 
@@ -385,6 +409,20 @@ The visual language comes from railway traces, dual tracks, switches, networks, 
 | SW-P · Production Switch | Governable settings for trustworthy-AI testing, incubation, release and industrial collaboration. |
 | SW-H · Heritage Switch | Bring railway memory, the Phase I park, Zhongguancun innovation culture and contemporary public life together. |
 
+### Brand, Logo Direction and Cultural Wayfinding Hierarchy
+
+The primary name remains “第二轨｜京张公共智能场,” with the English name “The Second Track | Jing-Zhang Public Intelligence Field.” The identity direction is not a corporate logo but a civic wayfinding motif: two parallel tracks establish the base order, the teal Second Track branches as a relational line, and six switch symbols use K/C/E/M/P/H for Knowledge, Community, Ecology, Mobility, Production and Heritage. Cultural wayfinding sits below the belt-level identity and above individual event posters; it explains space, provenance, contribution and rules without implying official approval or commercial endorsement.[source:AGENT-TASKBOOK] [metric:brand_component_count]
+
+| System | Content | Authorization boundary |
+| --- | --- | --- |
+| Primary name | The Second Track | Jing-Zhang Public Intelligence Field | Proposal naming only; not a trademark or official adoption claim. |
+| Identity direction | Stable First Track + iterative Second Track + switch nodes | Visual direction only; no government, university or enterprise marks. |
+| Six symbols | K Knowledge, C Community, E Ecology, M Mobility, P Production, H Heritage | Conceptual wayfinding and component library, not official traffic or fire signage. |
+| Cultural wayfinding | Provenance labels, memory rail, oral-history consent, generated-content labels | Do not publish before facts and rights are checked. |
+| Honor display | Contributor wall, open-release shelf, failure-review wall, version log | Records contribution; no shaming rank or administrative certification. |
+| Annual event IP | Open Questions, Field Tests, Public Review, Release & Assembly, Learning from Failure | Event concept pending permits, budget, safety and rights clearance. |
+| International copy | “A railway heritage corridor becomes a civic interface for trustworthy AI.” | Communication draft; no claim of selection, approval or completion. |
+
 ### Three civic landmarks
 - **L01 · Open Switch Court：** Reversible ground markings, observation walks and a public questioning desk show how trustworthy AI is tested and paused; not a new landmark building by default.
 - **L02 · Origin Open-Source Station：** An everyday civic living room for open courses, prototype releases, contributor credit and mutual support.
@@ -397,6 +435,19 @@ The city is never finished once; it is versioned continuously. P0 uses temporary
 The annual Jing-Zhang Public Intelligence Field Version Assembly has five parts: Open Questions, Field Tests, Public Review, Release & Assembly, and Learning from Failure. Product release is not the sole measure of success; unresolved questions, incidents and stop decisions are published in an annual version log. Representation, conflicts, appeals, privacy and accessibility are human-facilitated and independently reviewed; AI may organize material and flag omissions only.
 
 The ten packages are conceptual proposals, not procurement, investment or schedule commitments. Each names a lead actor type, dependencies, open-source outputs and stop conditions. Without accountable operators, maintenance budgets, rights clearance or safety conditions, a package remains in test or pause.[metric:project_package_count] [source:EXT-ONTARIO-QUAYSIDE-AUDIT]
+
+### Long-Term Operation Loop for agent.6
+
+Long-term operation uses “six operating streams + six decision gates + auditable exits.” Annual events, developer community, scenario opening, civic-landmark operation, international communication and attraction/translation each receive a lead-actor type, resource need, decision gate, performance logic, human review, appeal and exit path. If accountability, budget, safety, rights, privacy or accessibility review is missing, the stream cannot move from test to scale.[source:AGENT-TASKBOOK] [metric:operating_stream_count]
+
+| Operating stream | Lead actor type | Resource need | Decision gate | Performance logic | Exit path |
+| --- | --- | --- | --- | --- | --- |
+| Annual events | Independent event and public-assembly team | Venue, permits, security, translation, accessibility, rights | Event permit and risk review pass | Representation, complaint closure, public review | Cancel, defer or downgrade to online materials. |
+| Developer community | University-open-source-enterprise secretariat | Mentors, benches, license advice, contribution records | Clear licensing and public-problem origin | Continuity, cross-institution participation, reuse quality | Delist uncleared outputs; pause commercialization. |
+| Scenario opening | Joint scenario-governance group | Test protocol, emergency stop, insurance, on-site operations | Human takeover and pause conditions rehearsed | Incident closure, stop drills, underrepresented coverage | Stop test, retain review, do not scale. |
+| Civic landmarks | Public-space operation and curation team | Exhibition, maintenance, quiet zones, staffed service | Rights-cleared content and no obstruction of daily use | Accessibility, dwelling quality, cultural understanding | Remove installation or reduce to low-impact wayfinding. |
+| International communication | Bilingual editing and fact-check team | Translation, image rights, status notes, media kit | Factual status and authorization checked | Useful feedback and international questions generated | Withdraw misleading copy and publish correction. |
+| Attraction and translation | Professional service and public-value review group | Policy advice, compliance review, pilot path, data templates | Public value and compliance thresholds pass | Quality of problem-to-pilot conversion, not count alone | Return to open-question library or stop attraction. |
 
 | Package | Stage | Area | Lead type | Dependencies | Open-source output |
 | --- | --- | --- | --- | --- | --- |
@@ -434,7 +485,22 @@ Metrics fall into three classes. First are model values recomputable from submit
 | building_height_m | unknown | null | Approved building-height controls and verified existing-building survey data are unavailable. |
 | total_floor_area_sqm | unknown | null | Verified floor counts, building areas and approved development capacities are unavailable. |
 
-![Metric recalculation, sources, assumptions and four-gate evidence chain](assets/figures/metrics-evidence.png)
+### Pilot Metric Dictionary and Audit Plan
+
+Priority pilots audit whether a scene is public, pausable and reviewable before claiming performance. The following items are definitions and sampling plans, not current performance, government commitments or attraction KPIs. Baselines must come from pre-pilot surveys, public records or manual counts and be reviewed before each Version Assembly.[metric:audit_metric_count] [standard:GENERATIVE-AI-INTERIM-MEASURES]
+
+| Metric | Unit | Baseline source | Sampling cycle | Responsible role | Stop threshold | Public granularity |
+| --- | --- | --- | --- | --- | --- | --- |
+| test_protocol_publication_rate | % | Pre-test protocol registry | Each test | Scenario governance group | No public protocol, no launch | Scenario level |
+| human_stop_drill_rate | % | Drill records | Monthly | On-site operations lead | Failed stop drill pauses test | Aggregate |
+| incident_closeout_time | days | Incident register | Per incident | Independent reviewer | Overdue closure blocks scaling | Anonymous incident |
+| underrepresented_group_coverage | category count | Representation register | Quarterly | Public-assembly facilitator | Missing key groups blocks scaling | Category level |
+| accessible_route_verified | yes/no | Accessibility field check | Before each opening | Accessibility professional | If unchecked, show staffed inquiry only | Segment level |
+| open_release_count | item count | License review checklist | Quarterly | Open-source community secretariat | Unclear license blocks release | Project level |
+| public_question_response_rate | % | Public-question register | Quarterly | Version Assembly secretariat | Failed appeal channel pauses expansion | Topic level |
+| ecology_sensor_conflict_count | count | Manual inspection versus sensors | Monthly/after storms | Ecology-utility team | Unverified conflict stops automated advice | Aggregate |
+
+![Metric recalculation, taskbook mapping, operations audit and four-gate evidence chain](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright, and Compliance
 

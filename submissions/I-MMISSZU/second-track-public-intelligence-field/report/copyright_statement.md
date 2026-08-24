@@ -26,9 +26,9 @@ The ASLA-NCC project page supports the listed Project Manager/Lead Designer role
 
 ## 5. Fonts, software and delivery / 字体、软件与交付
 
-PNG 图解使用本机 Microsoft YaHei（中文）与 Arial（英文）渲染，文字已栅格化；字体文件不随成果包再分发。四个正式 PDF 由 ReportLab 4.4.9 构建：中文使用 Microsoft YaHei / Microsoft YaHei Bold，英文使用 Arial / Arial Bold，均以 TrueType 子集嵌入 PDF；字体文件本身不单独分发。网页为离线静态成果，不加载 CDN、远程字体、地图瓦片、iframe、表单、追踪器或外部 API。Python 依赖与构建工具仅用于生成和核验，除许可允许的运行时文件外不随包再分发。
+中文网页把 Noto Sans SC 子集以内联 data URI 写入 `visual/assets/styles.css` 与 `report/proposal*.html`，子集由本机 `NotoSansSC-VF.ttf` 生成，用于修复离线 CJK 渲染缺字问题。Noto Sans SC 采用 SIL Open Font License；子集只作为网页字形资产，不作为场地事实或设计证据。四个正式 PDF 改用 Noto Sans SC 嵌入 TrueType 子集；中文和英文图件文字为栅格化输出。网页仍为离线静态成果，不加载 CDN、远程字体、地图瓦片、iframe、表单、追踪器或外部 API。
 
-The PNG figures use locally installed Microsoft YaHei (Chinese) and Arial (English), rasterized into the images; the font files are not redistributed. All four final PDFs are built with ReportLab 4.4.9: Microsoft YaHei / Microsoft YaHei Bold for Chinese and Arial / Arial Bold for English, embedded as TrueType subsets. The font files are not separately distributed. The website is fully static and offline: no CDN, remote font, map tile, iframe, form, tracker or external API is loaded. Build dependencies are used for generation and validation and are not redistributed unless their licenses allow it.
+The Chinese web pages embed a Noto Sans SC subset as data URIs in `visual/assets/styles.css` and `report/proposal*.html`. The subset is generated from locally installed `NotoSansSC-VF.ttf` to fix offline CJK rendering. Noto Sans SC is under the SIL Open Font License. The subset is a font asset only, not site evidence. All four PDFs now embed Noto Sans SC TrueType subsets; figure text is rasterized. The website remains fully static and offline: no CDN, remote font, map tile, iframe, form, tracker or external API is loaded.
 
 ## 6. Generated media / 生成影像
 
