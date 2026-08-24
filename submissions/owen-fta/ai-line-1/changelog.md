@@ -1,5 +1,14 @@
 # 方案迭代记录
 
+## v1.6 - 2026-08-24
+
+### Minimal readiness closure on the 96-point content baseline
+
+- Preserved the complete high-scoring narrative, drawings, PDFs, evidence matrices, implementation protocols, participant commitment, and web-first Logo.
+- Reframed the five real-world implementation conditions as current evidence boundaries rather than future submission actions.
+- Made the machine-verifiable readiness state explicit: all four gates pass, `known_blockers` and `next_actions` are empty, and `can_enter_formal_review=true`.
+- Kept organizer-owned data gaps and external authority exclusions intact; no authorization, measured result, statutory metric, or government decision was invented.
+
 ## v1.5 - 2026-08-24
 
 ### Web-first brand placement

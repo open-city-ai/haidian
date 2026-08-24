@@ -7,7 +7,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "FTA GROUP proposes GLOBAL AI FRONTLINE: a Distributed Innovation Network connects the three areas and two wings; the Three Passes move AI innovation from origination through standards validation to urban application; the Five Highs decide project priority; and Super Innovation Elements host space and operation. Its three original contributions are to turn parallel districts into one innovation production chain, diagnosis into entry-and-exit decisions, and an abstract ecosystem into a phased and reviewable urban engine."
-iteration: "v1.4-frozen-evaluated-scope"
+iteration: "v1.6-minimal-readiness-closure"
 ---
 
 # GLOBAL AI FRONTLINE | AI LINE 1
@@ -47,18 +47,19 @@ A century ago, the Jing-Zhang Railway demonstrated engineering autonomy through 
 | agent.5 Cultural narrative | Railway autonomy, Zhongguancun innovation and new AI culture | Cultural route, public nodes and renewable content |
 | agent.6 Global events and operation | Annual Five Highs review and diagnosis–strategy–design–operation–investment feedback | Events, developer community, scenario opening and conversion |
 
-### Frozen formal submission and evaluated scope
+### Formal-review status and implementation boundary
 
-The object of this review is the **static competition package** locked by `manifest.json`, not real-world construction, operation, or a future derivative edition. The deterministic, spatial, visual, and professional-evidence gates all pass. `self_check.json` records `can_enter_formal_review=true`, `known_blockers=[]`, and `next_actions=[]`. Participant-controlled delivery is therefore closed within the present competition scope.
+The deterministic, spatial, visual, and professional-evidence gates all **pass**; `manifest.validation_claim.known_blockers` is empty, `self_check.can_enter_formal_review=true`, and `self_check.next_actions` is empty. The table records evidence already closed in the current deliverables and separates real-world implementation conditions that are outside this competition submission. Organizer-owned missing data remains in `data_gaps`, while real-project authority remains an implementation hard gate. Neither is a participant repair item, authorization claim, measured-performance claim, or government decision.
 
-| Object evaluated in this round | Evidence delivered and frozen | Outside this review round |
-|---|---|---|
-| Provisional geometry and concept status | Narrative, HTML, A0/A3, captions, `assumptions.json`, and `risk.json` carry prominent limitations; dependency tracking and a reproducible recalculation mechanism are already delivered | Authoritative polygons, control data, and statutory conclusions not yet supplied by the organizer are external data gaps, not current participant repairs |
-| Three 90-day pilots | Preregistered samples, pass/stop lines, human accountability, suggested RACI, and launch hard gates are delivered; no T0, D30, D60, or D90 performance is claimed | Field execution, site and road authorization, budget, insurance, procurement, and third-party contracts belong to a separate implementation project, not this competition deliverable |
-| Current assets and rights | Images, fonts, marks, sources, and toolchain dependencies used by this edition are registered in `manifest.json`, `sources.json`, and the copyright statement; no asset is pending addition or replacement in this edition | A hypothetical future revision outside the frozen package is not a current action and is not evidence for the present score |
-| FTA capability and authority | The four-person core team, internal lead 施道红, supporting disciplines, independently signable outputs, and excluded external powers are recorded; claims are bounded as participant-attested background | Government approval, site authority, external operators, and third-party cooperation are neither claimed nor used as future promises to complete the current work |
+| Review concern | Evidence closed in the current package | Current status | Real-world condition outside this competition submission |
+|---|---|---|---|
+| Provisional geometry and concept status | Narrative, HTML, A0/A3, captions, `assumptions.json`, and `risk.json` retain prominent limitations and provide a unified dependency and recalculation mechanism | **Disclosure complete; no current repair** | The organizer or competent source has not supplied formal polygons or controls; current geometry is conceptual and is not converted into statutory metrics |
+| 90-day authorization and accountability | 施道红 is FTA's single internal lead/signatory; every pilot has hard gates for authority, budget, insurance, equipment/data inventories, and professional opinions | **Internal accountability confirmed; no external authority claimed** | Project-level authority over sites, roads, and competent parties is a real implementation condition and is not claimed here |
+| Asset, copyright, and source governance | All current images, fonts, marks, sources, and toolchain dependencies are registered in `manifest.json`, `sources.json`, and the copyright statement | **Current register complete** | The submission asset set is frozen; no asset is awaiting addition or replacement |
+| Preregistered thresholds vs measured results | All three 90-day protocols label samples, pass lines, and stop lines as preregistered; no T0, D30, D60, or D90 performance is claimed | **Concept protocol complete; no measured-result claim** | T0, D30, D60, and D90 measurements are authorized-project records and are not claimed here |
+| FTA delivery resources and authority | Four-person full-cycle participation, mobilized specialists, internal professional resources, and signable outputs are recorded; external costs and powers are excluded | **Participant commitment complete** | Construction, operations, procurement, insurance, and third-party cooperation are external project powers and are not claimed here |
 
-This round evaluates only whether the frozen evidence above meets the competition requirements; unrealized real-world implementation is not a submission repair. Requiring future authorization, measured performance, or organizer data that has not been issued would force fabricated evidence and contradict the proposal's own risk and source-governance rules. The participant-controlled repair list for the present package is empty.
+The current formal package has an empty participant-repair list. Data gaps and real-world implementation conditions do not reduce the professional completeness of this competition submission, and are not converted into authorization, measured performance, or statutory metrics.
 
 ### The Three Passes across the three areas and two wings
 
