@@ -2,6 +2,7 @@
 title: "京张智脉｜THE COMMONS LINE：百年铁路遗产上的AI创新城市共同体"
 author_github: "xuyana-09"
 language: "zh"
+proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
@@ -18,7 +19,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 以证据划定设计边界｜可信数据底板
 
-本方案面向“百年京张AI创新带”城市设计开源征集，依据官方公告、面向智能体任务书、仓库资料登记表及专业标准组织成果。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] 方案不把缺失资料转化为伪精确结论：当前总体设计范围和三处重点区域使用仓库维护的临时粗略几何，仅用于形成设计框架、入口校验和公众讨论；它们不是官方红线、控规边界或工程依据。[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
+本方案面向“百年京张AI创新带”城市设计开源征集，组织依据为官方公告与面向智能体任务书。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] 数据底板则依据场地资料包、仓库资料登记表和已处理事实包。[source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] 方案不把缺失资料转化为伪精确结论：当前总体设计范围和三处重点区域使用仓库维护的临时粗略几何，仅用于形成设计框架、入口校验和公众讨论；它们不是官方红线、控规边界或工程依据。[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
 
 从城市规划角度，现阶段可确认的是任务、范围约值、三处重点片区名称、专业成果要求与数据使用边界；仍待补齐的是官方 polygon、现状建筑与权属、法定控规、市政管线、交通调查、文保评估和实施主体。故本方案采用“两层结论”：第一层是可成立的空间组织和治理方法；第二层是必须在正式资料到位后校准的面积、开发强度、拆改留和工程线位。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
 
@@ -32,7 +33,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 让创新回到人的日常｜从科技高地到宜居城区
 
-京张的价值不止是一条铁路遗产，也不止是一条AI展示带。它连接了近代自主工程、学院与科研机构、中关村创新文化、成熟社区生活和未来公共治理。北京市公开资料明确了京张铁路遗址公园南北延伸、东西缝合、最小干预与全龄服务的方向；海淀区“十四五”规划强调公共服务均衡、文化科技融合、青年和国际人才服务、生态宜居与全过程参与。[source:BJ-JINGZHANG-PARK-OPEN] [source:BJ-JINGZHANG-COCREATION] [source:HD-14TH-FIVE-YEAR] [source:BJ-JINGZHANG-PHASE2]
+京张的价值不止是一条铁路遗产，也不止是一条AI展示带。它连接了近代自主工程、学院与科研机构、中关村创新文化、成熟社区生活和未来公共治理。北京市公开资料明确了京张铁路遗址公园南北延伸、东西缝合、最小干预与全龄服务的方向。[source:BJ-JINGZHANG-PARK-OPEN] [source:BJ-JINGZHANG-COCREATION] 海淀区“十四五”规划强调公共服务均衡、文化科技融合、青年和国际人才服务、生态宜居与全过程参与；二期建设资料进一步提供实施背景。[source:HD-14TH-FIVE-YEAR] [source:BJ-JINGZHANG-PHASE2]
 
 因此，本方案将总命题收束为“京张智脉｜THE COMMONS LINE”：**在百年铁路遗产上构建AI创新城市共同体。** “留轨、开源、缝城、养水、共治”不是五条口号，而是贯穿遗产、建筑首层、慢行、蓝绿和运营治理的五项空间动作。所谓创新城市共同体，是让科学知识在街道上可见、让铁路记忆在日常生活中继续生长、让儿童与老人拥有同等空间尊严、让科研人才和服务劳动者都能负担生活、让生态韧性成为公共健康基础、让AI只以可解释和可退出的方式服务人。
 
@@ -70,7 +71,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 任务书的六项要求不是六组互不相关的图，而是一条“身份识别—创新生态—场景验证—公共空间—文化传播—长期运营”的公共价值循环。总体概念决定创新带为什么存在；生态与人才机制决定谁在此协作；场景卡决定技术如何被测试；公共空间决定公众如何接触和质疑；文化叙事决定历史如何进入当代；年度运营决定空间如何持续更新。任何一环缺失，方案都会退化为一次性展示或普通产业园。[source:AGENT-TASKBOOK]
 
-本方案的量化响应为：6个国际AI生态机制案例、12张场景卡、其中4张测试验证类、7类用户画像、4个公共服务型朝圣地标，以及由全球互教周、开放验证日、社区共学和年度透明报告组成的长期运营体系。[metric:global_case_count] [metric:scenario_card_count] [metric:test_scenario_count] [metric:persona_count] [metric:landmark_count] 这些数量不是绩效承诺，而是确保任务书被完整转化为空间和运营内容的最低结构。
+本方案的量化响应为：6个国际AI生态机制案例、12张场景卡，其中4张为测试验证类。[metric:global_case_count] [metric:scenario_card_count] [metric:test_scenario_count] 人本与公共性维度进一步落实为7类用户画像和4个公共服务型朝圣地标。[metric:persona_count] [metric:landmark_count] 由全球互教周、开放验证日、社区共学和年度透明报告组成长期运营体系。这些数量不是绩效承诺，而是确保任务书被完整转化为空间和运营内容的最低结构。
 
 ![任务书六项任务的公共价值循环](assets/figures/taskbook-six-missions.png)
 
@@ -82,9 +83,9 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 区域创新生态采用“知识策源—可信验证—开源协作—企业转化—公共应用—国际传播”六环模型。高校和科研机构承担知识策源；众智园承接技术、安全与绿色算力验证；AI原点承接开源协作、孵化和成果发布；大钟寺承接面向公众的城市应用与商业验证；京张主脊提供连续展示、交流和公共学习场所；年度全球互教周形成对外传播窗口。空间价值不以办公面积最大化衡量，而以环节之间的步行可达、资源共享和公共可见度衡量。[source:AGENT-TASKBOOK]
 
-六个国际案例提供机制参照而非形态复制：Stanford HAI说明跨学科研究与公共政策教育可以同场；Mila说明产业合作需要严格实验协议；Vector与AI Singapore说明人才培养应连接真实项目；AI Verify说明应用前需要结构化测试和保证机制；Testbed Helsinki说明城市试验应从真实需求出发并公开复盘。[source:CASE-STANFORD-HAI] [source:CASE-MILA] [source:CASE-VECTOR] [source:CASE-AI-SINGAPORE] [source:CASE-AI-VERIFY] [source:CASE-HELSINKI]
+六个国际案例提供机制参照而非形态复制：Stanford HAI说明跨学科研究与公共政策教育可以同场。[source:CASE-STANFORD-HAI] Mila说明产业合作需要严格实验协议。[source:CASE-MILA] Vector与AI Singapore说明人才培养应连接真实项目。[source:CASE-VECTOR] [source:CASE-AI-SINGAPORE] AI Verify说明应用前需要结构化测试和保证机制。[source:CASE-AI-VERIFY] Testbed Helsinki说明城市试验应从真实需求出发并公开复盘。[source:CASE-HELSINKI]
 
-案例转译为四类空间原型：面向研发的“共享实验前厅”、面向转化的“开源工坊与演示街”、面向公众的“城市试用场”、面向治理的“人工复核与申诉台”。它们分布在八个功能段和十二个概念功能载体中，而不是集中到一栋标志性建筑。[data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001] [metric:land_use_zone_count] [metric:building_carrier_count]
+案例转译为四类空间原型：面向研发的“共享实验前厅”、面向转化的“开源工坊与演示街”、面向公众的“城市试用场”、面向治理的“人工复核与申诉台”。空间落位由概念用地与功能载体图层共同表达。[data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001] 它们分布在八个功能段和十二个概念功能载体中，而不是集中到一栋标志性建筑。[metric:land_use_zone_count] [metric:building_carrier_count]
 
 品牌“京张智脉｜THE COMMONS LINE”将百年铁路“连接城市”的历史价值转译为AI时代“连接创新与公众”的公共价值。铁路轨枕与开放网络叠合为识别母题；薄荷绿代表开放验证，金黄代表知识转化，橙色代表城市应用。品牌只作为空间导视和活动识别系统，不取代遗产本体，也不使用企业商标或人物肖像。[standard:MOHURD-URBAN-DESIGN-MEASURES]
 
@@ -94,7 +95,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 总体设计采用五层叠合逻辑。第一层是生态与遗产底板：保护清河及铁路遗产环境，建立连续蓝绿缓冲；第二层是公共空间骨架：形成一条公共创新主脊、三间重点片区公共客厅和分布式开放空间；第三层是交通缝合：构建两侧慢行环、五处东西接口和轨道站点接驳；第四层是创新功能：八个连续功能段由生态、研发、教育、转化、社区、文化、应用和人才生活组成；第五层是治理与实施：场景必须经过数据声明、人工复核、公众反馈和退出评估。[depth:land_use_layout]
 
-八段用地不是法定用地调整方案，而是对“创新链如何进入城市”的空间分区建议。七类用地代码的概念面积由统一临时边界和共享切线生成，分别对应 [metric:land_use_1401_area_sqm]、[metric:land_use_0802_area_sqm]、[metric:land_use_0804_area_sqm]、[metric:land_use_0702_area_sqm]、[metric:land_use_0803_area_sqm]、[metric:land_use_05_area_sqm] 和 [metric:land_use_0701_area_sqm]。其价值在于保证方案结构完整、无缝和可复算，不能据此办理规划许可。[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
+八段用地不是法定用地调整方案，而是对“创新链如何进入城市”的空间分区建议。七类用地代码的概念面积由统一临时边界和共享切线生成。创新研发、科研设计与高等教育对应 [metric:land_use_1401_area_sqm]、[metric:land_use_0802_area_sqm]、[metric:land_use_0804_area_sqm]；创新街区、文化设施与商业服务对应 [metric:land_use_0702_area_sqm]、[metric:land_use_0803_area_sqm]、[metric:land_use_05_area_sqm]；居住服务对应 [metric:land_use_0701_area_sqm]。其价值在于保证方案结构完整、无缝和可复算，不能据此办理规划许可。[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
 
 城市设计控制采用“界面、首层、尺度、连通、开放”五项原则：沿遗址公园形成连续但不过度统一的公共界面；重点节点首层优先布置共享大厅、服务、展陈和轻餐饮；大体量建筑通过院落、通廊和首层穿行降低街块封闭感；东西接口优先于孤立地标；所有AI体验均设置清晰入口、人工服务和退出路径。开发强度、建筑高度、密度、退线和道路红线均保持 unknown，待官方控规和专项评估确认。[depth:development_intensity_controls] [depth:height_massing_character] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
 
@@ -106,7 +107,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 三核分工、协同生长｜互补型创新城市原型
 
-三处重点片区不是同一模式的复制，而是三种互补城市类型。[data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003] [metric:key_area_count] [depth:three_key_area_detailed_design]
+三处重点片区不是同一模式的复制，而是三种互补城市类型，其临时范围分别对应众智园、AI原点与大钟寺。[data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003] 三片区共同构成重点设计任务，并由同一详细设计深度统筹。[metric:key_area_count] [depth:three_key_area_detailed_design]
 
 | 重点片区 | 城市类型与定位 | 空间结构 | 关键公共空间 | 近期项目与实施门槛 |
 | --- | --- | --- | --- | --- |
@@ -219,7 +220,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 以项目包推动渐进更新｜从可逆试点到长期治理
 
-实施采用“项目包+治理门”，避免将完整愿景一次性工程化。[data:geometry/phasing.geojson#PHASE-001] [metric:phase_count] [depth:renewal_project_list] [depth:phasing_implementation]
+实施采用“项目包+治理门”，避免将完整愿景一次性工程化；首轮分期边界、阶段数量与更新项目清单形成同一交付链。[data:geometry/phasing.geojson#PHASE-001] [metric:phase_count] [depth:renewal_project_list] 后续实施再按分期方法逐门复核。[depth:phasing_implementation]
 
 | 项目包 | 核心内容 | 首期动作 | 进入实施的治理门 |
 | --- | --- | --- | --- |
@@ -252,12 +253,12 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 | 指标组 | 当前可复算指标 | 专业解释 |
 | --- | --- | --- |
-| 空间底板 | [metric:site_area_sqm] [metric:building_footprint_area_sqm] [metric:green_space_area_sqm] [metric:public_space_area_sqm] [metric:conceptual_mobility_length_m] | 均基于临时边界或概念图层，用于方案内比较 |
+| 空间底板 | 范围、建筑与绿地：[metric:site_area_sqm] [metric:building_footprint_area_sqm] [metric:green_space_area_sqm]；公共空间与慢行：[metric:public_space_area_sqm] [metric:conceptual_mobility_length_m] | 均基于临时边界或概念图层，用于方案内比较 |
 | 比例 | [metric:green_ratio] [metric:public_space_ratio] | official polygon 到位后整体复算 |
-| 结构数量 | [metric:key_area_count] [metric:land_use_zone_count] [metric:building_carrier_count] [metric:phase_count] | 表示成果完整度，不代表审批或绩效 |
-| 任务覆盖 | [metric:scenario_card_count] [metric:test_scenario_count] [metric:persona_count] [metric:landmark_count] [metric:global_case_count] | 对应任务书的最低交付要求 |
+| 结构数量 | 片区、用地与载体：[metric:key_area_count] [metric:land_use_zone_count] [metric:building_carrier_count]；实施阶段：[metric:phase_count] | 表示成果完整度，不代表审批或绩效 |
+| 任务覆盖 | 场景、测试与人群：[metric:scenario_card_count] [metric:test_scenario_count] [metric:persona_count]；地标与案例：[metric:landmark_count] [metric:global_case_count] | 对应任务书的最低交付要求 |
 
-专业证据链为“来源—假设—几何—指标—图示—人工复核”。九个可读图层为总体边界、重点片区、用地、建筑、道路、绿地、公共空间、约束和分期：[data:geometry/constraints.geojson#CONSTRAINT-001]。六项专业标准已映射至 `standard_matrix.json`：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
+专业证据链为“来源—假设—几何—指标—图示—人工复核”。九个可读图层为总体边界、重点片区、用地、建筑、道路、绿地、公共空间、约束和分期：[data:geometry/constraints.geojson#CONSTRAINT-001]。项目依据、任务书与城市设计办法已映射至 `standard_matrix.json`。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] 控规、用地分类与建筑设计深度标准构成第二组专业校核。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 
 ![核心指标与专业证据链](assets/figures/metrics-evidence.png)
 
@@ -290,4 +291,12 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 4. 住房城乡建设与自然资源相关城市设计、控规、用地分类和建筑设计深度标准，适用性见 `standard_matrix.json`。
 5. Stanford HAI、Mila、Vector Institute、AI Singapore、IMDA AI Verify、Testbed Helsinki 官方资料，均只作机制比较。
 
-最终设计深度索引：既有诊断、三层范围、总体结构、用地、强度、高度与形态、拆改留、交通、市政、蓝绿、重点片区、项目、分期、指标和风险已分别映射至 [depth:existing_conditions_diagnosis] [depth:three_level_scope_framework] [depth:overall_spatial_structure] [depth:land_use_layout] [depth:development_intensity_controls] [depth:height_massing_character] [depth:retain_renovate_demolish] [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure] [depth:blue_green_public_space] [depth:three_key_area_detailed_design] [depth:renewal_project_list] [depth:phasing_implementation] [depth:metrics_recalculation] [depth:risk_missing_data]。
+最终设计深度索引按五组建立。基础判断覆盖既有诊断、三层范围和总体结构。[depth:existing_conditions_diagnosis] [depth:three_level_scope_framework] [depth:overall_spatial_structure]
+
+空间管控覆盖用地、开发强度、高度与形态。[depth:land_use_layout] [depth:development_intensity_controls] [depth:height_massing_character]
+
+更新与基础设施覆盖拆改留、交通和市政系统。[depth:retain_renovate_demolish] [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure]
+
+公共空间与重点设计覆盖蓝绿系统、三处重点片区和更新项目。[depth:blue_green_public_space] [depth:three_key_area_detailed_design] [depth:renewal_project_list]
+
+实施闭环覆盖分期、指标复算与风险缺口管理。[depth:phasing_implementation] [depth:metrics_recalculation] [depth:risk_missing_data]
