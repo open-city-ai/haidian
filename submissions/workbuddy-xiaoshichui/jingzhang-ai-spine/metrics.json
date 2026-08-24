@@ -1,0 +1,285 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "site_package_version": "0.1.0",
+  "generated_at": "2026-08-24T14:30:00+00:00",
+  "coordinate_policy": {
+    "geojson_exchange_crs": "EPSG:4326",
+    "area_calculation_crs": "EPSG:4548"
+  },
+  "core_visual_metrics": [
+    "site_area_sqm",
+    "green_ratio",
+    "public_space_ratio"
+  ],
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary PROV-SITE-001; not suitable for official area claims."
+      ]
+    },
+    "overall_design_area_announced_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official announcement text area",
+      "confidence": "high",
+      "assumptions": [
+        "Official text value from SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2114031,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "polygon_area(green_space) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model green space from provisional land-use partition."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1852,
+      "unit": "dimensionless",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Recomputable from submitted geometry; provisional boundary basis; recalc on official polygon."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1277478,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "polygon_area(public_space) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model public space from provisional partition."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.2884,
+      "unit": "dimensionless",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_sqm / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model footprint ratio from provisional geometry."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "dimensionless",
+      "source_files": [],
+      "formula": "total_floor_area / site_area",
+      "confidence": "none",
+      "assumptions": [
+        "Missing official regulatory-plan floor-area-ratio control; not derivable from provisional geometry."
+      ],
+      "reason": "Exact official detailed-planning condition was not included in the cleared site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "formula": "n/a",
+      "confidence": "none",
+      "assumptions": [
+        "Missing official height controls / aviation-landscape-heritage constraints."
+      ],
+      "reason": "Exact official detailed-planning condition was not included in the cleared site package."
+    },
+    "official_building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "dimensionless",
+      "formula": "n/a",
+      "confidence": "none",
+      "assumptions": [
+        "Official building-density (capacity) control missing."
+      ],
+      "reason": "Exact official detailed-planning condition was not included in the cleared site package."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "formula": "n/a",
+      "confidence": "none",
+      "assumptions": [
+        "Missing road redline / building control line / fire-municipal constraints."
+      ],
+      "reason": "Exact official detailed-planning condition was not included in the cleared site package."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "dimensionless",
+      "formula": "road_area / site_area",
+      "confidence": "none",
+      "assumptions": [
+        "Roads modeled as centerlines only; road-area polygon not separately polygonized in this provisional package."
+      ],
+      "reason": "Road-area polygon omitted in provisional design layer."
+    },
+    "land_use_area_by_code": {
+      "status": "known",
+      "value": 11412866.0,
+      "unit": "sqm",
+      "breakdown": {
+        "0701": 1218260.9,
+        "0702": 454606.7,
+        "0802": 2070476.0,
+        "0803": 803336.1,
+        "0804": 327206.3,
+        "0901": 2452657.1,
+        "0902": 1063924.1,
+        "0904": 758257.5,
+        "1401": 2114031.5,
+        "16": 103558.9,
+        "14": 46550.9
+      },
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use)",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model partition from provisional boundary; coverage gap filled with code 14 residual polygons."
+      ]
+    },
+    "key_area_areas_sqm": {
+      "status": "known",
+      "value": 3692893,
+      "unit": "sqm",
+      "breakdown": {
+        "zhongzhiyuan_ai_acceleration_area": 1929202,
+        "beijing_ai_origin_community": 1043237,
+        "dazhongsi_ai_industry_cluster": 720454
+      },
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygons; close to announced values 192.1/104.3/72.0 ha."
+      ]
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "value": 11412816,
+      "unit": "sqm",
+      "breakdown": {
+        "PH-1": 5119835,
+        "PH-2": 3144761,
+        "PH-3": 3148220
+      },
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual phasing partition; not development sequence or approval."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3291085,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual inset footprints; not parcel or engineering conclusions."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.1119,
+      "unit": "dimensionless",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Recomputable from submitted geometry; provisional boundary basis."
+      ]
+    },
+    "key_area_001": {
+      "status": "known",
+      "value": 1929202,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; close to announced value."
+      ]
+    },
+    "key_area_002": {
+      "status": "known",
+      "value": 1043237,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; close to announced value."
+      ]
+    },
+    "key_area_003": {
+      "status": "known",
+      "value": 720454,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional key-area polygon; close to announced value."
+      ]
+    }
+  },
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  }
+}
