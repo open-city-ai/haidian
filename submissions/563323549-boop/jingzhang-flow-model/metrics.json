@@ -1,0 +1,118 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "直接引用仓库登记的临时总体设计范围粗略替代边界。",
+    "正式官方边界发布后需整体复算。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.1794,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm (submitted overall scope)",
+   "confidence": "low",
+   "assumptions": [
+    "绿核集中于示范带内部（约占示范带49%）；全范围口径随分期推进提高。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0218,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm (submitted overall scope)",
+   "confidence": "low",
+   "assumptions": [
+    "节点广场集中于示范带内部；全范围口径随分期推进提高。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 10754.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "low",
+   "assumptions": [
+    "仅三个概念体量地块的基底示意面积，不代表实际建筑规模。"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_area_features)",
+   "confidence": "medium",
+   "assumptions": [
+    "引用仓库登记的三处重点区临时粗略范围。"
+   ]
+  },
+  "flow_node_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space_flow_control_nodes)",
+   "confidence": "low",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "公开资料包中无官方控规容积率控制条件与现状建筑规模，任何数值都将冒充法定规划结论。"
+  },
+  "building_height_max_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [],
+   "formula": "max(building_height_m)",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "缺官方高度控制区、文保控制线等条件，建筑高度保持未知。"
+  },
+  "peak_visitor_forecast": {
+   "status": "unknown",
+   "value": null,
+   "unit": "persons",
+   "source_files": [],
+   "formula": null,
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "客流预测需要实测与授权数据；本方案不编造预测值，模型演示一律使用明确标注的模拟数据。"
+  }
+ }
+}
