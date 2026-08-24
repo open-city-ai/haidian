@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.2"
+iteration: "v0.3"
 summary: "Jing-Zhang evolves from a railway heritage park into public innovation infrastructure for the AI era; AI is the engine, public realm the interface, and people and planet the goal."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
@@ -501,6 +501,19 @@ Priority pilots audit whether a scene is public, pausable and reviewable before 
 | ecology_sensor_conflict_count | count | Manual inspection versus sensors | Monthly/after storms | Ecology-utility team | Unverified conflict stops automated advice | Aggregate |
 
 ![Metric recalculation, taskbook mapping, operations audit and four-gate evidence chain](assets/figures/metrics-evidence.en.png)
+
+## Substantive Bilingual Equivalence Handoff
+
+The formal professional-review handoff does not rely only on the machine bilingual gate. It includes this substantive human checklist for core claims, the 36 metric states, provisional-boundary warnings, figure placement, agent.1-agent.6 name mapping and generated-media limits. Any later remake of text, figures, font subsets or cover media must update this table, `sources.json`, the manifest and the self-check record together.[source:SOURCE-REGISTRY] [metric:audit_metric_count]
+
+| Check item | Chinese package | English counterpart | Result |
+| --- | --- | --- | --- |
+| Core claim | 第一轨承载历史与铁路遗产，第二轨连接人、自然、知识、产业、公共生活与可信 AI。 | The First Track carries history and railway heritage; the Second Track connects people, nature, knowledge, industry, public life and trustworthy AI. | Substantively equivalent |
+| Metric states | 36 项指标保持 known/unknown 与 provisional 边界说明。 | 36 metric states retain the same known/unknown logic and provisional-boundary limits. | Substantively equivalent |
+| Provisional warnings | 场地、线位、三区两翼和运营关系均为提交模型/概念建议。 | Site, alignments, two-wing links and operating relations are submitted-model or conceptual proposals. | Substantively equivalent |
+| Figure placement | 六组中英文图件一一对应：总览、空间结构、重点区、慢行蓝绿、任务书映射、证据审计。 | Six bilingual figure pairs map one-to-one: overview, spatial structure, key areas, mobility/blue-green, taskbook mapping, evidence/audit. | Substantively equivalent |
+| Agent mapping | agent.1 定位功能；agent.2 品牌；agent.3 区域协同；agent.4 产业；agent.5 场景；agent.6 长期运营。 | agent.1 positioning/functions; agent.2 brand; agent.3 regional collaboration; agent.4 industry; agent.5 scenarios; agent.6 long-term operation. | Substantively equivalent |
+| Generated-media limits | 封面与图解为设计意图，不是现状、建成、真实人物、运营或批准证据。 | Generated cover and diagrams express design intent only, not existing, built, real-person, operating or approval evidence. | Substantively equivalent |
 
 ## Risk, Copyright, and Compliance
 

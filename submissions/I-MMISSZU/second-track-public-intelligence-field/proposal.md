@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.2"
+iteration: "v0.3"
 summary: "京张从铁路遗产公园向 AI 时代公共创新基础设施演化；AI 是引擎，公共领域是界面，人和地球是目标。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
@@ -501,6 +501,19 @@ K/C/E/M/P/H 分别是知识、社区、生态、移动、生产和遗产道岔�
 | ecology_sensor_conflict_count | 次 | 人工巡检与传感比对 | 每月/暴雨后 | 生态市政协同组 | 传感矛盾未核实即停止自动提示 | 聚合 |
 
 ![指标复算、任务书映射、运营审计与四门自检证据链](assets/figures/metrics-evidence.png)
+
+## 中英实质等价交接核对
+
+本次正式专业评审交接不只依赖机器 bilingual gate，而采用人工核对表确认中英文 counterpart 的实质等价。核对对象包括核心主张、36 项指标状态、临时边界警示、图位、agent.1—agent.6 名称映射以及生成媒体限制；若后续重制文本、图件、字体子集或封面，必须同步重做本表、`sources.json`、manifest 与 self-check。[source:SOURCE-REGISTRY] [metric:audit_metric_count]
+
+| 核对项 | 中文稿 | 英文 counterpart | 结论 |
+| --- | --- | --- | --- |
+| 核心主张 | 第一轨承载历史与铁路遗产，第二轨连接人、自然、知识、产业、公共生活与可信 AI。 | The First Track carries history and railway heritage; the Second Track connects people, nature, knowledge, industry, public life and trustworthy AI. | 实质一致 |
+| 指标状态 | 36 项指标保持 known/unknown 与 provisional 边界说明。 | 36 metric states retain the same known/unknown logic and provisional-boundary limits. | 实质一致 |
+| 临时边界警示 | 场地、线位、三区两翼和运营关系均为提交模型/概念建议。 | Site, alignments, two-wing links and operating relations are submitted-model or conceptual proposals. | 实质一致 |
+| 图位 | 六组中英文图件一一对应：总览、空间结构、重点区、慢行蓝绿、任务书映射、证据审计。 | Six bilingual figure pairs map one-to-one: overview, spatial structure, key areas, mobility/blue-green, taskbook mapping, evidence/audit. | 实质一致 |
+| agent 名称映射 | agent.1 定位功能；agent.2 品牌；agent.3 区域协同；agent.4 产业；agent.5 场景；agent.6 长期运营。 | agent.1 positioning/functions; agent.2 brand; agent.3 regional collaboration; agent.4 industry; agent.5 scenarios; agent.6 long-term operation. | 实质一致 |
+| 生成媒体限制 | 封面与图解为设计意图，不是现状、建成、真实人物、运营或批准证据。 | Generated cover and diagrams express design intent only, not existing, built, real-person, operating or approval evidence. | 实质一致 |
 
 ## 风险、版权与合规说明
 

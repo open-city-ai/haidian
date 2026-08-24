@@ -13,6 +13,13 @@
 - Added a rights-recorded synthetic concept cover selected by Wanpeng Zu and labelled as non-evidentiary design intent.
 - Kept official boundary, approved controls, surveyed buildings, engineering alignments, ownership, utilities, fire and heritage approvals as explicit pending inputs; these require whole-package recalculation when supplied.
 
+## v0.3
+
+- Removed duplicate `Taskbook map` buttons and duplicate visual sections; rebuilt the English navigation as agent.1-agent.6 anchors for positioning/functions, brand, regional collaboration, industry, scenarios and long-term operation.
+- Unified iteration labels across proposal front matter, bilingual HTML, programmatic figures and regenerated A3/A0 PDFs as `v0.3`.
+- Added a substantive bilingual equivalence handoff checklist covering core claims, 36 metric states, provisional warnings, figure placement, agent.1-agent.6 mapping and generated-media limits.
+- Updated figure/source and copyright records for v0.3 programmatic figure regeneration and maintained synthetic cover-use limits.
+
 ## v0.2 - 2026-08-24
 
 - Repaired Chinese HTML offline CJK rendering with a bundled Noto Sans SC subset and updated font rights records.
