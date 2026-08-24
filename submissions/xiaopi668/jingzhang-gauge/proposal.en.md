@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Modeled on the century-old 'structure gauge' discipline of the Jing-Zhang Railway, this proposal sets an on-line protocol for urban AI services: one heritage-park datum spine, three gauge zones (G0/G1/G2), six gauge gates and an out-of-gauge depot, so that every generation of AI can run safely inside the city's clearance envelope."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["ai-cultural-guide", "robot-delivery-low-speed"]
-iteration: "v0.2"
+iteration: "v0.3"
 ---
 
 # THE JING-ZHANG GAUGE: Fit the Gauge, Join the Line / 京张限界
@@ -22,7 +22,7 @@ The evidence base of this proposal has four layers. Layer one is the organizer's
 
 A data gap must be stated honestly: the organizer has not yet published an official redline vector for the overall design area nor precise boundaries for the three key areas. This package therefore uses the repository's **provisional rough boundary** for spatial generation and self-checking [source:BOUNDARY-SOURCE]; it must not be treated as an official redline, an approval basis, or a precise-area basis. The three key areas likewise use rough provisional scopes [source:KEY-AREA-SOURCE]. All area-based metrics carry a "computed from provisional boundary; recalculate once official geometry arrives" qualifier, while statutory control indicators such as FAR and building height are recorded as pending official data rather than fabricated.
 
-![Overall structure: one belt, one spine, three gates](assets/figures/site-overview.png)
+![Overall structure: one belt, one spine, three gates](assets/figures/site-overview.en.png)
 
 ## Three-Level Scope Framework
 
@@ -30,7 +30,7 @@ The coordinated research area covers about 43.6 km² and hosts industry-synergy,
 
 The three scopes relate as "research sets direction, the overall area sets structure, key areas set prototypes." On existing conditions, this package holds no non-public information about ownership, property, or utility corridors; these are recorded as data gaps in assumptions.json [depth:existing_conditions_diagnosis]. Once the official redline is released, all boundary-related layers, area metrics, and figures must be recalculated; that trigger path is written into assumptions.json and each metric's assumptions.
 
-![Land-use structure and seamless partition](assets/figures/land-use-structure.png)
+![Land-use structure and seamless partition](assets/figures/land-use-structure.en.png)
 
 ## Coordinated Research Area: Industry and Future-City Research
 
@@ -66,6 +66,8 @@ The belt's innovative capacity must be tested inside its regional network. Five 
 
 All synergies are conceptual suggestions implying no inter-governmental, inter-park or inter-corporate commitment until counterparts opt in [source:AGENT-TASKBOOK].
 
+For the existing built neighborhoods along the corridor named in the taskbook review dimensions (such as the Beiwei community): this package holds no specific public material and makes no specific claims; they join G1 co-governance as built-community partners - with reserved seats at Gauge Square hearings, complaint-threshold setting and recalibration observations - pending public material, never speaking for residents at concept stage.
+
 Future-city hypothesis: urban competitiveness in the AI era depends less on how many enterprises a district contains than on how fast a trustworthy AI service can legally go on-line and become part of daily life. The future urban form is therefore a network whose nodes are tested public spaces and whose skeleton is re-testable corridors — precisely this proposal's structure.
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
@@ -88,7 +90,9 @@ All three key areas use the repository's rough provisional scopes; designs below
 
 **③ Dazhongsi AI Industry Cluster (G2 smart-native retail and governance prototype, ≈72.0 ha).** Positioning: the first scene of smart-native business. The Smart-Native Commerce Hall makes "AI+retail" walkable and tryable; the Digital Trade Port towers host cross-border digital-trade offices; the **Out-of-Gauge Depot** is the district's most institutional facility — physical buffer slots where failing services degrade, remediate, and retrain, making exit a designed routine rather than an accident [data:geometry/buildings.geojson#BL-013]. A pocket oasis and the Recalibration Loop improve environmental quality.
 
-![Three key areas index and tasks](assets/figures/key-areas.png)
+![Three key areas index and tasks](assets/figures/key-areas.en.png)
+
+![Key-area nodes and path organization](assets/figures/key-area-paths.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -113,7 +117,19 @@ All three key areas use the repository's rough provisional scopes; designs below
 
 The scenario-space-operation mapping rule is "no card without a gate": every card's deployment requires passing the corresponding gate level, and each card names its visualization layers (scenario_nodes / ai_service_zones) for supervision [data:geometry/constraints.geojson#AZ-G2-002].
 
-**Data operations spec ("minimal necessary" made executable):** each card's boundary resolves into five fields — (1) data category (location / image / voice / transaction); (2) retention (G1 transactions ≤90 days and de-identified at capture; G2 imagery deleted immediately); (3) access (least-privilege operator roles; cross-party pulls logged and approved); (4) notice and consent (conspicuous entry-point labeling + one-tap revocation); (5) incident response (suspected leaks double-notified to the street office and affected parties within 72 hours with related flows frozen). Independent review rotates between the community co-governance committee and the industry association; review records enter the annual white paper [standard:GENERATIVE-AI-INTERIM-MEASURES].
+**Data operations spec ("minimal necessary" made executable):** each card's boundary resolves into five fields — (1) data category (location / image / voice / transaction); (2) retention (G1 transactions ≤90 days and de-identified at capture; G2 imagery deleted immediately); (3) access (least-privilege operator roles; cross-party pulls logged and approved); (4) notice and consent (conspicuous entry-point labeling + one-tap revocation); (5) incident response (suspected leaks double-notified to the street office and affected parties within 72 hours with related flows frozen). Independent review rotates between the community co-governance committee and the industry association; review records enter the annual white paper.
+
+**Three-column data governance map (legal baseline / self-set target / pending confirmation):**
+
+| Item | Legal baseline | Proposed target (non-statutory) | Pending professional confirmation |
+|---|---|---|---|
+| Retention | PIPL minimal-necessity principle | G1 transactions ≤90 days de-identified at capture; G2 imagery deleted immediately | per-scenario compliance review |
+| Breach notification clock | no universal 72-hour statutory deadline | self-set service goal: dual notification within 72 hours of suspected leakage | alignment with cyberspace/public-security reporting duties |
+| Cache & backup | — | edge caches keep no personal data; encrypted backups deleted on the master-data cycle | backup-media destruction procedure |
+| Third-party access | — | whitelist + logged approval | security qualification of inspectors |
+| Deletion verification | — | annual effectiveness sampling written into the white paper | technical verification scheme |
+
+Clarification: the "72 hours" is this proposal's own service-level commitment, not a restatement or interpretation of any current statute; legal baselines follow the laws effective at implementation time [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -127,7 +143,9 @@ Slow traffic is the protagonist: the spine greenway runs ≈9.7 km as the linear
 
 Public services follow the fifteen-minute circle: the community AI station and cultural facilities fill gaps in the Origin Community; education shares the study-classroom line; healthcare relies on existing facilities with no new-hospital claim [standard:BARRIER-FREE-ENVIRONMENT-LAW].
 
-![Mobility, blue-green and public space](assets/figures/mobility-bluegreen.png)
+
+![Gauge-class interface conceptual section](assets/figures/gauge-interface-section.en.png)
+![Mobility, blue-green and public space](assets/figures/mobility-bluegreen.en.png)
 
 ## Blue-Green Network, Public Space, and Urban Character
 
@@ -165,15 +183,17 @@ Policy tools include an annually published scenario list, gate-testing fee vouch
 
 **Stage gates (go/no-go) and long-term operating indicators:** P1 starts only when the official redline is released and tenure coordination completes, with a pause-is-stop-loss trigger — any quarter whose public complaint rate exceeds the hearing-set threshold freezes expansion; P2 requires P1 recalibration passed plus community hearing approval; P3 is trigger-based, requiring both prior phases to pass. Four indicators published yearly keep operations accountable: average gate-testing lead time (target set after professional feasibility work), full disclosure coverage, human-fallback answer rate at or above 95%, and out-of-gauge remediation success rate with recalibration participation counts [data:geometry/phasing.geojson#PH-003].
 
+**Responsibility & acceptance ledger (conceptual RACI):** every package fixes four roles - initiator (local street office or platform company), implementer (design-build-operation consortium), acceptor (third-party inspector co-signing with the community committee), supervisor (district authority and public representatives); named units follow statutory procedures at deepening stage. KPI definitions: testing lead time counts all services submitted in the quarter; fallback answer rate counts all calls and visits to human counters; remediation success rate counts all services judged out-of-gauge in the period; thresholds are set from first-year quartiles confirmed by hearing; fallback rule - any indicator missing target for two consecutive quarters pauses the package and triggers third-party review.
+
 **Global event system and long-term operations (agent.6):** the annual calendar centers on Gauge Day (each June, releasing the Urban Gauge White Paper and recalibration report), plus the September Opening Festival (city ritual for newly launched services), quarterly Switch-House Workshops (developer co-creation camps), and the winter Jing-Zhang AI Marathon. Event branding extends the arched-gauge visual in both languages. The developer community runs on membership and credits: gate-certified teams earn compute credits and scenario priority. International outreach relies on the English white paper, overseas campus tours, and a "Partner Cities of the Urban Gauge" initiative — writing Haidian's rules as open-source text other cities can cite. Sustainability is judged by recalibration results: two consecutive failed recalibrations automatically demote or retire a scenario [source:AGENT-TASKBOOK].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 The metric philosophy is "every number returns to geometry": site_area_sqm ≈11,412,825 m², green_space_area_sqm ≈1,514,451 m², public_space_area_sqm ≈147,977 m², building_footprint_area_sqm ≈237,503 m², all recomputed from GeoJSON in EPSG:4548 [metric:site_area_sqm] [depth:metrics_recalculation].
 
-Two honesty bottom lines: first, floor_area_ratio and building_height_m are recorded as pending official data, with reasons and recalculation triggers in metrics.json — no fabricated values appear anywhere; second, the 1.233 million m² conceptual volume is a low-confidence design quantity (assumed storeys × conceptual footprint), not a statutory control [metric:conceptual_gross_floor_area_sqm]. Ratios include green_ratio ≈13.31% and public_space_ratio ≈1.30%, both within sensible ranges [metric:green_ratio] [metric:public_space_ratio]. The compliance matrix covers announcement items 1.3/1.4/1.5 and agent.1–agent.6; the standard matrix covers the six mandatory standards plus three reference standards; the depth matrix covers all fifteen required items [standard:GENERATIVE-AI-INTERIM-MEASURES].
+Two honesty bottom lines: first, floor_area_ratio and building_height_m are recorded as pending official data, with reasons and recalculation triggers in metrics.json — no fabricated values appear anywhere; second, the 1.233 million m² conceptual volume is a low-confidence design quantity (assumed storeys × conceptual footprint), not a statutory control [metric:conceptual_gross_floor_area_sqm]. Ratios include green_ratio ≈13.27% and public_space_ratio ≈1.30%, both within sensible ranges [metric:green_ratio] [metric:public_space_ratio]. The compliance matrix covers announcement items 1.3/1.4/1.5 and agent.1–agent.6; the standard matrix covers the six mandatory standards plus three reference standards; the depth matrix covers all fifteen required items [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
-![Core metrics recomputation and evidence chain](assets/figures/metrics-evidence.png)
+![Core metrics recomputation and evidence chain](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright, and Compliance
 
