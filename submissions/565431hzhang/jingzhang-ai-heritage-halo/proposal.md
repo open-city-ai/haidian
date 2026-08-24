@@ -54,8 +54,8 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | 参数 | 阶段 | 证据级别 | 依据/待补条件 |
 |------|------|----------|----------------|
 | 场地面积 11,412,825 ㎡ | 总体 | **A 结构化复算** | 由 site_boundary+land_use 复算 [metric:site_area_sqm]；provisional 边界，official 红线后重算 |
-| 绿地率 48.7%、公共空间率 2.5% | 总体 | **A 结构化复算** | 由 green_space / public_space 图层复算 |
-| 建筑覆盖率 5.7%、道路 42.3km | 总体 | **A 结构化复算** | 由 buildings / roads 图层复算 |
+| 绿地率 30.4%、公共空间率 2.5% | 总体 | **A 结构化复算** | 由 green_space / public_space 图层复算 |
+| 建筑覆盖率 5.7%、道路 52.6km | 总体 | **A 结构化复算** | 由 buildings / roads 图层复算 |
 | 三个重点区范围 368.4 ha | 总体 | **A 结构化复算** | 由 key_areas 图层复算 [metric:key_area_count] |
 | 建筑数量 80-100 / 40-50 / 30-40 栋 | 重点区 | **B 概念示意** | 概念立面示意，待现状建筑调查与控规确认 |
 | 功能比例（研发办公60%等） | 重点区 | **B 概念示意** | 产业定位推断，待需求模型与现状业态校准 |
