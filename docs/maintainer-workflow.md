@@ -265,7 +265,7 @@ export HAIDIAN_REVIEW_MODEL="gpt-5.6-sol"
 # 先评审并生成审计材料，不修改 GitHub
 python3 scripts/auto_review_queue.py --limit 10
 
-# 正式回写 review/label；同时满足分数、四项 gate 和审核准入状态的 PR 自动合并
+# 正式回写 review/label；同时满足 60 分、四项 gate、审核准入状态和目录高水位规则的 PR 自动合并
 python3 scripts/auto_review_queue.py --limit 10 --concurrency 3 --apply --admin-merge
 ```
 
@@ -281,6 +281,33 @@ PR 不调用模型；draft 不进入队列。合并仅表示仓库 intake，展�
 worker 每轮按 PR 编号从旧到新处理，避免持续新增投稿使早期稿件饥饿。
 模型调用和本地视觉检查默认三路并行；worktree 创建/清理以及 GitHub review、标签、
 SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 base-branch merge 竞态。
+
+### 分数保护与恢复
+
+`--apply` 在决定合并前，会读取 `docs/trusted-score-high-water.json` 中的维护者登记值，并与该投稿作者已合并 PR 中由显式 trusted reviewer allowlist
+提交、状态为 `APPROVED` 且带有 `haidian-auto-review:<exact-head-sha>` 标记的维护者 Review Agent 评论，并按投稿目录计算
+历史官方最高分。两条来源取较高值；登记表用于在 GitHub 历史 API 限流、分页或历史 PR 被压缩时保留恢复线，不能由投稿分支运行时写入。新 exact head 的分数不严格高于该最高分时，worker 会发布
+`score-preservation hold`、请求修改并保持 PR 不合并；只有严格高于最高分才有资格继续走
+原有 intake 合并流程。同分版本只有在投稿目录 Git subtree 精确匹配受信任历史快照时，才能走 `restore-high-water` 恢复路径。没有历史官方分数的首个投稿不受这条比较规则阻塞，但仍必须通过
+60 分绝对门槛、四项 gate 和强制退件检查。
+
+回滚或恢复 PR 不得把回滚提交本身的模型分数当作新方案分数。只有在四项 gate 和 60
+分绝对门槛仍通过、且候选投稿目录的 Git subtree 与维护者登记或历史可信 Review Agent
+exact head 的高水位 subtree 完全一致时，worker 才能将其标记为
+`restore-high-water` 并合并；这表示恢复已验证的既有快照，不是给低分新内容开例外。
+subtree 不一致时仍按普通候选执行高水位比较，低分继续 `score-preservation hold`。
+
+这条保护还会校验 review 的 `state=APPROVED` 与 reviewer login。当前已登记的官方 intake
+reviewer 是 `CocoSgt` 和 `wakenmeng`；维护者轮换时通过 `HAIDIAN_TRUSTED_REVIEWERS`（逗号分隔的
+GitHub login allowlist）更新 worker 配置。普通贡献者、`CHANGES_REQUESTED` 评论、草稿或
+正文中单独伪造 marker 的评论都不会建立历史分数。它不把本地自检、advisory scorer 或
+公共 gallery 位置当作正式分数。若历史最高包已经被更低分版本覆盖，维护者应从历史
+exact head 建立恢复 PR，并在新的 exact head 重新评分达到原最高分前保持候选不合并；不
+使用 force-push 或重写 `main`。
+
+当前登记表还为近期已合并的 `commute-co-benefit-jingzhang`（PR #1466，67/100）和
+`enterprise-resident-flow-commons`（PR #1897，76/100）建立了同一投稿目录的可信基线。
+这两个分数只是后续候选的保留线，不是当前版本的新评分、公开榜单名次或图库发布证明。
 
 `submission-validation` 成功时会自动清除旧的 CI/修改/低质量标签并添加
 `review/queued`；投稿人推送修订后无需维护者手动重新排队。CI 失败时 workflow
