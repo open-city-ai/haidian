@@ -27,7 +27,7 @@
         "before_red": "The reported cross-environment CJK tofu was not reproducible under the exact local file:// renderer, but a font-loading race could still affect first capture.",
         "action": "Use font-display:block for the local CJK subset and use a Latin-only English language-switch label so first-screen controls do not depend on CJK fallback.",
         "verification_target": "The local offline surfaces retain zero remote requests and the change does not alter the proposal claims or page contract.",
-        "status": "hardened_local_renderer_pass_not_claimed_as_external_reproduction"
+        "status": "superseded_by_PR3904_HTML_03_after_report_stylesheet_omission_was_found"
       },
       {
         "id": "PR3904-PDF-02",
@@ -40,6 +40,33 @@
     "no_new_media": true,
     "no_new_external_sources": true,
     "scope_note": "This is an author-side repair record, not an independent review, rights audit, public response, or professional approval."
+  },
+  "targeted_repair_v3": {
+    "reviewed_comment_head": "a27e0bfefe5701d3ccd170325fb644bd19b884c2",
+    "reviewed_artifact_sha256": "477f143b57b5fea43d5998b28f26a99bbd1ef210988cccfa19a2af0efe5cb610",
+    "repairs": [
+      {
+        "id": "PR3904-HTML-03",
+        "before_red": "Both visual/index HTML files loaded the embedded JZ Noto CJK Offline subset, but report/proposal.html and report/proposal.en.html did not link cjk-font.css and still depended entirely on system CJK fonts. A clean review renderer without those fonts therefore produced widespread tofu boxes.",
+        "classification": "reproducible_missing_dependency_link",
+        "action": "Link ../visual/assets/cjk-font.css from both report HTML files and place JZ Noto CJK Offline first in each body font stack. The existing stylesheet contains the font as an embedded data URL, so the report adds no remote or path-dependent font request.",
+        "verification_target": "In a clean offline browser, both report surfaces load JZ Noto CJK Offline, document.fonts.check succeeds for representative Chinese title/body/place-name text, remote requests remain zero, and screenshots contain no tofu replacement boxes.",
+        "status": "repaired_clean_browser_pass",
+        "verification": {
+          "browser": "headless_chrome_file_url_clean_context",
+          "surfaces_checked": 2,
+          "font_status_loaded": 2,
+          "representative_cjk_sample_ready": 2,
+          "remote_requests": 0,
+          "replacement_characters": 0,
+          "horizontal_overflow_surfaces": 0,
+          "manual_screenshot_result": "PASS_NO_TOFU_VISIBLE"
+        }
+      }
+    ],
+    "no_new_media": true,
+    "no_new_external_sources": true,
+    "scope_note": "This repair closes only the HTML dependency defect. Rights, source-authority, field, approval, and independent-audit blockers remain external and are not represented as closed."
   },
   "review_nature": "Author-side editorial and technical repair evidence. It is not public feedback, an expert opinion, an independent rights audit, or a jury result.",
   "repair_matrix": [

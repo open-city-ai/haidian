@@ -1086,5 +1086,6 @@
 - 将 `manifest.validation_claim.known_blockers` 从空数组改为可追踪的权利 P0、中央来源登记和发布复用阻断；保留 `self_check` 的机器闸门 PASS，但明确它不等于正式专业评分解锁。
 - 在中英文 proposal 增加五节点区域协同输入—复测—停止矩阵，并将同一合同写入 `visual/assets/implementation-handoff-matrix.json#regional_synergy_retest_matrix`；北纬社区、未来科学城、怀柔科学城、北京经开区和京津冀均保持 `unconfirmed`、G0、NO-GO。
 - 英文离线入口改为拉丁文字 `Chinese edition`，本地 CJK 子集改用 `font-display:block` 处理 file:// 首屏竞态；本地复现未观察到方框，但保留该防御性修复。
+- 对最新 head 的复核发现前次修复只让两份 `visual/index*.html` 引用了 CJK 子集，`report/proposal*.html` 仍只依赖系统字体；本次在两份报告中显式链接同一个内嵌 OFL 字体样式并将其置于首选字体，直接关闭评审环境缺少 CJK 系统字体时的方框根因。
 - 重新渲染双语报告并重建四份既有 PDF；A3 14+14、A0 8+8 不变，两个新进程四文件字节一致，44/44 页全页渲染、无空白页、替换字形、越界文本或加密。
 - 本次无新媒体、无新外部来源、无新模型调用；geometry、metrics、12/8/3/36、G0、NO-GO、provisional、现实结果 0、`not_fully_cleared` 和独立逐文件清权 0 保持不变。
