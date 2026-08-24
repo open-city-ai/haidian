@@ -20,8 +20,9 @@ Security model
 
 Environment variables
 ---------------------
-- ``GITHUB_TOKEN`` — required; needs ``pull-requests: write`` and
-  ``contents: read`` permissions.
+- ``GITHUB_TOKEN`` — required; needs ``pull-requests: write``,
+  ``contents: write``, and ``issues: read`` permissions. GitHub Apps also
+  need ``merge-queues: read`` when the base branch uses a merge queue.
 - ``GITHUB_REPOSITORY`` — required; ``owner/repo`` format.
 - ``OPENAI_API_KEY`` or ``AI_REVIEW_API_KEY`` — required for AI review.
 
@@ -45,6 +46,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timezone
 import json
 import os
 import re
@@ -68,6 +70,7 @@ from generate_submissions_data import package_sha256
 
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
+MERGE_PENDING_MARKER = "<!-- haidian-auto-review-merge-pending:{head_sha} -->"
 CONFLICT_MARKER = "<!-- haidian-auto-review-conflict:{head_sha} -->"
 SCORE_REVIEW_PATTERN = re.compile(
     r"<!-- haidian-auto-review:(?P<head>[0-9a-f]{40}) -->\s*"
@@ -75,11 +78,17 @@ SCORE_REVIEW_PATTERN = re.compile(
 )
 DEFAULT_TRUSTED_REVIEWERS = frozenset({"cocosgt", "wakenmeng"})
 TRUSTED_REVIEWERS_ENV = "HAIDIAN_TRUSTED_REVIEWERS"
+GITHUB_LOGIN_PATTERN = re.compile(
+    r"[a-z0-9](?:[a-z0-9-]{0,37}[a-z0-9])?(?:\[bot\])?"
+)
 TRUSTED_SCORE_LEDGER_PATH = Path("docs/trusted-score-high-water.json")
+SCORE_GUARD_POLICY_SCHEMA_VERSION = 1
 PASS = "SUCCESS"
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
 HISTORY_LOCK = threading.Lock()
+SUBMISSION_LOCKS_LOCK = threading.Lock()
+SUBMISSION_LOCKS: dict[str, threading.Lock] = {}
 
 
 class WorkerError(RuntimeError):
@@ -91,6 +100,23 @@ class Decision:
     action: str
     score: float | None
     reason: str
+
+
+@dataclass(frozen=True)
+class ScoreGuardPolicy:
+    """One explicit maintainer approval for score-high-water enforcement."""
+
+    enabled: bool
+    effective_at: datetime | None
+    submission_dirs: frozenset[str]
+
+    def applies_to(self, submission_dir: str) -> bool:
+        return self.enabled and (
+            "*" in self.submission_dirs or submission_dir in self.submission_dirs
+        )
+
+
+DISABLED_SCORE_GUARD_POLICY = ScoreGuardPolicy(False, None, frozenset())
 
 
 def run(command: list[str], *, cwd: Path, capture: bool = True) -> subprocess.CompletedProcess[str]:
@@ -143,6 +169,38 @@ def queued_prs(repo: str, label: str, cwd: Path) -> list[dict[str, Any]]:
     ]
 
 
+def closed_queued_pull_numbers(repo: str, label: str, cwd: Path) -> list[int]:
+    """Read closed queued PRs from the paginated Issues endpoint, not search."""
+    completed = run(
+        [
+            "gh",
+            "api",
+            "--method",
+            "GET",
+            "--paginate",
+            "--slurp",
+            f"repos/{repo}/issues",
+            "-f",
+            "state=closed",
+            "-f",
+            f"labels={label}",
+            "-f",
+            "per_page=100",
+        ],
+        cwd=cwd,
+    )
+    try:
+        pages = json.loads(completed.stdout)
+        return [
+            int(item["number"])
+            for page in pages
+            for item in page
+            if isinstance(item, dict) and item.get("pull_request")
+        ]
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise WorkerError("invalid closed queued PR list from GitHub") from exc
+
+
 def pr_file_paths(repo: str, number: int, cwd: Path) -> list[str]:
     completed = run(
         ["gh", "api", "--paginate", "--slurp", f"repos/{repo}/pulls/{number}/files"],
@@ -153,6 +211,44 @@ def pr_file_paths(repo: str, number: int, cwd: Path) -> list[str]:
         return [str(item["filename"]) for page in pages for item in page]
     except (json.JSONDecodeError, KeyError, TypeError) as exc:
         raise WorkerError(f"invalid file list from gh api for PR #{number}") from exc
+
+
+def pr_comments(repo: str, number: int, cwd: Path) -> list[dict[str, Any]]:
+    """Fetch every issue comment for a PR; pending markers must not be page-limited."""
+    completed = run(
+        [
+            "gh",
+            "api",
+            "--paginate",
+            "--slurp",
+            f"repos/{repo}/issues/{number}/comments",
+        ],
+        cwd=cwd,
+    )
+    try:
+        pages = json.loads(completed.stdout)
+        return [item for page in pages for item in page]
+    except (json.JSONDecodeError, TypeError) as exc:
+        raise WorkerError(f"invalid comment list from gh api for PR #{number}") from exc
+
+
+def pr_reviews(repo: str, number: int, cwd: Path) -> list[dict[str, Any]]:
+    """Fetch every submitted review for exact-head approval reconciliation."""
+    completed = run(
+        [
+            "gh",
+            "api",
+            "--paginate",
+            "--slurp",
+            f"repos/{repo}/pulls/{number}/reviews",
+        ],
+        cwd=cwd,
+    )
+    try:
+        pages = json.loads(completed.stdout)
+        return [item for page in pages for item in page]
+    except (json.JSONDecodeError, TypeError) as exc:
+        raise WorkerError(f"invalid review list from gh api for PR #{number}") from exc
 
 
 def latest_validation_check(meta: dict[str, Any]) -> dict[str, Any] | None:
@@ -198,13 +294,114 @@ def submission_dir_from_files(paths: list[str], author: str) -> str:
 
 
 def trusted_reviewer_logins() -> set[str]:
-    """Return the explicit maintainer/bot reviewer allowlist used for history."""
-    configured = {
-        item.strip().casefold()
-        for item in os.getenv(TRUSTED_REVIEWERS_ENV, "").split(",")
-        if item.strip()
-    }
-    return configured or set(DEFAULT_TRUSTED_REVIEWERS)
+    """Return one validated full trusted-reviewer set.
+
+    An absent environment variable selects the repository defaults. A present
+    variable is an explicit full replacement; blank entries, duplicates and
+    malformed GitHub logins fail closed instead of silently falling back.
+    """
+    raw = os.getenv(TRUSTED_REVIEWERS_ENV)
+    if raw is None:
+        return set(DEFAULT_TRUSTED_REVIEWERS)
+    items = [item.strip().casefold() for item in raw.split(",")]
+    if not items or any(not item for item in items):
+        raise WorkerError(f"{TRUSTED_REVIEWERS_ENV} must be a non-empty full reviewer list")
+    if len(set(items)) != len(items):
+        raise WorkerError(f"{TRUSTED_REVIEWERS_ENV} contains duplicate reviewer logins")
+    for item in items:
+        if GITHUB_LOGIN_PATTERN.fullmatch(item) is None or "--" in item:
+            raise WorkerError(f"{TRUSTED_REVIEWERS_ENV} contains invalid GitHub login: {item}")
+    return set(items)
+
+
+def validate_trusted_reviewer_identities(reviewers: set[str], cwd: Path) -> None:
+    """Fail closed unless every configured reviewer resolves to that GitHub identity."""
+    for reviewer in sorted(reviewers):
+        completed = run(["gh", "api", f"users/{reviewer}"], cwd=cwd)
+        try:
+            identity = json.loads(completed.stdout)
+        except json.JSONDecodeError as exc:
+            raise WorkerError(f"invalid GitHub identity response for trusted reviewer {reviewer}") from exc
+        if (
+            str(identity.get("login", "")).casefold() != reviewer
+            or identity.get("type") not in {"User", "Bot"}
+            or not isinstance(identity.get("id"), int)
+        ):
+            raise WorkerError(f"trusted reviewer identity did not resolve exactly: {reviewer}")
+
+
+def load_score_guard_policy(
+    path: Path | None,
+    trusted_reviewers: set[str],
+    *,
+    now: datetime | None = None,
+) -> ScoreGuardPolicy:
+    """Load an explicit, effective maintainer policy or leave the guard disabled.
+
+    The repository intentionally carries no implicitly approved policy. A
+    maintainer must provide a separate configuration that fixes the scope,
+    effective date, migration status, compatibility decision, and rollback.
+    """
+    if path is None:
+        return DISABLED_SCORE_GUARD_POLICY
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise WorkerError(f"invalid score guard policy: {path}") from exc
+    if not isinstance(payload, dict) or payload.get("schema_version") != SCORE_GUARD_POLICY_SCHEMA_VERSION:
+        raise WorkerError(f"unsupported score guard policy schema: {path}")
+    if payload.get("status") != "approved":
+        raise WorkerError("score guard policy status must be approved")
+    if payload.get("history_scope") != "all-merged-history":
+        raise WorkerError("score guard policy must explicitly select all-merged-history")
+    if payload.get("ledger_migration") != "complete":
+        raise WorkerError("score guard policy must confirm complete ledger migration")
+    if payload.get("compatibility_decision") != "approved":
+        raise WorkerError("score guard policy must record an approved compatibility decision")
+    rollback_plan = payload.get("rollback_plan")
+    if not isinstance(rollback_plan, str) or not rollback_plan.strip():
+        raise WorkerError("score guard policy must include a rollback plan")
+
+    raw_approvers = payload.get("approved_by")
+    if not isinstance(raw_approvers, list) or not raw_approvers:
+        raise WorkerError("score guard policy must name at least one trusted approver")
+    approvers = [str(item).casefold() for item in raw_approvers]
+    if len(set(approvers)) != len(approvers) or any(
+        approver not in trusted_reviewers for approver in approvers
+    ):
+        raise WorkerError("score guard policy approvers must be unique trusted reviewers")
+
+    raw_dirs = payload.get("submission_dirs")
+    if not isinstance(raw_dirs, list) or not raw_dirs:
+        raise WorkerError("score guard policy must define a non-empty submission scope")
+    submission_dirs = [str(item) for item in raw_dirs]
+    if len(set(submission_dirs)) != len(submission_dirs):
+        raise WorkerError("score guard policy contains duplicate submission directories")
+    if "*" in submission_dirs and len(submission_dirs) != 1:
+        raise WorkerError("score guard wildcard scope cannot be combined with directories")
+    for submission_dir in submission_dirs:
+        if submission_dir == "*":
+            continue
+        if _submission_root_from_paths([f"{submission_dir}/manifest.json"]) != submission_dir:
+            raise WorkerError(f"invalid score guard submission scope: {submission_dir}")
+
+    raw_effective_at = payload.get("effective_at")
+    if not isinstance(raw_effective_at, str) or not raw_effective_at.endswith("Z"):
+        raise WorkerError("score guard effective_at must be an RFC3339 UTC timestamp")
+    try:
+        effective_at = datetime.fromisoformat(raw_effective_at[:-1] + "+00:00")
+    except ValueError as exc:
+        raise WorkerError("score guard effective_at must be an RFC3339 UTC timestamp") from exc
+    current_time = now or datetime.now(timezone.utc)
+    if effective_at > current_time:
+        raise WorkerError("score guard policy is approved but not yet effective")
+    return ScoreGuardPolicy(True, effective_at, frozenset(submission_dirs))
+
+
+def submission_dir_lock(submission_dir: str) -> threading.Lock:
+    """Return the process-local lock that serializes one package directory."""
+    with SUBMISSION_LOCKS_LOCK:
+        return SUBMISSION_LOCKS.setdefault(submission_dir, threading.Lock())
 
 
 def load_trusted_score_ledger(
@@ -307,6 +504,27 @@ def _review_commit_sha(review: dict[str, Any]) -> str:
     return ""
 
 
+def has_trusted_exact_head_approval(
+    reviews: list[dict[str, Any]],
+    head_sha: str,
+    trusted_reviewers: set[str],
+) -> bool:
+    """Verify the exact reviewed commit, approval state, marker, and author."""
+    marker = REVIEW_MARKER.format(head_sha=head_sha)
+    for review in reviews:
+        if str(review.get("state", "")).upper() != "APPROVED":
+            continue
+        author = review.get("author") or review.get("user") or {}
+        login = str(author.get("login", "")).casefold() if isinstance(author, dict) else ""
+        if (
+            login in trusted_reviewers
+            and _review_commit_sha(review).casefold() == head_sha.casefold()
+            and str(review.get("body", "")).startswith(marker)
+        ):
+            return True
+    return False
+
+
 def trusted_score_records(
     merged_prs: list[dict[str, Any]],
     submission_dir: str,
@@ -361,8 +579,9 @@ def _package_tree_oid(
         try:
             # A shallow/blobless maintainer checkout may not contain a
             # non-final reviewed head even though it is a trusted record.
-            run(["git", "fetch", "--no-tags", "--quiet", "origin", commit], cwd=cwd)
-            tree = run(command, cwd=cwd).stdout.strip()
+            with WORKTREE_LOCK:
+                run(["git", "fetch", "--no-tags", "--quiet", "origin", commit], cwd=cwd)
+                tree = run(command, cwd=cwd).stdout.strip()
         except WorkerError:
             return None
     return tree or None
@@ -416,6 +635,110 @@ def merged_prs_for_author(repo: str, author: str, cwd: Path) -> list[dict[str, A
         ],
         cwd=cwd,
     )
+
+
+def score_guard_prs_for_author(repo: str, author: str, cwd: Path) -> list[dict[str, Any]]:
+    """Fetch one snapshot containing merged history and open reservations."""
+    return gh_json(
+        repo,
+        [
+            "pr",
+            "list",
+            "--state",
+            "all",
+            "--author",
+            author,
+            "--limit",
+            "1000",
+            "--json",
+            "number,state,headRefOid,files,reviews",
+        ],
+        cwd=cwd,
+    )
+
+
+def merge_reservation_body(head_sha: str) -> str:
+    return (
+        f"{MERGE_PENDING_MARKER.format(head_sha=head_sha)}\n"
+        "Exact-head merge reservation: this package is fail-closed until GitHub confirms "
+        "the PR as MERGED or a maintainer closes the PR."
+    )
+
+
+def has_trusted_merge_reservation(
+    comments: list[dict[str, Any]],
+    head_sha: str,
+    trusted_reviewers: set[str],
+) -> bool:
+    """Verify a reservation by exact marker and its actual GitHub comment author."""
+    expected = merge_reservation_body(head_sha)
+    for comment in comments:
+        author = comment.get("author") or comment.get("user") or {}
+        login = str(author.get("login", "")).casefold() if isinstance(author, dict) else ""
+        if login in trusted_reviewers and str(comment.get("body", "")) == expected:
+            return True
+    return False
+
+
+def create_merge_reservation(
+    repo: str,
+    number: int,
+    head_sha: str,
+    trusted_reviewers: set[str],
+    cwd: Path,
+) -> None:
+    """Create one reservation and verify the exact returned comment identity."""
+    body = merge_reservation_body(head_sha)
+    completed = run(
+        [
+            "gh",
+            "api",
+            "--method",
+            "POST",
+            f"repos/{repo}/issues/{number}/comments",
+            "-f",
+            f"body={body}",
+        ],
+        cwd=cwd,
+    )
+    try:
+        comment = json.loads(completed.stdout)
+    except json.JSONDecodeError as exc:
+        raise WorkerError("invalid merge reservation creation response") from exc
+    if not isinstance(comment, dict) or not isinstance(comment.get("id"), int):
+        raise WorkerError("merge reservation creation did not return an exact comment")
+    if not has_trusted_merge_reservation([comment], head_sha, trusted_reviewers):
+        raise WorkerError("new merge reservation was not authored by a trusted reviewer")
+
+
+def pending_trusted_intake_numbers(
+    prs: list[dict[str, Any]],
+    submission_dir: str,
+    trusted_reviewers: set[str],
+    repo: str,
+    cwd: Path,
+) -> set[int]:
+    """Return open PR numbers carrying a trusted exact-head merge reservation."""
+    pending: set[int] = set()
+    for pr in prs:
+        if str(pr.get("state", "")).upper() != "OPEN":
+            continue
+        number = int(pr.get("number") or 0)
+        if number <= 0:
+            continue
+        paths = [str(item.get("path", "")) for item in pr.get("files", [])]
+        if _submission_root_from_paths(paths) != submission_dir:
+            continue
+        head_sha = str(pr.get("headRefOid", "")).casefold()
+        if not re.fullmatch(r"[0-9a-f]{40}", head_sha):
+            continue
+        if has_trusted_merge_reservation(
+            pr_comments(repo, number, cwd),
+            head_sha,
+            trusted_reviewers,
+        ):
+            pending.add(number)
+    return pending
 
 
 def decide(
@@ -501,6 +824,155 @@ def assert_live(meta: dict[str, Any], expected_sha: str, *, require_success: boo
         raise WorkerError("required CI is no longer successful")
 
 
+def merge_request_snapshot(
+    repo: str, number: int, head_sha: str, cwd: Path
+) -> dict[str, Any]:
+    """Return exact-head merge state and the PR node ID used by atomic mutations."""
+    try:
+        owner, name = repo.split("/", 1)
+    except ValueError as exc:
+        raise WorkerError(f"invalid repository name: {repo}") from exc
+    query = """
+query($owner:String!,$name:String!,$number:Int!){
+  repository(owner:$owner,name:$name){
+    pullRequest(number:$number){
+      id
+      state
+      headRefOid
+      isMergeQueueEnabled
+      autoMergeRequest{enabledAt}
+      mergeQueueEntry{state headCommit{oid}}
+    }
+  }
+}
+""".strip()
+    completed = run(
+        [
+            "gh",
+            "api",
+            "graphql",
+            "-f",
+            f"query={query}",
+            "-F",
+            f"owner={owner}",
+            "-F",
+            f"name={name}",
+            "-F",
+            f"number={number}",
+        ],
+        cwd=cwd,
+    )
+    try:
+        pull = json.loads(completed.stdout)["data"]["repository"]["pullRequest"]
+    except (json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise WorkerError(f"invalid merge state response for PR #{number}") from exc
+    if not isinstance(pull, dict):
+        raise WorkerError(f"missing merge state for PR #{number}")
+    if str(pull.get("headRefOid", "")) != head_sha:
+        raise WorkerError("PR head changed while reconciling merge request")
+    if not str(pull.get("id", "")):
+        raise WorkerError(f"missing GraphQL node ID for PR #{number}")
+    return pull
+
+
+def merge_request_status(repo: str, number: int, head_sha: str, cwd: Path) -> str:
+    """Return merged, pending, auto, absent, or closed from GitHub's state."""
+    pull = merge_request_snapshot(repo, number, head_sha, cwd)
+    state = str(pull.get("state", "")).upper()
+    if state == "MERGED":
+        return "merged"
+    if state != "OPEN":
+        return "closed"
+    queue_entry = pull.get("mergeQueueEntry")
+    if isinstance(queue_entry, dict):
+        # mergeQueueEntry.headCommit is GitHub's synthetic queue/merge-group
+        # commit. Exact-head binding comes from pullRequest.headRefOid above.
+        return "pending"
+    if pull.get("autoMergeRequest") is not None:
+        # AutoMergeRequest has no expected-head field and can survive pushes by
+        # write-capable users. It is not a durable exact-head reservation.
+        return "auto"
+    return "absent"
+
+
+def disable_auto_merge(repo: str, number: int, cwd: Path) -> None:
+    run(
+        ["gh", "pr", "merge", str(number), "--repo", repo, "--disable-auto"],
+        cwd=cwd,
+    )
+
+
+def submit_merge_request(
+    repo: str,
+    number: int,
+    head_sha: str,
+    cwd: Path,
+    *,
+    admin_merge: bool,
+) -> str:
+    """Atomically enqueue or merge the exact head without ever enabling auto-merge."""
+    live = pr_meta(repo, number, cwd)
+    assert_live(live, head_sha, require_success=True)
+    pull = merge_request_snapshot(repo, number, head_sha, cwd)
+    if str(pull.get("state", "")).upper() != "OPEN":
+        raise WorkerError("PR is no longer open before merge submission")
+    pull_id = str(pull["id"])
+
+    if bool(pull.get("isMergeQueueEnabled")) and not admin_merge:
+        mutation = """
+mutation($pullRequestId:ID!,$expectedHeadOid:GitObjectID!){
+  enqueuePullRequest(input:{pullRequestId:$pullRequestId,expectedHeadOid:$expectedHeadOid}){
+    mergeQueueEntry{id state}
+  }
+}
+""".strip()
+        operation = "enqueuePullRequest"
+    else:
+        mutation = """
+mutation($pullRequestId:ID!,$expectedHeadOid:GitObjectID!){
+  mergePullRequest(input:{pullRequestId:$pullRequestId,expectedHeadOid:$expectedHeadOid,mergeMethod:MERGE}){
+    pullRequest{state headRefOid}
+  }
+}
+""".strip()
+        operation = "mergePullRequest"
+
+    completed = run(
+        [
+            "gh",
+            "api",
+            "graphql",
+            "-f",
+            f"query={mutation}",
+            "-F",
+            f"pullRequestId={pull_id}",
+            "-F",
+            f"expectedHeadOid={head_sha}",
+        ],
+        cwd=cwd,
+    )
+    try:
+        result = json.loads(completed.stdout)["data"][operation]
+    except (json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise WorkerError(f"invalid {operation} response for PR #{number}") from exc
+
+    if operation == "enqueuePullRequest":
+        if not isinstance(result, dict) or not isinstance(
+            result.get("mergeQueueEntry"), dict
+        ):
+            raise WorkerError(f"GitHub did not confirm queue entry for PR #{number}")
+        return "pending"
+
+    merged_pull = result.get("pullRequest") if isinstance(result, dict) else None
+    if (
+        not isinstance(merged_pull, dict)
+        or str(merged_pull.get("headRefOid", "")) != head_sha
+        or str(merged_pull.get("state", "")).upper() != "MERGED"
+    ):
+        raise WorkerError(f"GitHub did not confirm exact-head merge for PR #{number}")
+    return "merged"
+
+
 def label_args(remove: list[str], add: list[str]) -> list[str]:
     args: list[str] = []
     for label in remove:
@@ -508,6 +980,58 @@ def label_args(remove: list[str], add: list[str]) -> list[str]:
     for label in add:
         args.extend(["--add-label", label])
     return args
+
+
+def mark_intake_accepted(repo: str, number: int, cwd: Path) -> None:
+    run(
+        [
+            "gh",
+            "pr",
+            "edit",
+            str(number),
+            "--repo",
+            repo,
+            *label_args(["review/queued"], ["review/intake-accepted"]),
+        ],
+        cwd=cwd,
+    )
+
+
+def reconcile_merged_reservations(
+    repo: str,
+    label: str,
+    trusted_reviewers: set[str],
+    cwd: Path,
+    *,
+    apply: bool,
+) -> list[dict[str, Any]]:
+    """Finalize labels for queue reservations that merged between worker runs."""
+    results: list[dict[str, Any]] = []
+    for number in closed_queued_pull_numbers(repo, label, cwd):
+        meta = pr_meta(repo, number, cwd)
+        if str(meta.get("state", "")).upper() != "MERGED":
+            continue
+        head_sha = str(meta.get("headRefOid", ""))
+        if not re.fullmatch(r"[0-9a-f]{40}", head_sha):
+            raise WorkerError(f"merged reserved PR #{number} has no exact head")
+        if not has_trusted_merge_reservation(
+            pr_comments(repo, number, cwd), head_sha, trusted_reviewers
+        ):
+            continue
+        if not has_trusted_exact_head_approval(
+            pr_reviews(repo, number, cwd), head_sha, trusted_reviewers
+        ):
+            continue
+        if apply:
+            mark_intake_accepted(repo, number, cwd)
+        results.append(
+            {
+                "number": number,
+                "head_sha": head_sha,
+                "result": "reconciled-merged" if apply else "would-reconcile-merged",
+            }
+        )
+    return results
 
 
 def apply_conflict_hold(repo: str, number: int, head_sha: str, cwd: Path) -> None:
@@ -586,7 +1110,8 @@ def apply_review(
     admin_merge: bool,
     historical_best: float | None = None,
     restored_snapshot_score: float | None = None,
-) -> None:
+    trusted_reviewers: set[str] | None = None,
+) -> bool:
     live = pr_meta(repo, number, cwd)
     assert_live(live, head_sha, require_success=True)
     marker = REVIEW_MARKER.format(head_sha=head_sha)
@@ -613,30 +1138,63 @@ def apply_review(
             )
             if historical_best is not None:
                 body += f" Historical exact-head best for this submission: {historical_best:g}/100; this score does not regress it."
-        run(["gh", "pr", "review", str(number), "--repo", repo, "--approve", "--body", body], cwd=cwd)
-        assert_live(pr_meta(repo, number, cwd), head_sha, require_success=True)
-        merge = [
-            "gh",
-            "pr",
-            "merge",
-            str(number),
-            "--repo",
-            repo,
-            "--merge",
-            "--match-head-commit",
-            head_sha,
-        ]
-        if admin_merge:
-            merge.append("--admin")
-        run(merge, cwd=cwd)
-        run(
-            ["gh", "pr", "edit", str(number), "--repo", repo, *label_args(
-                ["review/queued"],
-                ["review/intake-accepted"],
-            )],
-            cwd=cwd,
-        )
-        return
+        allowed = trusted_reviewers or trusted_reviewer_logins()
+        if not has_trusted_merge_reservation(
+            pr_comments(repo, number, cwd), head_sha, allowed
+        ):
+            create_merge_reservation(repo, number, head_sha, allowed, cwd)
+
+        # A pre-existing auto-merge request could consume the approval below
+        # immediately. Remove that unsafe, non-exact-head state before approval
+        # and prove it is gone. Disabling it is safe even if another actor races
+        # a head update; the exact-head reread then fails closed.
+        merge_status = merge_request_status(repo, number, head_sha, cwd)
+        if merge_status == "auto":
+            disable_auto_merge(repo, number, cwd)
+            merge_status = merge_request_status(repo, number, head_sha, cwd)
+            if merge_status == "auto":
+                raise WorkerError(
+                    "pre-existing auto-merge remained enabled; disabled fail closed"
+                )
+        if merge_status == "closed":
+            raise WorkerError("PR closed before exact-head approval")
+
+        if not has_trusted_exact_head_approval(
+            pr_reviews(repo, number, cwd), head_sha, allowed
+        ):
+            if merge_status == "merged":
+                raise WorkerError("PR merged without a trusted exact-head approval")
+            run(
+                ["gh", "pr", "review", str(number), "--repo", repo, "--approve", "--body", body],
+                cwd=cwd,
+            )
+            if not has_trusted_exact_head_approval(
+                pr_reviews(repo, number, cwd), head_sha, allowed
+            ):
+                raise WorkerError("exact-head approval was not written by a trusted reviewer")
+
+        # Approval may immediately advance an existing exact-head queue entry,
+        # so reconcile again before deciding whether an atomic request is needed.
+        merge_status = merge_request_status(repo, number, head_sha, cwd)
+        if merge_status == "auto":
+            disable_auto_merge(repo, number, cwd)
+            raise WorkerError(
+                "auto-merge appeared after approval; disabled fail closed"
+            )
+        if merge_status == "absent":
+            merge_status = submit_merge_request(
+                repo,
+                number,
+                head_sha,
+                cwd,
+                admin_merge=admin_merge,
+            )
+        if merge_status == "pending":
+            return False
+        if merge_status != "merged":
+            raise WorkerError("merge command completed without a confirmed merged PR")
+        mark_intake_accepted(repo, number, cwd)
+        return True
 
     body = comment_file.read_text(encoding="utf-8")
     if outcome.action == "score-regression" and historical_best is not None:
@@ -657,27 +1215,128 @@ def apply_review(
         ["gh", "pr", "edit", str(number), "--repo", repo, *label_args(["review/queued"], add)],
         cwd=cwd,
     )
+    return True
 
 
-def process_pr(
+def score_guard_context(
+    repo_root: Path,
+    candidate_worktree: Path,
+    submission_dir: str,
+    merged_prs: list[dict[str, Any]],
+    score_ledger: list[dict[str, Any]],
+    trusted_reviewers: set[str],
+    score_guard_policy: ScoreGuardPolicy,
+) -> tuple[float | None, float | None]:
+    """Recompute the package high-water and exact-snapshot restoration score."""
+    if not score_guard_policy.applies_to(submission_dir):
+        return None, None
+    live_best = historical_best_score(merged_prs, submission_dir, trusted_reviewers)
+    ledger_best = ledger_best_score(score_ledger, submission_dir)
+    trusted_records = trusted_score_records(
+        merged_prs, submission_dir, trusted_reviewers
+    ) + ledger_score_records(score_ledger, submission_dir)
+    historical_best = max(
+        [score for score in (live_best, ledger_best) if score is not None],
+        default=None,
+    )
+    restored_snapshot_score = trusted_snapshot_score(
+        repo_root, candidate_worktree, submission_dir, trusted_records
+    )
+    return historical_best, restored_snapshot_score
+
+
+def apply_review_with_fresh_score_context(
     args: argparse.Namespace,
-    meta: dict[str, Any],
+    number: int,
+    head_sha: str,
+    author: str,
+    submission_dir: str,
+    worktree: Path,
+    review: dict[str, Any],
+    ai_decision: dict[str, Any],
+    comment_file: Path,
     repo_root: Path,
     history_cache: dict[str, list[dict[str, Any]]],
     score_ledger: list[dict[str, Any]],
-) -> dict[str, Any]:
-    number = int(meta["number"])
-    head_sha = str(meta["headRefOid"])
-    author = str(meta["author"]["login"])
-    state = ci_state(meta)
-    if meta.get("isDraft"):
-        return {"number": number, "result": "skipped-draft"}
-    if state != "success":
-        return {"number": number, "head_sha": head_sha, "result": f"skipped-ci-{state}"}
-    if meta.get("mergeable") == "CONFLICTING":
-        return {"number": number, "head_sha": head_sha, "result": "skipped-conflicting"}
+    trusted_reviewers: set[str],
+    score_guard_policy: ScoreGuardPolicy,
+) -> tuple[Decision, float | None, float | None]:
+    """Refresh history and candidate tree under the actual GitHub write lock."""
+    with GITHUB_WRITE_LOCK:
+        guard_prs = score_guard_prs_for_author(args.repo, author, repo_root)
+        pending_numbers = pending_trusted_intake_numbers(
+            guard_prs,
+            submission_dir,
+            trusted_reviewers,
+            args.repo,
+            repo_root,
+        )
+        other_pending = pending_numbers - {number}
+        if other_pending:
+            pending_list = ", ".join(f"#{item}" for item in sorted(other_pending))
+            raise WorkerError(
+                f"another exact-head merge reservation for {submission_dir} is still open "
+                f"({pending_list}); wait for MERGED or close it before reviewing this candidate"
+            )
+        if score_guard_policy.applies_to(submission_dir):
+            merged_prs = [
+                pr for pr in guard_prs if str(pr.get("state", "")).upper() == "MERGED"
+            ]
+        else:
+            merged_prs = []
+        historical_best, restored_snapshot_score = score_guard_context(
+            repo_root,
+            worktree,
+            submission_dir,
+            merged_prs,
+            score_ledger,
+            trusted_reviewers,
+            score_guard_policy,
+        )
+        outcome = decide(
+            review,
+            ai_decision,
+            args.threshold,
+            historical_best,
+            restored_snapshot_score,
+        )
+        merged_or_written = apply_review(
+            args.repo,
+            number,
+            head_sha,
+            outcome,
+            comment_file,
+            repo_root,
+            admin_merge=args.admin_merge,
+            historical_best=historical_best,
+            restored_snapshot_score=restored_snapshot_score,
+            trusted_reviewers=trusted_reviewers,
+        )
+        if outcome.action in {"accept", "restore-high-water"} and not merged_or_written:
+            outcome = Decision(
+                "merge-pending",
+                outcome.score,
+                "exact-head approval is waiting for GitHub to confirm MERGED",
+            )
+        # The accepted path may just have merged a new score. Never let the
+        # next candidate reuse the pre-write author history snapshot.
+        with HISTORY_LOCK:
+            history_cache.pop(author, None)
+    return outcome, historical_best, restored_snapshot_score
 
-    submission_dir = submission_dir_from_files(pr_file_paths(args.repo, number, repo_root), author)
+
+def _process_submission_pr(
+    args: argparse.Namespace,
+    number: int,
+    head_sha: str,
+    author: str,
+    submission_dir: str,
+    repo_root: Path,
+    history_cache: dict[str, list[dict[str, Any]]],
+    score_ledger: list[dict[str, Any]],
+    trusted_reviewers: set[str],
+    score_guard_policy: ScoreGuardPolicy,
+) -> dict[str, Any]:
     worktree = args.worktree_root / f"pr-{number}-{head_sha[:12]}"
     audit_dir = args.audit_root / f"pr-{number}" / head_sha
     ref = f"refs/codex-auto-review/pr-{number}-{head_sha[:12]}"
@@ -690,21 +1349,21 @@ def process_pr(
         checked = run(["git", "rev-parse", "HEAD"], cwd=worktree).stdout.strip()
         if checked != head_sha:
             raise WorkerError("fetched worktree SHA does not match live PR head")
-        with HISTORY_LOCK:
-            if author not in history_cache:
-                history_cache[author] = merged_prs_for_author(args.repo, author, repo_root)
-            merged_prs = history_cache[author]
-        live_best = historical_best_score(merged_prs, submission_dir, trusted_reviewer_logins())
-        ledger_best = ledger_best_score(score_ledger, submission_dir)
-        trusted_records = trusted_score_records(
-            merged_prs, submission_dir, trusted_reviewer_logins()
-        ) + ledger_score_records(score_ledger, submission_dir)
-        historical_best = max(
-            [score for score in (live_best, ledger_best) if score is not None],
-            default=None,
-        )
-        restored_snapshot_score = trusted_snapshot_score(
-            repo_root, worktree, submission_dir, trusted_records
+        if score_guard_policy.applies_to(submission_dir):
+            with HISTORY_LOCK:
+                if author not in history_cache:
+                    history_cache[author] = merged_prs_for_author(args.repo, author, repo_root)
+                merged_prs = history_cache[author]
+        else:
+            merged_prs = []
+        historical_best, restored_snapshot_score = score_guard_context(
+            repo_root,
+            worktree,
+            submission_dir,
+            merged_prs,
+            score_ledger,
+            trusted_reviewers,
+            score_guard_policy,
         )
         cached = load_cached_review(
             audit_dir,
@@ -765,24 +1424,108 @@ def process_pr(
             "reused_audit": reused_audit,
         }
         if args.apply:
-            with GITHUB_WRITE_LOCK:
-                apply_review(
-                    args.repo,
-                    number,
-                    head_sha,
-                    outcome,
-                    audit_dir / "pr-comment.md",
-                    repo_root,
-                    admin_merge=args.admin_merge,
-                    historical_best=historical_best,
-                    restored_snapshot_score=restored_snapshot_score,
-                )
+            outcome, historical_best, restored_snapshot_score = apply_review_with_fresh_score_context(
+                args,
+                number,
+                head_sha,
+                author,
+                submission_dir,
+                worktree,
+                review,
+                ai_decision,
+                audit_dir / "pr-comment.md",
+                repo_root,
+                history_cache,
+                score_ledger,
+                trusted_reviewers,
+                score_guard_policy,
+            )
+            result.update(
+                {
+                    "score": outcome.score,
+                    "result": outcome.action,
+                    "reason": outcome.reason,
+                    "historical_best_score": historical_best,
+                    "restored_snapshot_score": restored_snapshot_score,
+                }
+            )
             result["applied"] = True
         return result
     finally:
         if worktree.exists() and not args.keep_worktrees:
             with WORKTREE_LOCK:
                 run(["git", "worktree", "remove", "--force", str(worktree)], cwd=repo_root)
+
+
+def process_pr(
+    args: argparse.Namespace,
+    meta: dict[str, Any],
+    repo_root: Path,
+    history_cache: dict[str, list[dict[str, Any]]],
+    score_ledger: list[dict[str, Any]],
+    trusted_reviewers: set[str],
+    score_guard_policy: ScoreGuardPolicy,
+) -> dict[str, Any]:
+    number = int(meta["number"])
+    head_sha = str(meta["headRefOid"])
+    author = str(meta["author"]["login"])
+    state = ci_state(meta)
+    if meta.get("isDraft"):
+        return {"number": number, "result": "skipped-draft"}
+    if state != "success":
+        return {"number": number, "head_sha": head_sha, "result": f"skipped-ci-{state}"}
+    if meta.get("mergeable") == "CONFLICTING":
+        return {"number": number, "head_sha": head_sha, "result": "skipped-conflicting"}
+
+    submission_dir = str(meta.get("_submission_dir") or "")
+    if not submission_dir:
+        submission_dir = submission_dir_from_files(
+            pr_file_paths(args.repo, number, repo_root), author
+        )
+    with submission_dir_lock(submission_dir):
+        return _process_submission_pr(
+            args,
+            number,
+            head_sha,
+            author,
+            submission_dir,
+            repo_root,
+            history_cache,
+            score_ledger,
+            trusted_reviewers,
+            score_guard_policy,
+        )
+
+
+def process_submission_group(
+    args: argparse.Namespace,
+    metas: list[dict[str, Any]],
+    repo_root: Path,
+    history_cache: dict[str, list[dict[str, Any]]],
+    score_ledger: list[dict[str, Any]],
+    trusted_reviewers: set[str],
+    score_guard_policy: ScoreGuardPolicy,
+) -> list[dict[str, Any]]:
+    """Process one package directory in deterministic PR-number order."""
+    results: list[dict[str, Any]] = []
+    for meta in sorted(metas, key=lambda item: int(item["number"])):
+        try:
+            results.append(
+                process_pr(
+                    args,
+                    meta,
+                    repo_root,
+                    history_cache,
+                    score_ledger,
+                    trusted_reviewers,
+                    score_guard_policy,
+                )
+            )
+        except Exception as exc:
+            results.append(
+                {"number": meta.get("number"), "result": "error", "error": str(exc)}
+            )
+    return results
 
 
 def acquire_worker_lock(lock_path: Path) -> Any:
@@ -835,6 +1578,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--worktree-root", type=Path, default=Path(".pr-worktree/auto-review"))
     parser.add_argument("--apply", action="store_true", help="Post reviews, change labels, and merge accepted PRs")
     parser.add_argument("--admin-merge", action="store_true", help="Use the repository ruleset bypass during merge")
+    parser.add_argument(
+        "--score-guard-policy-file",
+        type=Path,
+        help=(
+            "Enable score-high-water enforcement using an explicit maintainer-approved "
+            "scope/effective-date policy; disabled when omitted"
+        ),
+    )
     parser.add_argument("--keep-worktrees", action="store_true")
     return parser.parse_args()
 
@@ -856,11 +1607,28 @@ def main() -> int:
         raise WorkerError("--concurrency must be at least 1")
     args.audit_root.mkdir(parents=True, exist_ok=True)
     lock_file = acquire_worker_lock(args.audit_root / ".worker.lock")
-    candidates = queued_prs(args.repo, args.label, repo_root)
     selected = []
     results = []
     history_cache: dict[str, list[dict[str, Any]]] = {}
-    score_ledger = load_trusted_score_ledger(repo_root)
+    trusted_reviewers = trusted_reviewer_logins()
+    validate_trusted_reviewer_identities(trusted_reviewers, repo_root)
+    if args.score_guard_policy_file is not None:
+        policy_path = args.score_guard_policy_file.expanduser().resolve()
+        score_guard_policy = load_score_guard_policy(policy_path, trusted_reviewers)
+        score_ledger = load_trusted_score_ledger(repo_root, trusted_reviewers)
+    else:
+        score_guard_policy = DISABLED_SCORE_GUARD_POLICY
+        score_ledger = []
+    results.extend(
+        reconcile_merged_reservations(
+            args.repo,
+            args.label,
+            trusted_reviewers,
+            repo_root,
+            apply=args.apply,
+        )
+    )
+    candidates = queued_prs(args.repo, args.label, repo_root)
     for candidate in sorted(candidates, key=lambda item: int(item["number"])):
         if len(selected) >= args.limit:
             break
@@ -889,19 +1657,47 @@ def main() -> int:
                 }
             )
             continue
+        try:
+            submission_dir = submission_dir_from_files(
+                pr_file_paths(args.repo, number, repo_root),
+                str(live["author"]["login"]),
+            )
+        except Exception as exc:
+            results.append({"number": number, "result": "error", "error": str(exc)})
+            continue
+        live = {**live, "_submission_dir": submission_dir}
         selected.append(live)
+    groups: dict[str, list[dict[str, Any]]] = {}
+    for meta in selected:
+        groups.setdefault(str(meta["_submission_dir"]), []).append(meta)
     with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
         futures = {
-            executor.submit(process_pr, args, meta, repo_root, history_cache, score_ledger): meta
-            for meta in selected
+            executor.submit(
+                process_submission_group,
+                args,
+                metas,
+                repo_root,
+                history_cache,
+                score_ledger,
+                trusted_reviewers,
+                score_guard_policy,
+            ): submission_dir
+            for submission_dir, metas in groups.items()
         }
         for future in as_completed(futures):
-            meta = futures[future]
             try:
-                results.append(future.result())
-            except Exception as exc:  # Keep independent PR failures from stopping the queue.
-                results.append({"number": meta.get("number"), "result": "error", "error": str(exc)})
-            print(json.dumps(results[-1], ensure_ascii=False), flush=True)
+                group_results = future.result()
+            except Exception as exc:
+                group_results = [
+                    {
+                        "number": None,
+                        "result": "error",
+                        "error": f"submission group {futures[future]} failed: {exc}",
+                    }
+                ]
+            results.extend(group_results)
+            for result in group_results:
+                print(json.dumps(result, ensure_ascii=False), flush=True)
     results.sort(key=lambda item: int(item.get("number") or 0))
     print(json.dumps(results, ensure_ascii=False, indent=2))
     return 1 if any(item.get("result") == "error" for item in results) else 0
