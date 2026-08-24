@@ -265,8 +265,12 @@ export HAIDIAN_REVIEW_MODEL="gpt-5.6-sol"
 # 先评审并生成审计材料，不修改 GitHub
 python3 scripts/auto_review_queue.py --limit 10
 
-# 正式回写 review/label；同时满足分数、四项 gate 和审核准入状态的 PR 自动合并
+# 正式回写 review/label；满足 60 分、四项 gate 和审核准入状态的 PR 进入合并流程
 python3 scripts/auto_review_queue.py --limit 10 --concurrency 3 --apply --admin-merge
+
+# 只有维护政策正式批准后，才从受控主机加载独立政策文件启用目录高水位
+python3 scripts/auto_review_queue.py --limit 10 --concurrency 3 --apply --admin-merge \
+  --score-guard-policy-file /etc/haidian/score-guard-policy.json
 ```
 
 固定顺序为：required CI → 单一作者目录 → 固定 head SHA worktree → 本地四项 gate →
@@ -278,9 +282,76 @@ PR 不调用模型；draft 不进入队列。合并仅表示仓库 intake，展�
 自动合并还要求 `recommendation=formal-review-ready`、`can_enter_formal_review=true`、
 参与者 `required_next_actions_zh` 为空；否则 fail closed 为修改请求。
 `publication_recommendation` 是独立的展示建议，不改变 60 分 repository intake 门槛。
-worker 每轮按 PR 编号从旧到新处理，避免持续新增投稿使早期稿件饥饿。
-模型调用和本地视觉检查默认三路并行；worktree 创建/清理以及 GitHub review、标签、
-SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 base-branch merge 竞态。
+worker 先按 `submission_dir` 分组，组内按 PR 编号从旧到新处理，目录之间并行，避免普通互斥锁
+抢占导致同一方案的新稿跑到旧稿前面。
+模型调用和本地视觉检查默认三路并行，但同一 `submission_dir` 的候选从历史读取到最终写入
+全程串行。不同目录可以并行审查；worktree 创建/清理以及 GitHub review、标签、SHA 复核和
+merge 仍使用进程内锁串行。真正发布 review 或 merge 前，worker 会在 GitHub 写锁内重新拉取
+该作者的已合并 PR，重算目录高水位与候选 subtree，再做最终决定。前一候选刚合并后，后一候选
+不得复用写入前的 `history_cache`。所有缺失 commit 的 `git fetch` 也进入同一个 Git/worktree
+串行区。这同时避免 Git 引用锁、base-branch merge 和同目录高水位竞态。
+
+### 分数保护与恢复
+
+只有提供已批准的 `--score-guard-policy-file` 时，`--apply` 才会在决定合并前读取
+`docs/trusted-score-high-water.json` 中的维护者登记值，并与该投稿作者已合并 PR 中由显式 trusted reviewer allowlist
+提交、状态为 `APPROVED` 且带有 `haidian-auto-review:<exact-head-sha>` 标记的维护者 Review Agent 评论，并按投稿目录计算
+历史官方最高分。两条来源取较高值；登记表用于在 GitHub 历史 API 限流、分页或历史 PR 被压缩时保留恢复线，不能由投稿分支运行时写入。新 exact head 的分数不严格高于该最高分时，worker 会发布
+`score-preservation hold`、请求修改并保持 PR 不合并；只有严格高于最高分才有资格继续走
+原有 intake 合并流程。同分版本只有在投稿目录 Git subtree 精确匹配受信任历史快照时，才能走 `restore-high-water` 恢复路径。没有历史官方分数的首个投稿不受这条比较规则阻塞，但仍必须通过
+60 分绝对门槛、四项 gate 和强制退件检查。
+
+本机制涉及既有投稿的准入语义，默认关闭，不能仅凭局部登记表追溯生效。维护者在生产 worker
+启用这段高水位逻辑前，必须另行确认适用范围、生效时间、全体投稿的历史回填与迁移方法、已有
+投稿兼容性和回滚步骤，并通过 `--score-guard-policy-file` 提供受控主机上的独立 JSON 配置。
+配置必须明确 `status=approved`、UTC `effective_at`、`history_scope=all-merged-history`、
+`submission_dirs`（单独的 `*` 或具体目录）、`ledger_migration=complete`、
+`compatibility_decision=approved`、非空 `rollback_plan` 和 trusted `approved_by`；缺项、未生效、
+身份不可信都 fail closed。不传该参数时，worker 不读取登记表、不查询历史分数，也不执行高水位
+比较。`docs/trusted-score-high-water.json` 在政策决定前只作为可审计迁移候选，不自行代表仓库
+政策已经批准。代码合并也不改写既有 Git 历史或过去的 intake 决定。
+
+无论高水位政策是否启用，worker 都会在发出 merge 请求和 approval 前先写入由当前 trusted
+运行账号签发、绑定 exact head 的
+`haidian-auto-review-merge-pending` 预约，再依次确保 exact-head approval 与 merge request；三步都
+通过 GitHub 全量回读实现幂等恢复。若 GitHub 把候选送入 merge queue，则不添加
+`review/intake-accepted`。同一 exact head 下次轮询不会重复已有的 approve 或 enqueue；worker 会
+通过外层 `pullRequest.headRefOid` 绑定投稿 head，并用 GraphQL `isMergeQueueEnabled`、
+`mergeQueueEntry` 与 `autoMergeRequest` 区分分支策略和等待状态（queue entry 的 `headCommit` 是合成
+提交，不能拿来与 PR head 比较）。已有 `autoMergeRequest` 没有 expected-head 字段，不能单独证明
+exact-head；worker 必须在写 approval 前先禁用并回读确认它已消失。之后，启用 merge queue 的
+分支只调用带 `expectedHeadOid` 的 `enqueuePullRequest`，其他分支只调用带 `expectedHeadOid` 的
+`mergePullRequest`，不再通过 CLI 隐式开启 auto-merge。两个 mutation 的成功结果本身就是原子化的
+“已排队”或“已合并”凭证，因此即使调用返回后进程立刻退出，下一轮也只会恢复安全状态。如果某一步
+尚不存在，下一轮只补这一操作；其他同目录候选始终 fail closed。
+PR 异步合并并离开 open 列表后，worker 还会从 closed `review/queued` PR 中回收 trusted 预约，
+同时核对 trusted exact-head approval 后才补上 intake 标签并纳入已启用政策的历史高水位；关闭
+但未合并、只有预约没有批准的 PR 都不处理。新建预约使用 REST
+返回的具体 comment ID、正文和实际作者当场验签，后续扫描再完整分页回读。这样任一步附近退出，
+都不会把“已预约”永久误报成“已排队”，或在 merge queue 窗口里同时放行两个候选。
+
+回滚或恢复 PR 不得把回滚提交本身的模型分数当作新方案分数。只有在四项 gate 和 60
+分绝对门槛仍通过、且候选投稿目录的 Git subtree 与维护者登记或历史可信 Review Agent
+exact head 的高水位 subtree 完全一致时，worker 才能将其标记为
+`restore-high-water` 并合并；这表示恢复已验证的既有快照，不是给低分新内容开例外。
+subtree 不一致时仍按普通候选执行高水位比较，低分继续 `score-preservation hold`。
+
+这条保护还会校验 review 的 `state=APPROVED` 与 reviewer login。当前已登记的官方 intake
+reviewer 是 `CocoSgt` 和 `wakenmeng`。未设置 `HAIDIAN_TRUSTED_REVIEWERS` 时使用这两个默认值；
+一旦设置，该环境变量就是逗号分隔的完整替换集合，不是追加集合。空值、空项、重复项、非法
+GitHub login 或无法由 GitHub 公共用户 API 精确解析的身份都会 fail closed，worker 不会静默
+退回默认值；GitHub App 的 `app-slug[bot]` 也可显式登记。worker 不依赖 installation token 不支持
+的 `GET /user`，而是在预约发布后回读评论的实际作者并要求其属于 trusted 集合。环境变量只能由
+受控的维护运行账号修改；身份存在性校验不等于仓库权限授权，替换
+集合仍须纳入同一次维护配置审计。普通贡献者、`CHANGES_REQUESTED` 评论、草稿或
+正文中单独伪造 marker 的评论都不会建立历史分数。它不把本地自检、advisory scorer 或
+公共 gallery 位置当作正式分数。若历史最高包已经被更低分版本覆盖，维护者应从历史
+exact head 建立恢复 PR，并在新的 exact head 重新评分达到原最高分前保持候选不合并；不
+使用 force-push 或重写 `main`。
+
+当前登记表还为近期已合并的 `commute-co-benefit-jingzhang`（PR #1466，67/100）和
+`enterprise-resident-flow-commons`（PR #1897，76/100）建立了同一投稿目录的可信基线。
+这两个分数只是后续候选的保留线，不是当前版本的新评分、公开榜单名次或图库发布证明。
 
 `submission-validation` 成功时会自动清除旧的 CI/修改/低质量标签并添加
 `review/queued`；投稿人推送修订后无需维护者手动重新排队。CI 失败时 workflow
@@ -289,8 +360,10 @@ SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 bas
 审计材料保存在 `.maintainer-review/queue/pr-<number>/<head-sha>/`，worktree 默认在
 `.pr-worktree/auto-review/` 并在单稿完成后删除。建议用 launchd/systemd timer 每
 5–10 分钟运行一次，并以进程锁保证同一时间只有一个 worker。执行账号应使用
-fine-grained token 或 GitHub App，只授予本仓库 Contents/PR 所需权限；若 ruleset
-限定管理员合并，则将该 App/账号加入 bypass list 后使用 `--admin-merge`。
+fine-grained token 或 GitHub App。除 Contents write、Pull requests write 外，还需 Issues read
+来分页发现已关闭的 queued PR；预约评论由 Pull requests write 授权，不要求 Issues write。
+GitHub App 若要读取启用了 merge queue 的分支，还需 Merge queues read。若 ruleset 限定管理员
+合并，则将该 App/账号加入 bypass list 后使用 `--admin-merge`。
 
 ## Quick Reference (English)
 
