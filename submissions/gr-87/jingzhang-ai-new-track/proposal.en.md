@@ -15,6 +15,10 @@ iteration: "v0.6"
 
 # JingZhang NewTrack: Conceptual Urban Design for the Century-Old JingZhang AI Innovation Belt
 
+> [!WARNING]
+> **[PROVISIONAL CONSTRAINT & NON-OFFICIAL BOUNDARY NOTICE | provisional_constraint · official_boundary=false]**
+> All geometric boundaries and extents in this proposal (overall design area 11.41 km² and three key areas 368.4 ha) are repository-maintained provisional rough extents for generation, display, and intake self-check only; they do NOT constitute statutory planning redlines, official government approval, or precise-area bases. All numerical metrics are recomputed in EPSG:4548. Upon release of official GIS/CAD polygons by the organizers, all layers and metrics will undergo complete recalculation in accordance with assumptions.json (A-RECALC-001).
+
 ## 0. Review First Screen
 
 **One-sentence judgment**: JingZhang NewTrack organizes the "heritage track, rail track, and data track" into a reversible public-service contract; when AI meets an obstacle, it switchbacks to the human-operated track like a locomotive on the switchback ("herringbone" 人字形) line, and ordinary service, halting, appeal, and exit are never absent.

@@ -7,7 +7,7 @@
 <style>
   :root { --blue:#1f5a8a; --green:#2e7d32; --amber:#c2572a; --bg:#0e1a26; --card:#ffffff; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "Source Han Sans CN", "Droid Sans Fallback", Arial, sans-serif;
+  body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "Source Han Sans CN", SimSun, STSong, "Droid Sans Fallback", Arial, sans-serif;
           background: linear-gradient(160deg,#0e1a26 0%,#14293f 60%,#12303a 100%); color:#e8eef5; }
   .wrap { max-width: 1280px; margin: 0 auto; padding: 28px 20px 60px; }
   .lang-switch { text-align:right; margin-bottom: 10px; }
@@ -20,6 +20,7 @@
               border-radius: 20px; color:#bfe0ff; font-size: 12px; }
   .badge { display:inline-block; margin: 6px 3px 0; padding: 3px 10px; border-radius: 10px;
             font-size: 11px; background:#1b3a5c; color:#9fc9ee; }
+  .provisional-banner { background:#fff5f5; border:2px solid #ff8787; border-left:6px solid #e03131; color:#b32d00; padding:14px 18px; border-radius:8px; margin-top:14px; font-size:13px; line-height:1.6; }
   section { background:#f6f9fd; color:#22344a; border-radius: 14px; padding: 22px 24px; margin-top: 22px;
              box-shadow: 0 6px 22px rgba(0,0,0,.25); }
   h2 { font-size: 19px; color: var(--blue); border-left: 5px solid var(--blue); padding-left: 10px; margin-bottom: 16px; }
@@ -73,7 +74,7 @@
     <h2>总览地图 <span class="en">Overview Map · 一带三核</span></h2>
     <div class="map-scroll">
     <svg viewBox="0 0 760 4262" role="img" aria-label="总体空间结构地图">
-      <style>text { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "Source Han Sans CN", "Droid Sans Fallback", Arial, sans-serif; }</style>
+      <style>text { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", "Noto Sans CJK SC", "Noto Sans SC", "Source Han Sans SC", "Source Han Sans CN", SimSun, STSong, "Droid Sans Fallback", Arial, sans-serif !important; }</style>
 <polygon points="57.7,3714.4 38.6,2985.0 26.0,2503.9 50.9,2094.9 80.2,1613.8 130.4,1613.8 130.4,2094.9 130.4,2503.9 221.2,2503.9 221.2,2985.0 221.2,3714.4 57.7,3714.4" fill="#e8c98a" stroke="#ffffff" stroke-width="0.6" opacity="0.95"/>
 <polygon points="734.0,3714.4 584.2,3714.4 584.2,2985.0 734.0,2985.0 734.0,3714.4" fill="#e8c98a" stroke="#ffffff" stroke-width="0.6" opacity="0.95"/>
 <polygon points="156.6,146.3 175.8,146.3 175.8,940.2 120.1,940.2 156.6,146.3" fill="#e8c98a" stroke="#ffffff" stroke-width="0.6" opacity="0.95"/>
@@ -141,10 +142,14 @@
 <text x="425.38461538481386" y="3857.9348571425767" font-size="11" fill="#8a3a12" font-weight="600" text-anchor="middle">大钟寺</text>
 <polygon points="71.4,4236.0 734.0,4236.0 734.0,2985.0 643.2,1782.2 734.0,26.0 162.2,26.0 116.8,1012.3 26.0,2503.9 71.4,4236.0" fill="none" stroke="#333333" stroke-width="2.4"/>
 <line x1="280.2" y1="170.3" x2="280.2" y2="3634.6" stroke="#2e7d32" stroke-width="3.4" stroke-dasharray="10 6"/>
-<text x="288.2" y="1878.4" font-size="11.5" fill="#2e7d32" font-weight="700">一带 · 京张遗址公园智轨活力带</text>
+<rect x="140.2" y="2830.7" width="280" height="20" rx="4" fill="#ffffff" fill-opacity="0.95" stroke="#2e7d32" stroke-width="0.8"/>
+<text x="280.2" y="2844.7" font-size="11.5" fill="#2e7d32" font-weight="700" text-anchor="middle">一带 · 京张遗址公园智轨活力带</text>
     </svg>
     </div>
-    <div class="note provisional">边界为仓库维护者推定的临时粗略范围 (provisional_constraint, official_boundary=false)，仅用于生成、展示与intake自检；不得作为官方红线、审批依据或精确面积依据。官方 polygon 发布后全部图层与指标须整体重算。</div>
+    <div class="provisional-banner">
+      <strong>【临时边界与非官方红线警示 / provisional_constraint · official_boundary=false】</strong><br/>
+      本方案所有几何范围（总体设计范围及三处重点区）均为临时工作假定范围，不作为法定规划红线或政府审批依据；指标均基于临时几何按 EPSG:4548 复算。待组织方正式 GIS/CAD polygon 发布后，全部图层与指标须整体重算。
+    </div>
   </section>
 
   <section>
