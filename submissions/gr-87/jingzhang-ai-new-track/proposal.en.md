@@ -70,16 +70,17 @@ The main name is **"JingZhang NewTrack"** (京张·新轨). "Track" (轨) contin
 
 ### 5–8 Global AI Innovation Ecosystem Cases
 
-| Case | Key mechanism | Transferable lesson | Not directly transferable |
-| --- | --- | --- | --- |
-| Silicon Valley–Stanford Corridor | University incubation–VC–startups | Origin's near-campus incubation and slow-traffic stitching [data:geometry/buildings.geojson#BLDG-009] | Capital and property-rights structure differs |
-| Korea Pangyo Techno Valley | Government testbed + developer events | Crowd-Wisdom Park open test field | Policy and investment intensity differ |
-| Singapore one-north | Mixed use + green public space | Blue-green ratio and youth-friendliness [metric:green_ratio] | Climate and land model differ |
-| London King's Cross renewal | Stock railway land converted to innovation quarter | Heritage-belt railway memory activation | Property financing needs separate study |
-| Amsterdam Smart City | Civic participation and data-governance protocols | Public feedback and human review | Digital-rights framework differs |
-| Tokyo Shibuya station-city integration | Integrated station development and trend cohabitation | Big Bell Temple station four-quadrant connectivity [data:geometry/roads.geojson#ROAD-004] | Railway-enterprise-led approach not applicable |
+| Case Name & Positioning | Authoritative Public Source | Key Mechanism & Factual Basis | Transferable Lesson | Boundaries & Non-Transferable Elements |
+| --- | --- | --- | --- | --- |
+| Silicon Valley–Stanford Corridor | [source:DATA-SRC-CASE-STANFORD-RESEARCH-PARK] | 700-acre university research park established in 1951, leasing university land to form an academic-seed-venture capital triple helix | Origin near-campus incubation and slow-traffic stitching [data:geometry/buildings.geojson#BLDG-009] | US private university land trust and venture equity models differ |
+| Korea Pangyo Techno Valley | [source:DATA-SRC-CASE-PANGYO-TECHNO-VALLEY] | Gyeonggi-do planned 3-phase cluster (1,666 firms, KRW 167.7T sales) with government-led living testbeds and autonomous sandboxes | Crowd-Wisdom Park full-stack open AI test field | Direct provincial fiscal subsidy models cannot be applied mechanically |
+| Singapore one-north | [source:DATA-SRC-CASE-ONE-NORTH-SINGAPORE] | JTC master-planned 200 ha mixed-use development with Biopolis and LaunchPad (including Kampong AI), integrated with blue-green network | Blue-green ecological corridor integration and youth innovation vitality [metric:green_ratio] | Singapore single-landlord statutory board zoning differs |
+| London King's Cross Renewal | [source:DATA-SRC-CASE-KINGS-CROSS-REGENERATION] | 27 ha railway heritage regeneration, adapting the Granary for CSM arts university and tech HQs while weaving public realm memories | Heritage-belt century railway memory activation and slow-traffic stitching | UK private developer REITs and financial structures differ |
+| Amsterdam Smart City | [source:DATA-SRC-CASE-AMSTERDAM-SMART-CITY] | Quadruple-helix platform pioneering "AI in Control" algorithm registry and civic participation protocols | Civic feedback, four-stakeholder sign-off, and appeal/exit mechanisms | EU GDPR municipal data sovereignty must localize under Chinese cyber laws |
+| Tokyo Shibuya Station-City TOD | [source:DATA-SRC-CASE-SHIBUYA-TOD] | Integrated station TOD regeneration, moving tracks underground and building multi-level pedestrian decks to bridge east-west divide | Big Bell Temple four-quadrant multi-level slow-traffic connectivity [data:geometry/roads.geojson#ROAD-004] | Private railway company land acquisition model differs from national rail coordination |
+| Cambridge Kendall Square (MIT) | [source:DATA-SRC-CASE-KENDALL-SQUARE-MIT] | MIT-driven industrial transformation with Innovation Space Zoning and ground-floor open lounges fostering serendipitous exchange | Ground-floor open shared innovation workshops and academic interaction | Purely market-driven high-rent bio-tech model does not apply in Haidian |
 
-The above serves only as a public-mechanism comparison and makes no claim about any enterprise, investment, or policy [source:AGENT-TASKBOOK] [source:PROCESSED-FACT-PACK].
+The above comparisons are based on authoritative public reports and make no claims regarding enterprise, investment, or statutory policies [source:AGENT-TASKBOOK] [source:PROCESSED-FACT-PACK].
 
 ### Three-Area, Two-Wing Synergy Loop and 24h Spatio-Temporal Baseline
 
@@ -244,6 +245,19 @@ Blue-green space takes the JingZhang Heritage Park smart-rail vitality belt as i
 
 The three stations thread the heritage belt into a "NewTrack, One Line, Three Stations" experience line—a concept direction, not a claim of approved construction [source:AGENT-TASKBOOK] [depth:blue_green_public_space]. The three "project pairs" turn the historical switchback from a name into an operable spatial program.
 
+### Public Space Component Library (agent.4)
+
+To ensure that the public space along the JingZhang Heritage Park Smart-Rail Vitality Belt (GREEN-001) and the three key areas is actionable, maintainable, and reversible, an 8-column matrix across 6 standardized modules is established [depth:blue_green_public_space]:
+
+| Component Type & ID | Spatial Placement | Target Users | Enabled Scenario | Human Fallback Equivalent | Barrier-Free Design | Maintenance & Inspection | Pause / Sunset Mechanism |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| C-INF-01 Smart Heritage Interactive Kiosk | Heritage Park main slow-traffic belt (GREEN-001), Origin Zero-Point (SW-002) | All-age residents, students, study-tour visitors | SC-01 Slow-traffic wayfinding, SC-02 Cultural guide | Physical graphic & braille maps permanently displayed; one-touch human helpline | Low-height screen (0.8-1.1m), multilingual audio broadcast, ramp connection | Weekly sensor calibration, monthly hardware inspection | Power cut reverts to static signs; removed within 24h of project termination |
+| C-INF-02 Micro-climate Shade Pavilion | Crowd-Wisdom Green Park (GREEN-002), Qinghe waterfront | R&D staff, community residents, outdoor makers | SC-06 Qinghe low-carbon corridor, outdoor code salon | Physical shade/rain canopy with regular tables/chairs, zero digital barrier | Step-free entry, dedicated wheelchair seats, non-slip anti-glare finish | Daily cleaning patrol, pre-flood & freeze pipe safety check | Modular structure temporarily removed during flood warnings, 100% recyclable |
+| C-INF-03 Nighttime Robot Delivery Hub | Big Bell Temple Bell-Toll (SW-003), Wudaokou commercial street | Delivery couriers, logistics firms, night-shift workers | SC-07 Night low-speed delivery, T4 logistics dispatch | Physical collection point and mechanical manual override keyhole | Multi-tier pickup doors (0.4-1.2m), dual audio-visual guidance | Daily charging safety check, monthly fire & battery health check | Noise >45dB or thermal alert triggers shutdown; cleared within 48h |
+| C-INF-04 Open-Source Core Roadshow Stage | Origin former Qinghuayuan station (CON-005 / BLDG-009) | Open-source developers, startups, academic community | SC-03 Open-source launch, SC-10 AI Innovation Week | Supports non-digital physical blackboards, stands, and paper handouts | Wheelchair lift to stage, simultaneous interpretation & live subtitles | Pre-event safety inspection, monthly audiovisual maintenance | Prohibited without large-event permit; restored to regular plaza within 2h |
+| C-INF-05 Switchback Emergency SOS Totem | Every 200m along the belt, key rail crossings (ROAD-004) | Citizens and tourists in medical or safety distress | SC-08 Public safety coordination, emergency rescue | Mechanical button connects directly to 110/120 and staffed desk | Dual-height buttons (low 0.9m), high-contrast luminescent signage | 24h network heartbeat self-test, weekly physical test chime | Automatic switch to backup narrowband; preserved/relocated during works |
+| C-INF-06 Sponge Bioswale & Water Gauge | Crowd-Wisdom rain garden, Qinghe flood blue-line buffer | Municipal water staff, science tour groups, residents | SC-06 Qinghe ecological monitoring & sponge science | Physical mechanical float & gauge, readable without electricity | Boardwalk with 1.1m guardrails and tactile warning paving | Pre-flood desilting, monthly sensor calibration & water sampling | Physical overflow channel for extreme storms; zero subgrade destruction |
+
 ## Renewal Project List, Implementation Policy, and Phasing Plan
 
 Renewal projects proceed in the order "stitch, activate, grow," with `geometry/phasing.geojson` in three phases [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation] [depth:renewal_project_list]; each registers its responsible role, prerequisite evidence, acceptance, and cost category:
@@ -262,7 +276,18 @@ Phased areas: Phase 1 ≈5.28, Phase 2 ≈5.06, Phase 3 ≈1.07 km², summing to
 
 ### Global AI Innovation Activity System and Long-Term Operations (agent.6)
 
-The annual main brand "JingZhang AI Innovation Week" sets five activity categories; the developer "two-station" mechanism; a scenario-open list + reservation system + human review; the honor wall updated annually; recruitment is not written as a definite commitment [source:AGENT-TASKBOOK].
+To ensure that the Centennial JingZhang AI Innovation Belt is implementable, verifiable, and exit-capable over its entire lifecycle, a 6-dimension inspectable operations matrix is established [depth:renewal_project_list] [source:AGENT-TASKBOOK]:
+
+| Operational Dimension & ID | Operation Project Name | Responsible Role Type | Frequency & Cycle | Launch Prerequisites | Exit & Circuit-Breaker Mechanism | Cost Tier & Budget Orientation |
+| --- | --- | --- | --- | --- | --- | --- |
+| OP-01 Annual Signature Event | Centennial JingZhang AI Innovation Week & Maker Carnival | Event Lead + Management Committee Coordinator + Resident Reviewers | Annually (Autumn Sep-Oct, 7 days) | Large-scale event safety permit, noise/traffic management plan, accessibility check | Extreme weather or safety alert triggers instant circuit break; removed within 24h | Tier A · Dedicated event budget (accessibility & safety ≥20%) |
+| OP-02 Developer Community | Zero-Point Bi-weekly Open-Agent Hackathon & Code Tea | Open-source Community Lead + University Tech Union + Code Auditor | Bi-weekly (weekends), year-round | Open-source compliance agreement, data clearance registration, space filing | IP infringement or dispute causes instant takedown; developers may withdraw data | Tier B · Lightweight venue O&M and compute sponsorship (zero fixed debt) |
+| OP-03 Scenario Sandbox Sandbox | Urban AI Scenario Sandbox Window & Red-Blue Review | Scenario Coordinator + Community Supervisor + Tech Ethics Committee | Quarterly rotation (2-3 scenario cards tested per quarter) | Scenario safety threshold review, four-stakeholder sign-off, neighbor notice | Lack of progress in 90/180 days or complaint rate >5% forces shutdown & data wipe | Tier A · Test safety buffer funds & human-staffed fallback costs |
+| OP-04 Landmark & Public Space | Three Landmarks & Honor Wall Dynamic Curation | Asset Operations Lead + Heritage Advisor + Resident Supervisor | Monthly maintenance, annual honor wall selection | Fire/wind safety review, zero fabricated endorsements, clearance check | Damaged exhibits or false claims replaced instantly; site returned on expiry | Tier B · Daily property cleaning, greening, and low-voltage maintenance |
+| OP-05 International Outreach | JingZhang Three-Track Global Open-City Bilingual Exhibition | International Academic Partner + Bilingual Content Reviewer | Semi-annually (UN-Habitat / Planning Congresses) | Bilingual equivalence legal & academic review, CC BY 4.0 license | Unverified data or dispute triggers instant correction; marked as conceptual | Tier B · Bilingual publications, academic exchange, international outreach |
+| OP-06 Incubation & Conversion | Native-AI Startup Nursery & Compliance Sandbox Matching | Industrial Service Platform + Investor Union + IP Legal Counsel | Continuous advisory + quarterly roadshows | Strictly adheres to "no fabricated signed contracts or tax commitments" | Ethical violation causes immediate termination & eviction; bankruptcy isolation | Tier C · Market-driven industrial guidance fund (no rigid municipal debt) |
+
+The above operations matrix serves solely as a conceptual operational mechanism design and makes no advance commitment regarding any enterprise, investment, or statutory government obligation [source:AGENT-TASKBOOK] [source:PROCESSED-FACT-PACK].
 
 ## Indicator System, Area Re-computation, and Compliance Matrix
 
