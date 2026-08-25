@@ -263,3 +263,14 @@ summary: 以京张铁路遗址公园活力带为主轴，构建「一轴三核�
 5. 任务资料包 / 共享来源索引 / 已处理事实包 [source:SITE-PACKAGE][source:SOURCE-REGISTRY][source:PROCESSED-FACT-PACK]
 6. 专业标准：城市设计管理办法 / 控规编制办法 / 用地分类指南 [standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]；建筑设计深度规定 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 7. 全球案例公开资料：one-north、首尔 DMC、伦敦 King's Cross、巴黎 Station F、杭州云栖小镇、深圳南山、韩国 Pangyo（仅作机制借鉴，URL 与访问日期在正式包 sources.json 中登记）
+
+
+## 参与者迭代想法（持续补充）
+
+1. # 我的想法（在这里写，白话就行；不要写 （source:...） 这类符号）
+2. ## 想法 1（可选：针对哪一章，如「重点区域」）
+可以在成果下衬卫星图
+3. ## 想法 2
+结合周围不同大学、单位创造不同的有特色的局部方案
+4. ## 想法3
+更新的基础是公共基础设施，要先创造出有历史特色或者能传承时代精神的艺术构筑物或者空间，唤醒人们对京张铁路的印象，再者要有良好的环境能让人在这些区域停留，最终形成聚集效应
