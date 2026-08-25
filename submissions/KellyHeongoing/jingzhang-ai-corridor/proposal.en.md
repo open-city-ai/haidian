@@ -8,7 +8,7 @@ bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Master Concept: Jingzhang·ZhiXu — AI Opens Jing-Zhang · AI Continues Jing-Zhang · AI Creates Jing-Zhang · AI Elevates Jing-Zhang. The proposal uses Zhixu (Order of Intelligence) to re-sequence a century of Jing-Zhang history and establish a new urban order. Generated on provisional boundaries with precision caveats; the organizer's data gaps do not block content scoring."
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]
-scenarios: ["ai-spacetime-prologue", "ai-quadrant-living-room", "ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
+scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
 ---
 
 # Jing-Zhang · Zhixu — The New Order of Intelligence
