@@ -9,9 +9,9 @@
   },
   {
    "id": "A-CONTROLS-001",
-   "status": "pending_professional_confirmation",
-   "statement": "开发强度概念区间（v0.6，非审定值）：总体容积率 1.5–3.0、建筑高度 18–45 m、概念绿地率目标/假设值≥30%（法定值保持 unknown）、退线按控规分档；三处重点区分档（更新用地占比×容积率）：众智园 30–45%×1.8–2.8 → 概念建筑量 100–240 万 m²、就业 3.5–12 万；原点社区 25–40%×1.5–2.5 → 40–100 万 m²、就业 1.3–5 万；大钟寺 30–45%×2.0–3.0 → 45–95 万 m²、就业 1.5–5 万（按 20–30 m²/岗估）。区间仅作深化参考，不作为法定控制值；官方控规发布前一切强度结论仍为待确认。",
-   "impact": "All intensity, height and redline statements are concept suggestions or pending items; none is claimed as statutory control. Listed as unknown with required_for_formal_submission=true in metrics.json."
+   "status": "pending_official_regulatory_data",
+   "statement": "开发强度方法性敏感性测算框架（非审定值、非法定控制指标）：法定容积率、建筑高度、建筑密度、法定绿地率、建筑退线及红线指标在官方控规发布前严格保持 unknown（value: null），不预设固化数值；本方案仅提供供专业规划团队后续深化参考的方法性参数化测算模型（公式：GFA = Area × P_renewal × FAR，以及 20~30 m²/岗弹性就业模型）。官方法定控规发布前，一切强度与控制指标结论严格保持待确认。",
+   "impact": "All statutory control items (FAR, height, density, green ratio, setback, redline) are strictly kept as unknown in metrics.json (required_for_formal_submission=true). No speculative custom numbers are claimed as statutory controls; all values will be computed directly from official regulatory plan conditions once issued."
   },
   {
    "id": "A-EXISTING-001",
@@ -63,9 +63,9 @@
   },
   {
    "id": "A-CONTROLS-002",
-   "status": "concept_proposal",
-   "statement": "开发强度概念区间（v0.6，非审定值）：参照北京海淀同类创新街区控规惯例，待确认容积率概念区间 1.5–3.0、建筑高度 18–45 m、概念绿地率目标/假设值≥30%（法定值保持 unknown）、退线按控规分档。区间仅作深化参考，不作为法定控制值；官方控规发布前一切强度、高度、绿地率结论仍为待确认。",
-   "impact": "概念区间记入本假设带依据；metrics.json 中 floor_area_ratio / building_height_m / green_ratio_statutory 保持 unknown 不造假值（各条 assumption_ids 指向本假设）。正式提交或官方数据发布后须以审定控规为准替换区间，不得直接沿用。"
+   "status": "methodological_sensitivity_framework",
+   "statement": "开发强度方法性敏感性测试（非控规惯例依据、非审定控制值）：剔除未经用途匹配与公开复核的'同类创新街区控规惯例'表述及单一固化指标区间；容积率、建筑高度、建筑量及就业岗位仅作为方法性敏感性测试框架（Methodological Sensitivity Testing），供规划深化阶段按未来审定更新比例与审定容积率代入重算。在官方正式控规发布前，所有法定控制项严格保持 unknown。",
+   "impact": "Eliminates ungrounded customary planning claims; floor_area_ratio, building_height_m, and statutory green ratio remain strictly unknown in metrics.json. Future deepening must directly substitute official approved regulatory plan conditions."
   },
   {
    "id": "A-TEMPORAL-001",
@@ -75,9 +75,9 @@
   },
   {
    "id": "A-SANDBOX-001",
-   "status": "concept_proposal",
-   "statement": "原点社区（JZ-SW2）首轮四周封闭沙盒试验基于公开 OSM 矢量与已清权发布厅场地设计，强调零官方数据依赖即可启动概念论证与工单测试。",
-   "impact": "测试仅验证无 AI 人工替代与申诉响应时限指标，不构成线下物理车辆或真实设备无许可上路依据。"
+   "status": "future_candidate_baseline",
+   "statement": "原点社区（JZ-SW2）首轮四周封闭沙盒试验之空间数据源界定（未来拟使用开源底图 / Future Candidate Baseline Data Product）：当前提交包 geometry/*.geojson 图层全部由算法基于仓库 provisional 工作边界生成，未包含、未打包任何 OSM 衍生图层；OpenStreetMap (OSM) 数据仅登记为未来 G0~G2 离线沙盒演练在官方空间数据下发前的备选参考源。具体登记信息：数据产品 OpenStreetMap Planet/Overpass API 道路与设施矢量；快照日期 2026-08-25；范围 BBOX [39.9375, 116.3390, 40.0275, 116.3560]；开源许可 ODbL 1.0（署名 © OpenStreetMap contributors）；转换流程为 Overpass 提取 → WGS84 转 CGCS2000/3度分带 EPSG:4548 → 拓扑清洗；质量限制：VGI 志愿者数据存在 ±3~15m 几何偏差且无官方权属与规划红线，仅作离线沙盒工单逻辑验证，严禁作为施工或审批依据，官方 CAD/GIS 数据下发后即刻替换。",
+   "impact": "Clarifies that current package geometry does NOT bundle OSM data; registers full ODbL 1.0 attribution, snapshot timestamp, EPSG:4548 transform steps, and VGI quality limitation disclaimers for future sandbox test simulations."
   }
  ]
 }

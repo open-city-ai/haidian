@@ -32,11 +32,11 @@ iteration: "v0.6"
 | Announcement and task book [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] | Task scope, three-tier areas, six mandatory answers | Does not constitute an official red line or commitment |
 | Provisional layers and switchback pilot segments [source:BOUNDARY-SOURCE] [data:geometry/key_areas.geojson#PROV-KEY-001] | Concept structure, geometric closure, and mechanism placement | Does not express official boundary or tenure |
 | metrics.json [metric:site_area_sqm] | Re-computable area and counts | Does not express performance or approval |
-| Contract, ledgers, and scenario cards [depth:executable_mechanism] [depth:scenario_tiers] | Rehearsable service paths, 16 errata entries, and rights ledger | Does not prove deployment or approval |
+| Contract, ledgers, and scenario cards [depth:executable_mechanism] [depth:scenario_tiers] | Rehearsable service paths, 18 errata entries, and rights ledger | Does not prove deployment or approval |
 
 **Three-minute resident edition**: Conceptual proposal; does not replace formal planning; answers who provides what for whom, where the human access point is, and how to halt and exit.
 
-**Differentiation statement**: The Switchback Fallback is tied to the heritage of JingZhang's self-designed line; the NT-6 contract, four-state state machine, and four-stakeholder joint sign-off are verified across 24 tabletop drill cases (8 accepted / 16 rejected); three switchback pilot segments are sited in layers SW-001/002/003; accompanied by 16 errata entries and the full rights ledger.
+**Differentiation statement**: The Switchback Fallback is tied to the heritage of JingZhang's self-designed line; the NT-6 contract, four-state state machine, and four-stakeholder joint sign-off are verified across 24 tabletop drill cases (8 accepted / 16 rejected); three switchback pilot segments are sited in layers SW-001/002/003; accompanied by 18 errata entries and the full rights ledger.
 
 ## Design Basis and Materials Inventory
 
@@ -118,7 +118,7 @@ The overall design scope organizes its concept response at the control plan's **
 
 **Renewal framework and retain/renovate/demolish logic**: the building layer expresses 21 representative base parcels in three categories—retain, renovate, and new-build [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]. Principle: **no survey, no demolition** [source:PROCESSED-FACT-PACK].
 
-**Development intensity**: FAR, height, density, statutory green ratio, setback, and red-line remain unknown pending the official control plan [metric:floor_area_ratio] [metric:building_height_m]. Concept ranges (not approved): FAR 1.5–3.0, height 18–45 m, concept green ratio target/assumption ≥30% (statutory green ratio unknown), setback tiered by the control plan, see `assumptions.json` A-CONTROLS-002 [depth:assumption_ranges].
+**Development intensity**: FAR, height, density, statutory green ratio, setback, and redline remain strictly unknown pending the official regulatory plan [metric:floor_area_ratio] [metric:building_height_m]. Unverified customary planning assumptions and fixed speculative values have been eliminated; instead, a Methodological Sensitivity Testing framework organizes parameterized estimation models (formula: GFA = Area × P_renewal × FAR, with a 20–30 m²/job elastic employment model), see `assumptions.json` A-CONTROLS-001/002 [depth:assumption_ranges].
 
 **Adverse Spatial and Jurisdictional Constraints Honestly Disclosed**:
 1. Physical severance of North-South pedestrian traffic by Line 13 ground tracks and acoustic buffer zones, requiring dedicated underpass and overpass engineering deepening [data:geometry/constraints.geojson#CON-002].
@@ -133,19 +133,19 @@ The three key areas organize their concept responses at the **urban design depth
 
 Positioned as a **"garden-style full-stack self-reliant innovation district"** [data:geometry/key_areas.geojson#PROV-KEY-001]. A central green corridor threads the western innovation cluster and eastern R&D cluster [data:geometry/green_space.geojson#GREEN-002]; facing the Qing River it forms a low-carbon exchange belt [data:geometry/roads.geojson#ROAD-009]; along the Jingzang Expressway a protective green belt is set [data:geometry/land_use.geojson#LU-013]; new buildings include the large-model R&D center, the governance hall, and the service building [data:geometry/buildings.geojson#BLDG-018] [data:geometry/buildings.geojson#BLDG-019]. AI scenarios: model test sandbox, governance exhibition hall [data:geometry/public_space.geojson#PUBLIC-005]. Risk: the North Fifth Ring and Qing River interfaces need re-checking.
 
-**Intensity concept range**: renewal land 30–45% × FAR 1.8–2.8 → building volume 1.00–2.40 million m², employment 35–120 thousand [depth:assumption_ranges] [metric:floor_area_ratio]. Sited at [data:geometry/key_areas.geojson#PROV-KEY-001].
+**Intensity deepening mechanism**: statutory FAR and height remain pending official regulatory approval (kept unknown [metric:floor_area_ratio]); methodological sensitivity models are applied for deepening, with complete recalculation upon official release of approved redlines and metrics [depth:assumption_ranges]. Sited at [data:geometry/key_areas.geojson#PROV-KEY-001].
 
 ### Beijing AI Origin Community (Middle Core · Switchback Pilot Segment JZ-SW2)
 
 Positioned as a **"near-campus commercialization and talent community"** [data:geometry/key_areas.geojson#PROV-KEY-002]. With Wudaokou commercial street and Chengfu Road as the vitality skeleton [data:geometry/roads.geojson#ROAD-003], it organizes the "Zero-Point Station" open-source release hall (new-build) [data:geometry/buildings.geojson#BLDG-009] and the near-campus incubation tower cluster (renovation) [data:geometry/buildings.geojson#BLDG-007], stitching campus—park—block slow traffic [data:geometry/roads.geojson#ROAD-008]. AI scenarios: open-source release hall, commercialization street [data:geometry/public_space.geojson#PUBLIC-002]. Risk: campus boundary and property rights to be coordinated.
 
-**Intensity concept range**: renewal land 25–40% × FAR 1.5–2.5 → building volume 0.40–1.00 million m², employment 13–50 thousand [depth:assumption_ranges]. Sited at [data:geometry/key_areas.geojson#PROV-KEY-002].
+**Intensity deepening mechanism**: statutory FAR and height remain pending official regulatory approval (kept unknown); parametric elasticity testing coordinates campus and stock renewal, subject to approved statutory plans [depth:assumption_ranges]. Sited at [data:geometry/key_areas.geojson#PROV-KEY-002].
 
 ### Big Bell Temple AI Industry Agglomeration Zone (South Core · Switchback Pilot Segment JZ-SW3)
 
 Positioned as an **"urban smart-economy and international-exchange district"** [data:geometry/key_areas.geojson#PROV-KEY-003]. With Zhichun Road and the rail station as the hub [data:geometry/roads.geojson#ROAD-004], it organizes four-quadrant pedestrian connectivity in front of the station [data:geometry/public_space.geojson#PUBLIC-001] [data:geometry/land_use.geojson#LU-015]; on the east side it lays out a new-build AI headquarters cluster and the stock-converted commercial building cluster [data:geometry/buildings.geojson#BLDG-003], with composite use of planned green space carrying public experience [data:geometry/green_space.geojson#GREEN-003]. AI scenarios: international roadshow lounge, data-factor lounge. Risk: rail-station integration and intersection engineering need deepening.
 
-**Intensity concept range**: renewal land 30–45% × FAR 2.0–3.0 → building volume 0.45–0.95 million m², employment 15–50 thousand [depth:assumption_ranges]. Sited at [data:geometry/key_areas.geojson#PROV-KEY-003].
+**Intensity deepening mechanism**: statutory FAR and height remain pending official regulatory approval (kept unknown); sensitivity testing coordinates transit hub integration and business carrying capacity, subject to approved statutory plans [depth:assumption_ranges]. Sited at [data:geometry/key_areas.geojson#PROV-KEY-003].
 
 ![Three key areas index and design task diagram](assets/figures/key-areas.png)
 
@@ -184,9 +184,7 @@ All cards are conceptual proposals and are not stated as approved operations [so
 
 **Minimum pilot honest state** (SC-04 / Origin Community JZ-SW2 pilot segment) [depth:minimal_pilot]:
 
-| Gate | Must answer & first 4-week requirements | Current state |
-| --- | --- | --- |
-| G0 Topic is truly a problem | Breakpoint data source, affected population, no-AI baseline; starts on public OSM and open-source road network alone | `not_run` (no on-site measurement) |
+| G0 Topic is truly a problem | Breakpoint data source, affected population, no-AI baseline; sandbox plans to use public OSM vector as candidate offline topology baseline (current package does NOT bundle/derive from OSM data; registered in sources.json DATA-SRC-OPENSTREETMAP-CANDIDATE / rights_ledger.json RL-007 under ODbL 1.0) | `not_run` (no on-site measurement) |
 | G1 Site and tenure | Wayfinding points, passage tenure, safety boundary; verifies no-AI human alternative and appeal response <15 min | `pending_authorization` |
 | G2 Controlled test | Scope freeze, informed consent, human takeover ready; 4-stakeholder sign-off required to enter sandbox | `sandbox_only` |
 
@@ -284,7 +282,7 @@ Core indicators are managed in three classes—"geometric re-computation / offic
 | agent.4 public space and landmarks | One Belt + three landmarks + honor wall | agent.4 [depth:blue_green_public_space] |
 | agent.5 cultural narrative and guiding | One Line, Three Stations + historical anchors | agent.5 [source:SITE-PACKAGE] |
 | agent.6 activities and operations | Innovation Week + two stations + 90/180 review | agent.6 [depth:renewal_project_list] |
-| Package self-check and compliance ledger | errata.json (16 items) + rights_ledger.json | [depth:evidence_discipline] [depth:executable_mechanism] |
+| Package self-check and compliance ledger | errata.json (18 items) + rights_ledger.json | [depth:evidence_discipline] [depth:executable_mechanism] |
 
 **Same-field census** (scripts read-only): `run_field_census.js` runs a re-runnable census over main (836 schemes: no-AI equivalent path 17.1%, exit threshold 55.3%, statute citation 49.9%), with the rerun prevailing [depth:field_census] [metric:field_census_schemes_total].
 

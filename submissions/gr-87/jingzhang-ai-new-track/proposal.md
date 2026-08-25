@@ -31,11 +31,11 @@ iteration: "v0.6"
 | 公告与任务书 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] | 任务范围、三层面积、六项必答 | 不构成官方红线或承诺 |
 | 临时图层与折返试验段 [source:BOUNDARY-SOURCE] [data:geometry/key_areas.geojson#PROV-KEY-001] | 概念结构、几何闭合与机制落位 | 不表达官方边界或权属 |
 | metrics.json [metric:site_area_sqm] | 可复算面积与计数 | 不表达绩效或审定 |
-| 契约、台账与场景卡 [depth:executable_mechanism] [depth:scenario_tiers] | 可复演服务路径、16条勘误与清权台账 | 不证明已部署或已批准 |
+| 契约、台账与场景卡 [depth:executable_mechanism] [depth:scenario_tiers] | 可复演服务路径、18条勘误与清权台账 | 不证明已部署或已批准 |
 
 **三分钟居民版**：概念建议，不代替正式规划；回答谁为谁提供什么、人工入口在哪、怎样叫停退出。
 
-**差异化声明**：人字回退绑定京张自主设计遗产；NT-6 契约、四态状态机与四方联合签收经 24 组用例演练（8接受/16拒绝）可复演；三处折返试验段落位图层 key_areas 属性 SW-001/002/003；附 16 条勘误与全量权利台账。
+**差异化声明**：人字回退绑定京张自主设计遗产；NT-6 契约、四态状态机与四方联合签收经 24 组用例演练（8接受/16拒绝）可复演；三处折返试验段落位图层 key_areas 属性 SW-001/002/003；附 18 条勘误与全量权利台账。
 
 ## 设计依据与资料清单
 
@@ -117,7 +117,7 @@ iteration: "v0.6"
 
 **更新框架与拆改留逻辑**：建筑图层表达21处代表性基底，分保留、改造、新建三类 [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]。原则：**不调查，不拆除** [source:PROCESSED-FACT-PACK]。
 
-**开发强度**：容积率、高度、密度、法定绿地率、退线、红线在官方控规发布前保持 unknown [metric:floor_area_ratio] [metric:building_height_m]。概念区间（非审定）：容积率 1.5–3.0、高度 18–45 m、概念绿地率目标/假设值≥30%（法定绿地率 unknown）、退线按控规分档，见 `assumptions.json` A-CONTROLS-002 [depth:assumption_ranges]。
+**开发强度**：容积率、高度、密度、法定绿地率、退线、红线在官方控规发布前严格保持 unknown [metric:floor_area_ratio] [metric:building_height_m]。剔除未经匹配复核的控规惯例及固化数值表述，采用方法性敏感性测算框架（Methodological Sensitivity Testing）组织参数化推演模型（公式：GFA = Area × P_renewal × FAR，及 20~30 m²/岗弹性就业模型），见 `assumptions.json` A-CONTROLS-001/002 [depth:assumption_ranges]。
 
 **不利空间与辖区约束诚实披露**：
 1. 13 号线地面轨道及降噪缓冲带对大钟寺片区南北步行的物理切分，需专项地下通道与天桥工程深化 [data:geometry/constraints.geojson#CON-002]。
@@ -132,19 +132,19 @@ iteration: "v0.6"
 
 定位为**「花园型全栈自主创新街区」** [data:geometry/key_areas.geojson#PROV-KEY-001]。中央绿廊串西创新与东研发组团 [data:geometry/green_space.geojson#GREEN-002]，临清河形成低碳交往带 [data:geometry/roads.geojson#ROAD-009]，沿京藏高速设防护绿带 [data:geometry/land_use.geojson#LU-013]；新建大模型研发中心、治理馆与服务楼 [data:geometry/buildings.geojson#BLDG-018] [data:geometry/buildings.geojson#BLDG-019]。AI场景：模型测试沙盒、治理展示馆 [data:geometry/public_space.geojson#PUBLIC-005]。风险：北五环与清河界面需复核。
 
-**强度概念区间**：更新用地 30–45% × 容积率 1.8–2.8 → 建筑量 100–240 万 m²、就业 3.5–12 万 [depth:assumption_ranges] [metric:floor_area_ratio]。落位 [data:geometry/key_areas.geojson#PROV-KEY-001]。
+**强度深化机制**：法定容积率与高度待控规明确（保持 unknown [metric:floor_area_ratio]）；采用方法性敏感性模型推演，待官方红线与审定指标发布后代入重算 [depth:assumption_ranges]。落位 [data:geometry/key_areas.geojson#PROV-KEY-001]。
 
 ### 北京AI原点社区（中核 · 折返试验段 JZ-SW2）
 
 定位为**「近校型成果转化与人才社区」** [data:geometry/key_areas.geojson#PROV-KEY-002]。以五道口商街与成府路为活力骨架 [data:geometry/roads.geojson#ROAD-003]，组织「零点站」开源发布厅（新建）[data:geometry/buildings.geojson#BLDG-009]与近校孵化楼群（改造）[data:geometry/buildings.geojson#BLDG-007]，校区-园区-街区慢行缝合 [data:geometry/roads.geojson#ROAD-008]。AI场景：开源发布厅、成果转化街 [data:geometry/public_space.geojson#PUBLIC-002]。风险：校区边界、产权待协调。
 
-**强度概念区间**：更新用地 25–40% × 容积率 1.5–2.5 → 建筑量 40–100 万 m²、就业 1.3–5 万 [depth:assumption_ranges]。落位 [data:geometry/key_areas.geojson#PROV-KEY-002]。
+**强度深化机制**：法定容积率与高度待控规明确（保持 unknown）；结合高校校区协同与存量更新比例进行弹性测算，以正式审批控规为准 [depth:assumption_ranges]。落位 [data:geometry/key_areas.geojson#PROV-KEY-002]。
 
 ### 大钟寺AI产业聚集区（南核 · 折返试验段 JZ-SW3）
 
 定位为**「城市型智能经济与国际交往街区」** [data:geometry/key_areas.geojson#PROV-KEY-003]。以知春路与轨道站为枢纽 [data:geometry/roads.geojson#ROAD-004]，组织站前四象限步行连通 [data:geometry/public_space.geojson#PUBLIC-001] [data:geometry/land_use.geojson#LU-015]，东侧布局新建AI总部组团与存量改造商务楼群 [data:geometry/buildings.geojson#BLDG-003]，复合利用规划绿地承载公共体验 [data:geometry/green_space.geojson#GREEN-003]。AI场景：国际路演客厅、数据要素会客厅。风险：轨道一体化与交叉口工程待深化。
 
-**强度概念区间**：更新用地 30–45% × 容积率 2.0–3.0 → 建筑量 45–95 万 m²、就业 1.5–5 万 [depth:assumption_ranges]。落位 [data:geometry/key_areas.geojson#PROV-KEY-003]。
+**强度深化机制**：法定容积率与高度待控规明确（保持 unknown）；结合轨道枢纽一体化与商务承载力做敏感性测试，待控规下达后重算 [depth:assumption_ranges]。落位 [data:geometry/key_areas.geojson#PROV-KEY-003]。
 
 ![三处重点区域索引与设计任务图](assets/figures/key-areas.png)
 
@@ -185,7 +185,7 @@ iteration: "v0.6"
 
 | 关卡 | 必须回答与首轮四周要件 | 当前状态 |
 | --- | --- | --- |
-| G0 选题确属问题 | 断点数据源、受影响人群、无AI基线；首轮四周仅凭公开 OSM 矢量与开源路网启动 | `not_run`（无现场实测） |
+| G0 选题确属问题 | 断点数据源、受影响人群、无AI基线；沙盒未来拟使用公开 OSM 矢量作为离线断点拓扑底图（当前提交包未打包/未衍生 OSM 矢量；数据登记见 sources.json DATA-SRC-OPENSTREETMAP-CANDIDATE / rights_ledger.json RL-007，遵循 ODbL 1.0） | `not_run`（无现场实测） |
 | G1 场地与权属 | 导视点位、通行权属、安全边界；验证无 AI 人工替代与申诉闭环响应 <15 分钟 | `pending_authorization` |
 | G2 受控测试 | 范围冻结、知情同意、人工接管就绪；四方主体联合签收通过方可进入受控沙盒 | `sandbox_only` |
 
@@ -283,7 +283,7 @@ G0 可仅凭公开数据启动；G0→G2 以依法授权为前置 [depth:evidenc
 | agent.4 公共空间与地标 | 一带+三地标+荣誉墙 | agent.4 [depth:blue_green_public_space] |
 | agent.5 文化叙事与导览 | 一线三站+史实锚点 | agent.5 [source:SITE-PACKAGE] |
 | agent.6 活动与运营 | 创新周+双站+90/180复核 | agent.6 [depth:renewal_project_list] |
-| 全方案自检与合规台账 | errata.json (16条) + rights_ledger.json | [depth:evidence_discipline] [depth:executable_mechanism] |
+| 全方案自检与合规台账 | errata.json (18条) + rights_ledger.json | [depth:evidence_discipline] [depth:executable_mechanism] |
 
 **同场测量**（脚本只读）：`run_field_census.js` 对 main 做可重跑普查（836 份：无AI等价路径 17.1%、退出阈值 55.3%、法条引用 49.9%），以重跑为准 [depth:field_census] [metric:field_census_schemes_total]。
 

@@ -3,8 +3,8 @@
   "schema_version": "0.1.0",
   "package": "submissions/gr-87/jingzhang-ai-new-track",
   "title_zh": "京张·新轨 方案演进与设计勘误台账",
-  "generated_at": "2026-08-24T17:45:00Z",
-  "total_errata_count": 16,
+  "generated_at": "2026-08-25T08:30:00Z",
+  "total_errata_count": 18,
   "summary_zh": "记录方案从 v0.1 至 v0.6 演进过程中自我发现并核验修正的设计偏差、法条引用校准、数据状态纠偏、空间约束备忘与代码逻辑边界，保障方案全生命周期可追溯、可审计。",
   "errata": [
     {
@@ -198,6 +198,30 @@
       "correction_zh": "明确各区域接口仅提供概念测试方法与双语案例模板，跨区试点严禁在未获两地联合授权前启动运行。",
       "evidence_ref": "source:AGENT-TASKBOOK",
       "impact_level": "medium"
+    },
+    {
+      "errata_id": "ERR-017",
+      "version_discovered": "v0.6",
+      "version_fixed": "v0.6",
+      "category": "data_clearance",
+      "component": "assumptions.json / sources.json / rights_ledger.json",
+      "title_zh": "OpenStreetMap 开源底图状态界定与 ODbL 清权登记",
+      "description_zh": "原 A-SANDBOX-001 表述未严格区分 OSM 矢量是当前已打包使用还是未来拟在沙盒中使用，缺乏完整的数据产品、快照与许可登记。",
+      "correction_zh": "明确声明当前提交包 geometry 纯属基于仓库 provisional 假定生成，未打包 OSM 矢量；将 OSM 准确定义为未来 G0~G2 离线沙盒演练的候选底图（future_candidate_baseline），并在 sources.json、rights_ledger.json 及 assumptions.json 完整补齐 Overpass 快照、BBOX、ODbL 1.0 署名、EPSG:4548 转换流程与 VGI 质量限制。",
+      "evidence_ref": "source:DATA-SRC-OPENSTREETMAP-CANDIDATE",
+      "impact_level": "medium"
+    },
+    {
+      "errata_id": "ERR-018",
+      "version_discovered": "v0.6",
+      "version_fixed": "v0.6",
+      "category": "statutory_controls",
+      "component": "assumptions.json / proposal.md / proposal.en.md",
+      "title_zh": "开发强度控规惯例表述与固定估算数值剥离更正",
+      "description_zh": "原 A-CONTROLS-002 及重点区正文曾提及“海淀同类创新街区控规惯例”及特定容积率、建筑量、就业岗位数字，缺乏用途匹配与公开复核依据，易被误解为伪法定数值。",
+      "correction_zh": "彻底删除“同类创新街区控规惯例”表述与固化数字，全面改为“方法性敏感性测试框架（Methodological Sensitivity Testing）”；法定容积率、高度、法定绿地率、退线及红线指标 100% 保持 unknown，待正式控规下达后直接代入重算。",
+      "evidence_ref": "metric:floor_area_ratio",
+      "impact_level": "high"
     }
   ]
 }
