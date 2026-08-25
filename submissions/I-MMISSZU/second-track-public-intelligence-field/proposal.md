@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.3"
+iteration: "v0.4"
 summary: "京张从铁路遗产公园向 AI 时代公共创新基础设施演化；AI 是引擎，公共领域是界面，人和地球是目标。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
@@ -451,6 +451,17 @@ K/C/E/M/P/H 分别是知识、社区、生态、移动、生产和遗产道岔�
 
 | 项目包 | 阶段 | 区域 | 牵头类型 | 依赖 | 开源输出 |
 | --- | --- | --- | --- | --- | --- |
+### PKG01—PKG04 最小 RACI 与首轮转化条件
+
+下列 RACI 仍为概念建议，不是采购、预算、合作或审批承诺；它只把首轮试点从“可以继续深化”推进到“专业团队知道下一步找谁、准备什么、何时暂停”。成本区间采用轻量/中等/较高三档相对口径，待场地授权、工程边界和运维标准明确后再量化。[source:AGENT-TASKBOOK] [depth:phasing_implementation] [metric:project_package_count]
+
+| 项目包 | R 负责执行 | A 最终负责 | C 咨询协同 | I 告知对象 | 维护资源/成本区间 | 首轮基线责任 | 退出后资产处置 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| PKG01 第二轨开放标识与临时道岔 | 公共空间运营与设计团队 | 场地管理/依法审批主体 | 文保、消防、无障碍、社区代表 | 居民、访客、运维人员 | 轻量：可逆标识、临时家具、巡检与撤场人力 | 设计团队完成照片记录、通行冲突和投诉基线 | 标识与家具撤回入库；保留匿名事件日志与撤场手册。 |
+| PKG02 众智园可信测试公共场 v0.1 | 测试治理联合小组 | 测试场地授权主体与安全责任主体 | 高校、企业、伦理/法律顾问、公众观察员 | 使用者、周边社区、专业评审 | 中等：围挡/观察廊、急停、保险、值守和审计记录 | 治理组登记测试协议、急停演练和事件响应基线 | 停止测试，移除临时设备；公开非敏感复盘，不扩展。 |
+| PKG03 AI 原点开源转译季 | 高校-社区-开发者协作组 | 活动主办与场地授权主体 | 导师、版权/开源许可顾问、无障碍服务人员 | 学生、创业团队、居民 | 中等：导师时段、工作台、许可咨询、课程材料和人工服务 | 秘书处记录课程时数、参与结构、许可清单和复用请求 | 下架未清权成果；保留课程模板和贡献记录。 |
+| PKG04 大钟寺双通道城市客厅 | 公共服务与商业运营协作组 | 场地运营和服务窗口责任主体 | 交通、无障碍、消费者权益、社区服务人员 | 通勤者、老人、儿童家庭、商户 | 较高：人工服务台、导视、低刺激等候区、投诉和维护 | 服务组记录人工接管、等待时间、可达路线和投诉基线 | 关闭智能通道，保留人工服务；撤回误导导视并发布更正。 |
+
 | PKG01 · 第二轨开放标识与临时道岔 | temporary | KA01, KA02, KA03 | 公共空间运营与设计团队 | 现场安全、文保、权属与活动许可核查。 | 标识、家具、事件记录和撤场手册。 |
 | PKG02 · 众智园可信测试公共场 v0.1 | test | KA01 | 测试治理联合小组 | 正式场地边界、责任主体、安全与基础设施评估。 | 测试协议、暂停条件和复盘模板。 |
 | PKG03 · AI 原点开源转译季 | test | KA02 | 高校—社区—开发者协作组 | 场地共享协议、清权资料和导师机制。 | 课程、原型、许可清单和贡献者记录。 |
@@ -512,7 +523,7 @@ K/C/E/M/P/H 分别是知识、社区、生态、移动、生产和遗产道岔�
 | 指标状态 | 36 项指标保持 known/unknown 与 provisional 边界说明。 | 36 metric states retain the same known/unknown logic and provisional-boundary limits. | 实质一致 |
 | 临时边界警示 | 场地、线位、三区两翼和运营关系均为提交模型/概念建议。 | Site, alignments, two-wing links and operating relations are submitted-model or conceptual proposals. | 实质一致 |
 | 图位 | 六组中英文图件一一对应：总览、空间结构、重点区、慢行蓝绿、任务书映射、证据审计。 | Six bilingual figure pairs map one-to-one: overview, spatial structure, key areas, mobility/blue-green, taskbook mapping, evidence/audit. | 实质一致 |
-| agent 名称映射 | agent.1 定位功能；agent.2 品牌；agent.3 区域协同；agent.4 产业；agent.5 场景；agent.6 长期运营。 | agent.1 positioning/functions; agent.2 brand; agent.3 regional collaboration; agent.4 industry; agent.5 scenarios; agent.6 long-term operation. | 实质一致 |
+| agent 任务映射 | agent.1 总体概念与功能统筹；agent.2 AI 全栈自主创新与世界级生态；agent.3 AI+ 场景赋能与智能化活力城市；agent.4 AI 公共空间、智能原生新业态与朝圣地标；agent.5 京张/中关村/AI 新文化融合叙事；agent.6 全球 AI 活动体系与长期运营。 | agent.1 overall concept/function coordination; agent.2 full-stack AI innovation and ecosystem; agent.3 AI+ scenario empowerment and intelligent vibrant city; agent.4 AI public space, native businesses and pilgrimage landmarks; agent.5 Jing-Zhang/Zhongguancun/AI culture narrative; agent.6 global AI events and long-term operation. | 实质一致 |
 | 生成媒体限制 | 封面与图解为设计意图，不是现状、建成、真实人物、运营或批准证据。 | Generated cover and diagrams express design intent only, not existing, built, real-person, operating or approval evidence. | 实质一致 |
 
 ## 风险、版权与合规说明

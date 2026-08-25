@@ -13,6 +13,13 @@
 - Added a rights-recorded synthetic concept cover selected by Wanpeng Zu and labelled as non-evidentiary design intent.
 - Kept official boundary, approved controls, surveyed buildings, engineering alignments, ownership, utilities, fire and heritage approvals as explicit pending inputs; these require whole-package recalculation when supplied.
 
+## v0.4
+
+- Corrected visible agent.1-agent.6 navigation and bilingual equivalence wording to match `agent_taskbook.required_agent_tasks` exactly.
+- Rebuilt `metrics-evidence.en.png` with short English labels to avoid the prior slash-broken word wrapping symptoms.
+- Added a PKG01-PKG04 minimum RACI table with relative maintenance resource/cost bands, first baseline responsibility and asset treatment after exit, without claiming partnership, budget or approval.
+- Regenerated report HTML, A3/A0 PDFs and manifest/self-check records under `v0.4`.
+
 ## v0.3
 
 - Removed duplicate `Taskbook map` buttons and duplicate visual sections; rebuilt the English navigation as agent.1-agent.6 anchors for positioning/functions, brand, regional collaboration, industry, scenarios and long-term operation.

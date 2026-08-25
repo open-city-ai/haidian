@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.3"
+iteration: "v0.4"
 summary: "Jing-Zhang evolves from a railway heritage park into public innovation infrastructure for the AI era; AI is the engine, public realm the interface, and people and planet the goal."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
@@ -451,6 +451,17 @@ Long-term operation uses “six operating streams + six decision gates + auditab
 
 | Package | Stage | Area | Lead type | Dependencies | Open-source output |
 | --- | --- | --- | --- | --- | --- |
+### Minimum RACI and First-Round Translation Conditions for PKG01-PKG04
+
+The following RACI remains a conceptual proposal, not a procurement, budget, partnership or approval commitment. It turns the first pilot round from “can be deepened” into “professional teams know whom to involve, what to prepare and when to pause.” Cost bands use relative light/medium/higher levels and must be quantified only after site authorization, engineering boundaries and operating standards are confirmed.[source:AGENT-TASKBOOK] [depth:phasing_implementation] [metric:project_package_count]
+
+| Package | R Responsible | A Accountable | C Consulted | I Informed | Maintenance resource / cost band | First baseline responsibility | Asset treatment after exit |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| PKG01 Second Track Open Markers and Temporary Switches | Public-realm operations and design team | Site manager / lawful approval actor | Heritage, fire-safety, accessibility and community representatives | Residents, visitors, operators | Light: reversible markers, temporary furniture, inspection and removal labor | Design team records photos, circulation conflicts and complaint baseline | Remove and store markers/furniture; keep anonymized event log and removal manual. |
+| PKG02 Zhongzhiyuan Trusted Test Commons v0.1 | Joint test-governance group | Authorized site actor and safety-accountability actor | Universities, enterprises, ethics/legal advisers, public observers | Users, nearby communities, professional reviewers | Medium: separation/observation walk, emergency stop, insurance, staffing and audit logs | Governance group records test protocols, stop drills and incident-response baseline | Stop testing, remove temporary devices; publish non-sensitive review and do not scale. |
+| PKG03 AI Origin Open-Source Translation Season | University-community-developer collaboration group | Event host and authorized venue actor | Mentors, rights/open-source advisers, accessibility staff | Students, founders, residents | Medium: mentor hours, worktables, license advice, course material and staffed service | Secretariat records class hours, participation mix, license checklist and reuse requests | Delist uncleared outputs; keep course templates and contribution records. |
+| PKG04 Dazhongsi Dual-Channel Civic Living Room | Public-service and commercial-operations group | Venue operator and responsible service-window actor | Mobility, accessibility, consumer-rights and community-service staff | Commuters, older adults, families, merchants | Higher: staffed desk, wayfinding, low-stimulation waiting area, complaints and maintenance | Service team records human takeover, wait time, accessible routes and complaint baseline | Close smart channel, retain staffed service; withdraw misleading wayfinding and publish correction. |
+
 | PKG01 · Second Track Open Markers and Temporary Switches | temporary | KA01, KA02, KA03 | Public-realm operations and design team | Site safety, heritage, ownership and event-permit checks. | Marker, furniture, event-log and removal manuals. |
 | PKG02 · Zhongzhiyuan Trusted Test Commons v0.1 | test | KA01 | Joint test-governance group | Formal site boundary, accountable operator, safety and infrastructure assessment. | Test protocol, pause conditions and review template. |
 | PKG03 · AI Origin Open-Source Translation Season | test | KA02 | University–community–developer partnership | Space-sharing agreement, rights-cleared materials and mentorship mechanism. | Courses, prototypes, license checklist and contributor record. |
@@ -502,7 +513,7 @@ Priority pilots audit whether a scene is public, pausable and reviewable before 
 
 ![Metric recalculation, taskbook mapping, operations audit and four-gate evidence chain](assets/figures/metrics-evidence.en.png)
 
-## Substantive Bilingual Equivalence Handoff
+## Substantive Bilingual Equivalence Handoff Checklist
 
 The formal professional-review handoff does not rely only on the machine bilingual gate. It includes this substantive human checklist for core claims, the 36 metric states, provisional-boundary warnings, figure placement, agent.1-agent.6 name mapping and generated-media limits. Any later remake of text, figures, font subsets or cover media must update this table, `sources.json`, the manifest and the self-check record together.[source:SOURCE-REGISTRY] [metric:audit_metric_count]
 
@@ -512,7 +523,7 @@ The formal professional-review handoff does not rely only on the machine bilingu
 | Metric states | 36 项指标保持 known/unknown 与 provisional 边界说明。 | 36 metric states retain the same known/unknown logic and provisional-boundary limits. | Substantively equivalent |
 | Provisional warnings | 场地、线位、三区两翼和运营关系均为提交模型/概念建议。 | Site, alignments, two-wing links and operating relations are submitted-model or conceptual proposals. | Substantively equivalent |
 | Figure placement | 六组中英文图件一一对应：总览、空间结构、重点区、慢行蓝绿、任务书映射、证据审计。 | Six bilingual figure pairs map one-to-one: overview, spatial structure, key areas, mobility/blue-green, taskbook mapping, evidence/audit. | Substantively equivalent |
-| Agent mapping | agent.1 定位功能；agent.2 品牌；agent.3 区域协同；agent.4 产业；agent.5 场景；agent.6 长期运营。 | agent.1 positioning/functions; agent.2 brand; agent.3 regional collaboration; agent.4 industry; agent.5 scenarios; agent.6 long-term operation. | Substantively equivalent |
+| Agent task mapping | agent.1 总体概念与功能统筹；agent.2 AI 全栈自主创新与世界级生态；agent.3 AI+ 场景赋能与智能化活力城市；agent.4 AI 公共空间、智能原生新业态与朝圣地标；agent.5 京张/中关村/AI 新文化融合叙事；agent.6 全球 AI 活动体系与长期运营。 | agent.1 overall concept/function coordination; agent.2 full-stack AI innovation and ecosystem; agent.3 AI+ scenario empowerment and intelligent vibrant city; agent.4 AI public space, native businesses and pilgrimage landmarks; agent.5 Jing-Zhang/Zhongguancun/AI culture narrative; agent.6 global AI events and long-term operation. | Substantively equivalent |
 | Generated-media limits | 封面与图解为设计意图，不是现状、建成、真实人物、运营或批准证据。 | Generated cover and diagrams express design intent only, not existing, built, real-person, operating or approval evidence. | Substantively equivalent |
 
 ## Risk, Copyright, and Compliance
