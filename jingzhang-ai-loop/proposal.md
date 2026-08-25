@@ -20,6 +20,9 @@ summary: 以京张铁路遗址公园活力带为主轴，构建「一轴三核�
 - 任务资料包与共享资料索引：任务书、标准、枚举、规划范围 [source:SITE-PACKAGE][source:SOURCE-REGISTRY]
 - 已处理事实包：任务清单、范围结构、资料用途与缺口清单 [source:PROCESSED-FACT-PACK]
 - 背景资料（仅背景，不支撑空间控制结论）：智慧助老技术产品应用推广方案（2020-45）
+- 京张铁路遗址公园二期开放公开报道（2026-08）[source:SRC-JZ-PARK-PHASE2]
+- 海淀AI原点社区、三区两翼与AI产业数据公开报道（2026-03~06）[source:SRC-AI-ORIGIN-COMMUNITY][source:SRC-THREE-ZONES-TWO-WINGS]
+- 大钟寺先导区与蓝景丽家国际交流中心公开报道（2026-08）[source:SRC-DAZHONGSI-BLUEJINGLIJIA][source:SRC-HAIDIAN-AI-STATS]
 - **数据缺口清单**：官方精确红线/重点区红线未公开、控规指标未公开、产权与工程底图未取得 → 本稿所有量化内容均为「建议指标」或「参考区间」，待官方附件补齐后统一复算 [depth:existing_conditions_diagnosis][depth:risk_missing_data]
 
 ## 三层范围工作框架
@@ -54,6 +57,10 @@ summary: 以京张铁路遗址公园活力带为主轴，构建「一轴三核�
 
 **生态图谱（概念）**：基础支撑层（算力/数据/芯片）→ 模型与开源层（大模型、开源社区、智能体）→ 应用场景层（城市治理、产业服务、民生体验）→ 要素保障层（人才、资本、政策、场景开放）。京张带图谱的差异化定位：**以「城市即场景」和「开源即生态」作为两条主线** [source:AGENT-TASKBOOK][source:PROCESSED-FACT-PACK]。
 
+### 3.3 海淀AI产业基础与三区依托（真实资料）
+
+海淀区已集聚 AI 企业超 2000 家、独角兽企业 26 家，备案大模型 130 款，AI 核心产业规模超 3500 亿元、约占全国 30% [source:SRC-HAIDIAN-AI-STATS]。京张带三区两翼即依托这一基础：中部 AI 原点社区立足五道口核心区、聚焦环「清北科」，打造高校一公里「近校创新生态圈」[source:SRC-THREE-ZONES-TWO-WINGS]；南部大钟寺依托龙头平台，集聚智能体、内容消费、智能终端等生态企业 [source:SRC-THREE-ZONES-TWO-WINGS][source:SRC-DAZHONGSI-BLUEJINGLIJIA]。
+
 ## 总体设计范围城市更新与控规深度城市设计
 
 ### 4.1 总体空间结构（agent.1）：「一轴三核两翼 · 多节点」
@@ -62,6 +69,8 @@ summary: 以京张铁路遗址公园活力带为主轴，构建「一轴三核�
 - **三核**：北京AI原点社区（「原点」）、众智园AI自主创新加速区（「加速」）、大钟寺AI产业聚集区（「集聚」），形成「诞生—加速—集聚」的产业生命线。
 - **两翼**：中关村科技服务翼（资本/大厂/高校协同）、小月河场景赋能翼（生活场景/测试场景）。
 - **多节点**：沿轴分布的开源广场、场景实验室、朝圣地标、服务驿站等 12 类 AI 场景节点，形成「环形创新廊道」而非线性过道。
+
+**现状依托（真实资料）**：一轴即京张铁路遗址公园活力带，全长约 9 公里，南起西直门北京北站、北至北五环，横跨北三环、北四环；一期（知春路—清华东路）与二期（西直门—知春路，2026 年 8 月开放，含 2.4 公里 1909 年旧线铁轨复原）已贯通为带状文化绿廊 [source:SRC-JZ-PARK-PHASE2]。三核具体依托：AI 原点社区位于五道口、辐射 3 平方公里（东至王庄路及展春园西路、西至中关村大街、北临清华、南抵北四环西路），已集聚 439 家企业 [source:SRC-AI-ORIGIN-COMMUNITY]；众智园位于带最北端、中关村东升科技园学院路北段 [source:SRC-THREE-ZONES-TWO-WINGS]；大钟寺位于北三环，蓝景丽家将改造为国际交流中心，与方恒广场、中坤广场功能互补 [source:SRC-DAZHONGSI-BLUEJINGLIJIA]。
 
 ![智链京张总体概念图：一轴三核两翼多节点空间结构](assets/figures/site-overview.png)
 
@@ -86,6 +95,8 @@ summary: 以京张铁路遗址公园活力带为主轴，构建「一轴三核�
 | 大钟寺AI产业聚集区（约 72.0ha） | 「AI 集聚地」：总部、会展、国际交流 | AI 国际会展与发布中心、总部街区、国际人才服务驿站、大钟寺文化地标联动 |
 
 三区之间以「环形创新廊道」串联，避免各自孤立 [source:KEY-AREA-SOURCE][depth:three_key_area_detailed_design][data:geometry/key_areas.geojson#KEY-001]。
+
+**现状依托（真实资料）**：AI 原点社区现状为 439 家企业、日均往来 7000 余人的 AI 创新街区，联动清华大学、北京大学、中国科学院，原点大厦、清华科技园、智源研究院等载体 [source:SRC-AI-ORIGIN-COMMUNITY]；众智园位于京张带最北端，是中关村东升科技园 AI 自主创新加速区的核心载体（学院路北段、学清路—月泉路）[source:SRC-THREE-ZONES-TWO-WINGS]；大钟寺依托北三环区位与龙头平台，蓝景丽家将变身国际交流中心（公开报道称拟拉动社会投资约 48.8 亿元），与方恒广场、中坤广场形成互补 [source:SRC-DAZHONGSI-BLUEJINGLIJIA]。
 
 ![三处重点区域图：AI原点社区、众智园、大钟寺及功能定位](assets/figures/key-areas.png)
 
@@ -129,7 +140,9 @@ summary: 以京张铁路遗址公园活力带为主轴，构建「一轴三核�
 
 ## 交通、轨道、市政与公共服务设施
 
-以京张铁路遗址公园活力带为脊柱构建连续慢行网络，衔接轨道站点与公交，打造「15 分钟 AI 生活圈」；全带慢行路径优先考虑无障碍与适老化设计 [depth:traffic_rail_slow_parking][data:geometry/roads.geojson#ROAD-001]。AI 交通先行试点：S2 慢行绿波导航、S9 车路协同路口、S4 低速无人配送（限测试走廊、限速限时备案）。市政与新基建建议预留智能感知、边缘算力、无线充电等「可逆新基建」接口，不预设工程线位与管线走向；公共服务补齐社区服务中心、国际人才驿站、AI 技能驿站三类节点 [depth:municipal_new_infrastructure]。慢行·蓝绿·场景节点关系见下图。
+以京张铁路遗址公园活力带为脊柱构建连续慢行网络，衔接轨道站点与公交，打造「15 分钟 AI 生活圈」；全带慢行路径优先考虑无障碍与适老化设计 [depth:traffic_rail_slow_parking][data:geometry/roads.geojson#ROAD-001]。
+
+**现状轨道与慢行要素（真实资料）**：遗址公园沿线包含西直门北京北站、地铁 13 号线（知春路、五道口等站）及北三环、北四环跨线桥等节点，9 公里带状绿廊为慢行主脊 [source:SRC-JZ-PARK-PHASE2][source:SRC-THREE-ZONES-TWO-WINGS]。AI 交通先行试点：S2 慢行绿波导航、S9 车路协同路口、S4 低速无人配送（限测试走廊、限速限时备案）。市政与新基建建议预留智能感知、边缘算力、无线充电等「可逆新基建」接口，不预设工程线位与管线走向；公共服务补齐社区服务中心、国际人才驿站、AI 技能驿站三类节点 [depth:municipal_new_infrastructure]。慢行·蓝绿·场景节点关系见下图。
 
 ![慢行蓝绿公共空间图：京张活力带、小月河滨水与AI场景节点](assets/figures/mobility-bluegreen.png)
 
