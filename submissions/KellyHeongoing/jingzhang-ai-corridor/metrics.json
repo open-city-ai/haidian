@@ -13,9 +13,9 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
+      "confidence": "medium",
       "assumptions": [
-        "Trusted official boundary is present in the site package."
+        "The submitted boundary is provisional and suitable only for scheme generation and recomputation; official boundary geometry is still required for precise area conclusions."
       ]
     },
     "building_footprint_area_sqm": {
@@ -75,6 +75,19 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI scenario cards in proposal.md)",
+      "confidence": "medium",
+      "assumptions": [
+        "Scenario cards are currently documented in the narrative; a structured scenario registry should be added before implementation review."
+      ]
     }
   }
 }

@@ -23,13 +23,13 @@ This turns the Jingzhang AI Innovation Belt from a heritage line to be viewed in
 
 These are conceptual visualizations showing atmosphere, scale, material, and use. They are not existing-condition photographs, official renderings, or approved construction proposals.
 
-![Qi · Prologue | Spacetime Prologue Platform](assets/media/scene-prologue-v2.png)
+![Qi · Prologue | Spacetime Prologue Platform](assets/media/scene-s01.png)
 
-![Chuang · Form | Qinghe Innovation Interface](assets/media/scene-innovation-interface-v2.png)
+![Chuang · Form | Qinghe Innovation Interface](assets/media/scene-s02.png)
 
-![Shang · Trend | Four-Quadrant Lounge](assets/media/scene-four-quadrant-lounge-v2.png)
+![Shang · Trend | Four-Quadrant Lounge](assets/media/scene-s04.png)
 
-![Cheng · Heritage | Centennial Timeline Walk](assets/media/scene-timeline-walk-v2.png)
+![Cheng · Heritage | Centennial Timeline Walk](assets/media/scene-s03.png)
 
 ## Design Basis and Material Inventory
 
@@ -173,7 +173,7 @@ Key-Area Detailed Design is mandatory. The three key areas become the spatial ca
 
 The scheme builds spatial-demand profiles for AI talent and enterprises, covering R&D offices, open-source collaboration, achievement publication, enterprise services, talent housing, social learning, consumer life, sports and leisure, and international exchange. AI-enabled scenarios address the transport, services, consumption, healthcare, education, law, and life-services directions proposed in the announcement, forming both industry-development scenarios and AI-empowered city-function scenarios. Each scenario states its service users, spatial location, data sources, privacy boundaries, human-review mechanism, and operating entity.
 
-AI scenarios land on spatial and governance boundaries: public-space scenarios cite [data:geometry/public_space.geojson#PUBLIC-001]; slow-mobility and traffic scenarios cite [data:geometry/roads.geojson#ROAD-001]; open-space scenarios cite [data:geometry/green_space.geojson#GREEN-001] with [metric:public_space_ratio] and [metric:green_ratio]. This scheme provides 10 scenario cards, 3 testing-and-validation scenarios, and 5 user profiles, covering the taskbook requirements.
+AI scenarios land on spatial and governance boundaries: public-space scenarios cite [data:geometry/public_space.geojson#PUBLIC-001]; slow-mobility and traffic scenarios cite [data:geometry/roads.geojson#ROAD-001]; open-space scenarios cite [data:geometry/green_space.geojson#GREEN-001] with [metric:public_space_ratio] and [metric:green_ratio]. This scheme provides 8 scenario cards, 3 testing-and-validation scenarios, and 5 user profiles, covering the taskbook requirements.
 
 The scheme also integrates ground, below-ground, and above-ground spatial layers, expanding the audience from “tech talent” to a multi-generational public that can be served, seen, and invited to co-create.
 
@@ -208,7 +208,7 @@ The three-dimensional strategy follows “public first, intelligent second; main
 
 The logo uses a bronze time track and an electric-blue intelligence track: bronze represents railway heritage since 1909, while blue represents AI data and future services. Their central crossing abstracts the character “Xu.” The Chinese lock-up is “京张·智序”; the English lock-up is “Jingzhang·ZhiXu”; the descriptor is “AI开启京张 · AI续京张 · AI创京张 · AI尚京张.”
 
-Identity rules: charcoal `#0A1119`, railway bronze `#D1A85A`, electric cyan `#64D5E8`, emerald `#55C7AA`, and coral amber `#F0B44C`. Wayfinding uses a time-track/intelligence-track dual code: 1909, 1920s, and 2020s for eras; S01–S10 for scenario nodes. Node IDs use `JZ–order–scenario`, for example `JZ–QI–S02`. Graphics, fonts, corporate marks, and public art require rights, trademark, and typeface clearance before implementation [source:AGENT-TASKBOOK] [depth:brand_wayfinding_system].
+Identity rules: charcoal `#0A1119`, railway bronze `#D1A85A`, electric cyan `#64D5E8`, emerald `#55C7AA`, and coral amber `#F0B44C`. Wayfinding uses a time-track/intelligence-track dual code: 1909, 1920s, and 2020s for eras; S01–S08 for scenario nodes. Node IDs use `JZ–order–scenario`, for example `JZ–QI–S02`. Graphics, fonts, corporate marks, and public art require rights, trademark, and typeface clearance before implementation [source:AGENT-TASKBOOK] [depth:brand_wayfinding_system].
 
 ### User Profiles (5)
 
@@ -220,7 +220,7 @@ Identity rules: charcoal `#0A1119`, railway bronze `#D1A85A`, electric cyan `#64
 | Surrounding residents | Commuting, leisure, community services, low-disruption renewal | Century Timeline Walk slow-mobility loop, embedded community services, graded night lighting and events | Resident profiles never used for commercial recommendation |
 | University faculty/students & young creators | Achievement transformation, cross-campus collaboration, daily slow mobility, creative expression | Campus–park slow-mobility stitching, transformation stations, youth co-creation plaza, AI education experience points | Campus data and research results require authorization |
 
-### AI Scenario Cards (10, organized by the Four Orders)
+### AI Scenario Cards (8, organized by the Four Orders)
 
 | Card | Order | Spatial carrier | Design description |
 | --- | --- | --- | --- |
