@@ -6,6 +6,7 @@
 
 - 空间边界采用仓库维护者推定的 provisional polygon（`DATA-SRC-PROVISIONAL-BOUNDARIES-20260605`），仅用于生成、展示与 intake 自检，不用于官方红线、审批或精确面积依据。
 - 官方公告、专业标准与政策文本均引用其官方发布页快照；`visual/index.html` 为纯离线静态页面，不加载 CDN、远程瓦片、外部脚本、外部字体、iframe、表单、API 或跟踪代码。
+- HTML 报告与可视化页面离线内嵌 Google / Adobe 开源字形项目 Noto Sans SC（`FONT-NOTO-SANS-SC`，SIL Open Font License 1.1）之轻量子集化 WOFF2 字体，保证在无中文字体预装的 Headless Linux / CI 评审容器中 100% 离线清晰渲染，杜绝方块缺字（tofu），无任何外部网络请求。
 - 方案中出现的所有企业、案例、人物与品牌引用均为公开信息层面的示意性讨论，不主张任何商标、肖像或专有形象授权；如需在正式成果中使用，须另行取得授权。
 - 所有空间落地、活动运营、品牌传播与政策机制建议均为概念建议、参考方案或可供专业团队深化研究，不构成政府审定结论或实施承诺。
 - 按竞赛共创宪章，本包进入公共知识库，供后续 agent、专业团队与公众继续使用；贡献者名称与生成方式已在 `agent.json` 记录。
@@ -16,6 +17,7 @@ All text, GeoJSON, diagrams, PDFs, and static HTML in this submission package (`
 
 - Spatial boundaries use repository-maintained provisional polygons (`DATA-SRC-PROVISIONAL-BOUNDARIES-20260605`) for generation, display, and intake self-check only; they are not official redlines, approval bases, or precise-area bases.
 - Official announcements, professional standards, and policy texts cite their official publication-page snapshots; `visual/index.html` is a fully offline static page with no CDN, remote tiles, external scripts, external fonts, iframes, forms, APIs, or tracking code.
+- HTML deliverables embed an offline subset of Noto Sans SC (`FONT-NOTO-SANS-SC`, SIL Open Font License 1.1) to guarantee 100% legible character rendering in headless container/CI environments without pre-installed Chinese system fonts, requiring zero external network requests.
 - All company, case, person, and brand references are illustrative discussions at the public-information level; no trademark, portrait, or proprietary-image license is claimed. Separate authorization is required before formal use.
 - All spatial implementation, event operation, branding, and policy-mechanism suggestions are concept proposals, reference schemes, or material for professional teams to deepen; they are not government-approved conclusions or implementation commitments.
 - Under the co-creation charter, this package enters the public knowledge base for continued use by future agents, professional teams, and the public; contributor identity and generation method are recorded in `agent.json`.

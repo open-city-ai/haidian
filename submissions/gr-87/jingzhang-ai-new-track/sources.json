@@ -299,29 +299,51 @@
    "notes_zh": "临时粗略范围，不得作为官方红线、审批依据或精确面积依据。"
   },
   {
-    "id": "DATA-SRC-OPENSTREETMAP-CANDIDATE",
-    "url": "https://www.openstreetmap.org",
-    "source_type": "public_open_data",
-    "publisher": "OpenStreetMap Contributors",
-    "license": "ODbL-1.0",
-    "published_date": "2026-08-25",
-    "accessed_date": "2026-08-25",
-    "source_kind": "future_candidate_baseline",
-    "authority_level": "OPEN_SOURCE_VOLUNTEER_GEOGRAPHIC_INFORMATION",
-    "review_status": "candidate_for_future_sandbox",
-    "usable_for_formal": "provisional_only",
-    "allowed_uses": [
-     "candidate open-source road/amenity vector baseline for future offline sandbox simulation (G0-G2 gates)",
-     "offline break-point topological validation before official government cadastral data is issued"
-    ],
-    "prohibited_uses": [
-     "current submission geometry derivation (current package geometry does NOT bundle OSM data)",
-     "official cadastral survey or property boundary determination",
-     "statutory road redline or construction engineering design",
-     "real-world physical autonomous vehicle deployment authorization"
-    ],
-    "usage": "未来候选底图数据（未来拟使用，当前提交包未打包/未衍生使用）：OpenStreetMap Overpass API 提取范围 BBOX [39.9375, 116.3390, 40.0275, 116.3560]；快照日期 2026-08-25；遵循 ODbL 1.0 许可与署名要求；转换流程为 Overpass → EPSG:4548 投影转换 → 拓扑清洗；受限于 VGI ±3~15m 精度与法定属性缺失，仅作为离线沙盒概念推演备选源，待官方 CAD/GIS 数据发布后完全替换。",
-    "notes_zh": "当前提交包 geometry/*.geojson 纯属基于仓库 provisional 假定生成，未包含 OSM 衍生文件；本源仅登记为沙盒未来备选。"
-   }
+   "id": "DATA-SRC-OPENSTREETMAP-CANDIDATE",
+   "url": "https://www.openstreetmap.org",
+   "source_type": "public_open_data",
+   "publisher": "OpenStreetMap Contributors",
+   "license": "ODbL-1.0",
+   "published_date": "2026-08-25",
+   "accessed_date": "2026-08-25",
+   "source_kind": "future_candidate_baseline",
+   "authority_level": "OPEN_SOURCE_VOLUNTEER_GEOGRAPHIC_INFORMATION",
+   "review_status": "candidate_for_future_sandbox",
+   "usable_for_formal": "provisional_only",
+   "allowed_uses": [
+    "candidate open-source road/amenity vector baseline for future offline sandbox simulation (G0-G2 gates)",
+    "offline break-point topological validation before official government cadastral data is issued"
+   ],
+   "prohibited_uses": [
+    "current submission geometry derivation (current package geometry does NOT bundle OSM data)",
+    "official cadastral survey or property boundary determination",
+    "statutory road redline or construction engineering design",
+    "real-world physical autonomous vehicle deployment authorization"
+   ],
+   "usage": "未来候选底图数据（未来拟使用，当前提交包未打包/未衍生使用）：OpenStreetMap Overpass API 提取范围 BBOX [39.9375, 116.3390, 40.0275, 116.3560]；快照日期 2026-08-25；遵循 ODbL 1.0 许可与署名要求；转换流程为 Overpass → EPSG:4548 投影转换 → 拓扑清洗；受限于 VGI ±3~15m 精度与法定属性缺失，仅作为离线沙盒概念推演备选源，待官方 CAD/GIS 数据发布后完全替换。",
+   "notes_zh": "当前提交包 geometry/*.geojson 纯属基于仓库 provisional 假定生成，未包含 OSM 衍生文件；本源仅登记为沙盒未来备选。"
+  },
+  {
+   "id": "FONT-NOTO-SANS-SC",
+   "url": "https://github.com/notofonts/noto-cjk",
+   "source_type": "public_open_source",
+   "publisher": "Google Fonts / Adobe (Noto CJK Authors)",
+   "license": "SIL Open Font License 1.1",
+   "published_date": "2024-01-01",
+   "accessed_date": "2026-08-25",
+   "source_kind": "offline_cjk_font_asset",
+   "authority_level": "OPEN_SOURCE_STANDARD",
+   "review_status": "approved",
+   "usable_for_formal": "yes",
+   "allowed_uses": [
+    "offline bundled font subset for report/proposal.html and visual/index.html rendering",
+    "headless Linux CI preview character rendering"
+   ],
+   "prohibited_uses": [
+    "commercial font resale as standalone product"
+   ],
+   "usage": "开源中文字体 Noto Sans SC（SIL Open Font License 1.1），经子集化生成轻量 WOFF2 格式以 Base64 内嵌于 proposal.html 与 visual/index.html，确保无中文字体预装的 Headless Linux / CI 评审容器环境下中文文本与 SVG 地图标注 100% 离线清晰渲染，杜绝方块缺字（tofu）。",
+   "notes_zh": "纯离线内嵌，符合零外部请求规范与单文件体积约束。"
+  }
  ]
 }

@@ -7,7 +7,7 @@ bilingual_contract_version: "1"
 translation_file: "proposal.md"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Under the master concept of \"Three Tracks, One Pulse,\" the proposal sets out a structure of One Belt, Three Cores, Two Wings, Seven Axes; the Switchback Fallback organizes the heritage track, the rail track, and the data track into a public-service contract that can be halted, appealed, and exited at any time—three switchback pilot segments are positioned as re-computable layers, four-stakeholder sign-off and 24 tabletop drill cases are verifiable, with quantified concept ranges, 16 errata entries, and the full rights ledger openly accessible."
+summary: "Under the master concept of \"Three Tracks, One Pulse,\" the proposal sets out a structure of One Belt, Three Cores, Two Wings, Seven Axes; the Switchback Fallback organizes the heritage track, the rail track, and the data track into a public-service contract that can be halted, appealed, and exited at any time—three switchback pilot segments are positioned as re-computable layers, four-stakeholder sign-off and 24 tabletop drill cases are verifiable, with quantified concept ranges, 18 errata entries, and the full rights ledger openly accessible."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
 iteration: "v0.6"

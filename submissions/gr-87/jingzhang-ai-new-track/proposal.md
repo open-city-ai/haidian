@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以「三轨同脉」为总概念，提出一带三核、双翼七轴结构；人字回退（Switchback Fallback）把历史轨/轨道轨/数据轨组织成可叫停、可申诉、可退出的公共服务契约——三处折返试验段落位为可复算图层，四方联合签收与24组演练用例可复验，量化概念区间、16条勘误与权利台账公开可查。"
+summary: "以「三轨同脉」为总概念，提出一带三核、双翼七轴结构；人字回退（Switchback Fallback）把历史轨/轨道轨/数据轨组织成可叫停、可申诉、可退出的公共服务契约——三处折返试验段落位为可复算图层，四方联合签收与24组演练用例可复验，量化概念区间、18条勘误与权利台账公开可查。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
 iteration: "v0.6"
