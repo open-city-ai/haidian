@@ -1,0 +1,258 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于 provisional 边界，official polygon 发布后需重算"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2565525.824,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space_polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念绿地系统，非现状绿地统计"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 575401.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space_polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念公共空间节点（6 地标广场 + 10 活力带活动场地），非现状统计"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 644095.138,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "概念建筑基底示意，不代表现状或审批规模"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.224793,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念绿地占比"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.050417,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念公共空间占比，含绿地内硬质活动场地"
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 67162.767,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "概念路网，不含现状道路红线"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "zhongzhiyuan_ai_acceleration_area_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 面积"
+      ]
+    },
+    "beijing_ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 面积"
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 面积"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "场景节点映射至公共空间与主轴"
+      ]
+    },
+    "persona_type_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona_types)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_verification_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(test_verification_scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(renewal_projects)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念项目清单，非审批项目"
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 29,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "reason": "官方控规容积率未在清权资料包中提供，待正式控规条件补齐后计算。",
+      "required_for_formal_submission": true,
+      "assumptions": []
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "reason": "官方建筑高度控制未在清权资料包中提供，待正式控规条件补齐后计算。",
+      "required_for_formal_submission": true,
+      "assumptions": []
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "reason": "缺少官方控规容积率与现状建筑数据，无法给出可靠建筑总规模。",
+      "required_for_formal_submission": true,
+      "assumptions": []
+    }
+  }
+}
