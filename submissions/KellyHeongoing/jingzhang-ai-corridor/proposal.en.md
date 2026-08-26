@@ -8,7 +8,7 @@ bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Master Concept: Jingzhang·ZhiXu — AI Opens Jing-Zhang · AI Continues Jing-Zhang · AI Creates Jing-Zhang · AI Elevates Jing-Zhang. The proposal uses Zhixu (Order of Intelligence) to re-sequence a century of Jing-Zhang history and establish a new urban order. Generated on provisional boundaries with precision caveats; the organizer's data gaps do not block content scoring."
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]
-scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
+scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed", "ai-bluegreen-sensing", "ai-infrastructure-segment"]
 ---
 
 # Jing-Zhang · Zhixu — The New Order of Intelligence
@@ -173,7 +173,7 @@ Key-Area Detailed Design is mandatory. The three key areas become the spatial ca
 
 The scheme builds spatial-demand profiles for AI talent and enterprises, covering R&D offices, open-source collaboration, achievement publication, enterprise services, talent housing, social learning, consumer life, sports and leisure, and international exchange. AI-enabled scenarios address the transport, services, consumption, healthcare, education, law, and life-services directions proposed in the announcement, forming both industry-development scenarios and AI-empowered city-function scenarios. Each scenario states its service users, spatial location, data sources, privacy boundaries, human-review mechanism, and operating entity.
 
-AI scenarios land on spatial and governance boundaries: public-space scenarios cite [data:geometry/public_space.geojson#PUBLIC-001]; slow-mobility and traffic scenarios cite [data:geometry/roads.geojson#ROAD-001]; open-space scenarios cite [data:geometry/green_space.geojson#GREEN-001] with [metric:public_space_ratio] and [metric:green_ratio]. This scheme provides 8 scenario cards, 3 testing-and-validation scenarios, and 5 user profiles, covering the taskbook requirements.
+AI scenarios land on spatial and governance boundaries: public-space scenarios cite [data:geometry/public_space.geojson#PUBLIC-001]; slow-mobility and traffic scenarios cite [data:geometry/roads.geojson#ROAD-001]; open-space scenarios cite [data:geometry/green_space.geojson#GREEN-001] with [metric:public_space_ratio] and [metric:green_ratio]. This scheme provides 10 scenario cards, 3 testing-and-validation scenarios, and 5 user profiles, covering the taskbook requirements.
 
 The scheme also integrates ground, below-ground, and above-ground spatial layers, expanding the audience from “tech talent” to a multi-generational public that can be served, seen, and invited to co-create.
 
@@ -220,7 +220,7 @@ Identity rules: charcoal `#0A1119`, railway bronze `#D1A85A`, electric cyan `#64
 | Surrounding residents | Commuting, leisure, community services, low-disruption renewal | Century Timeline Walk slow-mobility loop, embedded community services, graded night lighting and events | Resident profiles never used for commercial recommendation |
 | University faculty/students & young creators | Achievement transformation, cross-campus collaboration, daily slow mobility, creative expression | Campus–park slow-mobility stitching, transformation stations, youth co-creation plaza, AI education experience points | Campus data and research results require authorization |
 
-### AI Scenario Cards (8, organized by the Four Orders)
+### AI Scenario Cards (10, organized by the Four Orders)
 
 | Card | Order | Spatial carrier | Design description |
 | --- | --- | --- | --- |

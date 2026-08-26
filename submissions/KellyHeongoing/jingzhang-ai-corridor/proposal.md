@@ -8,7 +8,7 @@ translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "总概念：《京张·智序》——AI启京张 · AI续京张 · AI创京张 · AI尚京张，以『智序』统领京张百年时序与城市新序，用 AI 重新梳理百年铁路走廊的时空秩序。基于 provisional boundary 生成，保留精度警示，组织方数据缺口不阻断内容评分。"
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]
-scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
+scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed", "ai-bluegreen-sensing", "ai-infrastructure-segment"]
 ---
 
 # 京张·智序
@@ -173,7 +173,7 @@ Logo 与视觉识别提出“双轨序标”方向：以一条铁轨青铜线（
 
 方案建立面向AI人才和企业的空间需求画像，覆盖研发办公、开源协作、成果发布、企业服务、人才居住、社交学习、消费生活、运动休闲和国际交往。AI+场景围绕公告提出的交通、服务、消费、医疗、教育、法律、生活服务等方向，形成产业发展场景和AI赋能城市功能场景。每个场景说明服务对象、空间位置、数据来源、隐私边界、人工复核机制和运营主体。
 
-AI 场景落到空间和治理边界：公共空间场景引用 [data:geometry/public_space.geojson#PUBLIC-001]，慢行与交通场景引用 [data:geometry/roads.geojson#ROAD-001]，开放空间场景引用 [data:geometry/green_space.geojson#GREEN-001] 和 [metric:public_space_ratio]、[metric:green_ratio]。本方案提供 8 张场景卡、3 个产业测试验证场景和 5 类用户画像，覆盖任务书要求。
+AI 场景落到空间和治理边界：公共空间场景引用 [data:geometry/public_space.geojson#PUBLIC-001]，慢行与交通场景引用 [data:geometry/roads.geojson#ROAD-001]，开放空间场景引用 [data:geometry/green_space.geojson#GREEN-001] 和 [metric:public_space_ratio]、[metric:green_ratio]。本方案提供 10 张场景卡、3 个产业测试验证场景和 5 类用户画像，覆盖任务书要求。
 
 本方案同时将地面、地下、空中三种空间层级纳入统一策略，并把人群从“科技人才”扩展为可被服务、可被看见、可参与共建的多代际公共使用者。
 
@@ -220,7 +220,7 @@ LOGO 采用“青铜时间轨 × 电光智能轨”的双轨序标：青铜线�
 | 周边居民 | 通勤、休闲、社区服务、低扰动更新 | 百年时序步道慢行环、社区服务嵌入、夜间照明和活动分级 | 不将居民画像用于商业推荐 |
 | 高校师生与青年创作者 | 成果转化、跨校协作、日常慢行、创作表达 | 校区-园区慢行缝合、成果转化驿站、青年共创广场、AI教育体验点 | 校园数据和科研成果需授权 |
 
-### AI 场景卡（8 张，按四序组织）
+### AI 场景卡（10 张，按四序组织）
 
 | 场景卡 | 所属序 | 空间载体 | 设计说明 |
 | --- | --- | --- | --- |
@@ -233,7 +233,20 @@ LOGO 采用“青铜时间轨 × 电光智能轨”的双轨序标：青铜线�
 | 07 青年共创广场 | 尚·序风 | 风尚客厅节点 | AI 艺术装置、开源文化街区、露天展演场；年度黑客松主场地 |
 | 08 智慧生活样板街 | 尚·序风 | 社区与商业交汇处 | AI 便利店、无感支付、AI 健康亭、AI 教育点等可感知生活方式场景 |
 
-3 个产业测试验证场景：安全治理沙盒（模型红队测试）、端侧算力驿站（低延迟服务验证）、四象限会客厅（智能终端真实场景体验）。城市智能体辅助识别慢行断点、公共空间热力、设施维护、企业服务需求和活动安全风险，但不替代规划审批、不输出未经授权的个人画像、不声称获得官方实施承诺。所有 AI 场景节点进入结构化图层或合规矩阵 [depth:ai_scenario_cards] [depth:privacy_human_review]。
+| 09 蓝绿感知治理 | 承·序脉 | 清河界面与连续绿地 | 仅使用去标识化汇总数据优化用水、养护和步行体验；异常采集立即停止并回退人工巡检 |
+| 10 市政设施断点 | 启·序章 | 道路、轨道与地下设施接口 | 对道路、照明、排水和低速接驳进行概念诊断，只输出建议清单，须经专业团队复核 |
+
+3 个产业测试验证场景：安全治理沙盒（模型红队测试）、端侧算力驿站（低延迟服务验证）、四象限会客厅（智能终端真实场景体验）。10 张场景卡统一记录服务对象、空间载体、最小数据、AI辅助、人工复核、公开KPI和停止条件。城市智能体辅助识别慢行断点、公共空间热力、设施维护、企业服务需求和活动安全风险，但不替代规划审批、不输出未经授权的个人画像、不声称获得官方实施承诺。所有 AI 场景节点进入结构化图层或合规矩阵 [depth:ai_scenario_cards] [depth:privacy_human_review]。
+
+### Agent.2/4/6 补充交付
+
+全球 AI 生态参考案例包括阿姆斯特丹 AI Register（算法透明）、巴塞罗那 Sentilo（开放传感器）、赫尔辛基 AuroraAI（跨部门导航）、新加坡 Punggol Digital District（产城协同）、多伦多 Quayside（公共数据治理）、伦敦奥林匹克公园（创新试验场）、首尔 Digital Mayor Hall（公共反馈）和东京 SusHi Tech Tokyo（城市技术试验）。比较土地空间、产业组织、资金人才、算力数据边界、场景开放和退出条件；这些均为可比参考，不代表合作承诺。
+
+建议三个 AI 朝圣地标：序章台“百年工程与 AI 起点”、原点社区“开源贡献墙”、大钟寺“四象限会客厅”。荣誉展示采用年度贡献徽章、开源项目铭牌和公众共创记录三类可撤换模块。组件库包括可拆卸导视柱、无障碍休息边界、低功耗信息牌、人工服务台、可替换感知盒和临时展陈框架，均需遗产、绿地、交通、权属和版权复核。
+
+区域协同矩阵：北纬社区交换低数字能力服务需求，未来科学城交换科研成果与测试人才，怀柔科学城交换科学传播内容与实验资源，经开区交换产业转化与供应链服务，京津冀交换遗产线路与开发者活动；接口分别为人工服务台、开源发布厅、年度展陈、企业服务门厅和跨城公共路线，均为概念建议。
+
+长期运营矩阵建议由公共空间运营方、高校/开源社区和专业服务机构组成联合工作组：每月场景开放日、每季度开发者共创、每半年安全与无障碍复核、每年国际 AI 活动周。KPI 为公共参与人数、人工兜底响应率、无障碍问题闭环率、停止条件执行率和开源成果复用数；连续两季无参与增长、投诉上升或隐私事件发生时暂停场景并回退人工流程。
 
 ## 用地、建筑规模与拆改留方案
 
