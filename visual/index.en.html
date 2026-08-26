@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>京张AI首发场：让AI原创在真实城市中被发现、被验证、被采用的城市级基础设施 | 百年京张 AI 创新带</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f8f8f5;
+      --ink: #202322;
+      --muted: #5d6660;
+      --line: #d8ddd5;
+      --panel: #ffffff;
+      --teal: #0e6f6b;
+      --blue: #295f9f;
+      --gold: #c28b1d;
+      --red: #b64a3a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .hero {
+      min-height: 82vh;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+      gap: 40px;
+      align-items: center;
+      padding: 56px clamp(20px, 5vw, 72px) 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      color: var(--teal);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin-bottom: 16px;
+    }
+    h1 {
+      max-width: 820px;
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 6.3rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+    .tagline {
+      max-width: 760px;
+      margin: 24px 0 0;
+      color: #37403b;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+    }
+    .summary {
+      max-width: 780px;
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+      color: #34433e;
+      font-size: 0.92rem;
+    }
+    .meta span,
+    .badges span {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.72);
+      border-radius: 999px;
+      padding: 6px 12px;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .media-frame {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .media-frame img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+    figcaption {
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      border-top: 1px solid var(--line);
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 36px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 36px clamp(20px, 4vw, 48px) 64px;
+    }
+    nav {
+      position: sticky;
+      top: 16px;
+      align-self: start;
+      display: grid;
+      gap: 8px;
+      font-size: 0.94rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #43504a;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    nav a:hover { color: var(--teal); }
+    .content {
+      display: grid;
+      gap: 18px;
+    }
+    .module {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: clamp(20px, 4vw, 36px);
+    }
+    .module-kicker {
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    h2 {
+      margin: 0 0 18px;
+      font-size: clamp(1.45rem, 3vw, 2.4rem);
+      line-height: 1.18;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      line-height: 1.28;
+    }
+    .proposal-document {
+      max-width: 820px;
+    }
+    .proposal-document h3 {
+      margin-top: 30px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: #1f3935;
+      font-size: clamp(1.2rem, 2vw, 1.65rem);
+    }
+    .proposal-document h4 {
+      margin: 22px 0 10px;
+      color: #26322e;
+      font-size: 1.08rem;
+    }
+    .proposal-document p {
+      color: #33403b;
+    }
+    .full-proposal {
+      background: #fffdf7;
+    }
+    p { margin: 0 0 12px; }
+    ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+    li + li { margin-top: 8px; }
+    .concept-grid,
+    .scenario-grid,
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .concept-card,
+    .scenario-card,
+    .metric-card,
+    .timeline-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fbfcfa;
+    }
+    .concept-card:nth-child(3n + 1) { border-top: 4px solid var(--teal); }
+    .concept-card:nth-child(3n + 2) { border-top: 4px solid var(--gold); }
+    .concept-card:nth-child(3n + 3) { border-top: 4px solid var(--red); }
+    .split-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(280px, 1.12fr);
+      gap: 24px;
+      align-items: start;
+    }
+    .workflow {
+      counter-reset: workflow;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .workflow li {
+      counter-increment: workflow;
+      border-left: 4px solid var(--teal);
+      background: #f6faf8;
+      padding: 14px 18px;
+    }
+    .workflow li::before {
+      content: counter(workflow, decimal-leading-zero);
+      color: var(--teal);
+      font-weight: 800;
+      margin-right: 10px;
+    }
+    .step-name {
+      font-weight: 800;
+    }
+    .scenario-card .media-frame {
+      margin-bottom: 14px;
+    }
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+    .timeline-item span {
+      display: inline-block;
+      color: var(--red);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .metric-card strong {
+      display: block;
+      color: var(--teal);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .metric-card span {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 24px clamp(20px, 5vw, 72px);
+      font-size: 0.9rem;
+    }
+    @media (max-width: 860px) {
+      .hero,
+      .layout,
+      .split-panel {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        min-height: auto;
+        padding-top: 34px;
+      }
+      nav {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .concept-grid,
+      .scenario-grid,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+    /* ---- 新增图集与展板样式 ---- */
+    .board-section { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 28px; margin: 24px 0; }
+    .board-section h2 { margin-top: 0; font-size: 1.35rem; }
+    .board-section h3 { font-size: 1.05rem; margin: 18px 0 6px; }
+    .board-section p { color: var(--muted); font-size: 0.95rem; margin: 6px 0; }
+    .photo-grid, .concept-grid2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 12px; }
+    .photo-card, .concept-card2 { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+    .photo-card img, .concept-card2 img { width: 100%; height: 170px; object-fit: cover; display: block; }
+    .photo-card figcaption, .concept-card2 figcaption { padding: 8px 10px; font-size: 0.82rem; color: var(--muted); }
+    .site-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-top: 12px; }
+    .site-item { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--paper); }
+    .site-item img { width: 100%; height: 150px; object-fit: cover; display: block; }
+    .site-item .site-txt { padding: 10px 12px; }
+    .site-item .site-txt h4 { margin: 0 0 4px; font-size: 0.95rem; }
+    .site-item .site-txt p { margin: 0; font-size: 0.82rem; }
+    .stop-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 10px; }
+    .stop-item { border-left: 4px solid var(--teal); background: var(--paper); padding: 10px 12px; border-radius: 0 8px 8px 0; }
+    .stop-item b { display: block; font-size: 0.92rem; }
+    .stop-item span { font-size: 0.8rem; color: var(--muted); }
+
+    /* ---- 完整方案表格样式（proposal-table，随全文嵌入） ---- */
+    .proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+    .proposal-table table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 520px;
+      font-size: 15px;
+      border: 1px solid var(--line);
+    }
+    .proposal-table th, .proposal-table td {
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+    .proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+    .proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+    .proposal-table .align-center { text-align: center; }
+    .proposal-table .align-right { text-align: right; }
+    .proposal-figure { margin: 22px 0 28px; }
+    .proposal-figure img { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+    .proposal-figure figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <div class="eyebrow">AI 城市方案展示</div>
+      <h1>京张AI首发场：让AI原创在真实城市中被发现、被验证、被采用的城市级基础设施</h1>
+      <p class="tagline">用一句话说明方案如何改变百年京张 AI 创新带的公共价值。</p>
+      <p class="summary">以“京张AI首发场”为总体理念，本方案把百年京张铁路遗址的9公里线性空间转化为一套让AI原创在真实城市完成“原创发现—原型组队—工程验证—城市试用—产品采用—复制扩散”六程循环的城市级基础设施。空间上呼应已批复控规“一带一轴、两心多点”结构，融合任务书“三区两翼”，形成“一带双轨·三核两翼·多节点·蓝绿环”空间语言：众智园为硬轨中枢（工程验证）、AI原点社区为双轨交汇转轨点（原点点火）、大钟寺为软轨落地（采用上新），中关村科技服务翼为双轨转换器、小月河场景赋能翼为软轨纵深。全部空间主张为概念建议，供专业团队深化。</p>
+      <div class="meta">
+        <span>作者：weimx1991-beep</span>
+        <span>语言：zh</span>
+        <span>许可：COMMUNITY-DISPLAY-ONLY</span>
+      </div>
+      <div class="badges"><span>城市智能体治理</span><span>青年友好公共空间</span><span>城市智能体</span><span>公共空间</span><span>产业服务</span><span>人工复核</span></div>
+    </div>
+    <figure class="media-frame"><img src="assets/hero.png" alt="京张AI首发场总体空间结构（概念建议）" loading="lazy"><figcaption>京张AI首发场 · 一带双轨·三核两翼·多节点·蓝绿环（概念建议 · 临时边界）</figcaption></figure>
+  </header>
+  <main class="layout">
+    <nav aria-label="方案模块导航">
+      <a href="#m1-section">方案摘要</a><a href="#m1b-plain">白话版</a><a href="#m2-section">核心概念</a><a href="#m3-section">空间策略</a><a href="#m4-agent">Agent 工作流</a><a href="#m5-section">创新场景</a><a href="#m6-section">落地路径</a><a href="#m7-section">指标体系</a><a href="#m8-section">风险与合规</a><a href="#m9-section">参考资料</a><a href="#full-proposal">完整方案</a>
+    </nav>
+    <div class="content">
+      <section class="module" id="m1-section"><div class="module-kicker">方案摘要</div><h2>方案摘要</h2><div class="prose"><p>京张AI首发场：把百年京张铁路遗址的9公里线性空间，转化为一套让AI原创在真实城市中完成「原创发现—原型组队—工程验证—城市试用—产品采用—复制扩散」六程循环的城市级基础设施。以全球AI产业人才为核心客群，以片区居民为底座，以访客体验为放大器。</p></div></section>
+<section class="module" id="m1b-plain"><div class="module-kicker">Plain-language version</div><h2>A three-minute plain-language version for residents</h2><div class="prose"><p><strong>What will this plan make the Jing-Zhang Railway Park corridor become?</strong> New AI products will first be trialled along this street and promoted only if they work - not a row of towers but a walkable, playable, usable 9-km urban avenue.</p><p><strong>What changes for residents?</strong> Check-in "AI experience points" appear along the corridor (one stop, one point, like a street market); places to stroll and sit quietly stay - everything remains usable without AI, and any AI-equipped facility must keep a human-service channel, so no one is excluded from services for not using AI.</p><p><strong>How do AI products "first-launch" here?</strong> Six steps: original idea, prototype teaming, real-street verification, citizen trial, adoption, replication. Each step passes a dual review - technical reliability and public acceptance; failures pause or exit rather than being forced through.</p><p><strong>How can residents take part?</strong> As trial users, reviewers and advisors; contributions are recorded on the "dual-track medal" wall, and complaint and exit channels are always open.</p></div></section>
+<section class="module" id="m2-section"><div class="module-kicker">核心概念</div><h2>核心概念</h2><div class="concept-grid"><article class="concept-card"><h3>AI首发场·六程循环</h3><p>原创发现→原型组队→工程验证→城市试用→产品采用→复制扩散：让AI创新在真实城市中被发现、被验证、被采用。</p></article><article class="concept-card"><h3>双轨制度</h3><p>创新效能轨（硬轨：算力/芯片/中试）× 公共价值轨（软轨：开源/数据/场景/人才），两轨同审、人工兜底、可退出。</p></article><article class="concept-card"><h3>道口转轨记忆点</h3><p>五道口=京张铁路第五个平交道口（1909）→ AI原点社区核心：「百年道口变轨→今日原点转轨」。</p></article></div><div class="prose naming-note"><h3>Naming system and visual direction</h3><ul><li><strong>Primary name</strong>: Jing-Zhang AI First Launch Field (abbreviation JZ-FLF).</li><li><strong>Naming logic</strong>: in 1909 the Jing-Zhang Railway was China's first self-built trunk line; in 2026 this corridor becomes the "first site where AI originals are verified in a real city". The "Field" is both the 9-km linear site and the six-step mechanism arena.</li><li><strong>Visual system</strong>: the "dual-track x switching" symbol (innovation-efficiency track x public-value track), colors from rail gray-blue and Zhongguancun innovation orange; the name and visual can replicate to other districts as "[Place] First Launch Field".</li></ul></div></section>
+<section class="module" id="m3-section"><div class="module-kicker">空间策略</div><h2>空间策略</h2><div class="split-panel"><div class="prose"><ul><li>呼应已批复控规「一带一轴、两心多点」，融合任务书「三区两翼」，形成「一带双轨·三核两翼·多节点·蓝绿环」。</li><li>众智园=硬轨中枢（全栈自主验证）、AI原点社区=双轨交汇转轨点（原点点火）、大钟寺=软轨落地（采用上新）。</li><li>中关村科技服务翼=双轨转换器；小月河场景赋能翼=软轨纵深（Embodied AI Park+滨水生态走廊）。</li></ul></div><figure class="media-frame"><img src="../assets/figures/site-overview.png" alt="总体空间结构" loading="lazy"></figure></div></section>
+<section class="module" id="m4-agent"><div class="module-kicker">Agent 工作流</div><h2>Agent 工作流</h2><ol class="workflow"><li><span class="step-name">公开资料读取</span><p>只使用官方公告、任务书、结构化任务包与可核验公开数据。</p></li><li><span class="step-name">证据链生成</span><p>几何层GeoJSON→指标复算→正文[source]/[data]/[metric]引用，全链可复算。</p></li><li><span class="step-name">机器校验+人工复核</span><p>validate/spatial/visual/professional四层校验，关键决策人工复核。</p></li></ol></section>
+<section class="module" id="m5-section"><div class="module-kicker">创新场景</div><h2>创新场景</h2><div class="scenario-grid"><article class="scenario-card"><h3>12张AI原生场景卡</h3><p>具身智能实景实训/智慧道口体验/无障碍AI导览/智能原生消费/生态韧性滨水带等，覆盖科技线·人文线·环境线。</p></article><article class="scenario-card"><h3>3类产业测试验证场</h3><p>具身智能真机测试场（T-01）/AI+医疗器械中试验证（T-02）/智能体商业化验证（T-03）。</p></article><article class="scenario-card"><h3>转轨之旅体验动线</h3><p>北（众智园/硬轨）→中（原点社区/转轨点）→南（大钟寺/软轨），串联SC-01→SC-07→SC-09与四大朝圣地标。</p></article></div></section>
+<section class="module" id="m6-section"><div class="module-kicker">落地路径</div><h2>落地路径</h2><div class="timeline"><article class="timeline-item"><span>阶段0</span><h3>机制校准</h3><p>首发通行证七道闸门（G0-G6）+基线建立。</p></article><article class="timeline-item"><span>阶段1</span><h3>三项目试跑</h3><p>原点点火—众智验证—大钟寺上新，跨区接力。</p></article><article class="timeline-item"><span>阶段2</span><h3>常态服务</h3><p>场景分级开放（S2申请制→S3示范制→S4市场制）。</p></article><article class="timeline-item"><span>阶段3</span><h3>复制外溢</h3><p>跨区联动（北纬/未来科学城/怀柔/亦庄/京津冀）。</p></article></div></section>
+<section class="module" id="m7-section"><div class="module-kicker">指标体系</div><h2>指标体系</h2><div class="metric-grid"><article class="metric-card"><strong>11,412,825 m²</strong><span>场地面积</span><p>三层范围递进框架的统筹基础（复算可查）。</p></article><article class="metric-card"><strong>22.5%</strong><span>绿地率</span><p>蓝绿环与公共空间优先。</p></article><article class="metric-card"><strong>67.2 km</strong><span>路网</span><p>双轨路网与慢行体系连通性。</p></article><article class="metric-card"><strong>12/4/15</strong><span>场景卡/地标/更新项目</span><p>六任务硬性数量全覆盖。</p></article></div></section>
+<section class="module" id="m8-section"><div class="module-kicker">风险与合规</div><h2>风险与合规</h2><ul><li>全部空间主张为「概念建议/参考方案」，不构成法定规划结论；容积率/高度等官方未公布指标标unknown待补。</li><li>临时边界provisional标注；场景卡设数据边界与人工复核（不人脸识别、数据最小化）；AI生成图登记生成工具。</li><li>借鉴筑波/松岛/Sidewalk教训，「两轨同审+人工兜底+可退出」机制显式回应风险。</li></ul></section>
+
+<div class="board-section" style="margin-top:16px"><h2>Key Assumptions</h2><p>This proposal is built on the following <strong>key assumptions</strong> (see proposal.md §12 for full data-gap list):</p><ul><li><strong>Provisional boundaries</strong>: all area/ratio/length metrics recomputed from geometry/*.geojson; will be re-computed when official polygons are released.</li><li><strong>Regulatory indicators</strong>: FAR, height, density, green ratio, road red-lines marked as <em>unknown</em> until official control data is published.</li><li><strong>Ownership & feasibility</strong>: four-tier retain/renovate/new/pending framework; pending items reclassified once rights, control and engineering conditions are clear.</li><li><strong>Visitor economy</strong>: visitor flow and consumption figures are <em>analogical inferences</em> from public reports; site-specific forecasts need dedicated study.</li><li><strong>AI-native</strong>: every scenario card enforces data boundaries and human review (no facial recognition, no individual tracking); operations and exit are governed by the seven-gate First-Launch Pass.</li></ul></div>
+<section class="module" id="m9-section"><div class="module-kicker">参考资料</div><h2>参考资料</h2><ul><li>官方资格预审公告（2026-05-09）+ 智能体任务书 + 已批复控规「一带一轴两心多点」（2026-08-12）。</li><li>结构化任务包、临时边界、source_registry（formal白名单）。</li><li>团队调研：策划工作包08-18 + 林静静研判12份 + 李筱妍政策场景14份 + 实地踏勘照片（2026-08-14/16）。</li></ul></section>
+<section class="module full-proposal" id="full-proposal"><div class="module-kicker">Proposal.md</div><h2>完整方案正文</h2><article class="proposal-document">
+<h1>Jing-Zhang AI First Launch Field: Urban-Scale Infrastructure Where AI Originality Is Discovered, Verified and Adopted in the Real City</h1>
+<h2>Executive Summary</h2>
+<p>Haidian already holds a high density of AI resources: the public figure for 2024 was an AI core industry scale of RMB 282.2 billion and more than 1,900 AI enterprises, while the 2026 figure exceeds 2,000 enterprises and RMB 350 billion; the two years use different statistical scopes and must not be mixed [Source: Beijing Municipal Science and Technology Commission, 2025-07; Beijing Municipal Government, 2026-04]. The Jing-Zhang Railway Heritage Park has likewise formed a real public space and activity base: the public operating figure for 2025 was more than 60 events and over 4.3 million visits [Source: Beijing Municipal Government, 2026-03].</p>
+<p>The core problem of the Centennial Jing-Zhang AI Innovation Belt is therefore not &quot;how to add more resources, facilities and events&quot;, but how to make scattered resources easier to discover and collaborate, how to help original outcomes cross the gaps between engineering verification, city trial and market adoption, how to let public space produce both innovation value and resident value, and how to make AI trials understandable, selectable, auditable and reversible.</p>
+<p>This proposal puts forward the &quot;<strong>Jing-Zhang AI First Launch Field</strong>&quot;: it is not a launch event, nor a claim of being &quot;first in the world&quot;, but urban-scale infrastructure that enables AI originality to complete the six-stage cycle of &quot;original discovery - prototype teaming - engineering verification - city trial - product adoption - replication and diffusion&quot; in the real city. Every project passes through both an &quot;innovation-effectiveness track&quot; and a &quot;public-value track&quot;; only when technology is reliable and public rights, human accountability and operating conditions are simultaneously established may a project proceed to the next stage.</p>
+<p>Spatially, the proposal echoes the approved statutory plan&#x27;s &quot;one belt, one axis, two centers, multiple nodes&quot; structure [Source: Beijing Municipal Commission of Planning and Natural Resources, approved 2026-08-12], and integrates the brief&#x27;s &quot;three areas, two wings&quot; industrial structure into a spatial language of &quot;<strong>one belt, dual tracks, three cores, two wings, multiple nodes, blue-green ring</strong>&quot;: Zhongzhiyuan is the hard-track hub (engineering verification), the AI Origin Community is the dual-track junction and switch point (origin ignition), and Dazhongsi is the soft-track landing (adoption and refresh), with the Zhongguancun technology-service wing as the dual-track converter and the Xiaoyue River scenario-empowerment wing as the soft-track depth.</p>
+<p>The proposal does not prioritize new monumental structures. It begins with the &quot;Jing-Zhang First Launch Pass&quot;, a relay of three real projects, 12 problem-oriented scenarios, three test sites, five personas and a phased governance system. Its ultimate goal is to convert Haidian&#x27;s resource density into systemic effectiveness, the park&#x27;s public traffic into co-creation, and AI governance into visible, executable and replicable urban capability.</p>
+<h2>Basis and Source List</h2>
+<p>This proposal takes the Prequalification Announcement for the International Urban Design Open Call for the Centennial Jing-Zhang AI Innovation Belt, issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources, as its primary basis <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>, and reads the agent-facing taskbook compiled in this repository <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>, the structured site package <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>, the public source registry <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>, the processed fact pack <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup> and the provisional boundary source <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup>. Design judgments follow the evidence chain of &quot;announcement tasks - machine-readable data - narrative - drawings and HTML&quot;. Core standards and depth constraints are listed below:</p>
+<ul>
+<li>Core standards: <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup>, <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup></li>
+<li>Professional standards: <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>, <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup></li>
+<li>Land-use standard: <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup></li>
+<li>Depth items: <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup></li>
+<li>Depth items: <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup></li>
+<li>Depth items: <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup></li>
+<li>Depth items: <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup></li>
+<li>Depth items: <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>, <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup></li>
+</ul>
+<p>As of the last public-source review date, the official precise polygon, CAD or GIS redline has not been released: the announcement gives the three-level scope areas and textual boundaries (the coordinated research area runs north to the North Fifth Ring Road, east to the Jingzang Expressway, south to Xizhimenwai Street, and west to Wanquanhe Road), but the prequalification package requires a download password, so the repository provides provisional rough boundaries in <code>provisional_boundaries.geojson</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup>. This proposal therefore uses <code>geometry/site_boundary.geojson#SITE-001</code> and <code>geometry/key_areas.geojson#PROV-KEY-001</code> etc. as provisional boundaries, and keeps labeling them in the narrative, HTML, sources, assumptions and self-checks: provisional boundaries may only be used for generation, presentation and discussion, and must not be treated as official redlines, approval bases or precise-area bases; the organizer&#x27;s data gap does not block content scoring, and all layers and metrics must be recalculated once official data is released <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>.</p>
+<p>The source-use boundary follows <code>data/source_registry.json</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>: formal authoritative conclusions may rely only on sources with <code>usable_for_formal=&quot;yes&quot;</code>; background sources support mechanisms and narrative only; provisional sources support generation and discussion only. This proposal uses no non-public data, personal privacy data or unauthorized material; all areas, ratios, layer counts and mileages are reproducible from <code>geometry/*.geojson</code> and <code>metrics.json</code> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="Overall concept and dual-track structure"><figcaption>Overall concept and dual-track structure</figcaption></figure>
+<h2>Three-Level Scope Framework</h2>
+<p>The announcement defines three working levels <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>: a coordinated research area of about 43.6 km², an overall design area of about 11.4 km², and a key detailed-design area of about 368.4 hectares. The three levels are not three drawings of different precision for the same area, but a continuous evidence chain from &quot;industrial strategy&quot; to &quot;concrete spatial moves&quot; <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup>:</p>
+<div class="proposal-table"><table><thead><tr><th>Level</th><th>Area / announcement</th><th>Core question</th><th>This proposal&#x27;s answer</th><th>Data anchor</th></tr></thead><tbody><tr><td>Coordinated research area</td><td>43.6 km²</td><td>How to organize a world-class AI innovation ecosystem</td><td>&quot;First Launch Field&quot; six-stage cycle; three-areas-two-wings synergy loop; regional collaboration</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup></td></tr><tr><td>Overall design area</td><td>11.4 km²</td><td>How industry, space, transport and utilities land on the map</td><td>One belt, dual tracks, three cores, two wings, multiple nodes, blue-green ring; complete land-use zoning</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup></td></tr><tr><td>Key detailed-design area</td><td>368.4 ha</td><td>How the three areas reach detailed-design depth</td><td>Three prototypes: Zhongzhiyuan verification, origin ignition, Dazhongsi refresh</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup></td></tr></tbody></table></div>
+<p>Evidence for the boundaries and areas of the three levels is <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup> and <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="zhongzhiyuan_ai_acceleration_area_area_sqm" title="指标：zhongzhiyuan_ai_acceleration_area_area_sqm">指标</sup>. <code>geometry/site_boundary.geojson#SITE-001</code> is tagged <code>geometry_role=provisional_constraint</code>, <code>official_boundary=false</code>; all area metrics and drawings must be recalculated once official polygons are supplied <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="Three-level scope and spatial working framework"><figcaption>Three-level scope and spatial working framework</figcaption></figure>
+<h2>Coordinated Research Area: Industry and Future City Research</h2>
+<h3>Problem Diagnosis: Strong Resources, Strong Park, Weak Connection and Weak Conversion</h3>
+<p>Haidian does not lack AI resources, and the Jing-Zhang park does not lack public life; what is missing is the ability to convert resource density into systemic effectiveness. This proposal diagnoses five core problems <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>:</p>
+<p>1. <strong>Resource discoverability is insufficient</strong>: universities, platforms, compute, capital and scenarios are numerous, but the mechanisms for &quot;discovering, applying, combining and collaborating&quot; are not yet clear - physical proximity has not automatically turned into synergy. 2. <strong>Traffic-to-value conversion is insufficient</strong>: the park has real footfall and AI experiences, but whether this converts into innovation collaboration and long-term public value remains unclear. 3. <strong>Horizontal integration is limited</strong>: the north-south axis is forming, but horizontal access, institutional openness and station links may still limit integration across the residential, campus and industrial areas east and west of the railway <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>. 4. <strong>Cost-escalation risk</strong>: the success of an innovation district may raise housing, living and entrepreneurship costs - international experience shows gentrification risk around linear parks (homes within 80 m of the New York High Line carried a price premium of about 35.3%, peer-reviewed research) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>. 5. <strong>Governance operationalization is insufficient</strong>: AI governance has strategic goals, but public authorization, auditing, human accountability and exit mechanisms for city trials still need to be operationalized.</p>
+<p>These five problems are not five isolated shortcomings but five facets of one contradiction: <strong>resource density is high, but systemic effectiveness has not yet been established.</strong> Therefore, the concept of this proposal is not &quot;add more&quot; but &quot;how to connect and produce public outcomes&quot;.</p>
+<h3>Overall Concept: the Jing-Zhang AI First Launch Field</h3>
+<p><strong>The &quot;Jing-Zhang AI First Launch Field&quot; is urban-scale infrastructure that enables AI originality to be discovered, understood, verified, used, reviewed and diffused in the real city.</strong> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup></p>
+<p><strong>The four layers of &quot;first launch&quot;:</strong></p>
+<div class="proposal-table"><table><thead><tr><th>Layer</th><th>Core question</th><th>Evidence outcome</th></tr></thead><tbody><tr><td>Originality first launch</td><td>Where does the originality come from, and how is contribution recognized</td><td>Source, authorization, attribution and openness boundary</td></tr><tr><td>Engineering first launch</td><td>Is the technology reliable and maintainable</td><td>Performance, safety, failure, interoperability and human takeover</td></tr><tr><td>City first launch</td><td>Does it solve a real problem and will the public use it</td><td>Task completion, accessibility, complaints, human substitution and public impact</td></tr><tr><td>Market/rule first launch</td><td>Does it have adoption, replication or standardization conditions</td><td>Adoption/non-adoption conclusion, replication conditions, rules and exit</td></tr></tbody></table></div>
+<p><strong>Dual-track decision mechanism</strong>: every project passes simultaneously through the &quot;innovation-effectiveness track&quot; (originality - engineering usability - scenario fit - adoption - diffusion) and the &quot;public-value track&quot; (real need - informed choice - fair access - human backstop - appeal and audit - reversible exit); only when both tracks pass may a project advance. This makes responsible AI not a terminal risk chapter but the core productive capacity of the First Launch Field.</p>
+<p><strong>Spiritual core: the centennial thread from &quot;engineering autonomy&quot; to &quot;full-stack autonomy&quot;</strong>. The Jing-Zhang Railway started construction in 1905 and was completed in 1909 as China&#x27;s first trunk railway designed, built and operated entirely by Chinese people; Zhan Tianyou used a &quot;human-shaped&quot; zigzag line to conquer the steep gradient, at one-fifth of the cost estimated by foreigners and two years ahead of schedule <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>. Over the following century, the spirit of &quot;autonomy&quot; continued along the timeline: in the 1980s Zhongguancun started from the electronics street; in 2019 the Beijing-Zhangjiakou High-Speed Railway became the world&#x27;s first 350 km/h autonomous-driving high-speed railway (evaluated by the International Union of Railways UIC as an &quot;outstanding AI implementation case&quot;) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>; in 2026 Haidian is advancing full-stack autonomous AI. <strong>&quot;Autonomous engineering - autonomous innovation - autonomous intelligence&quot; is the narrative foundation of this proposal and the historical legitimacy of the First Launch Field.</strong></p>
+<p><strong>IP system</strong>: the primary IP is the &quot;<strong>Jing-Zhang AI First Launch Field</strong>&quot; (mechanism and brand combined, distinguished from spatial-translation concepts such as &quot;laying a second track for the centennial Jing-Zhang railway&quot;); the alternative IP is &quot;<strong>Crossing Point</strong>&quot; - Wudaokou derives its name from being the fifth railway crossing of the Jing-Zhang line from Xizhimen (1909), a historically verifiable fact, and &quot;crossing point&quot; naturally carries the semantics of intersection, passage, switching and entering the next stage, connecting a century of railway history with the AI era; &quot;Next Cross&quot; may be used as a branded English rendering (following the method of international district brands; native-language review is required before formal use) <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>.</p>
+<h3>Benchmark Cases: Qianhai, the Yamanote Line and Global Experience</h3>
+<p>On a 30-year horizon this proposal benchmarks the two most direct cases and supplements them with global innovation-district experience <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>:</p>
+<div class="proposal-table"><table><thead><tr><th>Case</th><th>Core mechanism</th><th>Transferable content</th></tr></thead><tbody><tr><td>Qianhai, Nanshan, Shenzhen</td><td>One street&#x27;s GDP exceeds that of some cities; a &quot;string of pearls&quot; super-commercial chain links multiple consumption nodes along one axis</td><td>&quot;Riverside consumption chain&quot; paradigm: string Dazhongsi, Wudaokou and Zhongzhiyuan into a walkable consumption and experience chain</td></tr><tr><td>Tokyo Yamanote Line</td><td>One station one theme, all stations visitable; JR made 30 stations into personified IPs, making the line itself an IP asset</td><td>&quot;One station one theme as a natural investment-attraction unit&quot;: theme the nodes along the line, give each station an AI theme anchor store (large-model experience hall, embodied-intelligence flagship store, open-source co-creation shop)</td></tr><tr><td>King&#x27;s Cross, London</td><td>Railway-heritage regeneration; universities such as UCL as pillars; 20 years of sustained operation</td><td>University incubation + railway-heritage narrative + &quot;public-led, private-followed&quot; development</td></tr><tr><td>one-north, Singapore</td><td>Full chain of &quot;R&amp;D - pilot - incubation - industrialization&quot;; strong government investment</td><td>Combination of full-chain pilot platforms and R&amp;D tax credits</td></tr><tr><td>Sidewalk Labs, Toronto</td><td>Data-governance failure led to project collapse in three years (counter-example)</td><td>Data boundaries set in advance, public participation, exit mechanisms</td></tr><tr><td>Jing&#x27;an + Modu Space, Shanghai</td><td>Scenarios as the fulcrum, no parameter race</td><td>Scenario-driven technology landing; central-city scenario resources are the landing resources AI-native enterprises need most</td></tr></tbody></table></div>
+<p><strong>Synthesis</strong>: the common pattern of successful global cases is &quot;university incubation, government support, scenario traction and institutional empowerment&quot;. In this belt, the AI Origin Community is the model of &quot;university incubation + urban renewal&quot;, Zhongzhiyuan is the model of &quot;heavy government investment + full-stack tackling&quot;, the Xiaoyue River wing is the carrier of &quot;scenario traction + industrial depth&quot;, and the technology-service wing is the hub of &quot;global configuration + institutional empowerment&quot;. <strong>&quot;One station one theme + anchor-store string&quot; is an operable investment-attraction paradigm</strong>: the Jing-Zhang corridor is itself &quot;one line + N stations&quot;; theming the nodes along the line and giving each station an AI theme anchor store creates a &quot;thematic catalogue along the line&quot; - visitors come for a station&#x27;s theme, and investment attraction works by &quot;one station, one business cluster&quot;.</p>
+<h3>Regional Innovation Collaboration</h3>
+<p>The belt is not an isolated innovation belt but a key hub of Haidian&#x27;s and Beijing&#x27;s AI landscape, echoing the &quot;three science cities and one zone&quot; linkage <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>:</p>
+<ul>
+<li><strong>Zhongguancun AI Beiwai Community</strong> (in northwest Wangwang town, northern Haidian; first phase of 60,000 m² opened 2025-07): northward innovation incubation and ecosystem spillover, forming a north-south dual core with Jing-Zhang.</li>
+<li><strong>Zhongguancun (Haidian) Embodied-Intelligence Innovation Industrial Park</strong> (at Dongpan Sci-Tech Center, with the Xiaoyue River on its west side): the first nationally named embodied-intelligence park, providing industrial depth for the Xiaoyue River wing.</li>
+<li><strong>Future Science City, Huairou Science City and Beijing Economic-Technological Development Area</strong>: partners for hard-track technology spillover, soft-track scenario sharing and cross-area factor flow.</li>
+<li><strong>Beijing-Tianjin-Hebei</strong>: AI industry-chain collaboration and an outbound channel.</li>
+</ul>
+<p>Three collaboration mechanisms: <strong>hard-track technology spillover, soft-track scenario sharing and cross-area factor flow</strong> - the belt is positioned as a connecting hub (north to Beiwai, south to outbound channels, west to the Huairou data chain, east to E-Town mass production).</p>
+<h2>Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design</h2>
+<h3>Spatial Structure: Echoing the Statutory Plan and Integrating the Brief</h3>
+<p><strong>Echoing the approved statutory plan&#x27;s &quot;one belt, one axis, two centers, multiple nodes&quot;</strong>: the Beijing Haidian District Jing-Zhang Railway Heritage Park Corridor (Key Area of the AI Innovation Street) HD00-1601 and Other Blocks Regulatory Detailed Plan (2024-2035) was approved on 12 August 2026, defining the spatial structure as &quot;one belt, one axis, two centers, multiple nodes&quot; - one belt = the Jing-Zhang Railway Heritage Park industrial-innovation belt, one axis = the Zhongguancun Avenue innovation-development axis, two centers = Dazhongsi center and Wudaokou center, multiple nodes = Zhichun Road, Sidaokou and other important spatial nodes <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>. The spatial language of this proposal strictly echoes this plan rather than starting from scratch.</p>
+<p><strong>Integrating the brief&#x27;s &quot;three areas, two wings&quot;</strong>: the brief uses &quot;three areas, two wings&quot; as the industrial-collaboration structure (Zhongzhiyuan AI Autonomous-Innovation Acceleration Area, Beijing AI Origin Community, Dazhongsi AI Industry Cluster, plus the Zhongguancun technology-service wing and the Xiaoyue River scenario-empowerment wing) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>. This proposal merges the two official languages into &quot;<strong>one belt, dual tracks, three cores, two wings, multiple nodes, blue-green ring</strong>&quot;:</p>
+<ul>
+<li><strong>One belt</strong>: the Jing-Zhang Railway Heritage Park industrial-innovation belt (corresponding to the statutory plan&#x27;s &quot;one belt&quot;)</li>
+<li><strong>Dual tracks</strong>: west track = Zhongguancun Avenue innovation-development axis (corresponding to the statutory plan&#x27;s &quot;one axis&quot;, carrying technology services and industrial incubation); east track = the heritage-park corridor (corresponding to the statutory plan&#x27;s &quot;one belt&quot; in terms of park experience and public innovation) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-002" title="空间数据：geometry/roads.geojson#ROAD-002">空间数据</sup></li>
+<li><strong>Three cores</strong>: Zhongzhiyuan (hard-track hub, engineering verification), AI Origin Community (dual-track junction and switch point), Dazhongsi (soft-track landing, adoption and refresh) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup></li>
+<li><strong>Two wings</strong>: Zhongguancun technology-service wing (dual-track converter), Xiaoyue River scenario-empowerment wing (soft-track depth) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup></li>
+<li><strong>Multiple nodes</strong>: Zhichun Road, Sidaokou and other switch nodes (echoing the statutory plan&#x27;s &quot;multiple nodes&quot;) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-002" title="空间数据：geometry/public_space.geojson#PUBLIC-002">空间数据</sup></li>
+<li><strong>Blue-green ring</strong>: waterfront corridors along the Qinghe, Xiaoyue and Nanchang rivers <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CON-WATER-001" title="空间数据：geometry/constraints.geojson#CON-WATER-001">空间数据</sup></li>
+</ul>
+<p><strong>Institutional dual-track positioning table</strong> (three areas and two wings mapped onto the dual tracks; also the spatial anchor of the First Launch Field&#x27;s six-stage cycle):</p>
+<div class="proposal-table"><table><thead><tr><th>Area</th><th>Dual-track role</th><th>First-Launch-Field role</th><th>Key anchor</th></tr></thead><tbody><tr><td>Zhongzhiyuan</td><td>Hard-track hub</td><td>Engineering verification</td><td>Xuebei Park, 238,300 m²; Xuezhayuan station on Line Changping; underground connection to Tencent&#x27;s new HQ <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></td></tr><tr><td>AI Origin Community</td><td>Dual-track junction and switch point</td><td>Origin ignition</td><td>Origin Tower; 74% agglomeration; 1,000+ scientists / 13,000+ developers</td></tr><tr><td>Dazhongsi</td><td>Soft-track landing</td><td>Adoption and refresh</td><td>Douyin in Fangheng/Zhongkun plazas; 1733 valley food court</td></tr><tr><td>Zhongguancun technology-service wing</td><td>Dual-track converter</td><td>Factor allocation</td><td>Zhongguancun International Technology Trading Center (operating since 2026-03)</td></tr><tr><td>Xiaoyue River scenario-empowerment wing</td><td>Soft-track depth</td><td>Scenario empowerment</td><td>Dongpan Sci-Tech Center (90% occupancy); Xiaoyue River ecological corridor</td></tr></tbody></table></div>
+<blockquote><p><strong>Naming convention</strong>: the formal proposal consistently uses &quot;<strong>Zhongzhiyuan</strong>&quot; (the prequalification announcement&#x27;s term, about 192.1 ha), noting &quot;Zhongguancun Dongsheng Sci-Tech Park Xuebei Park&quot; as the industrial anchor; the Zhongguancun (Haidian) Embodied-Intelligence Innovation Industrial Park is located at Dongpan Sci-Tech Center (Xiaoyue River wing) and is a different carrier from Xuebei Park <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>.</p></blockquote>
+<p>The above are conceptual spatial-organization suggestions; specific boundaries, indicators and alignments follow official releases, and this proposal makes no engineering or regulatory-plan conclusions <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>.</p>
+<h2>Detailed Design of Key Areas</h2>
+<p>The polygons of the three key areas are provisional boundaries <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup>; the following conclusions are directional design suggestions, to be re-checked against location and scale once official boundaries are released <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>.</p>
+<h3>Zhongzhiyuan AI Autonomous-Innovation Acceleration Area (Hard-Track Hub, Engineering Verification)</h3>
+<ul>
+<li><strong>Positioning</strong>: anchored at &quot;Zhongzhiyuan&quot; (the prequalification announcement&#x27;s term, about 192.1 ha; industrial anchor = Zhongguancun Dongsheng Sci-Tech Park Xuebei Park, 238,300 m², opened July 2026, 3 minutes&#x27; walk from Exit A of Xuezhayuan station on Line Changping, underground connection to Tencent&#x27;s new HQ, a 3,500 m² AI outbound service platform, and the National Natural Science Foundation of China having signed to move in), building a full-stack autonomous AI innovation system and global voice in AI governance <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>.</li>
+<li><strong>First-Launch-Field role</strong>: <strong>engineering verification</strong> - hosting the &quot;prototype teaming - engineering verification&quot; stage, providing full-stack verification, interoperability, security red-teaming and standards co-creation.</li>
+<li><strong>Spatial structure</strong>: organize R&amp;D, compute, testing and standards-governance functions around national platforms; the Qinghe riverfront as a low-carbon public living room; organize external transport and park entrances (echoing the Fifth Ring Road regional integrated planning).</li>
+<li><strong>Building renewal</strong>: research land predominantly with commercial support, in a &quot;railway brown-grey + inductance blue&quot; character; specific retain/renovate/new-build schemes await official ownership and regulatory data <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>.</li>
+<li><strong>AI scenarios</strong>: agent sandbox, low-carbon compute station and AI-governance council chamber as bookable, displayable and reversible public test nodes; the &quot;hard-track-open-source&quot; twin-gate landmark (L-03).</li>
+</ul>
+<h3>Beijing AI Origin Community (Dual-Track Junction, Switch Point, Origin Ignition)</h3>
+<ul>
+<li><strong>Positioning</strong>: rooted in the Wudaokou core area (about 104.3 ha), the &quot;first stop&quot; for global AI talent, entrepreneurship and innovation <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>.</li>
+<li><strong>First-Launch-Field role</strong>: <strong>origin ignition</strong> - hosting the &quot;original discovery - prototype and teaming&quot; stage, the entry point for originality and the talent-aggregation place.</li>
+<li><strong>Spatial structure</strong>: stitch the campus (Tsinghua, Peking University, CAS), the parks (Origin Tower, Tsinghua Science Park, BAAI) and the neighborhoods (Chengfu Road 35 compound, Huaqing Jiayuan); with Origin Tower (renamed from Dongsheng Tower in March 2026) at the center, radiating about 3 km² (&quot;one town, three streets&quot;).</li>
+<li><strong>Innovation-ecosystem data (official)</strong>: AI-industry agglomeration of 74%; more than 1,000 AI scientists, 13,000+ AI developers, 100,000+ AI students and 400+ AI enterprises; daily through-traffic rising from 1,200 to 7,000+ person-times <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>.</li>
+<li><strong>Operating mechanisms</strong>: Origin Academy (50 open workstations, 80+ entrepreneurs, full-lifecycle services, one of Haidian&#x27;s 140 evening-school sites), Origin Bar day-café-night-drink (facilitating cross-field collaboration), Gongji Technology&#x27;s &quot;one work-station to a 50-person team&quot; conversion model; the &quot;ten-minute innovation circle&quot; (talent, capital, compute, data and scenarios aggregate efficiently).</li>
+<li><strong>Memory point</strong>: Wudaokou &quot;crossing-point switching to origin switching&quot; - in 1909 trains switched at the Wudaokou crossing (zigzag reversal); in 2026 innovation &quot;switches tracks&quot; at the Wudaokou origin (autonomy to open source, technology to business). Huaqing Jiayuan produced Wang Xing (Meituan) and Su Hua and Cheng Yixiao (Kuaishou), earning the name &quot;civilian Silicon Valley&quot;.</li>
+<li><strong>AI scenarios</strong>: open-source publishing hall, university-industry conversion living room, talent services and residential support, agent co-creation workshop; the &quot;origin and switching&quot; monument (L-01) <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup>.</li>
+</ul>
+<h3>Dazhongsi AI Industry Cluster (Soft-Track Landing, Adoption and Refresh)</h3>
+<ul>
+<li><strong>Positioning</strong>: relying on leading platforms such as Douyin (in Fangheng and Zhongkun plazas), aggregating agent, content-consumption and intelligent-terminal ecosystem enterprises, leading AI-native new business forms <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>.</li>
+<li><strong>First-Launch-Field role</strong>: <strong>adoption and refresh</strong> - hosting the &quot;product adoption - replication and diffusion&quot; stage, the commercial-verification and release window.</li>
+<li><strong>Spatial structure</strong>: organize four-quadrant pedestrian connectivity around Dazhongsi station (echoing the official requirement to optimize the integrated plan for Dazhongsi rail station); lay out an intelligent-terminal retail street, a data-element theater and an international roadshow living room; use planned green space for public experiences.</li>
+<li><strong>Business scenarios</strong>: International Exchange Center (the former Lanjing Lijia urban-renewal project, adding 13,569 m² of floor area, expected to drive about RMB 4.88 billion in social investment, the city&#x27;s first project approved for municipal index support) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>; 1733 valley food court sunken plaza (opened by ByteDance in December 2023).</li>
+<li><strong>Youth community</strong>: Dazhongsi AI youth community (Beixiaguan subdistrict + SAIC Trademark Office Youth League + Beijing Jiaotong University + Central University of Finance and Economics + ByteDance).</li>
+<li><strong>AI scenarios</strong>: AI-native consumption venue (SC-09), data-element theater, agent commercialization verification (T-03).</li>
+<li><strong>Implementation risks</strong>: existing building ownership and renewal conditions await official data <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>.</li>
+</ul>
+<h3>Three-Area Synergy Loop</h3>
+<p>&quot;Hard track produces technology (Zhongzhiyuan verifies) - origin aggregates factors (Origin Community ignites) - Dazhongsi promotes business (adoption and refresh) - two wings allocate resources (technology-service wing configures / Xiaoyue River wing empowers)&quot; forms a self-learning loop <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>: the First Launch Pass (JZ-01~06 archives) deposits the full process, evidence and risk boundaries of a project from originality to replication into a unified archive, enabling cross-area relay.</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="Index and design tasks of the three key areas"><figcaption>Index and design tasks of the three key areas</figcaption></figure>
+<h2>Land Use, Building Scale and Retain/Renovate/Demolish</h2>
+<p><strong>Land use</strong>: <code>geometry/land_use.geojson</code> contains 29 parcels <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="land_use_parcel_count" title="指标：land_use_parcel_count">指标</sup> fully covering the site with no gaps or overlaps <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>, classified per <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup>. Research land carries the hard-track autonomous-innovation chain (Zhongzhiyuan full-stack verification), commercial land carries soft-track scenarios and consumption (Dazhongsi AI-native consumption), residential and education land support the talent-life base (echoing the integrated &quot;work-life-socialize-learn&quot; urban-space system), and green space and public space form the blue-green ring (green ratio 22.5% <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>).</p>
+<p><strong>Building scale</strong>: building footprint 644,095 m² <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>, 87 buildings in total <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>. Floor-area ratio, building height and total floor area are not publicly released; they are marked <code>unknown</code> in metrics.json pending regulatory conditions <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>.</p>
+<p><strong>Retain/renovate/demolish classification</strong>: organized under the four-category framework of &quot;retain - renovate - new-build - pending confirmation&quot; <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup> - retain objects of high historical, educational and public-service value (Qinghuayuan station site, the restored Sidaokou track section); renovate industrial buildings, park environments and community-service frontages (the landscape reuse of the Xiezuta rail-welding plant gantry crane); build new spines, rings, station plazas and new-infrastructure prototypes; list objects involving ownership, regulatory or engineering conditions as pending confirmation. Specific parcel-level conclusions await official ownership and regulatory data <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>. The official renewal constraint (under the Beijing urban-renewal regulation&#x27;s supporting rules: demolition ratio of renewal units no more than 20%, and no more than 10% in core areas) serves as the bottom-line reference.</p>
+<h2>Transport, Rail, Municipal Services and Public Facilities</h2>
+<p><strong>Road micro-circulation</strong>: 17 roads (67.2 km <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="road_length_m" title="指标：road_length_m">指标</sup>) organize the dual-track road network <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>. The heritage park has opened 9 municipal branch roads and 46 entrances, and the &quot;three paths one green&quot; (walking, jogging and cycling paths) slow-traffic system runs without breakpoints <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>.</p>
+<p><strong>Station integration</strong>: echoing the official named stations - Wudaokou and East Qinghua East Road (AI Origin Community) and Dazhongsi station (Dazhongsi AI Industry Cluster) - integrated design is proposed; Line Changping Xuezhayuan station (direct to Zhongzhiyuan/Xuebei Park), Line 15 Beishatan station (direct to the embodied-intelligence park) and future Line 19 interchange. &quot;One station one theme&quot; switch nodes and integrated interchange plazas are organized around stations <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>.</p>
+<p><strong>On-the-ground evidence of AI-governed transport</strong>: the Sidaokou AI traffic-signal-control system - peak average congestion index down 29.7%, daily traffic volume up 24.8%, overall speed up about 21% (full spatial digitalization of 13 intersections) [Source: Beijing Municipal Science and Technology Commission republishing Xinhua + Beijing News, 2026-07, recalculated]. This is Beijing&#x27;s on-the-ground evidence of &quot;AI solving real urban problems&quot;, directly supporting this proposal&#x27;s &quot;AI-native&quot; claim: AI is not a display piece but an operating mechanism that makes city traffic perceivable and responsive.</p>
+<p><strong>Slow traffic and parking</strong>: organize walking, jogging and cycling paths along the park (breakpoint-free, cycling reaching the Huilongguan bicycle expressway); propose supplementary non-motorized parking and shared-mobility connections; specific parking indicators await official transport data <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>.</p>
+<p><strong>Municipal and new infrastructure</strong>: edge-compute stations, distributed energy, environmental-sensing nodes and public-data platforms serve as new-infrastructure prototypes (conceptual), exploring integration with traditional water/electricity/gas/heat utilities <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup>; specific municipal capacity awaits official network data.</p>
+<p><strong>Public service facilities</strong>: talent apartments (echoing the &quot;Haiqing Anju&quot; measures: no fewer than 2,000 youth apartments per year), entrepreneurship services (Origin Academy model), education and healthcare facilities, supporting the positioning of &quot;global AI industry talent as the core clientele&quot; <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="Mobility, slow traffic and blue-green public space composite system"><figcaption>Mobility, slow traffic and blue-green public space composite system</figcaption></figure>
+<h2>Blue-Green Space, Public Space and Urban Character</h2>
+<h3>AI Public Space in the Heritage Park (Addition on Top of What Is Built)</h3>
+<p>The Jing-Zhang Railway Heritage Park was fully completed and opened on 6 August 2026, 9 km long with about 53 ha in total, guided by &quot;centennial Jing-Zhang, revitalized green corridor&quot; and the &quot;melt, remove, retreat, mend&quot; strategy <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>. <strong>Physical stitching is an accomplished fact</strong> (9 branch roads, 46 entrances, breakpoint-free &quot;three paths one green&quot;), and this proposal &quot;adds&quot; on top of what is built, without damaging existing landscape or heritage, and without new large buildings <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup>:</p>
+<ul>
+<li><strong>Smart infrastructure</strong>: AI guides, accessibility services and environmental-sensing nodes along the corridor, using demountable public-space components <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup></li>
+<li><strong>Cultural AI enhancement</strong>: digital interactive presentation of centennial railway culture, information enhancement only, not replacing physical heritage</li>
+<li><strong>All-age friendliness</strong>: AI-assisted age-friendly and child-friendly services, echoing the &quot;quarter-hour community service circle&quot;</li>
+</ul>
+<h3>Digital Dual-Track Stitching (East-West Stitching and North-South Through-Connection)</h3>
+<p><strong>Current basis</strong> (officially implemented): the park has opened 9 municipal branch roads and 46 entrances; part of Line 13 has been put underground with the remaining elevated section becoming high-line green space <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>. On top of the physical stitching, this proposal puts forward a &quot;<strong>digital dual-track</strong>&quot; stitching concept: <strong>east-west stitching</strong> uses data and scenarios to connect the residential, campus and industrial areas on both sides of the railway, extending &quot;stitching&quot; from the spatial layer to the functional and emotional layers; <strong>north-south through-connection</strong> builds a &quot;switching-journey&quot; experience route along the 9-km spine so that all areas are connected narratively and experientially. Caution: conceptual-layer suggestions only; no road alignments, rail alignments or bridge/tunnel engineering are involved <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>.</p>
+<h3>Narrative Loop: From the &quot;Centennial Crossing&quot; to the &quot;Smart Crossing&quot;</h3>
+<p>The Phase-2 south section restores 2.4 km of the 1909 original track, fully restores the Sidaokou historical node, restores a steam locomotive and retro green carriages, and revitalizes the Xiezuta rail-welding plant gantry crane; the north section hosts the official existing landmark &quot;Jing-Zhang Ring&quot; 1909 event plaza <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>. Together with the Sidaokou AI traffic-signal control (congestion down 29.7%), this forms the narrative loop of &quot;<strong>centennial crossing - smart crossing</strong>&quot;: the same crossing was a train-switching point in 1909 and an AI sensing point of urban traffic in 2026 - the spatial anchoring of the First Launch Field spirit.</p>
+<h3>AI Landmarks (4) and the Honor-Display System</h3>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>Landmark</th><th>Spatial location</th><th>Symbol / experience</th></tr></thead><tbody><tr><td>L-01</td><td>&quot;Origin and Switching&quot; monument</td><td>Wudaokou (core of the AI Origin Community) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup></td><td>Ritual sense of &quot;switching&quot; from the centennial fifth crossing to the AI origin; to stop at, to check in</td></tr><tr><td>L-02</td><td>&quot;Human-shaped and dual-track&quot; memorial sculpture</td><td>Heritage-park node (Sidaokou/Zhichun Road) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-002" title="空间数据：geometry/public_space.geojson#PUBLIC-002">空间数据</sup></td><td>Tribute to Zhan Tianyou&#x27;s 1909 &quot;human-shaped&quot; engineering wisdom, translated into AI &quot;dual tracks&quot;</td></tr><tr><td>L-03</td><td>&quot;Hard-track, open-source&quot; twin-gate</td><td>South entrance of Zhongzhiyuan (Xuebei Park) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup></td><td>Symbol of the convergence of autonomous-innovation and open-source-collaboration tracks</td></tr><tr><td>L-04</td><td>&quot;Jing-Zhang Ring&quot; AI upgrade</td><td>North natural-leisure section</td><td>AI digital enhancement on the basis of the official existing &quot;Jing-Zhang Ring&quot; 1909 plaza</td></tr></tbody></table></div>
+<blockquote><p>Caution: all landmarks are &quot;conceptual suggestions/reference proposals&quot;; no engineering feasibility, bridge/tunnel or underground-space conclusions; no unauthorized alteration of enterprise buildings <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>.</p></blockquote>
+<p><strong>Honor-display system (echoing &quot;sustainable preservation of contributor names&quot;)</strong>: the &quot;<strong>dual-track medal</strong>&quot; system awards &quot;autonomous-innovation&quot; or &quot;open-source-collaboration&quot; honors to developers, enterprises and residents who contribute, echoing the open-source culture logic of &quot;contribution is honor&quot; <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>; a <strong>contributor wall</strong> digitally displays the contributor list; <strong>outcome traceability</strong> attributes source and contributors, echoing &quot;traceable sources and traceable copyright&quot;. The honor display links with the L-01 landmark: check-in is honor, and the landmark becomes the physical carrier of honor.</p>
+<h3>Public-Space Component Library and Urban Character</h3>
+<p><strong>Component library</strong> (demountable, progressively implemented): basic components (benches/streetlights/wayfinding/accessibility facilities, standardized and reusable), smart components (AI guide screens/environmental sensing/interaction nodes, AI-native and upgradeable), cultural components (rail/ crossing /human-shaped elements, dual-track narrative and combinable), scenario components (embodied-intelligence training/digital scroll/co-creation workshop, modular and demountable).</p>
+<p><strong>Funding mechanism (conceptual)</strong>: drawing on the High Line&#x27;s &quot;transferable development rights&quot; financing, Hudson Yards&#x27; &quot;station-platform capping&quot; and Miyashita Park&#x27;s &quot;rooftop-park commerce&quot;, explore sustainable funding sources for park public space - public space drives the appreciation of surrounding renewal, and the appreciation feeds back into public-space maintenance <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>.</p>
+<p><strong>Urban character</strong>: &quot;autonomy, openness, inclusiveness, youth, innovation and human warmth&quot; - &quot;let history speak, let AI be visible&quot; <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>. A &quot;railway brown-grey + inductance blue&quot; architectural tone is suggested; the &quot;small blocks, dense road network&quot; methodology is followed (oversized roads and blocks weaken urban vitality); specific character controls await regulatory conditions <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>.</p>
+<h2>AI Innovation Ecosystem, Personas and AI+ Scenarios</h2>
+<h3>Industry and Innovation Ecosystem (Hard-Track Full-Stack Chain + Soft-Track Open-Source Ecosystem)</h3>
+<p><strong>Hard-track full-stack autonomous chain (hosted by Zhongzhiyuan)</strong>: compute layer (domestic AI chips - Cambricon, Moore Threads, Kunlunxin - plus the Zhongzhi FlagOS software ecosystem), model layer (large-model bases such as Zhipu, Baichuan, Kimi, Mianbi), pilot layer (&quot;Zhonggu Intelligent Pilot Harbor&quot; embodied-intelligence pilot platform, high-end medical-device CDMO), outbound layer (Xuebei Park&#x27;s 3,500 m² AI outbound service platform), standards layer (participation in AI standards, evaluation and governance discourse) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>.</p>
+<p><strong>Soft-track open-source collaboration ecosystem (hosted by the AI Origin Community)</strong>: open-source models (Qwen, DeepSeek and other high-derivative open-source models), open-source community (BAAI FlagOpen), open compute (compute vouchers/subsidies), open data (public dataset co-creation), echoing the 2026 Government Work Report&#x27;s call to &quot;support the construction of AI open-source communities and promote open-source ecosystem prosperity&quot;.</p>
+<p><strong>Dual-track converter (Zhongguancun technology-service wing)</strong>: the Zhongguancun International Technology Trading Center (operating since March 2026, based in Beijing, radiating nationally and globally) provides global technology trading; the RMB 10 billion embodied-intelligence growth fund absorbs capital allocation; the Zhonggu Intelligent Pilot Harbor provides piloting and incubation; HICOOL international incubation provides the full &quot;discover - select - invest - land&quot; chain for international talent.</p>
+<p><strong>Eight-factor mechanism</strong>: land (stock renewal + industrial-land adaptation, conceptual only), space (three areas two wings + multiple switch nodes + component library), industry (hard-track full-stack + soft-track scenario dual chain), capital (rent/compute subsidies, the RMB 10 billion fund, the technology trading center - all officially released policies), talent (scientist/developer/student three tiers; Haiying Plan, Xinhuo-Gongran), compute (domestic compute + Zhongzhi FlagOS), data (high-quality datasets, compliant data outbound), scenarios (embodied/AI+medical/AI+film realistic training) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>.</p>
+<h3>Five Personas and Customer-Group Economic Carrying Capacity</h3>
+<p><strong>Five personas</strong> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>:</p>
+<div class="proposal-table"><table><thead><tr><th>Persona</th><th>Profile</th><th>Core needs</th><th>Scenarios</th></tr></thead><tbody><tr><td>U1 Global AI developers</td><td>Open-source contributors, independent developers, agent creators</td><td>Open compute/data, community co-building, showcasing</td><td>SC-07/T-01</td></tr><tr><td>U2 AI entrepreneurs/researchers</td><td>Scientists, engineers, start-up teams</td><td>Piloting, financing, scenario landing, academic exchange</td><td>SC-08/Origin Community</td></tr><tr><td>U3 University students</td><td>Undergraduates, graduates, interdisciplinary talent</td><td>Learning, training, employment/entrepreneurship, life</td><td>SC-05/07</td></tr><tr><td>U4 Residents/families (incl. elderly and children)</td><td>About 450,000 residents nearby (Phase-2 south section covers 70 communities)</td><td>Leisure, health, education, accessible experience</td><td>SC-04/05/06</td></tr><tr><td>U5 Industry/investors/visitors</td><td>Leading enterprises, investment institutions, international visitors</td><td>Matching, showcasing, investment attraction, experience</td><td>SC-02/03/09</td></tr></tbody></table></div>
+<p><strong>Customer-group positioning (three-tier gradient)</strong>: global AI industry talent as the core clientele, resident life services as the base guarantee, and global developers&#x27; and visitors&#x27; experiential communication as the amplifier - the three tiers respectively align with industry support, public interest and international communication <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>.</p>
+<p><strong>Population base and consumption carrying capacity (sources annotated; extrapolations are inferences only and do not constitute traffic or consumption commitments)</strong>:</p>
+<ul>
+<li><strong>Industry talent</strong>: Haidian lists 39 urgently needed AI positions with total demand exceeding 14,000 people [Official: Haidian District Human Resources and Social Security Bureau, Catalogue of Urgently Needed Positions in Key Industries (AI) (2025 Edition)]; the overall average annual salary in the AI field is RMB 481,400, with the top salary cluster above RMB 800,000 (chip algorithm and design optimization engineers at RMB 1.04 million, large-model user product managers at RMB 920,000) [Official: same source]. The concentration of high-income talent provides the carrying base for commercial and living consumption in the district (inference: extrapolated from per-capita disposable consumption rates, industry talent&#x27;s daily dining, social and family consumption forms the commercial base plate).</li>
+<li><strong>Resident base</strong>: the Phase-2 south section of the heritage park covers 70 communities and 450,000 residents [Official: China National Radio, 2026-08].</li>
+<li><strong>Visitor experience</strong>: Beijing&#x27;s sightseeing market has proven spending power - the retro streetcar (Dangdang Che) at RMB 50-268 per ride with about 4,000 person-trips per day; the Wolfgang gourmet double-decker bus at RMB 680 with about 70% occupancy; the tipsy bus at RMB 168 with demand exceeding supply [Source: Beijing cultural-tourism market public reports, 2026, recalculated]. (Inference: if the Jing-Zhang cultural-tourism line benchmarks these products with tiered pricing, it can support a composite visitor structure of &quot;experiential consumption + overnight stays&quot;; specific traffic and revenue require dedicated estimation.)</li>
+<li><strong>Origin Community operational evidence</strong>: daily through-traffic rose from 1,200 before renewal to 7,000+ person-times [Official: Haidian District, 2026] - <strong>the carrying capacity has been verified by real operations</strong>, the strongest evidence for this proposal&#x27;s &quot;traffic-to-value conversion&quot; judgment.</li>
+</ul>
+<h3>12 AI-Native Scenario Cards (AI-native three features: AI as operating mechanism / data loop / evolvability)</h3>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>Scenario card</th><th>Spatial anchor</th><th>Users</th><th>Data boundary and human review</th><th>Maturity</th></tr></thead><tbody><tr><td>SC-01</td><td>Embodied-intelligence realistic training site</td><td>Xiaoyue River wing <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup></td><td>Embodied-AI enterprises, developers</td><td>Real-machine operation data feeds back into models; public review before test-report release</td><td>S2</td></tr><tr><td>SC-02</td><td>AI+healthcare application corridor</td><td>Xiaoyue River wing (Zhonggu Pilot Harbor CDMO)</td><td>Medical institutions, patients</td><td>Healthcare data minimization, compliant outbound</td><td>S2</td></tr><tr><td>SC-03</td><td>AI+film content production line</td><td>Xiaoyue River wing</td><td>Content enterprises, creators</td><td>AI-generated content source-labeled</td><td>S3</td></tr><tr><td>SC-04</td><td>Smart crossing experience station</td><td>Wudaokou/Sidaokou <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-002" title="空间数据：geometry/public_space.geojson#PUBLIC-002">空间数据</sup></td><td>Residents, visitors</td><td>Multimodal interaction; anonymized footfall data</td><td>S3</td></tr><tr><td>SC-05</td><td>Accessible AI guide system</td><td>Heritage-park spine <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup></td><td>Elderly, children, people with disabilities</td><td>Real-time environmental sensing; personal-data minimization</td><td>S3</td></tr><tr><td>SC-06</td><td>Urban data-visualization scroll</td><td>Public art screens along the route</td><td>Residents, visitors</td><td>Aggregated data, no personal privacy</td><td>S3</td></tr><tr><td>SC-07</td><td>Agent co-creation workshop</td><td>Origin Community, Origin Academy <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup></td><td>Developers, residents</td><td>Sandbox isolation; public review before test-log release</td><td>S3</td></tr><tr><td>SC-08</td><td>Talent-scenario matching platform</td><td>AI Origin Community</td><td>Entrepreneurs, enterprises</td><td>AI matching; personal-data minimization</td><td>S3</td></tr><tr><td>SC-09</td><td>AI-native consumption venue</td><td>Dazhongsi <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup></td><td>Consumers, brand merchants</td><td>Consumption-as-data; desensitized aggregation</td><td>S3</td></tr><tr><td>SC-10</td><td>Smart-city governance sandbox</td><td>Zhongzhiyuan / technology-service wing</td><td>Residents, governors</td><td>Urban-operations AI simulation; reviewable</td><td>S3</td></tr><tr><td>SC-11</td><td>Smart district (AI sensing + commercial flow + smart lighting)</td><td>Dazhongsi station - Beishatan</td><td>Commuters, residents, merchants</td><td>Aggregated footfall statistics, no facial recognition</td><td>S3</td></tr><tr><td>SC-12</td><td>Ecological-resilience waterfront (AI water-level regulation)</td><td>Xiaoyue River</td><td>Residents, universities</td><td>Environmental data (water level/rainfall); manual confirmation of sluice gates</td><td>S3</td></tr></tbody></table></div>
+<blockquote><p>Scenario cards are designed problem-oriented rather than technology-oriented: not &quot;see what AI can do&quot; but answer &quot;why a real task needs AI&quot; <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>. All scenarios carry a maturity grade (S1 concept / S2 testing / S3 demonstration / S4 operation), and testing is not presented as operation <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>.</p></blockquote>
+<h3>3 AI Industry Test-and-Verification Scenarios</h3>
+<p><strong>Standard</strong>: truly verifying AI industry capability, not display demos; clear test objectives and data feedback <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>.</p>
+<ul>
+<li><strong>T-01 Embodied-intelligence real-machine test site</strong> (Xiaoyue River wing): humanoid robots verify operations (cleaning/delivery/inspection) in real urban environments, benchmarking the MIIT + SASAC &quot;2026 Annual Humanoid Robots and Embodied Intelligence Realistic Training Special Action&quot; (more than 100 high-value scenarios and 10,000-unit deployment by end-2026) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>.</li>
+<li><strong>T-02 AI+medical-device pilot verification</strong>: relying on the Zhonggu Intelligent Pilot Harbor high-end medical-device CDMO platform.</li>
+<li><strong>T-03 Agent commercialization verification</strong> (Dazhongsi): commercial verification of intelligent terminals/agents in real consumption scenarios, with real data such as repurchase and retention feeding back into models.</li>
+</ul>
+<blockquote><p>Caution: all of the above are labeled &quot;test and verification&quot; in nature, not written as approved operations <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>.</p></blockquote>
+<h3>Scenario-Space-Operation Mapping and the &quot;Switching Journey&quot; Public Experience Route</h3>
+<div class="proposal-table"><table><thead><tr><th>Scenario cluster</th><th>Space</th><th>Operation logic</th><th>Data feedback</th></tr></thead><tbody><tr><td>Embodied-intelligence training (SC-01/T-01)</td><td>Xiaoyue River wing, embodied-intelligence park</td><td>Government + enterprise + fund co-building</td><td>Real-machine operation data</td></tr><tr><td>Public experience (SC-04/05/06)</td><td>Heritage-park spine</td><td>Park operation + AI service providers</td><td>Footfall/interaction data</td></tr><tr><td>Co-creation/matching (SC-07/08)</td><td>AI Origin Community</td><td>Community operator + developer community</td><td>Project/talent data</td></tr><tr><td>AI-native consumption (SC-09/T-03)</td><td>Dazhongsi</td><td>Leading platform + brand merchants</td><td>Consumption-behavior data</td></tr><tr><td>Governance sandbox (SC-10)</td><td>Zhongzhiyuan / technology-service wing</td><td>Government + think tanks</td><td>Urban-operations data</td></tr></tbody></table></div>
+<p><strong>&quot;Centennial dual-track, switching journey&quot; experience route</strong>: north (Zhongzhiyuan/hard track, full-stack autonomy experience) - center (Origin Community/switch point, crossing-to-origin switching) - south (Dazhongsi/soft-track landing, AI-native consumption), linking SC-01-SC-07-SC-09 and L-01-L-04, letting residents experience &quot;from hard track to soft track, from autonomy to open source&quot; as they walk through the AI city.</p>
+<h2>Renewal Project List, Implementation Policy and Phasing</h2>
+<p><strong>Renewal project list</strong>: 15 renewal projects <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="renewal_project_count" title="指标：renewal_project_count">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup>, including heritage-park public-space upgrades, station-plaza integration, industrial-carrier renewal (Lanjing Lijia to International Exchange Center), talent apartments and community-service frontage renovation; specific locations and dependency conditions await official ownership data <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup>.</p>
+<p><strong>Implementation principles</strong>: run the six-stage mechanism with a few real projects and let evidence decide expansion - &quot;mechanism before carrier, controlled before open, dual-track co-review, one project one responsibility chain&quot; <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>.</p>
+<p><strong>Four-stage implementation path</strong>: Stage 0 (mechanism calibration and baseline) - Stage 1 (three real projects pilot the six stages: origin ignition - Zhongzhiyuan verification - Dazhongsi refresh cross-area relay) - Stage 2 (normal service and scenario opening) - Stage 3 (replication, collaboration and regional spillover). This is supported by the &quot;First Launch Pass&quot; seven gates (G0-G6) and a 30-day conversion-review threshold; each stage is decided by evidence, not by a timetable <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>.</p>
+<p><strong>Policy loop (implementability evidence chain)</strong>: the Haidian 15th Five-Year Plan outline states that &quot;the southern area will revitalize stock through urban renewal to build the &#x27;Centennial Jing-Zhang AI Innovation Belt&#x27;&quot; [Official] - the Beijing Urban Renewal Policy Incentive Toolkit (75 measures in 7 sections) - the first batch of 1,321 urban-renewal projects in 2026 - the Regulations on Deepening Building-Scale Management to Incentivize Urban Renewal (Trial) with a 10 million m² municipal flexible-index pool (3 million in the first year) - the Lanjing Lijia project (the city&#x27;s first approved municipal-index project, adding 13,569 m²) - <strong>policy, project and district form a closed loop, the strongest evidence chain for the implementability dimension (20% scoring weight)</strong> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>.</p>
+<p><strong>Event system (led by the &quot;Switching Festival&quot; IP)</strong>:</p>
+<div class="proposal-table"><table><thead><tr><th>IP</th><th>Cycle</th><th>Content</th><th>Operating mechanism</th></tr></thead><tbody><tr><td>Origin-Switching Festival (main IP)</td><td>Annual</td><td>Developer co-creation, roadshows, outcome releases, &quot;switching&quot; ceremony</td><td>Linked with developer community, competition-based</td></tr><tr><td>Dual-Track Open-Source Conference</td><td>Annual</td><td>Open-source model/dataset releases, co-building workshops</td><td>Linked with BAAI and other new R&amp;D institutions</td></tr><tr><td>Embodied-Intelligence Training Camp</td><td>Quarterly</td><td>Robot realistic training, real-machine challenge</td><td>Linked with MIIT realistic-training special action</td></tr><tr><td>Centennial Jing-Zhang Cultural Carnival</td><td>Standing</td><td>Railway culture + AI experience + all-age activities</td><td>Park operation + community participation</td></tr></tbody></table></div>
+<p><strong>Regular activities</strong>: AI study rooms/evening schools (echoing Origin Academy and Haidian&#x27;s 140 evening-school sites), developer roadshow days/cross-field socializing (echoing the Origin Bar), AI City Walk routes (normalizing the &quot;switching journey&quot;), and a four-seasons one-summit rhythm (spring talent / summer projects / autumn scenarios / winter outcomes).</p>
+<p><strong>Developer-community operation</strong>: the AI Origin Community plus online collaboration; mechanisms of open compute/data/scenario applications, contribution incentives (code/data/scenario contributions to honor and resources), multi-agent collaboration and outcome traceability; the conversion path &quot;developer - entrepreneur - enterprise&quot; (replicating Gongji Technology&#x27;s path) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>.</p>
+<p><strong>AI scenario open operation</strong>: publish scenario-open lists regularly; tiered opening (S2 test sites on application, S3 demonstrations on operation, S4 commercialization on market); data feedback nourishes models; scenario applications and data-use rules are public, with no designated-supplier threshold.</p>
+<p><strong>International communication and investment-conversion (four channels)</strong>: talent conversion (overseas developers to activities to local entrepreneurship, benchmarking HICOOL); enterprise conversion (global projects to the Zhongguancun International Technology Trading Center / technology-service wing); capital conversion (connecting the RMB 10 billion embodied-intelligence fund and other established funds); scenario conversion (global AI solutions to real-site verification in the belt to scaled landing). Caution: all activities are &quot;concepts/suggestions&quot;, not confirmed arrangements; no exaggeration of government commitments or event effects <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>.</p>
+<h3>Cultural Narrative (Task 5)</h3>
+<p><strong>Three-stage narrative</strong>: Stage 1 (1909) Centennial Jing-Zhang, engineering autonomy - Zhan Tianyou&#x27;s &quot;human-shaped&quot; line, the first trunk railway built autonomously by Chinese people; Stage 2 (1980s-) Zhongguancun, innovation and exploration - &quot;dare and try&quot;, from the electronics street to a world-leading science park; Stage 3 (2026) AI origin, full-stack autonomy - the dual-track system from autonomous innovation to open-source collaboration, the AI innovation belt <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>.</p>
+<p><strong>Narrative anchor</strong>: Wudaokou &quot;centennial crossing-point switching to today&#x27;s origin switching&quot;. <strong>Spatial cultural system</strong>: Wudaokou (switching monument + AI digital narrative L-01), Qinghuayuan station (station-building display + AI historical restoration), Sidaokou (track walk + historical interpretation L-02), Zhongzhiyuan (hard-track/full-stack outcome display L-03), Dazhongsi (consumption experience + content generation SC-09).</p>
+<p><strong>Wayfinding symbols</strong>: the cultural-identity system and the belt-wide logo system are clearly separated - historical-cultural symbols extract base patterns from the &quot;human-shaped&quot; track, AI-innovation symbols use dual-track/node/data-flow symbols, and the two converge at &quot;switch nodes&quot; to form a systematic identity. Caution: historical facts are sourced and undistorted; no unauthorized portraits/trademarks/copyrighted materials.</p>
+<p><strong>International narrative</strong>: the communication motif is &quot;Twin-Track&quot; and &quot;First Launch&quot; - from China autonomously building its first railway to parallel full-stack autonomy and open-source openness in AI, &quot;centennial dual tracks, original first launch&quot; tells the story of Chinese-style modernization and innovation.</p>
+<h2>Indicator System, Area Recalculation and Compliance Matrix</h2>
+<p><strong>Design meaning of core indicators</strong>:</p>
+<ul>
+<li>Site 11,412,825 m² <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>: the planning basis of the three-level scope framework.</li>
+<li>Green ratio 22.5% <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> and public-space ratio 5.04% <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>: green heart and public space first, supporting a &quot;perceivable AI city&quot; and innovation exchange - public space is the experiment and display interface of the First Launch Field.</li>
+<li>Building footprint 644,095 m² <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>: the scale of industrial-space supply and renewal carriers.</li>
+<li>Three key areas of 192.9/104.3/72.0 ha <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="zhongzhiyuan_ai_acceleration_area_area_sqm" title="指标：zhongzhiyuan_ai_acceleration_area_area_sqm">指标</sup><sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="beijing_ai_origin_community_area_sqm" title="指标：beijing_ai_origin_community_area_sqm">指标</sup><sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="dazhongsi_ai_industry_cluster_area_sqm" title="指标：dazhongsi_ai_industry_cluster_area_sqm">指标</sup>: the spatial anchors of the three areas and two wings.</li>
+<li>Road network 67.2 km <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="road_length_m" title="指标：road_length_m">指标</sup>: connectivity of the dual-track road network and slow-traffic system.</li>
+<li>12 scenario cards <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_card_count" title="指标：scenario_card_count">指标</sup>, 12 scenario nodes <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_node_count" title="指标：scenario_node_count">指标</sup>, 5 personas <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="persona_type_count" title="指标：persona_type_count">指标</sup>, 3 test-and-verification scenarios <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="test_verification_scenario_count" title="指标：test_verification_scenario_count">指标</sup>, 4 landmarks <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="landmark_count" title="指标：landmark_count">指标</sup>, 15 renewal projects <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="renewal_project_count" title="指标：renewal_project_count">指标</sup>: full coverage of the six tasks&#x27; hard quantity requirements.</li>
+</ul>
+<p><strong>Indicator direction: from &quot;scale and traffic&quot; to &quot;systemic effectiveness and public outcomes&quot;</strong>: beyond traditional spatial indicators, &quot;first-launch effectiveness&quot; indicators are proposed (e.g., traceability rate of original-project sources, engineering-verification pass rate, public re-review rate of city trials, publication rate of adoption/exit conclusions) - baselines are all &quot;to be established&quot;, no target values are fabricated, and they will be progressively established as the First Launch Field mechanism operates (conceptual).</p>
+<p><strong>Recalculation mechanism</strong>: all area/ratio/mileage indicators are programmatically recalculated from <code>geometry/*.geojson</code> into <code>metrics.json</code>; <code>spatial_review.py</code> verifies <code>site_area_sqm</code>, <code>green_ratio</code> and <code>public_space_ratio</code> against geometry (within 1%) <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>. Floor-area ratio, building height and total floor area are not publicly released and are marked <code>unknown</code> pending regulatory data <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>.</p>
+<p><strong>Avoiding pitfalls is scoring (explicit risk awareness)</strong>: drawing lessons from international failure cases - Tsukuba Science City&#x27;s &quot;research over conversion / bedroom town&quot;, Songdo&#x27;s &quot;technology idling / occupancy below 50%&quot;, Toronto Sidewalk&#x27;s &quot;data-governance failure collapsing the project&quot;, and some domestic new towns&#x27; &quot;city without market / high vacancy&quot; - this proposal responds to these risks with the &quot;dual-track co-review + human backstop + reversible exit&quot; mechanism, the eight-element scenario cards (data boundary + human review) and operation-entity-first, avoiding &quot;technological optimism&quot; and &quot;construction over operation&quot; <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>.</p>
+<p><strong>Compliance-matrix coverage</strong>: <code>compliance_matrix.json</code> maps the announcement tasks and the six agent tasks; <code>standard_matrix.json</code> maps the five standards; <code>design_depth_matrix.json</code> maps the 15 depth items (the full-chain coverage from <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup> to <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>).</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="Core indicator recalculation and evidence-chain diagram"><figcaption>Core indicator recalculation and evidence-chain diagram</figcaption></figure>
+<h2>Risk, Copyright and Compliance</h2>
+<ul>
+<li><strong>Data legitimacy</strong>: public sources only; formal conclusions rely only on <code>usable_for_formal=&quot;yes&quot;</code> sources <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>.</li>
+<li><strong>Copyright authorization</strong>: no unauthorized fonts/trademarks/portraits/published-paper images; AI-generated images are recorded in <code>report/copyright_statement.md</code> and <code>sources.json</code> with their generation tools; fonts, images and trademarks are cleared item by item before use.</li>
+<li><strong>Privacy protection</strong>: every scenario card sets a data boundary and human review (SC-11 Smart District explicitly states &quot;no facial recognition, no individual trajectory&quot;; SC-12 waterfront uses environmental data only); no personal-privacy data, no excessive surveillance.</li>
+<li><strong>No official-approval or commitment claims</strong>: all spatial proposals are &quot;conceptual suggestions/reference proposals&quot;, not statutory planning conclusions and not a substitute for approval; no floor-area ratio/building height/retain-renovate-demolish/investment estimates/development schedules/investment-attraction capital commitments; activities, investment attraction and policies are all expressed as conceptual suggestions <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>.</li>
+<li><strong>Provisional boundary</strong>: labeled <code>provisional_constraint</code>; full recalculation once official data is released <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>.</li>
+<li><strong>Pending materials</strong>: official precise polygon, regulatory-plan indicators, ownership, road redlines, heritage-protection control lines, current-status baseline survey <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>.</li>
+<li><strong>Professional deepening needed</strong>: final logo design (the &quot;dual-track/switching point&quot; direction awaits professional design), engineering feasibility and regulatory-plan linkage require professional teams <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>.</li>
+</ul>
+<h2>References</h2>
+<ul>
+<li>Prequalification Announcement for the International Urban Design Open Call for the Centennial Jing-Zhang AI Innovation Belt, Haidian Branch, Beijing Municipal Commission of Planning and Natural Resources (2026-05-09) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup></li>
+<li>Excerpt of the agent-facing taskbook for the &quot;Centennial Jing-Zhang AI Innovation Belt urban-design open-source call&quot; (2026-05-18) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup></li>
+<li>Urban Design Administration Measures; Urban/Town Regulatory Detailed Planning Formulation and Approval Measures; Land-Sea Use Classification Guide for Territorial Spatial Surveys, Planning and Use Control <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup></li>
+<li>Beijing Haidian District Jing-Zhang Railway Heritage Park Corridor (Key Area of the AI Innovation Street) HD00-1601 and Other Blocks Regulatory Detailed Plan (2024-2035), approved 2026-08-12 (People&#x27;s Daily Online / Beijing Daily) <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></li>
+<li>Catalogue of Urgently Needed Positions in Key Industries (AI) (2025 Edition), Haidian District Human Resources and Social Security Bureau <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup></li>
+<li>Repository structured site package and provisional boundaries <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup><sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup></li>
+<li>Team research outcomes: planning workpack 08-18, Lin Jingjing&#x27;s 12 research documents, Li Xiaoyan&#x27;s 14 policy/scenario documents, 40+ field-survey photos (2026-08-14/16) - screened by evidence level, pending items in <code>sources.json</code></li>
+</ul>
+<p><em>All spatial proposals in this proposal are conceptual; the evidence chain is &quot;announcement tasks - machine-readable data - narrative - drawings and HTML&quot;; the bilingual equivalent is <code>proposal.en.md</code>; machine self-checks are in <code>self_check.json</code>; source registration is in <code>sources.json</code>.</em></p>
+  </article></section>
+    </div>
+  </main>
+  <footer>
+    本页面由结构化 proposal.md 与 exhibit.json 生成，不包含用户提交脚本。涉及空间、交通、建设强度和政策判断的内容均需人工复核。
+  </footer>
+
+<section id="total-map" class="board-section">
+  <h2>总览地图 · Overview Map</h2>
+  <p>京张AI首发场 · 一带双轨·三核两翼·多节点·蓝绿环（概念建议 · 临时边界 provisional）</p>
+  <img src="../assets/figures/site-overview.png" alt="总览地图" style="max-width:100%;">
+</section>
+<section id="ai-scenarios" class="board-section">
+  <h2>AI 场景 · AI Scenarios</h2>
+  <p>12 张 AI 原生场景卡 + 3 类测试验证场，覆盖科技线/人文线/环境线三线（来源：proposal.md 9.3-9.4）</p>
+  <table>
+    <tr><th>场景</th><th>空间</th><th>成熟度</th></tr>
+    <tr><td>SC-01 具身智能实景实训</td><td>小月河翼</td><td>S2</td></tr>
+    <tr><td>SC-04 智慧道口体验</td><td>五道口/四道口</td><td>S3</td></tr>
+    <tr><td>SC-09 智能原生消费</td><td>大钟寺</td><td>S3</td></tr>
+    <tr><td>T-01 具身智能真机测试</td><td>小月河翼</td><td>S2</td></tr>
+  </table>
+</section>
+<section id="task-coverage" class="board-section">
+  <h2>任务覆盖 · Task Coverage</h2>
+  <p>六任务全部覆盖（来源：compliance_matrix.json 23 条要求 + 6 个 agent 任务）</p>
+  <ul>
+    <li>agent.1 总体概念与功能统筹 ✓</li>
+    <li>agent.2 AI创新生态 ✓</li>
+    <li>agent.3 AI+场景与画像（≥10场景卡/≥3测试/≥5画像）✓</li>
+    <li>agent.4 公共空间与朝圣地标（≥3地标）✓</li>
+    <li>agent.5 文化融合叙事 ✓</li>
+    <li>agent.6 活动体系与长期运营 ✓</li>
+  </ul>
+</section>
+<section id="self-check" class="board-section">
+  <h2>自检状态 · Self-Check Status</h2>
+  <p>机器校验全部通过：13 章节齐全 / 5 张必嵌图嵌入 / 双语等义 / 证据链引用有效</p>
+  <p>详见 self_check.json；spatial issues 仅为 3 个 PROVISIONAL 边界标记（已声明）</p>
+</section>
+<section id="metrics-display" class="board-section">
+  <h2>核心指标 · Core Metrics</h2>
+  <div class="metric-card" data-metric="site_area_sqm" data-value="11412825.386">场地面积 11,412,825 m²</div>
+  <div class="metric-card" data-metric="green_ratio" data-value="0.224793">绿地率 22.5%</div>
+  <div class="metric-card" data-metric="public_space_ratio" data-value="0.050417">公共空间率 5.04%</div>
+</section>
+
+<section id="spatial-systems" class="board-section">
+  <h2>空间系统 · Spatial Systems</h2>
+  <p>Built on the approved regulatory plan "One Belt, One Axis, Two Centers, Multiple Nodes", the proposal covers the three-level scope, key areas, land use, mobility, blue-green network, buildings and renewal projects (see proposal.md and geometry/*.geojson).</p>
+  <ul>
+    <li><b>Three-level scope: </b>统筹研究43.6 km² → 总体设计11.4 km² → 重点区域368.4 ha（众智园192.1/AI原点社区104.3/大钟寺72.0）</li>
+    <li><b>Key areas: </b>众智园=硬轨中枢 · AI原点社区=转轨点 · 大钟寺=软轨落地</li>
+    <li><b>Land use: </b>29地块完整覆盖无缝隙无重叠（科研22%/绿地18%/居住18%）</li>
+    <li><b>Mobility: </b>17条道路67.2km双轨路网；遗址公园「三道一绿」+46出入口无断点</li>
+    <li><b>Blue-green & public space: </b>11处绿地绿地率22.5%、6处公共空间节点、蓝绿环</li>
+    <li><b>Buildings: </b>87栋建筑基底64.4万m²（容积率/高度待控规数据补齐）</li>
+    <li><b>Renewal projects: </b>15个更新项目四阶段实施（保留—改造—新建—待确认）</li>
+  </ul>
+</section>
+<section id="scenario-vision" class="board-section">
+  <h2>Scenario Vision</h2>
+  <p>Visual visions of three AI scenarios (AI concept renders, display only; spatial claims follow proposal.md).</p>
+  <div class="concept-grid2">
+    <figure class="concept-card2"><img src="assets/concept/Modern_Beijing_urban_street_sc_2026-08-17T07-26-03.png" alt="智慧街区" loading="lazy"><figcaption><b>Smart District</b>：大钟寺至北沙滩通勤走廊，转化为可感知、可响应、可进化的城市智能体；只统计密度不识别个体，关键决策人工复核。</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/scene2-xiaoyuehe-resilience.jpg" alt="小月河生态韧性滨水带" loading="lazy"><figcaption><b>Resilient Waterfront · Xiaoyue River</b>：生态护岸+AI韧性大脑+亲水慢行；本方案做「数字韧性层」增量，不替代防洪工程。</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/scene3-qinghuayuan-redbarrier.jpg" alt="Time-Travel Tour Line" loading="lazy"><figcaption><b>Time-Travel Tour Line</b>：9站环线1733→四道口→清华园站→五道口→京张之环→众智园→未来站；1909自主筑路→2026 AI全栈自主，同一精神内核。</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/scene3-green-locomotive.jpg" alt="1909蒸汽机车" loading="lazy"><figcaption><b>1909 Steam Era</b>：百年工业遗存与「三道一绿」同框，从蒸汽机车到智能座舱观光车，外观与内核的反差即叙事。</figcaption></figure>
+  </div>
+</section>
+<section id="tour-lines" class="board-section">
+  <h2>Sightseeing Lines</h2>
+  <p>Three themed sightseeing lines modelled on Shenzhen's hop-on-hop-off system (AI concept renders, display only).</p>
+  <div class="concept-grid2">
+    <figure class="concept-card2"><img src="assets/concept/Futuristic_smart_sightseeing_d_2026-08-18T10-33-16.png" alt="科技线" loading="lazy"><figcaption><b>L1 L1 Tech Line · AI First-Launch Tour</b>：双层巴士+数字孪生屏，众智园→原点社区→大钟寺，看AI如何被验证与采用。</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/Elegant_retro_modern_sightseei_2026-08-18T10-33-44.png" alt="人文线" loading="lazy"><figcaption><b>L2 L2 Culture Line · Centennial Campus Tour</b>：复古现代融合车身+研学互动，清华园站→五道口→高校群落。</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/Scenic_double_decker_sightseei_2026-08-18T10-34-13.png" alt="生态线" loading="lazy"><figcaption><b>L3 L3 Eco Line · Garden & Water Tour</b>：大车窗+生态讲解，小月河→圆明园→颐和园方向。</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/Interior_of_a_luxury_smart_dou_2026-08-18T10-34-41.png" alt="智能座舱" loading="lazy"><figcaption><b>Moving Living Room</b>：二层全景天窗+实木桌台+随站点切换主题的智能屏——1909段讲詹天佑筑路史，2026段讲智能体与创新生态，中英双语AI讲解。</figcaption></figure>
+  </div>
+</section>
+<section id="sightseeing-market" class="board-section">
+  <h2>Market Evidence</h2>
+  <p>Beijing's sightseeing bus market validates experience-led consumption (public reports, 2026):</p>
+  <ul>
+    <li><b>Retro Tram Bus</b>（集散中心）：日游50元/夜游98-268元，日均4000人次，途经15处遗产点。</li>
+    <li><b>Chaoyang Gourmet Bus</b>（朝阳文旅×中青旅×沃夫冈）：680元/人含四道式套餐，上座率约70%，累计3000+人次。</li>
+    <li><b>Tipsy Bus</b>（华都酒业×集散中心）：168元/位，春节前预约排满，已接待多国海外游客。</li>
+  </ul>
+  <p>京张线有「1909蒸汽机车」IP沉淀+2026.8.6遗址公园二期开放事件，可复刻「文化事件→客流飙升」逻辑；Qinghuayuan Station可套用「限定场景+演员讲解+社交传播」产品框架。</p>
+  <div class="concept-grid2">
+    <figure class="concept-card2"><img src="assets/concept/lao-bj-dangdang-car.jpg" alt="Retro Tram Bus" loading="lazy"><figcaption><b>Retro Tram Bus</b>: 20-41 pure-electric retro trams, day 50 / night 98-268 CNY, ~4,000 pax/day.</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/chaoyang-food-bus-1.jpg" alt="Chaoyang Gourmet Bus" loading="lazy"><figcaption><b>Chaoyang Gourmet Bus</b>: double-decker EV bus with onboard cooking, 680 CNY/pax, ~70% occupancy.</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/chaoyang-meishi-bus-night.jpg" alt="Gourmet bus at night" loading="lazy"><figcaption>Gourmet bus at night: 360° panoramic roof + onboard cooking.</figcaption></figure>
+    <figure class="concept-card2"><img src="assets/concept/weixun-bus-interior.jpg" alt="Tipsy Bus interior" loading="lazy"><figcaption><b>Tipsy Bus</b>: retro tram with wood interior and 6 tables, 168 CNY/seat, fully booked.</figcaption></figure>
+  </div>
+</section>
+<section id="heritage-sites" class="board-section">
+  <h2>Heritage Stops</h2>
+  <p>Heritage stops along the Jing-Zhang Railway Heritage Park (site photos):</p>
+  <div class="site-list">
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</section>
+<section id="field-survey" class="board-section">
+  <h2>Field Survey</h2>
+  <p>Field survey by the team on 2026-08-14/16 covering five districts (original photos, first-hand evidence):</p>
+  <div class="stop-list">
+    <div class="stop-item"><b>① Dazhongsi · 1733</b><span>ByteDance 1733 sunken plaza entrance (soft-rail landing site)</span></div>
+    <div class="stop-item"><b>② Heritage Park · Sidaokou</b><span>Old rails alongside Metro Line 13</span></div>
+    <div class="stop-item"><b>③ Qinghuayuan Station</b><span>Centennial station + site park</span></div>
+    <div class="stop-item"><b>④ Wudaokou · AI Origin Community</b><span>Origin logo + Dongyuan Tower (switch point)</span></div>
+    <div class="stop-item"><b>⑤ Xiaoyue River · Mudanyuan</b><span>Yuandadu section (soft-rail wing ecology)</span></div>
+    <div class="stop-item"><b>⑥ Xiaoyue River Waterfront Works</b><span>Waterfront construction in progress</span></div>
+    <div class="stop-item"><b>⑦ Zhongzhiyuan · Xuebei Park</b><span>Dongsheng tech park offices (hard-rail hub)</span></div>
+    <div class="stop-item"><b>＋ Embodied AI Park</b><span>Soft-rail wing industrial depth, 90% occupancy</span></div>
+  </div>
+  <div class="photo-grid">
+    <figure class="photo-card"><img src="assets/photos/survey-dzs-1733.jpg" alt="大钟寺1733" loading="lazy"><figcaption>Dazhongsi · 1733下沉广场入口（2026-08-16）</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-dzs-bytedance.jpg" alt="字节楼宇" loading="lazy"><figcaption>Dazhongsi ByteDance building (former Zhongkun Plaza)</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-park-rail13.jpg" alt="旧铁轨与13号线" loading="lazy"><figcaption>Heritage park: old rails alongside Metro Line 13</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-park-steps.jpg" alt="公园大台阶" loading="lazy"><figcaption>Heritage park: grand steps public space</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-qinghuayuan.jpg" alt="清华园旧址公园" loading="lazy"><figcaption>Qinghuayuan site park (2026-08-16)</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-wudaokou-origin.jpg" alt="AI原点社区LOGO" loading="lazy"><figcaption>Wudaokou · AI Origin CommunityLOGO</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-wudaokou-tower.jpg" alt="东源大厦" loading="lazy"><figcaption>Wudaokou: Dongyuan Tower (origin community)</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-xiaoyuehe.jpg" alt="小月河" loading="lazy"><figcaption>Xiaoyue River · Mudanyuan元大都段</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-xiaoyuehe-construction.jpg" alt="Xiaoyue River Waterfront Works" loading="lazy"><figcaption>Xiaoyue River: waterfront construction in progress</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-embodied-ai-park.jpg" alt="Embodied AI Park" loading="lazy"><figcaption>Xiaoyue wing: Zhongguancun Embodied AI Park</figcaption></figure>
+    <figure class="photo-card"><img src="assets/photos/survey-zhongzhiyuan.jpg" alt="众智园" loading="lazy"><figcaption>Zhongzhiyuan: Dongsheng office (2026-08-14)</figcaption></figure>
+  </div>
+</section>
+
+<section id="final-figures" class="board-section">
+  <h2>Final Figure Set</h2>
+  <p>Team-final drawings (finalized 2026-08-24) serving the "Jing-Zhang AI First-Launch" proposal: master map, scenario zoom-ins, mechanism diagrams, evidence-chain figures and local plans. Figure values recomputed from geometry/metrics (EPSG:4548) for traceability; concept-level.</p>
+  <h3>Mechanism & Implementation</h3>
+  <div class="concept-grid2">
+    <figure class="concept-card2"><img src="../assets/figures-extra/six-step-cycle-diagram.png" alt="Six-Cycle Mechanism" loading="lazy"><figcaption><b>Six-Cycle Mechanism</b>: discovery → teaming → engineering verification → urban trial → adoption → diffusion, gated by dual-track review.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/first-launch-battlemap.png" alt="First-Launch Battle Map" loading="lazy"><figcaption><b>First-Launch Battle Map</b>: P1-P3 project cards (owner/timeline/KPI/exit).</figcaption></figure>
+  </div>
+  <h3>Scenario Zooms (S1-S5)</h3>
+  <div class="concept-grid2">
+    <figure class="concept-card2"><img src="../assets/figures-extra/scenario-s1-smart-block.png" alt="S1 Smart District" loading="lazy"><figcaption><b>S1 Smart District</b>: Dazhongsi–Beishatan, sensing/motion/lighting/transit embedded in existing blocks.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/scenario-s2-eco-riverfront.png" alt="S2 Resilient Waterfront" loading="lazy"><figcaption><b>S2 Resilient Waterfront</b>: Xiaoyue River three river sections + AI water-level facilities.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/scenario-s3-time-travel-route.png" alt="S3 Time-Travel Line" loading="lazy"><figcaption><b>S3 Time-Travel</b>: 1733→Sidaokou 1909→Qinghuayuan→Origin→Jing-Zhang Ring, a century timeline.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/scenario-s4-av-shuttle.png" alt="S4 Autonomous Shuttle" loading="lazy"><figcaption><b>S4 Autonomous Shuttle</b>: Dazhongsi–Wudaokou–Qinghe L4 loop with compute stations.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/scenario-s5-sightseeing-loop.png" alt="S5 Sightseeing Lines" loading="lazy"><figcaption><b>S5 Sightseeing Lines</b>: L1 tech / L2 culture / L3 ecology; retro-steam exterior × smart cabin.</figcaption></figure>
+  </div>
+  <h3>Evidence Figures (FIG series)</h3>
+  <div class="concept-grid2">
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-package-structure.png" alt="Package Structure" loading="lazy"><figcaption>FIG.00 Package structure: manifest files, bilingual pairs, hash tracking.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-green-ratio-audit.png" alt="Green Ratio Recalc" loading="lazy"><figcaption>FIG.01 Green ratio recalc: 22.48% reproducible (green_space.geojson → EPSG:4548).</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-landuse-audit.png" alt="Land Parcel Recalc" loading="lazy"><figcaption>FIG.02 Land parcels: zero overlap/gap, float-level closure error.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-pedestrian-network.png" alt="Walk Network Check" loading="lazy"><figcaption>FIG.04 Walk network: connectivity topology recalc and gap stitching.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-pilgrimage-landmarks.png" alt="Landmark Benchmark" loading="lazy"><figcaption>FIG.09 Landmark benchmark: honest reading, gaps disclosed.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-station-city-section.png" alt="Station-City Section" loading="lazy"><figcaption>FIG.10 Station-city section: Dazhongsi vertical relations with measured distances.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-day-timeline.png" alt="Daily Timeline" loading="lazy"><figcaption>FIG.12 Daily operation timeline: scenario time blocks with confidence shading.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-annual-calendar.png" alt="Annual Calendar" loading="lazy"><figcaption>FIG.13 Annual operation calendar: 12-month rhythm, no time promises.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-renovation-list.png" alt="Retain-Renovate List" loading="lazy"><figcaption>FIG.14 Retain/renovate list: 13 field photos, item-by-item judgment.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-metrics-audit.png" alt="Metric Recalc Table" loading="lazy"><figcaption>FIG.15 Metric recalc table: four families, fully traceable.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/evidence-selfcheck-status.png" alt="Self-Check Status" loading="lazy"><figcaption>FIG.16 Self-check: verified items and deliberate gaps disclosed.</figcaption></figure>
+  </div>
+  <h3>Local Plans</h3>
+  <div class="concept-grid2">
+    <figure class="concept-card2"><img src="../assets/figures-extra/site-plan-jingzhang-park-1.png" alt="Park Phase 1" loading="lazy"><figcaption>Jing-Zhang Park Ph.1: OSM 1.56km/13.9ha.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/site-plan-jingzhang-park-2.png" alt="Park Phase 2" loading="lazy"><figcaption>Jing-Zhang Park Ph.2: official ~53ha, OSM coverage disclosed.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/site-plan-ai-origin.png" alt="AI Origin Community" loading="lazy"><figcaption>AI Origin Community: Wudaokou core, 403 buildings (OSM).</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/site-plan-tsinghua-station.png" alt="Qinghuayuan Station" loading="lazy"><figcaption>Qinghuayuan Station: built 1910, designed by Zhan Tianyou.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/site-plan-xiaoyue-river.png" alt="Xiaoyue River" loading="lazy"><figcaption>Xiaoyue River: open channel 4.7km / culvert 5.3km.</figcaption></figure>
+    <figure class="concept-card2"><img src="../assets/figures-extra/site-plan-zhongzhi-garden.png" alt="Zhongzhiyuan" loading="lazy"><figcaption>Zhongzhiyuan: Dongsheng tech park 13.4ha, P1 leverages stock.</figcaption></figure>
+  </div>
+</section>
+</body>
+</html>
