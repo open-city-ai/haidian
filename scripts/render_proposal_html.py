@@ -534,7 +534,7 @@ def render_html(
 * {{ box-sizing: border-box; }}
 body {{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
   color: var(--ink);
   background: var(--bg);
   line-height: 1.75;

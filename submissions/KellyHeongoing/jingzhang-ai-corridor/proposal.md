@@ -222,6 +222,21 @@ LOGO 采用“青铜时间轨 × 电光智能轨”的双轨序标：青铜线�
 
 ### AI 场景卡（10 张，按四序组织）
 
+#### Ten-card audit matrix
+
+| ID | User / spatial node | Minimum data (status) | AI output | Human review | Operator | Public KPI | Stop condition | Non-AI fallback |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| S01 | Residents/visitors; North Station | Licensed archive, event info (formal) | Multilingual timeline | History/accessibility team | Public-space operator | Readability, closed complaints | Historical dispute or complaint rise | Paper guide + docent |
+| S02 | Maintenance; Qinghe interface | Aggregate water/maintenance logs (provisional) | Blue-green care alert | Water/ecology team | Maintenance unit | Response time | Drift or privacy incident | Manual inspection |
+| S03 | Walkers; 13km timeline | Road topology, anonymous counts (formal) | Gap and detour advice | Transport/accessibility team | Transport operator | Connectivity, detour time | Misleading or safety event | Static map + volunteers |
+| S04 | Youth/visitors; Dazhong Temple | Public station/event data (formal) | Transfer/event suggestion | Transport/community/safety team | Station-district group | Walk connection, satisfaction | Congestion or public-space squeeze | Human desk |
+| S05 | Students/startups; AI Origin | Licensed code metadata (formal) | Release/collaboration match | IP and community team | University/open-source group | Reused outputs | Unclear rights or harassment | Offline release event |
+| S06 | Public managers/lab; Zhongzhi Park | Synthetic test set, rule logs (formal) | Red-team risk list | Safety governance committee | Public administration + lab | Defect closure | High-risk defect open | Human approval |
+| S07 | Youth/families; co-creation plaza | Event booking, anonymous counts (formal) | Activity schedule hint | Child/accessibility team | Public-space operator | Participation diversity | Overstimulation or safety event | Paper event + staff |
+| S08 | Residents/older adults; community edge | Service directory, manual register (formal) | Health/education navigation | Medical/social-service advisers | Community service group | Successful human handoff | Misleading or personal-data risk | Human counter |
+| S09 | Maintenance/residents; Qinghe greenway | De-identified water/care aggregates (provisional) | Care priority | Landscape/privacy team | Green-space operator | Water, response, complaints | Re-identification risk | Manual inspection |
+| S10 | Transport/municipal team; rail-road interface | Road, lighting, drainage list (formal) | Infrastructure gap list | Planning/engineering/fire team | Municipal coordination group | Review completion | Site risk or data gap | Field survey |
+
 | 场景卡 | 所属序 | 空间载体 | 设计说明 |
 | --- | --- | --- | --- |
 | 01 时空序章台 | 启·序章 | 北京北站节点 | 1909 与 2026 的时空对话广场；时间轴零点 + AI 基础设施首段展示 |
@@ -239,6 +254,21 @@ LOGO 采用“青铜时间轨 × 电光智能轨”的双轨序标：青铜线�
 3 个产业测试验证场景：安全治理沙盒（模型红队测试）、端侧算力驿站（低延迟服务验证）、四象限会客厅（智能终端真实场景体验）。10 张场景卡统一记录服务对象、空间载体、最小数据、AI辅助、人工复核、公开KPI和停止条件。城市智能体辅助识别慢行断点、公共空间热力、设施维护、企业服务需求和活动安全风险，但不替代规划审批、不输出未经授权的个人画像、不声称获得官方实施承诺。所有 AI 场景节点进入结构化图层或合规矩阵 [depth:ai_scenario_cards] [depth:privacy_human_review]。
 
 ### Agent.2/4/6 补充交付
+
+#### Global AI ecosystem comparison (reference only; no partnership implied)
+
+| Case / source ID | Spatial and land lesson | Data / governance boundary | Local translation |
+| --- | --- | --- | --- |
+| Amsterdam AI Register [source:CASE-AMSTERDAM-AI-REGISTER] | City algorithm register | Model card, accountable owner | PROVE safety sandbox and public model cards |
+| Barcelona Sentilo [source:CASE-BARCELONA-SENTILO] | Open sensor network | Aggregated data, minimum collection | PROVE Qinghe blue-green sensing |
+| Helsinki AuroraAI [source:CASE-HELSINKI-AURORAAI] | Cross-agency service navigation | Purpose limitation, no profiling | MAKE human-routed service desk |
+| Singapore Punggol Digital District [source:CASE-SINGAPORE-PUNGGOL] | Mixed-use innovation district | Separate infrastructure and operator duties | EXCHANGE industry/public-realm interface |
+| Toronto Quayside [source:CASE-TORONTO-QUAYSIDE] | Public-interest renewal | Data governance before deployment | Three areas adopt a data-ethics gate |
+| London Olympic Park [source:CASE-LONDON-OLYMPIC-PARK] | Reversible event-led regeneration | Aggregate event data, post-event review | Two wings share annual activities |
+| Seoul Digital Mayor [source:CASE-SEOUL-DIGITAL-MAYOR] | Civic feedback interface | Public issue tickets, human escalation | North Latitude community low-digital service |
+| Tokyo SusHi Tech [source:CASE-TOKYO-SUSHI-TECH] | City technology testbed | Staged compliance review | Beijing-Tianjin-Hebei developer exchange |
+
+Each case is a mechanism reference only. We do not copy brands, code, imagery or partnership claims; land, industry, funding, talent, compute, data, scenarios and exit conditions are translated into the three key areas and the five regional interfaces.
 
 全球 AI 生态参考案例包括阿姆斯特丹 AI Register（算法透明）、巴塞罗那 Sentilo（开放传感器）、赫尔辛基 AuroraAI（跨部门导航）、新加坡 Punggol Digital District（产城协同）、多伦多 Quayside（公共数据治理）、伦敦奥林匹克公园（创新试验场）、首尔 Digital Mayor Hall（公共反馈）和东京 SusHi Tech Tokyo（城市技术试验）。比较土地空间、产业组织、资金人才、算力数据边界、场景开放和退出条件；这些均为可比参考，不代表合作承诺。
 

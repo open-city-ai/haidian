@@ -220,7 +220,37 @@ Identity rules: charcoal `#0A1119`, railway bronze `#D1A85A`, electric cyan `#64
 | Surrounding residents | Commuting, leisure, community services, low-disruption renewal | Century Timeline Walk slow-mobility loop, embedded community services, graded night lighting and events | Resident profiles never used for commercial recommendation |
 | University faculty/students & young creators | Achievement transformation, cross-campus collaboration, daily slow mobility, creative expression | Campus–park slow-mobility stitching, transformation stations, youth co-creation plaza, AI education experience points | Campus data and research results require authorization |
 
+### Global AI ecosystem comparison (reference only; no partnership implied)
+
+| Case / source ID | Spatial and land lesson | Data / governance boundary | Local translation |
+| --- | --- | --- | --- |
+| Amsterdam AI Register [source:CASE-AMSTERDAM-AI-REGISTER] | City algorithm register | Model card, accountable owner | PROVE safety sandbox and public model cards |
+| Barcelona Sentilo [source:CASE-BARCELONA-SENTILO] | Open sensor network | Aggregated data, minimum collection | PROVE Qinghe blue-green sensing |
+| Helsinki AuroraAI [source:CASE-HELSINKI-AURORAAI] | Cross-agency service navigation | Purpose limitation, no profiling | MAKE human-routed service desk |
+| Singapore Punggol Digital District [source:CASE-SINGAPORE-PUNGGOL] | Mixed-use innovation district | Separate infrastructure and operator duties | EXCHANGE industry/public-realm interface |
+| Toronto Quayside [source:CASE-TORONTO-QUAYSIDE] | Public-interest renewal | Data governance before deployment | Three areas adopt a data-ethics gate |
+| London Olympic Park [source:CASE-LONDON-OLYMPIC-PARK] | Reversible event-led regeneration | Aggregate event data, post-event review | Two wings share annual activities |
+| Seoul Digital Mayor [source:CASE-SEOUL-DIGITAL-MAYOR] | Civic feedback interface | Public issue tickets, human escalation | North Latitude community low-digital service |
+| Tokyo SusHi Tech [source:CASE-TOKYO-SUSHI-TECH] | City technology testbed | Staged compliance review | Beijing-Tianjin-Hebei developer exchange |
+
+Each case is a mechanism reference only. We do not copy brands, code, imagery or partnership claims; land, industry, funding, talent, compute, data, scenarios and exit conditions are translated into the three key areas and the five regional interfaces.
+
 ### AI Scenario Cards (10, organized by the Four Orders)
+
+#### Ten-card audit matrix
+
+| ID | User / spatial node | Minimum data (status) | AI output | Human review | Operator | Public KPI | Stop condition | Non-AI fallback |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| S01 | Residents/visitors; North Station | Licensed archive, event info (formal) | Multilingual timeline | History/accessibility team | Public-space operator | Readability, closed complaints | Historical dispute or complaint rise | Paper guide + docent |
+| S02 | Maintenance; Qinghe interface | Aggregate water/maintenance logs (provisional) | Blue-green care alert | Water/ecology team | Maintenance unit | Response time | Drift or privacy incident | Manual inspection |
+| S03 | Walkers; 13km timeline | Road topology, anonymous counts (formal) | Gap and detour advice | Transport/accessibility team | Transport operator | Connectivity, detour time | Misleading or safety event | Static map + volunteers |
+| S04 | Youth/visitors; Dazhong Temple | Public station/event data (formal) | Transfer/event suggestion | Transport/community/safety team | Station-district group | Walk connection, satisfaction | Congestion or public-space squeeze | Human desk |
+| S05 | Students/startups; AI Origin | Licensed code metadata (formal) | Release/collaboration match | IP and community team | University/open-source group | Reused outputs | Unclear rights or harassment | Offline release event |
+| S06 | Public managers/lab; Zhongzhi Park | Synthetic test set, rule logs (formal) | Red-team risk list | Safety governance committee | Public administration + lab | Defect closure | High-risk defect open | Human approval |
+| S07 | Youth/families; co-creation plaza | Event booking, anonymous counts (formal) | Activity schedule hint | Child/accessibility team | Public-space operator | Participation diversity | Overstimulation or safety event | Paper event + staff |
+| S08 | Residents/older adults; community edge | Service directory, manual register (formal) | Health/education navigation | Medical/social-service advisers | Community service group | Successful human handoff | Misleading or personal-data risk | Human counter |
+| S09 | Maintenance/residents; Qinghe greenway | De-identified water/care aggregates (provisional) | Care priority | Landscape/privacy team | Green-space operator | Water, response, complaints | Re-identification risk | Manual inspection |
+| S10 | Transport/municipal team; rail-road interface | Road, lighting, drainage list (formal) | Infrastructure gap list | Planning/engineering/fire team | Municipal coordination group | Review completion | Site risk or data gap | Field survey |
 
 | Card | Order | Spatial carrier | Design description |
 | --- | --- | --- | --- |

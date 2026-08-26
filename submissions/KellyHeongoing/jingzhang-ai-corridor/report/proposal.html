@@ -16,7 +16,7 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
   color: var(--ink);
   background: var(--bg);
   line-height: 1.75;
@@ -101,41 +101,14 @@ code {
   line-height: 1.35;
   vertical-align: super;
 }
-/* Dark editorial report system shared with the A0/A3 boards. */
-:root {
-  --ink: #f4f1e8; --muted: #a6b1bd; --line: #2c3b4b; --paper: #111923;
-  --bg: #080d13; --accent: #64d5e8; --gold: #d1a85a;
-}
-body {
-  color: var(--ink);
-  background: #080d13;
-  background-image: linear-gradient(rgba(100,213,232,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(100,213,232,.035) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-main { background: rgba(17,25,35,.97); box-shadow: 0 0 0 1px rgba(100,213,232,.12), 0 24px 80px rgba(0,0,0,.28); }
-.hero { border-bottom-color: var(--gold); padding-top: 48px; }
-h1 { color: #fff; letter-spacing: .01em; }
-h2 { color: #fff; border-top-color: var(--line); }
-h3 { color: #f4f1e8; }
-p, li { color: #d1dae2; }
-.summary, .proposal-figure figcaption { color: var(--muted); }
-blockquote { background: #14212d; border-left-color: var(--gold); color: #cbd7df; }
-code { background: #0b151e; color: #91e0ee; }
-.translation-link a { color: var(--accent); }
-.proposal-table th, .proposal-table td { border-color: var(--line); }
-.proposal-table th { background: #1b2b3b; color: #fff; }
-.proposal-table tbody tr:nth-child(even) { background: #14202c; }
-.proposal-figure { background: #0b121a; border-color: var(--line); border-radius: 2px; }
-.proposal-figure figcaption { border-top-color: var(--line); }
-.evidence { color: #8ad8e6; border-bottom-color: #427f8a; }
 @media (max-width: 720px) {
   main { padding: 26px 16px 52px; }
   h1 { font-size: 26px; }
   h2 { font-size: 21px; }
 }
-.provisional-banner{position:sticky;top:0;z-index:10;background:#fff3cd;color:#664d03;border-bottom:2px solid #d1a85a;padding:8px 16px;text-align:center;font-weight:700;font-size:13px}</style>
+</style>
 </head>
-<body><div class="provisional-banner">PROVISIONAL / 临时边界：非官方红线，面积与分期指标待正式数据发布后重算。</div>
+<body>
 <main>
 <section class="hero">
 <h1>京张·智序</h1>
@@ -230,8 +203,19 @@ code { background: #0b151e; color: #91e0ee; }
 <h3>用户画像（5 类）</h3>
 <div class="proposal-table"><table><thead><tr><th>用户画像</th><th>典型需求</th><th>空间响应</th><th>自检边界</th></tr></thead><tbody><tr><td>开源开发者</td><td>发布、协作、测试、社区声誉</td><td>原点社区开源发布厅、公共代码墙、夜间协作空间</td><td>不采集个人行为轨迹；活动数据只做聚合统计</td></tr><tr><td>初创团队</td><td>低成本办公、算力入口、产品试验场</td><td>众智园共享测试场、端侧算力服务点、标准治理咨询</td><td>算力和数据服务需另行授权</td></tr><tr><td>头部企业访客</td><td>展示、商务、国际接待、人才招聘</td><td>大钟寺国际路演客厅、轨道站点接驳、重点企业周边公共空间</td><td>企业标识和案例须清权</td></tr><tr><td>周边居民</td><td>通勤、休闲、社区服务、低扰动更新</td><td>百年时序步道慢行环、社区服务嵌入、夜间照明和活动分级</td><td>不将居民画像用于商业推荐</td></tr><tr><td>高校师生与青年创作者</td><td>成果转化、跨校协作、日常慢行、创作表达</td><td>校区-园区慢行缝合、成果转化驿站、青年共创广场、AI教育体验点</td><td>校园数据和科研成果需授权</td></tr></tbody></table></div>
 <h3>AI 场景卡（10 张，按四序组织）</h3>
+<h4>Ten-card audit matrix</h4>
+<div class="proposal-table"><table><thead><tr><th>ID</th><th>User / spatial node</th><th>Minimum data (status)</th><th>AI output</th><th>Human review</th><th>Operator</th><th>Public KPI</th><th>Stop condition</th><th>Non-AI fallback</th></tr></thead><tbody><tr><td>S01</td><td>Residents/visitors; North Station</td><td>Licensed archive, event info (formal)</td><td>Multilingual timeline</td><td>History/accessibility team</td><td>Public-space operator</td><td>Readability, closed complaints</td><td>Historical dispute or complaint rise</td><td>Paper guide + docent</td></tr><tr><td>S02</td><td>Maintenance; Qinghe interface</td><td>Aggregate water/maintenance logs (provisional)</td><td>Blue-green care alert</td><td>Water/ecology team</td><td>Maintenance unit</td><td>Response time</td><td>Drift or privacy incident</td><td>Manual inspection</td></tr><tr><td>S03</td><td>Walkers; 13km timeline</td><td>Road topology, anonymous counts (formal)</td><td>Gap and detour advice</td><td>Transport/accessibility team</td><td>Transport operator</td><td>Connectivity, detour time</td><td>Misleading or safety event</td><td>Static map + volunteers</td></tr><tr><td>S04</td><td>Youth/visitors; Dazhong Temple</td><td>Public station/event data (formal)</td><td>Transfer/event suggestion</td><td>Transport/community/safety team</td><td>Station-district group</td><td>Walk connection, satisfaction</td><td>Congestion or public-space squeeze</td><td>Human desk</td></tr><tr><td>S05</td><td>Students/startups; AI Origin</td><td>Licensed code metadata (formal)</td><td>Release/collaboration match</td><td>IP and community team</td><td>University/open-source group</td><td>Reused outputs</td><td>Unclear rights or harassment</td><td>Offline release event</td></tr><tr><td>S06</td><td>Public managers/lab; Zhongzhi Park</td><td>Synthetic test set, rule logs (formal)</td><td>Red-team risk list</td><td>Safety governance committee</td><td>Public administration + lab</td><td>Defect closure</td><td>High-risk defect open</td><td>Human approval</td></tr><tr><td>S07</td><td>Youth/families; co-creation plaza</td><td>Event booking, anonymous counts (formal)</td><td>Activity schedule hint</td><td>Child/accessibility team</td><td>Public-space operator</td><td>Participation diversity</td><td>Overstimulation or safety event</td><td>Paper event + staff</td></tr><tr><td>S08</td><td>Residents/older adults; community edge</td><td>Service directory, manual register (formal)</td><td>Health/education navigation</td><td>Medical/social-service advisers</td><td>Community service group</td><td>Successful human handoff</td><td>Misleading or personal-data risk</td><td>Human counter</td></tr><tr><td>S09</td><td>Maintenance/residents; Qinghe greenway</td><td>De-identified water/care aggregates (provisional)</td><td>Care priority</td><td>Landscape/privacy team</td><td>Green-space operator</td><td>Water, response, complaints</td><td>Re-identification risk</td><td>Manual inspection</td></tr><tr><td>S10</td><td>Transport/municipal team; rail-road interface</td><td>Road, lighting, drainage list (formal)</td><td>Infrastructure gap list</td><td>Planning/engineering/fire team</td><td>Municipal coordination group</td><td>Review completion</td><td>Site risk or data gap</td><td>Field survey</td></tr></tbody></table></div>
 <div class="proposal-table"><table><thead><tr><th>场景卡</th><th>所属序</th><th>空间载体</th><th>设计说明</th></tr></thead><tbody><tr><td>01 时空序章台</td><td>启·序章</td><td>北京北站节点</td><td>1909 与 2026 的时空对话广场；时间轴零点 + AI 基础设施首段展示</td></tr><tr><td>02 AI 基础设施首段</td><td>启·序章</td><td>序章段街道</td><td>感知铺装、智能路灯、端侧算力箱组成的可感知街道基础设施原型</td></tr><tr><td>03 百年时序步道</td><td>承·序脉</td><td>全线 13km</td><td>按年代组织的连续步行主脊，每段一个时代主题，步行即穿越百年</td></tr><tr><td>04 四象限会客厅</td><td>尚·序风</td><td>大钟寺站</td><td>轨道一体化 + 路口四象限步行连通 + 青年国际交往与智能终端体验</td></tr><tr><td>05 开源发布厅</td><td>创·序貌</td><td>北京AI原点社区</td><td>面向高校、开源社区和初创团队，提供成果发布、代码贡献展示和小型路演空间</td></tr><tr><td>06 安全治理沙盒</td><td>创·序貌</td><td>众智园</td><td>标准制定、安全评测、模型红队测试转译为可参观、可预约、可监管的展示协作节点</td></tr><tr><td>07 青年共创广场</td><td>尚·序风</td><td>风尚客厅节点</td><td>AI 艺术装置、开源文化街区、露天展演场；年度黑客松主场地</td></tr><tr><td>08 智慧生活样板街</td><td>尚·序风</td><td>社区与商业交汇处</td><td>AI 便利店、无感支付、AI 健康亭、AI 教育点等可感知生活方式场景</td></tr></tbody></table></div>
-<p>3 个产业测试验证场景：安全治理沙盒（模型红队测试）、端侧算力驿站（低延迟服务验证）、四象限会客厅（智能终端真实场景体验）。城市智能体辅助识别慢行断点、公共空间热力、设施维护、企业服务需求和活动安全风险，但不替代规划审批、不输出未经授权的个人画像、不声称获得官方实施承诺。所有 AI 场景节点进入结构化图层或合规矩阵 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="ai_scenario_cards" title="深度：ai_scenario_cards">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="privacy_human_review" title="深度：privacy_human_review">深度</sup>。</p>
+<p>| 09 蓝绿感知治理 | 承·序脉 | 清河界面与连续绿地 | 仅使用去标识化汇总数据优化用水、养护和步行体验；异常采集立即停止并回退人工巡检 | | 10 市政设施断点 | 启·序章 | 道路、轨道与地下设施接口 | 对道路、照明、排水和低速接驳进行概念诊断，只输出建议清单，须经专业团队复核 |</p>
+<p>3 个产业测试验证场景：安全治理沙盒（模型红队测试）、端侧算力驿站（低延迟服务验证）、四象限会客厅（智能终端真实场景体验）。10 张场景卡统一记录服务对象、空间载体、最小数据、AI辅助、人工复核、公开KPI和停止条件。城市智能体辅助识别慢行断点、公共空间热力、设施维护、企业服务需求和活动安全风险，但不替代规划审批、不输出未经授权的个人画像、不声称获得官方实施承诺。所有 AI 场景节点进入结构化图层或合规矩阵 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="ai_scenario_cards" title="深度：ai_scenario_cards">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="privacy_human_review" title="深度：privacy_human_review">深度</sup>。</p>
+<h3>Agent.2/4/6 补充交付</h3>
+<h4>Global AI ecosystem comparison (reference only; no partnership implied)</h4>
+<div class="proposal-table"><table><thead><tr><th>Case / source ID</th><th>Spatial and land lesson</th><th>Data / governance boundary</th><th>Local translation</th></tr></thead><tbody><tr><td>Amsterdam AI Register <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-AMSTERDAM-AI-REGISTER" title="来源：CASE-AMSTERDAM-AI-REGISTER">来源</sup></td><td>City algorithm register</td><td>Model card, accountable owner</td><td>PROVE safety sandbox and public model cards</td></tr><tr><td>Barcelona Sentilo <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-BARCELONA-SENTILO" title="来源：CASE-BARCELONA-SENTILO">来源</sup></td><td>Open sensor network</td><td>Aggregated data, minimum collection</td><td>PROVE Qinghe blue-green sensing</td></tr><tr><td>Helsinki AuroraAI <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-HELSINKI-AURORAAI" title="来源：CASE-HELSINKI-AURORAAI">来源</sup></td><td>Cross-agency service navigation</td><td>Purpose limitation, no profiling</td><td>MAKE human-routed service desk</td></tr><tr><td>Singapore Punggol Digital District <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-SINGAPORE-PUNGGOL" title="来源：CASE-SINGAPORE-PUNGGOL">来源</sup></td><td>Mixed-use innovation district</td><td>Separate infrastructure and operator duties</td><td>EXCHANGE industry/public-realm interface</td></tr><tr><td>Toronto Quayside <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-TORONTO-QUAYSIDE" title="来源：CASE-TORONTO-QUAYSIDE">来源</sup></td><td>Public-interest renewal</td><td>Data governance before deployment</td><td>Three areas adopt a data-ethics gate</td></tr><tr><td>London Olympic Park <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-LONDON-OLYMPIC-PARK" title="来源：CASE-LONDON-OLYMPIC-PARK">来源</sup></td><td>Reversible event-led regeneration</td><td>Aggregate event data, post-event review</td><td>Two wings share annual activities</td></tr><tr><td>Seoul Digital Mayor <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-SEOUL-DIGITAL-MAYOR" title="来源：CASE-SEOUL-DIGITAL-MAYOR">来源</sup></td><td>Civic feedback interface</td><td>Public issue tickets, human escalation</td><td>North Latitude community low-digital service</td></tr><tr><td>Tokyo SusHi Tech <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-TOKYO-SUSHI-TECH" title="来源：CASE-TOKYO-SUSHI-TECH">来源</sup></td><td>City technology testbed</td><td>Staged compliance review</td><td>Beijing-Tianjin-Hebei developer exchange</td></tr></tbody></table></div>
+<p>Each case is a mechanism reference only. We do not copy brands, code, imagery or partnership claims; land, industry, funding, talent, compute, data, scenarios and exit conditions are translated into the three key areas and the five regional interfaces.</p>
+<p>全球 AI 生态参考案例包括阿姆斯特丹 AI Register（算法透明）、巴塞罗那 Sentilo（开放传感器）、赫尔辛基 AuroraAI（跨部门导航）、新加坡 Punggol Digital District（产城协同）、多伦多 Quayside（公共数据治理）、伦敦奥林匹克公园（创新试验场）、首尔 Digital Mayor Hall（公共反馈）和东京 SusHi Tech Tokyo（城市技术试验）。比较土地空间、产业组织、资金人才、算力数据边界、场景开放和退出条件；这些均为可比参考，不代表合作承诺。</p>
+<p>建议三个 AI 朝圣地标：序章台“百年工程与 AI 起点”、原点社区“开源贡献墙”、大钟寺“四象限会客厅”。荣誉展示采用年度贡献徽章、开源项目铭牌和公众共创记录三类可撤换模块。组件库包括可拆卸导视柱、无障碍休息边界、低功耗信息牌、人工服务台、可替换感知盒和临时展陈框架，均需遗产、绿地、交通、权属和版权复核。</p>
+<p>区域协同矩阵：北纬社区交换低数字能力服务需求，未来科学城交换科研成果与测试人才，怀柔科学城交换科学传播内容与实验资源，经开区交换产业转化与供应链服务，京津冀交换遗产线路与开发者活动；接口分别为人工服务台、开源发布厅、年度展陈、企业服务门厅和跨城公共路线，均为概念建议。</p>
+<p>长期运营矩阵建议由公共空间运营方、高校/开源社区和专业服务机构组成联合工作组：每月场景开放日、每季度开发者共创、每半年安全与无障碍复核、每年国际 AI 活动周。KPI 为公共参与人数、人工兜底响应率、无障碍问题闭环率、停止条件执行率和开源成果复用数；连续两季无参与增长、投诉上升或隐私事件发生时暂停场景并回退人工流程。</p>
 <h2>用地、建筑规模与拆改留方案</h2>
 <p>用地方案依据国土空间调查、规划、用途管制分类等公开标准表达，形成完整、闭合、无缝的用地分区 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup>。建筑方案区分保留、改造、更新、新建或待确认对象，明确建筑基底、功能、规模、风貌、屋顶、体量和高度控制的建议层级 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>。用地与建筑图层分别以 <code>geometry/land_use.geojson#LU-001</code> 和 <code>geometry/buildings.geojson#BLDG-001</code> 表达，基底面积由 <code>metrics.json</code> 复算 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。缺少现状建筑、权属、控规和工程条件的内容，只提出方法和待校准清单，不编造拆改留结论。</p>
 <p>建筑规模和强度指标与 <code>metrics.json</code> 和图层一致。总建筑规模、容积率、建筑高度、建筑密度、绿地率、退线和建筑控制线缺少官方条件，统一使用 <code>status=unknown</code>，在 <code>reason</code>/<code>assumptions</code> 中说明待补条件、当前假设和正式数据到位后的复算路径，不用固定数值制造精确感。</p>
