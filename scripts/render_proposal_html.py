@@ -626,6 +626,33 @@ code {{
   line-height: 1.35;
   vertical-align: super;
 }}
+/* Dark editorial report system shared with the A0/A3 boards. */
+:root {{
+  --ink: #f4f1e8; --muted: #a6b1bd; --line: #2c3b4b; --paper: #111923;
+  --bg: #080d13; --accent: #64d5e8; --gold: #d1a85a;
+}}
+body {{
+  color: var(--ink);
+  background: #080d13;
+  background-image: linear-gradient(rgba(100,213,232,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(100,213,232,.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+}}
+main {{ background: rgba(17,25,35,.97); box-shadow: 0 0 0 1px rgba(100,213,232,.12), 0 24px 80px rgba(0,0,0,.28); }}
+.hero {{ border-bottom-color: var(--gold); padding-top: 48px; }}
+h1 {{ color: #fff; letter-spacing: .01em; }}
+h2 {{ color: #fff; border-top-color: var(--line); }}
+h3 {{ color: #f4f1e8; }}
+p, li {{ color: #d1dae2; }}
+.summary, .proposal-figure figcaption {{ color: var(--muted); }}
+blockquote {{ background: #14212d; border-left-color: var(--gold); color: #cbd7df; }}
+code {{ background: #0b151e; color: #91e0ee; }}
+.translation-link a {{ color: var(--accent); }}
+.proposal-table th, .proposal-table td {{ border-color: var(--line); }}
+.proposal-table th {{ background: #1b2b3b; color: #fff; }}
+.proposal-table tbody tr:nth-child(even) {{ background: #14202c; }}
+.proposal-figure {{ background: #0b121a; border-color: var(--line); border-radius: 2px; }}
+.proposal-figure figcaption {{ border-top-color: var(--line); }}
+.evidence {{ color: #8ad8e6; border-bottom-color: #427f8a; }}
 @media (max-width: 720px) {{
   main {{ padding: 26px 16px 52px; }}
   h1 {{ font-size: 26px; }}
