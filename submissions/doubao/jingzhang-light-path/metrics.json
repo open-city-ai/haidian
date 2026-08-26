@@ -1,0 +1,242 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Site boundary is provisional (official_boundary=false); area is for design coordination only."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3387189.343,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space_polygons) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space includes central Intelligence Spine corridor, three E-W green connectors, and six pocket parks."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.296788,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1781979.797,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space_polygons) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space includes plazas, pilgrimage landmarks, pedestrian corridors, and small nodes."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.156138,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 866509.34,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(building_footprints) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are conceptual massing only; no official height or FAR controls are available."
+      ]
+    },
+    "building_density_ratio": {
+      "status": "known",
+      "value": 0.07593,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_area_estimated_sqm": {
+      "status": "known",
+      "value": 875709.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(centerline_length * assumed_width) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Road widths are conceptual assumptions: secondary 25m, branch 15m, greenway 12m, pedestrian 8m, cycleway 6m."
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.07673,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_estimated_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official FAR controls, building height limits, and approved regulatory plan are not in the public site package."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "sum(footprint_area * floors) requires official height/FAR controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual floor counts are shown in buildings.geojson but cannot be aggregated without official controls."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_count": {
+      "status": "known",
+      "value": 68,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building features)",
+      "confidence": "low",
+      "note": "Conceptual building masses, not architectural designs"
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; not an official redline."
+      ]
+    },
+    "key_area_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; not an official redline."
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; not an official redline."
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 1983747.297,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing boundary."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 4260204.451,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing boundary."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 5168891.167,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual phasing boundary."
+      ]
+    }
+  }
+}
