@@ -8,7 +8,7 @@ translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "总概念：《京张·智序》——AI启京张 · AI续京张 · AI创京张 · AI尚京张，以『智序』统领京张百年时序与城市新序，用 AI 重新梳理百年铁路走廊的时空秩序。基于 provisional boundary 生成，保留精度警示，组织方数据缺口不阻断内容评分。"
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]
-scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed", "ai-bluegreen-sensing", "ai-infrastructure-segment"]
+scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
 ---
 
 # 京张·智序
