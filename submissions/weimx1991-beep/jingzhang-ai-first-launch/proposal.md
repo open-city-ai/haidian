@@ -65,7 +65,7 @@ iteration: "v2.0"
 
 ## 三层范围工作框架
 
-![研究范围总图：整条走廊的"一张图总览"（三层范围、三区、用地、交通骨架、蓝绿系统；来自最终提交图集，概念建议）](assets/figures-extra/总图-CartoDB路网底图版.png)
+![研究范围总图：整条走廊的"一张图总览"（三层范围、三区、用地、交通骨架、蓝绿系统；来自最终提交图集，概念建议）](assets/figures-extra/masterplan-cartodb-roads.png)
 
 公告确定三个工作层次 [source:OFFICIAL-ANNOUNCEMENT]：统筹研究范围约43.6平方公里，总体设计范围约11.4平方公里，重点区域范围约368.4公顷。三层范围不是三张不同精度的同一张图，而是从"产业战略"到"具体空间动作"的连续证据链 [depth:three_level_scope_framework]：
 
@@ -180,17 +180,17 @@ iteration: "v2.0"
 
 ## 重点区域详细设计
 
-![京张公园一期局域平面（OSM实测1.56km/13.9ha，现状证据底座）](assets/figures-extra/局域平面-京张公园一期.png)
+![京张公园一期局域平面（OSM实测1.56km/13.9ha，现状证据底座）](assets/figures-extra/site-plan-jingzhang-park-1.png)
 
-![京张公园二期局域平面（官方口径约53公顷，OSM实测覆盖如实标注）](assets/figures-extra/局域平面-京张公园二期.png)
+![京张公园二期局域平面（官方口径约53公顷，OSM实测覆盖如实标注）](assets/figures-extra/site-plan-jingzhang-park-2.png)
 
-![AI原点社区局域平面（五道口核心，OSM实测建筑403栋）](assets/figures-extra/局域平面-AI原点社区.png)
+![AI原点社区局域平面（五道口核心，OSM实测建筑403栋）](assets/figures-extra/site-plan-ai-origin.png)
 
-![清华园站旧址局域平面（1910年建成，詹天佑设计，现状锚点）](assets/figures-extra/局域平面-清华园站旧址.png)
+![清华园站旧址局域平面（1910年建成，詹天佑设计，现状锚点）](assets/figures-extra/site-plan-tsinghua-station.png)
 
-![小月河滨水局域平面（明渠4.7km/暗涵5.3km，S2生态韧性空间载体）](assets/figures-extra/局域平面-小月河滨水.png)
+![小月河滨水局域平面（明渠4.7km/暗涵5.3km，S2生态韧性空间载体）](assets/figures-extra/site-plan-xiaoyue-river.png)
 
-![众智园局域平面（东升科技园13.4ha，P1首发项目依托存量）](assets/figures-extra/局域平面-众智园.png)
+![众智园局域平面（东升科技园13.4ha，P1首发项目依托存量）](assets/figures-extra/site-plan-zhongzhi-garden.png)
 
 三处重点区 polygon 为 provisional 边界 [source:BOUNDARY-SOURCE]，以下结论均为方向性设计建议，官方边界发布后复核位置与规模 [depth:three_key_area_detailed_design]。
 
@@ -346,15 +346,15 @@ iteration: "v2.0"
 
 ### AI场景放大图（S1-S5，来自最终提交图集）
 
-![S1 智慧街区放大图：大钟寺站—北三环—北沙滩，感知—动线—照明—接驳分段嵌入存量街区](assets/figures-extra/场景S1-智慧街区放大图.png)
+![S1 智慧街区放大图：大钟寺站—北三环—北沙滩，感知—动线—照明—接驳分段嵌入存量街区](assets/figures-extra/scenario-s1-smart-block.png)
 
-![S2 生态韧性滨水带放大图：小月河祁家豁子闸至入清河口，三段河道形态+AI水位调节](assets/figures-extra/场景S2-生态韧性滨水带放大图.png)
+![S2 生态韧性滨水带放大图：小月河祁家豁子闸至入清河口，三段河道形态+AI水位调节](assets/figures-extra/scenario-s2-eco-riverfront.png)
 
-![S3 穿越时光旅游线放大图：大钟寺1733→四道口1909→清华园站→五道口AI原点→京张之环，百年时间轴](assets/figures-extra/场景S3-穿越时光旅游线放大图.png)
+![S3 穿越时光旅游线放大图：大钟寺1733→四道口1909→清华园站→五道口AI原点→京张之环，百年时间轴](assets/figures-extra/scenario-s3-time-travel-route.png)
 
-![S4 智能驾驶接驳环放大图：大钟寺—五道口—清河L4环线，起点终点+算力补给节点](assets/figures-extra/场景S4-智能驾驶接驳环放大图.png)
+![S4 智能驾驶接驳环放大图：大钟寺—五道口—清河L4环线，起点终点+算力补给节点](assets/figures-extra/scenario-s4-av-shuttle.png)
 
-![S5 文旅观光车三线放大图：L1科技线/L2文化线/L3环境线，复古蒸汽外观×智能座舱](assets/figures-extra/场景S5-文旅观光车三线放大图.png)
+![S5 文旅观光车三线放大图：L1科技线/L2文化线/L3环境线，复古蒸汽外观×智能座舱](assets/figures-extra/scenario-s5-sightseeing-loop.png)
 
 ### 3类AI产业测试验证场景
 
@@ -380,9 +380,9 @@ iteration: "v2.0"
 
 ## 更新项目清单、实施政策与分期计划
 
-![六程循环机制图：首发场核心运行机制，双轨审查（创新效能轨×公共价值轨）](assets/figures-extra/六程循环机制图.png)
+![六程循环机制图：首发场核心运行机制，双轨审查（创新效能轨×公共价值轨）](assets/figures-extra/six-step-cycle-diagram.png)
 
-![首发项目作战图：P1-P3先导项目卡（主体/时限/KPI/退出机制）](assets/figures-extra/首发项目作战图.png)
+![首发项目作战图：P1-P3先导项目卡（主体/时限/KPI/退出机制）](assets/figures-extra/first-launch-battlemap.png)
 
 **更新项目清单**：15个更新项目 [metric:renewal_project_count] [data:geometry/phasing.geojson#PHASE-001]，类型包括遗址公园公共空间升级、站前广场一体化、产业载体更新（蓝景丽家→国际交流中心）、人才公寓与社区服务界面改造；具体项目空间位置与依赖条件待官方权属数据 [depth:renewal_project_list]。
 
@@ -423,27 +423,27 @@ iteration: "v2.0"
 
 ## 指标体系、面积复算与合规矩阵
 
-![提交包结构证据图（FIG.00）：manifest全部文件、双语对、哈希追踪、图层枚举](assets/figures-extra/证据图-提交包结构.png)
+![提交包结构证据图（FIG.00）：manifest全部文件、双语对、哈希追踪、图层枚举](assets/figures-extra/evidence-package-structure.png)
 
-![绿地率复算证据图（FIG.01）：22.48%可复算，green_space.geojson直接绘制于CartoDB底图](assets/figures-extra/证据图-绿地率复算-新配色版.png)
+![绿地率复算证据图（FIG.01）：22.48%可复算，green_space.geojson直接绘制于CartoDB底图](assets/figures-extra/evidence-green-ratio-audit.png)
 
-![用地剖分复算证据图（FIG.02）：零重叠零缺口，闭合差浮点级](assets/figures-extra/证据图-用地剖分复算.png)
+![用地剖分复算证据图（FIG.02）：零重叠零缺口，闭合差浮点级](assets/figures-extra/evidence-landuse-audit.png)
 
-![步行网络自检证据图（FIG.04）：路网连通性拓扑复算，断点缝合](assets/figures-extra/证据图-步行网络自检.png)
+![步行网络自检证据图（FIG.04）：路网连通性拓扑复算，断点缝合](assets/figures-extra/evidence-pedestrian-network.png)
 
-![朝圣地标对照证据图（FIG.09）：国际案例对标诚实读数，差距项主动公示](assets/figures-extra/证据图-朝圣地标对照.png)
+![朝圣地标对照证据图（FIG.09）：国际案例对标诚实读数，差距项主动公示](assets/figures-extra/evidence-pilgrimage-landmarks.png)
 
-![站城一体化剖面证据图（FIG.10）：大钟寺节点竖向关系，实测距离现算](assets/figures-extra/证据图-站城一体化剖面.png)
+![站城一体化剖面证据图（FIG.10）：大钟寺节点竖向关系，实测距离现算](assets/figures-extra/evidence-station-city-section.png)
 
-![一日时间轴证据图（FIG.12）：场景卡18小时运营分布，明度分级数据可信度](assets/figures-extra/证据图-一天时间轴.png)
+![一日时间轴证据图（FIG.12）：场景卡18小时运营分布，明度分级数据可信度](assets/figures-extra/evidence-day-timeline.png)
 
-![年度运营日历证据图（FIG.13）：12个月运营节律，不对举办时间做承诺](assets/figures-extra/证据图-年度运营日历.png)
+![年度运营日历证据图（FIG.13）：12个月运营节律，不对举办时间做承诺](assets/figures-extra/evidence-annual-calendar.png)
 
-![拆改留清单证据图（FIG.14）：13张实拍照片逐物判定，一物一判](assets/figures-extra/证据图-拆改留清单.png)
+![拆改留清单证据图（FIG.14）：13张实拍照片逐物判定，一物一判](assets/figures-extra/evidence-renovation-list.png)
 
-![指标复算总表证据图（FIG.15）：四族指标全量盘点，每项可溯源](assets/figures-extra/证据图-指标复算总表.png)
+![指标复算总表证据图（FIG.15）：四族指标全量盘点，每项可溯源](assets/figures-extra/evidence-metrics-audit.png)
 
-![随包自检状态证据图（FIG.16）：已验证项+故意留白项均如实登记](assets/figures-extra/证据图-自检状态.png)
+![随包自检状态证据图（FIG.16）：已验证项+故意留白项均如实登记](assets/figures-extra/evidence-selfcheck-status.png)
 
 **核心指标设计含义**：
 - 场地 11,412,825 m² [metric:site_area_sqm]：三层范围递进框架的统筹基础。
