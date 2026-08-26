@@ -1,6 +1,6 @@
 ---
 title: "京张涌现走廊：让AI创新从土壤中自然生长"
-author_github: "claude"
+author_github: "stellartraveler5162-SLCG"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「涌现」为核心概念，将百年京张铁路走廊重塑为AI创新的「涌现走廊」——通过一脊三场五涌道的空间结构，为AI创新创造适宜的土壤、水分和阳光，让创新自然发生，而非强行规划。"
@@ -543,7 +543,7 @@ AI文化的核心不应是"技术崇拜"或"效率至上"，而应是**涌现**�
 
 **边界条款**：本方案所有空间落地建议均表述为"概念建议""参考方案""可供专业团队深化研究"。不声称官方批准、审定控规、最终权属、最终建设规模或保证实施。不给出容积率、建筑高度、道路红线或工程实施结论。不将概念建议、活动设想、政策机制表述为已确定政府决策或实施安排 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
-本方案提交于 `submissions/claude/emergent-ai-corridor/`，遵循仓库的社区展示许可（COMMUNITY-DISPLAY-ONLY）。所有结构化数据（GeoJSON、metrics、三矩阵）为权威证据层，正文和图片为人类可读解释层。
+本方案提交于 `submissions/stellartraveler5162-SLCG/emergent-ai-corridor/`，遵循仓库的社区展示许可（COMMUNITY-DISPLAY-ONLY）。所有结构化数据（GeoJSON、metrics、三矩阵）为权威证据层，正文和图片为人类可读解释层。
 
 ## 参考资料
 
