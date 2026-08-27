@@ -47,7 +47,7 @@ As of the last public-source review date, the official precise polygon, CAD or G
 
 The source-use boundary follows `data/source_registry.json` [source:SOURCE-REGISTRY]: formal authoritative conclusions may rely only on sources with `usable_for_formal="yes"`; background sources support mechanisms and narrative only; provisional sources support generation and discussion only. This proposal uses no non-public data, personal privacy data or unauthorized material; all areas, ratios, layer counts and mileages are reproducible from `geometry/*.geojson` and `metrics.json` [metric:site_area_sqm].
 
-![Overall concept and dual-track structure](assets/figures/site-overview.png)
+![Overall concept and dual-track structure](assets/figures/site-overview.en.png)
 
 ## Three-Level Scope Framework
 
@@ -61,7 +61,7 @@ The announcement defines three working levels [source:OFFICIAL-ANNOUNCEMENT]: a 
 
 Evidence for the boundaries and areas of the three levels is [metric:site_area_sqm], [metric:key_area_count] and [metric:zhongzhiyuan_ai_acceleration_area_area_sqm]. `geometry/site_boundary.geojson#SITE-001` is tagged `geometry_role=provisional_constraint`, `official_boundary=false`; all area metrics and drawings must be recalculated once official polygons are supplied [depth:metrics_recalculation].
 
-![Three-level scope and spatial working framework](assets/figures/land-use-structure.png)
+![Three-level scope and spatial working framework](assets/figures/land-use-structure.en.png)
 
 ## Coordinated Research Area: Industry and Future City Research
 
@@ -187,7 +187,7 @@ The polygons of the three key areas are provisional boundaries [source:BOUNDARY-
 
 "Hard track produces technology (Zhongzhiyuan verifies) - origin aggregates factors (Origin Community ignites) - Dazhongsi promotes business (adoption and refresh) - two wings allocate resources (technology-service wing configures / Xiaoyue River wing empowers)" forms a self-learning loop [depth:overall_spatial_structure]: the First Launch Pass (JZ-01~06 archives) deposits the full process, evidence and risk boundaries of a project from originality to replication into a unified archive, enabling cross-area relay.
 
-![Index and design tasks of the three key areas](assets/figures/key-areas.png)
+![Index and design tasks of the three key areas](assets/figures/key-areas.en.png)
 
 ## Land Use, Building Scale and Retain/Renovate/Demolish
 
@@ -211,7 +211,7 @@ The polygons of the three key areas are provisional boundaries [source:BOUNDARY-
 
 **Public service facilities**: talent apartments (echoing the "Haiqing Anju" measures: no fewer than 2,000 youth apartments per year), entrepreneurship services (Origin Academy model), education and healthcare facilities, supporting the positioning of "global AI industry talent as the core clientele" [depth:three_key_area_detailed_design].
 
-![Mobility, slow traffic and blue-green public space composite system](assets/figures/mobility-bluegreen.png)
+![Mobility, slow traffic and blue-green public space composite system](assets/figures/mobility-bluegreen.en.png)
 
 ## Blue-Green Space, Public Space and Urban Character
 
@@ -385,7 +385,7 @@ The Phase-2 south section restores 2.4 km of the 1909 original track, fully rest
 
 **Compliance-matrix coverage**: `compliance_matrix.json` maps the announcement tasks and the six agent tasks; `standard_matrix.json` maps the five standards; `design_depth_matrix.json` maps the 15 depth items (the full-chain coverage from [depth:existing_conditions_diagnosis] to [depth:risk_missing_data]).
 
-![Core indicator recalculation and evidence-chain diagram](assets/figures/metrics-evidence.png)
+![Core indicator recalculation and evidence-chain diagram](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright and Compliance
 
