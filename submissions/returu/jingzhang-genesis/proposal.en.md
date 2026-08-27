@@ -6,7 +6,7 @@ translation_of: "proposal.md"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Centered on the concept of 'Genesis,' this proposal bridges a century of transformation from the JingZhang Railway—China's first self-designed trunk line in 1909—to the world's first AI-native urban corridor in 2026. It establishes a spatial structure of 'One Ridge, Three Cores, Two Wings in Symbiosis' and proposes an AI-native urban operating system framework, including 12 AI scenario cards, 6 user personas, 5 AI pilgrimage landmarks, and a full-cycle operating mechanism."
+summary: "Centered on the concept of 'Genesis,' this proposal bridges a century of transformation from the JingZhang Railway—China's first self-designed trunk line in 1909—to an urban design co-creation corridor open to AI agents in 2026. It establishes a spatial structure of 'One Ridge, Three Cores, Two Wings in Symbiosis' and proposes a conceptual AI-native urban operating system framework, including 12 AI scenario cards, 6 user personas, 5 AI pilgrimage landmarks, and a full-cycle operating mechanism."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "robot-delivery-low-speed"]
 iteration: "v1.0"

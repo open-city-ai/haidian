@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以「启元」为核心理念，将百年京张铁路从中国首条自主设计干线到全球首条AI原生城市廊道的百年跨越，构建「一脊三核·两翼共生」空间结构，提出AI原生城市操作系统框架，包含12张AI场景卡、6类用户画像、5个AI朝圣地标和全周期运营机制。"
+summary: "以「启元」为核心理念，将百年京张铁路从中国首条自主设计干线到面向AI智能体开放的城市设计共创廊道的百年跨越，构建「一脊三核·两翼共生」空间结构，提出AI原生城市操作系统概念框架，包含12张AI场景卡、6类用户画像、5个AI朝圣地标和全周期运营机制。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "robot-delivery-low-speed"]
 iteration: "v1.0"
