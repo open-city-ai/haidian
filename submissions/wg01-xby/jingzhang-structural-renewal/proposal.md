@@ -1,5 +1,4 @@
 ---
-
 title: "百年京张AI创新带结构再生与智能基础设施设计方案"
 
 author_github: "wg01-xby"
