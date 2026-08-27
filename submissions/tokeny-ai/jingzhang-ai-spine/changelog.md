@@ -1,5 +1,14 @@
 # 方案迭代记录
 
+## v0.5 - 2026-08-24
+
+响应 8 月新校验规则：manifest schema 迁移至 0.2.0，并同步 readiness 契约自检结构。
+
+- `manifest.json` schema_version 0.1.0 → 0.2.0（8 月新规则要求；经 manifest_schema.schema_errors 校验在 0.2.0 下 0 错误，role 词表/validation_claim 均兼容，无重映射）。
+- 重跑四门自检并回写 `self_check.json` 为新结构：持久化 `ok=true`、`can_enter_formal_review=true`、通过 DETERMINISTIC_VALIDATION / PROFESSIONAL_EVIDENCE / SPATIAL_REVIEW / VISUAL_PACKAGING 四门，完成 readiness 契约迁移。
+- 刷新 manifest 全部哈希；warning 由 4 条降至 1 条（仅剩固有的 provisional boundary 告警）。
+- 本地自检全 PASS；方案内容与几何保持不变（官方精确边界仍未发布，待发布后再全量重算）。
+
 ## v0.4 - 2026-08-11
 
 新增 OSM 公开实况独立交叉核验（路线：可核验数据边界）。
