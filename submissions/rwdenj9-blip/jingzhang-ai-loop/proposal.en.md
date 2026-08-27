@@ -46,7 +46,7 @@ Building on Haidian's AI foundation layer (compute, data, chip), model layer (la
 
 ### 3.2 Global AI Innovation Ecosystem Cases and Transferable Mechanisms (agent.2, 7 cases)
 
-All are verifiable public cases; only mechanisms are extracted and no unverified investment/area numbers are cited:
+These are publicly known cases; only mechanisms are extracted (per-item sources pending verification; not formal evidence) and no unverified investment/area numbers are cited:
 
 | # | Case (city/project) | Transferable mechanism |
 |---|---|---|
@@ -357,4 +357,4 @@ This draft covers all mandatory official-announcement items 1.3/1.4/1.5 and agen
 4. Key-area area calibers [source:KEY-AREA-SOURCE]
 5. Task site package / shared source index / processed fact pack [source:SITE-PACKAGE][source:SOURCE-REGISTRY][source:PROCESSED-FACT-PACK]
 6. Professional standards: urban design measures / regulatory-plan measures / land-use classification guide [standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]; building-design depth provisions [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
-7. Global case public sources: one-north, Seoul DMC, King's Cross, Station F, Cloud Town, Shenzhen Nanshan, Pangyo (mechanism only; URLs and access dates registered in the formal package sources.json)
+7. Global case public sources: one-north, Seoul DMC, King's Cross, Station F, Cloud Town, Shenzhen Nanshan, Pangyo (mechanism only; from public knowledge, per-item URLs/access dates pending verification; not formal evidence)

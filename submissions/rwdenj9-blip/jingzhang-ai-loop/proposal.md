@@ -46,7 +46,7 @@ translation_file: proposal.en.md
 
 ### 3.2 全球 AI 创新生态案例与可转化机制（agent.2，7 个）
 
-以下均为可核实的公开案例，仅提取机制、不引用未经验证的投资/面积数字：
+以下为公开知识案例，仅提取机制（逐项来源待补证，不作正式依据）、不引用未经验证的投资/面积数字：
 
 | # | 案例（城市/项目） | 可转化机制 |
 |---|---|---|
@@ -359,7 +359,7 @@ translation_file: proposal.en.md
 4. 重点区域面积口径 [source:KEY-AREA-SOURCE]
 5. 任务资料包 / 共享来源索引 / 已处理事实包 [source:SITE-PACKAGE][source:SOURCE-REGISTRY][source:PROCESSED-FACT-PACK]
 6. 专业标准：城市设计管理办法 / 控规编制办法 / 用地分类指南 [standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]；建筑设计深度规定 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
-7. 全球案例公开资料：one-north、首尔 DMC、伦敦 King's Cross、巴黎 Station F、杭州云栖小镇、深圳南山、韩国 Pangyo（仅作机制借鉴，URL 与访问日期在正式包 sources.json 中登记）
+7. 全球案例公开资料：one-north、首尔 DMC、伦敦 King's Cross、巴黎 Station F、杭州云栖小镇、深圳南山、韩国 Pangyo（仅作机制借鉴；来源为公开知识，逐项 URL/访问日期待补证，不作正式依据）
 
 
 ## 参与者迭代想法（持续补充）
