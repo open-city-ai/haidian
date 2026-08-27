@@ -34,7 +34,7 @@ This proposal takes as its task and scope basis the *Pre-Qualification Announcem
 
 All spatial geometry in the current submission is based on the provisional rough boundary (provisional constraint) provided by the repository; the official redline has not yet been published. Area metrics, spatial layouts, and geometric relationships are all marked as conceptual design quantities, to be recalculated upon release of formal data per agreed conditions [depth:existing_conditions_diagnosis]. This proposal does not constitute statutory planning, a government-approved conclusion, or an engineering implementation commitment.
 
-![Site location and three-tier scope](assets/figures/site-overview.png)
+![Site location and three-tier scope](assets/figures/site-overview.en.png)
 
 ## Three-Level Scope Framework
 
@@ -51,7 +51,7 @@ The proposal advances across three spatial scales, forming a complete design loo
 
 Area data for the three-tier scope comes from the official announcement; geometric boundaries use provisional rough polygons. Provisional boundaries are used only for proposal generation and visualization, not for official redline determination or precise area claims. After formal geometry is released, all land_use, buildings, green_space, public_space, and phasing layers will be re-cut against the new boundary, and core metrics (site_area_sqm, green_ratio, public_space_ratio) will be recalculated.
 
-![Three-tier scope and land-use structure](assets/figures/land-use-structure.png)
+![Three-tier scope and land-use structure](assets/figures/land-use-structure.en.png)
 
 ## Coordinated Research Area: Industry and Future City Research
 
@@ -151,7 +151,7 @@ The road network adopts a "one vertical, four horizontal, two ring" structure [d
 
 For rail transit, the proposal recommends strengthening the integrated design of metro stations and AI scenarios, but specific rail alignments and station locations are subject to official planning. The slow-traffic system runs continuously along the green ridge and extends east-west to universities and communities.
 
-![Mobility slow-traffic and blue-green systems](assets/figures/mobility-bluegreen.png)
+![Mobility slow-traffic and blue-green systems](assets/figures/mobility-bluegreen.en.png)
 
 ## Detailed Design of Key Areas
 
@@ -199,7 +199,7 @@ For rail transit, the proposal recommends strengthening the integrated design of
 
 **AI scenarios:** AI commercial experience lab, agent consumption scenario validation, AI+ legal service platform, enterprise AI transformation showcase center.
 
-![Key area detailed design](assets/figures/key-areas.png)
+![Key area detailed design](assets/figures/key-areas.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -257,7 +257,7 @@ For rail transit, the proposal recommends strengthening the integrated design of
 
 **Scenario 8: AI-Assisted Urban Governance Sandbox**
 - Location: AI Origin Community
-- Function: 12345 hotline intelligent classification, community issue identification, policy simulation
+- Function: Community work-order intelligent classification (data availability and authorization pending), community issue identification, policy simulation
 - Human review: All administrative decisions ultimately judged by government staff
 - Privacy: No facial recognition; public space data anonymized
 
@@ -423,7 +423,7 @@ The three core visual metrics (site_area_sqm, green_ratio, public_space_ratio) a
 
 The compliance matrix covers all tasks in announcement sections 1.3–1.5 and all six Agent tasks agent.1–agent.6. The professional standards matrix covers 9 mandatory standards. All required items in the design depth matrix are marked complete [depth:metrics_recalculation].
 
-![Core metrics and evidence chain](assets/figures/metrics-evidence.png)
+![Core metrics and evidence chain](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright, and Compliance
 
@@ -578,7 +578,7 @@ This proposal presents a conceptual framework for an AI-native City Operating Sy
 | 5 | AI Public Space Installations | 5 green ridge nodes | Public, visitors | No proactive personal data collection; interaction data anonymized | AI-generated art, environmental data viz, public dialogue | Art display, information display | Content moderation; inappropriate content removable immediately | Proposed park operator + art team | Public engagement, dwell time | Content safety incident or frequent equipment failure |
 | 6 | AI Safety Red-Team Ground | Zhongzhiyuan closed area | Enterprises, research institutions | Test data isolated; no real personal data | Security vulnerability discovery, adversarial test reports | Closed-environment test operations | All tests in isolated environment, security-reviewed | Proposed AI safety lab + enterprise | Vulnerabilities found, remediation adoption rate | Security isolation failure or external impact |
 | 7 | Smart Energy Microgrid | Zhongzhiyuan + Origin Community | Park operators, enterprises | Energy monitoring data (non-personal) | Energy dispatch optimization suggestions, carbon analysis | Dispatch suggestions, alerts | Critical energy dispatch requires human confirmation | Proposed energy enterprise + park operator | 10% energy efficiency gain, carbon reduction | System stability impact or safety incident |
-| 8 | AI-Assisted Governance Sandbox | AI Origin Community | Community workers, residents | 12345 public work order data, community reports; no facial recognition | Work order classification, issue identification, policy simulation | Classification suggestions, analysis reports | All administrative decisions by government staff | Proposed sub-district/community + tech enterprise | Work order processing efficiency, resident satisfaction | Decision error rate or rising complaints |
+| 8 | AI-Assisted Governance Sandbox | AI Origin Community | Community workers, residents | community report data (availability, legal basis, and authorization pending; only authorized, minimized/anonymized data); no facial recognition | Work order classification, issue identification, policy simulation | Classification suggestions, analysis reports | All administrative decisions by government staff | Proposed sub-district/community + tech enterprise | Work order processing efficiency, resident satisfaction | Decision error rate or rising complaints |
 | 9 | Agent Consumption Lab | Dazhongsi partner shops | Consumers, merchants | Consumers can disable anytime; no third-party data sharing | AI shopping guide, personalized recommendations | Product recommendations, information display | Payment confirmed by consumer; AI does not auto-deduct | Proposed merchants + payment institution + AI enterprise | Consumer experience satisfaction, merchant participation | Privacy complaints or payment security incident |
 | 10 | AI Multilingual Service Station | One per core | International talent, elderly | No conversation storage; queries anonymized | Multilingual visa/housing/healthcare consultation | Information query, navigation suggestions | Complex cases transferred to human service | Proposed govt service center | Service coverage rate, satisfaction | Translation errors causing serious misunderstanding or complaints |
 | 11 | Developer Open-Source Center | AI Origin Plaza | Developers, open-source community | Public code repository data; no private code access | AI pair programming, project recommendations | Code suggestions, project matching | Code merge reviewed by maintainers | Proposed open-source foundation + community self-governance | Active contributors, projects incubated | Community governance failure or security vulnerability |
