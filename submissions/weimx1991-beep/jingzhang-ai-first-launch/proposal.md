@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以“京张AI首发场”为总体理念，本方案把百年京张铁路遗址的9公里线性空间转化为一套让AI原创在真实城市完成“原创发现—原型组队—工程验证—城市试用—产品采用—复制扩散”六程循环的城市级基础设施。空间上呼应已批复控规“一带一轴、两心多点”结构，融合任务书“三区两翼”，形成“一带双轨·三核两翼·多节点·蓝绿环”空间语言：众智园为硬轨中枢（工程验证）、AI原点社区为双轨交汇转轨点（原点点火）、大钟寺为软轨落地（采用上新），中关村科技服务翼为双轨转换器、小月河场景赋能翼为软轨纵深。全部空间主张为概念建议，供专业团队深化。"
+summary: "以“京张AI首发场”为总体理念，本方案把百年京张铁路遗址的9公里线性空间转化为一套让AI原创在真实城市完成“原创发现—原型组队—工程验证—城市试用—产品采用—复制扩散”六程循环的城市级基础设施。空间上呼应已批复控规（媒体报道口径）"一带一轴、两心多点"结构，融合任务书“三区两翼”，形成“一带双轨·三核两翼·多节点·蓝绿环”空间语言：众智园为硬轨中枢（工程验证）、AI原点社区为双轨交汇转轨点（原点点火）、大钟寺为软轨落地（采用上新），中关村科技服务翼为双轨转换器、小月河场景赋能翼为软轨纵深。全部空间主张为概念建议，供专业团队深化。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "robot-delivery-low-speed", "ai-cultural-guide", "enterprise-service-copilot", "public-safety-operations-review"]
 iteration: "v2.0"
@@ -2335,7 +2335,7 @@ iteration: "v2.0"
 |---|---|---|---|---|
 | 作者身份 | `proposal*.md`、`agent.json`、`manifest.json`、提交目录 | 已统一为`weimx1991-beep`（与PR账号一致） | 确认唯一提交账号并统一四处信息 | 实际账号下preflight通过 |
 | 历史事实 | 中英文正文、网页、文化图、IP说明 | 五道口与青龙桥“人字形”位置可能混写 | 五道口=第五道口；青龙桥=人字形折返，分层叙事 | 史实直接信源+中英文同步 |
-| 图片版权/肖像 | `visual/assets/scenes/`、`concept/`、`sources.json` | QQ图床不等于许可；AI图和网络图混放；含可识别人物 | 优先用团队自摄、明确开放许可或重新生成解释图；逐文件登记与打码 | 资产台账无“待清权”上线素材 |
+| 图片版权/肖像 | `visual/assets/concept/`、`photos/`、`sources.json` | 已按 AI 概念图/团队踏勘照分类，逐文件登记至 `report/copyright_statement.md`；AI 概念图无真实人物、无第三方版权主题；踏勘照为团队自摄（EXIF 可追溯） | 保持逐文件台账与 sources.json 一致；无法证明权利的素材将替换或移除 | 台账已更新（2026-08-27） |
 | 真双语 | 英文HTML、PDF、五张图 | 英文副本可能与中文哈希相同或残留中文 | 真正翻译与重新导出；术语表和人工审校 | 结构等义、哈希合理、无非必要中文 |
 | 数字冲突 | 地标、15项目、面积/道路/建筑等 | 3/4地标、15项目但仅3几何；示意复算像现状数据 | 统一数量；示意指标标“概念几何复算” | 文本/JSON/网页/图纸一致 |
 | 路径与清单 | `manifest.json`、自检文件 | 反斜杠、过期哈希、自检状态不一致 | POSIX路径、重生成manifest、重跑全部校验 | 最终目录formal-review-ready |
