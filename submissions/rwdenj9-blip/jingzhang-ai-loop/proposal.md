@@ -46,17 +46,17 @@ translation_file: proposal.en.md
 
 ### 3.2 全球 AI 创新生态案例与可转化机制（agent.2，7 个）
 
-以下为公开知识案例，仅提取机制（逐项来源待补证，不作正式依据）、不引用未经验证的投资/面积数字：
+以下案例均以项目方、政府或园区机构的公开页面作逐项事实核验，仅提取页面直接支持的机制，不引用未经验证的投资/面积数字，也不复用网页图片或长段文字。它们属于 agent.2 的比较案例证据，不构成京张项目的法定规划依据；网页未声明开放许可时，仅作事实引用：
 
-| # | 案例（城市/项目） | 可转化机制 |
-|---|---|---|
-| C1 | 新加坡 one-north（纬壹科技城） | 混合研发社区 + 景观主轴贯通 + 步行可达的校园式密度 |
-| C2 | 首尔 Digital Media City | 内容产业集聚 + 轨道上盖 + 公共文化设施带动人气 |
-| C3 | 伦敦 King's Cross | 铁路遗产更新为知识经济区，公共空间活化反哺招商（与京张铁路遗产高度同构） |
-| C4 | 巴黎 Station F | 历史建筑改造为创业园区，以社区运营和导师网络取胜 |
-| C5 | 杭州云栖小镇 | 会展（云栖大会）+ 产业小镇 + 企业生态闭环 |
-| C6 | 深圳南山区科技园片区 | 高校—大厂—孵化器沿轴线联动，形成「热带雨林」生态 |
-| C7 | 韩国板桥科技谷（Pangyo） | 政府主导园区 + 职住配套 + 文化设施，避免「孤岛式产业园」 |
+| # | 案例（城市/项目） | 可转化机制 | 核验来源 |
+|---|---|---|---|
+| C1 | 新加坡 one-north（纬壹科技城） | 工作—居住—休闲—学习复合研发园区 + 公园连接科研、媒体与轨道站点 + 公共空间运营 | [source:SRC-CASE-C1-ONE-NORTH] |
+| C2 | 首尔 Digital Media City | 市政府统筹的数字媒体/IT产业集聚 + 交通基础设施 + 面向公众的文化体验设施 | [source:SRC-CASE-C2-SEOUL-DMC] |
+| C3 | 伦敦 King's Cross | 铁路与工业遗产再利用 + 街道、广场、公园、大学和办公混合，形成持续开放的城市片区 | [source:SRC-CASE-C3-KINGS-CROSS] |
+| C4 | 巴黎 Station F | 大型创业校园 + 项目制入驻 + 导师、工作坊与多项目社区支持 | [source:SRC-CASE-C4-STATION-F] |
+| C5 | 杭州云栖小镇 | 云栖大会作为交流展示平台 + 云产业生态培育 + “产、镇、人”融合 | [source:SRC-CASE-C5-YUNQI] |
+| C6 | 深圳南山区创新创业生态 | 高校科研院所联动 + 创客空间—孵化器—加速器—产业园全链条服务 | [source:SRC-CASE-C6-NANSHAN] |
+| C7 | 韩国板桥科技谷（Pangyo） | 省级公共部门统筹 + 按研发/研究支持配置用地 + 衔接居住与公共支持设施 | [source:SRC-CASE-C7-PANGYO] |
 
 **生态图谱（概念）**：基础支撑层（算力/数据/芯片）→ 模型与开源层（大模型、开源社区、智能体）→ 应用场景层（城市治理、产业服务、民生体验）→ 要素保障层（人才、资本、政策、场景开放）。京张带图谱的差异化定位：**以「城市即场景」和「开源即生态」作为两条主线** [source:AGENT-TASKBOOK][source:PROCESSED-FACT-PACK]。
 
@@ -359,7 +359,13 @@ translation_file: proposal.en.md
 4. 重点区域面积口径 [source:KEY-AREA-SOURCE]
 5. 任务资料包 / 共享来源索引 / 已处理事实包 [source:SITE-PACKAGE][source:SOURCE-REGISTRY][source:PROCESSED-FACT-PACK]
 6. 专业标准：城市设计管理办法 / 控规编制办法 / 用地分类指南 [standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]；建筑设计深度规定 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
-7. 全球案例公开资料：one-north、首尔 DMC、伦敦 King's Cross、巴黎 Station F、杭州云栖小镇、深圳南山、韩国 Pangyo（仅作机制借鉴；来源为公开知识，逐项 URL/访问日期待补证，不作正式依据）
+7. 新加坡 JTC：one-north 项目页（机制比较；仅事实引用）[source:SRC-CASE-C1-ONE-NORTH]
+8. Seoul Solution：Seoul Digital Media City（机制比较；仅事实引用）[source:SRC-CASE-C2-SEOUL-DMC]
+9. King's Cross 项目方：About the Development（机制比较；仅事实引用）[source:SRC-CASE-C3-KINGS-CROSS]
+10. Station F：What Is STATION F?（机制比较；仅事实引用）[source:SRC-CASE-C4-STATION-F]
+11. 杭州市人民政府：十年，数字经济起云栖（机制比较；仅事实引用）[source:SRC-CASE-C5-YUNQI]
+12. 深圳市南山区人民政府：创新创业生态链公开答复（机制比较；仅事实引用）[source:SRC-CASE-C6-NANSHAN]
+13. Pangyo Techno Valley：2024 英文园区手册（机制比较；仅事实引用）[source:SRC-CASE-C7-PANGYO]
 
 
 ## 参与者迭代想法（持续补充）

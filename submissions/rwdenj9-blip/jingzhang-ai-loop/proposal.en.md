@@ -46,17 +46,17 @@ Building on Haidian's AI foundation layer (compute, data, chip), model layer (la
 
 ### 3.2 Global AI Innovation Ecosystem Cases and Transferable Mechanisms (agent.2, 7 cases)
 
-These are publicly known cases; only mechanisms are extracted (per-item sources pending verification; not formal evidence) and no unverified investment/area numbers are cited:
+Each case below was checked against a public page issued by the project operator, government, or park authority. Only mechanisms directly supported by those pages are extracted; no unverified investment or area figures are cited, and no webpage image or extended passage is reused. These are comparative case sources for agent.2, not statutory evidence for Jingzhang. Where no open licence is stated, the page is used for factual citation only:
 
-| # | Case (city/project) | Transferable mechanism |
-|---|---|---|
-| C1 | Singapore one-north | Mixed R&D community + landscape spine + campus-style walkable density |
-| C2 | Seoul Digital Media City | Content-industry clustering + rail over-station + public cultural facilities drive traffic |
-| C3 | London King's Cross | Railway heritage redeveloped into a knowledge-economy district; public-space activation feeds investment attraction (highly analogous to Jingzhang railway heritage) |
-| C4 | Paris Station F | Historic building converted to a start-up campus; wins on community operation and mentor network |
-| C5 | Hangzhou Cloud Town | Convention (Cloud Town conference) + industry town + enterprise ecosystem loop |
-| C6 | Shenzhen Nanshan science-park area | University--large-firm--incubator linkage along an axis, forming a "rainforest" ecosystem |
-| C7 | South Korea Pangyo | Government-led park + job-housing provision + cultural facilities, avoiding "island-style industrial park" |
+| # | Case (city/project) | Transferable mechanism | Verified source |
+|---|---|---|---|
+| C1 | Singapore one-north | Work-live-play-learn R&D estate + park connections among research/media precincts and rail stations + programmed public space | [source:SRC-CASE-C1-ONE-NORTH] |
+| C2 | Seoul Digital Media City | City-led digital-media/IT clustering + transport infrastructure + public cultural and experience facilities | [source:SRC-CASE-C2-SEOUL-DMC] |
+| C3 | London King's Cross | Railway and industrial heritage reuse + a mix of streets, squares, parks, a university and workplaces in an open urban district | [source:SRC-CASE-C3-KINGS-CROSS] |
+| C4 | Paris STATION F | Large start-up campus + programme-based admission + mentoring, workshops and multi-programme community support | [source:SRC-CASE-C4-STATION-F] |
+| C5 | Hangzhou Yunqi Town | Apsara Conference as an exchange/showcase platform + cloud-industry ecosystem cultivation + integration of industry, town and people | [source:SRC-CASE-C5-YUNQI] |
+| C6 | Shenzhen Nanshan innovation ecosystem | University/research-institute linkage + a full service chain from maker spaces to incubators, accelerators and industrial parks | [source:SRC-CASE-C6-NANSHAN] |
+| C7 | South Korea Pangyo Techno Valley | Provincial public-sector coordination + functional allocation for R&D and research support + links to housing and public support facilities | [source:SRC-CASE-C7-PANGYO] |
 
 **Ecosystem map (concept)**: foundation support layer (compute/data/chip) -> model & open-source layer (large models, open-source communities, agents) -> application scenario layer (urban governance, industry services, livelihood experience) -> factor guarantee layer (talent, capital, policy, open scenarios). Jingzhang's differentiated positioning: **"city as scenario" and "open source as ecosystem" as two main lines** [source:AGENT-TASKBOOK][source:PROCESSED-FACT-PACK].
 
@@ -87,7 +87,7 @@ All are conceptual expressions based on publicly disclosed functional positionin
 - **Two wings**: Zhongguancun technology-service wing (capital/large firms/universities) and Xiaoyuehe scenario-empowerment wing (living/testing scenarios).
 - **Multi-node**: open-source squares, scenario labs, pilgrimage landmarks and service stations distributed along the axis form a "looped innovation corridor" rather than a linear corridor.
 
-**Current dependence (background, to be verified)**: the axis is the Jingzhang Railway Heritage Park vitality belt, ~9 km, from Xizhimen Beijing North Station in the south to the North 5th Ring, crossing the North 3rd and 4th Rings; Phase 1 (Zhichunlu--Qinghua East Rd) and Phase 2 (Xizhimen--Zhichunlu, opened Aug 2026, with 2.4 km of 1909 old-line rail restored) form a continuous cultural green corridor [source:SRC-JZ-PARK-PHASE2]. The three cores: AI Origin Community is in Wudaokou, radiating 3 km2, with 439 firms [source:SRC-AI-ORIGIN-COMMUNITY]; Zhongzhiyuan is at the northern end, on the Xueyuan Rd north section of Zhongguancun Dongsheng Science Park [source:SRC-THREE-ZONES-TWO-WINGS]; Dazhongsi is on the North 3rd Ring, where Bluejinglijia will be converted to an international exchange center, complementing Fangheng and Zhongkun plazas [source:SRC-DAZHONGSI-BLUEJINGLIJIA].
+**Current dependence (background, to be verified)**: the axis is the Jingzhang Railway Heritage Park vitality belt, ~9 km, from Xizhimen Beijing North Station in the south to the North 5th Ring, crossing the North 3rd and 4th Rings; Phase 1 (Zhichunlu--Qinghua East Rd) and Phase 2 (Xizhimen--Zhichunlu, opened Aug 2026, with 2.4 km of 1909 old-line rail restored) form a continuous cultural green corridor [source:SRC-JZ-PARK-PHASE2]. The three cores: AI Origin Community is in Wudaokou, covers an area of about 3 km², and has 439 firms [source:SRC-AI-ORIGIN-COMMUNITY]; Zhongzhiyuan is at the northern end, on the Xueyuan Rd north section of Zhongguancun Dongsheng Science Park [source:SRC-THREE-ZONES-TWO-WINGS]; Dazhongsi is on the North 3rd Ring, where Bluejinglijia will be converted to an international exchange center, complementing Fangheng and Zhongkun plazas [source:SRC-DAZHONGSI-BLUEJINGLIJIA].
 
 ![JingZhang AI Loop overall concept: one-axis three-cores two-wings multi-node structure](assets/figures/site-overview.en.png)
 
@@ -357,4 +357,10 @@ This draft covers all mandatory official-announcement items 1.3/1.4/1.5 and agen
 4. Key-area area calibers [source:KEY-AREA-SOURCE]
 5. Task site package / shared source index / processed fact pack [source:SITE-PACKAGE][source:SOURCE-REGISTRY][source:PROCESSED-FACT-PACK]
 6. Professional standards: urban design measures / regulatory-plan measures / land-use classification guide [standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]; building-design depth provisions [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
-7. Global case public sources: one-north, Seoul DMC, King's Cross, Station F, Cloud Town, Shenzhen Nanshan, Pangyo (mechanism only; from public knowledge, per-item URLs/access dates pending verification; not formal evidence)
+7. Singapore JTC: one-north project page (comparative mechanism; factual citation only) [source:SRC-CASE-C1-ONE-NORTH]
+8. Seoul Solution: Seoul Digital Media City (comparative mechanism; factual citation only) [source:SRC-CASE-C2-SEOUL-DMC]
+9. King's Cross project operator: About the Development (comparative mechanism; factual citation only) [source:SRC-CASE-C3-KINGS-CROSS]
+10. STATION F: What Is STATION F? (comparative mechanism; factual citation only) [source:SRC-CASE-C4-STATION-F]
+11. Hangzhou Municipal Government: Ten Years of the Digital Economy at Yunqi (comparative mechanism; factual citation only) [source:SRC-CASE-C5-YUNQI]
+12. Shenzhen Nanshan District Government: public response on the innovation-service chain (comparative mechanism; factual citation only) [source:SRC-CASE-C6-NANSHAN]
+13. Pangyo Techno Valley: 2024 English park brochure (comparative mechanism; factual citation only) [source:SRC-CASE-C7-PANGYO]
