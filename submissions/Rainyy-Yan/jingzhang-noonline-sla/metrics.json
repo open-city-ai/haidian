@@ -197,9 +197,11 @@
       "value": 10,
       "unit": "count",
       "source_files": [
-        "proposal.md"
+        "proposal.md",
+        "proposal.en.md",
+        "visual/assets/v4_2-agent_delivery_index.json"
       ],
-      "formula": "count(AI+ scenario cards in proposal narrative)",
+      "formula": "count(SC-01..SC-10 in proposal.md#13.3, proposal.en.md#13.3 and visual/assets/v4_2-agent_delivery_index.json#scenario_cards)",
       "confidence": "high",
       "assumptions": []
     },
@@ -208,9 +210,11 @@
       "value": 3,
       "unit": "count",
       "source_files": [
-        "proposal.md"
+        "proposal.md",
+        "proposal.en.md",
+        "visual/assets/v4_2-agent_delivery_index.json"
       ],
-      "formula": "count(industry validation scenarios)",
+      "formula": "count(IV-01..IV-03 explicitly bounded in proposal.md#13.3 and proposal.en.md#13.3)",
       "confidence": "high",
       "assumptions": []
     },
@@ -219,9 +223,11 @@
       "value": 5,
       "unit": "count",
       "source_files": [
-        "proposal.md"
+        "proposal.md",
+        "proposal.en.md",
+        "visual/assets/v4_2-agent_delivery_index.json"
       ],
-      "formula": "count(user personas)",
+      "formula": "count(P-01..P-05 in proposal.md#13.4 and proposal.en.md#13.4)",
       "confidence": "high",
       "assumptions": [
         "A-CENSUS-SCOPE-001"
@@ -233,9 +239,11 @@
       "unit": "count",
       "source_files": [
         "proposal.md",
-        "visual/index.html"
+        "proposal.en.md",
+        "visual/index.html",
+        "visual/assets/v4_2-agent_delivery_index.json"
       ],
-      "formula": "count(AI pilgrimage/honor-display nodes)",
+      "formula": "count(H-01..H-04 conceptual interpretation/honour-display nodes in proposal.md#13.5 and proposal.en.md#13.5; not existing heritage or official awards)",
       "confidence": "medium",
       "assumptions": [
         "A-PROVISIONAL-BOUNDARY-001"
@@ -316,7 +324,10 @@
         "node_a": "N05",
         "node_b": "N09",
         "route_id": "JZ-MAIN",
-        "road_ids": ["ROAD-002", "ROAD-001"],
+        "road_ids": [
+          "ROAD-002",
+          "ROAD-001"
+        ],
         "area_relationship": "beijing_ai_origin_community_to_dazhongsi_ai_industry_cluster",
         "network_m": 4298.796,
         "straight_line_m": 4298.796,
@@ -353,17 +364,139 @@
         "A-GEOMETRY-DERIVED-METRICS-001"
       ],
       "gap_table": [
-        {"rank": 1, "node_a": "N05", "node_b": "N09", "route_id": "JZ-MAIN", "road_ids": ["ROAD-002", "ROAD-001"], "network_m": 4298.796, "straight_line_m": 4298.796, "relationship": "AI Origin to Dazhongsi Level 2 inter-zone connector"},
-        {"rank": 2, "node_a": "N06", "node_b": "N01", "route_id": "JZ-MAIN", "road_ids": ["ROAD-003"], "network_m": 1556.729, "straight_line_m": 1556.729, "relationship": "AI Origin to Zhongzhiyuan Level 2 inter-zone connector"},
-        {"rank": 3, "node_a": "N01", "node_b": "N04", "route_id": "JZ-ZZY-ACCESS", "road_ids": ["ROAD-011"], "network_m": 1028.553, "straight_line_m": 1028.553, "relationship": "Zhongzhiyuan Level 1 service-zone spine; secondary supports inserted separately"},
-        {"rank": 4, "node_a": "N05", "node_b": "N06", "route_id": "JZ-MAIN", "road_ids": ["ROAD-002"], "network_m": 555.975, "straight_line_m": 555.975, "relationship": "AI Origin Level 1 service-zone spine; secondary support inserted separately"},
-        {"rank": 5, "node_a": "N10", "node_b": "N11", "route_id": "JZ-DAZHONGSI-ACCESS", "road_ids": ["ROAD-007"], "network_m": 554.102, "straight_line_m": 554.102, "relationship": "Dazhongsi Level 1 transit connector; secondary support inserted separately"},
-        {"rank": 6, "node_a": "N05", "node_b": "N07", "route_id": "JZ-LATERAL", "road_ids": ["ROAD-008"], "network_m": 553.765, "straight_line_m": 553.765, "relationship": "AI Origin Level 1 lateral connector; secondary support inserted separately"},
-        {"rank": 7, "node_a": "N01", "node_b": "N02", "route_id": "JZ-ZZY-ACCESS", "road_ids": ["ROAD-004"], "network_m": 468.44, "straight_line_m": 468.44, "relationship": "Zhongzhiyuan Level 1 research-test interface; secondary support inserted separately"},
-        {"rank": 8, "node_a": "N03", "node_b": "N04", "route_id": "JZ-ZZY-ACCESS", "road_ids": ["ROAD-005"], "network_m": 468.376, "straight_line_m": 468.376, "relationship": "Zhongzhiyuan Level 1 public-entry interface; secondary support inserted separately"},
-        {"rank": 9, "node_a": "N05", "node_b": "N08", "route_id": "JZ-ORIGIN-ACCESS", "road_ids": ["ROAD-006"], "network_m": 383.376, "straight_line_m": 383.376, "relationship": "AI Origin Level 1 public-entry connector"},
-        {"rank": 10, "node_a": "N09", "node_b": "N10", "route_id": "JZ-DAZHONGSI-ACCESS", "road_ids": ["ROAD-007"], "network_m": 326.913, "straight_line_m": 326.913, "relationship": "Dazhongsi Level 1 transit connector"},
-        {"rank": 11, "node_a": "N09", "node_b": "N12", "route_id": "JZ-CROSSING", "road_ids": ["ROAD-010"], "network_m": 255.728, "straight_line_m": 255.728, "relationship": "Dazhongsi Level 1 crossing interface"}
+        {
+          "rank": 1,
+          "node_a": "N05",
+          "node_b": "N09",
+          "route_id": "JZ-MAIN",
+          "road_ids": [
+            "ROAD-002",
+            "ROAD-001"
+          ],
+          "network_m": 4298.796,
+          "straight_line_m": 4298.796,
+          "relationship": "AI Origin to Dazhongsi Level 2 inter-zone connector"
+        },
+        {
+          "rank": 2,
+          "node_a": "N06",
+          "node_b": "N01",
+          "route_id": "JZ-MAIN",
+          "road_ids": [
+            "ROAD-003"
+          ],
+          "network_m": 1556.729,
+          "straight_line_m": 1556.729,
+          "relationship": "AI Origin to Zhongzhiyuan Level 2 inter-zone connector"
+        },
+        {
+          "rank": 3,
+          "node_a": "N01",
+          "node_b": "N04",
+          "route_id": "JZ-ZZY-ACCESS",
+          "road_ids": [
+            "ROAD-011"
+          ],
+          "network_m": 1028.553,
+          "straight_line_m": 1028.553,
+          "relationship": "Zhongzhiyuan Level 1 service-zone spine; secondary supports inserted separately"
+        },
+        {
+          "rank": 4,
+          "node_a": "N05",
+          "node_b": "N06",
+          "route_id": "JZ-MAIN",
+          "road_ids": [
+            "ROAD-002"
+          ],
+          "network_m": 555.975,
+          "straight_line_m": 555.975,
+          "relationship": "AI Origin Level 1 service-zone spine; secondary support inserted separately"
+        },
+        {
+          "rank": 5,
+          "node_a": "N10",
+          "node_b": "N11",
+          "route_id": "JZ-DAZHONGSI-ACCESS",
+          "road_ids": [
+            "ROAD-007"
+          ],
+          "network_m": 554.102,
+          "straight_line_m": 554.102,
+          "relationship": "Dazhongsi Level 1 transit connector; secondary support inserted separately"
+        },
+        {
+          "rank": 6,
+          "node_a": "N05",
+          "node_b": "N07",
+          "route_id": "JZ-LATERAL",
+          "road_ids": [
+            "ROAD-008"
+          ],
+          "network_m": 553.765,
+          "straight_line_m": 553.765,
+          "relationship": "AI Origin Level 1 lateral connector; secondary support inserted separately"
+        },
+        {
+          "rank": 7,
+          "node_a": "N01",
+          "node_b": "N02",
+          "route_id": "JZ-ZZY-ACCESS",
+          "road_ids": [
+            "ROAD-004"
+          ],
+          "network_m": 468.44,
+          "straight_line_m": 468.44,
+          "relationship": "Zhongzhiyuan Level 1 research-test interface; secondary support inserted separately"
+        },
+        {
+          "rank": 8,
+          "node_a": "N03",
+          "node_b": "N04",
+          "route_id": "JZ-ZZY-ACCESS",
+          "road_ids": [
+            "ROAD-005"
+          ],
+          "network_m": 468.376,
+          "straight_line_m": 468.376,
+          "relationship": "Zhongzhiyuan Level 1 public-entry interface; secondary support inserted separately"
+        },
+        {
+          "rank": 9,
+          "node_a": "N05",
+          "node_b": "N08",
+          "route_id": "JZ-ORIGIN-ACCESS",
+          "road_ids": [
+            "ROAD-006"
+          ],
+          "network_m": 383.376,
+          "straight_line_m": 383.376,
+          "relationship": "AI Origin Level 1 public-entry connector"
+        },
+        {
+          "rank": 10,
+          "node_a": "N09",
+          "node_b": "N10",
+          "route_id": "JZ-DAZHONGSI-ACCESS",
+          "road_ids": [
+            "ROAD-007"
+          ],
+          "network_m": 326.913,
+          "straight_line_m": 326.913,
+          "relationship": "Dazhongsi Level 1 transit connector"
+        },
+        {
+          "rank": 11,
+          "node_a": "N09",
+          "node_b": "N12",
+          "route_id": "JZ-CROSSING",
+          "road_ids": [
+            "ROAD-010"
+          ],
+          "network_m": 255.728,
+          "straight_line_m": 255.728,
+          "relationship": "Dazhongsi Level 1 crossing interface"
+        }
       ],
       "reason": "The table documents primary-node distribution only. It does not claim an existing legal, accessible or field-verified walking network."
     },
@@ -427,9 +560,21 @@
         "A-SECONDARY-SUPPORT-POINTS-001"
       ],
       "breakdown_m": {
-        "zhongzhiyuan_ai_acceleration_area": {"max": 389.182, "median": 234.22, "count_over_400": 0},
-        "beijing_ai_origin_community": {"max": 383.376, "median": 279.565, "count_over_400": 0},
-        "dazhongsi_ai_industry_cluster": {"max": 326.913, "median": 277.051, "count_over_400": 0}
+        "zhongzhiyuan_ai_acceleration_area": {
+          "max": 389.182,
+          "median": 234.22,
+          "count_over_400": 0
+        },
+        "beijing_ai_origin_community": {
+          "max": 383.376,
+          "median": 279.565,
+          "count_over_400": 0
+        },
+        "dazhongsi_ai_industry_cluster": {
+          "max": 326.913,
+          "median": 277.051,
+          "count_over_400": 0
+        }
       },
       "reason": "A geometry-derived concept-network result only. It proves neither public access nor installed shade, seats, water, entries, crossings, staffing or accessible walking continuity."
     },
@@ -589,6 +734,105 @@
         "A-FIELD-VERIFICATION-WORKFLOW-001"
       ],
       "reason": "No timestamped public-entry opening and accessibility observations are present."
+    },
+    "implementation_work_package_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "risk.json",
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(concept implementation-control register work_packages)",
+      "confidence": "high",
+      "assumptions": [
+        "A-IMPLEMENTATION-INTERFACE-001"
+      ],
+      "reason": "Six reversible packages are each linked to a spatial reference, concept role, resource band, verification gate and stop response. This is a delivery-control count, not a construction commitment."
+    },
+    "implementation_concept_role_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "risk.json"
+      ],
+      "formula": "count(concept_roles in implementation-control register)",
+      "confidence": "high",
+      "assumptions": [
+        "A-IMPLEMENTATION-INTERFACE-001"
+      ],
+      "reason": "The roles are not appointed entities. They identify the capability that must be named before a phase or component can advance."
+    },
+    "implementation_resource_band_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "risk.json"
+      ],
+      "formula": "count(non-financial resource_bands in implementation-control register)",
+      "confidence": "high",
+      "assumptions": [
+        "A-IMPLEMENTATION-INTERFACE-001"
+      ],
+      "reason": "RB-1, RB-2 and RB-3 describe capability and review depth. They are explicitly not financial estimates or procurement packages."
+    },
+    "implementation_stoppable_risk_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "risk.json",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(risks with a trigger, control and verification path in the implementation-control register)",
+      "confidence": "high",
+      "assumptions": [
+        "A-IMPLEMENTATION-INTERFACE-001",
+        "A-SITE-EVIDENCE-LADDER-001"
+      ],
+      "reason": "The register makes public access, accessibility, heat, maintenance, test safety, AI exclusion and provisional-boundary misrepresentation explicit stop or downgrade conditions."
+    },
+    "v4_core_figure_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "assets/figures/v4-figure-01-overall-urban-structure.png",
+        "assets/figures/v4-figure-02-zhongzhiyuan.png",
+        "assets/figures/v4-figure-03-ai-origin.png",
+        "assets/figures/v4-figure-04-dazhongsi.png",
+        "assets/figures/v4-figure-05-sections-01-04.png",
+        "assets/figures/v4-figure-06-ai-on-off-resilience.png",
+        "assets/figures/v4-figure-07-research-city-feedback.png"
+      ],
+      "formula": "count(V4 core human-readable urban-design figures)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001",
+        "A-SITE-EVIDENCE-LADDER-001"
+      ],
+      "reason": "The count records authored presentation figures. It does not add spatial objects or evidence."
+    },
+    "site_evidence_ladder_level_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "visual/index.html",
+        "sources.json",
+        "assumptions.json"
+      ],
+      "formula": "count(Level A publicly supported, Level B design inference, Level C field verification required, Level D professional study required)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SITE-EVIDENCE-LADDER-001"
+      ],
+      "reason": "The ladder is a claim-control method, not a score or a replacement for survey."
     }
   }
 }

@@ -1,5 +1,25 @@
 # 方案迭代记录 / Iteration Changelog
 
+## v4.2 blocking repair - 2026-08-26
+
+**Review-blocker repair only.** This pass does not change design logic, metrics, geometry, SLA, nodes, scenarios, implementation commitments or evidence levels. It embeds an OFL-licensed, text-specific Noto Sans SC subset for reliable offline CJK rendering; maps `CASE-01` to `CASE-06` to auditable public or project-institution sources with explicit reuse limits; and exposes the taskbook's Land / Space / Industry / Funding / Talent / Compute / Data / Scenario interfaces as one bilingual, machine-readable mechanism matrix.
+
+**Evidence boundary unchanged.** The eight-element matrix links the existing spatial, work-package, role, phase, risk, verification and AI-OFF systems without claiming land rights, funding, appointed bodies, permits, compute agreements or confirmed cooperation. Official boundaries and field conditions remain provisional / unknown / not field verified, and AI remains unable to upgrade them.
+
+## v4.1 - 2026-08-23
+
+**Implementation-control pass.** V4.1 does not redraw the V3 spatial system or raise any service claim. It introduces a machine-readable concept implementation-control register joining all six reversible work packages to specific spatial references, to-be-appointed concept roles, three non-financial resource bands, phase gates, field-ledger tasks, acceptance criteria, stop conditions and seven risks. Phase 0–3 now declares the proposed accountable role and resource band while retaining `not_appointed` status and an explicit no-budget/no-approval/no-land-right boundary.
+
+**Evidence boundary unchanged.** The new register is a handoff tool for professional teams, not an implementation promise. It does not identify a committed organisation, budget, procurement, land right, permit, schedule, existing facility or verified operation. All 45 field tasks remain `unknown`; 18 mandatory SLA-A tasks remain outstanding; `Target SLA = A / Verified SLA = B`, `SLA-B = C`, `SLA-C = C` and `AI_OFF_TEST = PASS_WITH_PROVISIONAL_PHYSICAL_NETWORK` are unchanged. The bilingual proposal and offline review pages now expose the control logic to human reviewers.
+
+**Review-sheet closure.** Figure 08 is appended to both bilingual A3 booklets and A0 board sets, and appears in the bilingual proposal and offline review. One spatial board now aligns `PHASE-000` to `PHASE-003`, `WP-01` to `WP-06`, `ROLE-01` to `ROLE-06`, `RB-1` to `RB-3` and `RISK-01` to `RISK-07`: three-area/node deployment at left, seven risk-to-space-to-action controls at right, and six work packages below. It adds no factual site assertion; every role stays `not_appointed` and every provisional geometry or field condition retains its existing boundary.
+
+## v4.0 - 2026-08-14
+
+**Human-readable final package.** V4.0 does not add a new urban system or raise any service claim. It turns the frozen V3 spatial design into seven bilingual, evidence-aware review figures: the overall three-zones-two-wings structure; the Zhongzhiyuan validation interface; the AI Origin civic knowledge room; the Dazhongsi conceptual station-arrival interface; four spatial sections; AI-ON/AI-OFF resilience; and the Research-to-City feedback loop. The A0 boards, A3 booklet, offline review pages and bilingual proposal now use this same reading order.
+
+**Evidence boundary unchanged.** Publicly supported context remains distinct from conceptual intervention. Provisional boundaries, routes, nodes, shade, seating, water, crossings, accessibility, operations and staffing are not upgraded to site facts. `Target SLA = A / Verified SLA = B`, `SLA-B = C`, `SLA-C = C` and `AI_OFF_TEST = PASS_WITH_PROVISIONAL_PHYSICAL_NETWORK` remain unchanged.
+
 ## v3.0 - 2026-08-13
 
 **Spatialization / urban-design deepening.** V3.0 延续 V2 的 Auditable Noonline SLA，并未提高任何 Verified SLA。升级重点是把服务协议转译为可解析、可复算、可阅读的城市空间系统：1 条抽象服务参考线被组织为 11 条概念 LineString；12 个 primary service nodes、8 个 secondary physical support points 与 5 个 concept manual fallback points 被明确关联到重点区、路线和 AI-OFF 使用逻辑。

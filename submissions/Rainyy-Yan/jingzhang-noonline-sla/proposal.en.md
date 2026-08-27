@@ -1,201 +1,294 @@
 ---
-title: "Jing-Zhang Noonline SLA / Midday Service Line"
-author_github: "Rainyy-Yan"
-language: "en"
-license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Extending V2's auditable Noonline SLA, this V3.0 spatializes a two-level walking-support network, three distinct key-area prototypes, and an evidence-gated implementation path around the Jing-Zhang heritage park."
-iteration: "v3.0"
-proposal_format_version: "2"
-bilingual_contract_version: "1"
 translation_of: "proposal.md"
-tracks: "ai-traffic-walkability,ai-public-services,civic-agent-governance"
-scenarios: "ai-traffic-walkability,enterprise-service-copilot,public-safety-operations-review,robot-delivery-low-speed,ai-cultural-guide,ai-health-service-navigation"
+language: "en"
+iteration: "v4.2"
 ---
-# Jing-Zhang Noonline SLA / Midday Service Line
 
-This proposal treats the AI Innovation Belt not as a collection of brighter screens, but as a public-service contract for the most ordinary and under-designed daily window: 11:30-14:30 on workdays, when researchers, visitors, nearby residents, service workers and campus users move between lunch, meetings, metro access, short rest and informal collaboration. Noonline SLA means "noon online sensing plus no-online fallback": AI may forecast heat, rain, congestion, detours and service queues, but the public realm must still provide visible shade, seats, water, wayfinding, staffed help and accessible alternatives [source:DATA-SRC-AGENT-TASKBOOK-20260518] [standard:BARRIER-FREE-ENVIRONMENT-LAW].
+# Jing-Zhang Noonline SLA
 
-The concept intentionally avoids repeating peer ideas that already focus on shade, cool routes, climate adaptation or general walkability. It therefore does not use the similar "cool-walk" naming space; it shifts the emphasis to a measurable midday service level, human fallback, public testing and governance. Population evidence is also used carefully: Haidian's 2020 census reports 69.7% of residents aged 15-59, 18.5% aged 60 and above, 56.5% with college education or above, and 35.7% non-local permanent residents. This supports a mixed-user service check, not a claim about exact 2026 site users [source:EXT-SRC-HAIDIAN-CENSUS-20210608].
+> **Treat noon as an urban stress test: AI can enhance a route, but no one should lose an enterable, stayable and helpable public path because they have no phone, no screen, or an offline AI service.**
 
-## V3.0: From Auditable Protocol to Spatialized Network
+![Overall urban structure showing the three zones, two wings, Level 1/2 and the evidence boundary of the Jing-Zhang public connection](assets/figures/v4-figure-01-overall-urban-structure.en.png)
 
-V2 established the evidence boundary, `Target SLA / Verified SLA`, AI-OFF and the field-verification workflow. V3.0 does not raise any verified grade; it puts the same logic into urban space. One abstract service reference is expressed as 11 parseable concept LineStrings, while 12 primary service nodes, 8 secondary physical supports and 5 concept manual-fallback points organize how people walk, pause and seek help without a phone. Every object retains a `concept_design` / `not_field_verified` evidence boundary [data:geometry/roads.geojson#ROAD-001] [data:geometry/public_space.geojson#PUBLIC-001] [metric:secondary_support_point_count].
+![Evidence Boundary Map (separate from the overall-structure plate): public taskbook scale, three-zones-two-wings relationship and provisional design expression](assets/figures/site-overview.en.png)
 
-The spatialization adds no ordinary AI feature. Instead, AI failure becomes a design constraint: residents, older adults, accompanying children, accessibility users, no-phone users, park workers, domestic visitors and international visitors should all complete basic midday movement through physical routes, fixed bilingual information, reserved stopping space and human help. AI is limited to prediction, explanation, dynamic adjustment and maintenance support; professional field verification always overrides AI confidence [standard:BARRIER-FREE-ENVIRONMENT-LAW] [assumption:A-FIELD-VERIFICATION-WORKFLOW-001].
+## 1. The Problem
 
-![Overview diagram of the Jing-Zhang Noonline SLA showing provisional boundary, three key areas, midday service spine and staffed fallback nodes](assets/figures/site-overview.en.png)
+An AI city can mistake being visible to an algorithm for being usable by a person. Noon is a small but candid test window: short walks, heat exposure, waiting, wayfinding, water, rest, crossings and temporary failure occur together. A public route that works only when phones, prediction, booking or test systems work is not reliable urban service.
+
+**Noonline SLA** establishes readable, walkable, stayable and human-handover public space first. AI then adds prediction, explanation, alerts, maintenance support and dynamic adjustment. AI is never a prerequisite for public service [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:BARRIER-FREE-ENVIRONMENT-LAW].
+
+## 2. Noon as an Urban Stress Test
+
+Noon compresses three urban conflicts into one period: heat and short trips, research testing and ordinary walking, rail arrival and daily service. The design therefore does not aim to recommend a smarter route. It organizes observable conditions: the public clearway is not occupied by queues, equipment or tests; staying, shade, water and information have clear reservations; and entry, crossing, accessible detour and human responsibility are verified before implementation.
+
+400 m is a participant-authored design target for **Level 1 service zones**. It is neither existing corridor-wide coverage nor a statutory standard. Level 2 inter-zone connectors carry orientation, the public Jing-Zhang narrative and basic AI-OFF wayfinding; they do not claim continuous SLA service [assumption:A-SLA-DESIGN-TARGETS-001] [assumption:A-GEOMETRY-DERIVED-METRICS-001].
+
+## 3. Why Jing-Zhang
+
+The c. 9 km Jing-Zhang Railway Heritage Park corridor and the three-zones-two-wings structure are publicly stated strategic context. The opened first phase of the heritage park and the protected former Tsinghuayuan station provide a real railway heritage setting [source:EXT-SRC-JINGZHANG-PARK-20230630] [source:EXT-SRC-QINGHUAYUAN-STATION-20260214]. The proposal does not invent existing tracks or relics in the three focal areas. It translates Jing-Zhang into three public-space rules:
+
+1. **Physical connection**: route, staying and orientation must remain intelligible without an algorithm.
+2. **Intelligent connection**: AI sits on top of an existing public order and helps explain and maintain it.
+3. **Resilient connection**: a failed test, device, entry or service must trigger a visible stop, downgrade, reroute or human handover.
+
+Jing-Zhang is therefore not an applied historical image. It is a spatial discipline of connection, maintenance, responsibility and recovery.
+
+## 4. Overall Spatial System
+
+43.6 km² is a coordinated research relationship among industry, ecology, rail and public service; c. 11.4 km² is the overall design area. Both are taskbook scale descriptions. Submitted geometry remains provisional and is never an official boundary or regulatory-plan redline [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605].
+
+The system uses 11 concept LineStrings, 12 primary service nodes, 8 secondary supports and 5 manual fallback points. It connects three distinct prototypes in a reversible research → public → market → feedback loop:
+
+- **Zhongzhiyuan**: Research → Prototype → Test → Validate.
+- **AI Origin**: Understand → Question → Co-create.
+- **Dazhongsi**: Arrive → Decide → Pause → Enter Daily Life.
+- **Zhongguancun service wing**: professional service, translation and governance interface, not a duplicate district.
+- **Xiaoyue River scenario wing**: ecology, daily scenarios and public-feedback interface, requiring ecological and engineering study.
+
+![Concept land-use and public-space organization: scheme roles rather than statutory parcels](assets/figures/land-use-structure.en.png)
+
+![Mobility, blue-green reservation and noon service: 11 concept routes with explicit evidence limits](assets/figures/mobility-bluegreen.en.png)
+
+![Key-area spatial prototypes: Zhongzhiyuan, AI Origin and Dazhongsi respectively carry validation, civic explanation and daily adoption](assets/figures/key-areas.en.png)
+
+## 5. Zhongzhiyuan: Research → Test → Validate
+
+Zhongzhiyuan is not a generic technology plaza. It is a research-validation interface where **testing can be seen but public right of way cannot be taken away**. Ordinary pedestrians use a separate public clearway; observers stay on a public observation edge; testing happens only in a concept activation zone separated by a safety buffer; researchers enter from a controlled side. F01 is not an existing service desk. It is the future human responsibility location for permission checks, exceptional handover and test stopping.
+
+The key spatial moves are:
+
+- Separate controlled test, buffer, observation/stay edge, planting/shade reservation and public clearway as readable bands.
+- Make test stop an ordinary capability: when the controlled zone closes, fixed signs, public route, observation edge and human handover remain.
+- Make research testing observable without bringing the public across equipment, permission or operational boundaries.
+
+![Zhongzhiyuan validation interface: conceptual relationship among public route, observation, buffer, controlled testing and F01](assets/figures/v4-figure-02-zhongzhiyuan.en.png)
+
+Test permission, safety dimension, existing equipment, public entry and actual shade remain unconfirmed by field or professional evidence; every item is shown as a conceptual intervention or field-verification requirement [assumption:A-CONTROLS-001].
+
+## 6. AI Origin: Understand → Question → Co-create
+
+AI Origin is not an AI showroom. It is a civic knowledge room in which the public retains choice. The public entry uses fixed information readable without a phone. N06 is a **heritage interpretation point** about Jing-Zhang connection, maintenance and public responsibility; it must not be read as an existing relic. N05 supports sitting, waiting, talking and human enquiry. AI is optional prediction and explanation at the side; opting out of AI does not mean opting out of the space.
+
+The key spatial moves are:
+
+- Use a physical knowledge line to connect entry, reading, staying, asking and exit rather than replacing place with screens.
+- Place seating, fixed signs, human help and optional AI separately, so use never requires login.
+- Translate Jing-Zhang culture into readable and maintainable everyday information rather than inventing a heritage object.
+
+![AI Origin civic knowledge room: physical knowledge line, staying, human help and optional AI](assets/figures/v4-figure-03-ai-origin.en.png)
+
+Public sources support the strategic role of AI Origin and the Jing-Zhang corridor context, but do not confirm the depicted entry, lateral links, seats or relic location. These conditions remain design inference or field verification [source:EXT-SRC-JINGZHANG-PARK-20230630] [assumption:A-HERITAGE-SEQUENCE-001].
+
+## 7. Dazhongsi: Arrive → Decide → Pause → Enter Daily Life
+
+Dazhongsi does not claim to connect a station exit directly to the proposal. It makes the first minute after rail arrival readable, stayable and helpable through a **conceptual station-arrival interface**. Verified context is limited to Dazhongsi Station, its A/B entrances and published in-station accessibility service information [source:EXT-SRC-DAZHONGSI-STATION-202605]. The scheme proceeds from N11 orientation, through N09 short stay and F04 human fallback, to N10 crossing/accessibility decision and an N12 daily-service frontage.
+
+The key spatial moves are:
+
+- Draw arrival → orientation → short stay → crossing/accessibility decision → daily service frontage as a legible decision sequence.
+- When external crossing, entry, accessible path or duty period is unverified, state reroute / downgrade / suspend instead of pretending station-city continuity.
+- Turn a high-frequency business-noon transfer into a public interface for short pause, wayfinding and human handover.
+
+![Dazhongsi conceptual arrival interface: verified station context is visibly separated from an unverified urban transition](assets/figures/v4-figure-04-dazhongsi.en.png)
+
+External crossings, legal passage, continuous accessible route, public entries and operating retail frontage all require field verification or study by transport, accessibility and operational professionals [assumption:A-ACCESSIBLE-ROUTE-001].
+
+## 8. SECTION-01–04 / Space Before AI
+
+Four sections turn a “route” back into usable urban relationships rather than an algorithm path: frontage, stay/service zone, planting or shade reservation, public clearway, fixed information, human help, optional AI, safety buffer and controlled zone each have a position. Dimensions are relative or `TBC after field survey`; none pretend to be construction sections.
+
+![SECTION-01–04: relative spatial relationships for the main spine, test interface, knowledge room and rail-arrival edge](assets/figures/v4-figure-05-sections-01-04.en.png)
+
+## 9. Research → City → Feedback → Iterate
+
+The innovation chain is not a one-way display chain. Zhongzhiyuan takes research, prototype and controlled testing; human verification takes safety, evidence and responsibility; AI Origin takes explanation, questioning and public feedback; Dazhongsi takes actual daily use and adoption; governance takes maintenance, correction and public response back into the next research loop. WP-02, WP-03, WP-04 and WP-06 make this a reversible sequence of pilots.
+
+![Research → City → Feedback → Iterate: a loop of spatial responsibilities and work packages](assets/figures/v4-figure-07-research-city-feedback.en.png)
+
+## 10. Noonline / AI-OFF
+
+Noonline follows **Physical → Human → Digital → AI**. When AI is on, it can predict crowding, explain routes, flag service state and assist maintenance. When AI degrades, unreliable recommendations stop. When AI is off, fixed wayfinding, physical-route logic, stay reservations, public-entry logic and human-service roles still provide the minimum public service.
+
+`AI_OFF_TEST = PASS_WITH_PROVISIONAL_PHYSICAL_NETWORK`. It is a pass for the concept network’s physical and human logic when AI is off. It does not confirm that seats, water, entries, crossings or human service exist or operate today [data:visual/assets/noonline-sla-test-results.json#AI_OFF_TEST].
+
+![AI-ON / AI-OFF: layered degradation and human fallback in the three spatial prototypes](assets/figures/v4-figure-06-ai-on-off-resilience.en.png)
+
+## 11. WP-01–06 / Reversible Implementation Packages
+
+| WP | WHERE / primary spatial object | Proposed accountable role | Resource band | Verification gate and stop condition |
+| --- | --- | --- | --- | --- |
+| WP-01 | Level 1 spines in three areas and eight support points | public-space pilot coordinator | RB-1 / RB-2 / RB-3 | If legal walking, clearway or maintenance interface is not recorded, or passage is blocked, remove or relocate |
+| WP-02 | Zhongzhiyuan N01–N04 and validation porch | public-space pilot coordinator | RB-1 / RB-2 / RB-3 | If permission, buffer or public bypass is unconfirmed, stop the test-facing interface |
+| WP-03 | AI Origin N05–N08 and civic knowledge room | public-space pilot coordinator | RB-1 / RB-2 | If entry, content maintenance or human enquiry is absent, withdraw the interactive layer and retain authorised physical information only |
+| WP-04 | Dazhongsi N09–N12 and arrival transition | site or station-interface custodian | RB-1 / RB-2 / RB-3 | If crossing is unsafe, detour inaccessible, entry non-public or duty absent, use verified public edge or suspend the connection claim |
+| WP-05 | five concept manual-fallback points and fixed wayfinding | operations and maintenance custodian | RB-1 / RB-2 | If service window, sign, facility maintenance or human role is absent, downgrade or remove the activated point |
+| WP-06 | 45 field-ledger tasks and Phase 0–3 | authorised field-verification lead | RB-1 / RB-3 | If evidence is missing, stale, rejected or AI-written, retain or downgrade Verified SLA and never auto-promote |
+
+This iteration adds a concept implementation-control register linking six work packages to six to-be-appointed role types, three non-financial resource bands, four phase decisions and seven risks. These roles are not appointed actors and the bands are not budgets. They establish the delivery interface that must be completed by Phase 0/1: who can verify, who can stop and who can maintain. RB-1 covers verification and governance, RB-2 reversible public interface, and RB-3 professional deepening for traffic, accessibility, heritage and engineering; none implies funding, land right, procurement, permit or governmental commitment [data:risk.json#concept_roles] [data:risk.json#resource_bands].
+
+Figure 08 puts this delivery control directly on the A3 and A0 sheets: phase gates above; work-package spatial deployment across the three areas and nodes at left; seven risk-to-space-to-action controls at right; and proposed accountable roles plus failure responses for all six work packages below. It shares the same WP, ROLE, RB, RISK and PHASE identifiers as `risk.json`; every role remains `not_appointed` and every spatial condition remains `concept_design_not_field_verified`. Delivery logic is not drawn as an approved project.
+
+![Figure 08: V4.1 implementation control joins phases, work packages, spatial objects, risk actions and the evidence boundary on one reading surface](assets/figures/v4-figure-08-implementation-control.en.png)
+
+The control-object counts are explicit and reviewable: six work packages and six concept role types [metric:implementation_work_package_count] [metric:implementation_concept_role_count]; three resource bands and seven stoppable risks [metric:implementation_resource_band_count] [metric:implementation_stoppable_risk_count]. These counts measure delivery-control completeness, not investment scale or actual operating capacity.
+
+The work packages remain conceptual, reversible pilot suggestions with no fabricated investment, schedule, land-right, approval or governmental commitment. Every phase now carries its proposed role, resource bands, gate and stop condition, and every work package points to specific roads, nodes and ledger tasks [data:geometry/phasing.geojson#PHASE-000] [data:risk.json#work_packages].
+
+## 12. Evidence, Metrics and Verification
+
+**Target SLA** is the intended design grade. **Verified SLA** is the grade current evidence can support. The Engine result remains: SLA-A = B, SLA-B = C and SLA-C = C. Missing any critical item among field-verified shade continuity, continuous exposure, real node location, water/seat state, public entry, key crossing, summer detour and human-service hours blocks promotion to A [data:visual/assets/noonline-sla-report.json#routes].
+
+The register separates two gates: whether a component can enter its next phase, and whether an SLA claim can be promoted. The first needs an interface, clearway, maintenance and safety record; the second still requires all 18 mandatory human field-evidence tasks for SLA-A. Even a locally workable pilot cannot lift the current Verified SLA while a critical heat, entry, crossing, accessibility or human-fallback record remains absent. This prevents one event, interface or algorithm score from being read as corridor-wide service capacity [metric:sla_a_mandatory_verification_task_count] [data:risk.json#risks].
+
+| Evidence level | How this proposal uses it |
+| --- | --- |
+| Level A — Publicly supported | The published Jing-Zhang corridor, three zones/two wings, task roles, heritage-park phase and Dazhongsi’s published in-station service information form context. |
+| Level B — Design inference | Routes, nodes, space bands, work packages and AI-OFF mechanism are conceptual interventions. |
+| Level C — Field verification required | Entry, crossings, external accessibility, shade, water, seats, publicness, retail status and human-service hours. |
+| Level D — Professional study required | Heritage controls, traffic safety, station-city integration, robot-test permission, engineering, rights, approval and implementation. |
+
+![Metrics and evidence chain: 11 concept routes, 12 primary nodes, 8 supports, 5 manual fallbacks and human verification gates](assets/figures/metrics-evidence.en.png)
+
+Submitted provisional geometry computes an approximately 11,412,825.386 sqm concept range. It is an internal recalculation workflow only and does not replace the publicly stated c. 11.4 km² design area [metric:site_area_sqm] [metric:official_overall_design_area_sqm].
+
+Green and public-space indicators are likewise recomputable concept geometry, not an existing survey or statutory control [metric:green_ratio] [metric:public_space_ratio].
+
+## Sources, Risks and Copyright
+
+All figures, PDFs and HTML are generated locally from public or cleared material, submitted concept GeoJSON and locally generated diagrams. They load no remote basemap, font, script or API. Where official boundary, regulatory GIS, facility inventory, microclimate measurement, public-entry data, external crossing and accessible-route survey are unavailable, the proposal remains `provisional / concept_design / not_field_verified`; visual completeness never substitutes for evidence [source:SOURCE-REGISTRY] [assumption:A-PROVISIONAL-BOUNDARY-001].
 
 ## Design Basis and Source List
 
-The evidence base has three layers. The official announcement and site package provide the project name, three-level scope, approximate 11.4 km2 overall design area, three key areas and deliverable depth. The agent taskbook adds requirements for naming, AI ecosystem, scenario cards, personas, landmarks, cultural narrative and long-term operation. Public standards and policy snapshots define the boundary for urban design, regulatory-plan-level claims, land-use codes, generative-AI service governance and accessible human fallback [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] [source:DATA-SRC-AGENT-TASKBOOK-20260518] [standard:MOHURD-URBAN-DESIGN-MEASURES].
-
-The spatial package uses repository-maintained provisional rough boundaries only as generation and visualization constraints. `geometry/site_boundary.geojson` and `geometry/key_areas.geojson` are explicitly marked as provisional constraints and must not be read as official redlines, road redlines, cadastral boundaries or precise area evidence. When official CAD/GIS files are released, the areas, drawings and HTML metrics must be recalculated as a full set [data:geometry/site_boundary.geojson#SITE-001] [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605].
-
-The only added external population source is Haidian's public seventh-census bulletin. Its role is district-level context: Haidian is not a single-purpose research park, but a complex urban district where young researchers, commuters, visitors, children, older adults and accessibility needs overlap. It does not support site-population, time-of-day demand or boundary claims [source:EXT-SRC-HAIDIAN-CENSUS-20210608] [assumption:A-CENSUS-SCOPE-001].
+The proposal relies on the public taskbook, public station information, public Jing-Zhang Heritage Park material, applicable standards snapshots and repository-cleared provisional geometry. The taskbook supplies the 43.6 km² research relationship, the c. 11.4 km² overall-design scale and the three-zones-two-wings roles; it does not supply official GIS suitable for a redline, construction extent or facility inventory. Source records limit each item to context, design inference or a verification lead. `sources.json`, `assumptions.json` and the drawings record those limits together. The design therefore treats noon public-service usability as an urban question, never turning a webpage, concept GeoJSON or AI inference into a site fact [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] [source:EXT-SRC-JINGZHANG-PARK-20230630] [assumption:A-PROVISIONAL-BOUNDARY-001].
 
 ## Three-Level Scope Framework
 
-The coordinated research area of about 43.6 km2 asks how a midday service system can become public infrastructure for an AI Innovation Belt. It links universities, research institutes, parks, communities, rail stations and the Jing-Zhang heritage park as one daily-use network, rather than treating the three key areas as isolated renewal islands [depth:three_level_scope_framework] [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509].
-
-The overall design area of about 11.4 km2 is the Noonline SLA test field. V3 expresses the service reference axis as 11 parseable concept LineStrings: three `JZ-MAIN` spine segments, a Zhongzhiyuan service-zone spine, Zhongzhiyuan/AI Origin/Dazhongsi access segments, plus transverse connectors and crossing interfaces. They are a design network for urban-design testing and recalculation, not official road GIS or an inventory of existing walking facilities. The network has two levels: Level 1 is the SLA service zone in the three key areas and their direct access segments; Level 2 is the concept connector between key areas, carrying route recognition, the Jing-Zhang cultural sequence and basic AI-OFF wayfinding only, without claiming continuous `<=400 m` service coverage. SLA-A is the target continuous-stay spine within Level 1, with Target SLA = A but current Engine Verified SLA = B; SLA-B governs short transverse access, and SLA-C governs station-to-park touchpoints. Together they address lunch movement, research meetings, rail-to-park access, visitor arrival and short rest [data:geometry/roads.geojson#ROAD-001] [metric:noon_sla_corridor_count] [metric:level1_sla_service_zone_count].
-
-The key detailed-design scope of about 368.4 hectares contains the Zhongzhiyuan AI autonomous innovation acceleration area, Beijing AI Origin Community and Dazhongsi AI industry cluster. They are not treated as copies of each other: the north section focuses on R&D and validation, the middle section on origin display and open community, and the south section on consumption, business and visitor service. All key-area polygons remain provisional [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003].
+The coordinated research level studies relationships among industry, rail, ecology and public service across 43.6 km². The overall-design level organizes the corridor, three zones, two wings and implementation interfaces at the publicly stated c. 11.4 km² scale. The key-area level proposes checkable spatial prototypes only for Zhongzhiyuan, AI Origin and Dazhongsi. These are not three unrelated drawings: the first explains why research, public explanation and daily use form one loop; the second organizes Level 1 service zones and Level 2 connectors; the third places clear walking, staying, human help, buffers and failure state into spatial bands. Every submitted boundary is provisional and requires recalculation once official geometry is available [metric:official_overall_design_area_sqm] [data:geometry/site_boundary.geojson#PROV-SITE-001].
 
 ## Coordinated Research Area: Industry and Future City Research
 
-The industry logic is to move AI enterprise service from closed meeting rooms to legible urban interfaces. Park teams need lunch-hour meetings, temporary work, visitor reception, demonstration space, compliance consultation and scenario testing; the city needs AI public value that people can understand. Noonline SLA combines those needs into service levels, but the levels are formed by observable spatial conditions rather than a pure AI score: shade continuity, sit-able rest, drinking water, accessible public rooms or service points, crossing waiting space, limited summer detour, and visible staffed fallback [depth:overall_spatial_structure] [metric:noon_service_node_count].
-
-Global cases are used as mechanisms, not formal copies: Kendall Square for university-enterprise proximity, Toronto Waterfront for data-governance caution, Paris Rive Gauche for rail-corridor redevelopment, Singapore one-north for research-life mixing, Seoul Digital Media City for display and consumption interfaces, London King's Cross for long-term renewal operation, and Shenzhen Hetao for cross-boundary collaboration. Together they point toward open scenarios, public compliance and everyday experience [source:DATA-SRC-AGENT-TASKBOOK-20260518].
-
-The future-city research priority is low-intrusion AI. The proposal uses public alerts, equipment status, service tickets, anonymized crowd levels, staff patrols and voluntary user feedback. It does not use faces, personal phone traces, payment data, private company records or non-cleared operational material. Any generated guiding or recommendation content must retain complaint, correction and human-review channels [standard:GENERATIVE-AI-INTERIM-MEASURES] [assumption:A-PRIVACY-001].
+Future-city research is not a row of AI firms beside a corridor. It includes how research enters public life, how people can question it and how it exits safely during failure. Zhongzhiyuan hosts research, prototypes and controlled validation; the Zhongguancun service wing provides professional-service, translation and governance interfaces; AI Origin enables explanation, questions and public feedback; Dazhongsi supports high-frequency daily use; and the Xiaoyue River scenario wing connects ecology, daily scenarios and feedback. The research area therefore frames Research → Prototype → Test → Validate → Demonstrate → Use → Feedback → Governance → Iterate, not a commitment about any enterprise, land right or development sequence [depth:industrial_ecosystem] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
-The structure is "one line, three sections, twelve primary service nodes, five concept manual-fallback points and two service levels." The one line is the route and spatial-narrative spine along the heritage park; the three sections are the northern validation section, the middle origin-community section and the southern consumption-business section; the twelve primary nodes organize midday service. The five concept manual-fallback points mark future locations for wayfinding, accessibility enquiry, human direction-giving, water support and event-day order; they do not claim that personnel or facilities have been deployed. The three key areas and their direct access are Level 1 SLA service zones, where 12 primary nodes and 8 non-staffed concept support points organize a `<=400 m` support-spacing design target. The two inter-zone connector segments are Level 2 and retain fixed route recognition, the Jing-Zhang cultural sequence and basic AI-OFF wayfinding only [data:geometry/public_space.geojson#PUBLIC-001] [metric:human_fallback_node_count] [metric:secondary_support_point_count].
-
-The twelve primary service nodes follow six siting rules: endpoints, direction-change points, staying points, crossing points, public-entry points, and heat/rain risk points. Eight secondary support points only supplement fixed recognition, shade/rest reservation and AI-OFF wayfinding rhythm within Level 1; they are neither staffed points nor claims of existing seating, drinking water, entries or facilities. The five staffed fallback points are selected from the twelve where sections change, transit access is important, public entrances concentrate users, or event-day flows converge. They are conceptual siting rules and drawing evidence, not existing-facility statistics [metric:noon_service_node_count] [metric:secondary_support_point_count] [assumption:A-MICROCLIMATE-001].
-
-Regulatory depth is written as recommendation, not statutory conclusion. Land-use zones, building interfaces, renewal projects and service nodes are reference material for professional teams. They do not replace regulatory-plan amendment, FAR, building height, road redline, tunnel/bridge design or municipal-capacity studies [standard:MOHURD-CONTROL-DETAILED-PLANNING] [assumption:A-CONTROLS-001].
-
-The AI-native quality is that space becomes an auditable service contract. Each node can record whether shade, seating, water, offline explanation, human intervention and wheelchair or stroller paths exist. AI predicts, schedules and informs; visible facilities and staff patrols deliver the public-service quality [depth:development_intensity_controls] [metric:public_space_ratio].
-
-![Land-use and service-level structure diagram showing four conceptual land-use partitions and midday service zoning](assets/figures/land-use-structure.en.png)
+The overall design uses 11 concept LineStrings, 12 primary nodes, 8 secondary supports and 5 manual fallback points to describe a readable, stayable, helpable and downgradeable noon public-service network. Level 1 applies the participant-authored 400 m target only within the three service zones and direct access segments. Level 2 provides orientation, the Jing-Zhang narrative and basic AI-OFF wayfinding, without claiming continuous SLA coverage. Renewal actions focus on public frontage, walkability, service reservation and reversible pilots. They do not present concept parcels, buildings or roads as regulatory redlines or approved works. Regulatory planning, traffic, fire, municipal and accessibility decisions require later calibration with official data and professional study [data:geometry/roads.geojson#ROAD-001] [assumption:A-SLA-DESIGN-TARGETS-001].
 
 ## Detailed Design of Key Areas
 
-Zhongzhiyuan is proposed as the northern "midday validation section." The service line links R&D buildings, experimental services, open testing and transit access so lunch, short meetings, prototype demonstrations and external reviews can occur on a walkable low-speed interface. Its distinct spatial moves are: shaded waiting edges for short meetings outside R&D ground floors; a reversible prototype display and staffed registration point at open-test entrances; and a noon validation porch that combines crossing waiting, seating and drinking water on the transit-access side. The design output is a replicable node kit, not a parcel-level building conclusion [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:three_key_area_detailed_design].
-
-Beijing AI Origin Community is proposed as a visible AI public living room. It hosts an AI origin station, model-transparency window, Jing-Zhang memory interface and noon open classroom, joining Zhongguancun innovation culture, railway heritage and AI public governance. Its distinct spatial moves are: a public-entry forecourt with fixed bilingual wayfinding and staffed enquiry; a model-transparency window paired with sit-able public edges so visitors do not only pass a screen; and a Jing-Zhang memory interface connected to the midday walking route so international visitors can understand the origin story without a phone. It is the strongest location for visitor guidance, international communication and staffed fallback [data:geometry/key_areas.geojson#PROV-KEY-002] [metric:pilgrimage_node_count].
-
-Dazhongsi is proposed as the southern consumption and business-service section. It strengthens metro-to-park, office-to-lunch, and event-to-public-space links. Its distinct spatial moves are: a shaded queueing and enquiry point on the station-to-park exit direction; a linked ground-floor service interface with seating, water and light consumption; and a public-space edge that can become a staffed event-day buffer. Lunch-hour launches, roadshows and community events remain possible operating concepts, not confirmed investment or operation plans [data:geometry/key_areas.geojson#PROV-KEY-003] [source:DATA-SRC-AGENT-TASKBOOK-20260518].
-
-![Three key-area differentiation diagram showing northern validation, middle origin community and southern business service](assets/figures/key-areas.en.png)
+Zhongzhiyuan juxtaposes a public clearway, observation/stay edge, safety buffer and controlled test activation so research can be observed without taking public right of way. AI Origin combines a physical knowledge line, sit-wait-talk space, human enquiry and optional AI into a civic room usable without a phone. Dazhongsi organizes arrival, orientation, short stay, crossing or accessibility decision and daily-service frontage as a conceptual station-city transition. They respectively carry validation, public explanation and daily adoption, and cannot substitute for each other. Specific entries, existing seats, water, shade, external connections and operating hours remain conceptual or field-verification conditions; detailed design must follow site, heritage, traffic and operation findings [depth:key_area_design] [data:geometry/public_space.geojson#N01] [assumption:A-CONTROLS-001].
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
-Five personas are used for service checks rather than population-count claims. They are young researchers who need low-cost short collaboration, visiting enterprise and investment-service users who need legible arrival and display paths, nearby residents and families who need safe shaded public space, older adults and accessibility users who need offline explanation and staffed help, and international visitors who need aligned bilingual wayfinding and public-compliance notes [source:EXT-SRC-HAIDIAN-CENSUS-20210608] [metric:persona_count].
-
-The ten AI+ scenario cards are midday comfort navigation, lab visitor arrival, open-test booking, accessible slow-route review, AI origin public Q&A, Jing-Zhang cultural guidance, event crowd-level operations, low-speed robot delivery windows, midday safety patrol, and developer pop-up classroom. Each card must list its spatial carrier, data source, human fallback and prohibited personal-data types [metric:scenario_card_count] [standard:GENERATIVE-AI-INTERIM-MEASURES].
-
-The three industry validation scenarios are a thermal-comfort service-level pilot, a low-speed robot and pedestrian coexistence pilot, and an event-day guidance and crowd-level pilot. They must be reversible, manually controllable and correctable through public feedback; they are not approved operations, do not require a named vendor and do not promise commercial effects [metric:industry_validation_scenario_count] [assumption:A-PRIVACY-001].
+The proposal does not address one generic “AI user.” It serves ordinary pedestrians, short-time noon users, observers, researchers, rail arrivals, maintainers and human-service responsibility roles. AI can assist test-status explanation in Zhongzhiyuan, voluntary knowledge interpretation and feedback at AI Origin, and dynamic alerts or maintenance at Dazhongsi. It does not replace fixed signs, public clearways, human help or reroute judgement. Each scenario retains a physical route for opting out of AI, and an exception triggers stopping, downgrade, reroute or human handover. AI+ is therefore a limited improvement to explainability, maintainability and accountability, rather than a screen added to public space [depth:ai_scenarios] [data:visual/assets/noonline-sla-test-results.json#AI_OFF_TEST].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
-Land use is expressed in four conceptual partitions: midday research and AI R&D mixed district, Jing-Zhang blue-green buffer and stay zone, campus-park mixed service district, and block-renewal daily service district. They inherit the scaffold's topology-safe partition and cover the boundary, but they do not replace formal territorial-spatial planning or regulatory land-use approval [data:geometry/land_use.geojson#LU-001] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE].
-
-The building strategy is "interface renewal first, stock activation first, demolition conclusions later." It proposes midday-reachable interfaces, shared ground floors, sheltered edges, movable service modules and explainable display windows. Any specific retain, renovate, demolish, new-build, ownership, fire-safety or municipal conclusion needs professional evidence and official data [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish].
-
-The metrics layer records only what can currently be recomputed from provisional geometry or from the proposal structure. FAR, building density, height and parking controls remain pending official data rather than being filled with invented values [metric:floor_area_ratio] [metric:building_density].
+Submitted land-use and building geometry expresses design roles, public frontage and research relationships only. It provides no statutory parcel, FAR, building scale, demolition quantity or ownership conclusion. The Zhongzhiyuan controlled-test band, AI Origin civic room and Dazhongsi daily-service frontage should first be pursued through reversible, maintainable interface improvements rather than assumed major new construction. Building frontage is a relative relationship for information, staying, service or controlled entry in the sections. Retention, renovation, demolition, structural work, fire egress and heritage treatment must follow ownership, survey, heritage and engineering study. Concept areas are internal recalculation material and cannot be promoted as delivery metrics [data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001].
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
-Slow mobility is organized through three SLA path types, with spatial evidence attached to the 11-LineString concept network, 12 primary service nodes, 8 secondary support points and 5 staffed fallback points [data:geometry/roads.geojson#ROAD-001] [metric:noon_sla_corridor_count] [metric:noon_service_node_count].
-
-Level 1 comprises the three key areas and direct access, and carries a `<=400 m` support-spacing design target. The two Level 2 inter-zone connectors carry continuous route recognition, the Jing-Zhang cultural sequence and basic AI-OFF wayfinding only; `service_continuity_status = inter_zone_connector_not_sla_continuous`. SLA-A is the design target for the heritage-park noon stay spine within Level 1, with Target SLA = A but current Verified SLA = B; SLA-B is campus-park transverse short access; SLA-C is the rail-to-park last-mile touchpoint system. Shade, rest, water, entries, crossings, detours and staffed fallback remain a list of spatial conditions awaiting field verification, rather than AI rankings, phone-navigation scores or claims about existing facilities [metric:secondary_support_point_count].
-
-### Noonline SLA Engine Evidence Alignment
-
-This round uses a two-layer status: `Target SLA` is the intended design level, while `Verified SLA` is the level that the Noonline SLA Engine can support from current public/cleared data and evidence declared in this submission. The program result takes precedence over narrative wording; when field verification is missing, the target level must not be described as a proven current condition [data:visual/assets/noonline-sla-report.json#normal_routes.SLA-A] [metric:noon_sla_corridor_count].
-
-| Design Claim | Engine Status | Evidence Gap | Upgrade Trigger |
-| --- | --- | --- | --- |
-| SLA-A heritage-park noon spine, designed for A. | Target SLA = A; Verified SLA = B. | Shade continuity, continuous exposure distance, real node locations, water/seating condition, public entries, crossings, summer detour and staffed-service responsibility are not field verified. | Upgrade from B to A only after all critical evidence is supplied and the Engine has no blocker; if any critical evidence is missing, it must not auto-upgrade. |
-| SLA-B transverse short access, designed for B. | Target SLA = B; Verified SLA = C. | Crossing waiting, public-entry opening, summer detour distance and node condition remain conceptual evidence. | Recheck after public entries, crossings and detour distance are field verified. |
-| SLA-C station-to-park touchpoints, designed for C. | Target SLA = C; Verified SLA = C. | Still depends on conceptual nodes and not-field-verified fixed wayfinding, water, seating and staffed enquiry conditions. | Confirm real points, opening hours and accessible paths before keeping or adjusting C. |
-| All AI services off. | AI_OFF_TEST = PASS_WITH_PROVISIONAL_PHYSICAL_NETWORK. | Fixed signs, physical routes, seats, water, public entries and staffed fallback form a conceptual backup network, not proof of real operation. | The AI-OFF result can move from provisional to field-verified only after facilities are confirmed present, open, accessible and assigned to an operator. |
-
-The A-level upgrade threshold is a hard threshold, not a vague promise that the route will reach A later. To move from Verified SLA = B to A, the package must add field verification for shade continuity, measured continuous-exposure distance, real drinking-water locations and opening status, seating and rest-node condition, public-entry opening conditions, key crossing conditions, actual summer detour distance, and staffed-service responsibility plus available hours. If any critical evidence is missing, the Engine should not auto-upgrade to A.
-
-#### V2 Field-Verification Workflow
-
-V2 does not claim that any field verification has been completed. The Engine derives 45 machine-readable verification tasks from the existing three SLA paths, conceptual nodes and eight evidence-gap categories, and writes them to `visual/assets/noonline-field-verification-ledger.json`. Eighteen SLA-A tasks are mandatory promotion-gate evidence, and every baseline task is `unknown`. Each task includes route/node/object, evidence required, method, pass/fail condition, status, confidence, verifier, timestamp and evidence reference. The human-readable checklist is generated from the same ledger into `visual/index.html#v2-field-verification` and `visual/index.en.html#v2-field-verification`; no disconnected manual checklist is maintained [data:visual/assets/noonline-field-verification-ledger.json#summary] [metric:field_verification_task_count].
-
-The state machine permits only `unknown → scheduled → observed → verified / rejected`. AI may not create, observe, verify or reject field evidence. `verified` and `rejected` require a human verifier, timestamp and evidence reference. Because all 18 mandatory SLA-A tasks remain incomplete, the promotion gate returns `promotion = blocked`; Target SLA = A and Verified SLA = B therefore remain unchanged. A rejected mandatory item continues to block promotion and triggers a remain-B or downgrade review. Even if all mandatory items are later verified through the human workflow, the gate only permits a subsequent Engine/policy recheck; it never auto-writes Verified SLA=A [data:visual/assets/noonline-sla-report.json#verification_workflow] [assumption:A-FIELD-VERIFICATION-WORKFLOW-001].
-
-The 2026 public announcement of the approved Jing-Zhang Railway Heritage Park corridor control-plan context provides current official background for a roughly 9 km green corridor, north-south/east-west slow mobility and public-service direction. This submission's `JZ-MAIN` and access segments remain a conceptual service reference network, not official GIS, an existing-facility inventory or SLA-A field evidence [source:EXT-SRC-JINGZHANG-CONTROL-PLAN-20260812] [data:geometry/roads.geojson#ROAD-001].
-
-Municipal and public-service facilities follow a lightweight and reversible approach: begin with movable water, seating, shade, charging, signs and staff tables, then decide whether fixed works are needed after professional measurement. Unpublished utility, drainage, power, fire-safety and underground-space information is not inferred [depth:municipal_new_infrastructure] [assumption:A-CONTROLS-001].
-
-Rail connection does not propose new rail alignments or station works. It asks how a person understands the noon route from station exit to park or campus: which path has shade, where one can sit, whom to ask when a system fails, and how an international visitor reads both Jing-Zhang history and AI origin culture [standard:BARRIER-FREE-ENVIRONMENT-LAW] [depth:traffic_rail_slow_parking].
-
-AI OFF / no-phone / no-screen mode is a complete public-service mode, not an emergency appendix. The Noonline SLA Engine currently reports `AI_OFF_TEST = PASS_WITH_PROVISIONAL_PHYSICAL_NETWORK`: after all AI services are off, the conceptual network still relies on fixed route signs, ground or post wayfinding, visible seats, drinking-water points, public entrances and the five staffed service points to maintain basic midday service. This remains dependent on provisional / not-field-verified physical conditions and must not be described as proof of real operation. AI only predicts, reminds, dynamically adjusts and supports maintenance; it is never a prerequisite for shade, rest, water, enquiry or accessible movement [data:visual/assets/noonline-sla-report.json#ai_off_test] [standard:BARRIER-FREE-ENVIRONMENT-LAW].
-
-### V3 SLA Spatial Metrics and Four Typical Sections
-
-V3 separates three forms of continuity that must not be conflated. The first is **corridor continuity**: 11 concept LineStrings form a legible Jing-Zhang route and spatial narrative. `ROAD-001` (AI Origin to Dazhongsi) and `ROAD-003` (AI Origin to Zhongzhiyuan) are Level 2 inter-zone connectors. The largest adjacent network gap between the 12 primary service nodes is 4,298.796 m from N05 to N09, on `JZ-MAIN` through `ROAD-002 + ROAD-001`; its straight-line and concept-network distances are equal only because of simplified collinear geometry, not because it is a measured walking distance. This gap cannot support a claim of corridor-wide continuous rest service or `<=400 m` service coverage [metric:geometry_route_node_spacing_max_m] [metric:geometry_primary_corridor_adjacent_gap_count].
-
-The second is an **SLA service-continuity design target**, which applies only to the Level 1 zones at Zhongzhiyuan, AI Origin and Dazhongsi and their direct access. With 12 primary nodes plus 8 non-staffed secondary support points, the Level 1 support network has a maximum gap of 389.182 m, a median of 272.789 m and zero adjacent gaps above 400 m; the three zone maxima are 389.182 m at Zhongzhiyuan, 383.376 m at AI Origin and 326.913 m at Dazhongsi [metric:level1_support_spacing_max_m] [metric:level1_support_spacing_median_m] [metric:level1_support_spacing_over_400_count].
-
-This is a recomputable concept-layout target, not evidence that seating, water, shade, entries or staffed service already exist. A 400 m walking service distance for seating and drinkable water, at least one staffed fallback per area, and a 150 m maximum continuous exposure remain implementation and verification targets [metric:design_target_max_continuous_exposure_m].
-
-The third is **verified continuity**, which remains field-verification unknown: tree/building shade and summer-solstice continuous exposure, real position and opening status of seats and water, entry opening, legal crossings and waiting conditions, accessible continuity at kerbs/ramps/lifts, and staffed-service responsibility and hours. They remain in the existing V2 verification ledger. If any critical SLA-A upgrade item is missing, Verified SLA remains B; a design target cannot substitute for a human field record [metric:field_verification_unknown_task_count] [assumption:A-SLA-DESIGN-TARGETS-001].
-
-| Typical section | Spatial rule (all are concept design targets) | AI-OFF and failure response |
-| --- | --- | --- |
-| SECTION-01 Midday walking spine | Keep a continuous, legible walking clearway in Level 1 service zones. Put shade, staying space, primary service nodes, secondary support points and information outside it, so AI devices, queues or seats do not consume through movement. `ROAD-001` and `ROAD-003` are Level 2 inter-zone connectors that provide fixed route recognition, the cultural sequence and basic wayfinding only, without claiming `<=400 m` service coverage. Widths, tree positions and paving await redline and field survey. | Without screens, ground/post signs, concept support points and staffed points provide orientation. If continuous shade, lawful movement or maintenance responsibility cannot be confirmed, remove the relevant Level 1 A-level service target, downgrade to B or suspend the segment. |
-| SECTION-02 Zhongzhiyuan research-test interface | Organize three bands: pedestrian space, safety buffer, and observable test/validation interface. Ordinary pedestrians need not cross the test band; test equipment enters the edge only during an authorized operating window. N01/N02 and F01 provide porch, pause and human verification. | When testing is closed, pedestrians bypass the test interface on the fixed spine and porch signs. If testing occupies the clearway, the buffer cannot be maintained or no responsible role exists, stop the test display and retain only public walking and enquiry. |
-| SECTION-03 AI Origin civic living room | N05–N08 form a sitting, pausing and readable civic room. A Jing-Zhang timeline, public AI interpretation, bilingual entry and low-level rest provision organize it; readable physical information is primary and QR is supplementary. | With AI or screens off, fixed bilingual signs, physical cultural interpretation, seats, water design location and F02/F03 human enquiry still define public use. If the public entry is closed or interpretation cannot be maintained, remove the entry claim and direct people to a confirmed public edge. |
-| SECTION-04 Dazhongsi rail-transfer interface | Link “rail arrival → public entry → lawful crossing → short pause/water → spine” through N09–N12. Place waiting, accessible-detour explanation and high-frequency lunch pause at the transfer. F04/F05 serve rail transfer and event order. | Fixed transfer guidance and human service remain when AI is off. If legal crossing, accessible detour, entry opening or responsible hours cannot be confirmed, use a verified alternative; if none exists, suspend the claim of continuous rail connection. |
-
-Crossing and accessibility do not pre-assert existing signal cycles, sightlines, slopes or facilities. The concept rule is a waiting place outside the walking clearway, readable static wayfinding and visible human-help information at a crossing. An accessible alternative must measure actual detour distance independently; straight-line distance is never treated as accessible movement. Entry closure, unacceptable crossing risk, an alternative exceeding a confirmed acceptable detour, test occupation, unmaintainable water or missing human responsibility trigger reroute, downgrade, suspension or removal of the claim rather than dynamic recommendations masking the break [assumption:A-ACCESSIBLE-ROUTE-001] [assumption:A-FAILURE-RESPONSE-001].
-
-![Mobility and blue-green public-space diagram showing service spine, transverse connectors, cooling belt and fallback points](assets/figures/mobility-bluegreen.en.png)
+The transport strategy begins with legible walking and the first minute after rail arrival. A public clearway must not be occupied by testing, queues or equipment; turns, pause, crossing decisions and human help need fixed information and visible responsibility. Dazhongsi Station A/B exits and published in-station accessibility information are real context, but do not prove an external legal crossing, continuous accessible route, public entry or municipal condition. Shade, water, seating, lighting, drainage, accessibility, fire safety and human service progress through reservation, verification and professional study. If verification fails, the system must reroute, downgrade or suspend rather than maintain an unsupported service grade [source:EXT-SRC-DAZHONGSI-STATION-202605] [assumption:A-ACCESSIBLE-ROUTE-001].
 
 ## Blue-Green Network, Public Space, and Urban Character
 
-The blue-green system is not primarily a claim of larger green area; it is a continuous midday experience connecting greenery, park edges, corners and ground-floor interfaces. The green-space ratio and public-space ratio come from provisional geometry, while the figures intentionally de-emphasize the provisional boundary and foreground service lines, nodes and fallback points [data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio].
-
-The public-space kit has six components: shaded seat, water point, bilingual wayfinding, AI explanation display, staffed service table and open-test notice. Each component requires a no-screen or low-tech version, so public space does not become a system only for expert smartphone users; seating, water, fixed signs, public entries and staffed tables are the infrastructure that still works when AI is off [data:geometry/public_space.geojson#PUBLIC-001] [standard:BARRIER-FREE-ENVIRONMENT-LAW].
-
-Urban character is deliberately restrained: railway memory, research transparency and midday accessibility. AI pilgrimage nodes are not oversized sculptures; they are four updatable carriers: the origin station, open-source honor wall, model-transparency window and service-level milestone marker [depth:height_massing_character] [metric:pilgrimage_node_count].
-
-### Jing-Zhang Heritage–AI Public-Space Sequence
-
-Culture is not a historic plaque attached to a node. V3 organizes a walkable, stayable and no-phone-readable concept sequence: **Jing-Zhang memory → contemporary public life → public AI interpretation → research and testing → everyday rail and business life**. N06 at AI Origin is the **memory interface**, using time, material, direction and bilingual static information to bring linear railway memory into the civic room. N05/N07/N08 form the **civic AI interface**, locating sitting, seeing, asking and entering at a readable public threshold. N01/N02 at Zhongzhiyuan are the **innovation/test interface**, showing research through a visible, exitable validation porch without asking pedestrians to cross a test zone. N09–N12 at Dazhongsi form the **everyday rail interface**, bringing arrival, crossing, short pause and midday service into high-frequency city life. These anchors are concept roles, not invented heritage coordinates. Exact heritage-intervention location, conservation requirements and interpretive material await authoritative heritage and site data [source:EXT-SRC-JINGZHANG-CONTROL-PLAN-20260812] [assumption:A-HERITAGE-SEQUENCE-001].
+The noon stress test brings heat exposure, short walking, waiting, hydration and staying into one public-space judgement. Blue-green work is therefore not decorative: planting and shade are service-band reservations, stay points must remain outside the clearway, and information plus human help need visible locations. Jing-Zhang culture is not represented by copied tracks or ornaments. It enters the interface as rules for continuity, readability, maintenance and recovery when systems fail. Existing tree canopy, water, microclimate, seating and facility condition have not been surveyed, so drawings never show concept reservations as completed ecological facilities [data:geometry/green_space.geojson#GREEN-001] [assumption:A-MICROCLIMATE-001].
 
 ## Renewal Projects, Implementation Policy, and Phasing
 
-Implementation does not begin by spreading more devices. It proceeds through six pausable work packages; every lead actor below is a role type, not a real party that has already committed:
-
-| Work package | Scope, location, and route / node | Lead role / dependency | Acceptance evidence and key metric | Hold / stop / downgrade |
-| --- | --- | --- | --- | --- |
-| WP-01 Physical spine wayfinding and walking continuity | Level 1 key areas, direct access, N01–N12 and S01–S08; `ROAD-001` and `ROAD-003` are Level 2 inter-zone connectors with static wayfinding and the Jing-Zhang sequence. | Public-sector coordinator and site operator; boundary, passage and maintenance confirmation required. | Human-verified continuous path record, turn-sign inventory and maintenance responsibility; `<=400 m` concept support-spacing design target in Level 1 only. | If a Level 1 segment is unlawful/not continuous or has no maintenance owner, suspend it and remove its A-level service target; Level 2 retains confirmed route wayfinding only. |
-| WP-02 Zhongzhiyuan test-validation porch pilot | `JZ-ZZY-ACCESS` on `ROAD-004/005/011`, N01–N04, S01/S02/S07 and F01: pedestrian-buffer-test bands. | Site operator, test-interface operator and professional verifier; test permit and safety boundary required. | Test-window record, proof that buffer does not consume the clearway, human-verification arrangement. | If testing occupies walking space, lacks a safe buffer or lacks a responsible role, stop testing and retain public walking only. |
-| WP-03 AI Origin civic room and Jing-Zhang interpretation pilot | `JZ-ORIGIN-ACCESS` / `JZ-LATERAL` on `ROAD-006/008`, N05–N08, S03–S05 and F02/F03: Origin entry and lateral links. | Public-sector coordinator, site operator and cultural-interpretation professional team. | Readable bilingual static information, public-entry hours, field record of sitting, enquiry and stay. | If the entry is closed or interpretive content is unauthorized/unmaintainable, relocate to a confirmed public edge or remove the claim. |
-| WP-04 Dazhongsi rail-to-noon transfer pilot | `JZ-DAZHONGSI-ACCESS` / `JZ-CROSSING` on `ROAD-007/010`, N09–N12, S06 and F04/F05: rail access and crossing interfaces. | Rail/interface operator role, site operator and accessibility professional verifier. | Field record of lawful crossing, entry, actual accessible detour and midday service responsibility. | If crossing is unsafe, detour unacceptable or interface not agreed, reroute; with no alternative, suspend continuous rail connection. |
-| WP-05 AI-OFF fixed facilities and manual fallback | F01–F05, S01–S08 and their linked routes: fixed signs, low-tech information and service handover. | Site operator, maintenance contractor role and staffed-service role. | Physical-sign/help-information list, duty hours and failure-exercise record. | If staff are unavailable, water cannot be maintained or signage fails, downgrade service and stop claiming a complete AI-OFF network. |
-| WP-06 Field verification, recalculation and iteration | All SLA paths, N01–N12, S01–S08, F01–F05 and provisional-boundary data. | Professional verifier, public-sector coordinator and maintenance role. | V2 ledger evidence for location, shade, exposure, entry, crossing, detour, facilities and responsibility; recalculation record. | Missing or rejected critical evidence keeps Verified SLA at B or lower and blocks expansion. |
-
-`geometry/phasing.geojson` represents all phases within the same concept range; it is not a statutory construction sequence. **Phase 0** enters only with lawful field-verification permission and exits after a baseline ledger for tenure/entry/crossing/accessibility/maintenance plus measurements; any missing critical item holds it. **Phase 1** uses only reversible wayfinding, temporary stay, interpretation and staffed-service pilots; it exits only after clearway and AI-OFF exercises pass, while test interference stops or reroutes it. **Phase 2** may improve three-area connections and professionally confirmed infrastructure only after entries, crossings, accessible detours, maintenance and permissions are confirmed; failure downgrades to Phase 1 or suspends the work. **Phase 3** is evidence-supported expansion, never an automatic Verified-SLA increase. Expansion is allowed only after a human verifies the V2 ledger essentials, the Engine is subsequently rechecked and operating responsibility is sustainable [depth:renewal_project_list] [data:geometry/phasing.geojson#PHASE-000] [data:geometry/phasing.geojson#PHASE-003].
-
-Implementation policies are open co-creation suggestions: a midday service-level ledger, scenario-test application template, public feedback and correction channel, bilingual event-day guidance kit, accessibility review checklist and developer-community maintenance mechanism. They are not confirmed government policies, fiscal commitments or investment-attraction promises [source:DATA-SRC-AGENT-TASKBOOK-20260518] [depth:phasing_implementation].
-
-Long-term operation can become "Jing-Zhang Noon Lab": a summer midday service review, developer lunch-break roadshow, AI public-service open day, noon heritage walk, international visitor week and open-source proposal retrospective. Its value is a reusable ledger and auditable feedback, not one-time publicity [metric:scenario_card_count].
+WP-01 to WP-06 are minimum viable, stoppable and upgradable packages, not a string of vision labels. Each now has a primary spatial object, proposed accountable role, resource bands, start gate, traceable field tasks, acceptance gate and stop response. Phase 0 appoints an authorised verification role and records interfaces; Phase 1 runs reversible pilots only at confirmed interfaces; Phase 2 permits professional work on public realm, accessibility, transport, heritage and engineering only where the interface is confirmed; Phase 3 expands in a bounded way only where responsibility remains sustainable and evidence remains auditable. Roles and resources here are to-be-delivered concept interfaces, not funding, schedules, land rights, approvals or governmental promises. A pilot that blocks public passage, cannot be maintained, creates safety risk or loses critical evidence must stop, relocate or downgrade; expansion follows complete human verification only [data:geometry/phasing.geojson#PHASE-000] [data:risk.json#phases] [assumption:A-FAILURE-RESPONSE-001].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
-The structured metrics show a provisional submitted boundary area of about 11,412,825.386 sqm and an official announcement overall-design-area value of about 11.4 km2. These are approximate cross-check values only. The green-space ratio is about 0.123423, the public-space ratio about 0.073281, and the number of key areas is 3 [metric:site_area_sqm] [metric:official_overall_design_area_sqm] [metric:key_area_count].
-
-Service metrics show 3 midday service path types, 11 concept route segments, 3 Level 1 SLA service zones, 2 Level 2 inter-zone connectors, 12 concept primary service nodes, 8 secondary support points and 5 visible human fallback nodes [metric:noon_sla_corridor_count] [metric:noon_service_node_count].
-
-The 3 path types are SLA-A/B/C spatial service levels on a multi-segment concept network, not three independent road centerlines; the 12 nodes, 8 support points and 5 fallback points come from concept siting rules, not existing-facility statistics. V3 spacing and point-line association are recomputable concept-geometry diagnostics: route continuity is not corridor-wide SLA service continuity, the 400 m Level 1 target is only a design target, and field performance remains pending verification [metric:geometry_service_node_on_declared_line_ratio].
-
-The compliance matrix covers all official announcement and agent-taskbook requirements. The standards matrix covers the announcement, taskbook, urban-design measures, regulatory-plan depth, land-use classification, AI governance and accessibility boundaries. The design-depth matrix covers all 15 formal depth items [depth:metrics_recalculation] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
-
-![Metrics and evidence-chain diagram showing area, service nodes, scenario cards, human fallback and data gaps](assets/figures/metrics-evidence.en.png)
+The metric system separates design targets, concept-geometry-derived values and current verified status. The 400 m threshold is a Level 1 design target, not corridor-wide existing coverage. Concept geometry can recount 11 routes, 12 primary nodes, 8 secondary supports and 5 manual fallbacks, but cannot prove that facilities exist. Target SLA is A while the Engine verifies SLA-A as B, SLA-B as C and SLA-C as C under current evidence. Missing critical field evidence cannot promote the claim. `metrics.json`, the compliance matrix, standard matrix, design-depth matrix and Engine preserve a machine-readable evidence chain; this narrative explains how it shapes spatial judgement [metric:design_target_service_node_spacing_m] [data:visual/assets/noonline-sla-report.json#routes].
 
 ## Risk, Copyright, and Compliance
 
-The largest risk is that "service level" could be misread as an already implementable engineering standard. To avoid that, heat comfort, crowd levels, facility status and public feedback are written as a testing protocol; accessibility and staffed fallback are written as design baselines; official boundary and regulatory-control gaps are recorded in assumptions, sources, proposal text and the visual page [assumption:A-MICROCLIMATE-001] [depth:risk_missing_data].
-
-A second risk is population overclaim. This proposal does not claim the exact share of older adults, children, researchers or migrant residents inside the site. Haidian census data supports only district-level mixed-user and inclusion checks, not project-site population or midday footfall statistics [source:EXT-SRC-HAIDIAN-CENSUS-20210608] [assumption:A-CENSUS-SCOPE-001].
-
-All figures, PDFs, HTML and structured data are generated locally from public or cleared sources plus repository provisional geometry. No remote map tiles, external fonts, third-party images, personal data or unauthorized trademarks are used. The interactive visual runs offline; the report HTML has no script; the visual HTML calls no remote API [source:SOURCE-REGISTRY] [standard:GENERATIVE-AI-INTERIM-MEASURES].
+The central risk is not an incomplete image. It is mistaking a provisional boundary, concept node, public in-station information or algorithm output for an existing, approved or buildable fact. The Site Evidence Ladder therefore separates publicly supported context, design inference, field verification and professional study; solid, dashed, verification and study marks express that distinction visibly. The implementation-control register turns that boundary into seven stoppable risks: public interface; clearway and accessibility; heat/rest/water; maintenance and human fallback; test safety and privacy; AI exclusion; and treating provisional geometry as approval control. All drawings, PDFs, HTML and offline interaction use only local package files plus public or cleared material. They load no remote map, font, API, personal data or uncleared asset. Traffic safety, heritage, rights, engineering, permits and public responsibility remain decisions for the appropriate professional and governing bodies [source:SOURCE-REGISTRY] [data:risk.json#risks] [assumption:A-SITE-EVIDENCE-LADDER-001].
 
 ## References
 
-- Official announcement and site package: project scope, tasks, key areas and deliverable requirements [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509].
-- Agent taskbook: naming, scenarios, personas, AI landmarks, culture and long-term operation [source:DATA-SRC-AGENT-TASKBOOK-20260518].
-- Provisional boundary: generation, visualization and self-check only, not an official redline [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605].
-- Haidian seventh census bulletin: district-level population context, not site population or noon footfall [source:EXT-SRC-HAIDIAN-CENSUS-20210608].
-- Standards and policy snapshots: urban design, regulatory-plan depth, land-use classification, generative-AI governance and accessible human-service boundaries [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING].
+This package does not dress a concept line up as a real project. The public taskbook and source registry support only the coordinated scale, the three-zones-two-wings relationship and the Jing-Zhang cultural context; provisional boundaries and concept spatial layers support design expression and recalculation only. Site routes, external crossings, accessibility, canopy, service hours, property, permits, funding and named implementation bodies must still be obtained independently. Therefore every `Verified` state may be recorded only by an authorised human verifier with an auditable record, and AI may not automatically promote `unknown`. Precedents extract public-interface principles only; they do not prove regional cooperation or replicable delivery conditions. The brand graphic is likewise participant-authored concept work, and any future installation still requires rights, material and approval confirmation. This boundary allows the proposal to discuss space, governance and testing together without exceeding the capability of public material [source:SOURCE-REGISTRY] [assumption:A-PROVISIONAL-BOUNDARY-001] [metric:field_verification_unknown_task_count].
+
+## 13. V4.2 Taskbook Deliveries: Open, Not Overclaimed
+
+### 13.1 Global precedents and regional exchange interfaces
+
+The following is not a list of confirmed partners and does not copy projects into Haidian. It separates transferable public interfaces from local conditions that must still be verified. The evidence level, limitation and translation for CASE-01–06 are in `visual/assets/v4_2-agent_delivery_index.json#precedents`; every regional relationship is a **conceptual exchange interface / pending formal coordination**.
+
+| ID | Precedent or reference | Transferable public interface | Limited local translation |
+|---|---|---|---|
+| CASE-01 | Barcelona Superblock public realm [source:EXT-SRC-CASE-01-BARCELONA-SUPERBLOCK-20210202] | Official material supports street-to-public-space transformation for everyday use; this proposal takes only a walk-and-stay-first lesson | No traffic control, dimensions or delivery conditions are transferred |
+| CASE-02 | Singapore Punggol Digital District [source:EXT-SRC-CASE-02-PUNGGOL-DIGITAL-DISTRICT] | JTC material supports proximity among research, education, industry and community interfaces | A research-public-interface reference only; no land, finance, district or institutional cooperation is claimed |
+| CASE-03 | Tokyo Shibuya public wayfinding practice [source:EXT-SRC-CASE-03-SHIBUYA-PUBLIC-SIGN-20250515] | Shibuya City material supports unified, easy-to-understand and multilingual public signs | It does not certify accessibility; Dazhongsi external legal crossing and continuous access remain to be field verified |
+| CASE-04 | Toronto Quayside / Sidewalk Labs public-governance review [source:EXT-SRC-CASE-04-WATERFRONT-TORONTO-DSAP-20190910] | The official independent commentary supports public questions, review boundaries and public-interest scrutiny of digital governance | The commentary was preliminary; only explanation, independent review and human appeal are retained |
+| CASE-05 | Helsinki open urban testbed [source:EXT-SRC-CASE-05-TESTBED-HELSINKI] | The official city platform supports companies and RDI actors proposing and conducting tests in real urban settings through specific arrangements | It proves no local cooperation, procurement or site access; permission, data and safety checks come first |
+| CASE-06 | Public Jing-Zhang Railway Heritage Park context [source:EXT-SRC-JINGZHANG-PARK-20230630] | Official public material supports the c. 9 km corridor, reported first phase and public-space/active-travel context | No existing focal-area relic, precise boundary or intervention location is invented |
+
+**Regional synergy framework (RS-01–05):** Beiwai Community is a daily-public-question and feedback interface; Future Science City is a research-question and explainable-test interface; Huairou Science City is a science-communication and talent-dialogue interface; Beijing E-Town is a manufacturing/deployment-learning and safety-review interface; Jing-Jin-Ji is an annual-theme and cross-city-learning interface. Each may exchange only five non-sensitive public outputs: `knowledge` methods, `test` de-identified protocols, `talent` public talks/mentor time, `event` public themes, and `governance` stop/appeal templates. Data, finance, property, facility access and personnel commitments remain unknown until a named body and lawful document confirm them [assumption:A-CONTROLS-001].
+
+### 13.2 Ecology-industry relationship and component library
+
+Ecology is not a backdrop to industry. EIM-01 canopy/shade–noon heat–staying; EIM-02 rainwater/drainage–accessibility–wet-weather detour; EIM-03 public clearway–test buffer–research observation; and EIM-04 knowledge room–public question–governance feedback form the ecology-industry relationship. They are conceptual links to green-space, public-space, road and verification-ledger layers; they do not prove existing canopy, drainage capacity or engineering feasibility.
+
+The CL-01–06 component library is reversible concept hardware, not a procurement list: CL-01 fixed bilingual wayfinding; CL-02 low-height evidence plaque; CL-03 phone-independent rest/water reservation; CL-04 test buffer and stop sign; CL-05 human-fallback handover point; CL-06 rain/heat detour information. Every component must preserve the clearway, be readable AI-OFF, be maintainable and be removable. Dimensions, materials, fire, accessibility, property and approvals remain for specialist and field verification.
+
+#### agent.2 Land–Space–Industry–Funding–Talent–Compute–Data–Scenario mechanism matrix
+
+This is not a list of secured inputs. It is the common `agent.2` index from taskbook requirement to implementation gate. Full bilingual fields, spatial objects, WP/SC/IV links and source/assumption references are in `visual/assets/v4_2-agent2-eight-element-mechanism-matrix.json#elements`. Every `ROLE` remains unappointed, every real condition remains `unknown`, and AI has no promotion authority.
+
+| Element | Spatial interface | Concept mechanism / ROLE | Evidence and phase gate | STOP / HOLD / DOWNGRADE |
+|---|---|---|---|---|
+| ELEM-01 Land | PROV-KEY-001–003 and concept land_use | reserve public interfaces, temporary-use triggers and parcel checks; ROLE-05/03 | concept/provisional; verify title, publicness and controls at PHASE-000 before deepening | HOLD and retain only the provisional diagram when title, permission, lawful access or controls are absent |
+| ELEM-02 Space | Level 1, N01–N12, eight support points and F01–F05 | clearway, stay, fixed guidance and human fallback first; ROLE-01/03/04 | not field verified; verify AI-OFF legibility and maintenance through PHASE-000–003 | STOP/reroute on passage, crossing or access failure; DOWNGRADE without maintenance |
+| ELEM-03 Industry | three-area nodes, SC/IV and RS-01–05 | research → bounded test → public explanation → daily feedback → CONV-01; ROLE-01/04/06 | permission-gated concept; PHASE-001–003 requires test window, bypass and safety/privacy review | STOP when testing occupies public space or lacks permission; HOLD conversion without body and operating commitment |
+| ELEM-04 Funding | PHASE-000–003 and WP-01–06 | phase-triggered future public-interest procurement, pilot resources and lifecycle maintenance; no budget stated; ROLE-01/04/05 | finance unknown; activate only with lawful funding/procurement and maintenance record | HOLD when funding, procurement, property or maintenance responsibility is undocumented; remove unsupported service claims |
+| ELEM-05 Talent | N01, N05, N06, N08 and EVENT/DEV | public talks, mentor windows, verifier training and minimum-test protocols; ROLE-02/04/06 | partners unknown; PHASE-001–003 requires named host, public access and rights record | HOLD without host, access or content rights; STOP any activity that breaches consent, privacy or clearway |
+| ELEM-06 Compute | optional AI at N01/N05/N07/N09 | define edge/cloud interface, availability and failure degradation only; no compute is claimed; ROLE-06/04 | compute agreement unknown; security, energy/interface, monitoring and AI-OFF exercise before activation | disable AI when compute, security, audit or responsibility fails; retain physical and human service |
+| ELEM-07 Data | 45-task ledger, 18 SLA-A items and N01–N12 | provenance–time–location–verifier–validity ledger; exclude identity, faces and uncleared data; ROLE-02/06 | unknown until human verified; task-specific gates through PHASE-000–003 | remain unknown/DOWNGRADE if missing or stale; STOP/reject AI-written or prohibited personal data |
+| ELEM-08 Scenario | SC-01–10, IV-01–03 and N01–N12 | bind scenario to public bypass, human fallback, permitted window, evidence gate and stop authority; ROLE-01/02/05/06 | concept/not approved; PHASE-001–003 requires named stop authority | STOP for safety/privacy failure, HOLD without permission/evidence, DOWNGRADE to fixed information when AI/operations fail |
+
+### 13.3 Complete SC-01–10 scenario cards
+
+Every card is a concept scenario rather than an open service. Its unique ID, node, evidence level and Chinese equivalent are indexed in `visual/assets/v4_2-agent_delivery_index.json#scenario_cards`.
+
+| ID | Scenario and space | Optional AI layer | Human / AI-OFF fallback | Industry-test boundary |
+|---|---|---|---|---|
+| SC-01 | N01 before a Zhongzhiyuan test starts | crowd forecast | F01 fixed stop sign and human explanation | IV-01, permitted window only |
+| SC-02 | N02 noon shade and stay | heat notice | fixed shade/rest instruction | no data collection, no activation |
+| SC-03 | N03 public-entry enquiry | bilingual Q&A | fixed map and human handover | IV-02 entry-access verification |
+| SC-04 | N04 crossing decision | risk notice | physical direction and reroute | HOLD when unverified |
+| SC-05 | N05 civic question | optional explanation | F02 human enquiry | IV-03 explanation/appeal record |
+| SC-06 | N06 Jing-Zhang interpretation | low-sensitivity interactive narrative | fixed cultural wayfinding | no invented relic or facial recognition |
+| SC-07 | N07 night/rain/heat detour | optional dynamic notice | static night/wet-weather board | DOWNGRADE without lighting/maintenance evidence |
+| SC-08 | N08 public-entry event day | optional queue notice | human routing and physical queue line | permitted event window only |
+| SC-09 | N09 short stay after arrival | arrival information | F04 human help | no continuous-service claim without verified external interface |
+| SC-10 | N10–N12 crossing to daily frontage | optional path prompt | fixed reroute/suspend sign | IV-02; SUSPEND if legality or accessibility is unknown |
+
+The industry-validation scenarios are restricted subsets of SC-01/03/05: IV-01 public clearway non-occupation, IV-02 entry/crossing/accessibility evidence integrity, and IV-03 human appeal and AI switch-off. They collect no personal identity and never auto-promote a test result into deployed service.
+
+### 13.4 P-01–05 personas and inclusive responses
+
+| ID | Need and barrier | Spatial response | Human fallback | AI-OFF response |
+|---|---|---|---|---|
+| P-01 older pedestrian | heat, rest and complex turns | stay reservations and low-height large-type fixed signs | F02/F04 direction and rest help | segment-by-segment physical information |
+| P-02 disabled person | uncertain ramps, lifts and continuous access | mark unverified points as reroute, never call a concept line accessible | authorised person verifies an alternative | physical direction and human explanation; stop the promise if unknown |
+| P-03 child caregiver | crossing, short stay and queue safety | separate clearway and test buffer with visible stay edge | human routing and help point | fixed graphics and stop signs, not algorithm commands |
+| P-04 non-Chinese speaker | language, symbols and asking for help | Chinese-English text, pictograms and destination symbols | F02/F04 basic human direction | numbered arrows and non-colour-only symbols without screens |
+| P-05 night/extreme-weather user | sun, standing water, unknown lighting/hours | rain-heat detour and physical unavailable-service notice | activate human point only in declared service window | static detour remains; HOLD/DOWNGRADE without verification |
+
+### 13.5 H-01–04 landmarks/honour displays and Noonline SLA identity
+
+H-01 Connection Gauge at N01 explains the public clearway; H-02 Evidence Desk at N05 explains Target/Verified; H-03 Maintenance Archive at N06 narrates Jing-Zhang maintenance responsibility; H-04 First Arrival Minute at N11 explains the right to pause and reroute. These are **conceptual interpretation or honour-display nodes**, not existing heritage, official awards or confirmed property locations.
+
+The Noonline SLA logo is “a public line that does not break when the screen disconnects”: two parallel clearway strokes join at a legible human-handover point; the open interval means AI can exit while public right of way remains. LOGO-01 is the horizontal mark and LOGO-02 the narrow-screen/node symbol. Minimum size is 18 mm in print and 64 px on screen; clear space is 0.5 mark-height. It must not be stretched, rotated, recast as an official emblem, cover a provisional warning, communicate safety by colour alone, or sit beside unlicensed railway/government/corporate marks. Hierarchy: Level 1 Jing-Zhang cultural wayfinding (place/direction, not this project brand); Level 2 Noonline SLA (service rule); Level 3 Evidence Legend (Target/Verified/unknown); Level 4 event sub-brands (EVENT-01–03). The mark is participant-authored geometric linework with no third-party trademark, photograph or restricted asset; rights and generation source are recorded in `visual/assets/v4_2-brand_identity.json`.
+
+### 13.6 Annual events, developer community and long-term conversion
+
+EVENT-01 Noon Stress-Test Week rehearses AI-OFF only in permitted public windows; EVENT-02 Evidence Open Day explains Target/Verified and the appeal path with a human host; EVENT-03 Jing-Zhang Maintenance Dialogue publishes public maintenance questions. DEV-01 developer community follows: question registration → minimal test protocol → human/public review → stop or review → publishable method. It may not upload personal data, bypass approval or turn a demonstration into routine operation. CONV-01 is a conceptual conversion funnel: public issue → compliant pilot application → independent review → named-body/finance/property/O&M documents → sustainable operation. Missing next-stage evidence means HOLD; AI cannot advance it.
+
+### 13.7 Implementation evidence and bilingual audit
+
+`visual/assets/v4_2-implementation_verification_matrix.json` connects WP-01–06, all 45 FV tasks and the 18 mandatory SLA-A items to PHASE, ROLE, format, validity, threshold, stop authority and HOLD/DOWNGRADE response. Every task remains `unknown` at baseline; only an authorised human verifier with auditable evidence may change it, and AI cannot write promotion. `visual/assets/v4_2-bilingual_equivalence_checklist.json` compares every number, metric, ID, evidence level, Target/Verified state, warning, figure and taskbook output with the same locatable section in both languages.
+
+Primary public material includes the Haidian planning authority’s call and taskbook scale statement; the Beijing Municipal Government’s public information on the Jing-Zhang Railway Heritage Park first phase and c. 9 km corridor; Beijing Subway’s public page for Dazhongsi Station A/B exits and in-station accessibility service; the Beijing Cultural Heritage Bureau’s protection information for the former Tsinghuayuan station; and the repository’s registered standards, data and source registry. Each citation is governed by the source ID, date, allowed use and limitation recorded in `sources.json`. Public material supports only the context it expressly states; it never replaces official GIS, field survey, facility audit, permission or approval [source:EXT-SRC-JINGZHANG-PARK-20230630] [source:EXT-SRC-DAZHONGSI-STATION-202605] [source:EXT-SRC-QINGHUAYUAN-STATION-20260214].
