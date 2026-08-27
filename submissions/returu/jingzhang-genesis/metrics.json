@@ -1,0 +1,216 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11425448.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate when official polygon is released."
+      ]
+    },
+    "green_area_sqm": {
+      "status": "known",
+      "value": 1496686.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features)) EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Design proposal geometry within provisional boundary."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.131,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Derived from provisional geometry; recalculate with official boundary."
+      ]
+    },
+    "public_space_sqm": {
+      "status": "known",
+      "value": 163320.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features)) EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Design proposal geometry within provisional boundary."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0143,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Derived from provisional geometry; recalculate with official boundary."
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 952156.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(buffer(road_centerline, width/2).area) EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Road width estimated by road_type; no official road redline available."
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.0833,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Estimated from centerline buffer."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 146105.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual building massing only; not based on existing building survey."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.0128,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual design quantity, not a statutory density value."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 44,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprint_features)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls are not present in the public site package. Pending official regulatory planning conditions."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(building_height)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls including aviation/heritage constraints not publicly available."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_announcement_value",
+      "confidence": "high",
+      "assumptions": [
+        "Official area from qualification pre-announcement."
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_announcement_value",
+      "confidence": "high",
+      "assumptions": [
+        "Official area from qualification pre-announcement; computed geometry 11,425,448 sqm from provisional polygon."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_announcement_value",
+      "confidence": "high",
+      "assumptions": [
+        "Official area sum: 192.1 + 104.3 + 72.0 ha."
+      ]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional",
+      "statement": "All geometry uses repository provisional rough boundary polygons. Official redline polygons have not been released.",
+      "impact": "Area metrics, land-use partition, and spatial relationships are approximate. Must recalculate all geometry-dependent metrics when official boundaries are available.",
+      "recalc_trigger": "Official SITE_BOUNDARY and KEY_AREA GeoJSON files published in brief/site-package/geometry/"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "FAR, building height, building density, setback, and other regulatory controls are not available in the public site package.",
+      "impact": "Conceptual building massing (44 buildings, 14.6 ha footprint) is a design quantity only, not a statutory control value. Height ranges in narrative are spatial form intentions.",
+      "recalc_trigger": "Approved regulatory planning conditions or official design brief attachments released."
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_data",
+      "statement": "Existing building inventory, ownership data, and current land use are not included in the public data package.",
+      "impact": "Retain/renovate/demolish classification cannot be determined. All buildings are labeled new_build as conceptual placeholders. Actual classification requires field survey and cadastral data.",
+      "recalc_trigger": "Existing building survey and cadastral data provided by organizer or professional team."
+    },
+    {
+      "id": "A-ROAD-001",
+      "status": "low_confidence",
+      "statement": "Road centerlines are agent-generated schematic alignments. Road widths are estimated by type (arterial 40m, secondary 25m, local 15m).",
+      "impact": "Road area (952k sqm) is approximate. Actual road alignments and redlines must follow official transportation planning.",
+      "recalc_trigger": "Official road network data or regulatory plan released."
+    },
+    {
+      "id": "A-POPULATION-001",
+      "status": "background_only",
+      "statement": "Population, employment, and industry data used in narrative are from publicly available reports and news, not verified official statistics.",
+      "impact": "Public service facility sizing and talent housing targets are conceptual, not demand-based.",
+      "recalc_trigger": "Official census, economic census, or regulatory plan population data."
+    },
+    {
+      "id": "A-TRANSIT-001",
+      "status": "background_only",
+      "statement": "Rail transit references are based on publicly known metro lines. Exact station locations and future line alignments are not confirmed.",
+      "impact": "Transit-oriented design suggestions are directional only.",
+      "recalc_trigger": "Official comprehensive transportation plan released."
+    }
+  ]
+}
