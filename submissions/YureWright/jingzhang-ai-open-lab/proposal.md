@@ -11,7 +11,7 @@ tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
 
-<!-- USER-CONCEPT: open laboratory interaction, energy tokens, and Transformer Park are conceptual proposals requiring technical, accessibility, privacy, safety, and professional review. -->
+<!-- USER-CONCEPT: open laboratory interaction, energy tokens, and Transformer Park are conceptual proposals requiring technical, accessibility, privacy, safety, and professional review. Updated visual production v4: corrected Chinese typography, reduced information density, rebuilt boards after human visual review, and verified the final package in a local validation repository. -->
 
 # 城市作为开放实验室：百年京张 AI 创新带
 
@@ -208,6 +208,41 @@ agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解
 风险和缺资料清单由风险深度项、约束图层和场地包共同校核 [depth:risk_missing_data] [data:geometry/constraints.geojson#CONSTRAINTS] [source:SITE-PACKAGE]。`missing_data_checklist.csv` 中列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，必须进入 `assumptions.json`、自检和正文风险章节。任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，都必须降级为待确认事项；完整专业核对保存在标准矩阵中。
 
 本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。AI agent 对事实、来源、版权、空间数据、指标和表达负责；维护者和专业评审可依据自检结果、空间复核和合规矩阵要求返修或拒绝。
+
+## agent.1 品牌识别与总体概念
+
+品牌主张为“京张智脉 / JZ Open Lab”。Logo 方向是“一条铁路折线穿过开放方框”：铁路折线代表百年京张和持续连接，开放方框代表可进入、可质疑、可退出的城市实验室。建议采用深京张蓝 `#102A43`、铁路金 `#F7B955`、实验绿 `#2A9D8F` 和警示朱红 `#E76F51`；中文标题使用黑体，英文副标题使用无衬线体；图例统一使用“范围—节点—路径—治理边界”四级符号。中英名称规则：专名先中文后英文，例如“城市耳朵 / City Ear”，功能描述先中文后英文；不得把 token 翻译成货币、积分或碳币。
+
+## agent.1/5 三区两翼与区域协同
+
+三区分别承担“输入—理解—输出”：北京 AI 原点社区是居民问题和开源记忆入口，众智园是开发者/企业的可解释性工坊，大钟寺是产业展示与输出客厅。两翼向北连接北纬社区与未来科学城的科研/人才网络，向南连接怀柔科学城、经开区及京津冀产业协作网络。协同机制是“季度问题征集—跨区实验课题—共享数据协议—人工复核—年度成果展”，所有跨区合作均为概念建议，需由各区和专业团队确认。
+
+## agent.2 全球案例与创新生态图谱
+
+以下案例仅作公开案例对照，不声称已复制其条件：[source:CASE-01] Barcelona Superblocks（低速公共空间与居民参与）；[source:CASE-02] Helsinki Oodi（公共学习/数字服务复合）；[source:CASE-03] Seoul AI/创新公共空间（城市服务试验）；[source:CASE-04] Paris Réinventer Paris（开放征集与城市试点）；[source:CASE-05] MIT Media Lab City Science（数据与城市实验）；[source:CASE-06] Amsterdam Smart City（跨主体实验网络）。生态图谱分为基础研究—开源工具—场景试点—专业审查—规模转化五层，海淀方案对应的入口是公共问题、开发者社区和可逆试点。
+
+## agent.3 场景—空间—运营矩阵
+
+| 场景 | 空间对象 | 最小数据 | 人工复核/退出 | 运营者 | 试点指标 |
+|---|---|---|---|---|---|
+| 城市耳朵 | 座椅/路灯/服务点 | 匿名文本、设施编号 | 人工审核；可删除、可离线纸笔提交 | 社区+运维 | 响应时间、退出率、无障碍完成率 |
+| 动能—推理 Token | 运动设施/储能柜/解释屏 | 电量、设备损耗、输入输出 token 估算 | 不采健康数据；匿名/退出榜单 | 公共服务+能源运维 | 计量误差、能耗透明度、参与公平性 |
+| Transformer 公园 | 六段步行学习路径 | 用户自愿输入、公开示例 | 人工复核台；无网导览和人工讲解 | 公园运营+教育团队 | 完成率、理解度、投诉闭环 |
+| 产业沙盒 | 众智园试验工坊 | 经授权的脱敏测试数据 | 安全评审、可撤回、停止条件 | 园区+企业+第三方审查 | 原型周期、事故数、迁移率 |
+
+前三项是公共学习场景；产业沙盒、低速交通协同和设施运维助手为三项产业测试验证场景。小月河场景赋能翼建议以“水环境观察—慢行反馈—人工复核—小规模试点”形成体验路径。
+
+## agent.4 地标、荣誉与组件系统
+
+三处核心地标：①“京张开源门”作为历史入口与边界说明；②“Transformer 公园”作为 AI 学习地标；③“全球开发者荣誉墙/输出客厅”作为成果展示节点。组件库包括城市耳朵节点、Token 能耗解释牌、人工复核台、无障碍导视、低刺激模式牌、离线问题卡和可撤回提示牌。荣誉体系只记录自愿公开的 GitHub ID、Agent 名称或匿名贡献，不与公共服务、信用或商业收益绑定。
+
+## agent.6 年度活动与长期运营
+
+建议年度节奏：春季“京张问题征集周”，夏季“开发者步行与公开课”，秋季“产业沙盒审查季”，冬季“年度开放实验成果展”。运营闭环为“征集—筛选—人工复核—小规模试点—公开指标—停止/扩展决策—年度复盘”。牵头角色建议为项目统筹/专业设计团队，协作角色包括社区、公园运维、高校、园区企业、能源服务商和第三方安全/无障碍审查者；启动条件是授权数据、预算边界、隐私与安全审查通过；阶段成果是问题册、试点方案、审查记录、指标报告和停止条件记录。人才/企业转化路径为公开课—开源工具—合规试点—园区孵化—专业深化，均为概念建议。
+
+## 视觉与数据修复声明
+
+本版本将所有 SITE_BOUNDARY、KEY_AREA 和由其派生的面积明确标注为 provisional-only；`site_area_sqm` 是从临时几何复算的低置信度模型值，不是官方精确面积。缺少官方 polygon 不阻断内容评分，但阻断法定红线、工程、审批和官方精确面积主张。中英文网页和 PDF 必须分别使用对应语言文字；若资产确为语言中性，应在 manifest 中声明 neutral，不得复制伪双语文件。
 
 ## 参考资料
 

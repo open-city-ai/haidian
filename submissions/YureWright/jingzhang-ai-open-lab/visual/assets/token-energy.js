@@ -1,0 +1,1 @@
+function leaveTokenRanking(){document.getElementById('token-ranking-status').textContent='已选择不参与个人排名；公共 AI 服务仍然平等开放。'}
