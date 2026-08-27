@@ -1,5 +1,5 @@
 ---
-title: "A Dynamic Crowd-Flow Control Model for Public Spaces — Demonstration on the Jing-Zhang AI Innovation Belt"
+title: "Passenger-Flow Thermometer: A Dynamic Crowd-Flow Control Model — Jing-Zhang Interface Demonstration"
 author_github: "563323549-boop"
 language: "en"
 proposal_format_version: "2"
@@ -7,19 +7,19 @@ bilingual_contract_version: "1"
 translation_file: "proposal.md"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "This proposal introduces a dynamic crowd-flow control model for public spaces: a perception layer that handles only anonymous, aggregated movement states; a computation layer that rates density, flow speed, and bottleneck risk with parameters from public standards; and an application layer that translates results into design-stage checks and operations actions. The model is demonstrated along the Jing-Zhang railway heritage park corridor — making safety visible."
+summary: "This submission presents a Passenger-Flow Thermometer for public spaces: anonymous aggregated flow states enter a computation layer that separates boarding and alighting pressure, and outputs are translated into public-space and operations actions. It demonstrates one station–park interface in the Jing-Zhang heritage-park context; it is not a master plan for the entire belt."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "public-safety-operations-review", "enterprise-service-copilot"]
 iteration: "v0.1"
 ---
 
-# A Dynamic Crowd-Flow Control Model for Public Spaces — Demonstration on the Jing-Zhang AI Innovation Belt
+# Passenger-Flow Thermometer: A Dynamic Crowd-Flow Control Model — Jing-Zhang Interface Demonstration
 
 ## Design Basis and Source List
 
 The first basis of this proposal is the Prequalification Announcement for the Centennial Jing-Zhang AI Innovation Belt Urban Design Open Call [source:OFFICIAL-ANNOUNCEMENT]; the second is the Agent Open Call Taskbook [source:AGENT-TASKBOOK]. All spatial judgments derive from the repository's registered provisional rough boundaries [source:SITE-PACKAGE] [source:SOURCE-REGISTRY]. These boundaries are not official redlines; every area, ratio, and zoning derived from them is a low-confidence conceptual design value to be recalculated once official data is released.
 
-The core contribution of this proposal is a **dynamic crowd-flow control model applicable to public spaces**, demonstrated along the Jing-Zhang railway heritage park corridor. The main contributor has methodological experience in urban public transport passenger-flow monitoring and has shared related methods publicly; this submission contains and requires no non-public operational data — all demonstration figures are clearly labeled simulated or conceptual values.
+The core contribution of this submission is a **Passenger-Flow Thermometer for public spaces**, demonstrated at one station–park interface in the Jing-Zhang railway heritage-park context. This is not a master plan for the Centennial Jing-Zhang AI Innovation Belt, and it does not claim to complete the belt's land-use, building, industry, or implementation planning; the wider area is used only as spatial context for showing how the model can enter a real public-space problem. The main contributor has methodological experience in urban public transport passenger-flow monitoring and has shared related methods publicly; this submission contains and requires no non-public operational data — all demonstration figures are clearly labeled simulated or conceptual values.
 
 Source usage boundaries follow the repository registry [source:SOURCE-REGISTRY]: formal sources answer task requirements, background-only materials remain background, and provisional geometry yields only conceptual values. Gaps are logged in `assumptions.json` and the repository's `missing_data_checklist.csv` [source:SITE-PACKAGE].
 
@@ -27,9 +27,9 @@ Source usage boundaries follow the repository registry [source:SOURCE-REGISTRY]:
 
 ## Three-Level Scope Framework
 
-At the coordinated research area level (~43.6 km²), this proposal redraws no boundary and asks one question: how can the crowd-flow control model become a shared public-safety foundation across the three areas and two wings [source:OFFICIAL-ANNOUNCEMENT]. At the overall design area level (~11.4 km²), we adopt the repository's provisional rough substitute boundary as the submitted scope [data:geometry/site_boundary.geojson#SITE-FLOW-001] and delineate, along the schematic Jing-Zhang railway alignment inside it, a **flow-control demonstration corridor** of roughly 414 hectares as the detailed working object [data:geometry/phasing.geojson#PHS-001].
+At the coordinated research area (~43.6 km²) and overall design area (~11.4 km²) levels, this submission provides **context only**; it does not present a complete plan for either scale [source:OFFICIAL-ANNOUNCEMENT] [data:geometry/site_boundary.geojson#SITE-FLOW-001]. The actual submission object is a conceptual demonstration of the Passenger-Flow Thermometer at one class of station–park interface: the last 100 m between the Dazhongsi station forecourt and a park entry. The continuous demonstration corridor shown in the drawings is only a conceptual carrier indicating that the model can move along public space; it does not replace a master plan [data:geometry/phasing.geojson#PHS-001].
 
-Work deepens across levels: mechanism research at the research scale, conceptual structure at the overall scale, recalculable spatial design at the demonstration-corridor scale. The three key areas directly cite the repository's provisional rough ranges with their provisional status preserved [data:geometry/key_areas.geojson#KEY-001] [data:geometry/key_areas.geojson#KEY-002] [data:geometry/key_areas.geojson#KEY-003].
+The working depth is therefore threefold: identify public-space questions at the open-call scale; show how one interface fits the Jing-Zhang heritage-park context; and specify the input, grading, action, and human-review loop at the selected interface. The three key areas and the two additional stations are comparison scenarios for model adaptation, not detailed urban designs for three districts [data:geometry/key_areas.geojson#KEY-001] [data:geometry/key_areas.geojson#KEY-002] [data:geometry/key_areas.geojson#KEY-003].
 
 Once official redlines and key-area plans are released, everything listed in `assumptions.json` must be recomputed: all area-based indicators, node locations, and drawings [source:SITE-PACKAGE].
 
@@ -66,37 +66,35 @@ Six global cases from public publications inform this proposal through an "exper
 | Shibuya station-city integration, Tokyo | Layered pedestrian networks relieving high-intensity interchange | Two-layer organization of metro flows and ground-park flows |
 | URA pedestrian-friendly guidelines, Singapore | Institutionalizing pedestrian-flow assessment in design workflows | How the model enters building-design checks institutionally |
 
-The conclusion: upgrading crowd management from an operations tool to a pre-condition of design has clear international precedents — but no mature paradigm yet exists for a decoupled perceive-compute-apply model that is privacy-first, human-reviewable, and switchable-off. This proposal aims to fill exactly that gap [standard:MOHURD-URBAN-DESIGN-MEASURES].
+The conclusion is that upgrading crowd management from an operations tool to a pre-condition of design has clear international precedents. This proposal tries to organize those lessons into a public method that is decoupled across perceive–compute–apply, privacy-first, and human-switchable; whether it forms a transferable paradigm still requires real-world validation [standard:MOHURD-URBAN-DESIGN-MEASURES].
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
-The renewal framework is summarized as "one pulse, one network, one set of rules":
+> This section only sets the spatial context for the model interface; it is not a master plan for the overall design area.
 
-**One pulse**: the Jing-Zhang heritage park corridor, the only continuous north-south public-space resource in the overall area and the natural carrier of the model demonstration [data:brief/site-package/geometry/provisional_boundaries.geojson#PROV-SITE-001].
+### Spatial Interface: How the Model Enters Public Space
 
-**One network**: slow-traffic and rail-transfer networks. Metro Line 13 stations (Dazhongsi, Zhichunlu, Wudaokou — schematic points in the constraints layer) and east-west streets between the North 3rd and 4th Ring Roads form a three-level metro–park–street connection [data:geometry/constraints.geojson#CON-METRO-001] [data:geometry/roads.geojson#RD-EW-ZC]. All road alignments are schematic context, not redlines or engineering conclusions.
+This submission does not provide an urban-renewal, land-use, building, or regulatory-plan proposal for the overall design area. It uses the Jing-Zhang railway heritage-park context to answer one focused question: when station exit flows and park-entry flows overlap in the last 100 m, how can the Passenger-Flow Thermometer turn an abstract number into a reviewable on-site action [data:geometry/constraints.geojson#CON-METRO-002]?
 
-**One set of rules**: how model outputs enter city management — which nodes need pre-positioned diversion plans on peak days, which interfaces need queuing space, which events need advance simulation. These rules are written as management suggestions for operators and professionals to refine [depth:existing_conditions_diagnosis].
+The interface consists of four spatial relationships: station exit, station-forecourt buffer, park entry, and a convertible queuing/diversion edge. The model does not decide how buildings should be built. It gives professionals three reviewable outputs: current state, likely pressure direction, and suggested action. Suggested actions include expanding the queuing buffer, changing movement direction, pausing non-essential tests or events, and activating human guidance; the on-site operator retains command at all times [depth:existing_conditions_diagnosis].
 
-Honesty note: existing building stock, ownership, and regulatory indicators are unavailable in public sources, so this section gives no building totals, retention-renovation-demolition ratios, or implementation promises; corresponding entries remain unknown in the structured files [source:SOURCE-REGISTRY].
+The provisional overall boundary, road alignments, and land-use layers only establish spatial context and a possible migration direction. They do not mean this submission completes the belt's master plan, and they produce no FAR, building-height, demolition-retention, or engineering conclusion [source:SOURCE-REGISTRY].
 
 ## Detailed Design of Key Areas
 
-The three key areas share one model kernel but grow three distinct spatial characters [data:geometry/key_areas.geojson#KEY-001]:
+> The three key areas are comparison settings for model adaptation, not detailed urban designs for three districts.
 
-### Zhongzhiyuan AI Acceleration Area: Order for Testing
+### Comparison Scenarios: One Algorithm, Different Public Spaces
 
-Carrier of the full-stack autonomous innovation system. Here the model is an order supplier for testing: low-speed shuttle and delivery-robot pilots need real pedestrian environments, and real pedestrians need safety boundaries. Test lanes and pedestrian mainlines separate in plan and switch over in time; opening and closing conditions are triggered automatically by rated states with one-touch human takeover [data:geometry/phasing.geojson#PHS-002]. All testing arrangements are concept suggestions, not approved operations [source:AGENT-TASKBOOK].
+This submission selects one primary spatial interface: **the last 100 m between the Dazhongsi station forecourt and a park entry**. Zhichunlu and Wudaokou are no longer presented as three parallel detailed designs; they are comparison scenarios showing how the same algorithm changes its actions according to flow direction and operational goals. All three station points are schematic and all values are simulated [data:geometry/constraints.geojson#CON-METRO-001] [source:SITE-PACKAGE].
 
-### Beijing AI Origin Community: Warmth for Innovation
+- **Primary interface: Dazhongsi.** Observe whether commercial activity, exit flow, and park-entry flow overlap enough to open the queuing buffer and activate human diversion procedures early.
+- **Comparison scenario: Zhichunlu.** Observe routine inspection under commuting tides: stable states add no on-site intervention; rising states notify the duty operator.
+- **Comparison scenario: Wudaokou.** Observe how station–park direction guidance responds when student and visitor flows overlap; this does not constitute detailed urban design for the Wudaokou district.
 
-Community carrier of a world-class ecosystem. What matters here is lingering: encounters among researchers, founders, and students in informal space. The memorial plaza and technology-experience plaza become the community's living room, where the model shifts from control to service — forecasting comfortable hours, recommending encounter nodes, protecting quiet low-density zones [data:geometry/public_space.geojson#PUB-005].
+The three scenarios test the portability of “same input — same computation — different action”; they do not replace professional planning for the three key areas. Before deployment, section locations, device counts, threshold calibration, and field permissions must be confirmed by operators and professionals [depth:existing_conditions_diagnosis].
 
-### Dazhongsi AI Industry Cluster: Elasticity for Commerce
-
-Adjacent to metro stations with the heaviest flows, Dazhongsi is the model's extreme-condition proving ground. The station plaza presets three scripts (weekday / weekend / event day); movable interfaces let commercial spill-out expand and contract with the state level [data:geometry/public_space.geojson#PUB-002]. Rules proven here generalize to the whole belt.
-
-![Key-area index and design tasks](assets/figures/key-areas.en.png)
+![Key-area index and model interface](assets/figures/key-areas.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -131,15 +129,19 @@ These numbers' nature must be stressed: they are **low-confidence design-model v
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
-The transport strategy focuses on one thing: **turning the last hundred meters from metro platform to park ground into a controlled buffer**. Out-station flows overlapping park entries at morning and evening peaks form the belt's most typical dynamic-safety challenge. Design moves: graded queuing space on station forecourts; time-linked wayfinding between exits and park gates; physical guidance prioritized over electronic notices in extreme states [data:geometry/constraints.geojson#CON-METRO-002].
+> This section only discusses how one station–park interface receives model output; it is not an overall transport, municipal, or public-service plan.
 
-### Station-Level Demonstration: Deploying the "Passenger-Flow Thermometer" Directly in Metro Stations
+### Focused Interface and Algorithm Demonstration
 
-The core grading method of the model's computation layer is the **"Passenger-Flow Thermometer" algorithm**, matured by the proposal's main contributor through practice in public-transit passenger-flow monitoring: it takes only anonymous, aggregated sectional-count data as input, converts crowding and break-point risk at key cross-sections into a four-level "temperature" state (cold blue — teal — warm orange — deep red) using public technical parameters (Fruin pedestrian Level-of-Service grading; passenger-flow density and evacuation parameters from the national Metro Design Code GB 50157), and maps each state to a corresponding control action. This competition entry is the algorithm's first complete public demonstration [source:SOURCE-REGISTRY].
+This submission does not propose the overall transport, municipal, or public-service infrastructure of the Jing-Zhang belt. The focused interface discusses how one public-space segment — station exit, forecourt buffer, and park entry — receives model output: identify the pressure direction, then let field staff decide whether to queue, divert, notify, or pause a related activity [data:geometry/constraints.geojson#CON-METRO-002]. Road, rail, and node layers are schematic context, not engineering design conditions.
 
-The demonstration covers three stations of Line 13 — Dazhongsi, Zhichunlu, and Wudaokou — together with their forecourts [data:geometry/constraints.geojson#CON-METRO-001], each validating one operating condition: Dazhongsi tests high-grade state scripts under overlapping commercial flows (the model's "extreme-condition test bed"); Zhichunlu tests routine low-grade automatic patrol under commuting tides; Wudaokou tests station–park coordinated diversion when student and visitor flows stack at peaks. All demonstration values at the three stations are clearly labeled simulated values; no real monitoring data is used (see assumptions.json A-DATA-003).
+### Station Comparison: One Primary Interface, Two Simulated Settings
 
-The significance extends beyond the park belt: if the three-station demonstration gains recognition from the Haidian District authorities, the results can be submitted directly to Beijing Subway and other rail operators for evaluation, as an add-on tool to be replicated across existing stations' dynamic passenger-flow management. The "Passenger-Flow Thermometer" is therefore the proposal's **portable asset** — the algorithm depends on no specific site, and any public space with sectional-counting capability can deploy it at low cost. This is precisely what distinguishes a dynamic crowd-flow control model from a one-off spatial design [source:AGENT-TASKBOOK].
+The core grading method is the **"Passenger-Flow Thermometer"**, a method that the main contributor continues to develop: anonymous aggregated sectional data enters the computation layer, which separates boarding pressure, alighting pressure, and sectional differences before handing a temperature state to an operator for review. "Matured" here means that the calculation logic has taken shape; it does not mean that real-world validation is complete. This submission does not treat simulated demonstrations as accuracy evidence [source:SOURCE-REGISTRY].
+
+The spatial demonstration selects one primary interface — the Dazhongsi station forecourt to park entry — while Zhichunlu and Wudaokou are comparison settings only. All inputs, temperature states, and actions are simulated: Dazhongsi observes overlapping commercial activity and exit flow; Zhichunlu observes stable inspection under commuting tides; Wudaokou observes direction guidance when student and visitor flows overlap. These scenarios show model adaptation, not station planning or approved deployment [data:geometry/constraints.geojson#CON-METRO-001] [source:SITE-PACKAGE].
+
+The value of the three settings is to show a direction for portability, not to claim direct deployment. If an operator later supplies lawfully authorized anonymous aggregated data, the first step should be calibration, human review, and false-positive/false-negative evaluation at one interface before any extension to other public spaces. This submission contains no real-world accuracy, false-positive, false-negative, or operational-effectiveness conclusion.
 
 #### Algorithm Disclosure
 
@@ -189,13 +191,19 @@ The honor system and component library (lamp poles, signage, seats, counters) re
 
 ## Renewal Projects, Implementation Policy, and Phasing
 
-Phasing follows "rules first, green second, technology third" [data:geometry/phasing.geojson#PHS-001]:
+> “Phasing” here means algorithm validation stages, not construction phases for the belt [data:geometry/phasing.geojson#PHS-001].
 
-Phase one (southern section) lands the model's minimum loop: one node plaza, one green-core stretch, one graded-state publishing mechanism — validating the perceive-compute-review chain in a real place [data:geometry/phasing.geojson#PHS-001]. Phase two completes green-core continuity and slow-traffic gaps [data:geometry/phasing.geojson#PHS-002]. Phase three adds industrial test lanes and cultural landmarks [data:geometry/phasing.geojson#PHS-003].
+### Model Validation Path and Minimal Demonstration Loop
 
-Annual event system (concept only): spring Jing-Zhang AI Festival, summer developer 48-hour co-creation camp, autumn park academic week, winter light-art season. Developer-community operations combine scenario openness, data sandbox, and honor incentives; the conversion path runs testbed users → co-builders → tenant enterprises. Nothing here constitutes a confirmed government commitment [source:AGENT-TASKBOOK].
+These three stages are not construction phases for the belt; they are a validation path from “can calculate” to “deserves real-world testing” [data:geometry/phasing.geojson#PHS-001]:
 
-**Implementation and operations framework for the Phase-1 minimal loop (conceptual suggestion)**: responsibilities — organizer and sub-district office steer site coordination (accountable); the technology provider maintains algorithms and devices (responsible); station and park operators execute on-site actions and human review (consulted); community and enterprise users stay informed (informed). Service-level targets: state refresh within 15 minutes; device faults answered within 24 hours. Effectiveness is tracked annually via two KPIs — graded-action script compliance and peak-period warning lead time. Annual review decides scaling; any party may exit, after which the space returns to conventional management with no abandoned hardware. All conceptual; no government commitment or procurement arrangement [depth:existing_conditions_diagnosis].
+1. **Offline simulation and recalculation:** use public parameters and manually constructed inputs to check directional allocation, Tu/Td calculation, sectional-difference weighting, five-level grading, and missing-data degradation.
+2. **Single station–park interface pilot:** at one interface approved by the operator, collect anonymous aggregated sectional data, let field staff confirm the state, and compare suggested actions with actual handling.
+3. **Cross-context transfer evaluation:** take the same parameter dictionary and test table to two different public-space types, observing where recalibration is needed instead of assuming direct portability.
+
+This submission currently completes only the public demonstration of Stage 1 and the interface design for Stage 2. **It has not completed real-world accuracy, false-positive, or false-negative validation.** It is therefore an unfinished personal method prototype under continued development, not a ready-made safety product and not an operations decision conclusion.
+
+Annual events and developer-community operations remain optional context inherited from the open-call taskbook, not deliverables of this focused submission. Any future event, testbed, or procurement arrangement requires separate operator approval and is not a government commitment [source:AGENT-TASKBOOK].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
@@ -203,13 +211,11 @@ The three required core metrics recalculate as follows, each independently repro
 
 | Metric | Value | Formula | Confidence |
 |---|---|---|---|
-| Metric | Value | Formula | Confidence |
-|---|---|---|---|
 | Overall design area | ≈ 11,412,825 m² | Polygon area under CGCS2000 projection (provisional boundary) | Medium (repository provisional boundary) |
 | Green ratio | ≈ 17.94% | Green-core area ÷ overall design area | Low (conceptual) |
 | Public-space ratio | ≈ 2.18% | Plaza area ÷ overall design area | Low (conceptual) |
 
-Scope note: green and public space currently concentrate inside the demonstration corridor (the green core is roughly 49% of the corridor, node plazas about 6%); the scope-wide ratios will rise through phases two and three. All three values are independently reproducible from the submitted geometry [metric:site_area_sqm].
+Scope note: the green and public-space layers are conceptual spatial interfaces derived within the provisional overall design boundary. The 17.94% and 2.18% ratios use the overall design area as denominator; they are not ratios for the demonstration interface itself. All three values are independently reproducible from the submitted geometry [metric:site_area_sqm].
 
 These are the taskbook's mandatory core visual metrics [source:AGENT-TASKBOOK]. Other indicators: FAR, height, and totals remain unknown pending official controls; per-capita space and demand forecasts need field data and are deliberately left unnumbered rather than fabricated [source:SITE-PACKAGE]. The visualization page's numeric declarations match `metrics.json` exactly [metric:green_ratio] [metric:public_space_ratio].
 
