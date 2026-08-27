@@ -1,3 +1,7 @@
+## v5.3-review-catalog-closure - 2026-08-27（评审目录与证据闭环修复轮）
+
+- 针对 AI 评审 89 分阻断项：新增 `visual/assets/catalogs.json` 作为 L1–L5 地标与 P01–P18 更新项目的唯一目录；修复正文和双语成果中的失效来源/标准键，将 18 项项目计数接入 `metrics.json`、合规矩阵和设计深度矩阵，并同步图册附录。
+
 ## v5.2-english-figure-sync - 2026-08-27（英文成果同步修复轮）
 
 - 针对本轮评审唯一阻断项，重做 `assets/figures/mobility-bluegreen.en.png` 的三个公共空间节点标签，统一为 `Acceleration Track · Signal Plaza`、`Departure Yard · Zero Kilometer Plaza`、`Switch Heart · Switch Plaza`，保留中文图的几何、站点、图例、指标和证据状态。

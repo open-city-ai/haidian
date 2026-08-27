@@ -65,7 +65,7 @@ This return chain attaches to `switch-protocol.json`, `validation-ledger.json`, 
 
 ## V. A public test line that can pause
 
-In 1909, Zhan Tianyou used a herringbone switchback to carry trains up a slope. SWITCH borrows the gesture for another kind of switching: the city does not chase model speed; an issue switches between responsibilities while a return line remains open [source:JZ-HERRINGBONE-PAPER] [source:SRC-JINGZHANG-35-350].
+In 1909, Zhan Tianyou used a herringbone switchback to carry trains up a slope. SWITCH borrows the gesture for another kind of switching: the city does not chase model speed; an issue switches between responsibilities while a return line remains open [source:JZ-HERRINGBONE-PAPER].
 
 The chain is constrained by the taskbook’s public-testing requirement and the generative-AI service standard; a technical demonstration is not written as a permanent space or public-service promise [source:AGENT-TASKBOOK] [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
@@ -150,7 +150,7 @@ The brand keeps one action that can be recognized on site: two rails split at th
 
 ### Regional coordination: export the ruler, not an unverified conclusion
 
-The corridor sits inside Zhongguancun Science City. Its relationship with Beiwei Community, Future Science City, Huairou Science City, the Economic-Technological Development Area, and the Beijing-Tianjin-Hebei region should be method exchange. It can export four release gates, baseline templates, failure records, and annual-ledger formats; it can receive urbanization test questions and cross-region comparisons. It does not export personal data, approval conclusions, or invented partnerships [source:SRC-THREE-CITIES-ONE-ZONE] [source:AGENT-TASKBOOK].
+The corridor sits inside Zhongguancun Science City. Its relationship with Beiwei Community, Future Science City, Huairou Science City, the Economic-Technological Development Area, and the Beijing-Tianjin-Hebei region should be method exchange. It can export four release gates, baseline templates, failure records, and annual-ledger formats; it can receive urbanization test questions and cross-region comparisons. It does not export personal data, approval conclusions, or invented partnerships [source:AGENT-TASKBOOK].
 
 | Partner | Can receive | Can contribute | Precondition |
 |---|---|---|---|
@@ -207,11 +207,11 @@ Scenario-Code keeps only three readable states: open experience, bookable collab
 
 On the first rainy day of a one-year pilot, the soil observation window records a sensor reading and a manual profile together. If they conflict, the project cannot select the better-looking result to request expansion. The open baseline laboratory, canopy plots, human-review room, and failure-sample garden come before industrial acceleration. Industry tests remain in a sandbox, with access, retention, and deletion proof frozen before G1 [data:geometry/key_areas.geojson#PROV-KEY-001].
 
-Zhongzhiyuan’s value is not more equipment. It is making “measure accurately” a public capability: operators, researchers, and ordinary users can see what is known, what remains unknown, and which error sends a scenario back to human operation. The old Qinghe station once moved to make room for railway construction; this yard makes room for time needed by a reliable measurement [source:SRC-QINGHE-STATION-SHIFT-2021].
+Zhongzhiyuan’s value is not more equipment. It is making “measure accurately” a public capability: operators, researchers, and ordinary users can see what is known, what remains unknown, and which error sends a scenario back to human operation; this yard makes room for time needed by a reliable measurement [source:DESIGN-CONCEPT-SWITCH].
 
 ### 2. AI Origin: give disagreement a place to stop
 
-The ground floor is a public table where disagreement can stop, rather than a showroom. An algorithm may propose a “safer” route for a child or wheelchair user, while caregivers, riders, and front-line workers identify other breaks. The co-drawing table puts these differences on one map; human help, static wayfinding, and paper feedback remain available. Objections, revisions, and unresolved questions stay together. The public industrial context of AI Origin is background evidence, not an authorized operating entity [source:SRC-AI-ORIGIN-BLOCK-2026] [data:geometry/key_areas.geojson#PROV-KEY-002].
+The ground floor is a public table where disagreement can stop, rather than a showroom. An algorithm may propose a “safer” route for a child or wheelchair user, while caregivers, riders, and front-line workers identify other breaks. The co-drawing table puts these differences on one map; human help, static wayfinding, and paper feedback remain available. Objections, revisions, and unresolved questions stay together. The public industrial context of AI Origin is background evidence, not an authorized operating entity [source:HD-AI-DISTRICT-PILOTS] [data:geometry/key_areas.geojson#PROV-KEY-002].
 
 ### 3. Dazhongsi: check whether commitments are delivered
 
@@ -280,7 +280,7 @@ Full anomaly handling, comparison design, validation phases, public fields, and 
 
 The submission geometry supplies 26 conceptual land-use units, building footprints, and public-space relationships for coverage, adjacency, and drawing checks. It does not decide the fate of any real building. The sequence is fixed: retain, low-impact repair, reversible insertion, then a demolition decision only after professional review. Statutory FAR, height, density, setbacks, ownership, and municipal capacity remain pending [data:geometry/buildings.geojson#BLDG-001] [metric:floor_area_ratio] [assumption:A-CONTROLS-003].
 
-Buildings are not containers for AI. Ground floors prioritize human service, toilets, continuous accessible entrances, non-digital feedback, and removable exhibitions; upper floors may then host incubation, education, and enterprise service. Every new component needs installation, maintenance, authorization, and removal fields before entering the opening list [standard:MOHURD-LAND-USE-CLASSIFICATION].
+Buildings are not containers for AI. Ground floors prioritize human service, toilets, continuous accessible entrances, non-digital feedback, and removable exhibitions; upper floors may then host incubation, education, and enterprise service. Every new component needs installation, maintenance, authorization, and removal fields before entering the opening list [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE].
 
 ## XIII. Transport, Rail, Municipal Infrastructure, and Public Services
 
@@ -308,7 +308,9 @@ Green, public-space, and building ratios are conceptual quantities derived from 
 | L4 Dazhongsi Ten-Year Ledger Wall | Dazhongsi | Retained, changed, and retired projects together |
 | L5 Release-Gate Signal Group | Four gates on the spine | Why a project may accelerate and when it must stop |
 
-Heritage placement, construction-control areas, lighting, and wayfinding require cleared records. This package draws no heritage boundary and makes no compliance conclusion [source:SRC-QINGHUAYUAN-STATION-2023] [depth:blue_green_public_space].
+The L1–L5 set is the package’s only landmark catalog; names, anchors, spatial references, and conceptual status are registered in `visual/assets/catalogs.json#landmarks` and synchronized to the web page, metrics, matrices, and booklet [data:visual/assets/catalogs.json#landmarks].
+
+Heritage placement, construction-control areas, lighting, and wayfinding require cleared records. This package draws no heritage boundary and makes no compliance conclusion [source:HERITAGE-QINGHUAYUAN-STATION-SCOPE] [depth:blue_green_public_space].
 
 ### Reversible component library
 
@@ -335,14 +337,35 @@ To keep 18 projects from becoming a priority-free list, this version groups them
 
 | Package | Projects | First-year action | Release condition |
 |---|---|---|---|
-| A Baseline | 1, 2, 6 | Plots, observation windows, failure garden | G1 data boundary and authorization |
-| B Interfaces | 5, 12, 14 | Co-test three breakpoint routes | G2 access and human contingency |
-| C Origin | 3, 7, 9 | Shared ground floor and education pilot | G3 objections closed |
-| D Fulfillment | 8, 13, 16 | Human service, ledger wall, limited event | G3 service equivalence |
-| E Culture | 10, 11, 17, 18 | Rights clearance, content review, removable wayfinding prototype | Heritage and rights confirmed |
-| F Industry | 4, 15 | Sandbox and developer-contribution prototype | G1/G4 data and public value |
+| A Baseline | P01, P02, P06 | Plots, observation windows, failure garden | G1 data boundary and authorization |
+| B Interfaces | P05, P12, P14 | Co-test three breakpoint routes | G2 access and human contingency |
+| C Origin | P03, P07, P09 | Shared ground floor and education pilot | G3 objections closed |
+| D Fulfillment | P08, P13, P16 | Human service, ledger wall, limited event | G3 service equivalence |
+| E Culture | P10, P11, P17, P18 | Rights clearance, content review, removable wayfinding prototype | Heritage and rights confirmed |
+| F Industry | P04, P15 | Sandbox and developer-contribution prototype | G1/G4 data and public value |
 
-The original 18-project list remains in the project ledger: Switch Heart plaza, Marshalling Yard experience venue, Zero Kilometer plaza, Signal plaza, north and south greenway, talent housing, business service, Locomotive Shed lab, Recognition Wall, AR guide, station access, visitor center, accessibility repairs, digital passport, SWITCH CON, heritage wayfinding, and pilgrimage-route lighting. Their spaces, conceptual scales, dependencies, responsibility types, and acceptance language remain registered in `geometry/phasing.geojson`, `assumptions.json`, and `compliance_matrix.json`; they are not written as approved projects [data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list].
+The unique catalog of the 18 conceptual projects is below. Names, launch packages, anchors, and conceptual status for P01–P18 resolve to `visual/assets/catalogs.json#renewal_projects`. `geometry/phasing.geojson` records only three conceptual phasing bands, not a per-project engineering ledger; matrices and assumptions add dependencies, responsibility types, and acceptance directions. No project is presented as approved [data:visual/assets/catalogs.json#renewal_projects] [data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list].
+
+| Project ID | Unique project name | Launch package |
+|---|---|---|
+| P01 | Switch Heart Plaza and Central Park | A Baseline |
+| P02 | Marshalling Yard Forecourt and Intelligent-Native Experience Venue Retrofit | A Baseline |
+| P03 | Departure Yard Zero-Kilometer Plaza and Open-Source Incubator Retrofit | C Origin |
+| P04 | Acceleration Track Signal Plaza and Governance Lab | F Industry |
+| P05 | Southern Greenway Active Segment | B Interfaces |
+| P06 | Northern Greenway Ecological Segment | A Baseline |
+| P07 | Origin Talent Housing | C Origin |
+| P08 | Dazhongsi Business-Service Complex Retrofit | D Fulfillment |
+| P09 | Locomotive Shed Education Lab | C Origin |
+| P10 | Developer Recognition Wall | E Culture |
+| P11 | Historical Siding AR Guide | E Culture |
+| P12 | Station Access and Slow-Mobility Breakpoint Repair | B Interfaces |
+| P13 | Switch Heart Visitor Service Centre | D Fulfillment |
+| P14 | Greenway Accessibility and Slow-Mobility Breakpoint Repair | B Interfaces |
+| P15 | Developer Digital Passport | F Industry |
+| P16 | SWITCH CON Annual Forum Venue | D Fulfillment |
+| P17 | Historical Siding Interpretation and Wayfinding | E Culture |
+| P18 | Pilgrimage Route Lighting and Wayfinding | E Culture |
 
 ### Four-season operation and relay ownership
 
@@ -365,7 +388,7 @@ Metrics are divided into three classes:
 2. **Context references:** public park, industrial, and historical figures used to calibrate context, not project performance.
 3. **First-year measurements:** five slow variables, service equivalence, shop continuity, children’s routes, and human takeover results, all currently unknown.
 
-The complete list and formulas for 45 metrics are in `metrics.json`. Key areas, 12 scenario cards, five landmarks, 18 projects, and the six agent tasks are cross-checked by the task, standards, and design-depth matrices. The narrative explains why; the structured files prove completeness [metric:site_area_sqm] [metric:scenario_node_count] [depth:metrics_recalculation].
+The complete list and formulas for 45 metrics are in `metrics.json`. Key areas, 12 scenario cards, the five L1–L5 landmarks, the eighteen P01–P18 projects, and the six agent tasks are cross-checked by the unique catalog and the task, standards, and design-depth matrices. The narrative explains why; the structured files prove completeness [metric:site_area_sqm] [metric:renewal_project_count] [depth:metrics_recalculation].
 
 ![Core metric recalculation and evidence chain](assets/figures/metrics-evidence.en.png)
 
@@ -389,7 +412,7 @@ The narrative, bilingual translation, drawings, and offline page were produced w
 2. “Open-source Competition Taskbook Extract for Global Intelligent Agents,” 2026 [source:AGENT-TASKBOOK].
 3. Measures for Urban Design Management, Ministry of Housing and Urban-Rural Development [standard:MOHURD-URBAN-DESIGN-MEASURES].
 4. Measures for the Preparation and Approval of Regulatory Detailed Plans, Ministry of Housing and Urban-Rural Development [standard:MOHURD-CONTROL-DETAILED-PLANNING].
-5. Guidelines for Land and Sea Use Classification, Ministry of Natural Resources [standard:MOHURD-LAND-USE-CLASSIFICATION].
+5. Guidelines for Land and Sea Use Classification, Ministry of Natural Resources [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE].
 6. Law of the People’s Republic of China on the Construction of an Accessible Environment, Standing Committee of the National People’s Congress [standard:BARRIER-FREE-ENVIRONMENT-LAW].
 7. Interim Measures for the Management of Generative AI Services, seven national authorities [standard:GENERATIVE-AI-INTERIM-MEASURES].
 8. Public sources on the Jing-Zhang railway, herringbone switchback, Qinghuayuan station, heritage park, and regional industry; see `sources.json` [source:SOURCE-REGISTRY].
