@@ -1,6 +1,6 @@
 # 版权与资产权利台账（Asset Rights Ledger）
 
-> 版本：v2（2026-08-27）
+> 版本：v3（2026-08-27 晚，逐文件台账）
 > 原则：仅收录权利清晰、可在方案对比包内再分发的资产。团队自产图件与已授权字体如实登记；第三方图像需替换或标注。
 
 ## 一、团队自产图件（team_generated_diagram）
@@ -27,8 +27,29 @@
 
 | 资产路径 | 类别 | 来源 | 许可 | 再分发 | 状态 |
 |---|---|---|---|---|---|
-| visual/assets/concept/*.jpg | concept_render（AI 概念图） | 团队设计 + AI 生成（midjourney 等） | 内部使用（团队自有版权） | 受限（不外发） | approved（已按 AI 内容标识要求登记） |
-| visual/assets/photos/*.jpg | field_survey_photo | 团队实地踏勘（2026-08，EXIF 可追溯） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/concept/chaoyang-food-bus-1.jpg | ai_generated_concept | AI 生成（DALL-E/Midjourney，文件名含生成时间戳） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/chaoyang-meishi-bus-night.jpg | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/lao-bj-dangdang-car.jpg | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/scene2-xiaoyuehe-resilience.jpg | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/scene3-green-locomotive.jpg | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/scene3-qinghuayuan-redbarrier.jpg | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/weixun-bus-interior.jpg | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/Elegant_retro_modern_sightseei_2026-08-18T10-33-44.png | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/Futuristic_smart_sightseeing_d_2026-08-18T10-33-16.png | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/Interior_of_a_luxury_smart_dou_2026-08-18T10-34-41.png | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/Modern_Beijing_urban_street_sc_2026-08-17T07-26-03.png | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/concept/Scenic_double_decker_sightseei_2026-08-18T10-34-13.png | ai_generated_concept | AI 生成（同上） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无第三方版权主题） |
+| visual/assets/photos/survey-dzs-1733.jpg | field_survey_photo | 团队实地踏勘（2026-08，EXIF 可追溯） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-dzs-bytedance.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-embodied-ai-park.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-park-rail13.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-park-steps.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-qinghuayuan.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-wudaokou-origin.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-wudaokou-tower.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-xiaoyuehe-construction.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-xiaoyuehe.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
+| visual/assets/photos/survey-zhongzhiyuan.jpg | field_survey_photo | 团队实地踏勘（同上） | 内部使用 | 受限（团队内部使用） | approved（未经拍摄人同意不外发） |
 | visual/assets/concept/Elegant_retro_modern_sightseei*.png | ai_generated_concept | AI 生成（DALL-E / Midjourney） | 内部使用 | 受限（AI 生成标识） | approved（无真人、无版权主题） |
 
 ## 三、第三方素材与字体
