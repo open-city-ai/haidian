@@ -20,6 +20,12 @@ The facility protocol treats AI, robots, and autonomous vehicles as physical urb
 
 *Figure 1: AI-native facility method chain. Concept method diagram / not a formal planning basis [source:METHOD-CHAIN-FIGURE-EN].*
 
+## Project and Multi-Agent Collaboration
+
+This project uses project-level multi-agent role contracts to organise sources, spatial work, evidence, and quality checks. The six roles are: `orchestrator` for task decomposition, routing, and stage decisions; `evidence_planner` for evidence quality and planning constraints; `gis_analyst` for coordinates, geometry, and spatial recomputation; `researcher` for bounded source and case comparison; `librarian` for filing, citations, and version maintenance; and `qa_worker` for schema, field, hash, and deterministic gates. These roles define a collaboration and audit framework; they do not imply that every run exposes independently observable model calls.
+
+The contracts are stored in the project architecture branch [`.codex/agents/`](https://github.com/CurvatureSoup/haidian/tree/codex/agent-architecture/.codex/agents). This submission package contains the deliverables and evidence, not a copy of the project-level configuration. The submission entry is [PR #4146](https://github.com/open-city-ai/haidian/pull/4146); the offline report and visualization are under this package's `report/` and `visual/` directories. Runtime model metadata remains independently unverified.
+
 ## Design Basis and Source List
 This provisional concept package follows the official open-call brief, the agent taskbook, the site package, and the registered source-use boundaries [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SOURCE-REGISTRY]. It is a reviewable concept, not an approved plan. The boundary and key areas are provisional; official redlines, ownership, regulatory controls, utility data, and field surveys remain gaps [data:geometry/site_boundary.geojson#SITE-001] [source:BOUNDARY-SOURCE]. All known metrics are linked to package geometry or structured records, while unknown controls remain explicitly unknown.
 

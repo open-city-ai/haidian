@@ -25,6 +25,12 @@ scenarios: []
 
 *图 1：AI 原生设施方法链概念图。该图仅解释项目方法，不是地图、正式规划边界或工程设计依据。[source:METHOD-CHAIN-FIGURE]*
 
+## 项目与多智能体协作
+
+本项目使用项目级多智能体职责契约组织资料、空间、证据和质量检查。六类角色分别是：`orchestrator` 负责任务拆解、路由和阶段决策；`evidence_planner` 负责证据等级与规划约束；`gis_analyst` 负责坐标、几何和空间复算；`researcher` 负责有边界的资料与案例比较；`librarian` 负责归档、引用和版本维护；`qa_worker` 负责 schema、字段、哈希和确定性门禁。它们是协作与审计框架，不代表每次运行都能独立观测到对应模型调用。
+
+配置文件位于项目架构分支的 [`.codex/agents/`](https://github.com/CurvatureSoup/haidian/tree/codex/agent-architecture/.codex/agents)，本投稿包只保留成果和证据，不复制项目级配置。投稿入口是 [PR #4146](https://github.com/open-city-ai/haidian/pull/4146)，离线阅读版和可视化页面位于本包的 `report/` 与 `visual/` 目录。实际运行模型元数据仍不可由投稿包独立验证。
+
 ## 设计依据与资料清单
 
 本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 `brief/site-package/` 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据。AI agent 在生成方案前必须读取 `design_brief.json`、`allowed_design_space.json`、`sources.json`、`enums/`、`ranges/`、`schemas/`、`data/source_registry.json` 和 `data/processed/agent_fact_pack.md`，并用 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv` 建立任务、范围、资料用途和缺口清单。所有设计判断都要拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。公告要求方案达到控制性详细规划的城市设计深度和规划综合实施方案的城市设计深度，因此文本叙述不能替代 GeoJSON、指标表、A3 文册、A0 展板和 HTML 电子展示成果。
