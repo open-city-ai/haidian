@@ -1,5 +1,14 @@
 # 方案迭代记录 / Jing-Zhang Intelli-Rail Changelog
 
+## v1.20 - 2026-08-28
+
+- 将六类人物画像改造成可验证的端到端旅程，并为十二个场景逐项补齐必要数据、敏感性、最小化、拟议留存上限、访问角色、人工复核、申诉与急停；这些期限明确为真实试点前待法务、专业团队和受影响使用者复核的建议上限，而非当前数据授权。
+  Converted six personas into testable end-to-end journeys and completed all twelve scenario contracts with necessary data, sensitivity, minimization, proposed retention ceilings, access roles, human review, appeal and emergency stop. Retention periods are explicitly proposed ceilings for legal, professional and affected-user review before a real pilot, not current authorization.
+- 新增 WP0—WP4 实施证据矩阵，以阶段、建议参与主体、公开交付物、指标/放行门和关键依赖共同控制推进；未取得正式边界、权属、文保、工程和资金条件时，仍只允许相应深度的研究与可逆原型。
+  Added a WP0–WP4 implementation evidence matrix linking phase, suggested participants, public deliverables, metrics/gates and critical dependencies. Missing formal geometry, ownership, heritage, engineering or funding conditions continue to limit work to the corresponding research or reversible-prototype depth.
+- 重制双语核心图和原创封面，加入真实提交几何、三核节点放大、代表性街道/无障碍界面、普通服务底盘、可撤AI侧带、数据合同与 G0—G3 证据链；统一使用经官方仓库核验的 Noto 字体许可并修复缺字。
+  Rebuilt the bilingual core figures and original cover around submitted geometry, three-hub node zooms, representative street/accessibility interfaces, the ordinary-service base, removable AI sideband, data contracts and G0–G3 evidence chain; standardized verified Noto font licensing and fixed missing glyphs.
+
 ## v1.16 - 2026-08-17
 
 - 将三核“验—转—用”和 G0—G3 放行门同步到双语离线展陈，四份 A3/A0 图纸统一标注 v1.16。

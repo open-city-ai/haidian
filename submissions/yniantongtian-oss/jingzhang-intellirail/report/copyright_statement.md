@@ -10,7 +10,7 @@ The spatial base uses the repository's public provisional geometry under brief/s
 
 ## Figures, fonts, and external material
 
-All ten required Chinese/English figures are newly drawn from local GeoJSON and metrics for this package. No third-party photographs, logos, maps, or case-study images are embedded. Noto Sans SC and Noto Sans fonts installed on the authoring workstation are used for raster figures and PDF embedding. International cases are discussed through source citations only.
+All ten required Chinese/English figures and the optional cover are original local renderings of submitted GeoJSON, metrics, scenario contracts, and diagrams. No third-party photographs, logos, maps, or case-study images are embedded. Locally installed Noto Sans SC and Noto Sans fonts are used to rasterize figures and subset/embed PDF text under the official SIL Open Font License 1.1 recorded as `FONT-NOTO-SANS-SC-OFL` in `sources.json`; no font binary is redistributed in this package. Offline HTML uses system fallbacks and bundles no font file. International cases are discussed through source citations only.
 
 ## Offline and privacy boundary
 
