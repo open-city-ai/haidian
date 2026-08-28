@@ -1,0 +1,146 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Submitted site boundary geometry source (provisional)."
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Three required detailed-design key area boundaries (provisional)."
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+    },
+    {
+      "id": "METHOD-CHAIN-FIGURE",
+      "path": "assets/figures/ai-native-method-chain.png",
+      "source_type": "user_provided_cleared",
+      "usage": "Participant-provided explanatory method-chain figure; presentation only, not evidence for boundaries, dimensions, metrics, or engineering claims."
+    },
+    {
+      "id": "METHOD-CHAIN-FIGURE-EN",
+      "path": "assets/figures/ai-native-method-chain.en.png",
+      "source_type": "user_provided_cleared",
+      "usage": "Participant-provided English counterpart of the explanatory method-chain figure; presentation only, not evidence for boundaries, dimensions, metrics, or engineering claims."
+    },
+    {
+      "id": "OSM-L2-TRIAL-20260828",
+      "source_id": "DATA-SRC-OSM-L2-TRIAL-20260828",
+      "title": "OpenStreetMap Overpass extract for the provisional Jing-Zhang study bbox",
+      "publisher": "OpenStreetMap contributors",
+      "source_kind": "open_license_reference",
+      "url": "https://overpass-api.de/api/interpreter",
+      "accessed_date": "2026-08-28",
+      "file_type": "geojson",
+      "authority_level": "OPEN_LICENSE_REFERENCE",
+      "timeliness_level": "T1",
+      "public_access_status": "public_local_snapshot",
+      "license_summary": "OpenStreetMap data under the Open Database License (ODbL) 1.0; attribution required.",
+      "review_status": "provisional",
+      "usable_for_formal": "provisional_only",
+      "allowed_uses": [
+        "L2 provisional map texture",
+        "concept network context",
+        "visual hierarchy and coverage checks"
+      ],
+      "prohibited_uses": [
+        "official boundary",
+        "road redline",
+        "ownership",
+        "statutory planning control",
+        "engineering survey",
+        "formal capacity claim"
+      ],
+      "topics": [
+        "open_data",
+        "roads",
+        "buildings",
+        "green_blue",
+        "amenities"
+      ],
+      "local_paths": [
+        "submissions/CurvatureSoup/jingzhang-ai-native-facilities/visual/assets/osm-trial-layers.json"
+      ],
+      "retrieval": {
+        "query_bbox_wgs84": [
+          116.3397,
+          39.939,
+          116.3553,
+          40.0265
+        ],
+        "transform": "Overpass way geometries classified into reference layers; WGS84 coordinates retained for display only."
+      },
+      "notes_zh": "该提取覆盖临时总体范围 bbox，返回结果不完整且不是官方现状调查；图面只作 provisional 公开数据肌理。"
+    },
+    {
+      "id": "MICROSOFT-ML-BUILDINGS-COVERAGE-CHECK-20260828",
+      "source_id": "DATA-SRC-MICROSOFT-ML-BUILDINGS-20260828",
+      "title": "Microsoft Global ML Building Footprints coverage check",
+      "publisher": "Microsoft",
+      "source_kind": "open_license_reference",
+      "url": "https://github.com/microsoft/GlobalMLBuildingFootprints",
+      "accessed_date": "2026-08-28",
+      "file_type": "coverage-index",
+      "authority_level": "OPEN_LICENSE_REFERENCE",
+      "timeliness_level": "T1",
+      "public_access_status": "public_url",
+      "license_summary": "CDLA Permissive 2.0 applies to the dataset; Microsoft names and marks are not licensed by the dataset terms.",
+      "review_status": "provisional",
+      "usable_for_formal": "no",
+      "allowed_uses": [
+        "recording coverage availability",
+        "future independently verified provisional import"
+      ],
+      "prohibited_uses": [
+        "using another region's tile",
+        "official building survey",
+        "height or density claim",
+        "formal boundary or engineering evidence"
+      ],
+      "topics": [
+        "open_data",
+        "building_footprints",
+        "coverage"
+      ],
+      "coverage_check": {
+        "index_url": "https://bfppub.blob.core.windows.net/$web/2026-08-13/dataset-links.csv",
+        "query_quadkey_zoom9": "132100103",
+        "matching_tile_found": false,
+        "result": "No matching Beijing tile in the published index; no Microsoft geometry imported."
+      },
+      "notes_zh": "已核查 2026-08-13 索引，临时范围对应 quadkey 未发现可下载分片，因此本包不纳入 Microsoft 建筑几何。"
+    }
+  ]
+}
