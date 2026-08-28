@@ -2,7 +2,7 @@
   "schema_version": "0.1.0",
   "ok": true,
   "can_enter_formal_review": true,
-  "generated_at": "2026-08-23T16:46:00Z",
+  "generated_at": "2026-08-28T22:35:00Z",
   "gates": {
     "deterministic_validation": "pass",
     "spatial_review": "pass",
@@ -15,28 +15,28 @@
       "result": "pass",
       "severity": "blocking",
       "target": "manifest.json",
-      "message": "Deterministic package validation re-run: 40 files declared and present, sha256 verified, schema 0.2.0, 0 unexpected errors."
+      "message": "Deterministic package validation re-run 2026-08-28 14:15 (outputs/self_check_verify.py): 50 files declared and present, sha256 verified 0 fail, schema 0.2.0. Stale hashes for metrics.json and compliance_matrix.json re-synced this run."
     },
     {
       "check_id": "SPATIAL_REVIEW",
       "result": "pass",
       "severity": "blocking",
       "target": "geometry/",
-      "message": "Land use seamlessly covers site boundary; key areas within site, pairwise non-overlapping; areas and ratios recomputed (EPSG:4548) and consistent with metrics.json."
+      "message": "Land use seamlessly covers site boundary; key areas within site, pairwise non-overlapping; areas and ratios recomputed (EPSG:4548) and consistent with metrics.json. Geometry layer unchanged since prior pass; no edits this cycle."
     },
     {
       "check_id": "VISUAL_PACKAGING",
       "result": "pass",
       "severity": "blocking",
-      "target": "visual/index.html",
-      "message": "Offline zh/en visual and report HTML pass static checks; figures embedded locally; no remote content; metrics data-values match metrics.json."
+      "target": "report/proposal.html + report/proposal.en.html + visual/index.html",
+      "message": "Final render 2026-08-28 13:0x under user-authorized channel: zh 235,744B / en 300,897B; figure-src gate 10/10 zh + 10/10 en (all en mapped to .en.png); zero remote refs across report and visual HTML (offline rule held). 20 figure PNGs byte-verified and manifest-registered. PDF×4 (proposal zh/en × A4/Letter) rendered by design-node from the identical final sources (proposal.md c0b320df / proposal.en.md dfe81510, sources untouched — pre/post hashes equal), delivered 14:59 via canonical channel, byte+sha256 double-gate 4/4 PASS at landing 18:0x; manifest-registered."
     },
     {
       "check_id": "PROFESSIONAL_EVIDENCE",
       "result": "pass",
       "severity": "blocking",
-      "target": "proposal.md",
-      "message": "Standards, design depth and compliance matrices verified (5/5 required standards, 15/15 depth items); proposal carries machine-readable evidence references."
+      "target": "proposal.md + compliance_matrix.json",
+      "message": "Standards, design depth and compliance matrices verified; §17.4 human-review node appendix (charter.7, A-9) landed zh+en; compliance_matrix.json carries source_grade_schema (4-grade calibre) AND per-row source_grade annotation on all 23 requirement rows (reviewer-compliance regression P0 fixed 21:38, per §17.3 four-tier mapping of source_ids); proposal.md/proposal.en.md §15.3 row-count declaration aligned to the actual 23 rows; content-gate 17-pattern scan 0/0 zh+en. No residual annex: PDF×4 delivered and registered."
     }
   ]
 }

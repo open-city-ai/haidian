@@ -1,5 +1,40 @@
 {
   "schema_version": "0.1.0",
+  "source_grade_schema": {
+    "description": "来源等级注解与复核节点附录（2026-08-28 Q5/A-9 落位）",
+    "grades": [
+      {
+        "code": "direct_public",
+        "name_zh": "直接公开资料",
+        "name_en": "direct public source",
+        "definition": "公告文本、政府文件、规划文件、官方发布数据集，可逐字回溯并复核",
+        "carriers": ["official_announcement", "government_doc", "planning_doc", "official_dataset"]
+      },
+      {
+        "code": "derived_public",
+        "name_zh": "派生公开资料",
+        "name_en": "derived public source",
+        "definition": "对公开资料的二次加工（坐标复算、口径转换、面积重算、表格聚合），结果可由原始公开数据复算复核",
+        "carriers": ["site_area_sqm", "green_ratio", "public_space_ratio", "key_area_count"]
+      },
+      {
+        "code": "processed_reference",
+        "name_zh": "加工过的参考材料",
+        "name_en": "processed reference material",
+        "definition": "经预处理/聚合/规整的研究资料（agent_fact_pack、sources.json 整理、矩阵推演），可在工作区内追溯但不可直接回归原始公开文件",
+        "carriers": ["agent_fact_pack", "sources.json", "standard_matrix.json", "design_depth_matrix.json"]
+      },
+      {
+        "code": "agent_inferred",
+        "name_zh": "代理推断",
+        "name_en": "agent-inferred",
+        "definition": "本方案工作流在材料空白处基于已立类型学/已立原则所做的工程化推断（园规 R1–R5、园径四层比例、园丁认证四阶、触发矩阵 T-1~T-7 等），属机制设计概念层；与官方公告无直接对应",
+        "carriers": ["concept_mechanism", "rule_schema", "trigger_matrix", "carrier_design"]
+      }
+    ],
+    "annotation_policy": "每行 requirement 应在 source_grade 字段下注明 source_ids 各级别分布；当前 schema 未对该字段强约束，由生成方按上行 grades 自填，下游消费者仅引用此 schema 作为公共约定。",
+    "review_node_appendix_ref": "charter.7 人类复核节点附录（§17.x 工作流末段）：A-9 注解经独立人工复核后生效，复核重点为 agent_inferred 项是否合规承诺口径内、合规暗示与合规暗示消除是否到位。"
+  },
   "requirements": [
     {
       "requirement_id": "1.3.1",
@@ -11,6 +46,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -24,6 +65,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -37,6 +84,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -50,6 +103,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -63,6 +122,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -76,6 +141,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -89,6 +160,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -102,6 +179,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -115,6 +198,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -128,6 +217,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -141,6 +236,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -154,6 +255,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -167,6 +274,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -180,6 +293,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -193,6 +312,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -206,6 +331,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -219,6 +350,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -232,6 +369,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -245,6 +388,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -258,6 +407,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -271,6 +426,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -284,6 +445,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     },
@@ -297,6 +464,12 @@
       "drawings": ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"],
       "visual_sections": ["总览地图", "任务覆盖", "核心指标"],
       "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "PROCESSED-FACT-PACK", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "source_grade": {
+        "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+        "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
+        "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
+        "agent_inferred": []
+      },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
     }

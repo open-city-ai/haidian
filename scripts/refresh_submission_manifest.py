@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import shlex
+import stat
 import tempfile
 from pathlib import Path, PurePosixPath
 from typing import Any
@@ -58,6 +59,9 @@ def refresh_manifest(root: Path) -> tuple[bool, str, list[str]]:
         return False, "manifest.json has no declared files to refresh", []
     try:
         hashes = manifest_digests(root, [rel for _item, rel in refresh_items])
+    except OSError as exc:
+        paths = ", ".join(rel for _item, rel in refresh_items)
+        return False, f"cannot read listed files ({paths}): {exc}", []
     except (ValueError, RuntimeError) as exc:
         return False, f"unsafe manifest path: {exc}", []
     for item, rel in refresh_items:
@@ -68,11 +72,13 @@ def refresh_manifest(root: Path) -> tuple[bool, str, list[str]]:
     encoded = (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     temporary: str | None = None
     try:
+        manifest_mode = stat.S_IMODE(manifest_path.stat().st_mode)
         with tempfile.NamedTemporaryFile(dir=root, prefix=".manifest-", suffix=".tmp", delete=False) as handle:
             temporary = handle.name
             handle.write(encoded)
             handle.flush()
             os.fsync(handle.fileno())
+        os.chmod(temporary, manifest_mode)
         os.replace(temporary, manifest_path)
     except OSError as exc:
         if temporary:

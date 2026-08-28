@@ -53,9 +53,12 @@ Exit code is 0 when the registry passes all checks and 1 otherwise.
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import json
 import re
 import sys
+import unicodedata
+import urllib.parse
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -132,6 +135,28 @@ def is_non_empty_list(value: Any) -> bool:
     return isinstance(value, list) and all(isinstance(item, str) and item.strip() for item in value) and bool(value)
 
 
+def is_iso_date(value: Any) -> bool:
+    if not isinstance(value, str) or not DATE_RE.fullmatch(value):
+        return False
+    try:
+        dt.date.fromisoformat(value)
+    except ValueError:
+        return False
+    return True
+
+
+def is_http_url(value: str) -> bool:
+    if any(char.isspace() or unicodedata.category(char) in {"Cc", "Cf", "Cs"} for char in value):
+        return False
+    try:
+        parsed = urllib.parse.urlsplit(value)
+        hostname = parsed.hostname
+        _ = parsed.port
+    except ValueError:
+        return False
+    return parsed.scheme.lower() in {"http", "https"} and bool(parsed.netloc) and bool(hostname)
+
+
 def validate_local_path(report: RegistryReport, repo_root: Path, source_id: str, value: str) -> None:
     path = Path(value)
     if path.is_absolute() or ".." in path.parts:
@@ -194,10 +219,10 @@ def validate_source(report: RegistryReport, repo_root: Path, source: dict[str, A
         report.error(f"{source_id}: invalid usable_for_formal {source.get('usable_for_formal')!r}")
 
     accessed_date = source.get("accessed_date")
-    if not isinstance(accessed_date, str) or not DATE_RE.match(accessed_date):
+    if not is_iso_date(accessed_date):
         report.error(f"{source_id}: accessed_date must be YYYY-MM-DD")
     published_date = source.get("published_date")
-    if published_date is not None and (not isinstance(published_date, str) or not DATE_RE.match(published_date)):
+    if published_date is not None and not is_iso_date(published_date):
         report.error(f"{source_id}: published_date must be YYYY-MM-DD or null")
 
     for key in ["allowed_uses", "prohibited_uses", "topics"]:
@@ -210,9 +235,11 @@ def validate_source(report: RegistryReport, repo_root: Path, source: dict[str, A
 
     url = source.get("url")
     access_status = source.get("public_access_status")
-    if access_status in {"public_url", "public_local_snapshot"} and isinstance(url, str) and not url.startswith("http"):
+    if not isinstance(url, str) or not url.strip():
+        report.error(f"{source_id}: url must be a non-empty string")
+    elif access_status in {"public_url", "public_local_snapshot"} and not is_http_url(url):
         report.error(f"{source_id}: public URL sources must use an http(s) url")
-    if access_status in {"cleared_for_repo", "provisional_repository"} and isinstance(url, str):
+    elif access_status in {"cleared_for_repo", "provisional_repository"}:
         validate_local_path(report, repo_root, source_id, url)
 
     for local_path in source.get("local_paths", []) or []:
@@ -244,7 +271,7 @@ def validate_registry(repo_root: Path, registry_path: Path) -> RegistryReport:
     if data.get("schema_version") != "0.1.0":
         report.error("registry schema_version must be 0.1.0")
     updated_date = data.get("updated_date")
-    if not isinstance(updated_date, str) or not DATE_RE.match(updated_date):
+    if not is_iso_date(updated_date):
         report.error("registry updated_date must be YYYY-MM-DD")
     sources = data.get("sources")
     if not isinstance(sources, list) or not sources:

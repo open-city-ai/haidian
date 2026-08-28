@@ -73,7 +73,7 @@ FORBIDDEN_PATTERNS = [
     (re.compile(r"\bWebSocket\b", re.I), "HTML must not open WebSocket connections"),
     (re.compile(r"\bEventSource\b", re.I), "HTML must not open EventSource connections"),
     (re.compile(r"\bsendBeacon\s*\(", re.I), "HTML must not send beacon requests"),
-    (re.compile(r"@import\s+url\s*\(\s*['\"]?(?:https?:)?//", re.I), "HTML/CSS must not import remote styles"),
+    (re.compile(r"@import\s+(?:url\s*\(\s*)?['\"]?(?:https?:)?//", re.I), "HTML/CSS must not import remote styles"),
     (re.compile(r"url\s*\(\s*['\"]?(?:https?:)?//", re.I), "HTML/CSS must not load remote assets"),
     (re.compile(r"<script\b[^>]*\bsrc\s*=\s*['\"]?(?:https?:)?//", re.I), "HTML must not load remote scripts"),
     (re.compile(r"<link\b[^>]*\bhref\s*=\s*['\"]?(?:https?:)?//", re.I), "HTML must not load remote linked resources"),

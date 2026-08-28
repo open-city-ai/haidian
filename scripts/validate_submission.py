@@ -355,6 +355,7 @@ FORBIDDEN_HTML_PATTERNS = [
     (re.compile(r"\bWebSocket\b", re.I), "HTML report must not open WebSocket connections"),
     (re.compile(r"\bsendBeacon\s*\(", re.I), "HTML report must not send beacon requests"),
     (re.compile(r"(?:src|href)\s*=\s*['\"]?(?:https?:)?//", re.I), "HTML report must not load remote resources"),
+    (re.compile(r"@import\s+(?:url\s*\(\s*)?['\"]?(?:https?:)?//", re.I), "HTML report CSS must not import remote styles"),
     (re.compile(r"url\s*\(\s*['\"]?(?:https?:)?//", re.I), "HTML report CSS must not load remote assets"),
 ]
 FORBIDDEN_VISUAL_HTML_PATTERNS = [
@@ -365,7 +366,7 @@ FORBIDDEN_VISUAL_HTML_PATTERNS = [
     (re.compile(r"\bWebSocket\b", re.I), "visual HTML must not open WebSocket connections"),
     (re.compile(r"\bEventSource\b", re.I), "visual HTML must not open EventSource connections"),
     (re.compile(r"\bsendBeacon\s*\(", re.I), "visual HTML must not send beacon requests"),
-    (re.compile(r"@import\s+url\s*\(\s*['\"]?(?:https?:)?//", re.I), "visual HTML/CSS must not import remote styles"),
+    (re.compile(r"@import\s+(?:url\s*\(\s*)?['\"]?(?:https?:)?//", re.I), "visual HTML/CSS must not import remote styles"),
     (re.compile(r"url\s*\(\s*['\"]?(?:https?:)?//", re.I), "visual HTML CSS must not load remote assets"),
     (re.compile(r"<script\b[^>]*\bsrc\s*=\s*['\"]?(?:https?:)?//", re.I), "visual HTML must not load remote scripts"),
     (re.compile(r"<link\b[^>]*\bhref\s*=\s*['\"]?(?:https?:)?//", re.I), "visual HTML must not load remote linked resources"),
