@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "ASSUM-PROVISIONAL-BOUNDARY",
+      "summary_zh": "三层范围与三处重点区采用仓库 provisional_boundaries.geojson 作为临时占位边界",
+      "scope": "site_boundary.geojson / key_areas.geojson / metrics.json 中所有面积与几何",
+      "source": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "impact_zh": "official polygon 公布后，所有 metrics、land_use、phasing、图件均需按 official polygon 重算；本方案不将其作为 official redline",
+      "evidence_refs": ["[source:PROVISIONAL-BOUNDARY-20260605]", "[data:geometry/provisional_boundaries.geojson#PROV-SITE-001]"]
+    },
+    {
+      "assumption_id": "ASSUM-MISSING-CONTROL-PLAN",
+      "summary_zh": "现状建筑、权属、控规指标（容积率 / 高度 / 建筑强度 / 道路红线）等未在 brief 公开",
+      "scope": "metrics.json 中 green_ratio / public_space_ratio / building_density / far；拆改留方向",
+      "source": "brief/site-package/missing-data.md",
+      "impact_zh": "本方案明确不假设具体值；只给出\"概念方向\"，由专业团队在控规条件下深化",
+      "evidence_refs": ["[source:MISSING-DATA]", "[standard:MOHURD-CONTROL-DETAILED-PLANNING]"]
+    },
+    {
+      "assumption_id": "ASSUM-MISSING-MUNICIPAL-CAPACITY",
+      "summary_zh": "现状市政容量、能源负荷、轨道线位等未在 brief 公开",
+      "scope": "市政与新型基础设施、轨道交通一体化",
+      "source": "brief/site-package/missing-data.md",
+      "impact_zh": "本方案只给出\"概念方向\"；具体容量、线位、断面由主管部门与专业团队深化",
+      "evidence_refs": ["[source:MISSING-DATA]"]
+    },
+    {
+      "assumption_id": "ASSUM-MISSING-OFFICIAL-METRICS",
+      "summary_zh": "AI 创新指数、人才密度、产业产值等动态指标未在 brief 公开",
+      "scope": "metrics.json 中 ai_innovation_index / talent_density / industrial_output",
+      "source": "brief/site-package/missing-data.md",
+      "impact_zh": "本方案不编造具体值；只标识\"需官方统计\"状态",
+      "evidence_refs": ["[source:MISSING-DATA]"]
+    },
+    {
+      "assumption_id": "ASSUM-CONCEPT-NOT-REGULATORY",
+      "summary_zh": "所有空间、产业、场景、地标、活动、运营建议均为概念建议",
+      "scope": "proposal.md 全篇",
+      "source": "brief/site-package/agent_taskbook.json",
+      "impact_zh": "不构成政府审定结论，不替代控规调整、用地审批、规划许可或工程实施判断",
+      "evidence_refs": ["[source:AGENT-OPEN-CALL-TASKBOOK]"]
+    },
+    {
+      "assumption_id": "ASSUM-LAND-USE-PROPORTIONS",
+      "summary_zh": "用地功能比例仅作方向性建议（约 30-40% 产业 / 25-35% 公共空间 / 15-25% 居住 / 10-15% 交通）",
+      "scope": "第八章用地构成",
+      "source": "ai-agent-daboss 经验值（基于全球创新区知识库）",
+      "impact_zh": "具体比例需在 official 控规与现状测绘下深化；本方案不作为控规指标",
+      "evidence_refs": ["[source:AGENT-OPEN-CALL-TASKBOOK]", "[data:geometry/site_boundary.geojson]"]
+    }
+  ]
+}
