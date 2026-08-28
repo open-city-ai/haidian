@@ -1,391 +1,557 @@
 {
- "schema_version": "0.1.0",
- "units": {
-  "length": "m",
-  "area": "sqm"
- },
- "metrics": {
-  "site_area_sqm": {
-   "status": "known",
-   "value": 11412825.4,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/site_boundary.geojson"
-   ],
-   "formula": "polygon_area(site_boundary) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
   },
-  "green_space_area_sqm": {
-   "status": "known",
-   "value": 3376493.3,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/green_space.geojson"
-   ],
-   "formula": "sum(polygon_area(green_space)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "green_ratio": {
-   "status": "known",
-   "value": 0.2959,
-   "unit": "ratio",
-   "source_files": [
-    "geometry/green_space.geojson",
-    "geometry/site_boundary.geojson"
-   ],
-   "formula": "green_space_area_sqm / site_area_sqm",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "public_space_area_sqm": {
-   "status": "known",
-   "value": 801822.7,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/public_space.geojson"
-   ],
-   "formula": "sum(polygon_area(public_space)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "public_space_ratio": {
-   "status": "known",
-   "value": 0.0703,
-   "unit": "ratio",
-   "source_files": [
-    "geometry/public_space.geojson",
-    "geometry/site_boundary.geojson"
-   ],
-   "formula": "public_space_area_sqm / site_area_sqm",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "building_footprint_area_sqm": {
-   "status": "known",
-   "value": 2106954.6,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/buildings.geojson"
-   ],
-   "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "概念体量，仅为设计量级参考；依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "building_density": {
-   "status": "known",
-   "value": 0.1846,
-   "unit": "ratio",
-   "source_files": [
-    "geometry/buildings.geojson",
-    "geometry/site_boundary.geojson"
-   ],
-   "formula": "building_footprint_area_sqm / site_area_sqm",
-   "confidence": "low",
-   "assumptions": [
-    "概念体量口径；法定建筑密度控制值待正式控规条件补齐"
-   ]
-  },
-  "total_floor_area_sqm": {
-   "status": "known",
-   "value": 12641728.0,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/buildings.geojson"
-   ],
-   "formula": "building_footprint_area_sqm × assumed_floors(6)",
-   "confidence": "low",
-   "assumptions": [
-    "概念设计量（平均6层假设），不等于法定开发强度；容积率控制值待正式控规条件补齐"
-   ]
-  },
-  "floor_area_ratio": {
-   "status": "unknown",
-   "value": null,
-   "unit": "ratio",
-   "source_files": [
-    "brief/site-package/ranges/planning_limits.json"
-   ],
-   "formula": "total_floor_area_sqm / official_site_area_sqm",
-   "confidence": "unknown",
-   "reason": "正式控规容积率条件未公开，待正式数据补齐",
-   "required_for_formal_submission": true,
-   "assumptions": []
-  },
-  "building_height_m": {
-   "status": "unknown",
-   "value": null,
-   "unit": "m",
-   "source_files": [
-    "brief/site-package/ranges/planning_limits.json"
-   ],
-   "formula": "official height controls",
-   "confidence": "unknown",
-   "reason": "建筑高度控制条件未公开，待正式数据补齐",
-   "required_for_formal_submission": true,
-   "assumptions": []
-  },
-  "road_area_sqm": {
-   "status": "known",
-   "value": 268911.0,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/roads.geojson"
-   ],
-   "formula": "sum(line_length × assumed_width 12m)",
-   "confidence": "low",
-   "assumptions": [
-    "概念慢行网络按12m平均断面估算；道路红线以官方为准"
-   ]
-  },
-  "road_area_ratio": {
-   "status": "known",
-   "value": 0.0236,
-   "unit": "ratio",
-   "source_files": [
-    "geometry/roads.geojson",
-    "geometry/site_boundary.geojson"
-   ],
-   "formula": "road_area_sqm / site_area_sqm",
-   "confidence": "low",
-   "assumptions": [
-    "同上，概念口径"
-   ]
-  },
-  "key_area_count": {
-   "status": "known",
-   "value": 3,
-   "unit": "count",
-   "source_files": [
-    "geometry/key_areas.geojson"
-   ],
-   "formula": "count(key_detailed_design_areas)",
-   "confidence": "high",
-   "assumptions": []
-  },
-  "key_area_zhongzhiyuan_sqm": {
-   "status": "known",
-   "value": 1929201.9,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/key_areas.geojson"
-   ],
-   "formula": "polygon_area(PROV-KEY-001) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。",
-    "官方公布参考值 1921000 sqm"
-   ]
-  },
-  "key_area_origin_community_sqm": {
-   "status": "known",
-   "value": 1043236.9,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/key_areas.geojson"
-   ],
-   "formula": "polygon_area(PROV-KEY-002) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。",
-    "官方公布参考值 1043000 sqm"
-   ]
-  },
-  "key_area_dazhongsi_sqm": {
-   "status": "known",
-   "value": 720454.2,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/key_areas.geojson"
-   ],
-   "formula": "polygon_area(PROV-KEY-003) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。",
-    "官方公布参考值 720000 sqm"
-   ]
-  },
-  "phasing_near_area_sqm": {
-   "status": "known",
-   "value": 1864089.4,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/phasing.geojson"
-   ],
-   "formula": "polygon_area(PH-001) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "phasing_mid_area_sqm": {
-   "status": "known",
-   "value": 5803712.0,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/phasing.geojson"
-   ],
-   "formula": "polygon_area(PH-002) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "phasing_long_area_sqm": {
-   "status": "known",
-   "value": 3738783.7,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/phasing.geojson"
-   ],
-   "formula": "polygon_area(PH-003) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "slow_mobility_spine_length_m": {
-   "status": "known",
-   "value": 9725.0,
-   "unit": "m",
-   "source_files": [
-    "geometry/roads.geojson"
-   ],
-   "formula": "line_length(RD-001) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_0701_area_sqm": {
-   "status": "known",
-   "value": 1471734.2,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==0701)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_0702_area_sqm": {
-   "status": "known",
-   "value": 399997.4,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==0702)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_0802_area_sqm": {
-   "status": "known",
-   "value": 2810347.9,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==0802)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_0803_area_sqm": {
-   "status": "known",
-   "value": 250172.7,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==0803)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_0804_area_sqm": {
-   "status": "known",
-   "value": 971567.0,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==0804)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_09_area_sqm": {
-   "status": "known",
-   "value": 1451586.7,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==09)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_0901_area_sqm": {
-   "status": "known",
-   "value": 487901.2,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==0901)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_0902_area_sqm": {
-   "status": "known",
-   "value": 651948.1,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==0902)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
-  },
-  "land_use_1401_area_sqm": {
-   "status": "known",
-   "value": 2917570.1,
-   "unit": "sqm",
-   "source_files": [
-    "geometry/land_use.geojson"
-   ],
-   "formula": "sum(polygon_area(land_use where land_use_code==1401)) in EPSG:4548",
-   "confidence": "low",
-   "assumptions": [
-    "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
-   ]
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3376493.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2959,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 801822.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0703,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2106954.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "概念体量，仅为设计量级参考；依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.1846,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "概念体量口径；法定建筑密度控制值待正式控规条件补齐"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 12641728.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area_sqm × assumed_floors(6)",
+      "confidence": "low",
+      "assumptions": [
+        "概念设计量（平均6层假设），不等于法定开发强度；容积率控制值待正式控规条件补齐"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "reason": "正式控规容积率条件未公开，待正式数据补齐",
+      "required_for_formal_submission": true,
+      "assumptions": [
+        "敏感性情景：FAR=1.5/2.0/2.5 三档概念测算已登记（sensitivity_scenarios），证明方案对未知控规条件鲁棒；概念体量相当于隐含 FAR≈1.11。"
+      ],
+      "sensitivity_scenarios": [
+        {
+          "far_scenario": 1.5,
+          "total_floor_area_sqm": 17119238.1,
+          "vs_concept_ratio": 1.35,
+          "green_ratio": 0.2959,
+          "public_space_ratio": 0.0703,
+          "note": "绿地比与公共空间比由提交几何控制，对 FAR 不敏感；总建筑量随 FAR 线性变化。概念测算，非法定控制指标。"
+        },
+        {
+          "far_scenario": 2.0,
+          "total_floor_area_sqm": 22825650.8,
+          "vs_concept_ratio": 1.81,
+          "green_ratio": 0.2959,
+          "public_space_ratio": 0.0703,
+          "note": "绿地比与公共空间比由提交几何控制，对 FAR 不敏感；总建筑量随 FAR 线性变化。概念测算，非法定控制指标。"
+        },
+        {
+          "far_scenario": 2.5,
+          "total_floor_area_sqm": 28532063.5,
+          "vs_concept_ratio": 2.26,
+          "green_ratio": 0.2959,
+          "public_space_ratio": 0.0703,
+          "note": "绿地比与公共空间比由提交几何控制，对 FAR 不敏感；总建筑量随 FAR 线性变化。概念测算，非法定控制指标。"
+        }
+      ]
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height controls",
+      "confidence": "unknown",
+      "reason": "建筑高度控制条件未公开，待正式数据补齐",
+      "required_for_formal_submission": true,
+      "assumptions": [
+        "高度以营造法式 G1 分级意向表达（scenario_bands）；官方法定高度控制发布后按 controls 复核并由随包机器校验器校验（脚本见 report/narrative.md 附录A）。"
+      ],
+      "scenario_bands": [
+        {
+          "band": "檐口基准带（廊道70m内）",
+          "height_m": "≤18",
+          "status": "概念意向，非法定控制"
+        },
+        {
+          "band": "过渡带（70–150m / 150–300m）",
+          "height_m": "≤24 / ≤50",
+          "status": "概念意向，非法定控制"
+        },
+        {
+          "band": "站点院落塔楼",
+          "height_m": "60/80/100 分级",
+          "status": "概念意向，非法定控制"
+        }
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 268911.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length × assumed_width 12m)",
+      "confidence": "low",
+      "assumptions": [
+        "概念慢行网络按12m平均断面估算；道路红线以官方为准"
+      ]
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.0236,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "同上，概念口径"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。",
+        "官方公布参考值 1921000 sqm"
+      ]
+    },
+    "key_area_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。",
+        "官方公布参考值 1043000 sqm"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。",
+        "官方公布参考值 720000 sqm"
+      ]
+    },
+    "phasing_near_area_sqm": {
+      "status": "known",
+      "value": 1864089.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PH-001) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "phasing_mid_area_sqm": {
+      "status": "known",
+      "value": 5803712.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PH-002) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "phasing_long_area_sqm": {
+      "status": "known",
+      "value": 3738783.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PH-003) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "slow_mobility_spine_length_m": {
+      "status": "known",
+      "value": 9725.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "line_length(RD-001) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_0701_area_sqm": {
+      "status": "known",
+      "value": 1471734.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==0701)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 399997.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==0702)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 2810347.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==0802)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 250172.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==0803)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_0804_area_sqm": {
+      "status": "known",
+      "value": 971567.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==0804)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_09_area_sqm": {
+      "status": "known",
+      "value": 1451586.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==09)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_0901_area_sqm": {
+      "status": "known",
+      "value": 487901.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==0901)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_0902_area_sqm": {
+      "status": "known",
+      "value": 651948.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==0902)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2917570.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code==1401)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "依据仓库临时粗略边界复算（provisional），置信度低；官方边界与控规条件发布后须复算。"
+      ]
+    },
+    "acceptance_weekday_weekend_footfall_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "站点院落工作日日均人流 / 周末日均人流（运营后实测）",
+      "confidence": "unknown",
+      "reason": "运营后验收指标，建成运营前无法实测；目标区间 0.8–1.2（概念建议值）。",
+      "assumptions": [
+        "运营后验收/政策类指标，建成运营前无法实测；目标值为概念建议，待专项研究确认。"
+      ],
+      "baseline": "运营后首年实测值为基线",
+      "target": "0.8–1.2",
+      "measurement_method": "驿站与站点院落匿名聚合人流计数，按工作日/周末分组取日均值之比，季度评估，不达标回到图则第②步修订"
+    },
+    "acceptance_non_consumption_stay_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "非消费停留人数 / 总停留人数（驿站与公共空间抽样观测）",
+      "confidence": "unknown",
+      "reason": "运营后验收指标，建成运营前无法实测；目标 ≥60%（概念建议值）。",
+      "assumptions": [
+        "运营后验收/政策类指标，建成运营前无法实测；目标值为概念建议，待专项研究确认。"
+      ],
+      "baseline": "运营后首年抽样观测为基线",
+      "target": "≥0.60",
+      "measurement_method": "公共空间行为观察抽样（PSPL 类方法）结合匿名停留时长统计，年度评估"
+    },
+    "care_service_radius_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "居住地块质心至最近照护簇（托育与日间照料）的步行网络距离最大值",
+      "confidence": "unknown",
+      "reason": "设计管控指标，照护簇布点随院落细胞深化后可在图则阶段实测；目标 ≤150 米（概念建议值）。",
+      "assumptions": [
+        "运营后验收/政策类指标，建成运营前无法实测；目标值为概念建议，待专项研究确认。"
+      ],
+      "baseline": "图则深化后按院落细胞布点复算",
+      "target": "≤150",
+      "measurement_method": "GIS 步行网络服务半径分析（EPSG:4548），逐院落细胞校核"
+    },
+    "housing_1_5_key_unit_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "1.5 钥匙单元数 / 居住总单元数（图则户配统计）",
+      "confidence": "unknown",
+      "reason": "设计管控指标，户型配比随图则深化确定；目标 ≥50%（概念建议值）。",
+      "assumptions": [
+        "运营后验收/政策类指标，建成运营前无法实测；目标值为概念建议，待专项研究确认。"
+      ],
+      "baseline": "图则深化后按户配表复算",
+      "target": "≥0.50",
+      "measurement_method": "图则户型配比表统计，分期验收时按建成单元复核"
+    },
+    "affordable_housing_ratio_floor": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "保障性/可负担住房单元数 / 居住总单元数（防绅士化下限）",
+      "confidence": "unknown",
+      "reason": "政策目标值，需专项研究与主管部门确认；概念下限 ≥30%。",
+      "assumptions": [
+        "运营后验收/政策类指标，建成运营前无法实测；目标值为概念建议，待专项研究确认。"
+      ],
+      "baseline": "现状居住构成普查（权属与租售结构，待官方数据）",
+      "target": "≥0.30（概念下限）",
+      "measurement_method": "图则户配+权属台账年度核对；与 anti_displacement_trigger_index 联动上调"
+    },
+    "original_resident_employment_conversion_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "在地居民转入更新后就业岗位人数 / 有就业意愿在地居民数",
+      "confidence": "unknown",
+      "reason": "政策目标值，需社区普查与就业专项；概念目标 ≥40%。",
+      "assumptions": [
+        "运营后验收/政策类指标，建成运营前无法实测；目标值为概念建议，待专项研究确认。"
+      ],
+      "baseline": "更新前社区就业普查（待实施阶段开展）",
+      "target": "≥0.40（概念目标）",
+      "measurement_method": "社区就业台账与技能再培训记录年度统计，纳入社区基金年度报告公开"
+    },
+    "anti_displacement_trigger_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "防挤出触发线：周边居住租金年涨幅 / 全市平均年涨幅",
+      "confidence": "unknown",
+      "reason": "监测触发指标，非控制指标；触发线 >1.5 即启动保障比例与反哺力度上调（概念建议）。",
+      "assumptions": [
+        "运营后验收/政策类指标，建成运营前无法实测；目标值为概念建议，待专项研究确认。"
+      ],
+      "baseline": "更新前周边租金基线调查（待实施阶段开展）",
+      "target": "≤1.5；超过即触发",
+      "measurement_method": "年度租金抽样监测，触发后按预案上调 affordable_housing_ratio_floor 与社区基金反哺比例"
+    }
   }
- }
 }
