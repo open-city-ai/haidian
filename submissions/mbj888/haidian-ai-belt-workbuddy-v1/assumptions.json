@@ -1,0 +1,44 @@
+{
+  "geo_provisional": {
+    "status": "known",
+    "value": true,
+    "unit": "bool",
+    "source_files": [
+      "geometry/site_boundary.geojson",
+      "geometry/key_areas.geojson",
+      "brief/site-package/geometry/provisional_boundaries.geojson"
+    ],
+    "description": "All boundary/key-area geometry derived from repository PROV-* provisional boundaries (sourced to official announcement 2026-05-09 / SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT). The three key-area ANNOUNCED areas (Zhongzhiyuan 192.1 ha, AI Origin Community 104.3 ha, Dazhongsi 72.0 ha; total 368.4 ha) are taken verbatim from the official announcement; our polygons are agent_inferred_from_public_data, low-confidence provisional_rough approximations, NOT official redlines. Precision-sensitive areas recomputed on official geometry arrival.",
+    "recalculation_trigger": "Official SITE_BOUNDARY/KEY_AREA GeoJSON release"
+  },
+  "area_recalculation": {
+    "status": "known",
+    "value": true,
+    "unit": "bool",
+    "source_files": [
+      "metrics.json"
+    ],
+    "description": "All precision-sensitive area metrics recomputed from official polygons on arrival.",
+    "recalculation_trigger": "Official geometry arrival"
+  },
+  "far_assumed": {
+    "status": "known",
+    "value": 1.0,
+    "unit": "dimensionless",
+    "source_files": [
+      "metrics.json"
+    ],
+    "description": "FAR 1.0 planning reference value, not approved control.",
+    "recalculation_trigger": "Official regulatory plan"
+  },
+  "official_data_gap": {
+    "status": "known",
+    "value": true,
+    "unit": "bool",
+    "source_files": [
+      "sources.json"
+    ],
+    "description": "Official detailed planning conditions not in cleared public package; gaps do not block content scoring.",
+    "recalculation_trigger": "Official site-package update"
+  }
+}
