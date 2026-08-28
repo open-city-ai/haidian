@@ -21,7 +21,7 @@ scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "ai-traffic-walka
 
 **Distinctive mechanism**: Power Base-Pair with four calibrations (efficiency floor PUE <= 1.25 / green power >= 80% / resilience self-healing <= 5min / opt-out human channel 100%); 12 AI scenario cards all mapped to spatial nodes [metric:ai_scenario_card_count]; the JZ-05 PV-Storage-Charging minimal pilot is reproducible via the in-package script `visual/assets/run_jz05_pilot.js --check` (10-stage execution chain, seven gates, six acceptance criteria; evidence JSON in `visual/assets/jz05-pilot-evidence.json`) [metric:jz05_acceptance_criterion_count].
 
-**Key figures**: 57 gap-free land units, 14 indicative buildings, 15 roads, 6 concept renders, 13 renewal projects, 24+ reproducible metrics [metric:land_use_unit_count] [metric:road_length_m].
+**Key figures**: 57 gap-free land units, 14 indicative buildings, 22 roads, 6 concept renders, 8 renewal projects, 24+ reproducible metrics [metric:land_use_unit_count] [metric:road_count] [metric:road_length_m].
 
 **Boundary statement**: All spatial outputs are generated from public or cleared data; until official redlines, regulatory controls, and pilot data are published, area metrics are provisional recalculations, control metrics are unknown, and pilot candidate values are candidate baselines; this proposal is conceptual and does not constitute an approved conclusion [depth:risk_missing_data].
 
@@ -275,6 +275,16 @@ The six concept renders below express the spatial imagery and mechanism scenario
 ![Fig.R5 Dazhongsi - intelligent native mixed-use complex](assets/figures/render-dazhongsi.en.png)
 
 ![Fig.R6 PV-Storage-Charging Energy Station (Power Base-Pair node)](assets/figures/render-energy-station.en.png)
+
+## Structural Evidence Figures (review-point figures)
+
+The three figures below respond respectively to public interest & inclusion (public acceptance), implementation feasibility (phasing risk & decision gates), and task response & scope organisation (scope framework); brand-family mark directions are in `assets/brand/` (positive / reversed / lockup / guidelines). All are conceptual suggestions and do not constitute engineering feasibility or implementation commitments.
+
+![Fig.10 Public Acceptance: pain-point anchors · spatial response · safeguards](assets/figures/public-acceptance.en.png)
+
+![Fig.11 Phasing implementation risk & decision gates (phase × risk × gate)](assets/figures/phasing-risk.en.png)
+
+![Fig.12 Scope Framework: three scales → three systems (43.6 / 11.4 / 368.4)](assets/figures/scope-framework.en.png)
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
