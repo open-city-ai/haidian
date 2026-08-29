@@ -8,7 +8,7 @@
 - **格式**: MP4 (H.264)
 - **生成模型**: Seedance 2.5
 - **生成日期**: 2026-08-27
-- **首帧参考图**: assets/figures/render-zhongzhiyuan-aerial.png
+- **首帧参考图**: assets/figures/render-zhongzhiyuan-aerial.jpg
 
 ## 内容描述
 
@@ -33,6 +33,6 @@
 ## 无障碍说明
 
 - 视频包含可见播放控件，不自动播放
-- 提供poster封面图（render-masterplan-aerial.png）
+- 提供poster封面图（render-masterplan-aerial.jpg）
 - 提供WebVTT字幕文件
 - 视频不含音频轨道

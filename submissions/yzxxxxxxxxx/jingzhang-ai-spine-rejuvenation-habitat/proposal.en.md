@@ -3,12 +3,11 @@ title: "Jing-Zhang AI Spine — Rejuvenation Future Habitat Belt"
 author_github: "yzxxxxxxxxx"
 language: "en"
 proposal_format_version: "2"
-bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Anchored by the Jing-Zhang Railway Heritage Park as a cultural-intelligence spine, this 43.6 km² urban design proposal is structured across four dimensions: Future Habitat Smart City, Centennial Jing-Zhang Culture Belt, Fengshui & Chinese Lineage, and National Rejuvenation. Technology serves people; culture shapes the city; ultimately embodying the great rejuvenation of the Chinese nation."
-tracks: ["future-habitat-smart-city", "centennial-jingzhang-culture", "fengshui-chinese-lineage", "national-rejuvenation"]
-scenarios: ["digital-twin-community", "smart-traffic", "smart-energy", "ai-health", "urban-robot", "resilient-emergency", "railway-heritage", "cultural-memorial", "fengshui-layout", "rejuvenation-theme"]
+tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
+scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "robot-delivery-low-speed", "enterprise-service-copilot", "ai-health-service-navigation", "public-safety-operations-review"]
 iteration: "v2.0"
 ---
 
@@ -22,7 +21,7 @@ The core judgment rests on publicly verifiable site information: the Jing-Zhang 
 
 The official precise boundary polygon has not yet been released. This proposal uses repository provisional boundaries (area check values: overall design area 11,412,825 m², coordinated research area 43,609,233 m²). All area metrics are marked as provisional low-confidence design-model values, to be recalculated after official data release [metric:site_area_sqm][metric:green_ratio][metric:public_space_ratio].
 
-![43.6 km² Master Plan Aerial Rendering](assets/figures/render-masterplan-aerial.png)
+![43.6 km² Master Plan Aerial Rendering](assets/figures/render-masterplan-aerial.jpg)
 
 ## 2. Three-Scope Work Framework
 
@@ -48,7 +47,7 @@ Three key areas from north to south, all using repository exact provisional coor
 
 The three geometries correspond to PROV-KEY-001/002/003 in geometry/key_areas.geojson [data:geometry/key_areas.geojson#PROV-KEY-001].
 
-![Zhongzhiyuan AI Acceleration Zone Aerial Rendering](assets/figures/render-zhongzhiyuan-aerial.png)
+![Zhongzhiyuan AI Acceleration Zone Aerial Rendering](assets/figures/render-zhongzhiyuan-aerial.jpg)
 
 ## 3. Dimension One: Future Habitat · Smart City
 
@@ -84,7 +83,7 @@ Build a "5-minute future full-chain living circle" so technology serves people's
 
 **Big Health Closed Loop**: From health monitoring, early warning intervention, diagnosis and treatment services to rehabilitation management, forming a community-level health management closed loop. All health data is processed locally, accessed with user authorization, and medical diagnoses must be confirmed by doctors [standard:GENERATIVE-AI-INTERIM-MEASURES].
 
-![Origin Community Smart Living Street-Level Rendering](assets/figures/render-origin-community-street.png)
+![Origin Community Smart Living Street-Level Rendering](assets/figures/render-origin-community-street.jpg)
 
 ### 3.5 Urban Robots & Embodied Intelligence: Service Network Planning
 
@@ -141,7 +140,7 @@ Restore and display Zhan Tianyou's herringbone railway engineering wisdom — ov
 **Node 3: Centennial Railway Evolution Display Node** (Origin Community, approx. 116.344°E, 39.975°N)
 With "From 1909 to 2026" as the timeline, display the centennial evolution of Jing-Zhang Railway from steam locomotives to diesel, electric, and finally smart high-speed rail. Through physical exhibits, digital multimedia, and AR technology, let visitors immerse in the leap of Chinese railways from 35 km/h to 350 km/h.
 
-![Zhan Tianyou Memorial Plaza Rendering](assets/figures/render-zhantianyou-plaza.png)
+![Zhan Tianyou Memorial Plaza Rendering](assets/figures/render-zhantianyou-plaza.jpg)
 
 ### 4.4 "From 1909 to 2026" Timeline
 
@@ -261,7 +260,7 @@ With the new era since 2012 as the historical coordinate, displaying the great l
 
 The three theme spaces progress along the timeline, from south to north corresponding to the historical process from "standing up" to "getting rich" to "becoming strong." Walking through them is a time-traveling spiritual baptism.
 
-![National Rejuvenation Theme Plaza Rendering](assets/figures/render-rejuvenation-plaza.png)
+![National Rejuvenation Theme Plaza Rendering](assets/figures/render-rejuvenation-plaza.jpg)
 
 ### 6.3 "Centennial Jing-Zhang" Narrative Mainline
 
@@ -311,7 +310,7 @@ Let this AI innovation belt become a window showcasing Chinese wisdom, Chinese s
 
 **Rejuvenation Gate**: A gate-shaped building constructed with smart construction technology, spanning the heritage park to form a "south gate" imagery. The gate body itself is a smart construction demonstration project, integrating construction robot construction, modular assembly, and 3D printed components.
 
-![Dazhongsi AI Industry Cluster Aerial Rendering](assets/figures/render-dazhongsi-aerial.png)
+![Dazhongsi AI Industry Cluster Aerial Rendering](assets/figures/render-dazhongsi-aerial.jpg)
 
 ## 8. Land Use, Transportation, Municipal & Public Services
 

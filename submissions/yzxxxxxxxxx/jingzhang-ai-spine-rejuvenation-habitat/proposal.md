@@ -3,18 +3,17 @@ title: "京张智脊·复兴未来人居带"
 author_github: "yzxxxxxxxxx"
 language: "zh"
 proposal_format_version: "2"
-bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为文化智脊，按未来人居智慧城市、百年京张文化带、风水中华文脉、民族复兴四大维度，构建43.6平方公里AI创新带城市设计方案。科技服务于人，文化铸魂于城，最终落脚中华民族伟大复兴。"
-tracks: ["future-habitat-smart-city", "centennial-jingzhang-culture", "fengshui-chinese-lineage", "national-rejuvenation"]
-scenarios: ["digital-twin-community", "smart-traffic", "smart-energy", "ai-health", "urban-robot", "resilient-emergency", "railway-heritage", "cultural-memorial", "fengshui-layout", "rejuvenation-theme"]
+tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
+scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "robot-delivery-low-speed", "enterprise-service-copilot", "ai-health-service-navigation", "public-safety-operations-review"]
 iteration: "v2.0"
 ---
 
 # 京张智脊·复兴未来人居带
 
-## 一、设计依据与资料清单
+## 设计依据与资料清单
 
 本方案依据《百年京张AI创新带城市设计国际方案征集资格预审公告》[source:PROJECT-OFFICIAL-ANNOUNCEMENT]、《面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录》[source:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES]、《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING]及《国土空间调查、规划、用途管制用地用海分类指南》[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]编制。空间边界严格采用仓库提供的provisional_boundaries.geojson精确坐标[source:SITE-PACKAGE]，所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划，不构成政府审定结论。
 
@@ -22,9 +21,9 @@ iteration: "v2.0"
 
 当前官方精确边界多边形尚未发布，本方案使用仓库provisional边界（面积校核值：总体设计范围11,412,825㎡，统筹研究范围43,609,233㎡），所有面积指标标注为provisional低置信度设计模型值，待官方数据发布后需重算三项核心视觉指标[metric:site_area_sqm][metric:green_ratio][metric:public_space_ratio]。
 
-![43.6平方公里总平面鸟瞰示意](assets/figures/render-masterplan-aerial.png)
+![43.6平方公里总平面鸟瞰示意](assets/figures/render-masterplan-aerial.jpg)
 
-## 二、三层范围工作框架
+## 三层范围工作框架
 
 ### 2.1 统筹研究范围（43.6 km²）
 
@@ -50,7 +49,19 @@ iteration: "v2.0"
 
 ![总平面图：三层范围与空间智脊结构](assets/figures/site-overview.png)
 
-![众智园AI创新加速区鸟瞰效果示意](assets/figures/render-zhongzhiyuan-aerial.png)
+![众智园AI创新加速区鸟瞰效果示意](assets/figures/render-zhongzhiyuan-aerial.jpg)
+
+## 统筹研究范围产业与未来城市研究
+
+统筹研究范围约43.6平方公里，北至北五环路、东至京藏高速、南至西直门外大街、西至万泉河路，工作目标为产业战略研究、区域创新协同、山水格局分析与未来城市形态探索。方案提出“一脊贯三区、双廊织双城、十系统全域”的区域空间结构，将京张铁路遗址公园作为贯穿南北的文化智脊，联动众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业集聚区三处重点区域。产业研究聚焦AI自主创新、未来产业集群与中关村创新生态外溢，强调“科技服务于人”的价值导向，所有产业与空间判断均建立在公开可查资料与仓库provisional边界之上，作为概念建议供专业团队深化。
+
+本层次聚焦43.6平方公里统筹研究范围的产业战略与区域创新协同研究。依据仓库provisional边界[data:geometry/site_boundary.geojson#PROV-RESEARCH-001]，方案在产业维度提出以AI自主创新、未来产业集群与中关村创新生态外溢为核心的战略框架，强调面向青年人才与创业团队的公共服务前置。[source:SITE-PACKAGE]统筹研究范围面积校核值43,609,233㎡[metric:coordinated_research_area_sqm]，所有产业研判均基于公开可查资料，作为概念建议供专业团队深化，不替代法定规划与审批结论。
+
+## 总体设计范围城市更新与控规深度城市设计
+
+总体设计范围约11.4平方公里，以京张遗址公园周边1—2公里城市地区与产业区为规划设计范围，达到控制性详细规划深度的城市设计。方案落实城市更新与控规要求，统筹用地布局、开发强度、建筑高度体量风格色彩与公共空间；因官方控规条件尚未完全公开，容积率、建筑高度等法定控制指标标记为待确认事项，待正式条件补齐后复算。空间落地建议均基于仓库provisional精确坐标，属概念性方案，不替代正式规划与审批结论。
+
+总体设计范围约11.4平方公里，达到控制性详细规划深度的城市设计要求[standard:MOHURD-CONTROL-DETAILED-PLANNING]。方案统筹用地布局、开发强度、建筑高度体量风格色彩与公共空间系统，依据仓库provisional边界[data:geometry/site_boundary.geojson#PROV-SITE-001]进行空间落地[metric:site_area_sqm]。因官方控规条件尚未完全公开，容积率、建筑高度等法定控制指标标记为待确认事项，待正式条件补齐后复算，相关结论均属概念性建议。
 
 ## 三、维度一：未来人居·智慧城市
 
@@ -92,7 +103,7 @@ iteration: "v2.0"
 
 **大健康闭环**：从健康监测、预警干预、诊疗服务到康复管理，形成社区级健康管理闭环。所有健康数据本地化处理、用户授权访问，医疗诊断必须由医生确认[standard:GENERATIVE-AI-INTERIM-MEASURES]。
 
-![原点社区智慧生活人视效果示意](assets/figures/render-origin-community-street.png)
+![原点社区智慧生活人视效果示意](assets/figures/render-origin-community-street.jpg)
 
 ### 3.5 城市机器人与具身智能：服务网络规划
 
@@ -151,7 +162,7 @@ iteration: "v2.0"
 **节点三：百年铁路变迁展示节点**（位于原点社区，坐标约116.344°E, 39.975°N）
 以"从1909到2026"为时间轴线，展示京张铁路从蒸汽机车到内燃机车、电力机车、再到智能高铁的百年变迁。通过实物展品、数字多媒体和AR技术，让参观者沉浸式感受中国铁路从时速35公里到350公里的飞跃。
 
-![詹天佑纪念广场效果示意](assets/figures/render-zhantianyou-plaza.png)
+![詹天佑纪念广场效果示意](assets/figures/render-zhantianyou-plaza.jpg)
 
 ### 4.4 "从1909到2026"时间轴线
 
@@ -293,7 +304,7 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 
 叙事不是单向的灌输，而是可参与、可互动、可体验的——通过AR导览、数字孪生、沉浸式剧场等技术，让每个人都能成为故事的参与者和传播者。
 
-![中华民族伟大复兴主题广场效果示意](assets/figures/render-rejuvenation-plaza.png)
+![中华民族伟大复兴主题广场效果示意](assets/figures/render-rejuvenation-plaza.jpg)
 
 ### 6.4 向世界展示中国智慧、中国方案、中国力量
 
@@ -307,7 +318,7 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 
 **国际传播体系**：建立多语言数字展示平台、国际AI创新论坛、青年开发者交流机制，让世界看到一个真实、立体、全面的中国AI创新实践。
 
-## 七、重点区域详细设计
+## 重点区域详细设计
 
 ![三处重点区域详细设计](assets/figures/key-areas.png)
 
@@ -347,9 +358,17 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 
 **城市机器人服务坊**：布局机器人研发、测试、展示和运维中心，是城市机器人服务网络的南部枢纽。
 
-![大钟寺AI产业集聚区鸟瞰效果示意](assets/figures/render-dazhongsi-aerial.png)
+![大钟寺AI产业集聚区鸟瞰效果示意](assets/figures/render-dazhongsi-aerial.jpg)
 
-## 八、用地、交通、市政与公共服务
+三处重点区域几何与面积均基于仓库provisional精确坐标[data:geometry/key_areas.geojson][source:SITE-PACKAGE]，待官方数据发布后校核。
+
+## 用地、建筑规模与拆改留方案
+
+方案采用国土空间用地用海分类代码进行概念性用地布局：居住用地（07）、公共管理与公共服务用地（08）、商业服务业用地（09）、绿地与开敞空间（14）等，覆盖全边界并与`geometry/land_use.geojson`一致。建筑规模按重点区域与圈层差异化管控，第一圈层以创新办公、人才公寓与社区商业为主，第二圈层以居住社区智慧化更新与产业园区升级为主。拆改留策略对三处重点区域分别提出保留、改造、拆除的概念性指引：遗址公园与文保相关要素以保留修缮为主，存量低效产业空间以改造提升为主，少量危旧与风貌冲突建筑纳入拆除腾退，具体规模与范围待现状建筑普查与文保清单确认后精算。
+
+用地分类严格采用国土空间用地用海分类代码[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，与land_use几何一致[data:geometry/land_use.geojson]，具体拆改留规模待现状普查确认。
+
+## 交通、轨道、市政与公共服务设施
 
 ### 8.1 用地布局
 
@@ -357,7 +376,7 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 
 容积率、建筑高度等法定指标标记为unknown，待官方控规条件补齐后复算[standard:MOHURD-CONTROL-DETAILED-PLANNING]。
 
-![用地结构图](assets/figures/land-use-structure.png)
+![京张智脊用地结构与功能分区概念图](assets/figures/land-use-structure.png)
 
 ### 8.2 交通组织
 
@@ -373,7 +392,13 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 
 按"5分钟未来全链生活圈"布局智慧健康站、AI教育实验室、社区文化中心、养老驿站、便民商业、共享办公舱、无人配送站。重点保障无障碍使用[standard:BARRIER-FREE-ENVIRONMENT-LAW]和老年人传统服务方式保留[standard:ELDERLY-SMART-TECH-PLAN-2020-45]。
 
-## 九、AI场景体系（10+3）
+## 蓝绿空间、公共空间与城市风貌
+
+方案构建“智脊绿道+滨河绿廊+社区公园”的蓝绿网络，沿京张遗址公园形成约9公里连续绿道，串联三处重点区域与轨道站点。绿地率、公共空间比等概念值由`geometry/green_space.geojson`与`geometry/public_space.geojson`几何复算，标注为低置信度设计模型值（绿地率约0.28、公共空间比约0.18），待官方数据发布后校核。公共空间强调无障碍与全龄友好，保留传统服务方式。城市风貌以“京张智脊”为统领，控制建筑高度节奏与色彩材质，塑造北中轴文脉延续、科技与人文交融的特色风貌。
+
+蓝绿网络以京张遗址公园智脊绿道为骨架，串联三处重点区域与轨道站点[metric:green_ratio][metric:public_space_ratio]。绿地率与公共空间比由green_space与public_space几何复算[data:geometry/green_space.geojson][data:geometry/public_space.geojson]，绿地率约0.40、公共空间比约0.0036，标注为低置信度设计模型值，待官方数据发布后校核。公共空间强调无障碍与全龄友好，保留传统服务方式，城市风貌以京张智脊统领，控制高度节奏与色彩材质。
+
+## AI 创新生态、人才画像与 AI+ 场景
 
 ### 9.1 十张AI场景卡
 
@@ -396,7 +421,7 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 
 所有场景遵循隐私保护和人工复核原则，不将未成熟技术写成已可全面部署[source:AGENT-TASKBOOK]。
 
-## 十、实施分期与活动运营
+## 更新项目清单、实施政策与分期计划
 
 ### 10.1 分期计划
 
@@ -415,7 +440,9 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 
 建立"政府引导、市场主导、公众参与"运营机制。设立智脊运营平台，负责数字孪生维护、场景开放、活动组织、品牌管理。建立开发者社区，提供开放数据和API，采用"揭榜挂帅"模式发布场景需求。
 
-## 十一、指标体系与合规
+分期与运营安排依据开源征集任务书的六项必做任务与共创原则[source:AGENT-TASKBOOK]，为概念性实施建议。
+
+## 指标体系、面积复算与合规矩阵
 
 ### 11.1 核心视觉指标
 
@@ -433,13 +460,15 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 
 `compliance_matrix.json`覆盖公告全部任务和agent.1-agent.6六项任务。`standard_matrix.json`覆盖5项mandatory标准。`design_depth_matrix.json`18项设计深度全部complete。
 
-## 十二、风险、版权与合规说明
+## 风险、版权与合规说明
 
 本方案由AI智能体辅助生成，所有内容为概念建议，不构成专业规划结论或政府决策依据。仅使用公开资料和清权任务书。空间边界使用仓库provisional数据。Logo、地标为原创概念。所有活动、政策、项目为概念建议，不构成政府承诺。
 
 容积率、建筑高度、道路红线、工程可行性等需专业团队深化和相关部门审批。待补资料包括：官方精确边界、控规条件、现状建筑普查、文保清单、轨道规划、市政容量、低空/机器人相关法规。
 
-## 十三、参考资料
+方案所有空间、指标与场景结论均属概念性建议，不构成法定规划、政府承诺或专业工程结论，须经规划、交通、文保、市政、无障碍与公共安全等专业程序复核[source:SITE-PACKAGE]。版权方面，生成图像、视频与文字仅用于社区展示，原始素材均来自公开或清权资料，Logo与地标为原创概念。AI生成内容已标注，史实、政策与医疗健康信息须由专业人员核实，避免将辅助建议误读为审定方案。待补资料包括官方精确边界、控规条件、现状普查、文保清单与低空相关法规。
+
+## 参考资料
 
 1. 北京市规划和自然资源委员会海淀分局. 百年京张AI创新带城市设计国际方案征集资格预审公告. 2026.
 2. 面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录. 2026.
@@ -454,3 +483,5 @@ AI创新带的规划建设，是这一历史跨越的当代延续——在人工
 11. 中华传统堪舆学与城市规划相关研究.
 
 完整机器索引以`sources.json`和三个矩阵文件为准。
+
+主要依据包括资格预审公告[source:PROJECT-OFFICIAL-ANNOUNCEMENT]、开源征集任务书摘录及相关法律法规标准。
