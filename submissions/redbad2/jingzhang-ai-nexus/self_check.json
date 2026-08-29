@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "使用仓库临时边界并在 proposal、visual、sources、assumptions、self_check 五处披露；官方多边形到位后统一复算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区为 provisional_constraint，不作为精确面积依据；内容评分资格不受组织方数据缺口影响。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "land_use 为临时边界的严格分区：道路、绿带与街块按优先级差集生成，共享边全精度导出，无接缝重叠与覆盖缺口。"
+    },
+    {
+      "check_id": "METRICS_RECOMPUTE",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "known 指标全部由 EPSG:4548 几何复算；容积率、高度等官方控制缺失指标为 unknown 并给出原因。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线静态 HTML，无 CDN/外链/脚本加载，核心指标以 data-metric/data-value 与 metrics.json 对齐。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文逐条引用 [source]/[standard]/[depth]/[data]/[metric]，五张派生图嵌入正文，agent.1-agent.6 可读展开。"
+    }
+  ]
+}

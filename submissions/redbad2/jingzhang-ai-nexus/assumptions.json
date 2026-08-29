@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_geometry_in_use",
+      "statement": "三层范围与三处重点区使用仓库临时粗略边界（provisional_boundaries.geojson），仅用于概念生成、可视化与自检，不得作为官方红线、审批依据或精确面积复算依据；官方多边形到达后需整体复算用地、指标与图纸。",
+      "impact": "spatial_review 已 PASS，但所有面积结论精度受限于临时边界；不影响内容评分资格。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "missing_official_controls",
+      "statement": "容积率、建筑高度、绿地率、退线等官方控规条件缺失（planning_limits.json status=missing），本方案不杜撰法定指标，只在正文中给出概念性空间建议。",
+      "impact": "metrics.json 中相应指标标记为 unknown；待正式批复条件后复算。"
+    },
+    {
+      "id": "A-RAIL-001",
+      "status": "concept_alignment",
+      "statement": "京张铁路遗址走廊、地铁13号线/4号线、北五环与京藏高速线位均为概念示意线位，来自公开资料推断，未采用任何非公开测绘资料。",
+      "impact": "roads.geojson 与 constraints.geojson 中现状要素均标注 existing_condition 与临时说明。"
+    },
+    {
+      "id": "A-WATER-001",
+      "status": "concept_alignment",
+      "statement": "小月河蓝绿翼为概念性水绿廊道示意，未进行水系工程测算。",
+      "impact": "仅影响景观概念表达，不构成蓝线或水利工程依据。"
+    },
+    {
+      "id": "A-BLDG-001",
+      "status": "concept_massing",
+      "statement": "建筑基底为概念体量生成（分区内格栅化布置），非现状建筑或权属建筑轮廓；现状建筑底数缺失，拆改留比例无法复算。",
+      "impact": "building_footprint_area_sqm 仅表示概念方案供给水平。"
+    },
+    {
+      "id": "A-PHASE-001",
+      "status": "concept_schedule",
+      "statement": "近/中/远三期划分为概念时序建议，不代表投资安排或政府实施计划。",
+      "impact": "phasing 图层面积可复算，但时序结论需以实施主体与资金安排为准。"
+    },
+    {
+      "id": "A-PRIVACY-001",
+      "status": "privacy_boundary",
+      "statement": "全部 AI 场景卡仅使用匿名化、聚合化与脱敏数据，明确人工复核与退出机制，不使用个人身份、人脸追踪或供应商锁定数据。",
+      "impact": "场景卡在正文中逐条标注隐私边界与人工复核要求。"
+    },
+    {
+      "id": "A-CULTURE-001",
+      "status": "culture_narrative",
+      "statement": "京张铁路历史叙事（含人字形展线）为公开史实层面的文化转译，未篡改史实，未使用需授权的图像或人物肖像。",
+      "impact": "文化叙事与 Logo 方向均为概念建议，正式 VI 需专业设计与法务清权。"
+    }
+  ]
+}
