@@ -4,6 +4,14 @@
   "length": "m",
   "area": "sqm"
  },
+ "sources": {
+  "boundary": "geometry/site_boundary.geojson (official provisional layer #PROV-SITE-001; official_boundary=false; see proposal §1.2/§15.1)",
+  "green_space": "geometry/green_space.geojson",
+  "public_space": "geometry/public_space.geojson",
+  "buildings": "geometry/buildings.geojson",
+  "roads": "geometry/roads.geojson",
+  "recalculation_trigger": "Official SITE_BOUNDARY release (proposal §14 T-1 / §17.2 A-1; superset trigger A-TRIGGER-001)"
+ },
  "metrics": {
   "site_area_sqm": {
    "status": "known",
@@ -13,9 +21,9 @@
     "geometry/site_boundary.geojson"
    ],
    "formula": "polygon_area(submitted_site_boundary)",
-   "confidence": "high",
+   "confidence": "medium",
    "assumptions": [
-    "Trusted official boundary is present in the site package."
+    "Value computed on the official provisional boundary layer (#PROV-SITE-001, official_boundary=false, provisional_rough); it is a low-confidence design-model value recomputable from submitted geometry, per proposal §15.1 — not an official/statutory area. Recompute on official boundary release (trigger A-1)."
    ]
   },
   "building_footprint_area_sqm": {
@@ -75,6 +83,19 @@
    "formula": "count(key_detailed_design_areas)",
    "confidence": "high",
    "assumptions": []
+  },
+  "garden_line_spine_length_m": {
+   "status": "known",
+   "value": 9715.87,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "length(ROAD-001 centerline, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Concept centerline of the GARDEN LINE greenway spine (proposal §15.1 companion value); not a surveyed alignment."
+   ]
   }
  }
 }

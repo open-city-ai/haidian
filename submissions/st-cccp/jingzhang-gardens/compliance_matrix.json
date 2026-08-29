@@ -1,7 +1,7 @@
 {
   "schema_version": "0.1.0",
   "source_grade_schema": {
-    "description": "来源等级注解与复核节点附录（2026-08-28 Q5/A-9 落位）",
+    "description": "来源等级注解与复核节点附录（2026-08-28 Q5/A-9 落位；2026-08-29 M-2 agent_inferred 按行分类填实）",
     "grades": [
       {
         "code": "direct_public",
@@ -32,7 +32,7 @@
         "carriers": ["concept_mechanism", "rule_schema", "trigger_matrix", "carrier_design"]
       }
     ],
-    "annotation_policy": "每行 requirement 应在 source_grade 字段下注明 source_ids 各级别分布；当前 schema 未对该字段强约束，由生成方按上行 grades 自填，下游消费者仅引用此 schema 作为公共约定。",
+    "annotation_policy": "每行 requirement 应在 source_grade 字段下注明 source_ids 各级分布；当前 schema 未对该字段强约束，由生成方按上行 grades 自填，下游消费者仅引用此 schema 作为公共约定。agent_inferred 载体按行分类赋值（2026-08-29 M-2 落位，修正此前 23 行全空集的机读层缺陷）：① concept_mechanism 注于全部 23 行——各行证据清单均含「三层范围工作框架」等本方案自拟的工作流分解与概念机制，属代理推断概念层；② rule_schema 加注于园规 R1–R6 实际锚定的行（1.5.2.2 城市更新总体框架、agent.2 创新生态体系含 R5 数据园规、agent.6 长期运营治理）；③ trigger_matrix 加注于 §14 触发矩阵实际锚定的行（1.5.2.2、agent.6）；④ carrier_design 加注于 B-01~04 业态承载 / 园丁认证 / 重点区承载设计的行（1.5.2.4 活力带、1.5.3.1~1.5.3.3 三个重点区、agent.4 智能原生新业态、agent.6）。charter.7 R-02 人类复核对象据此在机读层非空。",
     "review_node_appendix_ref": "charter.7 人类复核节点附录（§17.x 工作流末段）：A-9 注解经独立人工复核后生效，复核重点为 agent_inferred 项是否合规承诺口径内、合规暗示与合规暗示消除是否到位。"
   },
   "requirements": [
@@ -50,7 +50,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -69,7 +69,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -88,7 +88,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -107,7 +107,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -126,7 +126,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -145,7 +145,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -164,7 +164,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -183,7 +183,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -202,7 +202,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -221,7 +221,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism", "rule_schema", "trigger_matrix"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -240,7 +240,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -259,7 +259,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism", "carrier_design"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -278,7 +278,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -297,7 +297,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -316,7 +316,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism", "carrier_design"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -335,7 +335,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism", "carrier_design"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -354,7 +354,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism", "carrier_design"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -373,7 +373,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -392,7 +392,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism", "rule_schema"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -411,7 +411,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -430,7 +430,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism", "carrier_design"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -449,7 +449,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
@@ -468,7 +468,7 @@
         "direct_public": ["SITE-PACKAGE", "OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
         "derived_public": ["metrics:site_area_sqm", "metrics:green_ratio", "metrics:public_space_ratio", "metrics:key_area_count"],
         "processed_reference": ["SOURCE-REGISTRY", "PROCESSED-FACT-PACK"],
-        "agent_inferred": []
+        "agent_inferred": ["concept_mechanism", "rule_schema", "trigger_matrix", "carrier_design"]
       },
       "assumption_ids": ["A-CONTROLS-001"],
       "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "VISUAL_STATIC"]
