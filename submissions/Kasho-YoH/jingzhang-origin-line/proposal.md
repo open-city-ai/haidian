@@ -57,6 +57,8 @@ The boundary evidence for the three levels is [data:geometry/site_boundary.geojs
 3. **Reversible**: Scenario-voucher application system + time-windowed and route-limited testing; testing does not equal operating approval, and any scenario can be downgraded or withdrawn.
 4. **Perceptible**: The Kilometer-Zero Marker, the Spike Honor Wall, and milepost-gradation signage materialize and archive the accumulation of trust — the very process by which trust forms becomes public landscape.
 
+![Trusted First Mile mechanism: problem, evidence, four trust mechanisms, scenario mapping](assets/figures/trust-first-mile-mechanism.png)
+
 The three positionings and five functions are therefore not parallel slogans but a spatial division of labor along a single trust chain: the innovation belt produces verifiable technology (the validation loop at Acceleration Station); the living belt carries perceptible first use (everyday scenarios at Origin Station); the culture belt deposits auditable trust archives (the Heritage Line narrative system).
 
 ### Naming System
@@ -151,6 +153,8 @@ Positioning: **the "Station of Translation" for intelligent-native commerce**. S
 | 09 | Open Evaluation Range for Foundation Models | Acceleration Station | Enterprises/research institutions; third-party evaluation bodies | Evaluation data isolated; red-team testing by appointment |
 | 10 | Robot-friendly building pilot | Acceleration Station | Building owners/robotics companies; building operator | Access data closed-looped within the building |
 
+![Scenario system overview: ten scenario cards on the corridor with data-boundary clauses](assets/figures/scenario-system-overview.png)
+
 ### Industrial Testing and Validation Scenarios (3)
 
 1. **Market Station unmanned-delivery commercialization test**: within limited time windows and routes, test the coordination of unmanned delivery vehicles with commercial circulation, validating the "robot-friendly commercial street" retrofit checklist. Boundary: testing ≠ operating approval; applications follow current road and park management regulations.
@@ -217,6 +221,8 @@ Blue-green system: the Heritage Green Axis (whole line) + three pocket parks (Or
 | OL-07 | ORIGIN SUMMIT and event-system launch | Operation / branding | Public-space permits, copyright clearance | [data:geometry/phasing.geojson#PHASE-001] |
 
 The project-list depth is benchmarked against [depth:renewal_project_list]. Phasing [depth:phasing_implementation] [data:geometry/phasing.geojson#PHASE-001]: **Phase 1 (2026–2028) southern ignition** — the Market Station + Xiaoyue River section, with lightweight facilities and operational activities first; **Phase 2 (2028–2030) central spine taking shape** — the Origin Community section; **Phase 3 (2030–2032) northern momentum** — the Zhongzhiyuan section. Lightweight first-mover items and items that must wait for formal regulatory planning conditions are distinguished in the list.
+
+![Phasing roadmap 2026-2032: southern ignition, central spine, northern momentum](assets/figures/phasing-roadmap.png)
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
@@ -292,6 +298,8 @@ Missing material and risk-item management follow [depth:risk_missing_data].
 2. **可审计**：场景运营数据季度公开、线上 RFC 公开评审制度、所有场景人工复核全程在场。
 3. **可回退**：场景券申请制 + 限定时段限定路线测试，测试不等于运营批准，任何场景可降级、可退出。
 4. **可感知**：0 公里标、道钉荣誉墙、里程碑导视把信任积累实体化、档案化——信任的形成过程本身成为公共景观。
+
+![可信第一程机制图解：问题—立论—四机制—场景映射](assets/figures/trust-first-mile-mechanism.png)
 
 三大定位与五大功能因此不是并列口号，而是同一条信任链的空间分工：创新带生产可验证的技术（加速站验证环）、生活带承载可感知的首用（原点站日常场景）、文化带沉淀可审计的信任档案（遗产线叙事系统）。
 
@@ -387,6 +395,8 @@ Logo 概念：**一条线 + 三个节点圆 + 一枚「0」**。线形取铁轨�
 | 09 | 大模型评测开放靶场 | 加速站 | 企业/研究机构；第三方评测机构 | 评测数据隔离；红队测试预约制 |
 | 10 | 机器人友好楼宇试点 | 加速站 | 楼宇业主/机器人企业；楼宇运营方 | 通行数据楼宇内闭环 |
 
+![场景系统总览：十张场景卡的空间落位与数据边界](assets/figures/scenario-system-overview.png)
+
 ### 产业测试验证场景（3个）
 
 1. **市集站无人配送接驳商业化测试**：在限定时段与路线内测试无人配送车辆与商业动线的协同，验证「机器人友好商业街区」改造清单。边界：测试≠运营批准，按现行道路与园区管理规定申请。
@@ -453,6 +463,8 @@ Logo 概念：**一条线 + 三个节点圆 + 一枚「0」**。线形取铁轨�
 | OL-07 | 原点大会与活动体系启动 | 运营/品牌 | 公共空间许可、版权清权 | [data:geometry/phasing.geojson#PHASE-001] |
 
 项目清单深度对照 [depth:renewal_project_list]。分期 [depth:phasing_implementation] [data:geometry/phasing.geojson#PHASE-001]：**一期（2026-2028）南段引爆**——市集站+小月河段，以轻量设施与运营活动先行；**二期（2028-2030）中枢成型**——原点社区段；**三期（2030-2032）北段成势**——众智园段。轻量先行项与需等正式控规条件项已在清单中区分。
+
+![分期实施路线图 2026-2032：南段引爆—中枢成型—北段成势](assets/figures/phasing-roadmap.png)
 
 ## 指标体系、面积复算与合规矩阵
 
