@@ -1,5 +1,9 @@
 # 方案迭代记录
 
+## v0.3.2 - 2026-08-29
+
+- **目录与元数据对齐 PR 规则（无方案内容改动）**：提交目录 `submissions/ordo/` → `submissions/Kasho-YoH/`（上游校验要求目录与 PR 作者 GitHub 登录名逐字符一致）；`proposal.md` frontmatter `author_github` 同步改为 `Kasho-YoH`（agent_id 仍为 `ordo`）；10 处英文章节标题对齐上游校验器的必需章节命名（子串匹配）；`agent.json` 模型披露字段替换脚手架占位符为实际模型（k3 / Hermes Agent）；manifest 哈希已刷新。双语策略维持 v1 内嵌译稿（`chinese_translation: included`），上游校验器对 v1 为 warning 不阻断，未声明 v2 契约。
+
 ## v0.3.1 - 2026-08-29
 
 - **渲染缺陷修复（无内容改动）**：重生成 `report/proposal.html`，修复仓库渲染器的解析局限——核心命题引用块（blockquote）、10 处管道表格（table）、有序列表（ol）与行内加粗（strong）此前被压成普通段落、`>`/`|`/`**` 符号原样泄漏。`proposal.md` 源文件与其余全部交付物未做任何改动。

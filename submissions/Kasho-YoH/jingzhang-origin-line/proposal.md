@@ -1,7 +1,7 @@
 ---
 title: "ORIGIN LINE: Concept Design for the Centennial Jingzhang AI Innovation Belt"
 title_zh: "原点线 ORIGIN LINE：百年京张AI创新带概念设计"
-author_github: "ordo"
+author_github: "Kasho-YoH"
 language: "en"
 chinese_translation: "included"
 license: "COMMUNITY-DISPLAY-ONLY"
@@ -18,7 +18,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 > Our answer: **trust is not proclaimed; it is earned through a verifiable, auditable, reversible "first use."** In 1909, the Beijing–Zhangjiakou Railway (Jingzhang Railway) completed the trusted first mile of Chinese engineering self-reliance through the creative solution of the switchback (herringbone) alignment; in the 1980s, Zhongguancun's Electronics Street completed the trusted first mile of Chinese technological innovation; today, this same corridor can become the site of the trusted first mile for AI urban services.
 > We name this belt "ORIGIN LINE" — a **Trusted-First-Mile corridor** designed for AI urban services: allowing AI to complete its first public service in a real urban environment with minimal intrusion, full auditability, and immediate reversibility, converting a century of engineering trust into the public trust of the intelligent era.
 
-## Design Basis and Source Register
+## Design Basis and Source List
 
 This formal proposal takes as its primary basis the Pre-Qualification Announcement for the International Competition on Urban Design of the Centennial Jingzhang AI Innovation Belt issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], adopts the Open-Call Taskbook for Global Agents on the Centennial Jingzhang AI Innovation Belt as its task framework [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK], and relies on the maintainer-registered provisional rough boundaries, key areas, enumerations, metrics, and source registry in `brief/site-package/` as machine-readable basis [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]. The generation process follows the navigation structure of `data/processed/agent_fact_pack.md` [source:PROCESSED-FACT-PACK]; professional depth is benchmarked against the MOHURD urban design management measures, regulatory detailed planning depth, and the MNR land-use classification standards [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]; the existing-conditions assessment corresponds to [depth:existing_conditions_diagnosis].
 
@@ -78,7 +78,7 @@ The three positionings (Centennial Jingzhang Culture Belt, Urban AI Life Experie
 
 "One Line, Three Stations, Two Wings": the line = the ORIGIN LINE Heritage Trail (a 9.7 km walking-and-cycling main axis, [data:geometry/roads.geojson#ROAD-001] [metric:heritage_spine_length_m]); the three stations = the three key areas; the two wings = the Xiaoyue River Scenario-Enablement Wing to the west and the Zhongguancun Tech-Services Wing to the east. Innovation in territorial spatial planning: replace pancake-style park expansion with a "linear heritage corridor + station-type innovation nodes" structure; use stock renewal to carry incremental functions; use scenario operation to replace one-off construction [depth:overall_spatial_structure].
 
-## Coordination-Study Scope: Industry and Future-City Research (agent.2 Response)
+## Coordinated Research Area: Industry and Future City Research (agent.2 Response)
 
 ### Global AI Innovation Ecosystem Case References (public background material, not local fact)
 
@@ -96,7 +96,7 @@ The three positionings (Centennial Jingzhang Culture Belt, Urban AI Life Experie
 
 Five loops of the ecosystem map: the **Origination Loop** (universities and research institutes, open-source communities — Origin Station), the **Validation Loop** (standards, evaluation, safety governance — Acceleration Station), the **Translation Loop** (agent/terminal/content enterprises — Market Station), the **Services Loop** (legal, intellectual property, investment and financing, compute and data services — Tech-Services Wing), and the **Experience Loop** (public scenarios, cultural events — Scenario-Enablement Wing). Eight categories of factor mechanisms (land, space, industry, capital, talent, compute, data, scenarios) are all written as **mechanism suggestions**: e.g., the "scenario voucher" — the government opens public-space scenarios in lieu of direct subsidies; the "compute way-station" — distributed edge compute as a prototype of new public infrastructure. All mechanisms are conceptual suggestions and do not constitute fiscal, investment-promotion, or policy commitments [source:AGENT-TASKBOOK].
 
-## Overall-Design Scope: Urban Renewal and Regulatory-Detailed-Planning-Depth Urban Design
+## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 The overall-design scope is organized as urban design at regulatory detailed planning depth [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:land_use_layout] [depth:development_intensity_controls]:
 
@@ -106,7 +106,7 @@ The overall-design scope is organized as urban design at regulatory detailed pla
 
 ![Land-use structure: Nine Zones, One Axis](assets/figures/land-use-structure.png)
 
-## Key Area Detailed Design (The Three Stations)
+## Detailed Design of Key Areas (The Three Stations)
 
 The three key areas reference [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003], benchmarked against [depth:three_key_area_detailed_design] (provisional boundaries; to be recalculated after replacement by official polygons).
 
@@ -124,7 +124,7 @@ Positioning: **the "Station of Translation" for intelligent-native commerce**. S
 
 ![Index of the three-station detailed designs](assets/figures/key-areas.png)
 
-## AI Innovation Ecosystem, Talent Profiles, and AI+ Scenarios (agent.3 Response)
+## AI Innovation Ecosystem, Personas, and AI+ Scenarios (Talent Profiles; agent.3 Response)
 
 ### User Profiles (5 types)
 
@@ -190,21 +190,21 @@ Spatial culture system: the Heritage Green Axis serves as the narrative mainline
 - **Developer community operation**: an online RFC system (public review of scenario proposals) + an offline living-room duty roster; open scenario operation uses the "scenario voucher" application system, with quarterly public disclosure of operation data.
 - **Conversion pathway**: event participants → developer community members → scenario testing applicants → landed-team service matchmaking (undertaken by the Tech-Services Wing); subsequent conversion of talent, enterprises, and developers all has clearly defined receiving space and mechanisms — effects are not exaggerated and no policies are promised.
 
-## Land Use, Building Scale, and the Retain–Renovate–Demolish Plan
+## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 Land-use classification follows [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]; the Nine Zones, One Axis close completely [data:geometry/land_use.geojson#LU-001]. The 16 building-cluster footprints, totaling [metric:building_footprint_area_sqm], represent only conceptual scale intent; height, massing, and interfaces are managed at the advisory level under [depth:height_massing_character]. The retain–renovate–demolish method: retention first (heritage and quality existing buildings), renovation as the main approach (functional replacement of stock), point-like new construction (cluster footprints), and a to-be-confirmed list (parcels lacking property-rights or regulatory planning conditions). No parcel-level retain–renovate–demolish conclusions are given.
 
-## Transport, Rail, Municipal Systems, and Public Service Facilities
+## Transport, Rail, Municipal Infrastructure, and Public Services
 
 Traffic organization: the Heritage Trail is the slow-mobility main axis; the three transverse connectors stitch east and west; the waterfront slow-mobility line serves the Xiaoyue River Wing [data:geometry/roads.geojson#ROAD-001] [depth:traffic_rail_slow_parking]. Rail-station integration (Dazhongsi Station, Wudaokou, Qinghua East Road West Entrance direction) and crossings of the North Fifth Ring Road are listed as pending engineering demonstration. Municipal and new infrastructure: edge compute way-stations, distributed energy, and integrated sensing-and-communication poles are incorporated into the public-space component library [depth:municipal_new_infrastructure]; missing engineering material on pipelines, flood control, and fire protection is listed under assumptions to be supplemented. Public service facilities are configured according to the division of labor among the three stations (Acceleration Station emphasizes industrial services, Origin Station emphasizes living amenities, Market Station emphasizes business services); service radii and standards await confirmation of formal conditions.
 
 ![Mobility and blue-green composite system](assets/figures/mobility-bluegreen.png)
 
-## Blue-Green Space, Public Space, and Urban Character
+## Blue-Green Network, Public Space, and Urban Character
 
 Blue-green system: the Heritage Green Axis (whole line) + three pocket parks (Origin Community, Market rainwater garden, Zhongzhiyuan conservation woodland) + the Xiaoyue River conceptual blue line [data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio] [depth:blue_green_public_space]. Public space: three landmark plazas + two public interfaces [metric:public_space_ratio]. Character guidance: heritage industrial palette (tea brown / bluestone gray), milepost motifs, and suggestions for low-rise, high-density cluster forms; character-control zones are divided into three layers — official control, design suggestion, and to-be-confirmed conditions — with no pseudo-precise control lines [standard:MOHURD-URBAN-DESIGN-MEASURES].
 
-## Renewal Project List, Implementation Policy, and Phasing Plan
+## Renewal Projects, Implementation Policy, and Phasing Plan
 
 | No. | Project | Type | Main Dependencies | Evidence |
 | --- | --- | --- | --- | --- |
@@ -218,7 +218,7 @@ Blue-green system: the Heritage Green Axis (whole line) + three pocket parks (Or
 
 The project-list depth is benchmarked against [depth:renewal_project_list]. Phasing [depth:phasing_implementation] [data:geometry/phasing.geojson#PHASE-001]: **Phase 1 (2026–2028) southern ignition** — the Market Station + Xiaoyue River section, with lightweight facilities and operational activities first; **Phase 2 (2028–2030) central spine taking shape** — the Origin Community section; **Phase 3 (2030–2032) northern momentum** — the Zhongzhiyuan section. Lightweight first-mover items and items that must wait for formal regulatory planning conditions are distinguished in the list.
 
-## Indicator System, Area Recalculation, and Compliance Matrix
+## Metrics, Area Recalculation, and Compliance Matrix
 
 Indicators are managed in three categories [depth:metrics_recalculation]: **① Geometrically recomputable** — site_area_sqm [metric:site_area_sqm], green_ratio [metric:green_ratio], public_space_ratio [metric:public_space_ratio], building_footprint_area_sqm [metric:building_footprint_area_sqm], heritage_spine_length_m [metric:heritage_spine_length_m], scenario_node_count [metric:scenario_node_count], key_area_count [metric:key_area_count], all recomputed from GeoJSON via EPSG:4548 projection, with confidence limited by the provisional boundaries and annotated accordingly; **② Pending official conditions** — floor area ratio, height, density, setbacks, red lines (marked unknown in metrics with reasons given); **③ Operational calibration** — performance indicators such as event participation and scenario usage frequency enter continuous calibration during the operating period and are not written into planning conclusions.
 
