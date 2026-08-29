@@ -1,5 +1,27 @@
 # 方案迭代记录（jingzhang-gardens）
 
+## v1.2.3 - 2026-08-29（PDF×4 重渲落位 + M-5 同源闭环：md↔HTML↔PDF 三层全同构）
+
+### 改动摘要
+
+- **PDF×4 重渲落位（design-node 10:47-10:48 批，本轮回执 12:42 全量内联台账 + canonical 直取）**：`report/proposal-A4.pdf` 2,271,191B `c505a37c…`、`report/proposal-Letter.pdf` 2,272,545B `6ad48525…`、`report/proposal.en-A4.pdf` 1,515,330B `f3e57e93…`、`report/proposal.en-Letter.pdf` 1,522,170B `1f42e8d7…`。落位双闸 4/4 PASS（bytes + sha256 逐一核对 design-node 信内台账）；manifest 四行按新真值重锚。字节差 vs 14:59 旧批 +177/+135/+134/+2,153（<0.2%，PDF 对象流压缩非确定性正常范围；en-Letter 稍大 = §15.3 表格分页重排）。
+- **M-5（PDF 同源）闭环**：渲染命令（pandoc 3.8.3 + xelatex/TeXLive 2022，Microsoft YaHei CJK）+ 源字节审计链齐备——渲染前后 proposal.md `550a2721…`（199,116B）/ proposal.en.md `327280d0…`（258,115B）与 manifest 登记逐字一致，源零改动三禁令回执（源/manifest/fig-6/7）齐。**§15.3 句漂移（旧批唯一已知差异）随本批消除 → md↔HTML↔PDF 三层全同构**。
+- **HTML×2 零改动确认**：design-node 独立重渲（10:51）输出与盘上 `d2e11df4…` / `e8883087…` **逐字节一致**（渲染器确定性，§15.3 句修订对 HTML 输出零影响）→ HTML 两行无需 rehash，跨节点可复现性获证。
+- manifest 同步：PDF 四行 rehash + changelog 行 rehash + generated_at + pending_reason（M-5 关闭，外协渲染链全清）。
+
+### 采纳反馈
+
+- design-node ce43 回执（12:42）：两件委托 10:47-10:51 完成但 10:50/10:55 回信经 hub 转运丢失（信体通道首次 observed 破例）——我方 12:25 催报触发全量内联补账；三问全答（收达✓/无阻塞✓/无需降级✓）。
+
+### 暂未采纳或待复核事项
+
+- relevance 终评六项发现至此 M-1~M-5 全闭环（M-1/M-4 v1.2.1、M-2/M-3 v1.2.2、M-5 本条）。
+- 外层工作区 commit 仍待用户执行（托管模式对外层仓持 commit-policy exception 口径）。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本条仅渲染产物层（PDF×4 + 台账），无空间内容、正文与机读层改动。
+
 ## v1.2.2 - 2026-08-29（relevance 终评 M-2/M-3 落位：机读层 agent_inferred 填实 + visual 场景卡对齐正典）
 
 ### 改动摘要
