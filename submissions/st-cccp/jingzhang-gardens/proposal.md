@@ -9,6 +9,8 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「园」为 AI 时代城市空间原型的概念方案：造园·众智园、学园·AI原点社区、市园·大钟寺三园由园径主脊南北贯通、两翼协同；园规 R1–R5 把 AI 治理落为可感知制度；三指标依 provisional 提交边界可复算，正式边界发布后按触发条件复算。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "youth-friendly-public-space", "ai-origin-community", "enterprise-services-ecosystem", "civic-agent-governance", "ai-public-services", "robotics-autonomous-mobility"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "robot-delivery-low-speed"]
+tracks_note: "轨道/场景三层口径声明：tracks＝提报轨道分类层（8 项；其中 3 项正文锚定——enterprise-services-ecosystem 于西翼要素服务链段、ai-traffic-walkability 于「无障碍园径」段、civic-agent-governance 于园规 R1–R5 映射表「可复核」行）；scenarios＝提报摘要层（5 项 highlight slug，早于正典场景体系的历史命名，保留作提报标识）；§7.3 场景卡 S-01~S-13＝正典场景层。三层各司其职、命名空间不要求互相包含；摘要层经 scenario_mapping 全量映射至正典层——无悬空、无重名、无外延声明。"
+scenario_mapping: {"ai-traffic-walkability": "S-01 + 园径慢行/无障碍", "enterprise-service-copilot": "S-09", "public-safety-operations-review": "§18 公共安全与灾害韧性专章 + S-03 基准评测口径", "ai-cultural-guide": "S-04", "robot-delivery-low-speed": "B-03 机器人服务 + S-01/S-02 测试组"}
 ---
 
 # 京张三园带 THE GARDEN LINE

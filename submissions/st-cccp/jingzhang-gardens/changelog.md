@@ -1,5 +1,28 @@
 # 方案迭代记录（jingzhang-gardens）
 
+## v1.2.4 - 2026-08-29（M-7 口径声明落位：frontmatter 三层轨道/场景口径 + 摘要层正典映射）
+
+### 改动摘要
+
+- **M-7（P2，relevance 终评「Q8 md 层 tracks↔scenarios 对齐不可验」）前置落位**：proposal.md / proposal.en.md frontmatter **新增两字段（纯加性，双语文本镜像）**——
+  - `tracks_note`：三层口径声明——tracks＝提报轨道分类层（8 项，其中 3 项正文锚定：enterprise-services-ecosystem 西翼要素服务链段 / ai-traffic-walkability「无障碍园径」段 / civic-agent-governance 园规 R1–R5 映射表「可复核」行）；scenarios＝提报摘要层（5 项 highlight slug，**早于正典场景体系的历史命名，保留作提报标识**）；§7.3 场景卡 S-01~S-13＝正典场景层；三层命名空间不要求互相包含。
+  - `scenario_mapping`：摘要层 5 slug 全量映射至正典层——ai-traffic-walkability→S-01+园径慢行/无障碍、enterprise-service-copilot→S-09、public-safety-operations-review→§18 专章+S-03 基准评测口径、ai-cultural-guide→S-04、robot-delivery-low-speed→B-03+S-01/S-02 测试组——无悬空、无重名、无外延声明。
+- **影响面实测**：渲染脚本仅消费 frontmatter 的 title/summary/translation_file 三字段，新增字段不入 HTML/PDF 输出 → **HTML×2 与 PDF×4 字节不变、无需重渲**（三层同构维持）；仅 md 双语两行 rehash（proposal.md `550a2721…`→`5848b799…`、proposal.en.md `327280d0…`→`451d0fb8…`）。
+- **M-6（md 追加件）同批安排**：本条与 md 双语原件、compliance_matrix、visual 双页、changelog 共 6 件经 hub 附件通道一次性发 reviewer-relevance（其 13:05 信选定的 A 通道），供其一轮 certutil 双闸实算同时闭 M-6/M-7/M-2/M-3-post-fix 四项。
+
+### 采纳反馈
+
+- reviewer-relevance 13:05（fec2）：M-6/M-7 定义全文补齐（均为 P2、同批触发、≤70min 一轮可完）；其建议「关包 commit 前完成 M-6 更稳」——本条即按此时序执行（外层 commit 尚未发生）；4 件 post-fix 复验通道选 A（hub 附件再试）+ C（base64 信体内联）兜底、明确拒绝 B（读上游工作区越界）——遵其选择。
+
+### 暂未采纳或待复核事项
+
+- M-6/M-7 的 relevance 独立复验结果待其回执（A 通道若再失联即转 C）。
+- 外层工作区 commit 仍待用户执行（命令已随 v1.2.3 更正信送达，gitlink 目标现为内层最新 commit，见 manifest）。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本条仅 frontmatter 元数据加性声明（双语镜像），无正文内容、空间内容与渲染层改动。
+
 ## v1.2.3 - 2026-08-29（PDF×4 重渲落位 + M-5 同源闭环：md↔HTML↔PDF 三层全同构）
 
 ### 改动摘要
