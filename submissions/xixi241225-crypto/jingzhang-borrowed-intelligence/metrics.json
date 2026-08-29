@@ -1,0 +1,244 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "id": "site_area_sqm",
+      "name_zh": "投稿校验场地面积",
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(site_boundary) projected EPSG:4326 -> EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-PROVISIONAL"
+      ],
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "基于官方仓库 provisional 投稿校验边界的设计模型面积，不是官方红线面积。",
+      "interpretation_en": "A design-model area derived from the repository's provisional validation boundary, not an official statutory boundary area.",
+      "authority_status": "official_upstream_provisional",
+      "recompute_trigger": "官方精确边界发布后立即复算。"
+    },
+    "green_space_area_sqm": {
+      "id": "green_space_area_sqm",
+      "name_zh": "设计模型蓝绿空间面积",
+      "status": "known",
+      "value": 1621773.893,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(green_space) intersect unary_union(site_boundary), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-PROVISIONAL",
+        "A-GREEN-MODEL"
+      ],
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "设计模型值；不是完整现状绿地统计，也不是法定绿地率口径。",
+      "interpretation_en": "Design-model value; neither a complete existing green-space inventory nor a statutory green-ratio basis.",
+      "authority_status": "participant_design_model",
+      "recompute_trigger": "官方边界、现场测绘或法定绿地口径到位后复算。"
+    },
+    "green_ratio": {
+      "id": "green_ratio",
+      "name_zh": "设计模型蓝绿空间比例",
+      "status": "known",
+      "value": 0.142101,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(green_space) intersect site_boundary) / area(site_boundary), EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-PROVISIONAL",
+        "A-GREEN-MODEL"
+      ],
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "设计模型值；非现状完整统计，非法定绿地率。",
+      "interpretation_en": "Design-model value; not a complete existing-condition statistic and not a statutory green ratio.",
+      "authority_status": "participant_design_model",
+      "recompute_trigger": "官方边界、现场测绘或法定绿地口径到位后复算。"
+    },
+    "public_space_area_sqm": {
+      "id": "public_space_area_sqm",
+      "name_zh": "设计模型公共空间面积",
+      "status": "known",
+      "value": 1150746.065,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(public_space) intersect unary_union(site_boundary), EPSG:4548; overlaps counted once)",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-PROVISIONAL",
+        "A-PUBLIC-MODEL"
+      ],
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "概念性公共空间模型值；合并重叠后仅计算场地内面积，不代表已开放或法定公共空间。",
+      "interpretation_en": "Conceptual public-space model value; unioned to avoid double counting and clipped to the site; it does not imply current access or statutory status.",
+      "authority_status": "participant_design_model",
+      "recompute_trigger": "官方边界、现场开放核验或管理条件确认后复算。"
+    },
+    "public_space_ratio": {
+      "id": "public_space_ratio",
+      "name_zh": "设计模型公共空间比例",
+      "status": "known",
+      "value": 0.100829,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(public_space) intersect site_boundary) / area(site_boundary), EPSG:4548; overlaps counted once",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-PROVISIONAL",
+        "A-PUBLIC-MODEL"
+      ],
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "概念性公共空间模型比例；不代表已开放或法定公共空间比例。",
+      "interpretation_en": "Conceptual public-space model ratio; it does not represent confirmed access or a statutory public-space ratio.",
+      "authority_status": "participant_design_model",
+      "recompute_trigger": "官方边界、现场开放核验或管理条件确认后复算。"
+    },
+    "building_footprint_area_sqm": {
+      "id": "building_footprint_area_sqm",
+      "name_zh": "原型性建筑占地模型面积",
+      "status": "known",
+      "value": 319728.478,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(buildings) intersect unary_union(site_boundary), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-GEOMETRY-PROVISIONAL",
+        "A-CONTROLS-UNKNOWN"
+      ],
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "仅为方案原型体量的辅助模型值，不代表现状普查、精确拆改留、批准规模或法定建筑密度。",
+      "interpretation_en": "Auxiliary design-model footprint only; not an existing-building survey, precise retention/demolition plan, approved capacity, or statutory density.",
+      "authority_status": "participant_design_model",
+      "recompute_trigger": "官方建筑底图、产权、控规和测绘数据到位后复算。"
+    },
+    "key_area_count": {
+      "id": "key_area_count",
+      "name_zh": "重点区域数量",
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_areas features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-GEOMETRY-PROVISIONAL",
+        "A-DBZ-DUAL-TRACK"
+      ],
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "三处重点区数量来自任务要求，范围 geometry 仍为官方仓库 provisional 校验数据。",
+      "interpretation_en": "The three-area count follows the task requirement; their geometries remain provisional repository validation data.",
+      "authority_status": "official_task_requirement_with_provisional_geometry",
+      "recompute_trigger": "官方重点区域边界发布后复核。"
+    },
+    "floor_area_ratio": {
+      "id": "floor_area_ratio",
+      "name_zh": "容积率",
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "not_computable_without_official_controls_or_survey",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-UNKNOWN"
+      ],
+      "reason": "缺少经核验的法定控规、总建筑面积与精确边界。",
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "当前资料不足，不生成推定值。",
+      "interpretation_en": "The available evidence is insufficient; no inferred value is produced.",
+      "authority_status": "unknown_pending_official_inputs",
+      "recompute_trigger": "取得经核验的控规、测绘、产权或建筑数据后复算。"
+    },
+    "building_height_m": {
+      "id": "building_height_m",
+      "name_zh": "法定或批准建筑高度",
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "not_computable_without_official_controls_or_survey",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-UNKNOWN"
+      ],
+      "reason": "缺少经核验的控规与批准建筑方案。",
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "当前资料不足，不生成推定值。",
+      "interpretation_en": "The available evidence is insufficient; no inferred value is produced.",
+      "authority_status": "unknown_pending_official_inputs",
+      "recompute_trigger": "取得经核验的控规、测绘、产权或建筑数据后复算。"
+    },
+    "development_capacity_sqm": {
+      "id": "development_capacity_sqm",
+      "name_zh": "确定建设规模",
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "not_computable_without_official_controls_or_survey",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-UNKNOWN"
+      ],
+      "reason": "缺少产权、控规、测绘及批准建设条件。",
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "当前资料不足，不生成推定值。",
+      "interpretation_en": "The available evidence is insufficient; no inferred value is produced.",
+      "authority_status": "unknown_pending_official_inputs",
+      "recompute_trigger": "取得经核验的控规、测绘、产权或建筑数据后复算。"
+    },
+    "statutory_building_density": {
+      "id": "statutory_building_density",
+      "name_zh": "法定建筑密度",
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "not_computable_without_official_controls_or_survey",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-UNKNOWN"
+      ],
+      "reason": "原型性建筑模型不能替代法定建筑密度口径。",
+      "calculation_crs": "EPSG:4548",
+      "interpretation_zh": "当前资料不足，不生成推定值。",
+      "interpretation_en": "The available evidence is insufficient; no inferred value is produced.",
+      "authority_status": "unknown_pending_official_inputs",
+      "recompute_trigger": "取得经核验的控规、测绘、产权或建筑数据后复算。"
+    }
+  }
+}
