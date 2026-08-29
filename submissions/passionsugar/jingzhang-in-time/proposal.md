@@ -93,6 +93,16 @@ AI 原点承担“把研究语言翻译成城市语言”。人工应答屋概�
 
 三处 AI 朝圣地标不是大型雕塑，而是公共制度的空间化：开放测试信号塔展示验证状态与失败档案，人工应答屋展示开源贡献与可申诉路径，城市交接大厅展示采用责任与退役记录。京张铁路的“准点、交接、信号”与中关村的“开放、试验、迭代”共同形成及时线文化叙事。
 
+## AI 责任闭环与可复核运营
+
+“及时”不能只表示系统更快，还要让人看见状态、找到责任人、提出异议并回到人工。`visual/assets/ai-responsibility-matrix.json` 将 12 张场景卡改写为可复核的责任记录：每条记录都写明数据最小化、人工复核门、非 AI 等价路径、暂停触发、审计产物、无障碍路径和退役条件 [data:geometry/public_space.geojson#PUBLIC-001] [depth:overall_spatial_structure]。
+
+12 个场景节点与三座响应空间建立概念链接，节点清单作为 `visual/assets/scenario-nodes.json` 的解释层资源，只表示“靠近临时响应空间”的设计关系，不是官方设施点位或已部署服务。运营建议采用四步门：看见（状态与责任人公开）、应答（有人确认并解释）、异议（实体和非数字渠道可申诉）、恢复（人工、纸面或无账户路径可继续）。每一步都可以暂停，不以自动化连续运行作为成功标准。
+
+矩阵中的人工替代和暂停触发覆盖率均为 1.0，表示 12 条概念记录都填写了相应字段 [metric:responsibility_record_count] [metric:human_fallback_coverage_ratio] [metric:pause_trigger_coverage_ratio]。审计产物与无障碍路径覆盖率同样为 1.0，但它们不代表已经有值班人员、真实服务水平或公众同意；正式试点必须由专业团队、运营方和受影响用户共同测试并公开修订 [metric:audit_artifact_coverage_ratio] [metric:accessibility_path_coverage_ratio] [assumption:A-RESP-001]。
+
+![AI 责任闭环与覆盖证据](assets/figures/ai-responsibility-loop.png)
+
 ## 用地、建筑规模与拆改留方案
 
 `land_use.geojson` 是完整的概念分区，不是法定用地审批。`buildings.geojson` 中十二个小体量仅为“空间原型基底”，用于验证研发、转译、服务、文化、商业与交通接驳的相对关系。所有原型均标注 `pending_existing_building_and_ownership_survey`，不指向具体房屋拆除、保留或改造 [data:geometry/buildings.geojson#BLDG-001] [metric:building_footprint_area_sqm] [depth:retain_renovate_demolish]。

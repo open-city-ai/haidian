@@ -240,6 +240,84 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "Existing building survey and approved control are not available."
+    },
+    "responsibility_record_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/ai-responsibility-matrix.json"
+      ],
+      "formula": "count(records in visual/assets/ai-responsibility-matrix.json)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a count of conceptual design records, not deployed services."
+      ]
+    },
+    "human_fallback_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ai-responsibility-matrix.json"
+      ],
+      "formula": "records with non_ai_fallback / total records",
+      "confidence": "high",
+      "assumptions": [
+        "Document coverage only; availability and quality require field testing."
+      ]
+    },
+    "pause_trigger_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ai-responsibility-matrix.json"
+      ],
+      "formula": "records with pause_trigger / total records",
+      "confidence": "high",
+      "assumptions": [
+        "Document coverage only; trigger thresholds remain to be tested."
+      ]
+    },
+    "audit_artifact_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ai-responsibility-matrix.json"
+      ],
+      "formula": "records with audit_artifact / total records",
+      "confidence": "high",
+      "assumptions": [
+        "Document coverage only; retention and access rules require professional review."
+      ]
+    },
+    "accessibility_path_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/ai-responsibility-matrix.json"
+      ],
+      "formula": "records with accessibility_path / total records",
+      "confidence": "high",
+      "assumptions": [
+        "Document coverage only; accessibility outcomes require testing with users."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario-nodes.json"
+      ],
+      "formula": "count(nodes in visual/assets/scenario-nodes.json where layer=SCENARIO_NODE)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept nodes are placed near provisional response spaces and must be relocated after official geometry and access review."
+      ]
     }
   }
 }

@@ -93,6 +93,16 @@ Four testing scenarios precede public deployment. All twelve scenarios carry vis
 
 The three pilgrimage landmarks spatialize public institutions rather than spectacle. The Open Test Signal Tower shows validation and failure records. The Human Answer House displays open-source contributions and appeal routes. The Civic Handover Hall displays adoption responsibility and retirement records. Railway punctuality, handover, and signals meet Zhongguancun's culture of openness, experimentation, and iteration.
 
+## AI Responsibility Loop and Reviewable Operation
+
+“In time” should not mean only faster systems. People must see the state, find the accountable person, contest a decision, and return to a human service. `visual/assets/ai-responsibility-matrix.json` turns all twelve scenario cards into reviewable responsibility records covering data minimization, human review gates, non-AI equivalents, pause triggers, audit artifacts, accessibility paths, and retirement conditions [data:geometry/public_space.geojson#PUBLIC-001] [depth:overall_spatial_structure].
+
+Twelve scenario nodes link to the three response rooms. The node list is carried as the explanatory resource `visual/assets/scenario-nodes.json`; a node means only a conceptual relationship near a provisional response space, not an official facility point or a deployed service. The operating sequence has four gates: SEE (publish state and owner), ANSWER (a person confirms and explains), CONTEST (appeal through physical and non-digital channels), and RECOVER (continue through human, paper, or no-account paths). Each gate can pause the service; uninterrupted automation is not the success criterion.
+
+Human-fallback and pause-trigger coverage are both 1.0: every one of the twelve conceptual records names those fields [metric:responsibility_record_count] [metric:human_fallback_coverage_ratio] [metric:pause_trigger_coverage_ratio]. Audit-artifact and accessibility-path coverage are also 1.0, but these numbers do not prove staffing, service quality, or public consent. A formal pilot must be tested and revised with professional teams, operators, and affected users [metric:audit_artifact_coverage_ratio] [metric:accessibility_path_coverage_ratio] [assumption:A-RESP-001].
+
+![AI responsibility loop and coverage evidence](assets/figures/ai-responsibility-loop.en.png)
+
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 The land-use layer is a complete conceptual partition, not an approval. Twelve small building footprints are spatial prototypes that test relative relationships among research, translation, services, culture, business, and mobility. Every prototype remains pending existing-building and ownership survey [data:geometry/buildings.geojson#BLDG-001] [metric:building_footprint_area_sqm] [depth:retain_renovate_demolish].
