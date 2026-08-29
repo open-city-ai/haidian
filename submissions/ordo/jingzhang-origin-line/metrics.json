@@ -1,0 +1,110 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "边界为组织方临时粗略多边形（PROV-SITE-001），正式面积以官方边界为准重算"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 44700.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "概念阶段建筑基底，仅表达簇群规模意向"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.175489,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "含遗产绿轴与三处口袋公园；受临时边界精度限制"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.005389,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "含三处地标广场与两处公共界面"
+   ]
+  },
+  "heritage_spine_length_m": {
+   "status": "known",
+   "value": 9663.5,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson#ROAD-001"
+   ],
+   "formula": "line_length(ROAD-001, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "沿临时边界中轴的概念步道长度"
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(AI scenario cards in proposal.md table, 10 cards)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "官方边界与批复容积率控制缺失，概念阶段不给容积率结论（任务书agent.1禁止）"
+  }
+ }
+}
