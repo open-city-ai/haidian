@@ -146,7 +146,9 @@ html, body {
   font-size: 12px;
 }
 #legend h3 { margin: 0 0 8px; font-size: 12px; color: var(--muted); }
-.legend-item { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+.legend-item { display: flex; align-items: center; gap: 8px; margin: 5px 0; cursor: pointer; border-radius: 5px; transition: opacity 0.15s ease, background 0.15s ease; }
+.legend-item:hover { background: #eef4ff; }
+.legend-item.off { opacity: 0.38; }
 .legend-line { width: 22px; height: 0; border-top-width: 3px; border-top-style: solid; flex: none; }
 .legend-line.dashed { border-top-style: dashed; }
 .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
@@ -169,6 +171,9 @@ html, body {
 .route-row { display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; margin: 4px 0; }
 .route-row span { color: var(--muted); }
 .route-row b { font-weight: 600; text-align: right; }
+.route-row.warn b { color: var(--crimson); }
+.route-decomp { margin-top: 8px; padding-top: 6px; border-top: 1px solid #eef1f6; font-size: 11px; color: var(--muted); font-weight: 600; }
+.route-note { font-size: 11px; color: var(--muted); margin: 2px 0; }
 
 /* ---------- 数据性质声明 ---------- */
 #data-disclaimer {
@@ -244,6 +249,43 @@ html, body {
 #route-info .route-row b { overflow-wrap: anywhere; }
 .legend-item > span:last-child { flex-shrink: 0; overflow-wrap: anywhere; }
 #docs-panel .docs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+/* ---------- NSGA-II 情景对比面板（算法证据） ---------- */
+#scenarios-panel {
+  position: absolute;
+  left: 14px;
+  bottom: 400px;
+  z-index: 1000;
+  width: 380px;
+  max-height: 60vh;
+  overflow: auto;
+  background: var(--panel-bg);
+  border: 1px solid #d7dee8;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  font-size: 12px;
+}
+#scenarios-panel summary {
+  cursor: pointer;
+  padding: 10px 14px;
+  font-weight: 700;
+  color: var(--ink);
+  list-style: none;
+  border-left: 4px solid var(--teal);
+}
+#scenarios-panel summary::-webkit-details-marker { display: none; }
+#scenarios-panel .scn-body { padding: 2px 12px 12px; color: var(--muted); }
+.scn-table { width: 100%; border-collapse: collapse; margin: 6px 0; }
+.scn-table th, .scn-table td { padding: 5px 6px; border-bottom: 1px solid #eef1f6; text-align: right; font-size: 11.5px; vertical-align: top; }
+.scn-table th { color: var(--muted); font-weight: 600; }
+.scn-table td:first-child { text-align: left; }
+.scn-table td:first-child b { color: var(--blue); font-size: 13px; }
+.scn-name { display: block; font-size: 10.5px; color: var(--ink); font-weight: 600; }
+.scn-rule { display: block; font-size: 10px; color: var(--muted); font-weight: 400; }
+.scn-hv { display: flex; justify-content: space-between; align-items: center; margin: 8px 0 4px; padding: 8px 10px; background: #f0f7ff; border-radius: 8px; }
+.scn-hv span { font-size: 12px; color: var(--ink); }
+.scn-hv b { color: var(--blue); font-size: 15px; }
+.scn-src { font-size: 10.5px; color: var(--muted); margin: 4px 0; }
+.scn-note { font-size: 10.5px; color: var(--muted); line-height: 1.5; margin: 4px 0; }
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 720px) {

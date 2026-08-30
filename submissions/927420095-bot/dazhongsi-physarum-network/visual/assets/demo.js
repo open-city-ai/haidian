@@ -69,6 +69,24 @@
       effectCap04: '04 京张铁路遗址公园 — 工业遗产轨道与当代景观融合，遗产最小干预下的文化展示界面。',
       effectCap05: '05 AI 原点社区生活 — 全龄友好社区广场、智慧座椅与社区花园，呼应「居民故事」张阿姨的生活场景。',
       effectCap06: '06 更新前后对比 — 左：现状（停车杂乱、铺装破损、无绿荫）；右：更新后（步行友好、绿色基础设施、智慧设施）。',
+      scenariosTitle: 'NSGA-II 情景对比',
+      scenariosHv: '超体积改善',
+      scenariosSrc: '数据源',
+      scenariosObjective: '目标',
+      scenariosRule: '选择规则',
+      detourCost: '绕行代价（加权）',
+      edgeLength: '长度',
+      edgeTactileYes: '触觉铺装 ✓',
+      edgeTactileNo: '无触觉铺装 ×1.4',
+      edgeSlope: '坡度',
+      edgeWeight: '加权',
+      decompTitle: '权重分解：加权 = 长度 × 触觉惩罚 × 坡度惩罚',
+      decompBase: '基础长度 Σ',
+      decompTactile: '触觉惩罚 ×1.4 路段',
+      decompSlope: '坡度惩罚 ×1.3 路段',
+      decompTactileNone: '无（全部路段有触觉铺装）',
+      decompSlopeNone: '无（全部路段坡度 <3%）',
+      f3EqualsF2: '注：本方法验证中 f3（遗产影响）≡ f2（成本），因优化骨架未落入遗产惩罚区。',
     },
     en: {
       panelTitle: 'Centenary Jingzhang AI Belt · Interactive Demo',
@@ -124,7 +142,54 @@
       effectCap04: '04 Jing-Zhang railway heritage park — industrial heritage tracks fused with contemporary landscape, a cultural-display interface under minimal intervention.',
       effectCap05: '05 AI Origin community life — an all-age community plaza, smart benches, and community garden, echoing Auntie Zhang\'s life scene in the "Resident Story".',
       effectCap06: '06 Before/after comparison — left: existing (chaotic parking, broken paving, no greenery); right: renewed (pedestrian-friendly, green infrastructure, smart facilities).',
+      scenariosTitle: 'NSGA-II scenario comparison',
+      scenariosHv: 'Hypervolume improvement',
+      scenariosSrc: 'Source',
+      scenariosObjective: 'Objective',
+      scenariosRule: 'Selection rule',
+      detourCost: 'Detour cost (weighted)',
+      edgeLength: 'Length',
+      edgeTactileYes: 'tactile ✓',
+      edgeTactileNo: 'no tactile ×1.4',
+      edgeSlope: 'Slope',
+      edgeWeight: 'Weight',
+      decompTitle: 'Weight decomposition: weight = length × tactile penalty × slope penalty',
+      decompBase: 'Base length Σ',
+      decompTactile: 'tactile ×1.4 segments',
+      decompSlope: 'slope ×1.3 segments',
+      decompTactileNone: 'none (all segments have tactile paving)',
+      decompSlopeNone: 'none (all segments slope <3%)',
+      f3EqualsF2: 'Note: f3 (heritage) ≡ f2 (cost) in this method-validation run, since the optimized skeleton avoids the heritage penalty zones.',
     },
+  };
+
+  /* ------------------------------------------------------------------ *
+   * NSGA-II 情景对比（来源：simulation.json scenario_selection + run）
+   * 方法验证（离线场地），数值为算法复现，非实测验收。
+   * ------------------------------------------------------------------ */
+  var SIMULATION = {
+    source: 'simulation.json',
+    status: 'method_validation_off_site',
+    hypervolume_improvement_percent: 72.62,
+    n_non_dominated: 6,
+    note_zh: 'NSGA-II 方法验证（离线场地，路网位于临时边界西侧约 2–3 km，非正式几何 / 非审批）。数值为算法复现，非实测验收。',
+    note_en: 'NSGA-II method-validation run (off-site, ~2–3 km west of the provisional boundary; not formal geometry / not approval). Values are algorithm reproductions, not surveyed acceptance.',
+    objectives: [
+      { key: 'f1', zh: '网络效率', en: 'Efficiency', dir: 'max', unit: '' },
+      { key: 'f2', zh: '建设成本', en: 'Cost', dir: 'min', unit: 'm' },
+      { key: 'f3', zh: '遗产影响', en: 'Heritage', dir: 'min', unit: 'm' },
+      { key: 'f4', zh: '服务覆盖', en: 'Coverage', dir: 'max', unit: '' },
+    ],
+    scenarios: [
+      { id: 'A', zh: '效率优先', en: 'Efficiency-first', rule_zh: 'f1 网络效率最大', rule_en: 'f1 efficiency max',
+        efficiency: 19.198507559694058, cost: 9056.048533919926, heritage: 9056.048533919926, coverage: 17.74309523149209 },
+      { id: 'B', zh: '成本优先', en: 'Cost-first', rule_zh: 'f2 建设成本最小', rule_en: 'f2 cost min',
+        efficiency: 17.298569521097754, cost: 8797.34413369693, heritage: 8797.34413369693, coverage: 17.596547550037307 },
+      { id: 'C', zh: '覆盖优先', en: 'Coverage-first', rule_zh: 'f4 服务覆盖最大', rule_en: 'f4 coverage max',
+        efficiency: 19.192282647864847, cost: 9009.778793773443, heritage: 9009.778793773443, coverage: 17.74844893360302 },
+      { id: 'D', zh: '综合均衡', en: 'Balanced', rule_zh: '距乌托邦点最近', rule_en: 'min distance to utopia',
+        efficiency: 17.31055028942042, cost: 8813.063115110912, heritage: 8813.063115110912, coverage: 17.604959559654883 },
+    ],
   };
 
   /* ------------------------------------------------------------------ *
@@ -161,6 +226,21 @@
     local_loop: { zh: '慢行环路', en: 'Slow loop' },
     green_corridor: { zh: '遗产绿廊', en: 'Heritage green corridor' },
     transfer_link: { zh: '地铁接驳（概念）', en: 'Metro transfer (concept)' },
+  };
+
+  /* 图例项 -> 可切换图层 key（点击开关 / 悬停高亮） */
+  var LEGEND_LAYERS = {
+    'legend-spine': 'primary_vein',
+    'legend-branch': 'secondary_branch',
+    'legend-loop': 'local_loop',
+    'legend-feeder': 'station_feeder',
+    'legend-transfer': 'transfer_link',
+    'legend-green': 'heritage',
+    'legend-station': 'subway',
+    'legend-keyarea': 'keyAreas',
+    'legend-site': 'site',
+    'legend-route': 'route',
+    'legend-obstacle': 'obstacles',
   };
 
   /* ------------------------------------------------------------------ *
@@ -242,6 +322,7 @@
     startId: null,
     endId: null,
     blockedEdges: {},   // edgeId -> true
+    layerVisible: {},   // layerKey -> false when hidden
     showRfid: false,
     showCoverage: false,
     lang: 'zh',
@@ -250,7 +331,7 @@
   var layers = {
     edges: null, nodes: null, keyAreas: null, site: null, heritage: null,
     subway: null, coverage: null, rfid: null, route: null, obstacles: null,
-    markers: null,
+    markers: null, edgeGroups: {},
   };
 
   var nodeById = {};
@@ -321,32 +402,125 @@
     renderObstacles();
   }
 
+  /* ------------------------------------------------------------------ *
+   * 图层可见性控制（图例点击开关 / 悬停高亮）
+   * ------------------------------------------------------------------ */
+  function isLayerVisible(key) { return state.layerVisible[key] !== false; }
+
+  function toggleLayer(key) {
+    state.layerVisible[key] = !isLayerVisible(key);
+    renderAll();
+    syncLegendState();
+  }
+
+  function syncLegendState() {
+    Object.keys(LEGEND_LAYERS).forEach(function (legendId) {
+      var key = LEGEND_LAYERS[legendId];
+      var item = $(legendId);
+      if (!item) return;
+      if (isLayerVisible(key)) item.classList.remove('off');
+      else item.classList.add('off');
+    });
+  }
+
+  function highlightLayer(key) {
+    // 悬停图例：淡出其它图层，仅保留当前图层（节点/覆盖层不做淡出）
+    Object.keys(layers.edgeGroups).forEach(function (h) {
+      var group = layers.edgeGroups[h];
+      if (!group || h === key) return;
+      group.eachLayer(function (layer) { layer.setStyle({ opacity: 0.12 }); });
+    });
+    ['subway', 'keyAreas', 'site', 'heritage', 'route', 'obstacles'].forEach(function (lk) {
+      var g = layers[lk];
+      if (!g || lk === key) return;
+      if (typeof g.eachLayer === 'function') {
+        g.eachLayer(function (layer) {
+          if (layer.setStyle) layer.setStyle({ opacity: 0.12, fillOpacity: 0.04 });
+        });
+      } else if (g.setStyle) {
+        g.setStyle({ opacity: 0.12, fillOpacity: 0.04 });
+      }
+    });
+  }
+
+  function clearHighlight() { renderAll(); }
+
+  /* ------------------------------------------------------------------ *
+   * NSGA-II 情景对比面板（数据源：SIMULATION 常量，来源 simulation.json）
+   * ------------------------------------------------------------------ */
+  function renderScenarios() {
+    var body = $('scenarios-body');
+    if (!body) return;
+    var zh = state.lang === 'zh';
+    var FIELD = { f1: 'efficiency', f2: 'cost', f3: 'heritage', f4: 'coverage' };
+
+    var head =
+      '<table class="scn-table"><thead><tr>' +
+      '<th>' + (zh ? '情景' : 'Scenario') + '</th>' +
+      SIMULATION.objectives.map(function (o) {
+        return '<th>' + (zh ? o.zh : o.en) + (o.unit ? ' (' + o.unit + ')' : '') + '</th>';
+      }).join('') +
+      '</tr></thead><tbody>';
+
+    var rows = SIMULATION.scenarios.map(function (s) {
+      var cells = SIMULATION.objectives.map(function (o) {
+        var v = s[FIELD[o.key]];
+        var txt = (typeof v === 'number')
+          ? (o.unit === 'm' ? (v / 1000).toFixed(2) + ' km' : v.toFixed(3))
+          : String(v);
+        return '<td>' + txt + '</td>';
+      }).join('');
+      return '<tr>' +
+        '<td><b>' + s.id + '</b> <span class="scn-name">' + (zh ? s.zh : s.en) + '</span>' +
+        '<span class="scn-rule">' + (zh ? s.rule_zh : s.rule_en) + '</span></td>' +
+        cells + '</tr>';
+    }).join('');
+
+    var hv = '<div class="scn-hv"><span>' + t('scenariosHv') + '</span><b>+' +
+      SIMULATION.hypervolume_improvement_percent + '%</b></div>';
+    var src = '<div class="scn-src">' + t('scenariosSrc') + ': ' + SIMULATION.source +
+      ' · ' + SIMULATION.status + '</div>';
+
+    body.innerHTML = head + rows + '</tbody></table>' + hv + src +
+      '<div class="scn-note">' + (zh ? SIMULATION.note_zh : SIMULATION.note_en) + '</div>' +
+      '<div class="scn-note">' + t('f3EqualsF2') + '</div>';
+  }
+
   function renderEdges() {
-    if (layers.edges) map.removeLayer(layers.edges);
-    var group = L.featureGroup();
+    Object.keys(layers.edgeGroups).forEach(function (h) {
+      if (layers.edgeGroups[h]) map.removeLayer(layers.edgeGroups[h]);
+    });
+    layers.edgeGroups = {};
     DATA.edges.forEach(function (e) {
       var a = nodeById[e.from], b = nodeById[e.to];
       if (!a || !b) return;
-      var color = COLORS[e.hierarchy] || '#999';
+      var h = e.hierarchy || 'other';
+      var color = COLORS[h] || '#999';
       var line = L.polyline([[a.lat, a.lng], [b.lat, b.lng]], {
         color: color,
-        weight: HIERARCHY_WEIGHT[e.hierarchy] || 2,
+        weight: HIERARCHY_WEIGHT[h] || 2,
         opacity: 0.85,
         smoothFactor: 1,
         edgeId: e.id,
       });
       line.on('click', function () { onEdgeClick(e.id); });
       line.bindTooltip(edgeTooltip(e));
-      group.addLayer(line);
+      if (!layers.edgeGroups[h]) layers.edgeGroups[h] = L.featureGroup();
+      layers.edgeGroups[h].addLayer(line);
     });
-    layers.edges = group;
-    group.addTo(map);
+    Object.keys(layers.edgeGroups).forEach(function (h) {
+      if (isLayerVisible(h)) layers.edgeGroups[h].addTo(map);
+    });
   }
 
   function edgeTooltip(e) {
     var lab = HIERARCHY_LABEL[e.hierarchy];
-    if (!lab) return '';
-    return (state.lang === 'zh') ? lab.zh : lab.en;
+    var head = lab ? (state.lang === 'zh' ? lab.zh : lab.en) : e.id;
+    return head + '<br>' +
+      t('edgeLength') + ' ' + (e.length_m || 0).toFixed(0) + ' m · ' +
+      (e.tactile ? t('edgeTactileYes') : t('edgeTactileNo')) + '<br>' +
+      t('edgeSlope') + ' ' + ((e.slope || 0) * 100).toFixed(1) + '% · ' +
+      t('edgeWeight') + ' ' + edgeWeight(e).toFixed(0) + ' m';
   }
 
   function renderNodes() {
@@ -387,7 +561,7 @@
       group.addLayer(m);
     });
     layers.subway = group;
-    group.addTo(map);
+    if (isLayerVisible('subway')) group.addTo(map);
   }
 
   function renderCoverage() {
@@ -432,7 +606,7 @@
       group.addLayer(poly);
     });
     layers.keyAreas = group;
-    group.addTo(map);
+    if (isLayerVisible('keyAreas')) group.addTo(map);
   }
 
   function renderSiteBoundary() {
@@ -442,7 +616,7 @@
       color: '#475569', weight: 2, fill: false, dashArray: '8 6',
     });
     layers.site = poly;
-    poly.addTo(map);
+    if (isLayerVisible('site')) poly.addTo(map);
   }
 
   function renderHeritage() {
@@ -459,7 +633,7 @@
       });
     }
     layers.heritage = group;
-    group.addTo(map);
+    if (isLayerVisible('heritage')) group.addTo(map);
   }
 
   function renderRoute() {
@@ -478,7 +652,7 @@
       }));
     });
     layers.route = group;
-    group.addTo(map);
+    if (isLayerVisible('route')) group.addTo(map);
     setRouteInfo(res);
   }
 
@@ -494,7 +668,7 @@
       }));
     });
     layers.obstacles = group;
-    group.addTo(map);
+    if (isLayerVisible('obstacles')) group.addTo(map);
   }
 
   function setRouteInfo(res) {
@@ -512,17 +686,42 @@
     var total = res.edges.reduce(function (s, e) { return s + (e.length_m || 0); }, 0);
     var tactileCount = res.edges.filter(function (e) { return e.tactile; }).length;
     var maxSlope = res.edges.reduce(function (m, e) { return Math.max(m, e.slope || 0); }, 0);
+    var noTactile = res.edges.filter(function (e) { return !e.tactile; }).length;
+    var steep = res.edges.filter(function (e) { return (e.slope || 0) > 0.03; }).length;
     var startName = nodeById[state.startId].name_zh || nodeById[state.startId].id;
     var endName = nodeById[state.endId].name_zh || nodeById[state.endId].id;
-    box.innerHTML =
+
+    var html =
       '<div class="route-title">' + t('routeInfoTitle') + '</div>' +
       '<div class="route-row"><span>' + t('routeFrom') + '</span><b>' + startName + '</b></div>' +
       '<div class="route-row"><span>' + t('routeTo') + '</span><b>' + endName + '</b></div>' +
       '<div class="route-row"><span>' + t('routeDistance') + '</span><b>' + (total / 1000).toFixed(2) + ' km</b></div>' +
       '<div class="route-row"><span>' + t('routeWeighted') + '</span><b>' + (res.weighted / 1000).toFixed(2) + ' km</b></div>' +
       '<div class="route-row"><span>' + t('routeEdges') + '</span><b>' + res.edges.length + '</b></div>' +
+      '<div class="route-decomp">' + t('decompTitle') + '</div>' +
+      '<div class="route-row"><span>' + t('decompBase') + '</span><b>' + (total / 1000).toFixed(2) + ' km</b></div>' +
+      '<div class="route-row"><span>' + t('decompTactile') + '</span><b>' + noTactile + '</b></div>' +
+      '<div class="route-row"><span>' + t('decompSlope') + '</span><b>' + steep + '</b></div>' +
+      (noTactile === 0 ? '<div class="route-note">' + t('decompTactileNone') + '</div>' : '') +
+      (steep === 0 ? '<div class="route-note">' + t('decompSlopeNone') + '</div>' : '') +
       '<div class="route-row"><span>' + t('routeTactileOk') + '</span><b>' + tactileCount + '/' + res.edges.length + '</b></div>' +
       '<div class="route-row"><span>' + t('routeSlopeMax') + '</span><b>' + (maxSlope * 100).toFixed(1) + '%</b></div>';
+
+    // 障碍绕行代价：与「无障碍时」的最优路径对比
+    var blockedCount = Object.keys(state.blockedEdges).length;
+    if (blockedCount > 0) {
+      var freeRes = dijkstra(DATA.nodes, DATA.edges, state.startId, state.endId, {});
+      if (freeRes) {
+        var delta = res.weighted - freeRes.weighted;
+        if (delta > 0.5) {
+          html += '<div class="route-row warn"><span>' + t('detourCost') + '</span><b>+' + (delta / 1000).toFixed(2) + ' km</b></div>';
+        } else {
+          html += '<div class="route-row"><span>' + t('detourCost') + '</span><b>≈ 0</b></div>';
+        }
+      }
+    }
+
+    box.innerHTML = html;
   }
 
   /* ------------------------------------------------------------------ *
@@ -663,6 +862,17 @@
       });
     }
 
+    // 图例：点击切换图层可见性，悬停高亮
+    Object.keys(LEGEND_LAYERS).forEach(function (legendId) {
+      var item = $(legendId);
+      var key = LEGEND_LAYERS[legendId];
+      if (!item || !key) return;
+      item.addEventListener('click', function () { toggleLayer(key); });
+      item.addEventListener('mouseenter', function () { highlightLayer(key); });
+      item.addEventListener('mouseleave', function () { clearHighlight(); });
+    });
+    syncLegendState();
+
     if (map) map.on('click', onMapClick);
   }
 
@@ -686,6 +896,7 @@
       'effect-cap-01': 'effectCap01', 'effect-cap-02': 'effectCap02',
       'effect-cap-03': 'effectCap03', 'effect-cap-04': 'effectCap04',
       'effect-cap-05': 'effectCap05', 'effect-cap-06': 'effectCap06',
+      'scenarios-summary': 'scenariosTitle',
     };
     Object.keys(ids).forEach(function (id) {
       var e = $(id);
@@ -694,6 +905,7 @@
     setModeButtons();
     if (state.startId && state.endId) renderRoute();
     renderScenes();
+    renderScenarios();
   }
 
   /* ------------------------------------------------------------------ *
