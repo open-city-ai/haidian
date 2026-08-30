@@ -1,5 +1,50 @@
 # 方案迭代记录（jingzhang-gardens）
 
+## v1.2.8 - 2026-08-30（衍生物重渲染完成：PDF×4 + HTML×2 同步至 v1.2.7 源 · v1.2.6 ⚠ 提醒解除 · 用户授权 base 直接执行）
+
+### 改动摘要
+
+**衍生物六件重渲染（v1.2.7 源直渲，base 侧执行）**：
+- **执行依据**：用户 2026-08-30 17:55 授权（MSG-73fab5ad1a）——放行 python 执行权限并授予 git 权限，「可以完成后面的内容了」。据此选择此前上送的 **A 路径**（base 侧直接渲染），不再等待 design-node 侧 python 窗口（其 04:5x 起持续关闭）。
+- **HTML×2**：`outputs/render_report_port.py`（canonical 移植脚本，AST 路径）从 `proposal.md` / `proposal.en.md`（v1.2.7，551878e9 / f9af775e）直渲——`report/proposal.html` 254,810B `f202253d…`、`report/proposal.en.html` 325,683B `60369fca…`。
+- **PDF×4**：`outputs/make_pdfs_v127.py` 复刻正典配方（pandoc 3.8.3 + xelatex/TeX Live 2022，CJKmainfont=Microsoft YaHei；A4 margin 2.2cm / Letter margin 1in；两遍编译稳定分页）——`proposal-A4.pdf` 2,306,041B `8dbc2fdd…`（46 页 A4）、`proposal-Letter.pdf` 2,307,104B `b3bad48b…`、`proposal.en-A4.pdf` 1,526,417B `1760e616…`、`proposal.en-Letter.pdf` 1,531,418B `6835e5e6…`（en-Letter 88 页 letter）。字重嵌入实测（MicrosoftYaHei + Bold 子集 + Latin Modern，pdffonts 全 emb=yes uni=yes）；v1.2.7 标记（Q1/Q2 段 10A- 前缀）与 v1.2.6 标记（T-9 触发行）均在 PDF 文本层实测在位。
+- **字节差 vs 08-29 12:45 批**（v1.2.4 源时代）：+34,850 / +34,559 / +11,087 / +9,248（+0.6%–1.5%，与 v1.2.5–v1.2.7 三版内容增量相符：A.4 表重构 + T-9 行 + csv 引用 + 10A- 前缀段）。
+- **manifest 6 行重锚**：上列六行 sha256 按新真值更新；全包 0/0 复验（manifest 哈希 == 磁盘实件，逐行）。
+
+### ⚠ v1.2.6「交付物状态提醒」解除
+
+v1.2.6 所载「PDF/HTML 衍生产物不代表 v1.2.5/v1.2.6 内容」的提醒**自本版起解除**——`report/` 下六件衍生物已与 `proposal.md` / `proposal.en.md`（v1.2.7）同源同版，md/HTML/PDF 三层内容同构恢复。文本基准仍以 md 为准（PDF 对象流压缩非确定性，字节不逐位可比）。
+
+### 采纳反馈
+
+- 用户 17:55 授权（A 路径采纳 + git 权限下放）。
+- reviewer-implementation a851 终评（08-30 04:11 签收）与 reviewer-originality 0522 复验（4.0/5）此前均基于 md 文本基准；本版后衍生物与该基准一致。
+
+### 暂未采纳或待复核事项
+
+- 官方公告全文条款逐字对照仍待官方原文（T-9 触发）。
+- R2 五项裁定与 T-8 / T-9 / A-10 触发器回传仍待采纳方（不阻塞终态）。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本次为衍生物同步（重渲染 + 台账重锚），无正文内容改动。
+
+## v1.2.7 - 2026-08-30（originality r17 复验收口 · hygiene 修正补登记：Q1/Q2 决策映射 A1 标签消歧）
+
+### 改动摘要（补登记：本版 08-30 ~05:2x 已落源与 manifest，因当时托管模式写入通道故障未及登记 changelog，本条补录）
+
+- **Q1/Q2 决策映射段消歧**：L198「A 类决策映射的性质声明」段（Q1/Q2 decision-mapping）为「10 A 决策」清单语境中的 A1 标签添加 **10A- 前缀**（双语两处选项标签 + 括注范围标记），使用户「十个 A 决策」清单中的 A1 条目不再与 originality 评审 A.1/A.2/A.4 表标签在视觉上冲突。P2 hygiene 级，非内容改动。
+- **源重哈希**：`proposal.md` 815c3947→`551878e9…`、`proposal.en.md` 66257829→`f9af775e…`（manifest 同步，实测一致）。
+- **originality 线程收口**：r17 复验后 4.0/5 终评维持（novelty 4.0 / method 4 / writing 4）。
+
+### 暂未采纳或待复核事项
+
+- 衍生物重渲染（本版源）→ 已由 v1.2.8 完成。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；标签消歧不改变任何主张、数据或承诺。
+
 ## v1.2.6 - 2026-08-30（originality r16 A.4 判据兑现：逐字基座改列 + T-9 升级触发器 + 引用追踪表 csv 落包）
 
 ### 改动摘要
