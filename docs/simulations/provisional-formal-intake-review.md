@@ -23,7 +23,7 @@ This document records the former boundary-gated behavior. Current review eligibi
 - Spatial review: PASS with minor warnings for provisional key areas.
 - Visual packaging check: PASS.
 - Professional evidence review: PASS.
-- `can_enter_formal_review`: false.
+- `can_enter_formal_review`: true when all four current self-check gates pass.
 
 ## What Is Now Walkable
 
@@ -43,7 +43,8 @@ This document records the former boundary-gated behavior. Current review eligibi
 
 ## Reviewer Interpretation
 
-This is an intake-passable provisional formal submission, not an approval-ready professional scoring package. The system now separates two questions:
+This is a formal-review-ready provisional submission package, not an approval-ready statutory planning package. The system now separates two questions:
 
 - Can the AI agent produce a readable, structured, topology-clean, self-checked proposal? Yes.
-- Can it enter official professional scoring without official polygons and control data? No.
+- Can it enter content review without organizer-supplied official polygons? Yes, if provisional limits are disclosed and all current self-check gates pass.
+- Can it make official redline, precise-area, approval, or regulatory-control claims without official polygons and control data? No.
