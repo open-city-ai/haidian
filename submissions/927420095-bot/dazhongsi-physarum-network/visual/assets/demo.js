@@ -59,6 +59,16 @@
       measuredNote: '实测',
       scenesToggle: '收起场景',
       scenesTitle: '十大地标场景',
+      scenesToggleShow: '展开场景',
+      controlTitle: '路径规划',
+      effectsSummary: '视觉方案 · 效果图画廊（AI 生成概念渲染）',
+      effectsNote: '以下 6 张效果图由 AI 辅助生成（示意风格），用于展示设计意图而非最终建成效果；图中人物、建筑、材料与场景均为概念化表达，非真实建成效果、非审批几何。点击图片可在新窗口查看原图。',
+      effectCap01: '01 大钟寺新街道鸟瞰 — 慢行优先、机非分离、绿色骑行道与连续触觉铺装的街道总体意象。',
+      effectCap02: '02 无障碍街道近景 — 零高差坡道、连续盲道与双语标识，呼应试点节点 N01。',
+      effectCap03: '03 众智园创客空间 — 开放式协作与绿色办公，承载安全治理沙盒、开源发布等 AI 场景。',
+      effectCap04: '04 京张铁路遗址公园 — 工业遗产轨道与当代景观融合，遗产最小干预下的文化展示界面。',
+      effectCap05: '05 AI 原点社区生活 — 全龄友好社区广场、智慧座椅与社区花园，呼应「居民故事」张阿姨的生活场景。',
+      effectCap06: '06 更新前后对比 — 左：现状（停车杂乱、铺装破损、无绿荫）；右：更新后（步行友好、绿色基础设施、智慧设施）。',
     },
     en: {
       panelTitle: 'Centenary Jingzhang AI Belt · Interactive Demo',
@@ -104,6 +114,16 @@
       measuredNote: 'measured',
       scenesToggle: 'Hide scenes',
       scenesTitle: 'Ten Design Scenes',
+      scenesToggleShow: 'Show scenes',
+      controlTitle: 'Path planning',
+      effectsSummary: 'Visual Scheme · Effect Render Gallery (AI-generated conceptual rendering)',
+      effectsNote: 'The following 6 effect images are AI-assisted (schematic style), used to show design intent, not the final built outcome; people, buildings, materials, and scenes are conceptual expressions, not real built outcomes and not approval geometry. Click an image to open the original in a new tab.',
+      effectCap01: '01 New street aerial view — slow-travel priority, separated motor/non-motor traffic, green cycle lanes, and continuous tactile paving.',
+      effectCap02: '02 Accessible street close-up — zero-height ramps, continuous tactile paving, and bilingual signage, echoing the N01 pilot node.',
+      effectCap03: '03 Zhongzhiyuan co-working space — open collaboration and green office, hosting the safety-governance sandbox and open-source release AI scenarios.',
+      effectCap04: '04 Jing-Zhang railway heritage park — industrial heritage tracks fused with contemporary landscape, a cultural-display interface under minimal intervention.',
+      effectCap05: '05 AI Origin community life — an all-age community plaza, smart benches, and community garden, echoing Auntie Zhang\'s life scene in the "Resident Story".',
+      effectCap06: '06 Before/after comparison — left: existing (chaotic parking, broken paving, no greenery); right: renewed (pedestrian-friendly, green infrastructure, smart facilities).',
     },
   };
 
@@ -118,7 +138,7 @@
     green_corridor: '#15803d',   // 遗产绿廊
     transfer_link: '#8C2B2B',    // Heritage Crimson（地铁接驳/概念）
     route: '#FF6B6B',            // 推荐路径高亮
-    obstacle: '#111827',
+    obstacle: '#C62828',
     station: '#8C2B2B',
     keyArea: '#00B4DB',
     site: '#475569',
@@ -184,7 +204,7 @@
       var neigh = adj[u] || [];
       for (var k = 0; k < neigh.length; k++) {
         var e = neigh[k];
-        if (blockedEdges && blockedEdges.has(e.id)) continue;
+        if (blockedEdges && blockedEdges[e.id]) continue;
         var v = e.from === u ? e.to : e.from;
         var nd = d + edgeWeight(e);
         if (nd < (dist[v] === undefined ? Infinity : dist[v])) {
@@ -337,12 +357,15 @@
       var isStart = n.id === state.startId;
       var isEnd = n.id === state.endId;
       var r = isStart || isEnd ? 7 : 5;
-      var color = isStart ? '#FF6B6B' : (isEnd ? '#FF6B6B' : '#0052D4');
+      var color = isStart ? '#15803d' : (isEnd ? '#8C2B2B' : '#0052D4');
       var c = L.circleMarker([n.lat, n.lng], {
         radius: r, color: '#fff', weight: 1.5, fillColor: color, fillOpacity: 0.95,
       });
       c.on('click', function () { onNodeClick(n.id); });
-      c.bindTooltip(n.name_zh || n.id);
+      var tip = n.name_zh || n.id;
+      if (isStart) tip = t('startMarker') + ' · ' + tip;
+      else if (isEnd) tip = t('endMarker') + ' · ' + tip;
+      c.bindTooltip(tip);
       group.addLayer(c);
     });
     layers.nodes = group;
@@ -467,7 +490,7 @@
       if (!e) return;
       var a = nodeById[e.from], b = nodeById[e.to];
       group.addLayer(L.polyline([[a.lat, a.lng], [b.lat, b.lng]], {
-        color: COLORS.obstacle, weight: 5, opacity: 0.7, dashArray: '3 6',
+        color: COLORS.obstacle, weight: 6, opacity: 0.9, dashArray: '3 6',
       }));
     });
     layers.obstacles = group;
@@ -631,6 +654,15 @@
       });
     }
 
+    var scenesToggleEl = $('scenes-toggle');
+    var scenesPanelEl = $('scenes-panel');
+    if (scenesToggleEl && scenesPanelEl) {
+      scenesToggleEl.addEventListener('click', function () {
+        var collapsed = scenesPanelEl.classList.toggle('collapsed');
+        scenesToggleEl.textContent = collapsed ? t('scenesToggleShow') : t('scenesToggle');
+      });
+    }
+
     if (map) map.on('click', onMapClick);
   }
 
@@ -649,6 +681,11 @@
       'legend-transfer': 'legendTransfer', 'legend-station': 'legendStation', 'legend-route': 'legendRoute',
       'legend-keyarea': 'legendKeyArea', 'legend-site': 'legendSite', 'legend-obstacle': 'legendObstacle',
       'data-disclaimer': 'dataDisclaimer',
+      'control-title': 'controlTitle',
+      'effects-summary': 'effectsSummary', 'effects-note': 'effectsNote',
+      'effect-cap-01': 'effectCap01', 'effect-cap-02': 'effectCap02',
+      'effect-cap-03': 'effectCap03', 'effect-cap-04': 'effectCap04',
+      'effect-cap-05': 'effectCap05', 'effect-cap-06': 'effectCap06',
     };
     Object.keys(ids).forEach(function (id) {
       var e = $(id);
@@ -672,7 +709,7 @@
     function draw() {
       if (!SCENES) return;
       if (titleEl) titleEl.textContent = (state.lang === 'zh' ? SCENES.meta.title_zh : SCENES.meta.title_en) || t('scenesTitle');
-      if (toggleEl) toggleEl.textContent = t('scenesToggle');
+      if (toggleEl) toggleEl.textContent = panel.classList.contains('collapsed') ? t('scenesToggleShow') : t('scenesToggle');
       var scroll = $('scenes-scroll');
       if (!scroll) return;
       scroll.innerHTML = '';
@@ -699,12 +736,6 @@
         document.body.classList.remove('scenes-visible');
         panel.style.display = 'none';
       });
-
-    if (toggleEl) {
-      toggleEl.addEventListener('click', function () {
-        panel.classList.toggle('collapsed');
-      });
-    }
   }
 
   document.addEventListener('DOMContentLoaded', init);
