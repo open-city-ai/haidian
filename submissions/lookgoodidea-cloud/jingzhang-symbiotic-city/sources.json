@@ -1,0 +1,529 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "OSM-OVERPASS-PROFESSIONAL-V2",
+      "license": "Open Database License (ODbL) 1.0; © OpenStreetMap contributors. Attribution is retained; no official, cadastral or approval status is implied.",
+      "url": "https://www.openstreetmap.org/copyright",
+      "publisher": "OpenStreetMap contributors",
+      "accessed_date": "2026-08-28",
+      "source_type": "public_context_dataset",
+      "usage": "Professional-v2 orientation background: 1,486 roads, 186 railway features, 29 waterways and 24 station points. Exact Overpass query, raw response and hashes are preserved in the mother package.",
+      "sha256": "3c2719c8113f0c5435a4228961a40a68a6c386f312978689a05f97d484afeb7a",
+      "limitations": "Public orientation context only, not an official boundary, survey, ownership, statutory control or verified engineering capacity."
+    },
+    {
+      "id": "OSM-OVERPASS-PROFESSIONAL-V2-BUILDINGS",
+      "license": "Open Database License (ODbL) 1.0; © OpenStreetMap contributors. Attribution is retained; no official, cadastral or approval status is implied.",
+      "url": "https://www.openstreetmap.org/copyright",
+      "publisher": "OpenStreetMap contributors",
+      "accessed_date": "2026-08-28",
+      "source_type": "public_context_dataset",
+      "usage": "1,894 building footprints from four complete, query-linked public Overpass tiles; clipped/deduplicated orientation fabric. Raw tiles and replay manifest are preserved in the mother package.",
+      "sha256": "39431c5b54a161e76f2740e2568860daf341fab99198a5719e675eabdb801a3b",
+      "limitations": "Footprints do not establish building condition, height, use, ownership, heritage status or a demolition/retention decision. Participant BLD geometry remains separate concept massing."
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "license": "署名引用与事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "publication_date": "2026-05-09",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_public",
+      "usage": "征集目的、三层范围、三处重点区和城市设计任务。",
+      "limitations": "网页文字不能替代资格预审附件中的精确空间数据。"
+    },
+    {
+      "id": "SITE-PACKAGE",
+      "license": "赛事官方仓库材料，仅用于本次投稿的合同读取、校验与设计对齐；仓库未提供的通用再许可不作推定。",
+      "path": "brief/site-package/",
+      "repository": "open-city-ai/haidian",
+      "observed_commit": "ad05ae25a80b4097b04e9d9d68281b0d8906e1b8",
+      "accessed_date": "2026-08-21",
+      "source_type": "official_repository_contract",
+      "usage": "项目枚举、范围、允许设计空间、标准和校验契约。"
+    },
+    {
+      "id": "OFFICIAL-SPATIAL-CONTRACT-V09",
+      "license": "赛事官方仓库合同快照，仅用于本次投稿的可复现校验；不推定对仓库文本、代码或附件的额外通用再许可。",
+      "path": "official-snapshots/2026-08-21-spatial/",
+      "repository": "open-city-ai/haidian",
+      "observed_commit": "f13a1b67c5165c6d04820e99afbaa8809dfa176c",
+      "latest_reviewed_main": "ad05ae25a80b4097b04e9d9d68281b0d8906e1b8",
+      "prior_spatial_reviewed_main": "1684719d9868b0b4c2b45e3e96c939eeff9e733c",
+      "core_contract_blobs_unchanged": true,
+      "accessed_date": "2026-08-21",
+      "source_type": "official_repository_contract_snapshot",
+      "usage": "锁定当前GeoJSON、spatial.json、允许设计空间、设计简报及官方空间审查接口，作为v0.9生成与验证合同。",
+      "snapshot_sha256": {
+        "geojson_feature.schema.json": "17221994c03f10f5672f92150cebbf534365d63a66c2fc030318542b055b1474",
+        "spatial.schema.json": "5689867f1458f4161cb86ef4ddacad82afd792c031401edf5b6bc738af216a17",
+        "spatial_review.py": "9c08e4f884bfd8bdf97455fdc316912be8d6105a0ccc04d7a2d2d0830a6b835f",
+        "visual_review.py": "07bdb69d23e9d5c498836863163747307e43c92611b0b00491e0a04352e1eecf",
+        "allowed_design_space.json": "5834e265131d7d254be7027bba998590c3f999266e386e1867bfc56fd21c4bb2",
+        "design_brief.json": "884ec2be645c7906c8407f29f7a4cb1c81bd71941be7519b23f415bff5d63b1c"
+      },
+      "limitations": "合同快照约束格式和空间审查，不提供精确官方边界、现状、权属、控规或专业工程资料。"
+    },
+    {
+      "id": "SPATIAL-CONTEXT-V09",
+      "path": "spatial-inputs/osm-source-record.json",
+      "query_path": "spatial-inputs/osm-overpass-query.txt",
+      "raw_record_path": "spatial-inputs/osm-context-raw.json",
+      "sha256": "7b5b5d5349c3db2bb0b5af7006ffb6b1642ba4be1b123c99450c12022be8df63",
+      "accessed_date": "2026-08-21",
+      "source_type": "documented_background_attempt_and_fallback",
+      "source_mode": "provisional_only",
+      "license": "历史v0.9失败尝试记录；当时未取得OSM要素。Professional-v2已另行取得并按ODbL署名，见两个OSM-OVERPASS-PROFESSIONAL-V2来源。",
+      "usage": "保留历史两次Overpass失败和provisional回退证据；不代表当前professional-v2的公开背景状态。",
+      "limitations": "不得把未取得的OSM数据、概念道路或模型水绿界面表述为现状、官方线位、锁定约束、权属或批准依据。"
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "license": "赛事官方仓库任务书，仅用于本次投稿的任务响应、引用与核验；仓库未提供的通用再许可不作推定。",
+      "path": "brief/site-package/agent_taskbook.json",
+      "git_blob_sha": "5a9774fc4b339f788841304f2ac4133bf57bf04c",
+      "source_type": "official_repository_taskbook",
+      "usage": "十条共创原则、三区两翼、六项Agent任务、场景和运营要求。"
+    },
+    {
+      "id": "FORMAL-GUIDE",
+      "license": "赛事官方仓库提交指南，仅用于本次投稿的合同读取、引用与校验；仓库未提供的通用再许可不作推定。",
+      "path": "docs/formal-submission-guide.md",
+      "git_blob_sha": "834203a03c94b9ecdc511350f5d7e3e3bc14e241",
+      "source_type": "official_repository_contract",
+      "usage": "双语、正文、JSON、GeoJSON、图件、HTML、PDF和预检要求。"
+    },
+    {
+      "id": "CURRENT-SCAFFOLD",
+      "license": "赛事官方仓库脚手架，仅作为本次投稿的结构与工具合同使用；不推定对脚手架或仓库代码的额外通用再许可。",
+      "path": "scripts/scaffold_ai_submission.py",
+      "git_blob_sha": "f3ff75ebf775c24392b1f591cccd869d916968e0",
+      "source_type": "official_repository_tool",
+      "usage": "formal脚手架结构和默认文件契约；示例几何与空PDF不作为本方案成果。"
+    },
+    {
+      "id": "PROVISIONAL-BOUNDARIES",
+      "license": "赛事仓库提供的provisional材料，仅用于临时生成、可视化和入口复算；不构成官方红线，也不推定额外通用再许可。",
+      "path": "official-snapshots/2026-08-20/provisional_boundaries.geojson",
+      "upstream_path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "git_blob_sha": "b050e0813882a034a7deb976ddd4a43ad56aec0c",
+      "sha256": "2050047ef25c4f42d849eb7e81da4ffd9b8bb50115f4a27daf716732625ec63f",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "临时生成、可视化和入口一致性检查。",
+      "limitations": "不得作为official redline、审批依据、精确面积或法定控制。"
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "license": "赛事官方仓库来源登记合同，仅用于本次投稿的来源分级、引用与核验；仓库未提供的通用再许可不作推定。",
+      "path": "data/source_registry.json",
+      "git_blob_sha": "c5e2243c85f1a62edb295911439e1847b9e634fb",
+      "source_type": "official_repository_registry",
+      "usage": "区分formal-ready、background、provisional及needs-review资料。"
+    },
+    {
+      "id": "CHECKPOINT-V01",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.1-2026-08-12.md",
+      "sha256": "5ad4769091390acf25e5680c1f2eb81cc20241e2f1b17b25d49eec86c8bab867",
+      "source_type": "participant_design_checkpoint",
+      "usage": "记录0+13、城市总叙事、一门双Agent、第一能力初版和第二能力完整十二链等早期设计来源。",
+      "limitations": "这是历史设计来源，不是当前v1.0规范、部署证据、官方空间资料或投稿就绪证明。"
+    },
+    {
+      "id": "CHECKPOINT-V02",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.2-2026-08-13.md",
+      "sha256": "bc1e5210cd11ad41d229284eec04c72035e0f82031f642cc5e673d4d1f3d0e30",
+      "source_type": "participant_design_checkpoint",
+      "usage": "记录教育与能力成长的早期结构、人物旅程和与前序能力的继承关系。",
+      "limitations": "这是能力3的历史来源；当前字段、映射和专业边界以capabilities.json@1.0为准。"
+    },
+    {
+      "id": "CHECKPOINT-V03",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.3-2026-08-20.md",
+      "sha256": "67f1e2aab56d8db93974fe2382f2bafa63a597e28d420d425bd7b5241ee91269",
+      "source_type": "participant_design_checkpoint",
+      "usage": "记录前三区能力的连续深化、公共服务与学习成长接口及早期总装判断。",
+      "limitations": "这是历史检查点，不替代v1.0完整链、指标、工作包、红线和最终绑定。"
+    },
+    {
+      "id": "CHECKPOINT-V04",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.4-2026-08-20.md",
+      "sha256": "c1c0eb1e0fd4f2a24405cbf05af277081260584ca3972ee1bc01939f0a07f9b6",
+      "source_type": "participant_design_checkpoint",
+      "usage": "记录居住与社区十二链、六张候选卡、指标、工作包、红线和空间接口的完整来源。",
+      "limitations": "候选卡和概念规格不证明房源、权属、维修成效、设施容量、建设或部署。"
+    },
+    {
+      "id": "CHECKPOINT-V05",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.5-2026-08-20.md",
+      "sha256": "18a7ea908f26eccfd19662040f90607843719171d6d46d548afb27ccaf1bb63c",
+      "source_type": "participant_design_source",
+      "usage": "第五能力枝出行与公共空间完整规格，并继承v0.1—v0.4。",
+      "limitations": "候选场景和概念链不证明站口、线路、容量、连续无障碍、安全批准或运行。"
+    },
+    {
+      "id": "SUBMISSION-LEDGER",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-submission-ledger-2026-08-20.md",
+      "sha256": "574f3fea1a55941b68a02c48bc9528351a7102d88715516ab7c8442c16b97877",
+      "source_type": "participant_process_record",
+      "usage": "0+13、八大能力、Agent架构和正式投稿完成门定义。"
+    },
+    {
+      "id": "CHECKPOINT-V06",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.6-2026-08-20.md",
+      "sha256": "30ade2a1ecdab54aadd13330f01b2b0a59daec382b35350113269a28bff574da",
+      "source_type": "participant_design_source",
+      "usage": "第六能力枝就业、创业与产业十二链、三类产业测试、指标、工作包和风险完整规格。",
+      "limitations": "不证明岗位、订单、企业、资金、采购、场地、安全许可、部署或产业成效。"
+    },
+    {
+      "id": "BEIJING-AI-HIGHLAND-2026",
+      "license": "署名引用与事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.beijing.gov.cn/ywdt/gzdt/202601/t20260106_4403157.html",
+      "publisher": "北京市人民政府门户网站",
+      "publication_date": "2026-01-06",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_public_background",
+      "usage": "技术策源、智算自主生态、数据、应用、具身智能、开源和安全治理的现实背景。",
+      "limitations": "全市行动、规模和目标不能写成京张片区已批准项目、指标、预算或企业安排。"
+    },
+    {
+      "id": "BEIJING-AGENT-MEASURES-2026",
+      "license": "署名引用与事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.beijing.gov.cn/zhengce/zcjd/202607/t20260723_4781151.html",
+      "publisher": "北京市人民政府门户网站",
+      "publication_date": "2026-07-23",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_policy_interpretation",
+      "usage": "智能体底层筑基、平台赋能、应用牵引、范式引领、生态闭环和安全护航的机制参考。",
+      "limitations": "支持措施须按正式政策条件和程序适用；本方案不得承诺获得资金、项目或审批。"
+    },
+    {
+      "id": "BEIJING-ENTERPRISE-SERVICES-2025",
+      "license": "署名引用与事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.beijing.gov.cn/ywdt/gzdt/202506/t20250610_4109711.html",
+      "publisher": "北京市人民政府门户网站",
+      "publication_date": "2025-06-10",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_public_background",
+      "usage": "企业初创、成长、高质量发展和权益保护全生命周期服务目录的组织逻辑。",
+      "limitations": "市级服务清单不能转写为本项目自设审批权或Agent承诺办成。"
+    },
+    {
+      "id": "HAIDIAN-AI-STREET-2025",
+      "license": "署名引用与事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.bjhd.gov.cn/ztzx/2025/aifuture/jq/gwsq/202505/t20250513_4769125.shtml",
+      "publisher": "北京市海淀区人民政府",
+      "publication_date": "2025-03-27",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_public_background",
+      "usage": "校区、园区、街区融合，以及创新生态、数字底座、治理场景、智慧生活与空间品质协同的背景。",
+      "limitations": "公开报道中的范围、主体和成效不替代征集正式边界、现状、项目和实测。"
+    },
+    {
+      "id": "HAIDIAN-SUPER-TESTFIELD-2026",
+      "license": "署名引用与事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://zyk.bjhd.gov.cn/ywdt/mtbd/202607/t20260724_4823103.shtml",
+      "publisher": "北京市海淀区人民政府转载",
+      "publication_date": "2026-07-24",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_portal_republished_background",
+      "usage": "海淀开放城市治理和民生服务实景测试场景及智能体产业培育的现实背景。",
+      "limitations": "报道不是本征集场景许可；任何实体测试仍须风险分级、场地清权、专业和法定审查。"
+    },
+    {
+      "id": "CHECKPOINT-V07",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.7-2026-08-20.md",
+      "sha256": "5c3f0fc7219f4674a330847454907675c338223c64b1aec87a71d71699f2d14e",
+      "source_type": "participant_design_source",
+      "usage": "第七能力枝创意、想法与真人资产十二链、三层权益架构、场景、指标、工作包和风险完整规格。",
+      "limitations": "‘真人资产’是设计概念；本检查点不自动确认作者、权属、许可、收益、删除或争议结果。"
+    },
+    {
+      "id": "COPYRIGHT-LAW",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.nsfc.gov.cn/p1/2871/2872/69475.html",
+      "publisher": "国家自然科学基金委员会（法规公开，文本来源为现行著作权法）",
+      "publication_date": "2022-01-26",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_legal_text_republication",
+      "usage": "作品、作者、著作权、许可和保护边界的现行法律背景。",
+      "limitations": "本方案不据此自动判断想法、提示词、AI输出、数据或具体对象构成作品及权利归属。"
+    },
+    {
+      "id": "PIPL",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.stats.gov.cn/gk/tjfg/xgfxfg/202503/t20250310_1958923.html",
+      "publisher": "国家统计局（法规公开）",
+      "publication_date": "2025-03-10",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_legal_text_republication",
+      "usage": "合法、正当、必要、目的限制、个人权利、自动化决策和影响评估的设计底线。",
+      "limitations": "授权账不能替代个人信息处理者义务；具体合法基础和权利响应须逐活动判断。"
+    },
+    {
+      "id": "GENAI-MEASURES-2023",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
+      "publisher": "国家互联网信息办公室",
+      "publication_date": "2023-07-13",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_regulatory_text",
+      "usage": "生成式人工智能服务在训练数据、个人信息、内容安全、投诉等方面的合规接口。",
+      "limitations": "概念城市Agent不等于已经完成特定服务的备案、登记或上线合规。"
+    },
+    {
+      "id": "AI-CONTENT-LABELING-2025",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
+      "publisher": "国家互联网信息办公室等四部门",
+      "publication_date": "2025-03-14",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_regulatory_text",
+      "usage": "公开传播AI生成合成内容的显式、隐式和用户声明标识接口。",
+      "limitations": "具体内容、主体和传播活动是否适用须由运营及专业主体按现行办法和配套标准判断。"
+    },
+    {
+      "id": "BEIJING-DATA-IP-2026",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.beijing.gov.cn/zhengce/zhengcefagui/202606/t20260618_4706028.html",
+      "publisher": "北京市人民政府门户网站／北京市知识产权局等",
+      "publication_date": "2026-06-17",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_current_policy",
+      "usage": "符合法定和试行办法条件的数据集合登记及专业服务接口背景。",
+      "limitations": "个人原始信息、任意聊天、普通想法或平台记录不能被本方案自动登记或确认为数据知识产权。"
+    },
+    {
+      "id": "SPC-DATA-RIGHTS-2025",
+      "license": "署名引用与司法公开信息摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.court.gov.cn/zixun/xiangqing/474431.html",
+      "publisher": "中华人民共和国最高人民法院",
+      "publication_date": "2025-08-28",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_judicial_guidance_background",
+      "usage": "数据权属、数据产品利用、个人信息和平台账号争议需进入具体法律与司法判断的背景。",
+      "limitations": "指导性案例不能被概括成所有数据对象的一般自动确权规则。"
+    },
+    {
+      "id": "SPC-AI-IP-2026",
+      "license": "署名引用与司法公开信息摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.court.gov.cn/zixun/xiangqing/491541.html",
+      "publisher": "中华人民共和国最高人民法院",
+      "publication_date": "2026-03-05",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_judicial_public_background",
+      "usage": "AI知识产权裁判规则仍在探索、需要具体案件和持续完善的审慎依据。",
+      "limitations": "公开访谈不是具体案件裁判或对本方案对象的权利结论。"
+    },
+    {
+      "id": "CHECKPOINT-V08",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.8-2026-08-20.md",
+      "sha256": "4f0c0d15c3431e62bc9cfbecc413cdac667c201af97ee8407f7a2a2b14a89ce0",
+      "source_type": "participant_design_source",
+      "usage": "第八能力枝公共治理、法治责任、安全韧性与生态维护十二链、六张场景卡、二十四项运行指标、十二工作包和二十四红线完整规格。",
+      "limitations": "不证明法定职权、算法部署、应急能力、生态基线、修复成效或审批完成。"
+    },
+    {
+      "id": "CHECKPOINT-V09",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "checkpoints/jingzhang-ai-innovation-belt-checkpoint-v0.9-2026-08-21.md",
+      "sha256": "9859f20c93bc9c6c52e774e6b00eb5d8c3232a8d76810a3b3d0b22eb877ec47b",
+      "source_type": "participant_spatial_design_checkpoint",
+      "usage": "记录provisional空间母盘、四项复算指标、独立验证、48项空间变异、QA图边界和下一施工入口。",
+      "limitations": "该检查点证明当前设计模型和验证状态，不证明官方边界、法定控规、现状权属、专业审查、施工或投稿完成。"
+    },
+    {
+      "id": "CHECKPOINT-V10-ASSEMBLY",
+      "license": "本项目参与者与AI Agent协作形成，按COMMUNITY-DISPLAY-ONLY用于赛事与社区展示；不证明部署、审批、绩效或排他权利。",
+      "path": "submissions/lookgoodidea-cloud/jingzhang-symbiotic-city/capabilities.json",
+      "zero_plus_thirteen_path": "submissions/lookgoodidea-cloud/jingzhang-symbiotic-city/zero_plus_thirteen.json",
+      "source_type": "participant_machine_assembly_checkpoint",
+      "accessed_date": "2026-08-21",
+      "canonical_sha256": {
+        "capabilities.json": "7c4974591bac080eb54198a6deecb714bb6e28b488706b8a0e5129a836551d1e",
+        "zero_plus_thirteen.json": "6a7a87655fa3b61d1d02cb5c906cc4613194818047f7cda545b1f75a191f9087",
+        "agent.json": "5f6d5f8cb9a534e83225008b84a8638e87444d4c91cdd333ba31844df9012519",
+        "metrics.json": "66e3f2d93c5f2e59158f187f2014459428ce8546321c3cf763a420be3695a006",
+        "spatial.json": "73dba4a21b314a86f96b1f3a6bb2bf0718634fccb48642a5549388ee29f24ab4"
+      },
+      "usage": "作为v1.0当前机器总装检查点，锁定8项能力、14个0+13单元、12张正式场景卡及其Agent、指标和空间索引接口。",
+      "limitations": "This checkpoint proves machine assembly only; it does not prove deployed services, official geometry, professional approval, figures, formal readiness, or submission completion."
+    },
+    {
+      "id": "ECOLOGICAL-ENVIRONMENT-CODE-2026",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.mee.gov.cn/ywgz/fgbz/fl/202603/t20260313_1146496.shtml",
+      "publisher": "中华人民共和国生态环境部",
+      "publication_date": "2026-03-13",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_current_law",
+      "usage": "设置生态分区准入、规划/项目环评、公众参与、固定资产项目节能审查、气候适应和适用碳责任的逐事项判断接口。",
+      "limitations": "已被法典废止的旧环境法律不得继续作为现行主依据；不据此断言本项目环评类别、节能审查结论或碳配额。"
+    },
+    {
+      "id": "CYBERSECURITY-LAW-2026",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.npc.gov.cn/npc/c1773/c1848/c21114/wlaqfxz/wlaqfxz002/202511/t20251103_449242.html",
+      "publisher": "全国人民代表大会常务委员会（中国人大网）",
+      "publication_date": "2025-11-03",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_current_law",
+      "usage": "设置等保、日志、事件处置以及AI伦理、风险监测评估和安全监管的系统接口。",
+      "limitations": "等保级别、是否属于关键信息基础设施及具体监管路径仍须由适格主体确认；该URL是修改决定而非合并后的现行法全文。"
+    },
+    {
+      "id": "EMERGENCY-RESPONSE-LAW-2024",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.yunfu.gov.cn/yjj/xxgk/flfgjjd/content/post_1896443.html",
+      "publisher": "云浮市应急管理局（文本来源：中华人民共和国应急管理部）",
+      "publication_date": "2025-02-20",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_legal_text_republication",
+      "usage": "设置预防、预案、监测预警、信息发布、处置救援和恢复重建接口。",
+      "limitations": "转载页不替代逐条法务核验；Agent不取得法定应急指挥与信息发布权。"
+    },
+    {
+      "id": "MAJOR-ADMIN-DECISION-2019",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.beijing.gov.cn/zhengce/zhengcefagui/201905/t20190522_62034.html",
+      "publisher": "国务院（北京市人民政府门户网站公开）",
+      "publication_date": "2019-05-08",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_current_administrative_regulation",
+      "usage": "为可能属于重大行政决策的事项设置公众参与、专家论证、风险评估、合法性审查和集体讨论接口。",
+      "limitations": "是否进入重大行政决策目录、适用哪些程序及期限必须逐事项确认。"
+    },
+    {
+      "id": "BEIJING-PUBLIC-DATA-2026",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.beijing.gov.cn/zhengce/zhengcefagui/202607/t20260709_4754544.html",
+      "publisher": "北京市政务服务和数据管理局",
+      "publication_date": "2026-07-09",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_current_beijing_normative_document",
+      "usage": "设置市级统筹、运营主体选择、原始公共数据安全域、产品服务审查和个人信息合法处理接口。",
+      "limitations": "项目或区级团队不得自行宣布获得公共数据授权运营资格，去标识化不得冒充匿名化。"
+    },
+    {
+      "id": "FACE-RECOGNITION-2025",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.cac.gov.cn/2025-03/21/c_1744174262156096.htm",
+      "publisher": "国家互联网信息办公室、公安部",
+      "publication_date": "2025-03-21",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_current_departmental_rule",
+      "usage": "为确需人脸的特定活动设置必要性、显著告知、非人脸替代、影响评估和适用备案闸门。",
+      "limitations": "公共安全不等于可常态商业画像、强制刷脸或默认跨场景复用。"
+    },
+    {
+      "id": "AI-ANTHROPOMORPHIC-2026",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm",
+      "publisher": "国家互联网信息办公室、国家发展和改革委员会、工业和信息化部、公安部、国家市场监督管理总局",
+      "publication_date": "2026-04-10",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_current_departmental_rule",
+      "usage": "当公共AI形成持续情感互动时，设置AI提示、便捷退出、风险干预、未成年人/老年人保护及适用评估备案接口。",
+      "limitations": "普通知识问答和工作助手是否适用须按具体产品形态、对象和功能确认。"
+    },
+    {
+      "id": "ACCESSIBILITY-LAW-2023",
+      "license": "署名引用与法律事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://hljca.miit.gov.cn/gzcy/zjdc/art/2023/art_41a6f2089a524beebf4895c01ac240d7.html",
+      "publisher": "黑龙江省通信管理局（转载，文本来源：新华社）",
+      "publication_date": "2023-12-06",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_current_law_republication",
+      "usage": "设置设施、信息、服务和自助终端无障碍，以及必要人工服务接口。",
+      "limitations": "不据此断言某一终端或场所的具体验收状态；不能以单一App替代连续无障碍服务。"
+    },
+    {
+      "id": "BEIJING-RESILIENCE-PLAN-2024",
+      "license": "署名引用与规划事实摘要用途；本包未复制网页装帧、照片、插图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.beijing.gov.cn/zhengce/zhengcefagui/202403/t20240325_3599383.html",
+      "publisher": "北京市规划和自然资源委员会",
+      "publication_date": "2024-03-22",
+      "accessed_date": "2026-08-20",
+      "source_type": "official_approved_plan",
+      "usage": "支撑三环八廊多支点、39组团、韧性生活圈、生命线冗余、数字孪生和三层级3天物资的设计方向。",
+      "limitations": "规划不替代项目立项、控规、环评、节能、安全、工程审批，也不证明京张轴属于官方八廊。"
+    },
+    {
+      "id": "CASE-BARCELONA-DECIDIM",
+      "license": "署名引用与官方案例事实摘要用途；本包未复制网页照片、图表、地图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://bcnroc.ajuntament.barcelona.cat/items/ef84b7dc-5952-4fce-b98d-93b049a24c3f",
+      "publisher": "Barcelona City Council Open Access Repository",
+      "publication_date": "2016-11-14",
+      "accessed_date": "2026-08-21",
+      "source_type": "official_municipal_case_source",
+      "usage": "支撑Decidim以开源平台连接数字与线下参与、提案、追踪和公共行动计划的案例转译。",
+      "limitations": "该来源支撑参与平台与治理机制，不证明22@空间更新成效，也不允许照搬巴塞罗那规划、产权或政治程序。"
+    },
+    {
+      "id": "CASE-HELSINKI-KALASATAMA",
+      "license": "署名引用与官方案例事实摘要用途；本包未复制网页照片、图表、地图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://forumvirium.fi/en/publication/smartkalasatama-final-report/",
+      "publisher": "Forum Virium Helsinki, City of Helsinki innovation company",
+      "publication_date": "2021-11-16",
+      "accessed_date": "2026-08-21",
+      "source_type": "official_city_innovation_case_source",
+      "usage": "支撑真实城区中的敏捷试验、居民—城市—企业—研究者协作和以日常时间为价值方向的案例转译。",
+      "limitations": "试验数量、媒体关注和城市排名不等于京张适用性、长期部署效果或正式绩效。"
+    },
+    {
+      "id": "CASE-SINGAPORE-PDD",
+      "license": "署名引用与官方案例事实摘要用途；本包未复制网页照片、图表、地图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.jtc.gov.sg/punggoldigitaldistrict",
+      "publisher": "JTC Corporation, Government of Singapore",
+      "publication_date": "2026-01-14",
+      "accessed_date": "2026-08-21",
+      "source_type": "official_national_development_case_source",
+      "usage": "支撑产学社区邻接、开放数字平台、数字孪生测试和城区运营接口的案例转译。",
+      "limitations": "榜鹅的面积、岗位、学生、平台、实时数据、生物识别和投资条件不能写成京张既有或获批事实。"
+    },
+    {
+      "id": "CASE-SEOUL-DMC",
+      "license": "署名引用与官方案例事实摘要用途；本包未复制网页照片、图表、地图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://legal.seoul.go.kr/legal/english/front/page/law.html?pAct=lawView&pPromNo=3014&pTabType=history",
+      "publisher": "Seoul Metropolitan Government",
+      "publication_date": "2019-03-28",
+      "accessed_date": "2026-08-21",
+      "source_type": "official_municipal_ordinance_case_source",
+      "usage": "支撑数字产业园区以法定职责、基础设施、企业支持和运营边界共同组织的案例转译。",
+      "limitations": "首尔条例、产业目录、土地开发、准入和支持政策不适用于北京，不能形成京张招商或政府承诺。"
+    },
+    {
+      "id": "CASE-PARIS-SACLAY",
+      "license": "署名引用与官方案例事实摘要用途；本包未复制网页照片、图表、地图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://epa-paris-saclay.fr/nos-ambitions/innovation/",
+      "publisher": "Établissement public d'aménagement Paris-Saclay",
+      "publication_date": "2022-01-04",
+      "accessed_date": "2026-08-21",
+      "source_type": "official_public_development_case_source",
+      "usage": "支撑城市校园、科研产业连接、开放创新场所网络与生态水务硬约束共同组织的案例转译。",
+      "limitations": "该页面为持续更新的官方发展机构材料；页面日期不等于全部项目审批日期，规模、投资和新区条件不可照搬。"
+    },
+    {
+      "id": "CASE-TORONTO-QUAYSIDE",
+      "license": "署名引用与官方案例事实摘要用途；本包未复制网页照片、图表、地图、Logo或第三方编辑内容，且不推定这些内容的再利用许可。",
+      "url": "https://www.waterfrontoronto.ca/news/waterfront-toronto-concludes-digital-panel-and-thanks-panelists-lasting-impact",
+      "publisher": "Waterfront Toronto",
+      "publication_date": "2020-09-21",
+      "accessed_date": "2026-08-21",
+      "source_type": "official_public_governance_case_source",
+      "usage": "支撑独立数字治理复核、政府处于治理中心、隐私与民主问责先于城市技术部署的反向案例转译。",
+      "limitations": "项目退出由多重因素造成；不能把它简化为单一隐私事件，也不能把加拿大制度直接套用为中国法定程序。"
+    }
+  ]
+}

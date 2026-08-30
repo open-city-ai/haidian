@@ -1,0 +1,431 @@
+{
+  "agent_id": "lookgoodidea-cloud-jingzhang-symbiotic-city",
+  "agent_name": "Codex × lookgoodidea-cloud",
+  "role": "ai_agent_submission_author",
+  "model": "OpenAI Codex (GPT-5 family)",
+  "model_family": "gpt",
+  "model_detail": "Codex agent; exact serving snapshot is not exposed in the workspace",
+  "generated_with": "interactive human-Agent co-design plus official repository contract review",
+  "human_account_holder": "lookgoodidea-cloud",
+  "capability_system": {
+    "schema_version": "1.0",
+    "path": "capabilities.json",
+    "capability_count": 8,
+    "service_chain_count": 96,
+    "scenario_binding_count": 48,
+    "work_package_count": 96,
+    "runtime_metric_count": 192,
+    "red_line_count": 192
+  },
+  "architecture": {
+    "core_zh": "A在前、C在后、B在侧；一门、双Agent、七环、五级空间载体",
+    "personal_agent": [
+      "表达意愿",
+      "解释选择",
+      "管理逐项授权",
+      "跟踪交付",
+      "纠错与退出"
+    ],
+    "city_agent": [
+      "维护公共能力目录",
+      "连接权威系统",
+      "聚合发现公共问题",
+      "跨主体调度",
+      "公开状态与审计"
+    ],
+    "professional_side": [
+      "规划与城市设计",
+      "建筑与交通",
+      "医疗与教育",
+      "法律与数据",
+      "安全与生态"
+    ],
+    "seven_loops": [
+      "表达",
+      "翻译",
+      "校验",
+      "匹配",
+      "协同",
+      "交付",
+      "学习"
+    ],
+    "five_spatial_levels": [
+      "个人与家庭",
+      "楼栋与院落",
+      "社区",
+      "街道与片区",
+      "创新带与城市"
+    ],
+    "non_ai_fallback": [
+      "电话",
+      "窗口",
+      "社区服务站",
+      "无障碍终端",
+      "纸质导视",
+      "人工接管"
+    ],
+    "hard_limits": [
+      "人是城市主角",
+      "最小必要数据",
+      "高风险决定由专业或法定主体完成",
+      "执行与申诉分离",
+      "Agent失效时基本服务不失效"
+    ],
+    "capability_catalog": [
+      {"id": 1, "zh": "身份与公共服务", "design_status": "complete_specification_pending_formal_assembly"},
+      {"id": 2, "zh": "健康与照护", "design_status": "complete_specification_pending_formal_assembly"},
+      {"id": 3, "zh": "教育与能力成长", "design_status": "complete_specification_pending_formal_assembly"},
+      {"id": 4, "zh": "居住与社区", "design_status": "complete_specification_pending_formal_assembly"},
+      {"id": 5, "zh": "出行与公共空间", "design_status": "complete_specification_pending_formal_assembly"},
+      {"id": 6, "zh": "就业、创业与产业", "design_status": "complete_specification_pending_formal_assembly"},
+      {"id": 7, "zh": "创意、想法与真人资产", "en": "Creativity, Ideas, and Real-Person Assets", "design_status": "complete_specification_pending_formal_assembly"},
+      {"id": 8, "zh": "共治、法治、安全与生态", "design_status": "complete_specification_pending_formal_assembly"}
+    ],
+    "lawful_authorities": {
+      "role_id": "L",
+      "role_name_zh": "法定主体",
+      "role_name_en": "lawful authority",
+      "retained_functions": ["approval", "enforcement", "public_warning", "emergency_command", "evacuation_or_lockdown", "rescue_priority", "adjudication", "statutory_remedy"],
+      "non_delegation_rule": "L retains statutory responsibility and does not delegate it to A, C, B, or a model."
+    },
+    "capability_eight": {
+      "specification_version": "v0.8",
+      "external_name_zh": "第八能力｜公共治理、法治责任、安全韧性与生态维护系统",
+      "external_name_en": "Capability Eight — Civic Governance, Rule-of-Law Accountability, Safety Resilience and Ecological Stewardship",
+      "architecture_pattern": {
+        "one_base": {"id": "LAWFUL_EVIDENCE_BASE", "zh": "法定职权与证据底座", "scope": "minimum responsibility evidence, not a resident data lake"},
+        "four_networks": [
+          {"id": "NET-GOV", "zh": "普通居民共治网"},
+          {"id": "NET-LAW", "zh": "法治与算法责任网"},
+          {"id": "NET-SAFETY", "zh": "公共安全与城市韧性网"},
+          {"id": "NET-ECO", "zh": "生态维护网"}
+        ],
+        "six_gates": [
+          {"id": "G1", "zh": "职权闸"}, {"id": "G2", "zh": "数据闸"}, {"id": "G3", "zh": "模型闸"},
+          {"id": "G4", "zh": "决定闸"}, {"id": "G5", "zh": "执行闸"}, {"id": "G6", "zh": "应急恢复闸"}
+        ],
+        "operating_states": [
+          {"id": "daily", "zh": "日常态"}, {"id": "alert", "zh": "预警态"}, {"id": "emergency", "zh": "应急态"}, {"id": "recovery", "zh": "恢复态"}
+        ]
+      },
+      "actor_model": [
+        {"id": "A", "name": "个人Agent", "allowed": ["expression", "explanation", "consent", "tracking", "correction", "withdrawal", "complaint", "exit"], "forbidden": ["publicly_act_for_person", "contract", "admit_facts", "high_risk_decision"]},
+        {"id": "C", "name": "城市Agent", "allowed": ["public_directory", "necessary_aggregation", "routing", "state_sync", "risk_prompt", "simulation", "audit"], "forbidden": ["read_all_private_domains", "panoramic_profile", "final_approval", "enforcement", "penalty", "lockdown", "evacuation", "rescue_priority", "adjudication"]},
+        {"id": "B", "name": "专业侧援", "allowed": ["professional_review", "site_inspection", "technical_validation"], "forbidden": ["replace_professional_judgment", "replace_signature", "replace_site_inspection", "replace_statutory_testing"]},
+        {"id": "L", "name": "法定主体", "allowed": ["approval", "enforcement", "public_warning", "emergency_command", "evacuation_or_lockdown", "rescue_priority", "adjudication", "statutory_remedy"], "forbidden": ["transfer_statutory_responsibility"]}
+      ],
+      "risk_tiers": [
+        {"id": "R0", "examples": ["information_assistance"], "automation_ceiling": "automatic_with_identity_and_source", "required_review": "none", "fallback": "human_explanation"},
+        {"id": "R1", "examples": ["reversible_low_risk_process"], "automation_ceiling": "reversible_rule_bound_flow", "required_review": "human_takeover_available", "fallback": "withdraw_or_human_takeover"},
+        {"id": "R2", "examples": ["professional_high_impact_process"], "automation_ceiling": "advice_only", "required_review": "B_accountable_review", "fallback": "professional_or_site_verification"},
+        {"id": "R3", "examples": ["statutory_or_emergency_high_risk_decision"], "automation_ceiling": "no_independent_agent_decision", "required_review": "L_or_qualified_professional", "fallback": "lawful_manual_decision"}
+      ],
+      "protective_interlock_conditions": [
+        "prior_explicit_legal_engineering_or_operational_authorization",
+        "fixed_object_threshold_duration_and_scope",
+        "safety_case_failure_analysis_physical_test_and_professional_signoff",
+        "sole_purpose_of_reducing_immediate_danger",
+        "immediate_human_takeover_without_expansion_to_lockdown_evacuation_or_rescue_ranking",
+        "auditable_time_limited_post_review_and_restorable"
+      ],
+      "event_contract_fields": ["event_id", "trigger", "affected_capability", "spatial_scope", "risk_tier", "competent_authority", "legal_or_contract_basis", "accountable_human", "A_role", "C_role", "B_role", "allowed_automation", "required_review", "conflict_and_recusal", "data_scope", "retention_and_access", "model_source_and_confidence", "emergency_override_and_expiry", "audit_record", "appeal_route", "rollback_or_restoration"],
+      "data_classes": [
+        {"id": "D0", "zh": "想法或推断"}, {"id": "D1", "zh": "可核公开描述"}, {"id": "D2", "zh": "临时或开放启动数据"}, {"id": "D3", "zh": "权威、已清权且足以支撑设计判断的数据"}, {"id": "D4", "zh": "个人、商业、专业或法定受限数据"}
+      ],
+      "service_chains": [
+        {"id": "GOV-01", "zh": "公共问题表达、受理与责任路由链", "metric_ids": ["M-GOV-01", "M-GOV-02"], "work_package_id": "WP-G01", "primary_0_plus_13": ["0", "9", "10", "11", "13"], "official_chapters": ["O4", "O6", "O8", "O12"]},
+        {"id": "GOV-02", "zh": "公众参与、协商与少数意见保护链", "metric_ids": ["M-GOV-03", "M-GOV-04"], "work_package_id": "WP-G02", "primary_0_plus_13": ["0", "8", "10", "11", "12", "13"], "official_chapters": ["O5", "O6", "O9", "O12"]},
+        {"id": "GOV-03", "zh": "公共决定、理由公开、承诺与执行跟踪链", "metric_ids": ["M-GOV-05", "M-GOV-06"], "work_package_id": "WP-G03", "primary_0_plus_13": ["0", "9", "10", "13"], "official_chapters": ["O1", "O6", "O10", "O11", "O12"]},
+        {"id": "GOV-04", "zh": "职权、依据、程序、签署、回避与复核链", "metric_ids": ["M-GOV-07", "M-GOV-08"], "work_package_id": "WP-G04", "primary_0_plus_13": ["0", "9", "10", "13"], "official_chapters": ["O1", "O6", "O12", "O13"]},
+        {"id": "GOV-05", "zh": "跨主体城市调度、交接与指令冲突处理链", "metric_ids": ["M-GOV-09", "M-GOV-10"], "work_package_id": "WP-G05", "primary_0_plus_13": ["0", "1", "3", "9", "10", "11", "13"], "official_chapters": ["O4", "O6", "O8", "O10", "O12"]},
+        {"id": "GOV-06", "zh": "Agent与算法登记、风险分级、影响评估、审计与停用链", "metric_ids": ["M-GOV-11", "M-GOV-12"], "work_package_id": "WP-G06", "primary_0_plus_13": ["0", "5", "6", "7", "8", "9", "10", "13"], "official_chapters": ["O1", "O3", "O6", "O10", "O11", "O12"]},
+        {"id": "GOV-07", "zh": "投诉举报、独立复核、申诉及法定救济衔接链", "metric_ids": ["M-GOV-13", "M-GOV-14"], "work_package_id": "WP-G07", "primary_0_plus_13": ["0", "9", "10", "11", "13"], "official_chapters": ["O6", "O10", "O11", "O12"]},
+        {"id": "GOV-08", "zh": "日常公共安全风险发现、分级核验与处置链", "metric_ids": ["M-GOV-15", "M-GOV-16"], "work_package_id": "WP-G08", "primary_0_plus_13": ["0", "1", "3", "9", "10", "11", "13"], "official_chapters": ["O4", "O5", "O6", "O8", "O10", "O11", "O12"]},
+        {"id": "GOV-09", "zh": "预警、应急指挥、救援协同与多入口通知链", "metric_ids": ["M-GOV-17", "M-GOV-18"], "work_package_id": "WP-G09", "primary_0_plus_13": ["0", "1", "3", "6", "9", "10", "11", "13"], "official_chapters": ["O3", "O4", "O5", "O6", "O8", "O10", "O11", "O12"]},
+        {"id": "GOV-10", "zh": "Agent、网络、电力失效、人工接管、业务连续与灾后复原链", "metric_ids": ["M-GOV-19", "M-GOV-20"], "work_package_id": "WP-G10", "primary_0_plus_13": ["0", "1", "3", "6", "9", "10", "11", "13"], "official_chapters": ["O3", "O4", "O6", "O8", "O10", "O11", "O12"]},
+        {"id": "GOV-11", "zh": "生态基线、公众观察、专业监测、养护与反馈链", "metric_ids": ["M-GOV-21", "M-GOV-22"], "work_package_id": "WP-G11", "primary_0_plus_13": ["0", "4", "8", "9", "10", "11", "12", "13"], "official_chapters": ["O2", "O3", "O4", "O5", "O9", "O10", "O11", "O12", "O13"]},
+        {"id": "GOV-12", "zh": "生态阈值、影响控制、修复补偿、气候适应与退役恢复链", "metric_ids": ["M-GOV-23", "M-GOV-24"], "work_package_id": "WP-G12", "primary_0_plus_13": ["0", "2", "3", "4", "8", "9", "10", "12", "13"], "official_chapters": ["O2", "O3", "O4", "O5", "O7", "O9", "O10", "O11", "O12", "O13"]}
+      ],
+      "scenario_cards": [
+        {"id": "SC-GOV-01", "chain_ids": ["GOV-01", "GOV-07"], "risk_tier": "R1", "non_ai_fallback": "phone_window_community_proxy_paper_receipt_human_routing"},
+        {"id": "SC-GOV-02", "chain_ids": ["GOV-06", "GOV-07"], "risk_tier": "R3", "non_ai_fallback": "phone_window_paper_application_accountable_human_review"},
+        {"id": "SC-GOV-03", "chain_ids": ["GOV-06", "GOV-08"], "risk_tier": "R3", "non_ai_fallback": "mechanical_stop_human_guard_phone_report_site_responsible_person"},
+        {"id": "SC-GOV-04", "chain_ids": ["GOV-05", "GOV-09", "GOV-10"], "risk_tier": "R3", "non_ai_fallback": "broadcast_paper_manual_patrol_backup_radio_offline_map_backup_power_human_command"},
+        {"id": "SC-GOV-05", "chain_ids": ["GOV-11", "GOV-12"], "risk_tier": "R2", "non_ai_fallback": "paper_observation_phone_window_professional_sampling"},
+        {"id": "SC-GOV-06", "chain_ids": ["GOV-02", "GOV-03", "GOV-04"], "risk_tier": "R2", "non_ai_fallback": "paper_and_in_person_accessible_deliberation_and_lawful_review"}
+      ],
+      "metric_ids": ["M-GOV-01", "M-GOV-02", "M-GOV-03", "M-GOV-04", "M-GOV-05", "M-GOV-06", "M-GOV-07", "M-GOV-08", "M-GOV-09", "M-GOV-10", "M-GOV-11", "M-GOV-12", "M-GOV-13", "M-GOV-14", "M-GOV-15", "M-GOV-16", "M-GOV-17", "M-GOV-18", "M-GOV-19", "M-GOV-20", "M-GOV-21", "M-GOV-22", "M-GOV-23", "M-GOV-24"],
+      "metric_key_map": [
+        {"checkpoint_metric_id": "M-GOV-01", "metrics_json_key": "governance_first_route_accuracy_rate"}, {"checkpoint_metric_id": "M-GOV-02", "metrics_json_key": "governance_due_response_completeness_rate"}, {"checkpoint_metric_id": "M-GOV-03", "metrics_json_key": "governance_affected_group_participation_accessibility_rate"}, {"checkpoint_metric_id": "M-GOV-04", "metrics_json_key": "governance_minority_opinion_retention_response_rate"},
+        {"checkpoint_metric_id": "M-GOV-05", "metrics_json_key": "governance_decision_basis_reason_completeness_rate"}, {"checkpoint_metric_id": "M-GOV-06", "metrics_json_key": "governance_commitment_execution_state_accuracy_rate"}, {"checkpoint_metric_id": "M-GOV-07", "metrics_json_key": "governance_authority_procedure_signature_completeness_rate"}, {"checkpoint_metric_id": "M-GOV-08", "metrics_json_key": "governance_conflict_disclosure_recusal_coverage_rate"},
+        {"checkpoint_metric_id": "M-GOV-09", "metrics_json_key": "governance_cross_actor_handoff_closure_rate"}, {"checkpoint_metric_id": "M-GOV-10", "metrics_json_key": "governance_conflicting_instruction_escalation_timeliness_rate"}, {"checkpoint_metric_id": "M-GOV-11", "metrics_json_key": "governance_high_risk_algorithm_impact_assessment_coverage_rate"}, {"checkpoint_metric_id": "M-GOV-12", "metrics_json_key": "governance_major_model_change_revalidation_suspension_coverage_rate"},
+        {"checkpoint_metric_id": "M-GOV-13", "metrics_json_key": "governance_complaint_independent_review_coverage_rate"}, {"checkpoint_metric_id": "M-GOV-14", "metrics_json_key": "governance_remedy_execution_closure_rate"}, {"checkpoint_metric_id": "M-GOV-15", "metrics_json_key": "governance_risk_event_verification_timeliness_rate"}, {"checkpoint_metric_id": "M-GOV-16", "metrics_json_key": "governance_stop_condition_human_takeover_availability_rate"},
+        {"checkpoint_metric_id": "M-GOV-17", "metrics_json_key": "governance_multichannel_warning_access_equivalence_rate"}, {"checkpoint_metric_id": "M-GOV-18", "metrics_json_key": "governance_emergency_command_rescue_handoff_rate"}, {"checkpoint_metric_id": "M-GOV-19", "metrics_json_key": "governance_critical_service_continuity_rate"}, {"checkpoint_metric_id": "M-GOV-20", "metrics_json_key": "governance_recovery_postmortem_closure_rate"},
+        {"checkpoint_metric_id": "M-GOV-21", "metrics_json_key": "governance_ecological_baseline_evidence_coverage_rate"}, {"checkpoint_metric_id": "M-GOV-22", "metrics_json_key": "governance_public_ecology_report_verification_feedback_rate"}, {"checkpoint_metric_id": "M-GOV-23", "metrics_json_key": "governance_ecological_threshold_action_rate"}, {"checkpoint_metric_id": "M-GOV-24", "metrics_json_key": "governance_restoration_decommissioning_revalidation_closure_rate"}
+      ],
+      "work_packages": [
+        {"id": "WP-G01", "chain_id": "GOV-01"}, {"id": "WP-G02", "chain_id": "GOV-02"}, {"id": "WP-G03", "chain_id": "GOV-03"}, {"id": "WP-G04", "chain_id": "GOV-04"}, {"id": "WP-G05", "chain_id": "GOV-05"}, {"id": "WP-G06", "chain_id": "GOV-06"}, {"id": "WP-G07", "chain_id": "GOV-07"}, {"id": "WP-G08", "chain_id": "GOV-08"}, {"id": "WP-G09", "chain_id": "GOV-09"}, {"id": "WP-G10", "chain_id": "GOV-10"}, {"id": "WP-G11", "chain_id": "GOV-11"}, {"id": "WP-G12", "chain_id": "GOV-12"}
+      ],
+      "hard_prohibitions": [
+        {"id": "RL-GOV-01"}, {"id": "RL-GOV-02"}, {"id": "RL-GOV-03"}, {"id": "RL-GOV-04"}, {"id": "RL-GOV-05"}, {"id": "RL-GOV-06"}, {"id": "RL-GOV-07"}, {"id": "RL-GOV-08"}, {"id": "RL-GOV-09"}, {"id": "RL-GOV-10"}, {"id": "RL-GOV-11"}, {"id": "RL-GOV-12"}, {"id": "RL-GOV-13"}, {"id": "RL-GOV-14"}, {"id": "RL-GOV-15"}, {"id": "RL-GOV-16"}, {"id": "RL-GOV-17"}, {"id": "RL-GOV-18"}, {"id": "RL-GOV-19"}, {"id": "RL-GOV-20"}, {"id": "RL-GOV-21"}, {"id": "RL-GOV-22"}, {"id": "RL-GOV-23"}, {"id": "RL-GOV-24"}
+      ],
+      "reverse_constraints": [
+        {"capability_id": 1, "constraint": "minimum authorization and independent remedy"}, {"capability_id": 2, "constraint": "no final diagnosis triage or rescue priority by Agent"}, {"capability_id": 3, "constraint": "heightened minor safeguards and human responsibility"}, {"capability_id": 4, "constraint": "lawful procedure and resilience drills"}, {"capability_id": 5, "constraint": "risk tier human takeover stop and withdrawal"}, {"capability_id": 6, "constraint": "no final hiring finance procurement license or testing decision by Agent"}, {"capability_id": 7, "constraint": "governance legality supervision and remedy remain separate"}
+      ],
+      "professional_gates": ["legal_authority", "planning_building_transport", "emergency_fire_rescue_health", "water_ecology_climate", "data_cybersecurity_privacy", "algorithm_ethics_accessibility", "operations_business_continuity", "independent_review_remedy"],
+      "mandatory_fallbacks": ["non_ai_equivalent_entry", "human_takeover", "safe_stop", "offline_operation", "alternate_communications", "independent_review", "rollback_restore", "exit_delete_or_lawful_retention"],
+      "spatial_level_mapping": [
+        {"governance_responsibility_scale": "个人/家庭", "capability_service_carrier": "个人/家庭私域与入口"}, {"governance_responsibility_scale": "楼栋/院落/设施", "capability_service_carrier": "社区公共节点或设施边缘端"}, {"governance_responsibility_scale": "社区/街镇", "capability_service_carrier": "社区、校园或园区服务节点"}, {"governance_responsibility_scale": "片区/创新带", "capability_service_carrier": "三区两翼"}, {"governance_responsibility_scale": "城市/区域", "capability_service_carrier": "北京、京津冀及外部专业网络"}
+      ],
+      "source_ids": ["CHECKPOINT-V08", "ECOLOGICAL-ENVIRONMENT-CODE-2026", "CYBERSECURITY-LAW-2026", "EMERGENCY-RESPONSE-LAW-2024", "MAJOR-ADMIN-DECISION-2019", "BEIJING-PUBLIC-DATA-2026", "FACE-RECOGNITION-2025", "AI-CONTENT-LABELING-2025", "AI-ANTHROPOMORPHIC-2026", "ACCESSIBILITY-LAW-2023", "BEIJING-RESILIENCE-PLAN-2024", "PIPL"]
+    },
+    "capability_seven": {
+      "specification_version": "v0.7",
+      "external_name_zh": "个人创意与贡献权益系统",
+      "external_name_en": "Personal Creativity and Contribution Rights System",
+      "legal_disclaimer": "真人资产是项目设计概念，不是新增法定物权、知识产权、数据确权、金融资产或政府信用；具体权利、合同、登记、继承和争议由适用法律及有权主体判断。",
+      "three_layers": [
+        {
+          "id": "PRIVATE_VAULT",
+          "zh": "私域资产舱",
+          "default": "private_no_public_search_no_training",
+          "city_agent_visibility": "existence_or_permission_status_only_unless_separately_authorized"
+        },
+        {
+          "id": "LICENSED_USE_LEDGER",
+          "zh": "授权流通账",
+          "purpose": "record_who_may_do_what_to_which_version_for_which_purpose_and_duration",
+          "not_a_title_registry": true
+        },
+        {
+          "id": "CIVIC_CONTRIBUTION_LEDGER",
+          "zh": "公共贡献账",
+          "default": "opt_in_project_specific",
+          "prohibitions": ["no_overall_person_score", "no_basic_service_linkage", "no_default_commercial_or_training_use"]
+        }
+      ],
+      "permission_fields": [
+        "asset_id",
+        "asset_version",
+        "grantor_and_authority_basis",
+        "recipient",
+        "specific_purpose",
+        "allowed_actions",
+        "excluded_actions",
+        "start_and_expiry",
+        "territory_or_environment",
+        "attribution_and_ai_labeling",
+        "consideration_or_explicit_gratuitous_choice",
+        "derivatives_and_sublicensing",
+        "confidentiality_and_security",
+        "revocation_effect",
+        "deletion_retention_and_dispute_route"
+      ],
+      "parallel_states": [
+        "content_state",
+        "visibility_state",
+        "permission_state",
+        "use_state",
+        "value_state",
+        "professional_or_legal_state",
+        "civic_response_state"
+      ],
+      "service_chains": [
+        {"id": "CRE-01", "zh": "一句话想法捕捉与私域保存链"},
+        {"id": "CRE-02", "zh": "来源、版本、人类贡献与证据链"},
+        {"id": "CRE-03", "zh": "技能、经验与作品能力资产链"},
+        {"id": "CRE-04", "zh": "保密披露、可信匹配与组队链"},
+        {"id": "CRE-05", "zh": "共同创作、角色贡献与退出结算链"},
+        {"id": "CRE-06", "zh": "授权、许可、开放与复用链"},
+        {"id": "CRE-07", "zh": "个人数据、声音肖像与AI训练授权链"},
+        {"id": "CRE-08", "zh": "Agent工作流、提示、工具与可携带性链"},
+        {"id": "CRE-09", "zh": "社区提案、公共共创、采纳与回馈链"},
+        {"id": "CRE-10", "zh": "展示、发表、开源、文化记忆与荣誉链"},
+        {"id": "CRE-11", "zh": "委托、采购、交易、收益与价值回流链"},
+        {"id": "CRE-12", "zh": "更正、撤回、删除、继承、争议与完整退出链"}
+      ],
+      "scenario_cards": [
+        "SC-CRE-01",
+        "SC-CRE-02",
+        "SC-CRE-03",
+        "SC-CRE-04",
+        "SC-CRE-05",
+        "SC-CRE-06"
+      ],
+      "professional_gates": [
+        "copyright_patent_trademark_trade_secret",
+        "contracts_labor_procurement_tax",
+        "personal_information_data_cybersecurity",
+        "minors_accessibility_ethics",
+        "archives_succession_and_disputes",
+        "planning_building_fire_water_ecology_and_public_safety"
+      ],
+      "mandatory_fallbacks": [
+        "keep_private",
+        "pause_and_resume",
+        "human_or_professional_takeover",
+        "reject_request_without_basic_service_penalty",
+        "export_and_switch_provider",
+        "correct_revoke_dispute_or_exit"
+      ],
+      "hard_prohibitions": [
+        "no_automatic_legal_title_claim",
+        "no_blanket_default_consent",
+        "no_training_or_commercial_use_from_service_access",
+        "no_citywide_creativity_graph",
+        "no_personal_contribution_or_asset_score",
+        "no_public_space_bystander_default_consent",
+        "no_ai_final_rights_or_dispute_decision",
+        "no_exposure_or_points_instead_of_due_payment",
+        "no_false_instant_global_deletion_promise",
+        "no_withdrawal_complaint_or_failure_blacklist"
+      ]
+    },
+    "recovery_v0_8_1_assembly_index": {
+      "version": "v0.8.1",
+      "purpose": "Single recovery interface from the locked 0+13, eight capabilities and AR-01—AR-08 into final scenarios, future geometry and figures; it is not deployment evidence.",
+      "capability_technical_debt": {
+        "1": [
+          "normalize the existing ten identity/public-service components into twelve eight-field end-to-end chains",
+          "add final scenario, metric, work-package, red-line and 0+13/official-chapter mappings",
+          "make minimum authorization, non-AI equivalence and independent remedy machine-verifiable"
+        ],
+        "2": [
+          "complete twelve health/care chains without Agent diagnosis, final triage or rescue priority",
+          "add twenty-four runtime metrics, twelve work packages, twenty-four red lines and spatial interfaces",
+          "lock emergency escalation, sensitive-data minimization and professional accountability"
+        ],
+        "3": [
+          "complete the six-dimensional mapping for all twelve education/capability-growth chains",
+          "lock minor safeguards and prohibit final AI admission, evaluation, discipline or credential decisions",
+          "add final metrics, work packages, red lines and campus/community/industry spatial interfaces"
+        ]
+      },
+      "capability_technical_debt_closure": {
+        "closed_by": "capabilities.json@1.0"
+      },
+      "final_scenarios": [
+        {
+          "scenario_id": "SC-FINAL-01",
+          "primary_capability_ids": [1, 8],
+          "zero_plus_thirteen_units": ["0", "9", "10", "11", "13"],
+          "official_chapters": ["O1", "O6", "O10", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-04", "AR-06", "AR-07"],
+          "spatial_levels": ["community", "subdistrict"],
+          "future_geometry": ["geometry/public_space.geojson", "geometry/constraints.geojson"],
+          "future_figures": ["assets/figures/site-overview.png", "assets/figures/metrics-evidence.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-02",
+          "primary_capability_ids": [2, 8],
+          "zero_plus_thirteen_units": ["0", "6", "9", "10", "11", "13"],
+          "official_chapters": ["O6", "O8", "O10", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-03", "AR-04", "AR-07"],
+          "spatial_levels": ["household", "community", "city"],
+          "future_geometry": ["geometry/public_space.geojson", "geometry/constraints.geojson"],
+          "future_figures": ["assets/figures/site-overview.png", "assets/figures/metrics-evidence.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-03",
+          "primary_capability_ids": [3, 6, 7],
+          "zero_plus_thirteen_units": ["0", "5", "7", "9", "10", "13"],
+          "official_chapters": ["O3", "O6", "O10", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-03", "AR-04", "AR-08"],
+          "spatial_levels": ["household", "community", "district"],
+          "future_geometry": ["geometry/land_use.geojson", "geometry/public_space.geojson"],
+          "future_figures": ["assets/figures/land-use-structure.png", "assets/figures/key-areas.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-04",
+          "primary_capability_ids": [4, 8],
+          "zero_plus_thirteen_units": ["0", "2", "3", "10", "11", "13"],
+          "official_chapters": ["O4", "O7", "O10", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-04", "AR-05", "AR-06", "AR-07"],
+          "spatial_levels": ["building", "community"],
+          "future_geometry": ["geometry/buildings.geojson", "geometry/constraints.geojson", "geometry/phasing.geojson"],
+          "future_figures": ["assets/figures/key-areas.png", "assets/figures/metrics-evidence.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-05",
+          "primary_capability_ids": [5, 8],
+          "zero_plus_thirteen_units": ["0", "1", "3", "9", "11", "13"],
+          "official_chapters": ["O4", "O5", "O8", "O11", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-04", "AR-05", "AR-07"],
+          "spatial_levels": ["community", "district", "innovation_belt"],
+          "future_geometry": ["geometry/roads.geojson", "geometry/public_space.geojson"],
+          "future_figures": ["assets/figures/mobility-bluegreen.png", "assets/figures/key-areas.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-06",
+          "primary_capability_ids": [6, 7],
+          "zero_plus_thirteen_units": ["0", "2", "3", "7", "9", "10", "13"],
+          "official_chapters": ["O3", "O5", "O6", "O7", "O10", "O11"],
+          "ar_ids": ["AR-01", "AR-02", "AR-03", "AR-04", "AR-05", "AR-08"],
+          "spatial_levels": ["household", "district", "innovation_belt"],
+          "future_geometry": ["geometry/land_use.geojson", "geometry/buildings.geojson", "geometry/phasing.geojson"],
+          "future_figures": ["assets/figures/land-use-structure.png", "assets/figures/key-areas.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-07",
+          "primary_capability_ids": [7, 8],
+          "zero_plus_thirteen_units": ["0", "8", "9", "10", "13"],
+          "official_chapters": ["O6", "O10", "O12", "O13"],
+          "ar_ids": ["AR-02", "AR-03", "AR-04", "AR-07", "AR-08"],
+          "spatial_levels": ["household", "community", "district"],
+          "future_geometry": ["geometry/public_space.geojson", "geometry/constraints.geojson"],
+          "future_figures": ["assets/figures/site-overview.png", "assets/figures/metrics-evidence.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-08",
+          "primary_capability_ids": [2, 5, 8],
+          "zero_plus_thirteen_units": ["0", "1", "3", "6", "9", "10", "11", "13"],
+          "official_chapters": ["O3", "O4", "O5", "O8", "O10", "O11", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-04", "AR-05", "AR-06", "AR-07"],
+          "spatial_levels": ["household", "community", "district", "city"],
+          "future_geometry": ["geometry/constraints.geojson", "geometry/phasing.geojson", "geometry/roads.geojson"],
+          "future_figures": ["assets/figures/mobility-bluegreen.png", "assets/figures/site-overview.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-09",
+          "primary_capability_ids": [4, 5, 7, 8],
+          "zero_plus_thirteen_units": ["0", "1", "3", "10", "11", "13"],
+          "official_chapters": ["O4", "O5", "O8", "O9", "O10", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-04", "AR-05", "AR-06", "AR-08"],
+          "spatial_levels": ["community", "district"],
+          "future_geometry": ["geometry/roads.geojson", "geometry/public_space.geojson"],
+          "future_figures": ["assets/figures/mobility-bluegreen.png", "assets/figures/key-areas.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-10",
+          "primary_capability_ids": [5, 6, 8],
+          "zero_plus_thirteen_units": ["0", "1", "3", "7", "9", "10", "13"],
+          "official_chapters": ["O4", "O5", "O6", "O8", "O10", "O12"],
+          "ar_ids": ["AR-01", "AR-03", "AR-04", "AR-05", "AR-06", "AR-07"],
+          "spatial_levels": ["district", "innovation_belt"],
+          "future_geometry": ["geometry/constraints.geojson", "geometry/public_space.geojson", "geometry/phasing.geojson"],
+          "future_figures": ["assets/figures/key-areas.png", "assets/figures/metrics-evidence.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-11",
+          "primary_capability_ids": [4, 7, 8],
+          "zero_plus_thirteen_units": ["0", "3", "8", "10", "11", "12", "13"],
+          "official_chapters": ["O4", "O5", "O6", "O9", "O10", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-03", "AR-04", "AR-06", "AR-08"],
+          "spatial_levels": ["community", "district"],
+          "future_geometry": ["geometry/public_space.geojson", "geometry/key_areas.geojson"],
+          "future_figures": ["assets/figures/key-areas.png", "assets/figures/site-overview.png"]
+        },
+        {
+          "scenario_id": "SC-FINAL-12",
+          "primary_capability_ids": [4, 5, 8],
+          "zero_plus_thirteen_units": ["0", "4", "9", "10", "11", "13"],
+          "official_chapters": ["O3", "O4", "O5", "O9", "O10", "O11", "O12"],
+          "ar_ids": ["AR-01", "AR-02", "AR-04", "AR-05", "AR-06", "AR-07"],
+          "spatial_levels": ["community", "district", "innovation_belt"],
+          "future_geometry": ["geometry/green_space.geojson", "geometry/constraints.geojson", "geometry/phasing.geojson"],
+          "future_figures": ["assets/figures/mobility-bluegreen.png", "assets/figures/metrics-evidence.png"]
+        }
+      ]
+    }
+  }
+}
