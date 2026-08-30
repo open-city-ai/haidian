@@ -1068,7 +1068,7 @@ The annual scenario-opening list (released on Opening Day) mechanism: public-spa
 
 **Project-list framework**: organised by the six project families of §5.4; each family's items expand once official data (official boundary, stock-tenure verification, transit special study) arrives, by professional teams. This proposal's family framework + concept entries constitute the concept edition of the "renewal implementation project list".
 
-**Policy toolbox (concept directions; none is settled policy)**: ① **Garden Rules pilot tool** (R1–R5 pilot first in Zhongzhiyuan); ② **scenario-opening protocol** (contract template for 13.4); ③ **element quick-match tool** (standardised interface for west-wing five services); ④ **gardener certification tool** (training system for R2 human positions).
+**Policy toolbox (concept directions; none is settled policy)** — four tools: ① Garden Rules pilot (R1–R5 in Zhongzhiyuan); ② scenario-opening protocol (13.4 contract template); ③ element quick-match (west-wing five-service interface); ④ gardener certification (R2 training).
 
 **Four tools' design logic** — each answers one mechanism gap:
 
@@ -1094,7 +1094,7 @@ The annual scenario-opening list (released on Opening Day) mechanism: public-spa
 | T-8 | **Cross-section-checking delivery** (first-round cross-sections at refinement: typical Path segment, market segment, pavilion segment) | §10.1 ratio interval (40-30-20-10 ±10) anchored by cross-section checking — first-round cross-sections delivered at refinement start, calibrating ratio and accessibility standard layer segment by segment | §10.1 (ratio interval + cross-section anchor) |
 | T-9 | **Arrival of the official three-zone function announcement's original text** (the adopting party supplies the full announcement, or opens official-channel read access) | §3.4 A.4 comparison table upgrades to the verbatim calibre — the "official original wording" column expands from the §6.x anchor-embedded quotation fragments to a full-clause verbatim comparison + the standard matrix's corresponding rows update in step | §3.4 (A.4 comparison table) + §17.3 source-grade table |
 
-Two disciplines of the trigger table: ① **anchors of T-5–T-7 are embedded in the trigger conditions themselves** — any hit both advances the corresponding chapters' re-versioning and updates the corresponding anchor's status; ② **trigger table does not replace §17.2 assumptions list** — trigger table = "advancement actions", assumptions list = "open items"; orthogonal: when a trigger hits, assumption item advances; until then it stays provisional. The table defines touchpoints only, never time points.
+Two disciplines: ① anchors of T-5–T-7 are embedded in the trigger conditions themselves — any hit advances the corresponding chapters' re-versioning AND updates the anchor's status; ② trigger table does not replace §17.2 assumptions list — trigger table = "advancement actions", assumptions list = "open items"; orthogonal. The table defines touchpoints only, never time points.
 
 > **[Figure slot fig-10 · transplant-flow]** Transplant flow — candidate, transfer, survival (conceptual mechanism design, not fixed arrangements): belt-wide adoption proceeds by transplanting, not cloning — the archetype travels to the new site, while local conditions are rewritten there; three stages close into a loop, one turn per year: the candidate list decides what is worth moving, governance transfer decides how it moves, and success metrics decide whether it lives.
 
