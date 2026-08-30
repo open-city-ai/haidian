@@ -83,7 +83,7 @@ A smart energy micro-grid in the Origin Community integrates rooftop PV, distrib
 ### 5.4 Smart Living and Health: 5-Minute Future Life Circle
 Within a 5-minute walk: smart health station (AI-assisted monitoring, chronic-disease management, tele-consultation, doctor review, focused on elders); AI education lab (minor data specially protected, teacher review); unmanned delivery and smart retail (traditional service retained for the digitally vulnerable); shared work pods; community culture centre.
 
-**Health loop:** monitoring → early warning → diagnosis → rehabilitation, with localised data and user-authorised access; medical diagnosis must be confirmed by a doctor [standard:GENERATIVE-AI-INTERIM-MEASURES].
+**Health loop:** monitoring → early warning → diagnosis → rehabilitation, with localised data and user-authorised access; medical diagnosis must be confirmed by a doctor (project governance principle; not a statutory obligation under the Generative-AI Interim Measures).
 
 ![Origin Community street-level concept](assets/figures/render-origin-community-street.jpg)
 
@@ -105,7 +105,7 @@ Opened in 1909, the Jing-Zhang Railway was the first railway wholly invested, de
 The heritage park as a north–south cultural spine across 43.6 km² — preserving rails, sleepers, signals and bridges as cultural landscapes, with memorial nodes. Three segments: north (Zhongzhiyuan, innovation origin), middle (Origin Community, cultural memory), south (Dazhongsi, industry heritage to AI).
 
 ### 6.3 Three Memorial Nodes
-Zhan Tianyou Memorial Node (≈116.344°E,40.015°N): statue, steam locomotive, "struggle road" wall. "Person"-shape railway display node (≈116.344°E,40.005°N): interactive demonstration of the switchback engineering. Centennial railway-change node (≈116.344°E,39.975°N): "1909→2026" timeline narrative.
+Zhan Tianyou Memorial Node (≈116.344°E,40.015°N, near Zhongzhiyuan south, heritage-park north corridor node): statue, steam locomotive, "struggle road" wall. "Person"-shape railway display node (≈116.344°E,40.005°N, near Zhongzhiyuan south, heritage-park north corridor node): interactive demonstration of the switchback engineering. Centennial railway-change node (≈116.344°E,39.975°N, near Origin Community, heritage-park south corridor node): "1909→2026" timeline narrative.
 
 ![Zhan Tianyou Memorial Plaza concept](assets/figures/render-zhantianyou-plaza.jpg)
 
@@ -153,7 +153,7 @@ Courtyard space translated to inner courts/sky gardens; colours warm-grey/blue-g
 The Jing-Zhang Railway's centennial change — from the 1909 "struggle road" to the 2019 world-first 350 km/h smart HSR — mirrors China's modernisation. The AI belt continues this trajectory in the new round of technological revolution.
 
 ### 8.2 Three Narrative Themes: Standing Up · Getting Prosperous · Becoming Strong (narrative themes)
-Along the cultural axis, three narrative-theme spaces (narrative expression, not hierarchical or exclusionary claims): "standing up" (Dazhongsi, ≈116.344°E,39.955°N), "getting prosperous" (Origin Community south, ≈116.344°E,39.965°N), "becoming strong" (Origin Community north, ≈116.344°E,39.985°N).
+Along the cultural axis, three narrative-theme spaces (narrative expression, not hierarchical or exclusionary claims): "standing up" (near Dazhongsi, heritage-park north gateway corridor node, ≈116.344°E,39.955°N), "getting prosperous" (near Origin Community south, heritage-park mid corridor node, ≈116.344°E,39.965°N), "becoming strong" (Origin Community north, ≈116.344°E,39.985°N).
 
 ### 8.3 "Centennial Jing-Zhang" Narrative
 Each node tells a story: self-reliance, smart innovation, continuous transcendence, self-attack research, tech-for-people, industry upgrade, towards revival. Participatory, interactive, experienceable via AR, digital twin and immersive theatre.
@@ -202,16 +202,31 @@ Conventional municipal retained and upgraded; new infrastructure: city-level dig
 
 ## 13. AI Innovation Ecosystem, Personas and AI+ Scenarios
 ### 13.1 agent.2 Evidence: Global Case Benchmarking (5–8 traceable cases)
-| ID | Case | Place |借鉴 | Not copyable | Source |
-|----|------|-------|------|--------------|--------|
-| G1 | Station F | Paris | rail/industrial→innovation | land tenure diff. | public |
-| G2 | MaRS | Toronto | gov–industry–academia–med lab | health-data diff. | MaRS public |
-| G3 | 22@ | Barcelona | industrial→mixed innovation | climate/scale diff. | 22@ public |
-| G4 | Kendall Sq. | Boston | university–firm–capital | un-replicable density | MIT/public |
-| G5 | Kalasatama | Helsinki | digital-twin community | small-country scale | city public |
-| G6 | Punggol DD | Singapore | integrated digital district | city-state admin. | gov public |
-| G7 | Hetao/Qianhai | Shenzhen | neighbouring科创 policy | location diff. | public plan |
-| G8 | West Lake Sci-Tech Corridor | Hangzhou | regional corridor coordination | differentiation needed | public plan |
+| ID | Case | Place | Borrowable | Not copyable | Source (traceable) |
+|----|------|-------|-----------|--------------|---------------------|
+| G1 | Station F | Paris | rail/industrial→innovation | land tenure diff. | [source:G1-SRC] |
+| G2 | MaRS | Toronto | gov–industry–academia–med lab | health-data diff. | [source:G2-SRC] |
+| G3 | 22@ | Barcelona | industrial→mixed innovation | climate/scale diff. | [source:G3-SRC] |
+| G4 | Kendall Sq. | Boston | university–firm–capital | un-replicable density | [source:G4-SRC] |
+| G5 | Kalasatama | Helsinki | digital-twin community | small-country scale | [source:G5-SRC] |
+| G6 | Punggol DD | Singapore | integrated digital district | city-state admin. | [source:G6-SRC] |
+| G7 | Hetao/Qianhai | Shenzhen | neighbouring sci-tech policy | location diff. | [source:G7-SRC] |
+| G8 | West Lake Sci-Tech Corridor | Hangzhou | regional corridor coordination | differentiation needed | [source:G8-SRC] |
+
+#### 13.1.1 Global Case Source Index (traceable)
+
+Per-case source ID, publisher, title, URL/stable reference, publication/access date, applicable conclusion and non-copyable boundary. Full records in `sources.json`:
+
+- **G1-SRC** — Station F / Groupe SNCF: *Station F Innovation Campus (Converted Railway Depot)*, https://stationf.co/about (2017, accessed 2026-08-28). Applicable: rail-depot reuse for innovation validates spatial recycling; not copyable: French land/tenure/public-finance models differ from China's.
+- **G2-SRC** — MaRS Discovery District: *MaRS Discovery District, Toronto*, https://marsdd.com/about-mars (2005, accessed 2026-08-28). Applicable: non-profit aggregating research–capital–firm–clinical resources; not copyable: Canadian health-data regime differs.
+- **G3-SRC** — Ajuntament de Barcelona: *22@Barcelona Innovation District*, https://www.22barcelona.com/ (2000, accessed 2026-08-28). Applicable: zoning change revitalises old industrial land; not copyable: Mediterranean climate, scale and legal family differ.
+- **G4-SRC** — MIT / Kendall Square Initiative: *Kendall Square*, https://www.kendallsquare.org/ (2010, accessed 2026-08-28). Applicable: university density drives innovation ecology; not copyable: MIT-level density unreplicable, substituted by Zhongguancun spillover.
+- **G5-SRC** — City of Helsinki: *Kalasatama Smart City*, https://www.hel.fi/helsinki/en/areas/kalasatama/ (2013, accessed 2026-08-28). Applicable: digital twin + participatory governance; not copyable: Nordic digital-literacy/language context unreplicable.
+- **G6-SRC** — IMDA Singapore / JTC: *Punggol Digital District*, https://www.imda.gov.sg/ (2018, accessed 2026-08-28). Applicable: government–enterprise digital district integrated O&M; not copyable: city-state administration unreplicable.
+- **G7-SRC** — Qianhai Authority Shenzhen: *Hetao/Qianhai Sci-Tech Zones*, http://www.qianhai.gov.cn/ (2010, accessed 2026-08-28). Applicable: mature neighbouring sci-tech policy; not copyable: location/industrial base differ, needs differentiation.
+- **G8-SRC** — Hangzhou Municipal Government: *West Lake Sci-Tech Corridor*, http://www.hangzhou.gov.cn/ (2016, accessed 2026-08-28). Applicable: corridor form aggregates universities/firms/platforms; not copyable: this belt needs differentiated positioning.
+
+Zhan Tianyou quotes and the 1905-construction / 1909-opening / 2019 smart-HSR facts: source [source:JZ-HISTORY-QUOTE] (China Railway Museum / official railway history, https://www.china-railway.com.cn/); wording to be verified against authoritative records; used here as cultural-narrative motif only.
 
 ### 13.2 agent.2 Evidence: AI Innovation Ecology Graph (concept)
 Eight actor types — research, capital, enterprise, talent, data, compute, scenario, governance — form a closed loop via the digital-twin base and open platform (see `standard_matrix.json` and Chapter 15 operation path).
@@ -300,6 +315,8 @@ Spring AI Innovation Week (Apr); Summer Future-Habitat Experience (Jul–Aug); A
 ### 15.1 Core Visual Metrics (unified values)
 ![Core metrics and evidence chain](assets/figures/metrics-evidence.png)
 
+> **Industry-cluster weight methodology (read first)**: The shares in the "Future Industry Clusters" panel (AI core 35%, digital twin 25%, smart construction 20%, urban robotics 20%) are **dimensionless illustrative weights** expressing the relative emphasis of four industry types in this belt's conceptual structure. They are **not** measured shares from any industry census, enterprise statistics or land survey. Method: a **qualitative ordinal mapping** derived from public information on the Zhongguancun AI innovation ecosystem, the industry base around the Jing-Zhang heritage corridor, and the open-call taskbook orientation — conceptual only. Actual composition must follow a formal industry census, investment realisation and statutory planning; this proposal asserts no measured industry-share conclusion and will be recomputed when data permit. Area metrics (site_area_sqm, green_ratio, public_space_ratio) are recomputed from the `provisional` boundary geometry and flagged as low-confidence design-model values.
+
 | Metric | Status | Value | Note |
 |--------|--------|-------|------|
 | site_area_sqm | known(provisional) | 11,412,825 | from provisional geometry |
@@ -319,11 +336,40 @@ Declared in `metrics.json`, consistent with `visual/index.html` data-value [metr
 | agent.1 Taskbook response | scope/positioning | 1,2,4 | site-overview, land-use | three areas | planning team | site_area_sqm |
 | agent.2 Originality & innovation evidence | AI self-innovation | 5,13.1–3 | key-areas, metrics | Zhongzhiyuan | sci-tech+enterprise | global_case_count |
 | agent.3 Users & public interest | future habitat/inclusion | 13.4–7 | mobility-bluegreen | Origin | subdistrict/community | user_persona_count |
-| agent.4 Implementability | renewal delivery | 14 | a0/a3 drawings | three areas | implementation | ledger KPI |
-| agent.5 Risk & compliance | compliance boundary | 17, compliance_matrix | all figure titles | whole | compliance review | standard_ids |
-| agent.6 Expression completeness | bilingual/drawings | all+drawings/html | a0-boards, a3-booklet | whole | platform | bilingual counterparts |
+| agent.4 AI public space & new forms | AI public space, new formats, ≥3 landmarks, honor showcase system, public-space component library | 9,18,19,16.1 | a0-boards, key-areas | three areas+3 landmarks | implementation/platform | landmark_count, public_space_ratio |
+| agent.5 Jing-Zhang·Zhongguancun·AI culture & narrative | Jing-Zhang/Zhongguancun/AI culture, signage symbols, international narrative | 18,20,16.1 | a0-boards brand page, visual | all cultural nodes | brand/culture-tourism | global_case_count |
+| agent.6 Events·brand IP·open transformation | annual events, brand IP, developer community, scenario open & transformation path | 18,21,16.1 | a0-boards, visual, report | whole | platform/community | scenario_count |
 
 "Three zones, two wings" coordination mechanism: see Chapter 17.
+
+### 16.1 Honor Showcase System & Public-Space Component Library (agent.4 deliverables)
+
+This subsection supplies the two public-space deliverables required by taskbook agent.4 but not previously standalone, with entry points in the drawings and `visual/index.html`.
+
+#### 16.1.1 Honor Showcase System
+
+Centred on the Jing-Zhang Railway Heritage Park as a narrative spine, build a "readable, participatory, transmissible" Centennial Jing-Zhang honor-exhibition system linking the three AI pilgrimage landmarks — Zhan Tianyou Memorial Plaza, Origin Theater, Rejuvenation Gate (`metric:ai_pilgrimage_landmark_count`=3) — into a south–north honor narrative chain:
+
+- **Honor wall**: railway pioneers and builders roster, key-engineering milestone plaques, placed along the heritage park and at the three landmark forecourts;
+- **Annual honor events**: "Tianyou Youth Innovation Award", "Jing-Zhang AI Innovation Week" awards, forming a sustained honor mechanism;
+- **Digital honor archive**: blockchain-recorded *conceptual* honor records (not official awards; community-display only), supporting international communication and developer-community co-building;
+- **Community honor corners**: micro honor exhibits in the three key areas, hosting resident co-created content.
+
+Entry: `drawings/a0-boards.pdf` brand & honor page, `visual/index.html` culture-narrative block, Chapter 9 landmark sections.
+
+#### 16.1.2 Public-Space Component Library
+
+Codify replicable, composable public-space elements into a component library supporting standardised, modular public-space construction across the three key areas and the heritage park (corresponds to `metric:public_space_ratio`=0.00359, provisional):
+
+| Component category | Elements | Applicable scene |
+|--------------------|----------|------------------|
+| Slow-traffic & stay | pergola, seating, shading, accessible ramp, family/ wheelchair-friendly node | heritage-park greenway, community street |
+| Activity & performance | stage module, exhibition panel, pop-up market unit, light-installation base | four-season events, plazas |
+| Ecology & blue-green | rain garden, planting module, micro-climate unit | blue-green space, pocket park |
+| Culture & signage | wayfinding symbols, cultural paving, railway-motif paving | all cultural nodes |
+| Service & resilience | station, emergency point, charging/robot-service bay | three-area public service |
+
+Entry: `geometry/public_space.geojson`, `drawings/a0-boards.pdf` public-space page, `visual/index.html` public-space metric card. The library is conceptual design guidance; specific selection and engineering detail require professional team deepening.
 
 ## 17. Regional Coordination Mechanism (mechanism, not slogan)
 | Partner | Resource in | Spatial interface | Output | Conceptual attribute |
@@ -368,9 +414,10 @@ FAR, building height, road red-line and feasibility require professional deepeni
 All spatial, metric and scenario conclusions are conceptual, not statutory planning, government commitment or professional engineering conclusions, and require review by planning, transport, heritage, municipal, accessibility and public-safety procedures [source:SITE-PACKAGE]. Copyright: generated images/video/text are for COMMUNITY-DISPLAY-ONLY; original assets are public or cleared; logos/landmarks are original concepts. AI-generated content is labelled; historical, policy and health information must be verified by professionals.
 
 ### Privacy & Security Boundary (common to scenarios)
-- No face recognition; medical/health diagnosis requires doctor confirmation [standard:GENERATIVE-AI-INTERIM-MEASURES].
-- Minor data specially protected; data minimisation, localisation, explicit retention.
+- No face recognition; medical/health diagnosis requires confirmation by a qualified doctor (project governance principle, not a statutory obligation under the Generative-AI Interim Measures).
+- Minor data specially protected (project governance principle); data minimisation, localisation, explicit retention.
 - All AI scenarios retain human service, opt-out and emergency-takeover channels.
+- The Interim Measures for Generative AI Services apply only to this proposal's generative-AI public-service scope, content governance and complaint channels; they are not the legal basis for the medical-confirmation, health-data-processing or minor-protection governance requirements herein.
 
 ## 22. References
 1. Pre-Qualification Announcement, Centennial Jing-Zhang AI Innovation Belt. 2026.
@@ -378,7 +425,7 @@ All spatial, metric and scenario conclusions are conceptual, not statutory plann
 3. Urban Design Management Measures, MOHURD. 2017.
 4. Measures for Compilation and Approval of Regulatory Detailed Planning, MOHURD. 2010.
 5. Territorial Spatial Survey, Planning and Land-Sea Use Classification Guide, MNR. 2023.
-6. Interim Measures for Generative AI Services, CAC et al. 2023.
+6. Interim Measures for Generative AI Services, CAC et al. 2023. (Applies only to this proposal's generative-AI public-service scope, content governance and complaint channels; not the legal basis for medical confirmation, health-data processing or minor protection herein.)
 7. Law on Building Accessible Environments, NPC. 2023.
 8. Plan for Solving Elderly Difficulties with Smart Tech, State Council. 2020.
 9. Zhan Tianyou & Jing-Zhang Railway historical literature.
