@@ -68,17 +68,32 @@
         "Conceptual land-use partition derived from the provisional boundary."
       ]
     },
-    "land_use_05_sqm": {
+    "land_use_0901_sqm": {
       "status": "known",
-      "value": 2175842.055,
+      "value": 1554744.493,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
       ],
-      "formula": "sum(polygon_area(land_use where land_use_code=05, EPSG:4548))",
+      "formula": "sum(polygon_area(land_use where land_use_code=0901, EPSG:4548))",
       "confidence": "medium",
       "assumptions": [
-        "Conceptual land-use partition derived from the provisional boundary."
+        "Conceptual land-use partition derived from the provisional boundary.",
+        "Code 0901 (commercial) per the updated official enum (2026-08-16 correction)."
+      ]
+    },
+    "land_use_0902_sqm": {
+      "status": "known",
+      "value": 621097.562,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code=0902, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual land-use partition derived from the provisional boundary.",
+        "Code 0902 (business-finance) per the updated official enum (2026-08-16 correction)."
       ]
     },
     "land_use_0701_sqm": {
@@ -155,7 +170,7 @@
     },
     "public_space_area_sqm": {
       "status": "known",
-      "value": 222997.7,
+      "value": 219201.872,
       "unit": "sqm",
       "source_files": [
         "geometry/public_space.geojson"
@@ -166,7 +181,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.019539,
+      "value": 0.019207,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -274,46 +289,6 @@
       "assumptions": [],
       "reason": "Official green-ratio control is missing from the public site package.",
       "required_for_formal_submission": true
-    },
-    "road_network_length_m": {
-      "status": "known",
-      "value": 43457.6,
-      "unit": "m",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "sum(linestring_length(road_centerlines, EPSG:4548))",
-      "confidence": "low",
-      "assumptions": [
-        "Conceptual design spine only (3 vertical + 6 horizontal + Smart Rail greenway); not an official road redline or engineering alignment."
-      ]
-    },
-    "road_network_length_km": {
-      "status": "known",
-      "value": 43.4576,
-      "unit": "km",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "road_network_length_m / 1000",
-      "confidence": "low",
-      "assumptions": [
-        "Derived from concept centerlines; illustrative feasibility anchor only."
-      ]
-    },
-    "road_network_density_km_per_sqkm": {
-      "status": "known",
-      "value": 3.81,
-      "unit": "km_per_sqkm",
-      "source_files": [
-        "geometry/roads.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "road_network_length_km / (site_area_sqm / 1e6)",
-      "confidence": "low",
-      "assumptions": [
-        "Conceptual spine density over submitted provisional site; urban standard for built-up areas (>=8) applies to full local street networks, not a design spine."
-      ]
     }
   }
 }
