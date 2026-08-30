@@ -37,6 +37,10 @@ button, input, select, option, .tooltip, .modal, .dropdown, [aria-label] {
 <button id="lang-switch" type="button" aria-label="Switch language">中</button>
 
 <!-- Map -->
+<div id="loading" aria-hidden="true">
+  <div class="sk-spinner"></div>
+  <div class="sk-text">Loading…</div>
+</div>
 <div id="map"></div>
 
 <!-- Control panel -->
@@ -57,10 +61,10 @@ button, input, select, option, .tooltip, .modal, .dropdown, [aria-label] {
 </aside>
 
 <!-- Status bar -->
-<div id="status-bar"></div>
+<div id="status-bar" role="status" aria-live="polite"></div>
 
 <!-- Route info -->
-<div id="route-info"></div>
+<div id="route-info" role="region" aria-label="Route info"></div>
 
 <!-- Legend -->
 <div id="legend">
@@ -102,27 +106,27 @@ button, input, select, option, .tooltip, .modal, .dropdown, [aria-label] {
   <p class="effects-note" id="effects-note">The following 6 effect images are AI-assisted (schematic style), used to show design intent, not the final built outcome; people, buildings, materials, and scenes are conceptual expressions, not real built outcomes and not approval geometry. Click an image to open the original in a new tab.</p>
   <div class="effects-grid">
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_01_aerial.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_01_aerial.png" alt="New street aerial view of Dazhongsi"></a>
+      <a href="../assets/figures/effects/effect_01_aerial.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_01_aerial.png" alt="New street aerial view of Dazhongsi"></a>
       <figcaption id="effect-cap-01">01 New street aerial view — slow-travel priority, separated motor/non-motor traffic, green cycle lanes, and continuous tactile paving.</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_02_accessible.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_02_accessible.png" alt="Accessible street close-up"></a>
+      <a href="../assets/figures/effects/effect_02_accessible.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_02_accessible.png" alt="Accessible street close-up"></a>
       <figcaption id="effect-cap-02">02 Accessible street close-up — zero-height ramps, continuous tactile paving, and bilingual signage, echoing the N01 pilot node.</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_03_coworking.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_03_coworking.png" alt="Zhongzhiyuan co-working space"></a>
+      <a href="../assets/figures/effects/effect_03_coworking.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_03_coworking.png" alt="Zhongzhiyuan co-working space"></a>
       <figcaption id="effect-cap-03">03 Zhongzhiyuan co-working space — open collaboration and green office, hosting the safety-governance sandbox and open-source release AI scenarios.</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_04_heritage.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_04_heritage.png" alt="Jing-Zhang railway heritage park"></a>
+      <a href="../assets/figures/effects/effect_04_heritage.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_04_heritage.png" alt="Jing-Zhang railway heritage park"></a>
       <figcaption id="effect-cap-04">04 Jing-Zhang railway heritage park — industrial heritage tracks fused with contemporary landscape, a cultural-display interface under minimal intervention.</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_05_community.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_05_community.png" alt="AI Origin community life"></a>
+      <a href="../assets/figures/effects/effect_05_community.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_05_community.png" alt="AI Origin community life"></a>
       <figcaption id="effect-cap-05">05 AI Origin community life — an all-age community plaza, smart benches, and community garden, echoing Auntie Zhang's life scene in the "Resident Story".</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_06_before_after.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_06_before_after.png" alt="Before/after comparison"></a>
+      <a href="../assets/figures/effects/effect_06_before_after.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_06_before_after.png" alt="Before/after comparison"></a>
       <figcaption id="effect-cap-06">06 Before/after comparison — left: existing (chaotic parking, broken paving, no greenery); right: renewed (pedestrian-friendly, green infrastructure, smart facilities).</figcaption>
     </figure>
   </div>
@@ -130,5 +134,11 @@ button, input, select, option, .tooltip, .modal, .dropdown, [aria-label] {
 
 <script src="assets/leaflet.js"></script>
 <script src="assets/demo.js"></script>
+
+<!-- Image lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button id="lightbox-close" type="button" aria-label="Close">&times;</button>
+  <img class="lb-img" src="" alt="">
+</div>
 </body>
 </html>

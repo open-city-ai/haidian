@@ -37,6 +37,10 @@ button, input, select, option, .tooltip, .modal, .dropdown, [aria-label] {
 <button id="lang-switch" type="button" aria-label="Switch language">EN</button>
 
 <!-- 地图 -->
+<div id="loading" aria-hidden="true">
+  <div class="sk-spinner"></div>
+  <div class="sk-text">加载中…</div>
+</div>
 <div id="map"></div>
 
 <!-- 控制面板 -->
@@ -57,10 +61,10 @@ button, input, select, option, .tooltip, .modal, .dropdown, [aria-label] {
 </aside>
 
 <!-- 状态提示 -->
-<div id="status-bar"></div>
+<div id="status-bar" role="status" aria-live="polite"></div>
 
 <!-- 路径信息 -->
-<div id="route-info"></div>
+<div id="route-info" role="region" aria-label="路径信息"></div>
 
 <!-- 图例 -->
 <div id="legend">
@@ -128,27 +132,27 @@ button, input, select, option, .tooltip, .modal, .dropdown, [aria-label] {
   <p class="effects-note" id="effects-note">以下 6 张效果图由 AI 辅助生成（示意风格），用于展示设计意图而非最终建成效果；图中人物、建筑、材料与场景均为概念化表达，非真实建成效果、非审批几何。点击图片可在新窗口查看原图。</p>
   <div class="effects-grid">
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_01_aerial.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_01_aerial.png" alt="大钟寺新街道鸟瞰"></a>
+      <a href="../assets/figures/effects/effect_01_aerial.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_01_aerial.png" alt="大钟寺新街道鸟瞰"></a>
       <figcaption id="effect-cap-01">01 大钟寺新街道鸟瞰 — 慢行优先、机非分离、绿色骑行道与连续触觉铺装的街道总体意象。</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_02_accessible.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_02_accessible.png" alt="无障碍街道近景"></a>
+      <a href="../assets/figures/effects/effect_02_accessible.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_02_accessible.png" alt="无障碍街道近景"></a>
       <figcaption id="effect-cap-02">02 无障碍街道近景 — 零高差坡道、连续盲道与双语标识，呼应试点节点 N01。</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_03_coworking.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_03_coworking.png" alt="众智园创客空间"></a>
+      <a href="../assets/figures/effects/effect_03_coworking.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_03_coworking.png" alt="众智园创客空间"></a>
       <figcaption id="effect-cap-03">03 众智园创客空间 — 开放式协作与绿色办公，承载安全治理沙盒、开源发布等 AI 场景。</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_04_heritage.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_04_heritage.png" alt="京张铁路遗址公园"></a>
+      <a href="../assets/figures/effects/effect_04_heritage.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_04_heritage.png" alt="京张铁路遗址公园"></a>
       <figcaption id="effect-cap-04">04 京张铁路遗址公园 — 工业遗产轨道与当代景观融合，遗产最小干预下的文化展示界面。</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_05_community.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_05_community.png" alt="AI 原点社区生活"></a>
+      <a href="../assets/figures/effects/effect_05_community.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_05_community.png" alt="AI 原点社区生活"></a>
       <figcaption id="effect-cap-05">05 AI 原点社区生活 — 全龄友好社区广场、智慧座椅与社区花园，呼应「居民故事」张阿姨的生活场景。</figcaption>
     </figure>
     <figure class="effect-card">
-      <a href="../assets/figures/effects/effect_06_before_after.png" target="_blank" rel="noopener"><img src="../assets/figures/effects/effect_06_before_after.png" alt="更新前后对比"></a>
+      <a href="../assets/figures/effects/effect_06_before_after.png" target="_blank" rel="noopener"><img loading="lazy" src="../assets/figures/effects/effect_06_before_after.png" alt="更新前后对比"></a>
       <figcaption id="effect-cap-06">06 更新前后对比 — 左：现状（停车杂乱、铺装破损、无绿荫）；右：更新后（步行友好、绿色基础设施、智慧设施）。</figcaption>
     </figure>
   </div>
@@ -156,5 +160,11 @@ button, input, select, option, .tooltip, .modal, .dropdown, [aria-label] {
 
 <script src="assets/leaflet.js"></script>
 <script src="assets/demo.js"></script>
+
+<!-- 图片放大预览 lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="图片预览">
+  <button id="lightbox-close" type="button" aria-label="关闭">&times;</button>
+  <img class="lb-img" src="" alt="">
+</div>
 </body>
 </html>

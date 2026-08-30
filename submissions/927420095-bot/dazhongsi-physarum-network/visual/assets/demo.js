@@ -21,11 +21,12 @@
       btnStart: '设置起点',
       btnEnd: '设置终点',
       btnObstacle: '放置障碍',
-      btnClear: '清除全部',
+      btnClear: '复位模拟',
       btnFit: '复位视图',
       rfidLabel: 'RFID 无感通行层',
-      coverageLabel: '地铁站 800m 覆盖圈',
+      coverageLabel: '概念影响圈（非官方服务边界）',
       routeInfoTitle: '路径信息',
+      computing: '计算中…',
       routeDistance: '总长度',
       routeWeighted: '无障碍加权',
       routeEdges: '路段数',
@@ -62,7 +63,7 @@
       scenesToggleShow: '展开场景',
       controlTitle: '路径规划',
       effectsSummary: '视觉方案 · 效果图画廊（AI 生成概念渲染）',
-      effectsNote: '以下 6 张效果图由 AI 辅助生成（示意风格），用于展示设计意图而非最终建成效果；图中人物、建筑、材料与场景均为概念化表达，非真实建成效果、非审批几何。点击图片可在新窗口查看原图。',
+      effectsNote: '以下 6 张效果图由 AI 辅助生成（示意风格），用于展示设计意图而非最终建成效果；图中人物、建筑、材料与场景均为概念化表达，非真实建成效果、非审批几何。点击图片可放大预览。',
       effectCap01: '01 大钟寺新街道鸟瞰 — 慢行优先、机非分离、绿色骑行道与连续触觉铺装的街道总体意象。',
       effectCap02: '02 无障碍街道近景 — 零高差坡道、连续盲道与双语标识，呼应试点节点 N01。',
       effectCap03: '03 众智园创客空间 — 开放式协作与绿色办公，承载安全治理沙盒、开源发布等 AI 场景。',
@@ -94,11 +95,12 @@
       btnStart: 'Set start',
       btnEnd: 'Set end',
       btnObstacle: 'Place obstacle',
-      btnClear: 'Clear all',
+      btnClear: 'Reset simulation',
       btnFit: 'Reset view',
       rfidLabel: 'RFID barrier-free layer',
-      coverageLabel: '800m metro coverage',
+      coverageLabel: 'Conceptual influence zone (not official service boundary)',
       routeInfoTitle: 'Route info',
+      computing: 'Computing…',
       routeDistance: 'Total length',
       routeWeighted: 'Access-weighted',
       routeEdges: 'Segments',
@@ -135,7 +137,7 @@
       scenesToggleShow: 'Show scenes',
       controlTitle: 'Path planning',
       effectsSummary: 'Visual Scheme · Effect Render Gallery (AI-generated conceptual rendering)',
-      effectsNote: 'The following 6 effect images are AI-assisted (schematic style), used to show design intent, not the final built outcome; people, buildings, materials, and scenes are conceptual expressions, not real built outcomes and not approval geometry. Click an image to open the original in a new tab.',
+      effectsNote: 'The following 6 effect images are AI-assisted (schematic style), used to show design intent, not the final built outcome; people, buildings, materials, and scenes are conceptual expressions, not real built outcomes and not approval geometry. Click an image to zoom in.',
       effectCap01: '01 New street aerial view — slow-travel priority, separated motor/non-motor traffic, green cycle lanes, and continuous tactile paving.',
       effectCap02: '02 Accessible street close-up — zero-height ramps, continuous tactile paving, and bilingual signage, echoing the N01 pilot node.',
       effectCap03: '03 Zhongzhiyuan co-working space — open collaboration and green office, hosting the safety-governance sandbox and open-source release AI scenarios.',
@@ -341,6 +343,26 @@
 
   function $(id) { return document.getElementById(id); }
 
+  function hideLoading() {
+    var el = $('loading');
+    if (el) el.classList.add('hidden');
+  }
+
+  function openLightbox(src) {
+    var box = $('lightbox');
+    if (!box) return;
+    var img = box.querySelector('.lb-img');
+    if (img) img.src = src;
+    box.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    var box = $('lightbox');
+    if (box) box.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
   /* ------------------------------------------------------------------ *
    * 初始化
    * ------------------------------------------------------------------ */
@@ -363,9 +385,11 @@
         applyLang();
         renderAll();
         applyDefaultRoute();
+        hideLoading();
       })
       .catch(function (err) {
         console.error('demo_data.json load failed', err);
+        hideLoading();
         if ($('map')) $('map').innerHTML = '<div style="padding:2rem;font-family:sans-serif">' +
           (state.lang === 'zh' ? '演示数据加载失败' : 'Demo data failed to load') + '</div>';
       });
@@ -748,7 +772,9 @@
     if (state.mode !== 'obstacle') return;
     if (state.blockedEdges[edgeId]) delete state.blockedEdges[edgeId];
     else state.blockedEdges[edgeId] = true;
-    renderObstacles(); renderRoute();
+    renderObstacles();
+    flashStatus(t('computing'));
+    renderRoute();
   }
 
   function onMapClick(e) {
@@ -815,9 +841,14 @@
       el.textContent = t(label);
       el.addEventListener('click', function () {
         if (mode === 'clear') {
-          state = { mode: null, startId: null, endId: null, blockedEdges: {}, showRfid: state.showRfid, showCoverage: state.showCoverage, lang: state.lang };
-          renderNodes(); renderRoute(); renderObstacles(); setModeButtons();
+          // 复位模拟：清起点/终点/障碍/推荐路径，并重置所有图层可见性与开关
+          state = { mode: null, startId: null, endId: null, blockedEdges: {}, layerVisible: {}, showRfid: false, showCoverage: false, lang: state.lang };
+          var rf = $('chk-rfid'); if (rf) rf.checked = false;
+          var cv = $('chk-coverage'); if (cv) cv.checked = false;
+          renderAll();
+          setModeButtons();
           setRouteInfo(null);
+          syncLegendState();
           return;
         }
         if (mode === 'fit') {
@@ -872,6 +903,27 @@
       item.addEventListener('mouseleave', function () { clearHighlight(); });
     });
     syncLegendState();
+
+    // 效果图 lightbox：点击放大预览（不跳新标签页）
+    var lightboxEl = $('lightbox');
+    if (lightboxEl) {
+      var lbClose = $('lightbox-close');
+      if (lbClose) lbClose.addEventListener('click', closeLightbox);
+      lightboxEl.addEventListener('click', function (e) {
+        if (e.target === lightboxEl) closeLightbox();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    }
+    var effectLinks = document.querySelectorAll('#effects-panel a[target="_blank"]');
+    effectLinks.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var img = a.querySelector('img');
+        if (img) openLightbox(img.getAttribute('src'));
+      });
+    });
 
     if (map) map.on('click', onMapClick);
   }

@@ -97,4 +97,39 @@
 /* 数据性质声明与场景条共存时的避让：声明条上移 */
 body.scenes-visible #data-disclaimer { bottom: 118px; }
 body.scenes-visible #legend { bottom: 118px; }
-body.scenes-visible #scenarios-panel { bottom: 496px; }
+
+/* ---------- 移动端最小可用修复（≤720px） ---------- */
+@media (max-width: 720px) {
+  .app-header h1 { font-size: 13px; }
+  .app-header .subtitle { display: none; }
+
+  /* 控制面板 → 底部操作栏 */
+  #control-panel {
+    top: auto; left: 0; right: 0; bottom: 0;
+    width: auto; border-radius: 0;
+    padding: 8px 10px 10px;
+    z-index: 1200;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 -4px 16px rgba(17, 24, 39, 0.14);
+  }
+  #control-panel h2 { display: none; }
+  #control-panel .btn-row { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  #control-panel .btn { width: auto; flex: 1 1 30%; padding: 10px 4px; text-align: center; font-size: 12px; }
+  #control-panel .check-row { display: none; }
+  #control-panel .hint { display: none; }
+
+  /* 路径信息：顶部紧凑卡 */
+  #route-info { top: 70px; right: 8px; width: 196px; max-height: 34vh; overflow: auto; padding: 10px; }
+  #route-info .route-row { font-size: 11px; }
+
+  /* 桌面专属面板：移动端隐藏 */
+  #legend, #scenarios-panel, #docs-panel, #effects-panel { display: none; }
+
+  /* 十大地标场景：上移到操作栏上方 */
+  #scenes-panel { bottom: 120px; }
+  body.scenes-visible #scenes-panel { bottom: 120px; }
+
+  /* 数据性质声明：收窄并上移，避免遮挡操作栏与场景条 */
+  #data-disclaimer { max-width: 96vw; bottom: 340px; font-size: 10px; }
+  body.scenes-visible #data-disclaimer { bottom: 340px; }
+}

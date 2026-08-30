@@ -29,6 +29,59 @@ html, body {
   z-index: 1;
 }
 
+/* ---------- 加载骨架屏 ---------- */
+#loading {
+  position: absolute;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: #eef1f6;
+  transition: opacity 0.3s ease;
+}
+#loading.hidden { opacity: 0; pointer-events: none; }
+.sk-spinner {
+  width: 42px; height: 42px;
+  border: 4px solid #d7dee8;
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: sk-rot 0.9s linear infinite;
+}
+@keyframes sk-rot { to { transform: rotate(360deg); } }
+.sk-text { font-size: 13px; color: var(--muted); }
+
+/* ---------- 图片放大预览 lightbox ---------- */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  background: rgba(17, 24, 39, 0.88);
+  align-items: center;
+  justify-content: center;
+}
+#lightbox.open { display: flex; }
+#lightbox-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  z-index: 1;
+  width: 40px; height: 40px;
+  border: none; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 26px; line-height: 1;
+  cursor: pointer;
+}
+#lightbox .lb-img {
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
 /* ---------- 顶部标题栏 ---------- */
 .app-header {
   position: absolute;
@@ -101,6 +154,7 @@ html, body {
   font-size: 13px;
   cursor: pointer;
   text-align: left;
+  touch-action: manipulation;
   transition: all 0.15s ease;
 }
 .btn:hover { border-color: var(--blue); color: var(--blue); }
@@ -252,11 +306,11 @@ html, body {
 /* ---------- NSGA-II 情景对比面板（算法证据） ---------- */
 #scenarios-panel {
   position: absolute;
-  left: 14px;
-  bottom: 400px;
+  right: 14px;
+  top: 470px;
   z-index: 1000;
   width: 380px;
-  max-height: 60vh;
+  max-height: 50vh;
   overflow: auto;
   background: var(--panel-bg);
   border: 1px solid #d7dee8;
@@ -287,9 +341,17 @@ html, body {
 .scn-src { font-size: 10.5px; color: var(--muted); margin: 4px 0; }
 .scn-note { font-size: 10.5px; color: var(--muted); line-height: 1.5; margin: 4px 0; }
 
-/* ---------- 响应式 ---------- */
-@media (max-width: 720px) {
-  #control-panel, #legend, #route-info { width: 190px; }
-  .app-header h1 { font-size: 14px; }
-  .app-header .subtitle { display: none; }
+/* ---------- 手风琴高度过渡（去掉原生 details 瞬间开合） ---------- */
+@supports (interpolate-size: allow-keywords) {
+  details { interpolate-size: allow-keywords; }
+  details::details-content {
+    block-size: 0;
+    opacity: 0;
+    overflow-y: clip;
+    transition: content-visibility 0.25s allow-discrete, block-size 0.25s ease, opacity 0.2s ease;
+  }
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
 }
