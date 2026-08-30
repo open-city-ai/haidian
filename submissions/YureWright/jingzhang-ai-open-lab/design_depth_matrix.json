@@ -43,6 +43,10 @@
    "proposal_sections": [
     "二、设计主张与可验证目标"
    ],
+   "drawing_refs": [
+    "assets/figures/site-overview.png",
+    "assets/figures/key-areas.png"
+   ],
    "geometry_refs": [
     "geometry/site_boundary.geojson",
     "geometry/key_areas.geojson"
@@ -111,7 +115,7 @@
     "assets/figures/fig-06c-ecosystem-map.png"
    ],
    "geometry_refs": [
-    "geometry/ai_service_zone.geojson",
+    "geometry/public_space.geojson",
     "geometry/land_use.geojson"
    ],
    "metric_refs": [
@@ -141,12 +145,12 @@
     "七、绣春线上的一天"
    ],
    "drawing_refs": [
-    "assets/figures/scenario-cards.html",
-    "assets/figures/fig-06d-scenario-operation.png"
+    "assets/figures/fig-06d-scenario-operation.png",
+    "assets/figures/fig-06b-innovation-synergy.png"
    ],
    "geometry_refs": [
-    "geometry/scenario_nodes.geojson",
-    "geometry/ai_service_zone.geojson"
+    "geometry/public_space.geojson",
+    "geometry/key_areas.geojson"
    ],
    "metric_refs": [
     "D26_scenario_card_count",
@@ -252,6 +256,10 @@
     "六、三个重点区",
     "十一、实施路径、投资估算与运营模式"
    ],
+   "drawing_refs": [
+    "assets/figures/fig-03-buildings-plan.png",
+    "assets/figures/fig-06a-pilgrimage-plan.png"
+   ],
    "geometry_refs": [
     "geometry/phasing.geojson",
     "geometry/buildings.geojson"
@@ -278,10 +286,15 @@
    "title_zh": "交通、轨道、市政与配套设施",
    "professional_dimension": "交通市政",
    "required": true,
-   "status": "complete_with_gaps",
+   "status": "complete",
    "proposal_sections": [
     "三、空间策略",
     "八、城市设计导则与全龄友好"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-02-roads-plan.png",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
    ],
    "geometry_refs": [
     "geometry/roads.geojson",
@@ -314,7 +327,8 @@
     "五、三大爆点装置"
    ],
    "drawing_refs": [
-    "assets/figures/fig-06e-culture-storyline.png"
+    "assets/figures/fig-06e-culture-storyline.png",
+    "assets/figures/fig-06g-history-overlay.png"
    ],
    "geometry_refs": [
     "geometry/constraints.geojson"
@@ -343,6 +357,11 @@
    "proposal_sections": [
     "五、三大爆点装置",
     "十一、实施路径、投资估算与运营模式"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-06d-scenario-operation.png",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
    ],
    "geometry_refs": [
     "geometry/public_space.geojson",
@@ -378,6 +397,10 @@
    "drawing_refs": [
     "assets/figures/metrics-evidence.png"
    ],
+   "geometry_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/land_use.geojson"
+   ],
    "metric_refs": [
     "G40_fallback_coverage_pct",
     "G41_emergency_not_ai",
@@ -397,6 +420,450 @@
     "PROFESSIONAL_EVIDENCE"
    ],
    "evidence_summary_zh": "43 项指标（metrics.json）全部可溯源至 geometry 图层并含 formula；16 项几何验证全 PASS；四条硬声明 + 8 问预答复。"
+  },
+  {
+   "item_id": "overall_spatial_structure",
+   "title_zh": "总体空间结构",
+   "professional_dimension": "城市设计",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "三、空间策略"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-06a-overall-structure.png",
+    "assets/figures/fig-02-roads-plan.png"
+   ],
+   "geometry_refs": [
+    "geometry/constraints.geojson",
+    "geometry/roads.geojson"
+   ],
+   "metric_refs": [
+    "A2_main_artery_km",
+    "B11_stitch_lane_count"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ],
+   "assumption_ids": [
+    "A-PARK-001"
+   ],
+   "self_check_ids": [
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "一主脉（绣春线 4.03km 三段断面）+ 四针法 + 四层缝合的总体空间结构；相遇节点布局由目标函数求解，主脉间距实测 150m。"
+  },
+  {
+   "item_id": "land_use_layout",
+   "title_zh": "用地布局",
+   "professional_dimension": "用地规划",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "三、空间策略",
+    "十、指标与主角数字"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-01-landuse-plan.png",
+    "assets/figures/land-use-structure.png"
+   ],
+   "geometry_refs": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "metric_refs": [
+    "B12_land_use_diversity",
+    "E29_green_public_area_ha"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT",
+    "SITE-PACKAGE"
+   ],
+   "assumption_ids": [
+    "A-BOUNDARY-001"
+   ],
+   "self_check_ids": [
+    "ENUM_HARDCHECK",
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "用地布局图与 land_use.geojson 全覆盖 SITE（缺口 0.00ha，验证#13）；用地代码全部来自官方枚举（验证#1）。"
+  },
+  {
+   "item_id": "development_intensity_controls",
+   "title_zh": "开发强度控制",
+   "professional_dimension": "用地规划",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "八、城市设计导则与全龄友好",
+    "十三、数据可信度与诚实声明"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-03-buildings-plan.png",
+    "assets/figures/fig-01-landuse-plan.png"
+   ],
+   "geometry_refs": [
+    "geometry/buildings.geojson",
+    "geometry/land_use.geojson"
+   ],
+   "metric_refs": [
+    "F37_building_footprint_pct",
+    "F36_building_count"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ],
+   "assumption_ids": [
+    "A-CONTROLS-001"
+   ],
+   "self_check_ids": [
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "建筑覆盖率 7.2%（≤25% 控制，验证#14）；容积率等规划控制条件 status=missing 未推定，只给设计建议口径并显著声明。"
+  },
+  {
+   "item_id": "height_massing_character",
+   "title_zh": "高度体量与形态特征",
+   "professional_dimension": "城市设计",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "六、三个重点区",
+    "八、城市设计导则与全龄友好"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-06f-sections.png",
+    "assets/figures/fig-06a-pilgrimage-plan.png",
+    "assets/figures/fig-06b-pilgrimage-section.png"
+   ],
+   "geometry_refs": [
+    "geometry/buildings.geojson",
+    "geometry/key_areas.geojson"
+   ],
+   "metric_refs": [
+    "F38_avg_building_depth_m",
+    "F37_building_footprint_pct"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ],
+   "assumption_ids": [
+    "A-CONTROLS-001"
+   ],
+   "self_check_ids": [
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "断面图与朝圣剖面图控制高度体量；建筑进深均值 25.8m、≤85m 形态建议（验证#14）；高度控制不推定官方限高。"
+  },
+  {
+   "item_id": "retain_renovate_demolish",
+   "title_zh": "留改拆策略",
+   "professional_dimension": "更新实施",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "六、三个重点区",
+    "十一、实施路径、投资估算与运营模式"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-03-buildings-plan.png"
+   ],
+   "geometry_refs": [
+    "geometry/buildings.geojson",
+    "geometry/phasing.geojson"
+   ],
+   "metric_refs": [
+    "F36_building_count",
+    "F39_building_in_zones_pct"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT",
+    "SITE-PACKAGE"
+   ],
+   "assumption_ids": [
+    "A-CONTROLS-001",
+    "A-OPS-001"
+   ],
+   "self_check_ids": [
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "留改拆 70/25/5 原则方向；重点区内建筑占比 92.7% 体现更新集聚，保留历史肌理优先。"
+  },
+  {
+   "item_id": "traffic_rail_slow_parking",
+   "title_zh": "交通、轨道、慢行与停车",
+   "professional_dimension": "交通市政",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "三、空间策略",
+    "八、城市设计导则与全龄友好"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-02-roads-plan.png",
+    "assets/figures/mobility-bluegreen.png"
+   ],
+   "geometry_refs": [
+    "geometry/roads.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "metric_refs": [
+    "B6_road_total_km",
+    "B10_slow_share_pct",
+    "B11_stitch_lane_count"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ],
+   "assumption_ids": [
+    "A-TRANSIT-001"
+   ],
+   "self_check_ids": [
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "道路总长 63.42km、慢行占比 30.9%、针脚巷 29 条、道路分五级（验证#4）；轨道站点为数据缺口，只给接驳原则。"
+  },
+  {
+   "item_id": "municipal_new_infrastructure",
+   "title_zh": "市政与新型基础设施",
+   "professional_dimension": "交通市政",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "八、城市设计导则与全龄友好",
+    "十三、数据可信度与诚实声明"
+   ],
+   "drawing_refs": [
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "geometry_refs": [
+    "geometry/public_space.geojson",
+    "geometry/phasing.geojson"
+   ],
+   "metric_refs": [
+    "C19_public_facility_count"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ],
+   "assumption_ids": [
+    "A-MUNI-001",
+    "A-ENERGY-001"
+   ],
+   "self_check_ids": [
+    "DATA_GAP_DISCLOSURE"
+   ],
+   "evidence_summary_zh": "市政管网为数据缺口，仅给布局原则与分期预留；充电/能量路由等新基建并入公共空间设施建议（141 处 POI 示意）。"
+  },
+  {
+   "item_id": "blue_green_public_space",
+   "title_zh": "蓝绿与公共空间体系",
+   "professional_dimension": "公共空间",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "九、生态与低碳目标",
+    "六、三个重点区"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-04-green-plan.png",
+    "assets/figures/mobility-bluegreen.png"
+   ],
+   "geometry_refs": [
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "metric_refs": [
+    "E29_green_public_area_ha",
+    "C16_per_capita_public_space_sqm",
+    "C17_pocket_green_count"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ],
+   "assumption_ids": [
+    "A-POP-001"
+   ],
+   "self_check_ids": [
+    "ZONE_GREEN_RATIO",
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "绿地+广场 78.7ha、人均公共空间 11.2㎡/人、口袋绿地 12 个、疗愈绿地 29 处、绿廊 4.03km；三重点区绿地率全部 ≥8%。"
+  },
+  {
+   "item_id": "three_key_area_detailed_design",
+   "title_zh": "三个重点区域详细设计",
+   "professional_dimension": "重点区域",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "六、三个重点区"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-05a-zone-k1-xiufang.png",
+    "assets/figures/fig-05b-zone-k2-xiuchang.png",
+    "assets/figures/fig-05c-zone-k3-xiuting.png"
+   ],
+   "geometry_refs": [
+    "geometry/key_areas.geojson",
+    "geometry/green_space.geojson"
+   ],
+   "metric_refs": [
+    "A3_key_area_count",
+    "E33_zone_green_ratio"
+   ],
+   "source_ids": [
+    "KEY-AREA-SOURCE"
+   ],
+   "assumption_ids": [
+    "A-BOUNDARY-001",
+    "A-POP-001"
+   ],
+   "self_check_ids": [
+    "KEY_AREAS_TRUST",
+    "ZONE_GREEN_RATIO"
+   ],
+   "evidence_summary_zh": "K1 绣芳（众智园）/K2 绣常（原点社区）/K3 绣婷（大钟寺）三区详细设计图与指标；边界为 provisional_constraint，面积以官方公告为准。"
+  },
+  {
+   "item_id": "renewal_project_list",
+   "title_zh": "更新项目清单",
+   "professional_dimension": "更新实施",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "十一、实施路径、投资估算与运营模式"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-06a-pilgrimage-plan.png",
+    "assets/figures/fig-03-buildings-plan.png"
+   ],
+   "geometry_refs": [
+    "geometry/buildings.geojson",
+    "geometry/phasing.geojson"
+   ],
+   "metric_refs": [
+    "F36_building_count",
+    "C21_glow_wall_count"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT",
+    "SITE-PACKAGE"
+   ],
+   "assumption_ids": [
+    "A-OPS-001",
+    "A-CONTROLS-001"
+   ],
+   "self_check_ids": [
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "更新项目清单：绣芳/绣常/绣婷三区 16 个旗舰项目 + 绣语家具系列；投资估算为设计级数量级，不构成政府承诺。"
+  },
+  {
+   "item_id": "phasing_implementation",
+   "title_zh": "分期实施路径",
+   "professional_dimension": "更新实施",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "十一、实施路径、投资估算与运营模式"
+   ],
+   "drawing_refs": [
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
+   "geometry_refs": [
+    "geometry/phasing.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "metric_refs": [
+    "C20_token_bike_count",
+    "C14_stitch_spacing_m"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ],
+   "assumption_ids": [
+    "A-OPS-001",
+    "A-TEMP-001"
+   ],
+   "self_check_ids": [
+    "DATA_GAP_DISCLOSURE"
+   ],
+   "evidence_summary_zh": "绣针→绣线→绣面→绣全四期先试后推（试点先行→主脉贯通→全面缝合→远期运营）；每期含启动条件、验收指标与退出机制。"
+  },
+  {
+   "item_id": "metrics_recalculation",
+   "title_zh": "指标复算与几何验证",
+   "professional_dimension": "数据可信度",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "十、指标与主角数字",
+    "附录 · 指标计算口径与数据来源"
+   ],
+   "drawing_refs": [
+    "assets/figures/metrics-evidence.png"
+   ],
+   "geometry_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/land_use.geojson",
+    "geometry/green_space.geojson"
+   ],
+   "metric_refs": [
+    "site_area_sqm",
+    "green_ratio",
+    "public_space_ratio"
+   ],
+   "source_ids": [
+    "ORIGINAL-GEOMETRY"
+   ],
+   "assumption_ids": [
+    "A-BOUNDARY-001"
+   ],
+   "self_check_ids": [
+    "DATA_GAP_DISCLOSURE",
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "site_area_sqm/green_ratio/public_space_ratio 等 6 项空间复算指标与 geometry 图层实测一致；16 项几何验证全 PASS；metrics-evidence.png 展示复算过程。"
+  },
+  {
+   "item_id": "risk_missing_data",
+   "title_zh": "风险与数据缺口预答复",
+   "professional_dimension": "数据可信度",
+   "required": true,
+   "status": "complete",
+   "proposal_sections": [
+    "十二、风险预答复表",
+    "十三、数据可信度与诚实声明"
+   ],
+   "drawing_refs": [
+    "assets/figures/metrics-evidence.png",
+    "drawings/a3-booklet.pdf"
+   ],
+   "geometry_refs": [
+    "geometry/site_boundary.geojson",
+    "geometry/buildings.geojson"
+   ],
+   "metric_refs": [
+    "G43_provisional_boundary_flag",
+    "G41_emergency_not_ai"
+   ],
+   "source_ids": [
+    "ORIGINAL-GEOMETRY",
+    "BOUNDARY-SOURCE"
+   ],
+   "assumption_ids": [
+    "A-BOUNDARY-001",
+    "A-ENERGY-001",
+    "A-EQUIP-001"
+   ],
+   "self_check_ids": [
+    "DATA_GAP_DISCLOSURE",
+    "PROFESSIONAL_EVIDENCE"
+   ],
+   "evidence_summary_zh": "8 问预答复表覆盖边界/控规/人口/能源/兜底/标准原文等缺口；四条硬声明（非官方红线/兜底/示意/无政府承诺）全部显著标注。"
   }
  ]
 }

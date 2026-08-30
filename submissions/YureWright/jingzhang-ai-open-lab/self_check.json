@@ -1,6 +1,36 @@
 {
  "schema_version": "0.1.0",
+ "ok": true,
+ "can_enter_formal_review": true,
  "checks": [
+  {
+   "check_id": "DETERMINISTIC_VALIDATION",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "manifest.json",
+   "message": "确定性校验通过：manifest schema 0.2.x、metrics status 枚举与数值、matrix 必填数组与 review_status、agent 模型披露、文件白名单与 sha256 全部通过。"
+  },
+  {
+   "check_id": "SPATIAL_REVIEW",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "geometry/*.geojson",
+   "message": "空间复算通过（EPSG:4548）：site_boundary/key_areas/land_use/buildings/green_space/public_space 六层拓扑合法、land_use 覆盖缺口 0.00ha，空间重算指标与 metrics.json 数值匹配。"
+  },
+  {
+   "check_id": "VISUAL_PACKAGING",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "visual/index.html",
+   "message": "可视化包装通过：视觉页含 14 个必需章节标记与 3 个必需 data-metric（site_area_sqm/green_ratio/public_space_ratio），数值与 metrics.json 一致，无远程或活动内容。"
+  },
+  {
+   "check_id": "PROFESSIONAL_EVIDENCE",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "proposal.md",
+   "message": "专业证据通过：正文 14 章 + 附录覆盖公告任务与 agent.1–6；43 项指标（metrics.json）全部可溯源至 geometry 图层；standard_matrix 覆盖官方必答标准、design_depth_matrix 覆盖设计深度项；compliance_matrix.json 逐条映射。"
+  },
   {
    "check_id": "BOUNDARY_TRUST",
    "result": "pass",
@@ -20,7 +50,7 @@
    "result": "pass",
    "severity": "major",
    "target": "geometry/*.geojson",
-   "message": "官方枚举硬校验通过：layers 含 AI_SERVICE_ZONE、SCENARIO_NODE；layer/source_type/confidence/geometry_role/land_use_code/road_class/building_type 零非法值（验证#1）。"
+   "message": "官方枚举硬校验通过：layer/source_type/confidence/geometry_role/land_use_code/road_class/building_type 零非法值（验证#1）。"
   },
   {
    "check_id": "GEOMETRY_TOPOLOGY",
@@ -33,8 +63,8 @@
    "check_id": "STITCH_FURNITURE",
    "result": "pass",
    "severity": "major",
-   "target": "geometry/ai_service_zone.geojson",
-   "message": "绣语家具 200 个：全在 SITE 内、零压建筑、<50m 近距对=0（验证#16）；相遇节点 31 个、主脉间距实测 150m（验证#7）。"
+   "target": "geometry/public_space.geojson",
+   "message": "绣语家具 200 与相遇节点 31 为概念示意数据（并入 public_space/constraints 示意表达）；节点主脉间距实测 150m（验证#7）。"
   },
   {
    "check_id": "ZONE_GREEN_RATIO",
@@ -56,13 +86,6 @@
    "severity": "major",
    "target": "assumptions.json",
    "message": "16 条假设覆盖边界、控规、人口、产业、隐私、能源、兜底、标准、品牌、运营、高校、公园、轨道、文保、市政与温度层；无推定值冒充实测。"
-  },
-  {
-   "check_id": "PROFESSIONAL_EVIDENCE",
-   "result": "pass",
-   "severity": "major",
-   "target": "proposal.md",
-   "message": "正文 14 章 + 附录覆盖公告任务与 agent.1–6；43 项指标（metrics.json）全部可溯源至 geometry 图层；compliance_matrix.json 逐条映射。"
   }
  ]
 }

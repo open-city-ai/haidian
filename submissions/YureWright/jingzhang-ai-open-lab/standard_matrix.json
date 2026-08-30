@@ -40,8 +40,8 @@
    "evidence_summary_zh": "公告设计任务与 agent.1–6 在 compliance_matrix.json 逐条映射到章节、图层、指标、图纸与自检项；三层范围与三处重点区域均有对应几何与指标。"
   },
   {
-   "standard_id": "PROJECT-AGENT-TASKBOOK",
-   "requirement_zh": "回应面向智能体任务书的共创原则、六项必答任务与统一评审维度",
+   "standard_id": "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+   "requirement_zh": "补充面向智能体的十条共创原则、持续参与与协作循环、三大定位、五大功能、三区两翼、六项任务、统一评审维度和统一边界条款",
    "professional_dimension": "智能体开源征集任务响应",
    "mandatory": true,
    "review_status": "addressed",
@@ -56,9 +56,9 @@
     "drawings/a0-boards.pdf"
    ],
    "geometry_refs": [
-    "geometry/ai_service_zone.geojson",
-    "geometry/scenario_nodes.geojson",
-    "geometry/public_space.geojson"
+    "geometry/public_space.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/site_boundary.geojson"
    ],
    "metric_refs": [
     "D26_scenario_card_count",
@@ -84,10 +84,14 @@
    "requirement_zh": "城市综合交通体系规划标准路网密度要求（建成区不低于 8 km/km²）",
    "professional_dimension": "交通基础设施",
    "mandatory": false,
-   "review_status": "addressed_with_disclosure",
+   "review_status": "data_gap",
    "proposal_sections": [
     "三、空间策略",
     "十、指标与主角数字"
+   ],
+   "drawing_refs": [
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
    ],
    "geometry_refs": [
     "geometry/roads.geojson",
@@ -97,10 +101,16 @@
     "B7_road_density_km_per_sqkm",
     "B11_stitch_lane_count"
    ],
+   "source_ids": [
+    "GB-STANDARDS"
+   ],
    "assumption_ids": [
     "A-STD-001"
    ],
-   "evidence_summary_zh": "本方案道路网密度 5.56 km/km²，已显著高于现状示意骨架；与国标 8 的差距在正文主动披露，并给出二期加密路径（7→8）。标准原文未本地快照，深化阶段核对。"
+   "self_check_ids": [
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "本方案道路网密度 5.56 km/km²，已显著高于现状示意骨架；与国标 8 的差距在正文主动披露，并给出二期加密路径（7→8）。标准原文未本地快照，列为数据缺口，深化阶段核对原文。"
   },
   {
    "standard_id": "GREEN-RATIO-ZONE",
@@ -112,12 +122,19 @@
     "六、三个重点区",
     "九、生态与低碳目标"
    ],
+   "drawing_refs": [
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
    "geometry_refs": [
     "geometry/green_space.geojson",
     "geometry/key_areas.geojson"
    ],
    "metric_refs": [
     "E33_zone_green_ratio"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
    ],
    "assumption_ids": [
     "A-CONTROLS-001"
@@ -136,9 +153,13 @@
    "proposal_sections": [
     "八、城市设计导则与全龄友好"
    ],
+   "drawing_refs": [
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
+   ],
    "geometry_refs": [
     "geometry/public_space.geojson",
-    "geometry/ai_service_zone.geojson"
+    "geometry/key_areas.geojson"
    ],
    "metric_refs": [
     "C19_public_facility_count",
@@ -151,6 +172,9 @@
     "A-PRIVACY-001",
     "A-EQUIP-001"
    ],
+   "self_check_ids": [
+    "VISUAL_STATIC"
+   ],
    "evidence_summary_zh": "无障碍步行环、儿童模式、适老座椅间距≤100m、四模态交互（语音/大字/触控/纸面）；5 类用户画像（personas.md）逐类落实兜底。"
   },
   {
@@ -158,9 +182,13 @@
    "requirement_zh": "消防车道、日照采光等工程专项（需专业校核）",
    "professional_dimension": "工程专项",
    "mandatory": false,
-   "review_status": "declared_pending",
+   "review_status": "data_gap",
    "proposal_sections": [
     "十三、数据可信度与诚实声明"
+   ],
+   "drawing_refs": [
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf"
    ],
    "geometry_refs": [
     "geometry/buildings.geojson"
@@ -168,11 +196,126 @@
    "metric_refs": [
     "F38_avg_building_depth_m"
    ],
+   "source_ids": [
+    "GB-STANDARDS"
+   ],
    "assumption_ids": [
     "A-CONTROLS-001",
     "A-MUNI-001"
    ],
-   "evidence_summary_zh": "建筑进深 ≤85m、间距 ≥5m 为形态建议值；消防与日照须由专业校核，方案明确声明不构成工程结论。"
+   "self_check_ids": [
+    "DATA_GAP_DISCLOSURE"
+   ],
+   "evidence_summary_zh": "建筑进深 ≤85m、间距 ≥5m 为形态建议值；消防与日照须由专业校核，方案明确声明不构成工程结论，列为数据缺口待专项验证。"
+  },
+  {
+   "standard_id": "MOHURD-URBAN-DESIGN-MEASURES",
+   "requirement_zh": "城市设计应落实规划、指导建筑设计、塑造特色风貌，并统筹平面和立体空间、公共空间、建筑高度体量风格色彩等控制要求",
+   "professional_dimension": "城市设计控制",
+   "mandatory": true,
+   "review_status": "addressed",
+   "proposal_sections": [
+    "三、空间策略",
+    "六、三个重点区",
+    "八、城市设计导则与全龄友好"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-06a-overall-structure.png",
+    "assets/figures/fig-06f-sections.png",
+    "assets/figures/fig-05a-zone-k1-xiufang.png"
+   ],
+   "geometry_refs": [
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson"
+   ],
+   "metric_refs": [
+    "F37_building_footprint_pct",
+    "F38_avg_building_depth_m"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT"
+   ],
+   "assumption_ids": [
+    "A-CONTROLS-001"
+   ],
+   "self_check_ids": [
+    "GEOMETRY_TOPOLOGY"
+   ],
+   "evidence_summary_zh": "总体空间结构图、断面图与三重点区详图统筹平面立体空间；导则章节落实高度、体量、风格、色彩与公共空间控制要求，全部为设计建议。"
+  },
+  {
+   "standard_id": "MOHURD-CONTROL-DETAILED-PLANNING",
+   "requirement_zh": "控规是规划许可和实施管理依据，formal 方案涉及用地、开发强度、道路、市政和实施管理时必须区分已知控制条件、设计建议和待确认事项",
+   "professional_dimension": "规划实施管理",
+   "mandatory": true,
+   "review_status": "addressed",
+   "proposal_sections": [
+    "八、城市设计导则与全龄友好",
+    "十一、实施路径、投资估算与运营模式",
+    "十三、数据可信度与诚实声明"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-01-landuse-plan.png",
+    "assets/figures/fig-02-roads-plan.png",
+    "assets/figures/fig-03-buildings-plan.png"
+   ],
+   "geometry_refs": [
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson"
+   ],
+   "metric_refs": [
+    "F37_building_footprint_pct",
+    "B7_road_density_km_per_sqkm"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT",
+    "SITE-PACKAGE"
+   ],
+   "assumption_ids": [
+    "A-CONTROLS-001",
+    "A-MUNI-001"
+   ],
+   "self_check_ids": [
+    "DATA_GAP_DISCLOSURE"
+   ],
+   "evidence_summary_zh": "用地、开发强度、道路、市政与实施管理条目明确区分：已知控制条件（官方枚举/规划限制）、设计建议（本方案概念值）与待确认事项（缺失的控规参数）。"
+  },
+  {
+   "standard_id": "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+   "requirement_zh": "用地分类和指标表达应采用统一的国土空间用地用海分类逻辑，不得用自造分类替代可校验用地代码",
+   "professional_dimension": "用地分类与指标表达",
+   "mandatory": true,
+   "review_status": "addressed",
+   "proposal_sections": [
+    "三、空间策略",
+    "十、指标与主角数字",
+    "附录 · 指标计算口径与数据来源"
+   ],
+   "drawing_refs": [
+    "assets/figures/fig-01-landuse-plan.png",
+    "assets/figures/land-use-structure.png"
+   ],
+   "geometry_refs": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "metric_refs": [
+    "B12_land_use_diversity",
+    "E29_green_public_area_ha"
+   ],
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT",
+    "SITE-PACKAGE"
+   ],
+   "assumption_ids": [
+    "A-BOUNDARY-001"
+   ],
+   "self_check_ids": [
+    "ENUM_HARDCHECK"
+   ],
+   "evidence_summary_zh": "land_use.geojson 用地代码全部来自官方枚举（land_use_code 零非法值，验证#1），指标表达统一到国土空间用地用海分类逻辑。"
   }
  ]
 }
