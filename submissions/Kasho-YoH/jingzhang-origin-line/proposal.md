@@ -14,7 +14,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 # ORIGIN LINE: Concept Design for the Centennial Jingzhang AI Innovation Belt
 
 > **Core thesis: AI does not lack scenarios; it lacks the first mile of a city's trust.**
-> As every city rushes to deploy AI, what is truly scarce is not the supply of technology but public trust — Sidewalk Toronto was terminated by citizens over data-governance disputes, proving that a smart city without trust design cannot go far. The bottleneck for AI entering the city is where, and how, "the first chance to be trusted" happens.
+> As every city rushes to deploy AI, what is truly scarce is not the supply of technology but public trust — Sidewalk Toronto was cancelled in 2020 following prolonged public controversy over its data-governance approach [source:CASE-SIDEWALK-TORONTO], showing that a smart city without trust design cannot go far. The bottleneck for AI entering the city is where, and how, "the first chance to be trusted" happens.
 > Our answer: **trust is not proclaimed; it is earned through a verifiable, auditable, reversible "first use."** In 1909, the Beijing–Zhangjiakou Railway (Jingzhang Railway) completed the trusted first mile of Chinese engineering self-reliance through the creative solution of the switchback (herringbone) alignment; in the 1980s, Zhongguancun's Electronics Street completed the trusted first mile of Chinese technological innovation; today, this same corridor can become the site of the trusted first mile for AI urban services.
 > We name this belt "ORIGIN LINE" — a **Trusted-First-Mile corridor** designed for AI urban services: allowing AI to complete its first public service in a real urban environment with minimal intrusion, full auditability, and immediate reversibility, converting a century of engineering trust into the public trust of the intelligent era.
 
@@ -24,8 +24,8 @@ This formal proposal takes as its primary basis the Pre-Qualification Announceme
 
 Statement on the boundaries of source use:
 
-- 5 formally usable sources and 1 provisional-only source (source-registry summary); this proposal does not upgrade background_only / provisional_only material into official red lines, statutory regulatory detailed planning, formal scoring criteria, or implementation commitments.
-- Case studies (Station F, Kendall Square, Brainport, 22@Barcelona, etc.) are public background knowledge, used only as references for ecosystem design, not as local factual evidence.
+- Per the current source-registry summary (updated 2026-08-09): 7 formal-usable sources, 1 provisional-only source, and 1 background-only source [source:SOURCE-REGISTRY]; this proposal does not upgrade background_only / provisional_only material into official red lines, statutory regulatory detailed planning, formal scoring criteria, precise-area conclusions, or implementation commitments; the provisional boundary is not a basis for official redlines, statutory controls, or exact-area figures.
+- Case studies (Station F, Kendall Square, Brainport, 22@Barcelona, Shenzhen Bay, Zurich AI cluster, Sidewalk Toronto) are public background knowledge with verifiable source records in sources.json (CASE-* entries: publisher, URL, date, purpose, limits), used only as references for ecosystem design, not as local factual evidence.
 - The organizer's official `SITE_BOUNDARY` and the precise polygons of the three `KEY_AREA`s have not yet been released; all spatial layers in this proposal are based on `provisional_boundaries.geojson` (`geometry_role=provisional_constraint`, `official_boundary=false`, `boundary_precision=provisional_rough`). **This data gap on the organizer's side does not block content scoring; once the official boundary is published, all layers, metrics, and drawing boards must be recalculated.**
 
 ![Overall structure: One Line, Three Stations, Two Wings](assets/figures/site-overview.png)
@@ -86,13 +86,13 @@ The three positionings (Centennial Jingzhang Culture Belt, Urban AI Life Experie
 
 | Case | Transferable Mechanism | Implication for This Proposal |
 | --- | --- | --- |
-| Station F (Paris) | Conversion of an existing station building into a startup campus; event-driven ecosystem | Railway-heritage space is naturally compatible with innovation functions (Origin Station) |
-| Kendall Square (Cambridge) | High-density mix of university–industry–venture capital | Near-campus technology-transfer street and factor allocation in the Tech-Services Wing |
-| Brainport Eindhoven | Open innovation campus + public access to corporate test fields | Open evaluation range at Acceleration Station and robot-friendly buildings |
-| 22@Barcelona | Industrial-area urban renewal + mixed-use innovation district | Intelligent-native retrofit of the Dazhongsi stock commercial district |
-| Shenzhen Bay Technology Eco Park | Full-chain industrial community operation | The "origination–validation–translation" division of labor among the three stations |
-| Zurich AI cluster | University-lab spillover + international-talent life services | Talent amenities and international communication in the Origin Community |
-| Sidewalk Toronto (cautionary case) | Data-governance disputes led to project termination | Scenario principles of data minimization, human review, and governance-first |
+| Station F (Paris) | Conversion of an existing station building into a startup campus; event-driven ecosystem | Railway-heritage space is naturally compatible with innovation functions (Origin Station)  [source:CASE-STATION-F] |
+| Kendall Square (Cambridge) | High-density mix of university–industry–venture capital | Near-campus technology-transfer street and factor allocation in the Tech-Services Wing  [source:CASE-KENDALL-SQUARE] |
+| Brainport Eindhoven | Open innovation campus + public access to corporate test fields | Open evaluation range at Acceleration Station and robot-friendly buildings  [source:CASE-BRAINPORT] |
+| 22@Barcelona | Industrial-area urban renewal + mixed-use innovation district | Intelligent-native retrofit of the Dazhongsi stock commercial district  [source:CASE-22AT-BARCELONA] |
+| Shenzhen Bay Technology Eco Park | Full-chain industrial community operation | The "origination–validation–translation" division of labor among the three stations  [source:CASE-SHENZHEN-BAY] |
+| Zurich AI cluster | University-lab spillover + international-talent life services | Talent amenities and international communication in the Origin Community  [source:CASE-ZURICH-AI] |
+| Sidewalk Toronto (cautionary case) | Cancelled in 2020 after prolonged public data-governance controversy (officially citing economic uncertainty) [source:CASE-SIDEWALK-TORONTO] | Scenario principles of data minimization, human review, and governance-first |
 
 ### AI Innovation Ecosystem Map and Mechanism Design
 
@@ -152,6 +152,8 @@ Positioning: **the "Station of Translation" for intelligent-native commerce**. S
 | 08 | Autonomous shuttle-bus connection loop | Acceleration Station | Park commuters; licensed operators | Operates within a testing-permit framework; safety officer / remote monitoring |
 | 09 | Open Evaluation Range for Foundation Models | Acceleration Station | Enterprises/research institutions; third-party evaluation bodies | Evaluation data isolated; red-team testing by appointment |
 | 10 | Robot-friendly building pilot | Acceleration Station | Building owners/robotics companies; building operator | Access data closed-looped within the building |
+
+Accessibility baseline: the all-age health trail and public-space scenarios take the PRC Barrier-Free Environment Law [source:BARRIER-FREE-ENVIRONMENT-LAW] as the continuity baseline for step-free routes and equivalent non-smartphone service flows.
 
 ![Scenario system overview: ten scenario cards on the corridor with data-boundary clauses](assets/figures/scenario-system-overview.png)
 
@@ -256,7 +258,7 @@ Missing material and risk-item management follow [depth:risk_missing_data].
 # 原点线 ORIGIN LINE：百年京张AI创新带概念设计
 
 > **核心命题：AI 不缺场景，缺的是被城市信任的第一程。**
-> 当每座城市都在部署 AI，真正稀缺的不是技术供给，而是公共信任——Sidewalk Toronto 因数据治理争议被市民终止，证明没有信任设计的智能城市走不远。AI 进入城市的瓶颈，是「第一次被信任的机会」在哪里发生、如何发生。
+> 当每座城市都在部署 AI，真正稀缺的不是技术供给，而是公共信任——Sidewalk Toronto 在数据治理争议持续发酵后于 2020 年终止（官方口径为经济不确定性）[source:CASE-SIDEWALK-TORONTO]，显示没有信任设计的智能城市走不远。AI 进入城市的瓶颈，是「第一次被信任的机会」在哪里发生、如何发生。
 > 我们的回答：**信任不是宣传出来的，而是在可验证、可审计、可回退的「首用」中挣来的。**1909 年，京张铁路以人字形线路的创造性解法完成中国工程自主的可信首用；1980 年代，中关村电子一条街完成中国科创的可信首用；今天，同一条走廊可以成为 AI 城市服务的可信首用之地。
 > 我们把这条带子命名为「原点线 ORIGIN LINE」——一条为 AI 城市服务设计的**可信首用走廊**：让 AI 在真实城市环境中，以最小侵入、全程可审计、随时可回退的方式完成第一次公共服务，把百年工程信任转化为智能时代的公共信任。
 
@@ -266,8 +268,8 @@ Missing material and risk-item management follow [depth:risk_missing_data].
 
 资料使用边界声明：
 
-- 正式可用资料 5 条、provisional-only 资料 1 条（来源登记摘要）；本方案不将 background_only / provisional_only 资料升级为官方红线、法定控规、正式评分依据或实施承诺。
-- 案例研究（Station F、Kendall Square、Brainport、22@Barcelona 等）为公开背景知识，仅用于生态设计参照，不作为本地事实依据。
+- 按当前来源登记摘要（2026-08-09 更新）：formal 正式可用 7 条、provisional_only 1 条、background_only 1 条 [source:SOURCE-REGISTRY]；本方案不将 background_only / provisional_only 资料升级为官方红线、法定控规、正式评分依据或实施承诺；临时边界不作为官方红线、法定控制或精确面积结论依据。
+- 案例研究（Station F、Kendall Square、Brainport、22@Barcelona、深圳湾、苏黎世、Sidewalk Toronto）为公开背景知识，可核查来源记录见 sources.json（CASE-* 条目：发布者/URL/日期/用途/限制），仅用于生态设计参照，不作为本地事实依据。
 - 组织方官方 `SITE_BOUNDARY` 与三处 `KEY_AREA` 精确 polygon 尚未发布，本方案全部空间图层基于 `provisional_boundaries.geojson`（`geometry_role=provisional_constraint`、`official_boundary=false`、`boundary_precision=provisional_rough`）。**该组织方数据缺口不阻断内容评分；官方边界发布后，全部图层、指标、图版须重算。**
 
 ![总体结构：一线三站两翼](assets/figures/site-overview.png)
@@ -328,13 +330,13 @@ Logo 概念：**一条线 + 三个节点圆 + 一枚「0」**。线形取铁轨�
 
 | 案例 | 可借鉴机制 | 对本方案的启示 |
 | --- | --- | --- |
-| Station F（巴黎） | 存量车站建筑改造为创业校园，活动驱动生态 | 铁路遗产空间与创新功能天然适配（原点站） |
-| Kendall Square（剑桥） | 大学-企业-风险投资高密度混合 | 近校成果转化街与科技服务翼要素配置 |
-| Brainport Eindhoven | 开放式创新园区+企业测试场公共化 | 加速站开放靶场与机器人友好楼宇 |
-| 22@Barcelona | 工业区城市更新+创新区混合用地 | 大钟寺存量商业区的智能原生改造 |
-| 深圳湾科技生态园 | 全链条产业社区运营 | 三站「策源-验证-转化」分工 |
-| 苏黎世 AI 集群 | 高校实验室外溢+国际人才生活服务 | 原点社区人才配套与国际传播 |
-| Sidewalk Toronto（反面案例） | 数据治理争议导致项目终止 | 数据最小化、人工复核、治理先行的场景原则 |
+| Station F（巴黎） | 存量车站建筑改造为创业校园，活动驱动生态 | 铁路遗产空间与创新功能天然适配（原点站）  [source:CASE-STATION-F] |
+| Kendall Square（剑桥） | 大学-企业-风险投资高密度混合 | 近校成果转化街与科技服务翼要素配置  [source:CASE-KENDALL-SQUARE] |
+| Brainport Eindhoven | 开放式创新园区+企业测试场公共化 | 加速站开放靶场与机器人友好楼宇  [source:CASE-BRAINPORT] |
+| 22@Barcelona | 工业区城市更新+创新区混合用地 | 大钟寺存量商业区的智能原生改造  [source:CASE-22AT-BARCELONA] |
+| 深圳湾科技生态园 | 全链条产业社区运营 | 三站「策源-验证-转化」分工  [source:CASE-SHENZHEN-BAY] |
+| 苏黎世 AI 集群 | 高校实验室外溢+国际人才生活服务 | 原点社区人才配套与国际传播  [source:CASE-ZURICH-AI] |
+| Sidewalk Toronto（反面案例） | 数据治理争议持续发酵后于 2020 年终止（官方口径为经济不确定性）[source:CASE-SIDEWALK-TORONTO] | 数据最小化、人工复核、治理先行的场景原则 |
 
 ### AI 创新生态图谱与机制设计
 
@@ -394,6 +396,8 @@ Logo 概念：**一条线 + 三个节点圆 + 一枚「0」**。线形取铁轨�
 | 08 | 自动驾驶小巴接驳环 | 加速站 | 园区通勤；持牌运营商 | 测试许可框架内运行，安全员/远程监控 |
 | 09 | 大模型评测开放靶场 | 加速站 | 企业/研究机构；第三方评测机构 | 评测数据隔离；红队测试预约制 |
 | 10 | 机器人友好楼宇试点 | 加速站 | 楼宇业主/机器人企业；楼宇运营方 | 通行数据楼宇内闭环 |
+
+无障碍基线：全龄健康步道与公共空间场景以《无障碍环境建设法》[source:BARRIER-FREE-ENVIRONMENT-LAW] 为连续性基线，保障无断点慢行与无智能手机替代流程。
 
 ![场景系统总览：十张场景卡的空间落位与数据边界](assets/figures/scenario-system-overview.png)
 
