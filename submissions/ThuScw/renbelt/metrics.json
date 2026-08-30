@@ -1,0 +1,494 @@
+{
+  "schema_version": "0.1.0",
+  "description": "百年京张AI创新带方案指标数据（公式/来源/复算），与 geometry 一致，visual/index.html 展示值须与本文件一致。",
+  "updated_date": "2026-08-14",
+  "computed_crs": "EPSG:4548",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metric_count": 35,
+  "metrics": {
+    "site_area": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "与 spatial_review 复算一致（EPSG:4548 投影面积）。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "site_area_official_check": {
+      "status": "known",
+      "value": 0.0011,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
+      "formula": "|computed - official| / official",
+      "confidence": "medium",
+      "assumptions": [
+        "实测 11,412,825 sqm，官方 11.4km²（11,400,000 sqm），差异率 0.11%，判定一致。"
+      ]
+    },
+    "land_use_area_by_code": {
+      "status": "known",
+      "value": 11412842.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use)",
+      "confidence": "low",
+      "assumptions": [
+        "逐特征面积之和与 site_area 差 16 sqm（<0.0002%），源自 EPSG:4548 等角投影逐顶点离散化；几何层面并集对称差=0，无缝覆盖。",
+        "land_use_code 采用官方国土空间用地用海分类代码（设计码 design_code 与之对应：S1→1207 道路 / G1→1401 公园 / G3→1403 广场 / R2→0701 住宅 / A3→0804 教育 / M1→0802 科研 / A2·B1→05 商业服务业）。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "green_space_area": {
+      "status": "known",
+      "value": 4694685.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "green_space 图层为分区后要素，sum == union；与 spatial_review 复算一致。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 4694685.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "与 spatial_review 复算一致（EPSG:4548 并集面积）。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.4114,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_area(green_space) / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "public_space_area": {
+      "status": "known",
+      "value": 246601.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 246601.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "与 spatial_review 复算一致（EPSG:4548 并集面积）。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0216,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "road_area": {
+      "status": "known",
+      "value": 2329346.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "union_area(roads)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.2041,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2638182.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(building footprints) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "概念建筑基底为示意，不等同现状建筑或法定建筑密度。",
+        "与 spatial_review 复算一致（EPSG:4548 并集面积）。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.2312,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_area(building footprints) / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "概念建筑基底为示意，不等同现状建筑或法定建筑密度。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "total_floor_area": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
+      "formula": "not computed",
+      "confidence": "low",
+      "assumptions": [
+        "缺官方容积率与建筑高度条件，统一记 status=unknown，不作测算结论。"
+      ],
+      "reason": "缺官方容积率与建筑高度条件，不得虚构总建筑面积。"
+    },
+    "far": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
+      "formula": "total_floor_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "缺官方容积率条件，不得虚构法定FAR。"
+      ],
+      "reason": "缺官方容积率条件，不得虚构法定FAR。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area features)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "key_area_area": {
+      "status": "known",
+      "value": 3692893.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area features))",
+      "confidence": "low",
+      "assumptions": [
+        "几何为 provisional rough；与官方公告面积核对：KEY_AREA-001 192.1ha / KEY_AREA-002 104.3ha / KEY_AREA-003 72.0ha，差异<0.5%。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phasing_area": {
+      "status": "known",
+      "value": 11412837.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phasing by phase))",
+      "confidence": "low",
+      "assumptions": [
+        "分期为概念级，可进入法定文件的路径另定。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "concept renewal project list (proposal ch.10)",
+      "confidence": "medium",
+      "assumptions": [
+        "第10章列5项概念更新项目：遗址公园活力带织补/原点社区渐进更新/大钟寺业态更新/学北园创新加速完善/服务翼要素平台集聚。"
+      ]
+    },
+    "talent_total": {
+      "status": "known",
+      "value": 2005800,
+      "unit": "count",
+      "source_files": [
+        "haidian-info/ai_industry.md"
+      ],
+      "formula": "public talent data (2,005,800 person)",
+      "confidence": "low",
+      "assumptions": [
+        "公开报道口径，非精确普查；背景数据。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenario_cards in compliance_matrix.json)",
+      "confidence": "medium",
+      "assumptions": [
+        "第6章交付10张场景卡（A1-B10），逐卡以八要素在 compliance_matrix.json 登记；另有3个产业测试验证场景（T1-T3）。"
+      ]
+    },
+    "land_use_area_05": {
+      "status": "known",
+      "value": 2703703.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use where land_use_code=05)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0701": {
+      "status": "known",
+      "value": 1157218.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use where land_use_code=0701)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0802": {
+      "status": "known",
+      "value": 1116188.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use where land_use_code=0802)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0804": {
+      "status": "known",
+      "value": 627852.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use where land_use_code=0804)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_1207": {
+      "status": "known",
+      "value": 2329346.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use where land_use_code=1207)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_1401": {
+      "status": "known",
+      "value": 3364711.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use where land_use_code=1401)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_1403": {
+      "status": "known",
+      "value": 113820.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(f) for f in land_use where land_use_code=1403)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "key_area_area_KEY_AREA-001": {
+      "status": "known",
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area feature)",
+      "confidence": "low",
+      "assumptions": [
+        "与官方公告面积核对差异<0.5%。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "key_area_area_KEY_AREA-002": {
+      "status": "known",
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area feature)",
+      "confidence": "low",
+      "assumptions": [
+        "与官方公告面积核对差异<0.5%。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "key_area_area_KEY_AREA-003": {
+      "status": "known",
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area feature)",
+      "confidence": "low",
+      "assumptions": [
+        "与官方公告面积核对差异<0.5%。",
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phasing_area_PH-01": {
+      "status": "known",
+      "value": 5807877.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phasing) where phase=PH-01)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phasing_area_PH-02": {
+      "status": "known",
+      "value": 2709272.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phasing) where phase=PH-02)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phasing_area_PH-03": {
+      "status": "known",
+      "value": 2895687.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phasing) where phase=PH-03)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    }
+  }
+}
