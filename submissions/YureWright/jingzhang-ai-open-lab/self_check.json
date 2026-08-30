@@ -1,198 +1,68 @@
 {
-  "ok": true,
-  "submission_dir": "submissions\\YureWright\\jingzhang-ai-open-lab",
-  "pr_author": "YureWright",
-  "stage": "formal",
-  "deterministic_validation": {
-    "returncode": 0,
-    "ok": true,
-    "stdout": {
-      "ok": true,
-      "errors": [],
-      "warnings": [
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/site_boundary.geojson: uses provisional boundary; do not treat it as an official redline or precise-area basis. Organizer data gaps do not block content scoring; recalculate when official geometry is supplied"
-      ],
-      "proposal_files": [
-        "submissions/YureWright/jingzhang-ai-open-lab/proposal.md"
-      ],
-      "changelog_files": [],
-      "changed_files": [
-        "submissions/YureWright/jingzhang-ai-open-lab/agent.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/key-areas.en.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/key-areas.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/land-use-structure.en.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/land-use-structure.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/metrics-evidence.en.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/metrics-evidence.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/mobility-bluegreen.en.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/mobility-bluegreen.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/site-overview.en.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assets/figures/site-overview.png",
-        "submissions/YureWright/jingzhang-ai-open-lab/assumptions.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/compliance_matrix.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/design_depth_matrix.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/drawings/a0-boards.en.pdf",
-        "submissions/YureWright/jingzhang-ai-open-lab/drawings/a0-boards.pdf",
-        "submissions/YureWright/jingzhang-ai-open-lab/drawings/a3-booklet.en.pdf",
-        "submissions/YureWright/jingzhang-ai-open-lab/drawings/a3-booklet.pdf",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/buildings.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/constraints.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/green_space.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/key_areas.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/land_use.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/phasing.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/public_space.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/roads.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/geometry/site_boundary.geojson",
-        "submissions/YureWright/jingzhang-ai-open-lab/manifest.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/metrics.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/proposal.en.md",
-        "submissions/YureWright/jingzhang-ai-open-lab/proposal.md",
-        "submissions/YureWright/jingzhang-ai-open-lab/report/copyright_statement.md",
-        "submissions/YureWright/jingzhang-ai-open-lab/report/narrative.md",
-        "submissions/YureWright/jingzhang-ai-open-lab/report/proposal.en.html",
-        "submissions/YureWright/jingzhang-ai-open-lab/report/proposal.html",
-        "submissions/YureWright/jingzhang-ai-open-lab/self_check.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/sources.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/standard_matrix.json",
-        "submissions/YureWright/jingzhang-ai-open-lab/visual/assets/interaction.css",
-        "submissions/YureWright/jingzhang-ai-open-lab/visual/assets/token-energy.js",
-        "submissions/YureWright/jingzhang-ai-open-lab/visual/assets/transformer-park.js",
-        "submissions/YureWright/jingzhang-ai-open-lab/visual/index.en.html",
-        "submissions/YureWright/jingzhang-ai-open-lab/visual/index.html"
-      ],
-      "ai_package_stages": {
-        "submissions/YureWright/jingzhang-ai-open-lab": "formal"
-      },
-      "total_bytes": 3954741,
-      "maintainer_bypass": false
-    },
-    "stderr": ""
+ "schema_version": "0.1.0",
+ "checks": [
+  {
+   "check_id": "BOUNDARY_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/site_boundary.geojson",
+   "message": "提交边界为 provisional（official_boundary=false），已在正文、sources、assumptions、版权声明、图纸与 HTML 中显著标注；官方红线发布后须整体复算。"
   },
-  "spatial_review": {
-    "returncode": 0,
-    "ok": true,
-    "stdout": {
-      "ok": true,
-      "stage": "formal",
-      "issues": [
-        {
-          "check_id": "KEY_AREA_PROVISIONAL",
-          "severity": "minor",
-          "target_file": "geometry/key_areas.geojson",
-          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
-          "target_feature_id": "PROV-KEY-001",
-          "expected": null,
-          "actual": null
-        },
-        {
-          "check_id": "KEY_AREA_PROVISIONAL",
-          "severity": "minor",
-          "target_file": "geometry/key_areas.geojson",
-          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
-          "target_feature_id": "PROV-KEY-002",
-          "expected": null,
-          "actual": null
-        },
-        {
-          "check_id": "KEY_AREA_PROVISIONAL",
-          "severity": "minor",
-          "target_file": "geometry/key_areas.geojson",
-          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
-          "target_feature_id": "PROV-KEY-003",
-          "expected": null,
-          "actual": null
-        }
-      ],
-      "metrics": {
-        "site_area_sqm": 11412825.386,
-        "green_space_area_sqm": 1408600.768,
-        "public_space_area_sqm": 836345.643,
-        "building_footprint_area_sqm": 310807.184,
-        "green_ratio": 0.123423,
-        "public_space_ratio": 0.073281
-      }
-    },
-    "stderr": ""
+  {
+   "check_id": "KEY_AREAS_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/key_areas.geojson",
+   "message": "三处重点区域（众智园/原点社区/大钟寺）均为 provisional_constraint，按仓库规则不阻断内容评分；面积以官方公告为准。"
   },
-  "visual_review": {
-    "returncode": 0,
-    "ok": true,
-    "stdout": {
-      "ok": true,
-      "issues": [],
-      "metrics_seen": {
-        "site_area_sqm": 11412825.386,
-        "green_ratio": 0.123423,
-        "public_space_ratio": 0.073281
-      }
-    },
-    "stderr": ""
+  {
+   "check_id": "ENUM_HARDCHECK",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/*.geojson",
+   "message": "官方枚举硬校验通过：layers 含 AI_SERVICE_ZONE、SCENARIO_NODE；layer/source_type/confidence/geometry_role/land_use_code/road_class/building_type 零非法值（验证#1）。"
   },
-  "professional_review": {
-    "returncode": 0,
-    "ok": true,
-    "stdout": {
-      "ok": true,
-      "issues": [],
-      "summary": {
-        "standard_matrix_items": 6,
-        "design_depth_items": 15,
-        "known_metric_refs_required": 5,
-        "proposal_format_version": "2",
-        "evidence_contract": "section-anchors-plus-structured-audit",
-        "proposal_reference_counts": {
-          "source": 11,
-          "standard": 5,
-          "depth": 15,
-          "data": 11,
-          "metric": 5
-        }
-      }
-    },
-    "stderr": ""
+  {
+   "check_id": "GEOMETRY_TOPOLOGY",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/*.geojson",
+   "message": "建筑 97 栋无重叠（#3）、道路无重复线对且分五级（#4）、道路出界 0（#12）、建筑间距≥5m 且覆盖率 7.2%≤25%（#14）、land_use 覆盖 SITE 缺口 0.00ha（#13）、面积声明一致（#10）。"
   },
-  "spatial_issue_ids": [
-    "KEY_AREA_PROVISIONAL",
-    "KEY_AREA_PROVISIONAL",
-    "KEY_AREA_PROVISIONAL"
-  ],
-  "visual_issue_ids": [],
-  "professional_issue_ids": [],
-  "missing_review_dependencies": [],
-  "can_enter_formal_review": true,
-  "package_type": "professional_design_package",
-  "review_status": "formal-review-ready",
-  "next_actions": [],
-  "schema_version": "0.1.0",
-  "checks": [
-    {
-      "check_id": "DETERMINISTIC_VALIDATION",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "validate_local_submission.py",
-      "message": "deterministic_validation: PASS"
-    },
-    {
-      "check_id": "SPATIAL_REVIEW",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "spatial_review.py",
-      "message": "spatial_review: PASS"
-    },
-    {
-      "check_id": "VISUAL_PACKAGING",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "visual_review.py",
-      "message": "visual_review: PASS"
-    },
-    {
-      "check_id": "PROFESSIONAL_EVIDENCE",
-      "result": "pass",
-      "severity": "blocking",
-      "target": "professional_review.py",
-      "message": "professional_review: PASS"
-    }
-  ]
+  {
+   "check_id": "STITCH_FURNITURE",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/ai_service_zone.geojson",
+   "message": "绣语家具 200 个：全在 SITE 内、零压建筑、<50m 近距对=0（验证#16）；相遇节点 31 个、主脉间距实测 150m（验证#7）。"
+  },
+  {
+   "check_id": "ZONE_GREEN_RATIO",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/green_space.geojson",
+   "message": "重点区绿地率 K1=10.0% / K2=11.4% / K3=16.4%，全部 ≥8% 要求（验证#15）。"
+  },
+  {
+   "check_id": "VISUAL_STATIC",
+   "result": "pass",
+   "severity": "info",
+   "target": "visual/index.html",
+   "message": "离线静态页面，无远程脚本、远程瓦片、远程字体、iframe、表单与外部 API；HTML 作品集与指标页数据与 metrics.json 一致。"
+  },
+  {
+   "check_id": "DATA_GAP_DISCLOSURE",
+   "result": "pass",
+   "severity": "major",
+   "target": "assumptions.json",
+   "message": "16 条假设覆盖边界、控规、人口、产业、隐私、能源、兜底、标准、品牌、运营、高校、公园、轨道、文保、市政与温度层；无推定值冒充实测。"
+  },
+  {
+   "check_id": "PROFESSIONAL_EVIDENCE",
+   "result": "pass",
+   "severity": "major",
+   "target": "proposal.md",
+   "message": "正文 14 章 + 附录覆盖公告任务与 agent.1–6；43 项指标（metrics.json）全部可溯源至 geometry 图层；compliance_matrix.json 逐条映射。"
+  }
+ ]
 }

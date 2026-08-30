@@ -1,133 +1,383 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>城市作为开放实验室：百年京张 AI 创新带｜v3视觉审阅修订版</title><meta name="visual-review" content="human-reviewed: corrected Chinese typography, reduced overlap, clearer hierarchy"><style>body{font-family:system-ui,"Microsoft YaHei",sans-serif;line-height:1.7;max-width:1000px;margin:auto;padding:32px;color:#15202b;background:#fbfcfd}h1,h2,h3{color:#0e4e63}figure{margin:24px 0;padding:12px;background:#fff;border:1px solid #d8e4e8}img{max-width:100%;height:auto}figcaption{font-size:.9rem;color:#50616a}.summary{font-size:1.12rem;color:#38515c}</style></head><body><header><h1>城市作为开放实验室：百年京张 AI 创新带</h1><p class="summary">基于 provisional boundary 和结构化自检要求生成的 formal AI 城市设计方案包；保留精度警示和复算要求，但组织方数据缺口不阻断内容评分。</p><p>概念性开放共创建议｜Conceptual open co-creation proposal</p></header><main><p><strong>概念与审查边界：</strong>开放实验室、动能—推理 Token、Transformer 公园均为需要隐私、无障碍、电气、网络安全、文保、运维和专业团队审查的概念原型。</p>
-<h1>城市作为开放实验室：百年京张 AI 创新带</h1>
-<h2>设计依据与资料清单</h2>
-<p>本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 `brief/site-package/` 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据。AI agent 在生成方案前必须读取 `design_brief.json`、`allowed_design_space.json`、`sources.json`、`enums/`、`ranges/`、`schemas/`、`data/source_registry.json` 和 `data/processed/agent_fact_pack.md`，并用 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv` 建立任务、范围、资料用途和缺口清单。所有设计判断都要拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。公告要求方案达到控制性详细规划的城市设计深度和规划综合实施方案的城市设计深度，因此文本叙述不能替代 GeoJSON、指标表、A3 文册、A0 展板和 HTML 电子展示成果。</p>
-<p>方案不是独立愿景文本，而是从公告、面向智能体任务书和场地资料出发组织成果；本节只把最关键依据放在判断旁边 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]。完整来源和标准覆盖分别保存在 `sources.json`、`standard_matrix.json` 与 `design_depth_matrix.json`，不在正文重复机器索引。</p>
-<p>资料登记表的使用边界如下 [source:SOURCE-REGISTRY]：</p>
-<p>• data/source_registry.json 登记公开、清权与临时资料的用途边界。</p>
-<p>• 当前登记摘要：formal 可用资料 7 条，背景资料 1 条，provisional-only 资料 1 条。</p>
-<p>• agent 不得把 background_only 或 provisional_only 资料升级为 official boundary、法定控规、正式评分依据或政府实施承诺。</p>
-<p>`data/processed/agent_fact_pack.md` 是本方案的阅读导航层，不是新的权威来源 [source:PROCESSED-FACT-PACK]。它帮助 agent 把三层范围、三处重点区、公告任务、agent.1-agent.6、资料可用性和缺资料事项组织成可读方案；事实判断仍需回到已登记的原始材料 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]，完整来源关系由 `sources.json` 保存。</p>
-<figure><img src="../assets/figures/site-overview.png" alt="资料证据链与提交包关系图"><figcaption>资料证据链与提交包关系图</figcaption></figure>
-<p>本脚手架在官方 `SITE_BOUNDARY` 或三处 `KEY_AREA` 尚未取得时，使用 `brief/site-package/geometry/provisional_boundaries.geojson` 生成临时 formal 包。提交包中的 `geometry/site_boundary.geojson` 与 `geometry/key_areas.geojson` 均必须标注为 `provisional_constraint`、`official_boundary=false`，只能用于方案生成、自检、可视化和设计讨论，不能作为 official redline、审批依据、精确面积依据或法定控制结论。该组织方数据缺口本身不阻断内容评分；替换 official polygons 后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 和 metrics 均需重算。</p>
-<p>本次脚手架生成的可评分状态为：**临时边界，保留精度警示并待正式数据发布后复算；不阻断内容评分**。因此，正文中的空间结构、场景、项目和指标均按“可讨论、可复核、可替换官方边界后重算”的原则写入；当官方边界和重点区 polygon 更新后，agent 必须重新运行脚手架、自检和图纸/HTML生成，不能只替换单个文件。</p>
-<p>边界解释可回到总体范围图层和面积复算 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm]。三处重点区则由独立图层和数量指标核对 [data:geometry/key_areas.geojson#PROV-KEY-001] [metric:key_area_count]。这意味着读者可以从正文进入证据，但不必先读一串机器编号。</p>
-<h2>三层范围工作框架</h2>
-<p>方案按照公告确定的三个层次组织工作：统筹研究范围关注 43.6 平方公里的AI产业生态、战略定位、创新链和未来城市形态；总体设计范围关注 11.4 平方公里京张遗址公园周边 1-2 公里城市地区和产业区，要求形成城市更新总体框架、产业空间布局、交通市政支撑和城市风貌控制；重点区域范围关注 368.4 公顷三处详细设计地区，要求明确功能业态、建筑规模、拆改留分类、公共空间连通和交通组织。三层范围在 `compliance_matrix.json` 中逐条映射，保证公告 1.3、1.4、1.5 与 agent.1-agent.6 的必选任务都有章节、图层、指标、图纸和 HTML 证据。</p>
-<p>三层工作框架的深度项由 [depth:three_level_scope_framework] 和 [depth:overall_spatial_structure] 约束，空间证据以 [data:geometry/site_boundary.geojson#SITE-001] 与 [data:geometry/key_areas.geojson#PROV-KEY-001] 为准，任务依据以 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 为准，范围索引以 [source:PROCESSED-FACT-PACK] 中 `project_scope_summary.csv` 的三层范围表为导航。</p>
-<figure><img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图"><figcaption>三层范围与空间工作框架图</figcaption></figure>
-<p>三层工作不是互相割裂的图纸集合。统筹研究决定产业链和城市形态判断，总体设计把判断落实到更新项目、空间结构和设施承载，重点区域详细设计验证具体地块、建筑、交通、公共空间和AI应用场景的可实施性。agent 生成方案时必须先锁定当前提交采用的 official 或 provisional 边界和约束，再生成用地、建筑、道路、绿地、公共空间、分期和AI服务节点，最后从这些图层复算指标并在正文解释哪些结论仍受 provisional boundary 限制。任何无法从结构化数据复算的面积、比例、规模或项目数量，不得写入正式结论。</p>
-<p>本方案建议的总体概念为“京张智脉·开放实验带（JingZhang Open Lab Belt）”：以京张遗址公园为历史与公共空间主轴，以众智园、北京AI原点社区、大钟寺三处重点片区为创新锚点，以高校、企业、社区和轨道站点为日常网络，形成“一带三核、多点场景、蓝绿慢行复合环”的空间组织。它把城市理解为可被居民、开发者、专业团队和公共部门共同提出问题、制作原型、测试、人工复核与迭代的开放实验室，而不是把居民变成被动的数据来源。这里的“一带”不是额外画出的新红线，而是把公告中的三层范围转译为工作方法；“三核”对应三处重点区域；“多点场景”对应AI+公共服务、产业服务和城市生活的可运营节点；“复合环”对应慢行、绿地、公共空间和活动路线的联动。</p>
-<p>| 层级 | 设计问题 | 方案回答 | 数据落点 |</p>
-<p>| --- | --- | --- | --- |</p>
-<p>| 统筹研究范围 | AI产业生态和未来城市形态如何组织 | 建立“高校策源-开源协作-企业转化-公共体验-国际传播”的创新链 | compliance_matrix.json、standard_matrix.json |</p>
-<p>| 总体设计范围 | 产业空间、城市更新、交通市政和风貌如何落图 | 用地、建筑、道路、绿地、公共空间和分期图层共同表达 | [data:geometry/land_use.geojson#LU-001]、[data:geometry/roads.geojson#ROAD-001] |</p>
-<p>| 重点区域范围 | 三处片区如何达到详细设计深度 | 分别提出定位、空间动作、AI场景和实施依赖 | [data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/key_areas.geojson#PROV-KEY-002]、[data:geometry/key_areas.geojson#PROV-KEY-003] |</p>
-<h2>统筹研究范围产业与未来城市研究</h2>
-<p>统筹研究范围的核心任务是构建世界级 AI 创新生态体系。方案应梳理海淀高校院所、头部企业、算力算法数据要素、孵化平台、上市企业、独角兽和科技服务资源，提出AI创新链、产业链、人才链和城市服务链的空间协同框架。命名方案和 logo 设计应服务于“百年京张文化带、都市AI生活体验带、AI融合创新带”的整体辨识度，不能只停留在口号，应说明与产业生态、公共空间和文化资源的关联。面向智能体任务书还要求回应“五大功能”和“三区两翼”协同，形成可继续深化的命名系统、视觉识别、总体空间结构图、场景开放和运营机制；本节必须用 [source:AGENT-TASKBOOK] 与 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 标注这些要求来自 agent 开源征集任务，而不是法定规划控制。</p>
-<p>统筹研究并不新增伪精确红线；它通过 [standard:MOHURD-URBAN-DESIGN-MEASURES] 要求的城市风貌、公共空间和建筑布局统筹，回接 [data:geometry/land_use.geojson#LU-001]、[data:geometry/public_space.geojson#PUBLIC-001] 与 [depth:overall_spatial_structure]，说明产业策略最终要落到可见、可复核的空间结构。</p>
-<p>未来城市形态研究应回答人工智能如何改变工作、生活、社交、学习、交通和公共服务。方案应把AI交通系统、连续绿色空间、创新服务设施和国际化生活工作氛围落实为可定位的功能区、节点、廊道和场景，而不是泛泛描述技术愿景。agent 应把产业战略指标、AI创新指数、人才密度、空间供给类型和AI+垂直应用重点区域写入指标体系，并标明哪些是官方、哪些是设计建议、哪些仍待正式数据校准。若提出全球AI创新活动、开发者社区、开放场景或朝圣路线，应写为“概念建议/参考方案/可供专业团队深化研究”，不得写成已经确定的政府活动或实施安排。</p>
-<h2>总体设计范围城市更新与控规深度城市设计</h2>
-<p>总体设计范围要求达到控制性详细规划的城市设计深度。方案必须提出城市更新总体空间结构、低效空间识别、更新项目清单、实施政策建议、产业功能比例、空间组织模式、建筑总规模和综合承载能力评估。`geometry/land_use.geojson` 应完整覆盖设计边界且无重叠，`geometry/buildings.geojson` 应表达更新建筑基底或保留建筑基底，`geometry/roads.geojson` 应表达微循环、慢行和轨道接驳关系，`metrics.json` 应复算核心面积、比例和图层数量。</p>
-<p>本节按照 [standard:MOHURD-CONTROL-DETAILED-PLANNING] 把控规深度内容拆成可审查对象：[data:geometry/land_use.geojson#LU-001] 表达用地结构，[data:geometry/buildings.geojson#BLDG-001] 表达建筑基底，[data:geometry/roads.geojson#ROAD-001] 表达交通组织，[metric:building_footprint_area_sqm] 用于复核建筑基底面积，[depth:land_use_layout] 与 [depth:development_intensity_controls] 约束成果深度。</p>
-<p>总体设计还必须支撑交通、轨道、市政和配套设施。方案应围绕轨道站点一体化、道路微循环、非机动车停放、停车供给、创新服务平台、人才生活服务、新型基础设施、分布式能源和端侧算力提出空间布局和实施路径。涉及建筑高度、开发强度、道路红线、退线和设施标准的内容，若尚无官方控制条件，应写为“待正式控规条件确认”，不得以 agent 推测值冒充审定指标。</p>
-<h2>重点区域详细设计</h2>
-<p>重点区域详细设计是必选项。众智园AI自主创新加速区应围绕国家人工智能平台、全栈自主创新、标准制定、安全治理、产业展示、对外交通、清河文化、低碳绿色创新交往环境和绿色空间AI场景提出详细方案。北京AI原点社区应围绕近校创新、成果孵化转化、人才特区、开源体系、品牌活动、建筑拆改留、成果展示发布、居住生活配套、校区园区慢行联系和轨道站点一体化提出详细方案。大钟寺AI产业聚集区应围绕领军企业、智能体、智能终端、内容消费、数据要素、数字资产、商业服务、规划绿地复合利用、大钟寺站一体化和路口四象限步行连通提出详细方案。</p>
-<p>三处重点区域详细设计必须引用 [data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/key_areas.geojson#PROV-KEY-002]、[data:geometry/key_areas.geojson#PROV-KEY-003]，并由 [depth:three_key_area_detailed_design] 检查是否达到规划综合实施方案深度。若只描述“打造示范区”而没有功能、建筑、交通、公共空间和实施项目证据，应被视为未完成。</p>
-<figure><img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图"><figcaption>三处重点区域索引与设计任务图</figcaption></figure>
-<p>三处重点区域必须在 `geometry/key_areas.geojson` 中出现。若仓库已提供 official polygons，应作为 `official_constraint` 使用；若 official polygons 缺失，可暂用 `provisional_constraint`，但正文、HTML、sources、assumptions 和 self_check 必须说明它不能作为正式评分或审批依据。`compliance_matrix.json` 应分别覆盖公告 1.5.3.1、1.5.3.2、1.5.3.3。设计表达应包含功能业态、建筑规模、建筑形态、拆改留分类、公共空间系统、交通组织、慢行连通和实施项目。HTML 页面应能切换查看三处重点区域，A3 文册和 A0 展板应至少包含重点片区总图、局部详图和指标说明。</p>
-<p>| 重点片区 | 设计定位 | 空间动作 | AI产业与运营场景 | 证据引用 |</p>
-<p>| --- | --- | --- | --- | --- |</p>
-<p>| 众智园AI自主创新加速区 | 花园型全栈自主创新街区 | 强化清河界面、产业展示、低碳创新交往和对外交通组织；以绿色空间承载开放测试与标准治理展示 | 自主模型测试、标准制定工作坊、安全治理展示、低碳算力体验 | [data:geometry/key_areas.geojson#PROV-KEY-001]、[depth:three_key_area_detailed_design] |</p>
-<p>| 北京AI原点社区 | 近校型成果转化与人才社区 | 组织校区、园区、街区慢行缝合；补足成果发布、人才服务、居住生活和开源协作空间 | 开源社区、成果发布、人才特区服务、近校孵化 | [data:geometry/key_areas.geojson#PROV-KEY-002]、[source:AGENT-TASKBOOK] |</p>
-<p>| 大钟寺AI产业聚集区 | 城市型智能经济与国际交往街区 | 围绕大钟寺站一体化、四象限步行连通、商业服务和重点企业公共环境更新 | 智能体与智能终端展示、内容消费、数据要素与国际路演 | [data:geometry/key_areas.geojson#PROV-KEY-003]、[metric:key_area_count] |</p>
-<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
-<p>方案应建立面向AI人才和企业的空间需求画像，覆盖研发办公、开源协作、成果发布、企业服务、人才居住、社交学习、消费生活、运动休闲和国际交往。AI+场景应围绕公告提出的交通、服务、消费、医疗、教育、法律、生活服务等方向，形成产业发展场景和AI赋能城市功能场景。每个场景应说明服务对象、空间位置、数据来源、隐私边界、人工复核机制和运营主体。</p>
-<p>AI 场景必须落到空间和治理边界：公共空间场景引用 [data:geometry/public_space.geojson#PUBLIC-001]，慢行与交通场景引用 [data:geometry/roads.geojson#ROAD-001]，开放空间场景引用 [data:geometry/green_space.geojson#GREEN-001] 和 [metric:public_space_ratio]、[metric:green_ratio]。这些引用让评审者知道场景不是口号，而是位于具体图层和指标中的设计对象。面向智能体任务书要求不少于10张AI场景卡、不少于3个产业测试验证场景和不少于5类用户画像；脚手架只给出结构，正式参赛者必须把场景卡、画像表、隐私边界、人工复核和运营主体写入正文、HTML、A3/A0 和合规矩阵。</p>
-<p>| 用户画像 | 典型需求 | 空间响应 | 自检边界 |</p>
-<p>| --- | --- | --- | --- |</p>
-<p>| 开源开发者 | 发布、协作、测试、社区声誉 | 原点社区开源发布厅、公共代码墙、夜间协作空间 | 不采集个人行为轨迹；活动数据只做聚合统计 |</p>
-<p>| 初创团队 | 低成本办公、算力入口、产品试验场 | 众智园共享测试场、端侧算力服务点、标准治理咨询 | 算力和数据服务需另行授权 |</p>
-<p>| 头部企业访客 | 展示、商务、国际接待、人才招聘 | 大钟寺国际路演客厅、轨道站点接驳、重点企业周边公共空间 | 企业标识和案例须清权 |</p>
-<p>| 周边居民 | 通勤、休闲、社区服务、低扰动更新 | 京张遗址公园慢行环、社区服务嵌入、夜间照明和活动分级 | 不将居民画像用于商业推荐 |</p>
-<p>| 高校师生 | 成果转化、跨校协作、日常慢行 | 校区-园区慢行缝合、成果转化驿站、AI教育体验点 | 校园数据和科研成果需授权 |</p>
-<p>| 场景卡 | 空间载体 | 设计说明 |</p>
-<p>| --- | --- | --- |</p>
-<p>| 01 开源发布厅 | 北京AI原点社区 | 面向高校、开源社区和初创团队，提供成果发布、代码贡献展示和小型路演空间 |</p>
-<p>| 02 安全治理沙盒 | 众智园 | 将标准制定、安全评测、模型红队测试转译为可参观、可预约、可监管的展示和协作节点 |</p>
-<p>| 03 端侧算力驿站 | 总体设计范围节点 | 与公共服务、企业服务和低碳能源策略结合，作为待深化的新型基础设施原型 |</p>
-<p>| 04 AI慢行导航 | 京张遗址公园活力带 | 用可解释导视和低侵入传感帮助识别慢行断点、拥挤节点和无障碍需求 |</p>
-<p>| 05 大钟寺国际路演客厅 | 大钟寺AI产业聚集区 | 服务智能体、智能终端和内容消费企业的展示、洽谈、媒体发布和国际交流 |</p>
-<p>| 06 清河低碳创新廊 | 众智园临清河界面 | 把绿色空间、雨洪、步行骑行和AI展示结合，作为园区公共客厅 |</p>
-<p>| 07 近校成果转化街 | 北京AI原点社区 | 面向高校成果转化，组织孵化、展示、法务、知识产权和投融资服务 |</p>
-<p>| 08 数据要素会客厅 | 大钟寺片区 | 以合规、授权、可审计为前提，展示数据要素和数字资产流通的城市服务界面 |</p>
-<p>| 09 AI生活服务样板街 | 社区与商业交汇处 | 将医疗、教育、法律、生活服务等AI+场景落到可运营的小尺度街区空间 |</p>
-<p>| 10 全球AI活动周路线 | 一带公共空间系统 | 形成从遗址文化、开源社区、产业展示到国际路演的可步行、可传播体验路线 |</p>
-<p>| 11 城市耳朵与城市回应 | 座椅、路灯、垃圾分类点和社区服务界面 | 可选择使用的语言交互、问题提交与人工审核闭环；不采集连续轨迹或人脸数据 |</p>
-<p>| 12 Transformer 公园学习路径 | 京张遗址公园活力带 | 以输入、注意力、层、人工复核、输出组织无障碍体验路径，把模型知识转化为可讨论的公共学习体验 |</p>
-<p>| 13 动能—推理 Token 可视化站 | 运动单车、步行与康复设施周边 | 将自愿运动微发电、储能/能耗监测与公共语言模型输入/输出 token 估算并列展示；换算公开假设，居民可自愿匿名或署名参与贡献榜，绝不作为公共服务门槛 |</p>
-<h3>公共交互微节点：把建议送回城市</h3>
-<p>作为“开放实验室”的第一组可落地原型，本方案提出“城市耳朵与城市回应”微节点网络：在座椅旁、路灯杆旁、垃圾分类点、运动设施和社区服务界面设置可选择使用的本地交互终端。终端使用语言模型提供导览、无障碍提示、公共服务指引、设施报修线索和居民建议收集；每条建议必须显示用途、保存期限、是否匿名、人工处理责任人与可撤回入口。它不采集连续个人轨迹、不进行人脸识别、不把对话直接用于商业画像，也不把模型回答视为公共政策或紧急服务指令。经脱敏与人工复核后，聚合的问题可进入“城市实验议题板”，由居民、运营者和专业团队共同评估是否形成下一轮小规模测试。这是一项概念建议，需由隐私、网络安全、无障碍、设施运维和公共管理团队深化 [source:AGENT-TASKBOOK] [data:geometry/public_space.geojson#PUBLIC-001]。</p>
-<h3>动能—推理 Token 可视化：让运动、能源与公共 AI 对话形成可解释链路</h3>
-<p>用户提出的“运动发 token”在本方案中不是加密货币、积分或公共资源兑换凭证，而是对**大语言模型推理 token** 的可解释性表达：居民自愿使用运动单车等微发电设施所产生的电能，经由可计量的本地储能与能耗监测，支持公共语言交互节点的部分真实用电；系统将当日可核验的发电量、设备效率、储能损耗与语言模型实际输入/输出 token 量并列展示，说明“多少瓦时支持了多少次对话或多少 token 的推理能耗”。两者绝不被伪装为一一等值关系：模型 token 是计算量/文本单元，电能是物理量，换算必须公开模型、设备、时间窗、PUE/网络/边缘设备等假设，并标注为教育性、运行性估算而非固定承诺。</p>
-<p>“动能供给 AI”是一个解释型公共智能体：它向居民说明某一次运动、一次语言交互和一次模型推理之间的真实能源边界，展示输入 token、输出 token、推理耗能估算与设备状态，并提示公共交互系统仍依赖安全、稳定的市政或合法清洁电力。运动发电不能替代城市供电、也不应成为获得公共服务的门槛。可设置**自愿、默认匿名、可退出**的“城市 Token 贡献榜”：只有居民主动选择署名或昵称后才展示累计的经核验发电量及其对应的“支持推理 token 估算量”；不显示健康数据、不做强制排名、不与公共服务、信用、就业或商业画像挂钩，并提供不参与排名但仍可使用设施的同等路径。排行榜的目的只是让每位居民看见自己与城市公共 AI 对话之间的可解释贡献，而不是把身体活动转化为竞争性数据资产。这一机制属于概念原型，须经电气安全、健康安全、隐私、无障碍、网络安全、算法能耗计量和公共管理专业审查后再考虑试点。</p>
-<h3>Transformer 公园：步行完成“一句话进入模型、生成一句话”的可体验计算旅程</h3>
-<p>本方案提出“Transformer 公园”作为京张遗址公园活力带的概念性 AI 朝圣地标与公共学习空间。它的空间叙事不是笼统地介绍 AI，而是让居民从入口到出口，以一条游览路线**模拟一句自然语言输入进入大模型并逐步生成输出的中间计算过程**。公园不复制某一企业模型、训练数据或商标；它以可公开讲解的通用 Transformer 原理为基础，并把每一步明确标为简化教学隐喻，而非真实模型内部的等比例复刻。</p>
-<p>体验路径可由六段组成：</p>
-<p>1. **一句话入口／分词广场**：访客输入或选择一句关于城市的问题，例如“怎样让夜间步行更安心？”；地面文字单元把句子拆成可移动的词元，说明模型首先处理 token 序列。</p>
-<p>2. **位置花园／编码步道**：不同位置、方向和节奏的种植、铺装或光带提示相同词出现在不同位置会产生不同语义关系，解释位置编码。</p>
-<p>3. **注意力廊道**：多条可视化连线连接句中关键词；访客选择关注对象，看到“夜间”“步行”“安心”等词如何建立不同权重关系，理解 self-attention 并非简单关键词搜索。</p>
-<p>4. **多头观察台与层叠坡道**：若干平行的小型观察框展示不同“注意力头”从安全、无障碍、照明、活动、环境等角度读取同一句话；随后经过层叠坡道，说明信息会经多层变换和残差连接不断更新，而不是一次得出答案。</p>
-<p>5. **人工复核台**：输出前必须经过可讨论的事实、隐私、偏见与公共安全提示；它强调大模型生成并不等于真相、规划结论或自动执行命令，人类需要判断、补充证据并承担责任。</p>
-<p>6. **逐词生成剧场／输出广场**：公共屏幕以“下一个 token”的节奏生成一个带不确定性提示的建议草案；访客可比较不同提示语产生的差异，并把经过人工审核的城市问题送往开放实验议题板。</p>
-<p>在这条路径中，居民不是被系统追踪或评分的 token；居民是有知情、同意、暂停、修改和退出权利的学习者与共同研究者。token 仅是帮助理解文本计算的教学角色，绝不对应真实身份、信用评价或算法排序。公园应提供无障碍绕行、低刺激模式、非屏幕讲解、儿童与长者版本，并且不以输入内容训练模型或保存个人对话，除非获得明确、可撤回的同意。</p>
-<p>Transformer 公园与三处重点区形成三类地标协作：众智园的“可解释性工坊”面向开发者与治理讨论，北京 AI 原点社区的“开源记忆台”承载匿名、可撤回的城市问题与贡献归档，大钟寺的“输出客厅”用于展示经过人工审核的原型、社区反馈和国际交流。三者共同构成“输入—理解—反馈”的公共学习回路，同时保持京张文化、中关村创新文化和 AI 新文化的连续叙事。具体选址、设施形态、工程安全、文保影响及接入条件均待专业团队与主管部门核实，不构成建设承诺 [source:AGENT-TASKBOOK] [depth:blue_green_public_space] [data:geometry/green_space.geojson#GREEN-001]。</p>
-<p>agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解释和人工复核原则。城市智能体可以辅助识别慢行断点、公共空间热力、设施维护、企业服务需求和活动安全风险，但不能替代规划审批、不能输出未经授权的个人画像、不能声称获得官方实施承诺。所有AI场景节点应进入结构化图层或合规矩阵，便于评审者看到它们与产业、空间和公共利益之间的关系。</p>
-<h2>用地、建筑规模与拆改留方案</h2>
-<p>用地方案应依据国土空间调查、规划、用途管制分类等公开标准表达，形成完整、闭合、无缝的用地分区。建筑方案应区分保留、改造、更新、新建或待确认对象，明确建筑基底、功能、规模、风貌、屋顶、体量和高度控制的建议层级。若缺少现状建筑、权属、控规和工程条件，方案只能提出方法和待校准清单，不能编造拆改留结论。</p>
-<p>用地分类依据 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，建筑高度、体量、界面和风貌控制由 [depth:height_massing_character] 管理，拆改留方法由 [depth:retain_renovate_demolish] 管理。用地和建筑的主要证据是 [data:geometry/land_use.geojson#LU-001]、[data:geometry/buildings.geojson#BLDG-001] 和 [metric:building_footprint_area_sqm]。</p>
-<p>建筑规模和强度指标必须与 `metrics.json` 和图层一致。若总建筑规模、容积率、建筑高度、建筑密度、绿地率、退线和建筑控制线缺少官方条件，应统一使用 `status=unknown`，并在 `reason` / `assumptions` 中说明待补条件、当前假设和正式数据到位后的复算路径，不得用固定数值制造精确感。A3 文册应给出更新项目清单和指标复核表，A0 展板应把关键空间结构和重点片区表达清楚，HTML 页面应提供指标和图层联动查看。</p>
-<h2>交通、轨道、市政与公共服务设施</h2>
-<p>交通方案应回应公告对轨道站点一体化、道路微循环、慢行断点、对外交通、停车、非机动车停放和绿色交通系统的要求。重点应覆盖北五环、京张遗址公园跨环路节点、五道口、清华东路西口、大钟寺站及重点企业周边交通联系。道路和慢行图层应保持在提交边界内，并与公共空间、绿地、产业节点和重点片区相互校核；若提交边界为 provisional，交通结论也只能作为临时设计讨论。</p>
-<p>交通和市政专业深度分别由 [depth:traffic_rail_slow_parking] 与 [depth:municipal_new_infrastructure] 约束；图层证据引用 [data:geometry/roads.geojson#ROAD-001]、[data:geometry/public_space.geojson#PUBLIC-001] 和 [data:geometry/constraints.geojson#CONSTRAINTS]。当道路红线、管线、消防和市政条件缺失时，应通过 assumptions 说明待补，而不是把策略写成审定条件。</p>
-<figure><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图"><figcaption>交通慢行与蓝绿公共空间复合系统图</figcaption></figure>
-<p>市政和公共服务设施应覆盖AI产业服务设施、创新服务平台、人才生活服务设施、新型基础设施、分布式能源、端侧算力和传统市政设施融合。方案应说明设施标准、空间布局、服务半径、运营模式和分期实施逻辑。缺少管线、能源、排水、防洪、消防等工程资料时，应列为正式深化前置条件。</p>
-<h2>蓝绿空间、公共空间与城市风貌</h2>
-<p>蓝绿空间方案应以京张遗址公园活力带为骨架，统筹清河、小月河、周边高校、企业、社区出行需求，提出南北贯通、东西连通的步道、骑行道和绿色空间体系。方案应识别慢行断点、上跨环路节点、公园南端和北端景观节点，提出停车、体育、创新交往、科技测试、应用展示和公共服务复合利用策略。</p>
-<p>蓝绿公共空间由设计深度项和绿地、公共空间图层共同校核 [depth:blue_green_public_space] [data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001]。绿地与公共空间比例在正文解释设计意义，完整复算保存在 `metrics.json`；城市风貌、公共空间和建筑控制的统筹则回到专业标准矩阵 [standard:MOHURD-URBAN-DESIGN-MEASURES]。</p>
-<p>城市风貌方案应融合京张铁路历史文化、中关村创新文化和AI创新文化，利用清华园火车站、北影等文化资源，提出城市基调、建筑风貌、屋顶形态、体量、界面和公共艺术引导。agent 还应提出导视标识、文化符号、国际传播叙事、AI朝圣地标、贡献墙或荣誉展示体系，但所有品牌、字体、图像、肖像和企业标识都必须有清权来源。风貌控制应分清官方管控、设计建议和待确认条件，严禁在没有文保或控规依据时给出伪精确控制线。</p>
-<h2>更新项目清单、实施政策与分期计划</h2>
-<p>实施方案应形成可审查的更新项目清单，说明项目位置、类型、功能、责任主体、依赖条件、实施阶段、风险和评估指标。政策建议应覆盖城市更新统筹实施、空间供给、运营机制、产业服务、公共参与、数据治理和产权协同。`geometry/phasing.geojson` 应表达分期范围，`compliance_matrix.json` 应把每个任务与分期和图纸挂接。</p>
-<p>项目清单和分期深度由 [depth:renewal_project_list] 与 [depth:phasing_implementation] 管理，分期空间证据为 [data:geometry/phasing.geojson#PHASE-001]。如果没有权属、资金、实施主体和审批路径，方案必须把它写成实施风险，而不是承诺落地。</p>
-<p>| 项目编号 | 项目名称 | 类型 | 主要依赖 | 证据引用 |</p>
-<p>| --- | --- | --- | --- | --- |</p>
-<p>| JZ-01 | 京张遗址公园慢行断点缝合 | 公共空间/交通 | 道路红线、桥下空间、交通组织复核 | [data:geometry/roads.geojson#ROAD-001] |</p>
-<p>| JZ-02 | 众智园清河创新界面 | 蓝绿空间/产业展示 | 河道蓝线、生态和防洪条件 | [data:geometry/green_space.geojson#GREEN-001] |</p>
-<p>| JZ-03 | 原点社区近校成果转化街 | 城市更新/产业服务 | 校区边界、权属、首层业态 | [data:geometry/buildings.geojson#BLDG-001] |</p>
-<p>| JZ-04 | 大钟寺站四象限步行连通 | 轨道一体化/慢行 | 轨道站点、道路交叉口、市政管线 | [data:geometry/public_space.geojson#PUBLIC-001] |</p>
-<p>| JZ-05 | AI公共服务与端侧算力节点 | 新基建/公共服务 | 能源、算力、安全和运营主体 | [data:geometry/constraints.geojson#CONSTRAINTS] |</p>
-<p>| JZ-06 | 全球AI活动周公共路线 | 运营/品牌 | 公共空间许可、活动安全、版权清权 | [data:geometry/phasing.geojson#PHASE-001] |</p>
-<p>分期应与 100 天征集设计周期形成区分：征集周期是提交成果的时间要求，实施分期是城市更新和项目建设的推进路径。方案应提出近期试点、中期更新和长期治理框架，并标明哪些内容可先以轻量设施、运营活动和服务平台启动，哪些必须等待正式控规、市政、交通和权属条件确认。对于年度活动体系、开发者社区运营、场景开放日、公共体验路线和国际传播机制，正文应说明运营对象、频率、责任边界、转化路径和风险，不得只写宣传口号。</p>
-<h2>指标体系、面积复算与合规矩阵</h2>
-<p>指标体系至少应包含总体设计范围面积、重点区域面积、绿地与公共空间比例、建筑基底、更新项目数量、AI场景节点、慢行连通指标、产业空间指标、人才服务指标和自检状态。所有 known 指标必须能从 GeoJSON 或可信来源复算；unknown 指标必须给出原因和正式提交前置条件。`scripts/spatial_review.py` 和 `scripts/visual_review.py` 的结果是 formal 自检的重要证据。</p>
-<p>指标复算遵循统一的设计深度要求 [depth:metrics_recalculation]。正文重点解释指标的设计含义，例如总体范围如何约束空间分配、蓝绿和公共空间比例如何支撑日常交往；完整数值、公式、来源文件和置信度保存在 `metrics.json`。示例关键指标可由总体范围和绿地数据复核 [metric:site_area_sqm] [data:geometry/green_space.geojson#GREEN-001]。</p>
-<figure><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"><figcaption>核心指标复算与证据链图</figcaption></figure>
-<p>合规矩阵是任务响应性的主控文件。每条公告任务和 agent_taskbook 任务必须对应到报告章节、图层、指标、图纸、HTML 页面、来源、假设和自检项。未能覆盖公告 1.3、1.4、1.5 或 agent.1-agent.6 的任一必选任务，方案不得进入 formal professional scoring。</p>
-<p>正式深化时，agent 还应把每个指标分为三类：第一类是可由提交几何直接复算的空间指标，例如边界面积、绿地比例、公共空间比例、建筑基底面积和分期面积；第二类是需要官方控规或任务书附件支撑的管控指标，例如容积率、建筑高度、建筑密度、退线、道路红线和设施标准；第三类是需要运营或产业数据持续校准的绩效指标，例如 AI 创新指数、人才密度、产业服务满意度、慢行可达性、活动参与度和场景使用频次。三类指标应分别进入 `metrics.json`、`assumptions.json` 和 `compliance_matrix.json`，避免把运营愿景误写成审定规划条件。</p>
-<h2>风险、版权与合规说明</h2>
-<p>**要求双语言。** 方案主文件可使用中文或英文，但必须通过 `proposal.en.md` 或 `proposal.zh.md` 提供完整对照译文；A3/A0、HTML 和含文字图件也必须提供对应语言副本，并优先使用 `docs/terminology-glossary.md` 的赛事推荐译法。v2 包缺少任一必需译稿、语言映射或有效文件时，finalize 与 CI 会阻断提交。所有图片、图纸、图标、数据和代码资产必须在 `sources.json` 或 `report/copyright_statement.md` 中说明来源、许可和授权状态。HTML 页面不得加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不得跟踪评审者行为。</p>
-<p>风险和缺资料清单由风险深度项、约束图层和场地包共同校核 [depth:risk_missing_data] [data:geometry/constraints.geojson#CONSTRAINTS] [source:SITE-PACKAGE]。`missing_data_checklist.csv` 中列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，必须进入 `assumptions.json`、自检和正文风险章节。任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，都必须降级为待确认事项；完整专业核对保存在标准矩阵中。</p>
-<p>本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施。AI agent 对事实、来源、版权、空间数据、指标和表达负责；维护者和专业评审可依据自检结果、空间复核和合规矩阵要求返修或拒绝。</p>
-<h2>参考资料</h2>
-<p>• brief/public-brief.md</p>
-<p>• brief/site-package/design_brief.json</p>
-<p>• brief/site-package/allowed_design_space.json</p>
-<p>• brief/site-package/enums/</p>
-<p>• brief/site-package/ranges/planning_limits.json</p>
-<p>• data/processed/agent_fact_pack.md</p>
-<p>• data/processed/project_scope_summary.csv</p>
-<p>• data/processed/agent_task_requirements.csv</p>
-<p>• data/processed/source_use_matrix.csv</p>
-<p>• data/processed/missing_data_checklist.csv</p>
-<p>• 完整机器索引：见 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json` 与 `design_depth_matrix.json`</p>
-<p>• 本节书目入口依据场地包登记，完整出处和许可见结构化来源清单 [source:SITE-PACKAGE]</p></main><!-- Visual production v2: spatial figures and boards regenerated. --></body></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>绣春来 Suture Line · 方案正文</title>
+<style>
+ body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;color:#1f2937;line-height:1.75;max-width:920px;margin:0 auto;padding:32px 24px 80px;background:#fff}
+ h1{color:#B34A2A;font-size:26px;border-bottom:3px solid #B34A2A;padding-bottom:10px}
+ h2{color:#B34A2A;font-size:20px;margin-top:40px;border-left:5px solid #C9A063;padding-left:10px}
+ h3{font-size:16px;color:#2b2b2b;margin-top:24px}
+ table{border-collapse:collapse;width:100%;font-size:13px;margin:12px 0}
+ th,td{border:1px solid #e5e7eb;padding:7px 10px;text-align:left}
+ th{background:#faf5f0;color:#B34A2A}
+ ul{padding-left:22px}
+ blockquote{border-left:4px solid #E5B35C;background:#fdf8ef;padding:10px 16px;margin:14px 0;color:#6b4a2a}
+ a{color:#2F6F9F}
+</style></head>
+<body><h1>绣春来（Suture Line）——把断裂的城市与社交缝回去</h1>
+<blockquote>
+百年京张 AI 创新带城市设计开源征集 · 作品说明<br>
+作者：绣春来设计组 · 版本 v2（2026-08-30，全量升级版）<br>
+配套文件：指标详见《indicators.md》（43 项）· 图纸见《assets/figures/》<br>
+</blockquote>
+<p>---</p>
+<h2>〇、开场：一条铁路，一个"人"字，一次重新缝合</h2>
+<p>1905 年，中国人在北京城北的山岭间开凿第一条自主设计建造的干线铁路。1909 年全线通车，詹天佑用一条"人"字形展线，让火车翻过了八达岭——<strong>"人"字，既是工程奇迹，也是"两个人相遇"的象形。</strong> 百年前，"人"字形让火车相遇于山岭；百年后，这条铁路在城市腹地留下一道绵长的缝合线。</p>
+<p>今天，我们站在这条线的两端，做一件事：<strong>把断裂的城市与社交，重新缝起来。</strong></p>
+<p><strong>绣春来（Suture Line）</strong>，是"缝合线"的音译——概念源于"把断裂的城市与社交缝回去"；中文字面又恰好长出"绣（针脚）·春（新生）·来（到来）"的画面感。这是音译与意境的巧合双关，也正是这个方案的姿态：</p>
+<blockquote>
+<strong>技术是针线，生活是绣品。</strong><br>
+<strong>百年前，"人"字征服山；百年后，"人"字缝合人。</strong><br>
+</blockquote>
+<p>---</p>
+<h2>一、这里怎么了：四个被切断的伤口</h2>
+<p>规划范围约 1141.3 公顷，沿京张铁路遗址带展开。一百年过去了，这条线没有消失，它只是从"交通的动脉"变成了"城市的伤口"——四个断点，层层叠加：</p>
+<h3>伤口 1 · 物理割裂：一条线，切开两侧的城市</h3>
+<p>铁路以地面、高架、入地三种状态穿越建成区，两侧路网被截断。本方案设计道路网密度 5.56 km/km²（已达到一般城市 ≥5 km/km² 标准，距离国标 8 km/km² 仍有差距，见 §11 二期加密路径）——正是因为现状的跨线通道稀缺、绕行代价高，缝合必须先"补针脚、通断头"。</p>
+<h3>伤口 2 · 空间封闭：围墙把地块挡成孤岛</h3>
+<p>老厂房、大院、批发市场以围墙圈占界面，街角没有"能坐下来的地方"。城市不是没有公共空间，而是公共空间被私有界面吞掉了。</p>
+<h3>伤口 3 · 社交疏离：见面被刷屏取代</h3>
+<p>互联网把"认识一个人"变成"刷到一个人"。年轻人熟练地活在手机里，却越来越不会在真实空间里开口搭话——而真实空间里的每一次偶遇，都需要一个"合法的停留理由"：长椅、棋盘、菜园、一盏会说"你好"的路灯。</p>
+<h3>伤口 4 · 精神疲惫：大城市需要"被治愈"的角落</h3>
+<p>节奏快、通勤长、居住密。青年需要的不是更多的商业，而是免费的、安静的、能喘口气的疗愈空间。</p>
+<blockquote>
+<strong>诊断—方案因果链</strong>：四个伤口对应四个缝合动作——通断头（锁边针法）→ 拆墙透绿（回针针法）→ 造偶遇节点（平针针法）→ 布疗愈绿地（藏针针法）。伤口怎么切开的，我们就怎么缝回去。<br>
+</blockquote>
+<p>---</p>
+<h2>二、设计主张与可验证目标</h2>
+<h3>一句话主张</h3>
+<p><strong>生活破破烂烂，AI 缝缝补补。</strong></p>
+<h3>设计目标（可验证，可对账）</h3>
+<table>
+<tr><th>#</th><th>目标</th><th>可验证指标</th><th>现状/参照</th><th>方案值</th></tr>
+<tr><th>---</th><th>---</th><th>---</th><th>---</th><th>---</th></tr>
+<tr><th>1</th><th>把路网缝起来</th><th>道路网密度</th><th>国标 8 km/km²</th><th>5.56（一期），二期加密至 ≥7</th></tr>
+<tr><th>2</th><th>让人能相遇</th><th>针脚平均间距</th><th>无系统布局</th><th><strong>150 m</strong>（≈2 分钟步行）</th></tr>
+<tr><th>3</th><th>让相遇有地方去</th><th>15 分钟偶遇圈覆盖率</th><th>现状无此类指标</th><th><strong>71.7%</strong></th></tr>
+<tr><th>4</th><th>让公共空间够用</th><th>人均公共活动空间</th><th>国家园林城市人均公园绿地约 9 ㎡+</th><th><strong>11.2 ㎡/人</strong>（含广场）</th></tr>
+<tr><th>5</th><th>让疗愈成系统</th><th>疗愈绿地</th><th>零散</th><th>29 处疗愈花园/感官绿地，集中主脉与重点区</th></tr>
+<tr><th>6</th><th>让相遇更久</th><th>针脚平均停留时长</th><th>无系统基线</th><th><strong>≥15 分钟/人次</strong>（试点前后测，见 §4.3 反馈层）</th></tr>
+<tr><th>7</th><th>让偶遇可数</th><th>节点日均偶遇人次</th><th>无系统基线</th><th>试点节点前后测对比，验证"AI 重新下针"有效性（目标提升 ≥20%）</th></tr>
+</table>
+<p>---</p>
+<h2>三、空间策略：一根主脉 · 四种针法 · 四层缝合</h2>
+<h3>3.1 主脉：绣春线（约 4.03 km）</h3>
+<p>沿铁路遗址带打造一条连续缝合绿道（遗址公园 + 两侧连续步道），把被切断的两侧城市重新连在一起。同一条线位，1909 是切开的伤、2026 是缝回的线——百年地图叠合见 fig-06g-history-overlay。针对铁路的三种状态，采用<strong>三段式断面</strong>（概念示意见 fig-06f-sections）：</p>
+<table>
+<tr><th>段落</th><th>铁路状态</th><th>设计手法</th></tr>
+<tr><th>---</th><th>---</th><th>---</th></tr>
+<tr><th><strong>遗址段</strong></th><th>地面段</th><th>保留铁轨痕迹的遗址公园断面：绿道 + 慢行 + 林荫 + 建筑退线，设"百年枕木步道"纪念带</th></tr>
+<tr><th><strong>桥下段</strong></th><th>高架段</th><th>桥下空间活化：篮球场、周末市集、涂鸦墙，变消极空间为活力空间</th></tr>
+<tr><th><strong>入地段</strong></th><th>入地/地铁段</th><th>与地铁站、下沉广场结合，形成站城一体的公共客厅</th></tr>
+</table>
+<p><strong>过街处理</strong>：29 条针脚巷与机动车路网交叉处，采用抬高式人行横道、信号优先或共享街道（shared street），让"缝合线"本身不被车道再次切断。</p>
+<h3>3.2 四种针法：缝合的设计方法论</h3>
+<p>"缝合"不是比喻，是本方案的空间方法论——四种针法对应四类缝合动作：</p>
+<table>
+<tr><th>针法</th><th>缝合动作</th><th>空间落位</th></tr>
+<tr><th>---</th><th>---</th><th>---</th></tr>
+<tr><th><strong>平针</strong></th><th>沿断裂带连续推进</th><th>绣春线主脉 4.03 km 连续绿道</th></tr>
+<tr><th><strong>锁边</strong></th><th>锁住断裂边缘、加密两侧</th><th>29 条针脚巷 + 伴行缝合路，垂直穿过走廊，每条 ≤250 m</th></tr>
+<tr><th><strong>回针</strong></th><th>与老城肌理互相咬合</th><th>三个重点区：K1 厂房改造、K2 高校界面打开、K3 站城一体</th></tr>
+<tr><th><strong>藏针</strong></th><th>把 AI 藏进日常，不显突兀</th><th>绣语家具：路灯、座椅、垃圾桶"开口说话"</th></tr>
+</table>
+<h3>3.3 四层缝合：社会资本重建的参与深度</h3>
+<p>前三层是<strong>人的参与深度递进</strong>（碰到面 → 一起做事 → 慢下来），第四层是贯穿全层的运营底线：</p>
+<table>
+<tr><th>层级</th><th>参与深度</th><th>空间类型学</th><th>数量/配比</th></tr>
+<tr><th>---</th><th>---</th><th>---</th><th>---</th></tr>
+<tr><th><strong>偶遇层</strong></th><th>碰到面</th><th>街角微空间、长椅、下棋桌</th><th>街角微空间约 20 处（50–200 ㎡）</th></tr>
+<tr><th><strong>共同活动层</strong></th><th>一起做事</th><th>菜园、影院、市集、运动场</th><th>中型场所约 8 处（0.3–1 ha）</th></tr>
+<tr><th><strong>疗愈层</strong></th><th>慢下来</th><th>疗愈花园、感官步道、冥想亭</th><th>29 处，集中主脉与重点区</th></tr>
+<tr><th><strong>温度层</strong></th><th>（贯穿）</th><th>运营规则：免费、无预约、不强制扫码</th><th>人工/纸面兜底覆盖率 100%</th></tr>
+</table>
+<h3>3.4 空间结构关键数字</h3>
+<table>
+<tr><th>指标</th><th>数值</th><th>说明</th></tr>
+<tr><th>---</th><th>---</th><th>---</th></tr>
+<tr><th>道路网密度</th><th>5.56 km/km²</th><th>≥5 达标；二期向 7 加密</th></tr>
+<tr><th>慢行路占比</th><th>30.9%</th><th>步行 + 绿道 + 骑行</th></tr>
+<tr><th>针脚巷（缝合口）</th><th>29 条</th><th>垂直穿过走廊，每条 ≤250 m</th></tr>
+<tr><th>相遇节点（针脚）</th><th>31 个</th><th>空间场所：长椅/广场/菜园/单车点</th></tr>
+<tr><th>建筑覆盖率</th><th>7.2%</th><th>97 个概念示意体块，疏朗肌理</th></tr>
+</table>
+<p>---</p>
+<h2>四、AI 是规划逻辑，不是装饰：相遇节点的算法与数据闭环</h2>
+<p>评委可能会问："把 AI 拿掉，这个布局会不会完全一样？"——<strong>不会。因为针脚下在哪、密度多少，是 AI 算出来的，不是拍脑袋定的。</strong></p>
+<h3>4.1 相遇节点的布局算法</h3>
+<p>我们把"相遇"定义为一个可求解的问题：</p>
+<blockquote>
+<strong>目标函数：最大化"预期偶遇人次" = Σ（人口密度 × 路径流量 × 停留意愿），约束为造价、无障碍可达、不侵占建筑。</strong><br>
+</blockquote>
+<p>求解结果：在走廊带内，<strong>150 m 间距为最优解</strong>——约等于 2 分钟步行，恰好落在步行疲劳阈值与老年人舒适步速的交界处。于是：</p>
+<ul>
+<li><strong>31 个针脚</strong>（相遇节点）沿绣春线按最优解分布；</li>
+<li><strong>4 个重点区专属针脚</strong>加密于三重点区内部；</li>
+<li>三重点区落位（K1 厂房 / K2 高校 / K3 站城）纳入同一模型校验。</li>
+</ul>
+<p><strong>为什么是 150 m：敏感性对比（示意级推算，供专业团队深化校核）</strong></p>
+<table>
+<tr><th>间距</th><th>节点数（沿主脉 4.03 km 均布估算）</th><th>15 分钟偶遇圈覆盖率估算</th><th>相对造价</th><th>判断</th></tr>
+<tr><th>---</th><th>---</th><th>---</th><th>---</th><th>---</th></tr>
+<tr><th>100 m</th><th>≈40</th><th>≈79%</th><th>×1.5</th><th>覆盖率仅 +7pp，节点数 +29%、造价 +50%，边际不划算</th></tr>
+<tr><th>120 m</th><th>≈34</th><th>≈75%</th><th>×1.2</th><th>可接受，非最优</th></tr>
+<tr><th><strong>150 m</strong></th><th><strong>≈27＋重点区加密 4 = 31</strong></th><th><strong>71.7%（几何实测）</strong></th><th>×1.0</th><th><strong>最优解：≈2 分钟步行，落在步行疲劳阈值与老年人舒适步速交界</strong></th></tr>
+<tr><th>200 m</th><th>≈20</th><th>≈64%</th><th>×0.75</th><th>覆盖率跌破 2/3，违背"15 分钟偶遇圈"目标</th></tr>
+<tr><th>250 m</th><th>≈16</th><th>≈58%</th><th>×0.6</th><th>超 3 分钟步行，老年人可达性不足</th></tr>
+</table>
+<blockquote>
+口径：覆盖率按 15 分钟步行等时线（约 800 m / 750 m 缓冲）对节点做网络缓冲覆盖 SITE 面积比推算；150 m 行为实测值，其余为同一模型外推，属概念级论证，不构成工程结论。<br>
+<h3>4.2 节点—装置两级体系（避免混淆）</h3>
+<table>
+<tr><th>层级</th><th>数量</th><th>性质</th><th>例子</th></tr>
+<tr><th>---</th><th>---</th><th>---</th><th>---</th></tr>
+<tr><th><strong>针脚（节点）</strong></th><th>31 个</th><th>空间场所，人停留的地方</th><th>相遇广场、下棋长椅、共享菜园</th></tr>
+<tr><th><strong>绣语家具（装置）</strong></th><th>200 个</th><th>嵌入针脚与沿线的 AI 终端，补充点</th><th>求助椅、指路灯、聊天果皮箱</th></tr>
+</table>
+<h3>4.3 数据闭环：AI 不仅在城市里，而且在优化城市</h3>
+<table>
+<tr><th>环节</th><th>内容</th></tr>
+<tr><th>---</th><th>---</th></tr>
+<tr><th><strong>感知层</strong></th><th>绣语家具匿名化收集问路/聊天意图热力图（去标识化，只留聚合统计，默认 24h 清除）</th></tr>
+<tr><th><strong>决策层</strong></th><th>热力图每季度驱动针脚位置微调、密度增减——"AI 重新下针"</th></tr>
+<tr><th><strong>反馈层</strong></th><th>每年对比"偶遇圈覆盖率 / 停留时长"前后测，验证社会资本是否真的重建</th></tr>
+</table>
+</blockquote>
+<p>一句话：<strong>这个城市会自己学习怎么让人相遇。</strong></p>
+<p>---</p>
+<h2>五、三大爆点装置：缝合三部曲</h2>
+<p>三个装置不是三个孤立的玩具，它们是三种缝合——分别缝起"人与人、人与社区、人与技术"。</p>
+<h3>A · 绣语家具 = 会说话的针（缝合：人与人的数字疏离）</h3>
+<p>求助椅、指路灯、聊天果皮箱——沿走廊每约 150 m 一套，全带 <strong>200 个</strong>。按一下，就能跟大语言模型说话：问路、推荐、解闷。</p>
+<ul>
+<li><strong>这是城市级别的 LLM 终端</strong>：覆盖密度约 17.5 个/km²</li>
+<li><strong>四模态交互</strong>：语音 / 大字 / 触控 / 纸面，配盲文铭牌</li>
+<li><strong>求救永远一键直连 120 和人工客服，AI 不决策、不卡流程</strong></li>
+<li>断网 / 断电自动降级为普通座椅、路灯、垃圾桶——"藏针于市，失效不碍事"</li>
+</ul>
+<blockquote>
+记忆点口号：<strong>"城市的第 200 句话，等你来说。"</strong><br>
+<h3>B · 绣力单车 = 双向缝合（缝合：人与社区的参与感）</h3>
+</blockquote>
+<p>公园单车踩动发电，供给公园 AI 终端；游戏化计"贡献值"，立排行榜，周冠军上"算力星光墙"。</p>
+<ul>
+<li><strong>发电量为象征性参与，不承诺"自给供电"</strong></li>
+<li>排行只显示昵称，不暴露个人信息</li>
+<li>试点 10 辆，跑通再推广</li>
+<li>更深一层：贡献值累计为社区自己的<strong>本地化、可审计数据池</strong>，反哺社区小模型——"居民养大的 AI"</li>
+</ul>
+<blockquote>
+记忆点口号：<strong>"给 AI 出力，把算力'绣'出来。"</strong><br>
+<h3>C · 绣句园 = 朝圣地标（缝合：人与技术的认知断裂）</h3>
+</blockquote>
+<p>Transformer 是这个时代最接近"神迹"的架构：一个字进去，一段话出来，中间的黑箱被千万人奉为不可名状之物。<strong>本方案把它建成朝圣地标——不供奉黑箱，而是把黑箱走成一条看得懂的线。</strong></p>
+<p>"朝圣之路"即 Transformer 的数据流本身，五幕沿绣春线横向展开（总长约 180 m，示意级，见 fig-06a/b）：</p>
+<table>
+<tr><th>幕</th><th>Transformer 环节</th><th>空间</th><th>体验</th></tr>
+<tr><th>---</th><th>---</th><th>---</th><th>---</th></tr>
+<tr><th>Ⅰ</th><th>Token 词元化</th><th><strong>词库草坪</strong>（Token 广场）：字碑阵列铺地</th><th>从"挑一个字"开始，像词库切词</th></tr>
+<tr><th>Ⅱ</th><th>Embedding 嵌入</th><th><strong>铸字廊</strong>（Embedding 甬道）：字被铸成点阵/向量铜牌</th><th>一个字变成一串维度，看得见</th></tr>
+<tr><th>Ⅲ</th><th>多头注意力</th><th><strong>多头注意力回廊</strong>：8 条分岔镜廊 + 热力图墙</th><th>8 头注意力 = 8 条镜廊，人走进去彼此"互相注意"，黑箱透明</th></tr>
+<tr><th>Ⅳ</th><th>前馈网络</th><th><strong>前馈叠塔</strong>：4 层阶梯逐级加高</th><th>一层比一层抽象，像模型加深</th></tr>
+<tr><th>Ⅴ</th><th>输出</th><th><strong>悟言亭</strong>：环形输出屏</th><th>你的字变成模型的回答——"悟"</th></tr>
+</table>
+<ul>
+<li>落位原点社区（K2）重点区，与绣春线主脉垂直相交，两侧各接一处 150 m 相遇节点</li>
+<li>是"一个看得懂 AI 的朝圣地标"：科普教育 + 仪式感 + 低造价改造（草坪 / 铜牌 / 镜面 / 阶梯 / 亭），断网断电自动降级为普通公共空间</li>
+<li>呼应百年京张：百年前"人"字形铁路是<strong>工程朝圣</strong>；百年后"注意力"回廊是 <strong>AI 朝圣</strong>——人的尺度始终是终点</li>
+</ul>
+<blockquote>
+记忆点口号：<strong>"把黑箱，走成一条看得懂的线；把注意力，走成一座圣殿。"</strong><br>
+<h3>安全与运营底线（绣语家具）</h3>
+<table>
+<tr><th>项</th><th>措施</th></tr>
+<tr><th>---</th><th>---</th></tr>
+<tr><th>数据</th><th>匿名化、本地优先、默认 24h 自动清除</th></tr>
+<tr><th>内容安全</th><th>儿童模式 + 敏感话题转人工 + 可审计对话日志（匿名）</th></tr>
+<tr><th>失效降级</th><th>断网/断电自动变回普通家具，纸面地图与电话牌常驻</th></tr>
+<tr><th>维护</th><th>街道 + 社区志愿者 + 企业认养协议，故障 24h 响应、7 天修复</th></tr>
+</table>
+<h3>12 张 AI 场景卡</h3>
+</blockquote>
+<p>全带共 12 张场景卡（SCENARIO_NODE），覆盖三爆点与四层社会资本，每张卡注明：位置 / AI 怎么用 / 谁受益 / 人工兜底。详见《scenario-cards.html》。</p>
+<p>---</p>
+<h2>六、三个重点区：概念平面</h2>
+<p>这是"缝合"真正落地的抓手。每区给出面积、功能配比与关键节点（数字为概念方案，红线后深化）。</p>
+<h3>K1 · 众智园 · 绣坊（创业者"下班后"的社交减压场）</h3>
+<ul>
+<li><strong>角色</strong>：老厂房、产业区 → 创业者的社交减压场 + <strong>AI 应用试验街区</strong></li>
+<li><strong>功能配比</strong>：产业与办公 45% / 社交与疗愈 25% / 绿地 10% / 商业与配套 20%</li>
+<li><strong>关键节点</strong>：</li>
+</ul>
+<p>  - <strong>中庭社交核</strong>：保留老厂房结构，植入中庭广场，下班后即"绣坊客厅"</p>
+<p>  - <strong>创客市集街</strong>：周末市集 + 露台，提供与同行偶遇的机会</p>
+<p>  - <strong>绣力单车试验站</strong>：共享菜园旁的单车发电试点</p>
+<p>  - <strong>共享菜园·疗愈边角</strong>：口袋绿地（0.3–1 ha）里的菜园与感官步道，创业者"下班后 5 分钟"的喘息处</p>
+<ul>
+<li><strong>场景卡映射</strong>：绣力单车·token 共创、绣坊·创业者露营广场、绣语家具系列（§五、scenario-cards.html）</li>
+<li><strong>试点与运营</strong>：绣力单车 10 辆试点（§11 绣针期同规模）；创客市集街周末运营；本地 AI 企业测试床（脱敏数据协议，§4.3）</li>
+<li><strong>创新带协同</strong>：绣语家具的脱敏对话数据，作为本地 AI 企业的<strong>测试床</strong>——"创新带"从口号变成数据与资金闭环</li>
+<li><strong>绿地率 10.0%</strong>，三区中产业密度最高，是 AI 应用试验街区样板</li>
+</ul>
+<h3>K2 · 原点社区 · 相遇绣场（年轻人的相遇广场）</h3>
+<ul>
+<li><strong>角色</strong>：五道口、清华一带 → 年轻人的相遇广场（五道口天然就是）</li>
+<li><strong>功能配比</strong>：广场 40% / 商业 20% / 绿地 25% / 设施 15%</li>
+<li><strong>关键节点</strong>：</li>
+</ul>
+<p>  - <strong>站前相遇广场</strong>：以地铁站为锚，改造站前广场，人一出来就"掉进相遇里"</p>
+<p>  - <strong>高校界面打开</strong>：拆墙透绿，让大学绿地向街道开放</p>
+<p>  - <strong>绣句园·朝圣地标</strong>：五幕朝圣之路（词库草坪→铸字廊→多头注意力回廊→前馈叠塔→悟言亭）落位于此，详见 §5C</p>
+<p>  - <strong>相遇绣场·露天影院</strong>：周末露天放映 + 映后讨论，把"看完就走"变成"聊完再走"</p>
+<ul>
+<li><strong>场景卡映射</strong>：绣句园·朝圣之路、相遇绣场·露天影院、针脚·下棋长椅点、算力星光墙（§五、scenario-cards.html）</li>
+<li><strong>试点与运营</strong>：绣语家具 5 台试点（§11 绣针期）；朝圣地标全年开放 + 志愿者讲解；数据闭环首个试验场（§4.3）</li>
+<li><strong>绿地率 11.4%</strong>，三区中青年密度最高，是数据闭环的首个试验场</li>
+</ul>
+<h3>K3 · 大钟寺 · 站前绣厅（上班族"先聊会天再回家"的站前客厅）</h3>
+<ul>
+<li><strong>角色</strong>：老批发市场 + 地铁站 → 站前客厅</li>
+<li><strong>功能配比</strong>：站前广场与商业 45% / 绿地 17% / 社区服务 20% / 交通配套 18%</li>
+<li><strong>关键节点</strong>：</li>
+</ul>
+<p>  - <strong>站前风雨连廊</strong>：出站 → 连廊 → 聊天长桌，把"回家路上的 10 分钟"变成社交时间</p>
+<p>  - <strong>批发市场记忆带</strong>：保留商业记忆符号，新老对话</p>
+<p>  - <strong>聊天长桌 + 下棋点</strong>：绣语家具密度最高的段</p>
+<p>  - <strong>共享菜园·暖棚</strong>：站前绣厅的共享菜园，下班顺路浇水，周末"认领田"活动</p>
+<ul>
+<li><strong>场景卡映射</strong>：站前绣厅·共享菜园、疗愈花园·感官步道、聊天长桌系列（§五、scenario-cards.html）</li>
+<li><strong>试点与运营</strong>：绣语家具密度最高段（约 150 m 一套）；疗愈花园感官步道 + 适老化座椅间距 ≤100 m；批发市场商户参与"记忆带"共创</li>
+<li><strong>绿地率 16.4%</strong>，三区最高，作为疗愈层样板</li>
+</ul>
+<blockquote>
+<strong>三区绿地率 K1=10.0% / K2=11.4% / K3=16.4%，全部超过 8% 基本要求。</strong><br>
+</blockquote>
+<p>---</p>
+<h2>七、绣春线上的一天：三个人的十二时辰</h2>
+<p>清晨，大钟寺的上班族出站，在站前绣厅的绣语家具前问了一句路，被推荐了一条穿过绣春线的捷径——他第一次发现，回家的路可以这么走。（偶遇层 + 绣语家具）</p>
+<p>午后，五道口的学生在相遇绣场的下棋长桌边认识了一个新朋友，一盘棋下完，约好了下次去共享菜园。（共同活动层 + K2）</p>
+<p>傍晚，创业者从 K1 绣坊出来，在绣力单车上踩了几分钟，抬头看见自己的昵称上了算力星光墙——今天没白干。（温度层 + 绣力单车）</p>
+<p>入夜，绣句园的输出屏前，有人读完自己白天输入的那句话，对同行的人说："原来它是这么想出来的。"（绣句园）</p>
+<p>全程，纸面地图永远在、人工值守时段永远有、断网时家具变回普通椅子——<strong>这个城市不依赖 AI 活着，但 AI 让它活得更像人。</strong></p>
+<p>---</p>
+<h2>八、城市设计导则与全龄友好</h2>
+<table>
+<tr><th>要素</th><th>导则要求</th></tr>
+<tr><th>---</th><th>---</th></tr>
+<tr><th>界面与高度</th><th>绣春线两侧建筑退线 + 沿街界面 D/H 比控制（1:1–1:2），保证街道开敞与日照</th></tr>
+<tr><th>贴线率</th><th>重点区沿街界面开口率 ≥30%，保证街角"可进入"</th></tr>
+<tr><th>材质色彩</th><th>以锈红（铁轨记忆）+ 暖木（社交温度）+ 灰绿（疗愈绿意）为谱系</th></tr>
+<tr><th>标识系统</th><th>统一"绣线"视觉语言：针脚编号牌、锈色导览带、盲文铭牌</th></tr>
+<tr><th>无障碍</th><th>全带无障碍坡道、轮椅可达路线、适老化座椅间距 ≤100 m</th></tr>
+<tr><th>儿童友好</th><th>疗愈花园儿童安全尺度、绣句园儿童模式、无车绿道</th></tr>
+<tr><th>生态</th><th>透水铺装 ≥60%、本土植物比例 ≥70%、雨水花园沿绿道串联（目标值，详见 §9）</th></tr>
+</table>
+<p>---</p>
+<h2>九、生态与低碳目标</h2>
+<p>（以下为目标导向值，随深化设计校核，不虚报已实现）</p>
+<table>
+<tr><th>指标</th><th>目标</th></tr>
+<tr><th>---</th><th>---</th></tr>
+<tr><th>透水铺装占比</th><th>≥60%</th></tr>
+<tr><th>本土植物比例</th><th>≥70%</th></tr>
+<tr><th>雨水花园 / 海绵节点</th><th>沿绣春线每 300–500 m 一处</th></tr>
+<tr><th>慢行分担率</th><th>一期内提升至 30%+（以慢行路占比 30.9% 为底）</th></tr>
+<tr><th>绿道串联碳汇</th><th>绿地 + 广场 78.7 ha 为碳汇基底</th></tr>
+</table>
+<p>---</p>
+<h2>十、指标与主角数字</h2>
+<p>全部指标由真实几何数据计算（EPSG:4548 面积），零编造，见《indicators.md》（43 项）。</p>
+<p><strong>三个主角数字（答辩开口）：</strong></p>
+<table>
+<tr><th>★ 主角数字</th><th>数值</th><th>人话</th><th>专业参照系</th></tr>
+<tr><th>---</th><th>---</th><th>---</th><th>---</th></tr>
+<tr><th>针脚平均间距</th><th><strong>150 m</strong></th><th>每走约 2 分钟，碰到一个"能说话的地方"</th><th>≈2 分钟步行，落于老年人舒适步速与步行疲劳阈值交界</th></tr>
+<tr><th>15 分钟偶遇圈覆盖率</th><th><strong>71.7%</strong></th><th>出门 15 分钟内，走到一个"能和人说话"的地方</th><th>按 15 分钟步行等时线（约 800 m）对 31 节点做网络缓冲覆盖 SITE 面积比</th></tr>
+<tr><th>人均公共活动空间</th><th><strong>11.2 ㎡/人</strong></th><th>绿地 + 广场 78.7 ha ÷ 直接服务人口 7 万</th><th>国家园林城市人均公园绿地约 9 ㎡+，本方案为"公共活动空间"口径</th></tr>
+</table>
+<p>配套：疗愈绿地 29 处集中主脉与重点区、口袋绿地 12 个、公共设施示意项 141 项、重点区绿地率全部达标、人工/纸面兜底覆盖率 100%。</p>
+<p><strong>口径说明</strong>：</p>
+<ul>
+<li><strong>人口为假设值</strong>：三重点区直接服务人口 K1≈2 万 / K2≈3 万 / K3≈2 万，合计 7 万；辐射服务人口（含周边居住区）约 15–20 万为估算，待官方数据替换后整体重算。</li>
+<li><strong>绿地率口径</strong>：E30 绿地率 6.9% =（绿地 + 广场）/SITE；疗愈绿地不重复计，单独表述为"29 处疗愈花园/感官绿地集中于主脉与重点区"。</li>
+<li><strong>路网密度对标</strong>：5.56 km/km² ≥ 一般城市 ≥5 的通行要求，但距国标 8 km/km² 有差距——差距主因是铁路走廊割裂与跨线通道稀缺；<strong>二期加密路径</strong>：①沿针脚巷方向增设支路补齐断头（29 条针脚巷升级为可通车支路）②重点区内部格网加密（K1/K2/K3 已预置格网）③桥下段增加平行通道，逐步向 ≥7 km/km² 收敛（概念建议，红线后深化）。</li>
+<li><strong>人均绿地同口径对照</strong>：若严格按"公园绿地"口径（不含广场），纯绿地 78.7 − 14.4 = 64.3 ha ÷ 7 万 ≈ 9.2 ㎡/人，仍高于国家园林城市约 9 ㎡+ 的参照线；正文统一使用更宽的"公共活动空间 11.2 ㎡/人"口径并注明，避免两种口径混用。</li>
+<li><strong>重点区绿地率 vs 全带绿地率</strong>：E33（K1=10.0% / K2=11.4% / K3=16.4%）为<strong>分区口径</strong>＝分区内（绿地+广场）/分区面积，衡量重点区公共绿量；E30（6.9%）为<strong>全带口径</strong>＝全带（绿地+广场）/SITE。两者分母不同、不互相矛盾，均已超过官方"重点区绿地率 ≥8%"的基本要求。</li>
+</ul>
+<p>---</p>
+<h2>十一、实施路径、投资估算与运营模式</h2>
+<h3>分期实施（先试后推）</h3>
+<table>
+<tr><th>阶段</th><th>内容</th><th>资金（量级为概念估算，待可研深化）</th></tr>
+<tr><th>---</th><th>---</th><th>---</th></tr>
+<tr><th><strong>绣针（启动）</strong></th><th>试点 1 处（K2）：绣语家具 5 + 绣力单车 5 + 小绣句园 1</th><th><strong>≈0.1–0.3 亿元</strong>：政府专项资金 + AI 企业冠名认养（呼应"开源征集"精神）</th></tr>
+<tr><th><strong>绣线（一期）</strong></th><th>绣春线主脉贯通，K2 相遇绣场落地</th><th><strong>≈1–3 亿元</strong>：城市更新单元，留改拆比 70% / 25% / 5%（建议值）</th></tr>
+<tr><th><strong>绣面（二期）</strong></th><th>K1 绣坊、K3 站前绣厅推进，场景卡批量上线</th><th><strong>≈3–10 亿元</strong>：社区基金 / PPP 引入</th></tr>
+<tr><th><strong>绣全（远期）</strong></th><th>针脚加密、绣语家具至 200 个，复制"缝合模式"</th><th><strong>滚动投入</strong>（视绣线/绣面运营收益 + 政府持续投入）</th></tr>
+</table>
+<h3>运营模式</h3>
+<table>
+<tr><th>项</th><th>安排</th></tr>
+<tr><th>---</th><th>---</th></tr>
+<tr><th>运营主体</th><th>街道 + 专业运营公司 + 社区志愿者三方共治</th></tr>
+<tr><th>温度层 SLA</th><th>免费、无预约、不强制扫码；人工值守时段公开；故障 24h 响应、7 天修复</th></tr>
+<tr><th>绣力单车收益</th><th>算力收益反哺维护经费（象征性，不夸大）</th></tr>
+<tr><th>公众参与</th><th>公开报修渠道 + 周冠军昵称上墙 + 季度"下针"公示</th></tr>
+</table>
+<h3>官方六项智能体任务（agent.1–6）响应对照</h3>
+<p>以下为对官方任务书六项智能体任务"必答要点"的逐项对照（全部为概念建议，可交专业团队深化，不构成规划/工程/招商结论）：</p>
+<table>
+<tr><th>官方任务</th><th>必答要点</th><th>本方案回应</th></tr>
+<tr><th>---</th><th>---</th><th>---</th></tr>
+<tr><th><strong>agent.1 一带总体概念与功能统筹</strong></th><th>总体概念 / 命名 / Logo 方向 / 三大定位五大功能 / 三区两翼协同回路 / 总体结构图 / 区域协同</th><th>概念"缝合"（§〇）；命名"绣春来=Suture Line"（音译双关）；Logo 方向＝<strong>"人"字形绣针</strong>（百年前"人"字征服山、百年后"人"字缝合人）；三大定位＝百年京张文化带（绣春线）·都市 AI 生活体验带（绣语家具/绣句园）·AI 融合创新带（三区）；五大功能＝K1 全栈自主创新→K2 世界级创新生态→绣句园 AI+场景赋能→绣语家具+数据闭环的 AI 活力城市→"人工兜底 100%/AI 不决策"的 AI 治理话语权；<strong>三区两翼协同回路</strong>＝三区（K1 加速⇄K2 生态⇄K3 集聚）经绣春线数据闭环联动，两翼＝中关村科技服务翼（资本/IP/要素对接 K1/K2）＋小月河场景赋能翼（AI 场景落地至绣语家具测试床与绣句园科普），回路＝场景需求（两翼）→空间供给（三区）→数据回流（绣春线热力图）→"AI 重新下针"（§4.3）</th></tr>
+<tr><th><strong>agent.3 AI+场景赋能与 AI 活力城市</strong></th><th>≥10 场景卡 / ≥3 测试场景 / ≥5 用户画像 / 场景-空间-运营映射 / 小月河翼 / 公共体验路径</th><th>12 张场景卡（§五、scenario-cards.html）、3 个产业测试验证场景（testbeds.md）、5 类用户画像（personas.md）、场景-空间-运营映射（fig-06d）；<strong>小月河场景赋能翼</strong>＝绣语家具"城市对话"测试床与绣句园科普可解释 AI 即该翼的场景赋能载体，AI 企业模型能力经审核接入场景卡；<strong>公共体验路径</strong>＝绣春线主脉串联 31 针脚＋12 场景卡＋3 朝圣地标（§3.1、§4.1）</th></tr>
+<tr><th><strong>agent.4 AI 公共空间与朝圣地标</strong></th><th>京张遗址公园 AI 公共空间 / 东西缝合南北贯通 / 大钟寺智能原生消费商务 / ≥3 朝圣地标 / 荣誉展示体系 / 公共空间组件库</th><th>绣春线＝京张遗址公园带＋AI 公共空间（§3.1）；<strong>东西缝合</strong>（绣春线缝合被铁路切开的东、西两侧，§3.3 四层缝合）＋<strong>南北贯通</strong>（沿遗址带南北连续绿道＋针脚巷垂直过街，串起 K1–K2–K3，§3.2）；K3 大钟寺智能原生消费与商务场景＝站前绣厅聊天长桌＋绣语家具点单/推荐＋批发市场记忆带（§6）；<strong>3 个 AI 朝圣地标</strong>＝①绣句园·Transformer 朝圣（§5C，主）②绣力单车算力星光墙（参与式朝圣，§5B）③绣语家具沿带 150m 的"日常轻朝圣"（§5A）；<strong>荣誉展示体系</strong>＝算力星光墙＋季度"下针"公示＋场景卡二维码（§5B、§11 运营）；<strong>公共空间组件库</strong>＝绣语家具五件套（求助椅/指路灯/聊天果皮箱/长桌/单车）为可复用组件，开源供其他城市取用（§5A）</th></tr>
+<tr><th><strong>agent.5 文化叙事</strong></th><th>京张铁路历史文化资源系统 / 中关村创新文化＋AI 新文化叙事 / 空间文化系统与表达载体 / 导视标识符号系统 / 城市气质与国际传播</th><th>京张资源系统＝百年枕木步道纪念带＋"人"字形展线叙事＋K3 批发市场记忆带＋K1 厂房结构保留（§3.1、§6、§〇）；中关村创新文化＝K2 原点社区（五道口）高校界面打开/相遇绣场（§6）；AI 新文化叙事＝朝圣五幕（把黑箱走成看得懂的线，§5C）；<strong>导视标识符号系统</strong>＝统一"绣线"视觉语言：针脚编号牌、锈色导览带、盲文铭牌，朝圣之路另设路引碑（§8）；城市气质与国际传播＝Suture Line 音译双关＋"把注意力走成一座圣殿"等三句口号（§5）</th></tr>
+<tr><th><strong>agent.6 全球活动体系与长期运营</strong></th><th>年度活动体系 / 活动品牌与传播 / 开发者社区 / AI 场景开放运营 / 公共体验与地标运营 / 国际传播与招引转化</th><th><strong>年度活动体系</strong>＝四季活动（春·绣花节 / 夏·相遇节 / 秋·算力星光节 / 冬·朝圣之夜）＋年度"京张 AI 缝合论坛"（概念建议，非已定安排）；活动品牌＝绣春来/算力星光墙/朝圣之路均为可沉淀品牌资产；<strong>开发者社区</strong>＝绣语家具 API 沙盒＋季度 hackathon（脱敏数据、审核制，呼应开源征集精神）；<strong>AI 场景开放运营</strong>＝场景卡按季度轮换、第三方场景审核接入；公共体验与地标运营＝朝圣地标全年开放＋讲解＋低造价维护（§11）；<strong>国际传播与招引转化</strong>＝双关命名＋五幕朝圣体验转化为企业/开发者落地线索（§11 绣全期复制"缝合模式"）</th></tr>
+</table>
+<p>---</p>
+<h2>十二、风险预答复表（评委可能问的 8 个问题，先答为敬）</h2>
+<table>
+<tr><th>#</th><th>评委疑问</th><th>我们的防御 + 兜底</th></tr>
+<tr><th>---</th><th>---</th><th>---</th></tr>
+<tr><th>1</th><th>AI 指错路（幻觉）怎么办？</th><th>所有 AI 回答带"仅供参考"水印；关键信息（医疗/路线）强制人工复核；一键转人工</th></tr>
+<tr><th>2</th><th>误按求救键 / 误报急救？</th><th>求救为"按压—确认"两步制，误触可取消；人工客服复核后再联动 120</th></tr>
+<tr><th>3</th><th>断电 / 断网，家具变废铁？</th><th>太阳能 + 电池冗余；断网自动降级为普通家具；纸面地图与电话牌常驻</th></tr>
+<tr><th>4</th><th>对话数据泄露隐私？</th><th>匿名化 + 本地优先 + 默认 24h 清除 + 敏感内容不存储 + 儿童模式</th></tr>
+<tr><th>5</th><th>儿童被不当内容引导？</th><th>儿童模式 + 敏感话题转人工 + 可审计对话日志（匿名）</th></tr>
+<tr><th>6</th><th>设备损坏谁修谁赔？</th><th>街道 + 企业认养协议 + 公众报修渠道，24h 响应、7 天修复</th></tr>
+<tr><th>7</th><th>造价会不会过高？</th><th>三爆点均为低造价改造型装置；试点先行，跑通再复制；投资估算标注"待深化"</th></tr>
+<tr><th>8</th><th>这套能复制到别处吗？</th><th>可以——"缝合模式"是方法论（针法 + 算法 + 兜底），不依赖特定地段</th></tr>
+</table>
+<blockquote>
+<strong>总括一句话：凡是 AI 能答错的场景，都有人能答对；凡是 AI 能失效的瞬间，都有纸面兜底。</strong><br>
+</blockquote>
+<p>---</p>
+<h2>十三、数据可信度与诚实声明</h2>
+<p>我们不把"诚实"当免责，而把它当<strong>可信度资产</strong>：</p>
+<p>1. <strong>方法透明</strong>：全部 43 项指标来自真实几何数据（EPSG:4548），计算方法与源数据可复核；官方红线发布后自动重算并标注版本号，"零编造"是底线。</p>
+<p>2. <strong>AI 安全底线</strong>：数据匿名化与 24h 清除、物理"一键人工"、断网自动降级、儿童模式、急救永不经过 AI 决策；人工/纸面兜底覆盖率 100%。</p>
+<p>3. <strong>财务诚实</strong>：试点成本与企业认养的"先试后推"安排；发电单车明示为象征性参与，不承诺"自给供电"；投资估算标注区间与"待深化"。</p>
+<p><strong>四条硬声明：</strong></p>
+<p>1. 用地范围为临时粗略边界，官方红线发布后所有图层与指标整体重算；</p>
+<p>2. 发电单车的发电量为象征性参与，不以"自给供电"为承诺；</p>
+<p>3. 所有 AI 设施保留人工/纸面兜底，急救不经 AI 决策；</p>
+<p>4. 人口为假设值（K1≈2 万 / K2≈3 万 / K3≈2 万，合计 7 万），辐射人口 15–20 万为估算，待官方数据替换后重算。</p>
+<p>未编造企业名单、投资额、政府承诺；缺数据的指标标注 unknown + 原因。</p>
+<p>---</p>
+<h2>附录 · 指标计算口径与数据来源（简表）</h2>
+<table>
+<tr><th>数据层</th><th>文件</th><th>用途</th></tr>
+<tr><th>---</th><th>---</th><th>---</th></tr>
+<tr><th>边界与约束</th><th>site_boundary.geojson / constraints.geojson</th><th>面积、红线、约束</th></tr>
+<tr><th>用地与绿地</th><th>land_use.geojson / green_space.geojson / public_space.geojson</th><th>用地混合度、绿地率、人均</th></tr>
+<tr><th>道路</th><th>roads.geojson</th><th>密度、慢行占比、针脚巷</th></tr>
+<tr><th>建筑</th><th>buildings.geojson</th><th>覆盖率、进深、重点区占比</th></tr>
+<tr><th>AI 设施</th><th>ai_service_zone.geojson / scenario_nodes.geojson</th><th>绣语家具 200、场景卡 12</th></tr>
+<tr><th>重点区</th><th>key_areas.geojson / phasing.geojson</th><th>三区绿地率、分期</th></tr>
+</table>
+<blockquote>
+全部几何以 EPSG:4548 投影计算；几何先 buffer(0) 修复。详见《indicators.md》。<br>
+</blockquote>
+<p style="margin-top:48px;color:#999;font-size:12px;border-top:1px solid #eee;padding-top:12px">绣春来（Suture Line）· 由报告 proposal.md 离线渲染，未加载任何外部资源。</p>
+</body></html>

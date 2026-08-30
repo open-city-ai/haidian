@@ -1,23 +1,101 @@
 {
-  "schema_version": "0.1.0",
-  "assumptions": [
-    {
-      "id": "A-OPEN-LAB-001",
-      "status": "concept_requires_review",
-      "statement": "公共交互终端、运动微发电—语言模型推理 token 可视化、可选署名贡献榜和Transformer公园均为用户提出的概念原型；部署前须完成隐私、网络安全、无障碍、健康安全、电气安全、文保、设施运维、算法能耗计量、公益性和公共管理专业审查。",
-      "impact": "方案可表达交互逻辑和空间关系，但不代表设备、能源、模型服务或运营已经获得批准；发电量与模型输入/输出 token 只能以公开假设下的估算并列展示，不得伪造一一等价关系；个人参与须默认匿名、可撤回、可不参与排行，且保留人工复核。"
-    },
-    {
-      "id": "A-PROVISIONAL-BOUNDARY-002",
-      "status": "provisional_only",
-      "statement": "SITE_BOUNDARY and all three KEY_AREA polygons in this submission are provisional_constraint geometry derived from DATA-SRC-PROVISIONAL-BOUNDARIES-20260605, not trusted official boundaries.",
-      "impact": "site_area_sqm and all ratios are low-confidence provisional design-model outputs. The absence of official polygons does not block content scoring, but it blocks statutory, engineering, redline and official precise-area claims. On release of official polygons, rebuild every geometry layer, metric, figure, HTML page and PDF."
-    },
-    {
-      "id": "A-CONTROLS-001",
-      "status": "pending_professional_confirmation",
-      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
-      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
-    }
-  ]
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "provisional_geometry",
+   "statement": "提交的 SITE_BOUNDARY 与三处 KEY_AREA 均为仓库提供的 provisional 粗略范围（official_boundary=false, boundary_precision=provisional_rough），非官方红线。",
+   "impact": "全部面积、比例、密度类指标只在该临时边界口径下成立；官方 polygon 发布后必须整体重算，而不是替换单个文件。"
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "容积率、建筑高度、建筑密度、绿地率、退线、道路红线等法定控制条件在公开资料中不可得。",
+   "impact": "本方案不给出上述控制结论；所有形态数值仅为设计建议值（如建筑覆盖率 7.2%、进深 ≤85m），须经官方控规条件确认。"
+  },
+  {
+   "id": "A-POP-001",
+   "status": "assumption_for_display",
+   "statement": "人口为假设值：K1≈2万/K2≈3万/K3≈2万，直接服务合计约 7 万；辐射服务人口 15–20 万为估算。",
+   "impact": "人均公共活动空间 11.2 ㎡/人、人均绿地 11.2 ㎡/人 等指标以此口径计算，待官方人口与边界数据发布后整体重算。"
+  },
+  {
+   "id": "A-IND-001",
+   "status": "no_fabricated_figures",
+   "statement": "本方案不掌握经核实的企业名单、投资额、产值、财政与招商数据。",
+   "impact": "产业章节只写机制与空间映射，不写任何企业名单或经济数字；全球案例仅引用公开常识级机制。"
+  },
+  {
+   "id": "A-PRIVACY-001",
+   "status": "design_constraint",
+   "statement": "全部 AI 场景按数据最小化、匿名化（24h 清除）、可解释与人工复核原则设计；不使用人脸识别、不建立个人行为轨迹画像。",
+   "impact": "任何需要突破该边界的场景不纳入本方案；场景卡中的数据边界条款是设计的组成部分而非附加声明。"
+  },
+  {
+   "id": "A-ENERGY-001",
+   "status": "symbolic_claim",
+   "statement": "绣力单车发电量为象征性参与，不承诺'自给供电'。",
+   "impact": "不进入能源平衡结论；贡献值与算力池为社区参与机制，非能源工程承诺。"
+  },
+  {
+   "id": "A-EQUIP-001",
+   "status": "design_constraint",
+   "statement": "所有 AI 设施保留人工与纸面兜底：急救不经 AI 决策（一键直连 120 与人工）、断网自动降级、纸面地图常驻。",
+   "impact": "兜底覆盖率指标 G40 按设计承诺 100%；运营方须按此维护。"
+  },
+  {
+   "id": "A-STD-001",
+   "status": "external_standard_not_snapshotted",
+   "statement": "论证中引用的 GB/T 51328-2018 路网密度要求、绿地率与无障碍等标准未在本仓库保存本地快照。",
+   "impact": "这些只作为设计取向的公开背景引用，不作为 formal 评分的权威依据；条文须在专业深化阶段核对原文。"
+  },
+  {
+   "id": "A-BRAND-001",
+   "status": "copyright_clean",
+   "statement": "命名、主张、命名体系、针法与四层缝合均为原创文字与几何描述，未使用第三方商标、字体文件、图片或人物肖像。",
+   "impact": "正式采用前仍须完成商标检索与字体授权确认。"
+  },
+  {
+   "id": "A-OPS-001",
+   "status": "concept_proposal_only",
+   "statement": "12 张场景卡、季度'下针'机制、开发者社区共创、测试床运营均为运营设想。",
+   "impact": "不构成政府承诺、活动安排、招商或资金安排；实施须经相应主体决策与法定程序。"
+  },
+  {
+   "id": "A-CAMPUS-001",
+   "status": "requires_owner_consent",
+   "statement": "'高校界面打开/拆墙透绿'依赖高校与单位大院权属人的同意与安全管理方案。",
+   "impact": "该动作的可行性与开放时段由权属人决定；本方案只提出公共通行与分时开放的制度工具方向。"
+  },
+  {
+   "id": "A-PARK-001",
+   "status": "schematic_geometry",
+   "statement": "京张遗址公园官方边界与铁路遗址线位不可得，本方案主脉绣春线采用示意中线（约 4.03km 区内段）。",
+   "impact": "主脉线位为示意，不得作为公园边界或遗址保护线；绿地结构与可达性指标在官方公园边界发布后须复算。"
+  },
+  {
+   "id": "A-TRANSIT-001",
+   "status": "data_gap",
+   "statement": "官方轨道站点与出入口坐标不可得，大钟寺站前广场为示意位置。",
+   "impact": "站城一体步行连通方案须经轨道与交通工程专业论证。"
+  },
+  {
+   "id": "A-HERITAGE-001",
+   "status": "data_gap",
+   "statement": "大钟寺（觉生寺）等文保单位的保护范围与建设控制地带紫线不可得。",
+   "impact": "constraints 中的文保提示范围为示意，不得作为审批或避让的正式依据；须以官方紫线为准。"
+  },
+  {
+   "id": "A-MUNI-001",
+   "status": "data_gap",
+   "statement": "市政管网、能源负荷、排水防洪、消防与地下空间条件不可得。",
+   "impact": "市政与新型基础设施只提出布局原则与融合方向，不给出管径、容量、选址与工程可行性结论。"
+  },
+  {
+   "id": "A-TEMP-001",
+   "status": "design_constraint",
+   "statement": "温度层贯穿全方案：公共空间与 AI 设施免费、无预约、不强制扫码。",
+   "impact": "该承诺约束运营与商业模式设计，任何付费/注册门槛场景不纳入方案。"
+  }
+ ]
 }

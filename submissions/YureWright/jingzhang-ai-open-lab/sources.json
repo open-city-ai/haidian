@@ -1,83 +1,65 @@
 {
-  "schema_version": "0.1.0",
-  "sources": [
-    {
-      "id": "SITE-PACKAGE",
-      "path": "brief/site-package/",
-      "source_type": "official_public",
-      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
-    },
-    {
-      "id": "SOURCE-REGISTRY",
-      "path": "data/source_registry.json",
-      "source_type": "repository_public_registry",
-      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
-    },
-    {
-      "id": "PROCESSED-FACT-PACK",
-      "path": "data/processed/agent_fact_pack.md",
-      "source_type": "repository_processed_reference",
-      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
-    },
-    {
-      "id": "BOUNDARY-SOURCE",
-      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "source_type": "agent_inferred_from_public_data",
-      "usage": "Submitted site boundary geometry source (provisional)."
-    },
-    {
-      "id": "KEY-AREA-SOURCE",
-      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "source_type": "agent_inferred_from_public_data",
-      "usage": "Three required detailed-design key area boundaries (provisional)."
-    },
-    {
-      "id": "OFFICIAL-ANNOUNCEMENT",
-      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
-      "source_type": "official_public",
-      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
-    },
-    {
-      "id": "AGENT-TASKBOOK",
-      "path": "brief/site-package/agent_taskbook.json",
-      "source_type": "user_provided_cleared",
-      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
-    },
-    {
-      "id": "CASE-01",
-      "url": "https://ajuntament.barcelona.cat/superilles/en/",
-      "source_type": "public_web_comparative",
-      "usage": "Barcelona Superblocks public-space and low-speed transformation; accessed for comparative design research."
-    },
-    {
-      "id": "CASE-02",
-      "url": "https://www.oodihelsinki.fi/en/",
-      "source_type": "public_web_comparative",
-      "usage": "Helsinki Oodi public learning and digital-service mix; comparative reference."
-    },
-    {
-      "id": "CASE-03",
-      "url": "https://english.seoul.go.kr/",
-      "source_type": "public_web_comparative",
-      "usage": "Seoul public innovation and digital-service references; comparative reference."
-    },
-    {
-      "id": "CASE-04",
-      "url": "https://www.reinventer.paris/",
-      "source_type": "public_web_comparative",
-      "usage": "Reinventing Paris open-call and pilot reference."
-    },
-    {
-      "id": "CASE-05",
-      "url": "https://www.media.mit.edu/groups/city-science/overview/",
-      "source_type": "public_web_comparative",
-      "usage": "MIT City Science data and urban-experiment reference."
-    },
-    {
-      "id": "CASE-06",
-      "url": "https://amsterdamsmartcity.com/",
-      "source_type": "public_web_comparative",
-      "usage": "Amsterdam Smart City cross-sector experimentation reference."
-    }
-  ]
+ "schema_version": "0.1.0",
+ "sources": [
+  {
+   "id": "OFFICIAL-ANNOUNCEMENT",
+   "source_type": "official_public",
+   "usable_for_formal": "yes",
+   "usage": "官方公告：征集目的、三层范围、设计任务、成果深度要求。",
+   "limitation_zh": "公告为文字四至与面积描述，不含精确红线坐标；精确边界须以官方正式图纸为准。"
+  },
+  {
+   "id": "AGENT-TASKBOOK",
+   "path": "haidian/brief/site-package/agent_taskbook.json",
+   "source_type": "user_provided_cleared",
+   "usable_for_formal": "yes",
+   "usage": "共创原则、agent.1–agent.6 六项必答任务、评审维度、统一边界条款。",
+   "limitation_zh": "为任务书摘录，非法定规划依据；其空间落地要求必须表述为概念建议。"
+  },
+  {
+   "id": "SITE-PACKAGE",
+   "path": "haidian/brief/site-package/",
+   "source_type": "official_public",
+   "usable_for_formal": "yes",
+   "usage": "design_brief、allowed_design_space、enums（用地/图层/道路等级/来源类型）、ranges/planning_limits、schemas。",
+   "limitation_zh": "planning_limits 中容积率、高度、密度、绿地率、退线等控制条件 status=missing，不得由 agent 推定。"
+  },
+  {
+   "id": "BOUNDARY-SOURCE",
+   "path": "haidian/brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "agent_inferred_from_public_data",
+   "usable_for_formal": "provisional_only",
+   "usage": "提交 SITE_BOUNDARY（PROV-SITE-001）的几何来源。",
+   "limitation_zh": "official_boundary=false，boundary_precision=provisional_rough；不得作为官方红线、审批依据或精确面积依据。"
+  },
+  {
+   "id": "KEY-AREA-SOURCE",
+   "path": "haidian/brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "agent_inferred_from_public_data",
+   "usable_for_formal": "provisional_only",
+   "usage": "三处 KEY_AREA（PROV-KEY-001/002/003：众智园/原点社区/大钟寺）的几何来源。",
+   "limitation_zh": "临时粗略范围，面积以官方公告值为准；几何仅为示意。"
+  },
+  {
+   "id": "ORIGINAL-GEOMETRY",
+   "source_type": "agent_generated_original",
+   "usable_for_formal": "yes",
+   "usage": "用地、道路、建筑、绿地、公共空间、分期、约束、AI 设施（绣语家具）、场景节点共十个设计图层的原创生成几何。",
+   "limitation_zh": "设计建议图层，不构成法定规划控制指标；全部面积与密度类指标只在该图层口径下成立。"
+  },
+  {
+   "id": "PUBLIC-CASES",
+   "source_type": "public_common_knowledge",
+   "usable_for_formal": "background_only",
+   "usage": "AI 创新生态图谱中的全球案例（硅谷/南山/纬壹/国王十字/筑波/板桥），仅引用公开常识级机制，用于方法论借鉴。",
+   "limitation_zh": "不含具体投资额、企业名单或政府承诺；不作为正式产业结论。"
+  },
+  {
+   "id": "GB-STANDARDS",
+   "source_type": "public_standard",
+   "usable_for_formal": "background_only",
+   "usage": "对标 GB/T 51328-2018 路网密度等国家标准作为设计取向引用。",
+   "limitation_zh": "标准原文未在本仓库保存本地快照，仅作设计取向的公开背景引用，须在专业深化阶段核对原文。"
+  }
+ ]
 }

@@ -1,14 +1,305 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>城市作为开放实验室：百年京张 AI 创新带｜v3 visual review</title><link rel="stylesheet" href="assets/interaction.css"></head>
-<body><main class="wrap">
-<header><p>CONCEPTUAL URBAN DESIGN / 概念性城市设计</p><h1>城市作为开放实验室：百年京张 AI 创新带</h1><p>以公开空间、居民交互、能源解释和 Transformer 公园，把城市变成可提出问题、共同测试、人工复核和持续迭代的开放实验室。</p><p>临时边界：provisional intake only；不作为官方红线、审批依据或精确面积依据。</p></header>
-<section class="interactive-lab"><h2>可交互体验原型</h2><p><a href="assets/transformer-park.js">Transformer Park interaction script</a>　<a href="assets/token-energy.js">Token energy interaction script</a></p><div class="interactive-lab"><h3>Transformer 公园：一句话如何成为输出</h3><p>输入一句城市问题，游览路径依次模拟分词、位置编码、注意力、多头与层叠变换、人工复核和逐词生成。</p><input id="park-input" value="怎样让夜间步行更安心？"><button onclick="runTransformerPark()">开始游园</button><div id="park-tokens"></div><div class="lab-stages"><div class="lab-stage">1 分词广场</div><div class="lab-stage">2 位置花园</div><div class="lab-stage">3 注意力廊道</div><div class="lab-stage">4 多头观察台</div><div class="lab-stage">5 人工复核台</div><div class="lab-stage">6 逐词生成剧场</div></div><div id="park-output" class="lab-output">居民是共同研究者，不是现实中被追踪、评分或排序的 token。</div></div><div class="interactive-lab"><h3>动能—推理 Token 可视化</h3><p>Token 是大模型处理的文本单元，不是货币，也不是积分。运动微发电、储能损耗、节点用电和输入/输出 token 只能在公开假设下并列估算。</p><div class="energy-grid"><div class="energy-stat"><small>输入 token</small><b>24</b></div><div class="energy-stat"><small>输出 token</small><b>68</b></div><div class="energy-stat"><small>估算电量</small><b>0.42 Wh</b></div></div><p>城市 Token 贡献榜自愿参与、默认匿名、可退出；不展示健康数据，不参加榜单也享有同等公共 AI 服务。</p><button onclick="leaveTokenRanking()">退出个人排名</button><span id="token-ranking-status"></span></div></section>
-<section><h2>总览地图</h2><img src="../assets/figures/site-overview.png" alt="京张 AI 创新带总览地图"><p>三层范围、三区两翼、京张文化—AI 体验主轴和重点节点。</p></section>
-<section><h2>三层范围</h2><p>统筹研究范围、总体设计范围、重点区域范围逐级落实产业生态、城市更新、重点片区和开放实验机制。</p><img src="../assets/figures/land-use-structure.png" alt="开放实验室网络与土地结构图"></section>
-<section><h2>重点区域</h2><p>众智园、北京 AI 原点社区、大钟寺 AI 产业聚集区构成输入—理解—输出的创新学习回路。</p><img src="../assets/figures/key-areas.png" alt="三处重点区域图"></section>
-<section><h2>用地分区、交通慢行、蓝绿公共空间</h2><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间图"><p>图面为概念建议；设施、道路、文保、无障碍和工程条件需专业深化。</p></section>
-<section><h2>建筑、更新项目与 AI 场景</h2><p>城市耳朵、动能—推理 Token 可视化站、Transformer 公园、开源记忆台、可解释性工坊和输出客厅组成公共 AI 场景网络。</p></section>
-<section><h2>核心指标</h2><div class="energy-grid"><div class="energy-stat"><small>site_area_sqm</small><b data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</b></div><div class="energy-stat"><small>green_ratio</small><b data-metric="green_ratio" data-value="0.123423">12.3423%</b></div><div class="energy-stat"><small>public_space_ratio</small><b data-metric="public_space_ratio" data-value="0.073281">7.3281%</b></div></div><p>这些是从提交的 provisional geometry 复算的概念设计模型值；正式边界发布后必须重算。</p><img src="../assets/figures/metrics-evidence.png" alt="核心指标证据图"></section>
-<section><h2>任务覆盖、自检状态、来源与假设</h2><p>任务覆盖见 compliance_matrix.json；自检状态见 self_check.json；来源见 sources.json；假设见 assumptions.json。空间复核、视觉包装和专业证据需随每次修改重新运行。</p></section>
-<section class="interactive-lab"><h2>v3 视觉审阅修订记录</h2><p>根据人工审阅反馈：中文字体改为 SimHei，展板采用大字号双栏卡片，减少拥挤文字，明确区分概念性建议、临时边界和正式专业深化事项。</p></section></main><script src="assets/transformer-park.js"></script><script src="assets/token-energy.js"></script></body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>绣春来 Suture Line · 作品集</title>
+<style>
+  :root{
+    --rust:#B34A2A; --wood:#C9A063; --sage:#6B8E6B; --dgrn:#2E9E4F;
+    --gold:#E5B35C; --ink:#1f2937; --grey:#f4f6f8; --line:#e5e7eb;
+    --temp:#B4504E; --enc:#2E7D32; --coact:#C77F16; --heal:#2F6F9F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;color:var(--ink);background:#fff;line-height:1.65}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* hero */
+  .hero{background:linear-gradient(135deg,#2b1a14 0%,#4a2a1c 45%,#6b4a2a 100%);color:#fff;
+        padding:72px 24px 56px;text-align:center;position:relative;overflow:hidden}
+  .hero .stitch{position:absolute;left:0;right:0;top:0;height:10px;
+        background:repeating-linear-gradient(90deg,transparent 0 12px,var(--gold) 12px 16px)}
+  .hero h1{font-size:54px;letter-spacing:10px;font-weight:900}
+  .hero .en{color:var(--gold);letter-spacing:6px;font-size:15px;margin-top:6px}
+  .hero .slogan{font-size:21px;margin-top:22px;font-weight:700}
+  .hero .sub{margin-top:10px;color:#d8c9b8;font-size:14px}
+  .hero .nums{display:flex;gap:18px;justify-content:center;margin-top:34px;flex-wrap:wrap}
+  .num{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);
+       border-radius:14px;padding:16px 26px;min-width:190px}
+  .num b{display:block;font-size:30px;color:var(--gold)}
+  .num span{font-size:12.5px;color:#e5d9c9}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto}
+  nav a{white-space:nowrap;text-decoration:none;color:#555;font-size:13.5px;padding:13px 16px;
+        border-bottom:3px solid transparent;transition:.2s}
+  nav a:hover{color:var(--rust);border-color:var(--rust)}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:26px;margin-bottom:8px;color:var(--rust);font-weight:800}
+  section .lead{color:#666;font-size:14.5px;margin-bottom:26px;max-width:860px}
+
+  /* cards / grids */
+  .grid{display:grid;gap:18px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4,.g2{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:14px;padding:20px;background:#fff;
+        transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .card:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.10)}
+  .card h3{font-size:16px;margin-bottom:8px}
+  .card p{font-size:13px;color:#555}
+  .card .tag{display:inline-block;font-size:11px;padding:2px 10px;border-radius:99px;margin-bottom:8px}
+
+  /* figures */
+  .figwrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  .figwrap img{width:100%;display:block}
+  .figwrap .cap{padding:8px 14px;font-size:12px;color:#777;background:#fafafa}
+  .fig-main{grid-column:1/-1}
+
+  /* stitches */
+  .stitch-box{border-left:4px solid var(--rust);padding:14px 18px;background:#faf5f0;border-radius:0 12px 12px 0;margin-bottom:18px}
+  .stitch-box b{color:var(--rust)}
+
+  /* zones */
+  .zone{border-top:5px solid var(--rust);padding:20px}
+  .zone .kr{font-size:12px;color:#fff;background:var(--rust);border-radius:99px;padding:2px 12px;display:inline-block;margin-bottom:8px}
+
+  /* scenario cards */
+  .scen{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .scen article{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff}
+  .scen .no{font-size:13px;color:#9ca3af;font-weight:700}
+  .scen h4{font-size:15.5px;margin:4px 0 10px}
+  .scen dl{margin:8px 0 0;font-size:12.5px}
+  .scen dt{color:#6b7280;font-size:11px;margin-top:8px}
+  .scen dd{color:#374151}
+  .scen .fb{color:var(--temp)}
+  .chip{display:inline-block;font-size:11px;padding:2px 10px;border-radius:99px;margin-right:6px}
+
+  /* metrics */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  th{background:#faf5f0;color:var(--rust)}
+  tr:nth-child(even) td{background:#fafafa}
+  .star{color:var(--rust);font-weight:800}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(18px);transition:.55s}
+  .reveal.on{opacity:1;transform:none}
+
+  footer{background:#2b1a14;color:#b8a794;text-align:center;padding:30px 20px;font-size:13px}
+  footer b{color:var(--gold)}
+  .qa{font-size:13px}
+  .qa li{margin-bottom:8px}
+  .quote{border-left:4px solid var(--gold);padding:14px 20px;background:#fdf8ef;border-radius:0 12px 12px 0;
+         font-size:15px;margin:18px 0}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="stitch"></div>
+  <h1>绣 春 来</h1>
+  <div class="en">S U T U R E &nbsp; L I N E</div>
+  <div class="slogan">把断裂的城市与社交，重新缝起来</div>
+  <div class="sub">生活破破烂烂，AI 缝缝补补 · 百年京张 AI 创新带城市设计开源征集</div>
+  <div class="nums">
+    <div class="num"><b>150 m</b><span>针脚平均间距 · 每走约2分钟碰到一个“能说话的地方”</span></div>
+    <div class="num"><b>71.7%</b><span>15分钟偶遇圈覆盖率</span></div>
+    <div class="num"><b>11.2 ㎡/人</b><span>人均公共活动空间（绿地+广场78.7ha ÷ 直接服务人口7万）</span></div>
+  </div>
+</div>
+
+<nav>
+  <a href="#concept">概念</a>
+  <a href="#strategy">空间策略</a>
+  <a href="#gallery">图集</a>
+  <a href="#boom">三大爆点</a>
+  <a href="#zones">三重点区</a>
+  <a href="#scenario">AI 场景卡</a>
+  <a href="#metrics">指标</a>
+  <a href="#trust">可信度</a>
+</nav>
+
+<!-- 概念 -->
+<section id="concept">
+  <div class="wrap reveal">
+    <h2>概念 · 一根针线，缝起百年的伤口</h2>
+    <p class="lead">1905 年，中国人自主修建第一条干线铁路；1909 年通车，詹天佑用“人”字形展线让火车翻过八达岭——“人”字既是工程奇迹，也是“两个人相遇”的象形。百年前，“人”字征服山；百年后，这条铁路在城市腹地留下一道缝合线。</p>
+    <div class="stitch-box"><b>绣春来（Suture Line）</b>＝“缝合线”的音译，中文字面又恰好长出“绣（针脚）·春（新生）·来（到来）”的画面感——技术是针线，生活是绣品。</div>
+    <div class="grid g4">
+      <div class="card"><div class="tag" style="background:#F8EBEA;color:var(--temp)">伤口1</div><h3>物理割裂</h3><p>铁路切开城市百年，路网被截断，绕行代价高。→ 锁边针法：补针脚、通断头。</p></div>
+      <div class="card"><div class="tag" style="background:#E6F0F7;color:var(--heal)">伤口2</div><h3>空间封闭</h3><p>围墙把地块挡成孤岛，公共空间被私有界面吞掉。→ 回针针法：拆墙透绿。</p></div>
+      <div class="card"><div class="tag" style="background:#EAF4EA;color:var(--enc)">伤口3</div><h3>社交疏离</h3><p>见面被刷屏取代，真实空间缺“合法的停留理由”。→ 平针针法：造相遇节点。</p></div>
+      <div class="card"><div class="tag" style="background:#FBF1DD;color:var(--coact)">伤口4</div><h3>精神疲惫</h3><p>大城市需要免费、安静、能喘口气的疗愈空间。→ 藏针针法：布疗愈绿地。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 空间策略 -->
+<section id="strategy">
+  <div class="wrap reveal">
+    <h2>空间策略 · 一根主脉 · 四种针法 · 四层缝合</h2>
+    <p class="lead">主脉：绣春线约 4.03km 连续缝合绿道，针对铁路三种状态采用三段式断面（遗址段/桥下段/入地段），29 条针脚巷过街处抬高式人行横道/共享街道。</p>
+    <div class="grid g4">
+      <div class="card"><div class="tag" style="background:#F8EBEA;color:var(--rust)">平针</div><h3>沿断裂带连续推进</h3><p>绣春线主脉 4.03km 连续绿道，缝合两侧城市。</p></div>
+      <div class="card"><div class="tag" style="background:#EAF4EA;color:var(--enc)">锁边</div><h3>锁住断裂边缘</h3><p>29 条针脚巷 + 伴行缝合路，垂直穿过走廊，每条 ≤250m。</p></div>
+      <div class="card"><div class="tag" style="background:#FBF1DD;color:var(--coact)">回针</div><h3>与老城肌理咬合</h3><p>三重点区：K1 厂房改造、K2 高校界面打开、K3 站城一体。</p></div>
+      <div class="card"><div class="tag" style="background:#E6F0F7;color:var(--heal)">藏针</div><h3>把 AI 藏进日常</h3><p>绣语家具：路灯、座椅、垃圾桶“开口说话”，失效不碍事。</p></div>
+    </div>
+    <div class="quote">四层缝合：偶遇（碰到面）→ 共同活动（一起做事）→ 疗愈（慢下来）→ <b>温度（贯穿兜底：免费、无预约、不强制扫码）</b></div>
+  </div>
+</section>
+
+<!-- 图集 -->
+<section id="gallery">
+  <div class="wrap reveal">
+    <h2>图集 · 规划图与信息图</h2>
+    <p class="lead">全部图纸由真实几何数据生成（EPSG:4548），可缩放查看。</p>
+    <div class="grid g2">
+      <div class="figwrap fig-main"><img src="../assets/figures/fig-06a-overall-structure.png" alt="总体空间结构图"><div class="cap">总体空间结构图 · 一根主脉 / 三重点区 / 31 针脚 / 200 绣语家具</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-06a-pilgrimage-plan.png" alt="绣句园·朝圣之路平面"><div class="cap">绣句园·朝圣地标平面：五幕朝圣之路（Token→Embedding→注意力→前馈→输出）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-06b-pilgrimage-section.png" alt="绣句园·朝圣之路剖面"><div class="cap">绣句园·朝圣地标剖面：8 条镜廊 / 4 级叠塔 / 环形悟言亭</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-06f-sections.png" alt="绣春线三段式断面"><div class="cap">绣春线三段式断面：遗址段（地面）/ 桥下段（高架）/ 入地段（站城一体）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-01-landuse-plan.png" alt="用地分区图"><div class="cap">用地分区图</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-02-roads-plan.png" alt="道路系统图"><div class="cap">道路系统图（密度 5.56 km/km²）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-03-buildings-plan.png" alt="建筑形态图"><div class="cap">建筑形态图（97 栋概念体块）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-04-green-plan.png" alt="绿地系统图"><div class="cap">绿地系统图（绿地+广场 78.7ha）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-05a-zone-k1-xiufang.png" alt="K1 绣坊详设"><div class="cap">K1 众智园·绣坊（绿地率 10.0%）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-05b-zone-k2-xiuchang.png" alt="K2 相遇绣场详设"><div class="cap">K2 原点社区·相遇绣场（11.4%）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-05c-zone-k3-xiuting.png" alt="K3 站前绣厅详设"><div class="cap">K3 大钟寺·站前绣厅（16.4%）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-06b-innovation-synergy.png" alt="区域创新协同关系图"><div class="cap">区域创新协同关系图</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-06c-ecosystem-map.png" alt="AI 创新生态图谱"><div class="cap">AI 创新生态图谱（三层结构）</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-06d-scenario-operation.png" alt="场景-空间-运营映射"><div class="cap">场景—空间—运营映射矩阵</div></div>
+      <div class="figwrap"><img src="../assets/figures/fig-06e-culture-storyline.png" alt="文化叙事故事线"><div class="cap">文化叙事 · 缝合故事线</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 三大爆点 -->
+<section id="boom">
+  <div class="wrap reveal">
+    <h2>三大爆点装置 · 缝合三部曲</h2>
+    <p class="lead">三个装置不是三个孤立的玩具，它们是三种缝合——分别缝起“人与人、人与社区、人与技术”。</p>
+    <div class="grid g3">
+      <div class="card"><div class="tag" style="background:#F7EBC9;color:#8A6D1A">爆点A</div><h3>绣语家具 · 会说话的针</h3>
+        <p>200 个 LLM 终端（求助椅/指路灯/聊天果皮箱），沿走廊每约 150m 一套。四模态交互（语音/大字/触控/纸面）。<b style="color:var(--temp)">求救一键直连 120 与人工，AI 不决策。</b>断网自动降级为普通家具。</p></div>
+      <div class="card"><div class="tag" style="background:#F7EBC9;color:#8A6D1A">爆点B</div><h3>绣力单车 · 双向缝合</h3>
+        <p>踩车发电供给公园 AI 终端，计“贡献值”立排行榜，周冠军上算力星光墙。<b>发电量为象征性参与</b>；排行只显昵称；贡献值累积为社区本地化、可审计数据池。</p></div>
+      <div class="card"><div class="tag" style="background:#F7EBC9;color:#8A6D1A">爆点C</div><h3>绣句园 · 朝圣地标</h3>
+        <p>把 Transformer 数据流走成“朝圣之路”：词库草坪（Token）→ 铸字廊（Embedding）→ 多头注意力回廊（8 条镜廊）→ 前馈叠塔 → 悟言亭。落位 K2 原点社区。<b>把黑箱，走成看得懂的线；把注意力，走成一座圣殿。</b></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 三重点区 -->
+<section id="zones">
+  <div class="wrap reveal">
+    <h2>三个重点区 · 各担一角</h2>
+    <div class="grid g3">
+      <div class="card zone"><span class="kr">K1 众智园 · 绣坊</span><h3>创业者“下班后”的社交减压场</h3>
+        <p>老厂房 → AI 应用试验街区：中庭社交核、创客市集街、绣力单车试验站。功能配比：产业办公 45% / 社交疗愈 25% / 绿地 10% / 商业配套 20%。</p></div>
+      <div class="card zone"><span class="kr">K2 原点社区 · 相遇绣场</span><h3>年轻人的相遇广场</h3>
+        <p>五道口天然就是相遇的地方：站前相遇广场、高校界面打开（拆墙透绿）、绣句园·朝圣地标落位。数据闭环首个试验场。绿地率 11.4%。</p></div>
+      <div class="card zone"><span class="kr">K3 大钟寺 · 站前绣厅</span><h3>上班族“先聊会天再回家”的站前客厅</h3>
+        <p>批发市场+地铁站 → 站前风雨连廊、聊天长桌、批发市场记忆带。绿地率 16.4%，三区最高。疗愈层样板。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI 场景卡 -->
+<section id="scenario">
+  <div class="wrap reveal">
+    <h2>AI 场景卡 · 12 张</h2>
+    <p class="lead">每个场景都有 AI、有人、有兜底。场景按社会资本四层分布：偶遇 3 · 共同活动 4 · 疗愈 3 · 温度 2。</p>
+    <div class="scen" id="scenBox"></div>
+    <p class="lead" style="margin-top:20px">交互卡片墙详见 <a href="../assets/figures/scenario-cards.html">scenario-cards.html</a>。</p>
+  </div>
+</section>
+
+<!-- 指标 -->
+<section id="metrics">
+  <div class="wrap reveal">
+    <h2>指标 · 43 项（真实几何计算）</h2>
+    <div class="grid g3" style="margin-bottom:26px">
+      <div class="card"><b class="star">150 m</b><p>针脚平均间距 · 31 个相遇节点</p></div>
+      <div class="card"><b class="star">71.7%</b><p>15 分钟偶遇圈覆盖率（800m 等时线）</p></div>
+      <div class="card"><b class="star">11.2 ㎡/人</b><p>人均公共活动空间（含广场）</p></div>
+    </div>
+    <table>
+      <tr><th>类</th><th>关键指标</th></tr>
+      <tr><td>A 总览</td><td>面积 1141.3ha ｜ 主脉 4.03km ｜ 重点区 3 ｜ 针脚 31 ｜ 绣语家具 200</td></tr>
+      <tr><td>B 空间结构</td><td>路网密度 5.56 km/km² ｜ 慢行 30.9% ｜ 针脚巷 29 ｜ 用地混合度 1.32</td></tr>
+      <tr><td>C 社会资本</td><td><span class="star">★</span> 针脚间距 150m ｜ <span class="star">★</span> 偶遇圈 71.7% ｜ <span class="star">★</span> 人均 11.2㎡/人 ｜ 口袋绿地 12</td></tr>
+      <tr><td>D AI 设施</td><td>绣语家具密度 17.5 个/km² ｜ AI 场景卡 12 ｜ 爆点试点 5</td></tr>
+      <tr><td>E 生态绿地</td><td>绿地+广场 78.7ha ｜ 疗愈绿地 29 处 ｜ 三区绿地率 10.0 / 11.4 / 16.4%</td></tr>
+      <tr><td>F 建筑</td><td>97 栋概念体块 ｜ 覆盖率 7.2% ｜ 平均进深 25.8m</td></tr>
+      <tr><td>G 诚实合规</td><td>人工兜底 100% ｜ 急救不经 AI ｜ 发电量象征性 ｜ 临时边界待重算</td></tr>
+    </table>
+    <p class="lead" style="margin-top:12px">完整 43 项见 <a href="../report/indicators.md">indicators.md</a>。</p>
+  </div>
+</section>
+
+<!-- 可信度 -->
+<section id="trust">
+  <div class="wrap reveal">
+    <h2>可信度 · 16 项验证 + 8 问预答复 + 诚实声明</h2>
+    <div class="grid g2">
+      <div class="card"><h3>16 项几何验证（全 PASS，2026-08-30 实跑）</h3>
+        <p>枚举合法 · 建筑 97 栋无重叠 · 道路无重复/出界 · 针脚间距 150m · 绣语家具 200 全合规（全在 SITE 内、零压建筑、零近距对）· land_use 覆盖缺口 0.00ha · 三区绿地率≥8%</p></div>
+      <div class="card"><h3>四条硬声明</h3>
+        <ul class="qa"><li>用地为临时粗略边界，官方红线发布后整体重算</li>
+        <li>发电单车为象征性参与，不承诺“自给供电”</li>
+        <li>所有 AI 设施保留人工/纸面兜底，急救不经 AI 决策</li>
+        <li>人口为假设（K1≈2万/K2≈3万/K3≈2万），待官方数据</li></ul></div>
+    </div>
+    <div class="quote">8 问预答复：AI 幻觉（“仅供参考”水印+人工复核）· 误报急救（按压—确认两步制）· 断网断电（自动降级+纸面常驻）· 隐私（匿名+24h清除）· 儿童（儿童模式）· 维护（24h响应/7天修复）· 造价（试点先行）· 复制性（方法论可复制）。<br><b>“凡是 AI 能答错的场景，都有人能答对；凡是 AI 能失效的瞬间，都有纸面兜底。”</b></div>
+  </div>
+</section>
+
+<footer>
+  <b>绣春来（Suture Line）</b> · 百年京张 AI 创新带城市设计开源征集 · 2026-08-30<br>
+  全部指标由真实几何数据计算（EPSG:4548），零编造 · 配套：proposal.md / proposal-en.md / matrices.md / summary.md
+</footer>
+
+<script>
+// 场景卡数据（与 SCENARIO_NODE 一致）
+const SCEN = [
+  ["SN-01","绣语家具·求助椅","爆点A · 绣语家具","温度","老人 / 游客 / 夜归人","按一下即与LLM对话：问路、推荐、解闷；求救一键直连120与人工客服，AI不决策。","一键人工+纸面地图兜底；急救不经AI。"],
+  ["SN-02","绣语家具·指路灯","爆点A · 绣语家具","温度","晚归学生 / 加班族","感应照明+语音陪伴+安全提示；路灯是夜里最可靠的那句'我陪你一段'。","暗角保留人工巡逻与求助柱。"],
+  ["SN-03","绣语家具·聊天果皮箱","爆点A · 绣语家具","偶遇","路人 / 周边居民","丢垃圾时顺口聊两句，顺手做城市微问卷；反馈人工审核后上墙。","信息脱敏；实体意见箱并行。"],
+  ["SN-04","绣力单车·token共创","爆点B · 绣力单车","共同活动","青年 / 亲子 / 骑行族","踩车发电供给公园AI终端，游戏化计'贡献值'并立排行榜。","发电量为象征性参与，不承诺'自给供电'。"],
+  ["SN-05","绣力单车·算力星光墙","爆点B · 绣力单车","共同活动","全体参与者","周冠军上'算力星光墙'，展示'我为城市LLM贡献的token'。","排行只显示昵称，不收集真实身份。"],
+  ["SN-06","绣句园·朝圣之路","爆点C · 绣句园","疗愈","学生 / 亲子 / 好奇路人","五幕朝圣之路＝Transformer 数据流：词库草坪（Token 广场）→铸字廊（Embedding 甬道）→多头注意力回廊（8 条镜廊）→前馈叠塔→悟言亭（输出屏）。","志愿者讲解；无需联网也可体验。"],
+  ["SN-07","相遇绣场·露天影院","试点 · 相遇绣场","共同活动","邻里 / 情侣 / 学生","AI推荐片单+无障碍字幕；周末放映+野餐垫区。","人工选片周：居民投票定片。"],
+  ["SN-08","绣坊·创业者露营广场","试点 · 绣坊","偶遇","创业者 / 程序员","路演阶梯+深夜食堂+充电座椅；AI撮合'同路人'。","人工社群活动每周一次，不依赖推荐算法。"],
+  ["SN-09","站前绣厅·共享菜园","试点 · 站前绣厅","共同活动","上班族 / 老人","AI提醒浇水、识别病虫害；收获办邻里市集。","人工园丁驻场兜底。"],
+  ["SN-10","疗愈花园·感官步道","疗愈层 · 口袋绿地","疗愈","焦虑的年轻人 / 失眠者","冥想引导音频+生物反馈灯；步道按'香-触-听-静'四段布置。","纸面引导图+人工心理服务联络卡。"],
+  ["SN-11","针脚·下棋长椅点","偶遇层 · 相遇节点","偶遇","老人 / 棋友 / 路过的人","智能记谱+线上约棋+围观转播；长椅旁免费饮水。","不强制扫码，纯线下也能下棋。"],
+  ["SN-12","绣春线·落日散步道","主脉 · 绣春线","疗愈","全家 / 独行者 / 慢跑者","动态灯光+语音导览讲京张铁路故事；沿路看云草坪与绣语家具。","无预约、自由通行，导览可关。"],
+];
+const LAYER_COLOR = {"偶遇":"#2E7D32","共同活动":"#C77F16","疗愈":"#2F6F9F","温度":"#B4504E"};
+const LAYER_BG = {"偶遇":"#EAF4EA","共同活动":"#FBF1DD","疗愈":"#E6F0F7","温度":"#F8EBEA"};
+const box = document.getElementById("scenBox");
+SCEN.forEach(s=>{
+  const [id,name,group,layer,users,ai,fb]=s;
+  const el=document.createElement("article");
+  el.style.borderTop="6px solid "+LAYER_COLOR[layer];
+  el.innerHTML=`<div class="no">${id}</div>
+    <h4>${name}</h4>
+    <span class="chip" style="background:#F7EBC9;color:#8A6D1A">${group}</span>
+    <span class="chip" style="background:${LAYER_BG[layer]};color:${LAYER_COLOR[layer]}">主打 · ${layer}</span>
+    <dl><dt>谁受益</dt><dd>${users}</dd>
+    <dt>AI 怎么用</dt><dd>${ai}</dd>
+    <dt class="fb">人工兜底</dt><dd class="fb">${fb}</dd></dl>`;
+  box.appendChild(el);
+});
+// 滚动淡入
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target);}}),{threshold:.08});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

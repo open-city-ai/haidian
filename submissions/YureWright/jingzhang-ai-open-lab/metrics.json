@@ -1,82 +1,599 @@
 {
-  "schema_version": "0.1.0",
-  "units": {
-    "length": "m",
-    "area": "sqm"
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "A1": {
+   "status": "known",
+   "value": 1141.3,
+   "unit": "ha",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)/10000",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
+   ]
   },
-  "metrics": {
-    "site_area_sqm": {
-      "status": "known",
-      "value": 11412825.386,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "low",
-      "assumptions": [
-        "Value is recomputed from submitted provisional_constraint geometry/site_boundary.geojson.",
-        "This is a provisional design-model area, not an official redline or official precise-area figure.",
-        "Recompute every dependent geometry layer and metric after organizer releases official SITE_BOUNDARY and KEY_AREA polygons."
-      ]
-    },
-    "building_footprint_area_sqm": {
-      "status": "known",
-      "value": 310807.184,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "green_ratio": {
-      "status": "known",
-      "value": 0.123423,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/green_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "public_space_ratio": {
-      "status": "known",
-      "value": 0.073281,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "floor_area_ratio": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
-      "formula": "total_floor_area_sqm / official_site_area_sqm",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
-    },
-    "key_area_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
-      "formula": "count(key_detailed_design_areas)",
-      "confidence": "high",
-      "assumptions": []
-    }
+  "A2": {
+   "status": "known",
+   "value": 4.03,
+   "unit": "km",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "length(RAIL_LINE within SITE)/1000",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "A3": {
+   "status": "known",
+   "value": 3.0,
+   "unit": "个",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "A4": {
+   "status": "known",
+   "value": 31.0,
+   "unit": "个",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(PS-STITCH) + zone stitches",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "A5": {
+   "status": "known",
+   "value": 200.0,
+   "unit": "个",
+   "source_files": [
+    "geometry/ai_service_zone.geojson"
+   ],
+   "formula": "count(AI_SERVICE_ZONE)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "B6": {
+   "status": "known",
+   "value": 63.42,
+   "unit": "km",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(ROAD_CENTERLINE))/1000",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "B7": {
+   "status": "known",
+   "value": 5.56,
+   "unit": "km/km²",
+   "source_files": [
+    "geometry/roads.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "B6 / (site_area_sqm/1e6)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
+   ]
+  },
+  "B8": {
+   "status": "known",
+   "value": 5.0,
+   "unit": "条",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(road_class=trunk)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "B9": {
+   "status": "known",
+   "value": 6.0,
+   "unit": "条",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(road_class=secondary)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "B10": {
+   "status": "known",
+   "value": 30.9,
+   "unit": "%",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(slow lane length)/sum(total length)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "B11": {
+   "status": "known",
+   "value": 29.0,
+   "unit": "条",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(PS-STITCH-LANE)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "B12": {
+   "status": "known",
+   "value": 1.47,
+   "unit": "-",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "Shannon index of land_use codes",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "C13": {
+   "status": "known",
+   "value": 2.72,
+   "unit": "个/km²",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "A4 / (site_area_sqm/1e6)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "C14": {
+   "status": "known",
+   "value": 150.0,
+   "unit": "m",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson"
+   ],
+   "formula": "mean spacing of stitch nodes along RAIL_LINE",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "C15": {
+   "status": "known",
+   "value": 71.7,
+   "unit": "%",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "area(buffer(stitch nodes,750m)∩SITE)/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "C16": {
+   "status": "known",
+   "value": 11.2,
+   "unit": "㎡/人",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "formula": "E29*10000 / pop_total(70000)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "人口为假设值（K1≈2万/K2≈3万/K3≈2万，合计 7 万），官方数据发布后重算"
+   ]
+  },
+  "C17": {
+   "status": "known",
+   "value": 12.0,
+   "unit": "个",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "count(pocket green 0.3-1ha)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "C18": {
+   "status": "known",
+   "value": 29.0,
+   "unit": "处",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "count(healing green features)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "C19": {
+   "status": "known",
+   "value": 141.0,
+   "unit": "项",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public facility POIs)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "C20": {
+   "status": "known",
+   "value": 10.0,
+   "unit": "辆",
+   "source_files": [],
+   "formula": "declared pilot count (10 token bikes)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "C21": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "面",
+   "source_files": [
+    "geometry/scenario_nodes.geojson"
+   ],
+   "formula": "count(glow wall)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "D22": {
+   "status": "known",
+   "value": 73.0,
+   "unit": "个",
+   "source_files": [
+    "geometry/ai_service_zone.geojson"
+   ],
+   "formula": "count(furniture_type=seat)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "D23": {
+   "status": "known",
+   "value": 61.0,
+   "unit": "个",
+   "source_files": [
+    "geometry/ai_service_zone.geojson"
+   ],
+   "formula": "count(furniture_type=light)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "D24": {
+   "status": "known",
+   "value": 66.0,
+   "unit": "个",
+   "source_files": [
+    "geometry/ai_service_zone.geojson"
+   ],
+   "formula": "count(furniture_type=bin)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "D25": {
+   "status": "known",
+   "value": 17.5,
+   "unit": "个/km²",
+   "source_files": [
+    "geometry/ai_service_zone.geojson"
+   ],
+   "formula": "A5 / (site_area_sqm/1e6)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "D26": {
+   "status": "known",
+   "value": 12.0,
+   "unit": "张",
+   "source_files": [
+    "geometry/scenario_nodes.geojson"
+   ],
+   "formula": "count(SCENARIO_NODE)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "D27": {
+   "status": "known",
+   "value": 1.05,
+   "unit": "个/km²",
+   "source_files": [
+    "geometry/scenario_nodes.geojson"
+   ],
+   "formula": "D26 / (site_area_sqm/1e6)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "D28": {
+   "status": "known",
+   "value": 5.0,
+   "unit": "处",
+   "source_files": [
+    "geometry/scenario_nodes.geojson"
+   ],
+   "formula": "count(pilot landmarks)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "E29": {
+   "status": "known",
+   "value": 78.7,
+   "unit": "ha",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "area(GREEN_SPACE 1401 + PLAZA 1403)/10000",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
+   ]
+  },
+  "E30": {
+   "status": "known",
+   "value": 6.9,
+   "unit": "%",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "E29*10000 / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
+   ]
+  },
+  "E31": {
+   "status": "known",
+   "value": 6.9,
+   "unit": "%",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "healing green coverage = green+plaza share of SITE",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
+   ]
+  },
+  "E32": {
+   "status": "known",
+   "value": 11.2,
+   "unit": "㎡/人",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "E29*10000 / pop_total(70000)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "人口为假设值（K1≈2万/K2≈3万/K3≈2万，合计 7 万），官方数据发布后重算"
+   ]
+  },
+  "E33": {
+   "status": "known",
+   "value": "K1=10.0%/K2=11.4%/K3=16.4%",
+   "unit": "%",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "per-zone green ratio: K1/K2/K3",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
+   ]
+  },
+  "E34": {
+   "status": "known",
+   "value": 4.0,
+   "unit": "处",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "count(plaza)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "E35": {
+   "status": "known",
+   "value": 4.03,
+   "unit": "km",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "length(GREEN_CORRIDOR)/1000",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "F36": {
+   "status": "known",
+   "value": 97.0,
+   "unit": "栋",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(BUILDING_FOOTPRINT)",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "F37": {
+   "status": "known",
+   "value": 7.2,
+   "unit": "%",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_area / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "F38": {
+   "status": "known",
+   "value": 25.8,
+   "unit": "m",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "mean(building depth)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "F39": {
+   "status": "known",
+   "value": 93.8,
+   "unit": "%",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "building area in key areas / total building area",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "G40": {
+   "status": "known",
+   "value": 100.0,
+   "unit": "%",
+   "source_files": [],
+   "formula": "declared: all AI facilities retain manual/paper fallback",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "为设计承诺声明，非实测值；由运营方按承诺维护"
+   ]
+  },
+  "G41": {
+   "status": "known",
+   "value": "是",
+   "unit": "-",
+   "source_files": [],
+   "formula": "declared: emergency bypasses AI",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "为设计承诺声明，非实测值；由运营方按承诺维护"
+   ]
+  },
+  "G42": {
+   "status": "known",
+   "value": "是",
+   "unit": "-",
+   "source_files": [],
+   "formula": "declared: token generation is symbolic",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "为设计承诺声明，非实测值；由运营方按承诺维护"
+   ]
+  },
+  "G43": {
+   "status": "known",
+   "value": "是",
+   "unit": "-",
+   "source_files": [],
+   "formula": "declared: official_boundary=false",
+   "confidence": "high",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "H44": {
+   "status": "known",
+   "value": "意图≥85% / 多轮≥70% / 安全≥95%",
+   "unit": "-",
+   "source_files": [],
+   "formula": "declared pilot acceptance baselines (intent/multi-turn/safety)",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
+  },
+  "H45": {
+   "status": "known",
+   "value": "前/后测提升≥40%",
+   "unit": "-",
+   "source_files": [],
+   "formula": "declared pre/post comprehension improvement target",
+   "confidence": "medium",
+   "assumptions": [
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+   ]
   }
+ }
 }
