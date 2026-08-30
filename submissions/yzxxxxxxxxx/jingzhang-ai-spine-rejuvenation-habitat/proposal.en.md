@@ -3,7 +3,7 @@ title: "Jing-Zhang AI Spine · Rejuvenation Future Habitat Belt"
 author_github: "yzxxxxxxxxx"
 language: "en"
 proposal_format_version: "2"
-translation_file: "proposal.md"
+translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A conceptual urban design for a 43.6 km² AI innovation belt anchored by the Jing-Zhang railway heritage park. Conceptual proposal only; not a substitute for statutory planning or government decisions."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
