@@ -51,7 +51,7 @@ summary: "以京张铁路工业遗产、中关村 AI 产业存量与海淀教育
 
 ## 统筹研究范围产业与未来城市研究
 
-海淀拥有全国领先的 AI 企业、高校与算力存量，但**痛点不是"没有 AI"，而是 AI 人才与产业的"生活—研发—展示"三段在空间上被铁路与快速路割裂** [source:open_city_ai_2026]。策略定位为"**把京张线从交通切口变成 AI 生活主轴**"：以铁路遗址为文化脊柱，两侧植入可步行、可停留、可共创的 AI 生活体验带，而非再建一批写字楼 [depth:urban_design]。未来城市假设：AI 不是被展示的展品，而是嵌入日常基础设施的"城市操作系统" [depth:implementation_logic]。该策略以重点区与遗址公园的空间落点承载（见 `geometry/key_areas.geojson` 与 `metrics.json` 中 persona、scenario 计数），其产业真实性依赖中关村既有存量而非新建载体 [data:geometry/key_areas.geojson][depth:urban_design]。数据缺口：重点区详细规模仍待官方红线补全，当前用 PROV-* 临时边界近似 [assumption:area_recalculation]。
+海淀拥有全国领先的 AI 企业、高校与算力存量，但本方案提出的核心设计假设是：AI 人才与产业的"生活—研发—展示"三段在空间上被铁路与快速路割裂——**此为待现状调查验证的设计假设** [assumption:urban_fragmentation_hypothesis]，尚缺经审查的现状交通、步行可达性与产业公共服务基线证据，在现状调查完成前不作为既有场地事实使用。策略定位为"**把京张线从交通切口变成 AI 生活主轴**"：以铁路遗址为文化脊柱，两侧植入可步行、可停留、可共创的 AI 生活体验带，而非再建一批写字楼 [depth:urban_design]。未来城市假设：AI 不是被展示的展品，而是嵌入日常基础设施的"城市操作系统" [depth:implementation_logic]。该策略以重点区与遗址公园的空间落点承载（见 `geometry/key_areas.geojson` 与 `metrics.json` 中 persona、scenario 计数），其产业真实性依赖中关村既有存量而非新建载体 [data:geometry/key_areas.geojson][depth:urban_design]。数据缺口：重点区详细规模仍待官方红线补全，当前用 PROV-* 临时边界近似 [assumption:area_recalculation]。
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -158,21 +158,22 @@ summary: "以京张铁路工业遗产、中关村 AI 产业存量与海淀教育
 
 全部指标与合规响应见 `metrics.json`、`compliance_matrix.json`；announcement 1.3/1.4/1.5 与 agent.1–agent.6 任务全覆盖 [standard:compliance][metric:indicator_set]。面积复算方法：所有精度敏感指标从 `geometry/*.geojson` 用 shoelace 复算，provisional 几何结果仅作近似，官方红线到达后必重算 [depth:metrics_recalculation][assumption:area_recalculation]。
 
-### 单一指标真值表（proposal.md / metrics.json / assumptions.json / PNG / HTML / PDF 同步基准）
+### 指标状态对照表（proposal.md / metrics.json / assumptions.json / PNG / HTML / PDF 同步基准；unknown 项依官方 schema 不提供数值）
 
 | 指标 | 临时几何复算值 | 公告值（如可获取） | 状态 | 说明 |
 |---|---|---|---|---|
 | site_area / site_area_sqm | 43,609,232.558 m² (≈43.61 km²) | 43.6 km² | known/low | PROV-* 临时边界；已对齐空间审查参考值（原平面 shoelace 43,645,653 m² 漂移≈0.083%） |
 | overall_design_area | 11,422,370 m² (≈11.4 km²) | 11.4 km² | known/low | PROV-SITE-001 |
 | key_area_area | 3,696,738 m² (≈369.7 ha) | 368.4 ha | known/low | PROV-KEY-001/002/003 |
-| floor_area_ratio (FAR) | 1.0 | — | known/low | 规划参考值，非审定控制 |
+| floor_area_ratio (FAR) | — | — | unknown | FAR 1.0 为设计情景假设，登记于 assumption:far_assumed；非审定控制指标，不作已知值使用 |
+| total_floor_area | — | — | unknown | 由 FAR 情景假设派生，不可作已核验指标；情景推算 ≈43,609,232 m² 仅为示意 |
 | green_space_ratio / green_ratio | 0.0315 (3.15%) | — | known/low | 临时几何复算 |
 | public_space_ratio | 0.05 (5%) | — | known/low | 临时几何复算 |
 | road_area_ratio | 0.0076 (0.76%) | — | known/low | 临时几何复算 |
 | building_density | 0.0165 (1.65%) | — | known/low | 临时几何复算 |
 | persona / scenario / industry_test / pilgrimage | 5 / 12 / 3 / 3 | — | known/high | 内容计数 |
 
-> 本表为唯一指标真值；正文、JSON、图件均以上述复算值为准，公告值仅在官方红线发布后替换 [assumption:area_recalculation]。
+> 本表为指标状态与数值的唯一对照基准；`unknown` 项依官方 schema 不提供数值（FAR 及其派生建筑面积见 assumption:far_assumed），正文、JSON、图件均以此为准，公告值仅在官方红线发布后替换 [assumption:area_recalculation]。
 
 ![核心指标体系与复算证据示意](assets/figures/metrics-evidence.png)
 

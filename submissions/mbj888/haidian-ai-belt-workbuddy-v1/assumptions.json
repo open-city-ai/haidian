@@ -28,8 +28,14 @@
     "source_files": [
       "metrics.json"
     ],
-    "description": "FAR 1.0 planning reference value, not approved control.",
-    "recalculation_trigger": "Official regulatory plan"
+    "description": "FAR 1.0 is a DESIGN-SCENARIO ASSUMPTION (planning reference value), not an approved control indicator and not a verified planning metric. Under this scenario, implied total floor area ≈43,609,232 m² (site_area × FAR 1.0) — scenario illustration only. Accordingly both floor_area_ratio and total_floor_area are declared status=unknown with value=null in metrics.json. Replace with the approved FAR and recompute all derived floor-area figures once the official regulatory plan is published.",
+    "recalculation_trigger": "Official regulatory plan",
+    "scenario_only": true,
+    "derived_metrics": [
+      "floor_area_ratio",
+      "total_floor_area"
+    ],
+    "implied_total_floor_area_sqm": 43609232.558
   },
   "official_data_gap": {
     "status": "known",
@@ -40,5 +46,17 @@
     ],
     "description": "Official detailed planning conditions not in cleared public package; gaps do not block content scoring.",
     "recalculation_trigger": "Official site-package update"
+  },
+  "urban_fragmentation_hypothesis": {
+    "status": "known",
+    "value": true,
+    "unit": "bool",
+    "source_files": [
+      "proposal.md",
+      "proposal.en.md"
+    ],
+    "description": "Design hypothesis pending on-site verification: the living / R&D / showcase segments of AI talent and industry are spatially severed by the railway and expressways. No reviewed public source for current traffic, walkability, industry or public-service baselines was available in the cleared package; the open-call task book cannot serve as evidence of existing site conditions. Treated explicitly as a design hypothesis, not an established site fact, until an on-site survey or reviewed baseline source is obtained.",
+    "recalculation_trigger": "On-site survey or reviewed baseline data on traffic / walkability / industry",
+    "evidence_status": "pending_verification"
   }
 }

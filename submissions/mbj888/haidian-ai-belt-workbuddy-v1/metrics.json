@@ -89,8 +89,8 @@
       ]
     },
     "total_floor_area": {
-      "status": "known",
-      "value": 43609232.558,
+      "status": "unknown",
+      "value": null,
       "unit": "sqm",
       "source_files": [
         "geometry/site_boundary.geojson",
@@ -101,12 +101,14 @@
       "assumptions": [
         "Reconciled site boundary area to spatial-review reference 43,609,232.558 m² (was 43,645,653 m² planar shoelace). Provisional.",
         "Calculated from repository provisional rough boundary geometry (brief/site-package/geometry/provisional_boundaries.geojson, PROV-*); not suitable for official area or redline claims.",
-        "FAR 1.0 recomputed on provisional site area; recompute on official redlines."
-      ]
+        "FAR 1.0 recomputed on provisional site area; recompute on official redlines.",
+        "Scenario-only figure: under the design-scenario assumption FAR=1.0, implied total floor area ≈43,609,233 m². This is a scenario illustration, NOT a verified or approved metric."
+      ],
+      "reason": "总建筑面积由 site_area × FAR 推算，而综合容积率 FAR 1.0 属于设计情景假设（见 assumption:far_assumed，非审定控制指标），故其派生的总建筑面积同样不可作为已核验指标，依官方 schema 标 unknown；官方控规下达后以审定 FAR 与公告值为准重算。"
     },
     "floor_area_ratio": {
-      "status": "known",
-      "value": 1.0,
+      "status": "unknown",
+      "value": null,
       "unit": "ratio",
       "source_files": [
         "geometry/site_boundary.geojson"
@@ -115,7 +117,8 @@
       "confidence": "low",
       "assumptions": [
         "Assumed target, recompute on official redlines."
-      ]
+      ],
+      "reason": "综合容积率暂无官方审定值；FAR 1.0 仅作为设计情景假设登记于 assumption:far_assumed，不属可核验规划指标。官方控规或正式控制条件发布后以公告值为准重算并转 known。"
     },
     "building_density": {
       "status": "known",

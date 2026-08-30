@@ -31,7 +31,7 @@ package_state: "ready_for_review"
 
 ## Coordinated Research Area: Industry and Future City Research
 
-Haidian has the densest cluster of AI firms, universities, and compute in China, yet the pain point is not "lack of AI" but the spatial severance of AI talent and industry into three disconnected segments — living, R&D, showcase — cut by the railway and expressways [source:open_city_ai_2026]. Strategy: turn the Jing-Zhang line from a transport cut into an AI living spine — a walkable, stayable, co-creatable AI living-experience belt along the heritage corridor, not another batch of office towers [depth:urban_design]. Future-city hypothesis: AI is not an exhibit but an embedded "urban operating system" [depth:implementation_logic].
+Haidian has the densest cluster of AI firms, universities, and compute in China, yet the core design hypothesis of this proposal is that AI talent and industry are spatially severed into three disconnected segments — living, R&D, showcase — cut by the railway and expressways. **This is a design hypothesis pending on-site verification** [assumption:urban_fragmentation_hypothesis]; reviewed baseline evidence on current traffic, walkability and industry/public-service distribution is still lacking, and it is not used as an established site fact prior to such a survey. Strategy: turn the Jing-Zhang line from a transport cut into an AI living spine — a walkable, stayable, co-creatable AI living-experience belt along the heritage corridor, not another batch of office towers [depth:urban_design]. Future-city hypothesis: AI is not an exhibit but an embedded "urban operating system" [depth:implementation_logic].
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
