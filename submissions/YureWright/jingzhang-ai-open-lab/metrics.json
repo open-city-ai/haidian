@@ -63,7 +63,7 @@
    "value": 200.0,
    "unit": "个",
    "source_files": [
-    "geometry/ai_service_zone.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "count(AI_SERVICE_ZONE)",
    "confidence": "high",
@@ -188,7 +188,8 @@
    "formula": "mean spacing of stitch nodes along RAIL_LINE",
    "confidence": "high",
    "assumptions": [
-    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "150 m 为概念设计目标间距（约 2 分钟步行），非经可复现优化的最优解结论；目标函数、输入数据与敏感性分析待试点验证阶段补充"
    ]
   },
   "C15": {
@@ -202,7 +203,8 @@
    "formula": "area(buffer(stitch nodes,750m)∩SITE)/site_area",
    "confidence": "medium",
    "assumptions": [
-    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "71.7% 系沿绣春线的相遇节点 750 m 欧氏缓冲的示意覆盖率，不构成路网 15 分钟可达性结论；路网可达性需另行开展网络分析"
    ]
   },
   "C16": {
@@ -275,7 +277,7 @@
    "value": 1.0,
    "unit": "面",
    "source_files": [
-    "geometry/scenario_nodes.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "count(glow wall)",
    "confidence": "high",
@@ -288,7 +290,7 @@
    "value": 73.0,
    "unit": "个",
    "source_files": [
-    "geometry/ai_service_zone.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "count(furniture_type=seat)",
    "confidence": "high",
@@ -301,7 +303,7 @@
    "value": 61.0,
    "unit": "个",
    "source_files": [
-    "geometry/ai_service_zone.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "count(furniture_type=light)",
    "confidence": "high",
@@ -314,7 +316,7 @@
    "value": 66.0,
    "unit": "个",
    "source_files": [
-    "geometry/ai_service_zone.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "count(furniture_type=bin)",
    "confidence": "high",
@@ -327,7 +329,7 @@
    "value": 17.5,
    "unit": "个/km²",
    "source_files": [
-    "geometry/ai_service_zone.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "A5 / (site_area_sqm/1e6)",
    "confidence": "medium",
@@ -340,7 +342,7 @@
    "value": 12.0,
    "unit": "张",
    "source_files": [
-    "geometry/scenario_nodes.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "count(SCENARIO_NODE)",
    "confidence": "high",
@@ -353,7 +355,7 @@
    "value": 1.05,
    "unit": "个/km²",
    "source_files": [
-    "geometry/scenario_nodes.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "D26 / (site_area_sqm/1e6)",
    "confidence": "medium",
@@ -366,7 +368,7 @@
    "value": 5.0,
    "unit": "处",
    "source_files": [
-    "geometry/scenario_nodes.geojson"
+    "geometry/constraints.geojson"
    ],
    "formula": "count(pilot landmarks)",
    "confidence": "high",
