@@ -7,7 +7,7 @@ bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「园」为 AI 时代城市空间原型的概念方案：造园·众智园、学园·AI原点社区、市园·大钟寺三园由园径主脊南北贯通、两翼协同；园规 R1–R5 把 AI 治理落为可感知制度；三指标依 provisional 提交边界可复算，正式边界发布后按触发条件复算。"
-tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "youth-friendly-public-space", "ai-origin-community", "enterprise-services-ecosystem", "civic-agent-governance", "ai-public-services", "robotics-autonomous-mobility"]
+tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "robot-delivery-low-speed"]
 tracks_note: "轨道/场景三层口径声明：tracks＝提报轨道分类层（8 项；其中 3 项正文锚定——enterprise-services-ecosystem 于西翼要素服务链段、ai-traffic-walkability 于「无障碍园径」段、civic-agent-governance 于园规 R1–R5 映射表「可复核」行）；scenarios＝提报摘要层（5 项 highlight slug，早于正典场景体系的历史命名，保留作提报标识）；§7.3 场景卡 S-01~S-13＝正典场景层。三层各司其职、命名空间不要求互相包含；摘要层经 scenario_mapping 全量映射至正典层——无悬空、无重名、无外延声明。"
 scenario_mapping: {"ai-traffic-walkability": "S-01 + 园径慢行/无障碍", "enterprise-service-copilot": "S-09", "public-safety-operations-review": "§18 公共安全与灾害韧性专章 + S-03 基准评测口径", "ai-cultural-guide": "S-04", "robot-delivery-low-speed": "B-03 机器人服务 + S-01/S-02 测试组"}
@@ -294,7 +294,7 @@ scenario_mapping: {"ai-traffic-walkability": "S-01 + 园径慢行/无障碍", "e
 
 ## 4. 统筹研究范围产业与未来城市研究：AI 产业战略与未来城市形态
 
-> 本章在 43.6 km² 统筹研究范围工作 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT §1.5(1)]，输出战略框架与机制方向，不输出法定布局结论。
+> 本章在 43.6 km² 统筹研究范围工作 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT §1.5(1)]，输出战略框架与机制方向，不输出法定布局结论 [data:brief/site-package/geometry/provisional_boundaries.geojson#overall_study_scope]。
 
 ### 4.1 八要素机制：AI 全栈创新的要素循环
 
@@ -730,7 +730,7 @@ scenario_mapping: {"ai-traffic-walkability": "S-01 + 园径慢行/无障碍", "e
 
 ## 10. 蓝绿空间、公共空间与城市风貌：活力带与朝圣地标
 
-> **[图位 fig-4 · mobility-bluegreen]** 园径慢行—蓝绿体系—地标节点一张图：园径主脊、小月河与清河蓝绿走廊、节气驿站序列、四大朝圣地标位置；不含任何道路工程线形结论。
+> **[图位 fig-4 · mobility-bluegreen]** 园径慢行—蓝绿体系—地标节点一张图：园径主脊、小月河与清河蓝绿走廊、节气驿站序列、四大朝圣地标位置；不含任何道路工程线形结论 [data:geometry/green_space.geojson#green_ratio][metric:green_ratio]。
 
 ![图4：慢行与蓝绿体系及驿站地标序列图](assets/figures/mobility-bluegreen.png)
 
@@ -1175,6 +1175,8 @@ compliance_matrix.json 23 行：公告 1.3（3 行）+ 1.4（3 行）+ 1.5 统�
 每章证据标记密度遵守 v2 纪律（单主张邻接 ≤3、单段 ≤8、去标记可读）；standard_matrix 逐项对应 SKILL 14 覆盖项（c1–c14），design_depth_matrix 对应各章深度声明。
 
 ## 17. 风险、版权与合规说明：边界声明
+
+> 本章作为「boundary_clause」的正式落地段，集中披露本方案与公开资料边界、概念建议属性、生成披露、版权与人类终判等条款；下列声明为机器可读与人类可读双重口径 [standard:boundary_clause must_state][source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]。
 
 ### 17.1 边界声明（boundary_clause）
 
