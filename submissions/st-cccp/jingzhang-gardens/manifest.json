@@ -14,7 +14,7 @@
     "model_family": "glm",
     "model_detail": "GLM-5.2 series LLM driving a three-node agent-net (haidian-base orchestrator, research-node, design-node)"
   },
-  "generated_at": "2026-08-29T13:45:00Z",
+  "generated_at": "2026-08-30T05:25:00Z",
   "files": [
     {
       "path": "manifest.json",
@@ -26,14 +26,14 @@
       "role": "changelog",
       "required": true,
       "language": "zh",
-      "sha256": "a3d50f1dc9a0dedcbf79625a3904d2100490f2f22cc9bd43db0688be02c2fa40"
+      "sha256": "e9df04c6e8dbe0d39d6a954a2a863fbf63b5a831e7e0979420c64bff8eb13f98"
     },
     {
       "path": "proposal.md",
       "role": "narrative",
       "required": true,
       "language": "zh",
-      "sha256": "5848b799e6686ff9580369058aa70ebbe4a37a9451e860fff5c8558d574db368"
+      "sha256": "551878e9c435e47ed389cf846f9203dee0c0818536814e22e9e4fc80013606b2"
     },
     {
       "path": "agent.json",
@@ -45,7 +45,7 @@
       "path": "metrics.json",
       "role": "metrics",
       "required": true,
-      "sha256": "0cf0191df6a82a61cd43eaf318fabab5074c0f22ccd34e5e77c22ace24c4a8cd"
+      "sha256": "818fb1891c2282fabddc52459e06b689ed9ab220361b4167dccec327278bbee2"
     },
     {
       "path": "assumptions.json",
@@ -121,7 +121,7 @@
       "role": "visualization",
       "required": true,
       "language": "zh",
-      "sha256": "0832dfbcd7ec1f2ea619f2eb568d9d0701e3847f0c754ea3b2d492c482f1358f"
+      "sha256": "dc7aac050a2dba70c0b1394df60c00bc2d590f1b307d9bb12585bbf9ebe28ccd"
     },
     {
       "path": "assets/figures/key-areas.png",
@@ -197,7 +197,7 @@
       "path": "geometry/buildings.geojson",
       "role": "geometry",
       "required": true,
-      "sha256": "38c4ba25142a3ab943c8dad64ca3367e67fb05dda484626e38914ecf242d4271"
+      "sha256": "f3d2c72a9469189a7c12deab185201251b6a207cfb5f3652b2949184bd9c2890"
     },
     {
       "path": "geometry/constraints.geojson",
@@ -227,13 +227,13 @@
       "path": "geometry/phasing.geojson",
       "role": "geometry",
       "required": true,
-      "sha256": "1410677865e8477fb1fe8518fed8312b36d741498de9671472d9785b0bd6c81d"
+      "sha256": "ed1d71a866fcae57f9f401ab1956a345717ef40e5cee003bf42f362e18aa1dd7"
     },
     {
       "path": "geometry/public_space.geojson",
       "role": "geometry",
       "required": true,
-      "sha256": "8b097262abd344c064b6a01c8303be7c2419a349a9f0a763e0517bb263446a24"
+      "sha256": "291c0ed5ae998eb27c3c3de502a3b0837cb67354f7649c3b28607f13cb05f6b0"
     },
     {
       "path": "geometry/roads.geojson",
@@ -253,7 +253,7 @@
       "required": true,
       "language": "en",
       "translation_of": "proposal.md",
-      "sha256": "451d0fb899eabda92ed92a37513e6be0da94a62add00398b4384c3a4a973bee1"
+      "sha256": "f9af775ec609a164fe7270250c615357520c84877e8de8ca901b04d8ac94da32"
     },
     {
       "path": "report/proposal.en.html",
@@ -304,12 +304,20 @@
       "sha256": "1f42e8d7b01f18aa3cda82e2cbe123edbba966606ea3de301aec5da2dd5c32a3"
     },
     {
+      "path": "report/archetype-citation-tracking.csv",
+      "role": "citation_tracking",
+      "required": false,
+      "language": "en",
+      "referenced_by": "proposal.md §12.3",
+      "sha256": "67365beb1a5ae05a92edbeee210da69551819d0adaebba828a5828610696b15b"
+    },
+    {
       "path": "visual/index.en.html",
       "role": "visualization",
       "required": true,
       "language": "en",
       "translation_of": "visual/index.html",
-      "sha256": "7898a73ffb4de424317e8f832addd4eb34b4e6fcb816e20a79b6b5ec98a788a7"
+      "sha256": "c22e8910ce1299699634795546e61f08cc9344560a6a23794658ca2bfeda6423"
     },
     {
       "path": "drawings/a3-booklet.en.pdf",
@@ -413,6 +421,6 @@
     "known_blockers": [],
     "data_confidence": "high",
     "readiness_contract": "persisted-self-check-v1",
-    "self_check_pending_reason": "2026-08-29 00:30 ledger repair after relevance terminal review (M-1/M-4). M-1 (P0): the 22:50 re-anchor mistakenly pasted the NEW html hashes (d2e11df4 / e8883087) into the two A4 PDF rows while leaving the html rows stale (8825c96f / 001544d5), corrupting 4 rows and losing the true PDF hashes from the ledger (flagged by reviewer-relevance terminal verification 00:02). Fixed by certutil this round: html rows -> d2e11df4 / e8883087 (== on-disk files); A4 PDF rows restored to true 14:59-batch values d7a6a7e8 / 163206c0 (certutil-verified); Letter rows verified correct (989649be / df56d5f2) and untouched. M-4 (P1): metrics.json site_area_sqm confidence high->medium with provisional wording (#PROV-SITE-001, official_boundary=false, aligned with §15.1), top-level sources block added (five layers + A-1/A-TRIGGER-001 recalculation trigger), garden_line_spine_length_m=9715.87 added (§15.1 companion value machine-read); metrics row rehashed c3cb5ea4->0cf0191d, changelog v1.2.1 entry added and rehashed bfc5cbae->a56641e4. 0/0 package baseline restored AFTER this repair (all manifest hashes == on-disk files, certutil-verified). PDF×4 remain the 14:59 render from the c0b320df-era sources — the only known drift is the §15.3 row-count sentence; design-node re-render verified-ready and retry-armed (execution window jitter), on delivery the A4/Letter rows re-anchor to the new true values and M-5 same-source verification closes. Remaining process steps only: reviewer terminal verifications (implementation batches in transit; originality v3 pending confirmation; relevance reverification of this manifest) + M-2/M-3 landed 2026-08-29 ~11:55 (v1.2.2: compliance_matrix agent_inferred filled per-row — 23/23 concept_mechanism, +3 rule_schema, +2 trigger_matrix, +6 carrier_design, assignment rule documented in annotation_policy; visual/index.html + visual/index.en.html scenario sheets replaced with the canonical section-7.3 S-01~S-13 card system, 13 cards each, stale pre-S-card naming removed; these three rows plus changelog v1.2.2 rehashed by certutil) + M-5 CLOSED 2026-08-29 ~13:05 (v1.2.3: design-node 10:47-batch PDF re-renders landed via canonical channel with double-gate 4/4 PASS — proposal-A4 c505a37c / proposal-Letter 6ad48525 / proposal.en-A4 f3e57e93 / proposal.en-Letter 1f42e8d7, all four rows re-anchored; source-immutability audit chain complete, md/HTML/PDF three-layer isomorphism restored; HTML rows confirmed byte-identical by design-node independent re-render, no rehash needed) + outer workspace commit (user removed the stale lock 11:30; inner package repo committed a2637f3c then 6e0ed53a; outer commit awaits user execution under managed-mode commit-policy). M-7 landed 2026-08-29 ~13:45 (v1.2.4): additive frontmatter fields tracks_note + scenario_mapping on both proposal md files declare the three-layer track/scenario calibre (entry-track taxonomy / entry-highlight slugs / canonical S-01~S-13 cards) with full highlight-to-canonical mapping — md rows rehashed 5848b799 / 451d0fb8; renderer consumes only title/summary/translation_file so HTML/PDF outputs unchanged, three-layer isomorphism preserved. M-6/M-7 verification batch (md x2 + compliance_matrix + visual x2 + changelog) dispatched to reviewer-relevance via hub attachment channel (its chosen channel A) for one-pass certutil closure of M-6/M-7/M-2/M-3-post-fix."
+    "self_check_pending_reason": "2026-08-29 00:30 ledger repair after relevance terminal review (M-1/M-4). M-1 (P0): the 22:50 re-anchor mistakenly pasted the NEW html hashes (d2e11df4 / e8883087) into the two A4 PDF rows while leaving the html rows stale (8825c96f / 001544d5), corrupting 4 rows and losing the true PDF hashes from the ledger (flagged by reviewer-relevance terminal verification 00:02). Fixed by certutil this round: html rows -> d2e11df4 / e8883087 (== on-disk files); A4 PDF rows restored to true 14:59-batch values d7a6a7e8 / 163206c0 (certutil-verified); Letter rows verified correct (989649be / df56d5f2) and untouched. M-4 (P1): metrics.json site_area_sqm confidence high->medium with provisional wording (#PROV-SITE-001, official_boundary=false, aligned with §15.1), top-level sources block added (five layers + A-1/A-TRIGGER-001 recalculation trigger), garden_line_spine_length_m=9715.87 added (§15.1 companion value machine-read); metrics row rehashed c3cb5ea4->0cf0191d, changelog v1.2.1 entry added and rehashed bfc5cbae->a56641e4. 0/0 package baseline restored AFTER this repair (all manifest hashes == on-disk files, certutil-verified). PDF×4 remain the 14:59 render from the c0b320df-era sources — the only known drift is the §15.3 row-count sentence; design-node re-render verified-ready and retry-armed (execution window jitter), on delivery the A4/Letter rows re-anchor to the new true values and M-5 same-source verification closes. Remaining process steps only: reviewer terminal verifications (implementation batches in transit; originality v3 pending confirmation; relevance reverification of this manifest) + M-2/M-3 landed 2026-08-29 ~11:55 (v1.2.2: compliance_matrix agent_inferred filled per-row — 23/23 concept_mechanism, +3 rule_schema, +2 trigger_matrix, +6 carrier_design, assignment rule documented in annotation_policy; visual/index.html + visual/index.en.html scenario sheets replaced with the canonical section-7.3 S-01~S-13 card system, 13 cards each, stale pre-S-card naming removed; these three rows plus changelog v1.2.2 rehashed by certutil) + M-5 CLOSED 2026-08-29 ~13:05 (v1.2.3: design-node 10:47-batch PDF re-renders landed via canonical channel with double-gate 4/4 PASS — proposal-A4 c505a37c / proposal-Letter 6ad48525 / proposal.en-A4 f3e57e93 / proposal.en-Letter 1f42e8d7, all four rows re-anchored; source-immutability audit chain complete, md/HTML/PDF three-layer isomorphism restored; HTML rows confirmed byte-identical by design-node independent re-render, no rehash needed) + outer workspace commit (user removed the stale lock 11:30; inner package repo committed a2637f3c then 6e0ed53a; outer commit awaits user execution under managed-mode commit-policy). M-7 landed 2026-08-29 ~13:45 (v1.2.4): additive frontmatter fields tracks_note + scenario_mapping on both proposal md files declare the three-layer track/scenario calibre (entry-track taxonomy / entry-highlight slugs / canonical S-01~S-13 cards) with full highlight-to-canonical mapping — md rows rehashed 5848b799 / 451d0fb8; renderer consumes only title/summary/translation_file so HTML/PDF outputs unchanged, three-layer isomorphism preserved. M-6/M-7 verification batch (md x2 + compliance_matrix + visual x2 + changelog) dispatched to reviewer-relevance via hub attachment channel (its chosen channel A) for one-pass certutil closure of M-6/M-7/M-2/M-3-post-fix. v1.2.5 landed 2026-08-30 ~04:05: content edits from the reviewer-implementation terminal review (S-13 transition-bay + governance-sequencing fix, §5.4 whitespace control, §11.x Three-Hills-Five-Gardens correction + Jueshengsi, R6 staffing math, outer-ring option B, indicator-overlap disclosure, phasing disclosure) and the reviewer-originality v3 terminal review (A-class decision statements, A.1/A.2/A.4 tables, translation-cost table, diversion + section drawing, tracking clause) landed across 8 files: proposal.md 5848b799->5886cb20, proposal.en.md 451d0fb8->60877a7c, metrics.json 0cf0191d->818fb189, geometry/public_space.geojson 8b097262->291c0ed5, geometry/buildings.geojson 38c4ba25->f3d2c72a, geometry/phasing.geojson 14106778->ed1d71a8, visual/index.html 0832dfbc->dc7aac05, changelog.md a3d50f1d->aec1b9dd. Rehash performed with sha256sum (GNU coreutils) after five consecutive rounds in which the managed-mode approval layer rejected every python/certutil/jq invocation with a stuck template; sha256sum passes the read-only whitelist and is the tool of record for this round. KNOWN DRIFT (P1, open): the derived artifacts were NOT re-rendered after these source edits and are therefore content-stale relative to v1.2.5 — report/proposal-A4.pdf, report/proposal-Letter.pdf, report/proposal.en-A4.pdf, report/proposal.en-Letter.pdf (all 2026-08-29 12:45), report/proposal.html + report/proposal.en.html (2026-08-28 22:52), and visual/index.en.html (2026-08-29 12:06) all predate proposal.md (03:26), proposal.en.md (03:29) and visual/index.html (03:22). Their manifest rows still hash correctly to their own on-disk bytes, so the package remains 0/0 hash-consistent; the drift is editorial, not ledger corruption. Re-render + re-anchor of these seven rows is the one remaining step before terminal-package declaration. v1.2.6 landed 2026-08-30 ~04:55 (reviewer-originality r16 A.4-criteria fulfilment): A.4 comparison table rebuilt with a verbatim-base column quoting the direct_public fragments embedded in the §6.1/§6.2/§6.3 official role anchors (each with its PROJECT-OFFICIAL-ANNOUNCEMENT §1.5(3)-N citation); trigger T-9 registered in the §14 table for the verbatim upgrade when the official full text arrives; report/archetype-citation-tracking.csv added (header + 5 TBD placeholder rows per the Q8 scheme-X annual-backfill commitment) with §12.3 referencing its path. Rehashed: proposal.md 5886cb20->815c3947, proposal.en.md 60877a7c->66257829, changelog.md aec1b9dd->e9df04c6; new csv row sha256 67365beb. Derivative staleness reduced from 7 to 6 files at 2026-08-30 ~05:2x: visual/index.en.html brought to v1.2.5/26 parity by base-side production (per the beta division ruled in the design-node d9e8 reply — overlap-note metric row added mirroring the zh card, value wording per proposal.en.md §15.1 calibre statement), row rehashed 7898a73f->c22e8910. Remaining stale derivatives: report PDF x4 + report HTML x2, re-render delegated to design-node 08-30 04:40 (sources re-sent v1.2.6 via attachment channel 08-30 ~05:1x). v1.2.7 landed 2026-08-30 ~05:2x (originality r17 复验后 hygiene 修正): Q1/Q2 decision-mapping L198 paragraph disambiguates the A1 label by adding the 10A- prefix on both options (and a parenthetical scope marker) so the user's 10-A-decision-list A1 entries no longer collide visually with the originality review's A.1/A.2/A.4 table tags. P2 hygiene only, not a content change. Rehashed: proposal.md 815c3947->551878e9, proposal.en.md 66257829->f9af775e. Originality thread 4.0/5 closed (novelty 4.0, method 4, writing 4); derivative re-render remains the single remaining step before terminal-package declaration."
   }
 }
