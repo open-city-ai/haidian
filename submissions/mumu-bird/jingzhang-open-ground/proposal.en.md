@@ -18,9 +18,11 @@ translation_of: proposal.md
 
 Jing-Zhang Open Ground advances the completed railway heritage park into a public intelligence spine that supports learning, experience, controlled validation and long-term operation. Its spatial structure is “one spine, two wings, three grounds, multiple stitches.” The heritage park becomes the nine-kilometre spine. The western Zhongguancun technology-service wing links capital, transfer, intellectual property and global services. The eastern Xiaoyue River scenario-enablement wing supports embodied intelligence, AI+health and AI+media. Zhongzhiyuan, AI Origin and Dazhongsi become verification, co-creation and living open grounds. Five priority east-west interfaces repair walking, cycling, accessibility and station-city connections.
 
+The core idea is one sentence: **do not place AI exhibits in a park; make research—validation—application happen along the railway, while ordinary people can enter, understand and opt out.** The railway supplies continuous civic space; east-west stitches connect universities, neighbourhoods, stations and industry; three grounds carry the industry chain into daily life; the agent system remains backstage to manage evidence, rights, safety and stopping.
+
 This is not a rebranding of a governance mechanism. V4 compresses the mature agent, participation, evidence and risk system into a background operating system. The foreground answers the questions an urban-design jury can see: where AI industry occurs; how research reaches the city; how the railway sides are stitched together; what form, section and public realm each key area has; and how people encounter AI through mobility, education, health, consumption and culture.
 
-The jury can follow four routes. A3 pages 01–09 establish the proposition, contents, task matrix and masterplan. Pages 10–20 cover land, industry, mobility, blue-green systems and new infrastructure. Pages 21–32 detail each key area through plan, structure, section, scene and phase. Pages 33–40 present twelve scenarios, the cultural kit, the agent operating system, delivery, metrics and the final city vision. Each major claim is tied to a figure, geometry, metric or source; facts and conceptual projections remain visibly separate.
+The jury can follow five chapters. Pages 01–04 define the proposition and brief coverage. Pages 05–14 derive the nine-kilometre spatial skeleton from existing assets and breaks. Pages 15–20 explain the industry chain, two wings, resource network, space types and 24-hour operation. Pages 21–32 detail three open grounds through plans, structures, sections and real scenes. Pages 33–40 connect twelve scenarios to the agent system, delivery, metrics and future city image. Every A3 page now includes “spatial judgement—design actions—why the next page,” turning the booklet into a causal sequence rather than a figure inventory.
 
 ![Nine-kilometre masterplan: one spine, two wings, three grounds and multiple stitches](assets/figures/site-overview.en.png)
 
@@ -55,7 +57,7 @@ Four evidence layers organize the forty-page proposal.
 
 First, establish existing conditions through official sources, statutory planning, open maps and dated photographs. Second, identify what is already solved and what interfaces remain missing. Third, specify spatial components, operating rules and agent roles. Fourth, verify through pilots, human gates, failure criteria and exit routes. Grey denotes context; colour denotes proposals; dashed lines denote provisional relationships.
 
-Reading route: pages 1–10 establish evidence and questions; 11–14 explain the overall system; 15–24 develop the three areas; 25–32 specify scenarios, technology and rights; 33–40 cover precedents, operations, evaluation and implementation. Sources and spatial data accompany the same evidence chain.
+Reading route: pages 01–04 define the proposition; 05–14 build the spatial skeleton; 15–20 explain industry in operation; 21–32 detail three open grounds; 33–40 close the loop through AI life and delivery. Sources and spatial data accompany the same evidence chain.
 
 
 ### Make completed work a design premise

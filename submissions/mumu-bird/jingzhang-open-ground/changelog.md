@@ -1,5 +1,14 @@
 # 方案迭代记录
 
+## v4.1 - 2026-08-31
+
+- Reworked the 40-page A3 narrative around one explicit causal line: railway spine → two wings → three open grounds → five stitches → accountable operating system.
+- Added a three-part explanation band to every substantive page: spatial judgement, concrete design actions and the logical bridge to the next page.
+- Rebuilt pages 09 and 12 with filtered, numbered and labelled design points; removed the overlapping unfiltered public-node layer.
+- Replaced the abstract page 14 infrastructure cards with a mapped network showing locations and functions for edge compute, data trust, robot kerbs, microgrids and sensing.
+- Added leader-linked proposed programmes to all three key-area plans and a dedicated campus–street interface map for AI Origin.
+- Increased figure rendering resolution and synchronized the five-chapter reading route in the Chinese and English narratives.
+
 ## v4.0 - 2026-08-31
 
 - Renamed the proposal **京张·开路场 / JING-ZHANG OPEN GROUND** and corrected the author name to **王浩冉** throughout the package.
