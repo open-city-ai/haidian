@@ -1,0 +1,574 @@
+{
+  "schema_version": "0.1.0",
+  "items": [
+    {
+      "item_id": "existing_conditions_diagnosis",
+      "title_zh": "现状诊断与资料缺口",
+      "professional_dimension": "规划",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "设计依据与资料清单",
+        "风险、版权与合规说明"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "key_area_count"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "SOURCE-REGISTRY",
+        "BOUNDARY-SOURCE"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001",
+        "A-KEYAREA-001",
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "BOUNDARY_TRUST",
+        "KEY_AREAS_TRUST"
+      ],
+      "evidence_summary_zh": "现状诊断以资料可用性为主线：18 条来源按可用、背景、临时三类登记，缺口清单进入 assumptions 与自检，而不是以推测填补。",
+      "completeness_limited_by": [
+        "缺少官方精确边界与重点区多边形",
+        "缺少现状建筑、权属与控规条件",
+        "constraints.geojson 无公开法定控制几何可引用"
+      ]
+    },
+    {
+      "item_id": "three_level_scope_framework",
+      "title_zh": "三层范围工作框架",
+      "professional_dimension": "规划",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "三层范围工作框架"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "key_area_count"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "PROCESSED-FACT-PACK"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "self_check_ids": [
+        "BOUNDARY_TRUST",
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "三层不是图纸堆叠而是同一判断链的三次收敛，正文给出每层承担的问题与对应的空间数据落点。"
+    },
+    {
+      "item_id": "overall_spatial_structure",
+      "title_zh": "总体空间结构",
+      "professional_dimension": "城市设计",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "三层范围工作框架",
+        "统筹研究范围产业与未来城市研究",
+        "蓝绿空间、公共空间与城市风貌"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/green_space.geojson",
+        "geometry/land_use.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "green_space_area_sqm",
+        "green_ratio",
+        "public_space_ratio"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "AGENT-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-GREEN-001",
+        "A-PUBLIC-001"
+      ],
+      "self_check_ids": [
+        "LAND_USE_TOPOLOGY",
+        "VISUAL_STATIC"
+      ],
+      "evidence_summary_zh": "结构为一条照护骨架加两侧十个能力单元加外缘缓冲带；绿廊半宽 78 至 152 米，肩部渐变以保证步行连续。"
+    },
+    {
+      "item_id": "land_use_layout",
+      "title_zh": "用地布局",
+      "professional_dimension": "用地",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "用地、建筑规模与拆改留方案",
+        "总体设计范围城市更新与控规深度城市设计"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "green_space_area_sqm"
+      ],
+      "source_ids": [
+        "MNR-LAND-USE-GUIDE"
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ],
+      "self_check_ids": [
+        "LAND_USE_TOPOLOGY"
+      ],
+      "evidence_summary_zh": "十二个分区由 site_boundary 链式布尔切分导出，共边、无缝、无重叠由构造保证并经脚本复核。"
+    },
+    {
+      "item_id": "development_intensity_controls",
+      "title_zh": "开发强度控制",
+      "professional_dimension": "控规",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计",
+        "用地、建筑规模与拆改留方案"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "building_footprint_area_sqm",
+        "floor_area_ratio"
+      ],
+      "source_ids": [
+        "MOHURD-CONTROL-DETAILED-PLANNING",
+        "BOUNDARY-SOURCE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001",
+        "A-BUILDING-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "只给出基底总量 1,424,759 平方米用于量级讨论；容积率保持 unknown 并写明复算触发条件。",
+      "completeness_limited_by": [
+        "缺少官方强度分区与容积率上限",
+        "缺少地块划分与权属登记"
+      ]
+    },
+    {
+      "item_id": "height_massing_character",
+      "title_zh": "高度、体量与风貌",
+      "professional_dimension": "城市设计",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "用地、建筑规模与拆改留方案",
+        "蓝绿空间、公共空间与城市风貌"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "building_height_m",
+        "building_footprint_area_sqm"
+      ],
+      "source_ids": [
+        "MOHURD-URBAN-DESIGN-MEASURES",
+        "CASE-GUANGJIU-RAIL-PARK"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001",
+        "A-CASE-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "体量以三行六列错位网格表达通风与视线缝隙，高度保持 unknown；风貌以维护标记体系而非铁路形象表达。",
+      "completeness_limited_by": [
+        "缺少限高分区与文保视廊条件",
+        "缺少现状建筑高度与结构信息"
+      ]
+    },
+    {
+      "item_id": "retain_renovate_demolish",
+      "title_zh": "拆改留分类",
+      "professional_dimension": "城市更新",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "用地、建筑规模与拆改留方案",
+        "总体设计范围城市更新与控规深度城市设计"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "building_footprint_area_sqm"
+      ],
+      "source_ids": [
+        "BOUNDARY-SOURCE",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-BUILDING-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "不给拆改留结论，改为给出方法：先定必须缝合的界面，再定必须改造的门槛，处置方式由权属与结构条件决定。",
+      "completeness_limited_by": [
+        "缺少现状建筑轮廓与结构安全评估",
+        "缺少权属登记与文保清单"
+      ]
+    },
+    {
+      "item_id": "traffic_rail_slow_parking",
+      "title_zh": "交通、轨道与慢行",
+      "professional_dimension": "交通",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "交通、轨道、市政与公共服务设施"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "accessibility_continuity_rate",
+        "staffed_service_availability_ratio"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "BARRIER-FREE-ENVIRONMENT-LAW"
+      ],
+      "assumption_ids": [
+        "A-ROADS-001",
+        "A-PERFORMANCE-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE",
+        "VISUAL_STATIC"
+      ],
+      "evidence_summary_zh": "九条要素表达连通目标：一条照护慢行主线、三条接驳线、五条支线；无障碍连续通行率待现场基线后取数。",
+      "completeness_limited_by": [
+        "缺少道路红线、断面与交叉口资料",
+        "缺少轨道线位、站位与桥下净空条件"
+      ]
+    },
+    {
+      "item_id": "municipal_new_infrastructure",
+      "title_zh": "市政与新型基础设施",
+      "professional_dimension": "市政",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "交通、轨道、市政与公共服务设施",
+        "AI 创新生态、人才画像与 AI+ 场景"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson"
+      ],
+      "metric_refs": [
+        "staffed_service_availability_ratio",
+        "industry_test_scenario_count"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "GENERATIVE-AI-INTERIM-MEASURES"
+      ],
+      "assumption_ids": [
+        "A-ROADS-001",
+        "A-AI-GOVERNANCE-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "端侧算力与感知设施依附既有载体、可逆布设，不新增独立构筑物，容量不预设。",
+      "completeness_limited_by": [
+        "缺少管线、能源、供电与散热条件",
+        "缺少消防与防洪工程资料"
+      ]
+    },
+    {
+      "item_id": "blue_green_public_space",
+      "title_zh": "蓝绿与公共空间系统",
+      "professional_dimension": "景观",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "蓝绿空间、公共空间与城市风貌"
+      ],
+      "drawing_refs": [
+        "drawings/a0-boards.pdf",
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "green_space_area_sqm",
+        "green_ratio",
+        "public_space_area_sqm",
+        "public_space_ratio"
+      ],
+      "source_ids": [
+        "MOHURD-URBAN-DESIGN-MEASURES",
+        "CASE-GUANGJIU-RAIL-PARK"
+      ],
+      "assumption_ids": [
+        "A-GREEN-001",
+        "A-PUBLIC-001"
+      ],
+      "self_check_ids": [
+        "LAND_USE_TOPOLOGY",
+        "VISUAL_STATIC"
+      ],
+      "evidence_summary_zh": "绿地 3,001,236 平方米占 26.30%，公共空间 1,259,853 平方米占 11.04%；公共空间只统计被编排为照护界面的面。"
+    },
+    {
+      "item_id": "three_key_area_detailed_design",
+      "title_zh": "三处重点区详细设计",
+      "professional_dimension": "城市设计",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "重点区域详细设计"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/key_areas.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": [
+        "key_area_count",
+        "public_space_area_sqm",
+        "building_footprint_area_sqm"
+      ],
+      "source_ids": [
+        "KEY-AREA-SOURCE",
+        "AGENT-TASKBOOK"
+      ],
+      "assumption_ids": [
+        "A-KEYAREA-001",
+        "A-BUILDING-001"
+      ],
+      "self_check_ids": [
+        "KEY_AREAS_TRUST",
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "三处片区分别承担试制、转译、成形；给出功能、公共空间、交通与实施项目，不给高度、强度与拆改留结论。",
+      "completeness_limited_by": [
+        "三处重点区仍为临时多边形",
+        "缺少地块、权属与首层业态资料"
+      ]
+    },
+    {
+      "item_id": "renewal_project_list",
+      "title_zh": "更新项目清单",
+      "professional_dimension": "实施",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "更新项目清单、实施政策与分期计划"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/phasing.geojson",
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": [
+        "phase_count",
+        "building_footprint_area_sqm"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "CONTEXT-JINGZHANG-CORRIDOR-PLAN-NEWS"
+      ],
+      "assumption_ids": [
+        "A-PHASING-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "六个项目 JZ-01 至 JZ-06 各自写明类型、前置条件与空间依据，前置条件即实施风险，不作落地承诺。"
+    },
+    {
+      "item_id": "phasing_implementation",
+      "title_zh": "分期与实施路径",
+      "professional_dimension": "实施",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "更新项目清单、实施政策与分期计划",
+        "指标体系、面积复算与合规矩阵"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/phasing.geojson"
+      ],
+      "metric_refs": [
+        "phase_count"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "CASE-HANGZHOU-DATA-VALLEY"
+      ],
+      "assumption_ids": [
+        "A-PHASING-001"
+      ],
+      "self_check_ids": [
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "三期分别为轻量可撤回、界面与门槛改造、长期运营治理；与征集周期严格区分。"
+    },
+    {
+      "item_id": "metrics_recalculation",
+      "title_zh": "指标复算与自检",
+      "professional_dimension": "技术",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "指标体系、面积复算与合规矩阵"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "green_ratio",
+        "public_space_ratio",
+        "building_footprint_area_sqm",
+        "ai_scenario_card_count"
+      ],
+      "source_ids": [
+        "SOURCE-REGISTRY",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-PERFORMANCE-001"
+      ],
+      "self_check_ids": [
+        "LAND_USE_TOPOLOGY",
+        "VISUAL_STATIC",
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "空间指标在 EPSG:4326 交换、EPSG:4548 复算，与官方空间复核脚本同投影；绩效指标一律 unknown 并附取数前置条件。"
+    },
+    {
+      "item_id": "risk_missing_data",
+      "title_zh": "风险与缺资料清单",
+      "professional_dimension": "风险",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": [
+        "风险、版权与合规说明",
+        "设计依据与资料清单"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "geometry_refs": [
+        "geometry/constraints.geojson",
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "metric_refs": [
+        "floor_area_ratio",
+        "building_height_m",
+        "accessibility_continuity_rate",
+        "facility_defect_exposure_hours",
+        "staffed_service_availability_ratio"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "GENERATIVE-AI-INTERIM-MEASURES",
+        "BARRIER-FREE-ENVIRONMENT-LAW"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001",
+        "A-BOUNDARY-001",
+        "A-AI-GOVERNANCE-001",
+        "A-PERFORMANCE-001"
+      ],
+      "self_check_ids": [
+        "BOUNDARY_TRUST",
+        "KEY_AREAS_TRUST",
+        "PROFESSIONAL_EVIDENCE"
+      ],
+      "evidence_summary_zh": "五项未知指标各自带 reason 与 recompute_trigger；constraints.geojson 为空是有意结果并已显式登记。",
+      "completeness_limited_by": [
+        "官方边界与重点区多边形未发布",
+        "控规、红线、权属、市政、消防、文保资料缺失",
+        "绩效指标缺现场基线与授权取数"
+      ]
+    }
+  ]
+}

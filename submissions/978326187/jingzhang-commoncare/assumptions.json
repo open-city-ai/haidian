@@ -1,0 +1,147 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, land ownership, municipal utility capacity, heritage protection extents, and rail engineering constraints must be confirmed from official attachments before any statutory use.",
+      "statement_zh": "控规指标、道路红线、土地权属、市政容量、文物保护范围与建设控制地带、轨道工程条件均须以官方附件核验后才能进入法定使用。",
+      "impact": "This package deliberately asserts no FAR, height, demolition, redline, or rail alignment conclusion. floor_area_ratio and building_height_m stay unknown.",
+      "recompute_trigger": "Publication of the official regulatory plan attachments or the constraint geometry package.",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "metrics.json",
+        "proposal.md"
+      ]
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "The submitted site boundary is the repository-registered provisional rough polygon derived from the announcement's textual extent and the stated 11.4 km2 area. It is not an official redline and every area value computed from it is internally consistent only.",
+      "statement_zh": "提交的总体设计范围是仓库登记的临时粗略多边形，依据公告文字四至与约11.4平方公里面积推定，不是官方红线；由它复算的一切面积仅在方案内部自洽。",
+      "impact": "site_area_sqm, green_space_area_sqm, public_space_area_sqm, building_footprint_area_sqm, green_ratio, and public_space_ratio all inherit provisional precision.",
+      "recompute_trigger": "Replacement of geometry/site_boundary.geojson with an official polygon; the whole design geometry chain and metrics.json must then be regenerated, not patched.",
+      "affected_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json"
+      ]
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "status": "pending_official_data",
+      "statement": "The three key detailed-design areas use provisional rough polygons positioned from the announced north-to-south order and the announced areas of 192.1 ha, 104.3 ha, and 72.0 ha. Their rectangular edges are not parcel lines or road redlines.",
+      "statement_zh": "三处重点区使用临时粗略范围，按公告自北向南顺序与192.1、104.3、72.0公顷的约面积定位；矩形边不得解释为地块界或道路红线。",
+      "impact": "The corridor widenings, the three CommonCare nodes, and the phasing sequence are anchored to these provisional extents and will shift with official geometry.",
+      "recompute_trigger": "Publication of official key-area polygons.",
+      "affected_files": [
+        "geometry/key_areas.geojson",
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson"
+      ]
+    },
+    {
+      "id": "A-GREEN-001",
+      "status": "design_intent_pending_survey",
+      "statement": "The green corridor and the perimeter buffer belt are design proposals. They do not verify existing tree cover, existing green ownership, park management boundaries, or the Jingzhang heritage park's approved landscape scheme.",
+      "statement_zh": "常新绿廊与外缘防护绿地环是设计提案，未核验现状乔木、绿地权属、公园管理边界，也未核验京张遗址公园已批景观方案。",
+      "impact": "green_space_area_sqm and green_ratio are design-model outputs, not surveyed green coverage.",
+      "recompute_trigger": "Availability of an existing-green survey or the approved park landscape drawing.",
+      "affected_files": [
+        "geometry/green_space.geojson",
+        "geometry/land_use.geojson",
+        "metrics.json"
+      ]
+    },
+    {
+      "id": "A-PUBLIC-001",
+      "status": "design_intent_pending_survey",
+      "statement": "Public space counts only the surfaces this proposal programmes as care interfaces: the continuous walking spine inside the corridor, the three key-area nodes, and the Dazhongsi station square. Other open ground is deliberately excluded.",
+      "statement_zh": "公共空间只统计本方案明确编排为照护界面的面：绿廊内的连续步行带、三处重点区节点、大钟寺站前广场；其余开敞地不计入。",
+      "impact": "public_space_ratio is a programme metric, not a total open-space ratio, and should not be compared with open-space ratios computed on a different definition.",
+      "recompute_trigger": "Any change in the definition of programmed care surfaces, or arrival of official public-space management boundaries.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "metrics.json",
+        "visual/index.html"
+      ]
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "design_intent_pending_survey",
+      "statement": "Building footprints express block rhythm and the relationship between clusters and the public interface. They carry no storey count, height, floor area, ownership, structural condition, or retain-renovate-demolish judgement, and they do not represent surveyed existing buildings.",
+      "statement_zh": "建筑基底只表达组团肌理与公共界面关系，不含层数、高度、建筑面积、权属、结构状况与拆改留判断，也不代表现状建筑测绘成果。",
+      "impact": "building_footprint_area_sqm has low confidence and must not be converted into floor area, FAR, or demolition volume.",
+      "recompute_trigger": "Availability of surveyed existing building footprints and the approved regulatory plan.",
+      "affected_files": [
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ]
+    },
+    {
+      "id": "A-ROADS-001",
+      "status": "concept_only",
+      "statement": "Road centrelines are conceptual research lines for discussing walkability and takeover routes. They are not road redlines, cross-sections, rail alignments, level-crossing solutions, or engineering feasibility conclusions.",
+      "statement_zh": "道路中心线是用于讨论步行连续性与接管路径的概念研究线，不是道路红线、断面、轨道线位、跨线工程方案或工程可行性结论。",
+      "impact": "No transport capacity, travel time, or rail conclusion is claimed anywhere in the package.",
+      "recompute_trigger": "Publication of the official road network plan or rail engineering documents.",
+      "affected_files": [
+        "geometry/roads.geojson",
+        "proposal.md"
+      ]
+    },
+    {
+      "id": "A-PHASING-001",
+      "status": "concept_only",
+      "statement": "Phasing expresses a discussion order for testing CommonCare components, starting where accessibility and staffed-service gaps are most legible. It is not an implementation commitment, funding arrangement, approval stage, or land supply schedule.",
+      "statement_zh": "分期表达的是常新组件的讨论与验证顺序，从无障碍与人工服务缺口最易被看见的地方开始；不是实施承诺、资金安排、审批阶段或土地供应计划。",
+      "impact": "phase_count is a structural metric only.",
+      "recompute_trigger": "Any official implementation programme.",
+      "affected_files": [
+        "geometry/phasing.geojson",
+        "proposal.md"
+      ]
+    },
+    {
+      "id": "A-PERFORMANCE-001",
+      "status": "pending_baseline_survey",
+      "statement": "Performance metrics for accessibility continuity, facility defect exposure, staffed-service availability, information consistency, and comfort require an on-site baseline, authorised data collection, and independent review. No value is asserted before that baseline exists.",
+      "statement_zh": "无障碍连续性、设施失修暴露时长、人工服务可得性、信息一致性与舒适性等绩效指标需要现场基线、授权取数与独立复核；基线建立前不给出任何数值。",
+      "impact": "accessibility_continuity_rate, facility_defect_exposure_hours, and staffed_service_availability_ratio stay unknown with a stated measurement method instead of a fabricated number.",
+      "recompute_trigger": "Completion of a baseline survey agreed with the responsible maintenance authority.",
+      "affected_files": [
+        "metrics.json",
+        "proposal.md"
+      ]
+    },
+    {
+      "id": "A-AI-GOVERNANCE-001",
+      "status": "design_requirement",
+      "statement": "Every AI function in this proposal is assumed to operate only where responsibility, data minimisation, human takeover, stop conditions, and an exit path are written down first. Personal identification, face recognition, behaviour scoring, continuous individual tracking, and account-gated basic services are excluded by design.",
+      "statement_zh": "本方案假定任何AI功能只有在责任主体、数据最小化、人工接管、停止条件与退出路径书面明确后才能进入公共空间；个人身份识别、人脸识别、行为评分、连续个体轨迹与以账户为前提的基础服务被设计排除。",
+      "impact": "Scenario cards and industry test scenarios are written with a non-AI baseline first, so removing AI leaves the public space still working.",
+      "recompute_trigger": "Any change in data authorisation scope, or a governance rule published by the responsible authority.",
+      "affected_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ]
+    },
+    {
+      "id": "A-CASE-001",
+      "status": "reference_only",
+      "statement": "International and domestic reference cases are read for transferable practice only. Their platforms, sensor density, governance bodies, data authorisation conditions, and investment models are not assumed transferable to Haidian.",
+      "statement_zh": "国内外案例只用于提炼可迁移做法；其平台、传感器密度、治理主体、数据授权条件与投资模式不假定可直接搬到海淀。",
+      "impact": "No case is used to justify a quantitative target for this site.",
+      "recompute_trigger": "Not applicable; this is a reading discipline rather than a data gap.",
+      "affected_files": [
+        "proposal.md",
+        "sources.json"
+      ]
+    }
+  ]
+}
