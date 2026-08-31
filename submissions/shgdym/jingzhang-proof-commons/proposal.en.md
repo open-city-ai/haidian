@@ -10,7 +10,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 tracks: ["civic-agent-governance", "jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["public-safety-operations-review", "robot-delivery-low-speed", "ai-traffic-walkability", "enterprise-service-copilot", "ai-cultural-guide"]
-iteration: "v7.5"
+iteration: "v7.9"
 ---
 
 # X JINGZHANG
@@ -397,6 +397,16 @@ The cadence is weekly public issue triage, monthly scene-status register, quarte
 Before any project enters a controlled pilot it must produce ten signable handoff items: official-data difference report, key-area existing-condition base, candidate operator responsibility charter, scene register, safety case, data-and-rights impact check, field accessibility audit, lifecycle resource brief, failed-restoration plan, and a continue/revise/stop gate decision. If legal ownership, professional approval, public notice, human takeover, non-digital service, data expiry or restoration resources are missing, the project remains in research status.
 
 The handoff package does not invent authorisation. This submission supplies fields, candidate roles, acceptance evidence and failure actions. Organisation names, signatures, budgets, insurance, field measurements and approvals are external inputs triggered by a real project launch, not unfinished deliverables in this concept package. A professional team can sign off JZ-01 through JZ-12 without reverse-engineering tasks from narrative prose. [depth:phasing_implementation] [metric:renewal_project_count]
+
+### Pre-feasibility handoff
+
+The ten handoff items share one pre-feasibility schedule. It turns “to be developed” into an evidence-filling sequence without presenting unknown conditions as complete. Scale and quantities freeze through corridor relationship, key area, first-phase unit and critical interface: obtain official geometry, ownership and survey first; then freeze the scene, equipment version, route and operating hours; then let each discipline issue an attributable quantity schedule. Any material configuration change returns quantities and estimates to `HOLD`.
+
+The CNY budget remains `unknown`. ROM defines only a method: verified quantities multiplied by dated, location-relevant and attributable rates or quotations, plus duty staffing, operations and maintenance, insurance and data governance, removal and restoration, and professionally justified risk items. S/M/L remain relative effort bands. They indicate use of existing resources, added removable components and specialist services, or a separate engineering and long-term-operations case; they are not fixed monetary ranges.
+
+Power and charging, communications and data, drainage and flood, fire and emergency stop, accessibility, maintenance access, equipment recovery and structural loading where applicable enter a `CAPACITY ENTRY GATE`. Each item records only required evidence, verification role and the reduction or stop action when unmet; current status remains `TO_VERIFY / HOLD`. Site asset holder, project manager, operator, safety lead, accessibility reviewer, data controller, maintenance party and restoration decision maker are responsibility slots only. Without signable evidence they remain `UNASSIGNED`, and field operation cannot start. These statuses block only future field launch or statutory delivery; they are not outstanding repairs to the current concept package.
+
+Procurement is not preselected at concept stage. Research prototypes, temporary pilots and operational services require future review of intellectual property and equipment ownership, permission and insurance, restoration responsibility, service performance and lifecycle funding before legal and procurement professionals select an applicable route. This package implies no supplier, procurement decision or funding commitment. [data:visual/assets/pre-feasibility-handoff.json] [metric:implementation_budget_cny]
 
 ![Responsibility, resources, acceptance, stop and restoration dashboard](assets/figures/delivery-dashboard.en.png)
 

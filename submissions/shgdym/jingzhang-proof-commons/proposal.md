@@ -9,7 +9,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 tracks: ["civic-agent-governance", "jingzhang-heritage-narrative", "ai-origin-community"]
 scenarios: ["public-safety-operations-review", "robot-delivery-low-speed", "ai-traffic-walkability", "enterprise-service-copilot", "ai-cultural-guide"]
-iteration: "v7.5"
+iteration: "v7.9"
 ---
 
 # X京张 X JINGZHANG
@@ -396,6 +396,16 @@ VI执行规范固定了标志构造、最小净空、最小数字尺寸、五种
 每个项目进入受控试点前必须形成十项可签注移交件：正式资料差异报告、重点区现状底图、候选运营主体责任书、场景登记卡、安全论证、数据与权利影响检查、无障碍现场审计、全生命周期资源简报、失败复原方案、继续/修改/停止的门槛决定。缺少责任法人、专业批准、公众告知、人工接管、非数字服务、数据到期或复原资源中的任何一项，项目只能保留在研究状态。
 
 移交件不虚构授权：当前包只给出字段、责任角色、验收证据和失败动作。组织名称、签字、预算、保险、现场测量和批准属于真实项目启动后的外部输入，不是本概念包尚未完成的交付；专业团队接手后可按 JZ-01—JZ-12 逐项签注，而不必从叙事文本重新拆解任务。[depth:phasing_implementation] [metric:renewal_project_count]
+
+### 实施前预可行性交接
+
+十项移交件共用一张预可行性交接表，把“待深化”变成可直接填证据的工作顺序，但不把未知条件写成已满足。尺度与工程量按“总体关系—重点区—首期单元—关键接口”逐级冻结：先取得正式边界、权属和现状测绘，再固定场景、设备版本、路线与运行时段，随后由各专业形成可追溯工程量清单；任一关键配置改变，数量与估算返回`HOLD`。
+
+人民币总预算继续为`unknown`。ROM只规定测算方法：经核工程量乘以有日期、适用地区和来源的单价或报价，再加入值守工时、运营维护、保险与数据治理、拆除复原及经专业说明的风险项。S/M/L仍只表示相对投入；它们分别提示利用既有资源、增加可拆构件与专业服务、或另行开展工程和长期运营论证，不对应固定金额。
+
+供电与充电、通信与数据、排水防洪、消防急停、无障碍、维护到达、设备回收及适用时的结构荷载均进入`CAPACITY ENTRY GATE`。每项只记录所需证据、复核角色和不满足时的降级或停止动作，当前状态保持`TO_VERIFY / HOLD`。场地权利人、项目经理、运营方、安全负责人、无障碍复核者、数据控制者、维护方和复原决定者也只定义责任位；未提交可签证据时保持`UNASSIGNED`，不得启动现场运行。这些状态只阻断未来现场启动或法定交付，不构成当前概念包的待修项。
+
+采购不在概念阶段预选。研究原型、临时试点和运营服务分别在未来核对知识产权与设备权属、许可保险与复原责任、服务绩效与全生命周期资金后，由法务和采购专业人员选择适用路径；本包不暗示供应商、采购决定或资金承诺。[data:visual/assets/pre-feasibility-handoff.json] [metric:implementation_budget_cny]
 
 ![十二项目责任、资源、验收、停用与复原仪表板](assets/figures/delivery-dashboard.png)
 
