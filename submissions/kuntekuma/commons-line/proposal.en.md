@@ -34,6 +34,16 @@ The ecosystem is a five-part loop: originate, open, validate, transfer and gover
 
 Six international references inform functions rather than copying form: MIT Kendall Square, Toronto MaRS, Paris-Saclay, Helsinki Jätkäsaari, Singapore one-north and Barcelona 22@. They suggest proximity, shared platforms and evaluable trials. They do not justify local investment, company or regulatory claims.
 
+Regional collaboration treats the corridor as a city-scale validation interface without presuming administrative agreements, investment, procurement or funding. Beiwei Community connects young talent, everyday services and community co-testing; Future Science City connects research outputs and scenario demand; Huairou Science City connects major scientific facilities and AI4S validation; Beijing E-Town connects intelligent manufacturing, pilot production and terminal applications; and wider Beijing-Tianjin-Hebei nodes support events, supply chains and dissemination. The Zhongguancun service wing and Xiaoyue River scenario wing bring these external relationships into the three civic validation rooms [depth:three_level_scope_framework].
+
+| Partner geography | Primary interface | COMMONS LINE role | Boundary statement |
+|---|---|---|---|
+| Beiwei Community | Young talent, community services, co-testing | Residential and public-service feedback gateway | Concept only; not a confirmed community project |
+| Future Science City | Research outputs, talent and scenario demand | Open validation and demonstration interface | No signed partnership or committed project implied |
+| Huairou Science City | Major facilities, AI4S and research events | Model evaluation and public communication interface | No presumption of data, facility or computing access |
+| Beijing E-Town | Manufacturing, pilot production and terminals | Urban feedback interface for products | No investment, procurement or business-attraction commitment |
+| Beijing-Tianjin-Hebei nodes | Supply chains, events and dissemination | Annual commons events and cross-region review | Subject to voluntary participation and separate confirmation |
+
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 Five continuous zones partition the provisional boundary: open research and validation, heritage park and ecology, public culture and open-source exchange, industry services and AI-native commerce, and community and talent services. Every polygon is clipped from the same site boundary to ensure complete, non-overlapping coverage [data:geometry/land_use.geojson#LU-001] [depth:land_use_layout].
@@ -54,6 +64,21 @@ Five personas cover open-source developers, researchers, start-ups, nearby resid
 
 Ten scenario cards include an open-source release hall, model-safety sandbox, low-carbon computing explainer, accessible mobility assistant, campus transfer desk, dual-channel public services, railway memory guide, smart-terminal living room, human-reviewed event safety desk and Global AI Commons Week. The first three also form industry validation scenarios. None is an approved deployment [data:geometry/public_space.geojson#PUBLIC-001] [metric:scenario_node_count].
 
+Each scenario follows a minimum operating contract: a named human owner, readable indicators and a dated review. Operators below are responsibility types to be confirmed after pilot approval. Thresholds trigger suspension, human takeover or exit review; they are not government performance commitments.
+
+| Scenario | Proposed operator | First-round indicator | Pause or exit threshold |
+|---|---|---|---|
+| Open-source release hall | Scenario operations centre + university/open-source community | At least two open releases per quarter; 100% traceable materials | Pause after two quarters without a valid release or on unclear rights provenance |
+| Model-safety sandbox | Independent evaluator + named safety owner | 100% risk registration and human review before testing | Stop on unauthorised data use, failed human takeover or a major safety incident |
+| Low-carbon computing explainer | Facility operator + energy manager | Monthly energy/cooling update with verifiable public explanation | Take offline after 30 days of missing data or failed capacity/fire prerequisites |
+| Accessible mobility assistant | Public-space operator + accessibility co-test group | Each round includes visually impaired, mobility-limited and older users; 100% human review of advice | Pause on unsafe routing or absence of a non-digital alternative |
+| Campus transfer desk | University transfer office + park service operator | Quarterly traceable consultations, pitches and referrals | Adjust after two quarters without valid referral or on undisclosed conflict of interest |
+| Dual-channel public services | Local service authority + on-site staff | Offline channel continuously available; 100% transfer-to-human availability | Disable AI entry if offline service fails or human transfer is unavailable |
+| Railway memory guide | Cultural operator + heritage adviser | 100% source attribution; monthly correction log | Remove affected content on major factual error, rights dispute or heritage risk |
+| Smart-terminal living room | Venue operator + product owner | 100% disclosure of data and responsibility boundaries; human fallback available | Remove a device for unnecessary personal-data capture, failed opt-out or repeated failure |
+| Human-reviewed event safety desk | Event organiser + named safety lead | 100% human review of high-risk alerts and a post-event record | Stop use without a named owner, after a major misjudgement or failed emergency process |
+| Global AI Commons Week | Annual secretariat + venue partners | Once yearly, with public agenda, participation rules and evaluation | Postpone or cancel if safety, accessibility, copyright or basic service requirements fail |
+
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
 Land-use zones use the repository's permitted national codes and shared edges. Green and public-space networks are overlays, not substitutes for statutory park or land-use boundaries. Catalyst buildings are investigation prompts because building age, structure, ownership and use are unavailable [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [data:geometry/land_use.geojson#LU-003].
@@ -73,6 +98,8 @@ Municipal strategy is measure first, pilot second and retain a rollback path. Ed
 A north-south ecological spine and three transverse links form the blue-green concept. Public spaces create a validation garden, open-source living room, station-city living room and railway memory platform. Interim ratios compare design intent and are not statutory green-space controls [data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio] [metric:public_space_ratio].
 
 The identity uses infrastructure teal, signal orange and metal grey. Sleeper-like ticks carry distance, date and contribution records. Three pilgrimage prototypes are the First Line of Code Marker, Open Model Validation Beacon and Centennial Jing-Zhang Contributor Archive. Each requires heritage, structural, copyright and public consultation before development.
+
+COMMONS LINE uses one primary mark, two language lock-ups and three application levels. The mark combines parallel rails with an open node: the rails connect Jing-Zhang heritage and the AI era; the node represents rule-based participation. The Chinese horizontal lock-up is primary, the English lock-up serves international use, and a text-free symbol is reserved for small sizes. Infrastructure teal, signal orange and metal grey remain fixed; the rail-node relationship must not be stretched, rotated or rearranged. Sleeper ticks and mileage belong to the spatial wayfinding language, while Global AI Commons Week and other events are replaceable sub-brands. The mark geometry is original to this proposal. Text uses the bundled Noto Sans SC under the SIL Open Font License 1.1, included with the package.
 
 ## Renewal Projects, Implementation Policy, and Phasing
 
