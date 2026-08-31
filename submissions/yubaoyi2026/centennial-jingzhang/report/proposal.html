@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>centennial-jingzhang - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+:not(pre) > code {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>centennial-jingzhang</h1>
+<p class="summary"></p>
+
+</section>
+<h1>百年京张 AI 创新带城市设计开源征集</h1>
+<h2>方案名称：京行 · 百年计划</h2>
+<h2>Proposal: JINGXING — Centennial Plan</h2>
+<p>---</p>
+<pre><code>title: 京行 · 百年计划
+author_github: yubaoyi2026
+language: zh
+proposal_format_version: &quot;3&quot;
+bilingual_contract_version: &quot;1&quot;
+translation_file: proposal.en.md
+license: COMMUNITY-DISPLAY-ONLY
+summary: &gt;
+  本方案以&quot;京行&quot;（JINGXING）命名，以&quot;百年京张 AI 创新带&quot;为物理载体，
+  构建&quot;思想链接创新链&quot;的产业与空间叙事：百年京张铁路链接物理距离，
+  大学链接思想，AI 时代最重要的是最大限度链接思想。
+  方案以&quot;三区两翼&quot;空间框架为基础，
+  提出 A1&quot;思想矿场&quot;（大学城科创织补）、A2&quot;思想冶炼厂&quot;（AI 原点社区，站城缝合+24/7 混合用）、
+  A3&quot;思想出厂码头&quot;（具身智能测试平台 + 五大赛道）的完整创新链，
+  辅以东翼 AI+医疗（北医三院）+AI+影视（北影+北影制片厂改造中）+具身智能、
+  西翼中关村科技服务翼（算力/投资/合规服务）的两翼产业协同，
+  含 12 张 AI 场景卡、6 类用户画像、3 个朝圣功能地标（均为功能/空间系统，非纪念性建筑），
+  打造世界级 AI 创新街区的人文新标杆。
+tracks:
+  - AI 融合创新带
+  - 百年京张文化带
+  - 都市 AI 生活体验带
+scenarios:
+  - AI+历史遗产活化
+  - AI+产业生态测试
+  - AI+公共空间智能
+iteration: &quot;2&quot;</code></pre>
+<p>---</p>
+<h2>一、方案哲学与总体叙事</h2>
+<p><strong>核心哲学：铁路链接物理距离，大学链接思想。AI 时代，最重要的是最大限度链接思想。</strong></p>
+<p>京张铁路百年——从1909年詹天佑自主设计铁路连接物理距离，到2026年AI时代&quot;思想链接&quot;成为创新核心驱动力。京行百年计划的物理锚点是京张遗址公园纵向带；它的哲学锚点是：在 AI 时代，<strong>思想与思想的碰撞频率决定了创新发生的概率</strong>，而城市设计的任务是<strong>把碰撞概率从偶然事件变成结构保证</strong>。</p>
+<p>方案以&quot;三区两翼&quot;为空间骨架，以 A1（思想矿场）→A2（思想冶炼厂）→A3（思想出厂码头）为创新链，以中关村科技服务翼（西）和小月河场景赋能翼（东）为产业腹地，构建完整的&quot;思想链接→创新链落地→规模输出&quot;闭环。</p>
+<p>---</p>
+<h2>二、三层空间范围与&quot;三区两翼&quot;框架</h2>
+<h3>2.1 三层范围说明</h3>
+<div class="proposal-table"><table><thead><tr><th>范围层级</th><th>面积</th><th>来源</th><th>数据可信度</th></tr></thead><tbody><tr><td>统筹研究范围</td><td>43.6 km²</td><td>官方公告（2026-05-09）</td><td>✅ known</td></tr><tr><td>总体设计范围</td><td>11.4 km²</td><td>官方公告（2026-05-09）</td><td>✅ known</td></tr><tr><td>重点区域范围</td><td>368.4 ha</td><td>三区合计（2026-05-09 公告）</td><td>✅ known</td></tr><tr><td>场地边界（site_boundary）</td><td>待精化</td><td>provisional_boundaries.geojson#PROV-SITE-001</td><td>⚠️ provisional</td></tr><tr><td>绿地边界（green_space）</td><td>待精化</td><td>provisional_boundaries.geojson</td><td>⚠️ provisional</td></tr><tr><td>公共空间边界（public_space）</td><td>待精化</td><td>provisional_boundaries.geojson</td><td>⚠️ provisional</td></tr></tbody></table></div>
+<blockquote><p>⚠️ <strong>数据声明</strong>：场地边界、绿地边界、公共空间边界来自 <code>provisional_boundaries.geojson</code>，为临时边界，非官方精确数据。正式指标待官方发布精确 geometry 后复算。所有强度/高度/线位/权属均为<strong>概念建议</strong>，不替代正式规划审批。</p></blockquote>
+<h3>2.2 &quot;三区两翼&quot;空间结构总图</h3>
+<p><strong>&quot;一轴 · 两翼 · 三核 · 四廊&quot;</strong></p>
+<pre><code>           【中关村科技服务翼】（西）
+    中关村西区 → 科技服务中台（算力/投资/法律/合规）
+                      ↑
+    ┌─────────────────┼─────────────────┐
+    │  众智园 AI 自主创新加速区    │  ← 北核（A1，192.1 ha）
+    │  A1&quot;思想矿场&quot;            │    &quot;思想来源：底层研究+原始创新人才&quot;
+    │  ——大学城科创织补区        │    校际小火车（自动驾驶小巴）
+    └─────────────────┼─────────────────┘
+                      ↓  【京张遗址公园纵向轴】
+    ┌─────────────────┬─────────────────┐
+    │  AI原点社区      │ 小月河场景赋能翼 │  ← 中核（A2，104.3 ha）+ 东翼
+    │  A2&quot;思想冶炼厂&quot;  │（北医三院+北影  │    A2&quot;思想冶炼：从论文到公司&quot;
+    │  站城缝合带+     │ +北影制片厂改造中│    东翼：AI+医疗+AI+影视+具身智能
+    │  24/7混合用街区  │）               │
+    └─────────────────┼─────────────────┘
+                      ↓  【京张遗址公园纵向轴】
+    ┌─────────────────┼─────────────────┐
+    │  大钟寺 AI 产业集聚区        │  ← 南核（A3，72.0 ha）
+    │  A3&quot;思想出厂码头&quot;           │    &quot;从公司到规模产品&quot;
+    │  ——五大赛道×五大地块         │    具身智能测试平台（永久展厅+测试大厅）
+    └─────────────────┴─────────────────┘
+                        【两翼服务中台】（东西两翼）</code></pre>
+<h3>2.3 &quot;三区两翼&quot;产业协同逻辑</h3>
+<p><strong>三核是引擎，两翼是加速器。</strong></p>
+<div class="proposal-table"><table><thead><tr><th>翼</th><th>名称</th><th>核心锚点机构</th><th>为三核提供什么</th><th>场景方向</th></tr></thead><tbody><tr><td><strong>西翼</strong></td><td>中关村科技服务翼</td><td>中关村西区（科技服务机构聚集区）</td><td>算力服务 / 创业投资 / 知识产权 / 法律合规 / 国际化通道</td><td>AI+ 科技服务</td></tr><tr><td><strong>东翼</strong></td><td>小月河场景赋能翼</td><td>北医三院 + 北京电影学院 + 北京电影制片厂（<strong>正在原址改造中</strong>）</td><td>AI+ 医疗场景 / AI+ 影视内容场景 / 具身智能测试场景</td><td>AI+ 医疗 · AI+ 影视 · 具身智能</td></tr></tbody></table></div>
+<p><strong>东翼三锚点说明：</strong></p>
+<ul>
+<li><strong>北医三院</strong>：北京大学第三医院，全国顶级三甲综合医院，AI+医疗场景（辅助诊断、数字孪生健康、远程医疗）的天然需求方与场景提供方。</li>
+<li><strong>北京电影学院</strong>：全国顶尖影视艺术院校，AI+影视场景（AI 编剧、特效、虚拟制片）的核心创作力量。</li>
+<li><strong>北京电影制片厂</strong>：中国历史最悠久的电影制片厂之一，<strong>目前正在原址改造</strong>，改造完成后将成为 AI+ 影视、AI 内容消费的核心承载空间。</li>
+</ul>
+<p><strong>&quot;两区一带&quot;联动（官方公告原文）</strong>：</p>
+<ul>
+<li>两翼与三核之间的产业关系：<strong>东翼 AI+医疗/影视/具身智能场景</strong>为三核 AI 技术提供真实落地验证场景；<strong>西翼中关村科技服务翼</strong>为三核提供规模化发展所需的专业服务支撑。</li>
+</ul>
+<p>---</p>
+<h2>三、三大定位与五项功能</h2>
+<h3>3.1 三大定位（对应官方三定位）</h3>
+<div class="proposal-table"><table><thead><tr><th>官方定位</th><th>京行方案解读</th><th>空间响应</th></tr></thead><tbody><tr><td>百年京张文化带</td><td>以京张铁路遗址公园为时间锚点，构建&quot;1909→2026→未来&quot;的叙事空间</td><td>京张遗址公园纵向轴 + A2 AI 原点时刻叙事</td></tr><tr><td>都市 AI 生活体验带</td><td>AI 不是后台技术，而是前台生活——7×24 全天候科创生活街区</td><td>A2 站城缝合带 + 东翼场景赋能</td></tr><tr><td>AI 融合创新带</td><td>思想链接→创新链→规模输出的全链路融合</td><td>A1 矿场→A2 冶炼厂→A3 出厂码头 + 两翼服务中台</td></tr></tbody></table></div>
+<h3>3.2 五项功能体系</h3>
+<div class="proposal-table"><table><thead><tr><th>功能</th><th>京行方案核心策略</th><th>空间载体</th></tr></thead><tbody><tr><td><strong>思想矿场</strong></td><td>八大学院（1952 年院系调整定型）+ 共享中试/实验室平台 + 校际小火车的动态链接</td><td>A1 众智园 + 学院路八校走廊</td></tr><tr><td><strong>思想冶炼厂</strong></td><td>站城缝合带（13 号线缝隙变客厅）+ 24/7 混合用 + 思想交换站 + 平价空间预留</td><td>A2 AI 原点社区</td></tr><tr><td><strong>思想出厂码头</strong></td><td>具身智能测试平台（永久展厅+物理测试大厅）+ 五大赛道×五大地块分工</td><td>A3 大钟寺</td></tr><tr><td><strong>场景赋能</strong></td><td>AI+医疗（北医三院）+ AI+影视（北影+北影制片厂）+ 具身智能（小月河宽阔人行空间）</td><td>东翼·小月河场景赋能翼</td></tr><tr><td><strong>服务支撑</strong></td><td>算力/投资/法律合规/知识产权/国际通道</td><td>西翼·中关村科技服务翼</td></tr></tbody></table></div>
+<p>---</p>
+<h2>四、全球案例研究（方案 B 迭代）</h2>
+<h3>4.1 案例对比分析（保留方案 A 框架，补充新案例洞察）</h3>
+<div class="proposal-table"><table><thead><tr><th>案例</th><th>地点</th><th>核心特征</th><th>本方案可借鉴</th><th>不可直接套用</th></tr></thead><tbody><tr><td><strong>Kendall Square</strong>（首要参照）</td><td>剑桥，MIT</td><td>MITIMCo 长期持有运营；从 9-5 到 24/7 演进；可负担住房严重短缺导致创新生态外溢</td><td>政府 rezone+长期持有机制；功能混合演进路径；开放空间对公众开放</td><td>⚠️ 中国大学围墙是行政边界不能拆——<strong>必须本地化改造</strong>（用校际小火车替代）</td></tr><tr><td><strong>MaRS Discovery District</strong></td><td>多伦多</td><td>医院旧址改造；大企业市场价付租反哺创业公司优惠租金的&quot;市场交叉补贴&quot;机制</td><td>具身智能测试平台的物理压缩飞轮模式；长期持有运营哲学</td><td>公共医疗体制差异</td></tr><tr><td><strong>费城 uCity Square</strong></td><td>费城</td><td>多平等校区（Drexel+UPenn+CHOP）缝隙织补；恢复两条街道切开 superblock</td><td>校际小火车的多校联通逻辑；Science Center 多主体共治模式</td><td>⚠️ uCity 被建筑评论家批为&quot;generic innovation district&quot;（通用模板）——<strong>京张+八大学院 1952 历史才是本地 authenticity</strong></td></tr><tr><td><strong>德国 IFA 柏林国际消费电子展</strong></td><td>柏林</td><td>一年一度展会→常年开放消费电子体验中心的转型</td><td>蓝景丽家&quot;家居大卖场常年陈列→AI 产品永久展厅+测试大厅&quot;的空间转型逻辑</td><td>—</td></tr><tr><td><strong>米兰 Salone del Mobile</strong></td><td>米兰</td><td>家居展→常年设计展示空间的形态参照</td><td>蓝景丽家从家居陈列转型为 AI 产品常年展示的空间形态</td><td>—</td></tr><tr><td><strong>西雅图南湖联盟</strong></td><td>西雅图</td><td>微软+亚马逊双核驱动，校企深度融合</td><td>产学研一体化机制</td><td>缺乏历史遗产叙事</td></tr><tr><td><strong>新加坡纬壹科技城</strong></td><td>新加坡</td><td>政府主导，产城融合，开放创新</td><td>场景开放与监管沙盒经验</td><td>文化土壤差异</td></tr><tr><td><strong>深圳南山科技园</strong></td><td>深圳</td><td>科技企业集聚，快速迭代文化</td><td>三区协同产业链组织</td><td>公共空间与文化叙事薄弱</td></tr></tbody></table></div>
+<blockquote><p>⚠️ Kendall Square 的<strong>反面教训</strong>：可负担住房短缺导致早期创新生态外溢。本方案在 A2 设计策略层面把平价空间预留作为<strong>机制组合</strong>（长期持有运营+成长阶梯退出+租金分层），<strong>直接对应&quot;近校混合街区+7×24 全天候科创生活街区+防 gentrification&quot;目标</strong>。</p></blockquote>
+<p>---</p>
+<h2>五、总体设计范围城市更新策略</h2>
+<h3>5.1 设计原则</h3>
+<p>1. <strong>历史定型尊重</strong>：A1 八大学院（1952 年院系调整）校园规模相仿、共享周边设施，校园不可改动，只能周边织补配套、突出大学城品味——规划应因地制宜，不能推倒重来。 2. <strong>AI 原生植入</strong>：新建设施从设计阶段即嵌入 AI 基础设施，不做后期改造。 3. <strong>缝合东西</strong>：以京张遗址公园纵向轴为主干，打通东西向慢行及车行交通，串联两翼服务腹地。 4. <strong>动态交通替代静态打通</strong>：中国大学围墙是行政边界不能拆——用<strong>校际小火车（自动驾驶小巴）</strong>在校园之间穿梭，实现 Kendall Square &quot;打通校园与街区&quot;的同等效果。 5. <strong>防止 gentrification</strong>：地段红了、生态却空了——平价空间预留是 A2 设计的底层机制，不是装饰项。</p>
+<h3>5.2 总体城市设计结构</h3>
+<p><strong>&quot;一轴串联、双翼赋能、三核联动&quot;</strong></p>
+<ul>
+<li><strong>京张遗址公园纵向轴</strong>（约 4.5km）：从五环路（北）至北三环西路（南），贯穿三核，与小月河蓝绿轴在 A2 段交汇，是思想链接的物理脊柱。</li>
+<li><strong>A2 原点社区</strong>：104.3 ha，定位为 AI 时代&quot;15 分钟社区&quot;原型，站城缝合带 + 24/7 混合用街区，AI 基础设施密度最高。</li>
+<li><strong>A1+A3 两核极点</strong>：北智（研发+织补+校际小火车）、南产（具身智能测试+五大赛道），与 A2 形成&quot;思想矿场→思想冶炼厂→思想出厂码头&quot;创新链闭环。</li>
+<li><strong>两翼服务腹地</strong>：东翼 AI+医疗/影视/具身智能场景赋能；西翼中关村专业服务支撑。</li>
+</ul>
+<p>---</p>
+<h2>六、重点区域详细设计</h2>
+<blockquote><p>⚠️ 以下 A1/A2/A3 各章中所有强度/高度/容积率/用地功能配比均为<strong>概念建议</strong>，标注来源 <code>DATA-SRC-PROVISIONAL-BOUNDARIES-20260605</code>（衍生自 2026-05-09 官方公告），待官方规划条件书/精确 CAD-GIS 边界替换。</p></blockquote>
+<p>---</p>
+<h3>6.1 A1 众智园 · 大学城科创织补区（192.1 ha，provisional）</h3>
+<blockquote><p>方案 B 新稿（完整内容见 <code>chapters/A1-众智园-大学城科创织补区.md</code>）</p></blockquote>
+<p><strong>核心哲学</strong>：A1 是&quot;<strong>思想矿场</strong>&quot;——八大学院（1952 年院系调整定型）的原始创新成果，是整个创新链的底座。</p>
+<p><strong>A1 定型逻辑</strong>：</p>
+<ul>
+<li><strong>历史定型</strong>：八大学院（北京科技大学、民族学院、地质大学、农业大学等）1952 年院系调整集中布局于学院路走廊，校园规模相仿、共享周边基础设施——<strong>校园不可改动</strong>。</li>
+<li><strong>空间实证</strong>：OSM 独立核对发现仓库边界偏离实际均值约 667 m，证实&quot;边界 provisional、校园 real&quot;——所有规划在校园缝隙之间做文章。</li>
+<li><strong>用地逻辑</strong>：留（校园本体）/ 改（周边低效边角地）/ 增（织补带新增功能）。</li>
+</ul>
+<p><strong>织补四项（方案 B 采纳的四件）</strong>： 1. 共享中试/实验室平台（学院路 30 家全国重点实验室、355 台大型科研仪器共享平台数字化+实体化） 2. 校际慢行连廊（沿京张轴北延 + 校园边界缝隙） 3. 第三方空间/双创街区（呼应氪空间学院 8 号 2170 m² 创新中心模式） 4. 大学城科创客厅（<strong>A1 核心功能地标</strong>，第 3 个朝圣功能地标候选——功能/空间系统，非纪念性建筑）</p>
+<p><strong>校际小火车（自动驾驶小巴）</strong>：</p>
+<ul>
+<li><strong>技术路线锁定</strong>：自动驾驶小巴首选（电车也可）。</li>
+<li><strong>收费</strong>：政府确定（排除纯商业定价）。</li>
+<li><strong>运营主体</strong>：学院路街道 + 八校 + 市区两级科创部门联合成立&quot;八大学院穿梭运营公司&quot;。</li>
+<li><strong>精神内核</strong>：用<strong>动态交通替代静态打通</strong>——不拆墙，动起来，实现 Kendall Square &quot;打通校园与街区&quot;的同等效果。</li>
+<li><strong>班次</strong>：5-10 分钟一班，核心是让思想在校园之间流动起来。</li>
+</ul>
+<p><strong>Kendall Square 本地化教训</strong>：</p>
+<ul>
+<li>Kendall Square 首要参照，但<strong>中国围墙不能拆</strong>——用校际小火车替代。</li>
+<li>借鉴 MITIMCo &quot;不卖地、长期持有运营策展生态&quot;哲学，保护织补带公共性。</li>
+<li>织补带落位：学院路两侧缝隙 + 京张轴南缘接口 + 八校园校门界面。</li>
+</ul>
+<p><strong>A1 学院路本地案例佐证</strong>：</p>
+<ul>
+<li>2025 年成立 11 家高校科研院所党建工作协调委员会 + 30 家全国重点实验室科技创新党建联合体（线上平台实现 12 家单位 355 台大型科研设备共享）。</li>
+<li>2026 年五大品牌活动（含京张铁路遗址公园的&quot;书潮派对&quot;&quot;美食嘉年华&quot;——京张公园已是本地校地联动主场地）。</li>
+<li>2026 年五大平台：研学游平台、造物局平台（高校文创集合店）、学院路夜校、2000 m² 线下科技创新联合体空间、&quot;学院青年联创&#x27;空间站&#x27;&quot;。</li>
+<li>氪空间(学院 8 号)：学清路甲 18 号东升科技园学院园，2170 m²，约 250 智慧工位，昌平线学知园站旁，首批入驻 5 家科技企业。</li>
+<li><strong>直接场地证据</strong>：2025 年十一&quot;八大学院美食嘉年华&quot;已在京张铁路遗址公园举办——京张公园是校地联动核心场地，规划应接住这个已有现实。</li>
+</ul>
+<p>---</p>
+<h3>6.2 A2 北京 AI 原点社区（104.3 ha，provisional）</h3>
+<blockquote><p>方案 B 新稿（完整内容见 <code>chapters/A2-北京AI原点社区.md</code>）</p></blockquote>
+<p><strong>核心哲学</strong>：A2 是&quot;<strong>思想冶炼厂</strong>&quot;——把 A1 输出的原始创新，变成&quot;从论文到公司&quot;的可孵化原型。</p>
+<p><strong>A2 定位（官方四层&quot;原点&quot;含义）</strong>：</p>
+<ul>
+<li><strong>人才原点</strong>：1 公里圈覆盖清华、北大、中科院——全国最密集的高水平智力资源；</li>
+<li><strong>技术原点</strong>：BAAI 智源研究院 + 大模型团队完整创新链（芯片→框架→大模型→应用）；</li>
+<li><strong>空间原点</strong>：9 km 创新带物理中段；</li>
+<li><strong>创新带逻辑原点</strong>：A1 原始创新→A2 成果转化/近校创业街区→A3 大规模产业落地，抖音总部在 A3。</li>
+</ul>
+<blockquote><p><strong>「原点大厦」</strong>：2026-03-23 东升大厦改名为&quot;原点大厦&quot;，是&quot;原点&quot;二字的地理命名锚点，<strong>非本方案设计对象</strong>（不进朝圣地标/设计清单）。</p></blockquote>
+<p><strong>A2 定位（用户定性）</strong>：跨北四环、五道口片区，实验室成果向商业创业转化的枢纽，近校混合街区，参照 Kendall Square 模式，目标做 7×24 小时全天候科创生活街区。</p>
+<p><strong>设计目标</strong>：让&quot;从思想到原型&quot;的转化成为城市生活<strong>默认配置</strong>，把科研→产品的偶然碰撞从概率事件变成结构保证。</p>
+<p><strong>四大设计动作</strong>：</p>
+<p><strong>动作一：站城一体——把 13 号线的「缝隙」变成「客厅」</strong></p>
+<ul>
+<li>13 号线五道口站+清华东路西口站&quot;双站夹持&quot;，轨道下方/两侧空间改造为连续公共空间序列。</li>
+<li>站点出口直接接入无围墙，站城缝合带是 A2 公共生活的脊柱。</li>
+<li>参照：墨尔本 Flinders Street Station 缝合案例。</li>
+</ul>
+<p><strong>动作二：24/7 混合用——消灭&quot;鬼城&quot;时段</strong></p>
+<ul>
+<li>每栋建筑底层裙房强制混合两种以上功能（办公+餐饮/零售/居住/共享设施）。</li>
+<li>24h 共享设施：24h 咖啡、共享实验室、夜间路演空间。</li>
+<li>公共空间梯度：热闹广场→安静公园→私密庭院（沿缝合带从站点向腹地递减）。</li>
+<li>参照：Kendall Square 从 9-5 到 24/7 的演进路径。</li>
+</ul>
+<p><strong>动作三：AI 人才引力场——20 m² 工位到 500 m² 实验室的弹性谱系</strong></p>
+<ul>
+<li>弹性空间单元：20 m²（独立开发者）→100 m²（初创团队）→500 m²（成长型公司）。</li>
+<li>思想交换站：定期 demo day / AI 读书会 / 跨学科交流活动。</li>
+<li>清华东路西口站接入 A1 校际小火车，步行 10 分钟可达 A2 核心——学生白天在清华/北大实验室，晚上步行 10 分钟就能在 A2 工位上写代码。</li>
+</ul>
+<p><strong>动作四：平价空间预留——防 gentrification 机制组合</strong></p>
+<ul>
+<li><strong>平价比例</strong>：不低于 30% 的产业空间用于平价创业工位/共享实验位（租金不高于市场价的 60%）。</li>
+<li><strong>长期持有</strong>：参照 MITIMCo&quot;不卖地、做长期地主开发商&quot;哲学，确保生态策展性。</li>
+<li><strong>成长阶梯退出</strong>：初创团队成长后有序迁出，防止空间固化。</li>
+<li><strong>容积率奖励</strong>：在容积率奖励指标中，将平价空间比例作为加分项。</li>
+<li>直接对应：A2「近校混合街区+7×24 全天候科创生活街区+防 gentrification」目标。</li>
+</ul>
+<p><strong>Kendall Square 本地化改造（A2 段的解决方案）</strong>：</p>
+<ul>
+<li>A1 段：用校际小火车（自动驾驶小巴）替代&quot;打通校园与街区&quot;；</li>
+<li>A2 段：依托 13 号线双站夹持做强步行网络，不试图打通任何大学围墙。</li>
+</ul>
+<p><strong>A2 指标（provisional，概念建议）</strong>：</p>
+<div class="proposal-table"><table><thead><tr><th>指标</th><th>目标值</th><th>说明</th></tr></thead><tbody><tr><td><code>site_area_sqm</code></td><td>1,043,237</td><td>PROV-KEY-002（provisional）</td></tr><tr><td><code>green_ratio</code></td><td>≥ 30%</td><td>含小月河绿带</td></tr><tr><td><code>public_space_ratio</code></td><td>≥ 15%</td><td>含站城缝合带</td></tr><tr><td><code>transit_access_coverage</code></td><td>≥ 80%（10 分钟步行）</td><td>13 号线双站腹地覆盖率</td></tr><tr><td><code>mixed_use_floor_ratio</code></td><td>≥ 40%（地面层）</td><td>24/7 混合用的底层空间</td></tr><tr><td><code>active_hours_per_day</code></td><td>≥ 16h（核心区）</td><td>7×24 目标的核心区底限</td></tr></tbody></table></div>
+<p>---</p>
+<h3>6.3 A3 大钟寺 AI 产业集聚区（72.0 ha，provisional）</h3>
+<blockquote><p>方案 B 新稿（完整内容见 <code>chapters/A3-大钟寺AI产业集聚区.md</code>）</p></blockquote>
+<p><strong>核心哲学</strong>：A3 是&quot;<strong>思想出厂码头</strong>&quot;——把 A2 站城缝合带完成的&quot;从论文到公司&quot;转化，变成&quot;从公司到规模产品&quot;的规模输出。</p>
+<p><strong>A3 定性（官方公告原文）</strong>：建设更具世界影响力、城市发展活力的城市型人工智能创新街区；发挥领军企业牵引优势，重点围绕<strong>智能体、智能终端、内容消费等 AI 原生和 AI+ 融合赋能新业态</strong>，探索数据要素与数字资产流通机制，建设国际一流的智能经济培育生态。</p>
+<p><strong>A3 范围四至（用户提供，provisional）</strong>：</p>
+<div class="proposal-table"><table><thead><tr><th>方位</th><th>边界</th></tr></thead><tbody><tr><td><strong>北</strong></td><td>大钟寺古钟博物馆文物保护边界</td></tr><tr><td><strong>东</strong></td><td>京张铁路遗址公园、地铁 13 号线</td></tr><tr><td><strong>南</strong></td><td>北三环西路</td></tr><tr><td><strong>西</strong></td><td>大钟寺东路</td></tr></tbody></table></div>
+<p><strong>五大赛道 ↔ 五大地块 一一对应（用户提供核心素材）</strong>：</p>
+<div class="proposal-table"><table><thead><tr><th>赛道</th><th>落地地块</th><th>空间策略</th></tr></thead><tbody><tr><td><strong>智能体</strong></td><td>蓝景丽家更新地块（核心，新建）</td><td>智能体与 AI 原生企业总部 + <strong>具身智能测试平台</strong></td></tr><tr><td><strong>AI 内容消费 / 多模态 AIGC / 数字人</strong></td><td>方恒广场、中坤广场（存量）</td><td>字节系内容生态垂直集聚，存量功能升级</td></tr><tr><td><strong>智能终端</strong></td><td>蓝景丽家（具身智能测试平台）+ 京仪/华杰（配套）</td><td>智能终端硬件常年展示+人类试用+研发测试</td></tr><tr><td><strong>数据要素 / 数字资产</strong></td><td>蓝景丽家（数字资产试点）+ 京仪/华杰（数据配套）</td><td>数据要素流通试点空间</td></tr><tr><td><strong>AI 合规服务</strong></td><td>京仪科技大厦、华杰大厦（存量置换）</td><td>AI 知识产权/审计/合规/投融资专业服务带</td></tr></tbody></table></div>
+<p><strong>动作一：蓝景丽家更新地块（A3 核心，新建综合体）——永久产品展厅 + 测试大厅</strong></p>
+<p><strong>核心定位</strong>：AI 国际交流中心 + 智能体与 AI 原生企业总部 + 数字资产试点 + <strong>具身智能测试平台（AI 产品常年展示+测试场所）</strong>。</p>
+<p><strong>为什么是「具身智能测试平台」而非「公共算力平台」</strong>：</p>
+<ul>
+<li>原蓝景丽家是<strong>家居大卖场</strong>——大尺度连续展厅 + 常年陈列 + 人类试用空间（试坐沙发、试用厨电、走完整屋样板间），这些特征天然适配<strong>机器人/智能体/智能终端产品的物理测试+常年展示+人类试用</strong>。</li>
+<li>具身智能（机器人/智能终端）的产品化路径必须有物理空间承载——算力是&quot;云端&quot;概念，走阿里云/火山引擎/腾讯云即可，无需自建。</li>
+<li><strong>国际参照</strong>：德国 IFA（柏林国际消费电子展）从一年一度展会→常年开放的消费电子体验中心的转型，是&quot;会展业态→常年展示业态&quot;的经典案例；米兰 Salone del Mobile 家居展是家居大卖场→常年设计展示空间的形态参照。</li>
+</ul>
+<p><strong>具身智能测试平台四子项</strong>： 1. <strong>AI 产品常年展示大厅</strong>：AI 机器人/智能体/智能终端的常年展厅+整屋样板间式体验流线。 2. <strong>物理测试区</strong>：机器人导航、避障、人机交互、操作能力的实物测试空间；支持研发测试、产品路演、行业 demo day。 3. <strong>人类试用流线</strong>：访客可在一天之内体验多种 AI 产品（从原家居卖场的&quot;逛店流线&quot;转化而来）。 4. <strong>公共性开放</strong>：向产业人士、媒体、普通公众开放参观试用，而非内部专用实验室。</p>
+<p><strong>容积率：≤ 2.5</strong>（用户决策——不追求&quot;盖楼盖到底&quot;，在文物保护与产业开发之间取得平衡）。</p>
+<p><strong>其余四地块动作</strong>：</p>
+<ul>
+<li><strong>动作二：方恒广场、中坤广场</strong>（存量升级）：字节系内容生态垂直集聚，底层活化，餐饮/零售/24h 便利店与办公混合。</li>
+<li><strong>动作三：古建北侧缓冲区</strong>（低密严控）：紧邻大钟寺古钟博物馆，严控强度（容积率≤1.0，限高≤12m，密度≤25%），引入 AI+文博数字文创、AR 文化试验。</li>
+<li><strong>动作四：京张遗址公园 A3 段</strong>（开放绿廊）：户外路演场地、临时展览设施、产业+公园过渡节点；与 A1/A2 步行贯通（京张轴南端起点）。</li>
+<li><strong>动作五：京仪/华杰</strong>（存量置换）：AI 专业服务垂直集聚带（知识产权/合规/投融资/数据配套），服务 5 大赛道。</li>
+</ul>
+<p><strong>三级产品/测试互济链</strong>：</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>位置</th><th>功能</th><th>空间类型</th></tr></thead><tbody><tr><td>A1 算料+学术</td><td>A1 众智园</td><td>实验室 GPU+数据+论文</td><td>高校实验室+共享平台</td></tr><tr><td>A2 试产空间</td><td>A2 原点社区</td><td>初创期产品化补贴空间（办公室+共享实验+demo day）</td><td>站城缝合带弹性空间</td></tr><tr><td>A3 具身智能测试平台</td><td>A3 蓝景丽家</td><td>成长期物理测试+常年展示+人类试用</td><td>永久展厅+测试大厅+试人流线</td></tr></tbody></table></div>
+<p>算力按需接入云服务（三区均无需自建算力平台）。</p>
+<p><strong>A3 指标（provisional，概念建议）</strong>：</p>
+<div class="proposal-table"><table><thead><tr><th>指标</th><th>目标值</th><th>说明</th></tr></thead><tbody><tr><td><code>site_area_sqm</code></td><td>约 720,000</td><td>PROV-KEY-003（provisional）</td></tr><tr><td><code>green_ratio</code></td><td>≥ 25%</td><td>含京张公园 A3 段+口袋公园</td></tr><tr><td><code>public_space_ratio</code></td><td>≥ 12%</td><td>含站点广场+缝合带</td></tr><tr><td><code>transit_access_coverage</code></td><td>≥ 90%（10 分钟步行）</td><td>大钟寺站 13 号线南端总站</td></tr><tr><td><code>mixed_use_floor_ratio</code></td><td>≥ 50%（地面层）</td><td>已成熟产业区应强化混合用</td></tr><tr><td><code>active_hours_per_day</code></td><td>≥ 18h（核心区）</td><td>产业+配套生活双重活跃</td></tr></tbody></table></div>
+<p>---</p>
+<h2>七、AI 创新生态与场景体系</h2>
+<h3>7.1 AI 场景卡（≥10 张，方案 B 更新版）</h3>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>场景名称</th><th>类型</th><th>所在空间</th><th>核心功能</th><th>用户</th><th>清权说明</th></tr></thead><tbody><tr><td>1</td><td><strong>京行历史时刻馆</strong></td><td>文化体验</td><td>A2 京张轴核心段</td><td>沉浸式 AI 展览，1909→2026 城市变迁</td><td>访客/居民</td><td>历史文献+AI 生成，标注生成内容</td></tr><tr><td>2</td><td><strong>AI 原点时刻钟</strong></td><td>公共艺术</td><td>A2 原点广场</td><td>AI 驱动的城市实时数据艺术</td><td>全人群</td><td>公开城市数据 API，匿名化处理</td></tr><tr><td>3</td><td><strong>AI 共享算力跑道</strong></td><td>产业测试</td><td>A1 众智园</td><td>开源模型评测+学院路仪器共享 AI 调度</td><td>开发者/研究员</td><td>参与高校授权</td></tr><tr><td>4</td><td><strong>校际小火车（自动驾驶小巴）</strong></td><td>交通创新</td><td>A1 学院路八校走廊</td><td>5-10 分钟一班，穿梭校园边界；动态链接代替静态打通</td><td>八校师生/居民</td><td>原创概念，无版权</td></tr><tr><td>5</td><td><strong>全息铁路叙事步道</strong></td><td>公共艺术</td><td>京张遗址公园全线</td><td>AI 生成历史场景投影</td><td>全人群</td><td>历史档案+AI 生成，标注</td></tr><tr><td>6</td><td><strong>智慧社区服务亭</strong></td><td>公共服务</td><td>A2 三社区</td><td>24h AI 政务/生活服务</td><td>居民/企业</td><td>政府公开数据，人工复核 AI 回复</td></tr><tr><td>7</td><td><strong>平价创业工位+共享实验位</strong></td><td>产业服务</td><td>A2 站城缝合带</td><td>不高于市场价 60% 的创业空间，含共享实验设备</td><td>初创团队/个人开发者</td><td>参照 MITIMCo 长期持有模式</td></tr><tr><td>8</td><td><strong>小月河 AI 滨水体验</strong></td><td>生活服务</td><td>东翼小月河</td><td>AI 生成的滨水活动推荐；与北医三院健康数据联动</td><td>居民/访客/患者</td><td>天气+活动数据，标注 AI 推荐</td></tr><tr><td>9</td><td><strong>AI+医疗场景实验室</strong></td><td>产业测试+公众</td><td>东翼（北医三院周边）</td><td>AI 辅助诊断、数字孪生健康、远程医疗的落地验证</td><td>医患/科技企业</td><td>北医三院授权合作场景</td></tr><tr><td>10</td><td><strong>AI+影视内容工坊</strong></td><td>产业测试+公众</td><td>东翼（北影+北影制片厂）</td><td>AI 编剧、特效、虚拟制片、内容审核；制片厂改造完成后同步承载</td><td>创作者/制片方/科技企业</td><td>北影合作+制片厂改造项目</td></tr><tr><td>11</td><td><strong>无人配送城市验证区</strong></td><td>产业测试</td><td>A3 大钟寺</td><td>多车型混行配送安全验证（封闭测试环境）</td><td>物流企业/居民</td><td>封闭测试区，开放观展</td></tr><tr><td>12</td><td><strong>具身智能测试平台（AI 产品永久展厅+测试大厅）</strong></td><td>产业测试+公众</td><td>A3 蓝景丽家更新地块</td><td>机器人/智能体/智能终端的物理测试、常年展示、人类试用</td><td>全人群</td><td>参照 IFA/Salone del Mobile 模式，原创设计</td></tr></tbody></table></div>
+<blockquote><p>⚠️ AI 生成内容（场景 1、2、5、8、10）：已标注生成工具与参考素材，不冒充真实历史影像或现场照片，不得替代实测数据或审批结论。</p></blockquote>
+<h3>7.2 AI 产业测试验证场景（≥3 个）</h3>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>测试场景</th><th>测试目标</th><th>测试范围</th><th>验证周期</th><th>预期成果</th></tr></thead><tbody><tr><td>T1</td><td>AI 共享算力/仪器调度平台</td><td>跨高校算力与大型仪器资源最优调度</td><td>A1 众智园（学院路 30 家重点实验室）</td><td>12 个月</td><td>开源调度算法+行业标准草案</td></tr><tr><td>T2</td><td>具身智能测试平台验证</td><td>机器人/智能终端的物理测试、常年展示、人类试用标准流程</td><td>A3 蓝景丽家（具身智能测试平台）</td><td>18 个月</td><td>可复制推广的具身智能测试空间标准</td></tr><tr><td>T3</td><td>AI 社区治理开源工具</td><td>多方参与的社区决策工具（参照 uCity Science Center 模式）</td><td>A2 原点社区（平价空间运营机构）</td><td>24 个月</td><td>开放治理工具包+国际标准提案</td></tr></tbody></table></div>
+<h3>7.3 用户画像（≥5 类，方案 B 更新）</h3>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>画像名称</th><th>身份描述</th><th>核心需求</th><th>主要场景</th><th>AI 交互方式</th></tr></thead><tbody><tr><td>P1</td><td><strong>京行探索者</strong></td><td>跨城市访客，对历史+科技有兴趣</td><td>快速了解京行故事，拍照打卡</td><td>京行历史时刻馆、全息步道</td><td>AR 导航+AI 讲解</td></tr><tr><td>P2</td><td><strong>原点居民</strong></td><td>A2 社区居民，30-45 岁，有子女</td><td>便利生活、子女教育、医疗</td><td>智慧服务亭、AI+医疗场景</td><td>语音+App</td></tr><tr><td>P3</td><td><strong>众智开发者</strong></td><td>八校研究员/AI 工程师，25-35 岁</td><td>算力获取、模型评测、合作</td><td>AI 算力跑道、校际小火车、开发者工坊</td><td>CLI+API</td></tr><tr><td>P4</td><td><strong>智造工程师</strong></td><td>A3 企业员工，25-40 岁</td><td>产品测试、技术交流、市场</td><td>具身智能测试平台、AI+影视工坊、无人配送验证区</td><td>App+工业终端</td></tr><tr><td>P5</td><td><strong>全球访学者</strong></td><td>国际 AI 学者/政策制定者，35-55 岁</td><td>了解中国 AI 城市实践、合作</td><td>AI 原点时刻钟、伦理实验室、AI+医疗场景</td><td>导览+会议系统</td></tr><tr><td>P6</td><td><strong>创业者（平价空间用户）</strong></td><td>初创团队/个人开发者，22-35 岁</td><td>负担得起的工位+共享实验</td><td>平价创业工位+共享实验位、AI 共享算力跑道</td><td>App+API</td></tr></tbody></table></div>
+<p>---</p>
+<h2>八、用地建筑规模拆改留</h2>
+<blockquote><p>⚠️ 方案 B 细化版：核心原则是<strong>不碰校园，只织缝隙</strong>。A1 校园本体（1952 年定型）保留；A2/A3 已有建筑分级保留/更新；新建空间集中在线路两侧可开发缝隙。</p></blockquote>
+<div class="proposal-table"><table><thead><tr><th>区域</th><th>现状保留（ha）</th><th>更新改造（ha）</th><th>新建（ha）</th><th>合计（ha）</th><th>备注</th></tr></thead><tbody><tr><td>A1 众智园</td><td><strong>约 130</strong>（高校校园本体，不触动）</td><td>约 30（周边低效用地/边角地）</td><td>约 32（织补带新增功能）</td><td>192.1</td><td>校园不可改动原则；拆改留均指校园外缝隙</td></tr><tr><td>A2 AI 原点</td><td>约 31（现状住宅及建成区）</td><td>约 31（低效产业用地）</td><td>约 42（站城缝合带+混合用楼宇）</td><td>104.3</td><td>含小月河绿带约 3-5 ha</td></tr><tr><td>A3 大钟寺</td><td>约 14（方恒/中坤/京仪/华杰部分楼栋）</td><td>约 29（功能升级+存量置换）</td><td>约 29（蓝景丽家更新地块，容积率≤2.5）</td><td>72.0</td><td>古建北侧缓冲区（≤1.0 容积率）严格保护</td></tr><tr><td><strong>合计</strong></td><td><strong>约 175</strong></td><td><strong>约 90</strong></td><td><strong>约 103</strong></td><td><strong>约 368</strong></td><td></td></tr></tbody></table></div>
+<blockquote><p>⚠️ <strong>概念建议</strong>：上述拆改留比例为概念设计建议，非官方规划结论。待官方用地权属调查与控规条件发布后，以专业团队复算为准。</p></blockquote>
+<p>---</p>
+<h2>九、交通、轨道、市政与公共服务</h2>
+<h3>9.1 交通系统</h3>
+<p><strong>轨道交通</strong>：</p>
+<ul>
+<li>13 号线：优化大钟寺站一体化方案，提高与蓝景丽家/方恒等 A3 核心地块的连通水平；A2 段双站（五道口站+清华东路西口站）夹持形成站城缝合带核心。</li>
+<li>昌平线南延：与大钟寺站换乘优化。</li>
+<li>远期：A2 核心区考虑 APM（自动旅客捷运系统）环线。</li>
+</ul>
+<p><strong>校际小火车（自动驾驶小巴）——A1 特色交通创新</strong>：</p>
+<ul>
+<li>路线：覆盖学院路八校走廊，在校园边界之间设置穿梭站点。</li>
+<li>班次：5-10 分钟一班，核心是让思想在校园之间流动起来。</li>
+<li>运营主体：学院路街道 + 八校 + 市区两级科创部门联合成立&quot;八大学院穿梭运营公司&quot;。</li>
+<li>收费：政府确定（排除纯商业定价）。</li>
+<li><strong>关键意义</strong>：用<strong>动态交通替代静态打通</strong>——中国大学围墙是行政边界不能拆，校际小火车实现 Kendall Square &quot;打通校园与街区&quot;的同等效果。</li>
+</ul>
+<p><strong>道路交通</strong>：</p>
+<ul>
+<li>主干：学院路（双向 6 车道）、西直门外大街（双向 8 车道）。</li>
+<li>次干：京张遗址公园两侧道路建议调整为&quot;慢行优先街&quot;（A2 段）。</li>
+<li>大钟寺地铁站所在路口四象限步行连通设计，完善非机动车停放等静态交通组织。</li>
+</ul>
+<p><strong>慢行系统</strong>：</p>
+<ul>
+<li><strong>京张遗址公园纵向慢行专用道</strong>（3.5m 宽，双向）：全线贯通，A1→A2→A3 的物理脊柱。</li>
+<li><strong>小月河滨河骑行道</strong>（2.5m 宽）：连接 A2 与东翼场景赋能翼。</li>
+<li><strong>A3 步行连通</strong>：京张公园 A3 段→蓝景丽家更新地块→大钟寺站无障碍连通。</li>
+<li><strong>校际慢行连廊</strong>：沿京张轴北延+校园边界缝隙（自行车+步行，不允许机动车）。</li>
+</ul>
+<h3>9.2 市政基础设施</h3>
+<p><strong>新型基础设施</strong>：</p>
+<ul>
+<li>5G 基站密度：每 0.5 km² 不少于 8 个基站。</li>
+<li>边缘计算节点：每核不少于 3 个边缘数据中心。</li>
+<li>智能感知网络：交通、环境、安全三类传感器全覆盖。</li>
+</ul>
+<p><strong>能源系统</strong>：</p>
+<ul>
+<li>光伏建筑一体化（BIPV）：新建建筑屋顶全覆盖。</li>
+<li>储能微网：A2 原点社区试点区域微电网。</li>
+</ul>
+<p>---</p>
+<h2>十、蓝绿空间、公共空间与城市风貌</h2>
+<h3>10.1 蓝绿空间网络</h3>
+<p><strong>&quot;一廊 · 两带 · 多点&quot;</strong></p>
+<ul>
+<li><strong>一廊</strong>：京张遗址公园绿廊（20-60m 宽，南北贯通，约 4.5km），A1/A2/A3 纵向脊柱。</li>
+<li><strong>两带</strong>：小月河滨河绿带（40m 宽，东西连接 A2 与东翼）+ 学院路道路绿带（10m 宽）。</li>
+<li><strong>多点</strong>：三核内部口袋公园（每核不少于 5 处，不少于 500 m²/处）；A3 古建北侧缓冲区低密绿地（严控强度，≤25% 密度）。</li>
+</ul>
+<h3>10.2 三个&quot;朝圣功能地标&quot;（方案 B 更新：均为功能/空间系统，非纪念性建筑）</h3>
+<blockquote><p>⚠️ 任务书要求≥3 个&quot;AI 朝圣地标&quot;。三个朝圣地标是<strong>三种功能/空间范式</strong>，不是三栋被点名的纪念性建筑。</p></blockquote>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>功能地标名称</th><th>空间形态</th><th>核心体验</th><th>清权状态</th></tr></thead><tbody><tr><td>L1</td><td><strong>A1 大学城科创客厅</strong></td><td>共享中试/实验室平台+校际小火车站点+双创街区组成的综合功能节点</td><td>在学院路八校交叉口，体验&quot;高校知识溢出&quot;被最快速度吸收为创业火种的过程</td><td>清权开放</td></tr><tr><td>L2</td><td><strong>A2 站城缝合带+思想交换站网络</strong></td><td>13 号线双站夹持的连续公共空间序列+定期 demo day/AI 读书会活动</td><td>&quot;从论文到公司&quot;的 10 分钟步行体验——清华实验室出来，10 分钟到 A2 工位；站厅就是展厅，台阶就是路演台</td><td>清权开放</td></tr><tr><td>L3</td><td><strong>A3 具身智能测试平台（蓝景丽家）</strong></td><td>永久展厅+物理测试大厅+人类试用流线组成的综合系统</td><td>与蓝景丽家原家居大卖场&quot;常年陈列+人类试用&quot;一脉相承；从沙发试用流线→机器人试用流线，是&quot;中国制造→中国智造&quot;的城市空间缩影</td><td>参照 IFA/Salone del Mobile 模式，原创设计</td></tr></tbody></table></div>
+<blockquote><p>⚠️ <strong>声明</strong>：以上地标为本方案概念建议，非已批准建设项目，不替代正式规划审批。</p></blockquote>
+<h3>10.3 城市风貌管控</h3>
+<div class="proposal-table"><table><thead><tr><th>分区</th><th>风貌定位</th><th>色彩引导</th><th>高度引导</th><th>备注</th></tr></thead><tbody><tr><td>京张遗址公园核心段</td><td>历史叙事·低矮亲和</td><td>暖灰+京张蓝点缀</td><td>≤12m（文保控高）</td><td>含古建缓冲区</td></tr><tr><td>A1 众智园（织补带）</td><td>学术严谨·绿色智慧·大学城品质</td><td>浅灰+绿</td><td>24-45m（校园外织补带）</td><td>不触动校园本体</td></tr><tr><td>A2 原点社区核心（站城缝合带）</td><td>未来示范·现代科技·7×24 活力</td><td>白+银+AI 紫点缀</td><td>24-60m（梯度）</td><td>参照 Kendall Square 开放空间策略</td></tr><tr><td>A3 大钟寺（蓝景丽家新建）</td><td>智造活力·国际展示·具身智能</td><td>深灰+科技蓝</td><td>参照容积率≤2.5 换算（概念建议）</td><td>新建不盖楼盖到底，留视廊与古建对话</td></tr><tr><td>A3 方恒/中坤（存量）</td><td>产业更新·内容生态</td><td>保持现有风貌主体，底层活化</td><td>维持现状</td><td>不拆除</td></tr></tbody></table></div>
+<blockquote><p>⚠️ <strong>概念建议</strong>：色彩与高度引导为概念建议，待官方城市设计导则及控规条件发布后，以官方数据为准。</p></blockquote>
+<p>---</p>
+<h2>十一、更新项目清单与分期实施</h2>
+<blockquote><p>⚠️ 以下分期安排为概念建议，待官方实施计划与财政安排确认后复算。</p></blockquote>
+<div class="proposal-table"><table><thead><tr><th>分期</th><th>年限</th><th>重点工程</th><th>涉及区域</th><th>预期效果</th></tr></thead><tbody><tr><td>一期</td><td>2026-2028</td><td>①京张轴先行段（学院路-五道口，1.8km）+ A2 站城缝合带核心段 ②A1 校际小火车（自动驾驶小巴）线路规划+运营公司组建</td><td>A1+A2</td><td>形成展示窗口；校际联通启动</td></tr><tr><td>二期</td><td>2028-2030</td><td>③A3 蓝景丽家更新地块拆除重建（具身智能测试平台+国际交流中心） ④A3 方恒/中坤功能升级 ⑤东翼北影制片厂改造（AI+影视场景同步规划）</td><td>A3+东翼</td><td>具身智能测试平台+AI+影视场景成形；五大赛道正式落地</td></tr><tr><td>三期</td><td>2030-2035</td><td>⑥京张轴全线贯通（A1→A3 步行贯通） ⑦A1 织补带全面建成 ⑧两翼服务中台运营</td><td>全域</td><td>整体运营；三区两翼协同</td></tr></tbody></table></div>
+<p>---</p>
+<h2>十二、指标体系</h2>
+<h3>12.1 核心视觉指标（必选，方案 B 更新）</h3>
+<div class="proposal-table"><table><thead><tr><th>指标</th><th>数值</th><th>数据来源</th><th>状态</th></tr></thead><tbody><tr><td><code>site_area_sqm</code></td><td>待精化（统筹研究≈43,600,000 m²；总体设计≈11,400,000 m²；三重点区域≈3,690,000 m²）</td><td>官方公告（2026-05-09），复算见 provisional_boundaries.geojson</td><td>⚠️ provisional</td></tr><tr><td><code>green_ratio</code></td><td>统筹研究层估算约 30-35%；A2≥30%；A3≥25%（含京张公园 A3 段）</td><td>provisional geometry 估算</td><td>⚠️ provisional</td></tr><tr><td><code>public_space_ratio</code></td><td>A2≥15%；A3≥12%；统筹研究层待测算</td><td>provisional geometry 估算</td><td>⚠️ provisional</td></tr></tbody></table></div>
+<blockquote><p>⚠️ <strong>核心视觉指标基于 provisional geometry 估算</strong>，为低置信度设计参考值。正式数据发布后须复算并更新。</p></blockquote>
+<h3>12.2 产业与功能指标（参考）</h3>
+<div class="proposal-table"><table><thead><tr><th>指标</th><th>目标值</th><th>依据</th></tr></thead><tbody><tr><td>AI 场景卡数量</td><td>≥12 张</td><td>含≥3 个产业测试场景（算力调度/具身智能/AI 治理）</td></tr><tr><td>朝圣功能地标</td><td>≥3 个</td><td>三种功能/空间系统（非纪念性建筑）</td></tr><tr><td>用户画像覆盖</td><td>≥6 类</td><td>含居民/访客/开发者/工程师/学者/创业者</td></tr><tr><td>校际小火车站点覆盖</td><td>≥8 个站点（覆盖八大学院）</td><td>学院路走廊八校布局</td></tr><tr><td>平价空间比例（A2）</td><td>≥30% 的产业空间（租金≤市场价 60%）</td><td>防 gentrification 机制</td></tr><tr><td>active_hours_per_day（A2 核心区）</td><td>≥16h</td><td>7×24 科创生活街区目标</td></tr><tr><td>active_hours_per_day（A3 核心区）</td><td>≥18h</td><td>产业+配套生活双重活跃</td></tr></tbody></table></div>
+<p>---</p>
+<h2>十三、风险、合规与版权</h2>
+<h3>13.1 主要风险识别</h3>
+<div class="proposal-table"><table><thead><tr><th>风险类型</th><th>具体风险</th><th>应对策略</th></tr></thead><tbody><tr><td>数据风险</td><td>官方用地边界尚未精化；OSM 核对显示偏差均值约 667m</td><td>使用 provisional geometry；所有边界标注&quot;概念建议/provisional&quot;，附替换规则</td></tr><tr><td>权属风险</td><td>A1 八大学院权属协调复杂；北影制片厂改造进行中</td><td>分步签订共建协议；改造完成时同步规划 AI+影视场景承载</td></tr><tr><td>技术风险</td><td>具身智能测试平台运营标准尚无成熟先例</td><td>参照 IFA 常年展会运营模式 + 字节系联合运营</td></tr><tr><td>gentrification 风险</td><td>Kendall Square 最大教训：地段红了、生态却空了</td><td>平价空间预留机制（≥30%，租金≤60% 市场价）已在 A2 设计底层嵌入</td></tr><tr><td>文保冲突风险</td><td>A3 大钟寺古建北侧缓冲区文保约束</td><td>严控指标（≤1.0 容积率，≤12m 限高，≤25% 密度），AI+文博数字文创替代实体开发</td></tr></tbody></table></div>
+<h3>13.2 合规声明</h3>
+<ul>
+<li>本方案所有内容为概念设计建议，<strong>不替代政府正式规划审批</strong>。</li>
+<li>涉及建设强度（容积率≤2.5 蓝景丽家）、建筑高度、道路线位、土地权属等内容，均为<strong>概念建议</strong>，非官方审定结论。</li>
+<li>AI 生成图像/内容已标注生成工具与参考素材，不冒充真实影像或现场照片。</li>
+<li>所有数据引用已标注来源，可追溯。</li>
+<li><strong>边界声明</strong>：所有空间边界来自 <code>provisional_boundaries.geojson</code>（来源 <code>DATA-SRC-PROVISIONAL-BOUNDARIES-20260605</code>，衍生自 2026-05-09 官方公告），为临时替代边界，待官方 CAD/GIS/PDF 精确边界发布后替换。</li>
+</ul>
+<p>---</p>
+<h2>十四、参考资料</h2>
+<p>1. 北京市海淀区人民政府. 百年京张 AI 创新带城市设计国际方案征集资格预审公告[EB/OL]. https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html, 2026-05-09. 2. open-city-ai. haidian GitHub Repository[EB/OL]. https://github.com/open-city-ai/haidian, 2026. 3. 中国城市规划设计研究院. 城市用地分类与规划建设用地标准 GB50137-2017[S]. 北京: 中国建筑工业出版社, 2017. 4. 北京市规划和自然资源委员会. 北京市控制性详细规划编制技术标准与成果规范[Z]. 2022. 5. MIT Lincoln Laboratory &amp; Cambridge City. Kendall Square Initiative[EB/OL]. 长期持有运营机制参照 MITIMCo 模式. 6. MaRS Discovery District. Annual Impact Report 2023[R]. Toronto, 2023. 多伦多医院旧址改造+市场交叉补贴机制. 7. University City Science Center &amp; Wexford Science + Technology. uCity Square Master Plan[EB/OL]. Philadelphia, 2015. 费城多校缝隙织补案例（参照教训，非模板套用）. 8. IFA Berlin. IFA Sommergarten &amp; Permanent Exhibition Spaces[EB/OL]. Berlin, 2024. 常年展会转型参照. 9. 世界银行. Cities in the Age of AI: A Framework for Urban Innovation[M]. Washington D.C.: World Bank Publications, 2025. 10. UN-Habitat. New Urban Agenda[EB/OL]. https://habitat3.org/the-new-urban-agenda/, 2016. 11. 学院路街道办事处. 学院路地区科技创新党建联合体工作纪实[EB/OL]. 海淀区政府网站, 2025-2026. 八大学院联动机制+五大品牌活动+五大平台资料来源. 12. open-city-ai/haidian. provisional_boundaries.geojson[EB/OL]. DATA-SRC-PROVISIONAL-BOUNDARIES-20260605.</p>
+<p>---</p>
+<p><em>本方案为 AI 智能体（QClaw / yubaoyi2026）参赛作品，生成于 2026-08-31。方案 B&quot;京行·百年计划&quot;（迭代 2）。所有概念建议不替代正式规划审批。</em></p>
+</main>
+</body>
+</html>
