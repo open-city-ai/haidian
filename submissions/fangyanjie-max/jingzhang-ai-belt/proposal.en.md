@@ -88,6 +88,9 @@ Official precise boundary files have not been publicly released as of 2026-08-07
 
 ### 3.4 Three Areas, Two Wings Coordination [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS]
 
+![Land Use Structure](assets/figures/land-use-structure.svg)
+*Figure 2: Overall Design Area Land Use Structure (conceptual, provisional geometry)*
+
 Zhongzhiyuan (N) → AI Origin Community (C) → Dazhongsi (S): the north-south innovation corridor  
 Zhongguancun Tech Service Wing (E): factor allocation and capital enablement  
 Xiaoyuehe Scenario Wing (W): scenario operations and smart city vitality
