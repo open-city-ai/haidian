@@ -56,7 +56,7 @@ version: "1.0.0"
 
 **重点区域（约368.4 ha）**：自北向南依次为众智园AI自主创新加速区（约192.1 ha）、北京AI原点社区（约104.3 ha）、大钟寺AI产业聚集区（约72.0 ha）。[data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003]
 
-![场地总览图](assets/figures/site-overview.png)
+![场地总览图](assets/figures/site-overview.svg)
 *图1：百年京张AI创新带总体空间结构示意（临时边界，待正式数据补齐）*
 
 ---
@@ -108,7 +108,7 @@ version: "1.0.0"
 
 三区形成南北创新走廊，两翼分别承担要素服务与场景运营功能，整体构成双循环、立体协同的AI生态格局。
 
-![土地利用结构图](assets/figures/land-use-structure.png)
+![土地利用结构图](assets/figures/land-use-structure.svg)
 *图2：总体设计范围用地结构示意（概念方案，临时几何）*
 
 ---
@@ -153,7 +153,7 @@ version: "1.0.0"
 
 ## 第五章 AI+场景赋能新范式与智能化城市设计 [depth:dd.08] [depth:dd.09] [depth:dd.10]
 
-![重点区域设计意向](assets/figures/key-areas.png)
+![重点区域设计意向](assets/figures/key-areas.svg)
 *图3：三大重点区域设计意向（概念参考，临时边界）*
 
 ### 5.1 十张AI场景卡 [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]
@@ -197,7 +197,7 @@ version: "1.0.0"
 
 ## 第六章 AI公共空间、智能原生新业态与朝圣地标 [depth:dd.11] [depth:dd.12] [depth:dd.13]
 
-![交通蓝绿网络示意](assets/figures/mobility-bluegreen.png)
+![交通蓝绿网络示意](assets/figures/mobility-bluegreen.svg)
 *图4：交通·轨道·蓝绿网络示意（概念，不代表工程线位方案）*
 
 ### 6.1 京张遗址公园AI公共空间策略
@@ -333,7 +333,7 @@ version: "1.0.0"
 
 ### 10.1 核心指标汇总
 
-![核心指标与设计目标证据](assets/figures/metrics-evidence.png)
+![核心指标与设计目标证据](assets/figures/metrics-evidence.svg)
 *图5：核心指标与设计目标证据（基于临时几何，待正式数据复算）*
 
 | 指标 | 值 | 状态 | 置信度 |

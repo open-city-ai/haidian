@@ -53,7 +53,7 @@ Official precise boundary files have not been publicly released as of 2026-08-07
 
 **Key Detailed Design Areas (~368.4 ha)**: Three sub-areas from north to south — Zhongzhiyuan AI Acceleration Area (~192.1 ha), Beijing AI Origin Community (~104.3 ha), Dazhongsi AI Industry Cluster (~72.0 ha). All use provisional boundaries pending official data. [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003]
 
-![Site Overview](assets/figures/site-overview.png)
+![Site Overview](assets/figures/site-overview.svg)
 *Figure 1: Overall Spatial Structure (provisional boundary, pending official data)*
 
 ---
@@ -119,7 +119,7 @@ Xiaoyuehe Scenario Wing (W): scenario operations and smart city vitality
 
 ## Chapter 5: AI+ Scenario Empowerment [depth:dd.08] [depth:dd.09] [depth:dd.10]
 
-![Key Areas Design Intent](assets/figures/key-areas.png)
+![Key Areas Design Intent](assets/figures/key-areas.svg)
 *Figure 3: Three Key Areas Design Intent (conceptual, provisional boundary)*
 
 ### 5.1 Ten AI Scenario Cards [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]
@@ -161,7 +161,7 @@ Xiaoyuehe Scenario Wing (W): scenario operations and smart city vitality
 
 ## Chapter 6: AI Public Space, Smart-Native Businesses, and Pilgrimage Landmarks [depth:dd.11] [depth:dd.12] [depth:dd.13]
 
-![Mobility Blue-Green Network](assets/figures/mobility-bluegreen.png)
+![Mobility Blue-Green Network](assets/figures/mobility-bluegreen.svg)
 *Figure 4: Transport, Rail, and Blue-Green Network (conceptual, not an engineering alignment)*
 
 ### 6.1 Jing-Zhang Heritage Park AI Public Space Strategy
@@ -245,7 +245,7 @@ Slow-mobility main axis: Jing-Zhang Heritage Park green corridor (suggested ≥2
 
 ### 10.1 Core Metrics Summary
 
-![Metrics Evidence](assets/figures/metrics-evidence.png)
+![Metrics Evidence](assets/figures/metrics-evidence.svg)
 *Figure 5: Core Metrics and Design Target Evidence (based on provisional geometry)*
 
 | Metric | Value | Status | Confidence |
