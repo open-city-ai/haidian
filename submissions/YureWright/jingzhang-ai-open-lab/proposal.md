@@ -3,7 +3,7 @@ title: 绣春来 Suture Line——把断裂的城市与社交缝回去
 author_github: YureWright
 language: zh
 license: CC-BY-SA-4.0
-summary: 以"缝合"为方法论的百年京张 AI 创新带城市设计方案：一根主脉、四种针法、四层缝合，把铁路遗址带从城市伤口转化为连续缝合绿道与 AI 相遇网络；43 项指标在 metrics.json 中逐项登记来源文件与公式，几何复算值与声明值、待验证目标明确区分，人工与纸面兜底贯穿所有 AI 设施。
+summary: 以"缝合"为方法论的百年京张 AI 创新带城市设计方案：一根主脉、四种针法、四层缝合，把铁路遗址带从城市伤口转化为连续缝合绿道与 AI 相遇网络；45 项编号指标与 6 项派生视觉指标（共 51 条）在 metrics.json 中逐项登记来源文件与公式，几何复算值与声明值、待验证目标明确区分，人工与纸面兜底贯穿所有 AI 设施。
 proposal_format_version: "2"
 translation_file: proposal.en.md
 ---
@@ -125,7 +125,7 @@ AI 不是装饰，是规划逻辑：**相遇节点的布局由设计假设驱动
 
 ## 十一、指标体系、面积复算与合规矩阵
 
-本方案 43 项指标在 metrics.json 中逐项登记计算方法、源文件与公式 [data:geometry/site_boundary.geojson]；凡可由设计图层按 EPSG:4548 复算的几何类指标给出复算值，声明值与待验证目标（如试点运营参数、需补充方法学的项）逐项标注，不虚称"全部复算"。核心复算值：SITE 面积 1141.3 ha [metric:A1]、道路密度 5.56 [metric:B7]、绿地率 6.9% [metric:E30]、建筑覆盖率 7.2% [metric:F37]。
+本方案 45 项编号指标与 6 项派生视觉指标（共 51 条）在 metrics.json 中逐项登记计算方法、源文件与公式 [data:geometry/site_boundary.geojson]；凡可由设计图层按 EPSG:4548 复算的几何类指标给出复算值，声明值与待验证目标（如试点运营参数、需补充方法学的项）逐项标注，不虚称"全部复算"。核心复算值：SITE 面积 1141.3 ha [metric:A1]、道路密度 5.56 [metric:B7]、绿地率 6.9% [metric:E30]、建筑覆盖率 7.2% [metric:F37]。
 
 ![指标证据链示意](assets/figures/metrics-evidence.png)
 

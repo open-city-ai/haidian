@@ -3,7 +3,7 @@ title: Suture Line (绣春来) — Stitching the Broken City and Its Social Fabr
 author_github: YureWright
 language: en
 license: CC-BY-SA-4.0
-summary: A Centennial Beijing-Zhangjiakou AI Innovation Belt urban design proposal built on "suturing" as its methodology: one main thread, four stitching moves, and four layers of social weaving that turn the railway heritage belt from an urban wound into a continuous stitched greenway and AI encounter network. All 43 indicators register their source files and formulas item by item in metrics.json, clearly distinguishing geometrically recalculated values, declared values, and targets awaiting verification; human and paper fallbacks run through every AI facility.
+summary: A Centennial Beijing-Zhangjiakou AI Innovation Belt urban design proposal built on "suturing" as its methodology: one main thread, four stitching moves, and four layers of social weaving that turn the railway heritage belt from an urban wound into a continuous stitched greenway and AI encounter network. All 45 numbered indicators plus 6 derived visual indicators (51 entries in total) register their source files and formulas item by item in metrics.json, clearly distinguishing geometrically recalculated values, declared values, and targets awaiting verification; human and paper fallbacks run through every AI facility.
 proposal_format_version: "2"
 translation_of: proposal.md
 ---
@@ -125,7 +125,7 @@ Implementation policy and operation: tripartite co-governance of street office +
 
 ## 11. Indicator System, Area Recalculation, and Compliance Matrix
 
-All 43 indicators register their calculation methods, source files, and formulas item by item in metrics.json [data:geometry/site_boundary.geojson]; geometric indicators that can be recalculated from design layers in EPSG:4548 are given recalculated values, while declared values and targets awaiting verification (e.g., pilot operation parameters, items needing additional methodology) are annotated item by item — the plan does not claim that "everything is recalculated." Core recalculated values: SITE area 1,141.3 ha [metric:A1], road density 5.56 [metric:B7], green ratio 6.9% [metric:E30], building coverage 7.2% [metric:F37].
+All 45 numbered indicators plus 6 derived visual indicators (51 entries in total) register their calculation methods, source files, and formulas item by item in metrics.json [data:geometry/site_boundary.geojson]; geometric indicators that can be recalculated from design layers in EPSG:4548 are given recalculated values, while declared values and targets awaiting verification (e.g., pilot operation parameters, items needing additional methodology) are annotated item by item — the plan does not claim that "everything is recalculated." Core recalculated values: SITE area 1,141.3 ha [metric:A1], road density 5.56 [metric:B7], green ratio 6.9% [metric:E30], building coverage 7.2% [metric:F37].
 
 ![Indicator evidence chain](assets/figures/metrics-evidence.en.png)
 
