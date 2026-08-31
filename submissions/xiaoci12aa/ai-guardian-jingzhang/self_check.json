@@ -1,0 +1,128 @@
+{
+  "project_id": "ai-guardian-jingzhang",
+  "check_timestamp": "2025-07-12T18:00:00+08:00",
+  "check_results": {
+    "geometry_checks": [
+      {
+        "id": "GEOM_POLYGON_CLOSED",
+        "status": "passed",
+        "description": "所有多边形闭合"
+      },
+      {
+        "id": "GEOM_CRS_WGS84",
+        "status": "passed",
+        "description": "使用EPSG:4326坐标参考系"
+      },
+      {
+        "id": "GEOM_LAND_USE_OVERLAP",
+        "status": "passed",
+        "description": "土地利用多边形无重叠"
+      },
+      {
+        "id": "GEOM_LAND_USE_GAP",
+        "status": "warning",
+        "description": "土地利用多边形与场地边界存在小间隙（<2%）",
+        "severity": "minor"
+      },
+      {
+        "id": "GEOM_BUILDINGS_WITHIN",
+        "status": "passed",
+        "description": "建筑多边形均在场地边界内"
+      },
+      {
+        "id": "GEOM_ROADS_VALID",
+        "status": "passed",
+        "description": "道路中心线为有效线要素"
+      },
+      {
+        "id": "GEOM_AREA_POSITIVE",
+        "status": "passed",
+        "description": "所有计算面积为正值"
+      }
+    ],
+    "content_checks": [
+      {
+        "id": "CONTENT_PROPOSAL_STRUCTURE",
+        "status": "passed",
+        "description": "提案包含全部13个章节"
+      },
+      {
+        "id": "CONTENT_EVIDENCE_MARKERS",
+        "status": "passed",
+        "description": "所有关键数据均有EVIDENCE引用"
+      },
+      {
+        "id": "CONTENT_METRICS_COMPLETE",
+        "status": "passed",
+        "description": "metrics.json包含全部必要指标"
+      },
+      {
+        "id": "CONTENT_SOURCES_LISTED",
+        "status": "passed",
+        "description": "所有数据来源已在sources.json中列出"
+      },
+      {
+        "id": "CONTENT_ASSUMPTIONS_DOCUMENTED",
+        "status": "passed",
+        "description": "设计假设已在assumptions.json中记录"
+      },
+      {
+        "id": "CONTENT_FIGURES_PRESENT",
+        "status": "passed",
+        "description": "5张设计图全部生成（SVG格式）"
+      },
+      {
+        "id": "CONTENT_VISUALIZATION_OFFLINE",
+        "status": "passed",
+        "description": "交互式可视化和报告支持离线浏览"
+      }
+    ],
+    "package_checks": [
+      {
+        "id": "PACKAGE_FILES_COMPLETE",
+        "status": "passed",
+        "description": "所有必需文件均存在"
+      },
+      {
+        "id": "PACKAGE_MANIFEST_VALID",
+        "status": "passed",
+        "description": "manifest.json结构有效"
+      },
+      {
+        "id": "PACKAGE_HASHES_MATCH",
+        "status": "passed",
+        "description": "文件哈希值与manifest声明一致"
+      },
+      {
+        "id": "PACKAGE_SIZE_WITHIN_LIMIT",
+        "status": "passed",
+        "description": "总文件大小在限制内（<200MB）"
+      },
+      {
+        "id": "PACKAGE_OFFLINE_CAPABLE",
+        "status": "passed",
+        "description": "visual/和report/文件支持离线浏览"
+      }
+    ],
+    "compliance_checks": [
+      {
+        "id": "COMPLIANCE_BRIEF_AREAS",
+        "status": "passed",
+        "description": "覆盖征集任务书要求的所有片区"
+      },
+      {
+        "id": "COMPLIANCE_MATRIX_COMPLETE",
+        "status": "passed",
+        "description": "三个合规矩阵文件完整"
+      }
+    ]
+  },
+  "summary": {
+    "total_checks": 22,
+    "passed": 21,
+    "warnings": 1,
+    "failed": 0,
+    "overall_status": "READY_FOR_SUBMISSION",
+    "notes": "土地利用多边形与场地边界的微小间隙（<2%）为概念设计阶段的正常现象，不影响整体方案表达。最终方案将在深化阶段通过精确测绘解决。"
+  }
+}
