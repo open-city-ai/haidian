@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0.0",
+  "status": "conceptual_sector_test_contracts",
+  "release_rule": "All six steps and ordinary recovery must pass before G2.",
+  "sector_contracts": [
+    {
+      "id": "HEALTH",
+      "scope": "resource/referral navigation only; no diagnosis",
+      "professional_owner": "qualified health-service professional",
+      "minimum_data": "no diagnosis history in public interface",
+      "hard_tests": [
+        "misdirection",
+        "privacy withdrawal",
+        "clinician takeover",
+        "network loss"
+      ],
+      "stop": "misleading output or unavailable human referral"
+    },
+    {
+      "id": "EDUCATION",
+      "scope": "teacher-defined public learning test",
+      "professional_owner": "teacher/school-authorised reviewer",
+      "minimum_data": "no behavioural profile; protect minors",
+      "hard_tests": [
+        "bias",
+        "minor consent",
+        "teacher takeover",
+        "network loss"
+      ],
+      "stop": "teacher cannot inspect, override or withdraw"
+    },
+    {
+      "id": "COMMERCE",
+      "scope": "transparent recommendation and public-service navigation",
+      "professional_owner": "named operator and human complaint lead",
+      "minimum_data": "no hidden profiling or dark pattern",
+      "hard_tests": [
+        "basis disclosure",
+        "price mismatch",
+        "complaint backlog",
+        "withdrawal"
+      ],
+      "stop": "basis, complaint, ordinary alternative or withdrawal absent"
+    }
+  ]
+}
