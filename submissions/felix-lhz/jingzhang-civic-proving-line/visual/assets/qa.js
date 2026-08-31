@@ -1,6 +1,9 @@
 const fs=require('fs');
 const path=require('path');
 const crypto=require('crypto');
+const MODULES=process.env.JZ_WORKSPACE_NODE_MODULES;
+const {chromium}=MODULES?require(path.join(MODULES,'playwright')):require('playwright');
+const builder=require('./build');
 const ROOT=path.resolve(__dirname,'..','..');
 const read=rel=>fs.readFileSync(path.join(ROOT,rel));
 const text=rel=>read(rel).toString('utf8');
@@ -62,10 +65,19 @@ for(const rel of ['visual/index.html','visual/index.en.html']){
 }
 for(const rel of ['report/proposal.html','report/proposal.en.html']){
   const html=text(rel);
-  ok((html.match(/V17_REPORT_START/g)||[]).length===1,`${rel} must contain one V17 report entry`);
-  const firstScreen=html.split('V17_REPORT_END')[0];
+  ok((html.match(/V172_REPORT_START/g)||[]).length===1,`${rel} must contain one V17.2 report entry`);
+  const firstScreen=html.split('V172_REPORT_END')[0];
   ok(!firstScreen.includes('v16-report')&&!firstScreen.includes('G0 NO-GO'),`${rel} contains legacy first screen`);
+  ok(html.includes('.v172-report~main>.hero:first-child,.v172-report~main>.hero:first-child+h1{display:none!important}'),`${rel} must replace, not duplicate, the original hero`);
 }
+
+const cjk=/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/;
+for(const rel of ['report/proposal.en.html','visual/index.en.html']){
+  const visible=text(rel).replace(/<script[\s\S]*?<\/script>/gi,'').replace(/<style[\s\S]*?<\/style>/gi,'').replace(/data:[^\"']+/g,'');
+  ok(!cjk.test(visible),`${rel} contains visible CJK text`);
+  ok(visible.includes('Chinese edition'),`${rel} must use the English language-entry label`);
+}
+ok(!cjk.test(text('proposal.en.md')),`proposal.en.md contains CJK text`);
 
 const fontRel='visual/assets/font-bundle.json';
 const fontBundle=json(fontRel);
@@ -106,8 +118,53 @@ for(const id of ['BEIJING-BLOCK-PLAN-APPROVED-20260812','BEIJING-JZ-PHASE2-COMPL
 }
 const buildCode=text('visual/assets/build.js')+text('visual/assets/content.js')+text('visual/assets/build-html.js');
 ok(!/Legacy|V1[1-6]_REPORT|function\s+\w+V1[1-6]/.test(buildCode),'Canonical build contains legacy override code');
+ok(buildCode.includes("const VERSION='V17.2'"),'V17.2 publication token is required');
+ok(buildCode.includes('title:44')&&buildCode.includes('note:18'),'Shared publication type tokens are required');
 ok(!fs.existsSync(path.join(ROOT,'visual/assets/app.js'))&&!fs.existsSync(path.join(ROOT,'visual/assets/styles.css')),'Unused app/styles assets should be removed');
 const listed=new Set(json('manifest.json').files.map(x=>x.path));
 for(const rel of ['visual/assets/prototype-model.json','visual/assets/content.js','visual/assets/build.js','visual/assets/build-html.js','visual/assets/build-font.js','visual/assets/font-render-qa.js','visual/assets/qa.js','visual/assets/font-bundle.json','visual/assets/font-metadata.json','visual/assets/font-glyphs.json','visual/assets/font-license.json','assets/figures/jury-summary.png','assets/media/receipt-porch-v17-day.webp','assets/media/receipt-porch-v17-night.webp'])ok(listed.has(rel),`Manifest missing ${rel}`);
 
-console.log(JSON.stringify({ok:true,schema:'1.14.0',prototypes:3,materials:5,scenarios:12,public_route_width_m:4,states:4,current_stage:'G0_survey_and_permit_preparation',permits:'0/8',baseline:'0/7',core_unique:true,offline:true,font_family:fontMeta.family,font_bytes:fontBinary.length,package_bytes:total},null,2));
+async function inspectSvgGeometry(page,markup,label,style=''){
+  await page.setContent(`<html><meta charset="utf-8"><style>html,body{margin:0}${style}</style><body>${markup}</body></html>`,{waitUntil:'load'});
+  const failures=await page.evaluate(()=>{
+    const failures=[];
+    const bounds=e=>{const r=e.getBoundingClientRect();return {left:r.left,top:r.top,right:r.right,bottom:r.bottom,width:r.width,height:r.height}};
+    for(const el of document.querySelectorAll('svg text')){
+      const owner=el.closest('svg');
+      if(!owner)continue;
+      const r=bounds(el),s=bounds(owner),vb=owner.viewBox&&owner.viewBox.baseVal;
+      const scale=vb&&vb.width?Math.min(s.width/vb.width,s.height/vb.height):1;
+      const inset=10*scale;
+      if(r.left<s.left+inset-1||r.top<s.top+inset-1||r.right>s.right-inset+1||r.bottom>s.bottom-inset+1)failures.push({kind:'svg-text-bound',text:(el.textContent||'').trim(),role:el.dataset.role||'',rect:r,owner:s});
+    }
+    for(const board of document.querySelectorAll('.board')){
+      const title=board.querySelector('[data-role="board-title"]');
+      const code=board.querySelector('[data-role="board-code"]');
+      if(title&&code){const a=bounds(title),b=bounds(code);const root=board.querySelector(':scope > svg');const rr=bounds(root);const vb=root.viewBox.baseVal;const scale=rr.width/vb.width;const gap=(b.left-a.right)/scale;if(gap<24)failures.push({kind:'board-header-gap',gap,title:title.textContent,code:code.textContent});}
+    }
+    for(const card of document.querySelectorAll('[data-role="fallback-card"]')){
+      const outline=card.querySelector('[data-role="fallback-outline"]');
+      const body=[...card.querySelectorAll('[data-role="fallback-body"]')];
+      if(!outline||!body.length){failures.push({kind:'fallback-role-missing'});continue;}
+      const box=bounds(outline);
+      for(const el of body){const r=bounds(el);if(r.left<box.left+8||r.right>box.right-8||r.top<box.top+8||r.bottom>box.bottom-8)failures.push({kind:'fallback-body-bound',text:el.textContent,rect:r,outline:box});}
+    }
+    return failures;
+  });
+  ok(!failures.length,`${label} geometry failures: ${JSON.stringify(failures.slice(0,8))}`);
+}
+
+async function runVisualGeometryQa(){
+  const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'});
+  try{
+    const page=await browser.newPage({viewport:{width:1920,height:1400}});
+    const coreSources=[['site-overview',builder.overall],['land-use-structure',builder.groundInterface],['key-areas',builder.keyAreas],['mobility-bluegreen',builder.mobility],['metrics-evidence',builder.metrics]];
+    for(const l of ['zh','en'])for(const [name,make] of coreSources)await inspectSvgGeometry(page,make(l),`${name}.${l}`);
+    for(const l of ['zh','en']){
+      await inspectSvgGeometry(page,builder.a0(l),`a0.${l}`,builder.pdfCss(true));
+      await inspectSvgGeometry(page,builder.a3(l),`a3.${l}`,builder.pdfCss(false));
+    }
+  }finally{await browser.close();}
+}
+
+runVisualGeometryQa().then(()=>console.log(JSON.stringify({ok:true,schema:'1.14.0',prototypes:3,materials:5,scenarios:12,public_route_width_m:4,states:4,current_stage:'G0_survey_and_permit_preparation',permits:'0/8',baseline:'0/7',core_unique:true,offline:true,visual_geometry:true,font_family:fontMeta.family,font_bytes:fontBinary.length,package_bytes:total},null,2))).catch(e=>{console.error(e);process.exit(1)});

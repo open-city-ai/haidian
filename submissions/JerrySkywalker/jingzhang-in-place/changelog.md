@@ -1,5 +1,13 @@
 # 方案迭代记录
 
+## JZ100 A05 quantified pre-feasibility closure - 2026-08-31
+
+- **QD1 参与者参考量化**：S01 交接现以 12 个未定价批次、单次低/参考/高 20/26/38 角色小时、CAPEX 0.82/1.00/1.48 与 OPEX 0.74/1.00/1.62 相对指数、生命周期节奏，以及 0.10/0.18/0.30 的未注资退出准备指数表达；所有指数仅用于相对敏感性，不构成报价、人民币预算或资金承诺。
+- **QD2 条件交付控制**：新增 9 阶段实际日期全为 `null` 的依赖程序、13 类 gate-addressed 接收角色、10 项专业能力核验、调试/检查/维护节奏、5 包 6 步未定价采购路径，以及 16 项分层验收台账；其中仅 6 项参与者完整性检查为 `PASS`，专业、现场、授权与外部核验继续 `HOLD`。
+- **QD3 正向有界释放**：同步确认 `PARTICIPANT_PRE_FEASIBILITY_PACKAGE_COMPLETE=true`、`PROFESSIONAL_HANDOFF_COMPLETE=true`、`READY_FOR_G1_EXTERNAL_VERIFICATION=true`、`NEXT_DECISION_PACKAGE_COMPLETE=true`；这些只说明参与者包和交接材料已经完成，不打开任何外部释放。
+- **评审可见同步**：上述量化与释放语义已同步至双语提案、结构化指标/假设/矩阵、固定 metrics 图、离线首屏，以及双语 A3/A0 派生面；版面表达统一为“参与者工作完成 -> G1 外部核验就绪 -> 外部释放仍 HOLD -> 尚无现场激活”。
+- **真值边界冻结**：`P0_GO=false`、`market_quotation_count=0`、`approved_budget=null`、`funding_commitment=null`；真实权利、运营任命、工程能力、现场表现、预算/资金、审批与任务授权均保持 `HOLD` / `null` / `unconfirmed`。
+
 ## JZ100 A03 Trusted Review repair 1 - 2026-08-31
 
 - **来源与文化转译校正**：铁路线形、道口与交接均明确为参与者概念类比，而非关于精确铁路工程、运营制度或当前空间条件的事实主张；不以不匹配的外部来源支撑它们。

@@ -267,6 +267,169 @@
       "confidence": "high",
       "assumptions": []
     },
+    "s01_unpriced_delivery_lot_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "count(unpriced_quantity_schedule.lots)",
+      "confidence": "high",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-P0-S01-001"
+      ],
+      "interpretation": "Participant-reference unpriced planning lots; not a BOQ, vendor list, quotation, or procurement authorization."
+    },
+    "s01_reference_session_role_hours": {
+      "status": "known",
+      "value": 26,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "setup 5 + controlled session 10 + closeout/reset 5 + inspection/review 5 + maintenance/storage 1",
+      "confidence": "high",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-AUTHORITY-001"
+      ],
+      "interpretation": "Role-hours per participant-reference session; no appointment, employment, operator capacity, or FTE claim. Low/reference/high totals are 20/26/38."
+    },
+    "s01_capex_relative_index_low": {
+      "status": "known",
+      "value": 0.82,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "participant-reference low case normalized to reference case 1.00",
+      "confidence": "medium",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-FUNDING-001"
+      ],
+      "interpretation": "RELATIVE_SENSITIVITY only; not currency, quotation, budget, or funding."
+    },
+    "s01_capex_relative_index_reference": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "normalized participant-reference CAPEX case",
+      "confidence": "medium",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-FUNDING-001"
+      ],
+      "interpretation": "RELATIVE_SENSITIVITY reference only; market_quotation_count=0."
+    },
+    "s01_capex_relative_index_high": {
+      "status": "known",
+      "value": 1.48,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "participant-reference high case normalized to reference case 1.00",
+      "confidence": "medium",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-FUNDING-001"
+      ],
+      "interpretation": "RELATIVE_SENSITIVITY only; recalculation follows verified carrier, task, specification, and quotations."
+    },
+    "s01_opex_relative_index_low": {
+      "status": "known",
+      "value": 0.74,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "participant-reference low activity case normalized to reference case 1.00",
+      "confidence": "medium",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-FUNDING-001"
+      ],
+      "interpretation": "RELATIVE_SENSITIVITY only; not an operating budget or capacity claim."
+    },
+    "s01_opex_relative_index_reference": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "normalized participant-reference OPEX case based on 26 role-hours plus setup/reset, inspection, storage/transport, and maintenance drivers",
+      "confidence": "medium",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-FUNDING-001"
+      ],
+      "interpretation": "RELATIVE_SENSITIVITY reference only; approved_budget and funding_commitment remain null."
+    },
+    "s01_opex_relative_index_high": {
+      "status": "known",
+      "value": 1.62,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "participant-reference high activity/fault case normalized to reference case 1.00",
+      "confidence": "medium",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-FUNDING-001"
+      ],
+      "interpretation": "RELATIVE_SENSITIVITY only; actual cadence, performance, and operator capacity remain unconfirmed."
+    },
+    "s01_exit_reserve_relative_index_reference": {
+      "status": "known",
+      "value": 0.18,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "removal/reverse reset 0.06 + surface/route restoration 0.05 + quarantine/replacement 0.05 + archive/closeout 0.02",
+      "confidence": "medium",
+      "assumptions": [
+        "A-QUANT-001",
+        "A-FUNDING-001"
+      ],
+      "interpretation": "Unfunded relative allowance against delivery reference 1.00; funded=false and no monetary reserve exists."
+    },
+    "s01_conditional_programme_stage_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "count(conditional_dependency_programme.stages)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "interpretation": "Null-date dependency stages; only DP-00 is participant-complete, DP-01 is ready for external verification, and later stages remain HOLD."
+    },
+    "s01_measurable_acceptance_item_count": {
+      "status": "known",
+      "value": 16,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-readiness-dossier.json"
+      ],
+      "formula": "count(measurable_layered_acceptance_ledger.items)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "interpretation": "Six participant-checkable items pass; ten professional, field, or authorization items remain HOLD_EXTERNAL."
+    },
     "statutory_floor_area_ratio": {
       "status": "unknown",
       "value": null,

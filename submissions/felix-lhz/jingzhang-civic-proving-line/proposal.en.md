@@ -1,5 +1,5 @@
 ---
-title: "JING-ZHANG TWO ANSWERS / 京张双答"
+title: "JING-ZHANG TWO ANSWERS"
 author_github: "felix-lhz"
 language: "en"
 proposal_format_version: "2"
@@ -11,7 +11,7 @@ tracks: ["ai-traffic-walkability", "ai-public-services", "civic-agent-governance
 scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "enterprise-service-copilot", "robot-delivery-low-speed"]
 ---
 
-# JING-ZHANG TWO ANSWERS / 京张双答
+# JING-ZHANG TWO ANSWERS
 
 > **One public route, four civic states.** At Dazhongsi centre, a **4 m prototype public route** remains continuous through OPEN, TRIAL, PAUSE and RETIRE. AI occupies only a one-sided reversible trial bay; staffed service and the Receipt Porch remain open.[data:visual/assets/prototype-model.json] [metric:s7_public_route_prototype_width_m]
 
@@ -29,9 +29,9 @@ The reversible prototype palette is bolted galvanized steel, perforated-metal sh
 
 Under one task, users, site and hard gates, ALT-A central mixing is reject_design because it cuts the public cross and conflicts with fire/removal; ALT-B split bays retain routes but fragment supervision and removal, so revise_design; ALT-C one-sided reversible bay is the sole advance_design. These design-option states are not field adopt / revise / stop decisions; the computation tests geometric consistency only.[data:visual/assets/spatial-decision.json] [metric:spatial_alternative_count]
 
-ALT-C route and one-sided trial area come from one local-metric audit.[metric:alt_c_public_route_length_m] [metric:alt_c_trial_area_sqm]
+ALT-C route, one-sided trial area and reversible buffer come from one local-metric audit.[metric:alt_c_public_route_length_m] [metric:alt_c_trial_area_sqm] [metric:alt_c_reversible_buffer_area_sqm]
 
-The reversible buffer and staff-to-e-stop distance use the same inputs. Any change in official base, entrances, title or specialist constraints requires a rerun; drawings and text must follow the result.[metric:alt_c_reversible_buffer_area_sqm] [metric:alt_c_max_estop_staff_distance_m]
+Staff-to-e-stop distance uses the same input. Any change in official base, entrances, title or specialist constraints requires a rerun; drawings and text must follow the result.[metric:alt_c_max_estop_staff_distance_m]
 
 ## Current implementation gate: G0 survey and permit preparation
 
@@ -47,7 +47,7 @@ These facts are the credible base, not the design protagonist. The spine/station
 
 ![Jing-Zhang operating overlay on approved context](assets/figures/site-overview.en.png)
 
-![Dazhongsi ground interface—public space—transit—blue-green overlay](assets/figures/land-use-structure.en.png)
+![Dazhongsi ground, public space, transit and blue-green overlay](assets/figures/land-use-structure.en.png)
 
 ## Design Basis and Source List
 

@@ -1,19 +1,45 @@
 {
-  "schema_version": "1.0.0",
-  "dossier_id": "JZ100-A03-PARTICIPANT-READINESS-001",
-  "title_zh": "京张续城：参与者就绪闭环（参考性专业交接包）",
-  "title_en": "Jing-Zhang In Place: Participant Readiness Closure (reference professional handoff packet)",
+  "schema_version": "2.0.0",
+  "dossier_id": "JZ100-PARTICIPANT-PREFEASIBILITY-HANDOFF-002",
+  "title_zh": "京张续城：参与者量化预可研与条件性交接包",
+  "title_en": "Jing-Zhang In Place: Quantified Participant Pre-feasibility and Conditional Handoff Packet",
   "evidence_status": "PARTICIPANT_REFERENCE_WITH_EXTERNAL_HOLDS",
-  "purpose": "This participant-authored dossier turns the S01/S04/S07 concept boundary into a future professional handoff method. It is not a carrier selection, field survey, appointment, safety case approval, procurement package, commissioning record, budget, or operating authorization.",
+  "purpose": "This participant-authored dossier completes a quantified, unpriced pre-feasibility package for future G1 external verification. It is not a carrier selection, field survey, appointment, safety case approval, procurement authorization, commissioning record, budget, funding commitment, or operating authorization.",
+  "participant_release_state": {
+    "classification": "PARTICIPANT_SCOPE_COMPLETION_ONLY",
+    "participant_pre_feasibility_package_complete": true,
+    "professional_handoff_complete": true,
+    "ready_for_g1_external_verification": true,
+    "next_decision_package_complete": true,
+    "external_releases_open": false,
+    "p0_go": false,
+    "current_transition": "PARTICIPANT_WORK_COMPLETE -> READY_FOR_G1_EXTERNAL_VERIFICATION -> EXTERNAL_RELEASES_HOLD -> NO_FIELD_ACTIVATION",
+    "meaning": "The participant-authored quantities, role-hour basis, relative sensitivities, dependency programme, role/competence routing, cadence, procurement path, and layered acceptance ledger are complete enough to be independently checked at G1.",
+    "does_not_mean": ["field-ready", "ready-to-build", "approved", "funded", "commissioned", "operational", "professionally accepted", "task-authorized"]
+  },
+  "participant_release_semantics": {
+    "PARTICIPANT_PRE_FEASIBILITY_PACKAGE_COMPLETE": true,
+    "PROFESSIONAL_HANDOFF_COMPLETE": true,
+    "READY_FOR_G1_EXTERNAL_VERIFICATION": true,
+    "NEXT_DECISION_PACKAGE_COMPLETE": true,
+    "EXTERNAL_RELEASES_OPEN": false,
+    "P0_GO": false
+  },
   "truth_boundary": {
     "p0_go": false,
+    "external_releases_open": false,
     "market_quotation_count": 0,
     "approved_budget": null,
     "funding_commitment": null,
     "actual_task_owner": null,
     "appointed_operator": null,
+    "rights_access": "HOLD_EXTERNAL",
+    "engineering_professional_acceptance": "HOLD_EXTERNAL",
+    "task_authorization": "HOLD_EXTERNAL",
     "field_capacity": null,
     "field_evidence": null,
+    "field_performance": null,
+    "approval": "HOLD_EXTERNAL",
     "rule": "Every external prerequisite remains HOLD_EXTERNAL until a future rights-holder, qualified professional, and field process provide applicable evidence."
   },
   "reviewer_visible_contract": {
@@ -21,11 +47,15 @@
       "proposal.md#参与者就绪闭环：让交接先于行动",
       "proposal.en.md#participant-readiness-closure-handoff-before-action",
       "assumptions.json#A-READINESS-001",
+      "metrics.json#s01_unpriced_delivery_lot_count",
+      "metrics.json#s01_reference_session_role_hours",
+      "compliance_matrix.json",
+      "design_depth_matrix.json",
       "sources.json#OFFICIAL-ANNOUNCEMENT",
       "visual/index.html#readiness",
       "visual/index.en.html#readiness"
     ],
-    "fixed_figure": "assets/figures/metrics-evidence.png and its English counterpart summarize the STOP/RESET and external-HOLD boundary; this dossier supplies the complete reference method.",
+    "fixed_figure": "assets/figures/metrics-evidence.png and its English counterpart summarize the quantified participant package, conditional controls, positive bounded release, STOP/RESET, and external-HOLD boundary; this dossier supplies the complete reference method.",
     "not_a_substitute_for": ["rights evidence", "professional sign-off", "field observation", "statutory approval", "commissioning", "budget approval"]
   },
   "carrier_screen_reject_register": {
@@ -93,12 +123,111 @@
     "stop_condition": "Any failure category preserves P0_GO=false and returns the concept to ordinary space, lower-tech reversible arrangement, or NO-BUILD.",
     "reset_evidence": "future dated inventory, isolation/lockout state, incident/deviation record, and independent ordinary-baseline verification; no duration is asserted."
   },
+  "unpriced_quantity_schedule": {
+    "classification": "PARTICIPANT_REFERENCE_UNPRICED_NOT_A_BOQ",
+    "lot_count": 12,
+    "currency_values": null,
+    "quantity_rule": "Reference quantities are planning units for comparing a minimum removable package. Carrier-specific dimensions, models, fixings, code quantities, spares, and market quantities remain null until the corresponding external gate closes.",
+    "lots": [
+      {"lot_id": "UQ-01", "function": "STATUS/reset threshold", "reference_unit": "removable frame set", "quantity_low_reference_high": [1, 1, 2], "reference_quantity": 1, "dependency": "verified entry/exit geometry and human authority protocol", "reusable_removable": true, "procurement_acceptance_gate": "G1 geometry/role verification then specification freeze", "exclusion_boundary": "no opening dimension, fixing, code, or product claim"},
+      {"lot_id": "UQ-02", "function": "controlled test perimeter", "reference_unit": "modular perimeter set", "quantity_low_reference_high": [1, 1, 2], "reference_quantity": 1, "dependency": "bounded task footprint and professional buffer", "reusable_removable": true, "procurement_acceptance_gate": "professional layout and accessibility acceptance", "exclusion_boundary": "module count and perimeter length remain null"},
+      {"lot_id": "UQ-03", "function": "surface and interface protection", "reference_unit": "protected-zone kit", "quantity_low_reference_high": [1, 1, 2], "reference_quantity": 1, "dependency": "carrier surface condition and restoration method", "reusable_removable": true, "procurement_acceptance_gate": "carrier condition record and restoration trial", "exclusion_boundary": "no floor area, material, loading, or warranty claim"},
+      {"lot_id": "UQ-04", "function": "power/isolation interface", "reference_unit": "isolatable interface set", "quantity_low_reference_high": [1, 1, 2], "reference_quantity": 1, "dependency": "equipment category, carrier capacity, and professional electrical review", "reusable_removable": true, "procurement_acceptance_gate": "verified interface schedule and isolation acceptance", "exclusion_boundary": "no voltage, load, circuit, or energization claim"},
+      {"lot_id": "UQ-05", "function": "physical stop and lockout control", "reference_unit": "independent control kit", "quantity_low_reference_high": [1, 2, 2], "reference_quantity": 2, "dependency": "separate operator and human safety authority", "reusable_removable": true, "procurement_acceptance_gate": "stop/lockout logic accepted before procurement", "exclusion_boundary": "no safety integrity or performance claim"},
+      {"lot_id": "UQ-06", "function": "operator/safety decision stations and logs", "reference_unit": "role station", "quantity_low_reference_high": [2, 2, 3], "reference_quantity": 2, "dependency": "role separation and record protocol", "reusable_removable": true, "procurement_acceptance_gate": "role/record acceptance", "exclusion_boundary": "no appointed staff or operating position claim"},
+      {"lot_id": "UQ-07", "function": "human handoff and booked observation", "reference_unit": "position-equivalent", "quantity_low_reference_high": [3, 5, 5], "reference_quantity": 5, "dependency": "one handoff position plus up to four booked observers without Z0 queueing", "reusable_removable": true, "procurement_acceptance_gate": "accessibility and ordinary-route acceptance", "exclusion_boundary": "no approved or observed occupancy claim"},
+      {"lot_id": "UQ-08", "function": "reset, storage, and serialized inventory", "reference_unit": "controlled inventory set", "quantity_low_reference_high": [1, 1, 2], "reference_quantity": 1, "dependency": "storage carrier, quarantine route, and reset custodian", "reusable_removable": true, "procurement_acceptance_gate": "inventory and quarantine method acceptance", "exclusion_boundary": "no storage location, capacity, or custodian appointment"},
+      {"lot_id": "UQ-09", "function": "ordinary-baseline and condition records", "reference_unit": "record bundle per deployment cycle", "quantity_low_reference_high": [3, 4, 6], "reference_quantity": 4, "dependency": "pre-deployment, pre-session, post-session, and independent restoration checks", "reusable_removable": false, "procurement_acceptance_gate": "record template acceptance", "exclusion_boundary": "not field evidence until dated and signed by authorized roles"},
+      {"lot_id": "UQ-10", "function": "transport and handling", "reference_unit": "out-and-return movement pair", "quantity_low_reference_high": [1, 1, 2], "reference_quantity": 1, "dependency": "selected storage and carrier access", "reusable_removable": false, "procurement_acceptance_gate": "route, handling, and custody acceptance", "exclusion_boundary": "no distance, vendor, vehicle, or price claim"},
+      {"lot_id": "UQ-11", "function": "professional and independent review", "reference_unit": "discipline review bundle", "quantity_low_reference_high": [1, 1, 3], "reference_quantity": 1, "dependency": "applicable discipline matrix after task/carrier selection", "reusable_removable": false, "procurement_acceptance_gate": "G1 identifies applicable reviewers; each remains HOLD until evidenced", "exclusion_boundary": "no appointment, license, fee, or sign-off claim"},
+      {"lot_id": "UQ-12", "function": "restoration, quarantine, and closeout allowance", "reference_unit": "relative allowance bundle", "quantity_low_reference_high": [0.10, 0.18, 0.30], "reference_quantity": 0.18, "dependency": "selected materials, fixings, carrier condition, and failure history", "reusable_removable": false, "procurement_acceptance_gate": "restoration method and future funding gate", "exclusion_boundary": "relative index only; funded=false and no monetary reserve"}
+    ]
+  },
+  "staffing_role_hour_reference": {
+    "classification": "PARTICIPANT_REFERENCE_NOT_AN_APPOINTMENT_OR_WORKFORCE_PLAN",
+    "reference_session_definition": "one bounded two-hour task window plus setup, closeout/reset, inspection/review, and storage/inventory effort",
+    "phase_role_hours_low_reference_high": [
+      {"phase": "setup", "low": 4, "reference": 5, "high": 7, "role_basis": "operator, separate safety authority, handoff, maintenance/reset, and independent review as applicable"},
+      {"phase": "controlled session", "low": 8, "reference": 10, "high": 15, "role_basis": "five separated role classes; no employment or appointment implied"},
+      {"phase": "closeout and reset", "low": 3, "reference": 5, "high": 8, "role_basis": "shutdown, inventory, isolation, removal, restoration, and witness effort"},
+      {"phase": "inspection and review", "low": 4, "reference": 5, "high": 6, "role_basis": "participant check plus applicable future professional/independent review"},
+      {"phase": "maintenance and storage", "low": 1, "reference": 1, "high": 2, "role_basis": "participant-reference inventory/storage review per operating cycle"}
+    ],
+    "total_role_hours_low_reference_high": [20, 26, 38],
+    "fte_equivalent": null,
+    "fte_rule": "Only a future authorized operator may convert evidenced annual role-hours using its declared working-time convention and real session cadence."
+  },
+  "relative_capex_opex_sensitivity": {
+    "classification": "RELATIVE_SENSITIVITY_NOT_CURRENCY_NOT_BUDGET",
+    "reference_case_index": 1.00,
+    "capex_index_low_reference_high": [0.82, 1.00, 1.48],
+    "opex_index_low_reference_high": [0.74, 1.00, 1.62],
+    "capex_reference_driver_shares": [
+      {"driver": "removable component base", "share": 0.36},
+      {"driver": "carrier interface and surface protection", "share": 0.20},
+      {"driver": "professional verification and inspection", "share": 0.18},
+      {"driver": "transport, handling, and storage setup", "share": 0.08},
+      {"driver": "unfunded restoration/exit allowance", "share": 0.18}
+    ],
+    "opex_reference_driver_shares": [
+      {"driver": "session role-hours", "share": 0.46},
+      {"driver": "setup, reset, and independent acceptance", "share": 0.24},
+      {"driver": "inspection and record control", "share": 0.12},
+      {"driver": "storage and transport", "share": 0.10},
+      {"driver": "maintenance, consumables, and replacement", "share": 0.08}
+    ],
+    "recalculation_triggers": ["verified carrier and task", "professionally accepted interface specification", "dated scope/location-matched quotations", "authorized session cadence", "observed maintenance and failure data"],
+    "market_quotation_count": 0,
+    "approved_budget": null,
+    "funding_commitment": null
+  },
+  "lifecycle_and_unfunded_exit_reserve": {
+    "classification": "PARTICIPANT_REFERENCE_RELATIVE_ALLOWANCE",
+    "funded": false,
+    "reference_delivery_index": 1.00,
+    "exit_reserve_index_low_reference_high": [0.10, 0.18, 0.30],
+    "reference_components": [
+      {"driver": "removal and reverse reset", "index": 0.06},
+      {"driver": "surface and ordinary-route restoration", "index": 0.05},
+      {"driver": "component quarantine or replacement", "index": 0.05},
+      {"driver": "archive and closeout", "index": 0.02}
+    ],
+    "method": "Hold a relative exit allowance against the reference delivery package; recalculate from verified quantities, carrier condition, selected materials/fixings, and observed failure history before any funding decision.",
+    "release_rule": "The allowance is a planning method only. It does not open procurement, constitute cash, or satisfy restoration liability; funded=false until a future authorized budget explicitly covers it."
+  },
   "role_type_raci_handoff": [
     {"action": "verify carrier rights and access", "responsible_role_type": "rights-holder or authorized carrier steward", "accountable_role_type": "future authorized decision-maker", "consulted_role_types": ["planning/site professional", "accessibility representative"], "informed_role_types": ["records/reset custodian"], "current_assignment": "UNCONFIRMED", "handoff_artifact": "scope-and-expiry evidence register", "fallback": "NO-BUILD"},
     {"action": "bound the task, equipment and data interface", "responsible_role_type": "task initiator with qualified professional review", "accountable_role_type": "future authorized task owner", "consulted_role_types": ["privacy/data reviewer", "carrier interface reviewer"], "informed_role_types": ["independent acceptance witness"], "current_assignment": "UNCONFIRMED", "handoff_artifact": "reference task packet", "fallback": "simulation or ordinary review"},
     {"action": "verify safety, accessibility, utilities and lockout prerequisites", "responsible_role_type": "applicable qualified professional", "accountable_role_type": "future authorized carrier", "consulted_role_types": ["separate human safety authority", "maintenance/reset custodian"], "informed_role_types": ["public/service handoff steward"], "current_assignment": "UNCONFIRMED", "handoff_artifact": "discipline-specific HOLD/NO-GO register", "fallback": "pause"},
     {"action": "run, stop, isolate and reset a future bounded session", "responsible_role_type": "qualified operator and separate human safety authority", "accountable_role_type": "future authorized carrier", "consulted_role_types": ["maintenance/reset custodian", "accessibility/community representative"], "informed_role_types": ["independent observer"], "current_assignment": "UNCONFIRMED", "handoff_artifact": "session, incident, lockout and reset record", "fallback": "ordinary-city restoration"},
     {"action": "accept or reject return to ordinary baseline", "responsible_role_type": "independent acceptance/reset witness", "accountable_role_type": "future authorized decision-maker", "consulted_role_types": ["carrier steward", "accessibility/community representative"], "informed_role_types": ["records/reset custodian"], "current_assignment": "UNCONFIRMED", "handoff_artifact": "independent baseline-restoration record", "fallback": "QUARANTINED"}
+  ],
+  "gate_addressed_recipient_map": [
+    {"gate": "G1-RIGHTS", "recipient_role_type": "rights/access verifier", "artifact": "scope, tenure, access, expiry, revocation, and signatory evidence register", "acceptance_question": "Is the proposed task within a current, independently verifiable right and time window?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-PLAN", "recipient_role_type": "planning/urban-design professional", "artifact": "ordinary-city floor, carrier fit, and minimum-spatial-delta brief", "acceptance_question": "Does the reference preserve the approved/professionally accepted urban baseline and lower-impact alternatives?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-ARCH", "recipient_role_type": "architecture/public-space professional", "artifact": "carrier condition, reversible interface, egress/route, and restoration brief", "acceptance_question": "Can installation and removal avoid irreversible or inaccessible spatial effects?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-STRUCT", "recipient_role_type": "structural professional", "artifact": "equipment/load/anchorage interface evidence where applicable", "acceptance_question": "Are all applicable loads, anchorage, and removal effects verified?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-FIRE", "recipient_role_type": "fire/life-safety professional", "artifact": "applicable occupancy, egress, emergency, and isolation review", "acceptance_question": "Are life-safety and emergency conditions accepted for the bounded scope?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-POWER", "recipient_role_type": "electrical/power-isolation professional", "artifact": "verified equipment, capacity, protection, isolation, and lockout schedule", "acceptance_question": "Can the equipment be safely supplied and physically isolated?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-ACCESS", "recipient_role_type": "accessibility/inclusive-service professional", "artifact": "ordinary-route, human service, step-free use, and non-digital fallback review", "acceptance_question": "Does every user retain the ordinary city without queueing through the test state?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-DATA", "recipient_role_type": "privacy/data/legal reviewer", "artifact": "minimum-data, lawful basis, notice, appeal, retention, and deletion boundary where applicable", "acceptance_question": "Is the task lawful, bounded, contestable, and stoppable without service loss?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-OPERATE", "recipient_role_type": "test operator candidate", "artifact": "bounded task, equipment, runbook, stop, incident, and reset competence record", "acceptance_question": "Can a qualified operator execute only the authorized task and yield to safety authority?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-SAFETY", "recipient_role_type": "separate human safety authority candidate", "artifact": "independent stop/lockout/escalation mandate and rehearsal record", "acceptance_question": "Can a separate qualified human stop and isolate the task immediately?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-RESET", "recipient_role_type": "maintenance/reset custodian candidate", "artifact": "serialized inventory, quarantine, removal, restoration, and storage method", "acceptance_question": "Can all temporary effects be accounted for, removed, quarantined, and stored?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-ACCEPT", "recipient_role_type": "independent reviewer/acceptance witness", "artifact": "layered acceptance and ordinary-baseline restoration ledger", "acceptance_question": "Is each participant, professional, field, and authorization state evidenced without role conflict?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true},
+    {"gate": "G1-PROCURE", "recipient_role_type": "procurement/contracting role", "artifact": "unpriced lot structure, accepted specification, RFQ gate, inspection plan, and funding boundary", "acceptance_question": "Is market engagement gated behind professional acceptance and authorized funding?", "current_assignment": "UNCONFIRMED", "no_go_if_absent": true}
+  ],
+  "professional_discipline_competence_checklist": [
+    {"role_type": "rights/access verifier", "competence_needed": "current authority, tenure/access scope, expiry/revocation, and signatory verification", "evidence_to_check": "dated source-backed rights/access record", "participant_can_verify_now": "required fields, expiry logic, and fail-close route are present", "external_evidence_required": "identity and authoritative current rights/access evidence", "no_go_if_absent": true},
+    {"role_type": "planning/urban-design professional", "competence_needed": "urban baseline, public-interest, carrier fit, and reversible/minimum intervention judgment", "evidence_to_check": "applicable official controls, current baseline, alternatives, and spatial-delta brief", "participant_can_verify_now": "ordinary-space-first and NO-BUILD comparison is complete", "external_evidence_required": "applicable professional acceptance for the actual carrier", "no_go_if_absent": true},
+    {"role_type": "architecture/public-space professional", "competence_needed": "existing conditions, access/egress, material interface, temporary works, and restoration", "evidence_to_check": "survey, interface specification, installation/removal method, and restoration acceptance", "participant_can_verify_now": "unpriced component classes and restoration method are complete", "external_evidence_required": "carrier-specific design and acceptance", "no_go_if_absent": true},
+    {"role_type": "structure/fire/electrical professionals as applicable", "competence_needed": "applicable load, anchorage, fire/life-safety, emergency, power, protection, and isolation review", "evidence_to_check": "discipline calculations/reviews and accepted limits", "participant_can_verify_now": "discipline gates, expected artifacts, and NO-GO rules are enumerated", "external_evidence_required": "qualified discipline evidence for actual equipment/carrier", "no_go_if_absent": true},
+    {"role_type": "accessibility/inclusive-service professional", "competence_needed": "step-free route, wayfinding, human help, non-digital service, and impact on diverse users", "evidence_to_check": "current route observation and inclusive-service/accessibility review", "participant_can_verify_now": "Z0 and ordinary-service floor are explicit", "external_evidence_required": "field and professional acceptance", "no_go_if_absent": true},
+    {"role_type": "privacy/data/legal reviewer", "competence_needed": "lawful basis, minimum data, notice, consent where applicable, appeal, retention, deletion, and human-rights effects", "evidence_to_check": "task-specific lawful and reviewable data boundary", "participant_can_verify_now": "minimum-data, appeal, paper fallback, and stop principles are explicit", "external_evidence_required": "task/jurisdiction-specific legal and privacy acceptance", "no_go_if_absent": true},
+    {"role_type": "test operator candidate", "competence_needed": "task/equipment operation, handoff, incident reporting, shutdown, and reset", "evidence_to_check": "scope-specific competence and supervised rehearsal record", "participant_can_verify_now": "role separation and runbook steps are complete", "external_evidence_required": "appointed qualified operator and real rehearsal", "no_go_if_absent": true},
+    {"role_type": "separate human safety authority candidate", "competence_needed": "independent stop, isolation, lockout, escalation, and public-service protection", "evidence_to_check": "mandate, competence, stop rehearsal, and escalation path", "participant_can_verify_now": "independence and fail-close rules are complete", "external_evidence_required": "appointed qualified authority and rehearsal", "no_go_if_absent": true},
+    {"role_type": "maintenance/reset custodian candidate", "competence_needed": "inventory, inspection, isolation state, removal, quarantine, restoration, transport, and storage", "evidence_to_check": "serialized inventory and complete reset/restoration record", "participant_can_verify_now": "lifecycle cadence and exit-reserve method are complete", "external_evidence_required": "appointed custodian, carrier/storage conditions, and field record", "no_go_if_absent": true},
+    {"role_type": "independent reviewer/acceptance witness", "competence_needed": "evidence independence, role-conflict detection, layered acceptance, and ordinary-baseline verification", "evidence_to_check": "complete ledger plus field/professional records at the same scope/date", "participant_can_verify_now": "measurable acceptance ledger and release consequences are complete", "external_evidence_required": "independent assignment and observed evidence", "no_go_if_absent": true}
   ],
   "generic_hazard_lockout_no_go": [
     {"hazard_class": "public-route or accessibility conflict", "future_control": "ordinary baseline observation, protected clear route, human stop and immediate removal", "lockout_or_no_go": "No session if route/accessibility evidence is absent or a conflict is observed.", "current_state": "HOLD_EXTERNAL"},
@@ -108,14 +237,54 @@
     {"hazard_class": "failed session, maintenance, or reset", "future_control": "stop, isolate, quarantine, incident/deviation record, inventory and independent baseline restoration", "lockout_or_no_go": "No further session until an independent witness records complete ordinary-baseline restoration.", "current_state": "HOLD_EXTERNAL"}
   ],
   "procurement_cost_boundary": {
-    "classification": "REFERENCE_COST_STRUCTURE_NOT_A_BOQ",
+    "classification": "REFERENCE_COST_STRUCTURE_NOT_A_BOQ_OR_AUTHORIZATION",
     "included_categories": ["survey and evidence verification", "professional design/review", "carrier preparation if authorized", "accessibility/public-route protection", "removable component preparation", "session setup/reset", "inspection/maintenance", "storage/transport", "consumables/replacement", "independent acceptance"],
     "excluded_categories": ["price quotation", "tender result", "approved budget", "funding source", "site-specific engineering estimate", "procurement authorization"],
-    "capex_formula": "sum(defensible quantity x dated applicable public unit-rate range) + documented installation/inspection allowance + explicit uncertainty reserve",
-    "opex_formula": "role-hours + setup/reset labor + inspection/certification + storage/transport + utilities/consumables + replacement reserve",
+    "capex_formula": "relative index only until defensible quantities and dated scope/location-matched quotations exist; reference=1.00",
+    "opex_formula": "relative index from role-hours + setup/reset + inspection + storage/transport + maintenance/replacement; reference=1.00",
     "current_monetary_values": null,
     "relative_sensitivity_only": true,
+    "market_quotation_count": 0,
+    "approved_budget": null,
+    "funding_commitment": null,
     "cross_reference": "The 15 existing renewal project families retain their counts and evidence boundary; this dossier adds no cost tier or delivery commitment."
+  },
+  "participant_reference_procurement_path": {
+    "classification": "UNPRICED_CONDITIONAL_PATH",
+    "market_quotation_count": 0,
+    "lots": [
+      {"package_id": "PKG-01", "contains": ["UQ-01", "UQ-02", "UQ-05"], "purpose": "threshold, perimeter, and independent physical control"},
+      {"package_id": "PKG-02", "contains": ["UQ-03", "UQ-04"], "purpose": "carrier protection and isolatable interface"},
+      {"package_id": "PKG-03", "contains": ["UQ-06", "UQ-07", "UQ-09"], "purpose": "separated roles, human handoff/observation, and controlled records"},
+      {"package_id": "PKG-04", "contains": ["UQ-08", "UQ-10", "UQ-12"], "purpose": "inventory, transport, quarantine, restoration, and closeout"},
+      {"package_id": "PKG-05", "contains": ["UQ-11"], "purpose": "applicable professional and independent reviews"}
+    ],
+    "stages": [
+      {"stage": "confirm lower-intervention necessity", "entry_gate": "verified physical task defeats NO-BUILD/lower-tech options", "current_state": "HOLD_EXTERNAL", "output": "bounded procurement need or NO-BUILD", "fallback": "NO-BUILD"},
+      {"stage": "freeze performance specification", "entry_gate": "applicable G1 rights, carrier, task, professional, accessibility, and interface evidence accepted", "current_state": "HOLD_EXTERNAL", "output": "unbranded accepted specification", "fallback": "pause"},
+      {"stage": "authorize request for quotation", "entry_gate": "authorized procurement role and funding path exist", "current_state": "HOLD_EXTERNAL", "output": "dated RFQ scope", "fallback": "no market contact"},
+      {"stage": "collect and normalize market evidence", "entry_gate": "RFQ authorization", "current_state": "NOT_STARTED_QUOTATIONS_0", "output": "scope/date/location-matched quotation comparison", "fallback": "retain relative indices"},
+      {"stage": "contract and funding decision", "entry_gate": "accepted evidence, budget, funding, and authority", "current_state": "HOLD_EXTERNAL", "output": "future authorized contract or rejection", "fallback": "no award/payment"},
+      {"stage": "factory/delivery inspection and controlled acceptance", "entry_gate": "authorized contract and accepted inspection plan", "current_state": "HOLD_EXTERNAL", "output": "serialized inventory and acceptance/nonconformance record", "fallback": "reject or quarantine"}
+    ],
+    "payment_and_funding": "Outside current evidence; approved_budget=null and funding_commitment=null.",
+    "release_rule": "No RFQ, vendor selection, contract, payment, delivery, or assembly is released by this participant package."
+  },
+  "conditional_dependency_programme": {
+    "classification": "NULL_DATE_DEPENDENCY_PROGRAMME_NOT_A_PROJECT_SCHEDULE",
+    "stage_count": 9,
+    "actual_calendar_dates": null,
+    "stages": [
+      {"stage_id": "DP-00", "stage": "participant package complete", "predecessor": null, "recipient_role_type": "G1 external verification coordinator", "required_artifact": "quantified participant pre-feasibility dossier and reviewer-visible package", "participant_checkable_entry": "QD1/QD2 ledgers complete and internally consistent", "external_entry": null, "output": "G1 verification request package", "current_state": "COMPLETE_PARTICIPANT_SCOPE", "fail_hold_fallback": "revise participant package", "actual_start": null, "actual_finish": null},
+      {"stage_id": "DP-01", "stage": "G1 external verification", "predecessor": "DP-00", "recipient_role_type": "rights/access verifier plus applicable professional reviewers", "required_artifact": "gate-addressed recipient and evidence request map", "participant_checkable_entry": "recipient, artifact, question, and NO-GO rule present for every gate", "external_entry": "real current evidence and competent recipients", "output": "dated accepted evidence/gap register", "current_state": "READY_HOLD_EXTERNAL", "fail_hold_fallback": "HOLD or NO-BUILD", "actual_start": null, "actual_finish": null},
+      {"stage_id": "DP-02", "stage": "professional closure", "predecessor": "DP-01", "recipient_role_type": "applicable qualified discipline leads", "required_artifact": "carrier/task-specific reviews, limits, and accepted interfaces", "participant_checkable_entry": "discipline checklist complete", "external_entry": "qualified professional evidence", "output": "accepted discipline register or NO-GO", "current_state": "HOLD_EXTERNAL", "fail_hold_fallback": "pause and retain ordinary city", "actual_start": null, "actual_finish": null},
+      {"stage_id": "DP-03", "stage": "carrier and task release", "predecessor": "DP-02", "recipient_role_type": "rights-holder/authorized carrier and task owner", "required_artifact": "bounded rights, access, task, roles, time, expiry, and revocation authorization", "participant_checkable_entry": "scope/expiry/revocation fields exist", "external_entry": "authoritative appointments and permissions", "output": "future release or rejection", "current_state": "HOLD_EXTERNAL", "fail_hold_fallback": "NO-BUILD", "actual_start": null, "actual_finish": null},
+      {"stage_id": "DP-04", "stage": "procurement and assembly", "predecessor": "DP-03", "recipient_role_type": "authorized procurement/contracting role and maintenance/reset custodian", "required_artifact": "accepted specification, quotations, budget/funding, contract, inspection, and inventory records", "participant_checkable_entry": "unpriced lot/path structure complete", "external_entry": "authorized market, budget, funding, and vendor evidence", "output": "accepted serialized removable package or rejection", "current_state": "HOLD_EXTERNAL", "fail_hold_fallback": "no award, reject, or quarantine", "actual_start": null, "actual_finish": null},
+      {"stage_id": "DP-05", "stage": "commissioning rehearsal", "predecessor": "DP-04", "recipient_role_type": "qualified operator, separate human safety authority, and independent witness", "required_artifact": "installation inspection, role competence, stop/lockout, incident, reset, and ordinary-baseline rehearsal record", "participant_checkable_entry": "runbook/cadence templates complete", "external_entry": "authorized carrier, equipment, roles, and supervised rehearsal", "output": "future commissioning acceptance or quarantine", "current_state": "HOLD_EXTERNAL", "fail_hold_fallback": "stop, isolate, remove, restore", "actual_start": null, "actual_finish": null},
+      {"stage_id": "DP-06", "stage": "conditional P0 session", "predecessor": "DP-05", "recipient_role_type": "authorized task owner and separated operational roles", "required_artifact": "same-scope gate ledger and one bounded session authorization", "participant_checkable_entry": "one-task/reference cap and stop rules complete", "external_entry": "all applicable releases current and no HOLD remains", "output": "future session/incident record", "current_state": "HOLD_EXTERNAL", "fail_hold_fallback": "no activation or immediate human stop", "actual_start": null, "actual_finish": null},
+      {"stage_id": "DP-07", "stage": "reset and restoration", "predecessor": "DP-06", "recipient_role_type": "maintenance/reset custodian and independent acceptance witness", "required_artifact": "inventory, isolation, removal, surface/route restoration, quarantine, and closeout record", "participant_checkable_entry": "reserve method and acceptance fields complete", "external_entry": "field evidence and independent observation", "output": "ordinary-baseline restoration acceptance or quarantine", "current_state": "HOLD_EXTERNAL", "fail_hold_fallback": "QUARANTINED; no further session", "actual_start": null, "actual_finish": null},
+      {"stage_id": "DP-08", "stage": "acceptance and closeout", "predecessor": "DP-07", "recipient_role_type": "independent reviewer and future authorized decision-maker", "required_artifact": "complete layered acceptance ledger, deviations, archive, and residual liability record", "participant_checkable_entry": "ledger structure complete", "external_entry": "all required professional/field/authorization evidence", "output": "future closeout, corrective action, or continued HOLD", "current_state": "HOLD_EXTERNAL", "fail_hold_fallback": "correct, restore, or terminate", "actual_start": null, "actual_finish": null}
+    ]
   },
   "operations_runbook": [
     {"stage": "booking and scope check", "participant_reference": "future session may be proposed only after a bounded task and evidence request exist", "hold": "task owner, carrier, schedule and participant conditions remain UNCONFIRMED"},
@@ -125,13 +294,45 @@
     {"stage": "incident, deviation, appeal and pause", "participant_reference": "record deviation, honor human stop/appeal, isolate if needed and protect ordinary service", "hold": "future legal/operational procedures remain to be confirmed"},
     {"stage": "shutdown, reset, maintenance and closeout", "participant_reference": "remove/reconcile components, quarantine unresolved issues, archive the record and request independent ordinary-baseline confirmation", "hold": "no reset duration, maintenance capacity or field outcome is asserted"}
   ],
+  "commissioning_inspection_maintenance_cadence": [
+    {"cadence_id": "CAD-01", "when": "before deployment", "classification": "PARTICIPANT_REFERENCE_TRIGGER", "checklist_owner_role_type": "applicable professional reviewers plus maintenance/reset custodian", "record_produced": "carrier baseline, accepted specification, serialized inventory, installation/interface, and open-HOLD record", "stop_or_quarantine": "any missing/contradictory evidence prevents assembly or setup", "acceptance_destination": "DP-04 procurement/assembly and DP-05 commissioning ledger", "actual_date": null},
+    {"cadence_id": "CAD-02", "when": "before every session", "classification": "PARTICIPANT_REFERENCE_TRIGGER", "checklist_owner_role_type": "qualified operator and separate human safety authority", "record_produced": "current authorization, role separation, ordinary baseline, inventory, isolation, stop, and fallback checklist", "stop_or_quarantine": "any stale authority, route conflict, role gap, damage, or failed stop check preserves P0_GO=false", "acceptance_destination": "DP-06 session gate", "actual_date": null},
+    {"cadence_id": "CAD-03", "when": "after every session", "classification": "PARTICIPANT_REFERENCE_TRIGGER", "checklist_owner_role_type": "maintenance/reset custodian with separate safety authority", "record_produced": "shutdown, isolation, inventory, deviation, removal, restoration, and archive record", "stop_or_quarantine": "missing item, damage, incomplete isolation, or unresolved deviation becomes QUARANTINED", "acceptance_destination": "DP-07 reset/restoration ledger", "actual_date": null},
+    {"cadence_id": "CAD-04", "when": "after any stop, fault, incident, appeal, or uncertain state", "classification": "EVENT_TRIGGER", "checklist_owner_role_type": "separate human safety authority, maintenance/reset custodian, and independent witness", "record_produced": "incident/deviation, lockout, quarantine, corrective action, and independent restoration record", "stop_or_quarantine": "no further session until every affected item and the ordinary baseline are independently accepted", "acceptance_destination": "DP-07/DP-08 ledger", "actual_date": null},
+    {"cadence_id": "CAD-05", "when": "every three months while stored", "classification": "PARTICIPANT_REFERENCE_INTERVAL_SUBJECT_TO_OPERATOR_RECALCULATION", "checklist_owner_role_type": "future maintenance/reset custodian", "record_produced": "serialized inventory, condition, storage environment, expiry, battery/consumable state where applicable, and quarantine record", "stop_or_quarantine": "uninspected, expired, damaged, or incomplete inventory cannot be released", "acceptance_destination": "storage/inventory ledger", "actual_date": null},
+    {"cadence_id": "CAD-06", "when": null, "classification": "FUTURE_MANUFACTURER_OR_PROFESSIONAL_INTERVAL", "checklist_owner_role_type": "future applicable manufacturer/professional role", "record_produced": "selected-equipment/material inspection and maintenance schedule", "stop_or_quarantine": "no participant interval substitutes for selected product/material/professional requirements", "acceptance_destination": "accepted operating and maintenance plan", "actual_date": null}
+  ],
   "layered_acceptance_commissioning_matrix": [
-    {"gate": "participant-checkable concept completeness", "evidence": "reference task, alternatives, role-type handoff, hazard/no-go and reset logic", "decision": "complete reference or revise", "current_state": "PARTICIPANT_REFERENCE_ONLY", "failure_consequence": "retain ordinary-space or NO-BUILD conclusion"},
+    {"gate": "participant-checkable package completeness", "evidence": "reference task, alternatives, unpriced quantities, role-hours, relative sensitivity, reserve, dependency programme, role/competence routing, cadence, procurement, acceptance, hazard/no-go, and reset logic", "decision": "complete participant package or revise", "current_state": "PASS_PARTICIPANT_SCOPE", "failure_consequence": "retain ordinary-space or NO-BUILD conclusion"},
     {"gate": "professional review", "evidence": "applicable design, safety, accessibility, structural, fire/life-safety, utility, privacy and operations reviews", "decision": "future pass, fail, or HOLD", "current_state": "HOLD_EXTERNAL", "failure_consequence": "no setup or activation"},
     {"gate": "field/carrier acceptance", "evidence": "rights/access, current route, capacity, interface, maintenance and emergency evidence", "decision": "future accept, reject, or HOLD", "current_state": "HOLD_EXTERNAL", "failure_consequence": "ordinary carrier, lower-tech arrangement, or NO-BUILD"},
     {"gate": "commissioning and supervised rehearsal", "evidence": "authorized scope, qualified roles, stop/lockout rehearsal, incident route and reset record", "decision": "future GO only after all applicable evidence", "current_state": "P0_GO_FALSE", "failure_consequence": "stop, isolate, quarantine and restore ordinary baseline"},
     {"gate": "independent ordinary-baseline acceptance", "evidence": "independent witness record of route/service/restoration", "decision": "future accept or QUARANTINED", "current_state": "HOLD_EXTERNAL", "failure_consequence": "no further session"}
   ],
+  "measurable_layered_acceptance_ledger": {
+    "classification": "PARTICIPANT_COMPLETE_EXTERNAL_HOLDS",
+    "acceptance_item_count": 16,
+    "participant_checkable_pass_count": 6,
+    "professional_field_external_pass_count": 0,
+    "items": [
+      {"check_id": "AC-P01", "layer": "participant-checkable now", "indicator": "unpriced quantity schedule completeness", "expected_evidence_type": "12 lot records with unit, quantity/sensitivity, dependency, gate, removability, and exclusion", "target": "12/12 complete; monetary values null", "current_value": "12/12; currency_values=null", "current_state": "PASS_PARTICIPANT_SCOPE", "responsible_role_type": "participant author", "pass_fail_hold_rule": "PASS only when every lot has all required fields and no price/authorization claim", "release_consequence": "supports G1 review only"},
+      {"check_id": "AC-P02", "layer": "participant-checkable now", "indicator": "role-hour arithmetic and role separation", "expected_evidence_type": "five phase records and summed low/reference/high totals", "target": "phase sums equal 20/26/38 role-hours; FTE remains null", "current_value": "20/26/38; fte_equivalent=null", "current_state": "PASS_PARTICIPANT_SCOPE", "responsible_role_type": "participant author", "pass_fail_hold_rule": "FAIL if totals do not sum or imply appointment/employment", "release_consequence": "supports staffing review only"},
+      {"check_id": "AC-P03", "layer": "participant-checkable now", "indicator": "relative CAPEX/OPEX sensitivity completeness", "expected_evidence_type": "low/reference/high indices plus driver shares and triggers", "target": "reference=1.00; each driver-share set sums 1.00; money remains null", "current_value": "CAPEX 0.82/1.00/1.48; OPEX 0.74/1.00/1.62; shares 1.00/1.00", "current_state": "PASS_PARTICIPANT_SCOPE", "responsible_role_type": "participant author", "pass_fail_hold_rule": "FAIL if presented as currency, quotation, budget, or funding", "release_consequence": "supports relative comparison only"},
+      {"check_id": "AC-P04", "layer": "participant-checkable now", "indicator": "unfunded exit-reserve method", "expected_evidence_type": "low/reference/high index, four drivers, recalculation method, and funding flag", "target": "0.10/0.18/0.30; funded=false", "current_value": "0.10/0.18/0.30; funded=false", "current_state": "PASS_PARTICIPANT_SCOPE", "responsible_role_type": "participant author", "pass_fail_hold_rule": "FAIL if reserve is claimed as cash, budget, liability discharge, or commitment", "release_consequence": "future budget gate remains HOLD"},
+      {"check_id": "AC-P05", "layer": "participant-checkable now", "indicator": "null-date dependency programme completeness", "expected_evidence_type": "nine predecessor-linked stages with recipients, artifacts, entry conditions, outputs, fallback, and null actual dates", "target": "9/9 complete; all actual_start/actual_finish null", "current_value": "9/9; 18/18 actual dates null", "current_state": "PASS_PARTICIPANT_SCOPE", "responsible_role_type": "participant author", "pass_fail_hold_rule": "FAIL if a date or external completion is invented", "release_consequence": "DP-00 complete; DP-01 ready; DP-02 through DP-08 HOLD"},
+      {"check_id": "AC-P06", "layer": "participant-checkable now", "indicator": "conditional delivery-control coverage", "expected_evidence_type": "recipient, competence, cadence, procurement, and acceptance maps", "target": "13 recipients; 10 competence rows; 6 cadence rows; 6 procurement stages; 16 acceptance items", "current_value": "13/10/6/6/16", "current_state": "PASS_PARTICIPANT_SCOPE", "responsible_role_type": "participant author", "pass_fail_hold_rule": "FAIL if any external role is implied appointed or any external check is marked passed", "release_consequence": "professional handoff complete; external releases stay closed"},
+      {"check_id": "AC-R01", "layer": "professional verification required", "indicator": "planning/architecture/public-space carrier fit", "expected_evidence_type": "current official controls, survey, reversible interface, access/egress, and restoration acceptance", "target": "all applicable evidence accepted by qualified roles", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "applicable planning/architecture/public-space professionals", "pass_fail_hold_rule": "HOLD until same-carrier evidence exists; FAIL/NO-GO on conflict", "release_consequence": "no specification freeze or setup"},
+      {"check_id": "AC-R02", "layer": "professional verification required", "indicator": "structure/fire/electrical/interface acceptance", "expected_evidence_type": "applicable calculations/reviews and accepted operating limits", "target": "all applicable discipline gates accepted", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "applicable qualified discipline professionals", "pass_fail_hold_rule": "HOLD when absent; FAIL/NO-GO when contradictory", "release_consequence": "no procurement, assembly, or activation"},
+      {"check_id": "AC-R03", "layer": "professional verification required", "indicator": "accessibility, inclusive service, privacy/data/legal acceptance", "expected_evidence_type": "current route/service and task-specific lawful/appeal boundary reviews", "target": "ordinary service remains complete and task boundary is accepted", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "accessibility/inclusive-service and privacy/data/legal reviewers", "pass_fail_hold_rule": "HOLD when absent; FAIL/NO-GO on route, service, rights, or appeal conflict", "release_consequence": "ordinary city or NO-BUILD"},
+      {"check_id": "AC-R04", "layer": "professional verification required", "indicator": "operational competence and independent stop authority", "expected_evidence_type": "scope-specific competence, appointment, mandate, and supervised rehearsal", "target": "qualified separated roles accepted", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "future authorized carrier and independent reviewer", "pass_fail_hold_rule": "HOLD until evidenced; FAIL if roles conflict or competence is insufficient", "release_consequence": "P0_GO remains false"},
+      {"check_id": "AC-F01", "layer": "field verification required", "indicator": "ordinary-route and carrier baseline continuity", "expected_evidence_type": "dated field observation and issue log", "target": "no route, access, human-service, maintenance, or queue conflict", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "field reviewers and accessibility/community representative", "pass_fail_hold_rule": "HOLD until observed; FAIL returns to lower intervention/NO-BUILD", "release_consequence": "no deployment"},
+      {"check_id": "AC-F02", "layer": "field verification required", "indicator": "commissioning, stop, lockout, and incident rehearsal", "expected_evidence_type": "dated authorized witnessed rehearsal record", "target": "all applicable checks pass with separated roles", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "operator, safety authority, custodian, and independent witness", "pass_fail_hold_rule": "HOLD until rehearsed; any failure stops and quarantines", "release_consequence": "no P0 session"},
+      {"check_id": "AC-F03", "layer": "field verification required", "indicator": "reset, restoration, and ordinary-baseline acceptance", "expected_evidence_type": "inventory, removal, surface/route restoration, and independent acceptance record", "target": "100% inventory reconciled; no unresolved deviation; ordinary baseline accepted", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "maintenance/reset custodian and independent witness", "pass_fail_hold_rule": "HOLD/QUARANTINED until complete", "release_consequence": "no further session and no closeout"},
+      {"check_id": "AC-E01", "layer": "external authorization required", "indicator": "rights, access, task, and role authorization", "expected_evidence_type": "authoritative dated scope, appointments, expiry, revocation, and task release", "target": "all current and scope-matched", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "rights-holder/authorized carrier and task owner", "pass_fail_hold_rule": "HOLD when absent/expired; FAIL when scope conflicts", "release_consequence": "no market engagement or field action"},
+      {"check_id": "AC-E02", "layer": "external authorization required", "indicator": "quotation, budget, funding, and contracting authority", "expected_evidence_type": "scope/date/location-matched quotations plus approved budget/funding/authority", "target": "future authorized evidence only", "current_value": "market_quotation_count=0; approved_budget=null; funding_commitment=null", "current_state": "HOLD_EXTERNAL", "responsible_role_type": "future procurement/funding/contracting authority", "pass_fail_hold_rule": "HOLD until real evidence; relative indices never pass this gate", "release_consequence": "no RFQ, award, payment, or procurement"},
+      {"check_id": "AC-E03", "layer": "external authorization required", "indicator": "applicable approval, insurance, and final operating release", "expected_evidence_type": "applicable authoritative approvals, insurance, and release record", "target": "all applicable releases current", "current_value": null, "current_state": "HOLD_EXTERNAL", "responsible_role_type": "future authorized decision-maker", "pass_fail_hold_rule": "HOLD when absent; FAIL/terminate when refused", "release_consequence": "EXTERNAL_RELEASES_OPEN=false and P0_GO=false"}
+    ]
+  },
   "rights_authority_acquisition_workflow": [
     {"step": "identify rightsholder and applicable authority class", "required_evidence": "current role, scope, use, time, expiry and revocation evidence", "current_state": "UNKNOWN_HOLD", "stop_if_missing": true},
     {"step": "request and validate access, operator mandate and professional/statutory responsibilities", "required_evidence": "written scope plus applicable role/competence confirmation", "current_state": "UNCONFIRMED", "stop_if_missing": true},

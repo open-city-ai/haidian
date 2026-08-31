@@ -23,7 +23,7 @@ S01、S04、S07 不主张已获批准、已部署、现场验证或工程可行�
 
 ## 4. 参与者就绪闭环
 
-新增的 `implementation-readiness-dossier.json` 不把概念包装成现实实施。它把未来的载体筛查/拒绝、S01 参考任务、角色类型 RACI、危险/锁定/NO-GO、非 BOQ 成本边界、运行记录、分层验收、权利/授权取得和 Day 1/Week 1 HOLD 关闭图整理为一个专业交接方法。当前载体、权利、运营主体、预算、现场容量、工程/安全条件、委托任务、调试和批准均仍为 `HOLD_EXTERNAL`；`P0_GO=false`，任何门失败即回到普通城市、低技术可撤方案或 NO-BUILD。
+新增的 `implementation-readiness-dossier.json` 不把概念包装成现实实施。参与者已完成量化预可研包、专业交接材料和下一决策包，并可进入 `READY_FOR_G1_EXTERNAL_VERIFICATION`；该包把未来的载体筛查/拒绝、S01 参考任务、角色类型 RACI、危险/锁定/NO-GO、非 BOQ 成本边界、运行记录、分层验收、权利/授权取得和 Day 1/Week 1 HOLD 关闭图整理为一个专业交接方法。当前载体、权利、运营主体、预算、现场容量、工程/安全条件、委托任务、调试和批准均仍为 `HOLD_EXTERNAL`；`P0_GO=false`，任何门失败即回到普通城市、低技术可撤方案或 NO-BUILD。
 
 ## 5. 主张限定
 

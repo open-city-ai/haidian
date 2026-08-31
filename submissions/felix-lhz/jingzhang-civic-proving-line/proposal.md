@@ -29,9 +29,9 @@ scenarios: ["ai-traffic-walkability", "ai-health-service-navigation", "enterpris
 
 同一任务、用户、场地和硬门下，ALT-A 中央混合湾因切断公共十字并冲突消防/撤场而 reject_design；ALT-B 分散双湾保住路线但监督与撤场碎片化，返回 revise_design；ALT-C 单侧可逆湾是唯一 advance_design。设计备选状态不等同于现场 adopt / revise / stop，计算只证明几何规则自洽。[data:visual/assets/spatial-decision.json] [metric:spatial_alternative_count]
 
-ALT-C 的概念公共路线和单侧试验范围由同一局部米制审计生成。[metric:alt_c_public_route_length_m] [metric:alt_c_trial_area_sqm]
+ALT-C 的概念公共路线、单侧试验范围和可逆缓冲均由同一局部米制审计生成。[metric:alt_c_public_route_length_m] [metric:alt_c_trial_area_sqm] [metric:alt_c_reversible_buffer_area_sqm]
 
-可逆缓冲及岗位—急停距离使用相同输入；正式底图、站口、权属或专业条件变化时必须重算，图纸和文字服从结果。[metric:alt_c_reversible_buffer_area_sqm] [metric:alt_c_max_estop_staff_distance_m]
+岗位—急停距离沿用同一输入；正式底图、站口、权属或专业条件变化时必须重算，图纸和文字服从结果。[metric:alt_c_max_estop_staff_distance_m]
 
 ## 当前实施门：G0 进入测绘与许可准备
 
@@ -47,7 +47,7 @@ ALT-C 的概念公共路线和单侧试验范围由同一局部米制审计生�
 
 ![正式背景上的京张双答运营叠加](assets/figures/site-overview.png)
 
-![大钟寺首层—公共空间—交通—蓝绿叠合](assets/figures/land-use-structure.png)
+![大钟寺首层、公共空间、交通与蓝绿叠合](assets/figures/land-use-structure.png)
 
 ## 设计依据与资料清单
 

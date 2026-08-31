@@ -39,6 +39,8 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | **3 分钟：一个谨慎的空间决定** | FIG.03 重点区、P0 参考、FIG.05 证据图 | 为什么只有一项 S01 被推至 P0，空间如何停下并回到日常 |
 | **15 分钟：一条可复核的责任链** | 全文、结构化资料、假设/来源/矩阵 | 哪些内容由参与者提出，哪些仍须专业、权利人和现场确认 |
 
+> **本次实施交接｜PARTICIPANT WORK COMPLETE → READY FOR G1 EXTERNAL VERIFICATION → EXTERNAL RELEASES HOLD → NO FIELD ACTIVATION。** 参与者已完成未定价数量、角色小时、相对成本/运维敏感性、退出准备、条件程序和分层验收；它只打开下一步外部核验，不打开采购或现场。`P0_GO=false`，真实权利、任命、工程、现场、预算/资金、批准与任务授权仍为 HOLD/null。[data:visual/assets/implementation-readiness-dossier.json#participant_release_semantics]
+
 ### 方法底座：只在城市许可时使用
 
 > **一句话主张**：京张不是等待 AI 填满的空白线，而是一座状态、权限与断面不等的既有城市。方案以 `STATUS × ACTION` 先行界定空间底线，坚持 `AI_OFF_CITY`（在无智能层介入时，普通公共街道、混合生活、无障碍路径与人工服务 100% 完整成立），在 12 项城市任务中严格执行“普通空间充分性检验”，仅对物理验证不足、受控协作不足、合规评审不足的 S01、S04、S07 三项准入为深度空间包，其余 9 项均为 NO-BUILD 或普通载体，且所有准入空间均具备严格的 TTL、人工绝对权威与一键物理复位机制。[data:visual/assets/ai-spatial-admission.json#admission_chain]
@@ -203,13 +205,13 @@ S01 是唯一进入 P0 的空间参考；它不是已选场地、已批准试点
 
 **WHY → SPACE → PEOPLE → COMPONENTS → CAPACITY。** 当真实、有界且有人负责的物理任务确实无法由仿真、审查或普通房间替代时，才讨论一个不抢占公共路线的可撤测试边。Z0 保持普通路线，Z1 由人工交接，Z2 才是可撤测试，Z3 分开操作与安全权威，Z4 为预约观察，Z5 留给维护/复位，Z6 是尚待专业判断的缓冲。会话概念上只有 **1 项活动任务/设备、5 个角色位、4 个预约观察位、总上限 9**；Z0 不设等候队列，任何经观察或批准的实际容量均为 `null`。[data:visual/assets/p0-s01-reference.json#zone_logic] [data:visual/assets/p0-s01-reference.json#capacity]
 
-五类角色不是任命：测试操作人、与操作人分离的人类安全权威、公共/服务交接人、维护/复位人、独立观察/复核人。八项可撤构件也不是设备清单：STATUS/复位门、可撤周界、地面/接口保护、电力/隔离接口、实体停止/控制包、操作/安全台与日志、交接/观察元素、复位/储存清单。它们只是在未来权利、专业与现场条件都成立时，提供一条不会把技术扩散进普通城市的最小路径。[data:visual/assets/p0-s01-reference.json#components]
+五类角色不是任命：测试操作人、与操作人分离的人类安全权威、公共/服务交接人、维护/复位人、独立观察/复核人。八类可撤构件被拆成 **12 个未定价参与者参考批次**，覆盖门/周界、表面与接口、双重实体停止、角色台与交接、库存/运输、专业复核和退出恢复；每项都有单位、低/参考/高数量、依赖、验收门和排除边界，但没有产品、供应商、现场数量或报价。[data:visual/assets/p0-s01-reference.json#components] [data:visual/assets/implementation-readiness-dossier.json#unpriced_quantity_schedule]
 
 **OPERATION → STOP → RESET → MAINTENANCE。** 运行顺序固定为：外部门预开 → 普通基线核验 → 安装/检查 → 条件激活与停止排演 → 一项受控任务 → 失效即关闭 → 人工隔离/接管 → 移除 → 恢复 → 独立普通基线核验。没有复位时长主张；任何问题先进入 `QUARANTINED`，直至独立复位与普通基线被再次确认。[data:visual/assets/p0-s01-reference.json#operation_chain] [data:visual/assets/p0-s01-reference.json#stop_reset_maintenance]
 
-**COST → ALTERNATIVES → HOLD。** 当前 `market_quotation_count=0`、`approved_budget=null`、`funding_commitment=null`；只比较相对敏感性，绝不虚构金额。四个同等候选依次是 NO-BUILD、低技术可撤布置、选定 P0、替代的线性侧湾；只要物理需求未被核实，或更轻的选项同样守住普通城市底线，P0 就不前进。11 项外部条件全部为 `HOLD_EXTERNAL`，所以 `P0_GO=false`。[data:visual/assets/p0-s01-reference.json#cost_and_alternatives] [data:visual/assets/p0-s01-reference.json#external_hold_gates]
+**COST → ALTERNATIVES → HOLD。** 单次参考投入是低/参考/高 **20/26/38 角色小时**；CAPEX 相对指数为 **0.82/1.00/1.48**，OPEX 为 **0.74/1.00/1.62**，未注资退出准备指数为 **0.10/0.18/0.30**。这些都是 `RELATIVE_SENSITIVITY`，不是人民币预算；当前 `market_quotation_count=0`、`approved_budget=null`、`funding_commitment=null`。四个候选仍依次是 NO-BUILD、低技术可撤布置、选定 P0、线性侧湾；11 项外部条件全部为 `HOLD_EXTERNAL`，所以 `P0_GO=false`。[data:visual/assets/implementation-readiness-dossier.json#staffing_role_hour_reference] [data:visual/assets/implementation-readiness-dossier.json#relative_capex_opex_sensitivity] [data:visual/assets/p0-s01-reference.json#external_hold_gates]
 
-这张参考把参与者现在能够交付的概念、仍需专业团队完成的调查/规范/容量/责任确认，以及必须由现场观察证明的路线、交接、停止和复位分开记录；它同时与 PRJ-06 的“一个可撤验证试点”保持受限交叉引用，而不把概念变成承诺。[data:visual/assets/p0-s01-reference.json#acceptance_and_handoff] [data:visual/assets/renewal-project-portfolio.json#PRJ-06]
+这张参考把参与者已完成的 9 阶段 null-date 依赖程序和 16 项验收台账，与仍需专业团队、现场和授权证明的项目分开记录；6 项参与者检查已通过，其他 10 项仍为 `HOLD_EXTERNAL`。它同时与 PRJ-06 的“一个可撤验证试点”保持受限交叉引用，而不把交接完成变成现场承诺。[data:visual/assets/p0-s01-reference.json#acceptance_and_handoff] [data:visual/assets/implementation-readiness-dossier.json#measurable_layered_acceptance_ledger] [data:visual/assets/renewal-project-portfolio.json#PRJ-06]
 
 ![三处重点区与差异化断面](assets/figures/key-areas.png)
 
@@ -335,17 +337,18 @@ AI-off 时，公共路径、混合城市、蓝绿、普通房间、人工服务�
 
 三个深度场景都处于 `CONCEPT_PROPOSAL`。它们的可实施性不来自一句“可建/可投/可运营”的判断，而来自把不够的证据、权利、进入、容量、数据、人员和复位条件写成不能跳过的门。九项普通空间/NO-BUILD 结果不需等待空间施工，也同样要保留人工责任和停止条件。[data:visual/assets/taskbook-closure.json#claim_qualifications]
 
-### 现场实施包是暂停门，而不是缺失的承诺
+### 参与者工作已经完成，现场释放仍是暂停门
 
-本次投稿**不含**现场验证的实施包，也不因此把任何深度合同称为可实施。这样的未来包必须在同一处载体上绑定官方几何、权利/进入、权威、工程与容量、资金路径和分期/审批；当前每一项均为 `PAUSE_UNTIL_OFFICIAL_DATA`、`AUTHORIZATION_REQUIRED` 或 `PROFESSIONAL_DEEPENING_REQUIRED`。在该包由权利人和合格专业团队建立、复核并授权前，S01/S04/S07 的结果只能是普通空间或暂停。下表记录的是不依赖虚构现场数据的可实施性**边界与下一步**，不是现场可行性证明。[data:visual/assets/taskbook-closure.json#claim_qualifications]
+本次投稿不含已验证、已授权的现场实施包，却已经完整交付参与者可控制的**量化预可研与专业交接包**。未来现场包仍必须在同一载体上绑定官方几何、权利/进入、真实任务、任命、工程与容量、报价、预算/资金和批准；当前每一项均为 `HOLD_EXTERNAL`。因此 S01/S04/S07 保持普通空间或暂停，但原因不再是参与者概念未完成，而是已完成的下一决策包正在等待真实 G1 外部核验。[data:visual/assets/implementation-readiness-dossier.json#participant_release_state] [data:visual/assets/taskbook-closure.json#claim_qualifications]
 
 ### 参与者就绪闭环：让交接先于行动
 
-参与者现在能交付的不是“已经就绪”的承诺，而是一份把交接、拒绝和复位放在行动之前的参考性专业包。它先筛查载体是否有权利、普通路线、无障碍和接口条件；再为 S01 保留一份 `PARTICIPANT_REFERENCE` 任务包；最后把角色类型、危险/锁定/NO-GO、运行、验收、权利取得和恢复普通基线串成一条可被未来团队接走的责任链。[data:visual/assets/implementation-readiness-dossier.json#carrier_screen_reject_register] [data:visual/assets/implementation-readiness-dossier.json#participant_reference_task_packet]
+参与者现在交付的是一份可被未来专业团队直接核验的完整参考包，而不是现场行动承诺。它把 12 个未定价批次、20/26/38 角色小时、CAPEX/OPEX 低/参考/高相对指数、全生命周期和未注资退出准备，连接到 9 阶段且实际日期全为 `null` 的依赖程序。[metric:s01_unpriced_delivery_lot_count] [metric:s01_reference_session_role_hours] [data:visual/assets/implementation-readiness-dossier.json#conditional_dependency_programme]
 
-- **载体—任务。** 参与者交付载体筛查/拒绝登记、S01 参考任务、低技术与 NO-BUILD 退路。**外部门：**权利、进入、普通路线、真实任务、数据与接口全部为 `HOLD`。
-- **角色—安全—运行。** 参与者交付角色类型 RACI、危险/锁定/NO-GO 表、预开—停止—隔离—复位运行记录结构。**外部门：**没有已任命操作人、法定权威、现场容量、工程或安全性能主张。
-- **成本—验收—权利。** 参与者交付非 BOQ 的 CAPEX/OPEX 结构、分层验收、权利/授权取得路径、Day 1/Week 1 缺口关闭图。**外部门：**`market_quotation_count=0`、`approved_budget=null`、`funding_commitment=null`；任何门失败即暂停、隔离或回到普通城市。
+- **接收人与能力。** 13 类 gate-addressed 接收角色逐项获得所需成果、核验问题和 NO-GO 规则；10 类专业/运营能力逐项区分参与者现在可查的完整性与未来必须提供的真实资质、任命和证据。
+- **程序与节奏。** `DP-00` 参与者包已完成，`DP-01` 已准备接受 G1 外部核验；`DP-02` 至 `DP-08` 全部 HOLD，实际开始/完成日期全为 `null`。部署前、每次会话前后、停止/故障后和储存期有可量测记录，厂家/专业间隔仍为 `null`。[data:visual/assets/implementation-readiness-dossier.json#commissioning_inspection_maintenance_cadence]
+- **采购与验收。** 五个未定价包只有在专业规格冻结、RFQ 授权和真实预算/资金存在后才能进入市场；当前报价数为 0。16 项验收中只有 6 项参与者完整性检查通过，专业、现场与外部授权一项也没有被假定通过。[data:visual/assets/implementation-readiness-dossier.json#participant_reference_procurement_path] [data:visual/assets/implementation-readiness-dossier.json#measurable_layered_acceptance_ledger]
+- **正向但有界的释放。** `PARTICIPANT_PRE_FEASIBILITY_PACKAGE_COMPLETE=true`、`PROFESSIONAL_HANDOFF_COMPLETE=true`、`READY_FOR_G1_EXTERNAL_VERIFICATION=true`、`NEXT_DECISION_PACKAGE_COMPLETE=true`；同时 `EXTERNAL_RELEASES_OPEN=false`、`P0_GO=false`，权利、任命、工程、现场、预算/资金、批准和任务授权仍为 HOLD/null。[data:visual/assets/implementation-readiness-dossier.json#participant_release_semantics]
 
 公开资料在 2026-08-31 只被重新核对为竞赛和城市更新的**语境**：它们能说明任务尺度或已发布的信息，不能证明当前载体权利、运营主体、预算、真实任务、工程条件或批准。未来 Day 1 只建立权利/路线/任务的证据请求与观察记录；Week 1 也只能在适用授权与专业审查之后，检验角色分离、停止/锁定与普通基线恢复。今日没有任何 Day 1 或 Week 1 行动发生，`P0_GO=false`。[source:OFFICIAL-ANNOUNCEMENT] [data:visual/assets/implementation-readiness-dossier.json#day_1_week_1_hold_closure_map]
 
@@ -355,7 +358,7 @@ AI-off 时，公共路径、混合城市、蓝绿、普通房间、人工服务�
 - **方案建议角色（CONCEPT_PROPOSAL）**：任务发起人、载体管理人、合格操作人、独立复核人、无障碍/社区代表、档案及复位保管人是未来可能需要的角色类型。谁可提议、谁可运行、谁可停止，必须在每次会话前由权利人、运营方与适用专业/法定程序确认。
 - **UNKNOWN / PAUSE_UNTIL_OFFICIAL_DATA**：权属、审批、场地进入、开放时间、地铁/校园/企业/遗产空间的运营规则，以及工程安全、容量和现场表现均未取得。缺少任一项，场景保持普通空间或暂停。
 - **FUNDING_MECHANISM_OPTIONS（CONCEPT_PROPOSAL）**：可供未来选择的公共利益更新、研究/测试合作、运营者贡献、公益文化支持和适当商业收入机制不等于预算、资助、投资人、采购或政府承诺。[data:visual/assets/taskbook-closure.json#operation_cycle]
-- **READINESS**：当前仅 `OFFLINE_READY`（概念与离线复位排演）；每一场景仍是 `FIELD_DATA_REQUIRED`、`AUTHORIZATION_REQUIRED` 和 `PROFESSIONAL_DEEPENING_REQUIRED`，不能称为部署、工程可行或现场验证。[data:visual/assets/taskbook-closure.json#claim_qualifications]
+- **READINESS**：参与者预可研包、专业交接材料与下一决策包已完成，当前为 `READY_FOR_G1_EXTERNAL_VERIFICATION`；每一场景仍是 `FIELD_DATA_REQUIRED`、`AUTHORIZATION_REQUIRED` 和 `PROFESSIONAL_DEEPENING_REQUIRED`，不能称为部署、工程可行或现场验证。[data:visual/assets/taskbook-closure.json#claim_qualifications]
 
 ### 三份可重复的深度交付合同
 

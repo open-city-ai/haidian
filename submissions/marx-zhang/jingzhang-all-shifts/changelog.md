@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v4.7 - 2026-08-31（官方边界工作包离线语义校验）
+
+- **零依赖校验器**：新增 `visual/assets/check-official-boundary-workbook.js`，离线检查工作簿的 `not_activated` 状态、三类官方输入契约、基线文件 SHA-256、GEO-001—GEO-009、指标复算契约、停止条件、状态机、证据链字段和双语输出要求。
+- **边界安全 fixture**：新增一个合法的未激活正例和一个缺少 provenance 且越过边界安全语义的拒绝负例；校验器只验证声明，不读取、推断或生成任何官方几何。
+- **审计登记**：在 `visual/assets/three-area-operations-audit.json` 登记校验器、fixture 与当前 `not_activated` 状态；保持 provisional geometry、现有指标和 `optional_crosswalk_concept_only` 不变。
+
 ## v4.6 - 2026-08-28（官方边界发布后的独立复算工作包）
 
 - **复算工作簿**：新增 `visual/assets/official-boundary-recalculation-workbook.json`，冻结当前临时几何与指标基线，登记官方总体边界/三处重点区的输入契约、来源与 SHA-256、CRS/几何 QA、等面积复算公式、指标 delta、受影响交付物、责任角色、状态机与停止条件。

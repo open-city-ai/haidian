@@ -25,7 +25,9 @@ const zhPrelude = `# 京张双答 / JING-ZHANG TWO ANSWERS
 
 同一任务、用户、场地和硬门下，ALT-A 中央混合湾因切断公共十字并冲突消防/撤场而 reject_design；ALT-B 分散双湾保住路线但监督与撤场碎片化，返回 revise_design；ALT-C 单侧可逆湾是唯一 advance_design。设计备选状态不等同于现场 adopt / revise / stop，计算只证明几何规则自洽。[data:visual/assets/spatial-decision.json] [metric:spatial_alternative_count]
 
-ALT-C 的概念公共路线、单侧试验范围、可逆缓冲及岗位—急停距离均由同一局部米制审计生成；正式底图、站口、权属或专业条件变化时必须重算，图纸和文字服从结果。[metric:alt_c_public_route_length_m] [metric:alt_c_trial_area_sqm] [metric:alt_c_reversible_buffer_area_sqm] [metric:alt_c_max_estop_staff_distance_m]
+ALT-C 的概念公共路线、单侧试验范围和可逆缓冲均由同一局部米制审计生成。[metric:alt_c_public_route_length_m] [metric:alt_c_trial_area_sqm] [metric:alt_c_reversible_buffer_area_sqm]
+
+岗位—急停距离沿用同一输入；正式底图、站口、权属或专业条件变化时必须重算，图纸和文字服从结果。[metric:alt_c_max_estop_staff_distance_m]
 
 ## 当前实施门：G0 进入测绘与许可准备
 
@@ -40,9 +42,11 @@ ALT-C 的概念公共路线、单侧试验范围、可逆缓冲及岗位—急�
 这些事实是可信底图，不是方案主角。“一脊三站两翼”是嵌入绿带、对接大钟寺中心与创新发展轴的可停、可撤运营层；六条缝合只对接已建或已公布的慢行方向，不被画成拟建道路。官方 1668.2 公顷范围与本投稿 11.4 平方公里临时可复算几何分开登记，政府报道也不等于本团队踏勘、测绘、产权或工程验收。[data:visual/assets/spatial-atlas.json] [metric:official_planning_area_ha] [metric:submitted_provisional_area_sqm]
 
 ![正式背景上的京张双答运营叠加](assets/figures/site-overview.png)
+
+![大钟寺首层、公共空间、交通与蓝绿叠合](assets/figures/land-use-structure.png)
 `;
 
-const enPrelude = `# JING-ZHANG TWO ANSWERS / 京张双答
+const enPrelude = `# JING-ZHANG TWO ANSWERS
 
 > **One public route, four civic states.** At Dazhongsi centre, a **4 m prototype public route** remains continuous through OPEN, TRIAL, PAUSE and RETIRE. AI occupies only a one-sided reversible trial bay; staffed service and the Receipt Porch remain open.[data:visual/assets/prototype-model.json] [metric:s7_public_route_prototype_width_m]
 
@@ -60,7 +64,9 @@ The reversible prototype palette is bolted galvanized steel, perforated-metal sh
 
 Under one task, users, site and hard gates, ALT-A central mixing is reject_design because it cuts the public cross and conflicts with fire/removal; ALT-B split bays retain routes but fragment supervision and removal, so revise_design; ALT-C one-sided reversible bay is the sole advance_design. These design-option states are not field adopt / revise / stop decisions; the computation tests geometric consistency only.[data:visual/assets/spatial-decision.json] [metric:spatial_alternative_count]
 
-ALT-C route, one-sided trial area, reversible buffer and staff-to-e-stop distance come from one local-metric audit. Any change in official base, entrances, title or specialist constraints requires a rerun; drawings and text must follow the result.[metric:alt_c_public_route_length_m] [metric:alt_c_trial_area_sqm] [metric:alt_c_reversible_buffer_area_sqm] [metric:alt_c_max_estop_staff_distance_m]
+ALT-C route, one-sided trial area and reversible buffer come from one local-metric audit.[metric:alt_c_public_route_length_m] [metric:alt_c_trial_area_sqm] [metric:alt_c_reversible_buffer_area_sqm]
+
+Staff-to-e-stop distance uses the same input. Any change in official base, entrances, title or specialist constraints requires a rerun; drawings and text must follow the result.[metric:alt_c_max_estop_staff_distance_m]
 
 ## Current implementation gate: G0 survey and permit preparation
 
@@ -75,6 +81,8 @@ Published 2026 context records an approximately 1,668.2 ha neighbourhood-plannin
 These facts are the credible base, not the design protagonist. The spine/stations/wings form a stoppable, removable operating layer embedded in the green belt and aligned with Dazhongsi centre and the innovation axis; six stitches align with existing or published slow-mobility directions and are not proposed roads. The official 1,668.2 ha context and the submission's 11.4 sq km provisional geometry stay separate. Government reporting is not participant fieldwork, survey, title or acceptance evidence.[data:visual/assets/spatial-atlas.json] [metric:official_planning_area_ha] [metric:submitted_provisional_area_sqm]
 
 ![Jing-Zhang operating overlay on approved context](assets/figures/site-overview.en.png)
+
+![Dazhongsi ground, public space, transit and blue-green overlay](assets/figures/land-use-structure.en.png)
 `;
 
 function frontMatter(text) {
@@ -94,6 +102,7 @@ function rebuildProposal(rel, lang) {
     .replace(/在已批空间结构上建立城市采纳层。/g, '一条公共路径，四种城市状态。')
     .replace(/Civic adoption on approved structure/g, 'One public route, four civic states');
   let front = frontMatter(source)
+    .replace(/^title:.*$/m, lang === 'zh' ? 'title: "京张双答 / JING-ZHANG TWO ANSWERS"' : 'title: "JING-ZHANG TWO ANSWERS"')
     .replace(/summary:.*\n/, lang === 'zh'
       ? 'summary: "一条4米原型公共路径在OPEN、TRIAL、PAUSE、RETIRE四态不断线；AI只占一侧，人工回执廊始终开放。"\n'
       : 'summary: "One 4 m prototype public route stays continuous across OPEN, TRIAL, PAUSE and RETIRE; AI occupies one side while the staffed Receipt Porch stays open."\n');
@@ -103,7 +112,7 @@ function rebuildProposal(rel, lang) {
 function updateStructuredData() {
   const model = readJson('visual/assets/prototype-model.json');
   model.schema_version = '1.14.0';
-  model.dataset_id = 'jingzhang-v17-one-route-four-states';
+  model.dataset_id = 'jingzhang-v17-2-one-route-four-states';
   model.core_claim = {zh:'大钟寺一条4米原型公共路径在四态中不断线；AI只占一侧，人工回执廊始终开放。',en:'A 4 m prototype public route remains unbroken across four states; AI occupies one side and the staffed Receipt Porch stays open.'};
   model.canonical_view_refs = {city_context:'FIG-SITE-OVERVIEW-V17',ground_interface:'FIG-LAND-USE-V17',landmark_family:'FIG-KEY-AREAS-V17',continuous_journey:'FIG-MOBILITY-V17',evidence_desk:'FIG-METRICS-V17'};
   model.context_feature_refs = ['approved_green_belt','innovation_axis','dazhongsi_centre','fishbone_slow_mobility'];
@@ -130,11 +139,11 @@ function updateStructuredData() {
   writeJson('visual/assets/prototype-model.json', model);
 
   const atlas = readJson('visual/assets/spatial-atlas.json');
-  Object.assign(atlas,{schema_version:'1.14.0',publication_version:'V17',subtitle:{zh:'一条公共路径，四种城市状态',en:'One public route, four civic states'},canonical_view_refs:model.canonical_view_refs,context_feature_refs:model.context_feature_refs,existing_public_use_refs:model.existing_public_use_refs,public_route_invariant:model.public_route_invariant,state_geometry_refs:model.s7.state_geometry_refs,maintenance_route_refs:model.s7.maintenance_route_refs,experience_camera_ref:model.s7.experience_camera_ref,visual_priority:'hero',implementation_stage:model.implementation_stage,next_gate_requirements:model.next_gate_requirements,interface_status:['existing_published','approved_context','design_proposal','unknown']});
+  Object.assign(atlas,{schema_version:'1.14.0',publication_version:'V17.2',subtitle:{zh:'一条公共路径，四种城市状态',en:'One public route, four civic states'},canonical_view_refs:model.canonical_view_refs,context_feature_refs:model.context_feature_refs,existing_public_use_refs:model.existing_public_use_refs,public_route_invariant:model.public_route_invariant,state_geometry_refs:model.s7.state_geometry_refs,maintenance_route_refs:model.s7.maintenance_route_refs,experience_camera_ref:model.s7.experience_camera_ref,visual_priority:'hero',implementation_stage:model.implementation_stage,next_gate_requirements:model.next_gate_requirements,interface_status:['existing_published','approved_context','design_proposal','unknown']});
   writeJson('visual/assets/spatial-atlas.json', atlas);
 
   const scenes = readJson('visual/assets/two-answers.json');
-  Object.assign(scenes,{schema_version:'1.14.0',publication_version:'V17',subtitle:{zh:'一条公共路径，四种城市状态',en:'One public route, four civic states'},public_route_invariant:model.public_route_invariant,canonical_view_refs:model.canonical_view_refs,context_feature_refs:model.context_feature_refs,existing_public_use_refs:model.existing_public_use_refs,state_geometry_refs:model.s7.state_geometry_refs,maintenance_route_refs:model.s7.maintenance_route_refs,experience_camera_ref:model.s7.experience_camera_ref,visual_priority:'hero',implementation_stage:model.implementation_stage,next_gate_requirements:model.next_gate_requirements});
+  Object.assign(scenes,{schema_version:'1.14.0',publication_version:'V17.2',subtitle:{zh:'一条公共路径，四种城市状态',en:'One public route, four civic states'},public_route_invariant:model.public_route_invariant,canonical_view_refs:model.canonical_view_refs,context_feature_refs:model.context_feature_refs,existing_public_use_refs:model.existing_public_use_refs,state_geometry_refs:model.s7.state_geometry_refs,maintenance_route_refs:model.s7.maintenance_route_refs,experience_camera_ref:model.s7.experience_camera_ref,visual_priority:'hero',implementation_stage:model.implementation_stage,next_gate_requirements:model.next_gate_requirements});
   for (const s of scenes.scenarios) {
     s.visual_priority = s.code === 'S7' ? 'hero' : (['T2','S2'].includes(s.code) ? 'support' : 'reference');
     s.implementation_stage = s.code === 'S7' ? model.implementation_stage : 'E1_concept_design';
@@ -187,6 +196,10 @@ function updateChangelog() {
     text += `\n## 2026-08-21 · V17\n\n- Restored the buildable civic cross as primary evidence and demoted planning context to a verified base.\n- Established one canonical 4 m route invariant across OPEN / TRIAL / PAUSE / RETIRE.\n- Added canonical view, context, maintenance, camera, priority, stage and next-gate interfaces (schema 1.14.0).\n- Reordered both proposals around spatial conclusion, prototype, ALT decision, next gate and approved context.\n`;
     writeText(rel, text);
   }
+  if (!text.includes('## 2026-08-30 · V17.2')) {
+    text += `\n## 2026-08-30 · V17.2\n\n- Rebalanced the five review figures around one dominant spatial judgment and enlarged essential labels for 1024 px review.\n- Reflowed A0 and A3 without adding design claims, data, scenes or metrics.\n- Replaced the duplicated report hero and expanded the interaction assembly/state panel.\n- Enforced zero visible CJK characters across English figures, PDFs and offline HTML while retaining the licensed embedded font.\n`;
+    writeText(rel, text);
+  }
 }
 
 function run() {
@@ -196,7 +209,7 @@ function run() {
   updateMetrics();
   updateSourcesAndRights();
   updateChangelog();
-  console.log('V17 canonical content and schema 1.14.0 written');
+  console.log('V17.2 canonical content and schema 1.14.0 written');
 }
 
 module.exports = {run};

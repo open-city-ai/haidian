@@ -1,9 +1,9 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "reference_id": "JZ100-P0-S01-REFERENCE",
   "title_zh": "S01 众智园可撤物理验证：P0 空间—运营—复位参考",
   "title_en": "S01 Zhongzhiyuan reversible physical validation: P0 space-operation-reset reference",
-  "evidence_status": "CONCEPT_PROPOSAL",
+  "evidence_status": "PARTICIPANT_REFERENCE_COMPLETE_WITH_EXTERNAL_HOLDS",
   "purpose": "One participant-authored reference for reviewing a minimum reversible S01 condition. It is not a survey, approval, construction drawing, operating authorisation, cost plan, or field-performance record.",
   "scope": {
     "task_id": "S01",
@@ -43,6 +43,9 @@
     "concept_total_cap": 9,
     "walk_in_queue": "not permitted in Z0",
     "observed_or_approved_capacity": null,
+    "reference_session_role_hours": 26,
+    "role_hours_low_reference_high": [20, 26, 38],
+    "role_hour_status": "PARTICIPANT_REFERENCE_NOT_AN_APPOINTMENT_OR_WORKFORCE_PLAN",
     "status": "DESIGN_ASSUMPTION"
   },
   "components": [
@@ -71,13 +74,20 @@
     "fail_close_rule": "Any missing gate, unsafe state, route conflict, stale authority or incomplete role separation yields P0_GO=false.",
     "reset_time": null,
     "issue_state": "QUARANTINED until an independent reset and ordinary-baseline verification is complete.",
-    "maintenance_rule": "No new session follows a failed close, incomplete inventory, or missing reset record."
+    "maintenance_rule": "No new session follows a failed close, incomplete inventory, or missing reset record.",
+    "participant_reference_cadence": ["before deployment", "before every session", "after every session", "after stop/fault", "every three months while stored"],
+    "manufacturer_or_professional_interval": null
   },
   "cost_and_alternatives": {
     "market_quotation_count": 0,
     "approved_budget": null,
     "funding_commitment": null,
-    "rom_opex_expression": "Relative sensitivity only; any future amount requires source-bounded quotation, authorisation and a named responsible party.",
+    "unpriced_delivery_lot_count": 12,
+    "capex_relative_index_low_reference_high": [0.82, 1.00, 1.48],
+    "opex_relative_index_low_reference_high": [0.74, 1.00, 1.62],
+    "exit_reserve_index_low_reference_high": [0.10, 0.18, 0.30],
+    "exit_reserve_funded": false,
+    "rom_opex_expression": "Relative sensitivity only; reference=1.00. Any future amount requires scope/date/location-matched quotation, authorisation and a named responsible party.",
     "alternatives": [
       "NO-BUILD: simulation, review and ordinary carrier",
       "lower-tech reversible arrangement",
@@ -101,14 +111,26 @@
   ],
   "gate_status": "All 11 gates are HOLD_EXTERNAL. P0_GO=false.",
   "acceptance_and_handoff": {
-    "participant_now": ["concept reference", "ordinary-city floor", "conditional zone/component/operation logic", "external-hold register"],
+    "participant_now": ["complete quantified participant pre-feasibility package", "12-lot unpriced quantity schedule", "20/26/38 role-hour sensitivity", "relative CAPEX/OPEX and unfunded exit-reserve method", "nine-stage null-date dependency programme", "gate-addressed recipient/competence/cadence/procurement maps", "16-item measurable acceptance ledger", "ordinary-city floor and external-hold register"],
     "professional_needed": ["survey", "codes and life safety", "accessibility", "carrier/utility capacity", "risk method", "role competence and approvals"],
     "field_observation_needed": ["ordinary-route continuity", "maintenance conflicts", "human handoff", "stop/reset rehearsal", "independent baseline restoration"],
-    "handoff_record": "dated gate register, stop/reset record, inventory state and independent ordinary-baseline verification"
+    "handoff_record": "dated gate register, stop/reset record, inventory state and independent ordinary-baseline verification",
+    "conditional_dependency_programme_stage_count": 9,
+    "measurable_acceptance_item_count": 16,
+    "participant_checkable_pass_count": 6,
+    "participant_release_semantics": {
+      "PARTICIPANT_PRE_FEASIBILITY_PACKAGE_COMPLETE": true,
+      "PROFESSIONAL_HANDOFF_COMPLETE": true,
+      "READY_FOR_G1_EXTERNAL_VERIFICATION": true,
+      "NEXT_DECISION_PACKAGE_COMPLETE": true,
+      "EXTERNAL_RELEASES_OPEN": false,
+      "P0_GO": false
+    }
   },
   "links": {
     "admission": "visual/assets/ai-spatial-admission.json#S01",
     "portfolio": "visual/assets/renewal-project-portfolio.json#PRJ-06",
-    "assumption": "assumptions.json#A-P0-S01-001"
+    "assumption": "assumptions.json#A-P0-S01-001",
+    "quantified_handoff": "visual/assets/implementation-readiness-dossier.json"
   }
 }

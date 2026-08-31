@@ -48,4 +48,4 @@ for(const [rel,role,required,language] of entries){
 }
 manifest.files.sort((a,b)=>a.path.localeCompare(b.path));
 fs.writeFileSync(file,JSON.stringify(manifest,null,2)+'\n');
-console.log('V17 canonical files registered: '+manifest.files.length);
+console.log('V17.2 canonical files registered: '+manifest.files.length);
