@@ -87,6 +87,14 @@ Ten node types support the loop: railway memory entrance, AI time-space guide, d
 
 The proposed ecosystem follows five linked stages: university research, open collaboration, enterprise transfer, public testing, and international communication `[source:AGENT-TASKBOOK]` `[source:SOURCE-REGISTRY]`. Land, space, capital, talent, compute, data, and applications should be organized around public questions: who asks, who supplies evidence, who tests, who reviews, and who returns the result to public life. Case studies are methods to compare, not permission to import other cities' companies, investments, or policies as Haidian facts. Personas, scenario cards, and AI nodes turn the ecosystem into auditable spaces and services.
 
+### Three positions, five functions, three zones and two wings
+
+The three positions are a contemporary expression of Jingzhang's self-reliant innovation spirit, a public-facing AI urban experiment belt, and an open collaboration network connecting university research to enterprise transfer. The five functions are cultural narrative, innovation research, scenario testing, public service, and international exchange. The three zones are Zhongzhiyuan, Beijing AI Origin Community, and Dazhongsi AI Industry Cluster. The two wings are the Zhongguancun technology-service wing and the Xiaoyue River scenario-enablement wing.
+
+The operating loop is: the technology-service wing provides standards and compute/data compliance → the three zones host research, community learning, and industry display → the Xiaoyue River wing supplies public questions and low-disturbance pilots → results return to universities, developer communities, and the enterprise question bank. Six public reference cases are recorded in the Chinese proposal: Smart Kalasatama, Amsterdam Smart City, Barcelona 22@, the Toronto Sidewalk Labs proposal archive, MIT Senseable City Lab, and Seoul Digital Media City. These are methods, not imported facts.
+
+The naming hierarchy is master brand **Jingzhang Resonance**, operating mechanism **Jingzhang Open Loop**, landmarks **Echo Station, Co-creation Deck, Innovation Gate**, and annual event **Jingzhang Open Week**. The logo direction combines two railway lines, an open loop, and three nodes; official railway marks and third-party logos are excluded.
+
 Five user groups are central: open-source developers, start-ups, university students and researchers, local residents, and city visitors. Their needs are addressed through publishing, learning, testing, walking, cultural interpretation, and community services. Personal trajectories are not collected, resident profiles are not used for commercial recommendations, and research or company material must be separately authorized.
 
 ## 5. Ten AI scenario cards
@@ -103,6 +111,8 @@ Five user groups are central: open-source developers, start-ups, university stud
 10. Night developer and public culture program
 
 Three initial test scenarios are proposed: a supervised low-speed robot public-service test, a source-traceable AI heritage guide, and an anonymous aggregated public-space feedback test. Each requires a defined boundary, human intervention, public opt-out, and a documented review result.
+
+Maturity gates are M1 source validation, M2 controlled public trial, and M3 authorized pilot. Unclear sources stop M1; accessibility, privacy, complaint, or human-handoff failures pause M2; missing authorization, safety review, responsibility, or staffing blocks M3. The reusable public-space components are source cards, physical human-handoff points, high-contrast/tactile wayfinding, retractable test-boundary signs, paper-and-web contribution walls, and rest/shade modules.
 
 ## 6. Three AI pilgrimage landmarks
 
@@ -124,9 +134,11 @@ The signage system combines a timeline, question cards, and contribution records
 
 Suggested programs include Jingzhang Open Source Week, an AI Public Space Experiment Season, Railway and Future City Evenings, and a Global Agent Urban Design Exhibition. These are conceptual suggestions, not confirmed government programs or funding commitments.
 
+For each key zone, the proposal specifies a suggested operating lead, authorization, professional review, staffing, emergency handoff, complaint route, and exit gate. Annual monitoring targets are at least four public retrospectives, 100% of scenarios retaining human handoff and opt-out, 100% of displayed content carrying a source-status label, paper and human channels for residents and visitors, and an initial safety-event record within 24 hours. These are proposed targets, not promised performance.
+
 ## Metrics, Area Recalculation, and Compliance Matrix
 
-Metrics are separated into: values recalculable from submitted geometry; values requiring official planning conditions; and operational indicators requiring continuous measurement `[metric:site_area_sqm]` `[metric:green_ratio]` `[metric:public_space_ratio]` `[depth:metrics_recalculation]`. Unknown controls such as FAR, building height, road redlines, heritage controls, and municipal capacity remain unknown and are recorded as assumptions rather than invented numbers. The compliance matrix links call requirements, Agent.1 through Agent.6, geometry, metrics, drawings, and HTML. The standards matrix and design-depth matrix explain how the key areas, mobility, blue-green space, renewal, and phasing are evidenced. If recalculated geometry and public text areas differ, both are retained with an explanation rather than collapsed into false precision.
+Metrics are separated into: values recalculable from submitted geometry; values requiring official planning conditions; and operational indicators requiring continuous measurement `[metric:site_area_sqm]` `[metric:green_ratio]` `[metric:public_space_ratio]` `[depth:metrics_recalculation]`. The current provisional geometry computes approximately 11.4 square kilometers / 11,412,825 square meters, green ratio approximately 12.3%, public-space ratio approximately 7.3%, and three key areas; these are low-confidence concept-model outputs, not statutory indicators. Unknown controls such as FAR, building height, road redlines, heritage controls, and municipal capacity remain unknown and are recorded as assumptions rather than invented numbers. The compliance matrix links each requirement and Agent.1 through Agent.6 to dedicated evidence locations. If recalculated geometry and public text areas differ, both are retained with an explanation rather than collapsed into false precision.
 
 The compliance matrix links the call requirements, Agent.1 through Agent.6, geometry, metrics, drawings, and HTML. The standards matrix identifies which claims come from the public taskbook and which are professional deepening directions. The design-depth matrix explains how the three-level framework, key areas, mobility, blue-green space, renewal, and phasing are evidenced. If recalculated geometry and public text areas differ, both are retained with an explanation rather than collapsed into false precision.
 
