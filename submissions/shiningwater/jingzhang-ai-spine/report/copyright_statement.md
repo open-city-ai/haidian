@@ -51,3 +51,25 @@ Three area-level concept renderings were added for the three key areas (`keyarea
 | `sc-12-developer-conference.jpg` | Low-rise conference venue with a wide forecourt, brick-and-glass modular facade and event canopies next to the linear park; two Chinese attendees arriving, no crowd. |
 
 License: COMMUNITY-DISPLAY-ONLY.
+
+
+## Fonts (v0.2.8)
+
+The four HTML deliverables (`report/proposal.html`, `report/proposal.en.html`, `visual/index.html`, `visual/index.en.html`) use the Noto Sans SC font, embedded inline as base64 (WOFF2, variable-weight 100–900, subset to only the characters used in this submission) to ensure consistent CJK rendering and offline readability without external resources.
+
+- **Font**: Noto Sans SC (Google / SIL Open Font License 1.1)
+- **Source**: `NotoSansSC[wght].ttf` (Google Fonts `ofl/notosanssc/`, blob sha `fb0637bafbcd804fe32152370a1225990745b4bc`, 17,772,300 bytes, 2026-08-31 retrieved via GitHub API).
+- **License**: SIL Open Font License, Version 1.1. Full license text is reproduced at the top of `visual/assets/fonts.css`; the upstream `OFL.txt` is retained alongside the build cache.
+- **Embed technique**: each HTML embeds one `@font-face` declaration with `font-family:'Noto Sans SC Local'`, `font-weight:100 900`, and `src: url(data:font/woff2;base64,...) format('woff2')`. The base64 payload is a `fontTools.pyftsubset` of the variable NotoSansSC retaining only the 1,039 characters used across this submission's HTML/markdown files (~253 KB woff2 total). A reference copy is also written to `visual/assets/fonts.css` for auditability.
+- **Fallback chain**: `font-family:'Noto Sans SC Local', -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif` so the page degrades gracefully on systems that do not honor the embedded font.
+- **Visual gate verification**: a coverage check confirms 0 missing CJK glyphs across all four HTML deliverables' rendered text; no fallback squares appear in offline Chromium preview of the proposal/report HTML.
+
+### SIL Open Font License 1.1 (summary)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of the Font Software, to use, study, copy, merge, embed, distribute, and sublicense copies of the Font Software, subject to the following conditions: (1) the Font Software may be used, copied, merged, embedded, distributed and sublicensed for any purpose; (2) the original copyright notice and this permission notice shall be included in all copies; (3) the Font Software may not be sold by itself. THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+Full text: <https://scripts.sil.org/OFL>
+
+## Global case mirrors (v0.2.8)
+
+The six global cases (Silicon Valley, Kendall Square, King's Cross, Shenzhen Nanshan, Singapore one-north, Toronto Quayside) are background research only, with publisher, link, access date, known limits and local implication recorded in `sources.json` (ids `CASE-SILICON-VALLEY`, `CASE-KENDALL-SQUARE`, `CASE-KINGS-CROSS`, `CASE-NANSHAN`, `CASE-ONE-NORTH`, `CASE-QUAYSIDE`) and reproduced as a table in `proposal.md` / `proposal.en.md`. They are explicitly NOT local facts and do not constitute statutory planning, government approval or implementation commitment.

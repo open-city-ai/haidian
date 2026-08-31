@@ -1,5 +1,14 @@
 # 方案迭代记录
 
+## v0.2.8 - 2026-08-31 (v0.2.8 维持；本轮为评审反馈修复)
+
+- **中文 HTML CJK 字体（阻断）**：report/proposal.html、visual/index.html 及其 .en 配对页均存在无字体环境下方框问题。修复方式：将 Noto Sans SC（Google / SIL OFL 1.1）通过 `@fontsource/noto-sans-sc@5.3.0` 取得，再用 `fontTools` 子集到各页实际使用的字符（含 ASCII + CJK），以 base64 woff2 形式内嵌到 `<style>` 顶部的两个 `@font-face`（400/700），并把字体栈置顶为 `"Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif`。记录见 `report/copyright_statement.md` 的 Fonts (v0.2.8) 小节与附 OFL 全文。
+- **英文配对图件越界裁切（阻断）**：site-overview.en / land-use-structure.en / mobility-bluegreen.en 标题与副标题超出右边界、metrics-evidence.en 左侧条形图标签被裁切。修改 `generate_figures.py`（在 `_build/`），新增 `fig_header()` 帮助函数（按中/英分别做 36/62 字标题折行、46/98 字副标题折行、字号 20/15 与 11/9.3 像素），`metrics-evidence` 的左面板由 `[0.07, 0.13, 0.40, 0.40]` 改为 `[0.15, 0.13, 0.34, 0.40]`；并把脚本内 `SUB` 路径更正为 `shiningwater/jingzhang-ai-spine`。重生成全部 10 张图件（zh + en），并对全部图件做 256 色量化压缩（10 张合计约 1.5 MB）。
+- **版本号与日期统一**：`A3 booklet` 封面元信息由 "v0.2.6 · 2026-08-30 / zain" 统一为 "v0.2.8 · 2026-08-31 / shiningwater"；`A0 board` 同样加上 "2026-08-31"；`manifest.generated_at` 由 2026-08-23 改为 2026-08-31T19:30:00Z。`manifest.validation_claim.data_confidence` 保持 "mixed_provisional_and_conceptual"（与 metrics.json 中多数 confidence=low、assumptions.json A-BOUNDARY-002 临时边界、几何复算 low-confidence 一致）。`OSM` 检索时间 `2026-08-23` 与 `ImageGen` 调用时间 `2026-08-30` 作为数据历史事实保留，未做修改。
+- **六个全球案例（阻断）**：原 proposal.md L53 / proposal.en.md L53 仅有概括性段落，缺少逐项可核验的来源、访问时间、用途边界。修复方式：把段落改写为结构化案例表，登记发布者、链接、访问时间（2026-08-31）、已知局限与本地启示，并显式声明"仅作背景研究，不作为本地事实或审批依据"；6 例逐项登记至 `sources.json`（`CASE-SILICON-VALLEY` … `CASE-QUAYSIDE`，source_type=background_reference）；6 个证据标记 `[source:CASE-…]` 紧邻引用段，符合"连续标记 ≤3、每段 ≤8"的硬性规则。
+- **视觉/确定性/空间/专业证据四门自检 + participant_preflight**：在以上修复后重跑，预期全部 PASS（视觉门不再出现缺字/裁切/版本日期矛盾；版本与生成时间一致）。
+- **数据缺口仍为缺口**（不是修复项）：官方精确范围线、控规条件、清华园站旧址保护范围等仍 `unknown`/`pending`，按 review 的"条件触发后续事项"处理，等组织方提供后触发全量重算与边界替换。
+
 ## v0.2.8 - 2026-08-30
 
 - 按评审意见重制 A0 展板（drawings/a0-boards.pdf 与 a0-boards.en.pdf，单页横版，图文并茂）：标题区 + 整体鸟瞰主图 + 一句话方案 + 五项核心指标 chips + Logo 概念图；第二排为一脊两带三区结构图、用地结构图、三大定位五大功能转译图、交通慢行×蓝绿系统图、组件库示意图（各附要点）；第三排为三处重点区域效果图与 6×2 共 12 张场景卡图阵；底栏为三期分期、风险与版权说明。

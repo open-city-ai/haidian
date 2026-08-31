@@ -50,7 +50,18 @@ iteration: "v0.2.8"
 ![三大定位与五大功能的空间转译示意](assets/figures/positioning-translation.png)
 
 
-**全球案例镜鉴（6个）**。其一，硅谷证明"高校智力源+风险资本+低成本试错空间"需要实体交往界面，对应五道口创客集市与开源会客厅；其二，波士顿肯德尔广场证明保留可改造工业骨架比大拆大建更能留住创新气质，对应北影、中冶建研院等存量的改造导向；其三，伦敦国王十字证明火车站遗产可转译为世界级知识社区中心，直接启发北京北智港门户；其四，深圳南山证明测试场景开放是AI集聚的关键制度供给，对应三个产业测试验证场景；其五，新加坡纬壹科技城证明"工作—生活—学习"混合比例需要前置设计，对应用地结构；其六，多伦多 Quayside 的终止提醒数据治理与公众信任必须先于技术部署，因此所有场景卡都写明隐私边界与人工复核机制。
+**全球案例镜鉴（6个，背景研究，不作为本地事实或审批依据）**。下表逐例登记发布者、链接、访问时间、用途边界与本地启示；案例经验仅作背景证据，不构成法定规划、政府批准或实施承诺。
+
+| 案例 | 发布者与链接 | 访问时间 | 已知局限 | 本地启示（仅作背景） |
+|---|---|---|---|---|
+| 硅谷（高校+资本+试错） | Brookings Institution "Bay Area Economy" + Wikipedia "Silicon Valley" | 2026-08-31 | 区域专属数据，不可直接移植海淀 | 强调"高校智力源+风险资本+低成本试错空间"需要实体交往界面，启发五道口创客集市与开源会客厅 | [source:CASE-SILICON-VALLEY] |
+| 波士顿肯德尔广场 | MIT "Better World"《Kendall Square: A Global Center for Innovation Grows Alongside MIT》 | 2026-08-31 | 依赖 MIT 与剑桥生物医药集群 | 证明保留可改造工业骨架比大拆大建更能留住创新气质，启发北影、中冶建研院等存量的改造导向 | [source:CASE-KENDALL-SQUARE] |
+| 伦敦国王十字 | King's Cross Central LP《The King's Cross Estate celebrates 10-year anniversary》2021-10-08 | 2026-08-31 | 67英亩单一开发商 20 年土地整合，条件差异大 | 证明火车站遗产可转译为世界级知识社区中心，启发北京北智港门户 | [source:CASE-KINGS-CROSS] |
+| 深圳南山 | 深圳市南山区人民政府"独角兽走廊"专题（2026-03） | 2026-08-31 | 经济特区土地与税制差异 | 证明测试场景开放是AI集聚的关键制度供给，启发三个产业测试验证场景 | [source:CASE-NANSHAN] |
+| 新加坡纬壹科技城 | 新加坡国家图书馆管理局 NLB Infopedia "one-north" 条目 | 2026-08-31 | 200公顷由 JTC 主控，治理体系不同 | 证明"工作—生活—学习"混合比例需要前置设计，启发用地结构 | [source:CASE-ONE-NORTH] |
+| 多伦多 Quayside | The Globe and Mail《Google affiliate Sidewalk Labs abandons Toronto smart-city project》2020-05-07 | 2026-08-31 | 项目已于 2020 年 5 月被叫停 | 反例：数据治理与公众信任必须先于技术部署，因此所有场景卡都写明隐私边界与人工复核机制 | [source:CASE-QUAYSIDE] |
+
+
 
 **未来城市形态判断**。适配AI新质生产力的城市形态是"可测试、可迭代、可解释"的城市：空间预留测试接口，数据保留人工复核通道，治理保留公众参与入口。落在本场地的直接表达是：把科创功能叠放在既有的院所与高校肌理上，而非另起炉灶 [data:geometry/land_use.geojson] [depth:overall_spatial_structure]。
 
@@ -186,4 +197,10 @@ iteration: "v0.2.8"
 7. 自然资源部：《国土空间调查、规划、用途管制用地用海分类指南》，2023（用地编码依据）。
 8. OpenStreetMap 贡献者：场地现状道路、铁路、水系、轨道站点与功能地块数据，2026-08-23 经 Overpass API 获取（ODbL 许可，现状底图与设计对齐依据）。
 9. 仓库站点资料包与公开来源注册表（边界推导依据、资料可用性等级与缺失清单）。
-10. 全球案例公开资料：硅谷、肯德尔广场、国王十字、深圳南山、新加坡纬壹、多伦多Quayside（经验与教训，作为背景研究，不作为本地事实依据）。
+10. 全球案例背景参考（6 项，可核验；用于启发对照，不作为本地事实、规划控制或实施承诺依据；详见 sources.json 中 CASE-SILICON-VALLEY、CASE-KENDALL-SQUARE、CASE-KINGS-CROSS、CASE-NANSHAN、CASE-ONE-NORTH、CASE-QUAYSIDE 六项）：
+    - Brookings Institution "Bay Area Economy" + Wikipedia "Silicon Valley"（2026-08-31 访问）；
+    - MIT Better World "Kendall Square: A Global Center for Innovation Grows Alongside MIT"（2026-08-31 访问）；
+    - King's Cross Central LP "The King's Cross Estate celebrates 10-year anniversary"（2021-10-08 发布，2026-08-31 访问）；
+    - 深圳市南山区人民政府"独角兽走廊"专题（2026-03 发布，2026-08-31 访问）；
+    - 新加坡国家图书馆管理局 NLB Infopedia "one-north" 条目（2026-08-31 访问）；
+    - The Globe and Mail "Google affiliate Sidewalk Labs abandons Toronto smart-city project"（2020-05-07 发布，2026-08-31 访问）。

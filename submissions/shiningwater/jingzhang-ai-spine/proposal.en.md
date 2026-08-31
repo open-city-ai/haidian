@@ -50,7 +50,18 @@ The levels are linked by one logic chain: the research level assigns functions, 
 ![Spatial translation of the three positionings and five functions](assets/figures/positioning-translation.en.png)
 
 
-**Six global references**. Silicon Valley shows the university-capital-tinkering triangle needs physical meeting places, inspiring the Wudaokou maker market and open-source hall; Kendall Square shows retaining convertible industrial fabric keeps innovation character, informing the renovation-led treatment of the film studio and research institutes; King's Cross shows a station heritage district can become a world-class knowledge quarter, inspiring the Beijing North gateway; Shenzhen Nanshan shows open test scenarios are decisive institutional supply; Singapore one-north shows the work-life-learn mix must be designed upfront; and Toronto's Quayside cancellation warns that data governance and public trust must precede deployment - which is why every scenario card states its privacy boundary and human-review channel.
+**Six global case mirrors (background research; not local fact or approval basis)**. The table below records publisher, link, access date, known limits and local implication for each case. The case experience is background evidence only and does not constitute statutory planning, government approval or implementation commitment.
+
+| Case | Publisher and link | Access date | Known limits | Local implication (background only) |
+|---|---|---|---|---|
+| Silicon Valley (university + capital + tinkering) | Brookings Institution "Bay Area Economy" + Wikipedia "Silicon Valley" | 2026-08-31 | Region-specific data, not directly transferable to Haidian | Highlights that the "university intellectual source + risk capital + low-cost tinkering space" needs physical meeting interfaces, inspiring the Wudaokou maker market and open-source hall | [source:CASE-SILICON-VALLEY] |
+| Boston Kendall Square | MIT "Better World" "Kendall Square: A Global Center for Innovation Grows Alongside MIT" | 2026-08-31 | Depends on MIT and the Cambridge biotech cluster | Shows that retaining a convertible industrial skeleton keeps innovation character better than full demolition, inspiring the adaptation-led treatment of the film studio and CAM research-institute stock | [source:CASE-KENDALL-SQUARE] |
+| London King's Cross | King's Cross Central LP "The King's Cross Estate celebrates 10-year anniversary" 2021-10-08 | 2026-08-31 | 67-acre single-developer regeneration with 20-year land assembly, different site conditions | Shows that a station-heritage district can become a world-class knowledge quarter, inspiring the Beijing North intelligence-harbor gateway | [source:CASE-KINGS-CROSS] |
+| Shenzhen Nanshan | Shenzhen Nanshan District Government "Unicorn Corridor" briefing (2026-03) | 2026-08-31 | Special economic zone with very different land and tax regimes from Haidian's campuses | Shows that open test scenarios are decisive institutional supply for AI clustering, inspiring the three AI industry test scenarios | [source:CASE-NANSHAN] |
+| Singapore one-north | Singapore National Library Board (NLB) Infopedia "one-north" article | 2026-08-31 | 200 ha master-planned district by JTC, Singapore-specific governance | Shows the work-live-learn mix must be designed upfront, inspiring the land-use mix | [source:CASE-ONE-NORTH] |
+| Toronto Quayside | The Globe and Mail "Google affiliate Sidewalk Labs abandons Toronto smart-city project" 2020-05-07 | 2026-08-31 | Project cancelled by Sidewalk Labs in May 2020 | Counter-example: data governance and public trust must precede technology deployment, which is why every scenario card in this proposal declares a privacy boundary and a human-review channel | [source:CASE-QUAYSIDE] |
+
+
 
 **Future-city hypothesis**. A city fit for AI new-quality productivity is testable, iterable and explainable: space reserves test interfaces, data keeps human-review channels, governance keeps public-participation entrances. On this site that means layering innovation functions onto the existing institute and university fabric instead of starting from scratch [data:geometry/land_use.geojson] [depth:overall_spatial_structure].
 
@@ -186,4 +197,10 @@ The following sources carry the main judgments of this proposal; the complete ma
 7. Ministry of Natural Resources: Guide to Land Use and Sea Area Classification for Territorial Spatial Survey, Planning and Control, 2023 (land-use coding basis).
 8. OpenStreetMap contributors: existing roads, rail, waterways, rail stations and functional plots for the site, retrieved 2026-08-23 via the Overpass API (ODbL; basis for existing-condition layers and design alignment).
 9. Repository site package and public source registry (boundary derivation basis, source usability levels and missing-data list).
-10. Publicly available material on global cases: Silicon Valley, Kendall Square, King's Cross, Shenzhen Nanshan, Singapore one-north, Toronto Quayside (background lessons, not local factual evidence).
+10. Global case background references (6 verifiable entries; used for inspiration comparison only, never as local fact, planning control or implementation commitment. Full records in sources.json under CASE-SILICON-VALLEY, CASE-KENDALL-SQUARE, CASE-KINGS-CROSS, CASE-NANSHAN, CASE-ONE-NORTH, CASE-QUAYSIDE):
+    - Brookings Institution "Bay Area Economy" + Wikipedia "Silicon Valley" (accessed 2026-08-31);
+    - MIT Better World "Kendall Square: A Global Center for Innovation Grows Alongside MIT" (accessed 2026-08-31);
+    - King's Cross Central LP "The King's Cross Estate celebrates 10-year anniversary" (published 2021-10-08, accessed 2026-08-31);
+    - Shenzhen Nanshan District Government "Unicorn Corridor" briefing (published 2026-03, accessed 2026-08-31);
+    - Singapore National Library Board (NLB) Infopedia "one-north" article (accessed 2026-08-31);
+    - The Globe and Mail "Google affiliate Sidewalk Labs abandons Toronto smart-city project" (published 2020-05-07, accessed 2026-08-31).
