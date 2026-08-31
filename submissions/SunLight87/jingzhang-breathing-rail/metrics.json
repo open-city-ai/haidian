@@ -1,0 +1,342 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "This is the area of the submitted provisional intake polygon, not an official redline or statutory site area."
+      ],
+      "official_boundary": false,
+      "recalculation_trigger": "Replace SITE-001 with organizer-issued official geometry and recompute all dependent layers and metrics."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(submitted_concept_building_footprints, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "BLDG-001 is an authored spatial prototype, not a surveyed existing building or an approved development footprint."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "submitted_concept_green_space_area_sqm / submitted_provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator are provisional authored geometry; this is not an existing or statutory green-space ratio."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "submitted_concept_public_space_area_sqm / submitted_provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator are provisional authored geometry; this is not an existing or approved public-space ratio."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, surveyed buildings and official site geometry are not present in the public site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "professional_surveyed_or_approved_building_height",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No surveyed existing height, approved height control or professional building scheme is available."
+    },
+    "air_quality_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [],
+      "formula": "regulatory_baseline_defined_by_environmental_professional",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No local regulatory-grade baseline, approved monitoring scope or collocation study has been provided."
+    },
+    "sensor_accuracy": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [],
+      "formula": "performance_against_collocated_reference_monitor",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No device, reference monitor, collocation period, test protocol or professional evaluation has been selected."
+    },
+    "breathing_rail_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(verified_public_stitching_interface, EPSG:4548)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The metric ID is retained for compatibility with the legacy concept. ROAD-001 is only a scaffold heritage-continuity relationship, not a verified public-stitching alignment or existing route."
+    },
+    "cross_link_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(authored_east_west_relationships_described_in_proposal)",
+      "confidence": "low",
+      "assumptions": [
+        "This is an authored concept count; individual links are not mapped, surveyed or approved roads, bridges or tunnels."
+      ]
+    },
+    "land_use_feature_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(features in submitted concept land_use layer)",
+      "confidence": "low",
+      "assumptions": [
+        "The four features are a provisional concept partition, not existing land-use certification or statutory rezoning."
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(submitted_land_use_polygons) / submitted_provisional_site_polygon",
+      "confidence": "low",
+      "assumptions": [
+        "Coverage describes internal topology of the submitted provisional concept only, not statutory land-use coverage."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(required_named_key_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "The required count and names are published; the submitted polygon locations and shapes remain provisional."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(authored_scenario_cards S01-S12)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a design-deliverable count, not a count of deployed or approved facilities."
+      ]
+    },
+    "industrial_validation_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(minimum_industry_validation_cards S01-S03)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a proposed validation-card count; no trial is approved or operating."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(authored_persona_categories)",
+      "confidence": "high",
+      "assumptions": [
+        "Personas are service-test categories, not a statistical profile of real residents."
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(authored_concept_landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a concept-deliverable count; no landmark is approved or built."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(authored_recommended_stages)",
+      "confidence": "high",
+      "assumptions": [
+        "The four-stage registry exists, but only STAGE-02 is spatialized in geometry/phasing.geojson; STAGE-01, STAGE-03 and STAGE-04 are marked not_spatially_mapped. The sequence is a suggested governance order, not an approved construction schedule."
+      ]
+    },
+    "feasible_assignment_count": {
+      "status": "known",
+      "value": 55,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/experiment-run.json"
+      ],
+      "formula": "visual/assets/experiment-run.json#counts.feasible_assignment_count",
+      "confidence": "high",
+      "assumptions": [
+        "High confidence only for replaying the frozen local offline log; this is not field, model, approval or HumanDecision evidence.",
+        "The offline role allocation uses project-authored internal ordinal values; these do not represent field performance, engineering feasibility, public choice or HumanDecision."
+      ]
+    },
+    "pareto_assignment_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/experiment-run.json"
+      ],
+      "formula": "visual/assets/experiment-run.json#counts.pareto_assignment_count",
+      "confidence": "high",
+      "assumptions": [
+        "High confidence only for replaying the frozen local offline log; this is not field, model, approval or HumanDecision evidence.",
+        "The offline role allocation uses project-authored internal ordinal values; these do not represent field performance, engineering feasibility, public choice or HumanDecision."
+      ]
+    },
+    "selected_candidate_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/experiment-run.json"
+      ],
+      "formula": "visual/assets/experiment-run.json#counts.selected_candidate_count",
+      "confidence": "high",
+      "assumptions": [
+        "High confidence only for replaying the frozen local offline log; this is not field, model, approval or HumanDecision evidence.",
+        "The offline role allocation uses project-authored internal ordinal values; these do not represent field performance, engineering feasibility, public choice or HumanDecision."
+      ]
+    },
+    "negative_fixture_rejection_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/experiment-run.json"
+      ],
+      "formula": "visual/assets/experiment-run.json#counts.negative_fixture_rejections",
+      "confidence": "high",
+      "assumptions": [
+        "High confidence only for replaying the frozen local offline log; this is not field, model, approval or HumanDecision evidence.",
+        "The offline role allocation uses project-authored internal ordinal values; these do not represent field performance, engineering feasibility, public choice or HumanDecision.",
+        "This value counts deterministic rejection checks for authored negative fixtures; it is not a safety, regulatory or deployment performance result."
+      ]
+    },
+    "coordinate_change_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/experiment-run.json"
+      ],
+      "formula": "visual/assets/experiment-run.json#counts.coordinate_change_count",
+      "confidence": "high",
+      "assumptions": [
+        "High confidence only for replaying the frozen local offline log; this is not field, model, approval or HumanDecision evidence.",
+        "The offline role allocation uses project-authored internal ordinal values; these do not represent field performance, engineering feasibility, public choice or HumanDecision.",
+        "The value records the frozen attribute-only policy and does not validate official geometry, engineering feasibility or implementation."
+      ]
+    },
+    "simulation_task_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(simulation.json#tasks)",
+      "confidence": "high",
+      "assumptions": [
+        "High confidence only for replaying the frozen local offline log; this is not field, model, approval or HumanDecision evidence.",
+        "The offline role allocation uses project-authored internal ordinal values; these do not represent field performance, engineering feasibility, public choice or HumanDecision.",
+        "The value is count(tasks) in the local offline simulation log; it does not represent deployed or field-tested tasks."
+      ]
+    },
+    "simulation_success_rate": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(simulation.json#tasks where outcome == success or outcome ends_with _success) / simulation.json#task_count",
+      "confidence": "high",
+      "assumptions": [
+        "High confidence only for replaying the frozen local offline log; this is not field, model, approval or HumanDecision evidence.",
+        "The offline role allocation uses project-authored internal ordinal values; these do not represent field performance, engineering feasibility, public choice or HumanDecision.",
+        "The ratio follows the logged task outcome rule; it does not represent model quality, field reliability, public acceptance, approval or HumanDecision."
+      ]
+    }
+  }
+}

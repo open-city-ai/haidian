@@ -9,7 +9,7 @@ license: "CC-BY-SA-4.0"
 summary: "以百年京张铁路遗址廊道为城市主板，构建“一廊·六站·三区·两翼”的开源AI共同体：把9.7公里铁轨转化为开源步道主线，串联六个站厅级公共节点与三处重点区域，形成可复算、可验证、可供专业团队深化的概念性城市设计方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "youth-friendly-public-space"]
 scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
-iteration: "v3.0"
+iteration: "v3.1"
 ---
 
 # 开源轨道 OPEN RAIL：京张AI共同体城市设计方案
@@ -26,7 +26,7 @@ iteration: "v3.0"
 > | 可实施性 | **可公开复算的落地经济学为一等公民**：8 项更新项目五要素实施卡＋触发式排序方法论＋六类资金矩阵＋四环节可问责链＋全生命周期运营账本框架＋**运维资金缺口表（ROM，公开单价基准锚定，算术全机检）**；六项数据缺口（产权、具名主体、法定管控、市政承载力、成本、效益）全部配齐「触发即执行」的确定性解决路径；**v3.0 起六项缺口中的四项已获公开锚点对照**——文保名单与文字边界（京政发〔2025〕3号＋市文物局数据库）、控规街区层面基准、市政电力容量（大钟寺 110kV／拟建青云 220kV）、带内具名主体先例（区园林绿化局＋海淀市政集团、国铁北京局移交、海开公司），外部待触发条件收窄为地块级图则数值与项目级批复 | ◐ 机制文件随包（`implementation-cards.json`、`sequencing-methodology.json`、`funding-matrix.json`、`lifecycle-om-framework.json`＋新增 `om-funding-gap.json`、`operator-qualification.json`、`statutory-reconciliation.json`、`capacity-preassessment.json`、`parametric-cost-model.json`）；效益数值一律待基线，不输出排序结论；已量化运维科目区间 3267.3–9399.9 万元/年，缺口如实登记为全区间（承诺覆盖率 0） |
 > | 公共利益与包容性 | **AI 关闭后人人仍可用**：每个 AI 服务点强制非数字化等价路径；六类画像覆盖长者、残障与低数字素养居民；P1—P5 配齐「实测即生效」承诺阈值与未达标处置；无障碍设计要素逐项映射 GB 55019-2021 要求领域（设计意图合规、待现场认证）；蓝绿骨架叠加海绵—热岛—碳气候科目；公开仪表盘静态再披露指标、预警、复审与自检 | ◐ SEB schema 强制 ai_off_path 字段；`baseline-protocols.json`、`commitment-thresholds.json`、`accessibility-mapping.json`、`climate-carbon-framework.json`、`dashboard-mockup.json` 随包；P1—P5 实测值如实标注「待基线」 |
 > | 风险与合规意识 | **全部指标可独立复算，未知字段不以推测冒充**：四类风险逐项披露；未登记来源降级为「待复核背景信息」；红队检视主动登记结果层失败模式与早期预警 | ✓ `risk.json` 八维矩阵＋`failure-modes.json` 失败模式库；`node visual/assets/recompute_metrics.js` 离线复算 12/12 PASS＋运维缺口表 13 项算术机检 PASS；复算路径登记于 `assumptions.json`（A-BOUNDARY-002） |
-> | 表达完整性 | **中英双语全量成果、离线可复现，图面带真实肌理、三级层级与全线—分段多联构图**：正文/HTML/A3/A0/图件/视频＋字幕＋文稿；程序绘制原创图件，全部平面图件叠入概念建筑肌理基底（1107 个基底）并以「背景肌理—结构—焦点」三级层级组织；总体图为「全线全览＋三段放大」多联构图（K0–9.7 里程刻度＋街区级细读，站厅标签经程序化包围盒验证零裁切），另附主线体验长卷呈现步行序列 | ✓ 双语成果逐项对应；离线渲染可复现并有覆盖证据；本表即为评审入口索引 |
+> | 表达完整性 | **中英双语全量成果、离线可复现，图面带真实肌理、三级层级与全线—分段多联构图**：正文/HTML/A3/A0/图件/视频＋字幕＋文稿；程序绘制原创图件，全部平面图件叠入概念建筑肌理基底（1107 个基底）并以「背景肌理—结构—焦点」三级层级组织；总体图为「全线全览＋三段放大」多联构图（K0–9.7 里程刻度＋街区级细读，站厅标签经程序化包围盒验证零裁切），另附主线体验长卷呈现步行序列；v3.1 起四份 A3/A0 图册全部 44 页建立逐页映射（`visual/assets/pdf-page-map.json`＋visual 双语对照表，24 项一致性机检），重点区/站厅标签经碰撞检测程序化验证零遮压 | ✓ 双语成果逐项对应；离线渲染可复现并有覆盖证据；本表即为评审入口索引 |
 
 > **核心主张的可证伪条件**：以下条件使本方案的主要主张可被评审与专业团队独立证伪——任一条件触发即意味着对应主张失效或须回退修正，不以模糊表述规避检验。
 >

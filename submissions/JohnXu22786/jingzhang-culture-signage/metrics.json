@@ -1,0 +1,232 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "display_precision": "rounded to approx. 1141.3 ha in text and figures; shown in full only for the machine contract",
+      "assumptions": [
+        "Provisional boundary, not an official redline.",
+        "Recompute when official geometry is published."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1188026,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union(conceptual green polygons, EPSG:4548); rounded to whole sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept caliber only; recompute on official geometry."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 36150,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union(conceptual public-space polygons, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept caliber only; recompute on official geometry."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 111600,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union(conceptual reuse-first envelopes, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept envelopes, not statutory building scale."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.104096,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(geometry/green_space.geojson features in EPSG:4548).area / union(geometry/site_boundary.geojson features in EPSG:4548).area = 1188025.643690925 / 11412825.385553982",
+      "confidence": "low",
+      "display_precision": "displayed as approx. 10.4%; numerator and denominator are rounded to 1,188,026 sqm and 11,412,825 sqm in text and figures",
+      "assumptions": [
+        "Numerator: union area of six provisional GREEN_SPACE features; overlaps count once.",
+        "Denominator: union area of the SITE-001 overall-design-area provisional boundary.",
+        "land_use code 1401 is a separate functional classification (6 of 27 zones), not the green-ratio numerator.",
+        "Low-confidence concept ratio, not existing or statutory land use; use only for concept-scale consistency and machine recomputation.",
+        "Replace both geometry layers with official boundary, green-line and statutory land-use data and recompute when published."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.003167,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "display_precision": "displayed as approx. 0.3% in text and figures",
+      "assumptions": [
+        "Low-confidence concept ratio; recompute on official geometry."
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 10154,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(conceptual paths, EPSG:4548); rounded to whole m",
+      "confidence": "low",
+      "assumptions": [
+        "Concept slow-axis length only."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(area_id in key_areas.geojson)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 27,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use.geojson features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_unit_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings.geojson features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_type == ai_landmark)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space scenario nodes + landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario card table rows in proposal.md)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry test scenario table rows)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(五类人才画像 groups)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(global case benchmarking table rows with sources)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing polygons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_program_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(annual programme brand rows)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

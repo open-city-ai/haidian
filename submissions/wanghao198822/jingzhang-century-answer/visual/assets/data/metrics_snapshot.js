@@ -3,11 +3,11 @@
  * 内容 = metrics.json 的逐字内嵌副本（未删项、未改值）。
  * 内嵌原因同 geo_layers.js：file:// 下无法读取同目录 .json，且禁止网络请求。
  *
- * 原件 SHA-256（裸文件字节）：metrics.json = 398a0ba678d72f781b3f80311483a39182bebafa5065d54b2065da2c91fe1cc1
+ * 原件 SHA-256（裸文件字节）：metrics.json = 26a18e6fe79deae84904703bf78a93b68015ab9d2197401af1eb29d3ec741411
  */
 window.CA_METRICS_SNAPSHOT = {
   "generated_from": "submissions/wanghao198822/jingzhang-century-answer/metrics.json",
-  "source_sha256": "398a0ba678d72f781b3f80311483a39182bebafa5065d54b2065da2c91fe1cc1",
+  "source_sha256": "26a18e6fe79deae84904703bf78a93b68015ab9d2197401af1eb29d3ec741411",
   "metrics_json": {
     "schema_version": "0.1.0",
     "units": {
@@ -1313,6 +1313,87 @@ window.CA_METRICS_SNAPSHOT = {
         "confidence": "medium",
         "assumptions": [
           "离线合成演练读数，重规划耗时为固定 seed 在人工声明区间内生成；按全部 16 条任务取 nearest-rank P95，非现场实测，不构成效果承诺。"
+        ]
+      },
+      "care_point_count": {
+        "status": "known",
+        "value": 59,
+        "unit": "count",
+        "source_files": [
+          "visual/assets/ops-ledger.json"
+        ],
+        "formula": "46 answer_gates + 3 plazas + ceil(spine_greenway_length_m / 1000) = 46 + 3 + 10",
+        "confidence": "medium",
+        "assumptions": [
+          "计入点＝固定巡线到访的聚合点；道钉（起步 122 颗）与 10 件标准组件分布在计入点上、随宿主点到访，不重复计点；口径见 visual/assets/ops-ledger.json。",
+          "46 为规划口径，以实际建成为准（A-GATE-001）。"
+        ]
+      },
+      "care_scenario_person_hours_annual_low": {
+        "status": "unknown",
+        "value": null,
+        "unit": "person_hour",
+        "source_files": [
+          "visual/assets/ops-ledger.json"
+        ],
+        "formula": "care_point_count x visits_per_year x hours_per_visit",
+        "confidence": "unknown",
+        "assumptions": [
+          "52 次/年与 0.5 人时/次为明示情景系数（A-CARE-COEFF-001），系包外情景设定，非任何运营口径；不构成概算或人力承诺。"
+        ],
+        "reason": "真值未知：年频次与单次工时属运营与养护主体的口径（PRE-09），包内没有。明示情景系数下的代入为 59 × 52 × 0.5 ＝ 年 1,534 人时（区间下限）；主体实测系数到位后按同一算式整表替换。"
+      },
+      "care_scenario_person_hours_annual_high": {
+        "status": "unknown",
+        "value": null,
+        "unit": "person_hour",
+        "source_files": [
+          "visual/assets/ops-ledger.json"
+        ],
+        "formula": "care_point_count x visits_per_year x hours_per_visit",
+        "confidence": "unknown",
+        "assumptions": [
+          "52 次/年与 1.0 人时/次为明示情景系数（A-CARE-COEFF-001），系包外情景设定，非任何运营口径；不构成概算或人力承诺。"
+        ],
+        "reason": "真值未知：年频次与单次工时属运营与养护主体的口径（PRE-09），包内没有。明示情景系数下的代入为 59 × 52 × 1.0 ＝ 年 3,068 人时（区间上限）；主体实测系数到位后按同一算式整表替换。"
+      },
+      "external_gate_hold_count": {
+        "status": "known",
+        "value": 11,
+        "unit": "count",
+        "source_files": [
+          "proposal.md"
+        ],
+        "formula": "count(PRE-01..PRE-11 where state == HOLD)",
+        "confidence": "high",
+        "assumptions": [
+          "逐门状态见正文前置条件门表；十一道门当前全部为 HOLD。"
+        ]
+      },
+      "external_gate_released_count": {
+        "status": "known",
+        "value": 0,
+        "unit": "count",
+        "source_files": [
+          "proposal.md"
+        ],
+        "formula": "count(PRE-01..PRE-11 where state == released)",
+        "confidence": "high",
+        "assumptions": [
+          "无一道门被本包宣布放行。"
+        ]
+      },
+      "authorized_site_action_count": {
+        "status": "known",
+        "value": 0,
+        "unit": "count",
+        "source_files": [
+          "proposal.md"
+        ],
+        "formula": "count(site actions this package authorizes)",
+        "confidence": "high",
+        "assumptions": [
+          "门表前言原句：本方案自始至终不把概念深化写成实施许可；本包未授权任何现场动作。"
         ]
       }
     }

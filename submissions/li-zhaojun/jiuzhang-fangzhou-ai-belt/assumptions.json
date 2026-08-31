@@ -1,0 +1,184 @@
+{
+  "schema_version": "0.2.1",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_data_gap",
+      "statement": "总体设计边界与三处重点区 polygon 使用仓库临时粗略替代边界（约 11.41 / 1.93 / 1.04 / 0.72 平方公里），非官方红线。",
+      "impact": "所有空间图层与面积指标均按 provisional 处理；正式 polygon 发布后必须整体复算。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-KEYAREA-002",
+      "status": "provisional_data_gap",
+      "statement": "三处重点区使用临时粗略矩形，仅用于方向性、概念性设计。",
+      "impact": "内部细分、用地比例与建筑布局在 official 边界发布后需重新评估。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-CONTROLS-003",
+      "status": "pending_professional_confirmation",
+      "statement": "控规容积率、建筑高度、密度、退线、道路红线等法定控制条件缺失。",
+      "impact": "正文中出现的强度与高度均为概念建议，不得作为审定结论。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-DATA-004",
+      "status": "pending_professional_confirmation",
+      "statement": "地块边界、权属、现状建筑底数、市政管线与交通断面缺失。",
+      "impact": "拆改留分类为方法性建议，具体地块结论需专业深化。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-ENG-005",
+      "status": "pending_professional_confirmation",
+      "statement": "工程可行性、轨道线位、地下空间、能源负荷等未做专业测算。",
+      "impact": "相关表述均为概念方向，不构成工程方案。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-STATUS-006",
+      "status": "concept_only",
+      "statement": "全部空间落地建议均为概念建议、参考方案或可供专业团队深化研究。",
+      "impact": "不替代正式规划，不构成政府审定结论。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-OPERATION-007",
+      "status": "concept_only",
+      "statement": "活动体系、社区运营、招商政策、文化叙事均为概念设计。",
+      "impact": "不得表述为已确定的政府安排或承诺。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-METRICS-008",
+      "status": "recompute_required",
+      "statement": "指标从提交的 provisional 几何在 EPSG:4548 下复算。",
+      "impact": "official 边界发布后必须重算并同步正文、图纸与 HTML。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-VISUAL-009",
+      "status": "concept_only",
+      "statement": "五张核心图与 HTML 可视化基于 provisional 几何与设计概念生成。",
+      "impact": "图面为人类可读解释层，不替代 GeoJSON/metrics 权威数据。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-PHASE-010",
+      "status": "concept_only",
+      "statement": "分期计划（序章/中庭/北源）为概念性建议，实施时序需结合官方安排。",
+      "impact": "不构成开发时序或审批判断。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-CONCEPT-011",
+      "status": "concept_only",
+      "statement": "「九章方洲·京张智原」概念主题源自《九章算术》与京张铁路百年文脉的概念性转译。",
+      "impact": "命名、文化叙事、视觉系统均为概念建议，未涉及任何已注册商标或受保护素材。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-PRIVACY-012",
+      "status": "concept_only",
+      "statement": "所有 AI 场景卡设计均强调数据最小化、可解释、可审计、可人工复核。",
+      "impact": "任何将本方案场景落地的实施需经独立隐私评估与合规审查。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-COPYRIGHT-013",
+      "status": "concept_only",
+      "statement": "五张图与 offline HTML 均为自绘概念图，未使用任何未授权字体、商标、人物肖像或版权图像。",
+      "impact": "所有视觉元素均为本方案原创或通用素材。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-DATA-014",
+      "status": "provisional_data_gap",
+      "statement": "PROV-KEY-003（大钟寺 AI 产业聚集区）的 centroid 在仓库临时粗略多边形中距大钟寺站约 2.26 km（参见 GitHub Issue #1029）。本方案 key_areas.geojson沿用任务书提供的 provisional 多边形，但视觉化展示与地名叙事明确以「大钟寺」站段为锚点（南庭·九章市）；正式 polygon 发布后须整体重算并重定位。",
+      "impact": "centroid 偏差不影响概念性用地结构与场景卡布局，但所有引用大钟寺的land use 指标、B3 地段面积与建筑布局均标记为 provisional。 已在 proposal.md 顶部「数据可信度说明」章节声明。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-FORMAT-015",
+      "status": "migration_to_v2",
+      "statement": "本方案按仓库 2026-08-08 commit 6e831e5 「Require bilingual v2 submissions」要求升级为 proposal_format_version=2；新增 proposal.en.md（英文摘要 + 关键章节对照）并设置 manifest.bilingual=true。视觉/PDF/GeoJSON 主语言仍为中文。",
+      "impact": "bilingual=true；proposal.en.md 与 proposal.md 互为 translation_of 关系；PDF/HTML 主文件不变；评审维度不受影响。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-STANDARD-016",
+      "status": "compliance_matrix_refactor",
+      "statement": "本方案 compliance_matrix.json 已按仓库 PR #2151（2026-08-16）「Separate standard IDs in compliance matrices」要求改造：每条 requirement 的 standards 字段从单值结构拆为 standard_ids 数组，与 standard_matrix.json 中的 standard_id 一一对应，便于评审维度交叉追踪。",
+      "impact": "compliance_matrix.json 结构变化不改变 17/17 覆盖；新增字段 standard_ids 用于合规矩阵与标准矩阵的硬链接。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-PARTICIPATION-018",
+      "status": "conceptual_recommendation_pending_baseline",
+      "statement": "居民提案金：本方案提议从城市更新专项资金中预留固定比例资助居民自发微更新提案（**pending_baseline**——具体单笔金额上限、年度累计上限、资助对象范围须由街道、社区办与海淀区政府年度财政预算协商后确定，本包不输出任何具体金额）。实际落地需以海淀区政府年度财政预算与街道办治理规则为准。",
+      "impact": "为公共利益维度 (public_interest_inclusion, 10%) 提供概念性建议；落地前需与街道、社区办协商具体机制，所有金额/比例/年限均为 pending_baseline。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-YOUTH-019",
+      "status": "conceptual_recommendation_pending_baseline",
+      "statement": "青年友好与初创友好：本方案提议首月免租金青年驿站、开源贡献积分、女性开发者专项论坛、按一定比例提供青年/初创办公面积折扣给成立未满若干年的 AI 初创团队等多项机制（公共利益与包容性章节）。**pending_baseline**——具体免租时长、折扣比例、优惠年限、初创认定标准须由中关村人才办、街道、社区办协商后确定，本包不输出任何具体百分比、时长或年限。",
+      "impact": "概念性建议；具体指标需写入后续深化阶段的 KRA，所有金额/比例/年限均为 pending_baseline；初创租金补贴需与中关村人才办协调。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-REGIONAL-020",
+      "status": "conceptual_coordination_framework",
+      "statement": "区域协同：本方案在区域协同章节明确与未来科学城、怀柔科学城、经开区、北纬社区、京津冀创新网络的分工与协同通道；提议设立'京张 AI 创新带区域协同联席会议'等制度安排（区域协同章节）。",
+      "impact": "为 regional_synergy 维度提供制度方案；落地需以正式跨区协议、京津冀协同发展战略、北京市'十五五'规划为准。",
+      "description_zh": ""
+    },
+    {
+      "id": "A-INCL-SEN-V234",
+      "category": "inclusion",
+      "title_zh": "银龄 AI 邻里客厅 (SC-AI-SEN) 设计假设",
+      "description_zh": "增列 1 张以老年居民 (≥65岁) 为第一服务对象、可显式拒绝 AI / 全人工保留的场景卡 (SC-AI-SEN)。假设：(a) 邻里管家招募 / 培训由街道-园-社区三方共担；(b) 三年内 3 个邻里客厅分两批投运，先在老龄人口 ≥ 18% 的社区落地；(c) 核心数据本地化处理；外部传输仅用于必要服务（短信网关 + 医院 API 须书面授权）；签字可一键删除本地记录；半年审计、可拒绝率 > 30% 自动降级；当前为概念设计目标，须由多方签署正式协议；(d) 旧改前的物理空间由绿脉 GREEN-SPINE-001 的现有节点承担，避免任何新增建筑指标负担。",
+      "status": "binding",
+      "added_date": "2026-08-26T00:00:00Z",
+      "evidence_links": [
+        "persona_simulation/fishbowl_summary.md",
+        "persona_simulation/persona_heatmap.png"
+      ]
+    },
+    {
+      "id": "A-BUDGET-V237",
+      "category": "financial",
+      "title_zh": "投资估算为参数化骨架占位（pending_baseline），不构成承诺",
+      "description_zh": "v4.3 R7 修订：投资估算已不再使用类比估算口径。删除原「雄安/北纬社区/杨浦滨江南段/深圳湾」具体类比源；本方案投资估算全部迁至 visual/assets/parametric-cost-model.json，状态=skeleton_only_no_estimates，4 成本科目（土地整理/建安/市政/运营）× 维度占位 + ±20% 灵敏度扰动，不输出任何点估计或权威数字区间。落地须以海淀区年度财政预算、央企战略合作框架协议、产业基金募资说明书为准。",
+      "status": "concept_only",
+      "added_date": "2026-08-27T00:00:00Z",
+      "evidence_links": [
+        "proposal.md § 投资估算与资金分担机制"
+      ]
+    },
+    {
+      "id": "A-AI-TECH-V237",
+      "category": "technology",
+      "title_zh": "AI 技术路径为示例性方案，实施阶段需专业深化",
+      "description_zh": "AI 场景卡技术实现路径示例仅展示 4 张代表性卡片（SC-AI-02/07/10/SEN）的端到端技术栈（模型选型 / 数据流 / 推理时延 / 失败模式）。其余 9 张以摘要表格呈现。落地须基于具体供应商与开源生态深化选型，需 AI 安全 / 隐私 / 合规专业评审。",
+      "status": "concept_only",
+      "added_date": "2026-08-27T00:00:00Z",
+      "evidence_links": [
+        "proposal.md § AI 场景卡技术实现路径示例"
+      ]
+    },
+    {
+      "id": "A-ENG-DETAIL-V237",
+      "category": "engineering",
+      "title_zh": "工程测算为方向性估算，需控规 + 地勘 + 市政专业数据复算",
+      "description_zh": "工程测算附录（绿脉中枢断面 / 道路分类 / 公共空间 / 12 栋地标 / 轨道接驳 / 市政负荷）均为方向性估算，落地须以控规（FAR / 高度 / 退线）、地勘、市政管线数据为准。轨道接驳为假设性方向，落地须国铁集团 / 北京市交通委 / 海淀区交通委批复。",
+      "status": "pending_professional_confirmation",
+      "added_date": "2026-08-27T00:00:00Z",
+      "evidence_links": [
+        "proposal.md § 工程测算附录"
+      ]
+    }
+  ],
+  "last_updated": "2026-08-27T00:00:00Z"
+}

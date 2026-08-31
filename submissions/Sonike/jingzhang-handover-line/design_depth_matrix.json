@@ -494,11 +494,23 @@
         "p0_public_open_hours_90_day",
         "p0_staffed_seat_hours_90_day",
         "p0_buffered_task_slot_count_per_day",
-        "p0_same_day_removal_target_hours"
+        "p0_same_day_removal_target_hours",
+        "implementation_delivery_project_count",
+        "implementation_delivery_package_count",
+        "implementation_policy_module_count",
+        "implementation_policy_module_mapping_ratio",
+        "implementation_external_policy_module_receipt_count",
+        "implementation_cost_method_step_count",
+        "implementation_cost_policy_source_count",
+        "implementation_comparable_vendor_quote_receipt_count"
       ],
       "source_ids": [
         "OFFICIAL-ANNOUNCEMENT",
-        "AGENT-TASKBOOK"
+        "AGENT-TASKBOOK",
+        "BEIJING-URBAN-RENEWAL-IMPLEMENTATION-GUIDE-2024",
+        "BEIJING-URBAN-RENEWAL-JOINT-REVIEW-2024",
+        "BEIJING-COST-BASIS-2026",
+        "BEIJING-COST-INFORMATION-2026"
       ],
       "assumption_ids": [
         "A-OPERATIONS-001",
@@ -509,7 +521,7 @@
         "PROFESSIONAL_EVIDENCE",
         "ROLE_SPEC_TRANSFERABLE"
       ],
-      "evidence_summary_zh": "全带三期仍是三道合并门；其前新增一条更细的单场景 P0 路径 PRE-D0→D0→D1–30→D31–60→D61–90。八门不齐不计时；13周×5日×4小时只生成260个计划开放小时、780个三席岗位工时与每日36个缓冲任务时段，不是已运营绩效。D0 人工底盘先独立完成，D31–60 才允许真实共测，D90 由独立角色继续/修复/终止；4人×4小时撤场仍是未实测目标，任一阶段失败均关闭智能层并保留基础人工服务。"
+      "evidence_summary_zh": "全带三期、四级放行、九项目与六交付包接入同一拒收链。参赛者交接包另按京建发〔2024〕182号映射 IP01—IP11 十一类实施方案字段，明确区别于十一项物理／运营构件；11/11 只表示字段有输入、未知项、包和门，外部回执仍为0。成本以京建法〔2026〕1号和造价信息索引为未来方法语境，冻结数量→基准日／期次→三方询价→费用组成→运营保险恢复→预算资金六步全部保持HOLD，正式单价、报价、概算与预算为空。P0 仍按 PRE-D0→D90 推进，八门不齐不计时；260计划开放小时、780三席岗位工时、每日36缓冲时段与4人×4小时撤场都只是参赛者试算或未实测目标。"
     },
     {
       "item_id": "metrics_recalculation",
@@ -606,7 +618,7 @@
         "METRIC_TRACEABILITY",
         "P0_IMPLEMENTATION_AND_PUBLIC_VALUE"
       ],
-      "evidence_summary_zh": "metrics.json 共100项：86项已赋值、14项待测。既有指标登记几何、对象目录、双联交接账与 P0 合同结构；本轮14项新增值只记录参赛者预可研的空间包络、保守容量、三席排班、队列和排期余量、90天与年度成本敏感性、四个替代方案及未实测撤场目标。它们分别标为概念筛选、敏感性变量或目标，不是正式场地、法定容量、市场报价、保险、批准预算或实施绩效。总建面、建筑密度、道路面积、道路率和现场绩效继续保持 unknown/null/0。"
+      "evidence_summary_zh": "metrics.json 共137项：123项已赋值、14项待测／unknown。已赋值指标登记几何、对象目录、双联交接账、P0 合同结构，以及本轮参赛者预可研和专业交接的空间包络、保守容量、三席排班、队列、排期、成本敏感性、11类实施方案映射与6步计价方法；它们分别标为概念筛选、敏感性变量、交接结构或目标，不是正式场地、法定容量、市场报价、保险、批准预算或实施绩效。14项待测包括总建面、建筑密度、道路面积、道路率、容积率、最大建筑高度、创新／人才／产出目标、更新规模、企业目标、纵坡与现场交接绩效，继续保持 unknown/null。"
     },
     {
       "item_id": "risk_missing_data",
@@ -655,6 +667,6 @@
       "evidence_summary_zh": "constraints.geojson以CONSTRAINTS-DATA-GAP空登记明确表达官方控规、道路红线、权属、市政、消防与文保几何缺失，不伪造位置。双联交接账样例把人工角色标为待授权、性能标为null、回滚演练标为已规定但未执行，防止把结构校验冒充为真实部署证明。"
     }
   ],
-  "status_semantics_zh": "本表的 `status: complete` 指的是**该深度项已被正文、图纸、几何与指标共同回应且引用可解析**，**不等于「专业深度已完成」**，也不代表可据此进入施工或审批。判据是确定性校验对正式阶段的要求：每个深度项都必须有对应的成果落点。与之并存的事实是：`metrics.json` 中仍有 11 项为 `status: unknown`（容积率、建筑高度、建筑密度、道路率、总建面、道路面积等），`constraints.geojson` 为空，建筑专业深度标准按 `data_gap` 处理，三处重点区仍为临时边界。**两者不矛盾：前者说「回应过并可核」，后者说「法定量与工程条件仍未知」。** 任何把本表读成「专业深度已达标」的用法都超出了它的含义。",
-  "status_semantics_en": "`status: complete` in this matrix means **the depth item has been answered by the proposal text, drawings, geometry and metrics together, and every reference resolves** — it does **not** mean professional depth is finished, and it is not a basis for construction or approval. The test is what deterministic validation requires at the formal stage: every depth item must have a corresponding deliverable. Alongside it stands the fact that 11 metrics in `metrics.json` remain `status: unknown` (FAR, building height, density, road ratio, total floor area, road area and others), `constraints.geojson` is empty, the architectural depth standard is handled as a `data_gap`, and the three key areas remain provisional. **The two are not in conflict**: the first says answered and checkable, the second says the statutory quantities and engineering conditions are still unknown. Reading this matrix as evidence that professional depth is met exceeds its meaning."
+  "status_semantics_zh": "本表的 `status: complete` 指的是**该深度项已被正文、图纸、几何与指标共同回应且引用可解析**，**不等于「专业深度已完成」**，也不代表可据此进入施工或审批。判据是确定性校验对正式阶段的要求：每个深度项都必须有对应的成果落点。与之并存的事实是：`metrics.json` 中仍有 14 项为 `status: unknown`（容积率、建筑高度、建筑密度、道路率、总建面、道路面积、创新／人才／产出与现场交接绩效等），`constraints.geojson` 为空，建筑专业深度标准按 `data_gap` 处理，三处重点区仍为临时边界。**两者不矛盾：前者说「回应过并可核」，后者说「法定量与工程条件仍未知」。** 任何把本表读成「专业深度已达标」的用法都超出了它的含义。",
+  "status_semantics_en": "`status: complete` in this matrix means **the depth item has been answered by the proposal text, drawings, geometry and metrics together, and every reference resolves** — it does **not** mean professional depth is finished, and it is not a basis for construction or approval. The test is what deterministic validation requires at the formal stage: every depth item must have a corresponding deliverable. Alongside it stands the fact that 14 metrics in `metrics.json` remain `status: unknown` (FAR, building height, density, road ratio, total floor area, road area, innovation/talent/output targets, and field handover performance among them), `constraints.geojson` is empty, the architectural depth standard is handled as a `data_gap`, and the three key areas remain provisional. **The two are not in conflict**: the first says answered and checkable, the second says the statutory quantities and engineering conditions are still unknown. Reading this matrix as evidence that professional depth is met exceeds its meaning."
 }

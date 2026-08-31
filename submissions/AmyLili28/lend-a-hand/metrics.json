@@ -1,0 +1,332 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "area": "sqm",
+    "length": "m",
+    "ratio": "0-1",
+    "time": "min"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from provisional rough geometry; not an approved planning-control figure."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 410957.154,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(concept_green_space), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from provisional rough geometry; not an approved planning-control figure."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.036008,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from provisional rough geometry; not an approved planning-control figure."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 41472.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(civic_forecourts), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from provisional rough geometry; not an approved planning-control figure."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.003634,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from provisional rough geometry; not an approved planning-control figure."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 864.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(6 × 18 sqm desks + 3 × 252 sqm interface placeholders)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "relay_network_length_m": {
+      "status": "known",
+      "value": 13464.255,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(responsibility_relay_walk_and_six_links), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from provisional rough geometry; not an approved planning-control figure."
+      ]
+    },
+    "handover_table_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings where intervention=reversible_18_sqm_interface)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(area_specific_adaptive_reuse_interfaces)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented_personas P01–P06)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(documented_scenarios S01–S12)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_agent_role_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(backstage_ai_roles)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "project_package_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(implementation_packages LH-01–LH-08)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_area_features)",
+      "confidence": "low",
+      "assumptions": [
+        "Computed from provisional rough geometry; not an approved planning-control figure."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel geometry are absent."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Height, heritage, aviation, and streetscape controls are absent."
+    },
+    "staffed_hours_delivery_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires a named operator and actual shift logs."
+    },
+    "no_account_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires a live pilot with consented aggregate event logging."
+    },
+    "median_time_to_paid_human_minutes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "min",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires timestamped pilot operations."
+    },
+    "closed_loop_referral_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires agreements with receiving formal-service owners."
+    },
+    "accessible_route_freshness_pass_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires two-person field checks."
+    },
+    "red_request_intercept_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Target is 1.0 in drills; no run has yet occurred."
+    },
+    "volunteer_substitution_incident_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Target is 0; requires paid staffing and incident records."
+    },
+    "unresolved_safeguarding_incident_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Target is 0; requires a live safeguarding ledger."
+    },
+    "repair_return_safety_incident_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Target is 0; requires workshop operation."
+    },
+    "duty_load_p95_requests_per_shift": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires anonymised aggregate shift counts."
+    },
+    "privacy_minimization_pass_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires a service-specific data protection assessment and sampling protocol."
+    },
+    "stale_route_rollback_minutes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "min",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires controlled stale-version drills."
+    },
+    "operating_cost_per_resolved_request": {
+      "status": "unknown",
+      "value": null,
+      "unit": "CNY/request",
+      "source_files": [],
+      "formula": "pilot_measurement_required",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires an approved budget and actual payroll/venue costs."
+    }
+  }
+}

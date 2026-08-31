@@ -1,5 +1,58 @@
 # 方案迭代记录
 
+## v0.17 - 2026-08-31
+
+- Started from merged V0.16 PR #4313 (`review/intake-accepted`, final advisory 96/100, formal-review-ready and featured-candidate) while preserving that intake and advisory scoring are not Gallery publication, formal selection, adoption or implementation.
+- Added `FP01-REL00-DESK-REPLAY-001`, a real participant-side standard-library run over twelve synthetic cases: four positive contract transitions and eight injected fail-closed controls. The verifier derives each decision from inputs, checks the source-contract hash and preserves external evidence credit at zero.
+- Added a bilingual FP01 implementation-verdict page organized by the official feasibility focus—phase path, pilot areas, participating actors and indicators—then exposed the REL00 replay, stop rules and `0 / null / HOLD` boundary on the same page.
+- Added four narrowly scoped metrics, one assumption and full matrix/manifest links. The 4/4 and 8/8 values are design-time interface consistency, not field performance, H3 rehearsal, professional approval, security certification or public benefit.
+- Synchronized the merged PR #4313 process record across the Agent-participation assumption, compliance evidence and both offline exhibits; changed the juror path to four scales → REL00 replay → conditional delivery, rebuilt the V0.17 local CJK font disclosure, and removed the duplicate inner footer from A0 board 5.
+- Preserved every H0-H4 gate at 0/5, every external release at HOLD, and all named-party, real-baseline, verified-cost, professional-signoff, site-authorization and implementation fields at zero, null or unknown.
+- V0.17 is a local candidate only. No push, pull request, intake result or score is claimed for this package hash.
+
+## v0.16.1 - 2026-08-31
+
+- Closed PR #4313's only blocking Review Agent finding: the final report regeneration had removed the submission-local CJK fallback stylesheet link from both `report/proposal.html` and `report/proposal.en.html`, while the paired visual exhibits still loaded the shared embedded font correctly.
+- Restored both report files to the same offline Noto Sans SC WOFF2 subset used by `visual/index.html` and `visual/index.en.html`. The font payload, licence disclosure and recorded font hashes remain unchanged because the existing subset already covers all characters in the four current HTML files.
+- Rechecked the four HTML artifacts at 1600 px, 1050 px and 720 px widths and reproduced the maintainer's 1440 × 1600 `file://` screenshot environment. The shared local font loads in every artifact, Chinese text is readable, bilingual links remain local, no remote resources are requested and no horizontal overflow is introduced.
+- This portability repair changes no proposal thesis, geometry, metrics, scenario, implementation state, external evidence or authorization claim. The PR #4313 advisory score before repair remains a non-formal review result; any post-repair result must come from a new review of the repaired package hash.
+
+## v0.16 - 2026-08-31
+
+- Preserved the stable master brand **京张，再次开路 / JING-ZHANG BREAKS NEW GROUND** and made the different Chinese roles across two industrial revolutions explicit: learning, absorbing and transforming a Western-origin railway-industrial system into independent engineering in the earlier wave; using accountable real-city experimentation to help define and seek to lead the AI-driven wave.
+- Added an official institutional historical source for Jeme Tien Yow's US railway-engineering education, local adaptation of overseas learning and the move in modern Chinese industry from foreign import to autonomy. Kept historical fact, design-historical interpretation, strategic ambition and unproven outcome as four separate claim levels.
+- Preserved all V0.15 scenarios, geometry, metrics, FP01 four-scale decision package, capacity/egress, staffing/FTE, ROM sensitivities, maintenance, restoration reserve, gate-linked alternatives, seven blank execution forms, human fallback and every `0 / null / HOLD` external state.
+- Recorded PR #4308 as the V0.15 predecessor's deterministic PASS, 100/100 advisory Review Agent result, formal-review-ready and featured-candidate recommendations, repository-intake acceptance and merge. The 100 is not a formal jury score, does not transfer automatically to this new package hash and does not prove Gallery publication, selection, adoption or implementation.
+- Rebuilt the bilingual opening thesis, public-process ledger, HTML first screens, A3 covers and A0 juror maps around `1909: LEARN → LOCALIZE → BUILD` and `2026: TEST → GOVERN → AIM TO HELP LEAD`, while retaining the separate H0-H4 urban-evidence boundary.
+- V0.16 remains a local candidate and has not been pushed or opened as a new PR. Any later publication or review state must be read from the corresponding live PR and official records.
+
+## v0.15 - 2026-08-31
+
+- Kept **京张，再次开路 / JING-ZHANG BREAKS NEW GROUND**, the overall spatial framework, twelve scenarios, five flagships and provisional geometry unchanged; this is a local candidate and has not been pushed or opened as a new PR.
+- Responded to V0.14.1's only advisory deduction by upgrading FP01 from a strong conditional-control outline to a participant-controlled pre-feasibility decision package, without inventing operators, surveys, quotations, approvals or results.
+- Added a fourth 1:20 component-interface scale, two original non-normative parameter envelopes, a fail-closed capacity/egress formula, a staffing/FTE sensitivity template, three no-currency ROM CAPEX/OPEX scenarios, an exit-restoration reserve template, and daily/weekly/quarterly/annual maintenance cycles.
+- Mapped ALT01-ALT04 to their specific H0-H4 gates, cost tradeoffs and permission boundaries; all external actuals, accepted receipts and releases remain `null / 0 / HOLD`.
+- Added seven bilingual execution forms with 230 unique required fields for carrier survey, responsibility acceptance, D0 observation, BoQ/cost basis/non-binding procurement, professional/gate/acceptance review, rehearsal/maintenance/exit handover, and K01-K10/RAID/change control. Every external field is blank; synthetic fixtures and verified external records remain zero.
+- Rebuilt the technical-delivery figure, offline exhibits and bilingual A3/A0 packages from canonical `fp01-delivery-control.json`. The generator now fails closed if the 1:20 scale, formulas, alternatives or external-state boundary diverge, removing V0.14's hard-coded presentation mismatch.
+- Recorded PR #4306 as a real public repair and repository-intake loop—defect detection, participant repair, deterministic recheck, 96/100 advisory reassessment, intake acceptance and merge—while preserving that it is not formal jury scoring, Gallery publication, adoption or implementation.
+- Added the rubric-visible bilingual feasibility decision sheet to both proposals, linked the execution kit through metrics and evidence matrices, and retained every H0-H4 external-evidence gate at 0/5 until attributable evidence exists.
+
+## v0.14.1 - 2026-08-31
+
+- Closed the Review Agent's participant-side P0 rendering blocker by linking both required `report/proposal*.html` files to the same local Noto Sans SC WOFF2 subset already used by the bilingual visual exhibits. The fix changes presentation portability only; it does not alter the proposal, geometry, metrics, implementation state or evidence claims.
+- Made the local font-build helper idempotently restore the four HTML font links before rebuilding the subset, so a later report regeneration cannot silently reintroduce the Linux/Chromium missing-CJK failure.
+- Synchronized the copyright statement with the rebuilt CSS asset's exact byte count and SHA-256 so the disclosed font provenance remains independently verifiable.
+
+## v0.14 - 2026-08-31
+
+- Kept the stable title **京张，再次开路 / JING-ZHANG BREAKS NEW GROUND**, the six-capability network, twelve scenes, five flagships and all provisional geometry unchanged. V0.14 was a candidate package that did not self-assert a live PR or intake status; any later publication state was governed by the corresponding PR and official labels.
+- Added a 30-second / 3-minute / 15-minute juror path and a seven-dimension evidence index using the official 20/10/15/20/10/10/15 weights. The index points to exact package evidence and boundaries; it does not self-award a score.
+- Expanded `fp01-delivery-control.json` to v0.2.0 with sixteen delivery role classes, one decision-owner role at each H0-H4 gate, seven cost classes, four maintenance controls, twelve acceptance indicators, six conditional release stages and four reversible fallbacks. Its dedicated verifier now passes 21/21 checks.
+- Separated eight proposal-structure acceptance indicators that a reviewer can judge now from four indicators that still require a real problem/baseline, field/professional conditions, independent rehearsal and separate authorization.
+- Kept the truthful operational boundary explicit: H0-H4 external verification remains 0/5; external release, verified cost inputs and documented authorized site actions remain zero. Missing quotes do not imply zero cost, and zero records make no claim about activity outside this package.
+- Rebuilt the paired `metrics-evidence` and `technical-delivery-sheet` figures, placed a juror map on A0 board 1, moved FP01 conditional delivery to A0 board 4, and added the three reading paths to both A3 covers and both offline-visual first screens. The bilingual A3 and A0 contracts remain 13 pages and four boards respectively.
+- Regenerated both proposal HTML reports and the shared offline Noto Sans SC subset from the four current HTML artifacts. Updated the copyright disclosure, source/assumption boundaries, evidence matrices and Agent-participation ledger without inventing operators, budgets, quotes, field observations, professional sign-off or authorization.
+
 ## v0.13 - 2026-08-25
 
 - Kept the stable title **京张，再次开路 / JING-ZHANG BREAKS NEW GROUND** while replacing the first-screen “national demonstrator” tone with a two-level evidence test: co-creation underway with partial public records and urban practice still awaiting external evidence.
@@ -23,7 +76,7 @@
 
 - Recast the package as an **Evidence Edition / 实证版** without changing the stable title **京张，再次开路 / JING-ZHANG BREAKS NEW GROUND**.
 - Reordered the human-review path to overall Jing-Zhang spatial framework first, then the three key areas and five flagships, followed by FP01's one-person/one-task/one-contract prototype and the H0-H4 evidence gates.
-- Replaced the former person-task lead graphic named `site-overview` with a genuine overall spatial overview of the provisional SITE/KEY framework, the official textual Three Areas and Two Wings basis, the Jing-Zhang public-evidence spine, three key areas, five concept flagships and six conversion capabilities. No coordinate or statutory claim is upgraded.
+- Replaced the former person-task lead graphic named `site-overview` with a genuine overall spatial overview of the provisional SITE/KEY framework, the official textual Three Zones and Two Wings basis, the Jing-Zhang public-evidence spine, three key areas, five concept flagships and six conversion capabilities. No coordinate or statutory claim is upgraded.
 - Added `fp01-evidence-readiness.json`, a standard-library verifier and a human-fillable annex. The register defines required artifacts, accountable roles, independent review, stop actions and transitions for H0-H4 while keeping every external-evidence field null or pending.
 - Added four honest register metrics: five gate definitions, complete definition coverage, zero externally verified gates and zero verified external evidence artifacts. The two zeros describe current evidence availability, not performance or failure rates.
 - Added a paired H0-H4 readiness figure and rebuilt the bilingual A3/A0 sequence so board 1 explains overall spatial structure, board 2 explains the key areas and landmarks, and board 3 explains the FP01 contract, spatial prototype and evidence readiness.
@@ -73,7 +126,7 @@
 - Reset the main identity to **京张，再次开路 / JING-ZHANG BREAKS NEW GROUND — 从 AI 源头创新到城市共同能力 / From Frontier AI to Shared Urban Capability** after a latest-main collision scan found no exact title match; retained prior protocol names only where required for stable machine evidence.
 - Reframed the overall proposition as a **SOURCE—STACK—PROVE—LIVE & MARKET—ENABLE—COMMONS** feedback network across the official Three Zones and Two Wings; repositioned the AI City API, Jing-Zhang AI Constitution, seven interfaces, human takeover and capacity return as the Trusted Operations Layer.
 - Preserved the provisional V0.3 SITE/KEY coordinates, 3×4 polygon topology and area denominator while adding V0.7 role, flagship and dependency semantics to existing geometry features; no coordinate or declared-area value changed.
-- Bundled all twelve existing scenarios into five concept-only flagship pilots: FP01 AI Origin First-Use Station (S03/S04/S07), FP02 Zhongzhiyuan Full-Stack Open Test Yard (S01/S10), FP03 Xiaoyuehe Scenario Co-Test Network (S02/S05/S06/S08), FP04 Dazhongsi AI Everyday Market (S11/S12), and FP05 Jing-Zhang Public Evidence Park (S09 and the public observation/feedback layer for FP01–FP04).
+- Bundled all twelve existing scenarios into five concept-only flagship pilots: FP01 AI Origin First-Use Station (S03/S04/S07), FP02 Zhongzhiyuan Full-Stack Open Test Yard (S01/S10), FP03 Xiaoyue River Scenario Co-Test Network (S02/S05/S06/S08), FP04 Dazhongsi AI Everyday Market (S11/S12), and FP05 Jing-Zhang Public Evidence Park (S09 and the public observation/feedback layer for FP01–FP04).
 - Added a common technology → bounded trial → first-use procurement → diffusion → standards/shared-capability path, D30/D60/D90 decision gates, proposed operator-role consortia, one-year disclosure fields, and explicit funding/space/data boundaries. Added machine metrics for six roles/six anchors, five-pilot structure and coverage, while keeping procurement, diffusion, standards and verified public-benefit outcomes explicitly `unknown`.
 - Added paired references to Beijing's published super-AI-test-field, agent/interoperability and Haidian technology—industry—city integration directions, and restored the required `[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]` and `[depth:land_use_layout]` anchors.
 - Rebuilt the paired figures, offline exhibit, HTML report and A3/A0 drawing sets around the six-node network and five flagship pilots; kept the Chinese/English narrative aligned, renamed the annual event concept the **Jing-Zhang Breaks New Ground Assembly / 京张开路大会**, and removed obsolete workflow-authorization wording.

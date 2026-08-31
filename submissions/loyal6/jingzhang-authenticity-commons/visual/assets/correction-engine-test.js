@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const crypto = require("node:crypto");
-const { evaluate, inject } = require("./correction-engine");
+const { evaluate, inject, removePath } = require("./correction-engine");
 const fixtureBytes = fs.readFileSync(path.join(__dirname, "correction-receipt-demo.json"));
 const fixture = JSON.parse(fixtureBytes);
 const clone = () => JSON.parse(JSON.stringify(fixture));
@@ -16,6 +16,7 @@ function check(name, input, expected) {
 }
 check("complete synthetic fixture", fixture, "synthetic_complete");
 for (const row of fixture.fail_closed_tests) check("remove " + row.removed_field, inject(fixture, row.removed_field), row.expected_state);
+for (const row of fixture.institutional_fail_closed_tests) check("remove " + row.removed_path, removePath(fixture, row.removed_path), row.expected_state);
 const unacked = clone(); unacked.original_channels[1].acknowledged = false;
 check("one original channel unacknowledged", unacked, "pause");
 const duplicate = clone(); duplicate.original_channels[1].id = duplicate.original_channels[0].id;
@@ -34,4 +35,16 @@ const conflicted = clone(); conflicted.receipt.independent_reviewer = conflicted
 check("same accountable and reviewing role cannot count as independent", conflicted, "pause");
 const nullChannel = clone(); nullChannel.original_channels[0] = null;
 check("malformed channel receipt fails closed without a crash", nullChannel, "pause");
+const backendOnly = clone(); backendOnly.case_dossier.same_channel_correction_receipt.backend_only_change_accepted = true;
+check("backend-only change cannot close a case", backendOnly, "pause");
+const incompleteRetest = clone(); incompleteRetest.case_dossier.retest_ticket.completed = false;
+check("service cannot advance before retest completes", incompleteRetest, "pause");
+const selfAuthorized = clone(); selfAuthorized.case_dossier.retest_ticket.service_restore_authorized = true;
+check("retest lead cannot self-authorize restoration", selfAuthorized, "pause");
+const modelDecision = clone(); modelDecision.case_dossier.adoption_consequence.automatic_model_decision = true;
+check("model cannot make adoption consequence", modelDecision, "pause");
+const openRecovery = clone(); openRecovery.case_dossier.recovery_retirement_receipt.unclosed_item_count = 1;
+check("unclosed recovery item requires retirement", openRecovery, "retire");
+const shortcut = clone(); shortcut.state_trace.splice(1, 1);
+check("state machine cannot bypass PAUSE", shortcut, "pause");
 console.log(JSON.stringify({ ok: true, scope: "local_synthetic_software_test_not_field_performance", fixture_sha256: crypto.createHash("sha256").update(fixtureBytes).digest("hex"), tests }, null, 2));

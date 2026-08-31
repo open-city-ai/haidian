@@ -21,6 +21,11 @@
  *   （coverage=0 ⇒ 缺口=已量化+储备）、占位科目不得携带金额、单价来源必须登记于
  *   sources.json。任一断言不成立即 FAIL（同样对应可证伪条件第 4 条）。
  *
+ * 第 14 项（v3.1 新增）：pdf-page-map.json PDF 全页映射一致性——
+ *   四份 A3/A0 PDF 的逐页登记（页数、版本字符串无历史残留、首页/板头版本标注、
+ *   无空白页、中英逐页对齐）全部断言为 passed=true，登记版本须与本包 v3.1 一致。
+ *   对应 v3.0 评审「PDF 仅提供首页预览，不能仅凭首页推断全部页面内容」的保留意见。
+ *
  * 证据输出：visual/assets/recompute-evidence.json（供评审与 CI 复核）。
  */
 "use strict";
@@ -276,6 +281,40 @@ function main() {
   if (!covOk) failures.push("om-funding-gap/coverage: 概念阶段承诺覆盖率必须如实登记为 0");
   const omAllPass = omRows.every((r) => r.result === "PASS");
 
+  // ===== 第 14 项：PDF 全页映射一致性（pdf-page-map.json，v3.1 新增） =====
+  const PM_PATH = path.join(PKG, "visual", "assets", "pdf-page-map.json");
+  const PM_EXPECT = {
+    "drawings/a3-booklet.pdf": { format: "A3", page_count: 13 },
+    "drawings/a3-booklet.en.pdf": { format: "A3", page_count: 13 },
+    "drawings/a0-boards.pdf": { format: "A0", page_count: 9 },
+    "drawings/a0-boards.en.pdf": { format: "A0", page_count: 9 },
+  };
+  const pmRows = [];
+  if (!fs.existsSync(PM_PATH)) {
+    failures.push("pdf-page-map: visual/assets/pdf-page-map.json 缺失");
+  } else {
+    const pm = JSON.parse(fs.readFileSync(PM_PATH, "utf8"));
+    if (pm.package_version !== "v3.1") {
+      failures.push(`pdf-page-map: package_version ${pm.package_version} != v3.1`);
+    }
+    for (const [p, exp] of Object.entries(PM_EXPECT)) {
+      const e = (pm.files || []).find((f) => f.path === p);
+      if (!e) {
+        failures.push(`pdf-page-map: 缺少 ${p} 的逐页登记`);
+        continue;
+      }
+      const n = Array.isArray(e.pages) ? e.pages.length : 0;
+      const ok = n === exp.page_count && e.page_count === exp.page_count;
+      pmRows.push({ check: `${p} 逐页登记 ${n}/${exp.page_count} 页`, result: ok ? "PASS" : "FAIL" });
+      if (!ok) failures.push(`pdf-page-map: ${p} 页数登记与实测不一致`);
+    }
+    for (const a of pm.assertions || []) {
+      pmRows.push({ check: a.id, result: a.passed ? "PASS" : "FAIL" });
+      if (!a.passed) failures.push(`pdf-page-map: ${a.id} 断言未通过`);
+    }
+  }
+  const pmAllPass = pmRows.length > 0 && pmRows.every((r) => r.result === "PASS");
+
   const allPass = failures.length === 0;
   const evidence = {
     schema_version: "1.0.0",
@@ -287,7 +326,7 @@ function main() {
       "geometry/site_boundary.geojson", "geometry/green_space.geojson",
       "geometry/public_space.geojson", "geometry/buildings.geojson",
       "geometry/roads.geojson", "geometry/key_areas.geojson", "metrics.json",
-      "visual/assets/om-funding-gap.json", "sources.json",
+      "visual/assets/om-funding-gap.json", "visual/assets/pdf-page-map.json", "sources.json",
     ],
     tolerances: Object.fromEntries(Object.entries(TOLERANCES).map(([k, v]) => [k, `${v[0]}<=${v[1]}`])),
     unknown_metrics_kept: UNKNOWN_METRICS,
@@ -298,10 +337,16 @@ function main() {
       results: omRows,
       calibre: "万元/年 ROM 区间；子项=量纲×占比假设×单价区间，储备=已量化科目合计×5%-10%，缺口恒等式=coverage 0 时等于已量化+储备合计；单价来源须登记于 sources.json。",
     },
+    pdf_page_map: {
+      checks: pmRows.length,
+      all_pass: pmAllPass,
+      results: pmRows,
+      calibre: "四份 A3/A0 PDF 的全部 44 页逐页登记（章节/板号、图幅、字符数、文本 SHA-256），并机检页数、版本字符串无历史残留、首页/板头版本标注、无空白页与中英逐页对齐；对应 v3.0 评审「不能仅凭首页推断全部页面内容」。",
+    },
     all_pass: allPass,
     failures,
     results: rows,
-    note: "一键复算证据：全部 known 状态指标由包内 GeoJSON 在 EPSG:4548（CGCS2000 / 3-degree Gauss-Kruger CM 117E，脚本内联投影实现）下独立复算并与 metrics.json 对账；floor_area_ratio 与 building_height_control 保持 unknown——v3.0 已登记 HD00-1601 等街区控规公开版街区层面基准强度/高度分区（statutory-reconciliation.json），地块级图则数值需读图获取，本包不以推测值冒充。复算口径与仓库评审脚本一致（EPSG:4326→4548 投影面积/长度）。第 13 项（v2.9）：om-funding-gap.json 运维资金缺口表全量算术一致性——子项乘积、科目小计、储备比例、总计、缺口恒等式、占位纪律与单价来源登记逐项机检。",
+    note: "一键复算证据：全部 known 状态指标由包内 GeoJSON 在 EPSG:4548（CGCS2000 / 3-degree Gauss-Kruger CM 117E，脚本内联投影实现）下独立复算并与 metrics.json 对账；floor_area_ratio 与 building_height_control 保持 unknown——v3.0 已登记 HD00-1601 等街区控规公开版街区层面基准强度/高度分区（statutory-reconciliation.json），地块级图则数值需读图获取，本包不以推测值冒充。复算口径与仓库评审脚本一致（EPSG:4326→4548 投影面积/长度）。第 13 项（v2.9）：om-funding-gap.json 运维资金缺口表全量算术一致性——子项乘积、科目小计、储备比例、总计、缺口恒等式、占位纪律与单价来源登记逐项机检。第 14 项（v3.1）：pdf-page-map.json PDF 全页映射一致性——四份 A3/A0 PDF 共 44 页逐页登记与页数、版本字符串、无空白页、首页/板头版本标注与中英逐页对齐断言逐项机检。",
   };
   fs.writeFileSync(
     path.join(__dirname, "recompute-evidence.json"),
@@ -326,7 +371,12 @@ function main() {
     console.log(`    [${r.result}] ${String(label).padEnd(46)} ${r.check}`);
   }
   console.log("-".repeat(78));
-  console.log(allPass ? `结论: 全部 PASS（12 项指标复算一致 + 第 13 项缺口表 ${omRows.length} 项机检一致）` : `结论: FAIL: ${failures.join("; ")}`);
+  console.log(`  第 14 项：PDF 全页映射（pdf-page-map.json，${pmRows.length} 项机检 ${pmAllPass ? "全部 PASS" : "存在 FAIL"}）`);
+  for (const r of pmRows) {
+    console.log(`    [${r.result}] ${String(r.check).padEnd(46)} pdf-page-map`);
+  }
+  console.log("-".repeat(78));
+  console.log(allPass ? `结论: 全部 PASS（12 项指标复算一致 + 第 13 项缺口表 ${omRows.length} 项机检一致 + 第 14 项全页映射 ${pmRows.length} 项机检一致）` : `结论: FAIL: ${failures.join("; ")}`);
   console.log("证据已写入: visual/assets/recompute-evidence.json");
   process.exit(allPass ? 0 : 1);
 }

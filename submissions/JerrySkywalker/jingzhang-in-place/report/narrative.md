@@ -21,7 +21,11 @@
 
 S01、S04、S07 不主张已获批准、已部署、现场验证或工程可行。每项合同均明确：概念类型载体、普通基线、最小可撤动作、谁可提议/运行/停止、未确认依赖、排演判据、失败状态、普通城市复位和下一专业深化步骤。缺少载体权利、进入/开放条件、合格人员、隐私/安全边界、纸质兜底或复位排演中的任何一项，即维持普通空间或暂停。
 
-## 4. 主张限定
+## 4. 参与者就绪闭环
+
+新增的 `implementation-readiness-dossier.json` 不把概念包装成现实实施。它把未来的载体筛查/拒绝、S01 参考任务、角色类型 RACI、危险/锁定/NO-GO、非 BOQ 成本边界、运行记录、分层验收、权利/授权取得和 Day 1/Week 1 HOLD 关闭图整理为一个专业交接方法。当前载体、权利、运营主体、预算、现场容量、工程/安全条件、委托任务、调试和批准均仍为 `HOLD_EXTERNAL`；`P0_GO=false`，任何门失败即回到普通城市、低技术可撤方案或 NO-BUILD。
+
+## 5. 主张限定
 
 | 主张族 | 当前分类 | 不可推断 | 更新触发 |
 | :--- | :--- | :--- | :--- |
@@ -31,4 +35,4 @@ S01、S04、S07 不主张已获批准、已部署、现场验证或工程可行�
 | 进入 | PAUSE_UNTIL_OFFICIAL_DATA | 校园、站区、企业、遗产、私有空间自动开放 | 当前调查与书面协议 |
 | 就绪/工程 | CONCEPT_PROPOSAL | 工程可行、容量、部署、现场表现 | 专业调查、容量/安全审查、授权与受监督排演 |
 
-本叙事与结构化源 `visual/assets/taskbook-closure.json`、来源 `sources.json`、假设 `assumptions.json` 同步；任何冲突以提案正文和结构化主张限定为准。
+本叙事与结构化源 `visual/assets/taskbook-closure.json`、`visual/assets/implementation-readiness-dossier.json`、来源 `sources.json`、假设 `assumptions.json` 同步；任何冲突以提案正文和结构化主张限定为准。

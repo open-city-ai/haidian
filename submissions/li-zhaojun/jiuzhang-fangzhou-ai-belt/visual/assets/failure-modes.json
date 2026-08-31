@@ -1,0 +1,95 @@
+{
+  "schema_note": "v4.3 失败模式 F1-F8 — 应对评审'失败停用与人工降级'原则需要明确边界。每种失败模式定义触发条件、检测手段、人工降级路径。与 commitment-thresholds.json 的 P1-P6 形成闭环：阈值触发 → 失败模式 → 处置预案。",
+  "version": "v4.3",
+  "status": "framework_pending_pilot_launch",
+  "modes": [
+    {
+      "id": "F1",
+      "name_zh": "模型性能劣化",
+      "name_en": "Model performance degradation",
+      "trigger_zh": "P95 时延 > 2× 基线 OR 准确率 < 85%",
+      "trigger_en": "P95 latency > 2x baseline OR accuracy < 85%",
+      "detection_zh": "实时 P95 时延 + 准确率双轨监控",
+      "detection_en": "Real-time P95 latency + accuracy dual-track monitor",
+      "manual_downgrade_zh": "切换至离线 ASR / 离线模型推理",
+      "manual_downgrade_en": "Switch to offline ASR / offline model inference"
+    },
+    {
+      "id": "F2",
+      "name_zh": "数据缺失或合规阻断",
+      "name_en": "Data missing or compliance block",
+      "trigger_zh": "上游数据缺失 OR 监管接口返回阻断",
+      "trigger_en": "Upstream data missing OR regulatory API returns block",
+      "detection_zh": "数据流心跳 + 合规检查点",
+      "detection_en": "Data flow heartbeat + compliance checkpoint",
+      "manual_downgrade_zh": "暂停场景 + 公开原因 + 启动合规复审",
+      "manual_downgrade_en": "Suspend scenario + publish reason + start compliance review"
+    },
+    {
+      "id": "F3",
+      "name_zh": "无障碍等价路径缺失",
+      "name_en": "Non-digital equivalent path missing",
+      "trigger_zh": "任一 AI 服务点缺失非数字化等价路径（P2 触发）",
+      "trigger_en": "Any AI service point lacks non-digital equivalent path (P2 triggered)",
+      "detection_zh": "点位级无障碍巡检（季度）",
+      "detection_en": "Per-point accessibility inspection (quarterly)",
+      "manual_downgrade_zh": "暂停该点 AI 服务，恢复全人工窗口",
+      "manual_downgrade_en": "Suspend AI at this point; restore fully-manual window"
+    },
+    {
+      "id": "F4",
+      "name_zh": "用户投诉集中爆发",
+      "name_en": "User complaint cluster",
+      "trigger_zh": "P3 投诉响应时长劣化 + 投诉量超基线 50%",
+      "trigger_en": "P3 response time worsens + complaint volume > baseline × 1.5",
+      "detection_zh": "投诉看板实时聚合",
+      "detection_en": "Real-time complaint dashboard aggregation",
+      "manual_downgrade_zh": "暂停新功能上线 + 启动用户听证",
+      "manual_downgrade_en": "Pause new feature release + convene user hearing"
+    },
+    {
+      "id": "F5",
+      "name_zh": "跨系统集成故障",
+      "name_en": "Cross-system integration fault",
+      "trigger_zh": "上游 API 5xx 率 > 5% 持续 10 分钟",
+      "trigger_en": "Upstream API 5xx rate > 5% sustained 10 min",
+      "detection_zh": "集成心跳 + 错误率告警",
+      "detection_en": "Integration heartbeat + error rate alert",
+      "manual_downgrade_zh": "切换至本地缓存 / 离线降级服务",
+      "manual_downgrade_en": "Switch to local cache / offline degraded service"
+    },
+    {
+      "id": "F6",
+      "name_zh": "物理设施故障",
+      "name_en": "Physical facility fault",
+      "trigger_zh": "设备掉线 OR 传感器失效",
+      "trigger_en": "Device offline OR sensor failure",
+      "detection_zh": "设备心跳 + 现场巡检",
+      "detection_en": "Device heartbeat + field inspection",
+      "manual_downgrade_zh": "切换至人工运营模式 + 启动维修",
+      "manual_downgrade_en": "Switch to manual operation + start repair"
+    },
+    {
+      "id": "F7",
+      "name_zh": "公共利益恶化",
+      "name_en": "Public-interest deterioration",
+      "trigger_zh": "P3 投诉响应连续两季度劣化 OR 公共空间使用率显著下降",
+      "trigger_en": "P3 response worsens two consecutive quarters OR public-space usage drops significantly",
+      "detection_zh": "季度评估 + 公开仪表盘",
+      "detection_en": "Quarterly evaluation + public dashboard",
+      "manual_downgrade_zh": "运行监督环节限期整改并公开",
+      "manual_downgrade_en": "Supervision link imposes deadline for published rectification"
+    },
+    {
+      "id": "F8",
+      "name_zh": "未授权发布",
+      "name_en": "Unauthorized publication",
+      "trigger_zh": "AI 输出涉及未经授权的发布渠道或合作方",
+      "trigger_en": "AI output reaches unauthorized channel or partner",
+      "detection_zh": "输出审核 + 渠道白名单",
+      "detection_en": "Output audit + channel whitelist",
+      "manual_downgrade_zh": "撤回发布 + 启动合规追溯",
+      "manual_downgrade_en": "Withdraw publication + start compliance traceability"
+    }
+  ]
+}

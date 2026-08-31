@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-08-30T08:03:37Z",
+  "generated_at": "2026-08-30T18:49:36Z",
   "crs": "EPSG:4548",
   "script": "visual/assets/recompute_metrics.js",
   "runtime": "Node.js（仅标准库，零外部依赖，全离线）",
@@ -13,6 +13,7 @@
     "geometry/key_areas.geojson",
     "metrics.json",
     "visual/assets/om-funding-gap.json",
+    "visual/assets/pdf-page-map.json",
     "sources.json"
   ],
   "tolerances": {
@@ -206,6 +207,109 @@
     ],
     "calibre": "万元/年 ROM 区间；子项=量纲×占比假设×单价区间，储备=已量化科目合计×5%-10%，缺口恒等式=coverage 0 时等于已量化+储备合计；单价来源须登记于 sources.json。"
   },
+  "pdf_page_map": {
+    "checks": 24,
+    "all_pass": true,
+    "results": [
+      {
+        "check": "drawings/a3-booklet.pdf 逐页登记 13/13 页",
+        "result": "PASS"
+      },
+      {
+        "check": "drawings/a3-booklet.en.pdf 逐页登记 13/13 页",
+        "result": "PASS"
+      },
+      {
+        "check": "drawings/a0-boards.pdf 逐页登记 9/9 页",
+        "result": "PASS"
+      },
+      {
+        "check": "drawings/a0-boards.en.pdf 逐页登记 9/9 页",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-zh-PAGECOUNT",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-en-PAGECOUNT",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-zh-PAGECOUNT",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-en-PAGECOUNT",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-zh-STALE-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-zh-COVER-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-zh-NONEMPTY",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-en-STALE-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-en-COVER-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-en-NONEMPTY",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-zh-STALE-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-zh-COVER-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-zh-BOARD-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-zh-NONEMPTY",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-en-STALE-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-en-COVER-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-en-BOARD-VERSION",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-en-NONEMPTY",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A3-BILINGUAL-ALIGN",
+        "result": "PASS"
+      },
+      {
+        "check": "PAGEMAP-A0-BILINGUAL-ALIGN",
+        "result": "PASS"
+      }
+    ],
+    "calibre": "四份 A3/A0 PDF 的全部 44 页逐页登记（章节/板号、图幅、字符数、文本 SHA-256），并机检页数、版本字符串无历史残留、首页/板头版本标注、无空白页与中英逐页对齐；对应 v3.0 评审「不能仅凭首页推断全部页面内容」。"
+  },
   "all_pass": true,
   "failures": [],
   "results": [
@@ -306,5 +410,5 @@
       "result": "PASS"
     }
   ],
-  "note": "一键复算证据：全部 known 状态指标由包内 GeoJSON 在 EPSG:4548（CGCS2000 / 3-degree Gauss-Kruger CM 117E，脚本内联投影实现）下独立复算并与 metrics.json 对账；floor_area_ratio 与 building_height_control 保持 unknown——v3.0 已登记 HD00-1601 等街区控规公开版街区层面基准强度/高度分区（statutory-reconciliation.json），地块级图则数值需读图获取，本包不以推测值冒充。复算口径与仓库评审脚本一致（EPSG:4326→4548 投影面积/长度）。第 13 项（v2.9）：om-funding-gap.json 运维资金缺口表全量算术一致性——子项乘积、科目小计、储备比例、总计、缺口恒等式、占位纪律与单价来源登记逐项机检。"
+  "note": "一键复算证据：全部 known 状态指标由包内 GeoJSON 在 EPSG:4548（CGCS2000 / 3-degree Gauss-Kruger CM 117E，脚本内联投影实现）下独立复算并与 metrics.json 对账；floor_area_ratio 与 building_height_control 保持 unknown——v3.0 已登记 HD00-1601 等街区控规公开版街区层面基准强度/高度分区（statutory-reconciliation.json），地块级图则数值需读图获取，本包不以推测值冒充。复算口径与仓库评审脚本一致（EPSG:4326→4548 投影面积/长度）。第 13 项（v2.9）：om-funding-gap.json 运维资金缺口表全量算术一致性——子项乘积、科目小计、储备比例、总计、缺口恒等式、占位纪律与单价来源登记逐项机检。第 14 项（v3.1）：pdf-page-map.json PDF 全页映射一致性——四份 A3/A0 PDF 共 44 页逐页登记与页数、版本字符串、无空白页、首页/板头版本标注与中英逐页对齐断言逐项机检。"
 }

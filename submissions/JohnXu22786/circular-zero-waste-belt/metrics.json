@@ -1,0 +1,426 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary, not an official redline.",
+        "Recompute trigger: official geometry file ingested or announcement updated; then recompute with the same formula."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1381439.057,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union(conceptual green polygons, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Participant provisional model data (concept)."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 39450.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union(conceptual public-space polygons, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Participant provisional model data (concept)."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 111600.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union(conceptual reuse-first envelopes, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Participant provisional model data (concept)."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.121043,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Participant provisional model data; recompute when official geometry is published."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.003457,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Participant provisional model data; recompute when official geometry is published."
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 10154.351,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(conceptual paths, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(area_id in key_areas.geojson)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use.geojson features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_research_ratio": {
+      "status": "known",
+      "value": 0.30446,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area of features with land_use_code 0802, EPSG:4548) / site_area_sqm; single caliber for all concept land-share displays (proposal.md, land-use-structure*.png, HTML pages, PDFs)",
+      "confidence": "low",
+      "assumptions": [
+        "Concept share, NOT current use and NOT a statutory plan; recompute trigger: official regulatory plan/geometry ingested."
+      ]
+    },
+    "land_use_park_green_ratio": {
+      "status": "known",
+      "value": 0.27119,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area of features with land_use_code 1401, EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept share, NOT current use and NOT a statutory plan."
+      ]
+    },
+    "land_use_business_finance_ratio": {
+      "status": "known",
+      "value": 0.15631,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area of features with land_use_code 0902, EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept share, NOT current use and NOT a statutory plan."
+      ]
+    },
+    "land_use_commercial_ratio": {
+      "status": "known",
+      "value": 0.13425,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area of features with land_use_code 0901, EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept share, NOT current use and NOT a statutory plan."
+      ]
+    },
+    "land_use_residential_ratio": {
+      "status": "known",
+      "value": 0.11133,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area of features with land_use_code 0701, EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept share, NOT current use and NOT a statutory plan."
+      ]
+    },
+    "land_use_cultural_ratio": {
+      "status": "known",
+      "value": 0.02248,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area of features with land_use_code 0803, EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Concept share, NOT current use and NOT a statutory plan."
+      ]
+    },
+    "building_unit_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings.geojson features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_type == ai_landmark)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space scenario nodes + landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_validation scenario cards in the test-protocol table)",
+      "confidence": "high",
+      "assumptions": [
+        "Visible-text evidence: three test scenarios with protocol/failure-threshold/decommissioning rows."
+      ]
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows in the AI+ scenario card table)",
+      "confidence": "high",
+      "assumptions": [
+        "Visible-text evidence: 12 rendered scenario cards in proposal.md; displayed in visual pages."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(representative user groups incl. frontline collection workers)",
+      "confidence": "high",
+      "assumptions": [
+        "Six personas table plus key-population service journeys."
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(global ecosystem mechanism cases with CASE-* source entries)",
+      "confidence": "high",
+      "assumptions": [
+        "Shenzhen, Shanghai, Japan, Copenhagen, Singapore, EU; each with url+publisher+published_date in sources.json."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing polygons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_program_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(annual event system rows)",
+      "confidence": "high",
+      "assumptions": [
+        "Four annual programs: science week, swap&repair season, open day, annual disclosure festival."
+      ]
+    },
+    "operational_kpi_registry": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "definition": {
+        "zh": "五项运营 KPI 的统一登记容器；当前没有真实观测基线或可信区间。",
+        "en": "Unified registry for five operational KPIs; no observed baseline or credible interval is available yet."
+      },
+      "timepoint": "baseline not established; first complete pilot-year ledger and annual review are the planned measurement point",
+      "sample": "No observed sample. Planned census of all scheduled sessions, opted-in aggregate participants, submitted/opened scenarios, published outreach records, and inspection records for the pilot year.",
+      "source": "Not collected in participant package; requires operator ledger, anonymized aggregate counts, publication log and professional inspection records.",
+      "formula": "not applicable for aggregate container; calculate each child metric with its registered numerator and denominator",
+      "responsible_party": "concept role: pilot operator; data-quality and public disclosure review by an independent professional/public review group",
+      "confidence": "unknown",
+      "target_note": "Unverified design-target illustration only; no numeric target or baseline is asserted.",
+      "children": {
+        "activity_attainment_rate": {
+          "definition": {
+            "zh": "活动达成率：按计划完成且经人工复核的活动场次 ÷ 计划活动场次。",
+            "en": "Activity attainment: completed and human-verified sessions divided by scheduled sessions."
+          },
+          "numerator": "completed sessions with human verification",
+          "denominator": "scheduled sessions in the approved annual calendar",
+          "timepoint": "baseline not established; measured at each annual review after the pilot year",
+          "sample": "census of the annual activity ledger; no observed sample in this package",
+          "source": "operator activity ledger to be established; no participant measurement",
+          "formula": "verified_completed_sessions / scheduled_sessions",
+          "responsible_party": "pilot operator; annual review by professional/public review group",
+          "status": "unknown",
+          "value": null,
+          "unit": "ratio",
+          "confidence": "unknown",
+          "target_note": "Unverified design-target illustration only; numeric baseline/range intentionally omitted."
+        },
+        "community_activity": {
+          "definition": {
+            "zh": "社区活跃度：测量期内参与至少一次循环活动的去重匿名参与单元 ÷ 受邀或服务覆盖的匿名参与单元。",
+            "en": "Community activity: unique anonymized participating units during the measurement period divided by invited or service-covered anonymized units."
+          },
+          "numerator": "unique anonymized participating units with at least one recorded participation",
+          "denominator": "anonymized units invited or covered by the service during the same period",
+          "timepoint": "baseline not established; quarterly observation after privacy review and annual roll-up",
+          "sample": "No observed sample. Planned opt-in, anonymized aggregate counts only; no individual-identifying tracking.",
+          "source": "operator participation ledger and public-service coverage register to be established",
+          "formula": "unique_anonymized_participants / anonymized_covered_units",
+          "responsible_party": "community/property coordination role; privacy and human review gate",
+          "status": "unknown",
+          "value": null,
+          "unit": "ratio",
+          "confidence": "unknown",
+          "target_note": "Unverified design-target illustration only; numeric baseline/range intentionally omitted."
+        },
+        "scenario_opening_rate": {
+          "definition": {
+            "zh": "场景开放率：完成数据与隐私审查并进入公开试点的场景申请数 ÷ 有效提交的场景申请数。",
+            "en": "Scenario opening rate: scenario applications that pass data/privacy review and enter a public pilot divided by valid submitted applications."
+          },
+          "numerator": "applications passing review and entering a public pilot",
+          "denominator": "valid scenario applications received in the measurement period",
+          "timepoint": "baseline not established; reported per opening cycle and at annual review",
+          "sample": "No observed application sample. Planned full ledger of valid applications with human review decisions.",
+          "source": "scenario-opening application and review log to be established",
+          "formula": "reviewed_open_pilot_applications / valid_submitted_applications",
+          "responsible_party": "scenario-opening review group; named scenario owner and human approval gate",
+          "status": "unknown",
+          "value": null,
+          "unit": "ratio",
+          "confidence": "unknown",
+          "target_note": "Unverified design-target illustration only; numeric baseline/range intentionally omitted."
+        },
+        "reach_to_conversion_rate": {
+          "definition": {
+            "zh": "传播触达转化率：完成明确后续行动（报名、到场、提交建议或申请试点）的匿名聚合触达单元 ÷ 可核验的匿名聚合触达单元。",
+            "en": "Reach-to-conversion: anonymized aggregate reached units completing a defined next action (registration, attendance, feedback or pilot application) divided by verifiable anonymized reached units."
+          },
+          "numerator": "anonymized aggregate reached units completing a defined next action",
+          "denominator": "verifiable anonymized aggregate reached units for the same campaign and period",
+          "timepoint": "baseline not established; measured per campaign after communication-channel logging is approved",
+          "sample": "No observed sample. Planned channel-level aggregate logs; no cookies, face recognition or individual tracking.",
+          "source": "campaign publication and action logs to be established; no participant baseline",
+          "formula": "anonymized_reached_units_with_action / verifiable_anonymized_reached_units",
+          "responsible_party": "communication lead; privacy reviewer and public disclosure reviewer",
+          "status": "unknown",
+          "value": null,
+          "unit": "ratio",
+          "confidence": "unknown",
+          "target_note": "Unverified design-target illustration only; numeric baseline/range intentionally omitted."
+        },
+        "landmark_operational_integrity": {
+          "definition": {
+            "zh": "地标运营完好率：检查期内满足安全、卫生、可达、可用与公示要求的地标检查记录 ÷ 地标检查记录总数。",
+            "en": "Landmark operational integrity: inspection records meeting safety, hygiene, accessibility, usability and disclosure requirements divided by total landmark inspection records."
+          },
+          "numerator": "inspection records passing the published checklist",
+          "denominator": "all scheduled landmark inspection records in the period",
+          "timepoint": "baseline not established; measured at every scheduled inspection and annual review",
+          "sample": "No observed inspection sample. Planned census of the three conceptual landmark nodes after a lawful pilot is approved.",
+          "source": "operator maintenance and inspection ledger to be established; professional acceptance remains required",
+          "formula": "passing_landmark_inspections / scheduled_landmark_inspections",
+          "responsible_party": "pilot operator and facilities/maintenance role; professional safety and accessibility review",
+          "status": "unknown",
+          "value": null,
+          "unit": "ratio",
+          "confidence": "unknown",
+          "target_note": "Unverified design-target illustration only; numeric baseline/range intentionally omitted."
+        }
+      },
+      "reason": "No real operating ledger or observed sample was supplied; baseline and interval remain unknown until a lawful pilot produces anonymized aggregate records."
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "title": "京张慢线最慢者测试离线演练台账",
-  "summary": "十二项固定合成任务公开成功、失败、错误载荷与审计缺口；本台账只证明规则可复算，不代表现场、机器人或公共服务绩效。",
+  "summary": "十二项固定合成任务公开正常、停止、转人工、AI-off 与错误载荷路径；v1.4 已补齐全部审计记录和人工等价闭环。本台账只证明规则可复算，不代表现场、机器人或公共服务绩效。",
   "status": "validated_offline_synthetic",
   "method": "固定 seed 的离线合成任务；不调用在线模型，不接入真实机器人或公共道路，不使用个人数据。任务结果按预先登记的停止、转人工、拒绝、关闭与审计规则判定。",
   "seed": 20260828,
@@ -15,6 +15,7 @@
       "outcome": "stopped_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 0.8
     },
     {
@@ -24,6 +25,7 @@
       "outcome": "replanned_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 3.4
     },
     {
@@ -33,6 +35,7 @@
       "outcome": "expected_hold_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 1.2
     },
     {
@@ -42,6 +45,7 @@
       "outcome": "ai_off_route_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 2.1
     },
     {
@@ -51,6 +55,7 @@
       "outcome": "paper_phone_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 0.0
     },
     {
@@ -60,16 +65,18 @@
       "outcome": "human_transfer_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 4.8
     },
     {
       "task_id": "SUT-SIM-007",
       "scenario_id": "enterprise-service-copilot",
-      "test_case": "staffed_desk_closed",
-      "outcome": "service_closed_failure",
+      "test_case": "staffed_desk_unavailable_hot_backup_required",
+      "outcome": "human_hot_backup_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
-      "replan_seconds": 0.0
+      "human_equivalent_complete": true,
+      "replan_seconds": 9.0
     },
     {
       "task_id": "SUT-SIM-008",
@@ -78,6 +85,7 @@
       "outcome": "human_language_help_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 8.2
     },
     {
@@ -87,6 +95,7 @@
       "outcome": "replanned_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 12.6
     },
     {
@@ -96,6 +105,7 @@
       "outcome": "no_data_path_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 0.0
     },
     {
@@ -105,16 +115,18 @@
       "outcome": "human_transfer_success",
       "dispatch_schema_valid": true,
       "audit_complete": true,
+      "human_equivalent_complete": true,
       "replan_seconds": 6.0
     },
     {
       "task_id": "SUT-SIM-012",
       "scenario_id": "public-safety-operations-review",
-      "test_case": "malformed_dispatch_and_missing_audit_record",
-      "outcome": "audit_gap_failure",
+      "test_case": "malformed_dispatch_rejected_with_human_recovery",
+      "outcome": "malformed_dispatch_audited_hold_success",
       "dispatch_schema_valid": false,
-      "audit_complete": false,
-      "replan_seconds": 15.0
+      "audit_complete": true,
+      "human_equivalent_complete": true,
+      "replan_seconds": 1.0
     }
   ],
   "baselines": {
@@ -122,9 +134,9 @@
       "status": "validated_offline_synthetic",
       "claim_scope": "固定清单的离线合成协议读数，非现场、机器人或公共服务绩效",
       "replayable": true,
-      "success_rate": 0.8333333333333334,
+      "success_rate": 1.0,
       "tool_schema_pass_rate": 0.9166666666666666,
-      "audit_completeness": 0.9166666666666666,
+      "audit_completeness": 1.0,
       "replan_p95_seconds": 15.0,
       "energy_budget_violations": null,
       "energy_metric_note": "not_applicable: 本清单不运行真实设备，不能制造能耗读数",
@@ -135,8 +147,8 @@
       "status": "validated_offline_synthetic",
       "claim_scope": "AI 关闭后，纸本、电话、人工和固定空间路径能否完成同一合成任务",
       "replayable": true,
-      "success_rate": 0.9166666666666666,
-      "note": "人工桌关闭任务失败，因此数字服务必须同开同关；本结果不代表现场人工服务已经存在。"
+      "success_rate": 1.0,
+      "note": "人工桌不可用时转入已登记的人工电话/文字热备；人工桌与热备都不可用时数字服务同步关闭并形成已审计 HOLD。本结果不代表现场人工服务已经存在。"
     }
   }
 }

@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0.0",
-  "package_version": "v1.3-p0-feasibility",
+  "package_version": "v1.4-delivery-control",
   "object_id": "P0-ALL-STOP-01",
   "title_zh": "条件式 P0 全停门首启单元",
   "title_en": "Conditional P0 All-Stop Gate launch unit",
   "authorization_state": "NOT_AUTHORIZED",
   "gate_state": "HOLD",
-  "location_state": "UNLOCATED_CONCEPT_SCREENING_ENVELOPE",
+  "location_state": "PROVISIONAL_KEY_AREA_BOUND_CANDIDATE_NO_SET_OUT",
   "role_assignment_state": "unassigned/conditional",
   "price_state": "null/TBC",
   "field_evidence_state": "HOLD_NO_BASELINE",
-  "scope_note_zh": "本文件是非定位、不可放样、不可采购的概念筛查与交接数据源。它不替代测绘、选址、工程设计、专业签章、许可、报价或现场验收。",
-  "scope_note_en": "This file is an unlocated concept-screening and hand-off source. It cannot be set out or procured and does not replace survey, siting, engineering design, professional sign-off, permission, quotation, or field acceptance.",
+  "scope_note_zh": "本文件将 P0 绑定到众智园临时重点区与安全慢速场的参与者首选筛查关系，但仍无坐标、不可放样、不可采购。它不替代测绘、正式选址、工程设计、专业签章、许可、报价或现场验收。",
+  "scope_note_en": "This file binds P0 to a participant-preferred screening relationship with the provisional Zhongzhiyuan key area and safe-speed yard, but still has no set-out coordinates and cannot be procured. It does not replace survey, formal siting, engineering design, professional sign-off, permission, quotation, or field acceptance.",
   "scales": [
     {
       "scale": "1:500",
@@ -284,6 +284,69 @@
       "role_en": "Survey and baseline-record professional",
       "assignment": "unassigned/conditional",
       "authority": "records levels, obstacles, condition, utilities and reinstatement reference only after authorization"
+    },
+    {
+      "role_id": "R-P0-ACCESS",
+      "role_zh": "无障碍专业复核角色",
+      "role_en": "Accessibility professional reviewer",
+      "assignment": "unassigned/conditional",
+      "authority": "reviews route, turning, tactile, contrast, counter and same-task equivalence; may require redesign or HOLD"
+    },
+    {
+      "role_id": "R-P0-TRAFFIC",
+      "role_zh": "交通与慢行接口复核角色",
+      "role_en": "Traffic and slow-mobility interface reviewer",
+      "assignment": "unassigned/conditional",
+      "authority": "reviews pedestrian, cycle, curb, logistics and conflict conditions without authorizing road use"
+    },
+    {
+      "role_id": "R-P0-FIRE",
+      "role_zh": "消防与应急通道复核角色",
+      "role_en": "Fire and emergency-route reviewer",
+      "assignment": "unassigned/conditional",
+      "authority": "may stop any proposal that reduces an existing emergency route or lacks an accepted emergency method"
+    },
+    {
+      "role_id": "R-P0-STRUCTURE",
+      "role_zh": "结构与临时构件复核角色",
+      "role_en": "Structural and temporary-works reviewer",
+      "assignment": "unassigned/conditional",
+      "authority": "reviews wind, snow, bearing, fixing, clearance and dismantling before any assembly release"
+    },
+    {
+      "role_id": "R-P0-ELECTRICAL",
+      "role_zh": "电气、照明与隔离复核角色",
+      "role_en": "Electrical, lighting, and isolation reviewer",
+      "assignment": "unassigned/conditional",
+      "authority": "reviews capacity, cable protection, isolation, lighting and safe shutdown"
+    },
+    {
+      "role_id": "R-P0-DRAINAGE",
+      "role_zh": "地面、标高与排水复核角色",
+      "role_en": "Surface, level, and drainage reviewer",
+      "assignment": "unassigned/conditional",
+      "authority": "reviews levels, ponding, outfall, wet-weather access and restoration baseline"
+    },
+    {
+      "role_id": "R-P0-EQUIPMENT",
+      "role_zh": "设备停止、救援与接口角色",
+      "role_en": "Equipment stop, rescue, and interface reviewer",
+      "assignment": "unassigned/conditional",
+      "authority": "defines contained stop, braking, rescue, charging and isolation evidence for any nominated equipment"
+    },
+    {
+      "role_id": "R-P0-LIGHTING",
+      "role_zh": "照明与视觉可读性复核角色",
+      "role_en": "Lighting and visual-readability reviewer",
+      "assignment": "unassigned/conditional",
+      "authority": "reviews task lighting, glare, contrast and day/night readability with affected users"
+    },
+    {
+      "role_id": "R-P0-MAINTENANCE",
+      "role_zh": "维护、备件与恢复角色",
+      "role_en": "Maintenance, spares, and reinstatement role",
+      "assignment": "unassigned/conditional",
+      "authority": "owns inspection windows, spares, defect closure and maintenance-to-removal escalation"
     }
   ],
   "immediate_stop_rule": {
@@ -453,7 +516,10 @@
     "quotation_entity": null,
     "market_unit_rates": null,
     "formal_total": null,
-    "status": "TBC_NO_MARKET_PRICING",
+    "status": "PARTICIPANT_WORKING_SENSITIVITY_WITHOUT_MARKET_PRICING",
+    "working_sensitivity_source": "visual/assets/v14-delivery-control.json",
+    "working_capex_rom_cny": {"low": 850000, "base": 1350000, "high": 2100000, "status": "not_estimate_not_quote"},
+    "working_annual_opex_cny": {"low": 900000, "base": 1450000, "high": 2200000, "status": "not_operator_budget"},
     "formula": "C_P0 = C_REV + C_HUMAN + C_CODESIGN + C_ACCESS_SAFETY + C_PRIVACY_EVAL + C_OM + C_REMOVE_RESTORE + C_RESERVE",
     "components": [
       {"cost_id": "C_REV", "label_zh": "可逆空间改造", "label_en": "Reversible space works", "formula": "sum(BOQ quantity_i x verified unit_rate_i) + installation labour", "value": null},
@@ -465,7 +531,8 @@
       {"cost_id": "C_REMOVE_RESTORE", "label_zh": "拆除和场地恢复", "label_en": "Removal and site restoration", "formula": "H_remove x r_remove + A_remediation x r_remediation + waste_trace + acceptance", "value": null},
       {"cost_id": "C_RESERVE", "label_zh": "预备费/恢复储备", "label_en": "Contingency/restoration reserve", "formula": "max(verified C_REMOVE_RESTORE, p_contingency x subtotal); p_contingency TBC by cost/risk professionals", "value": null}
     ],
-    "staffing_formula": "FTE_required = confirmed staffed opening hours / operator-confirmed productive hours per FTE",
+    "staffing_formula": "FTE_required = annual staffed hours / 1680 productive hours x 1.2 leave-training factor",
+    "selected_working_roster": {"scenario_id": "ROSTER-12H", "calculated_fte": 3.129, "working_roster_fte": 4, "uncovered_hours": 0, "status": "participant_sensitivity_not_operator_commitment"},
     "sensitivity_variables": ["authorized opening hours", "number of open days", "shift overlap", "productive hours per FTE", "paid participant hours and access support", "verified BOQ quantities", "remediation area", "contingency percentage"],
     "release_condition": "No procurement or budget claim until quantities are checked against a nominated site, every market rate has a source and basis date, roles are assigned, and restoration reserve is ring-fenced."
   },
@@ -474,9 +541,9 @@
     {"metric_id": "P0-A02", "label_zh": "障碍或侵占数量", "label_en": "Obstacle/encroachment count", "formula": "count(BOQ objects intersecting the 18.0 m x 3.0 m clear route)", "data_source": "1:100 plan object boxes", "threshold_status": "SET: 0", "responsible_role": "R-P0-ACCESS", "current_status": "PASS_IN_PACKAGE=0", "trigger_condition": "object, setback, or route-width change"},
     {"metric_id": "P0-A03", "label_zh": "非 AI 等价覆盖", "label_en": "Non-AI equivalent coverage", "formula": "scenario cards with a stated non-AI equivalent / 12 scenario cards", "data_source": "proposal scenario table", "threshold_status": "SET: 12/12", "responsible_role": "R-P0-SERVICE", "current_status": "PASS_TEXT_PROTOCOL=12/12", "trigger_condition": "scenario or service change"},
     {"metric_id": "P0-A04", "label_zh": "Gate 默认状态", "label_en": "Default Gate state", "formula": "gates default closed / 6 gates", "data_source": "task chain and gate register", "threshold_status": "SET: 6/6 closed before evidence", "responsible_role": "R-P0-EXEC", "current_status": "PASS_IN_PACKAGE=6/6", "trigger_condition": "gate logic change"},
-    {"metric_id": "P0-A05", "label_zh": "审计记录完整度", "label_en": "Audit-record completeness", "formula": "synthetic tasks with complete audit record / 12 tasks", "data_source": "simulation.json", "threshold_status": "SET: 12/12 before G4", "responsible_role": "R-P0-SAFETY", "current_status": "HOLD=11/12", "trigger_condition": "missing record closed and rehearsal rerun"},
+    {"metric_id": "P0-A05", "label_zh": "审计记录完整度", "label_en": "Audit-record completeness", "formula": "synthetic tasks with complete audit record / 12 tasks", "data_source": "simulation.json", "threshold_status": "SET: 12/12 before G4", "responsible_role": "R-P0-SAFETY", "current_status": "PASS_SYNTHETIC=12/12", "trigger_condition": "simulation schema, audit fields, or task set changes"},
     {"metric_id": "P0-A06", "label_zh": "错误输入触发 HOLD", "label_en": "Malformed input triggers HOLD", "formula": "malformed-input tests resulting in HOLD / malformed-input tests", "data_source": "simulation.json malformed dispatch case", "threshold_status": "SET: 1/1", "responsible_role": "R-P0-SAFETY", "current_status": "PASS_SYNTHETIC=1/1", "trigger_condition": "schema or dispatch change"},
-    {"metric_id": "P0-A07", "label_zh": "AI 关闭后人工任务仍可完成", "label_en": "Human task remains complete with AI off", "formula": "AI-off same-task cases completed through staffed/paper/phone/fixed spatial paths / 12 tasks", "data_source": "simulation.json + proposal", "threshold_status": "SET: 12/12 before G4", "responsible_role": "R-P0-SERVICE", "current_status": "HOLD=11/12", "trigger_condition": "staffed-desk failure corrected and rehearsal rerun"},
+    {"metric_id": "P0-A07", "label_zh": "AI 关闭后人工任务仍可完成", "label_en": "Human task remains complete with AI off", "formula": "AI-off same-task cases completed through staffed/paper/phone/fixed spatial paths / 12 tasks", "data_source": "simulation.json + visual/assets/v14-delivery-control.json", "threshold_status": "SET: 12/12 before G4", "responsible_role": "R-P0-SERVICE", "current_status": "PASS_SYNTHETIC=12/12", "trigger_condition": "service window, hot-backup rule, or task set changes"},
     {"metric_id": "P0-A08", "label_zh": "退出和恢复流程完整", "label_en": "Exit/restoration process completeness", "formula": "specified evidence slots / 6 required slots", "data_source": "P0-T12", "threshold_status": "SET: 6/6 specified; execution remains field HOLD", "responsible_role": "R-P0-INSTALL", "current_status": "PASS_PROCESS_SPECIFIED=6/6", "trigger_condition": "removal method or acceptance role change"}
   ],
   "acceptance_field": [

@@ -1,0 +1,26 @@
+{
+  "schema_version": "0.2.0",
+  "version": 1,
+  "risks": [
+    {"risk_id":"R-BOUNDARY","title_zh":"边界与现状精度","category":"data_gap","severity":"high","description_zh":"官方范围、坐标、产权、现状测绘和文保控制资料未齐，provisional 几何不能支持红线、精确面积或落位结论。","mitigation_zh":"显著标记 provisional；官方资料、测绘和控制条件到位后整包重落位、重算并重绘。"},
+    {"risk_id":"R-HERITAGE","title_zh":"站史与文保核验","category":"source_verification","severity":"high","description_zh":"当前包不具备可逐条核验的站史、遗存状态或允许干预清单；未经核验的叙述可能误导公众。","mitigation_zh":"将具体史实降为待核实；先做来源、现状、产权和文保专业核验，错误或无权利内容下架。"},
+    {"risk_id":"R-DATA","title_zh":"口述、反馈与案例数据边界","category":"data_boundary","severity":"high","description_zh":"口述和活动反馈可能包含个人信息，外部案例页面也可能被误读为绩效证据。","mitigation_zh":"最小化、匿名/合成/公开输入；明示用途、可选署名、默认不公开、保留/撤回/删除/申诉；八个案例保持待核实。"},
+    {"risk_id":"R-AI","title_zh":"模型错引与自动化越界","category":"technology","severity":"high","description_zh":"检索、翻译、摘要、排程或提醒可能错引、偏差、失真或被误当作审批/安防。","mitigation_zh":"模型只出草稿/提示；关键决策双人或责任主体人工复核；禁止识别、筛查、跟踪、自动审批；错误超阈值即停用。"},
+    {"risk_id":"R-ACCESS","title_zh":"无障碍与儿童安全","category":"equity_inclusion","severity":"high","description_zh":"连续路径、障碍、听视障替代、老人低技术流程和儿童边界尚无现场基线。","mitigation_zh":"先做逐段障碍清单与人工陪同；提供纸本/字幕/语音/触觉/可离场路径；儿童不作为未授权测试样本。"},
+    {"risk_id":"R-EVENT","title_zh":"活动扰民与现场安全","category":"public_acceptance","severity":"high","description_zh":"展演、市集和夜间活动可能产生噪声、照明、人流和疏散影响。","mitigation_zh":"活动前做现场安全与影响检查；建议阈值超限即降级、改时、停场或撤组件；活动品牌不代表已排期。"},
+    {"risk_id":"R-IMPLEMENT","title_zh":"跨主体实施复杂度","category":"implementation_complexity","severity":"medium","description_zh":"内容、社区、维护、无障碍、企业、专业评估和场地管理责任需后续确认，资源和授权不明。","mitigation_zh":"RACI、G0–G3 阶段门和 S/M/L 工作量只作概念；任何一方可拒绝或退出，不默认形成合作。"},
+    {"risk_id":"R-MAINTENANCE","title_zh":"组件、来源与运维成本","category":"operations_cost","severity":"medium","description_zh":"可逆组件、链接、双语内容和模型提示需要持续维护，维护资源尚未落实。","mitigation_zh":"建立月度来源/组件、季度场景、年度权利复核；资源不足时回退纸本和人工服务，撤下不再维护的数字内容。"},
+    {"risk_id":"R-RIGHTS","title_zh":"版权、商标与派生复用","category":"policy","severity":"high","description_zh":"COMMUNITY-DISPLAY-ONLY 支持展示不等于商业、商标、训练、再许可或派生授权；案例页面和字体各有权利边界。","mitigation_zh":"逐项权利台账；未清权素材不发布、不截图、不训练；专业深化前重新取得许可、署名和版本记录。"},
+    {"risk_id":"R-CONTROL","title_zh":"法定规划与市政边界","category":"statutory","severity":"high","description_zh":"控规、道路、轨道、消防、排水、供电、通信和容量条件不完整。","mitigation_zh":"不作法定/工程/审批/容积率/高度结论；仅列研究接口，交由主管部门和专业单位核验。"}
+  ],
+  "dimensions": [
+    {"id":"data_privacy","label":"数据隐私","score":4,"note":"场景卡规定匿名聚合、合成或公开输入，口述流程含同意、撤回、删除和申诉，但尚无实际试点。","mitigation":"试点前完成最小字段、保留期限、删除证明和人工接管演练。","human_review":"由内容、隐私和社区责任人逐卡复核。"},
+    {"id":"implementation_complexity","label":"实施复杂度","score":4,"note":"三阶段、RACI、G0–G3 阶段门、退出和维护已形成概念链，真实主体和资源仍待确认。","mitigation":"按阶段门小试；无责任主体、授权或资源时不进入下一阶段。","human_review":"由项目资料负责人和未来场地管理者复核。"},
+    {"id":"public_acceptance","label":"公众接受度","score":4,"note":"低噪、可离场、人工服务、申诉和社区排期被纳入，活动影响阈值需现场确认。","mitigation":"公示场次与影响检查；超阈值停场、改时或撤组件。","human_review":"由社区代表、活动运营者和现场安全责任人复核。"},
+    {"id":"operations_cost","label":"运维成本","score":3,"note":"组件库、月度/季度/年度维护节奏已列，但资金、人力和设备寿命未核验。","mitigation":"优先纸本和可拆件，记录责任人；资源不足时关闭数字层。","human_review":"由维护方和资产负责人在阶段门复核。"},
+    {"id":"policy_uncertainty","label":"政策不确定性","score":4,"note":"法定规划、文保、道路、市政和数据授权条件均明确列为边界，未作越权结论。","mitigation":"只保留概念建议，正式实施前由主管主体和专业单位复核。","human_review":"由专业顾问和主管责任主体复核，非本包单方认定。"},
+    {"id":"spatial_dispute","label":"空间争议","score":4,"note":"provisional 边界、节点和用地层都明确不构成红线、权属或法定用途。","mitigation":"官方几何、产权和文保资料到位后重落位；发生冲突即保留空白/退出。","human_review":"由测绘、产权、文保和社区主体复核。"},
+    {"id":"technology_maturity","label":"技术成熟度","score":3,"note":"模型只承担检索、草稿、排序或提醒，所有关键环节有人工回退；无现场验证。","mitigation":"T1–T3 设指标、人工接管、错误停用和数据删除；优先低技术替代。","human_review":"由技术评估方和场景主持人复核。"},
+    {"id":"equity_inclusion","label":"公平与包容性","score":4,"note":"五类画像、连续路径清单、听视障替代、老人低技术、儿童边界和可离场机制已列，基线仍待调查。","mitigation":"无障碍顾问逐段验收；未确认路段只提供人工服务，不显示自动提示。","human_review":"由无障碍顾问、社区和场地责任人复核。"}
+  ]
+}

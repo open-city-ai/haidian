@@ -1,0 +1,169 @@
+{
+  "type": "FeatureCollection",
+  "name": "phasing_provisional_concept",
+  "stage_registry": [
+    {
+      "stage_id": "STAGE-01",
+      "phase": "phase_1",
+      "name_zh": "底层核验",
+      "name_en": "Verify the base",
+      "time_window_zh": "0-1 年",
+      "time_window_en": "0-1 years",
+      "mapping_status": "not_spatially_mapped",
+      "reason_zh": "官方边界、控规、权属和调查资料尚未齐备，不能诚实生成阶段面。",
+      "reason_en": "Official boundary, control-plan, tenure and survey inputs are incomplete; an honest stage polygon cannot be generated.",
+      "implementation_commitment": false,
+      "human_decision": "pending",
+      "source_refs": [
+        "assumptions.json#A-BOUNDARY-001",
+        "assumptions.json#A-CONTROLS-001",
+        "assumptions.json#A-EXISTING-001",
+        "geometry/constraints.geojson#data_gap"
+      ],
+      "entry_gate": {
+        "zh": "仅以 provisional 输入登记，明确不得将其当作法定红线、权属边界或现状测绘。",
+        "en": "Register the intake only as provisional, explicitly excluding statutory redline, tenure-boundary and surveyed-existing-condition claims."
+      },
+      "exit_or_rollback": {
+        "zh": "官方资料齐备后重建基线并重裁相关图层；资料仍缺时维持 not_spatially_mapped，不升级为空间承诺。",
+        "en": "Rebuild the baseline and recut dependent layers when official inputs arrive; if they remain missing, keep this stage not_spatially_mapped and do not upgrade it to a spatial commitment."
+      }
+    },
+    {
+      "stage_id": "STAGE-02",
+      "phase": "phase_2",
+      "name_zh": "轻层试验",
+      "name_en": "Pilot light layers",
+      "time_window_zh": "1-3 年",
+      "time_window_en": "1-3 years",
+      "mapping_status": "provisional_spatial_feature",
+      "geometry_ref": "#PHASE-001",
+      "reason_zh": "仅将可逆的轻层试验讨论范围登记为 provisional 空间要素；不代表获批边界或实施范围。",
+      "reason_en": "Only the reversible light-layer pilot discussion area is registered as a provisional spatial feature; it is not an approved boundary or implementation extent.",
+      "implementation_commitment": false,
+      "human_decision": "pending",
+      "source_refs": [
+        "geometry/phasing.geojson#PHASE-001",
+        "assumptions.json#A-BOUNDARY-001",
+        "assumptions.json#A-OPERATIONS-001"
+      ],
+      "entry_gate": {
+        "zh": "官方边界、控规、权属与调查数据到位，并经人工核验授权可逆的小范围试验。",
+        "en": "Official boundary, control-plan, tenure and survey data are available, and human review authorizes a reversible small-area pilot."
+      },
+      "exit_or_rollback": {
+        "zh": "按评价指标和人工决定扩展、修正或撤除试验；未达阈值、投诉或维护能力不足时停止，并恢复静态替代。",
+        "en": "Use measured indicators and human decision to expand, revise or remove the pilot; stop and restore the static fallback when thresholds are missed, complaints arise or maintenance capacity is insufficient."
+      }
+    },
+    {
+      "stage_id": "STAGE-03",
+      "phase": "phase_3",
+      "name_zh": "专业叠代",
+      "name_en": "Professional iteration",
+      "time_window_zh": "3-5 年",
+      "time_window_en": "3-5 years",
+      "mapping_status": "not_spatially_mapped",
+      "reason_zh": "通行、建筑、交通、机电、文保和市政专业复核尚未完成，不能诚实生成阶段面。",
+      "reason_en": "Access, building, transport, MEP, heritage and municipal professional reviews are incomplete; an honest stage polygon cannot be generated.",
+      "implementation_commitment": false,
+      "human_decision": "pending",
+      "source_refs": [
+        "assumptions.json#A-CONTROLS-001",
+        "assumptions.json#A-TRANSPORT-001",
+        "assumptions.json#A-HERITAGE-001"
+      ],
+      "entry_gate": {
+        "zh": "底层核验完成，且轻层试验有可复核记录；通行、建筑、交通、机电、文保和市政专业审查均获得人工确认。",
+        "en": "Base verification is complete and the light-layer pilot has reviewable records; access, building, transport, MEP, heritage and municipal reviews receive human confirmation."
+      },
+      "exit_or_rollback": {
+        "zh": "专业审查通过后由人工决定是否进入持续治理；未通过则回退至轻层试验或停止，不以推定几何补齐阶段面。",
+        "en": "After professional review, human decision determines whether to enter continuing stewardship; otherwise roll back to the light-layer pilot or stop, without filling the stage with inferred geometry."
+      }
+    },
+    {
+      "stage_id": "STAGE-04",
+      "phase": "phase_4",
+      "name_zh": "持续治理",
+      "name_en": "Continuing stewardship",
+      "time_window_zh": "5+ 年",
+      "time_window_en": "5+ years",
+      "mapping_status": "not_spatially_mapped",
+      "reason_zh": "治理节奏不是诚实的 polygon，且责任主体尚未获授权，不能生成阶段面。",
+      "reason_en": "A governance cadence is not an honest polygon, and responsible parties have not been authorized; a stage polygon cannot be generated.",
+      "implementation_commitment": false,
+      "human_decision": "pending",
+      "source_refs": [
+        "assumptions.json#A-OPERATIONS-001",
+        "assumptions.json#A-CONTROLS-001",
+        "assumptions.json#A-BOUNDARY-001"
+      ],
+      "entry_gate": {
+        "zh": "角色、维护、投诉、数据权利、人工替代和退出责任均经授权并可持续复核。",
+        "en": "Roles, maintenance, complaints, data rights, human fallback and sunset responsibilities are authorized and subject to continuing review."
+      },
+      "exit_or_rollback": {
+        "zh": "按治理复核和 sunset 条件继续、缩减或退出；责任授权失效或维护不足时停止，并保留人工/静态替代。",
+        "en": "Continue, reduce or sunset according to governance review and sunset conditions; stop and retain a human/static fallback when authorization lapses or maintenance is insufficient."
+      }
+    }
+  ],
+  "features": [
+    {
+      "type": "Feature",
+      "id": "PHASE-001",
+      "properties": {
+        "id": "PHASE-001",
+        "layer": "PHASE",
+        "source_type": "agent_generated_design",
+        "confidence": "low",
+        "geometry_role": "design_proposal",
+        "phase": "phase_2",
+        "stage": "STAGE-02",
+        "name_zh": "城市叠代轻层试验讨论范围（概念）",
+        "name_en": "Jingzhang Strata Light-Layer Trial Discussion Area (Concept)",
+        "concept_version": "jingzhang-strata-v3",
+        "implementation_commitment": false,
+        "human_decision": "pending",
+        "coordinate_change_from_baseline": false,
+        "area_sqm_declared": 4587013.573
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              116.3417,
+              40.006
+            ],
+            [
+              116.34218780487805,
+              40.016
+            ],
+            [
+              116.34843599999999,
+              40.016
+            ],
+            [
+              116.34843599999999,
+              39.9495
+            ],
+            [
+              116.340948,
+              39.9495
+            ],
+            [
+              116.340948,
+              39.99434399999997
+            ],
+            [
+              116.3417,
+              40.006
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

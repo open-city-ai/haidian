@@ -1,253 +1,267 @@
 {
-  "schema_version": "0.1.0",
-  "units": {
-    "length": "m",
-    "area": "sqm"
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "Area is recomputed from provisional rough geometry, not an official redline."
+   ]
   },
-  "metrics": {
-    "site_area_sqm": {
-      "status": "known",
-      "value": 11412825.386,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "medium",
-      "assumptions": [
-        "Area is recomputed from provisional rough geometry, not an official redline."
-      ]
-    },
-    "building_footprint_area_sqm": {
-      "status": "known",
-      "value": 310807.184,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "green_ratio": {
-      "status": "known",
-      "value": 0.123423,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/green_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "public_space_ratio": {
-      "status": "known",
-      "value": 0.073944,
-      "unit": "ratio",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
-      "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
-    },
-    "floor_area_ratio": {
-      "status": "unknown",
-      "value": null,
-      "unit": "ratio",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
-      "formula": "total_floor_area_sqm / official_site_area_sqm",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
-    },
-    "key_area_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
-      "formula": "count(key_detailed_design_areas)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "scenario_card_count": {
-      "status": "known",
-      "value": 12,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(scenario_cards)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "industry_test_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(cards_marked_industry_test)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "slow_variable_count": {
-      "status": "known",
-      "value": 5,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(slow_variable_families)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "exit_gate_count": {
-      "status": "known",
-      "value": 4,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(mandatory_scale_gates)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "slow_variable_baseline": {
-      "status": "unknown",
-      "value": null,
-      "unit": "multi_metric_baseline",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "one_year_public_baseline_measurement",
-      "confidence": "unknown",
-      "assumptions": [],
-      "reason": "No cleared site-wide baseline exists; the proposal requires one year of measurement before setting improvement thresholds."
-    },
-    "p0_open_area_sqm": {
-      "status": "known",
-      "value": 600,
-      "unit": "sqm",
-      "source_files": [
-        "visual/assets/p0-cost-model.json"
-      ],
-      "formula": "participant_assumption: 0.6 * approx_1000_sqm (P2 scale magnitude)",
-      "confidence": "low",
-      "assumptions": [
-        "Participant-set value: about 60% of the roughly thousand-sqm P2 ground floor opens to the public; not a measured or leased area."
-      ]
-    },
-    "p0_capacity_persons_low": {
-      "status": "known",
-      "value": 150,
-      "unit": "persons",
-      "source_files": [
-        "visual/assets/p0-cost-model.json"
-      ],
-      "formula": "p0_open_area_sqm / 4.0",
-      "confidence": "low",
-      "assumptions": [
-        "Participant-set area-per-person band 2.5-4 sqm (public lab / reading room customary range); not a statutory occupancy figure."
-      ]
-    },
-    "p0_capacity_persons_high": {
-      "status": "known",
-      "value": 240,
-      "unit": "persons",
-      "source_files": [
-        "visual/assets/p0-cost-model.json"
-      ],
-      "formula": "p0_open_area_sqm / 2.5",
-      "confidence": "low",
-      "assumptions": [
-        "Participant-set area-per-person band 2.5-4 sqm (public lab / reading room customary range); not a statutory occupancy figure."
-      ]
-    },
-    "p0_staffing_fte": {
-      "status": "known",
-      "value": 5,
-      "unit": "FTE",
-      "source_files": [
-        "visual/assets/p0-cost-model.json"
-      ],
-      "formula": "ceil(10 h/day * 300 days * 2 posts / 1680 h/FTE * 1.2) = ceil(4.29)",
-      "confidence": "low",
-      "assumptions": [
-        "All parameters participant-set (opening hours, opening days, simultaneous posts, effective hours per FTE, shift-coverage factor); no named operator exists."
-      ]
-    },
-    "p0_rom_cost_low_million_cny": {
-      "status": "known",
-      "value": 2.16,
-      "unit": "million_cny",
-      "source_files": [
-        "visual/assets/p0-cost-model.json"
-      ],
-      "formula": "sum(five participant-set line items, low) * 1.35 contingency",
-      "confidence": "low",
-      "assumptions": [
-        "Participant-set unit prices; not a Beijing bid price, not a quotation, not a budget commitment; excludes land, taxes, escalation, major relocation, structural and fire-safety works."
-      ]
-    },
-    "p0_rom_cost_high_million_cny": {
-      "status": "known",
-      "value": 4.25,
-      "unit": "million_cny",
-      "source_files": [
-        "visual/assets/p0-cost-model.json"
-      ],
-      "formula": "sum(five participant-set line items, high) * 1.35 contingency, rounded from 4.2525",
-      "confidence": "low",
-      "assumptions": [
-        "Participant-set unit prices; not a Beijing bid price, not a quotation, not a budget commitment; excludes land, taxes, escalation, major relocation, structural and fire-safety works."
-      ]
-    },
-    "p0_opex_low_million_cny_per_year": {
-      "status": "known",
-      "value": 0.9,
-      "unit": "million_cny_per_year",
-      "source_files": [
-        "visual/assets/p0-cost-model.json"
-      ],
-      "formula": "5 FTE * 0.12 million CNY/FTE/year + 0.3 million operations",
-      "confidence": "low",
-      "assumptions": [
-        "Participant-set comprehensive labour cost and operating allowance; not a quotation; no named operator or funding commitment exists."
-      ]
-    },
-    "p0_opex_high_million_cny_per_year": {
-      "status": "known",
-      "value": 1.5,
-      "unit": "million_cny_per_year",
-      "source_files": [
-        "visual/assets/p0-cost-model.json"
-      ],
-      "formula": "5 FTE * 0.18 million CNY/FTE/year + 0.6 million operations",
-      "confidence": "low",
-      "assumptions": [
-        "Participant-set comprehensive labour cost and operating allowance; not a quotation; no named operator or funding commitment exists."
-      ]
-    },
-    "group_specific_acceptance_coverage": {
-      "status": "known",
-      "value": 1.0,
-      "unit": "ratio",
-      "source_files": [
-        "visual/assets/group-acceptance-contract.json"
-      ],
-      "formula": "count(scenarios with group-specific criteria) / count(applicable scenarios) = 5/5 (scenarios 03, 04, 06, 09, 12)",
-      "confidence": "high",
-      "assumptions": [
-        "Coverage counts criterion completeness only; all field values await an authorised baseline and remain unknown."
-      ]
-    }
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 310807.184,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.123423,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.073944,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario_cards)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "industry_test_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(cards_marked_industry_test)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "slow_variable_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(slow_variable_families)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "exit_gate_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(mandatory_scale_gates)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "slow_variable_baseline": {
+   "status": "unknown",
+   "value": null,
+   "unit": "multi_metric_baseline",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "one_year_public_baseline_measurement",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "No cleared site-wide baseline exists; the proposal requires one year of measurement before setting improvement thresholds."
+  },
+  "p0_open_area_sqm": {
+   "status": "known",
+   "value": 600,
+   "unit": "sqm",
+   "source_files": [
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "participant_assumption: 0.6 * approx_1000_sqm (P2 scale magnitude)",
+   "confidence": "low",
+   "assumptions": [
+    "Participant-set value: about 60% of the roughly thousand-sqm P2 ground floor opens to the public; not a measured or leased area."
+   ]
+  },
+  "p0_capacity_persons_low": {
+   "status": "known",
+   "value": 150,
+   "unit": "persons",
+   "source_files": [
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "p0_open_area_sqm / 4.0",
+   "confidence": "low",
+   "assumptions": [
+    "Participant-set area-per-person band 2.5-4 sqm (public lab / reading room customary range); not a statutory occupancy figure."
+   ]
+  },
+  "p0_capacity_persons_high": {
+   "status": "known",
+   "value": 240,
+   "unit": "persons",
+   "source_files": [
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "p0_open_area_sqm / 2.5",
+   "confidence": "low",
+   "assumptions": [
+    "Participant-set area-per-person band 2.5-4 sqm (public lab / reading room customary range); not a statutory occupancy figure."
+   ]
+  },
+  "p0_staffing_fte": {
+   "status": "known",
+   "value": 5,
+   "unit": "FTE",
+   "source_files": [
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "ceil(10 h/day * 300 days * 2 posts / 1680 h/FTE * 1.2) = ceil(4.29)",
+   "confidence": "low",
+   "assumptions": [
+    "All parameters participant-set (opening hours, opening days, simultaneous posts, effective hours per FTE, shift-coverage factor); no named operator exists."
+   ]
+  },
+  "p0_rom_cost_low_million_cny": {
+   "status": "known",
+   "value": 2.16,
+   "unit": "million_cny",
+   "source_files": [
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "sum(five participant-set line items, low) * 1.35 contingency",
+   "confidence": "low",
+   "assumptions": [
+    "Participant-set unit prices; not a Beijing bid price, not a quotation, not a budget commitment; excludes land, taxes, escalation, major relocation, structural and fire-safety works."
+   ]
+  },
+  "p0_rom_cost_high_million_cny": {
+   "status": "known",
+   "value": 4.25,
+   "unit": "million_cny",
+   "source_files": [
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "sum(five participant-set line items, high) * 1.35 contingency, rounded from 4.2525",
+   "confidence": "low",
+   "assumptions": [
+    "Participant-set unit prices; not a Beijing bid price, not a quotation, not a budget commitment; excludes land, taxes, escalation, major relocation, structural and fire-safety works."
+   ]
+  },
+  "p0_opex_low_million_cny_per_year": {
+   "status": "known",
+   "value": 0.9,
+   "unit": "million_cny_per_year",
+   "source_files": [
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "5 FTE * 0.12 million CNY/FTE/year + 0.3 million operations",
+   "confidence": "low",
+   "assumptions": [
+    "Participant-set comprehensive labour cost and operating allowance; not a quotation; no named operator or funding commitment exists."
+   ]
+  },
+  "p0_opex_high_million_cny_per_year": {
+   "status": "known",
+   "value": 1.5,
+   "unit": "million_cny_per_year",
+   "source_files": [
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "5 FTE * 0.18 million CNY/FTE/year + 0.6 million operations",
+   "confidence": "low",
+   "assumptions": [
+    "Participant-set comprehensive labour cost and operating allowance; not a quotation; no named operator or funding commitment exists."
+   ]
+  },
+  "group_specific_acceptance_coverage": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [
+    "visual/assets/group-acceptance-contract.json"
+   ],
+   "formula": "count(scenarios with group-specific criteria) / count(applicable scenarios) = 5/5 (scenarios 03, 04, 06, 09, 12)",
+   "confidence": "high",
+   "assumptions": [
+    "Coverage counts criterion completeness only; all field values await an authorised baseline and remain unknown."
+   ]
+  },
+  "p0_cost_public_anchor_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "sources.json",
+    "visual/assets/p0-cost-model.json"
+   ],
+   "formula": "count of public numeric cost anchors registered for the P0 demonstrator (retrofit band lower and upper, barrier-free package magnitude, soil-sensor unit price, property OPEX upper bound); the Beijing cost-information publication channel is registered separately as a mechanism, not a numeric anchor",
+   "confidence": "medium",
+   "assumptions": [
+    "Anchors are other projects' published procurement calibers, registered in sources.json; none is a quotation for this site."
+   ]
   }
+ }
 }

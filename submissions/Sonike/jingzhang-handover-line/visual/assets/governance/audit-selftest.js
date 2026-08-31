@@ -209,8 +209,29 @@ negInput("几何里把 BLDG-020 的 side 由东改成西",
 negInput("metrics.json 删掉一条三位以上小数指标的 precision_note",
   { "metrics.json": jsonMutated("metrics.json", (d) => { delete d.metrics.site_area_sqm.precision_note; }) }, ["I1"]);
 
-negInput("sources.json 删掉一条来源的 not_usable_for",
-  { "sources.json": jsonMutated("sources.json", (d) => { delete d.sources[0].not_usable_for; }) }, ["H1"]);
+negative("来源登记字段缺失或正文总数退旧值都要失败——分别删除 not_usable_for 与把中英 48 改回 43，两种情况均须由 H1 拦住", () => {
+  const variants = [
+    {
+      label: "sources.json 缺 not_usable_for",
+      files: { "sources.json": jsonMutated("sources.json", (d) => { delete d.sources[0].not_usable_for; }) },
+    },
+    {
+      label: "中英正文来源数退回 43",
+      files: {
+        "proposal.md": textOf("proposal.md").replace("完整 48 条来源", "完整 43 条来源"),
+        "proposal.en.md": textOf("proposal.en.md").replace("All 48 sources", "All 43 sources"),
+      },
+    },
+  ];
+  for (const variant of variants) {
+    const dir = overlayWith(variant.files);
+    const r = runAuditor({ JZ_AUDIT_OVERLAY: dir });
+    if (r.code === 0) return `${variant.label} 仍以退出码 0 通过`;
+    const got = failedIds(r);
+    if (!got.includes("H1")) return `${variant.label} 未报 H1，实报 ${got.join("、") || "（无）"}`;
+  }
+  return null;
+});
 
 negInput("离线中文网页删掉包内字体 CSS 链接 —— macOS 有系统字体时看不出，干净评审容器会出现方块字",
   { "visual/index.html": textOf("visual/index.html").replace(/\s*<link rel="stylesheet" href="assets\/governance\/noto-cjk-subset\.css">/, "") }, ["G6"]);
@@ -304,6 +325,14 @@ negP0("三席排班把可复算覆盖量从 2.143 FTE 改成 2.5 —— 人数�
 negP0("六个交付包删掉一项验收测试 —— 包号和闸门仍齐全也不得自称可交接",
   (d) => { delete d.delivery_packages[0].acceptance_test; },
   "六个交付包必须逐包给出数量依据与验收测试");
+
+negP0("十一类实施方案映射少一类 —— 物理运营模块仍齐全也不得自称实施闭环",
+  (d) => { d.implementation_scheme_module_register.pop(); },
+  "十一项物理运营模块、十一类实施方案与六步计价方法不完整");
+
+negP0("正式计价方法伪装成已有三方报价 —— 没有真实回执时必须拒绝",
+  (d) => { d.formal_cost_method.comparable_vendor_quote_count = 3; },
+  "十一项物理运营模块、十一类实施方案与六步计价方法不完整");
 
 negP0("替代方案删掉具名回退门 —— 优势描述仍在也不能形成失败后的可执行选择",
   (d) => { d.alternative_gate_binding.find((item) => item.alternative_id === "ALT-1_MOBILE_CART").fallback_gate_ids = []; },
@@ -447,10 +476,34 @@ negInput("场景卡把落点写回「城市交接场维修驿」—— 复刻 20
 negInput("连接段卡片只把里程数字改错 0.5 km —— 落点归属仍对，只有里程对不上几何",
   { [EVIDENCE]: textOf(EVIDENCE).replace("主轴里程约 7.2 km", "主轴里程约 7.7 km") }, ["G5"]);
 
-negInput("英文正文的指标计数退回上一版 119/105 —— 中文写对、英文漏掉十二项运营就绪指标，且英文内部算术自洽（119−105＝14）所以只看英文看不出来",
-  { "proposal.en.md": textOf("proposal.en.md")
-      .replace("**131 metrics, 117 of them valued", "**119 metrics, 105 of them valued")
-      .replace("The 117 valued metrics", "The 105 valued metrics") }, ["M9"]);
+negative("指标计数任一复述退回旧版都要失败——分别注入英文正文 119/105 与深度矩阵 100/86、status 11，两种静默漏同步均须由 M9 拦住", () => {
+  const variants = [
+    {
+      label: "英文正文 119/105",
+      files: { "proposal.en.md": textOf("proposal.en.md")
+        .replace("**137 metrics, 123 of them valued", "**119 metrics, 105 of them valued")
+        .replace("The 123 valued metrics", "The 105 valued metrics") },
+    },
+    {
+      label: "设计深度矩阵 100/86、status 11",
+      files: { "design_depth_matrix.json": jsonMutated("design_depth_matrix.json", (d) => {
+        const item = d.items.find((x) => x.item_id === "metrics_recalculation");
+        item.evidence_summary_zh = item.evidence_summary_zh
+          .replace("共137项：123项已赋值", "共100项：86项已赋值");
+        d.status_semantics_zh = d.status_semantics_zh.replace("仍有 14 项", "仍有 11 项");
+        d.status_semantics_en = d.status_semantics_en.replace("fact that 14 metrics", "fact that 11 metrics");
+      }) },
+    },
+  ];
+  for (const variant of variants) {
+    const dir = overlayWith(variant.files);
+    const r = runAuditor({ JZ_AUDIT_OVERLAY: dir });
+    if (r.code === 0) return `${variant.label} 仍以退出码 0 通过`;
+    const got = failedIds(r);
+    if (!got.includes("M9")) return `${variant.label} 未报 M9，实报 ${got.join("、") || "（无）"}`;
+  }
+  return null;
+});
 
 negInput("正文删掉任务书 required_wording_zh 里的「参考方案」—— 复刻 2026-08-22 补齐前的状态，其余措辞仍在所以读起来毫无异样",
   { "proposal.md": textOf("proposal.md").replace(/参考方案/g, "") }, ["T1"]);

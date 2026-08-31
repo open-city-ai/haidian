@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JZC-9C - Centennial Jingzhang AI Innovation Belt - English Visualization (v4.3)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../visual/assets/noto-sans-sc-subset.css">
+<style>
+:root {
+  --bg: #fafaf6;
+  --fg: #1d1d2a;
+  --accent: #d75e30;
+  --secondary: #3a78a0;
+  --muted: #6a6a7a;
+  --border: #d0d0d8;
+  --tag-ok: #2a7a4a;
+  --tag-north: #3060a0;
+  --tag-center: #30606e;
+  --tag-south: #a04852;
+  --tag-info: #6a5090;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans SC Subset', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.55;
+  font-size: 14px;
+}
+header {
+  background: linear-gradient(135deg, #1d1d2a 0%, #2a2a4a 100%);
+  color: #fafaf6;
+  padding: 28px 48px 24px;
+  border-bottom: 3px solid var(--accent);
+}
+header h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; }
+header .subtitle { font-size: 14px; color: #bcbcc8; font-weight: 400; margin-bottom: 4px; }
+header .meta { font-size: 12px; color: #9a9aaa; margin-top: 12px; }
+header .meta .pill {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  margin-right: 8px;
+  margin-top: 4px;
+}
+nav { background: #fff; border-bottom: 1px solid var(--border); padding: 12px 48px; position: sticky; top: 0; z-index: 10; }
+nav a { display: inline-block; margin-right: 14px; color: var(--secondary); text-decoration: none; font-size: 12px; font-weight: 600; }
+nav a:hover { color: var(--accent); }
+main { max-width: 1100px; margin: 0 auto; padding: 24px 48px; }
+.disclaimer {
+  background: #fff8e0;
+  border: 2px solid #c89540;
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin: 18px 0;
+  font-size: 13px;
+  color: #6a5020;
+}
+.disclaimer strong { color: #a85040; }
+section { margin-bottom: 32px; padding: 22px 26px; background: white; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+section h2 { font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 4px; padding-bottom: 6px; border-bottom: 2px solid var(--accent); }
+section .sec-en { font-size: 12px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+section h3 { font-size: 16px; font-weight: 700; color: var(--secondary); margin-top: 16px; margin-bottom: 8px; }
+section p { margin-bottom: 10px; color: #333; }
+section ul { margin: 10px 0 14px 22px; }
+section li { margin-bottom: 6px; color: #333; }
+.kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.kpi-card { padding: 14px; border: 2px solid var(--accent); border-radius: 8px; background: white; text-align: center; }
+.kpi-card .value { font-size: 22px; font-weight: 700; color: var(--accent); }
+.kpi-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+.kpi-card .ref { font-size: 10px; color: var(--secondary); margin-top: 2px; font-family: monospace; }
+.scope-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+.scope-card { padding: 16px; border: 1px solid var(--border); border-radius: 8px; background: #fdfdfa; }
+.scope-card .scope-num { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 0.5px; }
+.scope-card h3 { margin-top: 4px; }
+.scope-card .scope-area { font-size: 18px; font-weight: 700; color: var(--accent); margin: 8px 0; }
+.scope-card .scope-desc { font-size: 12px; color: #444; }
+.map-container { margin: 18px 0; }
+.map-container svg { width: 100%; height: auto; border: 1px solid var(--border); border-radius: 6px; }
+.map-caption { font-size: 11px; color: var(--muted); margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+th, td { padding: 8px 10px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+th { background: var(--accent); color: white; font-weight: 700; }
+tr:nth-child(even) { background: #fafaf6; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; color: white; margin-right: 4px; }
+.tag-ok { background: var(--tag-ok); }
+.tag-north { background: var(--tag-north); }
+.tag-center { background: var(--tag-center); }
+.tag-south { background: var(--tag-south); }
+.tag-info { background: var(--tag-info); }
+</style>
+</head>
+<body>
+
+<header>
+<h1>JZC-9C - Nine-Chapter Compass, Jingzhang AI Origin</h1>
+<div class="subtitle">Centennial Jingzhang AI Innovation Belt Urban Design Proposal (English visualization, v4.3)</div>
+<div class="meta">
+  <span class="pill">author_github: li-zhaojun</span>
+  <span class="pill">iteration: v4.3</span>
+  <span class="pill">proposal_format_version: 2</span>
+  <span class="pill">translation_of: proposal.md (canonical Chinese)</span>
+  <span class="pill">single source of truth: metrics.json</span>
+</div>
+</header>
+
+<nav>
+<a href="#overview">Overview</a>
+<a href="#scope">Three-Layer Scope</a>
+<a href="#spatial">Spatial Structure</a>
+<a href="#tings">Three Tings Detail</a>
+<a href="#ecosystem">AI Ecosystem</a>
+<a href="#scenarios">Scenario Cards</a>
+<a href="#personas">Personas</a>
+<a href="#industrial">Industrial Tests</a>
+<a href="#landmarks">Pilgrimage Landmarks</a>
+<a href="#metrics">Core Metrics</a>
+<a href="#compliance">Compliance Matrix</a>
+<a href="#standards">Standards</a>
+<a href="#phases">Phasing</a>
+<a href="#investment">Investment</a>
+<a href="#operations">Operations & Events</a>
+<a href="#risk">Risk & Compliance</a>
+</nav>
+
+<main>
+
+<div class="disclaimer">
+<strong>Boundary Notice</strong>: This proposal strictly follows the taskbook boundary clause. All spatial recommendations are conceptual - reference designs or starting points for professional teams to deepen. They do NOT replace formal planning or constitute government approval conclusions. All area, coordinate, and boundary values are <strong>provisional</strong> and must be recomputed in full after official polygon publication.
+</div>
+
+<section id="overview">
+<h2>Overview</h2>
+<div class="sec-en">Submission Overview — Concept & Scope</div>
+
+<div class="kpi-grid">
+<div class="kpi-card">
+  <div class="value">1,141.3 ha</div>
+  <div class="label">Overall Design Scope</div>
+  <div class="ref">metric: site_area_sqm</div>
+</div>
+<div class="kpi-card">
+  <div class="value">3</div>
+  <div class="label">Key Areas</div>
+  <div class="ref">metric: key_area_count</div>
+</div>
+<div class="kpi-card">
+  <div class="value">12</div>
+  <div class="label">Concept Landmarks</div>
+  <div class="ref">metric: building_count</div>
+</div>
+<div class="kpi-card">
+  <div class="value">13 / 3 / 5</div>
+  <div class="label">Scenarios / Tests / Personas</div>
+  <div class="ref">metric: scenario_card_count</div>
+</div>
+<div class="kpi-card">
+  <div class="value">31.9%</div>
+  <div class="label">Green Ratio</div>
+  <div class="ref">metric: green_ratio</div>
+</div>
+<div class="kpi-card">
+  <div class="value">18.7 km</div>
+  <div class="label">Road Network</div>
+  <div class="ref">metric: road_network_length_m</div>
+</div>
+</div>
+
+<div class="map-container">
+<svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e8e6dc" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="480" fill="url(#grid)"/>
+
+  <!-- Site boundary (waisted) -->
+  <path d="M 60 460 L 740 460 L 740 280 L 660 200 L 740 80 L 300 80 L 240 150 L 140 200 L 60 460 Z"
+        fill="#e8e6f0" stroke="#9090a0" stroke-width="2.5"/>
+
+  <!-- Key areas (rectangles) -->
+  <rect x="280" y="80" width="240" height="100" fill="#d8e8f0" stroke="#3060a0" stroke-width="2.5"/>
+  <rect x="240" y="180" width="260" height="100" fill="#d8e0d8" stroke="#30606e" stroke-width="2.5"/>
+  <rect x="200" y="380" width="420" height="80" fill="#f0dcd8" stroke="#a04852" stroke-width="2.5"/>
+
+  <!-- Green spine -->
+  <rect x="380" y="80" width="50" height="380" fill="#b8d8b8" stroke="#3a8a55" stroke-width="1.5"/>
+
+  <!-- Public spaces -->
+  <rect x="320" y="350" width="60" height="40" fill="#f5d8a8" stroke="#a86a30" stroke-width="1.5"/>
+  <rect x="320" y="200" width="60" height="40" fill="#f5d8a8" stroke="#a86a30" stroke-width="1.5"/>
+  <rect x="380" y="100" width="60" height="40" fill="#f5d8a8" stroke="#a86a30" stroke-width="1.5"/>
+  <rect x="160" y="220" width="50" height="40" fill="#f5d8a8" stroke="#a86a30" stroke-width="1.5"/>
+  <rect x="540" y="220" width="50" height="40" fill="#f5d8a8" stroke="#a86a30" stroke-width="1.5"/>
+  <rect x="400" y="370" width="60" height="40" fill="#e8e8f0" stroke="#888" stroke-width="1.5"/>
+
+  <!-- Roads -->
+  <line x1="405" y1="80" x2="405" y2="460" stroke="#3a8a55" stroke-width="3.5"/>
+  <line x1="180" y1="80" x2="180" y2="460" stroke="#5a5a6a" stroke-width="3"/>
+  <line x1="620" y1="80" x2="620" y2="460" stroke="#5a5a6a" stroke-width="3"/>
+  <line x1="160" y1="280" x2="640" y2="280" stroke="#7a7a8a" stroke-width="2"/>
+  <line x1="180" y1="370" x2="620" y2="370" stroke="#7a7a8a" stroke-width="2"/>
+  <line x1="180" y1="120" x2="620" y2="120" stroke="#7a7a8a" stroke-width="2"/>
+
+  <!-- Scenario nodes (orange dots) -->
+  <circle cx="365" cy="410" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+  <circle cx="450" cy="410" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+  <circle cx="320" cy="225" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+  <circle cx="450" cy="130" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+  <circle cx="350" cy="370" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+  <circle cx="540" cy="130" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+  <circle cx="180" cy="240" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+  <circle cx="610" cy="240" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+  <circle cx="280" cy="130" r="6" fill="#d75e30" stroke="#1d1d2a" stroke-width="1.5"/>
+
+  <!-- Three Tings labels (English) -->
+  <text x="380" y="50" font-family="sans-serif" font-weight="700" font-size="20" fill="#3060a0">North Source</text>
+  <text x="380" y="68" font-family="sans-serif" font-size="12" fill="#3060a0">Zhongzhiyuan approx 192.1 ha</text>
+
+  <text x="380" y="195" font-family="sans-serif" font-weight="700" font-size="20" fill="#30606e">Central Court</text>
+  <text x="380" y="212" font-family="sans-serif" font-size="12" fill="#30606e">AI Origin approx 104.3 ha</text>
+
+  <text x="380" y="375" font-family="sans-serif" font-weight="700" font-size="20" fill="#a04852">South Court</text>
+  <text x="380" y="392" font-family="sans-serif" font-size="12" fill="#a04852">Dazhongsi approx 72.0 ha</text>
+
+  <text x="430" y="195" font-family="sans-serif" font-weight="700" font-size="14" fill="#3a8a55" transform="rotate(90, 430, 195)">Green Spine</text>
+
+  <text x="20" y="475" font-family="monospace" font-size="10" fill="#9090a0">N 40.0265</text>
+  <text x="20" y="100" font-family="monospace" font-size="10" fill="#9090a0">N 40.007</text>
+  <text x="20" y="200" font-family="monospace" font-size="10" fill="#9090a0">N 39.993</text>
+  <text x="20" y="320" font-family="monospace" font-size="10" fill="#9090a0">N 39.974</text>
+  <text x="20" y="475" font-family="monospace" font-size="10" fill="#9090a0">N 39.939</text>
+</svg>
+<div class="map-caption">Figure 1: Overall concept and Nine Chapter spatial layout (provisional boundary, three differentiated tings + Green Spine + 9 visible scenario nodes; 18 total SCN nodes including senior sub-points)</div>
+</div>
+</section>
+
+<section id="scope">
+<h2>Three-Layer Scope Framework</h2>
+<div class="sec-en">Coordination Research, Overall Design, Key Areas</div>
+
+<div class="scope-grid">
+<div class="scope-card">
+  <div class="scope-num">01 · COORDINATION RESEARCH</div>
+  <h3>Coordination Research Scope</h3>
+  <div class="scope-area" data-metric="coord_scope" data-value="43600000">approx 4,360 ha</div>
+  <div class="scope-desc">North to North 5th Ring Road, East to Jingzang Expressway, South to Xizhimenwai Street, West to Wanquanhe Road. Used to study the AI innovation ecosystem, industrial chain coordination, future urban morphology, and regional innovation coordination.</div>
+</div>
+<div class="scope-card">
+  <div class="scope-num">02 · OVERALL DESIGN</div>
+  <h3>Overall Design Scope</h3>
+  <div class="scope-area" data-metric="site_area_sqm" data-value="11412825.386">approx 1,141.3 ha</div>
+  <div class="scope-desc">Urban and industrial area within 1-2 km of Jingzhang Heritage Park. All spatial layers in this proposal are derived within this boundary, reaching detailed-control urban design depth.</div>
+</div>
+<div class="scope-card">
+  <div class="scope-num">03 · KEY AREAS</div>
+  <h3>Key Areas Scope</h3>
+  <div class="scope-area" data-metric="key_area_count" data-value="3">approx 369.3 ha</div>
+  <div class="scope-desc">Zhongzhiyuan + AI Origin Community + Dazhongsi three key areas; each reaches implementation depth for regulatory submission.</div>
+</div>
+</div>
+</section>
+
+<section id="spatial">
+<h2>Spatial Structure</h2>
+<div class="sec-en">One Spine, Three Tings, Two Wings, Nine Chapters</div>
+
+<p style="margin-bottom: 14px; font-size: 13px; color: #555;">
+Conceptual skeleton: <strong>"One Spine, Three Tings, Two Wings, Nine Chapters"</strong> - the Green Spine runs north-south along the Jingzhang Railway heritage corridor; three tings form station-stop style spaces; two wings represent industry and scenario sides; nine chapters are nine categories of AI scenario cards that together form a perceivable "land-industry-services-measurement-intelligence" content system.
+</p>
+
+<table>
+<thead>
+<tr><th>Element</th><th>Spatial Carrier</th><th>Conceptual Function</th><th>Evidence</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="tag tag-ok">SPINE</span> Green Spine Central</td>
+  <td>geometry/green_space.geojson#GREEN-SPINE-001</td>
+  <td>Jingzhang Heritage Park E-W corridor; cultural, ecological, slow-traffic backbone</td>
+  <td>proposal.md: Blue-green space, public space & urban character</td>
+</tr>
+<tr>
+  <td><span class="tag tag-north">TING</span> North Source · Zhongzhiyuan</td>
+  <td>geometry/key_areas.geojson#PROV-KEY-001</td>
+  <td>Zhongzhiyuan full-stack innovation + governance (approx 192.1 ha)</td>
+  <td>metric: zhongzhiyuan_area_sqm</td>
+</tr>
+<tr>
+  <td><span class="tag tag-center">TING</span> Central Court · AI Origin</td>
+  <td>geometry/key_areas.geojson#PROV-KEY-002</td>
+  <td>AI Origin Community open-source + talent (approx 104.3 ha)</td>
+  <td>metric: beijing_ai_origin_community_area_sqm</td>
+</tr>
+<tr>
+  <td><span class="tag tag-south">TING</span> South Court · Dazhongsi</td>
+  <td>geometry/key_areas.geojson#PROV-KEY-003</td>
+  <td>Dazhongsi smart economy + TOD showcase (approx 72.0 ha)</td>
+  <td>metric: dazhongsi_area_sqm</td>
+</tr>
+<tr>
+  <td><span class="tag tag-info">WING</span> Zhongguancun Tech Service Wing</td>
+  <td>geometry/land_use.geojson#LU-06</td>
+  <td>Capital, IP, data elements, global resource allocation</td>
+  <td>metric: land_use_0802_area_sqm (partial)</td>
+</tr>
+<tr>
+  <td><span class="tag tag-info">WING</span> Xiaoyuehe Scenario Enablement Wing</td>
+  <td>geometry/land_use.geojson#LU-05</td>
+  <td>Robot experience, smart life, scenario enablement</td>
+  <td>geometry/land_use.geojson#LU-05</td>
+</tr>
+<tr>
+  <td><span class="tag tag-ok">CHAPTERS</span> 18 SCN nodes</td>
+  <td>geometry/constraints.geojson</td>
+  <td>9 scenario card clusters + SC-AI-SEN (3 sub-points along Green Spine) + 3 IND venues</td>
+  <td>metric: scenario_node_count</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="tings">
+<h2>Three Tings Detail Design</h2>
+<div class="sec-en">Three Key Areas Detailed (each at implementation depth)</div>
+
+<h3>North Source · Nine-Chapter Hall (Zhongzhiyuan)</h3>
+<ul>
+<li>Approx 192.1 ha (zhongzhiyuan_area_sqm = 1,929,201.877 sqm)</li>
+<li>Full-stack R&D + governance sandbox + compute station + AI Biennial permanent venue</li>
+<li>BLDG-007 (Full-Stack Pavilion), BLDG-008 (Governance Sandbox), BLDG-009 (Compute Station), BLDG-012 (Star Map Platform)</li>
+<li>4 SC-AI cards: SC-AI-09, SC-AI-10, SC-AI-11, SC-AI-12</li>
+<li>Phase 3 (2032-2035) primary delivery window</li>
+</ul>
+
+<h3>Central Court · Nine-Chapter Plain (AI Origin)</h3>
+<ul>
+<li>Approx 104.3 ha (beijing_ai_origin_community_area_sqm = 1,043,236.909 sqm)</li>
+<li>Open-source release + talent housing + co-creation complex + near-campus translation</li>
+<li>BLDG-001 to BLDG-006 (concept residential / talent housing / co-creation complex)</li>
+<li>5 SC-AI cards: SC-AI-02, SC-AI-03, SC-AI-04, SC-AI-06, SC-AI-07</li>
+<li>Phase 2 (2028-2032) primary delivery window</li>
+</ul>
+
+<h3>South Court · Nine-Chapter Market (Dazhongsi)</h3>
+<ul>
+<li>Approx 72.0 ha (dazhongsi_area_sqm = 720,454.221 sqm)</li>
+<li>Smart economy + smart consumption + data-element services + TOD</li>
+<li>BLDG-010 (Source Station), BLDG-011 (Algorithm Hall)</li>
+<li>4 SC-AI cards: SC-AI-01, SC-AI-04, SC-AI-05, SC-AI-08</li>
+<li>Phase 1 (2026-2028) primary delivery window - Prologue</li>
+</ul>
+</section>
+
+<section id="ecosystem">
+<h2>AI Innovation Ecosystem</h2>
+<div class="sec-en">AI Full-Stack Autonomous Innovation + World-class Ecosystem</div>
+
+<p>The proposal implements the AI Full-Stack Autonomous Innovation System (per agent taskbook function 1) and World-class AI Innovation Ecosystem (function 2) via four layers:</p>
+<ul>
+<li><strong>Compute Layer:</strong> Compute Station (BLDG-009), edge compute nodes along Green Spine (5 sites)</li>
+<li><strong>Model Layer:</strong> Full-Stack Pavilion (BLDG-007) with open-source model hub + governance sandbox (BLDG-008)</li>
+<li><strong>Data Layer:</strong> Data-Element Reception (SC-AI-06) + Data-Element Service Building (SC-AI-08) + Open Data Clearing</li>
+<li><strong>Application Layer:</strong> 13 SC-AI scenario cards + 3 SC-AI-IND industrial test venues</li>
+</ul>
+</section>
+
+<section id="scenarios">
+<h2>AI Scenario Cards (13 cards, incl. SC-AI-SEN)</h2>
+<div class="sec-en">Scenario Cards - 8 Unified Fields Each</div>
+
+<p>Each scenario card carries 8 unified fields: required input, AI role, non-AI fallback, operator, human reviewer, failure-stop conditions, data retention, pilot evaluation. All model performance, latency, and security targets are labelled as <em>"design target / to be validated"</em>, not verified capabilities.</p>
+
+<table>
+<thead><tr><th>Card ID</th><th>Name</th><th>Location</th><th>Persona</th><th>Privacy Boundary</th></tr></thead>
+<tbody>
+<tr><td>SC-AI-01</td><td>Smart Mobility Hub</td><td>South Court · Dazhongsi TOD</td><td>Commuter / resident</td><td>Aggregate flow</td></tr>
+<tr><td>SC-AI-02</td><td>Open-Source Release Hall</td><td>Central Court</td><td>OSS developer</td><td>Anonymous aggregation</td></tr>
+<tr><td>SC-AI-03</td><td>Near-Campus Translation Station</td><td>Central Court · Education</td><td>Faculty / student / startup</td><td>Authorized + legal</td></tr>
+<tr><td>SC-AI-04</td><td>Smart Consumption Street</td><td>South Court</td><td>Resident</td><td>Minimization</td></tr>
+<tr><td>SC-AI-05</td><td>Smart Economy Centre</td><td>South Court</td><td>Enterprise</td><td>Public</td></tr>
+<tr><td>SC-AI-06</td><td>Data-Element Reception</td><td>West Wing · Zhongguancun</td><td>Enterprise / governance</td><td>Authorized compliance</td></tr>
+<tr><td>SC-AI-07</td><td>Robot Delivery Experience</td><td>East Wing · Xiaoyuehe</td><td>Resident / merchant</td><td>Regulatable + stoppable</td></tr>
+<tr><td>SC-AI-08</td><td>Data-Element Service Building</td><td>South Court</td><td>Enterprise</td><td>Authorized compliance</td></tr>
+<tr><td>SC-AI-09</td><td>Full-Stack Pavilion</td><td>North Source</td><td>Enterprise</td><td>Public</td></tr>
+<tr><td>SC-AI-10</td><td>Safety Governance Sandbox</td><td>North Source</td><td>Research institution</td><td>Tiered authorization</td></tr>
+<tr><td>SC-AI-11</td><td>Compute Station</td><td>North Source</td><td>Enterprise</td><td>Tiered</td></tr>
+<tr><td>SC-AI-12</td><td>AI Biennial Permanent Venue</td><td>North Source</td><td>Global developer</td><td>Public information</td></tr>
+<tr><td><strong>SC-AI-SEN</strong></td><td><strong>Senior AI Neighbourhood Living Room</strong></td><td>3 nodes along Green Spine</td><td>Senior (60+)</td><td><strong>Minimization + full manual retention + WCAG-2.2-AA</strong></td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="personas">
+<h2>User Personas (5)</h2>
+<div class="sec-en">5 Personae Coverage</div>
+
+<table>
+<thead><tr><th>Persona</th><th>Needs</th><th>Primary Scenario</th></tr></thead>
+<tbody>
+<tr><td>OSS Developer</td><td>Publish / collaborate / test / community reputation</td><td>SC-AI-02 Open-Source Release Hall</td></tr>
+<tr><td>Startup Team</td><td>Low cost / compute entry / test bed</td><td>SC-AI-11 Compute Station</td></tr>
+<tr><td>Enterprise Visitor</td><td>Showcase / business / international reception</td><td>SC-AI-05 Smart Economy Centre</td></tr>
+<tr><td>Neighbouring Resident</td><td>Commute / leisure / community services</td><td>SC-AI-04 Smart Consumption Street</td></tr>
+<tr><td>University Faculty &amp; Student</td><td>Translation / cross-school / slow-traffic</td><td>SC-AI-03 Near-Campus Translation Station</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="industrial">
+<h2>Industrial Test Venues (3)</h2>
+<div class="sec-en">Industrial Validation Contexts</div>
+
+<table>
+<thead><tr><th>Venue ID</th><th>Name</th><th>Location</th><th>Test Scope</th></tr></thead>
+<tbody>
+<tr><td>SC-AI-IND-01</td><td>Industrial Embodied Intelligence Test Bed</td><td>West Wing · Zhongguancun</td><td>Robotic arm / logistics AGV / vision-language-action models</td></tr>
+<tr><td>SC-AI-IND-02</td><td>Robot Delivery Low-Speed Trial</td><td>East Wing · Xiaoyuehe</td><td>Last-mile delivery, sidewalk robot at <15 km/h</td></tr>
+<tr><td>SC-AI-IND-03</td><td>LLM Red-Team &amp; Standard Workshop</td><td>North Source · Zhongzhiyuan</td><td>Adversarial testing, toxicity benchmarks, governance standards</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="landmarks">
+<h2>AI Pilgrimage Landmarks (3)</h2>
+<div class="sec-en">Three AI Pilgrimage Landmarks</div>
+
+<table>
+<thead><tr><th>Name</th><th>Location</th><th>Narrative</th><th>Building ID</th></tr></thead>
+<tbody>
+<tr><td>Source Station (源点站)</td><td>South Court · Dazhongsi</td><td>Centennial Jingzhang Railway origin + Jingzhang Developer Hall of Fame</td><td>BLDG-010</td></tr>
+<tr><td>Algorithm Hall (算法殿)</td><td>Green Spine Central</td><td>AI art &amp; culture + Open Source Week + Urban Art Month</td><td>BLDG-011</td></tr>
+<tr><td>Star Map Platform (星图台)</td><td>North Source · Zhongzhiyuan</td><td>Full-stack innovation + global dialogue + biennial venue</td><td>BLDG-012</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="metrics">
+<h2>Core Indicators (metrics.json canonical)</h2>
+<div class="sec-en">Single Source of Truth: metrics.json</div>
+
+<table>
+<thead><tr><th>Metric</th><th>Value</th><th>Status</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>site_area_sqm</td><td>11,412,825.386</td><td>known</td><td>geometry/site_boundary.geojson</td></tr>
+<tr><td>key_area_count</td><td>3</td><td>known</td><td>geometry/key_areas.geojson</td></tr>
+<tr><td>zhongzhiyuan_area_sqm</td><td>1,929,201.877</td><td>known</td><td>geometry/key_areas.geojson</td></tr>
+<tr><td>beijing_ai_origin_community_area_sqm</td><td>1,043,236.909</td><td>known</td><td>geometry/key_areas.geojson</td></tr>
+<tr><td>dazhongsi_area_sqm</td><td>720,454.221</td><td>known</td><td>geometry/key_areas.geojson</td></tr>
+<tr><td>land_use_total_area_sqm</td><td>11,412,821.004</td><td>known</td><td>geometry/land_use.geojson</td></tr>
+<tr><td>green_space_area_sqm</td><td>3,642,337.859</td><td>known</td><td>geometry/green_space.geojson</td></tr>
+<tr><td>public_space_area_sqm</td><td>1,074,150.682</td><td>known</td><td>geometry/public_space.geojson</td></tr>
+<tr><td>building_footprint_area_sqm</td><td>713,621.261</td><td>known</td><td>geometry/buildings.geojson</td></tr>
+<tr><td>building_count</td><td>12</td><td>known</td><td>geometry/buildings.geojson</td></tr>
+<tr><td>road_network_length_m</td><td>18,715.0</td><td>known</td><td>geometry/roads.geojson</td></tr>
+<tr><td>scenario_node_count</td><td>18</td><td>known</td><td>geometry/constraints.geojson</td></tr>
+<tr><td>scenario_card_count</td><td>13</td><td>known</td><td>proposal.md</td></tr>
+<tr><td>persona_count</td><td>5</td><td>known</td><td>proposal.md</td></tr>
+<tr><td>industrial_test_scenario_count</td><td>3</td><td>known</td><td>geometry/constraints.geojson</td></tr>
+<tr><td>ai_pilgrimage_landmark_count</td><td>3</td><td>known</td><td>geometry/buildings.geojson</td></tr>
+<tr><td>phase_count</td><td>3</td><td>known</td><td>geometry/phasing.geojson</td></tr>
+<tr><td>phase_1_area_sqm</td><td>4,892,160.909</td><td>known</td><td>geometry/phasing.geojson</td></tr>
+<tr><td>phase_2_area_sqm</td><td>3,959,393.069</td><td>known</td><td>geometry/phasing.geojson</td></tr>
+<tr><td>phase_3_area_sqm</td><td>2,125,442.282</td><td>known</td><td>geometry/phasing.geojson</td></tr>
+<tr><td>senior_friendly_scenario_count</td><td>1</td><td>known</td><td>persona_simulation/fishbowl_summary.md</td></tr>
+<tr><td>global_ai_case_count</td><td>6</td><td>known</td><td>proposal.md</td></tr>
+<tr><td>translation_files_count</td><td>1</td><td>known</td><td>proposal.md</td></tr>
+</tbody>
+</table>
+<p style="margin-top:14px; font-size:12px; color:#666;">All values derived from provisional geometry (EPSG:4548). Recompute after official polygon publication.</p>
+</section>
+
+<section id="compliance">
+<h2>Compliance Matrix (Excerpt)</h2>
+<div class="sec-en">Coverage of 11 Announcement + 6 Agent Tasks + 14 Upstream + 1 SCEN-INCL-SEN = 32 Requirements</div>
+
+<table>
+<thead><tr><th>Req ID</th><th>Title (zh / en)</th><th>Status</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>1.3.1</td><td>Three-layer scope / 三层范围</td><td>complete</td><td>proposal.md §2 + metrics.json site_area_sqm</td></tr>
+<tr><td>1.3.2</td><td>Three key areas / 三处重点区</td><td>complete</td><td>geometry/key_areas.geojson + metrics.json zhongzhiyuan/ai_origin/dazhongsi</td></tr>
+<tr><td>1.3.3</td><td>Three positioning / 三大定位</td><td>complete</td><td>proposal.md §5</td></tr>
+<tr><td>1.3.4</td><td>Five functions / 五大功能</td><td>complete</td><td>proposal.md §5</td></tr>
+<tr><td>1.3.5</td><td>Three tings two wings / 三区两翼</td><td>complete</td><td>proposal.md §3 + geometry</td></tr>
+<tr><td>1.3.6</td><td>Renewal project list / 更新项目清单</td><td>complete</td><td>proposal.md §13 (phasing)</td></tr>
+<tr><td>1.3.7</td><td>Implementation policy / 实施政策</td><td>complete</td><td>proposal.md §8 (institutional arrangement)</td></tr>
+<tr><td>1.3.8</td><td>13 scenario cards / 场景卡</td><td>complete</td><td>proposal.md §6 + metrics.json scenario_card_count</td></tr>
+<tr><td>1.3.9</td><td>Industrial test / 产业测试场</td><td>complete</td><td>proposal.md §6 (SC-AI-IND-01/02/03)</td></tr>
+<tr><td>1.3.10</td><td>Five personas / 五类画像</td><td>complete</td><td>proposal.md §6 (personas)</td></tr>
+<tr><td>1.3.11</td><td>Long-term operation / 长期运营</td><td>complete</td><td>proposal.md §15 (5 events)</td></tr>
+<tr><td>agent.1-6</td><td>Agent tasks 1-6</td><td>complete</td><td>proposal.md §5/6/9/10/14/15</td></tr>
+<tr><td>SCEN-INCL-SEN</td><td>Senior inclusion / 银龄场景</td><td>complete</td><td>proposal.md §9.4 (SC-AI-SEN 350-word design commitment)</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="standards">
+<h2>Professional Standards Response</h2>
+<div class="sec-en">7 Standards Coverage (6 required + WCAG-2.2-AA accessibility)</div>
+
+<table>
+<thead><tr><th>Standard</th><th>Application</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>MOHURD-URBAN-DESIGN-MEASURES</td><td>Urban design management framework</td><td>addressed</td></tr>
+<tr><td>MOHURD-CONTROL-DETAILED-PLANNING</td><td>Regulatory detailed planning</td><td>addressed</td></tr>
+<tr><td>MNR-LAND-USE-CLASSIFICATION-GUIDE</td><td>Land use classification (2023-11)</td><td>addressed</td></tr>
+<tr><td>MOHURD-ARCH-DESIGN-DEPTH-2016</td><td>Architectural design depth</td><td>addressed</td></tr>
+<tr><td>PROJECT-OFFICIAL-ANNOUNCEMENT</td><td>Haidian Bureau call document (2026-05-09)</td><td>addressed</td></tr>
+<tr><td>PROJECT-AGENT-OPEN-CALL-TASKBOOK</td><td>AI Agent open call taskbook (2026-05-18)</td><td>addressed</td></tr>
+<tr><td><strong>WCAG-2.2-AA</strong></td><td>W3C Web Content Accessibility Guidelines 2.2 AA - public space &amp; AI service interface accessibility</td><td><strong>addressed (v2.3.4 addition)</strong></td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="phases">
+<h2>Phasing Plan (v4.3 canonical)</h2>
+<div class="sec-en">metrics.json Canonical Phase Areas</div>
+
+<table>
+<thead><tr><th>Phase</th><th>Window (suggested)</th><th>Area (sqm)</th><th>Ha</th></tr></thead>
+<tbody>
+<tr><td>01 - Prologue</td><td>2026-2028</td><td>4,892,160.909</td><td>approx 489.2 ha</td></tr>
+<tr><td>02 - Central Court</td><td>2028-2032</td><td>3,959,393.069</td><td>approx 395.9 ha</td></tr>
+<tr><td>03 - North Source</td><td>2032-2035</td><td>2,125,442.282</td><td>approx 212.5 ha</td></tr>
+</tbody>
+</table>
+<p style="margin-top:10px; font-size:12px; color:#666;">Year ranges are conceptual suggestions subject to official coordination and approval. Phasing not yet approved; see assumption A-PHASE-010.</p>
+</section>
+
+<section id="investment">
+<h2>Investment Estimation (v4.3: clean CAPEX/OPEX)</h2>
+<div class="sec-en">No Unverified Analogy Benchmarks</div>
+
+<p><strong>Methodology (v4.3):</strong> This version removes all unverified analogy unit prices (Xiongan 8000-12000 yuan/sqm, etc.). Investment ranges are expressed only via facility scale × publicly accessible standard unit prices. CAPEX (construction) and OPEX (operations) are independent, non-overlapping buckets.</p>
+
+<h3>CAPEX by Phase (unit: 100 million yuan / yi_rmb)</h3>
+<table>
+<thead><tr><th>Phase</th><th>Years</th><th>Range (yi_rmb)</th></tr></thead>
+<tbody>
+<tr><td>Prologue</td><td>2026-2028</td><td>pending_baseline</td></tr>
+<tr><td>Central Court</td><td>2028-2032</td><td>pending_baseline</td></tr>
+<tr><td>North Source</td><td>2032-2035</td><td>pending_baseline</td></tr>
+<tr><td><strong>CAPEX Total (independent ranges)</strong></td><td>10 years</td><td><strong>198 - 275 (additive range; not budget commitment)</strong></td></tr>
+</tbody>
+</table>
+
+<h3>CAPEX Categories (10, unit: yi_rmb)</h3>
+<p>10 categories subtotal: pending_baseline (independent ranges). Category subtotal ≠ Phase total (149-175 yi_rmb difference covers unlisted categories).</p>
+
+<h3>OPEX (10-year cumulative, conceptual)</h3>
+<table>
+<thead><tr><th>Category</th><th>Range (yi_rmb)</th></tr></thead>
+<tbody>
+<tr><td>Scenario operations (13 SC-AI + 3 IND)</td><td>pending_baseline per year</td></tr>
+<tr><td>Governance committee + AI advisor</td><td>pending_baseline per year</td></tr>
+<tr><td>Resident participation fund</td><td>≤ 0.02 per year</td></tr>
+<tr><td>Senior AI Living Room (SC-AI-SEN)</td><td>conceptual</td></tr>
+<tr><td><strong>OPEX 10-year cumulative</strong></td><td><strong>15 - 45 (illustrative)</strong></td></tr>
+</tbody>
+</table>
+
+<h3>Funding Sources</h3>
+<p>All funding source proportions marked "to be negotiated + requires formal authorization". No precise ratios asserted. See proposal.md §8 for institutional arrangement.</p>
+</section>
+
+<section id="operations">
+<h2>Long-term Operation &amp; Events (5 Annual)</h2>
+<div class="sec-en">Annual Event System (agent.6)</div>
+
+<table>
+<thead><tr><th>Event</th><th>Frequency</th><th>Primary Venue</th></tr></thead>
+<tbody>
+<tr><td>Jingzhang AI Biennial</td><td>Spring + Autumn</td><td>Zhongzhiyuan Full-Stack Plaza</td></tr>
+<tr><td>Open Source Week</td><td>Annual</td><td>AI Origin Community</td></tr>
+<tr><td>Data Governance Week</td><td>Annual</td><td>Zhongguancun Tech Service Wing</td></tr>
+<tr><td>Robot Festival</td><td>Annual</td><td>Xiaoyuehe Scenario Enablement Wing</td></tr>
+<tr><td>Urban Art Month</td><td>Annual</td><td>Green Spine / Algorithm Hall</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="risk">
+<h2>Risk &amp; Compliance Disclosure</h2>
+<div class="sec-en">13 Assumptions, Boundary Clauses, Asset Ledger</div>
+
+<p>The proposal distinguishes formal, background, and provisional data via <code>sources.json</code> source_registry. Per-asset rights ledger is registered with author/generator, license, attribution location, and permitted-use scope for each asset (logos, renders, fonts, maps, code, OSM derivatives).</p>
+
+<div class="disclaimer">
+<strong>Open data gaps:</strong> Official polygon, approved regulatory conditions, land/building survey data, cross-region agreements, fiscal budget, and external-party authorisations are not yet available. All spatial recommendations are conceptual and require professional re-validation.
+</div>
+
+<p><strong>13 Assumptions (assumptions.json):</strong> A-DATA-004 / A-CONTROLS-003 / A-ENG-005 / A-RAIL-006 / A-DATA-009 / A-PARTY-016 / A-PHASE-010 / A-OPERATION-007 / A-BUDGET-V237 / A-ENG-DETAIL-V237 / A-AI-TECH-V237 / A-PRIVACY-012 / A-INVEST-CLEAN-V241.</p>
+</section>
+
+<footer style="margin-top:48px; padding:24px 0; text-align:center; font-size:12px; color:var(--muted); border-top:1px solid var(--border);">
+JZC-9C v4.3 (2026-08-30) - Centennial Jingzhang AI Innovation Belt - COMMUNITY-DISPLAY-ONLY license - canonical: <a href="../proposal.md">proposal.md</a>
+</footer>
+
+</main>
+</body>
+</html>

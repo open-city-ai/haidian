@@ -1,0 +1,249 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "v1.4-delivery-control",
+  "object_id": "P0-ALL-STOP-01",
+  "document_class": "participant_implementation_control_template",
+  "claim_state": "PARTICIPANT_DESIGN_HANDOFF_READY",
+  "claim_boundary": {
+    "authorization": "NOT_AUTHORIZED",
+    "signature_status": "unsigned",
+    "site_release": "HOLD",
+    "construction_release": "HOLD",
+    "opening_release": "HOLD",
+    "formal_estimate": null,
+    "funding_commitment": null,
+    "named_operator_count": 0,
+    "named_role_appointment_count": 0,
+    "field_measurement_count": 0,
+    "vendor_quote_count": 0,
+    "note_zh": "本文件只证明参与者交接包内部可复算、可停止、可退回，不证明场地、权利、许可、报价、专业签章或现场绩效。",
+    "note_en": "This file proves only that the participant hand-off package is internally recomputable, stoppable, and reversible. It does not prove a site, right, permit, quotation, professional sign-off, or field performance."
+  },
+  "candidate_screening": {
+    "selected_candidate_id": "P0-CAND-01",
+    "selection_status": "participant_preferred_screening_candidate_not_site_selection",
+    "set_out_authority": false,
+    "candidates": [
+      {
+        "candidate_id": "P0-CAND-01",
+        "required_evidence_gate_ids": [
+          "G0"
+        ],
+        "area_ref": "geometry/key_areas.geojson#PROV-KEY-001",
+        "spatial_ref": "spatial.json#area-safe-speed-yard",
+        "name_zh": "众智园安全慢速场边缘原型",
+        "name_en": "Zhongzhiyuan safe-speed-yard edge prototype",
+        "screening_envelope": "18 m x 12 m participant reference envelope within the provisional key-area relationship",
+        "strengths": [
+          "controlled-test function is compatible with fail-closed rehearsal",
+          "robot holding and human-takeover can be tested before any public-road claim",
+          "removal and restoration can be treated as first-class acceptance tasks"
+        ],
+        "holds": [
+          "no parcel, coordinate, rights holder, survey, fire route, utility or drainage confirmation",
+          "provisional key-area polygon cannot be used for set-out"
+        ],
+        "status": "PREFERRED_FOR_G0_SCREENING_ONLY_NOT_AUTHORIZED"
+      },
+      {
+        "candidate_id": "P0-CAND-02",
+        "required_evidence_gate_ids": [
+          "G0",
+          "G1"
+        ],
+        "area_ref": "geometry/key_areas.geojson#PROV-KEY-002",
+        "spatial_ref": "spatial.json#area-no-login-commons",
+        "name_zh": "AI 原点免登录公地门槛原型",
+        "name_en": "AI Origin no-login-commons threshold prototype",
+        "screening_envelope": "18 m x 12 m participant reference envelope within the provisional key-area relationship",
+        "strengths": [
+          "strong fit with staffed, paper, phone and no-account public service",
+          "directly tests same-task equivalence"
+        ],
+        "holds": [
+          "higher safeguarding, privacy and community-consent burden",
+          "no property, operating-hour or service-operator evidence"
+        ],
+        "status": "FALLBACK_IF_G0_AND_G1_DOCUMENTARY_GATES_CLOSE"
+      },
+      {
+        "candidate_id": "P0-CAND-03",
+        "required_evidence_gate_ids": [
+          "G0",
+          "G1",
+          "G3"
+        ],
+        "area_ref": "geometry/key_areas.geojson#PROV-KEY-003",
+        "spatial_ref": "spatial.json#area-every-stop-market",
+        "name_zh": "大钟寺全停市集服务边缘原型",
+        "name_en": "Dazhongsi every-stop-market service-edge prototype",
+        "screening_envelope": "18 m x 12 m participant reference envelope within the provisional key-area relationship",
+        "strengths": [
+          "tests ordinary commercial and curb-service exclusion risk",
+          "high visibility for no-skip service rules"
+        ],
+        "holds": [
+          "metro, heritage, crowd, curb, fire and rights interfaces are unresolved",
+          "no field capacity or emergency-route evidence"
+        ],
+        "status": "FALLBACK_ONLY_AFTER_G0_G1_AND_G3_CLOSE"
+      }
+    ]
+  },
+  "operator_commissioning": {
+    "named_organizations": [],
+    "opening_release": "HOLD",
+    "selected_working_scenario": "ROSTER-12H",
+    "selected_service_window_assumption": "07:00-19:00 participant working assumption, not an operator commitment",
+    "selection_basis": "ROSTER-12H is the middle working case: it covers assumed morning-to-evening civic use more fully than the 8-hour fallback without treating the 18-hour stress case as an authorized commitment. A named operator and paid co-design process must confirm or replace the window.",
+    "service_rule": "AI service availability must never exceed funded human-equivalent coverage; if the staffed desk and hot backup are both unavailable, the AI service closes and records HOLD.",
+    "productive_hours_per_fte_year": 1680,
+    "leave_training_factor": 1.2,
+    "shift_scenarios": [
+      {
+        "scenario_id": "ROSTER-8H",
+        "public_service_hours_per_day": 8,
+        "open_days_per_year": 365,
+        "annual_staffed_hours": 2920,
+        "calculated_fte": 2.086,
+        "working_roster_fte": 3,
+        "uncovered_hours": 0,
+        "status": "participant_working_sensitivity_not_operator_commitment"
+      },
+      {
+        "scenario_id": "ROSTER-12H",
+        "public_service_hours_per_day": 12,
+        "open_days_per_year": 365,
+        "annual_staffed_hours": 4380,
+        "calculated_fte": 3.129,
+        "working_roster_fte": 4,
+        "uncovered_hours": 0,
+        "status": "participant_selected_working_sensitivity_not_operator_commitment"
+      },
+      {
+        "scenario_id": "ROSTER-18H",
+        "public_service_hours_per_day": 18,
+        "open_days_per_year": 365,
+        "annual_staffed_hours": 6570,
+        "calculated_fte": 4.693,
+        "working_roster_fte": 5,
+        "uncovered_hours": 0,
+        "status": "participant_working_sensitivity_not_operator_commitment"
+      }
+    ],
+    "hot_backup": {
+      "primary": "staffed accessible desk",
+      "secondary": "funded on-call human phone/text relay during the same published service window",
+      "outage_rule": "close the AI channel and issue an audited HOLD if neither human route is available",
+      "ai_off_same_task_target": "12/12"
+    },
+    "commissioning_checks": [
+      "factory_acceptance",
+      "site_acceptance",
+      "operational_readiness_review",
+      "accessible_no_phone_journey",
+      "staffed_desk_to_hot_backup_changeover",
+      "malformed_input_audited_hold",
+      "rollback_drill",
+      "asset_and_spares_register",
+      "staff_training",
+      "decommissioning_rehearsal"
+    ]
+  },
+  "working_cost_sensitivity": {
+    "currency": "CNY",
+    "basis_date": "2026-08-31",
+    "status": "participant_working_band_not_estimate_not_quote_not_funding_commitment",
+    "formal_estimate_cny": null,
+    "tender_price_cny": null,
+    "funding_commitment_cny": null,
+    "vendor_quote_count": 0,
+    "capex_rom_cny": {
+      "low": 850000,
+      "base": 1350000,
+      "high": 2100000
+    },
+    "annual_opex_cny": {
+      "low": 900000,
+      "base": 1450000,
+      "high": 2200000
+    },
+    "derivation_note_zh": "区间只用于比较 16 行概念 BOQ、8 类成本和 8/12/18 小时排班情景；没有市场单价、供应商报价、税费确认、资金责任或采购授权。",
+    "derivation_note_en": "The bands compare the 16-line concept BOQ, eight cost components, and 8/12/18-hour roster scenarios only. No market rate, vendor quote, tax confirmation, funding responsibility, or procurement authority is claimed.",
+    "lots": [
+      {"lot_id": "L01", "scope": "survey, rights, baseline and paid co-design", "quantity_basis": "P0-T01 to P0-T04", "acceptance": "authorised documentary and disaggregated baseline receipts", "status": "unpriced_hold"},
+      {"lot_id": "L02", "scope": "demountable frame, shelter and reversible ground", "quantity_basis": "P0-Q01 to P0-Q03", "acceptance": "assembly, structure, fire, drainage and removal checks", "status": "unpriced_hold"},
+      {"lot_id": "L03", "scope": "staffed desk, paper, stop and accessible interfaces", "quantity_basis": "P0-Q04 to P0-Q12", "acceptance": "same-task no-phone completion and accessibility", "status": "unpriced_hold"},
+      {"lot_id": "L04", "scope": "power, data and equipment interfaces", "quantity_basis": "P0-Q13", "acceptance": "isolation, stop, privacy and cable-protection checks", "status": "unpriced_hold"},
+      {"lot_id": "L05", "scope": "installation, operations, maintenance and hot backup", "quantity_basis": "P0-Q14 to P0-Q15 plus selected roster", "acceptance": "commissioning and zero uncovered service hours", "status": "unpriced_hold"},
+      {"lot_id": "L06", "scope": "removal, waste trace, restoration and reserve", "quantity_basis": "P0-Q16 plus before/after baseline", "acceptance": "restoration closeout and accountable acceptance", "status": "unpriced_hold"}
+    ]
+  },
+  "task_controls": [
+    {"task_id":"P0-T01","predecessors":[],"accountable":"A-P0-RIGHTS","responsible":["R-P0-EXEC"],"consulted":["R-P0-SAFETY","R-P0-SERVICE"],"informed":["R-P0-EVAL"],"reference_week":"pre-T0"},
+    {"task_id":"P0-T02","predecessors":["P0-T01"],"accountable":"A-P0-RIGHTS","responsible":["R-P0-EXEC","R-P0-SURVEY"],"consulted":["R-P0-ACCESS","R-P0-FIRE","R-P0-TRAFFIC"],"informed":["R-P0-EVAL"],"reference_week":"1"},
+    {"task_id":"P0-T03","predecessors":["P0-T02"],"accountable":"A-P0-RIGHTS","responsible":["R-P0-SURVEY"],"consulted":["R-P0-ACCESS","R-P0-DRAINAGE","R-P0-ELECTRICAL"],"informed":["R-P0-EXEC"],"reference_week":"1-2"},
+    {"task_id":"P0-T04","predecessors":["P0-T03"],"accountable":"R-P0-CODESIGN","responsible":["R-P0-CODESIGN","R-P0-ACCESS"],"consulted":["R-P0-SERVICE","R-P0-EVAL"],"informed":["A-P0-RIGHTS"],"reference_week":"2-3"},
+    {"task_id":"P0-T05","predecessors":["P0-T04"],"accountable":"R-P0-EXEC","responsible":["R-P0-EXEC","R-P0-ACCESS"],"consulted":["R-P0-SAFETY","R-P0-INSTALL"],"informed":["A-P0-RIGHTS"],"reference_week":"4-5"},
+    {"task_id":"P0-T06","predecessors":["P0-T05"],"accountable":"R-P0-SAFETY","responsible":["R-P0-FIRE","R-P0-STRUCTURE","R-P0-ELECTRICAL"],"consulted":["R-P0-ACCESS","R-P0-DRAINAGE"],"informed":["A-P0-RIGHTS","R-P0-EXEC"],"reference_week":"5-6"},
+    {"task_id":"P0-T07","predecessors":["P0-T06"],"accountable":"A-P0-RIGHTS","responsible":["R-P0-EXEC"],"consulted":["R-P0-SERVICE","R-P0-MAINTENANCE"],"informed":["R-P0-EVAL"],"reference_week":"7"},
+    {"task_id":"P0-T08","predecessors":["P0-T07"],"accountable":"R-P0-INSTALL","responsible":["R-P0-INSTALL"],"consulted":["R-P0-ACCESS","R-P0-SAFETY","R-P0-EQUIPMENT"],"informed":["A-P0-RIGHTS"],"reference_week":"8-9"},
+    {"task_id":"P0-T09","predecessors":["P0-T08"],"accountable":"R-P0-SAFETY","responsible":["R-P0-SERVICE","R-P0-SAFETY"],"consulted":["R-P0-CODESIGN","R-P0-EVAL"],"informed":["A-P0-RIGHTS"],"reference_week":"10-11"},
+    {"task_id":"P0-T10","predecessors":["P0-T09"],"accountable":"R-P0-SERVICE","responsible":["R-P0-SERVICE"],"consulted":["R-P0-CODESIGN","R-P0-SAFETY"],"informed":["A-P0-RIGHTS","R-P0-EVAL"],"reference_week":"12"},
+    {"task_id":"P0-T11","predecessors":["P0-T10"],"accountable":"R-P0-EVAL","responsible":["R-P0-EVAL"],"consulted":["R-P0-CODESIGN","R-P0-SAFETY"],"informed":["A-P0-RIGHTS","R-P0-EXEC"],"reference_week":"13"},
+    {"task_id":"P0-T12","predecessors":["P0-T11"],"accountable":"A-P0-RIGHTS","responsible":["R-P0-INSTALL"],"consulted":["R-P0-SURVEY","R-P0-EVAL","R-P0-MAINTENANCE"],"informed":["R-P0-EXEC","R-P0-SERVICE"],"reference_week":"14-15"}
+  ],
+  "external_gates": [
+    {"gate_id":"DG01","subject":"candidate extent and survey access","accountable_role":"A-P0-RIGHTS","required_receipt":"signed candidate and survey-access record","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG02","subject":"site rights and heritage constraints","accountable_role":"A-P0-RIGHTS","required_receipt":"rights and heritage applicability record","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG03","subject":"paid accessibility co-design","accountable_role":"R-P0-CODESIGN","required_receipt":"paid participation and issue-closure register","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG04","subject":"fire, emergency and traffic route","accountable_role":"R-P0-FIRE","required_receipt":"coordinated emergency and traffic review","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG05","subject":"structure, wind, snow and fixing","accountable_role":"R-P0-STRUCTURE","required_receipt":"site-specific structural review","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG06","subject":"power, lighting and data interface","accountable_role":"R-P0-ELECTRICAL","required_receipt":"capacity, isolation and cable-protection record","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG07","subject":"surface, levels and drainage","accountable_role":"R-P0-DRAINAGE","required_receipt":"surveyed drainage and restoration baseline","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG08","subject":"equipment stop and rescue","accountable_role":"R-P0-EQUIPMENT","required_receipt":"contained braking, stop and rescue test","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG09","subject":"privacy, safety and incident response","accountable_role":"R-P0-SAFETY","required_receipt":"signed privacy, safety and incident protocol","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG10","subject":"operator, roster, hot backup and insurance","accountable_role":"R-P0-SERVICE","required_receipt":"named operator and funded zero-gap roster","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG11","subject":"cost, procurement and restoration reserve","accountable_role":"A-P0-RIGHTS","required_receipt":"verified cost plan, funding and ring-fenced restoration reserve","receipt_id":null,"status":"HOLD"},
+    {"gate_id":"DG12","subject":"trial, opening and restoration release","accountable_role":"A-P0-RIGHTS","required_receipt":"signed release and closeout record after all prerequisite gates","receipt_id":null,"status":"HOLD"}
+  ],
+  "release_stages": [
+    {"stage_id":"S00","state":"PARTICIPANT_DESIGN_HANDOFF_READY","external_release":false,"status":"READY_DESIGN_ONLY","required_gate_ids":[]},
+    {"stage_id":"S01","state":"T0_DUE_DILIGENCE","external_release":true,"status":"HOLD","required_gate_ids":["DG01","DG02","DG03"]},
+    {"stage_id":"S02","state":"DESIGN_FREEZE_REVIEW","external_release":true,"status":"HOLD","required_gate_ids":["DG04","DG05","DG06","DG07","DG08","DG09"]},
+    {"stage_id":"S03","state":"PROCUREMENT_READINESS_REVIEW","external_release":true,"status":"HOLD","required_gate_ids":["DG10","DG11"]},
+    {"stage_id":"S04","state":"SITE_ASSEMBLY_RELEASE","external_release":true,"status":"HOLD","required_gate_ids":["DG01","DG02","DG04","DG05","DG06","DG07","DG11","DG12"]},
+    {"stage_id":"S05","state":"LIMITED_OPENING_RELEASE","external_release":true,"status":"HOLD","required_gate_ids":["DG03","DG08","DG09","DG10","DG12"]},
+    {"stage_id":"S06","state":"RESTORATION_CLOSEOUT","external_release":true,"status":"HOLD","required_gate_ids":["DG01","DG02","DG07","DG11","DG12"]}
+  ],
+  "two_key_control": {
+    "scope": "limited opening, AI service activation, personal-data exception and rollback",
+    "rights_safety_keyholder_role":"R-P0-SAFETY",
+    "service_equivalence_keyholder_role":"R-P0-SERVICE",
+    "current_keyholders":[],
+    "status":"HOLD_UNAPPOINTED"
+  },
+  "alternatives": [
+    {"alternative_id":"ALT-01","question":"candidate area","option_a":"P0-CAND-01 Zhongzhiyuan controlled edge","option_b":"P0-CAND-02 AI Origin service threshold","selected":"A_FOR_SCREENING","why":"contained stop and takeover rehearsal before public-service exposure","b_wins":["ordinary public-service relevance"],"fallback_gate_id":"DG01","status":"participant_design_comparison_not_approval"},
+    {"alternative_id":"ALT-02","question":"weather protection","option_a":"weighted demountable canopy","option_b":"marking and movable furniture without canopy","selected":"A_CONDITIONAL","why":"shade and weather waiting support the slowest-user contract","b_wins":["capital cost","speed to remove","structural simplicity"],"fallback_gate_id":"DG05","status":"participant_design_comparison_not_approval"},
+    {"alternative_id":"ALT-03","question":"robot interface","option_a":"marked holding bay with physical no-entry buffer","option_b":"human-service-only P0 with no robot admitted","selected":"A_CONDITIONAL","why":"tests the visible all-stop rule in a contained setting","b_wins":["safety","power and rescue simplicity","lower operating burden"],"fallback_gate_id":"DG08","status":"participant_design_comparison_not_approval"},
+    {"alternative_id":"ALT-04","question":"service coverage","option_a":"12-hour staffed desk plus funded human hot backup","option_b":"8-hour service window with AI synchronously closed outside the window","selected":"A_WORKING_SENSITIVITY","why":"tests useful coverage without allowing AI-only opening","b_wins":["annual operating cost","staffing resilience"],"fallback_gate_id":"DG10","status":"participant_design_comparison_not_approval"}
+  ],
+  "urban_renewal_module_map": {
+    "source_id": "BEIJING-URBAN-RENEWAL-IMPLEMENTATION-GUIDE-2024",
+    "use": "eleven-module handoff completeness frame only",
+    "modules": [
+      {"module_id":"M01","title_zh":"项目基本信息","current_evidence":"P0 object, candidate set and claim boundary","external_closeout":"appointed implementation entity and official extent","status":"mapped_design_time_hold_external"},
+      {"module_id":"M02","title_zh":"前期评估调查","current_evidence":"baseline protocol and null field values","external_closeout":"authorised survey and consultation","status":"mapped_design_time_hold_external"},
+      {"module_id":"M03","title_zh":"功能定位","current_evidence":"all-stop, human-equivalent service brief","external_closeout":"rights-holder and operator confirmation","status":"mapped_design_time_hold_external"},
+      {"module_id":"M04","title_zh":"规划方案","current_evidence":"provisional key-area binding and rebind trigger","external_closeout":"official boundaries and controls","status":"mapped_design_time_hold_external"},
+      {"module_id":"M05","title_zh":"建筑设计方案","current_evidence":"18 x 12 m reversible P0 drawing chain","external_closeout":"surveyed structure, fire, MEP and accessibility review","status":"mapped_design_time_hold_external"},
+      {"module_id":"M06","title_zh":"土地利用方式","current_evidence":"no land-use or development-right claim","external_closeout":"lawful land-use and site-right route","status":"mapped_design_time_hold_external"},
+      {"module_id":"M07","title_zh":"未登记建筑物处理","current_evidence":"no retain, alter or demolish conclusion","external_closeout":"survey and lawful treatment path if applicable","status":"mapped_design_time_hold_external"},
+      {"module_id":"M08","title_zh":"资金方案","current_evidence":"participant ROM/OPEX sensitivity only","external_closeout":"formal estimate, funding and procurement approval","status":"mapped_design_time_hold_external"},
+      {"module_id":"M09","title_zh":"产业业态及运营管理","current_evidence":"8/12/18-hour roster, hot backup and stop rule","external_closeout":"named operator, insurance and funded duties","status":"mapped_design_time_hold_external"},
+      {"module_id":"M10","title_zh":"建设时序","current_evidence":"12 tasks, 15-week reference, seven release stages","external_closeout":"approved programme and neighbouring-work coordination","status":"mapped_design_time_hold_external"},
+      {"module_id":"M11","title_zh":"协商表决情况","current_evidence":"blank issue, dissent, decision and closure slots","external_closeout":"authorised affected-party decision records","status":"mapped_design_time_hold_external"}
+    ]
+  }
+}

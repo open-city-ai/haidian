@@ -1,5 +1,15 @@
 # 方案迭代记录
 
+## v1.6 candidate - 2026-08-30
+
+- Human-readable PDF repair (2026-08-31): rebuilt the cover, eleven-case table and fifteen-scenario overview instead of retaining v1.5 page overlays. Enlarged public-right descriptions, case rows, scenario titles and institutional acceptance/gate cards, with explicit wrapping and no automatic font shrinking. Chinese and English A3/A0 remain ten pages each; typography checks complement full-page Poppler visual review. No cases, scenarios, geometry or core mechanisms were removed.
+- Reframed feasibility around JZAC's institutional infrastructure rather than adding construction detail: `INTAKE -> PAUSE -> REVIEW -> CORRECT -> RETEST -> ADOPTION -> RECOVERY -> CLOSED` now defines accountable roles, receipts, forbidden transitions, exit conditions, spatial support and release gates.
+- Expanded the single controlled synthetic case into seven operating receipt classes plus a closure record. Deterministic failure injections now reject missing receipts, a bypassed pause, backend-only correction, restoration before retest, model-made adoption decisions and incomplete recovery.
+- Aligned the eight RACI actions with the eight case states and added explicit separation-of-duties rules. Intake, channel control, independent review, retest, adoption, recovery and closure authority cannot substitute for one another.
+- Converted all ten `HOLD` gates into launch controls with explicit enabled capability, blocked capability, bounded safe state and required release evidence. No gate is represented as opened.
+- Added A01-A08 participant-computable institutional acceptance checks and kept A09-A12 as field-dependent null baselines. The capacity model now distinguishes a 90-day synthetic drill, a conditional limited window and an unsized expanded operation without weakening independent review.
+- Reorganized the bilingual human-review layer around “How one error truly closes,” while retaining all v1.5 geometry, cases, scenarios, people, public rights, safe states and ten-page delivery scope. Video, monetary costing, annual FTE and field-performance claims remain deferred.
+
 ## v1.5 candidate - 2026-08-30
 
 - Preserved the v1.4.2 public test, bidirectional spine, three verification layers, three-area relay, 11 cases, 15 scenarios, 12 journeys and existing geometry; this is an implementation-evidence revision, not a concept reset.

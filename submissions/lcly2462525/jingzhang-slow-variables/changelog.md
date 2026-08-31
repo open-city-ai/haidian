@@ -1,5 +1,13 @@
 # 方案迭代记录
 
+## v1.6 - 2026-08-27
+
+第七轮迭代（v1.5 官方评分 93/100，七维中可实施性与表达完整度为 4/5，其余五维满分）：针对评审意见两处明确扣分点做定向修复，不新增虚构数据，不动几何。
+
+- 表达完整度：全包统一双语术语。A0/A3 图纸脚本中的 "Zhongzhi Yard · Measure / AI Origin · Explain" 统一为 "Zhongzhiyuan · Measure / AI Origin · Negotiate"，fig02/fig05 地图助手的 Measuring/Negotiating/Delivery 统一为 Measure/Negotiate/Deliver，正文 deliberates/workshops 等变体统一为 negotiates/civic yards；新增「双语术语对照表」章节（中英双语，20 组规范译法，明确禁用的变体）；A0/A3 版式次级注释字号整体上调（A3 最小 7.5pt→9pt，A0 最小 10.5pt→12.5pt），fig02/03/05 与四份图纸 PDF 重出
+- 可实施性：P0 样板的参赛者自设单价新增公开锚定——轻修缮单价落入北京公共资源交易平台两宗在办公告的公开区间（约 700–1,721 元/㎡），无障碍单项、土壤传感设备、物业运维各有公开参照，北京市造价总站信息价与改造指数登记为校准渠道；新增「关键路径与授权依赖」小节（中英双语）：P1→一年基线→G1/G4 阈值→首次年度总账的唯一关键路径，P1–P8 逐项目前置依赖、需确认主体、最早启动与卡住时的回退分支
+- sources.json 新增 6 条官方公开来源（造价锚点，均标注口径与非报价性质）；assumptions.json 新增 A-COST-009；metrics.json 新增 p0_cost_public_anchor_count；p0-cost-model.json 新增 public_anchors 段
+
 ## v1.5 - 2026-08-26
 
 第六轮迭代（v1.4 官方评分 96/100）：针对本地全量横向复评（21 个同分方案、同一七维校准尺）发现的两个相对短板——可实施性停留在量级类别、包容性缺少分群体验收——做定向增强；同步重绘两张图件的场景插图。不新增虚构数据，不动几何。

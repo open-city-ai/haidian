@@ -1,15 +1,15 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.3.0",
   "artifact_id": "FP01-DELIVERY-CONTROL-001",
-  "artifact_version": "v0.12",
+  "artifact_version": "v0.15",
   "contract_id": "FP01-CONTRACT-001",
   "pilot_id": "FP01",
   "title_zh": "FP01 概念交付控制簿",
   "title_en": "FP01 Concept Delivery Control Book",
   "artifact_status": "concept_delivery_control_model_unexecuted",
   "claim_boundary": {
-    "zh": "本文件把三片区界面、D0 测量口径、逐门 RACI、单套设计测试数量和关键依赖做成可复核的交付模型。它不是现场测绘、实际工程量清单、市场询价、预算、采购、人员承诺、专业签署、授权或运行结果。",
-    "en": "This file makes the three-area interfaces, D0 measurement methods, gate-by-gate RACI, one-kit design-test quantities, and critical dependencies reviewable. It is not a site survey, actual bill of quantities, market quotation, budget, procurement, staffing commitment, professional sign-off, authorization, or operating result.",
+    "zh": "本文件把三片区界面、D0 测量口径、逐门 RACI、单套设计测试数量、关键依赖、运营覆盖、验收、维护、备选与退出做成可复核的条件交付模型。它不是现场测绘、实际工程量清单、市场询价、预算、采购、人员承诺、专业签署、授权或运行结果。",
+    "en": "This file makes the three-area interfaces, D0 measurement methods, gate-by-gate RACI, one-kit design-test quantities, critical dependencies, operating coverage, acceptance, maintenance, alternatives, and exit reviewable as a conditional delivery model. It is not a site survey, actual bill of quantities, market quotation, budget, procurement, staffing commitment, professional sign-off, authorization, or operating result.",
     "actual_site_dimensions_verified": false,
     "actual_quantity_verified": false,
     "unit_price_verified": false,
@@ -228,6 +228,10 @@
   "hold_point_raci": [
     {
       "hold_point_id": "H0",
+      "decision_owner_role": "accountable_service_owner_role",
+      "required_cosignatory_roles": [
+        "user_representative_role"
+      ],
       "accountable": [
         "accountable_service_owner_role"
       ],
@@ -248,9 +252,13 @@
     },
     {
       "hold_point_id": "H1",
+      "decision_owner_role": "accountable_service_owner_role",
+      "required_cosignatory_roles": [
+        "budget_authority_role",
+        "site_or_asset_owner_role"
+      ],
       "accountable": [
-        "accountable_service_owner_role",
-        "budget_authority_role"
+        "accountable_service_owner_role"
       ],
       "responsible": [
         "site_or_asset_owner_role",
@@ -258,6 +266,7 @@
         "procurement_and_legal_review_role"
       ],
       "consulted": [
+        "budget_authority_role",
         "maintenance_role",
         "survey_and_existing_condition_role"
       ],
@@ -270,6 +279,12 @@
     },
     {
       "hold_point_id": "H2",
+      "decision_owner_role": "accountable_service_owner_role",
+      "required_cosignatory_roles": [
+        "professional_site_review_role",
+        "data_rights_and_security_role",
+        "accessibility_and_service_equivalence_role"
+      ],
       "accountable": [
         "accountable_service_owner_role"
       ],
@@ -293,6 +308,10 @@
     },
     {
       "hold_point_id": "H3",
+      "decision_owner_role": "independent_evaluation_role",
+      "required_cosignatory_roles": [
+        "appeal_decision_role"
+      ],
       "accountable": [
         "independent_evaluation_role"
       ],
@@ -316,6 +335,12 @@
     },
     {
       "hold_point_id": "H4",
+      "decision_owner_role": "separate_authorizing_role",
+      "required_cosignatory_roles": [
+        "accountable_service_owner_role",
+        "site_or_asset_owner_role",
+        "data_rights_and_security_role"
+      ],
       "accountable": [
         "separate_authorizing_role"
       ],
@@ -557,6 +582,577 @@
       "status": "not_started"
     }
   ],
+  "jury_implementation_handoff": {
+    "status": "concept_conditional_delivery_handoff_no_external_release",
+    "title_zh": "FP01 评审交接：尺度、运营、成本、验收与退场",
+    "title_en": "FP01 Jury Handoff: Scale, Operations, Cost, Acceptance, and Exit",
+    "claim_boundary_zh": "下列数量与规则只把参赛者可控制的设计结构变成可判断的交接页。实名主体、排班、现场容量、报价、预算、测绘、专业意见、真实使用者、运行结果和授权均未取得；缺证继续 HOLD。",
+    "claim_boundary_en": "The following quantities and rules make participant-controlled design structure judgeable as a handoff. Named parties, rosters, site capacity, quotations, budgets, surveys, professional opinions, real users, operating results, and authorization have not been obtained; missing evidence remains HOLD.",
+    "pre_feasibility_decision_package": {
+      "status": "participant_pre_feasibility_structure_only_external_release_hold",
+      "title_zh": "FP01 预可行性决策包",
+      "title_en": "FP01 Pre-feasibility Decision Package",
+      "boundary_zh": "本包只给出原创设计参数包络、计算模板、敏感性系数和外部证据接收字段，不是规范符合性结论、现场容量核定、报价、正式投资估算、排班承诺、许可、签章或实施结果。所有外部实际值保持空白，所有外部释放保持 HOLD。",
+      "boundary_en": "This package contains original design envelopes, calculation templates, sensitivity factors, and external-evidence receipt fields only. It is not a code-compliance conclusion, site-capacity determination, quotation, formal cost estimate, staffing commitment, permit, sign-off, or implementation result. Every external actual remains empty and every external release remains HOLD.",
+      "component_interface_scale_1_20": {
+        "scale_id": "SCALE-1-20",
+        "status": "participant_original_component_interface_design_envelope_not_site_or_code_dimension",
+        "component_refs": ["M01", "M02", "M03", "M04", "M05", "M06"],
+        "reference_interface_bay_width_m": 3.0,
+        "reference_interface_bay_depth_m": 2.4,
+        "reference_clear_interaction_band_m": 1.8,
+        "reference_component_height_band_m": [0.75, 2.1],
+        "design_intent_zh": "在组件接口尺度检查有人窗口、双路径选择、回执、急停、版本标识、可拆连接和普通活动恢复。",
+        "design_intent_en": "At component-interface scale, test the staffed window, dual-route choice, receipt, emergency stop, version marking, demountable connections, and restoration to ordinary use.",
+        "actual_component_dimensions": null,
+        "survey_reference": null,
+        "code_review_reference": null,
+        "professional_signoff_reference": null
+      },
+      "original_parameter_envelopes": [
+        {
+          "envelope_id": "ENV01",
+          "name_zh": "有人服务与纯人工并行界面",
+          "name_en": "Parallel staffed and non-AI interface",
+          "design_range": {"parallel_service_positions": [2, 3], "clear_choice_points": [1, 2]},
+          "status": "participant_original_design_envelope_not_normative_or_surveyed",
+          "external_actual": null
+        },
+        {
+          "envelope_id": "ENV02",
+          "name_zh": "可拆组件与普通空间恢复",
+          "name_en": "Demountable components and ordinary-space restoration",
+          "design_range": {"demountable_component_classes": [4, 6], "target_restoration_window_hours": [8, 24]},
+          "status": "participant_original_design_envelope_not_construction_or_service_commitment",
+          "external_actual": null
+        }
+      ],
+      "capacity_and_egress_envelope": {
+        "status": "participant_design_test_envelope_not_occupancy_or_life_safety_approval",
+        "reference_gross_area_sqm": 216,
+        "design_net_to_gross_ratio_range": [0.55, 0.7],
+        "design_area_per_concurrent_person_sqm_range": [8, 12],
+        "conceptual_independent_exit_path_count": 2,
+        "conceptual_clear_route_width_m_range": [1.2, 1.8],
+        "capacity_formula": "min(floor(surveyed_net_usable_area_sqm / approved_area_per_person_sqm), approved_life_safety_occupancy, accessible_service_position_capacity, staffed_role_coverage_capacity)",
+        "capacity_formula_zh": "min(测绘净可用面积 ÷ 获批人均面积, 消防与生命安全核定人数, 无障碍服务位容量, 已落实岗位覆盖容量)",
+        "egress_release_rule": "No occupancy or public-window capacity is released until surveyed geometry, applicable code basis, fire/life-safety review, accessibility review, and H1-H2 evidence are independently accepted.",
+        "surveyed_net_usable_area_sqm": null,
+        "approved_area_per_person_sqm": null,
+        "approved_life_safety_occupancy": null,
+        "verified_accessible_service_position_capacity": null,
+        "verified_egress_capacity": null,
+        "fire_life_safety_review_reference": null,
+        "accessibility_review_reference": null
+      },
+      "staffing_and_fte_template": {
+        "status": "participant_calculation_template_not_roster_or_staffing_commitment",
+        "public_window_hours_per_week_design_range": [20, 40],
+        "concurrent_operating_role_count": 3,
+        "productive_hours_per_fte_week_design_range": [24, 30],
+        "relief_factor_design_range": [1.15, 1.35],
+        "operating_fte_formula": "public_window_hours_per_week * concurrent_operating_role_count / productive_hours_per_fte_week * relief_factor",
+        "operating_fte_formula_zh": "每周公共开放小时 × 并发职责数 ÷ 每 FTE 每周有效小时 × 替补系数",
+        "illustrative_operating_fte_range": [2.3, 6.75],
+        "independent_evaluation_fte_formula": "approved_independent_evaluation_hours_per_cycle / approved_productive_hours_per_fte_cycle",
+        "named_operator": null,
+        "approved_public_window_hours_per_week": null,
+        "approved_productive_hours_per_fte_week": null,
+        "approved_relief_factor": null,
+        "approved_operating_fte": null,
+        "approved_independent_evaluation_fte": null,
+        "approved_roster_reference": null
+      },
+      "rom_capex_opex_sensitivity": {
+        "status": "order_of_magnitude_design_sensitivity_only_not_quote_budget_or_formal_estimate",
+        "currency_amounts_supplied": false,
+        "future_verified_base_index": 1.0,
+        "capex_multiplier_range": [0.75, 1.5],
+        "opex_multiplier_range": [0.8, 1.4],
+        "sensitivity_scenarios": [
+          {"scenario_id": "ROM-LOW", "capex_multiplier": 0.75, "opex_multiplier": 0.8},
+          {"scenario_id": "ROM-REFERENCE", "capex_multiplier": 1.0, "opex_multiplier": 1.0},
+          {"scenario_id": "ROM-HIGH", "capex_multiplier": 1.5, "opex_multiplier": 1.4}
+        ],
+        "sensitivity_rule": "Apply multipliers only to a future rights-cleared, dated, scope-matched and independently reviewed base; do not convert the index into CNY before H1 evidence and budget authority review.",
+        "sensitivity_rule_zh": "仅对未来经权利核验、带日期、范围匹配并经独立复核的基准应用乘数；H1 证据和预算权限复核前不得换算为人民币。",
+        "verified_base_capex_cny": null,
+        "verified_base_opex_cny_per_year": null,
+        "rom_capex_cny": null,
+        "rom_opex_cny_per_year": null,
+        "quotation_reference": null,
+        "formal_estimate_reference": null,
+        "budget_authority_signoff": null
+      },
+      "exit_restoration_reserve_template": {
+        "status": "participant_reserve_ratio_template_not_funded_reserve_or_cost_estimate",
+        "reserve_ratio_of_future_verified_removable_capex_range": [0.1, 0.2],
+        "calculation_rule": "future_verified_removable_capex * approved_exit_restoration_reserve_ratio + independently_verified_site_specific_restoration_allowance",
+        "calculation_rule_zh": "未来核实的可拆卸资本成本 × 经批准的退出恢复储备比例 + 经独立核实的场地专项恢复备付",
+        "release_rule": "The reserve remains an unfunded template until the carrier, restoration scope, cost basis, funding authority, and H1-H4 exit obligation are signed.",
+        "approved_reserve_ratio": null,
+        "verified_removable_capex_cny": null,
+        "verified_site_specific_restoration_allowance_cny": null,
+        "funded_exit_restoration_reserve_cny": null,
+        "reserve_signoff_reference": null
+      },
+      "maintenance_cycle_register": [
+        {"cycle_id": "CYCLE-DAY", "frequency": "daily_before_each_public_window", "scope": "accessible_route_non_ai_route_staffed_fallback_stop_control_receipt_and_catalogue", "required_evidence": "dated_opening_check", "actual_record": null, "status": "template_only"},
+        {"cycle_id": "CYCLE-WEEK", "frequency": "weekly", "scope": "version_provenance_incident_queue_component_condition_and_unresolved_appeals", "required_evidence": "weekly_control_log_and_exception_disposition", "actual_record": null, "status": "template_only"},
+        {"cycle_id": "CYCLE-QUARTER", "frequency": "quarterly_or_after_material_change", "scope": "independent_regression_accessibility_security_rights_and_four_event_rehearsal", "required_evidence": "independent_review_and_go_revise_stop_record", "actual_record": null, "status": "template_only"},
+        {"cycle_id": "CYCLE-YEAR", "frequency": "annual_or_before_renewal", "scope": "public_value_cost_exit_reserve_operator_authority_and_restore_or_renew_decision", "required_evidence": "signed_annual_handover_and_public_decision", "actual_record": null, "status": "template_only"}
+      ],
+      "gate_cost_permission_alternative_matrix": [
+        {"alternative_id": "ALT01", "gate_refs": ["H1", "H2"], "cost_tradeoff": "reduces fixed fitout exposure but may add surveyed-room adaptation and portable-kit handling", "cost_tradeoff_zh": "降低固定装修暴露，但可能增加已测房间适配与便携组件搬运", "permission_tradeoff": "requires verified existing-room use right and professional review; grants no site action", "permission_tradeoff_zh": "须核实现有房间使用权并完成专业复核；不授予任何现场动作"},
+        {"alternative_id": "ALT02", "gate_refs": ["H2"], "cost_tradeoff": "reduces AI integration and data-control cost but increases staffed catalogue effort", "cost_tradeoff_zh": "降低 AI 集成与数据控制成本，但增加人工目录服务工作量", "permission_tradeoff": "preserves service without data authorization and does not permit AI processing", "permission_tradeoff_zh": "在没有数据授权时保留服务，同时禁止 AI 处理"},
+        {"alternative_id": "ALT03", "gate_refs": ["H3"], "cost_tradeoff": "avoids unsafe rehearsal expenditure while retaining desk-review and evidence-preservation effort", "cost_tradeoff_zh": "避免不安全复演支出，同时保留案头审查与证据保存工作", "permission_tradeoff": "no evaluator means no rehearsal or public exposure; remain HOLD", "permission_tradeoff_zh": "没有评估方即不得复演或面向公众；保持 HOLD"},
+        {"alternative_id": "ALT04", "gate_refs": ["H1", "H4"], "cost_tradeoff": "avoids installation and operating exposure but requires funded restoration if prior authorized work exists", "cost_tradeoff_zh": "避免安装与运营暴露；若已有经授权工作，则须落实恢复资金", "permission_tradeoff": "missing procurement or authorization requires no opening, removal if applicable, and ordinary-space restoration", "permission_tradeoff_zh": "采购或授权缺失时不得开放；适用时拆除并恢复普通空间"}
+      ],
+      "external_evidence_receipt_template": {
+        "status": "bilingual_template_only_no_external_receipt_accepted",
+        "required_field_count": 18,
+        "fields": [
+          {"field_id": "ER01", "label_zh": "证据编号", "label_en": "Evidence ID", "actual_value": null},
+          {"field_id": "ER02", "label_zh": "版本", "label_en": "Version", "actual_value": null},
+          {"field_id": "ER03", "label_zh": "证据类型", "label_en": "Evidence type", "actual_value": null},
+          {"field_id": "ER04", "label_zh": "原始来源或出具主体", "label_en": "Primary source or issuer", "actual_value": null},
+          {"field_id": "ER05", "label_zh": "采集或发生日期", "label_en": "Collection or event date", "actual_value": null},
+          {"field_id": "ER06", "label_zh": "复核日期", "label_en": "Review date", "actual_value": null},
+          {"field_id": "ER07", "label_zh": "方法", "label_en": "Method", "actual_value": null},
+          {"field_id": "ER08", "label_zh": "样本或覆盖范围", "label_en": "Sample or coverage", "actual_value": null},
+          {"field_id": "ER09", "label_zh": "局限", "label_en": "Limitations", "actual_value": null},
+          {"field_id": "ER10", "label_zh": "缺失值", "label_en": "Missingness", "actual_value": null},
+          {"field_id": "ER11", "label_zh": "权利状态", "label_en": "Rights status", "actual_value": null},
+          {"field_id": "ER12", "label_zh": "公开级别", "label_en": "Publication class", "actual_value": null},
+          {"field_id": "ER13", "label_zh": "利益冲突", "label_en": "Conflict of interest", "actual_value": null},
+          {"field_id": "ER14", "label_zh": "独立复核主体", "label_en": "Independent reviewer", "actual_value": null},
+          {"field_id": "ER15", "label_zh": "复核结论", "label_en": "Review disposition", "actual_value": null},
+          {"field_id": "ER16", "label_zh": "go/revise/stop 处置", "label_en": "Go/revise/stop disposition", "actual_value": null},
+          {"field_id": "ER17", "label_zh": "签认", "label_en": "Sign-off", "actual_value": null},
+          {"field_id": "ER18", "label_zh": "文件 SHA-256", "label_en": "File SHA-256", "actual_value": null}
+        ],
+        "accepted_external_receipt_count": 0,
+        "verified_external_receipt_count": 0,
+        "release_state": "HOLD"
+      },
+      "external_actual_state": {
+        "actual_site_or_component_dimension_count": 0,
+        "approved_capacity_count": 0,
+        "approved_fte_input_count": 0,
+        "verified_rom_cost_input_count": 0,
+        "funded_exit_reserve_count": 0,
+        "maintenance_actual_record_count": 0,
+        "selected_alternative_count": 0,
+        "accepted_external_receipt_count": 0,
+        "verified_external_signoff_count": 0,
+        "external_release_granted_count": 0,
+        "release_state": "HOLD"
+      }
+    },
+    "scale_and_capacity_template": {
+      "source_scale_ids": [
+        "SCALE-1-500",
+        "SCALE-1-100",
+        "SCALE-1-50",
+        "SCALE-1-20"
+      ],
+      "reference_module_width_m": 18,
+      "reference_module_depth_m": 12,
+      "reference_module_area_sqm": 216,
+      "reference_service_position_set_count": 1,
+      "reference_service_positions_per_set": 2,
+      "reference_service_position_source": "BOQ-M03",
+      "reference_status": "participant_design_test_assumption_not_survey_or_capacity_commitment",
+      "approved_occupancy_limit": null,
+      "observed_service_throughput_per_staffed_hour": null,
+      "service_throughput_formula": "human_confirmed_referrals_or_reasoned_refusals / staffed_service_hours",
+      "capacity_release_rule": "Use the lower of surveyed accessible service positions, approved life-safety occupancy, and staffed role coverage; no capacity is released until H1 and H2 are independently evidenced."
+    },
+    "operating_coverage_template": {
+      "status": "participant_reference_not_staffing_commitment",
+      "public_window_required_role_classes": [
+        "frontline_service_and_accessibility_role",
+        "human_referral_refusal_and_appeal_authority",
+        "safety_operations_and_stop_authority"
+      ],
+      "independent_role_class": "independent_evaluation_role_outside_service_operation",
+      "coverage_formula": "public_service_windows_with_all_required_role_classes_available / all_public_service_windows",
+      "named_operator": null,
+      "named_staff": null,
+      "approved_roster": null,
+      "actual_service_window_count": null,
+      "actual_coverage_ratio": null,
+      "release_rule": "No public window opens without all three required role classes; the independent evaluator may not be replaced by supplier self-certification."
+    },
+    "parameterized_cost_plan": {
+      "status": "cost_structure_only_no_zero_cost_claim",
+      "capital_classes": [
+        "survey_and_existing_condition",
+        "reversible_components_and_fitout",
+        "accessibility_and_staffed_service_setup",
+        "local_interfaces_hardware_and_connectivity"
+      ],
+      "operating_classes": [
+        "staffed_service_and_maintenance",
+        "data_rights_security_testing_independent_evaluation_and_public_evidence"
+      ],
+      "exit_and_reserve_classes": [
+        "removal_restoration_and_approved_contingency"
+      ],
+      "calculation_rule": "verified_actual_quantity * rights_cleared_comparable_unit_cost + approved_contingency",
+      "capital_amount_cny": null,
+      "operating_amount_cny": null,
+      "exit_restoration_amount_cny": null,
+      "verified_cost_input_count": 0,
+      "funding_source": null,
+      "procurement_route": null,
+      "budget_signoff": null,
+      "boundary": "Missing quotations and rates mean cost is unknown, never zero."
+    },
+    "maintenance_and_exit_controls": [
+      {
+        "control_id": "MNT01",
+        "trigger": "before_each_public_service_window",
+        "required_action": "check_accessible_and_non_digital_route_staffed_fallback_stop_control_receipt_output_and_ordinary_catalogue",
+        "evidence_required": "dated_opening_check_and_named_accountable_role",
+        "actual_record": null,
+        "status": "template_only"
+      },
+      {
+        "control_id": "MNT02",
+        "trigger": "after_each_material_model_catalogue_interface_or_policy_change",
+        "required_action": "freeze_version_update_provenance_and_repeat_success_refusal_takeover_and_exit_regression",
+        "evidence_required": "versioned_change_record_and_independent_rehearsal",
+        "actual_record": null,
+        "status": "template_only"
+      },
+      {
+        "control_id": "MNT03",
+        "trigger": "incident_ambiguity_user_request_or_rights_risk",
+        "required_action": "pause_ai_preserve_staffed_service_issue_receipt_open_appeal_and_retain_minimum_incident_evidence",
+        "evidence_required": "incident_receipt_recovery_record_and_review_disposition",
+        "actual_record": null,
+        "status": "template_only"
+      },
+      {
+        "control_id": "MNT04",
+        "trigger": "exit_retirement_or_operator_change",
+        "required_action": "handover_portable_records_complete_authorized_data_disposition_remove_components_restore_ordinary_space_and_publish_decision",
+        "evidence_required": "signed_exit_handover_restoration_and_public_record",
+        "actual_record": null,
+        "status": "template_only"
+      }
+    ],
+    "acceptance_indicator_register": [
+      {
+        "indicator_id": "AT01",
+        "name_zh": "单一服务问题与角色边界可复核",
+        "name_en": "One service problem and role boundaries are reviewable",
+        "assessment_scope": "proposal_structure",
+        "reviewable_now": true,
+        "evidence_refs": [
+          "FP01-S07-PROBLEM-001",
+          "S07",
+          "S03",
+          "S04"
+        ],
+        "current_result": "structurally_reviewable",
+        "external_release_effect": false
+      },
+      {
+        "indicator_id": "AT02",
+        "name_zh": "1:500—1:100—1:50—1:20 尺度链可复核",
+        "name_en": "The 1:500-1:100-1:50-1:20 scale chain is reviewable",
+        "assessment_scope": "proposal_structure",
+        "reviewable_now": true,
+        "evidence_refs": [
+          "SCALE-1-500",
+          "SCALE-1-100",
+          "SCALE-1-50",
+          "SCALE-1-20"
+        ],
+        "current_result": "structurally_reviewable",
+        "external_release_effect": false
+      },
+      {
+        "indicator_id": "AT03",
+        "name_zh": "H0—H4 RACI 与独立评测职责分离可复核",
+        "name_en": "H0-H4 RACI and independent-evaluation separation are reviewable",
+        "assessment_scope": "proposal_structure",
+        "reviewable_now": true,
+        "evidence_refs": [
+          "hold_point_raci",
+          "operating_coverage_template"
+        ],
+        "current_result": "structurally_reviewable",
+        "external_release_effect": false
+      },
+      {
+        "indicator_id": "AT04",
+        "name_zh": "有人、无手机、无账号与纯人工路径可复核",
+        "name_en": "Staffed, no-phone, no-account, and non-AI routes are reviewable",
+        "assessment_scope": "proposal_structure",
+        "reviewable_now": true,
+        "evidence_refs": [
+          "M01",
+          "M03",
+          "D0-B06"
+        ],
+        "current_result": "structurally_reviewable",
+        "external_release_effect": false
+      },
+      {
+        "indicator_id": "AT05",
+        "name_zh": "成功、拒绝、接管与退出四类回执可复核",
+        "name_en": "Success, refusal, takeover, and exit receipt classes are reviewable",
+        "assessment_scope": "proposal_structure",
+        "reviewable_now": true,
+        "evidence_refs": [
+          "success",
+          "refusal",
+          "human_takeover",
+          "exit_restoration"
+        ],
+        "current_result": "structurally_reviewable",
+        "external_release_effect": false
+      },
+      {
+        "indicator_id": "AT06",
+        "name_zh": "设计数量、成本分类与实际价格严格分离",
+        "name_en": "Design quantities, cost classes, and actual prices are strictly separated",
+        "assessment_scope": "proposal_structure",
+        "reviewable_now": true,
+        "evidence_refs": [
+          "BOQ-M01",
+          "BOQ-M06",
+          "parameterized_cost_plan"
+        ],
+        "current_result": "structurally_reviewable",
+        "external_release_effect": false
+      },
+      {
+        "indicator_id": "AT07",
+        "name_zh": "K01—K10 依赖无越门且日期保持空白",
+        "name_en": "K01-K10 dependencies do not bypass gates and actual dates remain empty",
+        "assessment_scope": "proposal_structure",
+        "reviewable_now": true,
+        "evidence_refs": [
+          "K01",
+          "K10"
+        ],
+        "current_result": "structurally_reviewable",
+        "external_release_effect": false
+      },
+      {
+        "indicator_id": "AT08",
+        "name_zh": "维护、备选、停止与恢复路径可复核",
+        "name_en": "Maintenance, alternatives, stop, and restoration paths are reviewable",
+        "assessment_scope": "proposal_structure",
+        "reviewable_now": true,
+        "evidence_refs": [
+          "MNT01",
+          "MNT04",
+          "ALT01",
+          "ALT04"
+        ],
+        "current_result": "structurally_reviewable",
+        "external_release_effect": false
+      },
+      {
+        "indicator_id": "AT09",
+        "name_zh": "真实问题与 D0 人工基线成立",
+        "name_en": "Real problem and D0 human baseline are established",
+        "assessment_scope": "field_evidence",
+        "reviewable_now": false,
+        "required_hold_points": [
+          "H0"
+        ],
+        "current_result": null,
+        "external_release_effect": true
+      },
+      {
+        "indicator_id": "AT10",
+        "name_zh": "载体、容量、成本与专业条件通过",
+        "name_en": "Carrier, capacity, cost, and professional conditions pass",
+        "assessment_scope": "field_evidence",
+        "reviewable_now": false,
+        "required_hold_points": [
+          "H1",
+          "H2"
+        ],
+        "current_result": null,
+        "external_release_effect": true
+      },
+      {
+        "indicator_id": "AT11",
+        "name_zh": "四类事件与人工恢复独立复演通过",
+        "name_en": "Four event classes and human restoration pass independent rehearsal",
+        "assessment_scope": "field_evidence",
+        "reviewable_now": false,
+        "required_hold_points": [
+          "H3"
+        ],
+        "current_result": null,
+        "external_release_effect": true
+      },
+      {
+        "indicator_id": "AT12",
+        "name_zh": "另行授权、交接与十日验收完成",
+        "name_en": "Separate authorization, handover, and ten-day acceptance are complete",
+        "assessment_scope": "field_evidence",
+        "reviewable_now": false,
+        "required_hold_points": [
+          "H4"
+        ],
+        "current_result": null,
+        "external_release_effect": true
+      }
+    ],
+    "conditional_release_stages": [
+      {
+        "stage_id": "REL00",
+        "name": "design_review_only",
+        "required_hold_points": [],
+        "allowed_action": "desk_review_and_open_correction_only",
+        "external_release_granted": false,
+        "status": "current"
+      },
+      {
+        "stage_id": "REL01",
+        "name": "baseline_locked",
+        "required_hold_points": [
+          "H0"
+        ],
+        "allowed_action": "freeze_problem_and_measurement_protocol",
+        "external_release_granted": false,
+        "status": "hold"
+      },
+      {
+        "stage_id": "REL02",
+        "name": "carrier_and_delivery_basis_locked",
+        "required_hold_points": [
+          "H0",
+          "H1"
+        ],
+        "allowed_action": "professional_design_deepening_only",
+        "external_release_granted": false,
+        "status": "hold"
+      },
+      {
+        "stage_id": "REL03",
+        "name": "controlled_rehearsal_admissible",
+        "required_hold_points": [
+          "H0",
+          "H1",
+          "H2"
+        ],
+        "allowed_action": "bounded_non_public_or_authorized_rehearsal_only",
+        "external_release_granted": false,
+        "status": "hold"
+      },
+      {
+        "stage_id": "REL04",
+        "name": "independent_decision_complete",
+        "required_hold_points": [
+          "H0",
+          "H1",
+          "H2",
+          "H3"
+        ],
+        "allowed_action": "issue_go_revise_or_stop_record_only",
+        "external_release_granted": false,
+        "status": "hold"
+      },
+      {
+        "stage_id": "REL05",
+        "name": "separately_authorized_accept_or_restore",
+        "required_hold_points": [
+          "H0",
+          "H1",
+          "H2",
+          "H3",
+          "H4"
+        ],
+        "allowed_action": "authorized_ten_day_acceptance_or_full_restoration",
+        "external_release_granted": false,
+        "status": "hold"
+      }
+    ],
+    "fallback_alternatives_register": [
+      {
+        "alternative_id": "ALT01",
+        "trigger": "carrier_not_verified",
+        "preferred_option": "18_by_12_metre_reversible_concept_module",
+        "fallback_option": "M01_to_M04_portable_kit_inside_a_separately_surveyed_existing_staffed_service_room",
+        "rights_preserved": [
+          "no_phone_route",
+          "staffed_service",
+          "appeal",
+          "exit"
+        ],
+        "required_gate": "H1_H2",
+        "site_action_allowed": false,
+        "selection_authority": null,
+        "status": "participant_reference_not_approval"
+      },
+      {
+        "alternative_id": "ALT02",
+        "trigger": "data_authorisation_not_closed",
+        "preferred_option": "ai_assisted_versioned_service_catalogue",
+        "fallback_option": "paper_telephone_or_staffed_catalogue_for_the_same_task_with_zero_personal_data_entering_ai",
+        "rights_preserved": [
+          "equivalent_service",
+          "no_account_route",
+          "human_decision",
+          "appeal"
+        ],
+        "required_gate": "H2",
+        "site_action_allowed": false,
+        "selection_authority": null,
+        "status": "participant_reference_not_approval"
+      },
+      {
+        "alternative_id": "ALT03",
+        "trigger": "independent_evaluator_not_appointed",
+        "preferred_option": "independent_controlled_rehearsal",
+        "fallback_option": "retain_H3_hold_and_limit_work_to_non_public_desk_review_or_stop",
+        "rights_preserved": [
+          "no_supplier_self_certification",
+          "no_real_user_exposure",
+          "failure_record_retained"
+        ],
+        "required_gate": "H3",
+        "site_action_allowed": false,
+        "selection_authority": null,
+        "status": "participant_reference_not_approval"
+      },
+      {
+        "alternative_id": "ALT04",
+        "trigger": "procurement_or_H4_authorisation_missing",
+        "preferred_option": "separately_authorized_revocable_acceptance_window",
+        "fallback_option": "do_not_install_or_open_restore_ordinary_space_and_retain_only_public_design_review_materials",
+        "rights_preserved": [
+          "no_real_user_data",
+          "ordinary_service_continuity",
+          "component_removal",
+          "public_stop_reason"
+        ],
+        "required_gate": "H1_H4",
+        "site_action_allowed": false,
+        "selection_authority": null,
+        "status": "participant_reference_not_approval"
+      }
+    ],
+    "current_package_action_boundary": {
+      "documented_authorized_site_action_count": 0,
+      "documented_public_service_window_count": 0,
+      "documented_real_user_session_count": 0,
+      "documented_procurement_count": 0,
+      "documented_construction_count": 0,
+      "documented_external_release_granted_count": 0,
+      "rule": "Zero means no attributable record is supplied in this package; it does not claim knowledge of all external activity."
+    }
+  },
   "structural_claims": {
     "key_area_interface_prototype_count": 3,
     "d0_measurement_method_count": 6,
@@ -565,8 +1161,29 @@
     "hold_point_raci_coverage_ratio": 1.0,
     "design_test_boq_item_count": 6,
     "critical_dependency_step_count": 10,
+    "delivery_role_class_count": 16,
+    "acceptance_indicator_count": 12,
+    "immediately_judgeable_acceptance_indicator_count": 8,
+    "field_dependent_acceptance_indicator_count": 4,
+    "release_stage_count": 6,
+    "external_release_granted_count": 0,
+    "fallback_alternative_count": 4,
+    "cost_plan_class_count": 7,
+    "verified_cost_input_count": 0,
+    "documented_authorized_site_action_count": 0,
     "actual_boq_verified_item_count": 0,
-    "verified_external_signoff_count": 0
+    "verified_external_signoff_count": 0,
+    "component_interface_scale_count": 4,
+    "original_parameter_envelope_count": 2,
+    "capacity_egress_template_count": 1,
+    "staffing_fte_template_count": 1,
+    "rom_sensitivity_scenario_count": 3,
+    "exit_restoration_reserve_template_count": 1,
+    "maintenance_cycle_count": 4,
+    "gate_cost_permission_alternative_mapping_ratio": 1.0,
+    "external_evidence_receipt_required_field_count": 18,
+    "accepted_external_evidence_receipt_count": 0,
+    "pre_feasibility_external_release_granted_count": 0
   },
   "verification": {
     "script": "visual/assets/verify-fp01-delivery-control.js",

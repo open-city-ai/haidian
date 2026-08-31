@@ -1,0 +1,706 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "announced_coordinated_research_area",
+      "confidence": "high",
+      "assumptions": [
+        "Announced area only; official polygon not yet published."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(announced_key_area_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Announced areas of the three key areas; provisional polygons are rough."
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims.",
+        "Announced area is 1921000 m2."
+      ]
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims.",
+        "Announced area is 1043000 m2."
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims.",
+        "Announced area is 720000 m2."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 988255.045,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0701))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 158126.869,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0702))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 2017986.585,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0802))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 479868.922,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0803))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 565195.548,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0804))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0805_sqm": {
+      "status": "known",
+      "value": 66030.029,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0805))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0901_sqm": {
+      "status": "known",
+      "value": 975051.913,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0901))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0902_sqm": {
+      "status": "known",
+      "value": 798122.912,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0902))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0903_sqm": {
+      "status": "known",
+      "value": 319.615,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0903))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_0904_sqm": {
+      "status": "known",
+      "value": 466824.453,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==0904))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_1207_sqm": {
+      "status": "known",
+      "value": 606439.167,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==1207))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 2915829.701,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==1401))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 230104.117,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==1402))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_1403_sqm": {
+      "status": "known",
+      "value": 352184.586,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==1403))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_area_16_sqm": {
+      "status": "known",
+      "value": 792485.928,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==16))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3145932.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(GREEN_SPACE) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 4025452.541,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(PUBLIC_SPACE) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3251558.259,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(BUILDING_FOOTPRINT) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 21539309.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint_area*floors)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims.",
+        "Floors are conceptual block controls inside a design proposal, not approved regulatory figures."
+      ]
+    },
+    "road_land_area_sqm": {
+      "status": "known",
+      "value": 606439.167,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE where land_use_code==1207))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "slow_mobility_network_length_m": {
+      "status": "known",
+      "value": 29846.1,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length_m(ROAD_CENTERLINE))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "heritage_greenway_spine_length_m": {
+      "status": "known",
+      "value": 9716.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length_m(ROAD-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 222,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 294,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE where landmark==true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_registry_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "count(citable scenarios in repo registry)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.275649,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.352713,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.284904,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "road_land_ratio": {
+      "status": "known",
+      "value": 0.053137,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_land_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "park_within_300m_share": {
+      "status": "known",
+      "value": 0.910016,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(site within 300m of public space) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "design_floor_area_ratio": {
+      "status": "known",
+      "value": 1.8873,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm (design value)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims.",
+        "Design value for conceptual massing only; not an approved FAR."
+      ]
+    },
+    "average_conceptual_height_m": {
+      "status": "known",
+      "value": 24.37,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "mean(height_m_conceptual)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "job_capacity_estimate": {
+      "status": "known",
+      "value": 964101,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "assumptions.json"
+      ],
+      "formula": "innovative floor area / 12 sqm per job",
+      "confidence": "low",
+      "assumptions": [
+        "Employment density assumption; not a forecast or an investment commitment."
+      ]
+    },
+    "housing_capacity_estimate": {
+      "status": "known",
+      "value": 47589,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "assumptions.json"
+      ],
+      "formula": "residential floor area / 95 sqm per unit",
+      "confidence": "low",
+      "assumptions": [
+        "Unit-size assumption; not a construction program."
+      ]
+    },
+    "key_area_block_count_zhongzhiyuan_ai_acceleration_area": {
+      "status": "known",
+      "value": 95,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(LAND_USE where representative_point in zhongzhiyuan_ai_acceleration_area)",
+      "confidence": "high",
+      "assumptions": [
+        "Denominator differs from land_use_parcel_count; see proposal measurement basis."
+      ]
+    },
+    "key_area_block_count_beijing_ai_origin_community": {
+      "status": "known",
+      "value": 73,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(LAND_USE where representative_point in beijing_ai_origin_community)",
+      "confidence": "high",
+      "assumptions": [
+        "Denominator differs from land_use_parcel_count."
+      ]
+    },
+    "key_area_block_count_dazhongsi_ai_industry_cluster": {
+      "status": "known",
+      "value": 46,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(LAND_USE where representative_point in dazhongsi_ai_industry_cluster)",
+      "confidence": "high",
+      "assumptions": [
+        "Denominator differs from land_use_parcel_count."
+      ]
+    },
+    "key_area_block_count_outside_key_areas": {
+      "status": "known",
+      "value": 80,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(LAND_USE outside all three key areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Completes the reconciliation with land_use_parcel_count."
+      ]
+    },
+    "phasing_area_phase_1_sqm": {
+      "status": "known",
+      "value": 3867884.26,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_1)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phasing_area_phase_2_sqm": {
+      "status": "known",
+      "value": 3084208.461,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_2)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "phasing_area_phase_3_sqm": {
+      "status": "known",
+      "value": 4460732.665,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_3)",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official area claims."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved regulatory-plan FAR conditions and official site redline are not published in the site package; only the design value (design_floor_area_ratio) is computable from the submitted geometry."
+    },
+    "official_building_height_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Height control, aviation, heritage and landscape constraints are not published."
+    },
+    "official_green_ratio_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved green ratio control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Regulatory-plan green ratio control is not published; green_ratio in this package is a geometry-derived design value."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved setback",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Road redline and building control lines are unavailable."
+    }
+  }
+}

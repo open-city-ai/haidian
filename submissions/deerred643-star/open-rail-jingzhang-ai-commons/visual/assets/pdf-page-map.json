@@ -1,0 +1,918 @@
+{
+  "artifact_id": "pdf-page-map",
+  "artifact_class": "evidence",
+  "package_version": "v3.1",
+  "generated_by": "tools/v31-build-pdf-pagemap.py (workspace copy, not shipped in package)",
+  "purpose_zh": "把四份 A3/A0 PDF 的全部页面逐页登记为可核验条目，回应评审「PDF 仅提供首页预览、不能仅凭首页推断全部页面内容」的意见：读者不打开 PDF 即可核对每一页的章节、图幅、字符量与文本指纹。",
+  "purpose_en": "Registers every page of the four A3/A0 PDFs as a verifiable entry, answering the reviewer note that only the first PDF page is previewed and full-page content cannot be inferred from it: readers can audit every page's section, figures, character count and text digest without opening the PDFs.",
+  "method_zh": "PyMuPDF 逐页文本抽取；文本指纹为页面 get_text() 的 UTF-8 SHA-256；文件指纹为 PDF 字节 SHA-256。抽取只读不写，不改变任何图纸内容。",
+  "method_en": "PyMuPDF per-page text extraction; page digest = SHA-256 of the page get_text() UTF-8 bytes; file digest = SHA-256 of the PDF bytes. Extraction is read-only and alters no drawing content.",
+  "limitations_zh": "本件登记的是文本层可抽取内容（标题、图号、字符量、指纹）；版式与图形渲染仍以 PDF 本体为准，字体覆盖另见 webfont-coverage-evidence.json。",
+  "limitations_en": "This registers the text layer only (headings, figure ids, character counts, digests); layout and vector rendering remain governed by the PDFs themselves, and font coverage is evidenced separately in webfont-coverage-evidence.json.",
+  "assertions": [
+    {
+      "id": "PAGEMAP-A3-zh-PAGECOUNT",
+      "desc_zh": "drawings/a3-booklet.pdf 页数 = 13（与 v3.0 冻结版式一致）",
+      "desc_en": "drawings/a3-booklet.pdf page count = 13 (identical to the frozen v3.0 layout)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A3-en-PAGECOUNT",
+      "desc_zh": "drawings/a3-booklet.en.pdf 页数 = 13（与 v3.0 冻结版式一致）",
+      "desc_en": "drawings/a3-booklet.en.pdf page count = 13 (identical to the frozen v3.0 layout)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-zh-PAGECOUNT",
+      "desc_zh": "drawings/a0-boards.pdf 页数 = 9（与 v3.0 冻结版式一致）",
+      "desc_en": "drawings/a0-boards.pdf page count = 9 (identical to the frozen v3.0 layout)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-en-PAGECOUNT",
+      "desc_zh": "drawings/a0-boards.en.pdf 页数 = 9（与 v3.0 冻结版式一致）",
+      "desc_en": "drawings/a0-boards.en.pdf page count = 9 (identical to the frozen v3.0 layout)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A3-zh-STALE-VERSION",
+      "desc_zh": "drawings/a3-booklet.pdf 无历史包版本残留（v2.x / v3.0 出现 0 次；实测残留 无）",
+      "desc_en": "drawings/a3-booklet.pdf carries no stale package version (v2.x / v3.0 occurrences = 0; found none)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A3-zh-COVER-VERSION",
+      "desc_zh": "drawings/a3-booklet.pdf 首页（封面）标注 v3.1",
+      "desc_en": "drawings/a3-booklet.pdf first page (cover) states v3.1",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A3-zh-NONEMPTY",
+      "desc_zh": "drawings/a3-booklet.pdf 每页均可抽取到文本（无空白页 / 无占位页）",
+      "desc_en": "drawings/a3-booklet.pdf every page yields extractable text (no blank or placeholder pages)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A3-en-STALE-VERSION",
+      "desc_zh": "drawings/a3-booklet.en.pdf 无历史包版本残留（v2.x / v3.0 出现 0 次；实测残留 无）",
+      "desc_en": "drawings/a3-booklet.en.pdf carries no stale package version (v2.x / v3.0 occurrences = 0; found none)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A3-en-COVER-VERSION",
+      "desc_zh": "drawings/a3-booklet.en.pdf 首页（封面）标注 v3.1",
+      "desc_en": "drawings/a3-booklet.en.pdf first page (cover) states v3.1",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A3-en-NONEMPTY",
+      "desc_zh": "drawings/a3-booklet.en.pdf 每页均可抽取到文本（无空白页 / 无占位页）",
+      "desc_en": "drawings/a3-booklet.en.pdf every page yields extractable text (no blank or placeholder pages)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-zh-STALE-VERSION",
+      "desc_zh": "drawings/a0-boards.pdf 无历史包版本残留（v2.x / v3.0 出现 0 次；实测残留 无）",
+      "desc_en": "drawings/a0-boards.pdf carries no stale package version (v2.x / v3.0 occurrences = 0; found none)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-zh-COVER-VERSION",
+      "desc_zh": "drawings/a0-boards.pdf 首页（板 1）标注 v3.1",
+      "desc_en": "drawings/a0-boards.pdf first page (board 1) states v3.1",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-zh-BOARD-VERSION",
+      "desc_zh": "drawings/a0-boards.pdf 九块展板页眉全部标注 v3.1",
+      "desc_en": "drawings/a0-boards.pdf all nine board headers state v3.1",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-zh-NONEMPTY",
+      "desc_zh": "drawings/a0-boards.pdf 每页均可抽取到文本（无空白页 / 无占位页）",
+      "desc_en": "drawings/a0-boards.pdf every page yields extractable text (no blank or placeholder pages)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-en-STALE-VERSION",
+      "desc_zh": "drawings/a0-boards.en.pdf 无历史包版本残留（v2.x / v3.0 出现 0 次；实测残留 无）",
+      "desc_en": "drawings/a0-boards.en.pdf carries no stale package version (v2.x / v3.0 occurrences = 0; found none)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-en-COVER-VERSION",
+      "desc_zh": "drawings/a0-boards.en.pdf 首页（板 1）标注 v3.1",
+      "desc_en": "drawings/a0-boards.en.pdf first page (board 1) states v3.1",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-en-BOARD-VERSION",
+      "desc_zh": "drawings/a0-boards.en.pdf 九块展板页眉全部标注 v3.1",
+      "desc_en": "drawings/a0-boards.en.pdf all nine board headers state v3.1",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-en-NONEMPTY",
+      "desc_zh": "drawings/a0-boards.en.pdf 每页均可抽取到文本（无空白页 / 无占位页）",
+      "desc_en": "drawings/a0-boards.en.pdf every page yields extractable text (no blank or placeholder pages)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A3-BILINGUAL-ALIGN",
+      "desc_zh": "A3 中英两版页码与章节序列逐页对齐（section_id 序列相同）",
+      "desc_en": "A3 Chinese and English editions align page-by-page (identical section_id sequence)",
+      "passed": true
+    },
+    {
+      "id": "PAGEMAP-A0-BILINGUAL-ALIGN",
+      "desc_zh": "A0 中英两版页码与章节序列逐页对齐（section_id 序列相同）",
+      "desc_en": "A0 Chinese and English editions align page-by-page (identical section_id sequence)",
+      "passed": true
+    }
+  ],
+  "files": [
+    {
+      "path": "drawings/a3-booklet.pdf",
+      "language": "zh",
+      "format": "A3",
+      "page_count": 13,
+      "sha256": "69482e2f77b1fbdcf88e061392f542866019dbb88bad8841e97d71e7f918e06e",
+      "bytes": 3202918,
+      "declared_version": "v3.1",
+      "pages": [
+        {
+          "page": 1,
+          "section_id": "cover",
+          "heading": "京张AI共同体 · 百年京张AI创新带城市设计方案（A3 文册）",
+          "content_excerpt": "征集: 百年京张AI创新带城市设计开源征集 ｜ 本册全部面积与比例可从提交包 GeoJSON 几何在 EPSG:4548 下复算；总体设计范围与三处重点区域使用临时粗略边界（pro",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 408,
+          "non_ascii_chars": 268,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "ff57bb46e6ef5977b4d8cbad968e095b54ad43b305db5746b8039703e7ab3627"
+        },
+        {
+          "page": 2,
+          "section_id": "s01",
+          "heading": "设计依据与资料来源",
+          "content_excerpt": "第一权威依据为北京市规划和自然资源委员会海淀分局征集资格预审公告 [source:OFFICIAL-ANNOUNCEMENT]；其次为仓库公开场地包 [source:SITE- ｜",
+          "figures": [],
+          "version_strings": [],
+          "chars": 704,
+          "non_ascii_chars": 357,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "5394b187dcc5b08d9b38dc997d9cb1d0af012f30c8acc3970526596ed3c66e7b"
+        },
+        {
+          "page": 3,
+          "section_id": "s03",
+          "heading": "现状诊断与问题清单",
+          "content_excerpt": "铁路遗产廊道南北贯通但东西割裂，六处跨廊道接口步行体验差。 ｜ 高校、社区、园区界面封闭，创新要素流动依赖机动化干路。 ｜ 清河、小月河滨水空间与廊道缺乏系统连接。 ｜ AI 场景",
+          "figures": [],
+          "version_strings": [],
+          "chars": 813,
+          "non_ascii_chars": 704,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "7ca3f0b559c64741000f0ba3732246ddd6baaa572029950ae5c17d807a733c35"
+        },
+        {
+          "page": 4,
+          "section_id": "s05",
+          "heading": "总体设计：空间结构与用地",
+          "content_excerpt": "图 1｜用地结构与空间传导（概念建议，临时边界） ｜ 用地 ｜ 面积 ｜ 占比 ｜ 科研 0802 ｜ 348.6 ha ｜ 30.5% ｜ 公园绿地 1401 ｜ 246.6 h",
+          "figures": [
+            "图1"
+          ],
+          "version_strings": [],
+          "chars": 238,
+          "non_ascii_chars": 124,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "fd7c46ebdc996a547b8d30b14e3348592e3809677417fd50b2d489561a6eba87"
+        },
+        {
+          "page": 5,
+          "section_id": "s05b",
+          "heading": "总体设计：交通市政与蓝绿",
+          "content_excerpt": "图 2｜交通慢行与蓝绿公共空间复合系统（概念建议） ｜ 开源步道 9.72km 贯通南北，六站厅织补东西；轨道站点一体化为概念接驳。 ｜ 绿地率 21.61%、公共空间率 10.5",
+          "figures": [
+            "图2"
+          ],
+          "version_strings": [],
+          "chars": 170,
+          "non_ascii_chars": 135,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "cf154fe0a604a35844742c284087820d2d3f77d200d6650a2576c73185f606dd"
+        },
+        {
+          "page": 6,
+          "section_id": "s06",
+          "heading": "重点区域详细设计",
+          "content_excerpt": "图 3｜三处重点区域索引与设计任务（概念建议） ｜ 重点区 ｜ 定位 ｜ 空间抓手 ｜ 众智园 192.1ha ｜ 主板芯片·全栈体系 ｜ 算力-模型-工具链院落、治理试验场、中央",
+          "figures": [
+            "图3"
+          ],
+          "version_strings": [],
+          "chars": 201,
+          "non_ascii_chars": 158,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "d81aeddad74efe08f23d88b002b17f3a90bc301458c7d23e563006e82c801194"
+        },
+        {
+          "page": 7,
+          "section_id": "s06b",
+          "heading": "场所设计深化（一）：站厅与品牌",
+          "content_excerpt": "图 3b｜六站厅场所意象概念剖面（概念建议，非工程图纸） ｜ 图 3c｜OPEN RAIL 品牌应用系统：Logo—铺装—街道家具 ｜ 开源轨道 OPEN RAIL · 京张AI共",
+          "figures": [
+            "图3b",
+            "图3c"
+          ],
+          "version_strings": [],
+          "chars": 110,
+          "non_ascii_chars": 78,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "527b6d37bf0539d22cd2dedfc803780ab19a09a76f803ca27cfac609d2d29e17"
+        },
+        {
+          "page": 8,
+          "section_id": "s06b",
+          "heading": "场所设计深化（二）：commit 广场节点",
+          "content_excerpt": "图 3d｜众智园「commit 广场」节点放大平面（体量为概念占位） ｜ 从「抽象条带」到「可感场所」：站厅剖面、品牌街道家具与节点放大平面示范设计深化方向。全部为概念示意，实施前",
+          "figures": [
+            "图3d"
+          ],
+          "version_strings": [],
+          "chars": 159,
+          "non_ascii_chars": 129,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "880af0fa079eebd8ebbcc2bfa2f8b4e99879538cbd2d8358ae7e58b390540809"
+        },
+        {
+          "page": 9,
+          "section_id": "s06c",
+          "heading": "沿街界面与节点构造深化",
+          "content_excerpt": "图 3e｜沿街建筑界面与典型街道剖面（S1 廊道段 / S2 站厅前区 / S3 织补街巷 + 底层界面节奏；概念示意） ｜ 图 3f｜节点构造详图：铺装分层 / commit 座",
+          "figures": [
+            "图3e",
+            "图3f"
+          ],
+          "version_strings": [],
+          "chars": 189,
+          "non_ascii_chars": 139,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "3c6adf786017c9700ce5ace551212ff1bbda841573126fe74b1a09771da243b7"
+        },
+        {
+          "page": 10,
+          "section_id": "s07",
+          "heading": "AI+场景与数据治理",
+          "content_excerpt": "13 张场景卡全部设置数据边界与人工复核；3 个测试验证场景须取得主管部门许可后方可实施： ｜ AI+交通慢行 ｜ AI文化导览 ｜ AI健康导航 ｜ 企业服务副驾 ｜ 公共安全复",
+          "figures": [],
+          "version_strings": [
+            "v0.5",
+            "v1.0"
+          ],
+          "chars": 455,
+          "non_ascii_chars": 361,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "95f690f6e889cc49bd416424e3084d52727bdd7fd82d851738ba5a850ad658ab"
+        },
+        {
+          "page": 11,
+          "section_id": "s08",
+          "heading": "更新项目与分期",
+          "content_excerpt": "分期 ｜ 范围 ｜ 重点项目 ｜ 近期 2026–2029 ｜ 主线南段+原点社区+大钟寺 ｜ ①②③⑤ ｜ 中期 2029–2032 ｜ 廊道北段+众智园南 ｜ ①④⑥⑦ ｜ 远",
+          "figures": [],
+          "version_strings": [],
+          "chars": 795,
+          "non_ascii_chars": 694,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "270a1da136f54dd834cf2d60da2083cf1299b0d0cf8ccc4921b7f024452f3960"
+        },
+        {
+          "page": 12,
+          "section_id": "s09",
+          "heading": "指标体系、面积复算与合规摘要",
+          "content_excerpt": "图 4｜核心指标复算与证据链 ｜ 11,412,825 ｜ ㎡ 设计范围（复算） ｜ 21.61% ｜ 绿地率 ｜ 10.56% ｜ 公共空间率 ｜ 221.6 ha ｜ 建筑基底",
+          "figures": [
+            "图4"
+          ],
+          "version_strings": [],
+          "chars": 282,
+          "non_ascii_chars": 152,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "836354e7f07d0b74e84ce482eb7dae5993875b1dc0c4b31cf2c647265a5a6083"
+        },
+        {
+          "page": 13,
+          "section_id": "s10",
+          "heading": "风险、版权与待补资料",
+          "content_excerpt": "临时边界风险：官方数据发布后全部图层与指标整体复算（A-BOUNDARY-002）。 ｜ 控规缺口风险：强度/高度/拆改留一律待确认（A-CONTROLS-001）。 ｜ 文保风险",
+          "figures": [],
+          "version_strings": [],
+          "chars": 333,
+          "non_ascii_chars": 207,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "0e51ef643366e674603181bc699068c87fd0f80f03e7a6f7d875d8a294ebffdb"
+        }
+      ]
+    },
+    {
+      "path": "drawings/a3-booklet.en.pdf",
+      "language": "en",
+      "format": "A3",
+      "page_count": 13,
+      "sha256": "1047a7fd2cb332b1982990f79a4bdc4aab960f6853a03872829cbafc5a3c5d75",
+      "bytes": 1667017,
+      "declared_version": "v3.1",
+      "pages": [
+        {
+          "page": 1,
+          "section_id": "cover",
+          "heading": "Jing-Zhang AI Commons · Urban Design Proposal (A3 Booklet)",
+          "content_excerpt": "Open call: Centennial Jing-Zhang AI Innovation Belt open call ｜ All areas and ratios in th",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 765,
+          "non_ascii_chars": 18,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "244ff56cc260642e95b2ebbb2ef60c54117e3aae3e284112a6640fa7ba452f4b"
+        },
+        {
+          "page": 2,
+          "section_id": "s01",
+          "heading": "Design Basis & Sources",
+          "content_excerpt": "The primary authority is the official pre-qualification announcement [source:OFFICIAL-ANNO",
+          "figures": [],
+          "version_strings": [],
+          "chars": 1075,
+          "non_ascii_chars": 5,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "abc11e7374216907d27dbe3866f47cd56f81748117a28d783bebab87f8305d02"
+        },
+        {
+          "page": 3,
+          "section_id": "s03",
+          "heading": "Existing Conditions & Gap List",
+          "content_excerpt": "The heritage corridor runs north–south but splits east–west links; six crossings have poor",
+          "figures": [],
+          "version_strings": [],
+          "chars": 1798,
+          "non_ascii_chars": 6,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "e6778e9326368f6ea029488d581c483eb05f8d829b9f3542473c84ebb183e3dc"
+        },
+        {
+          "page": 4,
+          "section_id": "s05",
+          "heading": "Overall Design: Structure & Land Use",
+          "content_excerpt": "Fig.1 | Land-use structure (conceptual, provisional boundary) ｜ Use ｜ Area ｜ Share ｜ R&D 0",
+          "figures": [
+            "Fig.1"
+          ],
+          "version_strings": [],
+          "chars": 386,
+          "non_ascii_chars": 2,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "b66534ec2f38b3369932aa26a53547f36d845f59b495371791fe723bd8a2d6a6"
+        },
+        {
+          "page": 5,
+          "section_id": "s05b",
+          "heading": "Overall Design: Mobility & Blue-Green",
+          "content_excerpt": "Fig.2 | Mobility and blue-green system (conceptual) ｜ 9.72 km trail runs north–south; six ",
+          "figures": [
+            "Fig.2"
+          ],
+          "version_strings": [],
+          "chars": 380,
+          "non_ascii_chars": 4,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "39dcdecb79a5aef3563c2d244908602ec8e470895e61e651e963c053599880b5"
+        },
+        {
+          "page": 6,
+          "section_id": "s06",
+          "heading": "Key-Area Detailed Design",
+          "content_excerpt": "Fig.3 | Key areas and design tasks (conceptual) ｜ Area ｜ Role ｜ Anchors ｜ Zhongzhiyuan 192",
+          "figures": [
+            "Fig.3"
+          ],
+          "version_strings": [],
+          "chars": 424,
+          "non_ascii_chars": 5,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "64ff010ed1c4abfd1a45a0715fab1265f68e725a8d56a171a7b087e23c44d6ce"
+        },
+        {
+          "page": 7,
+          "section_id": "s06b",
+          "heading": "Place Studies (1): Halls & Brand",
+          "content_excerpt": "Fig.3b | Six halls as places (concept sections, not construction drawings) ｜ Fig.3c | OPEN",
+          "figures": [
+            "Fig.3b",
+            "Fig.3c"
+          ],
+          "version_strings": [],
+          "chars": 196,
+          "non_ascii_chars": 2,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "143e35b28fb3dc95eecbc327dd3af65f2cc7278c73fffdd0075edf59a0d3d6b4"
+        },
+        {
+          "page": 8,
+          "section_id": "s06b",
+          "heading": "Place Studies (2): Commit Plaza Node",
+          "content_excerpt": "Fig.3d | Commit Plaza node enlargement (placeholder massing) ｜ From abstract band to tangi",
+          "figures": [
+            "Fig.3d"
+          ],
+          "version_strings": [],
+          "chars": 326,
+          "non_ascii_chars": 2,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "aac8f8d034f37b3318bfa0a0e6499ca7b7207cf56e162277267a2734f8972afb"
+        },
+        {
+          "page": 9,
+          "section_id": "s06c",
+          "heading": "Streetfront & Construction Studies",
+          "content_excerpt": "Fig.3e | Streetfront interfaces & typical sections (S1 corridor / S2 forecourt / S3 lane +",
+          "figures": [
+            "Fig.3e",
+            "Fig.3f"
+          ],
+          "version_strings": [],
+          "chars": 407,
+          "non_ascii_chars": 2,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "d3d33d9751087a82767d9ff6a0e70645eea09b50f0ccab2af27c0d05a3d08989"
+        },
+        {
+          "page": 10,
+          "section_id": "s07",
+          "heading": "AI+ Scenarios & Data Governance",
+          "content_excerpt": "13 scenario cards all carry data boundaries and human review; 3 test scenarios require aut",
+          "figures": [],
+          "version_strings": [
+            "v0.5",
+            "v1.0"
+          ],
+          "chars": 965,
+          "non_ascii_chars": 4,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "42784dcb41c8ff6ff789810ff25c09ea268362bd0f35b53ee8f633859527b989"
+        },
+        {
+          "page": 11,
+          "section_id": "s08",
+          "heading": "Renewal Projects & Phasing",
+          "content_excerpt": "Phase ｜ Scope ｜ Key projects ｜ Near 2026–29 ｜ S. spine + Origin + Dazhongsi ｜ 1,2,3,5 ｜ Mi",
+          "figures": [],
+          "version_strings": [],
+          "chars": 1583,
+          "non_ascii_chars": 5,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "577d1d0f42eb082a02e301f54c4a99ac941bcefd94a884312f8e328164e4b68b"
+        },
+        {
+          "page": 12,
+          "section_id": "s09",
+          "heading": "Metrics, Recalculation & Compliance",
+          "content_excerpt": "Fig.4 | Metrics recalculation and evidence chain ｜ 11,412,825 ｜ ㎡ design area (recomputed)",
+          "figures": [
+            "Fig.4"
+          ],
+          "version_strings": [],
+          "chars": 426,
+          "non_ascii_chars": 3,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "8352da3c8c4221c5ed6fee1685b5f7d583e442d47248f88ca0874655ab99798f"
+        },
+        {
+          "page": 13,
+          "section_id": "s10",
+          "heading": "Risk, Copyright & Missing Data",
+          "content_excerpt": "Provisional boundary: full recalculation upon official data (A-BOUNDARY-002). ｜ Regulatory",
+          "figures": [],
+          "version_strings": [],
+          "chars": 595,
+          "non_ascii_chars": 2,
+          "page_size_pt": [
+            842,
+            1191
+          ],
+          "text_sha256": "459147f8d4c375a390a8f4b816bdf1d866432af90c43966a929a2adc43ac4505"
+        }
+      ]
+    },
+    {
+      "path": "drawings/a0-boards.pdf",
+      "language": "zh",
+      "format": "A0",
+      "page_count": 9,
+      "sha256": "cf1ffc2197fb070eb8d61dee1256835ebe010545e349637b801419112e6d4960",
+      "bytes": 2856533,
+      "declared_version": "v3.1",
+      "pages": [
+        {
+          "page": 1,
+          "section_id": "b1",
+          "heading": "总体设计结构 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 图面导读 ｜ 主图：全线全览（K0–9.7 里程）＋三段放大（南·大钟寺 / 中·知春路—清华园 / 北·众智园—清河） ｜ 右",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 353,
+          "non_ascii_chars": 281,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "0a819a0b39aa74dad306c882d3619ba25d01a26f25b2001236d397ac70ea51cb"
+        },
+        {
+          "page": 2,
+          "section_id": "b2",
+          "heading": "用地与城市更新 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 用地构成（复算） ｜ 用地 ｜ ha ｜ % ｜ 科研 0802 ｜ 348.6 ｜ 30.5 ｜ 绿地 1401 ｜ 246.",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 210,
+          "non_ascii_chars": 116,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "61037b87a2921cb1dbe786eca45b394c4654394e9ad2987660d547d524f6b5a1"
+        },
+        {
+          "page": 3,
+          "section_id": "b3",
+          "heading": "交通、轨道、慢行与市政支撑 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 三线织补 · 两河串珠 ｜ 开源步道 9.72km：步行+骑行主线，六站厅全龄接驳 ｜ 轨道一体化：大钟寺/知春路/五道口/上地",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 189,
+          "non_ascii_chars": 148,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "8e5d3b64e2f36e0e709a5875f5a94e9f41861407b4d863df6736fed72539aa31"
+        },
+        {
+          "page": 4,
+          "section_id": "b4",
+          "heading": "京张遗址公园活力带与蓝绿公共空间 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 蓝绿骨架 ｜ 主线廊道 156.7 万㎡ 连续公园绿地 ｜ 清河/小月河滨水绿带 + 4 社区公园 ｜ 绿地率 21.61%（设",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 248,
+          "non_ascii_chars": 189,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "b135b78f56b54c061a0a16aa274980bdcc9d62541c074c1fe354381e93e0b00d"
+        },
+        {
+          "page": 5,
+          "section_id": "b5",
+          "heading": "三处重点区域详细设计 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 定位差异与空间抓手 ｜ 重点区 ｜ 定位 ｜ 抓手 ｜ 众智园 ｜ 192.1 ha ｜ 主板芯片 ｜ 全栈院落·治理试验场·绿",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 203,
+          "non_ascii_chars": 153,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "0683b0d630d7cd8d22e70ba5caf6c94330c7dc097c23cbe501cf6976a8eef051"
+        },
+        {
+          "page": 6,
+          "section_id": "b6",
+          "heading": "AI 场景与实施运营 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 13 张场景卡（3 测试验证须许可） ｜ AI+交通慢行 ｜ AI文化导览 ｜ AI健康导航 ｜ 企业副驾 ｜ 安全复盘 ｜ 测",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 270,
+          "non_ascii_chars": 206,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "0e56b72aaa12e47d1c13b8b6eea2b68a7925b1803c2f597a35b96111778a90c2"
+        },
+        {
+          "page": 7,
+          "section_id": "b7",
+          "heading": "指标复核与合规响应 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 11,412,825 ｜ ㎡ 设计范围 ｜ 21.61% ｜ 绿地率 ｜ 10.56% ｜ 公共空间 ｜ 1107 ｜ 概念基底",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 298,
+          "non_ascii_chars": 169,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "b961fcf9b00ebc9fd12d7f447f5ad309ed7dbb25fe163ab8656574352857aff7"
+        },
+        {
+          "page": 8,
+          "section_id": "b8",
+          "heading": "场所设计深化与实施治理 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 场所深化（概念） ｜ 六站厅概念剖面：从条带到场所 ｜ 品牌应用：铺装/栏杆/座凳/灯柱/地刻 ｜ commit 广场放大平面（",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 257,
+          "non_ascii_chars": 200,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "f0bf602edc29b26822afaefc4fc1adc56c7f92fa6b802466f4a01c052116ff85"
+        },
+        {
+          "page": 9,
+          "section_id": "b9",
+          "heading": "沿街界面、节点构造与排序方法论 · v3.1",
+          "content_excerpt": "京张AI共同体 · 百年京张AI创新带城市设计 ｜ 沿街界面（概念） ｜ S1 廊道段：院落柱廊—绿缓冲—轨道—共享街 ｜ S2 站厅前区：全步行无高差 + 接驳港湾 ｜ S3 织",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 328,
+          "non_ascii_chars": 252,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "d434a305d29638dfdf77c10664b7c8ccec7e8b17177c0199dbe62aa32b7723fb"
+        }
+      ]
+    },
+    {
+      "path": "drawings/a0-boards.en.pdf",
+      "language": "en",
+      "format": "A0",
+      "page_count": 9,
+      "sha256": "8090d5313cb181aa7f61a6d9f4da14fa64fa704613729cf46fa2287ee98f001e",
+      "bytes": 1813369,
+      "declared_version": "v3.1",
+      "pages": [
+        {
+          "page": 1,
+          "section_id": "b1",
+          "heading": "Overall Structure · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ How to Read ｜ Main figu",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 686,
+          "non_ascii_chars": 8,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "9f1d7d0054fe32c2c7ea379a0e0422709d157123e51567fcbe752b24488c0c59"
+        },
+        {
+          "page": 2,
+          "section_id": "b2",
+          "heading": "Land Use & Renewal · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ Composition (recomputed",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 372,
+          "non_ascii_chars": 4,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "7aadf1fd9c9f659b655014604f3e3d5f0143b122775d2759ac5022bb688f0ad6"
+        },
+        {
+          "page": 3,
+          "section_id": "b3",
+          "heading": "Mobility & Infrastructure · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ Stitched corridors · ri",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 352,
+          "non_ascii_chars": 5,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "362e158585634e5d650c995b0f3307fdd54f0d55e2b96c47720e9197a11bf517"
+        },
+        {
+          "page": 4,
+          "section_id": "b4",
+          "heading": "Heritage Park & Blue-Green · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ Blue-green skeleton ｜ 1",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 457,
+          "non_ascii_chars": 4,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "101352476c22b49683407545f448aeae3b4f1bfbcf70219ecd4a6a71ead3d783"
+        },
+        {
+          "page": 5,
+          "section_id": "b5",
+          "heading": "Key-Area Detailed Design · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ Positioning & anchors ｜",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 415,
+          "non_ascii_chars": 4,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "9a236a257bb80189c33b3dc4e26b5a7e99922ce93ae0d578fa9470d47aec4dde"
+        },
+        {
+          "page": 6,
+          "section_id": "b6",
+          "heading": "AI Scenarios & Operations · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ 13 scenario cards (3 te",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 555,
+          "non_ascii_chars": 4,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "e764c101d8f1f3951f0a6acb078877cd7fc2ee22fc76ea085432d1def4fe9c4f"
+        },
+        {
+          "page": 7,
+          "section_id": "b7",
+          "heading": "Metrics & Compliance · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ 11,412,825 ｜ ㎡ site are",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 532,
+          "non_ascii_chars": 7,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "4bc948d9a67fdb9643731dad43a52b6fa21782d126ebc7859f92396298ae2402"
+        },
+        {
+          "page": 8,
+          "section_id": "b8",
+          "heading": "Place Design & Implementation Governance · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ Place studies (concept)",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 556,
+          "non_ascii_chars": 4,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "715cffa2d1d2d3b310b83a060da94ba856e90f75a87a79b0e5800bd1f79e0ed5"
+        },
+        {
+          "page": 9,
+          "section_id": "b9",
+          "heading": "Streetfront, Construction & Sequencing · v3.1",
+          "content_excerpt": "Jing-Zhang AI Commons · Centennial Jing-Zhang AI Innovation Belt ｜ Streetfront (concept) ｜",
+          "figures": [],
+          "version_strings": [
+            "v3.1"
+          ],
+          "chars": 613,
+          "non_ascii_chars": 4,
+          "page_size_pt": [
+            3370,
+            2384
+          ],
+          "text_sha256": "07d3c00074993ea8d176b691daf27240bead0a20c5f6df0ed8343c2151c6cd21"
+        }
+      ]
+    }
+  ]
+}

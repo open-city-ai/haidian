@@ -6,9 +6,9 @@
 
 ---
 
-## 附录：中英等价与交付完整性审计（v1.5 复核）
+## 附录：中英等价与交付完整性审计（v1.6 复核）
 
-审计时间：2026-08-14（v1.2 复核 A0 重排后）；2026-08-26（v1.5 全部条目重跑复核，新增 P0 指标五行）｜ 审计人：排版与字体子任务代理
+审计时间：2026-08-14（v1.2 复核 A0 重排后）；2026-08-26（v1.5 全部条目重跑复核，新增 P0 指标五行）；2026-08-28（v1.6 全部条目重跑复核，术语统一与字号上调后图件/图纸重出，新增锚定指标一行）｜ 审计人：排版与字体子任务代理
 范围：`assets/figures/` 12 张图件、`visual/` 两份 HTML、`drawings/` 四份 PDF、`metrics.json` 与 `proposal.md` / `proposal.en.md` 的指标引用。
 所有行均给出验证方式，结果全部为 PASS。本文件可复核：每条验证方式都可原样重跑。
 
@@ -18,12 +18,12 @@
 
 | 图件 | 尺寸 zh = en | 内容等义 | md5 zh ≠ en（两版确证） | 结果 |
 |---|---|---|---|---|
-| site-overview.png / .en.png | 2400×1500 = 2400×1500 | 同一底图与版式，仅语言替换 | 97331c4976df / 04cca63f9cf8 | PASS（v1.5 重验） |
-| land-use-structure.png / .en.png | 2400×1500 = 2400×1500 | 同上 | 7a049fa70244 / ac6fac8248f0 | PASS（v1.5 重验） |
-| key-areas.png / .en.png | 2400×1500 = 2400×1500 | 同上 | d53b52360ad1 / 74f73e3f73c2 | PASS（v1.5 重绘场景插图） |
-| slow-variable-section.png / .en.png | 2400×1500 = 2400×1500 | 同上 | 67a97a56eb5a / d144d33ff010 | PASS（v1.5 重绘场景插图） |
-| mobility-bluegreen.png / .en.png | 2400×1500 = 2400×1500 | 同上 | ab0724f66e8f / 2b7c9eb50354 | PASS（v1.5 重验） |
-| metrics-evidence.png / .en.png | 2400×1500 = 2400×1500 | 同上 | 70e63d60ef85 / 70fca8b1e5fa | PASS（v1.5 重验） |
+| site-overview.png / .en.png | 2400×1500 = 2400×1500 | 同一底图与版式，仅语言替换 | 97331c4976df / 04cca63f9cf8 | PASS（v1.6 重验，内容与 v1.5 相同） |
+| land-use-structure.png / .en.png | 2400×1500 = 2400×1500 | 同上 | 7a049fa70244 / a95c16e96c43 | PASS（v1.6 英文张术语统一重出，中文张未变） |
+| key-areas.png / .en.png | 2400×1500 = 2400×1500 | 同上 | 496fa06ad691 / 2e0dc31e50be | PASS（v1.6 图内标题术语统一重出） |
+| slow-variable-section.png / .en.png | 2400×1500 = 2400×1500 | 同上 | 67a97a56eb5a / d144d33ff010 | PASS（v1.6 重验，内容与 v1.5 相同） |
+| mobility-bluegreen.png / .en.png | 2400×1500 = 2400×1500 | 同上 | ab0724f66e8f / 2b7c9eb50354 | PASS（v1.6 重验，内容与 v1.5 相同） |
+| metrics-evidence.png / .en.png | 2400×1500 = 2400×1500 | 同上 | 70e63d60ef85 / 70fca8b1e5fa | PASS（v1.6 重验，内容与 v1.5 相同） |
 
 12 张 PNG 全部通过 `load()` + `verify()`，无截断、无坏块。zh/en 同由 `fig01–06` 各脚本以同一数据源（geometry/*.geojson、metrics.json）生成，仅文案语言不同。
 
@@ -52,9 +52,9 @@ section id 序列完全一致（7 = 7）；副标题（英文 kicker）两版逐
 | a0-boards.pdf / .en.pdf | 2 = 2 | 1189.0×841.0 mm（A0 横版） | PASS |
 | a3-booklet.pdf / .en.pdf | 6 = 6 | 420.1×296.9 mm（A3 横版） | PASS |
 
-页面内容对应：A0-1 概念与结构 ↔ Concept & Structure；A0-2 深度与证据 ↔ Depth & Evidence；A3 P1–P6 概念/结构/工场/剖面/移动/指标分期逐页对应。四份文件均 ≤ 3MB（v1.5 重出后 1.69–2.51MB）。
+页面内容对应：A0-1 概念与结构 ↔ Concept & Structure；A0-2 深度与证据 ↔ Depth & Evidence；A3 P1–P6 概念/结构/工场/剖面/移动/指标分期逐页对应。四份文件均 ≤ 3MB（v1.6 重出后 1.77–2.63MB）。
 
-v1.5 备注：fig03 三座工场与 fig04 典型街道剖面的场景插图由手绘线条全部改为实心剪影公共标识（ISO 7001 风格 pictogram）与结构化几何树冠，人物尺度统一（儿童=成人 0.72 倍）；fig01/02/05/06 内容不变，仅按修复后的 CJK 字体回退链重出。v1.2 备注：A0 两页经第二轮重排——页眉右区分别填入「指标速览 METRICS AT A GLANCE」（A0-1）与「合规快照 COMPLIANCE SNAPSHOT」（A0-2）面板，两只钟面板右半加总诀金句块、放行门/留白清单行右端加状态标签（默认否定 DEFAULT·NO / 待补 PENDING）；整页重栅格化 dpi 75→110，图流 JPEG 重压缩（pikepdf），面板正文与注记字号整体上调一档。重排后中英 4 页缩略图逐页复查无大留白、无裁切、无溢出。
+v1.6 备注：英文短标签全包统一——图纸与图件中的 "Zhongzhi Yard · Measure / AI Origin · Explain / Measuring / Negotiating / Delivery / Three workshops" 统一为 "Zhongzhiyuan · Measure / AI Origin · Negotiate / Dazhongsi · Deliver / Three civic yards"，正文新增「双语术语对照表」登记 20 组规范译法与禁用变体；A0/A3 次级注释字号整体上调（A3 最小 7.5pt→9pt，A0 最小 10.5pt→12.5pt），fig02/03/05 受影响图件与四份图纸 PDF 重出，中英 16 页缩略图逐页复查无大留白、无裁切、无溢出。v1.5 备注：fig03 三座工场与 fig04 典型街道剖面的场景插图由手绘线条全部改为实心剪影公共标识（ISO 7001 风格 pictogram）与结构化几何树冠，人物尺度统一（儿童=成人 0.72 倍）；fig01/02/05/06 内容不变，仅按修复后的 CJK 字体回退链重出。v1.2 备注：A0 两页经第二轮重排——页眉右区分别填入「指标速览 METRICS AT A GLANCE」（A0-1）与「合规快照 COMPLIANCE SNAPSHOT」（A0-2）面板，两只钟面板右半加总诀金句块、放行门/留白清单行右端加状态标签（默认否定 DEFAULT·NO / 待补 PENDING）；整页重栅格化 dpi 75→110，图流 JPEG 重压缩（pikepdf），面板正文与注记字号整体上调一档。重排后中英 4 页缩略图逐页复查无大留白、无裁切、无溢出。
 
 ## 4. metrics.json 指标在 proposal.md / proposal.en.md 中引用一致
 
@@ -67,7 +67,7 @@ v1.5 备注：fig03 三座工场与 fig04 典型街道剖面的场景插图由�
 | green_ratio | 0.123423 → 12.34% | 「12.34」×1 | "12.34" ×1 | PASS |
 | public_space_ratio | 0.073944 → 7.39% | 「7.39」×1 | "7.39" ×1 | PASS |
 | floor_area_ratio | unknown（留白） | 「容积率」×4，均标注待正式数据 | "FAR/far" ×5，均标注 awaiting official data | PASS |
-| key_area_count | 3 | 「重点区」×4、三工场表述一致 | "Key Area"/"civic yard"/"workshop" 对应表述 | PASS |
+| key_area_count | 3 | 「重点区」×4、三工场表述一致 | "Key Area"/"civic yard" 对应表述（v1.6 起 "workshop" 变体清零） | PASS（v1.6 重验） |
 | scenario_card_count | 12 | 「十二张」×1 + 「12 张」×1 | "Twelve" ×2 + "12 scenario cards" ×1 | PASS |
 | industry_test_count | 3 | 「产业测试」×2 | "industry test" ×2 | PASS |
 | slow_variable_count | 5 | 「五类」×16 | "five/Five slow" 对应表述 | PASS（v1.5 重验） |
@@ -78,6 +78,7 @@ v1.5 备注：fig03 三座工场与 fig04 典型街道剖面的场景插图由�
 | p0_rom_cost_low/high_million_cny | 2.16–4.25 百万元（自设单价，非报价） | 「约 216 万元 / 约 425 万元」×1 | "≈¥2.16M / ≈¥4.25M" ×1 | PASS（v1.5 新增） |
 | p0_opex_low/high_million_cny_per_year | 0.90–1.50 百万元/年（自设单价，非报价） | 「约 90–150 万元/年」×1 | "≈¥0.90–1.50M per year" ×1 | PASS（v1.5 新增） |
 | group_specific_acceptance_coverage | 1.0（5/5 适用场景） | 「分群体」×4，判据表逐行可查 | "group-specific" 对应表述 | PASS（v1.5 新增） |
+| p0_cost_public_anchor_count | 5（公开数字锚点，非报价） | 「单价公开锚定」×1，五个锚点逐一具名 | "Public anchoring of the unit prices" ×1 | PASS（v1.6 新增） |
 
 ## 5. 附：字体内嵌等价性
 

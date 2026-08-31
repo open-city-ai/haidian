@@ -1,0 +1,120 @@
+{
+  "schema_version": "0.1.0",
+  "risks": [
+    {
+      "risk_id": "R-EVIDENCE",
+      "title_zh": "遗存与现场事实核验",
+      "category": "data_gap",
+      "severity": "high",
+      "description_zh": "铁轨、枕木、道岔、建筑属性、保护等级和权属未全部取得场地级证据。",
+      "mitigation_zh": "先档案与逐件测绘，再保护评估和命名；无证据只写待核验线索。"
+    },
+    {
+      "risk_id": "R-SAFETY",
+      "title_zh": "消防疏散与轨道冲突",
+      "category": "safety",
+      "severity": "high",
+      "description_zh": "装置、活动、设备和慢行可能与疏散、轨道保护或救援冲突。",
+      "mitigation_zh": "责任主体专项审查，设备不覆盖线索，不阻断救援；不通过即停用并恢复。"
+    },
+    {
+      "risk_id": "R-RIGHTS",
+      "title_zh": "声音、历史素材与品牌权利",
+      "category": "rights",
+      "severity": "high",
+      "description_zh": "声景、图像、字体、名称和案例引用存在授权及用途边界。",
+      "mitigation_zh": "逐项权利台账；缺权利不上线，案例只作citation-only机制参照。"
+    },
+    {
+      "risk_id": "R-DATA",
+      "title_zh": "个人信息与AI边界",
+      "category": "data_boundary",
+      "severity": "high",
+      "description_zh": "导览、夜间活动和互动装置可能诱发过度采集。",
+      "mitigation_zh": "仅匿名聚合、关键决策人工复核、禁止过度监控；默认本地、可停止、可删除。"
+    },
+    {
+      "risk_id": "R-EQUITY",
+      "title_zh": "公共利益与非数字后备",
+      "category": "public_acceptance",
+      "severity": "high",
+      "description_zh": "数字体验可能排除老年人、残障者、儿童照护者、居民和非智能手机访客。",
+      "mitigation_zh": "纸本/人工/电话、多语/触觉/音频替代，按群组验收和投诉复盘。"
+    },
+    {
+      "risk_id": "R-OPERATIONS",
+      "title_zh": "长期运营与跨区接口",
+      "category": "operations",
+      "severity": "medium",
+      "description_zh": "开发者社区、维护、资金、人才和区域接口尚未落实。",
+      "mitigation_zh": "月度申请、季度评估、年度复盘；资金/人才/专业服务列待确认，失败则退出移交。"
+    }
+  ],
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 2,
+      "note": "人流与轨迹数据仅采用匿名聚合，不做个体识别；AI生成内容全部人工复核后发布。",
+      "mitigation": "在文本与图件中声明仅聚合不识别，发布流程设人工复核岗。",
+      "human_review": "由责任主体与专业团队逐项人工核验；AI只提供可解释草案，不作最终判断。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 3,
+      "note": "Node siting, fire/egress, rail/heritage, access, equipment and maintenance require field gates.",
+      "mitigation": "Reversible pilots, named owners, subgroup tests, stop and handover specifications.",
+      "human_review": "由责任主体与专业团队逐项人工核验；AI只提供可解释草案，不作最终判断。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 3,
+      "note": "AI观测装置与数据展示可能引发隐私与‘过度科技化’疑虑。",
+      "mitigation": "匿名聚合+人工复核边界明确披露，设施以低侵入、可关闭设计为主。",
+      "human_review": "由责任主体与专业团队逐项人工核验；AI只提供可解释草案，不作最终判断。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 2,
+      "note": "Staff, cleaning, retrieval, rights/data deletion and annual review require recurring resources.",
+      "mitigation": "Record costs and owners; only expand supported pilots.",
+      "human_review": "由责任主体与专业团队逐项人工核验；AI只提供可解释草案，不作最终判断。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 3,
+      "note": "河道管理、蓝线与数据开放政策仍在演进，审批路径未定型。",
+      "mitigation": "以现行法规为参照，保留弹性接口；正式实施前完成法定审批。",
+      "human_review": "由责任主体与专业团队逐项人工核验；AI只提供可解释草案，不作最终判断。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 3,
+      "note": "全部几何基于 provisional 边界，正式边界发布后面积与指标可能有变。",
+      "mitigation": "已在 geometry、矩阵与指标复算说明中标注 provisional 状态与复算条件。",
+      "human_review": "由责任主体与专业团队逐项人工核验；AI只提供可解释草案，不作最终判断。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 3,
+      "note": "AR, soundscape, light and AI assistance are pilot hypotheses.",
+      "mitigation": "Baseline tests, human fallback, rights check and exit after failed cycles.",
+      "human_review": "由责任主体与专业团队逐项人工核验；AI只提供可解释草案，不作最终判断。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性",
+      "score": 2,
+      "note": "Paper, staffed and accessible channels are needed alongside digital experiences.",
+      "mitigation": "Group thresholds, accessible field acceptance and complaint routes.",
+      "human_review": "由责任主体与专业团队逐项人工核验；AI只提供可解释草案，不作最终判断。"
+    }
+  ]
+}

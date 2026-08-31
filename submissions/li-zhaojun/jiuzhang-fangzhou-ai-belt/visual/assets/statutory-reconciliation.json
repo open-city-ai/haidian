@@ -1,0 +1,72 @@
+{
+  "schema_note": "v4.3 法定对账方法论 — 应对评审'EPSG:4548 唯一权威值'过度断言。定义触发条件（正式控规或文保管控边界进入 approved_formal_sources）、三级冲突等级（参数偏离/功能冲突/物理不可行）、双语处置规则。所有对账结果记入 difference-ledger 并随 90 天公示期披露；正式发布前不假设任何控规值。",
+  "version": "v4.3",
+  "status": "methodology_pending_official_statutory_release",
+  "trigger": {
+    "condition_zh": "官方控规图则或文保管控边界正式发布并进入 data/source_registry.json 的 approved_formal_sources 后启动校核",
+    "condition_en": "Reconciliation starts once official regulatory-plan drawings or heritage-control boundaries are formally released and enter approved_formal_sources in data/source_registry.json",
+    "current_state_zh": "所有空间边界与面积均为 provisional，仅作概念建议，禁止作为正式红线或法定精确面积依据",
+    "current_state_en": "All spatial boundaries and areas are provisional; conceptual only; NOT to be treated as official redline or legally-precise area basis"
+  },
+  "conflict_levels": [
+    {
+      "level": "L1",
+      "definition_zh": "局部参数偏离：设计模型值与图则管控值存在参数级差异，不改变要素功能",
+      "definition_en": "Local parameter deviation: design-model values differ from statutory control values at parameter level without changing element function",
+      "disposition_zh": "校核并更新设计模型值，差异记入台账",
+      "disposition_en": "Check and update design-model values; record the difference in ledger"
+    },
+    {
+      "level": "L2",
+      "definition_zh": "功能冲突：管控要求使要素功能无法按原设计成立",
+      "definition_en": "Functional conflict: control requirements render element function unworkable as designed",
+      "disposition_zh": "要素降级为概念占位，待专项深化",
+      "disposition_en": "Downgrade the element to conceptual placeholder pending specialist deepening"
+    },
+    {
+      "level": "L3",
+      "definition_zh": "物理不可行：设计模型与图则管控在物理上无法并存",
+      "definition_en": "Physically infeasible: design-model and statutory control cannot co-exist physically",
+      "disposition_zh": "撤销该设计要素，记入台账并触发预案",
+      "disposition_en": "Withdraw the design element; record in ledger; trigger contingency plan"
+    }
+  ],
+  "element_control_matrix_preview_zh": [
+    [
+      "要素",
+      "控规类型",
+      "对账状态",
+      "处置预案"
+    ],
+    [
+      "众智园全栈创新街区",
+      "科研/工业混合用地",
+      "pending",
+      "L1/L2 处置预案就绪"
+    ],
+    [
+      "AI 原点社区",
+      "科研/居住混合用地",
+      "pending",
+      "L1/L2 处置预案就绪"
+    ],
+    [
+      "大钟寺智能经济街区",
+      "商业服务业用地",
+      "pending",
+      "L1/L2 处置预案就绪"
+    ],
+    [
+      "京张遗址公园活力带",
+      "绿地与公共空间",
+      "pending",
+      "L1/L2 处置预案就绪（须文保协议）"
+    ]
+  ],
+  "difference_ledger_zh": "差异台账：对账完成后所有 L1/L2/L3 项进入台账，差异标注来源、对账时间、处置结论",
+  "difference_ledger_en": "Difference ledger: after reconciliation, all L1/L2/L3 items enter ledger with source, reconciliation timestamp, disposition conclusion",
+  "public_disclosure_zh": "90 天公示期：台账通过 project 公示渠道公开",
+  "public_disclosure_en": "90-day public review: ledger published via project disclosure channel",
+  "v2_4_1_status_note": "v2.4.1 中'EPSG:4548 投影面积作为当前 provisional 模型基线（唯一权威值须以组织方发布的正式 polygon 为准）'的表述已不再使用'唯一权威'用词；本方法论取代为分级冲突对账。",
+  "v2_4_1_status_note_en": "The v2.4.1 wording 'EPSG:4548 projected area as the sole authoritative basis' is replaced by graded-conflict reconciliation; no element is treated as 'authoritative' before official release."
+}

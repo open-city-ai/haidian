@@ -1,0 +1,322 @@
+{
+  "claims_boundary": "This file is a replayable log of local deterministic checks. It is not evidence of deployment, field performance, approval, or public acceptance.",
+  "derived": {
+    "audit_completeness": 1,
+    "negative_fixture_rejection_count": 6,
+    "simulation_success_rate": 1,
+    "simulation_task_count": 10,
+    "tool_schema_pass_rate": 1
+  },
+  "input_bundle_ref": "visual/assets/experiment-inputs.json",
+  "input_bundle_sha256": "25da7c03fc073bb16f2bcad7fe61e35d2b143424151f65d65a77bc7c8ada71d7",
+  "mode": "offline",
+  "not_run": [
+    "model invocation",
+    "field trial",
+    "runtime or latency measurement",
+    "energy measurement",
+    "public feedback",
+    "approval",
+    "HumanDecision"
+  ],
+  "program_ref": "visual/assets/experiment-allocation.js",
+  "schema_version": "1.0",
+  "scope": "One deterministic assignment question: allocate S01-S12 to three role IDs without changing coordinates.",
+  "seed": 20260821,
+  "simulation_id": "offline-s01-s12-role-allocation",
+  "status": "succeeded",
+  "task_count": 10,
+  "task_outcome_rule": "An outcome equal to success or ending in _success is successful; negative fixtures must be rejected successfully.",
+  "tasks": [
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "feasible_assignment_count": 55,
+        "pareto_assignment_count": 6,
+        "role_count": 3,
+        "scenario_count": 12
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.scenario_catalog",
+        "visual/assets/experiment-inputs.json#frozen_inputs.allocation_config"
+      ],
+      "observed": {
+        "feasible_assignment_count": 55,
+        "pareto_assignment_count": 6,
+        "role_count": 3,
+        "scenario_count": 12
+      },
+      "outcome": "enumeration_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#counts"
+      ],
+      "task_id": "enumerate-feasible-assignments",
+      "task_kind": "enumeration"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "assignment_key": "source_calibration_yard:S01,S02,S08|civic_translation_commons:S04,S05,S07,S11,S12|adoption_market_court:S03,S06,S09,S10",
+        "candidate_id": "authored_baseline",
+        "objective_values": {
+          "fallback_strength_min": 6,
+          "maintenance_burden_max": 8,
+          "persona_coverage_min": 6,
+          "reversibility_sum_min": 7,
+          "role_affinity_total": 36,
+          "role_load_spread": 2,
+          "unknown_dependency_burden_max": 8
+        }
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.candidates.authored_baseline",
+        "visual/assets/experiment-inputs.json#frozen_inputs.deltas.authored_baseline"
+      ],
+      "observed": {
+        "assignment_key": "source_calibration_yard:S01,S02,S08|civic_translation_commons:S04,S05,S07,S11,S12|adoption_market_court:S03,S06,S09,S10",
+        "candidate_id": "authored_baseline",
+        "objective_values": {
+          "fallback_strength_min": 6,
+          "maintenance_burden_max": 8,
+          "persona_coverage_min": 6,
+          "reversibility_sum_min": 7,
+          "role_affinity_total": 36,
+          "role_load_spread": 2,
+          "unknown_dependency_burden_max": 8
+        }
+      },
+      "outcome": "candidate_evaluation_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#candidates.authored_baseline"
+      ],
+      "task_id": "evaluate-authored_baseline",
+      "task_kind": "candidate_evaluation"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "assignment_key": "source_calibration_yard:S01,S02,S08,S11|civic_translation_commons:S04,S05,S07,S12|adoption_market_court:S03,S06,S09,S10",
+        "candidate_id": "public_interest_balance",
+        "objective_values": {
+          "fallback_strength_min": 9,
+          "maintenance_burden_max": 10,
+          "persona_coverage_min": 8,
+          "reversibility_sum_min": 10,
+          "role_affinity_total": 35,
+          "role_load_spread": 10,
+          "unknown_dependency_burden_max": 10
+        }
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.candidates.public_interest_balance",
+        "visual/assets/experiment-inputs.json#frozen_inputs.deltas.public_interest_balance"
+      ],
+      "observed": {
+        "assignment_key": "source_calibration_yard:S01,S02,S08,S11|civic_translation_commons:S04,S05,S07,S12|adoption_market_court:S03,S06,S09,S10",
+        "candidate_id": "public_interest_balance",
+        "objective_values": {
+          "fallback_strength_min": 9,
+          "maintenance_burden_max": 10,
+          "persona_coverage_min": 8,
+          "reversibility_sum_min": 10,
+          "role_affinity_total": 35,
+          "role_load_spread": 10,
+          "unknown_dependency_burden_max": 10
+        }
+      },
+      "outcome": "candidate_evaluation_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#candidates.public_interest_balance"
+      ],
+      "task_id": "evaluate-public_interest_balance",
+      "task_kind": "candidate_evaluation"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "assignment_key": "source_calibration_yard:S01,S02,S11|civic_translation_commons:S04,S05,S07,S08,S12|adoption_market_court:S03,S06,S09,S10",
+        "candidate_id": "low_burden_operable",
+        "objective_values": {
+          "fallback_strength_min": 7,
+          "maintenance_burden_max": 7,
+          "persona_coverage_min": 6,
+          "reversibility_sum_min": 8,
+          "role_affinity_total": 34,
+          "role_load_spread": 2,
+          "unknown_dependency_burden_max": 9
+        }
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.candidates.low_burden_operable",
+        "visual/assets/experiment-inputs.json#frozen_inputs.deltas.low_burden_operable"
+      ],
+      "observed": {
+        "assignment_key": "source_calibration_yard:S01,S02,S11|civic_translation_commons:S04,S05,S07,S08,S12|adoption_market_court:S03,S06,S09,S10",
+        "candidate_id": "low_burden_operable",
+        "objective_values": {
+          "fallback_strength_min": 7,
+          "maintenance_burden_max": 7,
+          "persona_coverage_min": 6,
+          "reversibility_sum_min": 8,
+          "role_affinity_total": 34,
+          "role_load_spread": 2,
+          "unknown_dependency_burden_max": 9
+        }
+      },
+      "outcome": "candidate_evaluation_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#candidates.low_burden_operable"
+      ],
+      "task_id": "evaluate-low_burden_operable",
+      "task_kind": "candidate_evaluation"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "expected_error": "FIXED_ASSIGNMENT:S01",
+        "rejected": true
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.negative_fixtures"
+      ],
+      "observed": {
+        "actual_errors": [
+          "FIXED_ASSIGNMENT:S01",
+          "ROLE_CARDINALITY:civic_translation_commons:6",
+          "ROLE_CARDINALITY:source_calibration_yard:2",
+          "ROLE_NOT_ALLOWED:S01:civic_translation_commons"
+        ],
+        "rejected": true
+      },
+      "outcome": "negative_fixture_rejection_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#negative_fixture_results.fixed_role_violation"
+      ],
+      "task_id": "reject-fixed_role_violation",
+      "task_kind": "negative_fixture"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "expected_error": "UNIQUE_COVERAGE",
+        "rejected": true
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.negative_fixtures"
+      ],
+      "observed": {
+        "actual_errors": [
+          "DUPLICATE_SCENARIO",
+          "FIXED_ASSIGNMENT:S12",
+          "UNIQUE_COVERAGE"
+        ],
+        "rejected": true
+      },
+      "outcome": "negative_fixture_rejection_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#negative_fixture_results.duplicate_missing_coverage"
+      ],
+      "task_id": "reject-duplicate_missing_coverage",
+      "task_kind": "negative_fixture"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "expected_error": "ROLE_CARDINALITY:source_calibration_yard",
+        "rejected": true
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.negative_fixtures"
+      ],
+      "observed": {
+        "actual_errors": [
+          "DUPLICATE_SCENARIO",
+          "ROLE_CARDINALITY:source_calibration_yard:6"
+        ],
+        "rejected": true
+      },
+      "outcome": "negative_fixture_rejection_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#negative_fixture_results.role_cardinality_overflow"
+      ],
+      "task_id": "reject-role_cardinality_overflow",
+      "task_kind": "negative_fixture"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "expected_error": "PROHIBITED_FLAG:S04:uses_pii",
+        "rejected": true
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.negative_fixtures"
+      ],
+      "observed": {
+        "actual_errors": [
+          "PROHIBITED_FLAG:S04:uses_pii"
+        ],
+        "rejected": true
+      },
+      "outcome": "negative_fixture_rejection_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#negative_fixture_results.prohibited_pii_flag"
+      ],
+      "task_id": "reject-prohibited_pii_flag",
+      "task_kind": "negative_fixture"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "expected_error": "NO_ROLE_FALLBACK:source_calibration_yard",
+        "rejected": true
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.negative_fixtures"
+      ],
+      "observed": {
+        "actual_errors": [
+          "NO_ROLE_FALLBACK:source_calibration_yard"
+        ],
+        "rejected": true
+      },
+      "outcome": "negative_fixture_rejection_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#negative_fixture_results.court_without_manual_fallback"
+      ],
+      "task_id": "reject-court_without_manual_fallback",
+      "task_kind": "negative_fixture"
+    },
+    {
+      "audit_complete": true,
+      "dispatch_schema_valid": true,
+      "expected": {
+        "expected_error": "COORDINATE_PATCH_NOT_EMPTY",
+        "rejected": true
+      },
+      "input_refs": [
+        "visual/assets/experiment-inputs.json#frozen_inputs.negative_fixtures"
+      ],
+      "observed": {
+        "actual_errors": [
+          "COORDINATE_PATCH_NOT_EMPTY"
+        ],
+        "rejected": true
+      },
+      "outcome": "negative_fixture_rejection_success",
+      "output_refs": [
+        "visual/assets/experiment-run.json#negative_fixture_results.coordinate_patch_present"
+      ],
+      "task_id": "reject-coordinate_patch_present",
+      "task_kind": "negative_fixture"
+    }
+  ]
+}

@@ -45,6 +45,11 @@
 | assets/figures/inclusion-space.png 及 .en.png | 同上 | 无 | 是 | 包容性空间落点（概念） |
 | assets/figures/rights-ledger.png 及 .en.png | 同上 | 无 | 是 | 权利台账可见图（概念） |
 | assets/figures/international-campaign.png 及 .en.png | 同上 | 无 | 是 | 国际传播战役卡（概念） |
+| assets/figures/brand-spec.png 及 .en.png | 同上 | 无 | 是 | 落地品牌规范（概念，非正式注册商标） |
+| assets/figures/ai-verify-protocol.png 及 .en.png | 同上 | 无 | 是 | 桌面核验协议 TABLETOP-ONLY（现场未做） |
+| assets/figures/implementation-handoff.png 及 .en.png | 同上 | 无 | 是 | 实施交接与图层指标对照（概念） |
+| assets/figures/ai-ops-envelope.png 及 .en.png | 同上 | 无 | 是 | 桌面运维包络与现场证据契约 TABLETOP-ONLY / ASSUMPTION（现场未做） |
+| assets/figures/seven-gap-runbook.png 及 .en.png | 同上 | 无 | 是 | 七类官方缺口替换手册（概念交接） |
 
 无肖像、无未授权商标、无私人室内、无爬取的平台原图。
 
@@ -63,7 +68,8 @@
 
 ## 6. 字体与工具链
 
-- HTML 离线中文：文泉驿微米黑（WenQuanYi Micro Hei / Droid Sans Fallback）字符子集以 `data:font/woff2` 内嵌于 `report/proposal.html`、`visual/index.html` 及其英译页，Apache License 2.0。不依赖 CDN，不依赖评审机系统字体，不单独存放 `.woff2` 文件。
+- HTML 离线中文：文泉驿微米黑（WenQuanYi Micro Hei / Droid Sans Fallback）按四份必需 HTML 的实际用字做成子集，以 `@font-face` + `data:font/woff2` 内嵌于 `report/proposal.html`、`report/proposal.en.html`、`visual/index.html`、`visual/index.en.html`，Apache License 2.0。不依赖 CDN，不依赖评审机系统字体，不单独存放 `.woff2` 文件。官方 `render_proposal_html.py` 会冲掉报告页字体，必须在重渲后重新注入。
+- 本声明与可见图像只供评审核验与仓库 intake；机器审查不能替代最终法律清权，也不构成商标注册、政府背书或可对外商用授权。
 - PDF：PyMuPDF 按 A3/A0 点阵嵌入图件；正文 HTML 由官方 `render_proposal_html.py` 生成后注入 `@font-face`。
 - 图件：`/root/.cursor/skills/draw`（draw_batch / draw.py），制图日期 2026-08-30。
 - 构建：Python 3、官方 `finalize_submission.py` / `refresh_submission_manifest.py` / `self_check_submission.py`

@@ -5,7 +5,7 @@ language: "zh"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
-license: "COMMUNITY-DISPLAY-ONLY"
+license: "CC-BY-4.0"
 iteration: "v4.22"
 summary: "以百年京张铁路遗产走廊为骨架，把海淀 AI 产业带重构为一条人与智能体共同使用的原力带：一带三区两翼五门户的空间结构，八处叙事地标，八类人才画像，十二张可审计的 AI+ 场景卡，十六项实施机制与十二个编号更新项目，全部锚定临时边界口径、结构化指标与可复算证据链，并由同一份数据源同时渲染中英文本。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
@@ -1035,9 +1035,9 @@ AI 产业的空间需求变化速度远快于用地性质的调整速度。一�
 *图 · 约束要素与闸门体系概念示意。约束范围为临时口径，正式资料到位前不得用于审批、招标或投资判断 [source:BOUNDARY-SOURCE] [depth:risk_missing_data]。*
 ### 版权与许可
 
-本方案文本、图纸、几何文件与结构化数据采用 `COMMUNITY-DISPLAY-ONLY` 许可：允许组织方、评审者与公众在社区展示、讨论与学术引用范围内免费使用，但不得用于商业开发、政府审批材料或暗示政府背书的宣传。标识系统 `identity-system.svg` 采用 CC BY 4.0 许可，允许复制、修改与再发布，但须署名且不得用于暗示政府背书。方案中使用的开源字体（思源黑体、思源宋体、Inter、JetBrains Mono）遵循其原始许可证，不构成对本方案整体许可的替代 [source:AGENT-TASKBOOK]。
+本方案文本、图纸、几何文件与结构化数据采用 `CC BY 4.0` 许可：允许任何主体在社区展示、讨论、学术引用、修改与再发布，须署名且不得暗示政府背书。标识系统 `identity-system.svg` 同样采用 CC BY 4.0 许可。方案中使用的开源字体（思源黑体、思源宋体、Inter、JetBrains Mono）遵循其原始许可证，不构成对本方案整体许可的替代 [source:AGENT-TASKBOOK]。
 
-本包所有原创文本、图示、几何数据与生成脚本由 AI agent kimik3 生成，按 `report/copyright_statement.md` 中的逐项台账声明来源与许可。台账按字体、图像、图标、底图、数据、几何、代码、标识、AI 生成内容九类逐项列出，每项写明来源、许可类型与使用边界。字体仅使用开源许可字体，图示与几何均为本包自绘或自算，未使用任何受版权保护的第三方图件、卫星影像或商业地图数据。作品按 COMMUNITY-DISPLAY-ONLY 提交，即允许主办方在评审与公开展示中使用，不转让著作权，不授权商业使用。
+本包所有原创文本、图示、几何数据与生成脚本由 AI agent kimik3 生成，按 `report/copyright_statement.md` 中的逐项台账声明来源与许可。台账按字体、图像、图标、底图、数据、几何、代码、标识、AI 生成内容九类逐项列出，每项写明来源、许可类型与使用边界。字体仅使用开源许可字体，图示与几何均为本包自绘或自算，未使用任何受版权保护的第三方图件、卫星影像或商业地图数据。作品按 CC BY 4.0 提交，允许任何主体使用、修改与再发布，须署名且不得暗示政府背书，不转让著作权。
 
 ### 数据与算法风险处置
 

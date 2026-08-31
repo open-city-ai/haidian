@@ -1,0 +1,136 @@
+{
+  "schema_version": "0.1.0",
+  "risks": [
+    {
+      "risk_id": "R-BOUNDARY",
+      "title_zh": "边界精度",
+      "category": "data_gap",
+      "severity": "medium",
+      "description_zh": "全部几何基于 provisional 边界与 concept 几何；官方边界与控规发布后，面积、比例与指标需整体复算并更新图件。",
+      "mitigation_zh": "已在正文、矩阵、图件与 self_check 中标明 provisional 状态与复算触发条件。"
+    },
+    {
+      "risk_id": "R-CONTROL",
+      "title_zh": "法定控制缺位",
+      "category": "statutory",
+      "severity": "medium",
+      "description_zh": "控规指标、轨道与道路控制条件、文保生态约束及权属、市政容量、消防等专业资料未公开，本方案不给出任何数值结论。",
+      "mitigation_zh": "全部表述为概念建议与导则要素，结论性数值留给专业团队在官方数据发布后核定。"
+    },
+    {
+      "risk_id": "R-PRIVACY",
+      "title_zh": "AI助手与数据流通边界",
+      "category": "data_boundary",
+      "severity": "medium",
+      "description_zh": "智能匹配、估值评估与流通台账等AI服务涉及企业与个人信息，若未设边界可能造成隐私风险。",
+      "mitigation_zh": "仅处理匿名聚合数据，个人与商业敏感信息本地化脱敏，敏感结论由持证专业人员人工复核，不进行个体识别式追踪、禁止过度监控。"
+    },
+    {
+      "risk_id": "R-TRANSIT",
+      "title_zh": "大街断面与轨道接驳协调",
+      "category": "policy",
+      "severity": "high",
+      "description_zh": "大街断面改造与轨道站点接驳涉及多部门审批，实施路径未定型。",
+      "mitigation_zh": "方案仅表达概念意图，断面与接驳设施须经主管部门依法审定。"
+    },
+    {
+      "risk_id": "R-TECH",
+      "title_zh": "技术成熟度",
+      "category": "technology",
+      "severity": "medium",
+      "description_zh": "智能匹配、估值评估与标准评测等AI工具仍在迭代，真实业务接入前需要验证。",
+      "mitigation_zh": "以三项AI技术测试协议先行验证（测试条件、通过标准、退出机制），成熟技术与人工值守兜底，先测试后规模化。"
+    },
+    {
+      "risk_id": "R-ACCEPTANCE",
+      "title_zh": "市场与公众接受度",
+      "category": "public_acceptance",
+      "severity": "medium",
+      "description_zh": "要素市场化配置涉及市场波动与公众疑虑，沿街更新涉及商户与居民利益。",
+      "mitigation_zh": "机制披露透明、试点先行（最小可行试点），重大规则依法公示、协商与听证，居民意见通道与年度公示常态化。"
+    },
+    {
+      "risk_id": "R-OPERATION",
+      "title_zh": "长期运营与招引转化",
+      "category": "operations",
+      "severity": "medium",
+      "description_zh": "活动与开发者社区依赖持续运营资源，收益/成本维持与人才企业转化存在不确定性。",
+      "mitigation_zh": "以年度活动品牌、积分与志愿机制降低冷启动门槛，运营以概念资源包与go/no-go分阶段验证，不预支承诺。"
+    },
+    {
+      "risk_id": "R-BRAND",
+      "title_zh": "品牌在先权利",
+      "category": "legal",
+      "severity": "medium",
+      "description_zh": "概念阶段未完成官方商标检索，「智枢链谷」等名称与标识存在在先权利冲突的可能。",
+      "mitigation_zh": "名称与标识一律按内部工作代号处理，不对外注册或商用；完成在先权利检索与清理后再进入品牌发布流程。"
+    }
+  ],
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 2,
+      "note": "AI助手与流通台账仅采用匿名聚合，不做个体识别；AI生成内容全部人工复核后发布。",
+      "mitigation": "在文本与图件中声明仅聚合不识别，发布流程设人工复核岗，不进行个体识别式追踪、禁止过度监控。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 3,
+      "note": "大街断面更新、三驿落位与活动运营涉及多主体多部门协同，概念到落地跨度大。",
+      "mitigation": "方案明确为概念建议，实施表附RACI、前置条件、最小可行试点、里程碑与go/no-go及停止条件。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 3,
+      "note": "AI数据展示、活动扰民与改造扰商可能引发公众疑虑。",
+      "mitigation": "匿名聚合+人工复核边界明确披露，设施以低侵入、可关闭、预约分流设计为主，居民意见通道与议事机制开放。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 2,
+      "note": "数字底座、AI工具与活动体系存在持续运维成本，缺乏经核验的运营基线。",
+      "mitigation": "统一建设、多元运营模式建议；设施采用模块化可逆设计，预算按档次定性表述，不主张精确金额。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 3,
+      "note": "城市更新、数据要素与AI治理政策仍在演进，审批路径未定型。",
+      "mitigation": "以现行法规为参照，保留弹性接口；正式实施前完成法定审批与数据合规、安全评估。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 3,
+      "note": "全部几何基于 provisional 边界与概念点位（非官方选址），正式边界发布后面积与指标可能有变。",
+      "mitigation": "已在 geometry、矩阵与指标复算说明中标注 provisional 状态与复算条件，不将概念点位升格为官方选址。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 3,
+      "note": "智能匹配、估值评估与标准评测等AI工具仍在迭代。",
+      "mitigation": "以成熟技术与人工值守兜底，新工具先按三项测试协议验证（含误报率、误差分群与运行监测），不达标即停用。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性",
+      "score": 2,
+      "note": "数字服务可能造成使用门槛，需兼顾老人、儿童、残障人士与低数字能力群体的非数字替代渠道。",
+      "mitigation": "无障碍、适老化与儿童友好设计同步纳入，社区服务提供人工服务兜底，活动与设施预约保留线下通道。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "crs_for_computation": "EPSG:4548",
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Site boundary is the repository PROVISIONAL polygon (brief/site-package/geometry/provisional_boundaries.geojson); no official redline is published in the site package. Not for redline use."
+      ],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_by_code_sqm": {
+      "status": "known",
+      "value": 11412825.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(parcels)) grouped by land_use_code, EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Site boundary is the repository PROVISIONAL polygon (brief/site-package/geometry/provisional_boundaries.geojson); no official redline is published in the site package. Not for redline use.",
+        "Codes validated against enums/land_use_codes.json; the cited gov.cn snapshot carries only the issuing notice, so code SEMANTICS follow the published standard and need verifying against the official annex."
+      ],
+      "breakdown": {
+        "05": 2778431.4,
+        "0701": 2479655.7,
+        "0804": 2272803.4,
+        "0702": 1865098.3,
+        "0802": 1239546.7,
+        "1401": 777290.0
+      },
+      "note_zh": "按用地代码汇总的用地面积合计",
+      "assumption_ids": [
+        "A-BOUNDARY-001",
+        "A-LANDUSE-CODE-001",
+        "A-LANDUSE-PARTITION-001"
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(land_use_areas) / site_area  (partition completeness check; target 1.0)",
+      "confidence": "high",
+      "assumptions": [
+        "Land use is generated as an exact partition of the boundary."
+      ],
+      "assumption_ids": [
+        "A-LANDUSE-PARTITION-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 946690.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(unary_union(green_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.08295,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [],
+      "assumption_ids": [
+        "A-RATIO-DENOM-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 337800.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(unary_union(public_space)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [],
+      "assumption_ids": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.029598,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [],
+      "assumption_ids": [
+        "A-RATIO-DENOM-001"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 539609.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(unary_union(roads)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Union, not sum: road carriageways intersect at junctions."
+      ],
+      "assumption_ids": [
+        "A-ROADS-001"
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.047281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [],
+      "assumption_ids": [
+        "A-RATIO-DENOM-001",
+        "A-ROADS-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 351908.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(unary_union(buildings)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Indicative massing envelopes, not surveyed footprints."
+      ],
+      "assumption_ids": [
+        "A-MASSING-001"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.030835,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Belt-wide coverage. Illustrative massing only; not a plot-level 建筑密度 control."
+      ],
+      "assumption_ids": [
+        "A-MASSING-001",
+        "A-RATIO-DENOM-001"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 2490577.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint_area * proposed_storeys) by building_type",
+      "confidence": "low",
+      "assumptions": [
+        "PROPOSED storeys by type, authored by this submission, not approved controls: ai_r_and_d=8, community_service=3, cultural=4, existing_retained=6, incubator=6, lab=5, mixed_use=8, mobility_hub=3, office=12, talent_apartment=18",
+        "Covers the 20 indicative massing blocks only; it is NOT a belt-wide build-out."
+      ],
+      "assumption_ids": [
+        "A-STOREYS-001",
+        "A-MASSING-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "value": 0.218226,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Derived from this submission's indicative massing, NOT an approved FAR control.",
+        "READ WITH CARE: the 20 massing blocks cover only ~3% of the boundary, so this belt-wide ratio is NOT comparable to a plot-level or statutory FAR and will read far lower than any real district figure. It measures the illustrative massing, nothing more.",
+        "planning_limits.json lists statutory FAR as missing (required_for_final_submission=true); an approved figure must replace this."
+      ],
+      "assumption_ids": [
+        "A-FAR-001",
+        "A-STOREYS-001",
+        "A-MASSING-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "value": 11357123.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase) grouped by phase, EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Phase extents are proposed sequencing envelopes, not committed programmes."
+      ],
+      "breakdown": {
+        "phase_1": 5097870.7,
+        "phase_2": 5568722.8,
+        "phase_3": 690529.5
+      },
+      "note_zh": "分期实施范围面积合计",
+      "assumption_ids": [
+        "A-PHASING-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [],
+      "assumption_ids": [
+        "A-KEYAREA-001"
+      ]
+    },
+    "key_area_area_sqm": {
+      "status": "known",
+      "value": 3692893.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "PROVISIONAL organizer polygons (official_boundary=false); unsuitable for precise-area or redline claims. Aggregate is within 0.43% of the official 368.4 ha in ranges/planning_limits.json."
+      ],
+      "breakdown": {
+        "PROV-KEY-001": 1929201.9,
+        "PROV-KEY-002": 1043236.9,
+        "PROV-KEY-003": 720454.2
+      },
+      "note_zh": "三处重点详细设计区域面积合计",
+      "assumption_ids": [
+        "A-KEYAREA-001"
+      ]
+    },
+    "key_area_share_of_design_area": {
+      "status": "known",
+      "value": 0.323574,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(key_area_areas) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "This is the POLYGON share (32.4%). It is not interchangeable with the cross-section share (37.9%) shown in FIG 02, which measures full-width sections at the same latitudes."
+      ],
+      "assumption_ids": [
+        "A-SHARE-001",
+        "A-KEYAREA-001",
+        "A-BOUNDARY-001"
+      ]
+    }
+  }
+}

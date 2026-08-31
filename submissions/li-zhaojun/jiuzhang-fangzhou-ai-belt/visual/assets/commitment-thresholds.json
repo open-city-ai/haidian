@@ -1,0 +1,81 @@
+{
+  "schema_note": "v4.3 承诺阈值 — 应对评审'每个场景同时提供五种交互模式'过度概括。为每项指标分配阈值、有效条件、违约处置；阈值分为 commitment_effective_on_measurement（实测后生效）与 design_constraint_effective_at_pilot_launch（试点启动即生效的设计约束）两类语义。无证据之前所有指标保持 pending_baseline。",
+  "version": "v4.3",
+  "status": "commitment_thresholds_effective_on_measurement",
+  "thresholds": [
+    {
+      "id": "P1",
+      "name_zh": "无障碍节点覆盖率",
+      "name_en": "Accessibility-node coverage",
+      "threshold_zh": "≥95%",
+      "threshold_en": "≥95%",
+      "threshold_semantics": "commitment_effective_on_measurement",
+      "effective_condition_zh": "首次季度实测发布后生效",
+      "effective_condition_en": "Effective after first quarterly field measurement is published",
+      "disposition_on_breach_zh": "未达标节点进入整改台账并于下一季度复测；同一节点连续两季度未达标，则该节点场景降级为黄色受控状态",
+      "disposition_on_breach_en": "Non-compliant nodes enter rectification ledger and are re-measured next quarter; a node failing two consecutive quarters downgrades its scenario to the yellow controlled state"
+    },
+    {
+      "id": "P2",
+      "name_zh": "非数字化等价路径可达率",
+      "name_en": "Non-digital equivalent-path availability",
+      "threshold_zh": "100%（逐点位强制）",
+      "threshold_en": "100% (mandatory at every point)",
+      "threshold_semantics": "design_constraint_effective_at_pilot_launch",
+      "effective_condition_zh": "试点启动即生效（设计约束，非实测指标）",
+      "effective_condition_en": "Effective at pilot launch as design constraint, not measured indicator",
+      "disposition_on_breach_zh": "任一 AI 服务点缺失等价路径，即暂停该点 AI 服务（与可证伪条件 2、失败模式 F3 同源）",
+      "disposition_on_breach_en": "Any AI service point lacking equivalent path has its AI service suspended (same origin as falsifiable condition 2 and failure mode F3)"
+    },
+    {
+      "id": "P3",
+      "name_zh": "投诉响应时长",
+      "name_en": "Complaint response time",
+      "threshold_zh": "紧急类首响≤4小时；普通类首响≤24小时；咨询类首响≤48小时",
+      "threshold_en": "First response within 4 hours for urgent, 24 hours for routine, 48 hours for enquiries",
+      "threshold_semantics": "commitment_effective_on_measurement",
+      "effective_condition_zh": "首次月度实测发布后生效",
+      "effective_condition_en": "Effective after first monthly field measurement is published",
+      "disposition_on_breach_zh": "连续两季度劣化触发失败模式 F7，运行监督环节限期整改并公开",
+      "disposition_on_breach_en": "Worsening for two consecutive quarters triggers failure mode F7; the supervision link imposes a deadline for published rectification"
+    },
+    {
+      "id": "P4",
+      "name_zh": "老年用户场景接入率",
+      "name_en": "Senior persona adoption rate",
+      "threshold_zh": "≥80%（在已识别老年用户中）",
+      "threshold_en": "≥80% (among identified senior users)",
+      "threshold_semantics": "commitment_effective_on_measurement",
+      "effective_condition_zh": "试点运行 6 个月后首次实测发布生效",
+      "effective_condition_en": "Effective after first 6-month pilot field measurement",
+      "disposition_on_breach_zh": "低于阈值时回退至人工窗口默认开启并公开原因；纳入下一期治理委员会复审",
+      "disposition_on_breach_en": "If below threshold, default to fully manual window with public explanation; enters next governance committee review"
+    },
+    {
+      "id": "P5",
+      "name_zh": "现场无障碍第三方审计达标率",
+      "name_en": "Third-party accessibility field-audit pass rate",
+      "threshold_zh": "100%（试点启动时即生效）",
+      "threshold_en": "100% (effective at pilot launch)",
+      "threshold_semantics": "design_constraint_effective_at_pilot_launch",
+      "effective_condition_zh": "试点启动前由第三方完成审计；不通过即不可启动",
+      "effective_condition_en": "Third-party audit completed before pilot launch; non-pass means launch blocked",
+      "disposition_on_breach_zh": "审计不通过则推迟启动并整改；连续两次不通过则降级场景为概念占位",
+      "disposition_on_breach_en": "If audit fails, postpone launch and rectify; two consecutive failures downgrade scenario to conceptual placeholder"
+    },
+    {
+      "id": "P6",
+      "name_zh": "场景卡五模式覆盖率",
+      "name_en": "Scenario 5-mode coverage",
+      "threshold_zh": "≥80% 的场景卡覆盖五模式（视觉/语音/触觉/手势/无障碍）",
+      "threshold_en": "≥80% of scenario cards cover the 5 modes (visual/voice/tactile/gesture/accessibility)",
+      "threshold_semantics": "commitment_effective_on_measurement",
+      "effective_condition_zh": "首次半年实测发布后生效",
+      "effective_condition_en": "Effective after first half-year measurement is published",
+      "disposition_on_breach_zh": "未覆盖场景卡进入降级清单并公示降级理由；保留不适用项的替代路径",
+      "disposition_on_breach_en": "Non-covered scenario cards enter downgrade list with public reason; alternative paths retained for not-applicable items"
+    }
+  ],
+  "evidence_status_zh": "所有阈值当前为承诺值（commitment value），不主张当前已达成；实测后进入 effective 状态",
+  "evidence_status_en": "All thresholds are commitment values; current attainment is not claimed; effective status begins upon measurement"
+}

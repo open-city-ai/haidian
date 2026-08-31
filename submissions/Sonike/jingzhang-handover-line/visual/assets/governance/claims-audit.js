@@ -62,8 +62,8 @@ const add = (id, claim, pass, actual) => checks.push({ id, claim, pass: !!pass, 
 /* A. metrics.json 的自陈与内部一致性 */
 const valued = Object.values(metrics).filter((m) => m.value !== null && m.value !== undefined).length;
 const pending = Object.keys(metrics).length - valued;
-add("M1", "131 项指标 ＝ 117 已赋值 ＋ 14 待测",
-    Object.keys(metrics).length === 131 && valued === 117 && pending === 14,
+add("M1", "137 项指标 ＝ 123 已赋值 ＋ 14 待测",
+    Object.keys(metrics).length === 137 && valued === 123 && pending === 14,
     `${Object.keys(metrics).length} ＝ ${valued} ＋ ${pending}`);
 
 const phaseSum = val("phase_1_area_sqm") + val("phase_2_area_sqm") + val("phase_3_area_sqm");
@@ -572,7 +572,7 @@ function runNestedAudit(filename) {
   const result = runNestedAudit("p0-readiness-audit.js");
   const problems = result.parsed && Array.isArray(result.parsed.errors)
     ? result.parsed.errors : [result.stderr || "无法解析 p0-readiness-audit.js 输出"];
-  add("G10", "SCN-05 单场景 P0 同时具备八门、五阶段、十项 RACI、十二项构件、八项预注册验收、十二组预可研自洽检查、二十三组专业实施交接检查、三档评委路径、七项评分证据索引、六类公共群体、十二场景公共利益硬门槛与可操作离线原型；并把参与者敏感性与正式场地、文件回执、任命、双钥匙回执、调试执行、报价、保险、预算、专业签认和现场绩效分栏锁定；真实观察仍为 0",
+  add("G10", "SCN-05 单场景 P0 同时具备八门、五阶段、十项 RACI、十二项构件、八项预注册验收、十二组预可研自洽检查、二十六组专业实施交接检查（含 F/05 图板表面、五视图映射与主张边界）、三档评委路径、七项评分证据索引、六类公共群体、十二场景公共利益硬门槛与可操作离线原型；并把参与者敏感性与正式场地、文件回执、任命、双钥匙回执、调试执行、报价、保险、预算、专业签认和现场绩效分栏锁定；真实观察仍为 0",
       result.status === 0 && result.parsed && result.parsed.ok === true,
       problems.length ? problems.slice(0, 4).join("；")
         : `${result.parsed.entry_gates_valid} 门／${result.parsed.delivery_stages_valid} 阶段／${result.parsed.raci_work_packages_valid} RACI／${result.parsed.component_line_items_valid} 构件／${result.parsed.acceptance_criteria_valid} 验收／预可研 ${result.parsed.pre_feasibility_checks_valid}/${result.parsed.pre_feasibility_checks_expected}／专业交接 ${result.parsed.implementation_handoff_checks_valid}/${result.parsed.implementation_handoff_checks_expected}／评委路径 ${result.parsed.jury_paths_valid}/${result.parsed.jury_paths_expected}／评分索引 ${result.parsed.rubric_dimensions_valid}/${result.parsed.rubric_dimensions_expected}／${result.parsed.public_benefit_groups_valid} 群体／${result.parsed.scenario_public_value_gates_valid} 场景公共门／资格证据 ${result.parsed.eligibility_evidence_checks_valid}／评审归类 ${result.parsed.review_items_classified_valid}／原型 ${result.parsed.prototype_checks_valid}/${result.parsed.prototype_checks_expected}／真实观察 ${result.parsed.real_participant_observations}`);
@@ -590,8 +590,17 @@ for (const s of sources) {
   });
   if (missing.length) shallow.push(`${s.id} 缺 ${missing.join("／")}`);
 }
-add("H1", `sources.json 每一条都登记了八个必备字段（共 ${sources.length} 条）`,
-    shallow.length === 0, shallow.length ? shallow.slice(0, 3).join("；") : `${sources.length} 条全部齐备`);
+const sourceCountZh = primaryProse.match(/完整\s*(\d+)\s*条来源/);
+const sourceCountEn = fs.readFileSync(resolveIn(PKG, "proposal.en.md"), "utf8").match(/All\s+(\d+)\s+sources/i);
+const sourceCountProblems = [];
+if (!sourceCountZh) sourceCountProblems.push("中文正文抓不到「完整 N 条来源」");
+else if (Number(sourceCountZh[1]) !== sources.length) sourceCountProblems.push(`中文正文自陈 ${sourceCountZh[1]} 条，实为 ${sources.length}`);
+if (!sourceCountEn) sourceCountProblems.push("英文正文抓不到「All N sources」");
+else if (Number(sourceCountEn[1]) !== sources.length) sourceCountProblems.push(`英文正文自陈 ${sourceCountEn[1]} 条，实为 ${sources.length}`);
+add("H1", `sources.json 每一条都登记了八个必备字段，且中英正文来源总数均与登记实算一致（共 ${sources.length} 条）`,
+    shallow.length === 0 && sourceCountProblems.length === 0,
+    shallow.length ? shallow.slice(0, 3).join("；")
+      : sourceCountProblems.length ? sourceCountProblems.join("；") : `${sources.length} 条全部齐备；中英自陈 ${sources.length}/${sources.length}`);
 
 /* I. metrics.json 的精度口径：三位以上小数的指标必须带 precision_note */
 const deep = Object.entries(metrics).filter(([, m]) =>
@@ -935,20 +944,31 @@ add("J2", "compliance_matrix 自陈的 standard_ids 推导规则成立：规则�
         : `12 张（交接场内 ${nYard}／连接段 ${nLink}／沿主轴 ${nSpine}）全部相符`);
 }
 
-/* M9. 中英两侧自陈的指标计数都必须与 metrics.json 实算相符。
+/* M9. 中英两侧与设计深度矩阵自陈的指标计数都必须与 metrics.json 实算相符。
    2026-08-22 抓到的一处真错：`metrics.json` 实为 70 项／56 已赋值／14 待测，中文正文写对了，
    而**英文正文两处仍写「68 metrics, 54 of them valued」**——指标从 68 涨到 70 时英文没跟着改，
    而且它内部算术自洽（68−54＝14），所以只看英文看不出来。这是本包第五次「新工作做完、旧字段没同步」。
-   M1 只核中文侧，因此这一项专核**双语两侧**：从两份正文里分别抓「N 项指标／M 项已赋值」与
-   「N metrics, M of them valued」，与 metrics.json 实算逐位比对。四个数（zh N/M、en N/M）
-   必须全部抓到——抓不到即判失败，不跳过。 */
+   M1 只核数据总表本身，因此这一项专核**所有读者可见复述**：从两份正文里分别抓「N 项指标／
+   M 项已赋值」与「N metrics, M of them valued」，再核 design_depth_matrix.json 中
+   metrics_recalculation 的 N/M/U 摘要以及中英 status_semantics 的 U。九个数必须全部抓到并与
+   metrics.json 实算逐位一致——抓不到即判失败，不跳过。这样可阻断正文已更新、深度矩阵仍保留
+   旧口径的静默回归。 */
 {
   const total = Object.keys(metrics).length;
   const valuedN = Object.values(metrics).filter((m) => m.value !== null && m.value !== undefined).length;
+  const pendingN = total - valuedN;
   const en = fs.readFileSync(resolveIn(PKG, "proposal.en.md"), "utf8");
+  const depth = readPkg("design_depth_matrix.json");
+  const metricsDepth = (depth.items || []).find((item) => item.item_id === "metrics_recalculation");
   const zhM = primaryProse.match(/\*\*(\d+)\s*项指标[，,]\s*(\d+)\s*项已赋值/);
   const enM = en.match(/\*\*(\d+)\s+metrics,\s*(\d+)\s+of them valued/);
   const enM2 = en.match(/The\s+(\d+)\s+valued metrics/);
+  const depthM = metricsDepth && String(metricsDepth.evidence_summary_zh || "")
+    .match(/共\s*(\d+)\s*项[：:]\s*(\d+)\s*项已赋值[、,]\s*(\d+)\s*项待测/);
+  const depthStatusZh = String(depth.status_semantics_zh || "")
+    .match(/中仍有\s*(\d+)\s*项为\s*`status:\s*unknown`/);
+  const depthStatusEn = String(depth.status_semantics_en || "")
+    .match(/fact that\s+(\d+)\s+metrics[\s\S]*?remain\s+`status:\s*unknown`/i);
   const problems = [];
   if (!zhM) problems.push("中文正文里抓不到「N 项指标，M 项已赋值」");
   else {
@@ -962,9 +982,20 @@ add("J2", "compliance_matrix 自陈的 standard_ids 推导规则成立：规则�
   }
   if (!enM2) problems.push("英文正文里抓不到「The N valued metrics」");
   else if (Number(enM2[1]) !== valuedN) problems.push(`英文「The ${enM2[1]} valued metrics」，实为 ${valuedN}`);
-  add("M9", `中英正文自陈的指标计数与 metrics.json 实算一致（共 ${total} 项 ／ 已赋值 ${valuedN} 项，两侧三处自陈全部相符）`,
+  if (!depthM) problems.push("design_depth_matrix.json 抓不到 metrics_recalculation 的 N/M/U 摘要");
+  else {
+    if (Number(depthM[1]) !== total) problems.push(`深度矩阵自陈 ${depthM[1]} 项，实为 ${total}`);
+    if (Number(depthM[2]) !== valuedN) problems.push(`深度矩阵自陈已赋值 ${depthM[2]}，实为 ${valuedN}`);
+    if (Number(depthM[3]) !== pendingN) problems.push(`深度矩阵自陈待测 ${depthM[3]}，实为 ${pendingN}`);
+  }
+  if (!depthStatusZh) problems.push("design_depth_matrix.json 中文 status_semantics 抓不到 unknown 数量");
+  else if (Number(depthStatusZh[1]) !== pendingN) problems.push(`中文 status_semantics 自陈 unknown ${depthStatusZh[1]}，实为 ${pendingN}`);
+  if (!depthStatusEn) problems.push("design_depth_matrix.json 英文 status_semantics 抓不到 unknown 数量");
+  else if (Number(depthStatusEn[1]) !== pendingN) problems.push(`英文 status_semantics 自陈 unknown ${depthStatusEn[1]}，实为 ${pendingN}`);
+  add("M9", `中英正文与设计深度矩阵自陈的指标计数均与 metrics.json 实算一致（共 ${total} 项 ／ 已赋值 ${valuedN} 项 ／ 待测 ${pendingN} 项）`,
       problems.length === 0,
-      problems.length ? problems.join("；") : `zh ${total}/${valuedN}、en ${total}/${valuedN}、en 复述 ${valuedN} 逐位相符`);
+      problems.length ? problems.join("；")
+        : `正文 zh ${total}/${valuedN}、en ${total}/${valuedN}、en 复述 ${valuedN}；深度矩阵 ${total}/${valuedN}/${pendingN}、status zh/en ${pendingN}/${pendingN} 逐位相符`);
 }
 
 /* T1. 任务书 boundary_clause 强制措辞逐条在位。

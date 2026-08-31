@@ -28,6 +28,18 @@ function fail(message) {
   process.exit(1);
 }
 
+if (!Array.isArray(HANDOFF.implementation_scheme_module_register) ||
+    HANDOFF.implementation_scheme_module_register.length !== 11 ||
+    HANDOFF.implementation_policy_basis.programme_level_mapping_ratio !== 1 ||
+    HANDOFF.implementation_policy_basis.external_module_receipt_count !== 0 ||
+    !Array.isArray(HANDOFF.formal_cost_method.method_steps) ||
+    HANDOFF.formal_cost_method.method_steps.length !== 6 ||
+    HANDOFF.formal_cost_method.formal_unit_rate_receipt_count !== 0 ||
+    HANDOFF.formal_cost_method.comparable_vendor_quote_count !== 0 ||
+    HANDOFF.formal_cost_method.approved_budget_cny !== null) {
+  fail("implementation-policy or formal-cost boundary drifted");
+}
+
 for (const needed of [CHROME, QPDF, FONT_CSS]) {
   if (!fs.existsSync(needed)) fail(`missing dependency: ${needed}`);
 }
@@ -50,9 +62,9 @@ const copy = {
       ["9.5 km", "连续公共脊"], ["8", "东西缝合支线"], ["20", "产业／公共成对单元"],
       ["6 × 6 m", "P0 可撤工作面"], ["8 + 3", "公众上限＋在岗角色"], ["0 / 12", "现场任务；待授权"],
     ],
-    p0Label: "P0 预可行性 / 参赛者敏感性，不是报价或批准预算",
-    p0Line: "7.2 × 7.2 m 控制包络 · 队列 6 人即停 · 90 天约 12万—29万元 · 年运维约 30万—65万元 · 四个备选 · 4 h 撤场目标未实测",
-    evidenceLine: "离线 12/12 · 接管 48/48｜现场 0/12 · 报价 0/3 · 保险/正式预算 NULL · 签认 0",
+    p0Label: "P0 五级参考图纸链 / 参赛者预可研，不是测绘、报价或批准预算",
+    p0Line: "1:500—1:20 · 7.2 × 7.2 m 控制 / 6 × 6 m 可撤面 · 8 + 3 + 6 · 90 天约 12万—29万元 · 年运维约 30万—65万元 · 四个回退",
+    evidenceLine: "离线 12/12 · 接管 48/48｜现场 0/12 · 门回执 0/12 · 报价 0/3 · 保险/正式预算 NULL · 签认 0",
     strip: "机器空间由北向南逐段退场；人工窗口、连续步行面、轨道线索与绿荫始终存在。",
     boundary: "临时边界 / 概念尺寸 / 非道路红线、权属、批准或已建事实",
     package: "JING-ZHANG HANDOVER LINE / PACKAGE v2.0",
@@ -70,9 +82,9 @@ const copy = {
       ["9.5 km", "continuous public spine"], ["8", "east-west stitch links"], ["20", "industry / civic paired cells"],
       ["6 × 6 m", "P0 reversible patch"], ["8 + 3", "public cap + role seats"], ["0 / 12", "field tasks; authority pending"],
     ],
-    p0Label: "P0 PRE-FEASIBILITY / PARTICIPANT SENSITIVITY · NOT QUOTES OR AN APPROVED BUDGET",
-    p0Line: "7.2 × 7.2 m CONTROL · QUEUE STOP AT 6 · CNY 0.12-0.29m / 90 DAYS · CNY 0.30-0.65m / YEAR · 4 ALTERNATIVES · 4 h REMOVAL TARGET UNTESTED",
-    evidenceLine: "OFFLINE 12/12 · TAKEOVER 48/48 | FIELD 0/12 · QUOTES 0/3 · INSURANCE / FORMAL BUDGET NULL · SIGN-OFF 0",
+    p0Label: "P0 FIVE-SCALE REFERENCE CHAIN / PARTICIPANT PRE-FEASIBILITY · NOT SURVEY, QUOTES OR APPROVED BUDGET",
+    p0Line: "1:500–1:20 · 7.2 × 7.2 m CONTROL / 6 × 6 m REVERSIBLE · 8 + 3 + 6 · CNY 0.12–0.29m / 90 DAYS · CNY 0.30–0.65m / YEAR · 4 FALLBACKS",
+    evidenceLine: "OFFLINE 12/12 · TAKEOVER 48/48 | FIELD 0/12 · GATE RECEIPTS 0/12 · QUOTES 0/3 · INSURANCE / FORMAL BUDGET NULL · SIGN-OFF 0",
     strip: "Machine space recedes from north to south; the staffed counter, continuous path, rail trace and shade remain.",
     boundary: "PROVISIONAL EXTENT / CONCEPT DIMENSIONS / NOT A REDLINE, TITLE, APPROVAL OR AS-BUILT CLAIM",
     package: "JING-ZHANG HANDOVER LINE / PACKAGE v2.0",
@@ -84,25 +96,25 @@ const handoffCopy = {
     lang: "zh-CN",
     code: "F / 06 · 专业实施交接附页",
     title: "从 1:500 筛查到 1:20 接口",
-    lead: "不是用一张概念桌替代工程设计，而是把场地筛查、专业深化、采购运营与开放关闭拆成可复算、可拒收、可交给未来责任方接续的证据链。",
+    lead: "不是用一张概念桌替代工程设计，而是把场地筛查、十一类实施方案、六步正式计价、专业深化、采购运营与开放关闭拆成可复算、可拒收、可交给未来责任方接续的证据链。",
     cards: [
-      ["5 / 4", "图纸尺度／释放状态"], ["9 / 6 / 11", "项目／交付包／实施模块"],
-      ["12 HOLD / 0", "文件闸门／当前回执"], ["12 / 16 / 8", "角色／未计价数量／现可判验收"],
+      ["5 / 4", "图纸尺度／释放状态"], ["9 / 6 / 11", "项目／交付包／物理运营模块"],
+      ["11 / 6 / 12", "实施方案类目／计价步骤／文件闸门"], ["12 / 16 / 8", "角色／未计价数量／现可判验收"],
     ],
-    hold: "具名任命 0 · 正式单价 0 · 施工或开放放行 0 · 真实现场任务 0",
-    boundary: "参赛者专业交接接口，不是测绘、正式工程量清单、报价、预算、许可、专业签认、施工、开放或现场绩效。",
+    hold: "实施方案外部回执 0 · 文件门回执 0/12 · 正式单价 0 · 报价 0/3 · 批准预算 NULL · 具名任命 0 · 真实现场任务 0",
+    boundary: "参赛者专业交接接口与未来政策／计价方法映射，不是报审、测绘、正式工程量清单、报价、预算、许可、专业签认、施工、开放或现场绩效。",
   },
   en: {
     lang: "en",
     code: "F / 06 · PROFESSIONAL IMPLEMENTATION HANDOFF ANNEX",
     title: "FROM 1:500 SCREENING TO 1:20 INTERFACES",
-    lead: "The concept table does not substitute for engineering design. Siting, coordinated design, procurement, operation, opening and closeout are decomposed into recalculable and rejectable evidence interfaces for future duty holders.",
+    lead: "The concept table does not substitute for engineering design. Siting, eleven implementation-plan classes, a six-step formal cost method, coordinated design, procurement, operation, opening and closeout are decomposed into recalculable and rejectable interfaces.",
     cards: [
-      ["5 / 4", "drawing scales / release states"], ["9 / 6 / 11", "projects / packages / modules"],
-      ["12 HOLD / 0", "documentary gates / receipts"], ["12 / 16 / 8", "roles / unpriced lines / judgeable-now checks"],
+      ["5 / 4", "drawing scales / release states"], ["9 / 6 / 11", "projects / packages / physical-operating modules"],
+      ["11 / 6 / 12", "plan classes / cost steps / documentary gates"], ["12 / 16 / 8", "roles / unpriced lines / judgeable-now checks"],
     ],
-    hold: "NAMED APPOINTMENTS 0 · FORMAL RATES 0 · CONSTRUCTION OR OPENING RELEASES 0 · FIELD TASKS 0",
-    boundary: "Participant professional-handoff interface—not a survey, formal bill of quantities, quotation, budget, permit, professional sign-off, construction, opening or field-performance record.",
+    hold: "EXTERNAL PLAN RECEIPTS 0 · GATE RECEIPTS 0/12 · FORMAL RATES 0 · QUOTES 0/3 · APPROVED BUDGET NULL · NAMED APPOINTMENTS 0 · FIELD TASKS 0",
+    boundary: "Participant handoff and future policy/cost-method mapping—not filing, survey, formal bill of quantities, quotation, budget, permit, professional sign-off, construction, opening or field performance.",
   },
 };
 

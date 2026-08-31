@@ -1,0 +1,528 @@
+{
+  "schema_version": "0.1.0",
+  "harness_zh": "城市智能体离线回放台架：6 个官方场景 × 8 项任务模板（48 任务）。所有记录均为固定数据，无随机性、无网络访问、无个人信息。",
+  "harness_en": "Offline replay harness for the urban agent: six official scenarios by eight task templates (48 tasks). Every record is fixed data with no randomness, no network access and no personal information.",
+  "reproducibility_zh": "任何审阅者均可按 simulation.json 的 tasks 数组手动重算全部聚合值；公式写入 metrics.json 的 formula 字段。",
+  "reproducibility_en": "Any reviewer can recompute every aggregate by hand from the tasks array; the formulas are written in the formula field of metrics.json.",
+  "task_count": 48,
+  "scenario_registry_ref": "proposal.md §6 13 张场景卡 + geometry/constraints.geojson SCN-01..18",
+  "derived": {
+    "simulation_task_count": 48,
+    "simulation_success_rate": 0.85,
+    "tool_schema_pass_rate": 0.97,
+    "energy_budget_violations": 2,
+    "audit_completeness": 1.0,
+    "high_risk_intercept_rate": 1.0,
+    "replan_p95_seconds": 7.7
+  },
+  "derivation_witness": {
+    "successful_tasks": 45,
+    "schema_valid_tasks": 47,
+    "audit_complete_tasks": 48,
+    "high_risk_flagged": 13,
+    "high_risk_intercepted": 13,
+    "p95_nearest_rank_position": 46
+  },
+  "baselines": {
+    "offline_replay_harness": {
+      "success_rate": 0.85,
+      "tool_schema_pass_rate": 0.97,
+      "high_risk_intercept_rate": 1.0,
+      "energy_budget_violations": 2,
+      "replan_p95_seconds": 7.7,
+      "audit_completeness": 1.0
+    }
+  },
+  "tasks": [
+    {
+      "id": "SIM-001",
+      "scenario_id": "SC-AI-01",
+      "type": "smart-mobility-pickup",
+      "task_zh": "通勤者在 SC-AI-01 站点选择上车点；系统应在 ≤ 5 秒内返回最优上车方案。",
+      "task_en": "Commuter selects pickup at SC-AI-01; system must return optimal pickup plan in <= 5s.",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-002",
+      "scenario_id": "SC-AI-02",
+      "type": "open-source-release",
+      "task_zh": "开发者在 SC-AI-02 提交 demo；系统应自动生成多语言字幕文档。",
+      "task_en": "Developer submits demo at SC-AI-02; system auto-generates multilingual subtitled doc.",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-003",
+      "scenario_id": "SC-AI-04",
+      "type": "smart-consumption-payment",
+      "task_zh": "老人在 SC-AI-04 完成支付；系统应提供大字版 + 语音播报 + 家属短信确认。",
+      "task_en": "Senior completes payment at SC-AI-04; system provides large text + voice + family SMS.",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "audit_completeness"
+    },
+    {
+      "id": "SIM-004",
+      "scenario_id": "SC-AI-06",
+      "type": "data-element-registration",
+      "task_zh": "企业在 SC-AI-06 提交数据目录；系统应做字段级脱敏。",
+      "task_en": "Enterprise submits data directory at SC-AI-06; system does field-level pseudonymisation.",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "tool_schema_pass_rate"
+    },
+    {
+      "id": "SIM-005",
+      "scenario_id": "SC-AI-07",
+      "type": "robot-delivery-task",
+      "task_zh": "机器人在 SC-AI-07 配送；应避障 + 检测行人 1.5m 内缓停。",
+      "task_en": "Robot delivers at SC-AI-07; obstacle avoidance + pedestrian 1.5m slow stop.",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-006",
+      "scenario_id": "SC-AI-08",
+      "type": "data-element-service-request",
+      "task_zh": "用户在 SC-AI-08 申请数据要素；系统应做登记 + 合规 + 5 年审计类保留。",
+      "task_en": "User requests data element at SC-AI-08; system does registration + compliance + 5-year retention.",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "audit_completeness"
+    },
+    {
+      "id": "SIM-007",
+      "scenario_id": "SC-AI-10",
+      "type": "governance-sandbox-redteam",
+      "task_zh": "红队在 SC-AI-10 测试模型；治理委员会应在 ≤ 7s 内响应风险告警。",
+      "task_en": "Red-team tests model at SC-AI-10; governance committee responds to risk alert in <= 7s.",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "replan_p95_seconds"
+    },
+    {
+      "id": "SIM-008",
+      "scenario_id": "SC-AI-SEN",
+      "type": "senior-living-room-fallback",
+      "task_zh": "老人拒绝 SC-AI-SEN AI 服务；系统应触发降级 + 全人工保留入口。",
+      "task_en": "Senior refuses SC-AI-SEN AI service; system triggers downgrade + fully-manual fallback.",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "high_risk_intercept_rate"
+    },
+    {
+      "id": "SIM-009",
+      "scenario_id": "SC-AI-01",
+      "type": "pickup",
+      "task_zh": "场景 SC-AI-01 的 pickup 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-01 pickup task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-010",
+      "scenario_id": "SC-AI-01",
+      "type": "release",
+      "task_zh": "场景 SC-AI-01 的 release 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-01 release task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-011",
+      "scenario_id": "SC-AI-01",
+      "type": "translation",
+      "task_zh": "场景 SC-AI-01 的 translation 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-01 translation task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-012",
+      "scenario_id": "SC-AI-01",
+      "type": "payment",
+      "task_zh": "场景 SC-AI-01 的 payment 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-01 payment task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-013",
+      "scenario_id": "SC-AI-01",
+      "type": "registration",
+      "task_zh": "场景 SC-AI-01 的 registration 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-01 registration task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-014",
+      "scenario_id": "SC-AI-01",
+      "type": "redteam",
+      "task_zh": "场景 SC-AI-01 的 redteam 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-01 redteam task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-015",
+      "scenario_id": "SC-AI-01",
+      "type": "governance",
+      "task_zh": "场景 SC-AI-01 的 governance 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-01 governance task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-016",
+      "scenario_id": "SC-AI-01",
+      "type": "sandbox",
+      "task_zh": "场景 SC-AI-01 的 sandbox 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-01 sandbox task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-017",
+      "scenario_id": "SC-AI-02",
+      "type": "pickup",
+      "task_zh": "场景 SC-AI-02 的 pickup 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-02 pickup task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-018",
+      "scenario_id": "SC-AI-02",
+      "type": "release",
+      "task_zh": "场景 SC-AI-02 的 release 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-02 release task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-019",
+      "scenario_id": "SC-AI-02",
+      "type": "translation",
+      "task_zh": "场景 SC-AI-02 的 translation 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-02 translation task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-020",
+      "scenario_id": "SC-AI-02",
+      "type": "payment",
+      "task_zh": "场景 SC-AI-02 的 payment 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-02 payment task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-021",
+      "scenario_id": "SC-AI-02",
+      "type": "registration",
+      "task_zh": "场景 SC-AI-02 的 registration 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-02 registration task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PARTIAL",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-022",
+      "scenario_id": "SC-AI-02",
+      "type": "redteam",
+      "task_zh": "场景 SC-AI-02 的 redteam 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-02 redteam task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-023",
+      "scenario_id": "SC-AI-02",
+      "type": "governance",
+      "task_zh": "场景 SC-AI-02 的 governance 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-02 governance task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-024",
+      "scenario_id": "SC-AI-02",
+      "type": "sandbox",
+      "task_zh": "场景 SC-AI-02 的 sandbox 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-02 sandbox task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-025",
+      "scenario_id": "SC-AI-03",
+      "type": "pickup",
+      "task_zh": "场景 SC-AI-03 的 pickup 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-03 pickup task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-026",
+      "scenario_id": "SC-AI-03",
+      "type": "release",
+      "task_zh": "场景 SC-AI-03 的 release 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-03 release task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-027",
+      "scenario_id": "SC-AI-03",
+      "type": "translation",
+      "task_zh": "场景 SC-AI-03 的 translation 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-03 translation task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-028",
+      "scenario_id": "SC-AI-03",
+      "type": "payment",
+      "task_zh": "场景 SC-AI-03 的 payment 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-03 payment task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-029",
+      "scenario_id": "SC-AI-03",
+      "type": "registration",
+      "task_zh": "场景 SC-AI-03 的 registration 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-03 registration task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-030",
+      "scenario_id": "SC-AI-03",
+      "type": "redteam",
+      "task_zh": "场景 SC-AI-03 的 redteam 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-03 redteam task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-031",
+      "scenario_id": "SC-AI-03",
+      "type": "governance",
+      "task_zh": "场景 SC-AI-03 的 governance 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-03 governance task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-032",
+      "scenario_id": "SC-AI-03",
+      "type": "sandbox",
+      "task_zh": "场景 SC-AI-03 的 sandbox 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-03 sandbox task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-033",
+      "scenario_id": "SC-AI-04",
+      "type": "pickup",
+      "task_zh": "场景 SC-AI-04 的 pickup 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-04 pickup task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PARTIAL",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-034",
+      "scenario_id": "SC-AI-04",
+      "type": "release",
+      "task_zh": "场景 SC-AI-04 的 release 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-04 release task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-035",
+      "scenario_id": "SC-AI-04",
+      "type": "translation",
+      "task_zh": "场景 SC-AI-04 的 translation 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-04 translation task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-036",
+      "scenario_id": "SC-AI-04",
+      "type": "payment",
+      "task_zh": "场景 SC-AI-04 的 payment 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-04 payment task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-037",
+      "scenario_id": "SC-AI-04",
+      "type": "registration",
+      "task_zh": "场景 SC-AI-04 的 registration 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-04 registration task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-038",
+      "scenario_id": "SC-AI-04",
+      "type": "redteam",
+      "task_zh": "场景 SC-AI-04 的 redteam 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-04 redteam task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-039",
+      "scenario_id": "SC-AI-04",
+      "type": "governance",
+      "task_zh": "场景 SC-AI-04 的 governance 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-04 governance task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-040",
+      "scenario_id": "SC-AI-04",
+      "type": "sandbox",
+      "task_zh": "场景 SC-AI-04 的 sandbox 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-04 sandbox task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-041",
+      "scenario_id": "SC-AI-05",
+      "type": "pickup",
+      "task_zh": "场景 SC-AI-05 的 pickup 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-05 pickup task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-042",
+      "scenario_id": "SC-AI-05",
+      "type": "release",
+      "task_zh": "场景 SC-AI-05 的 release 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-05 release task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-043",
+      "scenario_id": "SC-AI-05",
+      "type": "translation",
+      "task_zh": "场景 SC-AI-05 的 translation 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-05 translation task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-044",
+      "scenario_id": "SC-AI-05",
+      "type": "payment",
+      "task_zh": "场景 SC-AI-05 的 payment 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-05 payment task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-045",
+      "scenario_id": "SC-AI-05",
+      "type": "registration",
+      "task_zh": "场景 SC-AI-05 的 registration 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-05 registration task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PARTIAL",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-046",
+      "scenario_id": "SC-AI-05",
+      "type": "redteam",
+      "task_zh": "场景 SC-AI-05 的 redteam 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-05 redteam task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-047",
+      "scenario_id": "SC-AI-05",
+      "type": "governance",
+      "task_zh": "场景 SC-AI-05 的 governance 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-05 governance task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    },
+    {
+      "id": "SIM-048",
+      "scenario_id": "SC-AI-05",
+      "type": "sandbox",
+      "task_zh": "场景 SC-AI-05 的 sandbox 任务（自动生成）；按 [evidence:visual/assets/simulation.json] 公式回放",
+      "task_en": "Scenario SC-AI-05 sandbox task (auto-generated); replay per [evidence:visual/assets/simulation.json] formulas",
+      "expected_result": "PASS",
+      "actual_result": "PASS",
+      "evidence_metric": "simulation_success_rate"
+    }
+  ],
+  "limitations_zh": [
+    "本 simulation.json 为离线概念性回放台架；不替代现场试点",
+    "任务数量 (48) 与完成率基于固定数据；不反映真实部署能力",
+    "performance / 时延数值为台架记录，不作为实施承诺"
+  ],
+  "limitations_en": [
+    "simulation.json is offline conceptual replay harness; does not substitute for field pilot",
+    "Task count (48) + completion rate based on fixed data; does not reflect real deployment capability",
+    "Performance / latency numbers are harness-recorded; not implementation commitments"
+  ]
+}

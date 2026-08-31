@@ -1685,6 +1685,72 @@
       "metric_kind": "independently_rejectable_participant_modules",
       "verification": "十一个模块从人工服务、无 AI 环线、开口到维护与恢复逐项编号；可移动属性不等于已采购或可实施。"
     },
+    "implementation_policy_module_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "implementation_plan_content_classes",
+      "source_files": ["visual/assets/governance/implementation-handoff-register.json", "sources.json"],
+      "formula": "count(implementation-handoff-register.implementation_scheme_module_register IP01..IP11)",
+      "confidence": "high",
+      "assumptions": ["A-OPERATIONS-001"],
+      "metric_kind": "participant_policy_handoff_mapping_not_formal_filing",
+      "verification": "十一类分别对应项目基本信息、前期评估、功能、规划、建筑、土地、未登记建筑、资金、运营、时序与协商；它们是京建发〔2024〕182号框架下的参赛者交接索引，不是已编制或报审的正式实施方案。"
+    },
+    "implementation_policy_module_mapping_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/governance/implementation-handoff-register.json"],
+      "formula": "11 participant-mapped implementation content classes / 11 guide content classes",
+      "confidence": "high",
+      "assumptions": ["A-OPERATIONS-001"],
+      "metric_kind": "participant_mapping_coverage_not_external_readiness",
+      "verification": "1.0 只表示十一类字段均有已知输入、未知项、交付包和拒收门；外部回执仍为 0，不能解释为十一类实施条件已完成。"
+    },
+    "implementation_external_policy_module_receipt_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "external_module_receipts",
+      "source_files": ["visual/assets/governance/implementation-handoff-register.json"],
+      "formula": "implementation_policy_basis.external_module_receipt_count",
+      "confidence": "high",
+      "assumptions": ["A-OPERATIONS-001"],
+      "metric_kind": "real_external_evidence_count",
+      "verification": "统筹主体、实施主体、联合审查文件号和十一类外部关闭回执均未取得；政策映射不产生程序状态。"
+    },
+    "implementation_cost_method_step_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "future_formal_cost_steps",
+      "source_files": ["visual/assets/governance/implementation-handoff-register.json", "sources.json"],
+      "formula": "count(implementation-handoff-register.formal_cost_method.method_steps CST01..CST06)",
+      "confidence": "high",
+      "assumptions": ["A-OPERATIONS-001"],
+      "metric_kind": "future_formal_cost_method_not_current_estimate",
+      "verification": "六步把授权数量、基准日/价格期次、三方询价、费用组成、运营保险恢复与预算资金逐项分离；当前仅有方法，正式单价、报价、概算、预算和资金均为空。"
+    },
+    "implementation_cost_policy_source_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "official_public_cost_method_sources",
+      "source_files": ["sources.json", "visual/assets/governance/implementation-handoff-register.json"],
+      "formula": "count(BEIJING-COST-BASIS-2026, BEIJING-COST-INFORMATION-2026)",
+      "confidence": "high",
+      "assumptions": ["A-OPERATIONS-001"],
+      "metric_kind": "official_method_context_not_project_price_evidence",
+      "verification": "两条来源只定义未来计价方法与价格信息入口；未导入定额、月度价格或正式单价，引用数量不得写成已计价证据。"
+    },
+    "implementation_comparable_vendor_quote_receipt_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "comparable_quote_receipts",
+      "source_files": ["visual/assets/governance/implementation-handoff-register.json", "visual/assets/governance/p0-delivery-contract.json"],
+      "formula": "formal_cost_method.comparable_vendor_quote_count",
+      "confidence": "high",
+      "assumptions": ["A-OPERATIONS-001"],
+      "metric_kind": "real_external_evidence_count",
+      "verification": "三方同口径报价要求仍为 0/3；当前约12万—29万元与30万—65万元只为参赛者敏感性，不是报价或批准预算。"
+    },
     "implementation_documentary_gate_count": {
       "status": "known",
       "value": 12,

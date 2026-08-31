@@ -106,8 +106,14 @@
     {
       "id": "A-METRICS-001",
       "status": "standing_discipline",
-      "statement": "指标表复算口径：metrics.json 全部数值由 build-staging/build_metrics.py 一次生成，不手写。几何类指标一律先由 EPSG:4326 投影到 EPSG:4548 再量算，面积用 shapely 的 unary_union 溶合后计（与审查脚本 spatial_review.py 同法同参），因此分项面积之和可能与溶合总面积存在亚平方米级差异。每项均登记 status/value/unit/source_files/formula/confidence/assumptions，formula 写到可照做复算的程度。指标按来源分三类：(1) 提交几何复算值；(2) 已登记来源的引述值——served_population_reported_count、served_community_reported_count、filed_model_reported_count，置信度 low 并注明时点口径；(3) 由前两类推出的设计模型值——daoding_design_density_per_km，置信度 low，随备案数变动，不是建成量。算不出的一律 status=unknown、value=null 并写明原因，不以估值或“约”字填充。",
+      "statement": "指标表复算口径：metrics.json 数值由 build-staging/build_metrics.py 一次生成，不手写；2026-08-30 起例外登记六键——care_point_count、care_scenario_person_hours_annual_low/high、external_gate_hold_count、external_gate_released_count、authorized_site_action_count——为人工登记的推算与自描述键，口径见 A-CARE-COEFF-001 与 visual/assets/ops-ledger.json。几何类指标一律先由 EPSG:4326 投影到 EPSG:4548 再量算，面积用 shapely 的 unary_union 溶合后计（与审查脚本 spatial_review.py 同法同参），因此分项面积之和可能与溶合总面积存在亚平方米级差异。每项均登记 status/value/unit/source_files/formula/confidence/assumptions，formula 写到可照做复算的程度。指标按来源分三类：(1) 提交几何复算值；(2) 已登记来源的引述值——served_population_reported_count、served_community_reported_count、filed_model_reported_count，置信度 low 并注明时点口径；(3) 由前两类推出的设计模型值——daoding_design_density_per_km，置信度 low，随备案数变动，不是建成量。算不出的一律 status=unknown、value=null 并写明原因，不以估值或“约”字填充。",
       "impact": "site_area_sqm、green_ratio、public_space_ratio、building_footprint_area_sqm、key_area_count 五项与 visual/index.html、visual/index.en.html 的 data-value 强绑定，脚本对其做冻结断言：复算值与已发布值不一致即中止写入、不产出 metrics.json。官方红线、控规条件或文保矢量边界发布后，按 A-RECALC-001 重跑该脚本整包重算。"
+    },
+    {
+      "id": "A-CARE-COEFF-001",
+      "status": "declared_scenario_coefficients",
+      "statement": "运维推算的两个系数为明示情景设定：年频次 52 次（每周一巡）与单次工时 0.5–1.0 人时/计入点，均系包外情景设定，无任何实测、规范或产品依据，不因写入本包而升格为已知。三类量的性质各不相同：频次是运营强度的决策变量，谁运营谁定；单次工时是现场干出来、测出来的属性，此处仅为无依据的宽区间情景设定；检查、保养与更换周期是产品属性，选型未定便无从设起、不设情景系数（与推算层第三条同口径）。数量列为设计内实数：59 计入点＝46 座应答门＋3 处地标广场＋主脊每公里 1 处（ceil(9,710.125/1000)＝10）；道钉与标准组件并入宿主点，不重复计点。代入得年 1,534–3,068 人时，双向敏感性见 visual/assets/ops-ledger.json。",
+      "impact": "该区间仅作规模感与敏感性锚点，档位为推断：不构成概算、承诺、排班或运营方案。运营与养护主体确定后（前置条件门 PRE-09，A-OPERATOR-001），其实测系数按同一算式整表替换本条与台账全部数值，metrics.json 的 care_scenario_* 两键同步重写。"
     }
   ]
 }

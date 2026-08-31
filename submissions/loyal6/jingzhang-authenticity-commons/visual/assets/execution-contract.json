@@ -1,9 +1,11 @@
 {
   "schema_version": "1.0",
-  "id": "PILOT-A-EXECUTION-142",
+  "id": "PILOT-A-EXECUTION-160",
   "status": "unsigned_design_draft",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "preimplementation_ref": "visual/assets/preimplementation-package.json#JZAC-P0-ORIGIN-RELAY-01",
+  "institutional_state_machine_ref": "visual/assets/preimplementation-package.json#institutional_state_machine",
+  "synthetic_case_dossier_ref": "visual/assets/correction-receipt-demo.json#case_dossier",
   "title": {
     "zh": "PILOT-A：执行、协同与条件清单",
     "en": "PILOT-A: execution, collaboration and conditions"
@@ -383,164 +385,118 @@
   "raci": [
     {
       "id": "ACTION-1",
-      "work": {
-        "zh": "授权与启动",
-        "en": "Authorize and start"
-      },
-      "accountable": "host_operator",
-      "responsible": "pilot_steward",
-      "consulted": [
-        "data_custodian",
-        "accessibility_reviewer"
-      ],
-      "informed": [
-        "case_steward"
-      ],
-      "acceptance": {
-        "zh": "授权清单与人员任命齐备",
-        "en": "Complete permission checklist and role appointments"
-      }
+      "state": "INTAKE",
+      "work": {"zh": "无屏受理与渠道登记", "en": "Screenless intake and channel registration"},
+      "accountable": "pilot_steward",
+      "responsible": "case_steward",
+      "consulted": ["accessibility_reviewer", "data_custodian"],
+      "informed": ["channel_owner"],
+      "required_receipt": "intake_receipt",
+      "acceptance": {"zh": "纸面案件号、材料状态与完整渠道清单", "en": "Paper case ID, material status and complete channel inventory"},
+      "forbidden": {"zh": "案件受理人不得自行结案", "en": "The case steward cannot close a case they accepted"}
     },
     {
       "id": "ACTION-2",
-      "work": {
-        "zh": "无屏受理",
-        "en": "Screenless intake"
-      },
-      "accountable": "pilot_steward",
+      "state": "PAUSE",
+      "work": {"zh": "暂停传播", "en": "Pause propagation"},
+      "accountable": "channel_owner",
       "responsible": "case_steward",
-      "consulted": [
-        "accessibility_reviewer"
-      ],
-      "informed": [
-        "channel_owner"
-      ],
-      "acceptance": {
-        "zh": "纸面案件号与完整渠道清单",
-        "en": "Paper case ID and complete channel inventory"
-      }
+      "consulted": ["independent_reviewer"],
+      "informed": ["service_owner"],
+      "required_receipt": "pause_receipt",
+      "acceptance": {"zh": "逐渠道暂停回执或不可达说明", "en": "Pause acknowledgement or unreachable record for every channel"},
+      "forbidden": {"zh": "供应商不得阻止人工暂停；不得绕过暂停直接复核", "en": "A supplier cannot block human pause, and review cannot bypass pause"}
     },
     {
       "id": "ACTION-3",
-      "work": {
-        "zh": "暂停传播",
-        "en": "Pause propagation"
-      },
-      "accountable": "channel_owner",
-      "responsible": "case_steward",
-      "consulted": [
-        "independent_reviewer"
-      ],
-      "informed": [
-        "service_owner"
-      ],
-      "acceptance": {
-        "zh": "逐渠道暂停回执",
-        "en": "Pause acknowledgement for each channel"
-      }
+      "state": "REVIEW",
+      "work": {"zh": "独立事实复核", "en": "Independent fact review"},
+      "accountable": "independent_reviewer",
+      "responsible": "independent_reviewer",
+      "consulted": ["data_custodian"],
+      "informed": ["case_steward"],
+      "required_receipt": "independent_review_record",
+      "acceptance": {"zh": "依据、不确定性、利益冲突与结论或升级路径", "en": "Basis, uncertainty, conflict check and conclusion or escalation"},
+      "forbidden": {"zh": "原作者、供应商、渠道或服务责任人不得复核自己", "en": "Authors, suppliers, channel owners and service owners cannot review themselves"}
     },
     {
       "id": "ACTION-4",
-      "work": {
-        "zh": "独立事实复核",
-        "en": "Independent fact review"
-      },
-      "accountable": "independent_reviewer",
-      "responsible": "independent_reviewer",
-      "consulted": [
-        "data_custodian"
-      ],
-      "informed": [
-        "case_steward"
-      ],
-      "acceptance": {
-        "zh": "依据、异议、结论或无法确定、有效期",
-        "en": "Basis, dissent, conclusion or uncertainty, expiry"
-      }
+      "state": "CORRECT",
+      "work": {"zh": "同渠道更正", "en": "Same-channel correction"},
+      "accountable": "channel_owner",
+      "responsible": "case_steward",
+      "consulted": ["independent_reviewer"],
+      "informed": ["service_owner"],
+      "required_receipt": "same_channel_correction_receipt",
+      "acceptance": {"zh": "逐渠道旧版、新版、时间、责任人和前台签收", "en": "Old/new version, time, owner and front-end acknowledgement per channel"},
+      "forbidden": {"zh": "只改后台、漏发或未签收均不得计为完成", "en": "Backend-only changes, omissions or missing acknowledgements never count as complete"}
     },
     {
       "id": "ACTION-5",
-      "work": {
-        "zh": "同渠道更正",
-        "en": "Same-channel correction"
-      },
-      "accountable": "channel_owner",
-      "responsible": "case_steward",
-      "consulted": [
-        "independent_reviewer"
-      ],
-      "informed": [
-        "service_owner"
-      ],
-      "acceptance": {
-        "zh": "逐渠道版本与签收；遗漏即保持暂停",
-        "en": "Version and receipt per channel; omissions keep service paused"
-      }
+      "state": "RETEST",
+      "work": {"zh": "产品与发布重测", "en": "Product and publication retest"},
+      "accountable": "evaluation_lead",
+      "responsible": "evaluation_lead",
+      "consulted": ["independent_reviewer"],
+      "informed": ["service_owner"],
+      "required_receipt": "retest_ticket",
+      "acceptance": {"zh": "失败样例、触发条件、修复版本与重测结果", "en": "Failure fixture, trigger, repaired version and retest result"},
+      "forbidden": {"zh": "重测负责人不得自行恢复服务", "en": "The retest lead cannot self-authorize service restoration"}
     },
     {
       "id": "ACTION-6",
-      "work": {
-        "zh": "产品与发布重测",
-        "en": "Product and publication retest"
-      },
-      "accountable": "evaluation_lead",
-      "responsible": "evaluation_lead",
-      "consulted": [
-        "independent_reviewer"
-      ],
-      "informed": [
-        "service_owner"
-      ],
-      "acceptance": {
-        "zh": "可复现失败样例与复测结果",
-        "en": "Reproducible failure fixture and retest result"
-      }
+      "state": "ADOPTION",
+      "work": {"zh": "采用、限制、暂停续约或退役", "en": "Adopt, restrict, pause renewal or retire"},
+      "accountable": "service_owner",
+      "responsible": "pilot_steward",
+      "consulted": ["independent_reviewer", "host_operator"],
+      "informed": ["channel_owner", "case_steward"],
+      "required_receipt": "adoption_consequence",
+      "acceptance": {"zh": "人工作出的采用后果、剩余问题和下次复核日", "en": "Human adoption consequence, remaining issues and next review date"},
+      "forbidden": {"zh": "模型不得自动决定继续采用或退役", "en": "A model cannot automatically decide continued adoption or retirement"}
     },
     {
       "id": "ACTION-7",
-      "work": {
-        "zh": "数据及场地恢复",
-        "en": "Data and site recovery"
-      },
+      "state": "RECOVERY",
+      "work": {"zh": "数据、资产与场地恢复", "en": "Data, asset and site recovery"},
       "accountable": "service_owner",
       "responsible": "data_custodian",
-      "consulted": [
-        "host_operator",
-        "accessibility_reviewer"
-      ],
-      "informed": [
-        "channel_owner"
-      ],
-      "acceptance": {
-        "zh": "资产、缓存、材料和备份的逐项记录",
-        "en": "Itemized asset, cache, material and backup records"
-      }
+      "consulted": ["host_operator", "accessibility_reviewer"],
+      "informed": ["channel_owner"],
+      "required_receipt": "recovery_retirement_receipt",
+      "acceptance": {"zh": "设备、材料、数据、缓存、备份和空间逐项关闭", "en": "Itemized closure of equipment, material, data, cache, backup and space"},
+      "forbidden": {"zh": "未留下恢复证据不得关闭案件", "en": "A case cannot close without recovery evidence"}
     },
     {
       "id": "ACTION-8",
-      "work": {
-        "zh": "采用/修改/退役",
-        "en": "Adopt / modify / retire"
-      },
+      "state": "CLOSED",
+      "work": {"zh": "最终结案", "en": "Final case closure"},
       "accountable": "service_owner",
       "responsible": "pilot_steward",
-      "consulted": [
-        "independent_reviewer",
-        "host_operator"
-      ],
-      "informed": [
-        "channel_owner",
-        "case_steward"
-      ],
-      "acceptance": {
-        "zh": "独立意见、签字、剩余问题和下次复核日",
-        "en": "Independent opinion, signatures, remaining issues and next review date"
-      }
+      "consulted": ["independent_reviewer", "data_custodian"],
+      "informed": ["channel_owner", "case_steward", "host_operator"],
+      "required_receipt": "closure_record",
+      "acceptance": {"zh": "七类凭证齐全、全渠道签收、重测、采用后果与恢复均完成", "en": "Seven receipt classes, all-channel acknowledgement, retest, adoption consequence and recovery complete"},
+      "forbidden": {"zh": "任一渠道或恢复事项未闭合时不得CLOSED", "en": "CLOSED is forbidden while any channel or recovery item remains open"}
     }
   ],
   "independence": {
-    "zh": "原发布者、供应商及材料制作人不得担任本案独立复核；利益冲突记录为必填。复核人缺席或结论无法确定时保持暂停并提供人工说明，不自动生成不利结论。",
-    "en": "The original publisher, supplier and material author cannot independently review their own case. Conflict disclosure is mandatory. Unavailable review or unresolved facts keep the case paused with human explanation, not an automatic adverse finding."
+    "zh": "原发布者、供应商、材料制作人、渠道责任人及服务责任人不得担任本案独立复核；利益冲突记录为必填。复核人缺席或结论无法确定时保持暂停并提供人工说明，不自动生成不利结论。",
+    "en": "The original publisher, supplier, material author, channel owner and service owner cannot independently review their own case. Conflict disclosure is mandatory. Unavailable review or unresolved facts keep the case paused with human explanation, not an automatic adverse finding."
+  },
+  "separation_of_duties": {
+    "rule_zh": "不能自己犯错、自己复核、自己恢复服务；受理、暂停、复核、重测、采用与恢复的权力不可互相替代。",
+    "rule_en": "No actor may cause an error, review it and restore the service alone; intake, pause, review, retest, adoption and recovery authorities are not interchangeable.",
+    "fail_closed_zh": "角色、签收或恢复证据缺失时保持HOLD或退役，不得以稍后补录为由继续。",
+    "fail_closed_en": "A missing role, acknowledgement or recovery record keeps the case on HOLD or retired; deferred paperwork cannot justify continuation.",
+    "prohibited_substitutions": [
+      "case_steward_cannot_close_accepted_case",
+      "supplier_or_channel_owner_cannot_self_review",
+      "evaluation_lead_cannot_restore_service",
+      "model_cannot_decide_adoption_or_retirement",
+      "backend_change_cannot_replace_front_end_channel_correction",
+      "data_custodian_cannot_replace_service_owner_closure_accountability"
+    ]
   },
   "channels": [
     {
@@ -902,8 +858,8 @@
       }
     ],
     "rule": {
-      "zh": "采用须完成授权、复核、全部渠道更正、重测及恢复并签字；可修复问题选修改并保持暂停；不可恢复或授权撤销选退役。草案空签字不阻断提案讨论，但禁止现场采用。",
-      "en": "Adoption requires authorization, review, all-channel correction, retest, recovery and signatures. Repairable issues mean modify while paused; irrecoverable issues or withdrawn permission mean retire. Empty draft signatures do not block proposal discussion but prohibit field adoption."
+      "zh": "采用须完成授权、复核、全部渠道更正、重测及恢复并签字；可修复问题选修改并保持暂停；不可恢复或授权撤销选退役。最终CLOSED还必须具备七类运行凭证、全渠道前台签收、产品重测、采用后果和恢复记录。草案空签字不阻断提案讨论，但禁止现场采用。",
+      "en": "Adoption requires authorization, review, all-channel correction, retest, recovery and signatures. Repairable issues mean modify while paused; irrecoverable issues or withdrawn permission mean retire. Final CLOSED status additionally requires seven operating receipt classes, front-end acknowledgement on every channel, product retest, an adoption consequence and recovery evidence. Empty draft signatures do not block proposal discussion but prohibit field adoption."
     }
   },
   "conditional_followups": [

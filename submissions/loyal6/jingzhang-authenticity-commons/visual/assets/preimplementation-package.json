@@ -1,19 +1,138 @@
 {
   "schema_version": "1.0",
   "id": "JZAC-P0-ORIGIN-RELAY-01",
-  "iteration": "v1.5-candidate",
+  "iteration": "v1.6-candidate",
   "status": "participant_preimplementation_reference_not_authorized",
   "title": {
-    "zh": "P0 共同复核与纠错接力单元：预实施证据包",
-    "en": "P0 Civic Review and Correction Relay Cell: Pre-implementation Evidence Package"
+    "zh": "P0 共同复核与纠错接力单元：制度可执行性证据包",
+    "en": "P0 Civic Review and Correction Relay Cell: Institutional Execution Evidence Package"
   },
   "public_test": {
     "zh": "一条错误如果不能沿原渠道被纠正，这项AI服务就不能留在京张。",
     "en": "If an error cannot be corrected through every channel that carried it, the AI service must not remain in Jing-Zhang."
   },
   "authority_boundary": {
-    "zh": "本包把既有PILOT-A转成可计算的参赛者参考测试装配，不是场地测绘、建筑方案、消防或无障碍合规结论、正式估算、采购批准或运营承诺。",
-    "en": "This package turns the existing PILOT-A into a computable participant reference test fit. It is not a site survey, building design, fire or accessibility compliance conclusion, formal estimate, procurement approval or operating commitment."
+    "zh": "本包把既有PILOT-A转成可交接、可验收、可停止、可恢复的制度运行样例。96平方米测试装配只是制度的最小物理载体；本包不是场地测绘、建筑方案、消防或无障碍合规结论、正式估算、采购批准或运营承诺。",
+    "en": "This package turns the existing PILOT-A into a handover-ready, testable, stoppable and recoverable institutional operating sample. The 96 sqm test fit is only its minimum physical carrier; this is not a site survey, building design, fire or accessibility compliance conclusion, formal estimate, procurement approval or operating commitment."
+  },
+  "feasibility_layers": [
+    {
+      "id": "F1",
+      "name_zh": "制度可执行",
+      "name_en": "Institutional execution",
+      "question_zh": "谁有权暂停、谁独立复核、谁把更正送回原渠道、谁允许结案？",
+      "question_en": "Who may pause, who reviews independently, who returns the correction, and who may close the case?"
+    },
+    {
+      "id": "F2",
+      "name_zh": "运营可持续",
+      "name_en": "Operational continuity",
+      "question_zh": "独立复核瓶颈、必要角色、队列过载和角色缺失时如何保持失败闭锁？",
+      "question_en": "How do review bottlenecks, minimum roles, overload and missing roles remain fail-closed?"
+    },
+    {
+      "id": "F3",
+      "name_zh": "空间可承载",
+      "name_en": "Spatial support",
+      "question_zh": "无屏入口、私密复核、独立人员入口、受控存放和恢复为何必须形成空间分隔？",
+      "question_en": "Why do screenless intake, private review, independent access, controlled custody and recovery require spatial separation?"
+    }
+  ],
+  "institutional_state_machine": {
+    "ordered_state_ids": [
+      "INTAKE",
+      "PAUSE",
+      "REVIEW",
+      "CORRECT",
+      "RETEST",
+      "ADOPTION",
+      "RECOVERY",
+      "CLOSED"
+    ],
+    "fail_closed_rule_zh": "角色、凭证、渠道签收或恢复证据任一缺失时，不得稍后补写并继续；案件保持HOLD或转入RETIRE。",
+    "fail_closed_rule_en": "A missing role, receipt, channel acknowledgement or recovery record cannot be deferred while the case advances; it remains on HOLD or moves to RETIRE.",
+    "states": [
+      {
+        "id": "INTAKE",
+        "entry_condition": "screenless or assisted report received",
+        "accountable_role": "pilot_steward",
+        "required_receipt": "intake_receipt",
+        "forbidden_transition": "INTAKE -> REVIEW before a complete channel inventory and pause decision",
+        "exit_condition": "case ID, material status, impact class and every known channel are registered",
+        "spatial_support": "screenless entry and intake/waiting",
+        "gate_ids": ["G01", "G04", "G05"]
+      },
+      {
+        "id": "PAUSE",
+        "entry_condition": "registered case requires propagation control",
+        "accountable_role": "channel_owner",
+        "required_receipt": "pause_receipt",
+        "forbidden_transition": "PAUSE -> CORRECT without independent review",
+        "exit_condition": "every registered channel is paused or explicitly recorded as unreachable",
+        "spatial_support": "same-channel correction band",
+        "gate_ids": ["G06"]
+      },
+      {
+        "id": "REVIEW",
+        "entry_condition": "pause receipt and bounded evidence bundle exist",
+        "accountable_role": "independent_reviewer",
+        "required_receipt": "independent_review_record",
+        "forbidden_transition": "REVIEW -> CORRECT when reviewer conflict is unresolved",
+        "exit_condition": "basis, uncertainty, conflict check and conclusion or escalation are recorded",
+        "spatial_support": "private independent review and separate reviewer access",
+        "gate_ids": ["G04", "G05", "G07"]
+      },
+      {
+        "id": "CORRECT",
+        "entry_condition": "review outcome requires correction or withdrawal",
+        "accountable_role": "channel_owner",
+        "required_receipt": "same_channel_correction_receipt",
+        "forbidden_transition": "CORRECT -> CLOSED when any original channel lacks a front-end acknowledgement",
+        "exit_condition": "old and new versions, correction time, owner and acknowledgement exist for every original channel",
+        "spatial_support": "public correction table and revision-return wall",
+        "gate_ids": ["G06", "G08"]
+      },
+      {
+        "id": "RETEST",
+        "entry_condition": "corrected case becomes a reproducible product or publishing-workflow failure",
+        "accountable_role": "evaluation_lead",
+        "required_receipt": "retest_ticket",
+        "forbidden_transition": "RETEST -> ADOPTION before the failed condition and retest result are recorded",
+        "exit_condition": "failure fixture, trigger, repaired version and result are recorded without self-authorizing restoration",
+        "spatial_support": "Zhongzhiyuan controlled retest and repair area",
+        "gate_ids": ["G07", "G08", "G09"]
+      },
+      {
+        "id": "ADOPTION",
+        "entry_condition": "review and retest evidence are available to the service or procurement owner",
+        "accountable_role": "service_owner",
+        "required_receipt": "adoption_consequence",
+        "forbidden_transition": "ADOPTION -> CLOSED before recovery and original-channel closure",
+        "exit_condition": "adopt, modify, restrict, pause renewal or retire is recorded by a human owner",
+        "spatial_support": "Dazhongsi procurement and exit-test table",
+        "gate_ids": ["G06", "G07", "G09"]
+      },
+      {
+        "id": "RECOVERY",
+        "entry_condition": "adoption consequence identifies material, data, cache, backup, equipment and space duties",
+        "accountable_role": "service_owner",
+        "required_receipt": "recovery_retirement_receipt",
+        "forbidden_transition": "RECOVERY -> CLOSED with any unclosed recovery item",
+        "exit_condition": "every required item is closed, isolated, retained under authority or restored with evidence",
+        "spatial_support": "controlled records/recovery store and independent recovery exit",
+        "gate_ids": ["G05", "G08", "G10"]
+      },
+      {
+        "id": "CLOSED",
+        "entry_condition": "all seven receipts exist and every original channel, retest, adoption and recovery condition is complete",
+        "accountable_role": "service_owner",
+        "required_receipt": "closure_record",
+        "forbidden_transition": "CLOSED is invalidated by any missing receipt, reopened channel or unresolved recovery item",
+        "exit_condition": "case remains auditable; later evidence reopens it at PAUSE rather than silently rewriting history",
+        "spatial_support": "public status board plus controlled case archive",
+        "gate_ids": ["G06", "G07", "G10"]
+      }
+    ]
   },
   "reference_test_fit": {
     "host_area": "beijing_ai_origin_community",
@@ -114,7 +233,34 @@
     "waiting_area_sqm": 16.0,
     "waiting_density_assumption_sqm_per_person": 2.0,
     "reference_waiting_limit_persons": 8,
-    "admission_rule": "When the active queue reaches eight people or demand exceeds the two-case-per-hour screening envelope, stop walk-in admission, keep urgent human explanation available, and add appointments or an independent second review seat before reopening.",
+    "admission_rule": "When the active queue reaches eight people or demand exceeds the two-case-per-hour screening envelope, stop walk-in admission, keep urgent human explanation and the pause route available, and use appointments. Capacity must not increase by shortening independent review; reopening above the envelope requires additional independent-review capacity plus matching correction, retest and recovery capacity.",
+    "priority_rule": "High-consequence reports retain human explanation and the ability to request a pause even when walk-in intake is closed; this does not guarantee immediate full review.",
+    "operating_scenarios": [
+      {
+        "id": "SYNTHETIC_90_DAY",
+        "status": "participant_computable_drill",
+        "capacity_cases_per_hour": 2.0,
+        "minimum_concurrent_seats": 5,
+        "reference_staff_hours": 780,
+        "field_release": false,
+        "decision": "adopt, modify or retire the protocol only; no live-service conclusion"
+      },
+      {
+        "id": "LIMITED_CONTINUING_WINDOW",
+        "status": "conditional_after_day_90_review",
+        "capacity_cases_per_hour": 2.0,
+        "minimum_concurrent_seats": 5,
+        "annual_fte": null,
+        "condition": "repeat bounded windows only after named roles, channel agreements and field baselines exist"
+      },
+      {
+        "id": "EXPANDED_OPERATION",
+        "status": "not_sized",
+        "capacity_cases_per_hour": null,
+        "minimum_concurrent_seats": null,
+        "condition": "size independent review, correction, retest and recovery as complete parallel lanes after observed demand; never scale by weakening review"
+      }
+    ],
     "field_baseline": null,
     "field_target": null,
     "observed": null
@@ -132,7 +278,10 @@
     "independence_constraints": [
       "original_channel_owner must not serve as independent reviewer for the same case",
       "material author or supplier must not serve as independent reviewer",
-      "service owner must not approve their own unresolved adverse conclusion"
+      "service owner must not approve their own unresolved adverse conclusion",
+      "case steward must not close a case they accepted",
+      "evaluation lead may record a retest but must not restore service",
+      "data custodian may verify recovery evidence but must not replace the service owner's closure accountability"
     ],
     "reference_90_day_schedule": {
       "window_hours": 4,
@@ -233,6 +382,9 @@
       "name_en": "Host and site-use permission",
       "owner": "host_operator",
       "required_evidence": "named entity, site-use scope, dates and signatory authority",
+      "enables": "a fixed, time-bounded physical pilot at the named site",
+      "blocks": "fixed-site opening and any claim that a Civic Review Hall exists",
+      "safe_state": "staffed mobile counter plus separately bookable private room, or offline tabletop drill",
       "status": "HOLD"
     },
     {
@@ -241,6 +393,9 @@
       "name_en": "Ownership, existing condition, structure, fire and engineering",
       "owner": "host_operator",
       "required_evidence": "authorized survey and competent professional review",
+      "enables": "measured fit-out decisions and competent professional release",
+      "blocks": "construction, fixed equipment and compliance claims",
+      "safe_state": "non-building paper and tabletop protocol rehearsal",
       "status": "HOLD"
     },
     {
@@ -249,6 +404,9 @@
       "name_en": "Accessible route and co-testing",
       "owner": "accessibility_reviewer",
       "required_evidence": "measured route, applicable-code review and user co-test record",
+      "enables": "field use of the proposed arrival, review and exit route",
+      "blocks": "accessibility compliance or parity claims",
+      "safe_state": "screenless assisted rehearsal with documented unresolved access conditions",
       "status": "HOLD"
     },
     {
@@ -257,6 +415,9 @@
       "name_en": "Material provenance, copyright and purpose permission",
       "owner": "data_custodian",
       "required_evidence": "rights record, permitted purpose, expiry and withdrawal path",
+      "enables": "bounded use of cleared field material for the stated purpose",
+      "blocks": "ingestion, display or redistribution of real material",
+      "safe_state": "clearly marked synthetic evidence kit only",
       "status": "HOLD"
     },
     {
@@ -265,6 +426,9 @@
       "name_en": "Privacy, retention and impact review",
       "owner": "data_custodian",
       "required_evidence": "reviewed data protocol, minimization and residual-risk acceptance",
+      "enables": "purpose-limited custody of authorized case material",
+      "blocks": "personal-data intake, live interfaces and field KPI claims",
+      "safe_state": "paper case ID, no identity material and human custody of synthetic records",
       "status": "HOLD"
     },
     {
@@ -273,6 +437,9 @@
       "name_en": "Original-channel ownership and correction-return agreement",
       "owner": "channel_owner",
       "required_evidence": "complete channel inventory, named owner and acknowledgement method",
+      "enables": "real-case pause and same-channel correction",
+      "blocks": "live case opening, automatic correction and CLOSED status for a real case",
+      "safe_state": "human-signed correction ledger for controlled offline drill channels",
       "status": "HOLD"
     },
     {
@@ -281,6 +448,9 @@
       "name_en": "Independent review appointment and conflicts",
       "owner": "independent_reviewer",
       "required_evidence": "qualification, appointment, recusal and replacement procedure",
+      "enables": "field review and a review-conditioned service decision",
+      "blocks": "real-case review, adverse decision and restoration",
+      "safe_state": "synthetic role rehearsal with no field conclusion",
       "status": "HOLD"
     },
     {
@@ -289,6 +459,9 @@
       "name_en": "Cybersecurity, offline changeover and rollback",
       "owner": "evaluation_lead",
       "required_evidence": "bounded interface inventory, offline test, rollback and incident route",
+      "enables": "bounded channel interfaces with tested rollback",
+      "blocks": "network connection, live API use and automatic return",
+      "safe_state": "offline evidence package, paper receipts and manual per-channel acknowledgement",
       "status": "HOLD"
     },
     {
@@ -297,6 +470,9 @@
       "name_en": "Staffing, procurement, funding and assurance",
       "owner": "service_owner",
       "required_evidence": "appointed roster, sourced quantities and rates, funding and insurance basis",
+      "enables": "a declared operating window and resourced pilot",
+      "blocks": "fixed public hours, annual FTE, monetary estimate and service promise",
+      "safe_state": "single scheduled synthetic drill with participant reference shares only",
       "status": "HOLD"
     },
     {
@@ -305,6 +481,9 @@
       "name_en": "Joint decommissioning and recovery acceptance",
       "owner": "service_owner",
       "required_evidence": "asset, material, cache, backup and space closure signed by required roles",
+      "enables": "deployment of reversible temporary equipment and final field closure",
+      "blocks": "equipment deployment and CLOSED status when recovery cannot be evidenced",
+      "safe_state": "no live deployment; use removable synthetic materials and record their reset",
       "status": "HOLD"
     }
   ],
@@ -365,14 +544,115 @@
     }
   ],
   "acceptance_evidence": {
+    "institutional_acceptance_set": [
+      {
+        "id": "A01",
+        "criterion_zh": "未登记传播渠道数",
+        "criterion_en": "Unregistered propagation-channel count",
+        "target": 0,
+        "metric_id": "p0_unregistered_channel_count",
+        "status": "currently_judgeable_from_synthetic_dossier"
+      },
+      {
+        "id": "A02",
+        "criterion_zh": "协议中允许绕过人工暂停的非法转换数",
+        "criterion_en": "Protocol transitions that illegally bypass human pause",
+        "target": 0,
+        "metric_id": "p0_illegal_pause_bypass_transition_count",
+        "status": "currently_judgeable_from_state_machine"
+      },
+      {
+        "id": "A03",
+        "criterion_zh": "复核利益冲突数",
+        "criterion_en": "Review conflict count",
+        "target": 0,
+        "metric_id": "p0_review_conflict_count",
+        "status": "currently_judgeable_from_synthetic_dossier"
+      },
+      {
+        "id": "A04",
+        "criterion_zh": "原渠道更正签收覆盖率",
+        "criterion_en": "Original-channel correction acknowledgement coverage",
+        "target": 1.0,
+        "metric_id": "p0_same_channel_ack_coverage_ratio",
+        "status": "currently_judgeable_from_synthetic_dossier"
+      },
+      {
+        "id": "A05",
+        "criterion_zh": "只改后台却被允许结案的测试数",
+        "criterion_en": "Tests in which a backend-only change can close a case",
+        "target": 0,
+        "metric_id": "p0_backend_only_closure_count",
+        "status": "currently_judgeable_from_failure_injection"
+      },
+      {
+        "id": "A06",
+        "criterion_zh": "未完成重测即恢复的测试数",
+        "criterion_en": "Tests that restore before retest completion",
+        "target": 0,
+        "metric_id": "p0_restore_before_retest_count",
+        "status": "currently_judgeable_from_failure_injection"
+      },
+      {
+        "id": "A07",
+        "criterion_zh": "退役或恢复后未关闭事项数",
+        "criterion_en": "Unclosed items after retirement or recovery",
+        "target": 0,
+        "metric_id": "p0_unclosed_recovery_item_count",
+        "status": "currently_judgeable_from_synthetic_dossier"
+      },
+      {
+        "id": "A08",
+        "criterion_zh": "合成无屏人工路径关键阻断数",
+        "criterion_en": "Critical blockers in the synthetic screenless human path",
+        "target": 0,
+        "metric_id": "p0_screenless_path_blocker_count",
+        "status": "currently_judgeable_from_synthetic_dossier_not_field_accessibility"
+      },
+      {
+        "id": "A09",
+        "criterion_zh": "真实平均人工受理等待",
+        "criterion_en": "Observed mean wait for human intake",
+        "target": null,
+        "metric_id": "human_handover_time_min",
+        "status": "baseline_required"
+      },
+      {
+        "id": "A10",
+        "criterion_zh": "真实同渠道更正闭环耗时",
+        "criterion_en": "Observed same-channel correction closure time",
+        "target": null,
+        "metric_id": "same_channel_correction_time_h",
+        "status": "baseline_required"
+      },
+      {
+        "id": "A11",
+        "criterion_zh": "投诉与复核结案率",
+        "criterion_en": "Complaint and review closure ratio",
+        "target": null,
+        "metric_id": "complaint_review_closure_ratio",
+        "status": "baseline_required"
+      },
+      {
+        "id": "A12",
+        "criterion_zh": "公众理解“来源真实不等于内容真实”的比例",
+        "criterion_en": "Public understanding that provenance is not factual truth",
+        "target": null,
+        "metric_id": "user_understanding_ratio",
+        "status": "baseline_required"
+      }
+    ],
     "currently_judgeable": [
+      "eight-state institutional machine has no permitted shortcut to CLOSED",
+      "seven receipt classes are present in one synthetic case dossier",
       "six reference zones sum to the 96 sqm test-fit envelope",
       "six procurement shares sum to 100 percent",
       "all ten external gates remain HOLD and field release is false",
       "all four safe branches map to explicit gates and preserve the public correction invariant",
       "synthetic same-channel correction is 2/2",
       "four missing-field injections produce 4/4 pause or retirement states",
-      "eight RACI actions and nine unappointed role classes remain inspectable"
+      "eight state-aligned RACI actions and nine unappointed role classes remain inspectable",
+      "A01 to A08 are participant-computable synthetic acceptance checks; A09 to A12 remain null"
     ],
     "field_dependent": [
       "named operator and signatories",
@@ -389,17 +669,17 @@
     {
       "duration": "30_seconds",
       "question": "What is the non-negotiable public rule?",
-      "evidence": "public test, bidirectional spine and three verification layers"
+      "evidence": "public test, eight-state closure chain and five CLOSED conditions"
     },
     {
       "duration": "3_minutes",
       "question": "Can one pilot be spatially and operationally understood?",
-      "evidence": "P0 test-fit, six moments, capacity screening and ninety-day stages"
+      "evidence": "one seven-receipt synthetic case dossier, P0 support spaces and overload rule"
     },
     {
       "duration": "15_minutes",
       "question": "Can a professional team continue without inventing missing approvals?",
-      "evidence": "RACI, packages, maintenance, ten gates, four safe branches and field-dependent evidence"
+      "evidence": "separation of duties, A01-A12, three resource scenarios, ten launch gates and four safe states"
     }
   ]
 }

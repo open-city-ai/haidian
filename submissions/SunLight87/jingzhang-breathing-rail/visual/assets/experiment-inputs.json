@@ -1,0 +1,2897 @@
+{
+  "boundaries": {
+    "baseline_candidate": "authored_baseline",
+    "candidates": [
+      "authored_baseline",
+      "public_interest_balance",
+      "low_burden_operable"
+    ],
+    "coordinate_policy": {
+      "base_geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+      "change_mode": "attribute_only",
+      "coordinate_patch": [],
+      "coordinates_changed": false,
+      "crs": "EPSG:4326"
+    },
+    "fixed_assignments": {
+      "S01": "source_calibration_yard",
+      "S02": "source_calibration_yard",
+      "S03": "adoption_market_court",
+      "S12": "civic_translation_commons"
+    },
+    "metric_formulas": {
+      "fallback_strength_min": "三场人工/非数字回退强度总和中的最小值，maximize；每场必须至少有一个回退原型。",
+      "maintenance_burden_max": "三场维护负担序数总和中的最大值，minimize。",
+      "persona_coverage_min": "三场各自覆盖的去重画像数量中的最小值，maximize。",
+      "public_interest_score": "2*persona_coverage_min + 2*fallback_strength_min + reversibility_sum_min + role_affinity_total，项目内部序数。",
+      "reversibility_sum_min": "三场可逆性序数总和中的最小值，maximize。",
+      "role_affinity_total": "各原型被分配到该场的项目内部序数亲和分总和，maximize；court 为兼容字段。",
+      "role_load_spread": "三场未知依赖与维护负担总和的最大值减最小值，minimize。",
+      "unknown_dependency_burden_max": "三场未知依赖序数总和中的最大值，minimize。"
+    },
+    "not_evaluated": [
+      "model invocation",
+      "field trial",
+      "runtime or latency",
+      "energy consumption",
+      "public feedback",
+      "approval",
+      "HumanDecision"
+    ],
+    "prohibited_flags": [
+      "uses_pii",
+      "uses_biometrics",
+      "medical_claim",
+      "regulatory_claim",
+      "approval_claim"
+    ],
+    "question": "Assign S01-S12 to source_calibration_yard, civic_translation_commons, and adoption_market_court; do not change coordinates.",
+    "role_cardinality": {
+      "max": 5,
+      "min": 3
+    },
+    "role_order": [
+      "source_calibration_yard",
+      "civic_translation_commons",
+      "adoption_market_court"
+    ],
+    "scenario_ids": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S11",
+      "S12"
+    ],
+    "score_semantics": "All scores are project-authored internal ordinals; they are not field performance, engineering feasibility, regulatory, approval, or public-opinion claims.",
+    "seed": 20260821
+  },
+  "frozen_inputs": {
+    "allocation_config": {
+      "candidate_profiles": [
+        {
+          "assignment": {
+            "adoption_market_court": [
+              "S03",
+              "S06",
+              "S09",
+              "S10"
+            ],
+            "civic_translation_commons": [
+              "S04",
+              "S05",
+              "S07",
+              "S11",
+              "S12"
+            ],
+            "source_calibration_yard": [
+              "S01",
+              "S02",
+              "S08"
+            ]
+          },
+          "candidate_id": "authored_baseline",
+          "label_zh": "现有 authored baseline",
+          "selection_mode": "explicit"
+        },
+        {
+          "candidate_id": "public_interest_balance",
+          "label_zh": "公共利益平衡候选",
+          "priority": [
+            "public_interest_score",
+            "persona_coverage_min",
+            "fallback_strength_min",
+            "reversibility_sum_min",
+            "role_affinity_total",
+            "assignment_key"
+          ],
+          "selection_mode": "ranked"
+        },
+        {
+          "candidate_id": "low_burden_operable",
+          "label_zh": "低负担可运营候选",
+          "priority": [
+            "maintenance_burden_max",
+            "unknown_dependency_burden_max",
+            "role_load_spread",
+            "role_affinity_total",
+            "assignment_key"
+          ],
+          "selection_mode": "ranked"
+        }
+      ],
+      "config_id": "three_courts_twelve_posts_v1",
+      "delta_policy": {
+        "base_geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+        "base_geometry_role": "provisional_constraint",
+        "change_mode": "attribute_only",
+        "coordinates_change_allowed": false,
+        "crs": "EPSG:4326",
+        "geometry_delta_kind": "candidate_delta"
+      },
+      "fixed_assignments": {
+        "S01": "source_calibration_yard",
+        "S02": "source_calibration_yard",
+        "S03": "adoption_market_court",
+        "S12": "civic_translation_commons"
+      },
+      "observed_at": "2026-08-23T10:00:00Z",
+      "prohibited_flags": [
+        "uses_pii",
+        "uses_biometrics",
+        "medical_claim",
+        "regulatory_claim",
+        "approval_claim"
+      ],
+      "role_cardinality": {
+        "max": 5,
+        "min": 3
+      },
+      "role_order": [
+        "source_calibration_yard",
+        "civic_translation_commons",
+        "adoption_market_court"
+      ],
+      "scenario_catalog_ref": "scenario_catalog.json",
+      "schema_version": "0.1.0",
+      "score_definitions": {
+        "fallback_strength_min": "三场人工/非数字回退强度总和中的最小值，maximize；每场必须至少有一个回退原型。",
+        "maintenance_burden_max": "三场维护负担序数总和中的最大值，minimize。",
+        "persona_coverage_min": "三场各自覆盖的去重画像数量中的最小值，maximize。",
+        "public_interest_score": "2*persona_coverage_min + 2*fallback_strength_min + reversibility_sum_min + role_affinity_total，项目内部序数。",
+        "reversibility_sum_min": "三场可逆性序数总和中的最小值，maximize。",
+        "role_affinity_total": "各原型被分配到该场的项目内部序数亲和分总和，maximize；court 为兼容字段。",
+        "role_load_spread": "三场未知依赖与维护负担总和的最大值减最小值，minimize。",
+        "unknown_dependency_burden_max": "三场未知依赖序数总和中的最大值，minimize。"
+      },
+      "seed": 20260821
+    },
+    "analysis_run": {
+      "adapter": {
+        "commit": "local-experiment-2026-08-23-strata-label-migration",
+        "method": "explicit feasible enumeration and deterministic ordinal critics",
+        "name": "stdlib-exhaustive-role-enumerator",
+        "version": "1.1"
+      },
+      "analysis_run_id": "analysis-run-three-court-role-allocation",
+      "calibration_benchmark_uncertainty": {
+        "benchmark_refs": [],
+        "calibration_status": "not_applicable",
+        "notes": "This run evaluates authored role allocation only; no field calibration or professional performance benchmark was run.",
+        "uncertainty_level": "high"
+      },
+      "created_at": "2026-08-23T10:00:00Z",
+      "environment": {
+        "network_mode": "offline",
+        "os": "cross-platform",
+        "package_lock_ref": "README.md#runtime",
+        "runtime": "Python 3 standard library"
+      },
+      "errors": [],
+      "evidence_refs": [
+        "workbench/baseline/task/project_brief.json",
+        "workbench/baseline/task/scenario_spec.json",
+        "README.md",
+        "scenario_catalog.json",
+        "allocation_config.json",
+        "comparison.md"
+      ],
+      "finished_at": "2026-08-23T10:00:02Z",
+      "inputs": [
+        {
+          "content_hash": "40e0ea00528d387a53355ff57e8e449d3e7682e14bc7d27d3f4dd96de3024cad",
+          "input_id": "project_brief",
+          "ref": "workbench/baseline/task/project_brief.json",
+          "role": "evidence"
+        },
+        {
+          "content_hash": "6e307a94d5522672ad859df7cca7c9fa8e28e6345b50bbc82b6b16af4c9f49bb",
+          "input_id": "scenario_spec",
+          "ref": "workbench/baseline/task/scenario_spec.json",
+          "role": "scenario"
+        },
+        {
+          "content_hash": "7bb816bf43e5f62aec70dbe9626dacb0cdc2cfb91a0ea223164350d08e9b3782",
+          "input_id": "scenario_catalog",
+          "ref": "scenario_catalog.json",
+          "role": "scenario"
+        },
+        {
+          "content_hash": "6065617ed7e3d0d59be6c68d57f4e0232977605f9950a22684a704a8c1a96cf6",
+          "input_id": "allocation_config",
+          "ref": "allocation_config.json",
+          "role": "configuration"
+        },
+        {
+          "content_hash": "0ee185bc6a4cf605410655853d41e4d4e6101874431af094512cab3463b2852b",
+          "input_id": "solution_recipe",
+          "ref": "solution_recipe.json",
+          "role": "configuration"
+        },
+        {
+          "content_hash": "4839158c9a7e4044a94904b4fc912b3d48c83a48fb11726b5d67db5ecd3fd0f9",
+          "input_id": "provisional_site_boundary",
+          "license_ref": "LOCAL:provisional-public-data-reference-only",
+          "ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+          "role": "geometry"
+        }
+      ],
+      "metrics": [
+        {
+          "direction": "informational",
+          "metric_id": "feasible_assignment_count",
+          "unit": "assignment_count",
+          "value": 55
+        },
+        {
+          "direction": "informational",
+          "metric_id": "pareto_assignment_count",
+          "unit": "assignment_count",
+          "value": 6
+        },
+        {
+          "direction": "informational",
+          "metric_id": "scenario_count",
+          "unit": "scenario_count",
+          "value": 12
+        },
+        {
+          "direction": "informational",
+          "metric_id": "role_count",
+          "unit": "role_count",
+          "value": 3
+        },
+        {
+          "direction": "informational",
+          "metric_id": "selected_candidate_count",
+          "unit": "candidate_count",
+          "value": 3
+        },
+        {
+          "direction": "informational",
+          "metric_id": "coordinate_change_count",
+          "unit": "change_count",
+          "value": 0
+        },
+        {
+          "direction": "informational",
+          "metric_id": "forbidden_flag_count",
+          "unit": "flag_count",
+          "value": 0
+        }
+      ],
+      "outputs": [
+        {
+          "content_hash": "3fc608440c4dc90abbde59bb1845e6bff649513afd1d78340a30909cd68f17ca",
+          "format": "JSON",
+          "kind": "other",
+          "output_id": "candidate-authored_baseline",
+          "ref": "candidates/authored_baseline.json"
+        },
+        {
+          "content_hash": "b0e9af93f3cf9572a6950deca761e86fc1906c88c02c9b793a5556de2f75d56c",
+          "format": "JSON",
+          "kind": "other",
+          "output_id": "candidate-low_burden_operable",
+          "ref": "candidates/low_burden_operable.json"
+        },
+        {
+          "content_hash": "e18062c48c5c90c25e56dc4fd435257d314fa99f97616fba03fc7b7d86337442",
+          "format": "JSON",
+          "kind": "other",
+          "output_id": "candidate-public_interest_balance",
+          "ref": "candidates/public_interest_balance.json"
+        },
+        {
+          "content_hash": "000252a05d1345bed1269b069c90d2e5640880d1c8867f9991332aab916fea70",
+          "format": "Markdown",
+          "kind": "report",
+          "output_id": "comparison",
+          "ref": "comparison.md"
+        },
+        {
+          "content_hash": "e2b4730b60d179b876b4932ba38545cdfc3fb979b3e5c4bb506031539cfbf1c6",
+          "format": "JSON",
+          "kind": "candidate_delta",
+          "output_id": "delta-authored_baseline",
+          "ref": "deltas/authored_baseline.json"
+        },
+        {
+          "content_hash": "953614a85c8cd1f20a223710cc22d0f04007ae50201bba19053a03e68ade205a",
+          "format": "JSON",
+          "kind": "candidate_delta",
+          "output_id": "delta-low_burden_operable",
+          "ref": "deltas/low_burden_operable.json"
+        },
+        {
+          "content_hash": "1eba22b633837aeb894f6a86af1f50b198bb7db12fdc5d28d98ab7b5f2f0b826",
+          "format": "JSON",
+          "kind": "candidate_delta",
+          "output_id": "delta-public_interest_balance",
+          "ref": "deltas/public_interest_balance.json"
+        }
+      ],
+      "parameters": {
+        "catalog_hash": "7bb816bf43e5f62aec70dbe9626dacb0cdc2cfb91a0ea223164350d08e9b3782",
+        "config_hash": "6065617ed7e3d0d59be6c68d57f4e0232977605f9950a22684a704a8c1a96cf6",
+        "coordinate_policy": "no_coordinate_change",
+        "enumeration_order": "scenario_id_then_role_order",
+        "project_brief_hash": "40e0ea00528d387a53355ff57e8e449d3e7682e14bc7d27d3f4dd96de3024cad",
+        "role_max_count": 5,
+        "role_min_count": 3,
+        "scenario_spec_hash": "6e307a94d5522672ad859df7cca7c9fa8e28e6345b50bbc82b6b16af4c9f49bb"
+      },
+      "reproducibility_status": "reproducible",
+      "reproduction_notes": "Run python run_allocation.py twice in offline mode; canonical JSON and fixed timestamps/seed must yield identical hashes.",
+      "schema_version": "1.0",
+      "seed": 20260821,
+      "started_at": "2026-08-23T10:00:01Z",
+      "status": "succeeded",
+      "updated_at": "2026-08-23T10:00:00Z",
+      "warnings": [
+        {
+          "code": "ORDINAL_INTERNAL_ONLY",
+          "message": "All scores are project-authored ordinals and are not real-world performance claims.",
+          "severity": "warning"
+        },
+        {
+          "code": "PROVISIONAL_GEOMETRY",
+          "message": "The base geometry is referenced as provisional and remains read-only.",
+          "severity": "warning"
+        }
+      ]
+    },
+    "candidates": {
+      "authored_baseline": {
+        "candidate_record_id": "candidates-authored_baseline",
+        "created_at": "2026-08-23T10:00:00Z",
+        "evidence_refs": [
+          "workbench/baseline/task/scenario_spec.json",
+          "scenario_catalog.json",
+          "allocation_config.json",
+          "comparison.md"
+        ],
+        "generator": {
+          "commit": "local-experiment-2026-08-23-strata-label-migration",
+          "configuration_ref": "allocation_config.json",
+          "method": "exhaustive_allowed_role_assignment_with_ordinal_critics",
+          "mode": "deterministic",
+          "name": "other",
+          "version": "stdlib-enumerator-1.1"
+        },
+        "geometry_authority": "candidate_only",
+        "geometry_delta": {
+          "base_geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+          "changed_feature_ids": [],
+          "crs": "EPSG:4326",
+          "delta_hash": "e2b4730b60d179b876b4932ba38545cdfc3fb979b3e5c4bb506031539cfbf1c6",
+          "delta_ref": "deltas/authored_baseline.json",
+          "kind": "candidate_delta"
+        },
+        "hard_constraint_results": [
+          {
+            "constraint_id": "fixed_scenario_roles",
+            "evidence_refs": [
+              "allocation_config.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "role_cardinality_3_to_5",
+            "evidence_refs": [
+              "allocation_config.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "unique_full_coverage_s01_s12",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "manual_fallback_each_court",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "no_pii_biometrics_or_claims",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "attribute_only_no_coordinate_change",
+            "evidence_refs": [
+              "deltas/authored_baseline.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          }
+        ],
+        "input_hash": "756ace9f17974a1a1d22bb3436cebb00ab1695b4ad4cac3e9ccbd3776d03bea6",
+        "objectives": [
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.role_affinity_total",
+            "objective_id": "role_affinity_total",
+            "unit": "ordinal_score",
+            "value": 36
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.persona_coverage_min",
+            "objective_id": "persona_coverage_min",
+            "unit": "persona_count",
+            "value": 6
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.fallback_strength_min",
+            "objective_id": "fallback_strength_min",
+            "unit": "ordinal_score",
+            "value": 6
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.reversibility_sum_min",
+            "objective_id": "reversibility_sum_min",
+            "unit": "ordinal_score",
+            "value": 7
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.unknown_dependency_burden_max",
+            "objective_id": "unknown_dependency_burden_max",
+            "unit": "ordinal_score",
+            "value": 8
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.maintenance_burden_max",
+            "objective_id": "maintenance_burden_max",
+            "unit": "ordinal_score",
+            "value": 8
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.role_load_spread",
+            "objective_id": "role_load_spread",
+            "unit": "ordinal_score",
+            "value": 2
+          }
+        ],
+        "scenario_spec_ref": "workbench/baseline/task/scenario_spec.json",
+        "schema_version": "1.0",
+        "seed": 20260821,
+        "status": "machine_generated",
+        "trace_lineage": {
+          "action_trace_ref": "analysis_run.json#allocation_trace",
+          "notes": "按 scenario_id 和 role_order 固定枚举；candidate delta 明确无坐标修改。",
+          "parent_candidate_refs": [],
+          "reproducibility_status": "reproducible"
+        },
+        "uncertainty": {
+          "level": "high",
+          "method": "Authored ordinal scenario metadata and deterministic enumeration; no field calibration.",
+          "notes": "候选只比较场景角色分配，不代表现实可达性、空气质量、工程性能或公众意见。",
+          "status": "not_calibrated"
+        },
+        "updated_at": "2026-08-23T10:00:00Z",
+        "violations_or_anomalies": [
+          {
+            "description": "所有分数是项目内部序数；没有现场绩效、专业校准或现实因果含义。",
+            "evidence_refs": [
+              "README.md",
+              "comparison.md"
+            ],
+            "kind": "uncertainty",
+            "severity": "info",
+            "status": "acknowledged"
+          }
+        ]
+      },
+      "low_burden_operable": {
+        "candidate_record_id": "candidates-low_burden_operable",
+        "created_at": "2026-08-23T10:00:00Z",
+        "evidence_refs": [
+          "workbench/baseline/task/scenario_spec.json",
+          "scenario_catalog.json",
+          "allocation_config.json",
+          "comparison.md"
+        ],
+        "generator": {
+          "commit": "local-experiment-2026-08-23-strata-label-migration",
+          "configuration_ref": "allocation_config.json",
+          "method": "exhaustive_allowed_role_assignment_with_ordinal_critics",
+          "mode": "deterministic",
+          "name": "other",
+          "version": "stdlib-enumerator-1.1"
+        },
+        "geometry_authority": "candidate_only",
+        "geometry_delta": {
+          "base_geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+          "changed_feature_ids": [],
+          "crs": "EPSG:4326",
+          "delta_hash": "953614a85c8cd1f20a223710cc22d0f04007ae50201bba19053a03e68ade205a",
+          "delta_ref": "deltas/low_burden_operable.json",
+          "kind": "candidate_delta"
+        },
+        "hard_constraint_results": [
+          {
+            "constraint_id": "fixed_scenario_roles",
+            "evidence_refs": [
+              "allocation_config.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "role_cardinality_3_to_5",
+            "evidence_refs": [
+              "allocation_config.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "unique_full_coverage_s01_s12",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "manual_fallback_each_court",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "no_pii_biometrics_or_claims",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "attribute_only_no_coordinate_change",
+            "evidence_refs": [
+              "deltas/low_burden_operable.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          }
+        ],
+        "input_hash": "0c4302bf4c946a197bfef96cfd8391e993b7ba30d7084bb78334cdbc9ea7a5d2",
+        "objectives": [
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.role_affinity_total",
+            "objective_id": "role_affinity_total",
+            "unit": "ordinal_score",
+            "value": 34
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.persona_coverage_min",
+            "objective_id": "persona_coverage_min",
+            "unit": "persona_count",
+            "value": 6
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.fallback_strength_min",
+            "objective_id": "fallback_strength_min",
+            "unit": "ordinal_score",
+            "value": 7
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.reversibility_sum_min",
+            "objective_id": "reversibility_sum_min",
+            "unit": "ordinal_score",
+            "value": 8
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.unknown_dependency_burden_max",
+            "objective_id": "unknown_dependency_burden_max",
+            "unit": "ordinal_score",
+            "value": 9
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.maintenance_burden_max",
+            "objective_id": "maintenance_burden_max",
+            "unit": "ordinal_score",
+            "value": 7
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.role_load_spread",
+            "objective_id": "role_load_spread",
+            "unit": "ordinal_score",
+            "value": 2
+          }
+        ],
+        "scenario_spec_ref": "workbench/baseline/task/scenario_spec.json",
+        "schema_version": "1.0",
+        "seed": 20260821,
+        "status": "machine_generated",
+        "trace_lineage": {
+          "action_trace_ref": "analysis_run.json#allocation_trace",
+          "notes": "按 scenario_id 和 role_order 固定枚举；candidate delta 明确无坐标修改。",
+          "parent_candidate_refs": [],
+          "reproducibility_status": "reproducible"
+        },
+        "uncertainty": {
+          "level": "high",
+          "method": "Authored ordinal scenario metadata and deterministic enumeration; no field calibration.",
+          "notes": "候选只比较场景角色分配，不代表现实可达性、空气质量、工程性能或公众意见。",
+          "status": "not_calibrated"
+        },
+        "updated_at": "2026-08-23T10:00:00Z",
+        "violations_or_anomalies": [
+          {
+            "description": "所有分数是项目内部序数；没有现场绩效、专业校准或现实因果含义。",
+            "evidence_refs": [
+              "README.md",
+              "comparison.md"
+            ],
+            "kind": "uncertainty",
+            "severity": "info",
+            "status": "acknowledged"
+          }
+        ]
+      },
+      "public_interest_balance": {
+        "candidate_record_id": "candidates-public_interest_balance",
+        "created_at": "2026-08-23T10:00:00Z",
+        "evidence_refs": [
+          "workbench/baseline/task/scenario_spec.json",
+          "scenario_catalog.json",
+          "allocation_config.json",
+          "comparison.md"
+        ],
+        "generator": {
+          "commit": "local-experiment-2026-08-23-strata-label-migration",
+          "configuration_ref": "allocation_config.json",
+          "method": "exhaustive_allowed_role_assignment_with_ordinal_critics",
+          "mode": "deterministic",
+          "name": "other",
+          "version": "stdlib-enumerator-1.1"
+        },
+        "geometry_authority": "candidate_only",
+        "geometry_delta": {
+          "base_geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+          "changed_feature_ids": [],
+          "crs": "EPSG:4326",
+          "delta_hash": "1eba22b633837aeb894f6a86af1f50b198bb7db12fdc5d28d98ab7b5f2f0b826",
+          "delta_ref": "deltas/public_interest_balance.json",
+          "kind": "candidate_delta"
+        },
+        "hard_constraint_results": [
+          {
+            "constraint_id": "fixed_scenario_roles",
+            "evidence_refs": [
+              "allocation_config.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "role_cardinality_3_to_5",
+            "evidence_refs": [
+              "allocation_config.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "unique_full_coverage_s01_s12",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "manual_fallback_each_court",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "no_pii_biometrics_or_claims",
+            "evidence_refs": [
+              "scenario_catalog.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          },
+          {
+            "constraint_id": "attribute_only_no_coordinate_change",
+            "evidence_refs": [
+              "deltas/public_interest_balance.json"
+            ],
+            "passed": true,
+            "status": "passed"
+          }
+        ],
+        "input_hash": "67a30bfd3c2d9961a7c622410d7b31e8af7edd9060f644922e62614fbe52cebb",
+        "objectives": [
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.role_affinity_total",
+            "objective_id": "role_affinity_total",
+            "unit": "ordinal_score",
+            "value": 35
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.persona_coverage_min",
+            "objective_id": "persona_coverage_min",
+            "unit": "persona_count",
+            "value": 8
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.fallback_strength_min",
+            "objective_id": "fallback_strength_min",
+            "unit": "ordinal_score",
+            "value": 9
+          },
+          {
+            "direction": "maximize",
+            "metric_ref": "metrics.reversibility_sum_min",
+            "objective_id": "reversibility_sum_min",
+            "unit": "ordinal_score",
+            "value": 10
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.unknown_dependency_burden_max",
+            "objective_id": "unknown_dependency_burden_max",
+            "unit": "ordinal_score",
+            "value": 10
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.maintenance_burden_max",
+            "objective_id": "maintenance_burden_max",
+            "unit": "ordinal_score",
+            "value": 10
+          },
+          {
+            "direction": "minimize",
+            "metric_ref": "metrics.role_load_spread",
+            "objective_id": "role_load_spread",
+            "unit": "ordinal_score",
+            "value": 10
+          }
+        ],
+        "scenario_spec_ref": "workbench/baseline/task/scenario_spec.json",
+        "schema_version": "1.0",
+        "seed": 20260821,
+        "status": "machine_generated",
+        "trace_lineage": {
+          "action_trace_ref": "analysis_run.json#allocation_trace",
+          "notes": "按 scenario_id 和 role_order 固定枚举；candidate delta 明确无坐标修改。",
+          "parent_candidate_refs": [],
+          "reproducibility_status": "reproducible"
+        },
+        "uncertainty": {
+          "level": "high",
+          "method": "Authored ordinal scenario metadata and deterministic enumeration; no field calibration.",
+          "notes": "候选只比较场景角色分配，不代表现实可达性、空气质量、工程性能或公众意见。",
+          "status": "not_calibrated"
+        },
+        "updated_at": "2026-08-23T10:00:00Z",
+        "violations_or_anomalies": [
+          {
+            "description": "所有分数是项目内部序数；没有现场绩效、专业校准或现实因果含义。",
+            "evidence_refs": [
+              "README.md",
+              "comparison.md"
+            ],
+            "kind": "uncertainty",
+            "severity": "info",
+            "status": "acknowledged"
+          }
+        ]
+      }
+    },
+    "deltas": {
+      "authored_baseline": {
+        "assignment": {
+          "adoption_market_court": [
+            "S03",
+            "S06",
+            "S09",
+            "S10"
+          ],
+          "civic_translation_commons": [
+            "S04",
+            "S05",
+            "S07",
+            "S11",
+            "S12"
+          ],
+          "source_calibration_yard": [
+            "S01",
+            "S02",
+            "S08"
+          ]
+        },
+        "base_geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+        "change_mode": "attribute_only",
+        "changed_attributes": [
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S01",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S02",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S03",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S04",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S05",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S06",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S07",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S08",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S09",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S10",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S11",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S12",
+            "to_role": "civic_translation_commons"
+          }
+        ],
+        "coordinate_patch": [],
+        "coordinates_changed": false,
+        "crs": "EPSG:4326",
+        "delta_id": "delta-authored_baseline",
+        "geometry_authority": "candidate_only",
+        "geometry_delta_kind": "candidate_delta",
+        "note_zh": "仅新增 S01—S12 城市原型到三场的属性分配；assigned_court 为兼容字段，不包含坐标、几何、红线、用地或审批变更。",
+        "observed_at": "2026-08-23T10:00:00Z",
+        "schema_version": "0.1.0",
+        "seed": 20260821
+      },
+      "low_burden_operable": {
+        "assignment": {
+          "adoption_market_court": [
+            "S03",
+            "S06",
+            "S09",
+            "S10"
+          ],
+          "civic_translation_commons": [
+            "S04",
+            "S05",
+            "S07",
+            "S08",
+            "S12"
+          ],
+          "source_calibration_yard": [
+            "S01",
+            "S02",
+            "S11"
+          ]
+        },
+        "base_geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+        "change_mode": "attribute_only",
+        "changed_attributes": [
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S01",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S02",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S03",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S04",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S05",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S06",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S07",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S08",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S09",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S10",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S11",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S12",
+            "to_role": "civic_translation_commons"
+          }
+        ],
+        "coordinate_patch": [],
+        "coordinates_changed": false,
+        "crs": "EPSG:4326",
+        "delta_id": "delta-low_burden_operable",
+        "geometry_authority": "candidate_only",
+        "geometry_delta_kind": "candidate_delta",
+        "note_zh": "仅新增 S01—S12 城市原型到三场的属性分配；assigned_court 为兼容字段，不包含坐标、几何、红线、用地或审批变更。",
+        "observed_at": "2026-08-23T10:00:00Z",
+        "schema_version": "0.1.0",
+        "seed": 20260821
+      },
+      "public_interest_balance": {
+        "assignment": {
+          "adoption_market_court": [
+            "S03",
+            "S06",
+            "S09",
+            "S10"
+          ],
+          "civic_translation_commons": [
+            "S04",
+            "S05",
+            "S07",
+            "S12"
+          ],
+          "source_calibration_yard": [
+            "S01",
+            "S02",
+            "S08",
+            "S11"
+          ]
+        },
+        "base_geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+        "change_mode": "attribute_only",
+        "changed_attributes": [
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S01",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S02",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S03",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S04",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S05",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S06",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S07",
+            "to_role": "civic_translation_commons"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S08",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S09",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S10",
+            "to_role": "adoption_market_court"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S11",
+            "to_role": "source_calibration_yard"
+          },
+          {
+            "attribute": "assigned_court",
+            "from_role": "unassigned",
+            "scenario_id": "S12",
+            "to_role": "civic_translation_commons"
+          }
+        ],
+        "coordinate_patch": [],
+        "coordinates_changed": false,
+        "crs": "EPSG:4326",
+        "delta_id": "delta-public_interest_balance",
+        "geometry_authority": "candidate_only",
+        "geometry_delta_kind": "candidate_delta",
+        "note_zh": "仅新增 S01—S12 城市原型到三场的属性分配；assigned_court 为兼容字段，不包含坐标、几何、红线、用地或审批变更。",
+        "observed_at": "2026-08-23T10:00:00Z",
+        "schema_version": "0.1.0",
+        "seed": 20260821
+      }
+    },
+    "negative_fixtures": {
+      "cases": [
+        {
+          "assignment_patch": {
+            "S01": "civic_translation_commons"
+          },
+          "case_id": "fixed_role_violation",
+          "expected_error": "FIXED_ASSIGNMENT:S01",
+          "kind": "assignment"
+        },
+        {
+          "assignment_patch": {
+            "drop_scenario": "S12",
+            "duplicate_scenario": "S11"
+          },
+          "case_id": "duplicate_missing_coverage",
+          "expected_error": "UNIQUE_COVERAGE",
+          "kind": "assignment"
+        },
+        {
+          "assignment_patch": {
+            "add_to_role": "source_calibration_yard",
+            "scenarios": [
+              "S04",
+              "S05",
+              "S07"
+            ]
+          },
+          "case_id": "role_cardinality_overflow",
+          "expected_error_prefix": "ROLE_CARDINALITY:source_calibration_yard",
+          "kind": "assignment"
+        },
+        {
+          "case_id": "prohibited_pii_flag",
+          "expected_error": "PROHIBITED_FLAG:S04:uses_pii",
+          "kind": "catalog_flag"
+        },
+        {
+          "case_id": "court_without_manual_fallback",
+          "expected_error": "NO_ROLE_FALLBACK:source_calibration_yard",
+          "kind": "catalog_fallback"
+        },
+        {
+          "case_id": "coordinate_patch_present",
+          "expected_error": "COORDINATE_PATCH_NOT_EMPTY",
+          "kind": "delta"
+        }
+      ],
+      "observed_at": "2026-08-21T00:00:00Z",
+      "schema_version": "0.1.0",
+      "seed": 20260821
+    },
+    "project_brief": {
+      "approver_roles": [
+        "professional_planning_team",
+        "human_review_lead"
+      ],
+      "assumptions": [
+        {
+          "assumption_id": "provisional-geometry-nonblocking",
+          "evidence_refs": [
+            ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json",
+            ".worktrees/haidian-main-20260821/docs/formal-submission-guide.md"
+          ],
+          "impact": "high",
+          "statement": "官方精确几何缺失不阻断概念内容评分，但只允许临时生成、展示和自检，不允许法定或精确结论。",
+          "status": "accepted"
+        },
+        {
+          "assumption_id": "authored-role-allocation",
+          "evidence_refs": [
+            "workbench/baseline/experiment/allocation_config.json",
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "impact": "medium",
+          "statement": "allocation_config.json 的 authored_baseline 是项目概念输入，不是官方设施、现实部署或批准运营分工；assigned_court、既有 court IDs 及 jingzhang-breathing-rail 路径保留为兼容标识，court/station 仅是历史内部 ID，对外标签为 field/prototype。",
+          "status": "accepted"
+        },
+        {
+          "assumption_id": "human-review-before-formal",
+          "evidence_refs": [
+            "workbench/contracts/README.md",
+            ".worktrees/haidian-main-20260821/docs/formal-submission-guide.md"
+          ],
+          "impact": "high",
+          "statement": "CandidateRecord 保持 machine_generated；independent critique 与 HumanDecision 均待实现，候选和正式输出均须由专业规划团队与人工复核，没有 HumanDecision 不得进入 approved 或正式投稿。",
+          "status": "accepted"
+        }
+      ],
+      "available_data": [
+        {
+          "access": "available",
+          "content_hash": "4839158C9A7E4044A94904B4FC912B3D48C83A48FB11726B5D67DB5ECD3FD0F9",
+          "crs": "EPSG:4326",
+          "data_id": "provisional-site-boundary",
+          "format": "geojson",
+          "kind": "geometry",
+          "license_ref": ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json",
+          "observed_at": "2026-08-21T12:00:00+08:00",
+          "uri_or_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001"
+        },
+        {
+          "access": "available",
+          "data_id": "concept-freeze",
+          "format": "other",
+          "kind": "policy",
+          "license_ref": "workbench/baseline/concept/concept_freeze_v2.md",
+          "observed_at": "2026-08-21T12:00:00+08:00",
+          "uri_or_ref": "workbench/baseline/concept/concept_freeze_v2.md"
+        },
+        {
+          "access": "available",
+          "content_hash": "899E6205152131A15A8FE1D0AE2DE137350EBE6EDA354B323FD842F759BF2167",
+          "data_id": "scenario-catalog",
+          "format": "json",
+          "kind": "other",
+          "license_ref": "workbench/baseline/experiment/scenario_catalog.json",
+          "observed_at": "2026-08-21T12:00:00+08:00",
+          "uri_or_ref": "workbench/baseline/experiment/scenario_catalog.json"
+        },
+        {
+          "access": "available",
+          "content_hash": "0F38008E161D5ECD853FF67FA6D59E37E1D7600B01D158D2825F368369AE3560",
+          "data_id": "allocation-config",
+          "format": "json",
+          "kind": "other",
+          "license_ref": "workbench/baseline/experiment/allocation_config.json",
+          "observed_at": "2026-08-21T12:00:00+08:00",
+          "uri_or_ref": "workbench/baseline/experiment/allocation_config.json"
+        },
+        {
+          "access": "missing",
+          "data_id": "official-geometry",
+          "format": "geojson",
+          "kind": "geometry",
+          "license_ref": ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json",
+          "uri_or_ref": ".worktrees/haidian-main-20260821/brief/site-package/geometry/official_boundaries.geojson"
+        }
+      ],
+      "budget_category": "unknown",
+      "clarification": {
+        "last_checked_at": "2026-08-21T12:00:00+08:00",
+        "open_questions": [
+          {
+            "answered": false,
+            "blocking": false,
+            "question": "官方 SITE/KEY_AREA polygon 和控制条件何时可用？",
+            "question_id": "official-geometry"
+          },
+          {
+            "answered": false,
+            "blocking": false,
+            "question": "正式控规、权属、文保、交通、市政和工程结论由何方确认？",
+            "question_id": "professional-review-owner"
+          },
+          {
+            "answered": false,
+            "blocking": false,
+            "question": "官方只公布 2026-08-31 截止日；具体截止时刻以及以创建 PR、最后推送还是其他事件判定，尚待组织方确认。",
+            "question_id": "official-deadline-cutoff"
+          }
+        ]
+      },
+      "created_at": "2026-08-21T12:00:00+08:00",
+      "deadlines": [
+        {
+          "deadline_id": "concept-baseline-freeze",
+          "due_at": "2026-08-21T23:59:59+08:00",
+          "stage": "概念角色与服务覆盖基线",
+          "timezone": "Asia/Shanghai"
+        }
+      ],
+      "evidence_refs": [
+        "workbench/baseline/concept/concept_freeze_v2.md",
+        "workbench/baseline/experiment/scenario_catalog.json",
+        "workbench/baseline/experiment/allocation_config.json",
+        "workbench/contracts/README.md",
+        ".worktrees/haidian-main-20260821/brief/site-package/agent_taskbook.json",
+        ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json"
+      ],
+      "goals": [
+        {
+          "evidence_refs": [
+            "workbench/baseline/concept/concept_freeze_v2.md",
+            ".worktrees/haidian-main-20260821/brief/site-package/agent_taskbook.json"
+          ],
+          "goal_id": "goal-concept-coverage",
+          "kind": "primary",
+          "priority": 5,
+          "statement": "以《百年京张·城市叠代》/ JINGZHANG STRATA（旧“京张呼吸线 2.0”版本迁移记录）回应 23 项任务和六项 Agent 要求，保持概念建议、证据链和人审边界。"
+        },
+        {
+          "evidence_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "goal_id": "goal-role-service-allocation",
+          "kind": "primary",
+          "priority": 5,
+          "statement": "在 provisional 场地引用上，以一基、三场、两翼、十二原型完成三场角色和 S01—S12 原型服务覆盖：众智园=校准（历史内部 ID：source_calibration_yard，数据/模型/标准/治理），AI 原点社区=共译（历史内部 ID：civic_translation_commons，公众参与/服务转译），大钟寺=转化（历史内部 ID：adoption_market_court，应用验证/产业连接）；不生成或修改坐标。"
+        },
+        {
+          "evidence_refs": [
+            "workbench/contracts/README.md",
+            ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json"
+          ],
+          "goal_id": "goal-auditable-candidate",
+          "kind": "guardrail",
+          "priority": 5,
+          "statement": "为候选生成提供可复核的来源、许可、指标、硬约束、人工回退和停止条件。"
+        }
+      ],
+      "hard_constraints": [
+        {
+          "constraint_id": "constraint-provisional-geometry",
+          "constraint_type": "geometric",
+          "machine_checkable": true,
+          "metric_ref": "metric://provisional_authority",
+          "source_refs": [
+            ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json",
+            ".worktrees/haidian-main-20260821/docs/formal-submission-guide.md"
+          ],
+          "statement": "SITE 和重点区几何 authority 保持 provisional；可用于概念候选和展示，不得作为官方红线、审批依据或精确面积依据。"
+        },
+        {
+          "constraint_id": "constraint-role-only",
+          "constraint_type": "data_quality",
+          "machine_checkable": true,
+          "metric_ref": "metric://no_coordinate_write",
+          "source_refs": [
+            "workbench/baseline/experiment/allocation_config.json",
+            "workbench/contracts/README.md"
+          ],
+          "statement": "当前场景规格只分配三场—十二原型的角色和服务覆盖，只改变 assigned_court 属性，不写入坐标、几何增量或坐标覆盖操作；court/station 是历史内部 ID，对外标签为 field/prototype。"
+        },
+        {
+          "constraint_id": "constraint-public-cleared",
+          "constraint_type": "data_quality",
+          "machine_checkable": true,
+          "metric_ref": "metric://evidence_completeness",
+          "source_refs": [
+            ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json",
+            ".worktrees/haidian-main-20260821/skills/urban-design-ai-submission/SKILL.md"
+          ],
+          "statement": "对外发布、商业使用或进入正式投稿的代码、模型、数据、字体、图像和服务必须公开可用或已清权；许可尚待确认的本地研究工件只能留在隔离候选层，并在正式资产前阻断。"
+        },
+        {
+          "constraint_id": "constraint-no-legal-precision",
+          "constraint_type": "legal",
+          "machine_checkable": true,
+          "source_refs": [
+            ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json",
+            ".worktrees/haidian-main-20260821/docs/review-rubric.md"
+          ],
+          "statement": "不从临时几何或场景分配推导法定边界、精确面积、控规、权属、工程、医疗、交通安全、审批或运营结论。"
+        },
+        {
+          "constraint_id": "constraint-human-selection",
+          "constraint_type": "data_quality",
+          "machine_checkable": true,
+          "metric_ref": "metric://human_review_coverage",
+          "source_refs": [
+            "workbench/contracts/README.md",
+            ".worktrees/haidian-main-20260821/docs/formal-submission-guide.md"
+          ],
+          "statement": "AI 主链为 ProjectBrief → ScenarioSpec → deterministic option family/Pareto → CandidateRecord（machine_generated）→ independent critique（待实现）→ HumanDecision（待实现）→ 运行反馈；候选排序、指标取舍和正式输出必须经过专业团队及人工复核，没有 HumanDecision 不得进入 approved 或正式投稿。"
+        }
+      ],
+      "metrics": [
+        {
+          "definition": "三场角色和十二原型服务记录中，角色、服务、责任、人工闸和来源字段齐全的记录比例。",
+          "direction": "maximize",
+          "metric_id": "role_service_coverage",
+          "name": "三场十二原型角色服务覆盖率",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "unit": "ratio"
+        },
+        {
+          "definition": "关键角色、服务和设计判断具备来源、许可或项目假设，并能在本地复核的比例。",
+          "direction": "maximize",
+          "metric_id": "evidence_completeness",
+          "name": "证据完备率",
+          "source_refs": [
+            "workbench/contracts/README.md",
+            ".worktrees/haidian-main-20260821/skills/urban-design-ai-submission/SKILL.md"
+          ],
+          "unit": "ratio"
+        },
+        {
+          "definition": "每个候选或服务接口均有责任人、人工替代、停止或退出路径的比例。",
+          "direction": "maximize",
+          "metric_id": "human_review_coverage",
+          "name": "人工复核覆盖率",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            "workbench/contracts/README.md"
+          ],
+          "unit": "ratio"
+        },
+        {
+          "definition": "所有几何引用均标记 provisional，且不被解释为法定或精确结论的比例。",
+          "direction": "maximize",
+          "metric_id": "provisional_authority",
+          "name": "临时几何权威披露率",
+          "source_refs": [
+            ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json"
+          ],
+          "unit": "ratio"
+        },
+        {
+          "definition": "本场景规格没有坐标字段、几何 delta 或坐标覆盖操作；以布尔硬门复核。",
+          "direction": "informational",
+          "metric_id": "no_coordinate_write",
+          "name": "坐标写入硬门",
+          "source_refs": [
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "unit": "boolean"
+        }
+      ],
+      "operational_constraints": {
+        "compute": {
+          "cpu_class": "low",
+          "gpu_required": false,
+          "runtime_class": "minutes"
+        },
+        "license_policy": "review_required",
+        "network_access": "offline_required",
+        "privacy_level": "public"
+      },
+      "planning_level": "corridor",
+      "project_brief_id": "jingzhang-concept-brief-20260821",
+      "requested_outputs": [
+        {
+          "acceptance_criteria": [
+            "三场与十二原型（S01—S12）角色及服务覆盖齐全",
+            "不含坐标写入，保留来源、人工闸和退出字段"
+          ],
+          "format": "json",
+          "kind": "other",
+          "output_id": "role-service-matrix"
+        },
+        {
+          "acceptance_criteria": [
+            "概念建议、临时几何和资料缺口可读",
+            "正文、矩阵、场景、指标和证据可追溯"
+          ],
+          "format": "html",
+          "kind": "report",
+          "output_id": "concept-report"
+        },
+        {
+          "acceptance_criteria": [
+            "候选通过硬约束和证据筛选",
+            "候选不覆盖权威几何，且等待人工选择"
+          ],
+          "format": "json",
+          "kind": "candidate_set",
+          "output_id": "candidate-set"
+        },
+        {
+          "acceptance_criteria": [
+            "记录候选取舍、未决问题、责任人和批准/拒绝理由"
+          ],
+          "format": "json",
+          "kind": "decision_log",
+          "output_id": "human-review-record"
+        }
+      ],
+      "schema_version": "1.0",
+      "site_boundary_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+      "soft_preferences": [
+        {
+          "direction": "maximize",
+          "metric_ref": "metric://role_service_coverage",
+          "preference_id": "preference-role-coverage",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "statement": "三场分别覆盖众智园校准、AI 原点社区共译、大钟寺转化三类角色，十二原型对应目录中的 S01—S12 十二类可暂停、可回退服务。",
+          "weight": 1
+        },
+        {
+          "direction": "maximize",
+          "metric_ref": "metric://human_review_coverage",
+          "preference_id": "preference-reversibility",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            "workbench/baseline/concept/concept_freeze_v2.md"
+          ],
+          "statement": "优先保留人工、纸面、静态、语音、暂停和撤回路径，采用低扰动可逆服务组件。",
+          "weight": 0.9
+        },
+        {
+          "direction": "maximize",
+          "metric_ref": "metric://evidence_completeness",
+          "preference_id": "preference-traceability",
+          "source_refs": [
+            "workbench/contracts/README.md",
+            ".worktrees/haidian-main-20260821/docs/formal-submission-guide.md"
+          ],
+          "statement": "正文、矩阵、场景目录、指标和人审记录使用稳定 ID 互相追溯。",
+          "weight": 0.8
+        }
+      ],
+      "stakeholder_roles": [
+        "concept_planning_agent",
+        "professional_planning_team",
+        "gis_and_data_reviewer",
+        "public_interest_reviewer",
+        "rights_and_license_reviewer"
+      ],
+      "status": "ready_for_candidate_generation",
+      "title": "《百年京张·城市叠代》 / JINGZHANG STRATA｜从铁路遗产到城市智能基础设施｜百年为基，城市叠代。",
+      "updated_at": "2026-08-23T18:00:00+08:00"
+    },
+    "scenario_catalog": {
+      "authority_note_zh": "本目录只把 proposal.md 中的 S01—S12 城市原型卡结构化为内部基线输入；role_id 保留 2026-08-21 的 court 命名以维持兼容，不代表已部署、已批准或现实绩效。",
+      "catalog_id": "jingzhang_three_courts_twelve_posts",
+      "observed_at": "2026-08-23T10:00:00Z",
+      "roles": [
+        {
+          "label_en": "Zhongzhiyuan Calibration Field",
+          "label_zh": "众智园·校准场",
+          "role_id": "source_calibration_yard",
+          "role_tags": [
+            "calibration",
+            "research",
+            "red_team"
+          ]
+        },
+        {
+          "label_en": "AI Origin Community Civic Translation Field",
+          "label_zh": "AI 原点社区·共译场",
+          "role_id": "civic_translation_commons",
+          "role_tags": [
+            "public_service",
+            "accessibility",
+            "translation"
+          ]
+        },
+        {
+          "label_en": "Dazhongsi Adoption Field",
+          "label_zh": "大钟寺·转化场",
+          "role_id": "adoption_market_court",
+          "role_tags": [
+            "usability",
+            "adoption",
+            "operations"
+          ]
+        }
+      ],
+      "scenarios": [
+        {
+          "allowed_roles": [
+            "source_calibration_yard"
+          ],
+          "approval_claim": false,
+          "category": "calibration",
+          "fallback_modes": [
+            "staffed_review",
+            "paper_record"
+          ],
+          "fallback_strength": 2,
+          "id": "S01",
+          "maintenance_burden": 3,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Multi-sensor co-location calibration",
+          "name_zh": "多传感器共置校准",
+          "note_zh": "小规模、可暂停的概念试验；校准记录由专业人员签发。",
+          "personas": [
+            "environment_researcher",
+            "ai_developer",
+            "operator"
+          ],
+          "preferred_roles": [
+            "source_calibration_yard"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 2,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 1,
+            "civic_translation_commons": 1,
+            "source_calibration_yard": 3
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S01",
+          "unknown_dependency_burden": 3,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "source_calibration_yard"
+          ],
+          "approval_claim": false,
+          "category": "model_safety",
+          "fallback_modes": [
+            "staffed_review",
+            "offline_sandbox"
+          ],
+          "fallback_strength": 2,
+          "id": "S02",
+          "maintenance_burden": 2,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Model drift and outlier red team",
+          "name_zh": "模型漂移与极端值红队",
+          "note_zh": "合成事件和清权测试集只用于沙盒压力测试。",
+          "personas": [
+            "ai_developer",
+            "safety_reviewer",
+            "operator"
+          ],
+          "preferred_roles": [
+            "source_calibration_yard"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 3,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 1,
+            "civic_translation_commons": 1,
+            "source_calibration_yard": 3
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S02",
+          "unknown_dependency_burden": 2,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "adoption_market_court"
+          ],
+          "approval_claim": false,
+          "category": "usability",
+          "fallback_modes": [
+            "staffed_facilitation",
+            "paper_task",
+            "voice_assistance"
+          ],
+          "fallback_strength": 3,
+          "id": "S03",
+          "maintenance_burden": 2,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Indoor and outdoor terminal usability",
+          "name_zh": "室内外终端可用性实验",
+          "note_zh": "自愿体验、匿名任务完成率，不采生物识别。",
+          "personas": [
+            "resident",
+            "older_adult",
+            "visitor"
+          ],
+          "preferred_roles": [
+            "adoption_market_court"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 3,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 3,
+            "civic_translation_commons": 2,
+            "source_calibration_yard": 1
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S03",
+          "unknown_dependency_burden": 2,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "civic_translation_commons",
+            "adoption_market_court"
+          ],
+          "approval_claim": false,
+          "category": "public_route",
+          "fallback_modes": [
+            "static_wayfinding",
+            "paper_map",
+            "staff_confirmation"
+          ],
+          "fallback_strength": 3,
+          "id": "S04",
+          "maintenance_burden": 1,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Low-exposure active-mobility route",
+          "name_zh": "低暴露慢行路线",
+          "note_zh": "空气预测只是次级偏好，合法、无障碍和人工确认是硬门。",
+          "personas": [
+            "commuter",
+            "student",
+            "mobility_impaired"
+          ],
+          "preferred_roles": [
+            "civic_translation_commons"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 3,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 2,
+            "civic_translation_commons": 3,
+            "source_calibration_yard": 1
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S04",
+          "unknown_dependency_burden": 2,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "civic_translation_commons"
+          ],
+          "approval_claim": false,
+          "category": "accessibility",
+          "fallback_modes": [
+            "paper_map",
+            "voice_assistance",
+            "staff_confirmation"
+          ],
+          "fallback_strength": 3,
+          "id": "S05",
+          "maintenance_burden": 1,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Accessible breathing post",
+          "name_zh": "无障碍呼吸驿",
+          "note_zh": "设施清单和人工确认并行，不宣称实时可达性。",
+          "personas": [
+            "older_adult",
+            "mobility_impaired",
+            "resident"
+          ],
+          "preferred_roles": [
+            "civic_translation_commons"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 3,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 1,
+            "civic_translation_commons": 3,
+            "source_calibration_yard": 1
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S05",
+          "unknown_dependency_burden": 1,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "civic_translation_commons",
+            "adoption_market_court"
+          ],
+          "approval_claim": false,
+          "category": "indoor_service",
+          "fallback_modes": [
+            "staff_inspection",
+            "printed_notice"
+          ],
+          "fallback_strength": 2,
+          "id": "S06",
+          "maintenance_burden": 2,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Ventilation advice assistant",
+          "name_zh": "通风建议助手",
+          "note_zh": "机电和卫生专业人员决定，不把建议写成工程指令。",
+          "personas": [
+            "property_operator",
+            "visitor",
+            "resident"
+          ],
+          "preferred_roles": [
+            "adoption_market_court"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 2,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 3,
+            "civic_translation_commons": 2,
+            "source_calibration_yard": 1
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S06",
+          "unknown_dependency_burden": 3,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "civic_translation_commons",
+            "adoption_market_court"
+          ],
+          "approval_claim": false,
+          "category": "public_information",
+          "fallback_modes": [
+            "static_bulletin",
+            "staffed_explanation",
+            "paper_notice"
+          ],
+          "fallback_strength": 3,
+          "id": "S07",
+          "maintenance_burden": 1,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Pollen and dust public bulletin",
+          "name_zh": "花粉与扬尘公共公报",
+          "note_zh": "显示来源和时效，不发布医疗判断。",
+          "personas": [
+            "family_visitor",
+            "outdoor_worker",
+            "resident"
+          ],
+          "preferred_roles": [
+            "civic_translation_commons"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 3,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 2,
+            "civic_translation_commons": 3,
+            "source_calibration_yard": 1
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S07",
+          "unknown_dependency_burden": 2,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "source_calibration_yard",
+            "civic_translation_commons"
+          ],
+          "approval_claim": false,
+          "category": "blue_green",
+          "fallback_modes": [
+            "manual_inspection",
+            "paper_checklist"
+          ],
+          "fallback_strength": 2,
+          "id": "S08",
+          "maintenance_burden": 3,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Blue-green facility inspection",
+          "name_zh": "蓝绿设施巡检",
+          "note_zh": "机器提示交给园林、水务或运维专业人员复核。",
+          "personas": [
+            "landscape_operator",
+            "volunteer",
+            "environment_researcher"
+          ],
+          "preferred_roles": [
+            "source_calibration_yard"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 2,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 1,
+            "civic_translation_commons": 2,
+            "source_calibration_yard": 3
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S08",
+          "unknown_dependency_burden": 3,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "civic_translation_commons",
+            "adoption_market_court"
+          ],
+          "approval_claim": false,
+          "category": "event_operations",
+          "fallback_modes": [
+            "site_lead_decision",
+            "static_notice"
+          ],
+          "fallback_strength": 2,
+          "id": "S09",
+          "maintenance_burden": 2,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Event and construction air notice",
+          "name_zh": "活动与施工空气提示",
+          "note_zh": "现场负责人决定暂停，不把设备误报变成处罚或审批结论。",
+          "personas": [
+            "event_organizer",
+            "resident",
+            "outdoor_worker"
+          ],
+          "preferred_roles": [
+            "adoption_market_court"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 2,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 3,
+            "civic_translation_commons": 2,
+            "source_calibration_yard": 1
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S09",
+          "unknown_dependency_burden": 2,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "civic_translation_commons",
+            "adoption_market_court"
+          ],
+          "approval_claim": false,
+          "category": "public_service",
+          "fallback_modes": [
+            "duty_staff",
+            "fixed_non_ai_service",
+            "paper_hours"
+          ],
+          "fallback_strength": 3,
+          "id": "S10",
+          "maintenance_burden": 1,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Shift-worker breathing post",
+          "name_zh": "夜班呼吸驿",
+          "note_zh": "保留固定非 AI 服务，不采雇佣绩效或个人轨迹。",
+          "personas": [
+            "shift_worker",
+            "service_staff",
+            "older_adult"
+          ],
+          "preferred_roles": [
+            "adoption_market_court"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 3,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 3,
+            "civic_translation_commons": 2,
+            "source_calibration_yard": 1
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S10",
+          "unknown_dependency_burden": 1,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "source_calibration_yard",
+            "civic_translation_commons"
+          ],
+          "approval_claim": false,
+          "category": "community_learning",
+          "fallback_modes": [
+            "staff_training",
+            "paper_tutorial",
+            "data_delete_request"
+          ],
+          "fallback_strength": 3,
+          "id": "S11",
+          "maintenance_burden": 2,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Community sensor loan and learning",
+          "name_zh": "社区传感器借用与共学",
+          "note_zh": "借用日志最小化，数据可不公开并可删除。",
+          "personas": [
+            "student",
+            "resident",
+            "environment_researcher"
+          ],
+          "preferred_roles": [
+            "civic_translation_commons"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 3,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 1,
+            "civic_translation_commons": 3,
+            "source_calibration_yard": 2
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S11",
+          "unknown_dependency_burden": 2,
+          "uses_biometrics": false,
+          "uses_pii": false
+        },
+        {
+          "allowed_roles": [
+            "civic_translation_commons"
+          ],
+          "approval_claim": false,
+          "category": "heritage_translation",
+          "fallback_modes": [
+            "static_text",
+            "human_interpretation",
+            "paper_guide"
+          ],
+          "fallback_strength": 3,
+          "id": "S12",
+          "maintenance_burden": 1,
+          "manual_fallback": true,
+          "medical_claim": false,
+          "name_en": "Multilingual railway-memory guide",
+          "name_zh": "铁路记忆多语导览",
+          "note_zh": "史料逐条人工核读，静态图文和人工讲解并行。",
+          "personas": [
+            "family_visitor",
+            "international_visitor",
+            "older_adult"
+          ],
+          "preferred_roles": [
+            "civic_translation_commons"
+          ],
+          "regulatory_claim": false,
+          "reversibility_score": 3,
+          "reversible": true,
+          "role_affinity": {
+            "adoption_market_court": 1,
+            "civic_translation_commons": 3,
+            "source_calibration_yard": 1
+          },
+          "source_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/proposal.md#S12",
+          "unknown_dependency_burden": 1,
+          "uses_biometrics": false,
+          "uses_pii": false
+        }
+      ],
+      "schema_version": "0.1.0",
+      "seed": 20260821
+    },
+    "scenario_spec": {
+      "acceptance_gates": [
+        {
+          "description": "S01/S02→众智园（校准），S03→大钟寺（转化），S12→AI 原点社区（共译）；稳定 assigned_court 值仍沿用既有 court IDs。",
+          "gate_id": "fixed_scenario_roles",
+          "kind": "hard_constraint",
+          "required": true
+        },
+        {
+          "description": "每场 3—5 个原型。",
+          "gate_id": "role_cardinality_3_to_5",
+          "kind": "hard_constraint",
+          "required": true
+        },
+        {
+          "description": "S01—S12 唯一全覆盖。",
+          "gate_id": "unique_full_coverage_s01_s12",
+          "kind": "hard_constraint",
+          "required": true
+        },
+        {
+          "description": "每场至少有一个人工或非数字回退原型。",
+          "gate_id": "manual_fallback_each_court",
+          "kind": "hard_constraint",
+          "required": true
+        },
+        {
+          "description": "没有 PII、生物识别、医疗、监管或审批声明。",
+          "gate_id": "no_pii_biometrics_or_claims",
+          "kind": "hard_constraint",
+          "required": true
+        },
+        {
+          "description": "候选 delta 只改 assigned_court 属性，不含坐标或几何改写。",
+          "gate_id": "attribute_only_no_coordinate_change",
+          "kind": "hard_constraint",
+          "required": true
+        },
+        {
+          "description": "AI 主链为 ProjectBrief → ScenarioSpec → deterministic option family/Pareto → CandidateRecord（machine_generated）→ independent critique（待实现）→ HumanDecision（待实现）→ 运行反馈；三个机器候选进入 human_review，任何 approved、正式投稿或实施选择必须另有真实 HumanDecision。",
+          "gate_id": "human_selection_required",
+          "kind": "human_review",
+          "required": true
+        }
+      ],
+      "created_at": "2026-08-21T12:00:00+08:00",
+      "crs": "EPSG:4326",
+      "evidence_refs": [
+        "workbench/baseline/concept/concept_freeze_v2.md",
+        "workbench/baseline/experiment/scenario_catalog.json",
+        "workbench/baseline/experiment/allocation_config.json",
+        "workbench/contracts/scenario_spec.schema.json",
+        ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json"
+      ],
+      "geometry_authority": "provisional",
+      "geometry_hash": "4839158C9A7E4044A94904B4FC912B3D48C83A48FB11726B5D67DB5ECD3FD0F9",
+      "geometry_ref": "haidian/submissions/SunLight87/jingzhang-breathing-rail/geometry/site_boundary.geojson#SITE-001",
+      "hard_constraints": [
+        {
+          "constraint_id": "fixed_scenario_roles",
+          "constraint_type": "data_quality",
+          "machine_checkable": true,
+          "source_refs": [
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "statement": "S01、S02 必须分配到众智园（校准；历史内部 ID 为 source_calibration_yard），S03 必须分配到大钟寺（转化；历史内部 ID 为 adoption_market_court），S12 必须分配到 AI 原点社区（共译；历史内部 ID 为 civic_translation_commons）。"
+        },
+        {
+          "constraint_id": "role_cardinality_3_to_5",
+          "constraint_type": "data_quality",
+          "machine_checkable": true,
+          "source_refs": [
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "statement": "众智园（校准）、AI 原点社区（共译）、大钟寺（转化）各分配 3—5 个场景；assigned_court 继续使用既有 court IDs。"
+        },
+        {
+          "constraint_id": "unique_full_coverage_s01_s12",
+          "constraint_type": "data_quality",
+          "machine_checkable": true,
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "statement": "S01—S12 必须且只能各出现一次，不能遗漏或重复。"
+        },
+        {
+          "constraint_id": "manual_fallback_each_court",
+          "constraint_type": "data_quality",
+          "machine_checkable": true,
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "statement": "每一场（field）至少包含一个具备人工或非数字等效回退的场景。"
+        },
+        {
+          "constraint_id": "no_pii_biometrics_or_claims",
+          "constraint_type": "legal",
+          "machine_checkable": true,
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            ".worktrees/haidian-main-20260821/brief/site-package/allowed_design_space.json"
+          ],
+          "statement": "场景不得使用 PII 或生物识别，也不得生成医疗、监管或审批结论。"
+        },
+        {
+          "constraint_id": "attribute_only_no_coordinate_change",
+          "constraint_type": "geometric",
+          "machine_checkable": true,
+          "source_refs": [
+            "workbench/baseline/experiment/allocation_config.json",
+            "workbench/contracts/README.md"
+          ],
+          "statement": "候选只改变 assigned_court 属性；不得生成、移动、覆盖或修改坐标、几何、红线、用地或工程线位。基底几何始终保持 provisional 和只读；court/station 仅为历史内部 ID，对外标签为 field/prototype。"
+        }
+      ],
+      "land_use_demands": [],
+      "metric_definitions": [
+        {
+          "aggregation": "sum",
+          "definition": "各场景在所分配庭的项目内部序数亲和分之和；不是现实绩效。",
+          "direction": "maximize",
+          "metric_id": "role_affinity_total",
+          "name": "角色亲和总分",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "unit": "ordinal_score"
+        },
+        {
+          "aggregation": "min",
+          "definition": "三场各自覆盖的去重画像数量中的最小值。",
+          "direction": "maximize",
+          "metric_id": "persona_coverage_min",
+          "name": "最低分庭画像覆盖",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "unit": "persona_count"
+        },
+        {
+          "aggregation": "min",
+          "definition": "三场人工或非数字回退强度序数总和中的最小值。",
+          "direction": "maximize",
+          "metric_id": "fallback_strength_min",
+          "name": "最低分庭回退强度",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "unit": "ordinal_score"
+        },
+        {
+          "aggregation": "min",
+          "definition": "三场可逆性序数总和中的最小值。",
+          "direction": "maximize",
+          "metric_id": "reversibility_sum_min",
+          "name": "最低分庭可逆性",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "unit": "ordinal_score"
+        },
+        {
+          "aggregation": "max",
+          "definition": "三场未知依赖负担序数总和中的最大值。",
+          "direction": "minimize",
+          "metric_id": "unknown_dependency_burden_max",
+          "name": "最高分庭未知依赖负担",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "unit": "ordinal_score"
+        },
+        {
+          "aggregation": "max",
+          "definition": "三场维护负担序数总和中的最大值。",
+          "direction": "minimize",
+          "metric_id": "maintenance_burden_max",
+          "name": "最高分庭维护负担",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "unit": "ordinal_score"
+        },
+        {
+          "aggregation": "custom",
+          "definition": "三场未知依赖与维护负担总和的最大值减最小值。",
+          "direction": "minimize",
+          "metric_id": "role_load_spread",
+          "name": "分庭负担离散度",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "unit": "ordinal_score"
+        }
+      ],
+      "pareto_or_weight_policy": {
+        "human_selection_required": true,
+        "mode": "pareto",
+        "normalization": "none",
+        "tie_breakers": [
+          "metrics.role_affinity_total",
+          "metrics.persona_coverage_min",
+          "metrics.fallback_strength_min",
+          "metrics.maintenance_burden_max",
+          "metrics.unknown_dependency_burden_max"
+        ],
+        "weights": []
+      },
+      "project_brief_ref": "workbench/baseline/task/project_brief.json",
+      "scenario_spec_id": "three-courts-twelve-stations-role-allocation-20260821",
+      "schema_version": "1.0",
+      "soft_objectives": [
+        {
+          "direction": "maximize",
+          "metric_ref": "metrics.role_affinity_total",
+          "objective_id": "role_affinity_total",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "statement": "提高场景与所分配庭角色之间的项目内部序数亲和总分。"
+        },
+        {
+          "direction": "maximize",
+          "metric_ref": "metrics.persona_coverage_min",
+          "objective_id": "persona_coverage_min",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "statement": "提高三场各自覆盖画像去重数中的最小值，避免任一场服务对象过窄。"
+        },
+        {
+          "direction": "maximize",
+          "metric_ref": "metrics.fallback_strength_min",
+          "objective_id": "fallback_strength_min",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "statement": "提高三场人工或非数字回退强度总和中的最小值。"
+        },
+        {
+          "direction": "maximize",
+          "metric_ref": "metrics.reversibility_sum_min",
+          "objective_id": "reversibility_sum_min",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "statement": "提高三场可逆性序数总和中的最小值。"
+        },
+        {
+          "direction": "minimize",
+          "metric_ref": "metrics.unknown_dependency_burden_max",
+          "objective_id": "unknown_dependency_burden_max",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "statement": "降低三场未知依赖负担序数总和中的最大值。"
+        },
+        {
+          "direction": "minimize",
+          "metric_ref": "metrics.maintenance_burden_max",
+          "objective_id": "maintenance_burden_max",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json"
+          ],
+          "statement": "降低三场维护负担序数总和中的最大值。"
+        },
+        {
+          "direction": "minimize",
+          "metric_ref": "metrics.role_load_spread",
+          "objective_id": "role_load_spread",
+          "source_refs": [
+            "workbench/baseline/experiment/scenario_catalog.json",
+            "workbench/baseline/experiment/allocation_config.json"
+          ],
+          "statement": "降低三场未知依赖与维护负担总和的最大值与最小值之差。"
+        }
+      ],
+      "status": "ready_for_candidate_generation",
+      "time_horizon": {
+        "label": "2026-08-23 城市叠代概念迁移｜2026-08-21 确定性角色分配基线｜一基、三场、两翼、十二原型",
+        "scenario_year": 2026
+      },
+      "updated_at": "2026-08-23T18:00:00+08:00"
+    },
+    "solution_recipe": {
+      "assumptions": [
+        {
+          "assumption_id": "A-SCENARIO-ORDINAL-001",
+          "confirmation_required": true,
+          "impact": "high",
+          "statement": "Affinity, burden, fallback, and reversibility scores are authored project ordinals."
+        },
+        {
+          "assumption_id": "A-GEOMETRY-PROVISIONAL-001",
+          "confirmation_required": true,
+          "impact": "high",
+          "statement": "The referenced base geometry is provisional and not an official boundary."
+        },
+        {
+          "assumption_id": "A-HUMAN-GATE-001",
+          "confirmation_required": true,
+          "impact": "high",
+          "statement": "Selection labels are machine ranking outputs until a separate human decision is recorded."
+        }
+      ],
+      "created_at": "2026-08-23T10:00:00Z",
+      "domain_tags": [
+        "urban_design",
+        "scenario_allocation",
+        "public_interest",
+        "offline"
+      ],
+      "evidence_refs": [
+        "README.md",
+        "workbench/baseline/task/project_brief.json",
+        "workbench/baseline/task/scenario_spec.json",
+        "scenario_catalog.json",
+        "allocation_config.json",
+        "tests/test_negative_fixtures.py"
+      ],
+      "example_outputs": [
+        {
+          "acceptance_evidence_refs": [
+            "analysis_run.json",
+            "comparison.md"
+          ],
+          "artifact_ref": "candidates/",
+          "format": "JSON",
+          "kind": "candidate_records"
+        },
+        {
+          "acceptance_evidence_refs": [
+            "README.md",
+            "tests/test_negative_fixtures.py"
+          ],
+          "artifact_ref": "deltas/",
+          "format": "JSON",
+          "kind": "attribute_deltas"
+        },
+        {
+          "acceptance_evidence_refs": [
+            "analysis_run.json"
+          ],
+          "artifact_ref": "comparison.md",
+          "format": "Markdown",
+          "kind": "comparison"
+        }
+      ],
+      "failure_conditions": [
+        {
+          "blocking": true,
+          "condition": "Any fixed assignment is violated.",
+          "detection": "validate_assignment",
+          "response": "Reject allocation and keep no candidate output."
+        },
+        {
+          "blocking": true,
+          "condition": "A field has fewer than 3 or more than 5 prototypes.",
+          "detection": "role cardinality check on legacy IDs",
+          "response": "Reject allocation."
+        },
+        {
+          "blocking": true,
+          "condition": "A prohibited flag is true or a field lacks a manual fallback.",
+          "detection": "catalog and assignment hard gates",
+          "response": "Reject allocation."
+        },
+        {
+          "blocking": true,
+          "condition": "A delta contains coordinate fields or coordinate changes.",
+          "detection": "validate_delta",
+          "response": "Reject delta and do not write candidate."
+        },
+        {
+          "blocking": true,
+          "condition": "Ordinal metrics are interpreted as real-world performance.",
+          "detection": "human review and wording check",
+          "response": "Withdraw candidate from formal use and label as internal only."
+        }
+      ],
+      "geometry_level": "corridor",
+      "hard_constraints": [
+        {
+          "check_method": "exact mapping comparison",
+          "constraint_id": "fixed_scenario_roles",
+          "statement": "S01/S02 source, S03 adoption, S12 translation."
+        },
+        {
+          "check_method": "count per role",
+          "constraint_id": "role_cardinality_3_to_5",
+          "statement": "Each field contains 3-5 prototypes; court/post are legacy internal labels."
+        },
+        {
+          "check_method": "set and duplicate check",
+          "constraint_id": "unique_full_coverage_s01_s12",
+          "statement": "Every S01-S12 appears exactly once."
+        },
+        {
+          "check_method": "scenario metadata check",
+          "constraint_id": "manual_fallback_each_court",
+          "statement": "Each field has at least one manual or non-digital fallback; constraint ID remains stable."
+        },
+        {
+          "check_method": "prohibited flag check",
+          "constraint_id": "no_pii_biometrics_or_claims",
+          "statement": "No PII, biometrics, medical, regulatory, or approval claim."
+        },
+        {
+          "check_method": "delta shape check",
+          "constraint_id": "attribute_only_no_coordinate_change",
+          "statement": "Delta contains role attributes only and no coordinate patch."
+        }
+      ],
+      "licenses": {
+        "asset": {
+          "commercial_use": "allowed",
+          "license_ref": "NONE:attribute-only-json-delta",
+          "notice_required": false,
+          "review_status": "reviewed"
+        },
+        "code": {
+          "commercial_use": "unknown",
+          "license_ref": "LOCAL:project-license-not-declared",
+          "notes": "标准库脚本的项目发布许可仍需由项目负责人确认。",
+          "notice_required": true,
+          "review_status": "not_reviewed"
+        },
+        "data": {
+          "commercial_use": "conditional",
+          "license_ref": "LOCAL:provisional-public-data-reference-only",
+          "notes": "仅引用已登记的 provisional 场景/几何；不得替代官方边界或审批依据。",
+          "notice_required": true,
+          "review_status": "reviewed"
+        },
+        "model": {
+          "commercial_use": "allowed",
+          "license_ref": "NONE:deterministic-no-trained-model",
+          "notice_required": false,
+          "review_status": "reviewed"
+        },
+        "service": {
+          "commercial_use": "allowed",
+          "license_ref": "NONE:offline-standard-library",
+          "notice_required": false,
+          "review_status": "reviewed"
+        }
+      },
+      "matching_signature": {
+        "compute_class": "cpu_light",
+        "constraint_tags": [
+          "fixed_assignment",
+          "manual_fallback",
+          "no_coordinate_change"
+        ],
+        "data_kinds": [
+          "scenario_catalog",
+          "provisional_geometry_reference"
+        ],
+        "license_requirements": [
+          "local code license review",
+          "provisional data attribution",
+          "no model dependency"
+        ],
+        "objective_tags": [
+          "public_interest",
+          "operability",
+          "reversibility"
+        ],
+        "scope_tags": [
+          "corridor",
+          "three_fields",
+          "twelve_prototypes",
+          "legacy_three_courts"
+        ],
+        "stage_compatibility": [
+          "research",
+          "analysis",
+          "candidate_generation",
+          "human_review"
+        ]
+      },
+      "maturity": "prototype",
+      "metrics": [
+        {
+          "definition": "Sum of authored prototype-to-field affinity values; scenario/court are legacy internal labels.",
+          "direction": "maximize",
+          "metric_id": "role_affinity_total",
+          "name": "Role affinity total",
+          "unit": "ordinal_score"
+        },
+        {
+          "definition": "Minimum distinct persona count among the three fields.",
+          "direction": "maximize",
+          "metric_id": "persona_coverage_min",
+          "name": "Minimum field persona coverage",
+          "unit": "persona_count"
+        },
+        {
+          "definition": "Minimum sum of authored fallback strengths among the three fields.",
+          "direction": "maximize",
+          "metric_id": "fallback_strength_min",
+          "name": "Minimum fallback strength",
+          "unit": "ordinal_score"
+        },
+        {
+          "definition": "Maximum authored maintenance burden sum among the three fields.",
+          "direction": "minimize",
+          "metric_id": "maintenance_burden_max",
+          "name": "Maximum maintenance burden",
+          "unit": "ordinal_score"
+        },
+        {
+          "definition": "Maximum authored unknown-dependency sum among the three fields.",
+          "direction": "minimize",
+          "metric_id": "unknown_dependency_burden_max",
+          "name": "Maximum unknown dependency burden",
+          "unit": "ordinal_score"
+        }
+      ],
+      "name": "Deterministic three-field twelve-prototype role allocation (legacy court IDs)",
+      "objective_tags": [
+        "role_affinity",
+        "persona_coverage",
+        "fallback",
+        "reversibility",
+        "operability"
+      ],
+      "preconditions": [
+        "The scenario catalog is a project-authored concept input, not a deployment register.",
+        "The base geometry reference remains provisional and read-only.",
+        "A human decision gate is required before any design package adopts a candidate."
+      ],
+      "provenance": {
+        "commit_or_release": "local-workbench-experiment-2026-08-23-strata-label-migration",
+        "last_verified_at": "2026-08-23T10:00:00Z",
+        "maintainer_org": "SunLight87 / Sol 协同 Luna Workers",
+        "method_refs": [
+          "workbench/baseline/task/project_brief.json",
+          "workbench/baseline/task/scenario_spec.json",
+          "scenario_catalog.json",
+          "allocation_config.json",
+          "README.md"
+        ],
+        "repository_url": "https://github.com/open-city-ai/haidian"
+      },
+      "recipe_id": "recipe-three-court-role-allocation",
+      "required_inputs": [
+        {
+          "crs_required": true,
+          "format": "JSON",
+          "input_id": "scenario_spec",
+          "kind": "other",
+          "license_requirements": [
+            "project brief and scenario evidence remain traceable"
+          ],
+          "required": true,
+          "validation": [
+            "status is ready_for_candidate_generation",
+            "geometry authority is provisional",
+            "human selection is required"
+          ]
+        },
+        {
+          "crs_required": false,
+          "format": "JSON",
+          "input_id": "scenario_catalog",
+          "kind": "tabular",
+          "license_requirements": [
+            "source and reuse status must remain visible"
+          ],
+          "required": true,
+          "validation": [
+            "S01-S12 unique and sorted",
+            "fixed roles present",
+            "prohibited flags false"
+          ]
+        },
+        {
+          "crs_required": false,
+          "format": "JSON",
+          "input_id": "allocation_config",
+          "kind": "other",
+          "license_requirements": [
+            "local project license review pending"
+          ],
+          "required": true,
+          "validation": [
+            "role cardinality 3-5",
+            "fixed assignments exact",
+            "attribute-only delta policy"
+          ]
+        },
+        {
+          "crs_required": true,
+          "format": "GeoJSON reference only",
+          "input_id": "provisional_base_geometry_ref",
+          "kind": "geometry",
+          "license_requirements": [
+            "do not present as official redline"
+          ],
+          "required": true,
+          "validation": [
+            "authority is provisional_constraint",
+            "candidate never overwrites coordinates"
+          ]
+        }
+      ],
+      "runtime_cost": {
+        "compute_class": "cpu_light",
+        "cost_notes": "标准库离线枚举；现实数据、专业审核和正式部署成本不由本实验估算。",
+        "memory_gb_min": 0.1,
+        "network_required": false,
+        "runtime_class": "minutes",
+        "storage_gb": 0.01,
+        "training_required": false
+      },
+      "schema_version": "1.0",
+      "solver": {
+        "category": "deterministic",
+        "configuration_ref": "allocation_config.json",
+        "name": "Python standard-library exhaustive enumerator",
+        "reproducibility": "exact",
+        "version": "stdlib-enumerator-1.0"
+      },
+      "status": "validated",
+      "updated_at": "2026-08-23T10:00:00Z",
+      "validation": {
+        "benchmark_refs": [],
+        "review_required": true,
+        "success_thresholds": {
+          "coordinate_change_count": 0,
+          "negative_fixture_rejections": 6,
+          "scenario_count": 12,
+          "selected_candidate_count": 3
+        },
+        "tests": [
+          "enumerate all allowed assignments",
+          "validate six hard gates",
+          "retain non-dominated Pareto assignments",
+          "run six negative fixtures"
+        ]
+      }
+    }
+  },
+  "input_bundle_id": "jingzhang-s01-s12-allocation-inputs-v1",
+  "mode": "offline",
+  "observed_at": "2026-08-23T10:00:00Z",
+  "replay_contract": {
+    "command": "node visual/assets/experiment-allocation.js",
+    "expected_counts": {
+      "coordinate_change_count": 0,
+      "feasible_assignment_count": 55,
+      "forbidden_flag_count": 0,
+      "negative_fixture_rejections": 6,
+      "pareto_assignment_count": 6,
+      "role_count": 3,
+      "scenario_count": 12,
+      "selected_candidate_count": 3
+    },
+    "model_required": false,
+    "network_required": false,
+    "standard_library_only": true
+  },
+  "schema_version": "1.0",
+  "seed": 20260821,
+  "source_of_truth": "workbench/baseline/experiment",
+  "sources": [
+    {
+      "input_id": "scenario_catalog",
+      "ref": "workbench/baseline/experiment/scenario_catalog.json",
+      "role": "scenario",
+      "sha256": "7bb816bf43e5f62aec70dbe9626dacb0cdc2cfb91a0ea223164350d08e9b3782",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "allocation_config",
+      "ref": "workbench/baseline/experiment/allocation_config.json",
+      "role": "configuration",
+      "sha256": "6065617ed7e3d0d59be6c68d57f4e0232977605f9950a22684a704a8c1a96cf6",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "analysis_run",
+      "ref": "workbench/baseline/experiment/analysis_run.json",
+      "role": "run_evidence",
+      "sha256": "109013015f6c13c37d2309ce938f2b0e345482c64c3c5e0880ed47c2e13db0f4",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "solution_recipe",
+      "ref": "workbench/baseline/experiment/solution_recipe.json",
+      "role": "configuration",
+      "sha256": "0ee185bc6a4cf605410655853d41e4d4e6101874431af094512cab3463b2852b",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "negative_fixtures",
+      "ref": "workbench/baseline/experiment/tests/negative_fixtures.json",
+      "role": "negative_tests",
+      "sha256": "a18241ca7ebd7649a9e959c40e777c3eaba889e708bd79c3b1e35187923cccd4",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "run_allocation",
+      "ref": "workbench/baseline/experiment/run_allocation.py",
+      "role": "baseline_program",
+      "sha256": "9ee9974bf365d19b08b95cb81b9119b704d2154ac5f8015f6207c1a9cb56fe6b",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "project_brief",
+      "ref": "workbench/baseline/task/project_brief.json",
+      "role": "evidence_contract",
+      "sha256": "40e0ea00528d387a53355ff57e8e449d3e7682e14bc7d27d3f4dd96de3024cad",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "scenario_spec",
+      "ref": "workbench/baseline/task/scenario_spec.json",
+      "role": "evidence_contract",
+      "sha256": "6e307a94d5522672ad859df7cca7c9fa8e28e6345b50bbc82b6b16af4c9f49bb",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "site_boundary",
+      "ref": "geometry/site_boundary.geojson#SITE-001",
+      "role": "provisional_geometry_reference",
+      "sha256": "91b652fbb32ed74d8907ae43b7f619e9925e8f82632b79997222f4546af2561f",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "authored_baseline_candidate",
+      "ref": "workbench/baseline/experiment/candidates/authored_baseline.json",
+      "role": "expected_candidate",
+      "sha256": "3fc608440c4dc90abbde59bb1845e6bff649513afd1d78340a30909cd68f17ca",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "authored_baseline_delta",
+      "ref": "workbench/baseline/experiment/deltas/authored_baseline.json",
+      "role": "expected_delta",
+      "sha256": "e2b4730b60d179b876b4932ba38545cdfc3fb979b3e5c4bb506031539cfbf1c6",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "public_interest_balance_candidate",
+      "ref": "workbench/baseline/experiment/candidates/public_interest_balance.json",
+      "role": "expected_candidate",
+      "sha256": "e18062c48c5c90c25e56dc4fd435257d314fa99f97616fba03fc7b7d86337442",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "public_interest_balance_delta",
+      "ref": "workbench/baseline/experiment/deltas/public_interest_balance.json",
+      "role": "expected_delta",
+      "sha256": "1eba22b633837aeb894f6a86af1f50b198bb7db12fdc5d28d98ab7b5f2f0b826",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "low_burden_operable_candidate",
+      "ref": "workbench/baseline/experiment/candidates/low_burden_operable.json",
+      "role": "expected_candidate",
+      "sha256": "b0e9af93f3cf9572a6950deca761e86fc1906c88c02c9b793a5556de2f75d56c",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "low_burden_operable_delta",
+      "ref": "workbench/baseline/experiment/deltas/low_burden_operable.json",
+      "role": "expected_delta",
+      "sha256": "953614a85c8cd1f20a223710cc22d0f04007ae50201bba19053a03e68ade205a",
+      "source_available_at_generation": true
+    },
+    {
+      "input_id": "experiment_allocation_program",
+      "ref": "visual/assets/experiment-allocation.js",
+      "role": "replay_program",
+      "sha256": "74c138f4bd47e64480e83ae4e67993ca3a0aa4706ddc82825380d7a31f042d42",
+      "source_available_at_generation": true
+    }
+  ]
+}

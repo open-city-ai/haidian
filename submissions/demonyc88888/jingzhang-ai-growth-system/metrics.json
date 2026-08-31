@@ -1,0 +1,282 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary geometry; not suitable for official redline, approval, statutory planning control, quantity takeoff, or precise area claims.",
+        "Recalculate site area, green ratio, public-space ratio, land use, roads, buildings, phasing, and key-area metrics when official polygons are supplied."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept-stage building footprint layer is derived within the provisional boundary and does not replace ownership, structure, fire-safety, heritage, municipal, or approval checks."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept-stage green and blue-green public-space layer is derived from submitted design geometry and must be recalculated after official boundaries and detailed open-space controls are supplied."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept-stage public-space layer is derived from submitted design geometry and must be recalculated after official boundaries, ownership, open-first-floor conditions, municipal constraints, and operations boundaries are supplied."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Ratio is calculated from provisional rough site boundary geometry and concept-stage green-space geometry; not suitable for official area, planning-control, or engineering quantity claims."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Ratio is calculated from provisional rough site boundary geometry and concept-stage public-space geometry; not suitable for official area, planning-control, or engineering quantity claims."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "official announcement stated coordinated research area, approximate",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-stage value for narrative and visual presentation; not an official approval or commitment."
+      ]
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "sum of official stated approximate key-area hectares",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-stage value for narrative and visual presentation; not an official approval or commitment."
+      ]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(submitted AI+ scenario cards)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-stage value for narrative and visual presentation; not an official approval or commitment."
+      ]
+    },
+    "one_time_capex_range_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/economic_model.json",
+        "visual/assets/economic_model_recalculation.json"
+      ],
+      "formula": "sum(C1:C7) + (sum(C1:C7) * approved_contingency_rate)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Formal quantities, market quotations, procurement scope and implementing entity confirmation are unavailable."
+      ],
+      "reason": "The previously displayed numerical range has been withdrawn because its quantities and unit rates were not independently auditable.",
+      "currency": "CNY",
+      "declared_range_status": "withdrawn_pending_validated_inputs",
+      "recalculation_trigger": "Recalculate after measured quantities, confirmed scope, market quotations, procurement boundaries and implementing-entity review are available."
+    },
+    "annual_opex_range_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/economic_model.json",
+        "visual/assets/economic_model_recalculation.json"
+      ],
+      "formula": "O1 + O2 + O3 + O4 + O5 + O6",
+      "confidence": "unknown",
+      "assumptions": [
+        "Operator, FTE plan, annual service contracts, maintenance scope, activity calendar, audit and insurance scope are unavailable."
+      ],
+      "reason": "The previously displayed annual operations range has been withdrawn because staffing, service contracts, maintenance quantities and annual activity scope were not independently auditable.",
+      "currency": "CNY_per_year",
+      "declared_range_status": "withdrawn_pending_validated_inputs",
+      "recalculation_trigger": "Recalculate after operator, FTE plan, platform service contract, maintenance scope, activity calendar, audit requirements and insurance requirements are available."
+    },
+    "steady_commercial_ai_revenue_range_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/economic_model.json",
+        "visual/assets/economic_model_recalculation.json"
+      ],
+      "formula": "R1 + R2 + R3 + R4 + R5 for the validated stage; each contract may enter only one primary revenue category.",
+      "confidence": "unknown",
+      "assumptions": [
+        "Paid project counts, prices, signed contracts, revenue recognition rules and audited eligible revenue basis are unavailable.",
+        "Taxes, refunds, pass-through payments and unrelated enterprise income must not be counted as eligible revenue."
+      ],
+      "reason": "The previously displayed stabilized commercial AI revenue range has been withdrawn because project counts, prices, contracts and revenue-recognition inputs were not independently auditable.",
+      "currency": "CNY_per_year",
+      "declared_range_status": "withdrawn_pending_validated_inputs",
+      "recalculation_trigger": "Recalculate after paid project counts, service prices, contracts, invoices or transaction logs, audit rules and eligible revenue-basis definitions are available."
+    },
+    "steady_public_ai_reflow_range_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/economic_model.json",
+        "visual/assets/economic_model_recalculation.json"
+      ],
+      "formula": "max(0, commercial_cash_receipts - taxes - refunds - pass_through_payments - unrelated_enterprise_income) * contractually_approved_reinvestment_rate + audited_fixed_contributions",
+      "confidence": "unknown",
+      "assumptions": [
+        "Public reinvestment rate, account entity, contract terms, permitted uses, audit cycle and stop conditions are not confirmed."
+      ],
+      "reason": "The previously displayed public AI reinvestment range has been withdrawn because eligible revenue, legal account vehicle, contract terms, approved rate and audited contributions were not independently auditable.",
+      "currency": "CNY_per_year",
+      "declared_range_status": "withdrawn_pending_validated_inputs",
+      "recalculation_trigger": "Recalculate after legal vehicle, contracts, audit method, settlement cycle, eligible revenue basis, approved reinvestment rate and permitted public AI renewal uses are available."
+    },
+    "commercial_ai_revenue_stage_1_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/economic_model.json",
+        "visual/assets/economic_model_recalculation.json"
+      ],
+      "formula": "STAGE-1 R1 + R2 + R3 + R4 + R5 with no double counting",
+      "confidence": "unknown",
+      "assumptions": [
+        "Paid project counts, service prices, signed contracts and revenue-recognition rules are unavailable for this stage."
+      ],
+      "reason": "No validated numeric revenue inputs are available for the 0-18 month initial validation stage.",
+      "currency": "CNY",
+      "declared_range_status": "withdrawn_pending_validated_inputs",
+      "recalculation_trigger": "Recalculate after stage-specific service contracts, prices, receipts and eligible revenue rules are confirmed."
+    },
+    "commercial_ai_revenue_stage_2_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/economic_model.json",
+        "visual/assets/economic_model_recalculation.json"
+      ],
+      "formula": "STAGE-2 R1 + R2 + R3 + R4 + R5 with no double counting",
+      "confidence": "unknown",
+      "assumptions": [
+        "Paid project counts, service prices, signed contracts and revenue-recognition rules are unavailable for this stage."
+      ],
+      "reason": "No validated numeric revenue inputs are available for the 18-36 month network formation stage.",
+      "currency": "CNY_per_year",
+      "declared_range_status": "withdrawn_pending_validated_inputs",
+      "recalculation_trigger": "Recalculate after stage-specific service contracts, prices, receipts and eligible revenue rules are confirmed."
+    },
+    "commercial_ai_revenue_stage_3_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/economic_model.json",
+        "visual/assets/economic_model_recalculation.json"
+      ],
+      "formula": "STAGE-3 R1 + R2 + R3 + R4 + R5 with no double counting",
+      "confidence": "unknown",
+      "assumptions": [
+        "Paid project counts, service prices, signed contracts and revenue-recognition rules are unavailable for this stage."
+      ],
+      "reason": "No validated numeric revenue inputs are available for the conditional stabilized stage after 36 months.",
+      "currency": "CNY_per_year",
+      "declared_range_status": "withdrawn_pending_validated_inputs",
+      "recalculation_trigger": "Recalculate after stage-specific service contracts, prices, receipts and eligible revenue rules are confirmed."
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+ "title": "THE NEAR SIDE — geometry generation check sheet",
+ "generated_at_utc": "2026-08-30T17:54:54Z",
+ "crs": {
+  "exchange": "EPSG:4326",
+  "area_calculation": "EPSG:4548"
+ },
+ "method": [
+  "Load provisional SITE_BOUNDARY (PROV-SITE-001) and three KEY_AREA polygons from the repository site package.",
+  "Derive an inferred green spine as the latitude-slice midline of the submitted site polygon (method demonstration only; not the surveyed park alignment).",
+  "Build four distance rings from the spine: 0-150 m, 150-300 m, 300-500 m, beyond 500 m.",
+  "Slice the site into 300 m north-south slabs and intersect with the rings to obtain a gap-free, non-overlapping cell partition.",
+  "Assign a land-use code to every cell from the national classification guide subset, then merge cells by code into the land-use layer.",
+  "Derive green space, public space, roads, buildings, phasing and constraints from the same partition.",
+  "Recalculate all areas and lengths in EPSG:4548 and write metrics.json.",
+  "Render all figures from the same geometry and metrics."
+ ],
+ "verification": {
+  "land_use_coverage_gap_sqm": 0.0,
+  "land_use_outside_site_sqm": 0.0,
+  "land_use_overlap_tolerance_sqm": 1.0,
+  "site_area_sqm": 11412825.386,
+  "announced_site_area_sqm": 11400000,
+  "relative_deviation": 0.001125
+ },
+ "parameters": {
+  "near_side_band_m": 300,
+  "core_band_m": 150,
+  "seep_ring_m": 500,
+  "near_unit_length_m": 300,
+  "block_setback_m": 8,
+  "block_depth_m": 16
+ },
+ "recalculation_trigger": "When official site polygons, key-area polygons or the surveyed park edge face are published, all layers and metrics must be regenerated as a whole."
+}

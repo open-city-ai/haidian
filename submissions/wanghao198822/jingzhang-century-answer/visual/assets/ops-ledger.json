@@ -1,0 +1,188 @@
+{
+ "schema_version": "0.1.0",
+ "id": "OPS-LEDGER",
+ "title": {
+  "zh": "运维台账：明示情景系数下的一次代入",
+  "en": "Care ledger: one run under declared scenario coefficients"
+ },
+ "honesty_contract": {
+  "tier": "declared_scenario",
+  "not": {
+   "zh": [
+    "概算",
+    "承诺",
+    "安全结论",
+    "运营方案",
+    "排班"
+   ],
+   "en": [
+    "cost estimate",
+    "commitment",
+    "safety conclusion",
+    "operating plan",
+    "staff roster"
+   ]
+  },
+  "statement": {
+   "zh": "本册的两个系数——年频次 52 次（每周一巡）与单次工时 0.5–1.0 人时——系包外情景设定，无任何实测、规范或产品依据；它们不构成频次或工时口径，也不因写入本包而升格为已知。数量列（59 个计入点）为设计内实数。",
+   "en": "The two coefficients in this ledger - 52 visits a year (one round a week) and 0.5-1.0 person-hours per visit - are scenario settings from outside the package, resting on no measurement, code or product basis; they constitute no frequency or duration calibre, and do not become known by being written here. The quantity column (59 counted points) is the design's own arithmetic."
+  },
+  "supersession": {
+   "zh": "运营与养护主体确定后（前置条件门 PRE-09，假设 A-OPERATOR-001），其实测系数按同一算式整表替换本册全部数值；metrics.json 的 care_scenario_* 两键同步重写。",
+   "en": "Once the operator and maintenance body are identified (gate PRE-09, assumption A-OPERATOR-001), their measured coefficients replace every figure in this ledger through the same formula, and the two care_scenario_* keys in metrics.json are rewritten with them."
+  }
+ },
+ "unit_note": {
+  "zh": "输出为人时而非人日：由人时折算人日需要一个工作日时长口径，那同样不是包内数据。",
+  "en": "Outputs are person-hours, not person-days: converting between the two needs a working-day length, which is not package data either."
+ },
+ "counted_points": {
+  "rule": {
+   "zh": "计入点＝固定巡线到访的聚合点；道钉（起步 122 颗）与 10 件标准组件分布在计入点上，随宿主点到访，不重复计点。",
+   "en": "A counted point is an aggregate stop on a fixed patrol; the spikes (122 at the start) and the 10 standard components sit on those points, are visited with their hosts, and are not counted twice."
+  },
+  "rows": [
+   {
+    "id": "OPS-ROW-GATE",
+    "qty": 46,
+    "what": {
+     "zh": "应答门（规划口径，以实际建成为准）",
+     "en": "Answer Gates (planned figure; as-built governs)"
+    }
+   },
+   {
+    "id": "OPS-ROW-PLAZA",
+    "qty": 3,
+    "what": {
+     "zh": "地标广场（钟声广场、站前素广场、未来之问广场）",
+     "en": "Landmark plazas (Bell Chime, plain forecourt, Next Question)"
+    }
+   },
+   {
+    "id": "OPS-ROW-SPINE",
+    "qty": 10,
+    "what": {
+     "zh": "主脊慢行主线按每公里计一处（ceil(9,710.125 m / 1000)）",
+     "en": "The spine at one point per kilometre (ceil of 9,710.125 m / 1000)"
+    }
+   }
+  ],
+  "total": 59
+ },
+ "declared_coefficients": {
+  "visits_per_year": {
+   "value": 52,
+   "kind": "decision_variable",
+   "note": {
+    "zh": "每周一巡。频次是运营强度的决策变量：谁运营，谁定巡次。此处 52 为情景取值。",
+    "en": "One round a week. Frequency is a decision variable of operating intensity: whoever operates, sets it. 52 is the scenario value here."
+   }
+  },
+  "person_hours_per_visit": {
+   "low": 0.5,
+   "high": 1.0,
+   "kind": "scenario_setting",
+   "note": {
+    "zh": "单次工时不是决策变量，是现场干出来、测出来的属性；此处 0.5–1.0 为无实测依据的宽区间情景设定。",
+    "en": "Hours per visit are not a decision variable but a property measured on the ground; 0.5-1.0 is a wide scenario band with no measured basis."
+   }
+  },
+  "cycles": {
+   "kind": "product_attribute",
+   "note": {
+    "zh": "检查、保养与更换周期不设情景系数：周期是产品属性，选型未定便无从设起；以产品说明与专业团队核定为准。",
+    "en": "No scenario is set for inspection, servicing or replacement cycles: cycles are attributes of products not yet chosen, and follow product documentation and professional verification."
+   }
+  }
+ },
+ "run": {
+  "formula": "person_hours_per_year = counted_points x visits_per_year x hours_per_visit",
+  "low": 1534,
+  "high": 3068,
+  "readout": {
+   "zh": "59 × 52 × (0.5–1.0) ＝ 年 1,534–3,068 人时，即 1.5–3.1 千人时/年量级（档位：推断）。",
+   "en": "59 x 52 x (0.5-1.0) = 1,534-3,068 person-hours a year - an order of 1.5-3.1 thousand (tier: inferred)."
+  }
+ },
+ "sensitivity": [
+  {
+   "visits_per_year": 26,
+   "low": 767,
+   "high": 1534,
+   "note": {
+    "zh": "隔周一巡",
+    "en": "one round a fortnight"
+   }
+  },
+  {
+   "visits_per_year": 104,
+   "low": 3068,
+   "high": 6136,
+   "note": {
+    "zh": "每周两巡",
+    "en": "two rounds a week"
+   }
+  }
+ ],
+ "cost_objects": {
+  "note": {
+   "zh": "以下只列成本对象与其驱动量，不给单价：单价属运营与采购数据，本包不声明。",
+   "en": "Cost objects and their driving quantities only; no unit prices - prices are operating and procurement data this package does not declare."
+  },
+  "rows": [
+   {
+    "zh": "巡检与保洁——驱动量：计入点 × 频次",
+    "en": "Patrol and cleaning - driver: counted points x frequency"
+   },
+   {
+    "zh": "标准组件养护——驱动量：10 件",
+    "en": "Standard-component upkeep - driver: the 10 components"
+   },
+   {
+    "zh": "道钉批次增补——驱动量：国家级公告批次",
+    "en": "Spike batch additions - driver: national register batches"
+   },
+   {
+    "zh": "绿道植养——驱动量：主脊 9,710.125 米",
+    "en": "Greenway planting care - driver: 9,710.125 m of spine"
+   },
+   {
+    "zh": "照明能耗——驱动量：应答门与广场",
+    "en": "Lighting energy - driver: gates and plazas"
+   },
+   {
+    "zh": "开放日运营——驱动量：场次",
+    "en": "Open-day operations - driver: number of events"
+   },
+   {
+    "zh": "撤除与复原储备——驱动量：各场景卡的退出条款逐卡挂账",
+    "en": "Removal and reinstatement reserve - driver: the exit clause of each scenario card"
+   }
+  ]
+ },
+ "not_derived": {
+  "site_capacity": {
+   "state": "withheld_by_design",
+   "note": {
+    "zh": "场地容量能算而不算，理由见正文推算层第二条：涉及人身安全，正文承诺不预设人数。本册不给任何容量数。",
+    "en": "Site capacity could be computed and deliberately is not - see item two of the estimating layer: it bears on personal safety and the text promises no figure. This ledger gives none."
+   }
+  },
+  "maintenance_cycles": {
+   "state": "product_attribute",
+   "note": {
+    "zh": "见 declared_coefficients.cycles。",
+    "en": "See declared_coefficients.cycles."
+   }
+  }
+ },
+ "references": {
+  "assumption": "A-CARE-COEFF-001",
+  "gate": "PRE-09",
+  "metrics": [
+   "care_point_count",
+   "care_scenario_person_hours_annual_low",
+   "care_scenario_person_hours_annual_high"
+  ]
+ }
+}

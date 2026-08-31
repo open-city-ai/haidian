@@ -1783,6 +1783,14 @@
         "p0_raci_work_package_count",
         "p0_component_line_item_count",
         "p0_preregistered_acceptance_criterion_count",
+        "implementation_delivery_project_count",
+        "implementation_delivery_package_count",
+        "implementation_policy_module_count",
+        "implementation_policy_module_mapping_ratio",
+        "implementation_external_policy_module_receipt_count",
+        "implementation_cost_method_step_count",
+        "implementation_cost_policy_source_count",
+        "implementation_comparable_vendor_quote_receipt_count",
         "offline_service_prototype_route_count"
       ],
       "drawings": [
@@ -1802,7 +1810,11 @@
       ],
       "source_ids": [
         "AGENT-TASKBOOK",
-        "SOURCE-REGISTRY"
+        "SOURCE-REGISTRY",
+        "BEIJING-URBAN-RENEWAL-IMPLEMENTATION-GUIDE-2024",
+        "BEIJING-URBAN-RENEWAL-JOINT-REVIEW-2024",
+        "BEIJING-COST-BASIS-2026",
+        "BEIJING-COST-INFORMATION-2026"
       ],
       "standard_ids": [
         "BARRIER-FREE-ENVIRONMENT-LAW",
@@ -1839,7 +1851,7 @@
         "G09_GEOMETRY_NON_REGRESSION",
         "G10_EVIDENCE_MARKER_DENSITY"
       ],
-      "evidence_summary_zh": "年度活动体系按交接链四季各处理一环并各留可下载公共产物，无产物次年停办；活动品牌复用交接线标识与四类符号，不另起视觉。首个实施单元只允许 SCN-05：可操作离线原型之下是一份 PRE-D0 至 D90 的交付合同，八门不齐不计时，十项 RACI 各有唯一 A 但当前均未指派，十二项构件有数量与验收但三方报价/总价保持空白，八项验收 observed_value 均为 null；D90 只允许继续/修复/终止，未全过不得扩到第二场景。开发者社区按可复现而非会员制排序；国际传播输出双语协议、场景最小数据与人工接管清单、年度交接账和可复现方法，并禁止把概念建议表述为政府决定。"
+      "evidence_summary_zh": "年度活动体系按交接链四季各处理一环并各留可下载公共产物，无产物次年停办；活动品牌复用交接线标识与四类符号。首个实施单元只允许 SCN-05：PRE-D0 至 D90 八门不齐不计时，十项 RACI 均未指派，十二项构件有数量与验收但报价／总价为空，八项验收 observed_value 均为 null。全带实施另以九项目、六交付包和四级状态组织，并按京建发〔2024〕182号映射 IP01—IP11 十一类实施方案字段；11/11 是交接字段覆盖，不是程序完成。联合审查与京建法〔2026〕1号只提供未来文件门和正式计价方法语境，六步成本链当前正式单价0、报价0/3、概算和预算null。D90 只允许继续／修复／终止，未全过不得扩到第二场景；国际传播禁止把政策映射、概念建议或敏感性区间表述为政府决定、报审状态或批准投资。"
     }
   ],
   "package_level_gates": [
@@ -1858,10 +1870,10 @@
     "participant_controlled_open_repair_count": 0,
     "eligibility_evidence_check_count": 6,
     "eligibility_rejection_condition_observed_count": 0,
-    "latest_review_score_100": 96,
-    "latest_review_local_gate_pass_count": 4,
-    "latest_review_public_interest_inclusion_score_5": 5,
-    "latest_review_implementation_feasibility_score_5": 4,
+    "score_or_repository_status_used_as_evidence": false,
+    "current_round_score_claim": null,
+    "current_round_score_boundary_zh": "当前投稿包不记录或引用历史分数、合并、入库、获奖或批准状态作为质量证据；本轮新增证据必须由同一评审边界重新评分，参与者不自行宣称任何分数。",
+    "current_round_score_boundary_en": "The current package neither records nor cites historical scores, merge, intake, award or approval status as evidence of quality. The new evidence must be rescored through the same review boundary; the participant does not self-assign any score.",
     "human_jury_procedure": "REVIEW_PROCEDURE_NOT_PARTICIPANT_REPAIR",
     "official_geometry_result": "WAITING_ORGANIZER_INPUT",
     "field_pilot_result": "BLOCKED_EXTERNAL_PRE_PILOT",
@@ -2024,14 +2036,14 @@
       "assertion_zh": "首个 SCN-05 P0 已从概念图深化为可操作离线服务原型、参与者预可研包络、90 天交付合同和逐场景公共利益硬门槛：7.2×7.2m参考外框、6×6m操作面、公众8人＋岗位3席＋排队6人、260开放小时／780岗位工时、约12–29万元／90天与约30–65万元／年的敏感性、四个替代方案、8道进入门、5个阶段、10项RACI、12项构件、8项验收、六类任务书群体与12/12场景公共价值门同时完整；专业交接进一步给出三席四人年度覆盖公式、双钥匙0/2、六包逐包验收、四种具名回退、调试执行0/8和5时段×7表未来基线。真实场地、法定容量、授权、角色、钥匙回执、报价、保险、正式预算、专业签认、调试执行与参与者观察仍如实为未开始/空值/0。",
       "evidence_in_package": "visual/index.html#p0-prototype；assets/figures/operational-readiness.png；visual/assets/governance/p0-pre-feasibility-envelope.json；visual/assets/governance/implementation-handoff-register.json；visual/assets/governance/jury-evidence-index.json；visual/assets/governance/p0-delivery-contract.json；visual/assets/governance/public-benefit-gate.json；visual/assets/governance/formal-review-readiness-matrix.json；visual/assets/governance/p0-readiness-audit.js",
       "covered_by_self_check_id": null,
-      "independent_verification_zh": "`node visual/assets/governance/p0-readiness-audit.js --json` 输出 ok=true、预可研12/12、专业交接23/23、评委路径3/3、评分索引7/7、8/8门、5/5阶段、10/10 RACI、12/12构件、8/8验收、6/6群体、12/12场景公共门、资格证据6/6、评审动作7/7和原型14/14，同时 real_participant_observations=0；改错排班公式、删逐包验收、删具名回退门、伪造双钥匙回执、误标调试已执行或填入未来基线值都会退出1。"
+      "independent_verification_zh": "`node visual/assets/governance/p0-readiness-audit.js --json` 输出 ok=true、预可研12/12、专业交接26/26（含F/05图板表面、五视图映射与主张边界）、评委路径3/3、评分索引7/7、8/8门、5/5阶段、10/10 RACI、12/12构件、8/8验收、6/6群体、12/12场景公共门、资格证据6/6、评审动作7/7和原型14/14，同时 real_participant_observations=0；改错排班公式、删逐包验收、删具名回退门、伪造双钥匙回执、误标调试已执行或填入未来基线值都会退出1。"
     },
     {
       "expectation_id": "CLAIM_AUDIT",
       "assertion_zh": "正文与交付物中可复算的数值、结构和呈现声明共 69 项，逐条与结构化文件一致。覆盖指标、几何、二十单元、断面算术、双语布局、矩阵引用、来源与许可、四套 PDF 文字层、四个 HTML 的包内 CJK 字体、全载体 v2.0 可见版本、A0 首页内嵌图 4/4 的源图像素绑定、七类用地唯一纹理、十二场景无 AI 等价路线，以及 P0 的实施与公共利益完整性。断言 ID 全集与数量另由不走登记函数的结构性守卫锁定。",
       "evidence_in_package": "visual/assets/governance/claims-audit.js",
       "covered_by_self_check_id": null,
-      "independent_verification_zh": "`node visual/assets/governance/claims-audit.js` 输出「69/69 条声明与包内数据一致」且退出码 0；G6 核四页 HTML 字形与等宽控件，G7 输出 30 图件／4 套 46 页 PDF／A0 内嵌图 4/4 像素一致，G8 输出 7 类 × 6 载体／98 个纹理区域，G9 输出 12/12 无 AI 路线／24 条人工渠道／8/8 需求夹具，G10 输出 8 门／5 阶段／10 RACI／12 构件／8 验收／预可研 12/12／专业交接 23/23／6 群体／12 场景公共门／原型 14/14，并保持真实观察 0。阴性测试见 audit-selftest.js。**该脚本不在 CI 或 preflight 中被调用**，须手动执行。"
+      "independent_verification_zh": "`node visual/assets/governance/claims-audit.js` 输出「69/69 条声明与包内数据一致」且退出码 0；G6 核四页 HTML 字形与等宽控件，G7 输出 30 图件／4 套 46 页 PDF／A0 内嵌图 4/4 像素一致，G8 输出 7 类 × 6 载体／98 个纹理区域，G9 输出 12/12 无 AI 路线／24 条人工渠道／8/8 需求夹具，G10 输出 8 门／5 阶段／10 RACI／12 构件／8 验收／预可研 12/12／专业交接 26/26／6 群体／12 场景公共门／原型 14/14，并保持真实观察 0。阴性测试见 audit-selftest.js。**该脚本不在 CI 或 preflight 中被调用**，须手动执行。"
     },
     {
       "expectation_id": "AUDITOR_SELFTEST",

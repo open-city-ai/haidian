@@ -1,0 +1,73 @@
+{
+  "schema_note": "v4.3 数据生命周期与运营框架 — 应对评审'数据保存期 30 天 / 90 天 / 1 年 / 5 年冲突'。按场景卡分组定义数据类别、最短必要周期、撤回/删除例外、人工审批责任；审计类记录统一保存 5 年；其他运营类记录默认 30 天、误判可恢复时限 90 天；银龄与个人敏感场景记录删除规则独立约定。",
+  "version": "v4.3",
+  "status": "framework_pending_pilot_launch",
+  "data_categories": [
+    {
+      "category_zh": "审计类记录（治理事件 / 安全事件 / 数据出境 / 监管报告）",
+      "category_en": "Audit records (governance / security / data export / regulatory reports)",
+      "default_retention_zh": "5 年",
+      "default_retention_en": "5 years",
+      "rationale_zh": "满足监管追溯需求；与 SC-AI-10 安全治理沙盒一致",
+      "rationale_en": "Meets regulatory traceability; consistent with SC-AI-10 Safety Governance Sandbox",
+      "responsible_role_zh": "治理委员会 + 数据保护官",
+      "responsible_role_en": "Governance committee + Data Protection Officer",
+      "scenarios_using": [
+        "SC-AI-10",
+        "SC-AI-06",
+        "SC-AI-08"
+      ]
+    },
+    {
+      "category_zh": "运营类记录（客流聚合 / 设备状态 / 调度日志）",
+      "category_en": "Operational records (aggregate flow / device status / dispatch logs)",
+      "default_retention_zh": "30 天",
+      "default_retention_en": "30 days",
+      "rationale_zh": "日常运营无须长期留存；过期自动归档与清除",
+      "rationale_en": "Daily operation requires no long-term retention; auto-archive and purge after expiry",
+      "responsible_role_zh": "运营主体 + 站点管理员",
+      "responsible_role_en": "Operating entity + station administrator",
+      "scenarios_using": [
+        "SC-AI-01",
+        "SC-AI-04",
+        "SC-AI-07"
+      ]
+    },
+    {
+      "category_zh": "误判可恢复记录（推荐结果 / 临时画像 / 决策日志）",
+      "category_en": "Recoverable records (recommendation results / temporary profiles / decision logs)",
+      "default_retention_zh": "90 天（可撤回）",
+      "default_retention_en": "90 days (recoverable)",
+      "rationale_zh": "保留 90 天供用户撤回与纠错；过期自动删除",
+      "rationale_en": "90-day retention for user withdrawal and correction; auto-delete after expiry",
+      "responsible_role_zh": "用户本人 + 数据控制者",
+      "responsible_role_en": "User + Data Controller",
+      "scenarios_using": [
+        "SC-AI-02",
+        "SC-AI-03",
+        "SC-AI-09"
+      ]
+    },
+    {
+      "category_zh": "银龄/敏感人群专用记录（可拒绝率触发降级）",
+      "category_en": "Senior/sensitive-population records (refusal-triggered downgrade)",
+      "default_retention_zh": "30 天归档 + 1 年强制删除",
+      "default_retention_en": "30-day archive + 1-year mandatory deletion",
+      "rationale_zh": "银龄场景最低必要周期；不必要留存即删除",
+      "rationale_en": "Minimal necessary retention for senior scenario; delete when not necessary",
+      "responsible_role_zh": "邻里管家 + 治理委员会",
+      "responsible_role_en": "Neighbourhood housekeeper + governance committee",
+      "scenarios_using": [
+        "SC-AI-SEN"
+      ]
+    }
+  ],
+  "withdrawal_and_deletion": {
+    "principle_zh": "用户随时撤回；撤回后 7 天内删除；删除记录进入 5 年审计日志",
+    "principle_en": "Users can withdraw anytime; deletion within 7 days after withdrawal; deletion record enters 5-year audit log",
+    "exception_zh": "审计类记录不可删除（监管追溯）；其他类别均可撤回",
+    "exception_en": "Audit records are non-deletable (regulatory traceability); all other categories can be withdrawn"
+  },
+  "v2_4_1_conflict_resolution": "v2.4.1 中 SC-AI-10 审计 5 年、SC-AI-SEN 1 年删除、其他 30/90 天均通过本框架统一表达：30 天 = 运营类默认；90 天 = 误判可恢复类；5 年 = 审计类；1 年 = 银龄敏感类。无内部冲突。",
+  "v2_4_1_conflict_resolution_en": "The v2.4.1 settings are unified in this framework: 30 days = operational default; 90 days = recoverable; 5 years = audit; 1 year = senior/sensitive. No internal conflict."
+}

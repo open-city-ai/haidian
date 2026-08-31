@@ -1,0 +1,85 @@
+{
+  "schema": "region-coordination-matrix/1.0",
+  "title": "五界面区域协调矩阵（责任 + 证据 + 退出）",
+  "description": "本矩阵把京张·原力方案在区域与多方治理中的五条关键界面逐一拆解：每条界面给出责任主体、可被独立复核的证据文件，以及该界面不得进场的退出条件。它与 proposal.md 第三章「区域协同」及第十二章「风险、版权与合规」互证，并支撑 narrative-thread.md 的「③共管」相。",
+  "interfaces": [
+    {
+      "id": "I1",
+      "name": "组织方 ↔ 投稿方",
+      "name_en": "Organiser <-> Participant",
+      "responsibility": "组织方登记临时边界、取值区间与来源清单；投稿方（AI agent kimik3）仅在登记空间内产出，不把推演表述为法定成果，不暗示政府背书。",
+      "owner": "组织方（边界/资料登记） / 投稿方 kimik3（方案生成）",
+      "evidence_files": [
+        "manifest.json",
+        "self_check.json",
+        "assumptions.json",
+        "sources.json"
+      ],
+      "exit_condition": "投稿方超出登记设计空间或宣称官方背书 → 该部分结论作废，仅保留临时口径标注。",
+      "review_cadence": "随官方资料发布滚动复核"
+    },
+    {
+      "id": "I2",
+      "name": "公众 ↔ 智能体",
+      "name_en": "Public <-> Agent",
+      "responsibility": "每一个 AI 触点必须可被公众看懂、可被监管审计、可被公众否决；脆弱人群保留不依赖智能终端的服务通道，禁止以系统判断限制通行。",
+      "owner": "投稿方 kimik3（设计否决通道） / 公众（行使否决） / 属地政府（法定落地）",
+      "evidence_files": [
+        "evidence-ledger.json",
+        "visual/assets/gates/12-refusal-boundary.json",
+        "visual/assets/gates/15-appeal-channel.json",
+        "visual/assets/gates/18-crowd-safety.json"
+      ],
+      "exit_condition": "否决通道不存在或失效 → 对应 AI 场景不得上线。",
+      "review_cadence": "季度人工复核（高风险拦截触发）"
+    },
+    {
+      "id": "I3",
+      "name": "企业 ↔ 社区",
+      "name_en": "Enterprise <-> Community",
+      "responsibility": "企业在一带完成公共空间可用性验证，向经开区转入量产；社区共享人才服务与场景预约系统，避免重复建设孵化设施。共享服务、错位功能、互认规则。",
+      "owner": "企业（验证与量产） / 社区与原点社区（共享服务） / 投稿方（接口规范）",
+      "evidence_files": [
+        "compliance_matrix.json",
+        "simulation.json",
+        "spatial.json"
+      ],
+      "exit_condition": "企业绕过公共空间验证直接量产 → 不享受一带场景标识与互认规则。",
+      "review_cadence": "一期试点周期复核"
+    },
+    {
+      "id": "I4",
+      "name": "遗产保护 ↔ 更新开发",
+      "name_en": "Heritage <-> Development",
+      "responsibility": "铁路遗产作为被动绿化带升级为连续公共客厅时，保护要求优先于开发强度；所有涉及遗产的改动走可逆基座，不破坏原真性。",
+      "owner": "文物/遗产主管部门（保护口径） / 投稿方（可逆更新设计）",
+      "evidence_files": [
+        "visual/assets/gates/19-heritage-protection.json",
+        "risk.json",
+        "geometry/key_areas.geojson"
+      ],
+      "exit_condition": "更新动作突破保护要求或不可逆 → 立即撤除并恢复。",
+      "review_cadence": "随保护细则发布复核"
+    },
+    {
+      "id": "I5",
+      "name": "数据算力 ↔ 城市治理",
+      "name_en": "Data/Compute <-> Urban Governance",
+      "responsibility": "算力与数据设施的空间落位须以最小必要采集、不可训练清单、数据信托为前提；治理规则由具备法定资质的主体在落地前论证，AI 生成不替代法定责任主体。",
+      "owner": "数据/算力运营方（合规采集） / 城市治理主体（法定责任）",
+      "evidence_files": [
+        "visual/assets/gates/07-source-classification.json",
+        "visual/assets/gates/09-personal-data-zero.json",
+        "visual/assets/gates/27-compute-siting.json",
+        "risk.json"
+      ],
+      "exit_condition": "出现个人可识别信息或越权使用 → 数据信托冻结调用。",
+      "review_cadence": "上线前算法影响评估 + 持续监测"
+    }
+  ],
+  "cross_check": {
+    "with_proposal_sections": ["第三章 区域协同", "第十二章 风险、版权与合规"],
+    "with_narrative_phase": "③共管 CO-GOVERN",
+    "with_evidence_ledger": "evidence-ledger.json（40 道闸门逐道绑定责任角色）"
+  }
+}

@@ -105,7 +105,7 @@
       box(RUN, 0.5, GAP, M.green2, dirX * RUN / 2, 0.5, zEnd + Math.sign(zEnd) * TURN / 2, g);
     }
     rampAssembly(SPAN / 2, 1);      // 北端坡道向 +X 展开
-    rampAssembly(-SPAN / 2, -1);    // 南端坡道向 -X 展开（俯视合读为「人」）
+    rampAssembly(-SPAN / 2, -1);    // 南端坡道向 -X 展开（「人」字落在两端折返本身，不落在俯视轮廓）
 
     /* —— 配景：树群与车流，纯尺度参照 —— */
     function tree(x, z, s) {

@@ -60,7 +60,7 @@
     .scroll-progress { position: absolute; right: 0; bottom: -1px; left: 0; height: 1px; overflow: hidden; pointer-events: none; background: transparent; }
     .scroll-progress > span { display: block; width: 100%; height: 100%; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform 90ms linear; }
     .hero { display: grid; border-bottom: 1px solid var(--ink); background: var(--paper); }
-    .hero-copy { position: relative; min-height: 92vh; min-height: 92svh; display: flex; flex-direction: column; justify-content: flex-start; isolation: isolate; overflow: hidden; padding: clamp(72px, 9vw, 132px) clamp(24px, 5vw, 80px) clamp(118px, 12vw, 172px); background-color: var(--hero-panel); background-image: linear-gradient(90deg, color-mix(in srgb, var(--hero-panel) 94%, transparent) 0 24%, color-mix(in srgb, var(--hero-panel) 48%, transparent) 38%, color-mix(in srgb, var(--hero-panel) 8%, transparent) 50%, color-mix(in srgb, var(--hero-panel) 8%, transparent) 100%), url("assets/slot-v15.webp"); background-position: center; background-size: cover; color: #fff; }
+    .hero-copy { position: relative; min-height: 92vh; min-height: 92svh; display: flex; flex-direction: column; justify-content: flex-start; isolation: isolate; overflow: hidden; padding: clamp(72px, 9vw, 132px) clamp(24px, 5vw, 80px) clamp(118px, 12vw, 172px); background-color: var(--hero-panel); background-image: linear-gradient(90deg, color-mix(in srgb, var(--hero-panel) 94%, transparent) 0 24%, color-mix(in srgb, var(--hero-panel) 48%, transparent) 38%, color-mix(in srgb, var(--hero-panel) 8%, transparent) 50%, color-mix(in srgb, var(--hero-panel) 8%, transparent) 100%), url("assets/vision-masterplan-v4.jpg"); background-position: center; background-size: cover; color: #fff; }
     .hero-copy > div { position: relative; z-index: 1; max-width: min(620px, 46vw); }
     .hero-copy .index, .hero-copy .eyebrow, .hero-copy .hero-verdict small { color: var(--gold-light); }
     .hero-paper { padding: clamp(54px, 7vw, 92px) clamp(24px, 5vw, 80px) clamp(66px, 8vw, 108px); background: radial-gradient(circle at 78% 28%, #fff 0, var(--paper-light) 32%, var(--paper) 78%); }
@@ -117,10 +117,10 @@
     .metrics-band span { display: block; margin-top: 18px; font-size: var(--fs-meta); letter-spacing: .08em; }
     .opening-film { border-bottom: 1px solid var(--ink); background: var(--paper); }
     .film-track { position: relative; height: auto; }
-    .film-stage { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; padding: 1px; overflow: visible; background: var(--ink); }
-    .film-frame { position: relative; min-width: 0; min-height: 0; display: grid; grid-template-rows: auto auto; margin: 0; overflow: visible; border-radius: 0; background: #14161B; }
-    .film-layer { position: relative; min-height: 0; aspect-ratio: 16 / 9; overflow: hidden; }
-    .film-layer img { width: 100%; height: 100%; object-fit: cover; transform-origin: var(--film-focus, 50% 50%); }
+    .film-stage { position: relative; display: grid; grid-template-columns: 1fr; gap: 0; padding: 0; overflow: hidden; background: var(--paper); } .film-entry { min-width: 0; overflow: hidden; padding-bottom: clamp(32px, 4vw, 56px); border-bottom: 1px solid var(--ink); border-radius: 0; background: var(--paper); } .film-entry:last-child { padding-bottom: 0; border-bottom: 0; }
+    .film-frame { position: relative; min-width: 0; min-height: 0; display: grid; grid-template-rows: auto auto; margin: 0; overflow: hidden; border-radius: 0; background: #14161B; }
+    .film-layer { position: relative; min-height: 0; overflow: hidden; }
+    .film-layer img { display: block; width: 100%; height: auto; object-fit: contain; transform: none; transform-origin: var(--film-focus, 50% 50%); }
     .film-frame[data-film-frame="K1"] { --film-focus: 62% 66%; }
     .film-frame[data-film-frame="K1"] img { object-position: 50% 64%; }
     .film-frame[data-film-frame="K2"] { --film-focus: 50% 54%; }
@@ -129,9 +129,11 @@
     .film-frame[data-film-frame="K3"] img { object-position: 54% 58%; }
     .film-frame[data-film-frame="K4"] { --film-focus: 53% 55%; }
     .film-frame[data-film-frame="K4"] img { object-position: 50% 52%; }
-    .film-frame figcaption { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 20px; align-items: center; max-width: none; padding: 14px 18px; border: 0; border-top: 1px solid rgba(20,72,134,.3); background: #ECE7DD; color: var(--ink); pointer-events: none; }
-    .film-frame figcaption span { min-width: 48px; min-height: 32px; display: inline-grid; place-items: center; padding: 5px 10px; border: 1px solid currentColor; border-radius: 4px; color: var(--blue); font: 700 var(--fs-meta) Arial, sans-serif; letter-spacing: .16em; }
-    .film-frame figcaption strong { font-family: var(--serif); font-size: var(--fs-section); font-weight: 600; line-height: 1.05; letter-spacing: .06em; }
+    .film-frame figcaption { min-width: 0; display: flex; gap: 0; align-items: baseline; max-width: none; padding: 3px 12px; border: 0; border-top: 1px solid rgba(255,255,255,.18); background: #14161B; color: rgba(255,255,255,.76); font: 11px/14px Arial, sans-serif; pointer-events: none; white-space: nowrap; }
+    .film-frame figcaption span { min-width: 0; min-height: 0; display: inline; padding: 0; border: 0; border-radius: 0; color: #D6B36A; font: 700 11px/14px Arial, sans-serif; letter-spacing: .14em; } .film-frame figcaption strong { flex: 0 0 auto; font: 700 11px/14px Arial, sans-serif; letter-spacing: .04em; }
+    .film-frame figcaption span::after, .film-frame figcaption strong::after { content: "\00a0·\00a0"; color: rgba(255,255,255,.46); font-weight: 400; }
+    .film-frame figcaption p { min-width: 0; flex: 1 1 auto; overflow: hidden; margin: 0; color: rgba(255,255,255,.72); font: 400 11px/14px Arial, sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+    .film-notes { max-width: 960px; display: grid; gap: 8px; padding: clamp(16px, 2.2vw, 28px) clamp(20px, 5vw, 72px) 0; color: var(--muted); } .film-notes p { margin: 0; font-size: var(--fs-meta); line-height: 1.75; }
     .film-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
     @keyframes reveal-rise {
       from { opacity: 0; filter: blur(10px); translate: 0 20px; }
@@ -151,11 +153,12 @@
     html.motion-allowed .reveal-target.is-visible[data-motion-type="settle"] { animation-name: reveal-settle; }
     html.motion-allowed .reveal-target.is-visible[data-motion-type="side"] { animation-name: reveal-side; }
     @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
-      html.film-motion .film-track { height: 520vh; }
-      html.film-motion .film-stage { position: sticky; top: 0; display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; padding: 0; overflow: hidden; background: #14161B; }
-      html.film-motion .film-frame { position: absolute; inset: 0; min-height: 0; height: 100%; grid-template-rows: 9fr 1fr; visibility: hidden; }
-      html.film-motion .film-frame:first-of-type { visibility: visible; }
-      html.film-motion .film-layer img { will-change: transform; }
+      html.film-motion .film-track { height: auto !important; }
+      html.film-motion .film-stage { position: relative; top: auto; display: grid; width: 100%; height: auto; aspect-ratio: auto; grid-template-columns: 1fr; gap: 0; padding: 0; overflow: hidden; background: var(--paper); }
+      html.film-motion .film-frame { position: relative; inset: auto; min-height: 0; height: auto; grid-template-rows: auto auto; visibility: visible !important; clip-path: none !important; }
+      html.film-motion .film-frame:first-of-type { visibility: visible !important; }
+      html.film-motion .film-layer img { transform: none !important; will-change: auto; }
+      html.film-motion .film-frame figcaption { opacity: 1 !important; transform: none !important; }
     }
     .chapter-image { display: grid; grid-template-columns: minmax(170px, .26fr) minmax(0, .74fr); min-height: 540px; border-bottom: 1px solid var(--ink); background: var(--blue-deep); color: #fff; }
     .chapter-image.gold { background: #6E5123; }
@@ -414,8 +417,7 @@
     footer p { margin: 0; font-family: "Arial Narrow", Arial, sans-serif; font-size: var(--fs-display); font-weight: 600; line-height: .82; letter-spacing: .04em; }
     footer div { margin: 0; color: #B6BBBD; font-size: var(--fs-meta); letter-spacing: .09em; }
     @media (max-width: 1100px) and (min-width: 901px) {
-      .film-frame figcaption { gap: 8px 12px; padding: 8px 12px; }
-      .film-frame figcaption strong { font-size: var(--fs-section); }
+      .film-frame figcaption { gap: 0; padding: 3px 12px; } .film-frame figcaption strong { font-size: 11px; }
       footer { grid-template-columns: 190px minmax(0, 1fr) 130px; gap: 24px; padding-inline: 30px; }
       footer img { width: 190px; }
       footer p { font-size: var(--fs-display); }
@@ -455,18 +457,20 @@
     }
     .reading-path {
       display: grid;
-      grid-template-columns: minmax(210px, .3fr) minmax(0, .7fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: 24px;
-      align-items: center;
+      align-items: start;
       margin: 28px clamp(24px, 5vw, 72px);
       padding: 22px 24px;
       border: 1px solid var(--gold);
       border-radius: 18px;
       background: var(--paper);
     }
-    .reading-path h2 { margin-bottom: 7px; color: var(--ink); font-size: var(--fs-section); }
-    .reading-path p { margin: 0; color: var(--muted); font-size: var(--fs-meta); }
-    .reading-path nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; min-width: 0; }
+    .reading-path h2 { margin: 0; color: var(--ink); font-size: var(--fs-section); }
+    .reading-route-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; min-width: 0; }
+    .reading-route { min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper-light); }
+    .reading-route h3 { margin: 0 0 10px; color: var(--blue-deep); font-size: var(--fs-card); }
+    .reading-route nav { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; min-width: 0; }
     .reading-path a {
       display: flex;
       gap: 8px;
@@ -482,7 +486,7 @@
       overflow-wrap: anywhere;
       text-decoration: none;
     }
-    .reading-path a span { flex: 0 0 auto; font-family: Arial, sans-serif; font-weight: 700; }
+    .reading-path a span { flex: 0 0 auto; min-width: 2ch; font-family: Arial, sans-serif; font-weight: 700; }
     .dual-state {
       margin: 48px clamp(24px, 5vw, 72px);
       padding: clamp(24px, 4vw, 42px);
@@ -547,19 +551,19 @@
       .handoff-grid { grid-template-columns: 1fr; }
       .appendix-grid { grid-template-columns: 1fr; }
       .film-stage { grid-template-columns: 1fr; }
-      .film-frame { min-height: min(70vh, 620px); }
+      .film-frame { min-height: 0; }
       .hero-directory { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .m01-responsibility-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .m01-responsibility-grid article, .m01-responsibility-grid article:nth-child(5n), .m01-responsibility-grid article:nth-last-child(-n+5) { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
       .m01-responsibility-grid article:nth-child(2n) { border-right: 0; }
       .m01-responsibility-grid article:nth-last-child(-n+2) { border-bottom: 0; }
       .failure-panel { grid-template-columns: 1fr; }
-      .reading-path { grid-template-columns: 1fr; }
+      .reading-route-grid { grid-template-columns: 1fr; }
       .dual-state { margin-block: 32px; }
       .component-card { margin-block: 32px; }
     }
     @media (max-width: 600px) {
-      .hero-copy { min-height: 92vh; min-height: 92svh; padding: 58px 20px; background-image: linear-gradient(color-mix(in srgb, var(--hero-panel) 64%, transparent), color-mix(in srgb, var(--hero-panel) 64%, transparent)), url("assets/slot-v15.webp"); background-position: 50% 42%; }
+      .hero-copy { min-height: 92vh; min-height: 92svh; padding: 58px 20px; background-image: linear-gradient(color-mix(in srgb, var(--hero-panel) 64%, transparent), color-mix(in srgb, var(--hero-panel) 64%, transparent)), url("assets/vision-masterplan-v4.jpg"); background-position: 50% 42%; }
       .hero-copy > div { max-width: 100%; }
       h1 { max-width: 9em; margin: 24px 0 16px; font-size: var(--fs-h1); letter-spacing: .02em; }
       .hero-en { max-width: 24em; font-size: var(--fs-meta); line-height: 1.7; letter-spacing: .18em; }
@@ -589,7 +593,6 @@
       .m01-responsibility-grid article, .m01-responsibility-grid article:nth-child(2n), .m01-responsibility-grid article:nth-last-child(-n+2) { border-right: 0; border-bottom: 1px solid var(--line); }
       .m01-responsibility-grid article:last-child { border-bottom: 0; }
       .reading-path { margin: 20px; padding: 20px; }
-      .reading-path nav { grid-template-columns: 1fr; }
       .dual-state { margin: 20px; padding: 20px; }
       .dual-state th, .dual-state td { padding: 9px 7px; font-size: var(--fs-meta); }
       .component-card { margin: 20px; padding: 20px; }
@@ -598,8 +601,8 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; transition-delay: 0s !important; }
       .film-track { height: auto !important; }
-      .film-stage { position: relative !important; top: auto !important; display: grid !important; height: auto !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; padding: 1px; overflow: visible !important; }
-      .film-frame { position: relative !important; inset: auto !important; min-height: 380px; height: auto !important; visibility: visible !important; clip-path: none !important; }
+      .film-stage { position: relative !important; top: auto !important; display: grid !important; height: auto !important; grid-template-columns: 1fr; gap: 0; padding: 0; overflow: hidden !important; }
+      .film-frame { position: relative !important; inset: auto !important; min-height: 0; height: auto !important; visibility: visible !important; clip-path: none !important; }
       .film-layer { transform: none !important; will-change: auto !important; }
       .film-frame figcaption, .reveal-target { opacity: 1 !important; filter: none !important; transform: none !important; translate: none !important; scale: none !important; animation: none !important; transition: none !important; }
       .scroll-progress > span { transition: none !important; }
@@ -1710,7 +1713,6 @@ footer p {
 }
 
 .hero-opening__head h2,
-.film-frame figcaption strong,
 .chapter-title h2,
 .copy-band h2,
 .section-head h2,
@@ -1778,7 +1780,6 @@ footer p {
 .hero-directory a,
 figure figcaption,
 .metrics-band span,
-.film-frame figcaption span,
 .chapter-title p,
 .copy-band .bind,
 .section-no,
@@ -2286,15 +2287,15 @@ figure figcaption > p + p {
     display: grid !important;
     height: auto !important;
     aspect-ratio: auto !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 1px !important;
-    padding: 1px !important;
-    overflow: visible !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
   }
   html.film-motion .film-frame {
     position: relative !important;
     inset: auto !important;
-    min-height: 320px;
+    min-height: 0;
     height: auto !important;
     grid-template-rows: auto auto !important;
     visibility: visible !important;
@@ -2322,6 +2323,55 @@ figure figcaption > p + p {
     box-shadow: none;
   }
 }
+  
+    /* S1-P4-VISUAL-ONLY-CSS */
+.p4-catalog {
+  --p4-paper: var(--paper, #f3f0e8);
+  --p4-paper-light: var(--paper-light, #fbfaf6);
+  --p4-ink: var(--ink, #1c2938);
+  --p4-muted: var(--muted, #68737d);
+  --p4-line: var(--line, #d7d0c5);
+  --p4-retain: #456a63;
+  --p4-add: #b9783d;
+  --p4-prohibit: #8b4a4a;
+  padding: clamp(56px, 8vw, 112px) clamp(20px, 5vw, 72px);
+  border-block: 1px solid var(--p4-ink);
+  background: var(--p4-paper);
+  color: var(--p4-ink);
+}
+.p4-catalog *, .p4-catalog *::before, .p4-catalog *::after { box-sizing: border-box; }
+.p4-catalog__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr); gap: 28px; align-items: end; margin-bottom: 36px; }
+.p4-catalog__eyebrow { margin: 0 0 10px; color: var(--blue, #144886); font-size: 12px; font-weight: 800; letter-spacing: .14em; }
+.p4-catalog h2 { max-width: 18em; margin: 0; font-size: clamp(30px, 4vw, 54px); line-height: 1.1; }
+.p4-catalog__note { margin: 0; color: var(--p4-muted); line-height: 1.7; }
+.p4-catalog__legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+.p4-catalog__badge { display: inline-flex; align-items: center; min-height: 32px; padding: 6px 11px; border-radius: 999px; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .04em; }
+.p4-catalog__badge--retain { background: var(--p4-retain); }
+.p4-catalog__badge--add { background: var(--p4-add); }
+.p4-catalog__badge--prohibit { background: var(--p4-prohibit); }
+.p4-catalog__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.p4-catalog__item { min-width: 0; overflow: hidden; border: 1px solid var(--p4-line); background: var(--p4-paper-light); }
+.p4-catalog__media { aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--p4-line); background: #e7e2d9; }
+.p4-catalog__media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.p4-catalog__body { padding: clamp(18px, 3vw, 28px); }
+.p4-catalog__item h3 { margin: 0 0 16px; font-size: clamp(20px, 2vw, 28px); line-height: 1.25; }
+.p4-catalog__states { display: grid; gap: 8px; margin: 0 0 18px; }
+.p4-catalog__state { display: grid; grid-template-columns: minmax(68px, auto) minmax(0, 1fr); gap: 10px; align-items: start; }
+.p4-catalog__state span:last-child { color: var(--p4-muted); line-height: 1.55; overflow-wrap: anywhere; }
+.p4-catalog__actions { display: grid; grid-template-columns: minmax(88px, auto) minmax(0, 1fr); gap: 0; margin: 0; border-top: 1px solid var(--p4-line); }
+.p4-catalog__actions dt, .p4-catalog__actions dd { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--p4-line); line-height: 1.55; }
+.p4-catalog__actions dt { padding-right: 12px; color: var(--p4-add); font-weight: 800; }
+.p4-catalog__actions dd { color: var(--p4-ink); overflow-wrap: anywhere; }
+.p4-catalog__blank { min-height: 1.55em; border-bottom: 1px solid var(--p4-ink); }
+.p4-catalog__foot { margin: 26px 0 0; color: var(--p4-muted); font-size: 13px; line-height: 1.7; }
+@media (max-width: 760px) {
+  .p4-catalog__head, .p4-catalog__grid { grid-template-columns: 1fr; }
+  .p4-catalog__head { align-items: start; }
+  .p4-catalog__actions { grid-template-columns: minmax(82px, auto) minmax(0, 1fr); }
+}
+:target { scroll-margin-top: 90px; }
+section:target, article:target { outline: 3px solid var(--gold); outline-offset: 4px; }
+b:target { outline: 3px solid var(--gold); outline-offset: 2px; }
   </style>
   <!-- 186A-OFFLINE-CJK-FONT-START -->
   <!-- Source font: Source Han Serif SC Regular; source SHA-256: 78aa7a328fd974df2d688c8a9fd74a33d8334dfa84ab24d9d11efb2ffc464117; embedded subset: JZ Offline CJK 186H; Copyright 2017-2024 Adobe; SIL Open Font License 1.1; package source record: ../sources.json. -->
@@ -2329,7 +2379,7 @@ figure figcaption > p + p {
   <!-- 186A-OFFLINE-CJK-FONT-END -->
 </head>
 <body>
-  <noscript><style>.film-track{height:auto!important}.film-stage{position:relative!important;display:grid!important;height:auto!important}.film-frame{position:relative!important;visibility:visible!important;clip-path:none!important}.film-layer{transform:none!important}.reveal-target{opacity:1!important;transform:none!important;transition:none!important}.failure-panel{display:grid!important;margin-bottom:14px}.replay-controls{display:none!important}</style></noscript>
+  <noscript><style>.film-track{height:auto!important}.film-stage{position:relative!important;display:grid!important;height:auto!important;grid-template-columns:1fr!important;overflow:hidden!important}.film-frame{position:relative!important;min-height:0!important;overflow:hidden!important;visibility:visible!important;clip-path:none!important}.film-layer{transform:none!important}.reveal-target{opacity:1!important;transform:none!important;transition:none!important}.failure-panel{display:grid!important;margin-bottom:14px}.replay-controls{display:none!important}</style></noscript>
   <div class="shell">
     <header class="topbar">
       <img src="assets/brand-lockup-paper.svg" alt="Jing-Zhang · Discovery Line primary lockup">
@@ -2339,6 +2389,8 @@ figure figcaption > p + p {
         <a href="#day">Four Daily Routes</a>
         <a href="#areas">Three Zones</a>
         <a href="#tasks">Six Required Threads</a>
+        <a href="#review-evidence-index">Seven-Dimension Evidence Index</a>
+        <a href="#reading-path">Three-Tier Reading Routes</a>
         <a href="#evidence">Evidence and Sources</a>
       </nav>
       <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -2349,27 +2401,27 @@ figure figcaption > p + p {
         <div>
           <p class="index">01 / 12</p>
           <p class="eyebrow">Jing-Zhang · Discovery Line</p>
-          <h1 id="hero-title">The city sets the questions; AI takes the test.</h1>
+          <h1 id="hero-title" data-pair="W4-001">Compare the options for a street problem, then let people decide.</h1>
           <p class="hero-en">JING-ZHANG DISCOVERY LINE</p>
         </div>
         <!-- 译自中文真值 -->
         <div class="hero-verdict">
           <small>Concept Display Prototype</small>
-          <p class="hero-lede">Set the test on the street without stopping daily life: AI answers the questions; people mark the paper. If it fails, withdraw it and restore the street at once.</p>
+          <p class="hero-lede" data-pair="W4-002">The same kerb is used for courier restocking, shopkeeper short stops, and resident movement. AI only compares how different options affect different people; it does not decide for them. If human takeover fails, switch AI off, restore the prior state and the non-AI timetable, and keep everyday tasks running.</p>
         </div>
-        <div class="hero-cinema-disclosure prose-stack reveal-target" data-motion-block="首屏标题" data-motion-type="rise"><p>AI-generated conceptual image. </p><p>One public spine links three station structures from near to middle to far: the foreground station is largest and brightest, the second is less bright, and the third closes in faint light against the blue-hour skyline. </p><p>The city, stations, activity, and lighting are conceptual and do not represent existing conditions or element-by-element realization of the nine data layers. </p><p>Corresponding call task: “Create landmark urban-landscape nodes.” (scheme-side translation)</p></div>
+        <div class="hero-cinema-disclosure prose-stack reveal-target" data-motion-block="首屏标题" data-motion-type="rise"><p class="prebuilt-annotation">Consistent with the proposal: the vision overview uses one spine, two tracks, and three stations to organize calibration, retirement, and evidence interpretation. It is a conceptual study, not current conditions, a statutory-scale plan, an approved plan, or a built result.</p><p>AI concept | Not current state | Not to scale.</p><p>Boundaries, stations, facilities, activities, and timing are conceptual; accurate boundaries, land use, rights, construction conditions, and implementation arrangements still require verification against formal materials.</p></div>
       </div>
       <div class="hero-paper">
           <section class="hero-opening" aria-labelledby="opening-title">
-            <header class="hero-opening__head"><span>90-SECOND OPENING</span><h2 id="opening-title">A question from an ordinary person has to travel all the way from “the city sets the question” to “AI answers under constraint” to “the public decides.”</h2></header>
-            <div class="hero-steps">
-              <article class="hero-step"><span>01</span><h3>AI Origin</h3><p>First, it enters AI Origin.</p><p>A synthetic persona can submit it by paper and pen, telephone, an accompanied site walk, or human translation.</p><p>A person clarifies the question before controlled validation begins.</p></article>
-              <article class="hero-step"><span>02</span><h3>Zhongzhiyuan</h3><p>Second, anything that needs instruments or protocol review goes to Zhongzhiyuan for calibration and independent retesting.</p><p>Failures and limits are made public.</p></article>
-              <article class="hero-step"><span>03</span><h3>Limited First Use</h3><p>Third comes limited first use.</p><p>Only an option that meets the authorization conditions may be tried at Dazhongsi or another duly empowered setting.</p><p>Duly empowered actors and affected people then decide whether to continue, modify, not adopt, or remove it.</p></article>
+            <header class="hero-opening__head"><span>90-SECOND OPENING</span><h2 id="opening-title" data-pair="W4-003">How can one kerb serve deliveries, short stops, and everyday movement without letting AI decide for people?</h2></header>
+            <div class="hero-steps" data-pair="W4-004">
+              <article class="hero-step"><span>01</span><h3>Start with the conflict</h3><p>Today, the same kerb has to serve courier restocking, shopkeeper short stops, and resident movement.</p><p>Those needs compete, so the proposal cannot judge an option by whether it helps only one group.</p></article>
+              <article class="hero-step"><span>02</span><h3>AI only compares options</h3><p>Fixed loading windows, static parking spaces, and human guidance form the option that works without AI.</p><p>It is compared with withdrawable anonymous scheduling and professional kerbside development. AI uses combined data only; it does not track or evaluate individual couriers.</p></article>
+              <article class="hero-step"><span>03</span><h3>People decide, and can go back</h3><p>Duly empowered actors and affected people decide whether to continue, modify, not adopt, or remove an option; AI does not decide automatically.</p><p>If human takeover fails, switch AI off, restore the prior state and non-AI timetable, and keep everyday tasks running.</p></article>
             </div>
             <div class="hero-detail-grid">
-              <article class="hero-detail-card"><p class="eyebrow">DISCOVERY PASSPORT M01</p><h3>The question, three options, responsibility, retesting, stopping, and restoration stay under one ID.</h3><p>Discovery Passport M01 keeps the question, the three options, responsibility, retesting, stopping, and restoration under one ID.</p><p>It is not a physical card, ticket, sensor credential, or automatic switch.</p><ul class="hero-options"><li><strong>A</strong> Fixed loading windows, static parking spaces, and human guidance</li><li><strong>B</strong> Lightweight, reversible, anonymous scheduling that does not track or evaluate individual couriers</li><li><strong>C</strong> Professional kerbside development handed to duly empowered actors and professional teams</li></ul></article>
-              <article class="hero-detail-card hero-safety"><p class="eyebrow">THE SAFETY LINE</p><h3>If Human Takeover is missing, the answer is <strong>NO-GO</strong>.</h3><p>The AI layer goes dark, the prior state and non-AI timetable return, and everyday tasks continue.</p></article>
+              <article class="hero-detail-card" data-pair="W4-005"><p class="eyebrow">DISCOVERY PASSPORT M01 | ONE RECORD ID FOR ONE QUESTION</p><h3>The question, three options, responsibility, and exit all stay under one ID.</h3><p>Here, a “Discovery Passport” is not a card. It is a record that stays with the question.</p><p>It is not a physical card, ticket, sensor credential, or automatic switch.</p><ul class="hero-options"><li><strong>A</strong> Fixed loading windows, static parking spaces, and human guidance</li><li><strong>B</strong> Lightweight, reversible, anonymous scheduling that does not track or evaluate individual couriers</li><li><strong>C</strong> Professional kerbside development handed to duly empowered actors and professional teams</li></ul></article>
+              <article class="hero-detail-card hero-safety" data-pair="W4-006"><p class="eyebrow">WHAT HAPPENS IF IT FAILS</p><h3>If no person can take over, do not test. If a test has begun, switch AI off.</h3><p>First restore the prior state and non-AI timetable so everyday tasks continue. Then people decide what happens next.</p></article>
             </div>
             <aside class="hero-boundary" aria-label="Responsibility and simulation boundary">
               <div class="hero-status"><span>CURRENT STATUS</span><strong>Not approved · Not authorized · Not implemented</strong></div>
@@ -2393,12 +2445,16 @@ figure figcaption > p + p {
       <div class="film-track">
         <div class="film-stage">
           <svg class="film-defs" aria-hidden="true" viewBox="0 0 1 1"><defs><clipPath id="opening-film-wipe" clipPathUnits="objectBoundingBox"><path id="opening-film-wipe-path" d="M 0 0 L 1 0 L 1 1 L 0 1 Z"></path></clippath></defs></svg>
-          <figure class="film-frame" data-film-frame="K1"><div class="film-layer"><img src="assets/film-history-engineering-v1.webp" alt="Line-drawing panorama of Jing-Zhang Railway engineering history"></div><figcaption><span>K1</span><strong>Engineering History</strong></figcaption></figure>
-          <figure class="film-frame" data-film-frame="K2"><div class="film-layer"><img src="assets/slot-a.jpg" alt="Aerial view of a corridor break: present-day conflict where railway heritage meets contemporary blocks"></div><figcaption><span>K2</span><strong>Present-Day Conflict</strong></figcaption></figure>
-          <figure class="film-frame" data-film-frame="K3"><div class="film-layer"><img src="assets/slot-d.jpg" alt="AI-generated concept illustration: at dusk on the heritage greenway, a quadruped inspection robot works autonomously along the preserved tracks, its gimbal light marking a loosened fastener while a maintenance worker verifies on a handheld terminal from the path. Subjects: quadruped inspection robot, preserved tracks, maintenance worker, and handheld terminal."></div><figcaption><span>K3</span><strong>AI Validation</strong></figcaption></figure>
-          <figure class="film-frame" data-film-frame="K4"><div class="film-layer"><img src="assets/slot-i.webp" alt="Heritage park at dusk after completion: railway heritage integrated into everyday Public Space"></div><figcaption><span>K4</span><strong>Return to Everyday Life</strong></figcaption></figure>
+          <article class="film-entry"><figure class="film-frame" data-film-frame="K1"><div class="film-layer"><img src="assets/film-history-engineering-v1.webp" alt="Line-drawing panorama of Jing-Zhang Railway engineering history"></div><figcaption><span>K1</span><strong>Engineering History</strong><p>Consistent with proposal text: the line drawing of surveying, construction, trains, tunnels, and bridges only explains the historical origin of the question</p></figcaption></figure><div class="film-notes"><p class="prebuilt-annotation">Consistent with proposal text: the line drawing of surveying, construction, trains, tunnels, and bridges only explains the historical origin of the question. It is a historical-engineering imagination, not a historical photograph, exact reconstruction, or current evidence.</p></div></article>
+          <article class="film-entry"><figure class="film-frame" data-film-frame="K2"><div class="film-layer"><img src="assets/slot-a.jpg" alt="Aerial view of a corridor break: present-day conflict where railway heritage meets contemporary blocks"></div><figcaption><span>K2</span><strong>Present-Day Conflict</strong><p>Consistent with proposal text: the break and access conflict between the railway-heritage axis and contemporary blocks are conceptual expressions of the present-day question</p></figcaption></figure><div class="film-notes"><p class="prebuilt-annotation">Consistent with proposal text: the break and access conflict between the railway-heritage axis and contemporary blocks are conceptual expressions of the present-day question, not a survey, formal boundary, or verified field conclusion.</p></div></article>
+          <article class="film-entry"><figure class="film-frame" data-film-frame="K3"><div class="film-layer"><img src="assets/slot-d.jpg" alt="AI-generated concept illustration: at dusk on the heritage greenway, a quadruped inspection robot works autonomously along the preserved tracks, its gimbal light marking a loosened fastener while a maintenance worker verifies on a handheld terminal from the path. Subjects: quadruped inspection robot, preserved tracks, maintenance worker, and handheld terminal."></div><figcaption><span>K3</span><strong>AI Validation</strong><p>Consistent with proposal text: a quadruped inspection robot flags a loose fastener along retained rails and a maintenance worker verifies it on a handheld terminal</p></figcaption></figure><div class="film-notes"><p class="prebuilt-annotation">Consistent with proposal text: a quadruped inspection robot flags a loose fastener along retained rails and a maintenance worker verifies it on a handheld terminal. This illustrates “AI flags, people verify” and does not prove that the equipment, location, or inspection exists.</p><p class="prebuilt-annotation">Scale check: use a 1.70 m standing person and 1.55 m eye level only as references to review the relative scale of the maintenance worker, inspection robot, retained rails, and path. The current image has no measurable scale; the result is UNKNOWN.</p></div></article>
+          <article class="film-entry"><figure class="film-frame" data-film-frame="K4"><div class="film-layer"><img src="assets/slot-i.webp" alt="Heritage park at dusk after completion: railway heritage integrated into everyday Public Space"></div><figcaption><span>K4</span><strong>Return to Everyday Life</strong><p>Consistent with proposal text: the same heritage-rail axis returns to everyday park life in a conceptual future</p></figcaption></figure><div class="film-notes"><p class="prebuilt-annotation">Consistent with proposal text: the same heritage-rail axis returns to everyday park life in a conceptual future. Shade, lighting, maintenance, viewing, and retesting facilities are not presented as built; locations, quantities, responsibility, and operating data remain UNKNOWN.</p></div></article>
         </div>
       </div>
+    </section>
+
+    <section class="chapter-image">
+      <figure><img src="assets/slot-v15.webp" alt="AI-generated conceptual image. One public spine links three station structures from near to middle to far: the foreground station is largest and brightest, the second is less bright, and the third closes in faint light against the blue-hour skyline. The city, stations, activity, and lighting are conceptual and do not represent existing conditions or element-by-element realization of the nine data layers. Corresponding call task: ‘Create landmark urban-landscape nodes.’ (scheme-side translation)"><figcaption><p>AI-generated conceptual image.</p><p>One public spine links three station structures from near to middle to far. The city, stations, activity, and lighting are conceptual and do not represent existing conditions or element-by-element realization of the nine data layers.</p><p>Corresponding call task: “Create landmark urban-landscape nodes.” (scheme-side translation)</p></figcaption></figure>
     </section>
 
     <section class="metrics-band" aria-label="Key planning-scope metrics">
@@ -2407,24 +2463,266 @@ figure figcaption > p + p {
       <article><b>368.4</b><span>HA / 03 FOCUS<br>Three Key Areas, total</span></article>
     </section>
 
-    <section class="reading-path" aria-labelledby="reading-path-title">
-      <div><h2 id="reading-path-title">Read This Proposal in 90 Seconds</h2><p>About 15 Seconds Each. Select to Jump.</p></div>
-      <nav aria-label="90-second reading path"><a href="#day"><span>01</span>The City Sets the Question</a><a href="#why-ai"><span>02</span>AI Answers Under Constraint</a><a href="#manifesto"><span>03</span>The Public Decides</a><a href="#m01-failure-replay"><span>04</span>Go Dark and Restore</a><a href="#tasks"><span>05</span>Ten Cards, Three States</a><a href="#evidence"><span>06</span>Evidence Boundaries</a></nav>
+    <section class="formal-figure-grid" aria-label="Reviewer navigation, whole-line sequence, and regional coordination">
+      <figure class="formal-figure"><img src="../assets/figures/reviewer-evidence-read.en.webp" alt="Five-Minute Reviewer Evidence Read | Navigation only; evidence status is not upgraded and UNKNOWN remains"><figcaption>Five-Minute Reviewer Evidence Read | Navigation only; evidence status is not upgraded and UNKNOWN remains</figcaption></figure>
+      <figure class="formal-figure"><img src="../assets/figures/corridor-timetrack.en.webp" alt="Whole-Line Sequence | Mechanism order only; not a schedule and not authorization"><figcaption>Whole-Line Sequence | Mechanism order only; not a schedule and not authorization<p class="prebuilt-annotation">This figure shows the whole-line mechanism sequence; for spatial segments, see “983 Land-Use Polygons.”</p></figcaption></figure>
+      <figure class="formal-figure"><img src="../assets/figures/regional-synergy.en.webp" alt="Regional innovation synergy interface | Five counterparts enter, retest, and exit through two tracks and three stations"><figcaption>Regional innovation synergy interface | Five counterparts enter, retest, and exit through two tracks and three stations</figcaption></figure>
+    </section>
+
+    <section class="reading-path" id="reading-path" aria-labelledby="reading-path-title">
+      <header><h2 id="reading-path-title">Choose a Reading Route by Available Time</h2></header>
+      <article class="reading-route" data-pair="W4-007"><h3>What does AI actually do here?</h3><p>Start with the street without AI. Every day, the same kerb has to serve couriers making deliveries, older people crossing the street, and shopkeepers keeping their businesses open. Painted markings, signs, and staff gestures may organize who uses it and for how long, but conflicts still have to be settled on the spot.</p><p>AI does one job: <strong>turn that conflict into options people can compare, show how each option affects each group, and give the choice back to people.</strong> For the kerb, it lays out three options—fixed loading times, anonymous dynamic scheduling, and professional kerbside redesign—and compares detours for older people, extra waiting for couriers, and possible lost orders for shopkeepers. <strong>It produces the comparison; it does not decide, and it does not know who you are.</strong></p><p><strong>Why so many constraints?</strong> A wrong comparison is not just a software error; it can stop a wheelchair user from completing a daily trip. So AI is limited to aggregated rather than personal data. It compares options but does not rank people, and it reports findings without controlling any switch.</p><p><strong>Why keep a route that uses no AI at all?</strong> A street has to keep working every day. This project is not approved, not authorized, and not implemented, so it may stop. <strong>If it stops, deliveries, street crossings, medical visits, and school trips must not stop with it.</strong> The order is therefore reversed: first make the everyday route work without AI, and only then add AI on top. If AI goes dark, people return to the route that has remained available all along.</p></article>
+      <div class="reading-route-grid">
+        <article class="reading-route" data-route="30s" data-pair="W4-008">
+          <h3>30 seconds: what it does, where it applies, and how it stops</h3>
+          <nav aria-label="30 seconds: what it does, where it applies, and how it stops">
+            <a href="#manifesto"><span>01</span>See how the final decision stays with people</a>
+            <a href="#atlas"><span>02</span>See the planning scope and which boundaries still need confirmation</a>
+            <a href="#m01-failure-replay"><span>03</span>See how the prior state returns and daily life continues after AI is switched off</a>
+          </nav>
+        </article>
+        <article class="reading-route" data-route="3m" data-pair="W4-009">
+          <h3>3 minutes: daily use, three areas, and ten scenarios</h3>
+          <nav aria-label="3 minutes: daily use, three areas, and ten scenarios">
+            <a href="#atlas"><span>01</span>See the planning scope, three spatial layers, and what cannot change yet</a>
+            <a href="#day"><span>02</span>See how older people, couriers, shopkeepers, and others use the line through a day</a>
+            <a href="#areas"><span>03</span>See which area handles questions, retesting, or authorized limited first use</a>
+            <a href="#tasks"><span>04</span>See what AI does in each of ten scenarios and which human route remains</a>
+          </nav>
+        </article>
+        <article class="reading-route" data-route="15m" data-pair="W4-010">
+          <h3>15 minutes: AI boundaries, failure recovery, and evidence status</h3>
+          <nav aria-label="15 minutes: AI boundaries, failure recovery, and evidence status">
+            <a href="#day"><span>01</span>See the specific problems that appear across four times of day</a>
+            <a href="#why-ai"><span>02</span>See what AI compares and which decisions people must make</a>
+            <a href="#m01-failure-replay"><span>03</span>See how AI is switched off, the prior state restored, and retesting recorded after human takeover fails</a>
+            <a href="#tasks"><span>04</span>See what each of the ten scenario cards contains</a>
+            <a href="#evidence"><span>05</span>See what is known, provisional, pending review, or still unresolved</a>
+          </nav>
+        </article>
+      </div>
     </section>
 
     <section class="chapter-image chapter-text-only">
       <!-- 译自中文真值 -->
-      <header class="chapter-title"><p>K1</p><h2>Engineering History Shows the Way In, Not Today’s Evidence</h2><span>Engineering history only explains where the question came from; it is not presented as rights-cleared historical imagery.</span></header>
+      <header class="chapter-title"><p>K1</p><h2>Engineering History Shows the Way In, Not Today’s Evidence</h2><p class="section-note" data-pair="W3-001">This section explains how Jing-Zhang engineering history frames the question while current judgements still depend on present-day evidence.</p><span>Engineering history only explains where the question came from; it is not presented as rights-cleared historical imagery.</span></header>
     </section>
 
-    <section class="copy-band photo-band photo-band--02"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-02</p><h2>A Century of Jing-Zhang, at a Glance</h2><p>The railway opened in 1909, high-speed rail in 2019, and the global Open Call began in 2026. What follows is only a proposal to put AI through urban validation.</p></section>
+    <section class="copy-band photo-band photo-band--02"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-02</p><h2>A Century of Jing-Zhang, at a Glance</h2><p class="section-note" data-pair="W3-002">This section uses three dates to trace the railway, high-speed rail, and the current global Open Call.</p><p>The railway opened in 1909, high-speed rail in 2019, and the global Open Call began in 2026. What follows is only a proposal to put AI through urban validation.</p></section>
 
     <main>
-      <section class="copy-band photo-band photo-band--01" id="manifesto"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-01 / FIVE-SECOND CLAIM</p><h2>If It Fails, Withdraw It Now</h2><div class="prose-stack"><p>Urban questions first go through scientific validation. Only qualifying approaches return to the street; anything that fails is stopped, withdrawn, or restored to its prior state. </p><p>Public summary: The One-Minute Guide to the Six Gates and Five Ledgers For reviewers and residents: this proposal has not been approved or authorized for implementation, and nothing described here has happened on site. Current status: Not approved · Not authorized · Not implemented. Desktop simulation | Not a field test | Does not represent a real project event. </p><p>To move forward, a project must pass six gates: data and boundaries, problem value, scientific protocol, urban first use, projects and funding, and construction and operations. Every transition leaves records of responsibility, materials, and review; if any gate is unmet, the project does not advance automatically. </p><p>Five ledgers are kept at the same time: planning and design, public foundations, scenario validation, operations and maintenance, and social coordination. </p><p>Zhongzhiyuan handles retesting; AI Origin clarifies questions before validation; Dazhongsi may conduct limited first use only after authorization, with exit available at any time. M01 is the only candidate whose responsibility chain is developed in greatest depth. </p><p>Responsible person: UNKNOWN. Stop authority: UNKNOWN | pending confirmation of the formal responsible entity. Retest date: UNKNOWN. Restoration cost: UNKNOWN. </p><p>The fallback is a route that works without AI: fixed loading windows, static parking spaces, and human guidance; individual couriers are not tracked or evaluated. If the AI layer fails, it goes dark, the prior state and non-AI timetable return, and everyday tasks continue. </p><p>Across the scenarios, the human baseline remains: G01 uses paper and pen, telephone, human coding, and joint meetings; </p><p>W01 uses manual instruments and fixed observation points, and publishes no water-quality or safety conclusion without real data; R01 uses formal inquiries, ledger checks, and joint field inspection; AI does not determine property rights; R02 uses audits by users and accessibility professionals and retains static wayfinding; </p><p>M01 retains fixed loading windows, static parking spaces, and human guidance without tracking couriers; H01 uses telephone, printed directories, and human consultation, without diagnosis, queue allocation, or promises of appointment availability; </p><p>H02 remains a human tabletop simulation and uses no real patient data without hospital authorization; E01 is teacher-led, with paper maps and manual instruments, without student tracking or automated grading; </p><p>C01 uses shopfront inventory and human interviews without consumer profiling or behavioural manipulation; C02 uses human inquiry, static wayfinding, a fixed activity schedule, and a no-activity control day.</p></div></section>
-      <section class="copy-band photo-band photo-band--03"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-03</p><h2>Clear to the Public, Traceable to Experts</h2><div class="prose-stack"><p>Ordinary people can understand what may change, reviewers can trace where each statement came from, and anything unknown is stated as unknown. </p><p>Minimum public commitments: Not approved · Not authorized · Not implemented </p><p>Everyday coordination and ordering still use paper and pen, telephone, human coding, and joint meetings; AI does not set priorities automatically. </p><p>Water-quality and safety conclusions come only from manual instruments and fixed observation points; without real data, no conclusion is published. </p><p>Users and accessibility professionals audit public wayfinding and facilities, while static wayfinding remains available. </p><p>Deliveries retain fixed loading windows, static parking spaces, and human guidance, without tracking courier locations. </p><p>Medical consultation uses telephone, printed directories, and human inquiry only; it does not diagnose, allocate queues, or promise appointment availability. </p><p>Teachers lead students outside with paper maps and manual instruments, without student tracking or automated grading; community activities use human inquiry, static wayfinding, a fixed activity schedule, and a no-activity control day.</p></div></section>
+<style>
+.nav-layer-c {
+  --nav-paper: var(--paper, #F5F0E6);
+  --nav-paper-light: var(--paper-light, #FCFAF4);
+  --nav-ink: var(--ink, #0B0D0E);
+  --nav-blue: var(--blue, #144886);
+  --nav-blue-deep: var(--blue-deep, #0D3569);
+  --nav-gold: var(--gold, #A77A2D);
+  --nav-line: var(--line, #CFC8BA);
+  color: var(--nav-ink);
+  background: var(--nav-paper);
+  font-family: var(--offline-cjk-font, var(--sans, serif));
+}
+.nav-layer-c,
+.nav-layer-c * { box-sizing: border-box; }
+.nav-layer-c h2,
+.nav-layer-c h3,
+.nav-layer-c p,
+.nav-layer-c figure { margin: 0; }
+.nav-layer-c .nav-screen {
+  position: relative;
+  min-height: min(900px, 92svh);
+  overflow: hidden;
+  border-bottom: 1px solid var(--nav-ink);
+  background: var(--nav-paper);
+}
+.nav-layer-c .nav-cover,
+.nav-layer-c .nav-finish { display: grid; min-height: min(960px, 96svh); color: #fff; background: #07172C; }
+.nav-layer-c .nav-cover-media,
+.nav-layer-c .nav-finish-media { position: absolute; inset: 0; }
+.nav-layer-c .nav-cover-media::after,
+.nav-layer-c .nav-finish-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7,23,44,.92), rgba(7,23,44,.55) 52%, rgba(7,23,44,.18));
+}
+.nav-layer-c .nav-cover-media img,
+.nav-layer-c .nav-finish-media img { width: 100%; height: 100%; object-fit: cover; }
+.nav-layer-c .nav-cover-copy,
+.nav-layer-c .nav-finish-copy {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  width: min(900px, 86%);
+  padding: clamp(44px, 8vw, 120px);
+}
+.nav-layer-c .nav-kicker {
+  margin-bottom: 22px;
+  color: #F2D69A;
+  font-size: clamp(14px, 1.5vw, 20px);
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+.nav-layer-c .nav-cover h2,
+.nav-layer-c .nav-finish h2 {
+  max-width: 18em;
+  color: #fff;
+  font-size: clamp(36px, 6vw, 82px);
+  font-weight: 600;
+  line-height: 1.18;
+}
+.nav-layer-c .nav-disclaimer {
+  width: fit-content;
+  margin-top: 30px;
+  padding: 12px 16px;
+  border-left: 4px solid var(--nav-gold);
+  background: rgba(255,255,255,.1);
+  font-weight: 700;
+}
+.nav-layer-c .nav-metrics { display: grid; align-content: center; gap: 36px; padding: clamp(52px, 8vw, 108px); }
+.nav-layer-c .nav-metrics header { max-width: 1050px; }
+.nav-layer-c .nav-metrics h2,
+.nav-layer-c .nav-timeline h2 {
+  color: var(--nav-blue-deep);
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 1.2;
+}
+.nav-layer-c .nav-metrics header p { max-width: 68em; margin-top: 18px; color: var(--muted, #666763); line-height: 1.75; }
+.nav-layer-c .nav-metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--nav-line); }
+.nav-layer-c .nav-metric {
+  min-height: 230px;
+  display: grid;
+  align-content: space-between;
+  gap: 20px;
+  padding: clamp(24px, 3vw, 42px);
+  background: var(--nav-paper-light);
+}
+.nav-layer-c .nav-metric strong { color: var(--nav-blue); font-size: clamp(38px, 5vw, 70px); font-weight: 500; line-height: 1; }
+.nav-layer-c .nav-metric p { font-weight: 700; }
+.nav-layer-c .nav-metric .nav-source { color: var(--muted, #666763); font-family: ui-monospace, monospace; font-size: 11px; font-weight: 400; overflow-wrap: anywhere; }
+.nav-layer-c .nav-area { display: grid; grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr); background: var(--nav-paper-light); }
+.nav-layer-c .nav-area-copy { display: grid; align-content: center; gap: 16px; padding: clamp(38px, 6vw, 84px); border-right: 1px solid var(--nav-line); }
+.nav-layer-c .nav-area-copy p { color: var(--nav-blue); font-weight: 700; letter-spacing: .08em; }
+.nav-layer-c .nav-area-copy h2 { color: var(--nav-blue-deep); font-size: clamp(31px, 4vw, 58px); line-height: 1.15; }
+.nav-layer-c .nav-area-copy small { display: block; margin-top: 16px; color: var(--muted, #666763); font-size: .38em; line-height: 1.5; }
+.nav-layer-c .nav-area-media { position: relative; min-height: min(900px, 92svh); background: #07172C; }
+.nav-layer-c .nav-area-media img { width: 100%; height: 100%; object-fit: cover; }
+.nav-layer-c .nav-area-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,23,44,.12), rgba(7,23,44,.42)); pointer-events: none; }
+.nav-layer-c .nav-callout {
+  position: absolute;
+  z-index: 1;
+  max-width: min(34ch, 46%);
+  padding: 11px 14px;
+  border-left: 3px solid var(--nav-gold);
+  background: rgba(7,23,44,.86);
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.nav-layer-c .nav-callout::before { content: ""; position: absolute; top: 50%; right: 100%; width: clamp(26px, 5vw, 90px); height: 1px; background: var(--nav-gold); }
+.nav-layer-c .nav-callout-a { top: 18%; right: 8%; }
+.nav-layer-c .nav-callout-b { top: 52%; right: 11%; }
+.nav-layer-c .nav-callout-c { right: 7%; bottom: 11%; }
+.nav-layer-c .nav-timeline { display: grid; align-content: center; gap: 42px; padding: clamp(52px, 8vw, 108px); }
+.nav-layer-c .nav-timeline-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--nav-line); }
+.nav-layer-c .nav-time-cell { min-height: 300px; padding: clamp(22px, 2.5vw, 36px); background: var(--nav-paper-light); }
+.nav-layer-c .nav-time-cell h3 { margin-bottom: 18px; color: var(--nav-blue); font-size: clamp(21px, 2vw, 30px); line-height: 1.2; }
+.nav-layer-c .nav-time-cell p { color: var(--muted, #666763); line-height: 1.75; }
+@media (max-width: 900px) {
+  .nav-layer-c .nav-metric-grid { grid-template-columns: 1fr 1fr; }
+  .nav-layer-c .nav-area { grid-template-columns: 1fr; }
+  .nav-layer-c .nav-area-copy { border-right: 0; border-bottom: 1px solid var(--nav-line); }
+  .nav-layer-c .nav-area-media { min-height: 68svh; }
+  .nav-layer-c .nav-timeline-grid { grid-template-columns: 1fr; }
+  .nav-layer-c .nav-time-cell { min-height: auto; }
+}
+@media (max-width: 560px) {
+  .nav-layer-c .nav-metric-grid { grid-template-columns: 1fr; }
+  .nav-layer-c .nav-callout { right: 16px; left: 16px; max-width: none; }
+  .nav-layer-c .nav-callout::before { display: none; }
+}
+</style>
+
+<section class="nav-layer-c" aria-labelledby="nav-cover-title">
+  <section class="nav-screen nav-cover">
+    <figure class="nav-cover-media"><img src="assets/slot-a.jpg" alt="Aerial view of a corridor break: present-day conflict where railway heritage meets contemporary blocks"></figure>
+    <div class="nav-cover-copy">
+      <p class="nav-kicker">Jing-Zhang · Discovery Line</p>
+      <h2 id="nav-cover-title">What: Put urban questions through controlled validation, then let people decide whether to continue, modify, not adopt, or remove.</h2><p class="section-note" data-pair="W3-003">This section gives the page-wide process: validate the question first, then let the public decide whether to continue, modify, not adopt, or remove it.</p>
+    </div>
+  </section>
+
+  <section class="nav-screen nav-metrics" aria-labelledby="nav-metrics-title">
+    <header>
+      <h2 id="nav-metrics-title">Key planning-scope metrics</h2><p class="section-note" data-pair="W3-004">This section lists the coordinated research area, overall design area, and areas of the three focus zones, while marking precise boundaries as unknown.</p>
+      <p>The Coordinated Research Area is about 43.6 km², the Overall Design Area about 11.4 km², and the three key areas total about 368.4 ha. The announced areas are known; precise boundaries remain UNKNOWN.</p>
+    </header>
+    <div class="nav-metric-grid">
+      <article class="nav-metric" data-metric="coordinated_research_area_sqm" data-status="known"><strong>43.6 km²</strong><p>Coordinated Research Area</p><p class="nav-source">Source: metrics.json · coordinated_research_area_sqm</p></article>
+      <article class="nav-metric" data-metric="overall_design_area_sqm" data-status="known"><strong>11.4 km²</strong><p>Overall Design Area</p><p class="nav-source">Source: metrics.json · overall_design_area_sqm</p></article>
+      <article class="nav-metric" data-metric="key_detailed_design_area_sqm" data-status="known"><strong>368.4 ha</strong><p>Three Key Areas, total</p><p class="nav-source">Source: metrics.json · key_detailed_design_area_sqm</p></article>
+      <article class="nav-metric" data-metric="zhongzhiyuan_ai_acceleration_area_sqm" data-status="known"><strong>192.1 ha</strong><p>Zhongzhiyuan AI Independent Innovation Acceleration Area</p><p class="nav-source">Source: metrics.json · zhongzhiyuan_ai_acceleration_area_sqm</p></article>
+      <article class="nav-metric" data-metric="beijing_ai_origin_community_sqm" data-status="known"><strong>104.3 ha</strong><p>Beijing AI Origin Community</p><p class="nav-source">Source: metrics.json · beijing_ai_origin_community_sqm</p></article>
+      <article class="nav-metric" data-metric="dazhongsi_ai_industry_cluster_sqm" data-status="known"><strong>72.0 ha</strong><p>Dazhongsi AI Industry Cluster</p><p class="nav-source">Source: metrics.json · dazhongsi_ai_industry_cluster_sqm</p></article>
+    </div>
+  </section>
+
+  <section class="nav-screen nav-area" aria-labelledby="nav-area-zzy-title">
+    <div class="nav-area-copy"><p>Calibration and independent retesting</p><h2 id="nav-area-zzy-title">Zhongzhiyuan Retest Workshop<small>Zhongzhiyuan AI Independent Innovation Acceleration Area</small></h2><p class="section-note" data-pair="W3-005">This section explains how Zhongzhiyuan calibrates and independently retests a question, and what remains unresolved before moving on.</p></div>
+    <figure class="nav-area-media">
+      <img src="assets/slot-e.webp" alt="An older adult with white hair, accompanied by a younger person, crosses a removable pad over the heritage rails perpendicular to the park path. Farther along the same pair of rails, a recorder measures the rail-level difference at an unpadded segment, showing “passable / still a barrier / independently retested” in one frame.">
+      <p class="nav-callout nav-callout-a">Calibrate the question before retesting.</p>
+      <p class="nav-callout nav-callout-b">Do not proceed until the operator is confirmed.</p>
+      <p class="nav-callout nav-callout-c">Disclosure: AI-generated conceptual image.</p>
+    </figure>
+  </section>
+
+  <section class="nav-screen nav-area" aria-labelledby="nav-area-origin-title">
+    <div class="nav-area-copy"><p>Question intake and validation through human translation</p><h2 id="nav-area-origin-title">AI Origin Problem and Validation Foyer<small>Beijing AI Origin Community</small></h2><p class="section-note" data-pair="W3-006">This section explains how people first clarify a question, then check heritage impacts and whether new facilities may be added.</p></div>
+    <figure class="nav-area-media">
+      <img src="assets/slot-f.webp" alt="AI-generated conceptual image. Constructed people use a holographic city model by voice and gesture; the human desk and physical stop switch remain equal to AI.">
+      <p class="nav-callout nav-callout-a">When a question arrives, people first translate it clearly.</p>
+      <p class="nav-callout nav-callout-b">Add no facility until heritage impacts are reviewed.</p>
+      <p class="nav-callout nav-callout-c">AI-generated conceptual image.</p>
+    </figure>
+  </section>
+
+  <section class="nav-screen nav-area" aria-labelledby="nav-area-dzs-title">
+    <div class="nav-area-copy"><p>Authorized limited first use and exit</p><h2 id="nav-area-dzs-title">Dazhongsi First-Use and Exit Street Room<small>Dazhongsi AI Industry Cluster</small></h2><p class="section-note" data-pair="W3-007">This section explains Dazhongsi’s first small-scale use after authorization and the conditions governing both use and exit.</p></div>
+    <figure class="nav-area-media">
+      <img src="assets/slot-g.webp" alt="In a bright, double-height modern Chinese service hall, middle-aged and older people point to agent screens while staff explain printed forms item by item. Lightweight terminals stand on quick-release flanges; citizens continue to use full-capacity human service windows and seating.">
+      <p class="nav-callout nav-callout-a">Define exit before first use.</p>
+      <p class="nav-callout nav-callout-b">Community capacity remains pending verification; do not amplify footfall.</p>
+      <p class="nav-callout nav-callout-c">Disclosure: AI-generated conceptual image.</p>
+    </figure>
+  </section>
+
+  <section class="nav-screen nav-timeline" aria-labelledby="nav-timeline-title">
+    <h2 id="nav-timeline-title">Long-term operations use one four-season cycle</h2><p class="section-note" data-pair="W3-008">This section lays out four stages from receiving a question to reviewing what happens next, with the work required in each stage.</p>
+    <div class="nav-timeline-grid">
+      <article class="nav-time-cell"><h3>Urban Question Season</h3><p>The Question Season receives real problems and preliminarily screens public value, boundaries, affected people, and responsibility.</p></article>
+      <article class="nav-time-cell"><h3>Calibration and Retesting Season</h3><p>The Retesting Season discloses protocols, calibration, and independent reproduction.</p></article>
+      <article class="nav-time-cell"><h3>First-Use and Access Season</h3><p>The First-Use Season admits only projects for which safety, privacy, accessibility, human fallback, an equivalent non-AI path, and site authorization have all been resolved.</p></article>
+      <article class="nav-time-cell"><h3>Evidence Return Season</h3><p>The Return Season reviews success, failure, complaints, maintenance, removal, and retirement, then decides whether to continue research, enter procurement, reduce scope, stop, or retire.</p></article>
+      <article class="nav-time-cell"><h3>continue research, enter procurement, reduce scope, stop, or retire</h3></article>
+    </div>
+  </section>
+
+  <section class="nav-screen nav-finish" aria-labelledby="nav-finish-title">
+    <figure class="nav-finish-media"><img src="assets/slot-i.webp" alt="Heritage park at dusk after completion: railway heritage integrated into everyday Public Space"></figure>
+    <div class="nav-finish-copy">
+      <h2 id="nav-finish-title">Qualifying discoveries return to public decision-making; anything that fails is stopped, withdrawn, or restored.</h2><p class="section-note" data-pair="W3-009">This section shows what happens after validation: qualifying work returns to public decision-making; anything that fails is stopped, withdrawn, or restored.</p>
+      <p class="nav-disclaimer">Desktop simulation | Not a field test | Does not represent a real project event.</p>
+    </div>
+  </section>
+</section>
+      <section class="copy-band photo-band photo-band--01" id="manifesto"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-01 / FIVE-SECOND CLAIM</p><h2>If It Fails, Withdraw It Now</h2><p class="section-note" data-pair="W3-010">This one-minute summary shows the checks a project must pass, who handles each part, and how everyday tasks return to non-AI methods after failure.</p><div class="prose-stack"><p>Urban questions first undergo scientific validation; only qualifying approaches return to the street, while anything that fails is stopped, withdrawn, or restored.</p><p>Public summary: The One-Minute Guide to the Six Gates and Five Ledgers For reviewers and residents: this proposal has not been approved or authorized for implementation, and nothing described here has happened on site. Current status: Not approved · Not authorized · Not implemented. Desktop simulation | Not a field test | Does not represent a real project event. </p><p>To move forward, a project must pass six gates: data and boundaries, problem value, scientific protocol, urban first use, projects and funding, and construction and operations. Every transition leaves records of responsibility, materials, and review; if any gate is unmet, the project does not advance automatically. </p><p>Five ledgers are kept at the same time: planning and design, public foundations, scenario validation, operations and maintenance, and social coordination. </p><p>Zhongzhiyuan handles retesting; AI Origin clarifies questions before validation; Dazhongsi may conduct limited first use only after authorization, with exit available at any time. M01 is the only candidate whose responsibility chain is developed in greatest depth. </p><p>Responsible person: UNKNOWN. Stop authority: UNKNOWN | pending confirmation of the formal responsible entity. Retest date: UNKNOWN. Restoration cost: UNKNOWN. </p><p>The fallback is a route that works without AI: fixed loading windows, static parking spaces, and human guidance; individual couriers are not tracked or evaluated. If the AI layer fails, it goes dark, the prior state and non-AI timetable return, and everyday tasks continue. </p><p>Across the scenarios, the human baseline remains: G01 uses paper and pen, telephone, human coding, and joint meetings; </p><p>W01 uses manual instruments and fixed observation points, and publishes no water-quality or safety conclusion without real data; R01 uses formal inquiries, ledger checks, and joint field inspection; AI does not determine property rights; R02 uses audits by users and accessibility professionals and retains static wayfinding; </p><p>M01 retains fixed loading windows, static parking spaces, and human guidance without tracking couriers; H01 uses telephone, printed directories, and human consultation, without diagnosis, queue allocation, or promises of appointment availability; </p><p>H02 remains a human tabletop simulation and uses no real patient data without hospital authorization; E01 is teacher-led, with paper maps and manual instruments, without student tracking or automated grading; </p><p>C01 uses shopfront inventory and human interviews without consumer profiling or behavioural manipulation; C02 uses human inquiry, static wayfinding, a fixed activity schedule, and a no-activity control day.</p></div></section>
+      <section class="copy-band photo-band photo-band--03"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-03</p><h2>Clear to the Public, Traceable to Experts</h2><p class="section-note" data-pair="W3-011">This section lists the human methods retained for each scenario and what residents and reviewers can verify.</p><div class="prose-stack"><p>Ordinary people can understand what may change, reviewers can trace where each statement came from, and anything unknown is stated as unknown. </p><p>Minimum public commitments: Not approved · Not authorized · Not implemented </p><p>Everyday coordination and ordering still use paper and pen, telephone, human coding, and joint meetings; AI does not set priorities automatically. </p><p>Water-quality and safety conclusions come only from manual instruments and fixed observation points; without real data, no conclusion is published. </p><p>Users and accessibility professionals audit public wayfinding and facilities, while static wayfinding remains available. </p><p>Deliveries retain fixed loading windows, static parking spaces, and human guidance, without tracking courier locations. </p><p>Medical consultation uses telephone, printed directories, and human inquiry only; it does not diagnose, allocate queues, or promise appointment availability. </p><p>Teachers lead students outside with paper maps and manual instruments, without student tracking or automated grading; community activities use human inquiry, static wayfinding, a fixed activity schedule, and a no-activity control day.</p></div></section>
 
       <section class="section" id="atlas">
-        <header class="section-head"><p class="section-no">01</p><div><p class="eyebrow">SPATIAL ATLAS / SPATIAL SCOPE</p><h2>First, Draw the Line Around What May Change</h2><p class="section-note">About 43.6 km² is the Coordinated Research Area, about 11.4 km² is the Overall Design Area, and about 368.4 ha covers the three key areas. The precise boundaries remain unknown.</p><p class="atlas-answer-claim"><strong>One spine carries everyday life; two tracks separate living from validation; three stations complete reframing—retesting—limited first use.</strong><span>The Public-Task Track remains continuous; the Scientific-Discovery Track stays alongside as a bounded, withdrawable layer. Precise boundaries and the M01 location await formal materials.</span></p></div></header>
+        <header class="section-head"><p class="section-no">01</p><div><p class="eyebrow">SPATIAL ATLAS / SPATIAL SCOPE</p><h2>First, Draw the Line Around What May Change</h2><p class="section-note" data-pair="W3-012">This section brings together planning scope, the roles of Zhongzhiyuan, AI Origin, and Dazhongsi, known and unverified boundaries, and the spaces open to discussion.</p><p class="section-note">Zhongzhiyuan handles retesting; AI Origin clarifies the question before validation; Dazhongsi may conduct limited first use only after authorization and may exit.</p><p class="atlas-answer-claim"><strong>One spine carries everyday life; two tracks separate living from validation; three stations complete reframing—retesting—limited first use.</strong><span>The Public-Task Track remains continuous; the Scientific-Discovery Track stays alongside as a bounded, withdrawable layer. Precise boundaries and the M01 location await formal materials.</span></p></div></header>
         <div class="geometry-sequence" data-geometry-sequence data-lang="en" aria-labelledby="frame-title">
           <div class="geometry-sequence__stage" id="stage">
             <div class="geometry-sequence__canvas-wrap" id="canvas-wrap">
@@ -2439,7 +2737,7 @@ figure figcaption > p + p {
             </div>
             <div class="geometry-sequence__fallback" id="fallback" hidden>
               <button id="restart" type="button" data-text="restart" aria-label="Back to frame 1">Back to frame 1</button>
-              <img id="fallback-image" src="../assets/figures/site-overview.en.png" alt="Figure 1 | Scope, Two Tracks, and Three Stations">
+              <img id="fallback-image" src="../assets/figures/site-overview.en.png" alt="Three-level scope and spatial work framework">
               <p data-text="fallbackText">Formal Figure 1 remains the readable fallback without scripts, on runtime failure, or when explicitly selected.</p>
               <ol id="fallback-layers"><li>Provisional parent surface · 1</li><li>Land use · 983</li><li>Buildings · 1699</li><li>Road centrelines · 564</li><li>Green space · 124</li><li>Public space · 20</li><li>Three key areas · 3</li><li>Phasing · 4</li><li>Constraints · 0</li></ol>
             </div>
@@ -2470,7 +2768,7 @@ figure figcaption > p + p {
             <p class="geometry-sequence__status" id="status"></p>
           </aside>
           <p class="geometry-sequence__screen-reader" id="live" aria-live="polite"></p>
-          <noscript><style>.geometry-sequence > .geometry-sequence__stage,.geometry-sequence > .geometry-sequence__message-band,.geometry-sequence > .geometry-sequence__panel,.geometry-sequence > .geometry-sequence__screen-reader{display:none!important}</style><section class="geometry-sequence__noscript"><img src="../assets/figures/site-overview.en.png" alt="Figure 1 | Scope, Two Tracks, and Three Stations"><p>No-script static fallback: site_boundary, land_use, buildings, roads, green_space, public_space, key_areas, phasing, constraints; precise boundaries, fire safety, and accessibility remain UNKNOWN.</p></section></noscript>
+          <noscript><style>.geometry-sequence > .geometry-sequence__stage,.geometry-sequence > .geometry-sequence__message-band,.geometry-sequence > .geometry-sequence__panel,.geometry-sequence > .geometry-sequence__screen-reader{display:none!important}</style><section class="geometry-sequence__noscript"><img src="../assets/figures/site-overview.en.png" alt="Three-level scope and spatial work framework"><p>No-script static fallback: site_boundary, land_use, buildings, roads, green_space, public_space, key_areas, phasing, constraints; precise boundaries, fire safety, and accessibility remain UNKNOWN.</p></section></noscript>
         </div>
         <div class="geometry-stage3d" id="geometry-stage3d" aria-labelledby="geometry-3d-title" hidden>
           <header class="geometry-stage3d__head">
@@ -2490,9 +2788,9 @@ figure figcaption > p + p {
           </div>
           <p class="geometry-stage3d__status" id="geometry-3d-status" aria-live="polite"></p>
         </div>
-        <div class="formal-figure-grid" aria-label="Scope and structure figures from the eight-pair bilingual formal-figure set">
-          <figure class="formal-figure"><img src="../assets/figures/site-overview.en.png" alt="Figure 1 | Scope, Two Tracks, and Three Stations"><figcaption>Figure 1 | Scope, Two Tracks, and Three Stations</figcaption></figure>
-          <figure class="formal-figure"><img src="../assets/figures/land-use-structure.en.png" alt="Figure 2 | 983 Land-Use Polygons Take the Lead"><figcaption>Figure 2 | 983 Land-Use Polygons Take the Lead</figcaption></figure>
+        <div class="formal-figure-grid" aria-label="Scope and structure figures from the 23-pair bilingual formal-figure set">
+          <figure class="formal-figure"><img src="../assets/figures/site-overview.en.png" alt="Three-level scope and spatial work framework"><figcaption>Three-level scope and spatial work framework<p class="prebuilt-annotation">This figure shows the whole line and the three station locations; for land use by segment, see the north / central / south segments in “983 Land-Use Polygons”; for the mechanism sequence, see “Whole-Line Sequence | Mechanism order only; not a schedule and not authorization.”</p></figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/land-use-structure.en.png" alt="Figure 2 | 983 Land-Use Polygons Take the Lead"><figcaption>Figure 2 | 983 Land-Use Polygons Take the Lead<p class="prebuilt-annotation">The three segments use the same data, scale, and orientation; see “Three-level scope and spatial work framework” for their locations along the whole line.</p></figcaption></figure>
         </div>
         <section class="p4-land-use-table" aria-label="Figure 2 land-use colour-bar table">
           <div class="p4-land-use-table__bar" aria-hidden="true">
@@ -2528,24 +2826,24 @@ figure figcaption > p + p {
 
       <section class="chapter-image chapter-text-only">
         <!-- 译自中文真值 -->
-        <header class="chapter-title"><p>K2</p><h2>Test the Real Conflict Before Judging the Design</h2><span>Conditions faced by older people, couriers, shopkeepers, residents, and night workers remain pending field retesting.</span></header>
+        <header class="chapter-title"><p>K2</p><h2>Test the Real Conflict Before Judging the Design</h2><p class="section-note" data-pair="W3-013">This section lists conflicts affecting older people, couriers, shopkeepers, residents, and night workers, and marks what still needs field retesting.</p><span>Conditions faced by older people, couriers, shopkeepers, residents, and night workers remain pending field retesting.</span></header>
       </section>
 
       <section class="section" id="day">
-        <header class="section-head"><p class="section-no">02</p><div><p class="eyebrow">FOUR DAILY ROUTES</p><h2>Follow the Details from Morning to Night</h2><p class="section-note">Older people in the morning, couriers and shopkeepers at noon, students and teachers in the afternoon, and night workers and residents after dark examine the issue in turn. Human takeover remains available without AI, and the prior state can be restored after an error. </p><p class="section-note">One person’s day: [Synthetic disclosure] This is a synthetic account from a desktop simulation. The person is a synthetic persona. These personas are not interview findings. It does not come from any real interview or field event. </p><p class="section-note">M01 is not a physical card, ticket, sensor zone, automatic credential, or operating system. Desktop simulation | Not a field test | Does not represent a real project event. </p><p class="section-note">In the morning, the synthetic persona walks past a kerb contested by courier restocking, shopkeeper short stops, and resident movement. M01 records the question under one ID. </p><p class="section-note">At noon, M01 places options A, B, and C under that same ID, and AI compares only aggregated data: A is fixed loading windows, static parking spaces, and human guidance; B is lightweight, reversible, anonymous scheduling that does not track or evaluate individual couriers; C is professional kerbside development handed to duly empowered actors and professional teams. </p><p class="section-note">In the afternoon, M01 records the human decision by duly empowered actors and affected people to continue, modify, not adopt, or remove the option; the responsible entity remains unconfirmed. </p><p class="section-note">In the evening, the desktop simulation removes Human Takeover and returns NO-GO. The AI layer goes dark, the prior state and non-AI timetable return, and everyday tasks continue. M01 records the stop, restoration, and next retest. </p><p class="section-note">Responsible person: UNKNOWN. Stop authority: UNKNOWN | pending confirmation of the formal responsible entity. Retest date: UNKNOWN. Restoration cost: UNKNOWN. </p><p class="section-note">Current status: Not approved · Not authorized · Not implemented.</p></div></header>
-        <figure class="formal-figure"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Composite transport, Walking and Cycling Network, municipal, and Blue-Green Public Space diagram" loading="lazy"><figcaption>Composite transport, Walking and Cycling Network, municipal, and Blue-Green Public Space diagram</figcaption></figure>
+        <header class="section-head"><p class="section-no">02</p><div><p class="eyebrow">FOUR DAILY ROUTES</p><h2>Follow the Details from Morning to Night</h2><p class="section-note" data-pair="W3-014">This section follows four groups from morning to night, showing how they complete daily tasks and how human routes take over when AI stops.</p><p class="section-note">The desktop records support only the desktop entries and recorded determinations; they do not prove field outcomes, approval, authorization, or implementation.</p><p class="section-note">One person’s day: [Synthetic disclosure] This is a synthetic account from a desktop simulation. The person is a synthetic persona. These personas are not interview findings. It does not come from any real interview or field event. </p><p class="section-note">M01 is not a physical card, ticket, sensor zone, automatic credential, or operating system. Desktop simulation | Not a field test | Does not represent a real project event. </p><p class="section-note">In the morning, the synthetic persona walks past a kerb contested by courier restocking, shopkeeper short stops, and resident movement. M01 records the question under one ID. </p><p class="section-note">At noon, M01 places options A, B, and C under that same ID, and AI compares only aggregated data: A is fixed loading windows, static parking spaces, and human guidance; B is lightweight, reversible, anonymous scheduling that does not track or evaluate individual couriers; C is professional kerbside development handed to duly empowered actors and professional teams. </p><p class="section-note">In the afternoon, M01 records the human decision by duly empowered actors and affected people to continue, modify, not adopt, or remove the option; the responsible entity remains unconfirmed. </p><p class="section-note">In the evening, the desktop simulation removes Human Takeover and returns NO-GO. The AI layer goes dark, the prior state and non-AI timetable return, and everyday tasks continue. M01 records the stop, restoration, and next retest. </p><p class="section-note">Responsible person: UNKNOWN. Stop authority: UNKNOWN | pending confirmation of the formal responsible entity. Retest date: UNKNOWN. Restoration cost: UNKNOWN. </p><p class="section-note">Current status: Not approved · Not authorized · Not implemented.</p></div></header>
+        <figure class="formal-figure"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Composite transport, Walking and Cycling Network, municipal, and Blue-Green Public Space diagram" loading="lazy"><figcaption>Composite transport, Walking and Cycling Network, municipal, and Blue-Green Public Space diagram<p class="prebuilt-annotation">This figure shows the withdrawable AI overlay, the human-takeover layer, and the everyday layer that never stops across one day for four user groups; for the spatial relationships among transport, municipal systems, and blue-green space, see “Key Map” and “983 Land-Use Polygons.”</p><p class="prebuilt-annotation">For the data level and layer-by-layer identity of each layer in this figure, see “AI ON / OFF: What disappears, and what remains?”</p></figcaption></figure>
         <div class="day-grid">
           <article><p class="eyebrow">Morning / older people who do not use smartphones</p><h3>Start with human wayfinding and make the route clear.</h3><p>Non-AI path: paper wayfinding and human enquiries; on failure, on-site staff take over.</p></article>
           <article><p class="eyebrow">Noon / couriers, shopkeepers, and residents</p><h3>Put the kerbside conflict in front of everyone.</h3><p>Non-AI path: fixed time windows, static parking spaces, and human guidance; stop the adjustment on failure.</p></article>
           <article><p class="eyebrow">Afternoon / students, teachers, and researchers</p><h3>When a question arrives, people first translate it clearly.</h3><p>Non-AI path: offline records, human retesting, and public discussion; return to the original process on failure.</p></article>
           <article><p class="eyebrow">Night / night workers and nearby residents</p><h3>Before an event disperses, safeguard quiet and the journey home.</h3><p>Non-AI path: a fixed event schedule, static wayfinding, and human enquiries; withdraw the candidate arrangement on failure.</p></article>
         </div>
-        <figure class="wide-image"><img src="assets/slot-b.webp" alt="AI-generated conceptual image. A continuous light transition expresses a full day on the same street, while human services and the public route remain uninterrupted. The place, facilities, people, and times of day are constructed, not a real operating record. Corresponding call task: “Improve the integrated urban-space system for work, life, social interaction and learning.” (scheme-side translation)"><figcaption><p>AI-generated conceptual image. </p><p>A continuous light transition expresses a full day on the same street, while human services and the public route remain uninterrupted. </p><p>The place, facilities, people, and times of day are constructed, not a real operating record. Corresponding call task: “Improve the integrated urban-space system for work, life, social interaction and learning.” (scheme-side translation)</p></figcaption></figure>
-        <figure class="formal-figure"><img src="../assets/figures/curb-four-states.en.png" alt="V03 | Four States of One M01 Conceptual Kerbside"><figcaption>V03 | Four States of One M01 Conceptual Kerbside</figcaption></figure>
+        <figure class="wide-image"><img src="assets/slot-b.webp" alt="AI-generated conceptual image. A continuous light transition expresses a full day on the same street, while human services and the public route remain uninterrupted. The place, facilities, people, and times of day are constructed, not a real operating record. Corresponding call task: “Improve the integrated urban-space system for work, life, social interaction and learning.” (scheme-side translation)"><figcaption><p>AI-generated conceptual image. </p><p>A continuous light transition expresses a full day on the same street, while human services and the public route remain uninterrupted. </p><p>The place, facilities, people, and times of day are constructed, not a real operating record. Corresponding call task: “Improve the integrated urban-space system for work, life, social interaction and learning.” (scheme-side translation)</p><p class="prebuilt-annotation">Consistent with proposal text: a continuous light transition represents four times of day on the same street while human service and the public route remain uninterrupted; the place, facilities, people, and times are constructed, not an operating record.</p><p class="prebuilt-annotation">Scale check: use a 1.70 m standing person, 1.32 m wheelchair-seated person, and 1.55 m eye level only as reference dimensions to review the relative scale of people, the staffed service point, kerb, and public route. The current image has no measurable scale; the result is UNKNOWN and may not be treated as passed.</p></figcaption></figure>
+        <figure class="formal-figure"><img src="../assets/figures/curb-four-states.en.webp" alt="V03 | Four States of One M01 Conceptual Kerbside"><figcaption>V03 | Four States of One M01 Conceptual Kerbside</figcaption></figure>
       </section>
 
       <section class="section">
-        <header class="section-head"><p class="section-no">03</p><div><p class="eyebrow">C02 / THREE OPTIONS</p><h2>Who Benefits? Who Bears the Cost?</h2><p class="section-note">Compare gains and losses for shopkeepers, residents, night workers, and visitors across three approaches and a no-event control. AI only organizes the comparison; people make the final decision.</p></div></header>
+        <header class="section-head"><p class="section-no">03</p><div><p class="eyebrow">C02 / THREE OPTIONS</p><h2>Who Benefits? Who Bears the Cost?</h2><p class="section-note" data-pair="W3-015">This section compares three event approaches with no event, showing different effects on shopkeepers, residents, night workers, and visitors.</p><p class="section-note">Compare gains and losses for shopkeepers, residents, night workers, and visitors across three approaches and a no-event control. AI only organizes the comparison; people make the final decision.</p></div></header>
         <div class="option-grid">
           <article><span>01</span><h3>Quiet</h3><p>Less sound and light; protect everyday life first</p></article>
           <article><span>02</span><h3>Balanced</h3><p>Limited activity with observation points retained</p></article>
@@ -2553,22 +2851,22 @@ figure figcaption > p + p {
           <article><span>00</span><h3>No event</h3><p>A fixed event schedule and static wayfinding serve as the control.</p></article>
         </div>
         <div class="c02-grid">
-          <figure><img src="assets/slot-c.jpg" alt="Three-way kerb allocation and second-by-second change: the same kerb segment used at different times for walking, short stops, and loading (AI-generated conceptual illustration)"><figcaption>Three-way kerb allocation and second-by-second change: the same kerb segment used at different times for walking, short stops, and loading (AI-generated conceptual illustration)</figcaption></figure>
+          <figure><img src="assets/slot-c.jpg" alt="Three-way kerb allocation and second-by-second change: the same kerb segment used at different times for walking, short stops, and loading (AI-generated conceptual illustration)"><figcaption>Three-way kerb allocation and second-by-second change: the same kerb segment used at different times for walking, short stops, and loading (AI-generated conceptual illustration)<p class="prebuilt-annotation">Consistent with proposal text: the same kerbside is conceptually compared across walking, short stops, loading, and a no-event control; AI only organizes gains and losses, while people retain the final decision. The pictured states are neither measurements nor a schedule.</p><p class="prebuilt-annotation">Scale check: use the same human-projection references to review whether pedestrians, vehicles, loading interfaces, and the kerb remain at one scale across the four states. The current image has no measurable scale; the result is UNKNOWN and the visual comparison may not be presented as measurement.</p></figcaption></figure>
           <div class="c02-copy"><p>C02 / who benefits, who bears the burden, who decides</p><div><span>Differences</span><p>Residents, shopkeepers, night workers, and visitors do not face the same conditions.</p></div><div><span>Retain</span><p>Human enquiries, static wayfinding, fixed event schedules, and restoration arrangements.</p></div><div><span>Decision</span><p>AI only aggregates comparisons; resident and shopkeeper meetings weigh the options, and duly empowered actors decide.</p></div><p>UNKNOWN / pending comparison against field baselines and human meetings</p></div>
         </div>
       </section>
 
       <section class="chapter-image chapter-text-only">
         <!-- 译自中文真值 -->
-        <header class="chapter-title"><p>K3</p><h2>AI Provides Evidence. People Decide.</h2><span>AI only retrieves, compares, tracks, and recalculates; people decide boundaries and adoption.</span></header>
+        <header class="chapter-title"><p>K3</p><h2>AI Provides Evidence. People Decide.</h2><p class="section-note" data-pair="W3-016">This section states that AI only retrieves, compares, tracks, and recalculates; people decide adoption, pausing, and exit.</p><span>AI only retrieves, compares, tracks, and recalculates; people decide boundaries and adoption.</span></header>
       </section>
 
-      <section class="why-ai" id="why-ai"><p class="eyebrow">WHY AI</p><h2>AI Compares.<br><em>People Decide.</em></h2><div><p>The data volume is large and conditions change quickly. AI can retrieve, compare, track, and recalculate; people decide boundaries, adoption, suspension, and exit.</p><strong>AI does not decide automatically. It turns questions into comparable evidence and returns decisions to people.</strong></div></section>
+      <section class="why-ai" id="why-ai"><p class="eyebrow">WHY AI</p><h2>AI Compares.<br><em>People Decide.</em></h2><p class="section-note" data-pair="W3-017">This section explains why AI is used, what comparisons it performs, and which decisions always remain with people.</p><div><p>The data volume is large and conditions change quickly. AI can retrieve, compare, track, and recalculate; people decide boundaries, adoption, suspension, and exit.</p><strong>AI does not decide automatically. It turns questions into comparable evidence and returns decisions to people.</strong></div></section>
 
-      <figure class="formal-figure"><img src="../assets/figures/v14-ai-on-off.en.png" alt="AI ON / OFF: What disappears, and what remains?"><figcaption>AI ON / OFF: What disappears, and what remains?</figcaption></figure>
+      <figure class="formal-figure"><img src="../assets/figures/v14-ai-on-off.en.webp" alt="AI ON / OFF: What disappears, and what remains?"><figcaption>AI ON / OFF: What disappears, and what remains?</figcaption></figure>
 
       <section class="section" id="m01-responsibility">
-        <header class="section-head"><p class="section-no">04</p><div><p class="eyebrow">M01 DISCOVERY PASSPORT</p><h2>No Clear Responsibility, No Trial</h2><p class="section-note">Before testing a street segment, state who is responsible, what is compared, who may stop it, and how it is restored. If any item is missing, do not test. It is not approved, has no site authorization, and has not begun.</p></div></header>
+        <header class="section-head"><p class="section-no">04</p><div><p class="eyebrow">M01 DISCOVERY PASSPORT</p><h2>No Clear Responsibility, No Trial</h2><p class="section-note" data-pair="W3-018">M01 is the most detailed task card on this page; this section identifies its users, responsible person, stop authority, and restoration route.</p><p class="section-note">Before testing a street segment, state who is responsible, what is compared, who may stop it, and how it is restored. If any item is missing, do not test. It is not approved, has no site authorization, and has not begun.</p></div></header>
         <section class="m01-responsibility" aria-labelledby="m01-responsibility-title">
           <header><div><p>M01 | Responsibility at a glance</p><h3 id="m01-responsibility-title">Ten fields in one view; UNKNOWN stays unchanged</h3></div><strong>M01</strong></header>
           <div class="m01-responsibility-grid">
@@ -2585,7 +2883,7 @@ figure figcaption > p + p {
           </div>
         </section>
         <section class="failure-replay" id="m01-failure-replay" aria-labelledby="m01-failure-title">
-          <header class="section-head"><p class="section-no">M01 / 04</p><div><p class="eyebrow">CSS-ONLY FAILURE REPLAY</p><h2 id="m01-failure-title">AI Can Go Dark. Human and Everyday Routes Must Remain.</h2><p class="section-note">All four state conclusions stay visible; the labels switch only the section diagram. Every state uses the same M01 ID, and a desktop simulation is never presented as a field event. </p><details class="evidence-trail"><summary>Evidence trail</summary><p class="section-note">The Time We Ran It on the Desktop Desktop simulation | Not a field test | Does not represent a real project event Status: Current status: Not approved · Not authorized · Not implemented.  We must also avoid reading “complete” at the machine gate as if professional design development were finished—the former only means that the evidence chain satisfies the current gate; professional spatial development still awaits continuation by a qualified team.</p><p class="section-note">30 three-state receipts: The 10 cards produced 30 receipts across 3 states, merged into one JSON array. Each receipt records the input summary, six-gate decision, evidence path, and synthetic/non-field flag. The 10 human-baseline cases and 10 protocol-comparison cases were each held because conditions were incomplete; all 10/10 over-boundary advancement cases were refused by the rules. </p><p class="section-note">Negative injections: 14 negative injections produced `14 injections / 0 leaks`, covering overreach, a missing non-AI route, failed withdrawal, missing responsibility, and M01 drift. </p><p class="section-note">This result only proves that no leak occurred within the desktop simulation; it does not prove anything in the field. </p><p class="section-note">One closed M01 round: M01 used Codex's own model for 1 real generation round. The prompt, all 3 candidates, and all 3 adjudications were retained, with no round deleted and no outcome-based selection. The exact service identity and seed were unavailable and recorded as such. None of the 3 candidates crossed the authorization, resource, or operating conditions. Field count: 0. </p><p class="section-note">Whole-line downgrade: If any card fails retesting, the passport level for the whole line drops back one level; the weakest card may not be patched in isolation. This record is not a real retest. </p><p class="section-note">Authority boundary: Zhongzhiyuan handles retesting; AI Origin clarifies the question before validation; Dazhongsi may conduct limited first use only after authorization, with exit available at any time. </p><p class="section-note">M01 responsibility chain: M01 is the only candidate whose responsibility chain is developed in greatest depth. Responsible person: UNKNOWN. Stop authority: UNKNOWN | pending confirmation of the formal responsible entity. Retest date: UNKNOWN. Restoration cost: UNKNOWN. </p><p class="section-note">Non-AI route and restoration: The equivalent non-AI path uses fixed loading windows, static parking spaces, and human guidance; individual couriers are not tracked or evaluated. If the AI layer fails, it goes dark, the prior state and non-AI timetable return, and everyday tasks continue. </p><p class="section-note">Double count: The double count is fixed: tabletop simulation `30/30`; real retests `0`; field runs `0`. </p><p class="section-note">Summary: Boundary / Desktop simulation | Not a field test | Does not represent a real project event / Retain verbatim Desktop receipts / 30/30 / 10 cards, 3 states each Negative injections / 14 injections / 0 leaks / Zero leaks M01 capture / 1 round; 3 candidates; 3 adjudications / All retained </p><p class="section-note">Real retests / 0 / Not performed Field runs / 0 / Not performed </p><p class="section-note">Current status / Not approved · Not authorized · Not implemented / Retain verbatim Responsible person / UNKNOWN / Pending formal confirmation Stop authority / UNKNOWN / Pending formal confirmation Retest date / UNKNOWN / Restoration cost / UNKNOWN /</p></details></div></header>
+          <header class="section-head"><p class="section-no">M01 / 04</p><div><p class="eyebrow">CSS-ONLY FAILURE REPLAY</p><h2 id="m01-failure-title">AI Can Go Dark. Human and Everyday Routes Must Remain.</h2><p class="section-note" data-pair="W3-019">This section uses four states: make the non-AI everyday route work first, then compare options, check conditions, and show failure and restoration.</p><p class="section-note">All four state conclusions stay visible; the labels switch only the section diagram. Every state uses the same M01 ID, and a desktop simulation is never presented as a field event. </p><details class="evidence-trail"><summary>Evidence trail</summary><p class="section-note">The Time We Ran It on the Desktop Desktop simulation | Not a field test | Does not represent a real project event Status: Current status: Not approved · Not authorized · Not implemented.  We must also avoid reading “complete” at the machine gate as if professional design development were finished—the former only means that the evidence chain satisfies the current gate; professional spatial development still awaits continuation by a qualified team.</p><p class="section-note">30 three-state receipts: The 10 cards produced 30 receipts across 3 states, merged into one JSON array. Each receipt records the input summary, six-gate decision, evidence path, and synthetic/non-field flag. The 10 human-baseline cases and 10 protocol-comparison cases were each held because conditions were incomplete; all 10/10 over-boundary advancement cases were refused by the rules. </p><p class="section-note">Negative injections: 14 negative injections produced `14 injections / 0 leaks`, covering overreach, a missing non-AI route, failed withdrawal, missing responsibility, and M01 drift. </p><p class="section-note">This result only proves that no leak occurred within the desktop simulation; it does not prove anything in the field. </p><p class="section-note">One closed M01 round: M01 used Codex's own model for 1 real generation round. The prompt, all 3 candidates, and all 3 adjudications were retained, with no round deleted and no outcome-based selection. The exact service identity and seed were unavailable and recorded as such. None of the 3 candidates crossed the authorization, resource, or operating conditions. Field count: 0. </p><p class="section-note">Whole-line downgrade: If any card fails retesting, the passport level for the whole line drops back one level; the weakest card may not be patched in isolation. This record is not a real retest. </p><p class="section-note">Authority boundary: Zhongzhiyuan handles retesting; AI Origin clarifies the question before validation; Dazhongsi may conduct limited first use only after authorization, with exit available at any time. </p><p class="section-note">M01 responsibility chain: M01 is the only candidate whose responsibility chain is developed in greatest depth. Responsible person: UNKNOWN. Stop authority: UNKNOWN | pending confirmation of the formal responsible entity. Retest date: UNKNOWN. Restoration cost: UNKNOWN. </p><p class="section-note">Non-AI route and restoration: The equivalent non-AI path uses fixed loading windows, static parking spaces, and human guidance; individual couriers are not tracked or evaluated. If the AI layer fails, it goes dark, the prior state and non-AI timetable return, and everyday tasks continue. </p><p class="section-note">Double count: The double count is fixed: tabletop simulation `30/30`; real retests `0`; field runs `0`. </p><p class="section-note">Summary: Boundary / Desktop simulation | Not a field test | Does not represent a real project event / Retain verbatim Desktop receipts / 30/30 / 10 cards, 3 states each Negative injections / 14 injections / 0 leaks / Zero leaks M01 capture / 1 round; 3 candidates; 3 adjudications / All retained </p><p class="section-note">Real retests / 0 / Not performed Field runs / 0 / Not performed </p><p class="section-note">Current status / Not approved · Not authorized · Not implemented / Retain verbatim Responsible person / UNKNOWN / Pending formal confirmation Stop authority / UNKNOWN / Pending formal confirmation Retest date / UNKNOWN / Restoration cost / UNKNOWN /</p></details></div></header>
           <input class="visually-hidden-control" type="radio" name="m01-replay-en" id="replay-en-1" checked>
           <input class="visually-hidden-control" type="radio" name="m01-replay-en" id="replay-en-2">
           <input class="visually-hidden-control" type="radio" name="m01-replay-en" id="replay-en-3">
@@ -2640,7 +2938,7 @@ figure figcaption > p + p {
         </div>
       </section>
 
-      <figure class="formal-figure"><img src="../assets/figures/v16-m01-sections.en.png" alt="V16 | M01 Three-State Conceptual Sections on One Baseline"><figcaption>V16 | M01 Three-State Conceptual Sections on One Baseline</figcaption></figure>
+      <figure class="formal-figure"><img src="../assets/figures/v16-m01-sections.en.webp" alt="V16 | M01 Three-State Conceptual Sections on One Baseline"><figcaption>V16 | M01 Three-State Conceptual Sections on One Baseline</figcaption></figure>
 
 <section class="switch-note" id="switch-note" aria-labelledby="switch-note-title">
   <figure class="switch-note__diagram">
@@ -2667,7 +2965,7 @@ figure figcaption > p + p {
     </svg>
   </figure>
   <div class="switch-note__copy">
-    <h2 id="switch-note-title">Between the Two Tracks Is a Turnout</h2>
+    <h2 id="switch-note-title">Between the Two Tracks Is a Turnout</h2><p class="section-note" data-pair="W3-020">This section explains why everyday routes must stay open, how AI may intervene only as a constrained side layer, and how people can stop it at any time.</p>
     <ol class="switch-note__map">
       <li data-source-ref="visual/index.en.html#switch-note"><b>Main line (the track trains normally use):</b> human and everyday routes remain open and are not interrupted when the AI layer comes online or goes offline.</li>
       <li data-source-ref="visual/index.en.html#switch-note"><b>Siding (an auxiliary track for temporary stops):</b> AI intervenes under constraints; option B is lightweight, reversible, and anonymous.</li>
@@ -2679,7 +2977,7 @@ figure figcaption > p + p {
 </section>
 
       <section class="dual-state" aria-labelledby="dual-state-title">
-        <header><h2 id="dual-state-title">The Same Kerbside Works with AI On or Off</h2><p>Under the same M01 ID, close the non-AI route first; AI remains a constrained, withdrawable comparison layer.</p></header>
+        <header><h2 id="dual-state-title">The Same Kerbside Works with AI On or Off</h2><p class="section-note" data-pair="W3-021">This section compares the same roadside loading and movement space with AI off and on, covering tasks, methods, records, stopping, and acceptance.</p><p>Under the same M01 ID, close the non-AI route first; AI remains a constrained, withdrawable comparison layer.</p></header>
         <div role="region" aria-label="Same-kerbside AI-off and AI-on comparison table">
           <table>
             <thead><tr><th scope="col">Comparison</th><th scope="col">AI Off · Ordinary City (Option A)</th><th scope="col">AI On · Constrained Intervention (Option B)</th></tr></thead>
@@ -2696,13 +2994,21 @@ figure figcaption > p + p {
       </section>
 
       <section class="section" id="areas">
-        <header class="section-head"><p class="section-no">05</p><div><p class="eyebrow">THREE FOCUS AREAS</p><h2>Three Places, Three Distinct Responsibilities</h2><p class="section-note">Zhongzhiyuan handles retesting; AI Origin clarifies questions before validation; Dazhongsi permits limited first use only after authorization, with exit available at any time.</p></div></header>
+        <header class="section-head"><p class="section-no">05</p><div><p class="eyebrow">THREE FOCUS AREAS</p><h2>Three Places, Three Distinct Responsibilities</h2><p class="section-note" data-pair="W3-022">This section assigns another round of checking to Zhongzhiyuan, question clarification to AI Origin, and small-scale use after authorization plus exit to Dazhongsi.</p><p class="section-note">Zhongzhiyuan handles retesting; AI Origin clarifies questions before validation; Dazhongsi permits limited first use only after authorization, with exit available at any time.</p></div></header>
         <div class="triptych">
-          <figure><img src="assets/slot-e.webp" alt="An older adult with white hair, accompanied by a younger person, crosses a removable pad over the heritage rails perpendicular to the park path. Farther along the same pair of rails, a recorder measures the rail-level difference at an unpadded segment, showing “passable / still a barrier / independently retested” in one frame. The slender foreground post is a trial stop post with an industrial mushroom emergency-stop button, not fire equipment. Corresponding call task: “Focus on breaks in the park’s slow-mobility system and propose innovative solutions for optimizing the transport system.” (scheme-side translation) Disclosure: AI-generated conceptual image. The small sign on the stop post is generated pseudo-text. Field level differences, safety dimensions, slope, materials, load capacity, slip resistance, location, approval, and operations responsibility are UNKNOWN and require accessibility, heritage, and operations review."><figcaption><p>An older adult with white hair, accompanied by a younger person, crosses a removable pad over the heritage rails perpendicular to the park path. Farther along the same pair of rails, a recorder measures the rail-level difference at an unpadded segment, showing “passable / still a barrier / independently retested” in one frame. </p><p>The slender foreground post is a trial stop post with an industrial mushroom emergency-stop button, not fire equipment. Corresponding call task: “Focus on breaks in the park’s slow-mobility system and propose innovative solutions for optimizing the transport system.” (scheme-side translation) </p><p>Disclosure: AI-generated conceptual image. The small sign on the stop post is generated pseudo-text. Field level differences, safety dimensions, slope, materials, load capacity, slip resistance, location, approval, and operations responsibility are UNKNOWN and require accessibility, heritage, and operations review.</p></figcaption></figure>
-          <figure><img src="assets/slot-f.webp" alt="AI-generated conceptual image. Constructed people use a holographic city model by voice and gesture; the human desk and physical stop switch remain equal to AI. The place, people, facilities, and process are conceptual, not built or operating facilities. Corresponding call task: “Improve the functions for showcasing and releasing results, and for residential and everyday-life support.” (scheme-side translation)"><figcaption><p>AI-generated conceptual image. </p><p>Constructed people use a holographic city model by voice and gesture; the human desk and physical stop switch remain equal to AI. </p><p>The place, people, facilities, and process are conceptual, not built or operating facilities. Corresponding call task: “Improve the functions for showcasing and releasing results, and for residential and everyday-life support.” (scheme-side translation)</p></figcaption></figure>
-          <figure><img src="assets/slot-g.webp" alt="In a bright, double-height modern Chinese service hall, middle-aged and older people point to agent screens while staff explain printed forms item by item. Lightweight terminals stand on quick-release flanges; citizens continue to use full-capacity human service windows and seating. A registration plaque wall, retirement covers, a desk-side emergency stop, and a responsibility notice place agents within an accountable, pausable, and withdrawable public-service mechanism. Corresponding call task: “Focus on AI-native and AI+ convergence-enabled new business formats, including agents, intelligent terminals and content consumption.” (scheme-side translation) Disclosure: AI-generated conceptual image. Screens, plaques, and responsibility notices contain pseudo-interfaces or pseudo-text. The hall, terminals, posts, processes, responsible entity, location, quantity, versions, and retirement arrangements are conceptual or UNKNOWN and do not indicate construction or authorized operation."><figcaption><p>In a bright, double-height modern Chinese service hall, middle-aged and older people point to agent screens while staff explain printed forms item by item. Lightweight terminals stand on quick-release flanges; citizens continue to use full-capacity human service windows and seating. </p><p>A registration plaque wall, retirement covers, a desk-side emergency stop, and a responsibility notice place agents within an accountable, pausable, and withdrawable public-service mechanism. </p><p>Corresponding call task: “Focus on AI-native and AI+ convergence-enabled new business formats, including agents, intelligent terminals and content consumption.” (scheme-side translation) </p><p>Disclosure: AI-generated conceptual image. </p><p>Screens, plaques, and responsibility notices contain pseudo-interfaces or pseudo-text. The hall, terminals, posts, processes, responsible entity, location, quantity, versions, and retirement arrangements are conceptual or UNKNOWN and do not indicate construction or authorized operation.</p></figcaption></figure>
+          <figure><img src="assets/slot-e.webp" alt="An older adult with white hair, accompanied by a younger person, crosses a removable pad over the heritage rails perpendicular to the park path. Farther along the same pair of rails, a recorder measures the rail-level difference at an unpadded segment, showing “passable / still a barrier / independently retested” in one frame. The slender foreground post is a trial stop post with an industrial mushroom emergency-stop button, not fire equipment. Corresponding call task: “Focus on breaks in the park’s slow-mobility system and propose innovative solutions for optimizing the transport system.” (scheme-side translation) Disclosure: AI-generated conceptual image. The small sign on the stop post is generated pseudo-text. Field level differences, safety dimensions, slope, materials, load capacity, slip resistance, location, approval, and operations responsibility are UNKNOWN and require accessibility, heritage, and operations review."><figcaption><p>An older adult with white hair, accompanied by a younger person, crosses a removable pad over the heritage rails perpendicular to the park path. Farther along the same pair of rails, a recorder measures the rail-level difference at an unpadded segment, showing “passable / still a barrier / independently retested” in one frame. </p><p>The slender foreground post is a trial stop post with an industrial mushroom emergency-stop button, not fire equipment. Corresponding call task: “Focus on breaks in the park’s slow-mobility system and propose innovative solutions for optimizing the transport system.” (scheme-side translation) </p><p>Disclosure: AI-generated conceptual image. The small sign on the stop post is generated pseudo-text. Field level differences, safety dimensions, slope, materials, load capacity, slip resistance, location, approval, and operations responsibility are UNKNOWN and require accessibility, heritage, and operations review.</p><p class="prebuilt-annotation">Consistent with proposal text: an accompanied wheelchair user crosses a removable pad over heritage rails while a recorder checks the unpadded level difference. The pad, stop post, dimensions, location, approval, and operating responsibility are conceptual or UNKNOWN.</p><p class="prebuilt-annotation">Scale check: use a 1.70 m standing person, 1.32 m wheelchair-seated person, and 1.55 m eye level only as references to review the relative scale of the wheelchair user, companion, recorder, rail head, pad, and stop post. The current image has no measurable scale; level difference, safety dimensions, and slope remain UNKNOWN.</p></figcaption></figure>
+          <figure><img src="assets/slot-f.webp" alt="AI-generated conceptual image. Constructed people use a holographic city model by voice and gesture; the human desk and physical stop switch remain equal to AI. The place, people, facilities, and process are conceptual, not built or operating facilities. Corresponding call task: “Improve the functions for showcasing and releasing results, and for residential and everyday-life support.” (scheme-side translation)"><figcaption><p>AI-generated conceptual image. </p><p>Constructed people use a holographic city model by voice and gesture; the human desk and physical stop switch remain equal to AI. </p><p>The place, people, facilities, and process are conceptual, not built or operating facilities. Corresponding call task: “Improve the functions for showcasing and releasing results, and for residential and everyday-life support.” (scheme-side translation)</p><p class="prebuilt-annotation">Consistent with proposal text: while a constructed person uses a holographic city model, the human desk and physical stop switch remain equal to AI; the place, people, facilities, and process are not presented as built or operating.</p><p class="prebuilt-annotation">Scale check: use a 1.70 m standing person, 1.32 m wheelchair-seated person, and 1.55 m eye level only as references to review the relative scale and reach relationship among the constructed person, holographic model, staffed desk, and physical stop switch. The current image has no measurable scale; the result is UNKNOWN.</p></figcaption></figure>
+          <figure><img src="assets/slot-g.webp" alt="In a bright, double-height modern Chinese service hall, middle-aged and older people point to agent screens while staff explain printed forms item by item. Lightweight terminals stand on quick-release flanges; citizens continue to use full-capacity human service windows and seating. A registration plaque wall, retirement covers, a desk-side emergency stop, and a responsibility notice place agents within an accountable, pausable, and withdrawable public-service mechanism. Corresponding call task: “Focus on AI-native and AI+ convergence-enabled new business formats, including agents, intelligent terminals and content consumption.” (scheme-side translation) Disclosure: AI-generated conceptual image. Screens, plaques, and responsibility notices contain pseudo-interfaces or pseudo-text. The hall, terminals, posts, processes, responsible entity, location, quantity, versions, and retirement arrangements are conceptual or UNKNOWN and do not indicate construction or authorized operation."><figcaption><p>In a bright, double-height modern Chinese service hall, middle-aged and older people point to agent screens while staff explain printed forms item by item. Lightweight terminals stand on quick-release flanges; citizens continue to use full-capacity human service windows and seating. </p><p>A registration plaque wall, retirement covers, a desk-side emergency stop, and a responsibility notice place agents within an accountable, pausable, and withdrawable public-service mechanism. </p><p>Corresponding call task: “Focus on AI-native and AI+ convergence-enabled new business formats, including agents, intelligent terminals and content consumption.” (scheme-side translation) </p><p>Disclosure: AI-generated conceptual image. </p><p>Screens, plaques, and responsibility notices contain pseudo-interfaces or pseudo-text. The hall, terminals, posts, processes, responsible entity, location, quantity, versions, and retirement arrangements are conceptual or UNKNOWN and do not indicate construction or authorized operation.</p><p class="prebuilt-annotation">Consistent with proposal text: quick-release terminals coexist with staffed windows, paper forms, seating, stop controls, and retirement interfaces. Screens and plaques are pseudo-interfaces; posts, responsibility, locations, quantities, versions, and retirement arrangements are conceptual or UNKNOWN.</p><p class="prebuilt-annotation">Scale check: use a 1.70 m standing person, 1.32 m wheelchair-seated person, and 1.55 m eye level only as references to review the relative scale of users, staff, quick-release terminals, staffed windows, and seating. The current image has no measurable scale; locations, quantities, and accessibility dimensions remain UNKNOWN.</p></figcaption></figure>
         </div>
         <figure class="formal-figure"><img src="../assets/figures/key-areas.en.png" alt="Figure 3 | One Responsibility per Area; a Responsibility Station Is Not a Spatial Location"><figcaption>Figure 3 | One Responsibility per Area; a Responsibility Station Is Not a Spatial Location</figcaption></figure>
+        <div class="formal-figure-grid" aria-label="Triptychs for the three key areas">
+          <figure class="formal-figure"><img src="../assets/figures/triptych-zhongzhiyuan.en.webp" alt="Zhongzhiyuan Triptych | CC photograph + OSM anchor + conceptual illustration; not an intervention location or current condition"><figcaption>Zhongzhiyuan Triptych | CC photograph + OSM anchor + conceptual illustration; not an intervention location or current condition</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/triptych-ai-yuandian.en.webp" alt="AI Origin Triptych | CC photograph + OSM anchor + conceptual illustration; not an intervention location or current condition"><figcaption>AI Origin Triptych | CC photograph + OSM anchor + conceptual illustration; not an intervention location or current condition</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/triptych-dazhongsi.en.webp" alt="Dazhongsi Triptych | CC photograph + OSM anchor + conceptual illustration; not an intervention location or current condition"><figcaption>Dazhongsi Triptych | CC photograph + OSM anchor + conceptual illustration; not an intervention location or current condition</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/section-zhongzhiyuan.en.webp" alt="Figure 3A | ZHONGZHIYUAN | RETEST PLATFORM—PUBLIC EXPLANATION—EQUIPMENT EXIT INTERFACE"><figcaption>Figure 3A | ZHONGZHIYUAN | RETEST PLATFORM—PUBLIC EXPLANATION—EQUIPMENT EXIT INTERFACE<p class="prebuilt-annotation">The band widths in this figure express allocation intent; for the conditional dimensional basis, see “V16 | M01 Three-State Conceptual Sections on One Baseline” (values extracted from DB11/T 1116—2024).</p></figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/section-ai-yuandian.en.webp" alt="Figure 3B | AI ORIGIN | NO-APP QUESTION ENTRY—HUMAN QUESTION TRANSLATION—MANUAL SAMPLING INTERFACE"><figcaption>Figure 3B | AI ORIGIN | NO-APP QUESTION ENTRY—HUMAN QUESTION TRANSLATION—MANUAL SAMPLING INTERFACE<p class="prebuilt-annotation">The band widths in this figure express allocation intent; for the conditional dimensional basis, see “V16 | M01 Three-State Conceptual Sections on One Baseline” (values extracted from DB11/T 1116—2024).</p></figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/section-dazhongsi.en.webp" alt="Figure 3C | DAZHONGSI | WITHDRAWABLE GROUND-FLOOR—KERB—PARK UNIT"><figcaption>Figure 3C | DAZHONGSI | WITHDRAWABLE GROUND-FLOOR—KERB—PARK UNIT<p class="prebuilt-annotation">The band widths in this figure express allocation intent; for the conditional dimensional basis, see “V16 | M01 Three-State Conceptual Sections on One Baseline” (values extracted from DB11/T 1116—2024).</p></figcaption></figure>
+        </div>
         <div class="area-grid">
           <article class="area-card"><div class="area-code">A-01<br><small>192.1 ha</small></div><div><p>Calibration and independent retesting</p><h3>Zhongzhiyuan Retest Workshop<br><small>Zhongzhiyuan AI Independent Innovation Acceleration Area</small></h3></div><div><p>Action here</p><h3>Calibrate the question before retesting.</h3><p>A question proceeds only after independent retesting; the conceptual workshop is not presented as a completed facility.</p></div><div class="stop"><p>Stopping conditions</p><strong>Do not proceed until the operator is confirmed.</strong></div></article>
           <article class="area-card"><div class="area-code">A-02<br><small>104.3 ha</small></div><div><p>Question intake and validation through human translation</p><h3>AI Origin Problem and Validation Foyer<br><small>Beijing AI Origin Community</small></h3></div><div><p>Action here</p><h3>When a question arrives, people first translate it clearly.</h3><p>Send the question into controlled validation; do not present a concept display as a city service that has already occurred.</p></div><div class="stop"><p>Stopping conditions</p><strong>Add no facility until heritage impacts are reviewed.</strong></div></article>
@@ -2712,8 +3018,8 @@ figure figcaption > p + p {
       </section>
 
       <section class="section" id="tasks">
-        <header class="section-head"><p class="section-no">06</p><div><p class="eyebrow">SIX REQUIRED THREADS</p><h2>Six Questions. Answer Every One.</h2><p class="section-note">The six official tasks are stated individually so progress on each is visible at a glance.</p></div></header>
-        <section class="copy-band photo-band photo-band--09"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-09</p><h2>Ten Cards. Take Three All the Way.</h2><p>Keep all ten task cards. First develop Xiaoyue River, kerbside parking, and event arrangements in depth; do not add an eleventh card.</p></section>
+        <header class="section-head"><p class="section-no">06</p><div><p class="eyebrow">SIX REQUIRED THREADS</p><h2>Six Questions. Answer Every One.</h2><p class="section-note" data-pair="W3-023">This section lists the six official tasks one by one so readers can see how far each response goes.</p><p class="section-note">The six official tasks are stated individually so progress on each is visible at a glance.</p></div></header>
+        <section class="copy-band photo-band photo-band--09"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-09</p><h2>Ten Cards. Take Three All the Way.</h2><p class="section-note" data-pair="W3-024">This section lists who each of the ten task cards serves, what AI does, the human route, and the conditions that stop the work.</p><p>Keep all ten task cards. First develop Xiaoyue River, kerbside parking, and event arrangements in depth; do not add an eleventh card.</p></section>
         <div class="card-grid scene">
           <article><span>G01</span><p>People without an app ask through paper and pen; AI does not set priorities automatically, and the process stops if the non-AI entry fails.</p></article>
           <article><span>W01</span><p>Students observe heat, water, and movement across weather conditions. AI only screens anomalies; stop if authorization or calibration is missing, or if AI issues conclusions beyond its remit.</p></article>
@@ -2734,24 +3040,24 @@ figure figcaption > p + p {
           <article class="task"><span>agent.05</span><div><h3>Integrated narrative design for Centennial Jing-Zhang culture, Zhongguancun culture, and new AI culture</h3><p>History is an engine, not retro decoration.</p></div><div><ul><li>Jing-Zhang Railway historical and cultural resource system</li><li>Narrative of Zhongguancun innovation culture and new AI culture</li><li>Spatial cultural system and means of expression</li><li>Wayfinding, signage, and symbol systems</li><li>Urban character and international communication narrative</li></ul></div></article>
           <article class="task"><span>agent.06</span><div><h3>Global AI innovation activity system and long-term operations design for the Belt</h3><p>All activities remain candidates and are not presented as scheduled.</p></div><div><ul><li>Annual activity system</li><li>Event brand and communication visual system</li><li>Developer-community operating mechanism</li><li>AI scenario-access operating mechanism</li><li>Public experience and urban-landmark operations</li><li>International communication and attraction-conversion mechanism</li></ul></div></article>
         </div>
-        <figure class="wide-image"><img src="assets/slot-h.webp" alt="AI-generated conceptual image. One block is cut open: everyday life remains at ground level, human service stays inside the shop, and a crane removes an arrow-screen AI component in mid-air; only credible municipal utilities appear below ground. Buildings, components, people, and underground layers are conceptual and do not represent real levels, utilities, or construction conditions. Corresponding call task: “Explore development models and implementation pathways for integrating new AI-industry service facilities—such as distributed energy and edge computing—with the three traditional facility systems.” (scheme-side translation)"><figcaption><p>AI-generated conceptual image. </p><p>One block is cut open: everyday life remains at ground level, human service stays inside the shop, and a crane removes an arrow-screen AI component in mid-air; only credible municipal utilities appear below ground. </p><p>Buildings, components, people, and underground layers are conceptual and do not represent real levels, utilities, or construction conditions. Corresponding call task: “Explore development models and implementation pathways for integrating new AI-industry service facilities—such as distributed energy and edge computing—with the three traditional facility systems.” (scheme-side translation)</p></figcaption></figure>
+        <figure class="wide-image"><img src="assets/slot-h.webp" alt="AI-generated conceptual image. One block is cut open: everyday life remains at ground level, human service stays inside the shop, and a crane removes an arrow-screen AI component in mid-air; only credible municipal utilities appear below ground. Buildings, components, people, and underground layers are conceptual and do not represent real levels, utilities, or construction conditions. Corresponding call task: “Explore development models and implementation pathways for integrating new AI-industry service facilities—such as distributed energy and edge computing—with the three traditional facility systems.” (scheme-side translation)"><figcaption><p>AI-generated conceptual image. </p><p>One block is cut open: everyday life remains at ground level, human service stays inside the shop, and a crane removes an arrow-screen AI component in mid-air; only credible municipal utilities appear below ground. </p><p>Buildings, components, people, and underground layers are conceptual and do not represent real levels, utilities, or construction conditions. Corresponding call task: “Explore development models and implementation pathways for integrating new AI-industry service facilities—such as distributed energy and edge computing—with the three traditional facility systems.” (scheme-side translation)</p><p class="prebuilt-annotation">Consistent with proposal text: everyday life and human service remain at ground level, an arrow-screen AI component can be removed by crane, and the underground layer is only a conceptual section through traditional-facility integration; levels, utilities, and construction conditions are not real engineering material.</p></figcaption></figure>
       </section>
 
       <section class="chapter-image chapter-text-only gold">
         <!-- 译自中文真值 -->
-        <header class="chapter-title"><p>K4</p><h2>Pass, and Return to the Street. Fail, and Exit.</h2><span>Qualifying discoveries return to public decision-making; anything that fails is stopped, withdrawn, or restored.</span></header>
+        <header class="chapter-title"><p>K4</p><h2>Pass, and Return to the Street. Fail, and Exit.</h2><p class="section-note" data-pair="W3-025">This section shows how validated work returns to public decision-making and how failed work is stopped, withdrawn, or restored.</p><span>Qualifying discoveries return to public decision-making; anything that fails is stopped, withdrawn, or restored.</span></header>
       </section>
 
-      <section class="copy-band photo-band photo-band--13"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-13</p><h2>Try a Short Segment. Let the Evidence Decide.</h2><p>The client is advised to confirm the station–commerce–park–community segment, then decide, once responsibilities are clear, whether to conduct a 30-to-90-day trial that can be withdrawn at any time. This is not a construction schedule.</p></section>
-      <figure class="wide-image"><img src="assets/slot-j.webp" alt="AI-generated conceptual image. On step-free shared paving, a small-vehicle fleet handles loading while people load, verify, and dispatch beside it and pedestrians continue to pass. The place, vehicles, people, deployment, and operating status are conceptual. Corresponding call task: “Improve static transport organization, including non-motorized-vehicle parking.” (scheme-side translation)"><figcaption><p>AI-generated conceptual image. </p><p>On step-free shared paving, a small-vehicle fleet handles loading while people load, verify, and dispatch beside it and pedestrians continue to pass. </p><p>The place, vehicles, people, deployment, and operating status are conceptual. Corresponding call task: “Improve static transport organization, including non-motorized-vehicle parking.” (scheme-side translation)</p></figcaption></figure>
-      <section class="copy-band photo-band photo-band--14"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-14</p><h2>Record the Credit—and the Failures</h2><p>Jing-Zhang makes the work precise, Zhongguancun allows trial and error, and AI must be answerable to people; public honours record contributions as well as correction, failure, and exit.</p></section>
-      <figure class="wide-image"><img src="assets/slot-k.jpg" alt="AI-generated concept illustration: a retired humanoid robot stands on a roadside maintenance rack as a technician removes an arm module; maintenance and retirement records stay in public view as residents browse blank archive slabs at the roadside cabinet. Subjects: right-arm-missing humanoid, technician, archive cabinet, and blank archive slabs."><figcaption>AI-generated concept illustration: a retired humanoid robot stands on a roadside maintenance rack as a technician removes an arm module; maintenance and retirement records stay in public view as residents browse blank archive slabs at the roadside cabinet.</figcaption></figure>
+      <section class="copy-band photo-band photo-band--13"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-13</p><h2>Try a Short Segment. Let the Evidence Decide.</h2><p class="section-note" data-pair="W3-026">This section identifies the short segment proposed for testing, which responsibilities must be clear before it starts, and how trial evidence determines whether to continue or withdraw.</p><p>The client is advised to confirm the station–commerce–park–community segment, then decide, once responsibilities are clear, whether to conduct a 30-to-90-day trial that can be withdrawn at any time. This is not a construction schedule.</p></section>
+      <figure class="wide-image"><img src="assets/slot-j.webp" alt="AI-generated conceptual image. On step-free shared paving, a small-vehicle fleet handles loading while people load, verify, and dispatch beside it and pedestrians continue to pass. The place, vehicles, people, deployment, and operating status are conceptual. Corresponding call task: “Improve static transport organization, including non-motorized-vehicle parking.” (scheme-side translation)"><figcaption><p>AI-generated conceptual image. </p><p>On step-free shared paving, a small-vehicle fleet handles loading while people load, verify, and dispatch beside it and pedestrians continue to pass. </p><p>The place, vehicles, people, deployment, and operating status are conceptual. Corresponding call task: “Improve static transport organization, including non-motorized-vehicle parking.” (scheme-side translation)</p><p class="prebuilt-annotation">Consistent with proposal text: on step-free shared paving, small vehicles handle loading while people continue to load, verify, and dispatch and pedestrians keep moving; the place, vehicles, people, deployment, and operating status are conceptual.</p><p class="prebuilt-annotation">Scale check: use a 1.70 m standing person, 1.32 m wheelchair-seated person, and 1.55 m eye level only as references to review the relative scale of pedestrians, loading workers, small vehicles, shared paving, and the through-route. The current image has no measurable scale; the step-free depiction cannot replace a field level check, and the result is UNKNOWN.</p></figcaption></figure>
+      <section class="copy-band photo-band photo-band--14"><span class="band-media-note">AI-generated conceptual image</span><p class="bind">BIND-14</p><h2>Record the Credit—and the Failures</h2><p class="section-note" data-pair="W3-027">This section shows how contributions, corrections, failures, and exits are all kept in the public record.</p><p>Jing-Zhang makes the work precise, Zhongguancun allows trial and error, and AI must be answerable to people; public honours record contributions as well as correction, failure, and exit.</p></section>
+      <figure class="wide-image"><img src="assets/slot-k.jpg" alt="AI-generated concept illustration: a retired humanoid robot stands on a roadside maintenance rack as a technician removes an arm module; maintenance and retirement records stay in public view as residents browse blank archive slabs at the roadside cabinet. Subjects: right-arm-missing humanoid, technician, archive cabinet, and blank archive slabs."><figcaption>AI-generated concept illustration: a retired humanoid robot stands on a roadside maintenance rack as a technician removes an arm module; maintenance and retirement records stay in public view as residents browse blank archive slabs at the roadside cabinet.<p class="prebuilt-annotation">Consistent with proposal text: a maintenance worker disassembles a retired robot while maintenance and retirement records remain publicly readable. The image only expresses that contribution, correction, failure, and exit should be recorded; it does not prove that the equipment or archive facility is operating.</p><p class="prebuilt-annotation">Scale check: use a 1.70 m standing person, 1.32 m wheelchair-seated person, and 1.55 m eye level only as references to review the relative scale of the maintenance worker, retired robot, rack, archive cabinet, and public-reading interface. The current image has no measurable scale; the result is UNKNOWN.</p></figcaption></figure>
 
       <section class="section">
-        <header class="section-head"><p class="section-no">07</p><div><p class="eyebrow">OUTPUT INDEX / TEN PACKAGE-WIDE FIGURE PAIRS AND TEN CARDS</p><h2>Ten Package-Wide Figure Pairs, Eight in the Core Component Family</h2><p class="section-note">All ten bilingual formal-figure pairs are mounted; eight form the core component family and each addresses a direct question. The figures continue to distinguish real data, provisional parameters, and UNKNOWN.</p></div></header>
-        <p class="status-update">All ten bilingual formal-figure pairs are generated and mounted, status 10/10; eight belong to the core component family.</p>
-        <figure class="formal-figure"><img src="../assets/figures/task-brief-crosswalk.en.png" alt="Taskbook Crosswalk | What is answered, and what is still missing?"><figcaption>Taskbook Crosswalk | What is answered, and what is still missing?</figcaption></figure>
-        <figure class="formal-figure"><img src="../assets/figures/key-map.en.png" alt="Key Figure Index | Locate All Ten Formal-Figure Pairs on One Page"><figcaption>Key Figure Index | Locate All Ten Formal-Figure Pairs on One Page</figcaption></figure>
+        <header class="section-head"><p class="section-no">07</p><div><p class="eyebrow">OUTPUT INDEX / 23 PACKAGE-WIDE FIGURE PAIRS AND TEN CARDS</p><h2>Twenty-Three Figure Pairs Cover Scope, Space, Sections, Evidence, and Handoff</h2><p class="section-note" data-pair="W3-028">This section is a quick index to the 23 bilingual figure pairs, showing each figure’s question, evidence status, and location.</p><p class="section-note">All 23 bilingual formal-figure pairs are mounted. The ten items below remain a quick navigation layer; the figures continue to distinguish real data, provisional parameters, and UNKNOWN.</p></div></header>
+        <p class="status-update">All 23 bilingual formal-figure pairs are generated and mounted, status 23/23; the list below is a ten-item quick guide.</p>
+        <figure class="formal-figure"><img src="../assets/figures/task-brief-crosswalk.en.webp" alt="Taskbook Crosswalk | What is answered, and what is still missing?"><figcaption>Taskbook Crosswalk | What is answered, and what is still missing?</figcaption></figure>
+        <figure class="formal-figure"><img src="../assets/figures/key-map.en.webp" alt="Key Map | M01 responsibility is in one place; its spatial candidate is in another"><figcaption>Key Map | M01 responsibility is in one place; its spatial candidate is in another</figcaption></figure>
         <div class="output-list">
           <article><span>01</span><h3>One spine, two tracks, three stations — what may change and what must not, all on one sheet.</h3><p>Where is the plan, and which scopes and geometries are known or pending verification?</p><em>Mounted; announced areas are known, precise boundaries pending verification</em></article>
           <article><span>02</span><h3>How resources connect is shown; statutory controls remain UNKNOWN.</h3><p>How are universities, research, communities, commerce, and Public Space connected?</p><em>Mounted; structure and professional layers shown together</em></article>
@@ -2762,13 +3068,143 @@ figure figcaption > p + p {
           <article><span>07</span><h3>V16 | M01 Three-State Conceptual Sections on One Baseline</h3><p>On one baseline, how do AI OFF, limited first use, and stop-and-restore compare?</p><em>Mounted; Deterministic vector drawing | Not to scale | Conceptual Representation</em></article>
           <article><span>08</span><h3>Taskbook Crosswalk | What is answered, and what is still missing?</h3><p>How does the taskbook map to objects, evidence, and the next discipline?</p><em>Mounted; A response is not implementation</em></article>
           <article><span>09</span><h3>AI ON / OFF: What disappears, and what remains?</h3><p>After the AI layer exits, do human and everyday tasks continue?</p><em>Mounted; ON and OFF states are compared in one figure</em></article>
-          <article><span>10</span><h3>Key Figure Index | Locate All Ten Formal-Figure Pairs on One Page</h3><p>How can all ten formal-figure pairs be located quickly?</p><em>Mounted; figure roles and numbers are indexed together</em></article>
+          <article><span>10</span><h3>Key Map | M01 responsibility is in one place; its spatial candidate is in another</h3><p>How should the M01 responsibility station and spatial candidate be read separately?</p><em>Mounted; figure roles and numbers are indexed together</em></article>
         </div>
-        <div class="counts"><div><b>10/10</b><p>Package-wide formal figures<br>Mounted</p></div><div><b>10</b><p>Scenario cards<br>Deep fields assembled</p></div><div><b>06</b><p>Task threads<br>Pending evidence backfill</p></div></div>
+        <div class="counts"><div><b>23/23</b><p>Package-wide formal figures<br>Mounted</p></div><div><b>10</b><p>Scenario cards<br>Deep fields assembled</p></div><div><b>06</b><p>Task threads<br>Pending evidence backfill</p></div></div>
       </section>
 
+      <!--S1-P4-VISUAL-ONLY-BEGIN-->
+      <section class="p4-catalog" id="intervention-exit-catalogue" aria-labelledby="intervention-exit-catalogue-title">
+        <header class="p4-catalog__head">
+          <div><p class="p4-catalog__eyebrow">FOUR INTERVENTIONS / INSTALL, DISMANTLE, REINSTATE</p><h2 id="intervention-exit-catalogue-title">Reversible Intervention + Exit Catalogue</h2><p class="section-note" data-pair="W3-029">This section lists what each of four removable installations retains, adds, and prohibits, plus how it is installed, removed, and restored.</p></div>
+          <p class="p4-catalog__note">Conceptual illustrations, not construction information; exact locations, engineering methods, implementation conditions and responsible people await formal confirmation.</p>
+        </header>
+        <ul class="p4-catalog__legend" aria-label="Status legend">
+          <li><span class="p4-catalog__badge p4-catalog__badge--retain">RETAIN</span></li>
+          <li><span class="p4-catalog__badge p4-catalog__badge--add">ADD</span></li>
+          <li><span class="p4-catalog__badge p4-catalog__badge--prohibit">PROHIBIT</span></li>
+        </ul>
+        <div class="p4-catalog__grid">
+          <article class="p4-catalog__item" data-catalogue-id="zhongzhiyuan-retest-unit">
+            <div class="p4-catalog__media"><img src="assets/p4-catalog-zhongzhiyuan-retest-unit.webp" alt="Crop from the Zhongzhiyuan concept sheet: a withdrawable retest desk, shelter and explanation interface beside the bridge." loading="lazy" decoding="async"></div>
+            <div class="p4-catalog__body">
+              <h3>ZHONGZHIYUAN | Retesting + Explanation Unit</h3>
+              <div class="p4-catalog__states">
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--retain">RETAIN</span><span>Bridge, waterfront, continuous walking and retesting space</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--add">ADD</span><span>Withdrawable retest desk, shelter and explanation interface</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--prohibit">PROHIBIT</span><span>Alter the bridge, occupy the waterfront or treat the concept as construction information</span></div>
+              </div>
+              <dl class="p4-catalog__actions">
+                <dt>INSTALL</dt>
+                <dd>Place the withdrawable retest desk, shelter and explanation interface beside the existing walking space.</dd>
+                <dt>DISMANTLE</dt>
+                <dd>Collect equipment and records first, then remove the desk, shelter and temporary wayfinding.</dd>
+                <dt>REINSTATE</dt>
+                <dd>Clear temporary contact traces and reinstate the waterfront, bridge surroundings and continuous walking.</dd>
+                <dt>RESPONSIBLE PERSON</dt>
+                <dd class="p4-catalog__blank" aria-label="Responsible person pending formal assignment; currently blank"></dd>
+              </dl>
+            </div>
+          </article>
+          <article class="p4-catalog__item" data-catalogue-id="ai-origin-question-cylinder">
+            <div class="p4-catalog__media"><img src="assets/p4-catalog-ai-origin-question-cylinder.webp" alt="Crop from the AI Origin concept sheet: the question-submission cylinder in the station forecourt." loading="lazy" decoding="async"></div>
+            <div class="p4-catalog__body">
+              <h3>AI ORIGIN | Question-Submission Cylinder</h3>
+              <div class="p4-catalog__states">
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--retain">RETAIN</span><span>Station forecourt, human submission route and normal passage</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--add">ADD</span><span>Withdrawable submission cylinder and human guidance</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--prohibit">PROHIBIT</span><span>Turn submission into automatic approval or permanent occupation</span></div>
+              </div>
+              <dl class="p4-catalog__actions">
+                <dt>INSTALL</dt>
+                <dd>Place the withdrawable cylinder and human guidance while keeping the existing passage open.</dd>
+                <dt>DISMANTLE</dt>
+                <dd>Stop intake first, then remove the cylinder, support and temporary wayfinding.</dd>
+                <dt>REINSTATE</dt>
+                <dd>Remove temporary contact traces and reinstate the ground and route from the pre-entry record.</dd>
+                <dt>RESPONSIBLE PERSON</dt>
+                <dd class="p4-catalog__blank" aria-label="Responsible person pending formal assignment; currently blank"></dd>
+              </dl>
+            </div>
+          </article>
+          <article class="p4-catalog__item" data-catalogue-id="ai-origin-robot-wall-screen">
+            <div class="p4-catalog__media"><img src="assets/p4-catalog-ai-origin-robot-wall-screen.webp" alt="Crop from the AI Origin concept sheet: an interactive robot and independent wall screen beside human explanation." loading="lazy" decoding="async"></div>
+            <div class="p4-catalog__body">
+              <h3>AI ORIGIN | Interactive Robot + Wall Screen</h3>
+              <div class="p4-catalog__states">
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--retain">RETAIN</span><span>Human explanation, no-app route and bypass space</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--add">ADD</span><span>Interactive robot and independent wall screen</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--prohibit">PROHIBIT</span><span>Rank people, collect identity data or block passage</span></div>
+              </div>
+              <dl class="p4-catalog__actions">
+                <dt>INSTALL</dt>
+                <dd>Arrange the robot and independent wall screen as one service point while retaining human explanation.</dd>
+                <dt>DISMANTLE</dt>
+                <dd>Disable interaction first, then remove the robot, wall screen and temporary wayfinding separately.</dd>
+                <dt>REINSTATE</dt>
+                <dd>Clear temporary interfaces and contact traces, then reinstate the wall, ground and human-service route.</dd>
+                <dt>RESPONSIBLE PERSON</dt>
+                <dd class="p4-catalog__blank" aria-label="Responsible person pending formal assignment; currently blank"></dd>
+              </dl>
+            </div>
+          </article>
+          <article class="p4-catalog__item" data-catalogue-id="dazhongsi-first-use-room">
+            <div class="p4-catalog__media"><img src="assets/p4-catalog-dazhongsi-first-use-room.webp" alt="Crop from the Dazhongsi concept sheet: a ground-floor human window, withdrawable street-room interface and quick-release terminal." loading="lazy" decoding="async"></div>
+            <div class="p4-catalog__body">
+              <h3>DAZHONGSI | First-Use + Exit Street Room</h3>
+              <div class="p4-catalog__states">
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--retain">RETAIN</span><span>Existing ground-floor interface, human window and accessible passage</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--add">ADD</span><span>Withdrawable street-room interface and static wayfinding</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--prohibit">PROHIBIT</span><span>Block entrances, remove human service or occupy the site permanently</span></div>
+              </div>
+              <dl class="p4-catalog__actions">
+                <dt>INSTALL</dt>
+                <dd>Arrange withdrawable service and wayfinding at the existing ground-floor interface; keep the human window available.</dd>
+                <dt>DISMANTLE</dt>
+                <dd>Stop first use before removing temporary service, wayfinding and display interfaces.</dd>
+                <dt>REINSTATE</dt>
+                <dd>Reinstate the original entrances, ground and human service; close the record only after a repeat walk.</dd>
+                <dt>RESPONSIBLE PERSON</dt>
+                <dd class="p4-catalog__blank" aria-label="Responsible person pending formal assignment; currently blank"></dd>
+              </dl>
+            </div>
+          </article>
+        </div>
+        <section class="component-card" id="review-evidence-index" aria-labelledby="review-evidence-index-title">
+          <header><h2 id="review-evidence-index-title">Seven-Dimension Evidence Index</h2><p class="section-note" data-pair="W3-030">This section follows the seven questions reviewers examine, showing how the proposal responds, where the evidence is, and how each answer relates to the task brief.</p></header>
+          <div role="region" aria-label="Seven-dimension review evidence index table">
+            <table>
+              <thead><tr><th scope="col">Review Dimension</th><th scope="col">Proposal Response</th><th scope="col">Evidence Pointer</th></tr></thead>
+              <tbody>
+<tr><th scope="row">Relevance to the Task Brief</th><td>The official task index uses only “Answered,” “Concept-level answer,” and “UNKNOWN + continuation condition”; it does not substitute a concept-level response for formal materials, authorization, or field measurement.</td><td><a href="#tasks">#tasks</a>; proposal.en.md:515-519; compliance_matrix.json#/requirements</td></tr>
+<tr><th scope="row">Originality</th><td>Discovery Passport M01 uses one ID to record the question, three-option comparison, responsibility, retesting, stopping, and restoration.</td><td><a href="#m01-responsibility">#m01-responsibility</a>; proposal.en.md:66; V14/V16</td></tr>
+<tr><th scope="row">AI and Urban Planning Innovation</th><td>AI only organizes, compares, and prompts; people authorize, choose, and correct, and anything that fails is stopped, withdrawn, or restored.</td><td><a href="#why-ai">#why-ai</a>; proposal.en.md:141; compliance_matrix.json agent.3</td></tr>
+<tr><th scope="row">Feasibility</th><td>Controlled HOLD: the implementation entity, demand baseline, budget, restoration cost, and operating acceptance are post-trigger matters; Gate Five, the project_budget formula, and the D05/M01-6 dependency rows keep them controlled.</td><td><a href="#m01-recovery">#m01-recovery</a>; proposal.en.md:351,451,458; metrics.json#/metrics/project_budget/formula</td></tr>
+<tr><th scope="row">Public Interest and Inclusivity</th><td>Public services retain staffed windows, telephones, printed directories, static wayfinding, seating, and accessible routes; after a technology failure, the first test is whether human takeover restores the basic task.</td><td><a href="#no-ai-matrix">#no-ai-matrix</a>; proposal.en.md:309; metrics.json#/metrics/c02_non_ai_service_completion_rate</td></tr>
+<tr><th scope="row">Risk and Compliance Awareness</th><td>Responsibilities, funding, land rights, dimensions, capacity, procedures, and operations unsupported by formal materials remain UNKNOWN; provisional boundaries, OSM material, and conceptual interventions retain status labels.</td><td><a href="#evidence">#evidence</a>; proposal.en.md:489-501; design_depth_matrix.json risk_missing_data</td></tr>
+<tr><th scope="row">Completeness of Presentation</th><td>Both language pages retain responsibility, failure, UNKNOWN, and not-implemented boundaries; the body provides adjacent evidence pointers, while machine files retain sources, formulas, task coverage, and design depth.</td><td><a href="#evidence">#evidence</a>; proposal.md/proposal.en.md:114,139; Figure 3/5 pairs</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <p class="p4-catalog__foot">Images are read-only crops from project concept sheets; source sheets are unchanged. Responsible-person fields remain blank to reflect the current evidence.</p>
+      </section>
+      <!--S1-P4-VISUAL-ONLY-END-->
+      <section class="section" id="field-impressions">
+        <header class="section-head"><div><h2>Field impressions (AI-generated)</h2><p class="section-note" data-pair="W3-031">This section gathers eight AI-generated concept images and states that they are not photographs or existing conditions.</p><p class="section-note">The following eight images are AI-generated photorealistic concept images, not photographs; the people are fictional. They present the proposal’s atmosphere and use scenarios and do not represent existing conditions.</p></div></header>
+        <div class="formal-figure-grid">
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S1.jpg" alt="AI-generated photorealistic concept image, not a photograph: Walking the site together at Zhongzhiyuan. The people are fictional and it does not represent existing conditions."><figcaption>Walking the site together at Zhongzhiyuan</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S2.jpg" alt="AI-generated photorealistic concept image, not a photograph: An ordinary morning on the green corridor. The people are fictional and it does not represent existing conditions."><figcaption>An ordinary morning on the green corridor</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S3.jpg" alt="AI-generated photorealistic concept image, not a photograph: AI origin: a moment of translation. The people are fictional and it does not represent existing conditions."><figcaption>AI origin: a moment of translation</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S4.jpg" alt="AI-generated photorealistic concept image, not a photograph: The non-AI service kiosk. The people are fictional and it does not represent existing conditions."><figcaption>The non-AI service kiosk</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S5.jpg" alt="AI-generated photorealistic concept image, not a photograph: Public trial at Dazhongsi. The people are fictional and it does not represent existing conditions."><figcaption>Public trial at Dazhongsi</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S6.jpg" alt="AI-generated photorealistic concept image, not a photograph: Dazhongsi at dusk. The people are fictional and it does not represent existing conditions."><figcaption>Dazhongsi at dusk</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S7.jpg" alt="AI-generated photorealistic concept image, not a photograph: Reversible components moving in and out. The people are fictional and it does not represent existing conditions."><figcaption>Reversible components moving in and out</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S8.jpg" alt="AI-generated photorealistic concept image, not a photograph: After the stop. The people are fictional and it does not represent existing conditions."><figcaption>After the stop</figcaption></figure>
+        </div>
+      </section>
       <section class="component-card" aria-labelledby="component-card-title">
-        <header><h2 id="component-card-title">Installable, and Cleanly Removable</h2><p>Only components already named on this page are listed; every dimension, location, and method remains a candidate pending professional review.</p></header>
+        <header><h2 id="component-card-title">Installable, and Cleanly Removable</h2><p class="section-note" data-pair="W3-032">This section tabulates how four installations are put in, taken out, and checked to confirm that the prior condition has been restored.</p><p>Only components already named on this page are listed; every dimension, location, and method remains a candidate pending professional review.</p></header>
         <div role="region" aria-label="Reversible component assembly, removal, and restoration acceptance table">
           <table>
             <thead><tr><th scope="col">Component</th><th scope="col">Dimension Basis (Candidate)</th><th scope="col">Assembly / Removal</th><th scope="col">Restoration Acceptance</th></tr></thead>
@@ -2783,7 +3219,7 @@ figure figcaption > p + p {
       </section>
 
 <section class="component-node" id="component-node" aria-labelledby="component-node-title">
-<header class="component-node__header"><h2 id="component-node-title">Four Components, Drawn to the Joint</h2><p>Component dimensions are design prototypes with recalculable chains; interfaces and site dimensions are ranges or unverified items. Conceptual scale, pending survey and professional review.</p></header>
+<header class="component-node__header"><h2 id="component-node-title">Four Components, Drawn to the Joint</h2><p class="section-note" data-pair="W3-033">This section shows how four installations connect to rails, paving, or utilities, with provisional dimensions, removal steps, and unverified site conditions.</p><p>Component dimensions are design prototypes with recalculable chains; interfaces and site dimensions are ranges or unverified items. Conceptual scale, pending survey and professional review.</p></header>
 <p class="component-node__value-basis">Value basis: all dimensions and counts in these node drawings are design assumptions for the concept prototype, drawn from common accessibility and municipal-facility sizing practice; they describe only the relative relationships between components. None is a construction-fixed value. Formal design must follow current standards, professional review, and site measurement.</p>
 <div class="component-node__grid">
 <div class="component-node__drawing">
@@ -3178,7 +3614,7 @@ figure figcaption > p + p {
 </section>
 
 <section class="no-ai-matrix" id="no-ai-matrix" aria-labelledby="no-ai-matrix-title">
-  <h2 id="no-ai-matrix-title">With AI Gone, Each of the Ten Tasks Has a Human Route</h2>
+  <h2 id="no-ai-matrix-title">With AI Gone, Each of the Ten Tasks Has a Human Route</h2><p class="section-note" data-pair="W3-034">This section lists who completes each of the ten tasks without AI, how they do it, and when work stops if the human route also fails.</p>
   <p class="no-ai-matrix__disclosure">Every person in this table is a synthetic persona, not an interview finding.<span data-source-ref="report/proposal.en.html:194; visual/index.en.html#no-ai-matrix"></span></p>
   <table data-audit-table="c">
     <colgroup><col style="width:11%"><col style="width:24%"><col style="width:33%"><col style="width:32%"></colgroup>
@@ -3199,7 +3635,7 @@ figure figcaption > p + p {
 </section>
 
 <section class="osm-registry" id="osm-registry" aria-labelledby="osm-registry-title">
-  <h2 id="osm-registry-title">Register Corridor Data Before Verification</h2>
+  <h2 id="osm-registry-title">Register Corridor Data Before Verification</h2><p class="section-note" data-pair="W3-035">This section registers crossings, bus stops, steps, wheelchair tags, and toilets near the corridor, together with source and verification status.</p>
   <div class="osm-registry__source-card">
     <h3>Data note</h3>
     <p data-source-ref="sources.json:OSM-CORRIDOR-REGISTRY-20260827">OpenStreetMap community data (ODbL) · non-official survey · retrieved 2026-08-27</p>
@@ -3364,20 +3800,28 @@ figure figcaption > p + p {
 </section>
 
       <section class="section evidence" id="evidence">
-        <header class="section-head"><p class="section-no">BIND-11</p><div><p class="eyebrow">EVIDENCE / UNKNOWN / BOUNDARY</p><h2>State Only What the Evidence Supports</h2><p class="section-note">Evidence has only six levels. Of nine professional layers, two are provisional and seven are missing; known, provisional, recommended, and unknown items are stated separately.</p></div></header>
-        <figure class="formal-figure"><img src="../assets/figures/metrics-evidence.en.png" alt="Figure 5 | Nothing Moves Until the Signature Line Is Filled"><figcaption>Figure 5 | Nothing Moves Until the Signature Line Is Filled</figcaption></figure>
+        <header class="section-head"><p class="section-no">BIND-11</p><div><p class="eyebrow">EVIDENCE / UNKNOWN / BOUNDARY</p><h2>State Only What the Evidence Supports</h2><p class="section-note" data-pair="W3-036">This section groups material into six levels according to what it can prove, then separates verified, candidate, pending, and provisional items.</p><p class="section-note">Evidence has only six levels. Of nine professional layers, two are provisional and seven are missing; known, provisional, recommended, and unknown items are stated separately.</p></div></header>
+        <figure class="formal-figure"><img src="../assets/figures/metrics-evidence.en.png" alt="Figure 5 | Nothing Moves Until the Signature Line Is Filled"><figcaption>Figure 5 | Nothing Moves Until the Signature Line Is Filled<p class="prebuilt-annotation">For the ten cards’ sources, calculations, and responsibility chains, see “Responsibility, Dependencies, and Handoff Detail” and `metrics.json`; for the ten cards’ spatial locations, see “One Responsibility per Area.”</p><p class="prebuilt-annotation">This figure lists only ten field indicators awaiting measurement; all ten read UNKNOWN | not measured. Of the 28 metrics registered separately in `metrics.json`, 17 already have values: these are package baselines, geometric ratios, and simulation-audit metrics, not field-outcome results for the ten cards. See the metrics ledger at the end of this section.</p></figcaption></figure>
+        <div class="formal-figure-grid" aria-label="Responsibility, dependency, and handoff metric cards">
+          <figure class="formal-figure"><img src="../assets/figures/metrics-card-responsibility.en.webp" alt="Metric Card | Responsibility awaits sign-off; not authorization"><figcaption>Metric Card | Responsibility awaits sign-off; not authorization</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/metrics-card-dependency.en.webp" alt="Metric Card | Dependencies remain open; not authorization"><figcaption>Metric Card | Dependencies remain open; not authorization</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/metrics-card-handover.en.webp" alt="Metric Card | Handoff awaits acceptance; not authorization"><figcaption>Metric Card | Handoff awaits acceptance; not authorization</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/metrics-evidence-detail.en.webp" alt="Figure 5B | Responsibility, Dependencies, and Handoff Detail"><figcaption>Figure 5B | Responsibility, Dependencies, and Handoff Detail</figcaption></figure>
+        </div>
         <p>Single Evidence Ladder</p><div class="ladder"><div><b>L0</b><br>Policy agenda</div><div><b>L1</b><br>City-level prior</div><div><b>L2</b><br>District-level signal</div><div><b>L3</b><br>Street-segment evidence</div><div><b>L4</b><br>Field supplementation</div><div><b>L5</b><br>Reversible trial</div></div>
         <p>2 / 9 professional layers are provisional and may only serve as provisional illustrations.<br>7 / 9 professional layers are missing and must not be substituted with conceptual media.</p>
         <div class="evidence-cards"><article><h3>Verified</h3><p>Officially announced areas of 43.6 and 11.4 km² and 368.4 ha across the three zones; zone names and order.</p></article><article><h3>Candidate</h3><p>W01, M01, and C02 validation routes, pending field data and confirmation by duly empowered actors.</p></article><article><h3>Pending verification</h3><p>Road-use authority, fire safety, accessibility, four-period baselines, and all types of field data.</p></article><article><h3>Provisional illustration</h3><p>The three-level spatial diagram, user routes, and three-option trade-offs are used only for interactive explanation.</p></article></div>
         <!-- 译自中文真值 -->
-        <section class="handoff" aria-labelledby="handoff-title"><h3 id="handoff-title">Blueprints end on opening day; the ledgers begin the day after — five accounts name who takes over, six gates decide whether to proceed, and every blank stays blank until someone with real authority signs it.</h3><div class="handoff-ledgers prose-stack"><p>Five accounts: planning and design records formal boundaries, regulatory planning, rights, and surveys; </p><p>public foundations record transport, public-service baselines, and municipal capacity; </p><p>scenario validation records protocols, work orders, repair, and retesting; </p><p>operations and maintenance records maintainers, review dates, and retirement methods; </p><p>social coordination records affected people, human choice, and responsibility.</p></div><div class="handoff-grid"><article class="handoff-card"><header><span>GATE 01</span><h4>Data and boundaries</h4></header><dl><dt>Requirement</dt><dd>Gate One accepts only two things: formal materials and a responsible person.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 02</span><h4>Problem value</h4></header><dl><dt>Requirement</dt><dd>Gate Two asks first: Does this serve the public? Where is the boundary? Who is affected? Who is responsible?</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 03</span><h4>Scientific protocol</h4></header><dl><dt>Requirement</dt><dd>At Gate Three, turn the proposal into a protocol, check it on the desktop, then retest it independently.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 04</span><h4>Urban first use</h4></header><dl><dt>Requirement</dt><dd>Gate Four: only an authorized proposal may enter a limited trial. No authorization means no trial.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 05</span><h4>Projects and funding</h4></header><dl><dt>Requirement</dt><dd>Gate Five: if the site, funding, or construction commitment is unresolved, stop there.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 06</span><h4>Construction and operations</h4></header><dl><dt>Requirement</dt><dd>Gate Six: formal location, operations and maintenance, rights clearance, and legal conditions first; construction comes after.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article></div></section>
-        <p>This page is a concept gallery and interactive work, not an approved implementation proposal or the eight bilingual formal-figure pairs.</p>
+        <section class="handoff" aria-labelledby="handoff-title"><h3 id="handoff-title">Blueprints end on opening day; the ledgers begin the day after — five accounts name who takes over, six gates decide whether to proceed, and every blank stays blank until someone with real authority signs it.</h3><div class="handoff-ledgers prose-stack"><p>Five accounts: planning and design records formal boundaries, regulatory planning, rights, and surveys; </p><p>public foundations record transport, public-service baselines, and municipal capacity; </p><p>scenario validation records protocols, work orders, repair, and retesting; </p><p>operations and maintenance records maintainers, review dates, and retirement methods; </p><p>social coordination records affected people, human choice, and responsibility.</p></div><div class="handoff-grid"><article class="handoff-card"><header><span>GATE 01</span><h4>Data and boundaries</h4></header><dl><dt>Requirement</dt><dd>Gate One accepts only two things: formal materials and a responsible person.</dd><dt>What can be judged now</dt><dd>The package currently allows inspection of the status, formula, and source fields for 28 metrics and the known / provisional / UNKNOWN boundary of nine geometry layers, together with proposed verification by a planning, surveying, or data-review function that did not prepare the base map, enter the data, or draw the boundary and the proposed sign-off format “verifier surname + employee ID + date”; the formal overall boundary, formal three-area polygons, regulatory planning, rights, and existing-condition survey remain UNKNOWN.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 02</span><h4>Problem value</h4></header><dl><dt>Requirement</dt><dd>Gate Two asks first: Does this serve the public? Where is the boundary? Who is affected? Who is responsible?</dd><dt>What can be judged now</dt><dd>The package currently allows inspection of the Discovery Passport's question-responsibility, spatial-object, evidence-level, non-AI-baseline, and exit fields, and inspection of D06's affected-party-participation, objection-and-appeal-route, and empowered-decision fields; it also provides proposed verification by a public-value, affected-party-participation, or social-impact-review function that did not frame the question and the proposed sign-off format “verifier surname + employee ID + date”; the real-demand baseline, affected-party participation, objection and appeal route, and empowered decision remain UNKNOWN.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 03</span><h4>Scientific protocol</h4></header><dl><dt>Requirement</dt><dd>At Gate Three, turn the proposal into a protocol, check it on the desktop, then retest it independently.</dd><dt>What can be judged now</dt><dd>The package currently allows recalculation from <code>simulation.json</code> of success, dispatch-schema, audit-completeness, and energy-over-budget readings for 24 offline synthetic tasks and inspection of proposed verification roles for the protocol, tool version, failure denominator, and independent reproduction; the authorized field baseline, formal protocol conditions, and real retest results remain UNKNOWN.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 04</span><h4>Urban first use</h4></header><dl><dt>Requirement</dt><dd>Gate Four: only an authorized proposal may enter a limited trial. No authorization means no trial.</dd><dt>What can be judged now</dt><dd>The package currently allows inspection of the rule that only an authorized proposal may enter limited first use, the non-AI path, Human Takeover, stopping and restoration actions, and the proposed sign-off format for authorization, ethics, safety, accessibility, or affected-party-participation review; site authorization, operating acceptance, restoration cost, responsible person, and date remain UNKNOWN.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 05</span><h4>Projects and funding</h4></header><dl><dt>Requirement</dt><dd>Gate Five: if the site, funding, or construction commitment is unresolved, stop there.</dd><dt>What can be judged now</dt><dd>The package currently allows inspection of the <code>project_budget</code> formula “project-level scope × traceable unit rates × lifecycle and recovery costs,” the D05 / M01-6 dependencies, and the proposed sign-off format for budget, procurement, legal, land, or conflict-of-interest review; project-level funding source, budget boundary, restoration schedule, and payment responsibility remain UNKNOWN.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article><article class="handoff-card"><header><span>GATE 06</span><h4>Construction and operations</h4></header><dl><dt>Requirement</dt><dd>Gate Six: formal location, operations and maintenance, rights clearance, and legal conditions first; construction comes after.</dd><dt>What can be judged now</dt><dd>The package currently allows inspection of four-step conditional phasing, the agent.6 long-term-operations handover matrix, stopping and exit conditions, and the proposed sign-off format for planning-and-construction, fire-safety, accessibility, operations-and-maintenance, rights-clearance, or legal review; the implementing entity, approved sequence, formal location, operating acceptance, maintenance responsibility, and statutory conditions remain UNKNOWN.</dd><dt>Awaiting confirmation from</dt><dd>Pending confirmation by the formal responsible entity</dd><dt>Status</dt><dd class="pending">Pending</dd></dl></article></div></section>
+        <p>This column states only how far the present evidence chain can be judged; it does not mean that any gate has been passed, approved, or authorized.</p>
+        <p>All 28 metrics record a formula; 17 currently have values (11 recomputable from package data, 6 citing officially published given values), and 11 remain controlled UNKNOWN, each with its formula and trigger condition; none of the six gates was skipped.</p>
+        <p>This page is a concept gallery and interactive work, not an approved implementation proposal. The 23 bilingual formal-figure pairs remain conceptual recommendations and evidence navigation, not statutory planning drawings.</p>
       </section>
     </main>
 
     <section class="appendix" aria-labelledby="appendix-title">
       <!-- 译自中文真值 -->
-      <header><p class="eyebrow">APPENDIX / DATA + COMPLIANCE</p><h2 id="appendix-title">The Appendix Holds Only Data, Boundaries, and Open Items</h2><p>This appendix consolidates frozen data, unresolved items, and verification status; UNKNOWN means pending confirmation from formal materials.</p></header>
+      <header><p class="eyebrow">APPENDIX / DATA + COMPLIANCE</p><h2 id="appendix-title">The Appendix Holds Only Data, Boundaries, and Open Items</h2><p class="section-note" data-pair="W3-037">This section gathers the recorded data, gaps in precise boundaries and professional materials, and the current verification status of each item.</p><p>This appendix consolidates frozen data, unresolved items, and verification status; UNKNOWN means pending confirmation from formal materials.</p></header>
       <p class="boundary"><strong>Important Boundary Disclosure</strong>: Provisional Boundary = rough provisional geometry, not an Official Planning Boundary; after formal boundaries arrive, all nine layers, three metrics, and related text and figures must be recalculated.</p>
       <div class="appendix-grid">
         <article><span>01</span><h3>Overview map</h3><p>The current overview comprises nine layers: site_boundary, key_areas, land_use, roads, green_space, public_space, buildings, constraints, and phasing. It is a recalculable formal candidate set, not statutory regulatory planning or engineering output.</p></article>
@@ -3392,7 +3836,7 @@ figure figcaption > p + p {
         <article><span>10</span><h3>Core metrics</h3><p>All three values are recalculated from submitted geometry, with status known and low confidence; known means only that the package can calculate them, not that they are officially confirmed.</p><div class="metric-values"><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825.386 m²</strong><small>Provisional parent-surface area</small><strong data-metric="green_ratio" data-value="0.074603">0.074603</strong><small>Green-space ratio</small><strong data-metric="public_space_ratio" data-value="0.004293">0.004293</strong><small>Public Space ratio</small></div></article>
         <article><span>11</span><h3>Task coverage</h3><p>agent.1 through agent.6 correspond to the six official tasks. Each block shows frozen content, related figures and cards, and evidence status without presenting them as complete. The ten scenario cards support task coverage; no eleventh card is added.</p></article>
         <article><span>12</span><h3>Self-check status</h3><p>All four local official gates have passed, and self_check is formal-review-ready. The exact boundaries of the three key areas remain provisional minor items pending official exact polygons. formal-review-ready only means the package may enter formal review; it does not mean it has been submitted, accepted for processing, selected, or implemented.</p></article>
-        <article><span>13</span><h3>Sources</h3><p>The package source register lists 23 primary sources for eight cases, and all 8/8 cases have at least two sources each. They support case identity, factual paraphrase, and mechanism comparison only; they do not grant rights to reuse visual assets or show that Jing-Zhang already has equivalent facilities, authorization, or outcomes. </p><p>The rough provisional boundary remains for provisional use only. </p><p>Page concept images were generated with OpenAI image_gen (GPT Image 2) from project-authored prompts and serve as conceptual explanation only. The Logo source image was also generated with GPT Image 2 and converted by the user in Lovart under the commercial-use permission they confirmed; neither establishes trademark clearance. </p><p>The page uses local system-font fallbacks and distributes no font files. </p><p>OSM-derived content retains © OpenStreetMap contributors / ODbL 1.0 attribution.</p></article>
+        <article><span>13</span><h3>Sources</h3><p>The package source register lists 23 primary sources for eight cases, and all 8/8 cases have at least two sources each. They support case identity, factual paraphrase, and mechanism comparison only; they do not grant rights to reuse visual assets or show that Jing-Zhang already has equivalent facilities, authorization, or outcomes. </p><p>The rough provisional boundary remains for provisional use only. </p><p>Page concept images were generated with OpenAI image_gen (GPT Image 2) from project-authored prompts and serve as conceptual explanation only. The Logo has been replaced with a project-drawn vector that contains no Lovart conversion path; the superseded version is not included in the package. Neither the concept images nor the Logo establishes trademark clearance. </p><p>The page depends on no remote fonts: Chinese glyphs come from two Source Han Serif SC Regular subsets embedded as data URIs in the bundled <code>visual/assets/offline-cjk-font.css</code>, renamed under the SIL Open Font License 1.1 and redistributed with the package; other glyphs fall back to local system fonts. </p><p>OSM-derived content retains © OpenStreetMap contributors / ODbL 1.0 attribution.</p></article>
         <article><span>14</span><h3>Assumptions</h3><p>The frozen assumptions table has 16 items covering official boundaries, regulatory planning, road control lines, rights, buildings, municipal systems, authorization, operations, cost, funding, implementation sequence, author identity, and the term "cluster." Items without corresponding formal materials remain UNKNOWN.</p></article>
       </div>
     </section>
@@ -3442,8 +3886,8 @@ figure figcaption > p + p {
         { name: "三区边界说明", groups: "#areas", items: ":scope > p", type: "rise", stagger: 0 },
         { name: "十张场景卡", groups: ".card-grid.scene", items: ":scope > article", type: "settle", stagger: 72 },
         { name: "六项官方任务", groups: ".task-list", items: ":scope > article", type: "settle", stagger: 72 },
-        { name: "八对正式图输出表", groups: ".output-list", items: ":scope > article", type: "settle", stagger: 72 },
-        { name: "八对正式图十卡指标", groups: ".counts", items: ":scope > div", type: "settle", stagger: 72 },
+        { name: "23-pair formal-figure output list", groups: ".output-list", items: ":scope > article", type: "settle", stagger: 72 },
+        { name: "23-pair formal-figure and ten-card metrics", groups: ".counts", items: ":scope > div", type: "settle", stagger: 72 },
         { name: "证据段落", groups: "#evidence", items: ":scope > p", type: "rise", stagger: 72 },
         { name: "L0–L5 证据阶梯", groups: ".ladder", items: ":scope > div", type: "settle", stagger: 72 },
         { name: "证据状态卡", groups: ".evidence-cards", items: ":scope > article", type: "settle", stagger: 72 },
@@ -3768,8 +4212,12 @@ figure figcaption > p + p {
       "use strict";
     
       var figureNames = [
-        "key-map", "land-use-structure", "curb-four-states", "v14-ai-on-off",
-        "v16-m01-sections", "key-areas", "task-brief-crosswalk", "metrics-evidence"
+        "site-overview", "reviewer-evidence-read", "corridor-timetrack", "regional-synergy",
+        "key-map", "land-use-structure", "mobility-bluegreen", "key-areas",
+        "triptych-zhongzhiyuan", "section-zhongzhiyuan", "triptych-ai-yuandian", "section-ai-yuandian",
+        "triptych-dazhongsi", "section-dazhongsi", "v14-ai-on-off", "curb-four-states",
+        "v16-m01-sections", "metrics-evidence", "metrics-evidence-detail", "metrics-card-responsibility",
+        "metrics-card-dependency", "metrics-card-handover", "task-brief-crosswalk"
       ];
       var language = document.documentElement.lang === "en" ? "en" : "zh";
       var copy = language === "en"
@@ -3784,7 +4232,7 @@ figure figcaption > p + p {
     
       function isFormalFigure(source) {
         return figureNames.some(function (name) {
-          return new RegExp("/" + name.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&") + "(?:\\.en)?\\.png(?:$|[?#])").test(source);
+          return new RegExp("/" + name.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&") + "(?:\\.en)?\\.(?:png|webp)(?:$|[?#])").test(source);
         });
       }
     

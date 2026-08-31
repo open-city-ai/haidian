@@ -1,0 +1,518 @@
+{
+  "schema_version": "0.2.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary in EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "provisional geometry; recompute on official polygon",
+        "WGS-84 spherical estimate REMOVED; v4.3 only publishes the EPSG:4548 projection value.",
+        "表述由'唯一权威值'改为'当前包内可复算的临时值，正式边界由组织方发布后整体重算'"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "provisional key-area polygons"
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional polygon; official ~192.1 ha"
+      ]
+    },
+    "beijing_ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional polygon; official ~104.3 ha"
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional polygon; official ~72.0 ha"
+      ]
+    },
+    "land_use_total_area_sqm": {
+      "status": "known",
+      "value": 11412821.004,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use features))",
+      "confidence": "high",
+      "assumptions": [
+        "full coverage of site boundary; topology checked"
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 1517396.273,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='05')",
+      "confidence": "medium",
+      "assumptions": [
+        "商业服务业用地 = 大钟寺智能经济带"
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 3719060.715,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='0802')",
+      "confidence": "medium",
+      "assumptions": [
+        "科研用地 = 众智园 + 原点社区 + 中关村翼"
+      ]
+    },
+    "land_use_0804_area_sqm": {
+      "status": "known",
+      "value": 661100.971,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='0804')",
+      "confidence": "medium",
+      "assumptions": [
+        "教育用地 = AI 原点社区教育协同"
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 5515263.045,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area where land_use_code='0702')",
+      "confidence": "medium",
+      "assumptions": [
+        "公共/社区服务用地 = 大钟寺外围 + 两翼 + 北源门户"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3642337.859,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space features))",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地为概念性布置（绿脉中枢+口袋公园）"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.319144,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "未计京张遗址公园主体绿地；该绿地属 provisional 边界外景观"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1074150.682,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space features))",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性公共空间"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.094118,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "广场级公共空间"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 713621.261,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(buildings))",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional geometry; full 3D massing + landmark unions = 713621.261 sqm",
+        "site_area_sqm = 11412825.386 sqm (EPSG:4548 projection)"
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings)",
+      "confidence": "high",
+      "assumptions": [
+        "仅含概念性地标/核心建筑"
+      ]
+    },
+    "building_density_ratio": {
+      "status": "known",
+      "value": 0.062528,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "high",
+      "assumptions": [
+        "provisional geometry; union of 12 named landmarks + massing + filler blocks",
+        "site_area_sqm uses EPSG:4548 projection (11412825.386 sqm)"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 18715.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(LineString.length(roads))",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性道路；不含干路交叉口"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features with id starting with SCN-)",
+      "confidence": "high",
+      "assumptions": [
+        "9 个原始 SCN 节点 (SC-AI-{01,06,07,02,10,12,IND-01,IND-02,IND-03})",
+        "v2.3.4 audit fix 增列 9 个: SC-AI-{03,04,05,08,09,11} + SC-AI-SEN (3 sub-points 沿绿脉)"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona_table entries)",
+      "confidence": "high",
+      "assumptions": [
+        "开源开发者 / 初创团队 / 头部企业 / 居民 / 师生"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows in AI+ 场景卡 table)",
+      "confidence": "high",
+      "assumptions": [
+        "v2.3.4 增列后总数"
+      ]
+    },
+    "industrial_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features with scenario_id='industrial_test')",
+      "confidence": "high",
+      "assumptions": [
+        "3 个产业测试验证场景"
+      ]
+    },
+    "ai_pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features with name_zh containing '朝圣' or '源点' or '星图' or '算法殿')",
+      "confidence": "high",
+      "assumptions": [
+        "源点站 / 算法殿 / 星图台"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(features with layer='PHASE')",
+      "confidence": "high",
+      "assumptions": [
+        "序章 / 中庭 / 北源 三期"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4892160.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性分期"
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3959393.069,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性分期"
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 2125442.282,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性分期"
+      ]
+    },
+    "global_ai_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(global_ai_case entries)",
+      "confidence": "high",
+      "assumptions": [
+        "硅谷/伦敦/新加坡/特拉维夫/杭州/深圳"
+      ]
+    },
+    "senior_friendly_scenario_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "persona_simulation/fishbowl_summary.md",
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards where subject contains 老年 AND data_boundary contains 最小化+人工)",
+      "confidence": "high",
+      "assumptions": [
+        "v2.3.4 增列 SC-AI-SEN 银龄 AI 邻里客厅"
+      ]
+    },
+    "investment_estimate_total_yi_rmb_low": {
+      "status": "unknown",
+      "value": null,
+      "unit": "yi_rmb",
+      "source_files": [
+        "proposal.md § 投资估算"
+      ],
+      "formula": "sum(10 categories, low end)",
+      "assumptions": [
+        "类比估算仅作方向性参考；落地以财政预算为准 (A-BUDGET-V237)",
+        "不引用未经 sources.json 登记的精确类比单价",
+        "CAPEX/OPEX 口径独立，互不交叉，合计仅按区间累加引用",
+        "status changed from known to unknown — investment estimates are direction-only ranges without source-able pricing; parametric-cost-model.json is skeleton_only_no_estimates until official triggers satisfied"
+      ],
+      "reason": "Investment range not currently published; numeric ranges appear in proposal.md §2 only as direction-only illustration (区间累加; 非预算承诺). Authoritative estimation deferred to visual/assets/parametric-cost-model.json (skeleton_only_no_estimates) until official triggers satisfied: formal regulatory plan, Haidian annual fiscal budget, and cross-boundary cooperation framework agreement."
+    },
+    "investment_estimate_total_yi_rmb_high": {
+      "status": "unknown",
+      "value": null,
+      "unit": "yi_rmb",
+      "source_files": [
+        "proposal.md § 投资估算"
+      ],
+      "formula": "sum(10 categories, high end)",
+      "assumptions": [
+        "类比估算仅作方向性参考；落地以财政预算为准 (A-BUDGET-V237)",
+        "不引用未经 sources.json 登记的精确类比单价",
+        "CAPEX/OPEX 口径独立，互不交叉，合计仅按区间累加引用",
+        "status changed from known to unknown — investment estimates are direction-only ranges without source-able pricing; parametric-cost-model.json is skeleton_only_no_estimates until official triggers satisfied"
+      ],
+      "reason": "Investment range not currently published; numeric ranges appear in proposal.md §2 only as direction-only illustration (区间累加; 非预算承诺). Authoritative estimation deferred to visual/assets/parametric-cost-model.json (skeleton_only_no_estimates) until official triggers satisfied: formal regulatory plan, Haidian annual fiscal budget, and cross-boundary cooperation framework agreement."
+    },
+    "tech_path_documented_scenarios": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md § AI 场景卡技术实现路径示例"
+      ],
+      "formula": "count(SC-AI-02, SC-AI-07, SC-AI-10, SC-AI-SEN full-path + 9 summary rows)",
+      "confidence": "high",
+      "assumptions": [
+        "代表性卡片示例；落地需基于具体供应商选型 (A-AI-TECH-V237)"
+      ]
+    },
+    "engineering_estimation_categories": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md § 工程测算附录"
+      ],
+      "formula": "count(绿脉/道路/公共空间/地标/轨道/市政)",
+      "confidence": "low",
+      "assumptions": [
+        "方向性估算；落地须控规+地勘复算 (A-ENG-DETAIL-V237)"
+      ]
+    },
+    "phase_1_investment_yi_rmb_range": {
+      "status": "unknown",
+      "value": null,
+      "unit": "yi_rmb",
+      "source_files": [
+        "proposal.md § 投资估算"
+      ],
+      "formula": "midpoint of 序章 38-52 亿元",
+      "assumptions": [
+        "类比估算；落地以财政预算为准 (A-BUDGET-V237)",
+        "不引用未经 sources.json 登记的精确类比单价",
+        "CAPEX/OPEX 口径独立，互不交叉，合计仅按区间累加引用",
+        "status changed from known to unknown — investment estimates are direction-only ranges without source-able pricing; parametric-cost-model.json is skeleton_only_no_estimates until official triggers satisfied"
+      ],
+      "reason": "Investment range not currently published; numeric ranges appear in proposal.md §2 only as direction-only illustration (区间累加; 非预算承诺). Authoritative estimation deferred to visual/assets/parametric-cost-model.json (skeleton_only_no_estimates) until official triggers satisfied: formal regulatory plan, Haidian annual fiscal budget, and cross-boundary cooperation framework agreement."
+    },
+    "phase_2_investment_yi_rmb_range": {
+      "status": "unknown",
+      "value": null,
+      "unit": "yi_rmb",
+      "source_files": [
+        "proposal.md § 投资估算"
+      ],
+      "formula": "midpoint of 中庭 82-115 亿元",
+      "assumptions": [
+        "类比估算；落地以财政预算为准 (A-BUDGET-V237)",
+        "不引用未经 sources.json 登记的精确类比单价",
+        "CAPEX/OPEX 口径独立，互不交叉，合计仅按区间累加引用",
+        "status changed from known to unknown — investment estimates are direction-only ranges without source-able pricing; parametric-cost-model.json is skeleton_only_no_estimates until official triggers satisfied"
+      ],
+      "reason": "Investment range not currently published; numeric ranges appear in proposal.md §2 only as direction-only illustration (区间累加; 非预算承诺). Authoritative estimation deferred to visual/assets/parametric-cost-model.json (skeleton_only_no_estimates) until official triggers satisfied: formal regulatory plan, Haidian annual fiscal budget, and cross-boundary cooperation framework agreement."
+    },
+    "phase_3_investment_yi_rmb_range": {
+      "status": "unknown",
+      "value": null,
+      "unit": "yi_rmb",
+      "source_files": [
+        "proposal.md § 投资估算"
+      ],
+      "formula": "midpoint of 北源 78-108 亿元",
+      "assumptions": [
+        "类比估算；落地以财政预算为准 (A-BUDGET-V237)",
+        "不引用未经 sources.json 登记的精确类比单价",
+        "CAPEX/OPEX 口径独立，互不交叉，合计仅按区间累加引用",
+        "status changed from known to unknown — investment estimates are direction-only ranges without source-able pricing; parametric-cost-model.json is skeleton_only_no_estimates until official triggers satisfied"
+      ],
+      "reason": "Investment range not currently published; numeric ranges appear in proposal.md §2 only as direction-only illustration (区间累加; 非预算承诺). Authoritative estimation deferred to visual/assets/parametric-cost-model.json (skeleton_only_no_estimates) until official triggers satisfied: formal regulatory plan, Haidian annual fiscal budget, and cross-boundary cooperation framework agreement."
+    },
+    "translation_files_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(translation_files); 1 if proposal.md includes 中文正式译文 section",
+      "confidence": "high",
+      "assumptions": [
+        "chinese version is canonical source",
+        "中文版本为正本"
+      ]
+    }
+  },
+  "methodology_en": "[v4.3] site_area_sqm: 11.41 km² is EPSG:4548 (Gauss-Krüger) projected area; WGS-84 spherical estimate REMOVED; v4.3 only publishes EPSG:4548 projection value. Only EPSG:4548 projection is used as the baseline.",
+  "last_updated": "2026-08-30T00:00:00Z",
+  "version": "v4.3"
+}

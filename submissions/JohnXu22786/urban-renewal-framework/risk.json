@@ -1,0 +1,136 @@
+{
+  "schema_version": "0.1.0",
+  "risks": [
+    {
+      "risk_id": "R-BOUNDARY",
+      "title_zh": "边界精度",
+      "category": "data_gap",
+      "severity": "medium",
+      "description_zh": "全部几何基于 provisional 边界；组织方尚未发布可验证坐标系的官方几何，正式图形到位后需重新计算面积与指标并调整图件。",
+      "mitigation_zh": "已在正文、矩阵与图件中标明 provisional 状态与复算触发条件；面积按官方文本口径对照校核，不发布推算面积。"
+    },
+    {
+      "risk_id": "R-TRANSIT",
+      "title_zh": "更新指标数据质量与统计口径",
+      "category": "data_gap",
+      "severity": "high",
+      "description_zh": "更新指标（体检、流量、碳汇、能耗）依赖现状普查与感知数据质量，统计口径若未统一可能造成误导；本包无实测基线数据。",
+      "mitigation_zh": "指标定位为概念口径并标注置信等级与复算触发；全部使用匿名聚合数据，关键结论人工复核；基线随官方普查后建立。"
+    },
+    {
+      "risk_id": "R-PRIVACY",
+      "title_zh": "感知与公众数据边界",
+      "category": "data_boundary",
+      "severity": "medium",
+      "description_zh": "体检与反馈类应用若未设边界可能涉及人员信息。",
+      "mitigation_zh": "仅处理匿名聚合数据，个体信息不跨场景留存，不进行个体识别式追踪，关键决策人工复核，线下人工窗口兜底。"
+    },
+    {
+      "risk_id": "R-CONTROL",
+      "title_zh": "法定控制缺位",
+      "category": "statutory",
+      "severity": "medium",
+      "description_zh": "控规指标、道路红线、轨道及铁路保护界线、文物保护控制线、绿线蓝线、权属与市政容量均未进入正式证据，落位与专业复核受限。",
+      "mitigation_zh": "不给出数值结论，全部表述为概念建议；缺口在资料清单与数据缺口声明中如实记载，官方数据发布后复算。"
+    },
+    {
+      "risk_id": "R-TECH",
+      "title_zh": "AI 场景技术成熟度",
+      "category": "technology",
+      "severity": "medium",
+      "description_zh": "场景卡依赖模型评测、数据质量与运行监测流程支撑，技术仍在迭代，运维需要人工值守。",
+      "mitigation_zh": "以人工复核兜底并设三项测试协议（TP-01—TP-03），AI 输出仅作参考、不替代专业判断。"
+    },
+    {
+      "risk_id": "R-ACCEPTANCE",
+      "title_zh": "更新约束与街区活力接受度",
+      "category": "public_acceptance",
+      "severity": "medium",
+      "description_zh": "留改拆统筹与运营约束存在实施接受度不确定性，试点准入/退出需民意识别机制。",
+      "mitigation_zh": "以克制与渐进为主、开放意见通道（线上+线下人工窗口+电话+纸质表单）、重大事项依法公示并按年度公示进展。"
+    },
+    {
+      "risk_id": "R-BRAND",
+      "title_zh": "品牌在先权利检索未完成",
+      "category": "legal",
+      "severity": "medium",
+      "description_zh": "概念阶段未完成官方商标检索，「更新枢（RENEW·JZ）」等名称与标识可能与既有权利冲突。",
+      "mitigation_zh": "全部名称标识按内部工作代号处理，对外使用、申报注册或正式命名前须完成在先权利清查（见 copyright_statement.md 与 sources.json 资产条目）。"
+    },
+    {
+      "risk_id": "R-CASE",
+      "title_zh": "案例引用核验边界",
+      "category": "data_gap",
+      "severity": "low",
+      "description_zh": "案例均为概念借鉴，来源页面已验证可访问，但正式引用前仍需事实交叉核验。",
+      "mitigation_zh": "逐案来源（机构网址、里程碑时点、复用边界）登记于 sources.json，未核验前不作为正式案例比较证据。"
+    }
+  ],
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 2,
+      "note": "人流与反馈数据仅采用匿名聚合，不做个体识别；AI 生成内容全部人工复核后发布。",
+      "mitigation": "在文本与图件中声明仅聚合不识别，发布流程设人工复核岗，线下人工窗口兜底。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 3,
+      "note": "留改拆统筹涉及产权、文保、规划与消防多专业协同，概念到落地跨度大。",
+      "mitigation": "方案明确为概念建议，实施台账标注前置依赖、专业复核与试点准入/退出条件。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 3,
+      "note": "AI 场景与更新约束可能引发隐私与过度科技化疑虑。",
+      "mitigation": "匿名聚合+人工复核边界明确披露，设施以低侵入、可关闭设计为主。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 2,
+      "note": "指标监测、数据平台与公共空间存在持续运维成本。",
+      "mitigation": "统一建设、多元运营模式建议（更新运营联盟）；成本仅给定性级别与估算方法，不给金额。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 3,
+      "note": "城市更新政策与数据开放规则仍在演进，审批路径未定型。",
+      "mitigation": "以现行法规为参照，保留弹性接口；正式实施前完成法定审批。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 3,
+      "note": "全部几何基于 provisional 边界，正式边界发布后面积与指标可能有变。",
+      "mitigation": "已在 geometry、矩阵与指标复算说明中标注 provisional 状态与复算条件。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 3,
+      "note": "体检、碳汇感知与流量预测类 AI 场景仍在迭代。",
+      "mitigation": "以成熟技术与人工值守兜底，三项测试协议先验证后推广，AI 输出不替代专业判断。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性",
+      "score": 2,
+      "note": "数字服务可能造成使用门槛，需兼顾无障碍、适老与儿童友好。",
+      "mitigation": "无障碍与适老化同步设计，提供线下人工替代路径（窗口/电话/纸质表单）与数字排斥防护。",
+      "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+    }
+  ]
+}

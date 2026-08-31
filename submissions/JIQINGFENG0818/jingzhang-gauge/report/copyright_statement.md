@@ -78,24 +78,47 @@ and degrades to a text notice pointing at the static figures when JavaScript or 
 ## Typefaces
 
 Figures and drawings are rendered with matplotlib using **Noto Sans CJK**, licensed under the
-SIL Open Font License 1.1. **No font program is redistributed in this package**: the four PDFs in
-`drawings/` contain zero `FontFile`, `FontFile2` or `FontFile3` objects, and all glyphs are rasterised
-into the PNG and PDF output. A reviewer can confirm this by scanning the PDFs for those object names.
+SIL Open Font License 1.1 (OFL). The four PDFs in `drawings/` contain zero `FontFile`, `FontFile2` or
+`FontFile3` objects: all glyphs are rasterised into the PNG and PDF output, so those files carry no
+font program. A reviewer can confirm this by scanning the PDFs for those object names.
+
+The four HTML deliverables — `report/proposal.html`, `report/proposal.en.html`, `visual/index.html`
+and `visual/index.en.html` — each embed **one** font program: a WOFF2 subset of **Noto Sans CJK SC
+Regular** (© 2014-2021 Adobe, OFL 1.1, "Noto" is a trademark of Google Inc.), written inline in the
+page's own `<style>` block as a base64 `data:` URI inside a single `@font-face` rule. Each subset is
+limited to the non-ASCII characters that the page it lives in actually uses (the exact character count
+is stated in the CSS comment next to the rule), which keeps the payload at roughly 150 KB for the
+Chinese pages and 14 KB for the English pages. The subset is a *Modified Version* in OFL terms and is
+therefore renamed **`JZ Gauge CJK`** (OFL §3: no Reserved Font Name or trademark is reused); the
+original copyright (name ID 0), trademark (7) and licence (13, 14) records are retained inside the
+font, and the complete OFL text is reproduced in Appendix A below (OFL §2). **No standalone font file
+is added to the package** — the font travels only inside those four HTML files.
+
+The reason for embedding is rendering, not styling: headless review hosts frequently have no CJK
+system font, and a page that only declares a system font stack renders every Chinese glyph there as
+a box. With the subset in place the Chinese text of all four pages renders identically on a host with
+no CJK font at all (verified by screenshotting each page with headless Chromium under a fontconfig
+that exposes only DejaVu Sans). The system stack after `JZ Gauge CJK` is unchanged, so hosts that do
+have PingFang / Microsoft YaHei / Noto Sans CJK installed keep using them for everything else.
 
 ## Offline guarantee
 
 `visual/index.html`, `visual/index.en.html`, `report/proposal.html` and `report/proposal.en.html`
-contain **no absolute URL of any kind**, and no `<iframe>`, `<form>`, `<link>`, `@font-face`, `@import`,
+contain **no absolute URL of any kind**, and no `<iframe>`, `<form>`, `<link>`, `@import`,
 `url(http…)`, CDN reference, remote map tile, external font, `fetch`, `XMLHttpRequest`, `WebSocket` or
-`EventSource`.
+`EventSource`. The only `@font-face` rule in each file points at an inline `data:` URI (the embedded
+subset described above), never at a remote or external resource.
 
-Each `visual/index*.html` renders from one inline `<svg>` plus one inline `<script>` (1,053 bytes, no
-`src` attribute) that only manipulates the page's own DOM. The two `report/*.html` files reference the
-ten figures by relative path (`../assets/figures/*.png`); all ten files are inside this package and are
-declared with SHA-256 in `manifest.json`. Every file opens correctly with no network connection.
+Each `visual/index*.html` renders from one inline `<svg>`, one inline `<script>` (1,053 bytes, no
+`src` attribute) that only manipulates the page's own DOM, and the two local tour scripts referenced by
+relative path (`assets/gauge-tour-data.js`, `assets/gauge-tour.js`; see the 3D tour section above). The
+two `report/*.html` files reference the ten figures by relative path (`../assets/figures/*.png`); all
+ten files are inside this package and are declared with SHA-256 in `manifest.json`. Every file opens
+correctly with no network connection.
 
-The only two absolute URLs anywhere in this package are in JSON metadata, not in any rendered asset:
-the Beijing municipal announcement cited in `sources.json`, and the GitHub issue cited above.
+No rendered asset in this package contains an absolute URL. The only absolute URLs anywhere in the
+package are in JSON metadata (the Beijing municipal announcement cited in `sources.json`, and the
+GitHub issue cited above) and in the licence text reproduced in Appendix A of this statement.
 
 ## Cited public documents and standards
 
@@ -105,3 +128,110 @@ Public documents relied on in `proposal.md` are referenced by id in `sources.jso
 `MOHURD-ARCH-DESIGN-DEPTH-2016`). Only statements explicitly present in those documents are relied on.
 No interpretation is presented as an official conclusion, an approval decision, or an implementation
 commitment, and no official endorsement is claimed.
+
+## Appendix A — SIL Open Font License 1.1 (for the embedded `JZ Gauge CJK` subset)
+
+Applies to the font program embedded in the four HTML deliverables, a subset of Noto Sans CJK SC
+Regular. Copyright © 2014-2021 Adobe (http://www.adobe.com/). "Noto" is a trademark of Google Inc.
+The subset is a Modified Version and is distributed under the same licence under the name
+`JZ Gauge CJK`.
+
+```text
+Files: debian/*
+Copyright: 2013, Vasudev Kamath <kamathvasudev@gmail.com>
+          2013-2015, Jonas Smedegaard <dr@jones.dk>
+          2015-2022, ChangZhuo Chen (陳昌倬) <czchen@debian.org>
+License: GPL-3+
+
+License: SIL-1.1
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font
+creation efforts of academic and linguistic communities, and to provide
+a free and open framework in which fonts may be shared and improved in
+partnership with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded,
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply to
+any document created using the fonts or their derivatives.
+
+DEFINITIONS
+
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components
+as distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to,
+deleting, or substituting -- in part or in whole -- any of the
+components of the Original Version, by changing formats or by porting
+the Font Software to a new environment.
+
+"Author" refers to any designer, engineer, programmer, technical writer
+or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components, in
+Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the
+corresponding Copyright Holder. This restriction only applies to the
+primary font name as presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole, must
+be distributed entirely under this license, and must not be distributed
+under any other license. The requirement for fonts to remain under this
+license does not apply to any document created using the Font Software.
+
+TERMINATION
+
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+```

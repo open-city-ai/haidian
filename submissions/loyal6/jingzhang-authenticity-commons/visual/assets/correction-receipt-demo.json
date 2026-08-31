@@ -1,6 +1,7 @@
 {
   "schema_version": "1.0",
   "id": "JZAC-DEMO-001",
+  "iteration": "v1.6-candidate",
   "status": "synthetic_drill_not_field_result",
   "public_test_zh": "一条错误如果不能沿原渠道被纠正，这项AI服务就不能留在京张。",
   "public_test_en": "If an error cannot be corrected through every channel that carried it, the AI service must not remain in Jing-Zhang.",
@@ -10,6 +11,7 @@
     "test_material": "clearly marked synthetic AI reconstruction",
     "controlled_mislabel": "presented as an original Jing-Zhang historical record",
     "live_public_release": false,
+    "current_state": "CLOSED_SYNTHETIC_ONLY",
     "original_channel_ids": ["CHANNEL-SIGN-01", "CHANNEL-WEB-01"],
     "paper_case_id": "CASE-DEMO-001"
   },
@@ -38,6 +40,11 @@
       "type": "drill_physical_exhibit_label",
       "pause_status": "paused_at_T+05",
       "correction_status": "returned_at_T+35",
+      "version_before": "synthetic-mislabel-v1",
+      "version_after": "synthetic-correction-v2",
+      "accountable_role": "channel_owner",
+      "front_end_corrected": true,
+      "backend_only_change": false,
       "acknowledged": true
     },
     {
@@ -45,6 +52,11 @@
       "type": "drill_offline_webpage",
       "pause_status": "paused_at_T+05",
       "correction_status": "returned_at_T+35",
+      "version_before": "synthetic-mislabel-v1",
+      "version_after": "synthetic-correction-v2",
+      "accountable_role": "channel_owner",
+      "front_end_corrected": true,
+      "backend_only_change": false,
       "acknowledged": true
     }
   ],
@@ -56,6 +68,111 @@
     {"time": "T+50", "area": "zhongzhiyuan_ai_acceleration_area", "event": "publishing workflow receives a failure-retest task"},
     {"time": "T+60", "area": "dazhongsi_ai_industry_cluster", "event": "procurement evidence is updated, exit is tested, and the temporary display, cached data and test material are recovered or cleared"}
   ],
+  "state_trace": [
+    {"state": "INTAKE", "receipt": "R01-INTAKE", "time": "T+00"},
+    {"state": "PAUSE", "receipt": "R02-PAUSE", "time": "T+05"},
+    {"state": "REVIEW", "receipt": "R03-REVIEW", "time": "T+20"},
+    {"state": "CORRECT", "receipt": "R04-CORRECT", "time": "T+35"},
+    {"state": "RETEST", "receipt": "R05-RETEST", "time": "T+50"},
+    {"state": "ADOPTION", "receipt": "R06-ADOPTION", "time": "T+60"},
+    {"state": "RECOVERY", "receipt": "R07-RECOVERY", "time": "T+60"},
+    {"state": "CLOSED", "receipt": "R08-CLOSURE", "time": "T+60"}
+  ],
+  "case_dossier": {
+    "intake_receipt": {
+      "id": "R01-INTAKE",
+      "case_id": "CASE-DEMO-001",
+      "accountable_role": "pilot_steward",
+      "responsible_role": "case_steward",
+      "screenless_path_completed": true,
+      "critical_path_blockers": 0,
+      "material_status": "clearly_marked_synthetic_drill",
+      "impact_class": "controlled_public_content_mislabel",
+      "registered_channel_ids": ["CHANNEL-SIGN-01", "CHANNEL-WEB-01"],
+      "unregistered_channel_count": 0
+    },
+    "pause_receipt": {
+      "id": "R02-PAUSE",
+      "accountable_role": "channel_owner",
+      "effective_at": "T+05",
+      "paused_channel_ids": ["CHANNEL-SIGN-01", "CHANNEL-WEB-01"],
+      "unreachable_channel_ids": [],
+      "human_decision": true
+    },
+    "independent_review_record": {
+      "id": "R03-REVIEW",
+      "accountable_role": "independent_reviewer",
+      "reviewer_role": "independent_archive_reviewer",
+      "excluded_roles": ["material_author", "supplier", "channel_owner", "service_owner"],
+      "conflict_check": "clear",
+      "conflict_count": 0,
+      "evidence_used": ["synthetic source declaration", "controlled version record", "human factual review"],
+      "uncertainty": "no claim beyond the bounded synthetic record",
+      "result": "AI reconstruction, not an original historical record",
+      "escalation_required": false
+    },
+    "same_channel_correction_receipt": {
+      "id": "R04-CORRECT",
+      "accountable_role": "channel_owner",
+      "required_channel_count": 2,
+      "acknowledged_channel_count": 2,
+      "coverage_ratio": 1.0,
+      "backend_only_change_accepted": false,
+      "channels": [
+        {"id": "CHANNEL-SIGN-01", "old_version": "synthetic-mislabel-v1", "new_version": "synthetic-correction-v2", "corrected_at": "T+35", "acknowledged": true, "front_end_corrected": true},
+        {"id": "CHANNEL-WEB-01", "old_version": "synthetic-mislabel-v1", "new_version": "synthetic-correction-v2", "corrected_at": "T+35", "acknowledged": true, "front_end_corrected": true}
+      ]
+    },
+    "retest_ticket": {
+      "id": "R05-RETEST",
+      "accountable_role": "evaluation_lead",
+      "area": "zhongzhiyuan_ai_acceleration_area",
+      "product_or_workflow": "synthetic heritage publishing workflow",
+      "failure_fixture": "mislabelled AI reconstruction",
+      "trigger_condition": "provenance statement omitted from visible publication label",
+      "repaired_version": "synthetic-correction-v2",
+      "completed": true,
+      "result": "failure reproduced and visible provenance restored",
+      "service_restore_authorized": false
+    },
+    "adoption_consequence": {
+      "id": "R06-ADOPTION",
+      "accountable_role": "service_owner",
+      "area": "dazhongsi_ai_industry_cluster",
+      "human_decision": true,
+      "decision": "modify_and_retest_before_any_live_use",
+      "allowed_choices": ["adopt", "modify", "restrict", "pause_renewal", "retire"],
+      "automatic_model_decision": false
+    },
+    "recovery_retirement_receipt": {
+      "id": "R07-RECOVERY",
+      "accountable_role": "service_owner",
+      "responsible_role": "data_custodian",
+      "items": [
+        {"id": "temporary_label", "state": "restored", "evidence": "drill reset log"},
+        {"id": "offline_cache", "state": "cleared", "evidence": "offline cache checklist"},
+        {"id": "synthetic_material", "state": "isolated", "evidence": "controlled-material register"},
+        {"id": "backup", "state": "not_created", "evidence": "drill configuration record"},
+        {"id": "temporary_equipment", "state": "removed", "evidence": "asset reset checklist"},
+        {"id": "space", "state": "restored", "evidence": "drill closeout record"}
+      ],
+      "unclosed_item_count": 0,
+      "completed": true
+    },
+    "closure_record": {
+      "id": "R08-CLOSURE",
+      "accountable_role": "service_owner",
+      "conditioned_by_role": "independent_reviewer",
+      "all_seven_receipt_classes_present": true,
+      "all_original_channels_acknowledged": true,
+      "retest_complete": true,
+      "adoption_consequence_recorded": true,
+      "recovery_complete": true,
+      "closed_at": "T+60",
+      "status": "CLOSED_SYNTHETIC_ONLY",
+      "field_authorization": false
+    }
+  },
   "receipt": {
     "synthetic_or_field_status": "synthetic_drill_not_field_result",
     "accountable_role": "pilot steward",
@@ -83,6 +200,16 @@
     {"removed_field": "original_channels", "expected_state": "pause"},
     {"removed_field": "independent_reviewer", "expected_state": "pause"},
     {"removed_field": "asset_data_recovery_record", "expected_state": "retire"}
+  ],
+  "institutional_fail_closed_tests": [
+    {"removed_path": "case_dossier.intake_receipt", "expected_state": "pause", "reason": "case cannot exist without intake"},
+    {"removed_path": "case_dossier.pause_receipt", "expected_state": "pause", "reason": "review cannot bypass human pause"},
+    {"removed_path": "case_dossier.independent_review_record", "expected_state": "pause", "reason": "correction cannot bypass independent review"},
+    {"removed_path": "case_dossier.same_channel_correction_receipt", "expected_state": "pause", "reason": "backend-only change cannot close"},
+    {"removed_path": "case_dossier.retest_ticket", "expected_state": "pause", "reason": "service cannot restore before retest"},
+    {"removed_path": "case_dossier.adoption_consequence", "expected_state": "pause", "reason": "model output cannot replace human adoption consequence"},
+    {"removed_path": "case_dossier.recovery_retirement_receipt", "expected_state": "retire", "reason": "missing recovery evidence requires retirement"},
+    {"removed_path": "case_dossier.closure_record", "expected_state": "pause", "reason": "case cannot claim CLOSED without a closure record"}
   ],
   "test_results_ref": "visual/assets/correction-engine-results.json",
   "limits": [

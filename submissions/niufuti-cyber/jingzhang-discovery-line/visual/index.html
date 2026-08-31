@@ -60,7 +60,7 @@
     .scroll-progress { position: absolute; right: 0; bottom: -1px; left: 0; height: 1px; overflow: hidden; pointer-events: none; background: transparent; }
     .scroll-progress > span { display: block; width: 100%; height: 100%; background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform 90ms linear; }
     .hero { display: grid; border-bottom: 1px solid var(--ink); background: var(--paper); }
-    .hero-copy { position: relative; min-height: 92vh; min-height: 92svh; display: flex; flex-direction: column; justify-content: flex-start; isolation: isolate; overflow: hidden; padding: clamp(72px, 9vw, 132px) clamp(24px, 5vw, 80px) clamp(118px, 12vw, 172px); background-color: var(--hero-panel); background-image: linear-gradient(90deg, color-mix(in srgb, var(--hero-panel) 94%, transparent) 0 24%, color-mix(in srgb, var(--hero-panel) 48%, transparent) 38%, color-mix(in srgb, var(--hero-panel) 8%, transparent) 50%, color-mix(in srgb, var(--hero-panel) 8%, transparent) 100%), url("assets/slot-v15.webp"); background-position: center; background-size: cover; color: #fff; }
+    .hero-copy { position: relative; min-height: 92vh; min-height: 92svh; display: flex; flex-direction: column; justify-content: flex-start; isolation: isolate; overflow: hidden; padding: clamp(72px, 9vw, 132px) clamp(24px, 5vw, 80px) clamp(118px, 12vw, 172px); background-color: var(--hero-panel); background-image: linear-gradient(90deg, color-mix(in srgb, var(--hero-panel) 94%, transparent) 0 24%, color-mix(in srgb, var(--hero-panel) 48%, transparent) 38%, color-mix(in srgb, var(--hero-panel) 8%, transparent) 50%, color-mix(in srgb, var(--hero-panel) 8%, transparent) 100%), url("assets/vision-masterplan-v4.jpg"); background-position: center; background-size: cover; color: #fff; }
     .hero-copy > div { position: relative; z-index: 1; max-width: min(620px, 46vw); }
     .hero-copy .index, .hero-copy .eyebrow, .hero-copy .hero-verdict small { color: var(--gold-light); }
     .hero-paper { padding: clamp(54px, 7vw, 92px) clamp(24px, 5vw, 80px) clamp(66px, 8vw, 108px); background: radial-gradient(circle at 78% 28%, #fff 0, var(--paper-light) 32%, var(--paper) 78%); }
@@ -117,10 +117,10 @@
     .metrics-band span { display: block; margin-top: 18px; font-size: var(--fs-meta); letter-spacing: .08em; }
     .opening-film { border-bottom: 1px solid var(--ink); background: var(--paper); }
     .film-track { position: relative; height: auto; }
-    .film-stage { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; padding: 1px; overflow: visible; background: var(--ink); }
-    .film-frame { position: relative; min-width: 0; min-height: 0; display: grid; grid-template-rows: auto auto; margin: 0; overflow: visible; border-radius: 0; background: #14161B; }
-    .film-layer { position: relative; min-height: 0; aspect-ratio: 16 / 9; overflow: hidden; }
-    .film-layer img { width: 100%; height: 100%; object-fit: cover; transform-origin: var(--film-focus, 50% 50%); }
+    .film-stage { position: relative; display: grid; grid-template-columns: 1fr; gap: 0; padding: 0; overflow: hidden; background: var(--paper); } .film-entry { min-width: 0; overflow: hidden; padding-bottom: clamp(32px, 4vw, 56px); border-bottom: 1px solid var(--ink); border-radius: 0; background: var(--paper); } .film-entry:last-child { padding-bottom: 0; border-bottom: 0; }
+    .film-frame { position: relative; min-width: 0; min-height: 0; display: grid; grid-template-rows: auto auto; margin: 0; overflow: hidden; border-radius: 0; background: #14161B; }
+    .film-layer { position: relative; min-height: 0; overflow: hidden; }
+    .film-layer img { display: block; width: 100%; height: auto; object-fit: contain; transform: none; transform-origin: var(--film-focus, 50% 50%); }
     .film-frame[data-film-frame="K1"] { --film-focus: 62% 66%; }
     .film-frame[data-film-frame="K1"] img { object-position: 50% 64%; }
     .film-frame[data-film-frame="K2"] { --film-focus: 50% 54%; }
@@ -129,9 +129,11 @@
     .film-frame[data-film-frame="K3"] img { object-position: 54% 58%; }
     .film-frame[data-film-frame="K4"] { --film-focus: 53% 55%; }
     .film-frame[data-film-frame="K4"] img { object-position: 50% 52%; }
-    .film-frame figcaption { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 20px; align-items: center; max-width: none; padding: 14px 18px; border: 0; border-top: 1px solid rgba(20,72,134,.3); background: #ECE7DD; color: var(--ink); pointer-events: none; }
-    .film-frame figcaption span { min-width: 48px; min-height: 32px; display: inline-grid; place-items: center; padding: 5px 10px; border: 1px solid currentColor; border-radius: 4px; color: var(--blue); font: 700 var(--fs-meta) Arial, sans-serif; letter-spacing: .16em; }
-    .film-frame figcaption strong { font-family: var(--serif); font-size: var(--fs-section); font-weight: 600; line-height: 1.05; letter-spacing: .06em; }
+    .film-frame figcaption { min-width: 0; display: flex; gap: 0; align-items: baseline; max-width: none; padding: 3px 12px; border: 0; border-top: 1px solid rgba(255,255,255,.18); background: #14161B; color: rgba(255,255,255,.76); font: 11px/14px Arial, sans-serif; pointer-events: none; white-space: nowrap; }
+    .film-frame figcaption span { min-width: 0; min-height: 0; display: inline; padding: 0; border: 0; border-radius: 0; color: #D6B36A; font: 700 11px/14px Arial, sans-serif; letter-spacing: .14em; } .film-frame figcaption strong { flex: 0 0 auto; font: 700 11px/14px Arial, sans-serif; letter-spacing: .04em; }
+    .film-frame figcaption span::after, .film-frame figcaption strong::after { content: "\00a0·\00a0"; color: rgba(255,255,255,.46); font-weight: 400; }
+    .film-frame figcaption p { min-width: 0; flex: 1 1 auto; overflow: hidden; margin: 0; color: rgba(255,255,255,.72); font: 400 11px/14px Arial, sans-serif; text-overflow: ellipsis; white-space: nowrap; }
+    .film-notes { max-width: 960px; display: grid; gap: 8px; padding: clamp(16px, 2.2vw, 28px) clamp(20px, 5vw, 72px) 0; color: var(--muted); } .film-notes p { margin: 0; font-size: var(--fs-meta); line-height: 1.75; }
     .film-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
     @keyframes reveal-rise {
       from { opacity: 0; filter: blur(10px); translate: 0 20px; }
@@ -151,11 +153,12 @@
     html.motion-allowed .reveal-target.is-visible[data-motion-type="settle"] { animation-name: reveal-settle; }
     html.motion-allowed .reveal-target.is-visible[data-motion-type="side"] { animation-name: reveal-side; }
     @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
-      html.film-motion .film-track { height: 520vh; }
-      html.film-motion .film-stage { position: sticky; top: 0; display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; padding: 0; overflow: hidden; background: #14161B; }
-      html.film-motion .film-frame { position: absolute; inset: 0; min-height: 0; height: 100%; grid-template-rows: 9fr 1fr; visibility: hidden; }
-      html.film-motion .film-frame:first-of-type { visibility: visible; }
-      html.film-motion .film-layer img { will-change: transform; }
+      html.film-motion .film-track { height: auto !important; }
+      html.film-motion .film-stage { position: relative; top: auto; display: grid; width: 100%; height: auto; aspect-ratio: auto; grid-template-columns: 1fr; gap: 0; padding: 0; overflow: hidden; background: var(--paper); }
+      html.film-motion .film-frame { position: relative; inset: auto; min-height: 0; height: auto; grid-template-rows: auto auto; visibility: visible !important; clip-path: none !important; }
+      html.film-motion .film-frame:first-of-type { visibility: visible !important; }
+      html.film-motion .film-layer img { transform: none !important; will-change: auto; }
+      html.film-motion .film-frame figcaption { opacity: 1 !important; transform: none !important; }
     }
     .chapter-image { display: grid; grid-template-columns: minmax(170px, .26fr) minmax(0, .74fr); min-height: 540px; border-bottom: 1px solid var(--ink); background: var(--blue-deep); color: #fff; }
     .chapter-image.gold { background: #6E5123; }
@@ -414,8 +417,7 @@
     footer p { margin: 0; font-family: "Arial Narrow", Arial, sans-serif; font-size: var(--fs-display); font-weight: 600; line-height: .82; letter-spacing: .04em; }
     footer div { margin: 0; color: #B6BBBD; font-size: var(--fs-meta); letter-spacing: .09em; }
     @media (max-width: 1100px) and (min-width: 901px) {
-      .film-frame figcaption { gap: 8px 12px; padding: 8px 12px; }
-      .film-frame figcaption strong { font-size: var(--fs-section); }
+      .film-frame figcaption { gap: 0; padding: 3px 12px; } .film-frame figcaption strong { font-size: 11px; }
       footer { grid-template-columns: 190px minmax(0, 1fr) 130px; gap: 24px; padding-inline: 30px; }
       footer img { width: 190px; }
       footer p { font-size: var(--fs-display); }
@@ -455,18 +457,20 @@
     }
     .reading-path {
       display: grid;
-      grid-template-columns: minmax(210px, .3fr) minmax(0, .7fr);
+      grid-template-columns: minmax(0, 1fr);
       gap: 24px;
-      align-items: center;
+      align-items: start;
       margin: 28px clamp(24px, 5vw, 72px);
       padding: 22px 24px;
       border: 1px solid var(--gold);
       border-radius: 18px;
       background: var(--paper);
     }
-    .reading-path h2 { margin-bottom: 7px; color: var(--ink); font-size: var(--fs-section); }
-    .reading-path p { margin: 0; color: var(--muted); font-size: var(--fs-meta); }
-    .reading-path nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; min-width: 0; }
+    .reading-path h2 { margin: 0; color: var(--ink); font-size: var(--fs-section); }
+    .reading-route-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; min-width: 0; }
+    .reading-route { min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper-light); }
+    .reading-route h3 { margin: 0 0 10px; color: var(--blue-deep); font-size: var(--fs-card); }
+    .reading-route nav { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; min-width: 0; }
     .reading-path a {
       display: flex;
       gap: 8px;
@@ -482,7 +486,7 @@
       overflow-wrap: anywhere;
       text-decoration: none;
     }
-    .reading-path a span { flex: 0 0 auto; font-family: Arial, sans-serif; font-weight: 700; }
+    .reading-path a span { flex: 0 0 auto; min-width: 2ch; font-family: Arial, sans-serif; font-weight: 700; }
     .dual-state {
       margin: 48px clamp(24px, 5vw, 72px);
       padding: clamp(24px, 4vw, 42px);
@@ -547,19 +551,19 @@
       .handoff-grid { grid-template-columns: 1fr; }
       .appendix-grid { grid-template-columns: 1fr; }
       .film-stage { grid-template-columns: 1fr; }
-      .film-frame { min-height: min(70vh, 620px); }
+      .film-frame { min-height: 0; }
       .hero-directory { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .m01-responsibility-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .m01-responsibility-grid article, .m01-responsibility-grid article:nth-child(5n), .m01-responsibility-grid article:nth-last-child(-n+5) { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
       .m01-responsibility-grid article:nth-child(2n) { border-right: 0; }
       .m01-responsibility-grid article:nth-last-child(-n+2) { border-bottom: 0; }
       .failure-panel { grid-template-columns: 1fr; }
-      .reading-path { grid-template-columns: 1fr; }
+      .reading-route-grid { grid-template-columns: 1fr; }
       .dual-state { margin-block: 32px; }
       .component-card { margin-block: 32px; }
     }
     @media (max-width: 600px) {
-      .hero-copy { min-height: 92vh; min-height: 92svh; padding: 58px 20px; background-image: linear-gradient(color-mix(in srgb, var(--hero-panel) 64%, transparent), color-mix(in srgb, var(--hero-panel) 64%, transparent)), url("assets/slot-v15.webp"); background-position: 50% 42%; }
+      .hero-copy { min-height: 92vh; min-height: 92svh; padding: 58px 20px; background-image: linear-gradient(color-mix(in srgb, var(--hero-panel) 64%, transparent), color-mix(in srgb, var(--hero-panel) 64%, transparent)), url("assets/vision-masterplan-v4.jpg"); background-position: 50% 42%; }
       .hero-copy > div { max-width: 100%; }
       h1 { max-width: 6em; margin: 24px 0 16px; font-size: var(--fs-h1); letter-spacing: .02em; }
       .hero-en { max-width: 24em; font-size: var(--fs-meta); line-height: 1.7; letter-spacing: .18em; }
@@ -589,7 +593,6 @@
       .m01-responsibility-grid article, .m01-responsibility-grid article:nth-child(2n), .m01-responsibility-grid article:nth-last-child(-n+2) { border-right: 0; border-bottom: 1px solid var(--line); }
       .m01-responsibility-grid article:last-child { border-bottom: 0; }
       .reading-path { margin: 20px; padding: 20px; }
-      .reading-path nav { grid-template-columns: 1fr; }
       .dual-state { margin: 20px; padding: 20px; }
       .dual-state th, .dual-state td { padding: 9px 7px; font-size: var(--fs-meta); }
       .component-card { margin: 20px; padding: 20px; }
@@ -598,8 +601,8 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; transition-delay: 0s !important; }
       .film-track { height: auto !important; }
-      .film-stage { position: relative !important; top: auto !important; display: grid !important; height: auto !important; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; padding: 1px; overflow: visible !important; }
-      .film-frame { position: relative !important; inset: auto !important; min-height: 380px; height: auto !important; visibility: visible !important; clip-path: none !important; }
+      .film-stage { position: relative !important; top: auto !important; display: grid !important; height: auto !important; grid-template-columns: 1fr; gap: 0; padding: 0; overflow: hidden !important; }
+      .film-frame { position: relative !important; inset: auto !important; min-height: 0; height: auto !important; visibility: visible !important; clip-path: none !important; }
       .film-layer { transform: none !important; will-change: auto !important; }
       .film-frame figcaption, .reveal-target { opacity: 1 !important; filter: none !important; transform: none !important; translate: none !important; scale: none !important; animation: none !important; transition: none !important; }
       .scroll-progress > span { transition: none !important; }
@@ -1711,7 +1714,6 @@ footer p {
 }
 
 .hero-opening__head h2,
-.film-frame figcaption strong,
 .chapter-title h2,
 .copy-band h2,
 .section-head h2,
@@ -1779,7 +1781,6 @@ footer p {
 .hero-directory a,
 figure figcaption,
 .metrics-band span,
-.film-frame figcaption span,
 .chapter-title p,
 .copy-band .bind,
 .section-no,
@@ -2287,15 +2288,15 @@ figure figcaption > p + p {
     display: grid !important;
     height: auto !important;
     aspect-ratio: auto !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 1px !important;
-    padding: 1px !important;
-    overflow: visible !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
   }
   html.film-motion .film-frame {
     position: relative !important;
     inset: auto !important;
-    min-height: 320px;
+    min-height: 0;
     height: auto !important;
     grid-template-rows: auto auto !important;
     visibility: visible !important;
@@ -2323,6 +2324,55 @@ figure figcaption > p + p {
     box-shadow: none;
   }
 }
+  
+    /* S1-P4-VISUAL-ONLY-CSS */
+.p4-catalog {
+  --p4-paper: var(--paper, #f3f0e8);
+  --p4-paper-light: var(--paper-light, #fbfaf6);
+  --p4-ink: var(--ink, #1c2938);
+  --p4-muted: var(--muted, #68737d);
+  --p4-line: var(--line, #d7d0c5);
+  --p4-retain: #456a63;
+  --p4-add: #b9783d;
+  --p4-prohibit: #8b4a4a;
+  padding: clamp(56px, 8vw, 112px) clamp(20px, 5vw, 72px);
+  border-block: 1px solid var(--p4-ink);
+  background: var(--p4-paper);
+  color: var(--p4-ink);
+}
+.p4-catalog *, .p4-catalog *::before, .p4-catalog *::after { box-sizing: border-box; }
+.p4-catalog__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .55fr); gap: 28px; align-items: end; margin-bottom: 36px; }
+.p4-catalog__eyebrow { margin: 0 0 10px; color: var(--blue, #144886); font-size: 12px; font-weight: 800; letter-spacing: .14em; }
+.p4-catalog h2 { max-width: 18em; margin: 0; font-size: clamp(30px, 4vw, 54px); line-height: 1.1; }
+.p4-catalog__note { margin: 0; color: var(--p4-muted); line-height: 1.7; }
+.p4-catalog__legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+.p4-catalog__badge { display: inline-flex; align-items: center; min-height: 32px; padding: 6px 11px; border-radius: 999px; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .04em; }
+.p4-catalog__badge--retain { background: var(--p4-retain); }
+.p4-catalog__badge--add { background: var(--p4-add); }
+.p4-catalog__badge--prohibit { background: var(--p4-prohibit); }
+.p4-catalog__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.p4-catalog__item { min-width: 0; overflow: hidden; border: 1px solid var(--p4-line); background: var(--p4-paper-light); }
+.p4-catalog__media { aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 1px solid var(--p4-line); background: #e7e2d9; }
+.p4-catalog__media img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.p4-catalog__body { padding: clamp(18px, 3vw, 28px); }
+.p4-catalog__item h3 { margin: 0 0 16px; font-size: clamp(20px, 2vw, 28px); line-height: 1.25; }
+.p4-catalog__states { display: grid; gap: 8px; margin: 0 0 18px; }
+.p4-catalog__state { display: grid; grid-template-columns: minmax(68px, auto) minmax(0, 1fr); gap: 10px; align-items: start; }
+.p4-catalog__state span:last-child { color: var(--p4-muted); line-height: 1.55; overflow-wrap: anywhere; }
+.p4-catalog__actions { display: grid; grid-template-columns: minmax(88px, auto) minmax(0, 1fr); gap: 0; margin: 0; border-top: 1px solid var(--p4-line); }
+.p4-catalog__actions dt, .p4-catalog__actions dd { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--p4-line); line-height: 1.55; }
+.p4-catalog__actions dt { padding-right: 12px; color: var(--p4-add); font-weight: 800; }
+.p4-catalog__actions dd { color: var(--p4-ink); overflow-wrap: anywhere; }
+.p4-catalog__blank { min-height: 1.55em; border-bottom: 1px solid var(--p4-ink); }
+.p4-catalog__foot { margin: 26px 0 0; color: var(--p4-muted); font-size: 13px; line-height: 1.7; }
+@media (max-width: 760px) {
+  .p4-catalog__head, .p4-catalog__grid { grid-template-columns: 1fr; }
+  .p4-catalog__head { align-items: start; }
+  .p4-catalog__actions { grid-template-columns: minmax(82px, auto) minmax(0, 1fr); }
+}
+:target { scroll-margin-top: 90px; }
+section:target, article:target { outline: 3px solid var(--gold); outline-offset: 4px; }
+b:target { outline: 3px solid var(--gold); outline-offset: 2px; }
   </style>
   <!-- 186A-OFFLINE-CJK-FONT-START -->
   <!-- Source font: Source Han Serif SC Regular; source SHA-256: 78aa7a328fd974df2d688c8a9fd74a33d8334dfa84ab24d9d11efb2ffc464117; embedded subset: JZ Offline CJK 186H; Copyright 2017-2024 Adobe; SIL Open Font License 1.1; package source record: ../sources.json. -->
@@ -2330,7 +2380,7 @@ figure figcaption > p + p {
   <!-- 186A-OFFLINE-CJK-FONT-END -->
 </head>
 <body>
-  <noscript><style>.film-track{height:auto!important}.film-stage{position:relative!important;display:grid!important;height:auto!important}.film-frame{position:relative!important;visibility:visible!important;clip-path:none!important}.film-layer{transform:none!important}.reveal-target{opacity:1!important;transform:none!important;transition:none!important}.failure-panel{display:grid!important;margin-bottom:14px}.replay-controls{display:none!important}</style></noscript>
+  <noscript><style>.film-track{height:auto!important}.film-stage{position:relative!important;display:grid!important;height:auto!important;grid-template-columns:1fr!important;overflow:hidden!important}.film-frame{position:relative!important;min-height:0!important;overflow:hidden!important;visibility:visible!important;clip-path:none!important}.film-layer{transform:none!important}.reveal-target{opacity:1!important;transform:none!important;transition:none!important}.failure-panel{display:grid!important;margin-bottom:14px}.replay-controls{display:none!important}</style></noscript>
   <div class="shell">
     <header class="topbar">
       <img src="assets/brand-lockup-paper.svg" alt="京张·发现线主标组合">
@@ -2340,6 +2390,8 @@ figure figcaption > p + p {
         <a href="#day">四段日常</a>
         <a href="#areas">三区</a>
         <a href="#tasks">官方六任务</a>
+        <a href="#review-evidence-index">七维证据索引</a>
+        <a href="#reading-path">三档阅读入口</a>
         <a href="#evidence">证据与来源</a>
       </nav>
       <div class="scroll-progress" aria-hidden="true"><span></span></div>
@@ -2350,26 +2402,26 @@ figure figcaption > p + p {
         <div>
           <p class="index">01 / 12</p>
           <p class="eyebrow">京张·发现线</p>
-          <h1 id="hero-title">城市出题，AI 来应考。</h1>
+          <h1 id="hero-title" data-pair="W4-001">先把街上的难题比清楚，再由人决定怎么做。</h1>
           <p class="hero-en">JING-ZHANG DISCOVERY LINE</p>
         </div>
         <div class="hero-verdict">
           <small>概念展示原型</small>
-          <p class="hero-lede">街边设考场，日子不停摆：AI 只管答题，人做最终判卷；不过关就退场，道路立即复原。</p>
+          <p class="hero-lede" data-pair="W4-002">同一段路缘，会同时被骑手补货、商户短停和居民通行使用。AI 只比较几种做法对不同人的影响，不替人决定。人工接手失败时，就停用 AI，恢复原状和非 AI 时刻表，让日常任务继续。</p>
         </div>
-        <div class="hero-cinema-disclosure prose-stack reveal-target" data-motion-block="首屏标题" data-motion-type="rise"><p>AI 生成概念图。</p><p>一条公共脊按近、中、远串起三座站体；前景站最亮最大，第二站次亮，第三站在蓝调天际微光中收束。</p><p>城市、站体、活动和灯光均为概念设定；不表示真实现状或九层数据逐要素实景化。</p><p>对应征集任务书：『打造标志性的城市景观节点』。</p></div>
+        <div class="hero-cinema-disclosure prose-stack reveal-target" data-motion-block="首屏标题" data-motion-type="rise"><p class="prebuilt-annotation">与正文一致：愿景总图以一脊、双轨、三站组织校准、退役和证据解释机制；图面是概念推演，不是现状、法定比例、已批规划或建设结果。</p><p>AI 概念示意｜非现状｜不按比例。</p><p>图中范围、站点、设施、活动和时序均为概念表达；准确边界、用地、权属、建设条件与实施安排仍须依据正式资料复核。</p></div>
       </div>
       <div class="hero-paper">
         <section class="hero-opening" aria-labelledby="opening-title">
-            <header class="hero-opening__head"><span>90秒开场</span><h2 id="opening-title">一个普通人的问题，怎样走完“城市出题—AI受约束作答—公众裁决”？</h2></header>
-            <div class="hero-steps">
-              <article class="hero-step"><span>01</span><h3>问题先说清</h3><p>第一步：进入AI原点。</p><p>设定人物的问题可通过纸笔、电话、现场共走或人工翻译进入 AI 原点。</p><p>AI 原点先由人把问题说清，再进入受控验证。</p></article>
-              <article class="hero-step"><span>02</span><h3>再校准、复测</h3><p>第二步：到众智园校准与独立复测。</p><p>需要仪器和协议复核的部分到众智园校准与独立复测，并公开失败与适用边界。</p></article>
-              <article class="hero-step"><span>03</span><h3>最后才可能首用</h3><p>第三步：有限首用。</p><p>达到授权条件的方案才可能在大钟寺或其他有权场景有限首用。</p><p>有权主体与受影响者人工决定继续、修改、不采用或撤除。</p></article>
+            <header class="hero-opening__head"><span>90秒开场</span><h2 id="opening-title" data-pair="W4-003">一段路同时要补货、短停和通行，怎样比较办法，又不让 AI 替人做决定？</h2></header>
+            <div class="hero-steps" data-pair="W4-004">
+              <article class="hero-step"><span>01</span><h3>先把冲突说清</h3><p>现在，同一段路同时要供骑手补货、商户短停和居民通行。</p><p>这些需要会撞在一起，所以不能只看其中一方是否方便。</p></article>
+              <article class="hero-step"><span>02</span><h3>AI 只比较几种做法</h3><p>先把固定装卸时段、静态车位和人工引导作为不用 AI 也能运行的办法。</p><p>再与可撤回的匿名调度、由专业团队深化路缘的办法比较。AI 只看合在一起的数据，不追踪或考核个人骑手。</p></article>
+              <article class="hero-step"><span>03</span><h3>人来决定，也能退回</h3><p>有权主体与受影响的人决定继续、修改、不采用或撤除；AI 不自动作决定。</p><p>人工接手失败时，就停用 AI，恢复原状和非 AI 时刻表，日常任务继续。</p></article>
             </div>
             <div class="hero-detail-grid">
-              <article class="hero-detail-card"><p class="eyebrow">发现护照 M01</p><h3>同一个 ID，把问题、三案、责任和退场记在一起。</h3><p>关于发现护照 M01：它使用同一个 ID 记录问题、三案比较、责任、复测、停止与恢复。</p><p>它不是通行卡、门票、感应凭证或自动开关。</p><ul class="hero-options"><li><strong>A</strong> 固定时段、静态车位、人工引导</li><li><strong>B</strong> 轻量、可逆、匿名调度且不追踪或考核个人骑手</li><li><strong>C</strong> 专业路缘深化，由有权主体与专业团队接手</li></ul></article>
-              <article class="hero-detail-card hero-safety"><p class="eyebrow">安全底线</p><h3>人工接手缺失即 <strong>NO-GO</strong>。</h3><p>AI 层熄灭，恢复原状和非 AI 时刻表，日常任务继续。</p></article>
+              <article class="hero-detail-card" data-pair="W4-005"><p class="eyebrow">发现护照 M01｜同一问题的记录编号</p><h3>问题、三种办法、谁负责和怎样退出，都记在同一个 ID 下。</h3><p>这里的“发现护照”不是一张卡，而是一份跟着问题走的记录。</p><p>它不是通行卡、门票、感应凭证或自动开关。</p><ul class="hero-options"><li><strong>A</strong> 固定时段、静态车位、人工引导</li><li><strong>B</strong> 轻量、可逆、匿名调度且不追踪或考核个人骑手</li><li><strong>C</strong> 专业路缘深化，由有权主体与专业团队接手</li></ul></article>
+              <article class="hero-detail-card hero-safety" data-pair="W4-006"><p class="eyebrow">失败时怎么办</p><h3>没有人能接手，就不试；已经开始的，就停用 AI。</h3><p>先恢复原状和非 AI 时刻表，让日常任务继续，再由人决定下一步。</p></article>
             </div>
             <aside class="hero-boundary" aria-label="责任与模拟边界">
               <div class="hero-status"><span>当前仍是</span><strong>未批准 · 未授权 · 未实施</strong></div>
@@ -2393,12 +2445,16 @@ figure figcaption > p + p {
       <div class="film-track">
         <div class="film-stage">
           <svg class="film-defs" aria-hidden="true" viewBox="0 0 1 1"><defs><clipPath id="opening-film-wipe" clipPathUnits="objectBoundingBox"><path id="opening-film-wipe-path" d="M 0 0 L 1 0 L 1 1 L 0 1 Z"></path></clipPath></defs></svg>
-          <figure class="film-frame" data-film-frame="K1"><div class="film-layer"><img src="assets/film-history-engineering-v1.webp" alt="京张铁路历史工程白描长卷"></div><figcaption><span>K1</span><strong>历史工程</strong></figcaption></figure>
-          <figure class="film-frame" data-film-frame="K2"><div class="film-layer"><img src="assets/slot-a.jpg" alt="断带航拍：铁路遗存与当代街区交叠的现实冲突"></div><figcaption><span>K2</span><strong>现实冲突</strong></figcaption></figure>
-          <figure class="film-frame" data-film-frame="K3"><div class="film-layer"><img src="assets/slot-d.jpg" alt="AI 生成概念示意：黄昏遗产绿道上，四足巡检机器人沿保留铁轨自主作业，云台灯光标出一处松脱扣件，维护员在步道上通过手持终端复核。主体：四足巡检机器人、保留铁轨、维护员与手持终端。"></div><figcaption><span>K3</span><strong>AI 验证</strong></figcaption></figure>
-          <figure class="film-frame" data-film-frame="K4"><div class="film-layer"><img src="assets/slot-i.webp" alt="建成后的遗址公园黄昏：铁路遗存被纳入日常公共空间"></div><figcaption><span>K4</span><strong>回到生活</strong></figcaption></figure>
+          <article class="film-entry"><figure class="film-frame" data-film-frame="K1"><div class="film-layer"><img src="assets/film-history-engineering-v1.webp" alt="京张铁路历史工程白描长卷"></div><figcaption><span>K1</span><strong>历史工程</strong><p>与正文一致：测量、施工、列车、隧道与桥梁的白描只交代京张工程史的问题来路</p></figcaption></figure><div class="film-notes"><p class="prebuilt-annotation">与正文一致：测量、施工、列车、隧道与桥梁的白描只交代京张工程史的问题来路，是历史工程想象图，不是历史照片、精确复原或当下证据。</p></div></article>
+          <article class="film-entry"><figure class="film-frame" data-film-frame="K2"><div class="film-layer"><img src="assets/slot-a.jpg" alt="断带航拍：铁路遗存与当代街区交叠的现实冲突"></div><figcaption><span>K2</span><strong>现实冲突</strong><p>与正文一致：铁路遗存轴与当代街区之间的断带和通行冲突只作为现状问题的概念表达</p></figcaption></figure><div class="film-notes"><p class="prebuilt-annotation">与正文一致：铁路遗存轴与当代街区之间的断带和通行冲突只作为现状问题的概念表达，不是测绘、正式边界或已核现场结论。</p></div></article>
+          <article class="film-entry"><figure class="film-frame" data-film-frame="K3"><div class="film-layer"><img src="assets/slot-d.jpg" alt="AI 生成概念示意：黄昏遗产绿道上，四足巡检机器人沿保留铁轨自主作业，云台灯光标出一处松脱扣件，维护员在步道上通过手持终端复核。主体：四足巡检机器人、保留铁轨、维护员与手持终端。"></div><figcaption><span>K3</span><strong>AI 验证</strong><p>与正文一致：四足巡检机器人沿保留铁轨提示松脱扣件，维护人员用手持终端复核</p></figcaption></figure><div class="film-notes"><p class="prebuilt-annotation">与正文一致：四足巡检机器人沿保留铁轨提示松脱扣件，维护人员用手持终端复核；这是“AI 提示、人工核验”的概念图，不证明设备、点位或巡检已存在。</p><p class="prebuilt-annotation">尺度校核：以站立人物 1.70 m、视高 1.55 m 为校核基准，复核维护员、巡检机器人、保留铁轨与步道的相对尺度；当前图未建立可量取比例，结果为 UNKNOWN。</p></div></article>
+          <article class="film-entry"><figure class="film-frame" data-film-frame="K4"><div class="film-layer"><img src="assets/slot-i.webp" alt="建成后的遗址公园黄昏：铁路遗存被纳入日常公共空间"></div><figcaption><span>K4</span><strong>回到生活</strong><p>与正文一致：同一遗存轨轴在概念未来中回到日常公园生活</p></figcaption></figure><div class="film-notes"><p class="prebuilt-annotation">与正文一致：同一遗存轨轴在概念未来中回到日常公园生活，遮荫、照明、养护、取景和复测设施均不表示已建成，点位、数量、责任和运营数据仍为 UNKNOWN。</p></div></article>
         </div>
       </div>
+    </section>
+
+    <section class="chapter-image">
+      <figure><img src="assets/slot-v15.webp" alt="AI 生成概念图。一条公共脊按近、中、远串起三座站体；前景站最亮最大，第二站次亮，第三站在蓝调天际微光中收束。城市、站体、活动和灯光均为概念设定；不表示真实现状或九层数据逐要素实景化。对应征集任务书：『打造标志性的城市景观节点』。"><figcaption><p>AI 生成概念图。</p><p>一条公共脊按近、中、远串起三座站体；城市、站体、活动和灯光均为概念设定，不表示真实现状或九层数据逐要素实景化。</p><p>对应征集任务书：『打造标志性的城市景观节点』。</p></figcaption></figure>
     </section>
 
     <section class="metrics-band" aria-label="规划范围关键指标">
@@ -2407,23 +2463,265 @@ figure figcaption > p + p {
       <article><b>368.4</b><span>HA / 03 FOCUS<br>三重点区合计</span></article>
     </section>
 
-    <section class="reading-path" aria-labelledby="reading-path-title">
-      <div><h2 id="reading-path-title">90 秒读完本方案</h2><p>每站约 15 秒，点击直达。</p></div>
-      <nav aria-label="90 秒阅读路线"><a href="#day"><span>01</span>城市出题</a><a href="#why-ai"><span>02</span>AI 受约束应考</a><a href="#manifesto"><span>03</span>公众判卷</a><a href="#m01-failure-replay"><span>04</span>熄火与恢复</a><a href="#tasks"><span>05</span>十卡三态</a><a href="#evidence"><span>06</span>证据边界</a></nav>
+    <section class="formal-figure-grid" aria-label="评审导览、整线时序与区域协同">
+      <figure class="formal-figure"><img src="../assets/figures/reviewer-evidence-read.webp" alt="评审五分钟证据核读｜导航图；不升级证据状态，UNKNOWN 保持不变"><figcaption>评审五分钟证据核读｜导航图；不升级证据状态，UNKNOWN 保持不变</figcaption></figure>
+      <figure class="formal-figure"><img src="../assets/figures/corridor-timetrack.webp" alt="整线时序｜机制顺序示意；非工期、非授权"><figcaption>整线时序｜机制顺序示意；非工期、非授权<p class="prebuilt-annotation">本图为整线机制时序；空间分段见〈图 2｜983 个用地图斑是主角〉。</p></figcaption></figure>
+      <figure class="formal-figure"><img src="../assets/figures/regional-synergy.webp" alt="区域创新协同接口图｜五对象经双轨三站进入、复测与退出"><figcaption>区域创新协同接口图｜五对象经双轨三站进入、复测与退出</figcaption></figure>
+    </section>
+
+    <section class="reading-path" id="reading-path" aria-labelledby="reading-path-title">
+      <header><h2 id="reading-path-title">按可用时间选择阅读路线</h2></header>
+      <article class="reading-route" data-pair="W4-007"><h3>AI 在这里到底干什么</h3><p>先说不开 AI 的时候。一条街上每天都有拧不清的事：骑手要停车卸货，老人要过马路，商户要开门做生意，同一段路缘谁先用、用多久，划线、贴牌和现场引导可以安排，但真起了冲突，还是得当场解决。</p><p>AI 干的是这件事：<strong>把这类争执变成可以比较的几个方案，比较每个方案对每一类人的影响，然后把选择权交回给人。</strong> 比如那段路缘，它会摆出三个做法——固定时段卸货、动态匿名调度、专业改造路缘——各自比较老人要多绕多远、骑手要多等多久、商户可能少几单。<strong>它只出这张对照表，不做决定，也不知道你是谁。</strong></p><p><strong>为什么要给它套这么多约束。</strong> 因为它算错了，代价不是一次报错，是一个坐轮椅的人今天出不了门。所以它被限制成只碰聚合数据、不碰个人；只做比较、不做排序；只出结论供人看、不接任何开关。</p><p><strong>为什么必须留一条完全不用 AI 的路。</strong> 因为这条街不是实验室，它每天都得正常运转。这个项目现在没批、没授权、没实施——它随时可能停。<strong>停了的时候，卸货、过街、看病、上学不能跟着停。</strong> 所以顺序是反的：先把不用 AI 也能走通的日常路径修好，AI 才被允许加在上面；哪天它熄火，就是回到那条一直在那儿的路。</p></article>
+      <div class="reading-route-grid">
+        <article class="reading-route" data-route="30s" data-pair="W4-008">
+          <h3>30 秒：先看做什么、在哪里、停了怎么办</h3>
+          <nav aria-label="30 秒：先看做什么、在哪里、停了怎么办">
+            <a href="#manifesto"><span>01</span>看方案怎样把最后决定交给人</a>
+            <a href="#atlas"><span>02</span>看规划范围画到哪里、哪些边界还待确认</a>
+            <a href="#m01-failure-replay"><span>03</span>看停用 AI 后怎样恢复原状并让日常继续</a>
+          </nav>
+        </article>
+        <article class="reading-route" data-route="3m" data-pair="W4-009">
+          <h3>3 分钟：再看一天的使用、三个区域和十个场景</h3>
+          <nav aria-label="3 分钟：再看一天的使用、三个区域和十个场景">
+            <a href="#atlas"><span>01</span>看规划范围、三层空间和哪些地方不能先动</a>
+            <a href="#day"><span>02</span>看老人、骑手、商户等人一天怎样使用这条线</a>
+            <a href="#areas"><span>03</span>看三个重点区域分别负责提问、复测还是小范围试用</a>
+            <a href="#tasks"><span>04</span>看十个场景分别让 AI 做什么、保留哪条人工路径</a>
+          </nav>
+        </article>
+        <article class="reading-route" data-route="15m" data-pair="W4-010">
+          <h3>15 分钟：细看 AI 的边界、失败恢复和证据状态</h3>
+          <nav aria-label="15 分钟：细看 AI 的边界、失败恢复和证据状态">
+            <a href="#day"><span>01</span>看一天四个时段里会遇到哪些具体问题</a>
+            <a href="#why-ai"><span>02</span>看 AI 只比较什么、哪些决定必须由人来做</a>
+            <a href="#m01-failure-replay"><span>03</span>看人工接手失败后怎样停用 AI、恢复原状和复测</a>
+            <a href="#tasks"><span>04</span>看十个场景卡分别写了什么</a>
+            <a href="#evidence"><span>05</span>看哪些材料已知、临时、待核或仍未确定</a>
+          </nav>
+        </article>
+      </div>
     </section>
 
     <section class="chapter-image chapter-text-only">
-      <header class="chapter-title"><p>K1</p><h2>工程史只指来路，不替当下证据</h2><span>工程史只提供问题的来路，不冒充已清权历史影像。</span></header>
+      <header class="chapter-title"><p>K1</p><h2>工程史只指来路，不替当下证据</h2><p class="section-note" data-pair="W3-001">本节说明京张工程史只用于交代问题从哪里来，当前判断仍要看当下证据。</p><span>工程史只提供问题的来路，不冒充已清权历史影像。</span></header>
     </section>
 
-    <section class="copy-band photo-band photo-band--02"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-02</p><h2>百年京张，一眼看全</h2><p>1909 年铁路建成，2019 年高铁开通，2026 年启动全球征集，接下来让 AI 接受城市检验，只是方案建议。</p></section>
+    <section class="copy-band photo-band photo-band--02"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-02</p><h2>百年京张，一眼看全</h2><p class="section-note" data-pair="W3-002">本节用三个时间点交代京张铁路、高铁和本次全球征集的来路。</p><p>1909 年铁路建成，2019 年高铁开通，2026 年启动全球征集，接下来让 AI 接受城市检验，只是方案建议。</p></section>
 
     <main>
-      <section class="copy-band photo-band photo-band--01" id="manifesto"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-01 / FIVE-SECOND CLAIM</p><h2>不合格，立即撤回</h2><div class="prose-stack"><p>城市的问题先交给科学检验，合格的办法才能回到街上，不合格就停下、撤回或恢复原样。 </p><p>公众版摘要：给你一分钟看懂：六道门与五本账 评委/市民朋友：这份方案还没有被批准，也没有授权实施，更没有在现场发生过，当前状态：未批准 · 未授权 · 未实施；只是桌面模拟｜非现场测试｜不代表真实项目发生过。 </p><p>项目要往前走，必须穿过六道门：数据与边界、问题价值、科学协议、城市首用、项目与资金、建设运营。每转一段都要留下责任、资料和复核记录；任一门不满足，项目不自动前进。 </p><p>同时要记五本账：规划设计、公共基础、场景验证、运营维护、社会协同。 </p><p>谁来做：众智园负责复查；AI 原点把问题说清再验证；大钟寺只有得到同意后才能小范围试用，并随时退出。M01 是唯一展开最深责任链的候选。 </p><p>目前还不确定：责任人：UNKNOWN；叫停人：UNKNOWN／待正式责任主体确认；复测日：UNKNOWN；恢复费用：UNKNOWN。 </p><p>保底方案：非 AI 等价路径为固定装卸时段、静态车位与人工引导；个人骑手不被跟踪或考核。万一失败，AI 层熄灭，恢复原状和非 AI 时刻表，日常任务继续。 </p><p>各场景的人工底线：G01 纸笔、电话、人工编码和联席会，AI 不定优先级；</p><p>W01 人工仪器、固定观察点，无真实数据不发布水质或安全结论；R01 正式查询、台账核对和现场联勘；AI 不判产权；R02 使用者和无障碍专业人员人工审计，保留静态导视；</p><p>M01 固定装卸时段、静态车位与人工引导，不追踪骑手；H01 电话、纸质目录、人工咨询，不诊断、不分号、不承诺号源；</p><p>H02 人工桌面推演，无医院授权不接真实患者数据；E01 教师带队、纸图、人工仪器，不跟踪学生、不自动评分；</p><p>C01 门面盘点和人工访谈，不做消费画像或行为操控；C02 人工问询、静态导视、固定活动表和无活动对照日。</p></div></section>
-      <section class="copy-band photo-band photo-band--03"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-03</p><h2>百姓读得懂，专家核得实</h2><div class="prose-stack"><p>普通人能看懂要改什么，评审能查到每句话从哪里来，不知道的就写明不知道。 </p><p>最低公共承诺：未批准 · 未授权 · 未实施 </p><p>日常协调和排序仍靠纸笔、电话、人工编码和联席会，AI不自动定优先级。 </p><p>水质与安全结论只来自人工仪器和固定观察点，没有真实数据不发布任何结论。 </p><p>公共导视和设施由使用者和无障碍专业人员人工审计，静态导视继续保留。 </p><p>送货上门有固定装卸时段、静态车位和人工引导，不追踪骑手位置。 </p><p>医疗咨询只通过电话、纸质目录和人工问询完成，不诊断、不分号、不承诺号源。 </p><p>学生外出由教师带队，使用纸图和人工仪器，不跟踪学生、不自动评分；社区活动靠人工问询、静态导视、固定活动表和无活动对照日安排。</p></div></section>
+<style>
+.nav-layer-c {
+  --nav-paper: var(--paper, #F5F0E6);
+  --nav-paper-light: var(--paper-light, #FCFAF4);
+  --nav-ink: var(--ink, #0B0D0E);
+  --nav-blue: var(--blue, #144886);
+  --nav-blue-deep: var(--blue-deep, #0D3569);
+  --nav-gold: var(--gold, #A77A2D);
+  --nav-line: var(--line, #CFC8BA);
+  color: var(--nav-ink);
+  background: var(--nav-paper);
+  font-family: var(--offline-cjk-font, var(--sans, serif));
+}
+.nav-layer-c,
+.nav-layer-c * { box-sizing: border-box; }
+.nav-layer-c h2,
+.nav-layer-c h3,
+.nav-layer-c p,
+.nav-layer-c figure { margin: 0; }
+.nav-layer-c .nav-screen {
+  position: relative;
+  min-height: min(900px, 92svh);
+  overflow: hidden;
+  border-bottom: 1px solid var(--nav-ink);
+  background: var(--nav-paper);
+}
+.nav-layer-c .nav-cover,
+.nav-layer-c .nav-finish { display: grid; min-height: min(960px, 96svh); color: #fff; background: #07172C; }
+.nav-layer-c .nav-cover-media,
+.nav-layer-c .nav-finish-media { position: absolute; inset: 0; }
+.nav-layer-c .nav-cover-media::after,
+.nav-layer-c .nav-finish-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7,23,44,.92), rgba(7,23,44,.55) 52%, rgba(7,23,44,.18));
+}
+.nav-layer-c .nav-cover-media img,
+.nav-layer-c .nav-finish-media img { width: 100%; height: 100%; object-fit: cover; }
+.nav-layer-c .nav-cover-copy,
+.nav-layer-c .nav-finish-copy {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  width: min(900px, 86%);
+  padding: clamp(44px, 8vw, 120px);
+}
+.nav-layer-c .nav-kicker {
+  margin-bottom: 22px;
+  color: #F2D69A;
+  font-size: clamp(14px, 1.5vw, 20px);
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+.nav-layer-c .nav-cover h2,
+.nav-layer-c .nav-finish h2 {
+  max-width: 18em;
+  color: #fff;
+  font-size: clamp(36px, 6vw, 82px);
+  font-weight: 600;
+  line-height: 1.18;
+}
+.nav-layer-c .nav-disclaimer {
+  width: fit-content;
+  margin-top: 30px;
+  padding: 12px 16px;
+  border-left: 4px solid var(--nav-gold);
+  background: rgba(255,255,255,.1);
+  font-weight: 700;
+}
+.nav-layer-c .nav-metrics { display: grid; align-content: center; gap: 36px; padding: clamp(52px, 8vw, 108px); }
+.nav-layer-c .nav-metrics header { max-width: 1050px; }
+.nav-layer-c .nav-metrics h2,
+.nav-layer-c .nav-timeline h2 {
+  color: var(--nav-blue-deep);
+  font-size: clamp(30px, 4vw, 54px);
+  line-height: 1.2;
+}
+.nav-layer-c .nav-metrics header p { max-width: 68em; margin-top: 18px; color: var(--muted, #666763); line-height: 1.75; }
+.nav-layer-c .nav-metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--nav-line); }
+.nav-layer-c .nav-metric {
+  min-height: 230px;
+  display: grid;
+  align-content: space-between;
+  gap: 20px;
+  padding: clamp(24px, 3vw, 42px);
+  background: var(--nav-paper-light);
+}
+.nav-layer-c .nav-metric strong { color: var(--nav-blue); font-size: clamp(38px, 5vw, 70px); font-weight: 500; line-height: 1; }
+.nav-layer-c .nav-metric p { font-weight: 700; }
+.nav-layer-c .nav-metric .nav-source { color: var(--muted, #666763); font-family: ui-monospace, monospace; font-size: 11px; font-weight: 400; overflow-wrap: anywhere; }
+.nav-layer-c .nav-area { display: grid; grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr); background: var(--nav-paper-light); }
+.nav-layer-c .nav-area-copy { display: grid; align-content: center; gap: 16px; padding: clamp(38px, 6vw, 84px); border-right: 1px solid var(--nav-line); }
+.nav-layer-c .nav-area-copy p { color: var(--nav-blue); font-weight: 700; letter-spacing: .08em; }
+.nav-layer-c .nav-area-copy h2 { color: var(--nav-blue-deep); font-size: clamp(31px, 4vw, 58px); line-height: 1.15; }
+.nav-layer-c .nav-area-copy small { display: block; margin-top: 16px; color: var(--muted, #666763); font-size: .38em; line-height: 1.5; }
+.nav-layer-c .nav-area-media { position: relative; min-height: min(900px, 92svh); background: #07172C; }
+.nav-layer-c .nav-area-media img { width: 100%; height: 100%; object-fit: cover; }
+.nav-layer-c .nav-area-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,23,44,.12), rgba(7,23,44,.42)); pointer-events: none; }
+.nav-layer-c .nav-callout {
+  position: absolute;
+  z-index: 1;
+  max-width: min(34ch, 46%);
+  padding: 11px 14px;
+  border-left: 3px solid var(--nav-gold);
+  background: rgba(7,23,44,.86);
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.nav-layer-c .nav-callout::before { content: ""; position: absolute; top: 50%; right: 100%; width: clamp(26px, 5vw, 90px); height: 1px; background: var(--nav-gold); }
+.nav-layer-c .nav-callout-a { top: 18%; right: 8%; }
+.nav-layer-c .nav-callout-b { top: 52%; right: 11%; }
+.nav-layer-c .nav-callout-c { right: 7%; bottom: 11%; }
+.nav-layer-c .nav-timeline { display: grid; align-content: center; gap: 42px; padding: clamp(52px, 8vw, 108px); }
+.nav-layer-c .nav-timeline-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: var(--nav-line); }
+.nav-layer-c .nav-time-cell { min-height: 300px; padding: clamp(22px, 2.5vw, 36px); background: var(--nav-paper-light); }
+.nav-layer-c .nav-time-cell h3 { margin-bottom: 18px; color: var(--nav-blue); font-size: clamp(21px, 2vw, 30px); line-height: 1.2; }
+.nav-layer-c .nav-time-cell p { color: var(--muted, #666763); line-height: 1.75; }
+@media (max-width: 900px) {
+  .nav-layer-c .nav-metric-grid { grid-template-columns: 1fr 1fr; }
+  .nav-layer-c .nav-area { grid-template-columns: 1fr; }
+  .nav-layer-c .nav-area-copy { border-right: 0; border-bottom: 1px solid var(--nav-line); }
+  .nav-layer-c .nav-area-media { min-height: 68svh; }
+  .nav-layer-c .nav-timeline-grid { grid-template-columns: 1fr; }
+  .nav-layer-c .nav-time-cell { min-height: auto; }
+}
+@media (max-width: 560px) {
+  .nav-layer-c .nav-metric-grid { grid-template-columns: 1fr; }
+  .nav-layer-c .nav-callout { right: 16px; left: 16px; max-width: none; }
+  .nav-layer-c .nav-callout::before { display: none; }
+}
+</style>
+
+<section class="nav-layer-c" aria-labelledby="nav-cover-title">
+  <section class="nav-screen nav-cover">
+    <figure class="nav-cover-media"><img src="assets/slot-a.jpg" alt="断带航拍：铁路遗存与当代街区交叠的现实冲突"></figure>
+    <div class="nav-cover-copy">
+      <p class="nav-kicker">京张·发现线</p>
+      <h2 id="nav-cover-title">让城市问题先过验证，再由公众决定继续、修改或撤除。</h2><p class="section-note" data-pair="W3-003">本节先给出整页流程：问题先验证，再由公众决定继续、修改、不采用或撤除。</p>
+    </div>
+  </section>
+
+  <section class="nav-screen nav-metrics" aria-labelledby="nav-metrics-title">
+    <header>
+      <h2 id="nav-metrics-title">规划范围关键指标</h2><p class="section-note" data-pair="W3-004">本节列出统筹研究范围、总体设计范围和三个重点区的面积，并标明精确边界仍不知道。</p>
+      <p>约 43.6 平方公里管统筹，约 11.4 平方公里管总体设计，约 368.4 公顷是三处重点区，精确边界还不知道。</p>
+    </header>
+    <div class="nav-metric-grid">
+      <article class="nav-metric" data-metric="coordinated_research_area_sqm" data-status="known"><strong>43.6 km²</strong><p>统筹研究范围</p><p class="nav-source">来源：metrics.json·coordinated_research_area_sqm</p></article>
+      <article class="nav-metric" data-metric="overall_design_area_sqm" data-status="known"><strong>11.4 km²</strong><p>总体设计范围</p><p class="nav-source">来源：metrics.json·overall_design_area_sqm</p></article>
+      <article class="nav-metric" data-metric="key_detailed_design_area_sqm" data-status="known"><strong>368.4 ha</strong><p>三重点区合计</p><p class="nav-source">来源：metrics.json·key_detailed_design_area_sqm</p></article>
+      <article class="nav-metric" data-metric="zhongzhiyuan_ai_acceleration_area_sqm" data-status="known"><strong>192.1 ha</strong><p>众智园AI自主创新加速区</p><p class="nav-source">来源：metrics.json·zhongzhiyuan_ai_acceleration_area_sqm</p></article>
+      <article class="nav-metric" data-metric="beijing_ai_origin_community_sqm" data-status="known"><strong>104.3 ha</strong><p>北京AI原点社区</p><p class="nav-source">来源：metrics.json·beijing_ai_origin_community_sqm</p></article>
+      <article class="nav-metric" data-metric="dazhongsi_ai_industry_cluster_sqm" data-status="known"><strong>72.0 ha</strong><p>大钟寺AI产业聚集区</p><p class="nav-source">来源：metrics.json·dazhongsi_ai_industry_cluster_sqm</p></article>
+    </div>
+  </section>
+
+  <section class="nav-screen nav-area" aria-labelledby="nav-area-zzy-title">
+    <div class="nav-area-copy"><p>校准与独立复测</p><h2 id="nav-area-zzy-title">众智园复测工场<small>众智园AI自主创新加速区</small></h2><p class="section-note" data-pair="W3-005">本节说明众智园怎样校准和独立复测问题，以及继续前还缺什么条件。</p></div>
+    <figure class="nav-area-media">
+      <img src="assets/slot-e.webp" alt="白发长者在年轻一辈陪行下，沿园路方向横向穿越遗存轨上的可移除垫道；同一对旧轨远处，记录员正测量未铺垫道段的轨面高差，让“能通过／仍是道坎／有人复测”同框成立。">
+      <p class="nav-callout nav-callout-a">问题先校准，再复测。</p>
+      <p class="nav-callout nav-callout-b">运营主体未确认，不进入下一步。</p>
+      <p class="nav-callout nav-callout-c">披露：AI 生成概念图。</p>
+    </figure>
+  </section>
+
+  <section class="nav-screen nav-area" aria-labelledby="nav-area-origin-title">
+    <div class="nav-area-copy"><p>问题进入与人工译题验证</p><h2 id="nav-area-origin-title">AI 原点问题与验证前厅<small>北京AI原点社区</small></h2><p class="section-note" data-pair="W3-006">本节说明问题怎样先由人说清，再检查遗产影响和是否能新增设施。</p></div>
+    <figure class="nav-area-media">
+      <img src="assets/slot-f.webp" alt="AI 生成概念图。设定人物以语音／手势使用全息城市沙盘；人工席和实体停止开关与 AI 平级。">
+      <p class="nav-callout nav-callout-a">问题进来，先由人译清。</p>
+      <p class="nav-callout nav-callout-b">遗产影响未审清，不新增设施。</p>
+      <p class="nav-callout nav-callout-c">AI 生成概念图。</p>
+    </figure>
+  </section>
+
+  <section class="nav-screen nav-area" aria-labelledby="nav-area-dzs-title">
+    <div class="nav-area-copy"><p>获授权后的有限首用与退出</p><h2 id="nav-area-dzs-title">大钟寺首用与退出街室<small>大钟寺AI产业聚集区</small></h2><p class="section-note" data-pair="W3-007">本节说明大钟寺怎样在获得授权后第一次小范围试用，以及试用和退出分别要满足哪些条件。</p></div>
+    <figure class="nav-area-media">
+      <img src="assets/slot-g.webp" alt="一座双层通高、天光充足的现代化中国服务大厅中，中老年人指着智能体屏幕发问，办事人员指着桌上纸表逐项解释；大厅内一台台轻薄终端以快拆法兰落地，多位市民同时交流办事，人工窗口和休息区继续满负荷服务。">
+      <p class="nav-callout nav-callout-a">首用之前，先写清退出。</p>
+      <p class="nav-callout nav-callout-b">社区承载待核，不放大客流。</p>
+      <p class="nav-callout nav-callout-c">披露：AI 生成概念图。</p>
+    </figure>
+  </section>
+
+  <section class="nav-screen nav-timeline" aria-labelledby="nav-timeline-title">
+    <h2 id="nav-timeline-title">长期运营采用一套四季循环</h2><p class="section-note" data-pair="W3-008">本节列出从收集问题到复盘去留的四个阶段，以及每个阶段要做什么。</p>
+    <div class="nav-timeline-grid">
+      <article class="nav-time-cell"><h3>城市出题季</h3><p>出题季接收真实问题并初筛公共价值、边界、受影响者和责任</p></article>
+      <article class="nav-time-cell"><h3>校准复测季</h3><p>复测季公开协议、校准和独立复现</p></article>
+      <article class="nav-time-cell"><h3>首用开放季</h3><p>首用季只接纳安全、隐私、无障碍、人工兜底、非 AI 路径和场地授权均已关闭的项目</p></article>
+      <article class="nav-time-cell"><h3>证据回返季</h3><p>回返季复盘成功、失败、投诉、维护、撤除与退役，再决定继续科研、进入采购、缩小、停止或退役。</p></article>
+      <article class="nav-time-cell"><h3>继续科研、进入采购、缩小、停止或退役</h3></article>
+    </div>
+  </section>
+
+  <section class="nav-screen nav-finish" aria-labelledby="nav-finish-title">
+    <figure class="nav-finish-media"><img src="assets/slot-i.webp" alt="建成后的遗址公园黄昏：铁路遗存被纳入日常公共空间"></figure>
+    <div class="nav-finish-copy">
+      <h2 id="nav-finish-title">合格发现回到公共决定；不合格就停止、撤回或恢复。</h2><p class="section-note" data-pair="W3-009">本节说明验证后的去向：合格的交给公众决定，不合格的停止、撤回或恢复。</p>
+      <p class="nav-disclaimer">桌面模拟｜非现场测试｜不代表真实项目发生过</p>
+    </div>
+  </section>
+</section>
+      <section class="copy-band photo-band photo-band--01" id="manifesto"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-01 / FIVE-SECOND CLAIM</p><h2>不合格，立即撤回</h2><p class="section-note" data-pair="W3-010">本节是一分钟摘要：项目要经过哪些检查、由谁负责，以及失败时怎样回到不用 AI 的日常办法。</p><div class="prose-stack"><p>城市问题先经科学检验；合格才回到街上，不合格就停止、撤回或恢复原样。</p><p>公众版摘要：给你一分钟看懂：六道门与五本账 评委/市民朋友：这份方案还没有被批准，也没有授权实施，更没有在现场发生过，当前状态：未批准 · 未授权 · 未实施；只是桌面模拟｜非现场测试｜不代表真实项目发生过。 </p><p>项目要往前走，必须穿过六道门：数据与边界、问题价值、科学协议、城市首用、项目与资金、建设运营。每转一段都要留下责任、资料和复核记录；任一门不满足，项目不自动前进。 </p><p>同时要记五本账：规划设计、公共基础、场景验证、运营维护、社会协同。 </p><p>谁来做：众智园负责复查；AI 原点把问题说清再验证；大钟寺只有得到同意后才能小范围试用，并随时退出。M01 是唯一展开最深责任链的候选。 </p><p>目前还不确定：责任人：UNKNOWN；叫停人：UNKNOWN／待正式责任主体确认；复测日：UNKNOWN；恢复费用：UNKNOWN。 </p><p>保底方案：非 AI 等价路径为固定装卸时段、静态车位与人工引导；个人骑手不被跟踪或考核。万一失败，AI 层熄灭，恢复原状和非 AI 时刻表，日常任务继续。 </p><p>各场景的人工底线：G01 纸笔、电话、人工编码和联席会，AI 不定优先级；</p><p>W01 人工仪器、固定观察点，无真实数据不发布水质或安全结论；R01 正式查询、台账核对和现场联勘；AI 不判产权；R02 使用者和无障碍专业人员人工审计，保留静态导视；</p><p>M01 固定装卸时段、静态车位与人工引导，不追踪骑手；H01 电话、纸质目录、人工咨询，不诊断、不分号、不承诺号源；</p><p>H02 人工桌面推演，无医院授权不接真实患者数据；E01 教师带队、纸图、人工仪器，不跟踪学生、不自动评分；</p><p>C01 门面盘点和人工访谈，不做消费画像或行为操控；C02 人工问询、静态导视、固定活动表和无活动对照日。</p></div></section>
+      <section class="copy-band photo-band photo-band--03"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-03</p><h2>百姓读得懂，专家核得实</h2><p class="section-note" data-pair="W3-011">本节列出各场景保留的人工办法，并说明普通人和评审分别能查什么。</p><div class="prose-stack"><p>普通人能看懂要改什么，评审能查到每句话从哪里来，不知道的就写明不知道。 </p><p>最低公共承诺：未批准 · 未授权 · 未实施 </p><p>日常协调和排序仍靠纸笔、电话、人工编码和联席会，AI不自动定优先级。 </p><p>水质与安全结论只来自人工仪器和固定观察点，没有真实数据不发布任何结论。 </p><p>公共导视和设施由使用者和无障碍专业人员人工审计，静态导视继续保留。 </p><p>送货上门有固定装卸时段、静态车位和人工引导，不追踪骑手位置。 </p><p>医疗咨询只通过电话、纸质目录和人工问询完成，不诊断、不分号、不承诺号源。 </p><p>学生外出由教师带队，使用纸图和人工仪器，不跟踪学生、不自动评分；社区活动靠人工问询、静态导视、固定活动表和无活动对照日安排。</p></div></section>
 
       <section class="section" id="atlas">
-        <header class="section-head"><p class="section-no">01</p><div><p class="eyebrow">SPATIAL ATLAS / 空间范围</p><h2>哪些能动，先划明</h2><p class="section-note">约 43.6 平方公里管统筹，约 11.4 平方公里管总体设计，约 368.4 公顷是三处重点区，精确边界还不知道。</p><p class="atlas-answer-claim"><strong>一脊承载日常，双轨分开生活与验证，三站完成译题—复测—有限首用。</strong><span>公共任务轨始终连续；科学发现轨只作旁侧、限域、可撤叠层。精确边界与 M01 落点仍待正式资料确认。</span></p></div></header>
+        <header class="section-head"><p class="section-no">01</p><div><p class="eyebrow">SPATIAL ATLAS / 空间范围</p><h2>哪些能动，先划明</h2><p class="section-note" data-pair="W3-012">本节汇总规划范围、众智园—AI 原点—大钟寺的分工、已知与待核边界，以及哪些空间可以讨论。</p><p class="section-note">众智园负责复测；AI 原点把问题说清再验证；大钟寺只有获得授权后才可能有限首用，并可退出。</p><p class="atlas-answer-claim"><strong>一脊承载日常，双轨分开生活与验证，三站完成译题—复测—有限首用。</strong><span>公共任务轨始终连续；科学发现轨只作旁侧、限域、可撤叠层。精确边界与 M01 落点仍待正式资料确认。</span></p></div></header>
         <div class="geometry-sequence" data-geometry-sequence data-lang="zh" aria-labelledby="frame-title">
           <div class="geometry-sequence__stage" id="stage">
             <div class="geometry-sequence__canvas-wrap" id="canvas-wrap">
@@ -2438,7 +2736,7 @@ figure figcaption > p + p {
             </div>
             <div class="geometry-sequence__fallback" id="fallback" hidden>
               <button id="restart" type="button" data-text="restart" aria-label="回第 1 帧">回第 1 帧</button>
-              <img id="fallback-image" src="../assets/figures/site-overview.png" alt="图 1｜范围、双轨与三站答案总图">
+              <img id="fallback-image" src="../assets/figures/site-overview.png" alt="三层范围与空间工作框架图">
               <p data-text="fallbackText">静态图 1 保留为无脚本、运行失败或用户主动选择时的可读后备。</p>
               <ol id="fallback-layers"><li>临时母面 · 1</li><li>用地 · 983</li><li>建筑 · 1699</li><li>道路中心线 · 564</li><li>绿地 · 124</li><li>公共空间 · 20</li><li>三重点区 · 3</li><li>分期 · 4</li><li>约束 · 0</li></ol>
             </div>
@@ -2469,7 +2767,7 @@ figure figcaption > p + p {
             <p class="geometry-sequence__status" id="status"></p>
           </aside>
           <p class="geometry-sequence__screen-reader" id="live" aria-live="polite"></p>
-          <noscript><style>.geometry-sequence > .geometry-sequence__stage,.geometry-sequence > .geometry-sequence__message-band,.geometry-sequence > .geometry-sequence__panel,.geometry-sequence > .geometry-sequence__screen-reader{display:none!important}</style><section class="geometry-sequence__noscript"><img src="../assets/figures/site-overview.png" alt="图 1｜范围、双轨与三站答案总图"><p>无脚本静态后备：site_boundary、land_use、buildings、roads、green_space、public_space、key_areas、phasing、constraints；精确红线、消防与无障碍均为 UNKNOWN。</p></section></noscript>
+          <noscript><style>.geometry-sequence > .geometry-sequence__stage,.geometry-sequence > .geometry-sequence__message-band,.geometry-sequence > .geometry-sequence__panel,.geometry-sequence > .geometry-sequence__screen-reader{display:none!important}</style><section class="geometry-sequence__noscript"><img src="../assets/figures/site-overview.png" alt="三层范围与空间工作框架图"><p>无脚本静态后备：site_boundary、land_use、buildings、roads、green_space、public_space、key_areas、phasing、constraints；精确红线、消防与无障碍均为 UNKNOWN。</p></section></noscript>
         </div>
         <div class="geometry-stage3d" id="geometry-stage3d" aria-labelledby="geometry-3d-title" hidden>
           <header class="geometry-stage3d__head">
@@ -2489,9 +2787,9 @@ figure figcaption > p + p {
           </div>
           <p class="geometry-stage3d__status" id="geometry-3d-status" aria-live="polite"></p>
         </div>
-        <div class="formal-figure-grid" aria-label="八对正式图之范围与结构图">
-          <figure class="formal-figure"><img src="../assets/figures/site-overview.png" alt="图 1｜范围、双轨与三站答案总图"><figcaption>图 1｜范围、双轨与三站答案总图</figcaption></figure>
-          <figure class="formal-figure"><img src="../assets/figures/land-use-structure.png" alt="图 2｜983 个用地图斑是主角"><figcaption>图 2｜983 个用地图斑是主角</figcaption></figure>
+        <div class="formal-figure-grid" aria-label="二十三对正式图之范围与结构图">
+          <figure class="formal-figure"><img src="../assets/figures/site-overview.png" alt="三层范围与空间工作框架图"><figcaption>三层范围与空间工作框架图<p class="prebuilt-annotation">本图给全线与三站位置；分段用地见〈图 2｜983 个用地图斑是主角〉的北／中／南三段；机制时序见〈整线时序｜机制顺序示意；非工期、非授权〉。</p></figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/land-use-structure.png" alt="图 2｜983 个用地图斑是主角"><figcaption>图 2｜983 个用地图斑是主角<p class="prebuilt-annotation">三段为同数据、同倍率、同朝向；三段在全线上的位置见〈三层范围与空间工作框架图〉。</p></figcaption></figure>
         </div>
         <section class="p4-land-use-table" aria-label="图 2 用地分区色条表">
           <div class="p4-land-use-table__bar" aria-hidden="true">
@@ -2526,24 +2824,24 @@ figure figcaption > p + p {
       </section>
 
       <section class="chapter-image chapter-text-only">
-        <header class="chapter-title"><p>K2</p><h2>先测现实冲突，再谈方案优劣</h2><span>老人、骑手、商户、居民与夜班人员的处境仍待现场复测。</span></header>
+        <header class="chapter-title"><p>K2</p><h2>先测现实冲突，再谈方案优劣</h2><p class="section-note" data-pair="W3-013">本节先列出老人、骑手、商户、居民和夜班人员遇到的冲突，并标明哪些还要现场复测。</p><span>老人、骑手、商户、居民与夜班人员的处境仍待现场复测。</span></header>
       </section>
 
       <section class="section" id="day">
-        <header class="section-head"><p class="section-no">02</p><div><p class="eyebrow">FOUR DAILY ROUTES / 四段日常</p><h2>从清晨问到深夜，不放过细节</h2><p class="section-note">清早老人、中午骑手商户、下午师生、夜班人员和居民轮流来看问题，不用 AI 也有人接手，出错后还能恢复。 </p><p class="section-note">一个人的一天：【合成标注】以下为桌面模拟的合成叙述，人物为设定人物·非访谈，不来自任何真实访谈或现场。</p><p class="section-note">M01不是物理卡、门票、感应区、自动凭据或实际运行系统。桌面模拟｜非现场测试｜不代表真实项目发生过。 </p><p class="section-note">早上，一位设定人物沿街经过，看到路缘同时被骑手补货、商户短停和居民通行争用。M01用同一ID记录问题。 </p><p class="section-note">中午，M01把A、B、C三案放在同一ID下，AI只用聚合数据比较：A是固定时段、静态车位、人工引导；B是轻量、可逆、匿名调度，不追踪或考核个人骑手；C是由有权主体与专业团队接手的专业路缘深化。 </p><p class="section-note">下午，M01记录有权主体与受影响者人工决定继续、修改、不采用或撤除；当前责任主体仍未确认。 </p><p class="section-note">傍晚，桌面模拟中人工接手缺失即NO-GO；AI层熄灭，恢复原状和非AI时刻表，日常任务继续；M01记录停止、恢复与下一轮复测。 </p><p class="section-note">责任人：UNKNOWN；叫停人：UNKNOWN／待正式责任主体确认；复测日：UNKNOWN；恢复费用：UNKNOWN。 </p><p class="section-note">当前仍是：未批准 · 未授权 · 未实施。</p></div></header>
-        <figure class="formal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行、市政与蓝绿公共空间复合图" loading="lazy"><figcaption>交通慢行、市政与蓝绿公共空间复合图</figcaption></figure>
+        <header class="section-head"><p class="section-no">02</p><div><p class="eyebrow">FOUR DAILY ROUTES / 四段日常</p><h2>从清晨问到深夜，不放过细节</h2><p class="section-note" data-pair="W3-014">本节按清晨、中午、下午和夜晚，查看四类人怎样办事，以及 AI 停止时人工路线怎样接上。</p><p class="section-note">桌面记录只支持桌面条目及其判定，不证明现场成效、批准、授权或实施。</p><p class="section-note">一个人的一天：【合成标注】以下为桌面模拟的合成叙述，人物为设定人物·非访谈，不来自任何真实访谈或现场。</p><p class="section-note">M01不是物理卡、门票、感应区、自动凭据或实际运行系统。桌面模拟｜非现场测试｜不代表真实项目发生过。 </p><p class="section-note">早上，一位设定人物沿街经过，看到路缘同时被骑手补货、商户短停和居民通行争用。M01用同一ID记录问题。 </p><p class="section-note">中午，M01把A、B、C三案放在同一ID下，AI只用聚合数据比较：A是固定时段、静态车位、人工引导；B是轻量、可逆、匿名调度，不追踪或考核个人骑手；C是由有权主体与专业团队接手的专业路缘深化。 </p><p class="section-note">下午，M01记录有权主体与受影响者人工决定继续、修改、不采用或撤除；当前责任主体仍未确认。 </p><p class="section-note">傍晚，桌面模拟中人工接手缺失即NO-GO；AI层熄灭，恢复原状和非AI时刻表，日常任务继续；M01记录停止、恢复与下一轮复测。 </p><p class="section-note">责任人：UNKNOWN；叫停人：UNKNOWN／待正式责任主体确认；复测日：UNKNOWN；恢复费用：UNKNOWN。 </p><p class="section-note">当前仍是：未批准 · 未授权 · 未实施。</p></div></header>
+        <figure class="formal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行、市政与蓝绿公共空间复合图" loading="lazy"><figcaption>交通慢行、市政与蓝绿公共空间复合图<p class="prebuilt-annotation">本图给四类使用者一天中的可撤 AI 叠层、人工接手层与永不断的日常层；交通、市政与蓝绿的空间关系见〈钥匙图〉与〈983 个用地图斑〉。</p><p class="prebuilt-annotation">图中各层的数据等级与九层逐层身份见〈AI 开启 / 关闭：消失什么，留下什么〉。</p></figcaption></figure>
         <div class="day-grid">
           <article><p class="eyebrow">清晨 / 不使用智能手机的老人</p><h3>先用人工导视，把路走明白。</h3><p>非 AI 路径：纸质导视与人工问询；失败时由现场人员接手。</p></article>
           <article><p class="eyebrow">中午 / 骑手、商户、居民</p><h3>把一段路缘的冲突，摊在所有人面前。</h3><p>非 AI 路径：固定时段、静态车位与人工引导；失败时停止调整。</p></article>
           <article><p class="eyebrow">下午 / 学生、教师、研究者</p><h3>问题进来，先由人把它译清楚。</h3><p>非 AI 路径：线下记录、人工复测与公开讨论；失败时回到原流程。</p></article>
           <article><p class="eyebrow">夜晚 / 夜班人员与周边居民</p><h3>活动散场前，先把安静与归程接住。</h3><p>非 AI 路径：固定活动表、静态导视与人工问询；失败时撤回候选安排。</p></article>
         </div>
-        <figure class="wide-image"><img src="assets/slot-b.webp" alt="AI 生成概念图。同一街段以连续光线渐变表达一天，人工服务和公共通道保持不断线。场地、设施、人物与时段均为设定，非真实运营记录。对应征集任务书：『完善“工作-生活-社交-学习”一体化的城市空间系统』。"><figcaption><p>AI 生成概念图。</p><p>同一街段以连续光线渐变表达一天，人工服务和公共通道保持不断线。</p><p>场地、设施、人物与时段均为设定，非真实运营记录。对应征集任务书：『完善“工作-生活-社交-学习”一体化的城市空间系统』。</p></figcaption></figure>
-        <figure class="formal-figure"><img src="../assets/figures/curb-four-states.png" alt="V03｜同一 M01 概念路缘四态"><figcaption>V03｜同一 M01 概念路缘四态</figcaption></figure>
+        <figure class="wide-image"><img src="assets/slot-b.webp" alt="AI 生成概念图。同一街段以连续光线渐变表达一天，人工服务和公共通道保持不断线。场地、设施、人物与时段均为设定，非真实运营记录。对应征集任务书：『完善“工作-生活-社交-学习”一体化的城市空间系统』。"><figcaption><p>AI 生成概念图。</p><p>同一街段以连续光线渐变表达一天，人工服务和公共通道保持不断线。</p><p>场地、设施、人物与时段均为设定，非真实运营记录。对应征集任务书：『完善“工作-生活-社交-学习”一体化的城市空间系统』。</p><p class="prebuilt-annotation">与正文一致：同一街段以连续光线表达一天四时段，人工服务和公共通道保持不断线；场地、设施、人物与时段均为设定，不是运营记录。</p><p class="prebuilt-annotation">尺度校核：以站立人物 1.70 m、轮椅坐姿 1.32 m、视高 1.55 m 为校核基准，复核人物、人工服务点、路缘与公共通道的相对尺度；当前图未建立可量取比例，结果为 UNKNOWN，不得据此判定通过。</p></figcaption></figure>
+        <figure class="formal-figure"><img src="../assets/figures/curb-four-states.webp" alt="V03｜同一 M01 概念路缘四态"><figcaption>V03｜同一 M01 概念路缘四态</figcaption></figure>
       </section>
 
       <section class="section">
-        <header class="section-head"><p class="section-no">03</p><div><p class="eyebrow">C02 / THREE OPTIONS</p><h2>谁受益，谁担成本</h2><p class="section-note">商户、居民、夜班人员和访客的得失，按三种做法和不办活动来比较，AI 只整理，最后由人决定。</p></div></header>
+        <header class="section-head"><p class="section-no">03</p><div><p class="eyebrow">C02 / THREE OPTIONS</p><h2>谁受益，谁担成本</h2><p class="section-note" data-pair="W3-015">本节比较三种活动安排和不办活动，对商户、居民、夜班人员和访客分别有什么影响。</p><p class="section-note">商户、居民、夜班人员和访客的得失，按三种做法和不办活动来比较，AI 只整理，最后由人决定。</p></div></header>
         <div class="option-grid">
           <article><span>01</span><h3>安静</h3><p>少声光，先保日常</p></article>
           <article><span>02</span><h3>平衡</h3><p>有限活动，留观测点</p></article>
@@ -2551,21 +2849,21 @@ figure figcaption > p + p {
           <article><span>00</span><h3>无活动</h3><p>固定活动表、静态导视，作为对照。</p></article>
         </div>
         <div class="c02-grid">
-          <figure><img src="assets/slot-c.jpg" alt="路缘的三分与秒级变化：同一段路缘在不同时段分别用于步行、临时停靠与装卸的对比（AI 生成概念示意图）"><figcaption>路缘的三分与秒级变化：同一段路缘在不同时段分别用于步行、临时停靠与装卸的对比（AI 生成概念示意图）</figcaption></figure>
+          <figure><img src="assets/slot-c.jpg" alt="路缘的三分与秒级变化：同一段路缘在不同时段分别用于步行、临时停靠与装卸的对比（AI 生成概念示意图）"><figcaption>路缘的三分与秒级变化：同一段路缘在不同时段分别用于步行、临时停靠与装卸的对比（AI 生成概念示意图）<p class="prebuilt-annotation">与正文一致：同一路缘在步行、短停、装卸与无活动对照之间作概念比较，AI 只整理得失，最终取舍仍由人决定；图中状态不是实测或排期。</p><p class="prebuilt-annotation">尺度校核：以同一组人物投影基准复核四个路缘状态中的行人、车辆、装卸界面与路缘关系是否同尺度；当前图未建立可量取比例，结果为 UNKNOWN，不得把画面比较写成实测。</p></figcaption></figure>
           <div class="c02-copy"><p>C02 / 谁受益、谁承担、谁拍板</p><div><span>差异</span><p>居民、商户、夜班人员与访客，处境并不相同。</p></div><div><span>保留</span><p>人工问询、静态导视、固定活动表与恢复安排。</p></div><div><span>拍板</span><p>AI只聚合比较；居民与商户会议取舍，有权主体决定。</p></div><p>UNKNOWN / 待现场基线与人类会议比较</p></div>
         </div>
       </section>
 
       <section class="chapter-image chapter-text-only">
-        <header class="chapter-title"><p>K3</p><h2>AI 不拍板，只供证据</h2><span>AI 只做检索、比选、追踪与复算，边界和采用由人决定。</span></header>
+        <header class="chapter-title"><p>K3</p><h2>AI 不拍板，只供证据</h2><p class="section-note" data-pair="W3-016">本节说明 AI 只做检索、比较、跟踪和复算，采用、暂停和退出由人决定。</p><span>AI 只做检索、比选、追踪与复算，边界和采用由人决定。</span></header>
       </section>
 
-      <section class="why-ai" id="why-ai"><p class="eyebrow">WHY AI / 为什么需要AI</p><h2>AI 负责比较，<br><em>人负责决定。</em></h2><div><p>数据量大、变化快，人算不过来。AI可检索、比选、追踪、复算；边界、采用、暂停和退出都由人决定。</p><strong>AI不自动决策。它把问题变成可对照的证据，决定仍交还给人。</strong></div></section>
+      <section class="why-ai" id="why-ai"><p class="eyebrow">WHY AI / 为什么需要AI</p><h2>AI 负责比较，<br><em>人负责决定。</em></h2><p class="section-note" data-pair="W3-017">本节解释为什么使用 AI、它具体负责哪些比较，以及哪些决定始终由人来做。</p><div><p>数据量大、变化快，人算不过来。AI可检索、比选、追踪、复算；边界、采用、暂停和退出都由人决定。</p><strong>AI不自动决策。它把问题变成可对照的证据，决定仍交还给人。</strong></div></section>
 
-      <figure class="formal-figure"><img src="../assets/figures/v14-ai-on-off.png" alt="AI 开启 / 关闭：消失什么，留下什么"><figcaption>AI 开启 / 关闭：消失什么，留下什么</figcaption></figure>
+      <figure class="formal-figure"><img src="../assets/figures/v14-ai-on-off.webp" alt="AI 开启 / 关闭：消失什么，留下什么"><figcaption>AI 开启 / 关闭：消失什么，留下什么</figcaption></figure>
 
       <section class="section" id="m01-responsibility">
-        <header class="section-head"><p class="section-no">04</p><div><p class="eyebrow">M01 DISCOVERY PASSPORT</p><h2>说不清责任，一律不试</h2><p class="section-note">一段路要试，先说清谁负责、拿什么比较、谁能叫停、怎么恢复，缺一项都不试；目前没获批、没获场地许可，也没开始。</p></div></header>
+        <header class="section-head"><p class="section-no">04</p><div><p class="eyebrow">M01 DISCOVERY PASSPORT</p><h2>说不清责任，一律不试</h2><p class="section-note" data-pair="W3-018">M01 是本页展开最细的一张任务卡；本节列清谁使用、谁负责、谁能叫停和怎样恢复。</p><p class="section-note">一段路要试，先说清谁负责、拿什么比较、谁能叫停、怎么恢复，缺一项都不试；目前没获批、没获场地许可，也没开始。</p></div></header>
         <section class="m01-responsibility" aria-labelledby="m01-responsibility-title">
           <header><div><p>M01｜同屏责任卡</p><h3 id="m01-responsibility-title">十个字段，一屏查清；UNKNOWN 原样保留</h3></div><strong>M01</strong></header>
           <div class="m01-responsibility-grid">
@@ -2582,7 +2880,7 @@ figure figcaption > p + p {
           </div>
         </section>
         <section class="failure-replay" id="m01-failure-replay" aria-labelledby="m01-failure-title">
-          <header class="section-head"><p class="section-no">M01 / 04</p><div><p class="eyebrow">CSS-ONLY FAILURE REPLAY</p><h2 id="m01-failure-title">AI 可熄火，人工与日常通道必须留</h2><p class="section-note">四态文字结论始终可见；选择标签只切换剖面。四态共用同一 M01 ID，不把桌面模拟写成现场事实。 </p><details class="evidence-trail"><summary>追证层</summary><p class="section-note">我们在桌面上跑过的那一次 桌面模拟｜非现场测试｜不代表真实项目发生过 状态声明：当前状态：未批准 · 未授权 · 未实施。  另须防止把机器门的『完整』读成专业深化已完成——前者只指证据链满足当前门禁,专业空间深化仍待具备资质的团队接续。</p><p class="section-note">三态票据：十卡各三态共 30 张票据已合并为单一 JSON 数组；每票含输入摘要、六门判定、依据路径及合成/非现场标记。人工基线与协议比较各 10 张为条件未齐；越线推进 10/10 被规则拒绝。 </p><p class="section-note">负向注入：负向注入 14 项，结果 `14 injections / 0 leaks`；覆盖越权、非AI通道缺失、撤回失败、责任空缺、M01 漂移等类型。 </p><p class="section-note">该结果仅证明桌面推演内无泄漏，不证明现场。 </p><p class="section-note">M01 一轮闭合：M01 通过 Codex 自身模型真实生成 1 轮空间候选：提示词、3 个候选、3 个裁决全部存档，没有删轮或结果性挑选；模型精确服务身份与种子不可得已如实记录。3 个候选均未越过授权、资源和运营条件，现场计数为 0。 </p><p class="section-note">整线降级：任一卡复测不过，整条线护照等级降回上一级，禁止只补最差一卡；该记录不是一次真实复测。 </p><p class="section-note">权限边界：众智园负责复查；AI 原点把问题说清再验证；大钟寺只有得到同意后才能小范围试用，并随时退出。 </p><p class="section-note">责任链（M01）：M01 是唯一展开最深责任链的候选。责任人：UNKNOWN；叫停人：UNKNOWN／待正式责任主体确认；复测日：UNKNOWN；恢复费用：UNKNOWN。 </p><p class="section-note">非 AI 与失败恢复：非 AI 等价路径为固定装卸时段、静态车位与人工引导；个人骑手不被跟踪或考核。失败时 AI 层熄灭，恢复原状和非 AI 时刻表，日常任务继续。 </p><p class="section-note">双计数：双计数已锁定为：桌面推演 `30/30`、真实复测 `0`、现场 `0`。 </p><p class="section-note">小结：边界线 / 桌面模拟｜非现场测试｜不代表真实项目发生过 / 不可删改 桌面票据 / 30/30 / 十卡各三态 负向注入 / 14 injections / 0 leaks / 0 漏检 M01 捕获 / 1 轮；3 个候选；3 个裁决 / 全部存档 </p><p class="section-note">真实复测 / 0 / 没有执行 现场 / 0 / 没有执行 </p><p class="section-note">当前状态 / 未批准 · 未授权 · 未实施 / 不可删改 责任人 / UNKNOWN / 待正式责任主体确认 叫停人 / UNKNOWN / 待正式责任主体确认 复测日 / UNKNOWN / 恢复费用 / UNKNOWN /</p></details></div></header>
+          <header class="section-head"><p class="section-no">M01 / 04</p><div><p class="eyebrow">CSS-ONLY FAILURE REPLAY</p><h2 id="m01-failure-title">AI 可熄火，人工与日常通道必须留</h2><p class="section-note" data-pair="W3-019">本节用四种状态说明：先让不用 AI 的日常办法独立可用，再比较方案、检查条件和演示失败恢复。</p><p class="section-note">四态文字结论始终可见；选择标签只切换剖面。四态共用同一 M01 ID，不把桌面模拟写成现场事实。 </p><details class="evidence-trail"><summary>追证层</summary><p class="section-note">我们在桌面上跑过的那一次 桌面模拟｜非现场测试｜不代表真实项目发生过 状态声明：当前状态：未批准 · 未授权 · 未实施。  另须防止把机器门的『完整』读成专业深化已完成——前者只指证据链满足当前门禁,专业空间深化仍待具备资质的团队接续。</p><p class="section-note">三态票据：十卡各三态共 30 张票据已合并为单一 JSON 数组；每票含输入摘要、六门判定、依据路径及合成/非现场标记。人工基线与协议比较各 10 张为条件未齐；越线推进 10/10 被规则拒绝。 </p><p class="section-note">负向注入：负向注入 14 项，结果 `14 injections / 0 leaks`；覆盖越权、非AI通道缺失、撤回失败、责任空缺、M01 漂移等类型。 </p><p class="section-note">该结果仅证明桌面推演内无泄漏，不证明现场。 </p><p class="section-note">M01 一轮闭合：M01 通过 Codex 自身模型真实生成 1 轮空间候选：提示词、3 个候选、3 个裁决全部存档，没有删轮或结果性挑选；模型精确服务身份与种子不可得已如实记录。3 个候选均未越过授权、资源和运营条件，现场计数为 0。 </p><p class="section-note">整线降级：任一卡复测不过，整条线护照等级降回上一级，禁止只补最差一卡；该记录不是一次真实复测。 </p><p class="section-note">权限边界：众智园负责复查；AI 原点把问题说清再验证；大钟寺只有得到同意后才能小范围试用，并随时退出。 </p><p class="section-note">责任链（M01）：M01 是唯一展开最深责任链的候选。责任人：UNKNOWN；叫停人：UNKNOWN／待正式责任主体确认；复测日：UNKNOWN；恢复费用：UNKNOWN。 </p><p class="section-note">非 AI 与失败恢复：非 AI 等价路径为固定装卸时段、静态车位与人工引导；个人骑手不被跟踪或考核。失败时 AI 层熄灭，恢复原状和非 AI 时刻表，日常任务继续。 </p><p class="section-note">双计数：双计数已锁定为：桌面推演 `30/30`、真实复测 `0`、现场 `0`。 </p><p class="section-note">小结：边界线 / 桌面模拟｜非现场测试｜不代表真实项目发生过 / 不可删改 桌面票据 / 30/30 / 十卡各三态 负向注入 / 14 injections / 0 leaks / 0 漏检 M01 捕获 / 1 轮；3 个候选；3 个裁决 / 全部存档 </p><p class="section-note">真实复测 / 0 / 没有执行 现场 / 0 / 没有执行 </p><p class="section-note">当前状态 / 未批准 · 未授权 · 未实施 / 不可删改 责任人 / UNKNOWN / 待正式责任主体确认 叫停人 / UNKNOWN / 待正式责任主体确认 复测日 / UNKNOWN / 恢复费用 / UNKNOWN /</p></details></div></header>
           <input class="visually-hidden-control" type="radio" name="m01-replay-zh" id="replay-zh-1" checked>
           <input class="visually-hidden-control" type="radio" name="m01-replay-zh" id="replay-zh-2">
           <input class="visually-hidden-control" type="radio" name="m01-replay-zh" id="replay-zh-3">
@@ -2637,7 +2935,7 @@ figure figcaption > p + p {
         </div>
       </section>
 
-      <figure class="formal-figure"><img src="../assets/figures/v16-m01-sections.png" alt="V16｜M01 三态共基准概念剖面组"><figcaption>V16｜M01 三态共基准概念剖面组</figcaption></figure>
+      <figure class="formal-figure"><img src="../assets/figures/v16-m01-sections.webp" alt="V16｜M01 三态共基准概念剖面组"><figcaption>V16｜M01 三态共基准概念剖面组</figcaption></figure>
 
 <section class="switch-note" id="switch-note" aria-labelledby="switch-note-title">
   <figure class="switch-note__diagram">
@@ -2664,7 +2962,7 @@ figure figcaption > p + p {
     </svg>
   </figure>
   <div class="switch-note__copy">
-    <h2 id="switch-note-title">双轨之间，是一副道岔</h2>
+    <h2 id="switch-note-title">双轨之间，是一副道岔</h2><p class="section-note" data-pair="W3-020">本节解释日常通道为什么不能停、AI 怎样只在旁边受限介入，以及人怎样随时叫停。</p>
     <ol class="switch-note__map">
       <li data-source-ref="visual/index.html#switch-note"><b>正线（列车常走的主轨）：</b>人工与日常通道保持开放，不因 AI 层上线或下线而中断。</li>
       <li data-source-ref="visual/index.html#switch-note"><b>侧线（临时停靠的辅轨）：</b>AI 受约束介入；B 案轻量、可逆、匿名。</li>
@@ -2676,7 +2974,7 @@ figure figcaption > p + p {
 </section>
 
       <section class="dual-state" aria-labelledby="dual-state-title">
-        <header><h2 id="dual-state-title">同一段路缘，AI 开与关都走得通</h2><p>同一 M01 ID 下先把非 AI 路径走通；AI 只作受约束、可撤的比较层。</p></header>
+        <header><h2 id="dual-state-title">同一段路缘，AI 开与关都走得通</h2><p class="section-note" data-pair="W3-021">本节逐项比较同一段路边装卸和通行空间在 AI 关闭与开启时，任务、做法、记录、停止和验收有什么不同。</p><p>同一 M01 ID 下先把非 AI 路径走通；AI 只作受约束、可撤的比较层。</p></header>
         <div role="region" aria-label="同一路缘 AI 开关双态对照表">
           <table>
             <thead><tr><th scope="col">对照项</th><th scope="col">AI 关·普通城市（A 案）</th><th scope="col">AI 开·受约束介入（B 案）</th></tr></thead>
@@ -2693,13 +2991,21 @@ figure figcaption > p + p {
       </section>
 
       <section class="section" id="areas">
-        <header class="section-head"><p class="section-no">05</p><div><p class="eyebrow">THREE FOCUS AREAS / 三区</p><h2>三地分责，各管一段</h2><p class="section-note">众智园负责复查，AI 原点把问题说清再验证，大钟寺只有得到同意后才能小范围试用，并随时退出。</p></div></header>
+        <header class="section-head"><p class="section-no">05</p><div><p class="eyebrow">THREE FOCUS AREAS / 三区</p><h2>三地分责，各管一段</h2><p class="section-note" data-pair="W3-022">本节说明众智园负责再次检查，AI 原点负责先把问题说清，大钟寺负责获授权后小范围试用并退出。</p><p class="section-note">众智园负责复查，AI 原点把问题说清再验证，大钟寺只有得到同意后才能小范围试用，并随时退出。</p></div></header>
         <div class="triptych">
-          <figure><img src="assets/slot-e.webp" alt="白发长者在年轻一辈陪行下，沿园路方向横向穿越遗存轨上的可移除垫道；同一对旧轨远处，记录员正测量未铺垫道段的轨面高差，让“能通过／仍是道坎／有人复测”同框成立。前景细杆装置为试验叫停桩，顶部为工业蘑菇急停钮，不是消防设施。对应征集任务书：『聚焦公园慢行系统断点，创新提出交通系统优化的解决方案』。披露：AI 生成概念图。叫停桩小标牌为伪文字；现场高差、安全尺寸、坡度、材料、承载、防滑、点位、审批与运维责任均为 UNKNOWN，须由无障碍、遗产保护与运营专业复核。"><figcaption><p>白发长者在年轻一辈陪行下，沿园路方向横向穿越遗存轨上的可移除垫道；同一对旧轨远处，记录员正测量未铺垫道段的轨面高差，让“能通过／仍是道坎／有人复测”同框成立。</p><p>前景细杆装置为试验叫停桩，顶部为工业蘑菇急停钮，不是消防设施。对应征集任务书：『聚焦公园慢行系统断点，创新提出交通系统优化的解决方案』。</p><p>披露：AI 生成概念图。叫停桩小标牌为伪文字；现场高差、安全尺寸、坡度、材料、承载、防滑、点位、审批与运维责任均为 UNKNOWN，须由无障碍、遗产保护与运营专业复核。</p></figcaption></figure>
-          <figure><img src="assets/slot-f.webp" alt="AI 生成概念图。设定人物以语音／手势使用全息城市沙盘；人工席和实体停止开关与 AI 平级。场地、人物、设施与流程均为概念表达，非已建成或已运营设施。对应征集任务书：『完善成果展示发布、居住生活配套功能』。"><figcaption><p>AI 生成概念图。</p><p>设定人物以语音／手势使用全息城市沙盘；人工席和实体停止开关与 AI 平级。</p><p>场地、人物、设施与流程均为概念表达，非已建成或已运营设施。对应征集任务书：『完善成果展示发布、居住生活配套功能』。</p></figcaption></figure>
-          <figure><img src="assets/slot-g.webp" alt="一座双层通高、天光充足的现代化中国服务大厅中，中老年人指着智能体屏幕发问，办事人员指着桌上纸表逐项解释；大厅内一台台轻薄终端以快拆法兰落地，多位市民同时交流办事，人工窗口和休息区继续满负荷服务。侧墙注册铭牌与退役盖板、桌侧急停钮和责任公示把智能体纳入可追责、可暂停、可退出的公共服务机制。对应征集任务书：『重点围绕智能体、智能终端、内容消费等AI原生和AI+融合赋能新业态』。披露：AI 生成概念图。屏幕、铭牌与责任公示牌均为伪界面／伪文字；大厅、终端、岗位、流程、责任主体、点位、数量、版本与退役安排均为概念表达或 UNKNOWN，不表示已建设或已授权运行。"><figcaption><p>一座双层通高、天光充足的现代化中国服务大厅中，中老年人指着智能体屏幕发问，办事人员指着桌上纸表逐项解释；大厅内一台台轻薄终端以快拆法兰落地，多位市民同时交流办事，人工窗口和休息区继续满负荷服务。</p><p>侧墙注册铭牌与退役盖板、桌侧急停钮和责任公示把智能体纳入可追责、可暂停、可退出的公共服务机制。</p><p>对应征集任务书：『重点围绕智能体、智能终端、内容消费等AI原生和AI+融合赋能新业态』。</p><p>披露：AI 生成概念图。</p><p>屏幕、铭牌与责任公示牌均为伪界面／伪文字；大厅、终端、岗位、流程、责任主体、点位、数量、版本与退役安排均为概念表达或 UNKNOWN，不表示已建设或已授权运行。</p></figcaption></figure>
+          <figure><img src="assets/slot-e.webp" alt="白发长者在年轻一辈陪行下，沿园路方向横向穿越遗存轨上的可移除垫道；同一对旧轨远处，记录员正测量未铺垫道段的轨面高差，让“能通过／仍是道坎／有人复测”同框成立。前景细杆装置为试验叫停桩，顶部为工业蘑菇急停钮，不是消防设施。对应征集任务书：『聚焦公园慢行系统断点，创新提出交通系统优化的解决方案』。披露：AI 生成概念图。叫停桩小标牌为伪文字；现场高差、安全尺寸、坡度、材料、承载、防滑、点位、审批与运维责任均为 UNKNOWN，须由无障碍、遗产保护与运营专业复核。"><figcaption><p>白发长者在年轻一辈陪行下，沿园路方向横向穿越遗存轨上的可移除垫道；同一对旧轨远处，记录员正测量未铺垫道段的轨面高差，让“能通过／仍是道坎／有人复测”同框成立。</p><p>前景细杆装置为试验叫停桩，顶部为工业蘑菇急停钮，不是消防设施。对应征集任务书：『聚焦公园慢行系统断点，创新提出交通系统优化的解决方案』。</p><p>披露：AI 生成概念图。叫停桩小标牌为伪文字；现场高差、安全尺寸、坡度、材料、承载、防滑、点位、审批与运维责任均为 UNKNOWN，须由无障碍、遗产保护与运营专业复核。</p><p class="prebuilt-annotation">与正文一致：轮椅使用者在陪行下跨越遗存轨的可移除垫道，记录员在未铺垫段复核高差；垫道、叫停桩、尺寸、点位、审批与运维均是概念表达或 UNKNOWN。</p><p class="prebuilt-annotation">尺度校核：以站立人物 1.70 m、轮椅坐姿 1.32 m、视高 1.55 m 为校核基准，复核轮椅使用者、陪行者、记录员、轨面、垫道与叫停桩的相对尺度；当前图未建立可量取比例，高差、安全尺寸与坡度均保持 UNKNOWN。</p></figcaption></figure>
+          <figure><img src="assets/slot-f.webp" alt="AI 生成概念图。设定人物以语音／手势使用全息城市沙盘；人工席和实体停止开关与 AI 平级。场地、人物、设施与流程均为概念表达，非已建成或已运营设施。对应征集任务书：『完善成果展示发布、居住生活配套功能』。"><figcaption><p>AI 生成概念图。</p><p>设定人物以语音／手势使用全息城市沙盘；人工席和实体停止开关与 AI 平级。</p><p>场地、人物、设施与流程均为概念表达，非已建成或已运营设施。对应征集任务书：『完善成果展示发布、居住生活配套功能』。</p><p class="prebuilt-annotation">与正文一致：设定人物使用全息城市沙盘时，人工席和实体停止开关与 AI 平级；场地、人物、设施与流程均未表示已经建成或运营。</p><p class="prebuilt-annotation">尺度校核：以站立人物 1.70 m、轮椅坐姿 1.32 m、视高 1.55 m 为校核基准，复核设定人物、全息沙盘、人工席与实体停止开关的相对尺度和可达关系；当前图未建立可量取比例，结果为 UNKNOWN。</p></figcaption></figure>
+          <figure><img src="assets/slot-g.webp" alt="一座双层通高、天光充足的现代化中国服务大厅中，中老年人指着智能体屏幕发问，办事人员指着桌上纸表逐项解释；大厅内一台台轻薄终端以快拆法兰落地，多位市民同时交流办事，人工窗口和休息区继续满负荷服务。侧墙注册铭牌与退役盖板、桌侧急停钮和责任公示把智能体纳入可追责、可暂停、可退出的公共服务机制。对应征集任务书：『重点围绕智能体、智能终端、内容消费等AI原生和AI+融合赋能新业态』。披露：AI 生成概念图。屏幕、铭牌与责任公示牌均为伪界面／伪文字；大厅、终端、岗位、流程、责任主体、点位、数量、版本与退役安排均为概念表达或 UNKNOWN，不表示已建设或已授权运行。"><figcaption><p>一座双层通高、天光充足的现代化中国服务大厅中，中老年人指着智能体屏幕发问，办事人员指着桌上纸表逐项解释；大厅内一台台轻薄终端以快拆法兰落地，多位市民同时交流办事，人工窗口和休息区继续满负荷服务。</p><p>侧墙注册铭牌与退役盖板、桌侧急停钮和责任公示把智能体纳入可追责、可暂停、可退出的公共服务机制。</p><p>对应征集任务书：『重点围绕智能体、智能终端、内容消费等AI原生和AI+融合赋能新业态』。</p><p>披露：AI 生成概念图。</p><p>屏幕、铭牌与责任公示牌均为伪界面／伪文字；大厅、终端、岗位、流程、责任主体、点位、数量、版本与退役安排均为概念表达或 UNKNOWN，不表示已建设或已授权运行。</p><p class="prebuilt-annotation">与正文一致：快拆终端与人工窗口、纸表、座席、停止和退役界面并存；屏幕与铭牌为伪界面，岗位、责任、点位、数量、版本和退役安排均为概念或 UNKNOWN。</p><p class="prebuilt-annotation">尺度校核：以站立人物 1.70 m、轮椅坐姿 1.32 m、视高 1.55 m 为校核基准，复核使用者、工作人员、快拆终端、人工窗口和座席的相对尺度；当前图未建立可量取比例，点位、数量与无障碍尺寸仍为 UNKNOWN。</p></figcaption></figure>
         </div>
         <figure class="formal-figure"><img src="../assets/figures/key-areas.png" alt="图 3｜三区各负一责，责任站不等于空间落点"><figcaption>图 3｜三区各负一责，责任站不等于空间落点</figcaption></figure>
+        <div class="formal-figure-grid" aria-label="三处重点区三联图">
+          <figure class="formal-figure"><img src="../assets/figures/triptych-zhongzhiyuan.webp" alt="众智园三联图｜CC 实拍＋OSM 锚定＋概念示意；非介入点位、非现状"><figcaption>众智园三联图｜CC 实拍＋OSM 锚定＋概念示意；非介入点位、非现状</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/triptych-ai-yuandian.webp" alt="AI 原点三联图｜CC 实拍＋OSM 锚定＋概念示意；非介入点位、非现状"><figcaption>AI 原点三联图｜CC 实拍＋OSM 锚定＋概念示意；非介入点位、非现状</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/triptych-dazhongsi.webp" alt="大钟寺三联图｜CC 实拍＋OSM 锚定＋概念示意；非介入点位、非现状"><figcaption>大钟寺三联图｜CC 实拍＋OSM 锚定＋概念示意；非介入点位、非现状</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/section-zhongzhiyuan.webp" alt="图 3A｜众智园｜复测台—公众解释—设备退出界面"><figcaption>图 3A｜众智园｜复测台—公众解释—设备退出界面<p class="prebuilt-annotation">本图分带宽度为分配意向，条件性尺寸依据见〈V16｜M01 三态共基准概念剖面组〉（DB11/T 1116—2024 提取值）。</p></figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/section-ai-yuandian.webp" alt="图 3B｜AI 原点｜无 App 问题入口—人工译题—手工采样界面"><figcaption>图 3B｜AI 原点｜无 App 问题入口—人工译题—手工采样界面<p class="prebuilt-annotation">本图分带宽度为分配意向，条件性尺寸依据见〈V16｜M01 三态共基准概念剖面组〉（DB11/T 1116—2024 提取值）。</p></figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/section-dazhongsi.webp" alt="图 3C｜大钟寺｜首层—路缘—公园可撤单元"><figcaption>图 3C｜大钟寺｜首层—路缘—公园可撤单元<p class="prebuilt-annotation">本图分带宽度为分配意向，条件性尺寸依据见〈V16｜M01 三态共基准概念剖面组〉（DB11/T 1116—2024 提取值）。</p></figcaption></figure>
+        </div>
         <div class="area-grid">
           <article class="area-card"><div class="area-code">A-01<br><small>192.1 ha</small></div><div><p>校准与独立复测</p><h3>众智园复测工场<br><small>众智园AI自主创新加速区</small></h3></div><div><p>此处的动作</p><h3>问题先校准，再复测。</h3><p>让问题经由独立复测，才进入下一段；不把概念工场写成已建成设施。</p></div><div class="stop"><p>停止条件</p><strong>运营主体未确认，不进入下一步。</strong></div></article>
           <article class="area-card"><div class="area-code">A-02<br><small>104.3 ha</small></div><div><p>问题进入与人工译题验证</p><h3>AI 原点问题与验证前厅<br><small>北京AI原点社区</small></h3></div><div><p>此处的动作</p><h3>问题进来，先由人译清。</h3><p>把问题送入受控验证；不把概念展示写成已发生的城市服务。</p></div><div class="stop"><p>停止条件</p><strong>遗产影响未审清，不新增设施。</strong></div></article>
@@ -2709,8 +3015,8 @@ figure figcaption > p + p {
       </section>
 
       <section class="section" id="tasks">
-        <header class="section-head"><p class="section-no">06</p><div><p class="eyebrow">SIX REQUIRED THREADS / 官方六任务</p><h2>六题必答，一题不落</h2><p class="section-note">六项官方任务逐项摆明，做到哪一步一眼就能看清。</p></div></header>
-        <section class="copy-band photo-band photo-band--09"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-09</p><h2>十张卡，只做深三张</h2><p>十张任务卡一张不少，先把小月河、路边停车和活动安排三张做深，不再加第十一张。</p></section>
+        <header class="section-head"><p class="section-no">06</p><div><p class="eyebrow">SIX REQUIRED THREADS / 官方六任务</p><h2>六题必答，一题不落</h2><p class="section-note" data-pair="W3-023">本节把六项官方任务逐项列出，方便查看每项回应到哪一步。</p><p class="section-note">六项官方任务逐项摆明，做到哪一步一眼就能看清。</p></div></header>
+        <section class="copy-band photo-band photo-band--09"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-09</p><h2>十张卡，只做深三张</h2><p class="section-note" data-pair="W3-024">本节列出十张任务卡各自服务谁、AI 做什么、人工办法是什么，以及什么情况下停止。</p><p>十张任务卡一张不少，先把小月河、路边停车和活动安排三张做深，不再加第十一张。</p></section>
         <div class="card-grid scene">
           <article><span>G01</span><p>不用 App 的人用纸笔提问；AI 不自动排优先级，非 AI 入口中断即停。</p></article>
           <article><span>W01</span><p>学生跨天气观察热、水、通行，AI 只做异常初筛；未授权、未校准或越权发结论即停。</p></article>
@@ -2731,23 +3037,23 @@ figure figcaption > p + p {
           <article class="task"><span>agent.05</span><div><h3>百年京张文化、中关村文化与 AI 新文化融合叙事设计</h3><p>历史是发动机，不是复古装饰。</p></div><div><ul><li>京张铁路历史文化资源系统</li><li>中关村创新文化与 AI 新文化叙事</li><li>空间文化系统和表达载体</li><li>导视、标识、符号系统</li><li>城市气质和国际传播叙事</li></ul></div></article>
           <article class="task"><span>agent.06</span><div><h3>一带全球 AI 创新活动体系与长期运营设计</h3><p>所有活动仍是候选，不冒充排期。</p></div><div><ul><li>年度活动体系</li><li>活动品牌与传播视觉系统</li><li>开发者社区运营机制</li><li>AI 场景开放运营机制</li><li>公共体验和城市地标运营</li><li>国际传播和招引转化机制</li></ul></div></article>
         </div>
-        <figure class="wide-image"><img src="assets/slot-h.webp" alt="AI 生成概念图。一个街区被切开：日常在地面，人工在店内，箭头屏 AI 构件由吊车在半空撤离；地下只保留可信市政管线。建筑、构件、人员和地下层均为概念表达，不代表真实标高、管线或施工条件。对应征集任务书：『探索分布式能源、端侧算力等AI产业新型服务设施与传统三大设施的融合发展模式和实施路径』。"><figcaption><p>AI 生成概念图。</p><p>一个街区被切开：日常在地面，人工在店内，箭头屏 AI 构件由吊车在半空撤离；地下只保留可信市政管线。</p><p>建筑、构件、人员和地下层均为概念表达，不代表真实标高、管线或施工条件。对应征集任务书：『探索分布式能源、端侧算力等AI产业新型服务设施与传统三大设施的融合发展模式和实施路径』。</p></figcaption></figure>
+        <figure class="wide-image"><img src="assets/slot-h.webp" alt="AI 生成概念图。一个街区被切开：日常在地面，人工在店内，箭头屏 AI 构件由吊车在半空撤离；地下只保留可信市政管线。建筑、构件、人员和地下层均为概念表达，不代表真实标高、管线或施工条件。对应征集任务书：『探索分布式能源、端侧算力等AI产业新型服务设施与传统三大设施的融合发展模式和实施路径』。"><figcaption><p>AI 生成概念图。</p><p>一个街区被切开：日常在地面，人工在店内，箭头屏 AI 构件由吊车在半空撤离；地下只保留可信市政管线。</p><p>建筑、构件、人员和地下层均为概念表达，不代表真实标高、管线或施工条件。对应征集任务书：『探索分布式能源、端侧算力等AI产业新型服务设施与传统三大设施的融合发展模式和实施路径』。</p><p class="prebuilt-annotation">与正文一致：地面日常和人工服务保留，箭头屏 AI 构件可由吊车撤离，地下仅作传统设施融合的概念剖切；图中标高、管线和施工条件不是真实工程资料。</p></figcaption></figure>
       </section>
 
       <section class="chapter-image chapter-text-only gold">
-        <header class="chapter-title"><p>K4</p><h2>考过回街头，不过就退出</h2><span>合格发现回到公共决定；不合格就停止、撤回或恢复。</span></header>
+        <header class="chapter-title"><p>K4</p><h2>考过回街头，不过就退出</h2><p class="section-note" data-pair="W3-025">本节说明验证结果怎样回到公众决定，未通过时怎样停止、撤回或恢复。</p><span>合格发现回到公共决定；不合格就停止、撤回或恢复。</span></header>
       </section>
 
-      <section class="copy-band photo-band photo-band--13"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-13</p><h2>先试一小段，用数据定去留</h2><p>建议甲方确认车站—商业—公园—社区这段路，责任说清后再决定是否做 30 到 90 天、随时能撤的试验；这不是建设工期。</p></section>
-      <figure class="wide-image"><img src="assets/slot-j.webp" alt="AI 生成概念图。无台阶共享铺装上，小车队承担装卸，人工在旁装货、复核、调度，行人继续通行。地点、车辆、人员、部署和运营状态均为概念设定。对应征集任务书：『完善非机动车停放等静态交通组织』。"><figcaption><p>AI 生成概念图。</p><p>无台阶共享铺装上，小车队承担装卸，人工在旁装货、复核、调度，行人继续通行。</p><p>地点、车辆、人员、部署和运营状态均为概念设定。对应征集任务书：『完善非机动车停放等静态交通组织』。</p></figcaption></figure>
-      <section class="copy-band photo-band photo-band--14"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-14</p><h2>功劳和失败，都写进档案</h2><p>京张把事做准，中关村允许试错，AI 必须对人负责；公共荣誉既记贡献，也记纠错、失败和退出。</p></section>
-      <figure class="wide-image"><img src="assets/slot-k.jpg" alt="AI 生成概念示意：退役人形机器人立于路侧维护架，维护者拆下臂部模块；维护与退役档案对公众开放，居民在路侧档案柜取阅无文字素面档案板。主体：缺右臂的人形机器人、维护者、档案柜与素面档案板。"><figcaption>AI 生成概念示意：退役人形机器人立于路侧维护架，维护者拆下臂部模块；维护与退役档案对公众开放，居民在路侧档案柜取阅无文字素面档案板。</figcaption></figure>
+      <section class="copy-band photo-band photo-band--13"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-13</p><h2>先试一小段，用数据定去留</h2><p class="section-note" data-pair="W3-026">本节说明计划先试哪一小段、开始前要把哪些责任说清，以及怎样根据试验数据决定继续或撤回。</p><p>建议甲方确认车站—商业—公园—社区这段路，责任说清后再决定是否做 30 到 90 天、随时能撤的试验；这不是建设工期。</p></section>
+      <figure class="wide-image"><img src="assets/slot-j.webp" alt="AI 生成概念图。无台阶共享铺装上，小车队承担装卸，人工在旁装货、复核、调度，行人继续通行。地点、车辆、人员、部署和运营状态均为概念设定。对应征集任务书：『完善非机动车停放等静态交通组织』。"><figcaption><p>AI 生成概念图。</p><p>无台阶共享铺装上，小车队承担装卸，人工在旁装货、复核、调度，行人继续通行。</p><p>地点、车辆、人员、部署和运营状态均为概念设定。对应征集任务书：『完善非机动车停放等静态交通组织』。</p><p class="prebuilt-annotation">与正文一致：无台阶共享铺装上，小车承担装卸，人工继续装货、复核和调度，行人仍可通行；地点、车辆、人员、部署与运营状态均为概念设定。</p><p class="prebuilt-annotation">尺度校核：以站立人物 1.70 m、轮椅坐姿 1.32 m、视高 1.55 m 为校核基准，复核行人、装卸人员、小车、共享铺装和通行带的相对尺度；当前图未建立可量取比例，零台阶表达不得替代现场高差复核，结果为 UNKNOWN。</p></figcaption></figure>
+      <section class="copy-band photo-band photo-band--14"><span class="band-media-note">AI 生成概念图</span><p class="bind">BIND-14</p><h2>功劳和失败，都写进档案</h2><p class="section-note" data-pair="W3-027">本节说明贡献、纠错、失败和退出怎样一起进入公开档案。</p><p>京张把事做准，中关村允许试错，AI 必须对人负责；公共荣誉既记贡献，也记纠错、失败和退出。</p></section>
+      <figure class="wide-image"><img src="assets/slot-k.jpg" alt="AI 生成概念示意：退役人形机器人立于路侧维护架，维护者拆下臂部模块；维护与退役档案对公众开放，居民在路侧档案柜取阅无文字素面档案板。主体：缺右臂的人形机器人、维护者、档案柜与素面档案板。"><figcaption>AI 生成概念示意：退役人形机器人立于路侧维护架，维护者拆下臂部模块；维护与退役档案对公众开放，居民在路侧档案柜取阅无文字素面档案板。<p class="prebuilt-annotation">与正文一致：退役机器人由维护者拆解，维护与退役档案向公众可读；该图只表达贡献、纠错、失败和退出都应留档，不证明设备或档案设施已经运行。</p><p class="prebuilt-annotation">尺度校核：以站立人物 1.70 m、轮椅坐姿 1.32 m、视高 1.55 m 为校核基准，复核维护者、退役机器人、维护架、档案柜与公众取阅界面的相对尺度；当前图未建立可量取比例，结果为 UNKNOWN。</p></figcaption></figure>
 
       <section class="section">
-        <header class="section-head"><p class="section-no">07</p><div><p class="eyebrow">OUTPUT INDEX / 全包十对正式图与十卡</p><h2>全包十对正式图，其中八对为构件核心图族</h2><p class="section-note">全包十对正式图均已挂载，其中八对构件核心图族各答一个问题；图中继续区分真实数据、临时口径与 UNKNOWN。</p></div></header>
-        <p class="status-update">当前全包十对正式展示图已生成并挂载，状态为 10/10；其中八对属于构件核心图族。</p>
-        <figure class="formal-figure"><img src="../assets/figures/task-brief-crosswalk.png" alt="任务书对照图｜回应了什么，还缺什么"><figcaption>任务书对照图｜回应了什么，还缺什么</figcaption></figure>
-        <figure class="formal-figure"><img src="../assets/figures/key-map.png" alt="关键图索引｜十对正式图一页定位"><figcaption>关键图索引｜十对正式图一页定位</figcaption></figure>
+        <header class="section-head"><p class="section-no">07</p><div><p class="eyebrow">OUTPUT INDEX / 全包二十三对正式图与十卡</p><h2>二十三对正式图覆盖范围、空间、剖面、证据与交接</h2><p class="section-note" data-pair="W3-028">本节提供二十三对正式图的快速索引，告诉读者每张图回答什么、证据状态和去哪里查。</p><p class="section-note">全包二十三对正式图均已挂载；以下十项保留为快速导览，图中继续区分真实数据、临时口径与 UNKNOWN。</p></div></header>
+        <p class="status-update">当前全包二十三对正式展示图已生成并挂载，状态为 23/23；以下清单是十项快速导览。</p>
+        <figure class="formal-figure"><img src="../assets/figures/task-brief-crosswalk.webp" alt="任务书对照图｜回应了什么，还缺什么"><figcaption>任务书对照图｜回应了什么，还缺什么</figcaption></figure>
+        <figure class="formal-figure"><img src="../assets/figures/key-map.webp" alt="钥匙图｜M01 的责任在一处，空间候选在另一处"><figcaption>钥匙图｜M01 的责任在一处，空间候选在另一处</figcaption></figure>
         <div class="output-list">
           <article><span>01</span><h3>一脊双轨三站：能动的、不能动的，都画在这张图上</h3><p>规划哪里，哪些范围与几何已知或待核？</p><em>已挂载；公告面积已知，精确边界待核</em></article>
           <article><span>02</span><h3>资源怎样接起来，图上有答案；法定控制仍是 UNKNOWN</h3><p>怎样连接高校、科研、社区、商业和公共空间？</p><em>已挂载；结构与专业图层一并显示</em></article>
@@ -2758,13 +3064,143 @@ figure figcaption > p + p {
           <article><span>07</span><h3>V16｜M01 三态共基准概念剖面组</h3><p>同一基准下，AI 关、有限首用与停止恢复怎样并列？</p><em>已挂载；确定性矢量制图｜非比例概念表达</em></article>
           <article><span>08</span><h3>任务书对照图｜回应了什么，还缺什么</h3><p>任务原文怎样落到对象、证据与下一专业？</p><em>已挂载；回应不等于实施</em></article>
           <article><span>09</span><h3>AI 开启／关闭：消失什么，留下什么</h3><p>AI 层退出后，人工与日常任务是否继续？</p><em>已挂载；开启与关闭状态同图对照</em></article>
-          <article><span>10</span><h3>关键图索引｜十对正式图一页定位</h3><p>十对正式图怎样快速定位？</p><em>已挂载；图件角色与编号集中说明</em></article>
+          <article><span>10</span><h3>钥匙图｜M01 的责任在一处，空间候选在另一处</h3><p>M01 的责任站与空间候选怎样分开读取？</p><em>已挂载；图件角色与编号集中说明</em></article>
         </div>
-        <div class="counts"><div><b>10/10</b><p>全包正式展示图<br>已挂载</p></div><div><b>10</b><p>场景卡<br>深层字段已装配</p></div><div><b>06</b><p>任务线程<br>待证据回填</p></div></div>
+        <div class="counts"><div><b>23/23</b><p>全包正式展示图<br>已挂载</p></div><div><b>10</b><p>场景卡<br>深层字段已装配</p></div><div><b>06</b><p>任务线程<br>待证据回填</p></div></div>
       </section>
 
+      <!--S1-P4-VISUAL-ONLY-BEGIN-->
+      <section class="p4-catalog" id="intervention-exit-catalogue" aria-labelledby="intervention-exit-catalogue-title">
+        <header class="p4-catalog__head">
+          <div><p class="p4-catalog__eyebrow">四件介入物 / 装、拆、恢复</p><h2 id="intervention-exit-catalogue-title">可逆介入物与撤场目录</h2><p class="section-note" data-pair="W3-029">本节列出四件可拆走的设施分别保留什么、增加什么、禁止什么，以及怎样安装、拆除和恢复。</p></div>
+          <p class="p4-catalog__note">概念示意，不是施工依据；具体点位、工程做法、实施条件与责任人待正式确认。</p>
+        </header>
+        <ul class="p4-catalog__legend" aria-label="状态图例">
+          <li><span class="p4-catalog__badge p4-catalog__badge--retain">保留</span></li>
+          <li><span class="p4-catalog__badge p4-catalog__badge--add">新增</span></li>
+          <li><span class="p4-catalog__badge p4-catalog__badge--prohibit">禁止</span></li>
+        </ul>
+        <div class="p4-catalog__grid">
+          <article class="p4-catalog__item" data-catalogue-id="zhongzhiyuan-retest-unit">
+            <div class="p4-catalog__media"><img src="assets/p4-catalog-zhongzhiyuan-retest-unit.webp" alt="众智园概念成图裁切：桥旁可撤复测台、遮蔽与解释界面。" loading="lazy" decoding="async"></div>
+            <div class="p4-catalog__body">
+              <h3>众智园｜复测与解释装置</h3>
+              <div class="p4-catalog__states">
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--retain">保留</span><span>桥体、水岸、连续步行与复测空间</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--add">新增</span><span>可撤复测台、遮蔽与解释界面</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--prohibit">禁止</span><span>改桥、占水岸或把概念当施工</span></div>
+              </div>
+              <dl class="p4-catalog__actions">
+                <dt>怎么装</dt>
+                <dd>在既有步行界面旁布置可撤复测台、遮蔽与解释界面。</dd>
+                <dt>怎么拆</dt>
+                <dd>先收回设备和记录，再撤走台面、遮蔽与临时导引。</dd>
+                <dt>撤场恢复</dt>
+                <dd>清理临时接触面，恢复水岸、桥体周边和连续步行。</dd>
+                <dt>责任人</dt>
+                <dd class="p4-catalog__blank" aria-label="责任人待正式指定，当前留空"></dd>
+              </dl>
+            </div>
+          </article>
+          <article class="p4-catalog__item" data-catalogue-id="ai-origin-question-cylinder">
+            <div class="p4-catalog__media"><img src="assets/p4-catalog-ai-origin-question-cylinder.webp" alt="AI 原点概念成图裁切：站房前场的问题投递筒。" loading="lazy" decoding="async"></div>
+            <div class="p4-catalog__body">
+              <h3>AI 原点｜问题投递筒</h3>
+              <div class="p4-catalog__states">
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--retain">保留</span><span>站房前场、人工投递路径与正常通行</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--add">新增</span><span>可撤投递筒与人工说明</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--prohibit">禁止</span><span>把投递变成自动审批或永久占地</span></div>
+              </div>
+              <dl class="p4-catalog__actions">
+                <dt>怎么装</dt>
+                <dd>放置可撤投递筒与人工说明，先保留原有通行。</dd>
+                <dt>怎么拆</dt>
+                <dd>先停止受理，再撤走筒体、支座与临时导引。</dd>
+                <dt>撤场恢复</dt>
+                <dd>清除临时接触痕迹，按进场前记录恢复地面与动线。</dd>
+                <dt>责任人</dt>
+                <dd class="p4-catalog__blank" aria-label="责任人待正式指定，当前留空"></dd>
+              </dl>
+            </div>
+          </article>
+          <article class="p4-catalog__item" data-catalogue-id="ai-origin-robot-wall-screen">
+            <div class="p4-catalog__media"><img src="assets/p4-catalog-ai-origin-robot-wall-screen.webp" alt="AI 原点概念成图裁切：人工解释旁的交互机器人与独立墙屏。" loading="lazy" decoding="async"></div>
+            <div class="p4-catalog__body">
+              <h3>AI 原点｜交互机器人＋墙屏</h3>
+              <div class="p4-catalog__states">
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--retain">保留</span><span>人工解释、无 App 路径与绕行空间</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--add">新增</span><span>交互机器人与独立墙屏</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--prohibit">禁止</span><span>替人排序、采集身份或堵塞通行</span></div>
+              </div>
+              <dl class="p4-catalog__actions">
+                <dt>怎么装</dt>
+                <dd>把机器人与独立墙屏作为同一服务点布置，同时保留人工解释。</dd>
+                <dt>怎么拆</dt>
+                <dd>先停用交互，再分别撤走机器人、墙屏和临时导引。</dd>
+                <dt>撤场恢复</dt>
+                <dd>清除临时界面与接触痕迹，恢复墙面、地面和人工服务路径。</dd>
+                <dt>责任人</dt>
+                <dd class="p4-catalog__blank" aria-label="责任人待正式指定，当前留空"></dd>
+              </dl>
+            </div>
+          </article>
+          <article class="p4-catalog__item" data-catalogue-id="dazhongsi-first-use-room">
+            <div class="p4-catalog__media"><img src="assets/p4-catalog-dazhongsi-first-use-room.webp" alt="大钟寺概念成图裁切：首层人工窗口、可撤街室界面与快拆终端。" loading="lazy" decoding="async"></div>
+            <div class="p4-catalog__body">
+              <h3>大钟寺｜首用与退出街室</h3>
+              <div class="p4-catalog__states">
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--retain">保留</span><span>既有首层、人工窗口与无障碍通行</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--add">新增</span><span>可撤街室界面与静态导引</span></div>
+                <div class="p4-catalog__state"><span class="p4-catalog__badge p4-catalog__badge--prohibit">禁止</span><span>封堵出入口、取消人工服务或永久占地</span></div>
+              </div>
+              <dl class="p4-catalog__actions">
+                <dt>怎么装</dt>
+                <dd>在既有首层界面布置可撤服务与导引，人工窗口保持可用。</dd>
+                <dt>怎么拆</dt>
+                <dd>先停止首用，再撤走临时服务、导引和展示界面。</dd>
+                <dt>撤场恢复</dt>
+                <dd>恢复原有出入口、地面与人工服务；完成复走后再关闭记录。</dd>
+                <dt>责任人</dt>
+                <dd class="p4-catalog__blank" aria-label="责任人待正式指定，当前留空"></dd>
+              </dl>
+            </div>
+          </article>
+        </div>
+        <section class="component-card" id="review-evidence-index" aria-labelledby="review-evidence-index-title">
+          <header><h2 id="review-evidence-index-title">七维证据索引</h2><p class="section-note" data-pair="W3-030">本节按评委看的七件事，列出方案怎样回答、证据在哪里，以及和任务书有什么关系。</p></header>
+          <div role="region" aria-label="七维评审证据索引表">
+            <table>
+              <thead><tr><th scope="col">评审维度</th><th scope="col">本方案回应</th><th scope="col">证据指针</th></tr></thead>
+              <tbody>
+<tr><th scope="row">任务书相关性</th><td>官方任务索引只用“已回答”“概念级回答”“UNKNOWN＋接续条件”，不以概念回答替代正式资料、授权或实测。</td><td><a href="#tasks">#tasks</a>；proposal.md:515-519；compliance_matrix.json#/requirements</td></tr>
+<tr><th scope="row">原创性</th><td>发现护照 M01 用同一 ID 记录问题、三案比较、责任、复测、停止与恢复。</td><td><a href="#m01-responsibility">#m01-responsibility</a>；proposal.md:66；V14/V16</td></tr>
+<tr><th scope="row">AI 与城市规划创新性</th><td>AI 只整理、比较和提示；人负责授权、取舍与纠错，不合格就停止、撤回或恢复原样。</td><td><a href="#why-ai">#why-ai</a>；proposal.md:141；compliance_matrix.json agent.3</td></tr>
+<tr><th scope="row">可实施性</th><td>受控 HOLD：实施主体、需求基线、预算、恢复费用和运营接收均为触发后事项；当前由第五道门、project_budget 公式登记及 D05/M01-6 依赖行受控管理。</td><td><a href="#m01-recovery">#m01-recovery</a>；proposal.md:351,451,458；metrics.json#/metrics/project_budget/formula</td></tr>
+<tr><th scope="row">公共利益与包容性</th><td>公共服务保留人工窗口、电话、纸质目录、静态导视、座椅和可达路径；技术故障先核人工接管能否恢复基本任务。</td><td><a href="#no-ai-matrix">#no-ai-matrix</a>；proposal.md:309；metrics.json#/metrics/c02_non_ai_service_completion_rate</td></tr>
+<tr><th scope="row">风险与合规意识</th><td>无正式资料支持的责任、资金、权属、尺寸、容量、程序与运营事项均标 UNKNOWN；临时边界、OSM 和概念干预持续标明状态。</td><td><a href="#evidence">#evidence</a>；proposal.md:489-501；design_depth_matrix.json risk_missing_data</td></tr>
+<tr><th scope="row">表达完整度</th><td>中英页面均保留责任、失败、UNKNOWN 与未实施边界；正文提供相邻证据指针，机器文件保存来源、公式、任务覆盖和设计深度。</td><td><a href="#evidence">#evidence</a>；proposal.md/proposal.en.md:114,139；Figure 3/5 pairs</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <p class="p4-catalog__foot">图像为项目概念成图的只读裁切；源图未改。责任人栏按当前事实留空。</p>
+      </section>
+      <!--S1-P4-VISUAL-ONLY-END-->
+      <section class="section" id="field-impressions">
+        <header class="section-head"><div><h2>现场影像集（AI 生成）</h2><p class="section-note" data-pair="W3-031">本节集中展示八张 AI 生成的概念影像，并说明它们不是实拍或真实现状。</p><p class="section-note">以下八张为 AI 生成写实风格概念影像，非实拍，人物为虚构，用于呈现方案氛围与使用场景，不表示真实现状。</p></div></header>
+        <div class="formal-figure-grid">
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S1.jpg" alt="AI 生成写实风格概念影像，非实拍：众智园现场共走。人物为虚构，不表示真实现状。"><figcaption>众智园现场共走</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S2.jpg" alt="AI 生成写实风格概念影像，非实拍：绿廊普通早晨。人物为虚构，不表示真实现状。"><figcaption>绿廊普通早晨</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S3.jpg" alt="AI 生成写实风格概念影像，非实拍：AI 原点·转译时刻。人物为虚构，不表示真实现状。"><figcaption>AI 原点·转译时刻</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S4.jpg" alt="AI 生成写实风格概念影像，非实拍：非 AI 服务亭。人物为虚构，不表示真实现状。"><figcaption>非 AI 服务亭</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S5.jpg" alt="AI 生成写实风格概念影像，非实拍：大钟寺公众试用。人物为虚构，不表示真实现状。"><figcaption>大钟寺公众试用</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S6.jpg" alt="AI 生成写实风格概念影像，非实拍：暮色大钟寺。人物为虚构，不表示真实现状。"><figcaption>暮色大钟寺</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S7.jpg" alt="AI 生成写实风格概念影像，非实拍：可逆构件进出场。人物为虚构，不表示真实现状。"><figcaption>可逆构件进出场</figcaption></figure>
+          <figure class="formal-figure"><img loading="lazy" src="assets/renders/S8.jpg" alt="AI 生成写实风格概念影像，非实拍：停止之后。人物为虚构，不表示真实现状。"><figcaption>停止之后</figcaption></figure>
+        </div>
+      </section>
       <section class="component-card" aria-labelledby="component-card-title">
-        <header><h2 id="component-card-title">装得上，也拆得净</h2><p>只列正文已经出现的构件；每项尺寸、点位和做法均为候选，等待专业复核。</p></header>
+        <header><h2 id="component-card-title">装得上，也拆得净</h2><p class="section-note" data-pair="W3-032">本节用表格列出四件设施怎样装、怎样拆、撤场后怎样检查是否恢复。</p><p>只列正文已经出现的构件；每项尺寸、点位和做法均为候选，等待专业复核。</p></header>
         <div role="region" aria-label="可逆构件装配拆除与恢复验收表">
           <table>
             <thead><tr><th scope="col">构件</th><th scope="col">尺寸口径（候选）</th><th scope="col">装配／拆除</th><th scope="col">恢复验收</th></tr></thead>
@@ -2779,7 +3215,7 @@ figure figcaption > p + p {
       </section>
 
 <section class="component-node" id="component-node" aria-labelledby="component-node-title">
-<header class="component-node__header"><h2 id="component-node-title">四个构件，画到节点</h2><p>构件自身尺寸为设计原型，尺寸链可复算；接口与场地尺寸标范围或未验证项；概念比例，待测绘与专业复核。</p></header>
+<header class="component-node__header"><h2 id="component-node-title">四个构件，画到节点</h2><p class="section-note" data-pair="W3-033">本节画清四件设施怎样和轨道、地面或管线连接，并列出暂定尺寸、拆除步骤和仍待核实的现场条件。</p><p>构件自身尺寸为设计原型，尺寸链可复算；接口与场地尺寸标范围或未验证项；概念比例，待测绘与专业复核。</p></header>
 <p class="component-node__value-basis">口径说明：图中全部尺寸与数量为概念原型的设计假设值，取自常见无障碍与市政设施尺度惯例，只用于说明构件之间的相对关系；均非施工定值，正式设计以现行规范、专业审查与现场实测为准。</p>
 <div class="component-node__grid">
 <div class="component-node__drawing">
@@ -3174,7 +3610,7 @@ figure figcaption > p + p {
 </section>
 
 <section class="no-ai-matrix" id="no-ai-matrix" aria-labelledby="no-ai-matrix-title">
-  <h2 id="no-ai-matrix-title">AI 全灭，十件事各有人工路径</h2>
+  <h2 id="no-ai-matrix-title">AI 全灭，十件事各有人工路径</h2><p class="section-note" data-pair="W3-034">本节列出十件任务在不用 AI 时由谁来办、怎样办，以及人工路线也失败时何时停止。</p>
   <p class="no-ai-matrix__disclosure">表内人物均为设定人物·非访谈。<span data-source-ref="report/proposal.html:194；visual/index.html#no-ai-matrix"></span></p>
   <table data-audit-table="c">
     <colgroup><col style="width:11%"><col style="width:24%"><col style="width:33%"><col style="width:32%"></colgroup>
@@ -3195,7 +3631,7 @@ figure figcaption > p + p {
 </section>
 
 <section class="osm-registry" id="osm-registry" aria-labelledby="osm-registry-title">
-  <h2 id="osm-registry-title">走廊数据，先登记再核</h2>
+  <h2 id="osm-registry-title">走廊数据，先登记再核</h2><p class="section-note" data-pair="W3-035">本节登记走廊附近的过街口、公交站、台阶、轮椅标注和公厕数据，并说明数据来源与核实状态。</p>
   <div class="osm-registry__source-card">
     <h3>数据说明</h3>
     <p data-source-ref="sources.json:OSM-CORRIDOR-REGISTRY-20260827">OSM 社区数据（ODbL）·非官方测绘·拉取 2026-08-27</p>
@@ -3360,18 +3796,26 @@ figure figcaption > p + p {
 </section>
 
       <section class="section evidence" id="evidence">
-        <header class="section-head"><p class="section-no">BIND-11</p><div><p class="eyebrow">EVIDENCE / UNKNOWN / BOUNDARY</p><h2>有多少证据，写多少判断</h2><p class="section-note">证据只分六级，九类专业图里两类是临时资料、七类还没有，已知、临时、建议和不知道分开写清。</p></div></header>
-        <figure class="formal-figure"><img src="../assets/figures/metrics-evidence.png" alt="图 5｜签名栏空着，就一步不走"><figcaption>图 5｜签名栏空着，就一步不走</figcaption></figure>
+        <header class="section-head"><p class="section-no">BIND-11</p><div><p class="eyebrow">EVIDENCE / UNKNOWN / BOUNDARY</p><h2>有多少证据，写多少判断</h2><p class="section-note" data-pair="W3-036">本节把材料按能证明到哪一步分成六级，并把已核、候选、待核和临时示意分开列出。</p><p class="section-note">证据只分六级，九类专业图里两类是临时资料、七类还没有，已知、临时、建议和不知道分开写清。</p></div></header>
+        <figure class="formal-figure"><img src="../assets/figures/metrics-evidence.png" alt="图 5｜签名栏空着，就一步不走"><figcaption>图 5｜签名栏空着，就一步不走<p class="prebuilt-annotation">十卡的来源、运算与责任链见〈责任、依赖与交接明细〉图与 `metrics.json`；十卡在空间上的落位见〈三区各负一责〉图。</p><p class="prebuilt-annotation">本图只列十项现场待测指标，十项状态全部为 UNKNOWN｜未测量；`metrics.json` 另行登记的 28 项指标中有 17 项现在就有值，这些是包内基线、几何比例与仿真审计类指标，不是十卡现场成效结果，见本节末的指标总账。</p></figcaption></figure>
+        <div class="formal-figure-grid" aria-label="职责、依赖与交接指标卡">
+          <figure class="formal-figure"><img src="../assets/figures/metrics-card-responsibility.webp" alt="指标卡｜责任待签认；非授权"><figcaption>指标卡｜责任待签认；非授权</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/metrics-card-dependency.webp" alt="指标卡｜依赖待关闭；非授权"><figcaption>指标卡｜依赖待关闭；非授权</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/metrics-card-handover.webp" alt="指标卡｜交接待接收；非授权"><figcaption>指标卡｜交接待接收；非授权</figcaption></figure>
+          <figure class="formal-figure"><img src="../assets/figures/metrics-evidence-detail.webp" alt="图 5B｜责任、依赖与交接明细"><figcaption>图 5B｜责任、依赖与交接明细</figcaption></figure>
+        </div>
         <p>唯一证据阶梯</p><div class="ladder"><div><b>L0</b><br>政策议程</div><div><b>L1</b><br>市级先验</div><div><b>L2</b><br>区级信号</div><div><b>L3</b><br>街段证据</div><div><b>L4</b><br>现场补样</div><div><b>L5</b><br>可逆试验</div></div>
         <p>2 / 9 临时专业图层，仅可作 provisional 示意。<br>7 / 9 专业图层未建，不得用概念媒体冒充。</p>
         <div class="evidence-cards"><article><h3>已核</h3><p>官方公告面积43.6、11.4平方公里与三区合计368.4公顷；三区名称与顺序。</p></article><article><h3>候选</h3><p>W01、M01、C02验证路径，等待现场数据与有权主体确认。</p></article><article><h3>待核</h3><p>路权、消防、无障碍、四时段基线和各类现场数据。</p></article><article><h3>临时示意</h3><p>空间三层图、人物路径与三案取舍，只用于交互说明。</p></article></div>
-        <section class="handoff" aria-labelledby="handoff-title"><h3 id="handoff-title">蓝图只管到剪彩那天，账本要管到剪彩之后——五本账写清谁接手，六道门决定往不往下走；填不上的格子照实空着，留给有权签字的人。</h3><div class="handoff-ledgers prose-stack"><p>五本账：规划设计管正式边界、控规、权属与测绘；</p><p>公共基础管交通、公共服务与市政容量；</p><p>场景验证管协议、工单、修复与复测；</p><p>运营维护管维护者、复核日与退役办法；</p><p>社会协同管受影响者、人工取舍与责任。</p></div><div class="handoff-grid"><article class="handoff-card"><header><span>门 01</span><h4>数据与边界</h4></header><dl><dt>过门条件</dt><dd>第一道门只认两样：正式材料、责任人</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 02</span><h4>问题价值</h4></header><dl><dt>过门条件</dt><dd>第二道门先问：对大家有没有价值？边界在哪？影响谁？谁负责？</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 03</span><h4>科学协议</h4></header><dl><dt>过门条件</dt><dd>第三道门：方案变协议，桌面查一遍，再独立复测</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 04</span><h4>城市首用</h4></header><dl><dt>过门条件</dt><dd>第四道门：批了才可能小范围试，没批就是没批</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 05</span><h4>项目与资金</h4></header><dl><dt>过门条件</dt><dd>第五道门：地、钱、建设承诺没着落，先停一停</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 06</span><h4>建设运营</h4></header><dl><dt>过门条件</dt><dd>第六道门：正式选址、运维、清权、法律条件都定了，再开工</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article></div></section>
-        <p>本页是概念展厅与交互工程，不是已批准实施方案，也不是八对正式规划图。</p>
+        <section class="handoff" aria-labelledby="handoff-title"><h3 id="handoff-title">蓝图只管到剪彩那天，账本要管到剪彩之后——五本账写清谁接手，六道门决定往不往下走；填不上的格子照实空着，留给有权签字的人。</h3><div class="handoff-ledgers prose-stack"><p>五本账：规划设计管正式边界、控规、权属与测绘；</p><p>公共基础管交通、公共服务与市政容量；</p><p>场景验证管协议、工单、修复与复测；</p><p>运营维护管维护者、复核日与退役办法；</p><p>社会协同管受影响者、人工取舍与责任。</p></div><div class="handoff-grid"><article class="handoff-card"><header><span>门 01</span><h4>数据与边界</h4></header><dl><dt>过门条件</dt><dd>第一道门只认两样：正式材料、责任人</dd><dt>现在就能判的</dt><dd>包内现可核对 28 项指标的状态、公式和来源字段，核对 9 个几何层的已知／provisional／UNKNOWN 边界，并使用未参与底图、录入或绘制的规划、测绘或数据复核职能角色及“核验人姓氏＋工号＋日期”的建议签认格式；正式总体边界、三区正式多边形、控规、权属和现状测绘仍为 UNKNOWN。</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 02</span><h4>问题价值</h4></header><dl><dt>过门条件</dt><dd>第二道门先问：对大家有没有价值？边界在哪？影响谁？谁负责？</dd><dt>现在就能判的</dt><dd>包内现可核对发现护照中的问题责任人、空间对象、证据等级、非 AI 基线与退出字段，并核对 D06 的受影响者参与、异议与申诉入口及有权决定字段；同时可使用未参与问题包装的公共价值、受影响者参与或社会影响复核职能角色及“核验人姓氏＋工号＋日期”的建议签认格式；真实需求基线、受影响者参与、异议与申诉入口及有权决定仍为 UNKNOWN。</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 03</span><h4>科学协议</h4></header><dl><dt>过门条件</dt><dd>第三道门：方案变协议，桌面查一遍，再独立复测</dd><dt>现在就能判的</dt><dd>包内现可按 <code>simulation.json</code> 复算 24 项离线合成任务的成功、调度结构、审计完整和能耗超预算读数，并核对协议、工具版本、失败分母与独立复现的建议核验分工；授权现场基线、正式协议条件和真实复测结果仍为 UNKNOWN。</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 04</span><h4>城市首用</h4></header><dl><dt>过门条件</dt><dd>第四道门：批了才可能小范围试，没批就是没批</dd><dt>现在就能判的</dt><dd>包内现可核对“有授权才可能有限首用”的规则、非 AI 路径、人工接管、停止与恢复动作，以及授权、伦理、安全、无障碍或受影响者参与复核职能角色的建议签认格式；场地授权、运营接收、恢复费用、责任人和日期仍为 UNKNOWN。</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 05</span><h4>项目与资金</h4></header><dl><dt>过门条件</dt><dd>第五道门：地、钱、建设承诺没着落，先停一停</dd><dt>现在就能判的</dt><dd>包内现可核对 <code>project_budget</code> 的“项目级范围×可追溯单价×全生命周期与恢复成本”公式、D05／M01-6 依赖，以及预算、采购、法务、土地或利益冲突复核职能角色和“核验人姓氏＋工号＋日期”的建议签认格式；项目级资金来源、预算边界、恢复清单和支付责任仍为 UNKNOWN。</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article><article class="handoff-card"><header><span>门 06</span><h4>建设运营</h4></header><dl><dt>过门条件</dt><dd>第六道门：正式选址、运维、清权、法律条件都定了，再开工</dd><dt>现在就能判的</dt><dd>包内现可核对四步条件分期、agent.6 长期运营交接矩阵、停止与退出条件，以及规划建设、消防、无障碍、运维、权利清查或法律复核职能角色的建议签认格式；实施主体、批准时序、正式选址、运营接收、维护责任和法定条件仍为 UNKNOWN。</dd><dt>现在等谁确认</dt><dd>待正式责任主体确认</dd><dt>状态</dt><dd class="pending">待补</dd></dl></article></div></section>
+        <p>本列只说明当前证据链能判到哪一步，不表示任何门已通过、已批准或已授权。</p>
+        <p>28 项指标全部登记算式；其中 17 项现在就有值（11 项可由本包数据复算，6 项引用官方公开给定值），11 项保持受控 UNKNOWN 且各自带算式与触发条件；六道门没有一道被跳过。</p>
+        <p>本页是概念展厅与交互工程，不是已批准实施方案；二十三对正式图仍是概念建议与证据导航，不是法定规划图。</p>
       </section>
     </main>
 
     <section class="appendix" aria-labelledby="appendix-title">
-      <header><p class="eyebrow">APPENDIX / DATA + COMPLIANCE</p><h2 id="appendix-title">附录只收数据、边界和未决项</h2><p>这里只把冻结数据、未决项和核验状态集中展开；UNKNOWN 表示待正式资料确认。</p></header>
+      <header><p class="eyebrow">APPENDIX / DATA + COMPLIANCE</p><h2 id="appendix-title">附录只收数据、边界和未决项</h2><p class="section-note" data-pair="W3-037">本节集中列出已登记的数据、精确边界和专业资料的缺口，以及每项当前能确认到哪一步。</p><p>这里只把冻结数据、未决项和核验状态集中展开；UNKNOWN 表示待正式资料确认。</p></header>
       <p class="boundary"><strong>重要边界披露</strong>：临时边界=粗略 provisional 非官方红线；正式边界到手后，九层、三项指标和相关图文须重新计算。</p>
       <div class="appendix-grid">
         <article><span>01</span><h3>总览地图</h3><p>当前总览由 site_boundary、key_areas、land_use、roads、green_space、public_space、buildings、constraints、phasing 九层组成。它是可复算的 formal 候选集，不是法定控规或工程成果。</p></article>
@@ -3386,7 +3830,7 @@ figure figcaption > p + p {
         <article><span>10</span><h3>核心指标</h3><p>三项数值都由提交几何复算，状态为 known、置信度为低；known 只表示包内算得出来，不表示官方确认。</p><div class="metric-values"><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825.386 m²</strong><small>临时母面面积</small><strong data-metric="green_ratio" data-value="0.074603">0.074603</strong><small>绿地比例</small><strong data-metric="public_space_ratio" data-value="0.004293">0.004293</strong><small>公共空间比例</small></div></article>
         <article><span>11</span><h3>任务覆盖</h3><p>agent.1 至 agent.6 对应六项官方任务；每个区块显示冻结内容、相关图卡和证据状态，不冒充完成。十张场景卡用于支撑任务覆盖，不新增第十一张。</p></article>
         <article><span>12</span><h3>自检状态</h3><p>当前本地官方四门均已通过，self_check 为 formal-review-ready；三处重点区精确边界仍属 provisional minor，待官方精确 polygon 补齐。formal-review-ready 只表示可进入正式评审，不代表已提交、已受理、入选或实施。</p></article>
-        <article><span>13</span><h3>来源</h3><p>包内来源表已登记八案 23 条一手来源，8/8 个案例均达到每案至少 2 条；只支持案例身份、事实性转述与机制比较，不包含视觉资产复用权，也不证明京张已有同等设施、授权或成效。</p><p>临时粗略边界仍只可 provisional 使用。</p><p>页面概念图由 OpenAI image_gen（GPT Image 2）按项目自写提示词生成，仅作概念解释；Logo 源图同由 GPT Image 2 生成，并由投稿人在 Lovart 按其确认的商用授权转换，均不构成商标清权。</p><p>页面只调用本机系统字体，不携带字体文件。</p><p>图中 OSM 派生内容保留 © OpenStreetMap contributors / ODbL 1.0 署名。</p></article>
+        <article><span>13</span><h3>来源</h3><p>包内来源表已登记八案 23 条一手来源，8/8 个案例均达到每案至少 2 条；只支持案例身份、事实性转述与机制比较，不包含视觉资产复用权，也不证明京张已有同等设施、授权或成效。</p><p>临时粗略边界仍只可 provisional 使用。</p><p>页面概念图由 OpenAI image_gen（GPT Image 2）按项目自写提示词生成，仅作概念解释；Logo 已替换为不含 Lovart 转换路径的项目自绘矢量，被替换的历史转换版本不随包；概念图与 Logo 均不构成商标清权。</p><p>页面不依赖远程字体：中文字形由随包的 <code>visual/assets/offline-cjk-font.css</code> 以 data URI 内嵌的两个 Source Han Serif SC Regular 子集提供，已按 SIL Open Font License 1.1 改名后随包再分发；其余字形回退到本机系统字体。</p><p>图中 OSM 派生内容保留 © OpenStreetMap contributors / ODbL 1.0 署名。</p></article>
         <article><span>14</span><h3>假设</h3><p>冻结假设表共 16 项，覆盖官方边界、控规、道路红线、权属、建筑、市政、授权、运营、成本、资金、实施时序、作者身份和“聚集区”术语。未取得对应正式资料的项目保持 UNKNOWN。</p></article>
       </div>
     </section>
@@ -3436,8 +3880,8 @@ figure figcaption > p + p {
         { name: "三区边界说明", groups: "#areas", items: ":scope > p", type: "rise", stagger: 0 },
         { name: "十张场景卡", groups: ".card-grid.scene", items: ":scope > article", type: "settle", stagger: 72 },
         { name: "六项官方任务", groups: ".task-list", items: ":scope > article", type: "settle", stagger: 72 },
-        { name: "八对正式图输出表", groups: ".output-list", items: ":scope > article", type: "settle", stagger: 72 },
-        { name: "八对正式图十卡指标", groups: ".counts", items: ":scope > div", type: "settle", stagger: 72 },
+        { name: "二十三对正式图输出表", groups: ".output-list", items: ":scope > article", type: "settle", stagger: 72 },
+        { name: "二十三对正式图十卡指标", groups: ".counts", items: ":scope > div", type: "settle", stagger: 72 },
         { name: "证据段落", groups: "#evidence", items: ":scope > p", type: "rise", stagger: 72 },
         { name: "L0–L5 证据阶梯", groups: ".ladder", items: ":scope > div", type: "settle", stagger: 72 },
         { name: "证据状态卡", groups: ".evidence-cards", items: ":scope > article", type: "settle", stagger: 72 },
@@ -3762,8 +4206,12 @@ figure figcaption > p + p {
       "use strict";
     
       var figureNames = [
-        "key-map", "land-use-structure", "curb-four-states", "v14-ai-on-off",
-        "v16-m01-sections", "key-areas", "task-brief-crosswalk", "metrics-evidence"
+        "site-overview", "reviewer-evidence-read", "corridor-timetrack", "regional-synergy",
+        "key-map", "land-use-structure", "mobility-bluegreen", "key-areas",
+        "triptych-zhongzhiyuan", "section-zhongzhiyuan", "triptych-ai-yuandian", "section-ai-yuandian",
+        "triptych-dazhongsi", "section-dazhongsi", "v14-ai-on-off", "curb-four-states",
+        "v16-m01-sections", "metrics-evidence", "metrics-evidence-detail", "metrics-card-responsibility",
+        "metrics-card-dependency", "metrics-card-handover", "task-brief-crosswalk"
       ];
       var language = document.documentElement.lang === "en" ? "en" : "zh";
       var copy = language === "en"
@@ -3778,7 +4226,7 @@ figure figcaption > p + p {
     
       function isFormalFigure(source) {
         return figureNames.some(function (name) {
-          return new RegExp("/" + name.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&") + "(?:\\.en)?\\.png(?:$|[?#])").test(source);
+          return new RegExp("/" + name.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&") + "(?:\\.en)?\\.(?:png|webp)(?:$|[?#])").test(source);
         });
       }
     

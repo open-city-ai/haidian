@@ -1,0 +1,166 @@
+{
+  "schema_version": "1.0.0",
+  "package_version": "v1.5-professional-handoff",
+  "artifact_id": "P0-ALL-STOP-01-EXECUTION-KIT",
+  "artifact_status": "blank_handoff_forms_not_executed_evidence",
+  "title_zh": "P0-ALL-STOP-01 双语专业执行工具包",
+  "title_en": "P0-ALL-STOP-01 Bilingual Professional Execution Kit",
+  "claim_boundary": {
+    "current_actual_record_count": 0,
+    "current_field_result_count": 0,
+    "current_named_signatory_count": 0,
+    "current_verified_cost_input_count": 0,
+    "current_verified_external_record_count": 0,
+    "authorization": "NOT_AUTHORIZED",
+    "release": "HOLD",
+    "note_zh": "七类表单、四组外部决策、容量疏散、维护和恢复储备均为待专业团队填写的交接接口，不是已完成的现场、签署、报价、授权或实施证据。",
+    "note_en": "The seven forms, four external decision bundles, capacity/egress, maintenance and restoration reserve are hand-off interfaces for competent teams to complete, not executed field, signature, quotation, authorization or implementation evidence."
+  },
+  "common_record_fields": [
+    "record_id",
+    "artifact_id",
+    "gate_or_bundle_id",
+    "version",
+    "captured_at",
+    "source_party",
+    "source_uri",
+    "method",
+    "sample_scope",
+    "limitations",
+    "missingness",
+    "rights_basis",
+    "privacy_publication_class",
+    "conflict_of_interest",
+    "independent_reviewer",
+    "disposition",
+    "signatory",
+    "sha256"
+  ],
+  "forms": [
+    {
+      "form_id": "EX-01",
+      "title_zh": "候选载体调查与证据请求",
+      "title_en": "Candidate Carrier Survey and Evidence Request",
+      "responsible_roles": ["A-P0-RIGHTS", "R-P0-SURVEY"],
+      "required_fields": ["candidate_id", "survey_authority", "crs", "survey_date", "extent_geometry", "existing_levels", "obstacles", "rights_holder", "heritage_applicability", "utilities", "fire_route", "drainage", "lighting", "site_disposition"]
+    },
+    {
+      "form_id": "EX-02",
+      "title_zh": "责任接受、权限边界与利益冲突",
+      "title_en": "Responsibility Acceptance, Authority Boundary and Conflict",
+      "responsible_roles": ["A-P0-RIGHTS", "R-P0-EXEC", "R-P0-EVAL"],
+      "required_fields": ["organization", "named_person", "competence_basis", "accepted_role_ids", "decision_authority", "stop_authority", "delegation_limit", "service_window", "backup_coverage", "insurance", "conflict_declaration", "acceptance_signature"]
+    },
+    {
+      "form_id": "EX-03",
+      "title_zh": "D0 基线、数据字典与缺失值",
+      "title_en": "D0 Baseline, Data Dictionary and Missingness",
+      "responsible_roles": ["R-P0-CODESIGN", "R-P0-SERVICE", "R-P0-EVAL"],
+      "required_fields": ["task_id", "cohort_id", "start_event", "end_event", "numerator", "denominator", "time_basis", "non_ai_baseline", "consent_basis", "withdrawal_route", "missing_value_code", "critical_failure", "disaggregated_result", "participant_review"]
+    },
+    {
+      "form_id": "EX-04",
+      "title_zh": "工程量、成本依据与非约束采购包",
+      "title_en": "Quantity, Cost Basis and Non-binding Procurement Pack",
+      "responsible_roles": ["R-P0-EXEC", "R-P0-INSTALL", "A-P0-RIGHTS"],
+      "required_fields": ["boq_id", "verified_quantity", "measurement_method", "unit_rate", "rate_source", "rate_basis_date", "normalization", "tax_basis", "capex", "opex", "contingency", "restoration_reserve", "procurement_route", "cost_signoff"]
+    },
+    {
+      "form_id": "EX-05",
+      "title_zh": "专业复核、门槛与验收",
+      "title_en": "Professional Review, Gate and Acceptance",
+      "responsible_roles": ["R-P0-ACCESS", "R-P0-FIRE", "R-P0-TRAFFIC", "R-P0-STRUCTURE", "R-P0-ELECTRICAL", "R-P0-DRAINAGE", "R-P0-EQUIPMENT", "R-P0-LIGHTING"],
+      "required_fields": ["discipline", "applicable_standard", "review_scope", "reviewer", "finding", "condition", "acceptance_metric_id", "threshold", "evidence_id", "decision", "expiry_or_recheck", "signature"]
+    },
+    {
+      "form_id": "EX-06",
+      "title_zh": "复演、维护、停止与退出交接",
+      "title_en": "Rehearsal, Maintenance, Stop and Exit Handover",
+      "responsible_roles": ["R-P0-SAFETY", "R-P0-SERVICE", "R-P0-MAINTENANCE", "R-P0-INSTALL", "R-P0-EVAL"],
+      "required_fields": ["rehearsal_event_class", "scenario_version", "operator", "independent_observer", "success_record", "refusal_record", "human_takeover_record", "incident_record", "stop_record", "maintenance_record", "removal_record", "waste_destination", "before_after_comparison", "closeout_acceptance"]
+    },
+    {
+      "form_id": "EX-07",
+      "title_zh": "进度、RAID 与变更控制",
+      "title_en": "Programme, RAID and Change Control",
+      "responsible_roles": ["R-P0-EXEC", "A-P0-RIGHTS", "R-P0-EVAL"],
+      "required_fields": ["dependency_id", "deliverable_id", "owner_role", "planned_date", "actual_date", "risk", "assumption", "issue", "decision", "change_id", "impact", "approval", "superseded_artifact", "closeout_state"]
+    }
+  ],
+  "external_decision_bundles": [
+    {
+      "bundle_id": "B-EXT-01",
+      "title_zh": "真实使用者与同任务人工基线",
+      "title_en": "Real Users and Same-task Human Baseline",
+      "raw_field_metric_ids": ["P0-B01", "P0-B02", "P0-B03", "P0-B04", "P0-B10"],
+      "external_gate_ids": ["DG03"],
+      "decision_owner_role": "R-P0-CODESIGN",
+      "required_form_ids": ["EX-02", "EX-03"],
+      "status": "HOLD"
+    },
+    {
+      "bundle_id": "B-EXT-02",
+      "title_zh": "场地、容量疏散与专业条件",
+      "title_en": "Site, Capacity/Egress and Professional Conditions",
+      "raw_field_metric_ids": ["P0-B05", "P0-B06", "P0-B07", "P0-B08", "P0-B09"],
+      "external_gate_ids": ["DG01", "DG02", "DG04", "DG05", "DG06", "DG07"],
+      "decision_owner_role": "A-P0-RIGHTS",
+      "required_form_ids": ["EX-01", "EX-05"],
+      "status": "HOLD"
+    },
+    {
+      "bundle_id": "B-EXT-03",
+      "title_zh": "运营覆盖、设备停止与独立复演",
+      "title_en": "Operating Coverage, Equipment Stop and Independent Replay",
+      "raw_field_metric_ids": ["P0-B11"],
+      "external_gate_ids": ["DG08", "DG09", "DG10"],
+      "decision_owner_role": "R-P0-EVAL",
+      "required_form_ids": ["EX-02", "EX-06"],
+      "status": "HOLD"
+    },
+    {
+      "bundle_id": "B-EXT-04",
+      "title_zh": "真实成本、授权与退出交接",
+      "title_en": "Actual Cost, Authorization and Exit Handover",
+      "raw_field_metric_ids": ["P0-B12"],
+      "external_gate_ids": ["DG11", "DG12"],
+      "decision_owner_role": "A-P0-RIGHTS",
+      "required_form_ids": ["EX-04", "EX-06", "EX-07"],
+      "status": "HOLD"
+    }
+  ],
+  "capacity_egress_template": {
+    "template_count": 1,
+    "capacity_formula": "min(net_area_divided_by_approved_occupant_factor, fire_life_safety_approved_capacity, accessible_service_position_capacity, staffed_role_coverage_capacity)",
+    "net_area_sqm": null,
+    "approved_occupant_factor_sqm_per_person": null,
+    "fire_life_safety_approved_capacity": null,
+    "accessible_service_position_capacity": null,
+    "staffed_role_coverage_capacity": null,
+    "calculated_capacity": null,
+    "concept_independent_egress_route_count": 2,
+    "field_verified_independent_egress_route_count": 0,
+    "verified_egress_clear_width_m": null,
+    "status": "HOLD_PENDING_SURVEY_FIRE_ACCESSIBILITY_AND_OPERATOR_CONFIRMATION"
+  },
+  "maintenance_cycles": [
+    {"cycle_id": "MC-01", "frequency": "before_each_opening", "scope": "clear route, stop controls, staffed channel, paper/phone fallback, visible status", "decision": "open_or_hold", "status": "template_not_executed"},
+    {"cycle_id": "MC-02", "frequency": "weekly", "scope": "fixings, lighting, drainage, spares, logs, complaints and unresolved defects", "decision": "continue_repair_or_hold", "status": "template_not_executed"},
+    {"cycle_id": "MC-03", "frequency": "quarterly_or_after_major_change", "scope": "independent accessibility, safety, privacy, operating and failure review", "decision": "continue_revise_or_stop", "status": "template_not_executed"},
+    {"cycle_id": "MC-04", "frequency": "annual_or_before_renewal", "scope": "whole-life cost, public value, operator acceptance, restoration and renewal", "decision": "renew_reduce_remove_or_restore", "status": "template_not_executed"}
+  ],
+  "restoration_reserve_template": {
+    "template_count": 1,
+    "formula": "verified_removable_capex * reserve_ratio + site_specific_restoration + removal_transport + waste_treatment + independent_closeout",
+    "reserve_ratio_low": 0.1,
+    "reserve_ratio_high": 0.2,
+    "verified_removable_capex": null,
+    "site_specific_restoration": null,
+    "removal_transport": null,
+    "waste_treatment": null,
+    "independent_closeout": null,
+    "calculated_reserve": null,
+    "ring_fenced_funding": false,
+    "status": "HOLD_NO_VERIFIED_COST_OR_FUNDING_AUTHORITY"
+  }
+}

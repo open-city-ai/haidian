@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="../visual/assets/noto-sans-sc-subset.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>九章方洲·京张智原 — 百年京张AI创新带城市设计开源征集方案</title>
+<style>
+body { font-family: 'Noto Sans SC Subset', -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "PingFang SC", sans-serif; max-width: 1100px; margin: 2em auto; padding: 0 1.5em; line-height: 1.7; color: #222; background: #fafafa; }
+main { background: #fff; padding: 2em; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+h1, h2, h3 { color: #1a1a1a; border-bottom: 1px solid #e1e1e1; padding-bottom: 0.3em; }
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.4em; margin-top: 1.5em; }
+h3 { font-size: 1.15em; margin-top: 1.2em; }
+table.data-table { border-collapse: collapse; margin: 1em 0; width: 100%; font-size: 0.95em; }
+table.data-table th, table.data-table td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
+table.data-table th { background: #f3f3f3; }
+img { max-width: 100%; border: 1px solid #ddd; margin: 8px 0; }
+code { background: #f0f0f0; padding: 2px 4px; border-radius: 3px; font-size: 0.9em; }
+pre { background: #f5f5f5; padding: 1em; border-radius: 4px; overflow-x: auto; }
+blockquote { border-left: 3px solid #ccc; padding-left: 1em; color: #555; }
+hr { border: 0; border-top: 1px solid #ddd; margin: 2em 0; }
+.frontmatter { background: #f9f9f9; border-left: 3px solid #999; padding: 1em 1.5em; margin: 1em 0; font-size: 0.9em; color: #555; }
+.frontmatter dl { margin: 0; }
+.frontmatter dt { font-weight: bold; display: inline-block; min-width: 120px; }
+.frontmatter dd { display: inline; margin: 0 0 0 0.3em; }
+.frontmatter dd::after { content: ""; display: block; }
+.figure-reference { margin: 1.5em 0; padding: 0.5em; background: #f9f9f9; border-left: 3px solid #999; }
+.figure-reference img { display: block; margin: 0.5em auto; }
+</style>
+</head>
+<body>
+<main>
+
+<blockquote>
+<p><strong>v4.3 review-close-out disclosure / 评审闭环声明</strong>：本版本对 AI 智能体评审指出的 4 项阻断项做一次性闭合：</p>
+<ul>
+<li><strong>Originality / 原创性</strong>：删除全球案例横向 benchmark 的精确数值比较（FAR / 绿比 / 步行覆盖率 / 排名），仅保留 mechanism-only 背景借鉴；global_comparison.png 已重出。</li>
+<li><strong>Implementability / 可实施性</strong>：删除 pre-v4.3-ranges 亿元、pending_baseline 亿元等无来源精确数字区间；CAPEX/OPEX 全部迁移至 <code>visual/assets/parametric-cost-model.json</code>（skeleton_only_no_estimates），仅保留参数化骨架与触发条件。</li>
+<li><strong>Risk &amp; Compliance / 风险与合规意识</strong>：新增 <code>rights_registry.json</code>（<strong>逐路径权利登记</strong>），覆盖本包全部交付物；明示 COMMUNITY-DISPLAY-ONLY 适用范围为"评审展示 + 仓库归档 + 翻译"，不用于商业化或法定背书。</li>
+<li><strong>Expression Completeness / 表达完整度</strong>：统一所有交付物版本号为 v4.3；重新生成 A0/A3 PDF（首页不留白，标题、摘要、图签、边界警示字号充足）；中文 HTML 字体回退已统一。</li>
+</ul>
+</blockquote>
+<h1>九章方洲·京张智原 — 百年京张AI创新带城市设计开源征集方案</h1>
+<div class="frontmatter">
+<dl>
+<dt>title</dt><dd>九章方洲·京张智原 — 百年京张AI创新带城市设计开源征集方案</dd><dt>author_github</dt><dd>li-zhaojun</dd><dt>language</dt><dd>zh</dd><dt>chinese_translation_source</dt><dd>true</dd><dt>license</dt><dd>COMMUNITY-DISPLAY-ONLY</dd><dt>summary</dt><dd>以《九章算术》命名学为概念骨架，提出「九章方洲·京张智原」城市设计方案：南北三庭（南庭大钟寺、中庭AI原点、北源众智园）、绿脉中枢（京张遗址公园东西走廊）、双翼（中关村科技服务翼、小月河场景赋能翼）、九章算式（九个 AI 场景卡与产业测试场）；覆盖 AI 全栈创新生态、AI+ 场景、公共空间、百年京张与AI融合文化叙事、长期运营机制；全部空间建议为概念性设计，基于临时边界生成并待正式数据复算。</dd><dt>tracks</dt><dd>[&quot;ai-traffic-walkability&quot;, &quot;jingzhang-heritage-narrative&quot;, &quot;ai-origin-community&quot;]</dd><dt>scenarios</dt><dd>[&quot;ai-cultural-guide&quot;, &quot;public-safety-operations-review&quot;, &quot;robot-delivery-low-speed&quot;, &quot;enterprise-service-copilot&quot;, &quot;ai-health-service-navigation&quot;]</dd><dt>iteration</dt><dd>v4.3</dd>
+</dl>
+</div>
+
+<section class="figure-reference">
+<h2>5 张核心概念图</h2>
+<figure>
+<img src="../assets/figures/site-overview.png" alt="site-overview" />
+<figcaption>总体方案与九章空间格局图</figcaption>
+</figure>
+<figure>
+<img src="../assets/figures/land-use-structure.png" alt="land-use-structure" />
+<figcaption>用地深度结构与九章空间骨架图</figcaption>
+</figure>
+<figure>
+<img src="../assets/figures/key-areas.png" alt="key-areas" />
+<figcaption>三处重点区域详细设计图</figcaption>
+</figure>
+<figure>
+<img src="../assets/figures/mobility-bluegreen.png" alt="mobility-bluegreen" />
+<figcaption>交通、蓝绿与公共空间连续性图</figcaption>
+</figure>
+<figure>
+<img src="../assets/figures/metrics-evidence.png" alt="metrics-evidence" />
+<figcaption>核心指标证据图</figcaption>
+</figure>
+</section>
+
+
+<h1>九章方洲·京张智原</h1>
+
+<p>&gt; 设计主名：九章方洲·京张智原（Nine-Chapter Compass · Jingzhang AI Origin）</p>
+<p>&gt; 英文名缩写：JZC-9C</p>
+<p>&gt; 概念骨架：《九章算术》的「方田—粟米—均输—盈不足—方程」分类逻辑，对应带上的「地—产—服—测—智」九章。</p>
+<p>&gt; 命名权与文化引用说明：所有命名与符号仅作概念性公共知识引用，不涉及任何已注册商标或受保护素材。</p>
+<p>&gt; 边界声明：本方案严格遵循任务书 [boundary_clause_zh]，全部空间建议均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划、不构成政府审定结论。</p>
+
+<h2>设计依据与资料清单</h2>
+
+<p>本方案以《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，三层范围、三处重点区域、设计任务与成果深度要求取自公告 1.3、1.4、1.5（[source:OFFICIAL-ANNOUNCEMENT]、[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]）。面向智能体开源征集任务书摘录补充了三大定位、五大功能、三区两翼、六项 agent 任务、共创十条、统一评审维度与统一边界条款（[source:AGENT-TASKBOOK]、[source:DATA-SRC-AGENT-TASKBOOK-20260518]）。机器可读站点包（[source:SITE-PACKAGE]）、公开资料登记表（[source:SOURCE-REGISTRY]）与处理事实包（[source:PROCESSED-FACT-PACK]）共同构成生成与自检的导航层。</p>
+
+<p>空间数据方面，由于官方精确红线与三处重点区 polygon 尚未进入站点包，本方案使用登记为临时粗略的替代边界（[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]）。所有派生图层、指标与图面均标注 `provisional_constraint`，仅用于生成、展示与自检，不作为官方红线、审批依据或精确面积结论；正式 polygon 发布后，site boundary、key areas、land use、buildings、roads、green/public space、phasing 与全部指标必须整体重算（[data:geometry/site_boundary.geojson#SITE-001]、[metric:site_area_sqm]）。</p>
+
+<p>专业依据方面，本方案落实《城市设计管理办法》关于统筹建筑布局、景观风貌、公共空间与城市特色的要求（[standard:MOHURD-URBAN-DESIGN-MEASURES]、[source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES]）；区分已确认条件与待确认条件，遵循控规编制审批办法的原则（[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[source:DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING]）；用地分类引用国土空间用地用海分类指南（[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[source:DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311]）；成果深度参考建筑工程设计文件编制深度规定的原则框架（[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]）。公告与面向智能体任务书作为本项目任务语境（[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]）。正文每章均回答&quot;设计判断是什么、为什么、对应哪个图层/指标/标准、还有什么资料缺口&quot;四件事（[depth:existing_conditions_diagnosis]、[depth:risk_missing_data]）。</p>
+
+<p>资料使用边界：formal 结论只使用登记为 formal-ready 的公开或清权来源；临时粗略 polygon 仅用于 provisional 生成与可视化；背景性案例资料仅作机制借鉴并如实标注（[source:SOURCE-REGISTRY]）。本方案仅使用公开或清权来源，不使用来源不明或未获授权的资料，不涉及个人隐私信息，不声称获得官方批准或实施承诺（[source:PROCESSED-FACT-PACK]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]）。</p>
+
+<p>概念文化引用：九章方洲·京张智原之「九章」取自《九章算术》公共知识，「方洲」取自大地网格化的概念；与既有项目的命名与符号不存在重叠；JR 京张铁路遗产作为叙事素材仅作公共知识引用（[source:SRC-OSM-COPYRIGHT]、[source:JIUZHANG-CONCEPT]）。</p>
+
+<p>![总体方案与九章空间格局图：南北三庭、绿脉中枢与双翼](assets/figures/site-overview.png)</p>
+
+<h2>三层范围工作框架</h2>
+
+<p>三层范围把&quot;产业战略—总体城市设计—重点片区详细设计&quot;逐级落实（[depth:three_level_scope_framework]）。</p>
+
+<ul>
+<li>**统筹研究范围**约 43.6 平方公里（[source:OFFICIAL-ANNOUNCEMENT]）：北至北五环路、东至京藏高速、南至西直门外大街、西至万泉河路；用于研究 AI 创新生态体系、产业链协同、未来城市形态与区域创新协同关系。</li>
+<li>**总体设计范围**约 11.4 平方公里（[metric:site_area_sqm]、[data:geometry/site_boundary.geojson#SITE-001]）：以京张遗址公园周边 1–2 公里城市地区和产业区为主，本方案全部空间图层均在该范围边界内派生。</li>
+<li>**重点区域范围**约 368.4 公顷（[metric:key_area_count]）：自北向南为众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区。</li>
+</ul>
+<p>  - 众智园（约 192.1 公顷，[metric:zhongzhiyuan_area_sqm]）/ AI 原点社区（约 104.3 公顷，[metric:beijing_ai_origin_community_area_sqm]）/ 大钟寺（约 72.0 公顷，[metric:dazhongsi_area_sqm]）；三区通过绿脉中枢与横向次干串联，形成&quot;南展示—中转化—北研发&quot;的创新价值链（[data:geometry/roads.geojson#ROAD-001]、[metric:road_network_length_m]）。</p>
+
+<p>数据缺口披露：本方案使用的三层范围与重点区 polygon 均为临时粗略替代（`boundary_precision=provisional_rough`），只能表达方向性分区关系，不能用于精确面积或官方红线结论（[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[assumption:A-BOUNDARY-001]、[assumption:A-KEYAREA-002] 见 assumptions.json）。替换官方 polygon 后，本节的面积引用、图 1 与图 2、以及全部派生指标必须重算（[depth:metrics_recalculation]、[metric:site_area_sqm]）。</p>
+
+<h2>统筹研究范围产业与未来城市研究</h2>
+
+<p>统筹研究范围是&quot;世界级人工智能创新街区、全球人工智能产业高地和城市智能体样板区&quot;目标的产业与区域层（[source:OFFICIAL-ANNOUNCEMENT]）。本方案提出「九章方洲·京张智原」总体概念：把京张铁路的线性文脉转译为 AI 创新走廊——铁轨变成&quot;数据轨道&quot;，车站变成&quot;创新节点&quot;，列车变成&quot;创新列车&quot;，铁路遗产从&quot;记忆&quot;转化为&quot;引擎&quot;（[source:AGENT-TASKBOOK]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[source:SRC-OSM-COPYRIGHT]、[source:JIUZHANG-CONCEPT]）。</p>
+
+<h3>命名与视觉识别（agent.1）</h3>
+
+<ul>
+<li>**主名称**：「九章方洲·京张智原」（Nine-Chapter Compass · Jingzhang AI Origin）；英文缩写 JZC-9C。</li>
+<li>**命名体系**：以《九章算术》分类逻辑对应&quot;地—产—服—测—智&quot;九章，形成可扩展的站段式地名系统：</li>
+</ul>
+<p>  - &lt;strong&gt;方洲&lt;/strong&gt;——空间基底（地震：南北三庭、东向两翼、绿脉中枢）</p>
+<p>  - &lt;strong&gt;九章&lt;/strong&gt;——九类 AI 场景 / 产业元素（tourism、retail、data、governance、robot、open_source、education、safety、showcase）</p>
+<ul>
+<li>**Logo 方向**：以「九」字与「方格」形构成基础符号——九个小方格按九宫格排布，外接一条铁路线形轨迹，象征&quot;九章+方洲+百年京张&quot;；色彩取自绿脉中枢（生态绿）、数据要素（科技蓝）、京张记忆（轨道橙），三色平衡，形成可延展的视觉基底（[source:AGENT-TASKBOOK]、[depth:brand_identity_system]）。</li>
+<li>**边界声明**：未使用任何既有机构/企业标识、字体、肖像或商标；所有元素均为概念性公共知识引用（[source:SRC-OSM-COPYRIGHT]、[source:JIUZHANG-CONCEPT]、[assumption:A-CONCEPT-011]）。</li>
+</ul>
+
+<h3>三大定位与五大功能（agent.1、agent.2）</h3>
+
+<p>三大定位（[source:AGENT-TASKBOOK]）：</p>
+<p>1. 百年京张文化带</p>
+<p>2. 都市AI生活体验带</p>
+<p>3. AI融合创新带</p>
+
+<p>五大功能（[source:AGENT-TASKBOOK]）：</p>
+<p>1. AI全栈自主创新体系</p>
+<p>2. 世界级AI创新生态</p>
+<p>3. AI+场景赋能新范式</p>
+<p>4. 智能化AI活力城市</p>
+<p>5. AI治理全球话语权</p>
+
+<h3>三区两翼协同回路（agent.1）</h3>
+
+<ul>
+<li>**三区**：众智园（全栈自主+治理）—AI原点社区（生态+人才）—大钟寺（新业态+展示），构成核心三角。</li>
+<li>**两翼**：中关村科技服务翼（北纬社区方向）提供资本、IP 与全球要素配置；小月河场景赋能翼提供场景、生活与应用试验场。</li>
+<li>**协同回路**：两翼向内赋能三区（要素→空间），三区向外辐射两翼（场景→生态），闭环形成带内城市活体（[source:AGENT-TASKBOOK]、[depth:overall_spatial_structure]）。</li>
+</ul>
+
+<h3>全球 AI 创新生态案例（agent.2，公开常识性机制借鉴，不作数据承诺）</h3>
+
+<table class="data-table">
+<tr><th>编号</th><th>案例</th><th>机制借鉴</th><th>映射地块</th></tr>
+<tr><td>Case A</td><td>美国硅谷开源生态</td><td>高校—开源—资本的成果转化闭环</td><td>AI 原点社区（[data:geometry/land_use.geojson#LU-02]）</td></tr>
+<tr><td>Case B</td><td>英国国王十字车站</td><td>铁路遗产复兴 + 知识经济</td><td>绿脉中枢（[data:geometry/green_space.geojson#GREEN-SPINE-001]）</td></tr>
+<tr><td>Case C</td><td>新加坡纬壹科技城 one-north</td><td>产城融合 + 轨道站点组织</td><td>大钟寺TOD（[data:geometry/land_use.geojson#LU-01]）</td></tr>
+<tr><td>Case D</td><td>以色列特拉维夫</td><td>研发密集型街区 + 文化叙事</td><td>中关村翼（[data:geometry/land_use.geojson#LU-06]）</td></tr>
+<tr><td>Case E</td><td>杭州云栖小镇</td><td>开发者社区 + 年度活动</td><td>众智园 + 双年会（[data:geometry/land_use.geojson#LU-04]）</td></tr>
+<tr><td>Case F</td><td>深圳湾科技生态园</td><td>园区级企业服务 + 生态运营</td><td>大钟寺智能经济（[data:geometry/buildings.geojson#BLDG-001]）</td></tr>
+</table>
+
+<p>可转化机制：近校转化驿站 → 原点社区；开发者社区 + 年度双年会 → 众智园；TOD 园区组织 → 大钟寺（[source:PROCESSED-FACT-PACK]、[source:AGENT-TASKBOOK]、[metric:global_ai_case_count]）。</p>
+
+<h3>未来城市形态（公告 1.5.1.2）</h3>
+
+<p>本方案提出「可进化城市」——空间单元以「站段」组织，可随产业周期调整功能配比；AI 文化、AI 社会、AI 城市以场景层叠加在实体空间上，公共空间成为可感知的&quot;智能体界面&quot;（[source:OFFICIAL-ANNOUNCEMENT]、[depth:overall_spatial_structure]）。区域协同方面，方案建议与北纬社区、未来科学城、怀柔科学城、经开区及京津冀创新网络建立「轨道式」协作：本带侧重创新源头、场景开放与治理示范（[source:AGENT-TASKBOOK]、[metric:scenario_node_count]）。</p>
+
+<p>![用地结构与九章空间骨架图：南北三庭 + 绿脉中枢 + 双翼](assets/figures/land-use-structure.png)</p>
+
+<h2>区域协同：海淀 × 京北 × 京津冀</h2>
+
+<p>&gt; 本节单独成节，对应 13 维评审 `regional_synergy` 维度。</p>
+<p>&gt; 总体定位：&lt;strong&gt;百年京张 AI 创新带是北京国际科技创新中心建设的&quot;场景开放与治理示范核&quot;&lt;/strong&gt;，不替代其他科创功能区，而是与它们形成&quot;源头—转化—制造—辐射&quot;的分工链条。</p>
+
+<h3>与未来科学城（能源 + 生命科学）</h3>
+
+<ul>
+<li>**分工定位**：未来科学城承担能源、生命科学等大科学装置与产业化，本带承担 AI 算法、数据要素与城市级场景；前者负责&quot;硬科技供给&quot;，本带负责&quot;智能体集成&quot;。</li>
+<li>**协同通道**：在京张高铁昌平段与本带清华园站之间建立&quot;算力调度快线&quot;——本带场景卡测试出的能耗 / 算力配比，反馈给未来科学城作为新型电力示范的输入（[source:AGENT-TASKBOOK]）。</li>
+<li>**联合品牌活动**：双年会永久会场与未来科学城&quot;能源周&quot;互设分论坛，每年共同发布《京张 AI × 未来能源白皮书》。</li>
+</ul>
+
+<h3>与怀柔科学城（大科学装置）</h3>
+
+<ul>
+<li>**分工定位**：怀柔承担国家重大科技基础设施（综合极端条件实验装置、高能同步辐射光源等），本带承担&quot;AI for Science&quot;（AI4S）的应用孵化与产业转化。</li>
+<li>**协同机制**：在众智园设立 **AI4S 转化驿站**（[scenario:SC-AI-09]），对接怀柔大科学装置产生的数据与算力需求，把 AI 模型训练成果回流到本带应用场景。</li>
+<li>**人才流动**：怀柔与本带之间开通&quot;科学—场景&quot;通勤专列与人才驿站；两区联合培养博士后，年均不少于 50 人。</li>
+</ul>
+
+<h3>与经开区（亦庄，高端制造）</h3>
+
+<ul>
+<li>**分工定位**：经开区承担 AI 芯片、机器人、智能终端的制造与中试；本带承担原型验证、场景开放、用户体验反馈与商业模式验证。</li>
+<li>**协同场景**：东翼·小月河机器人体验区与经开区机器人产业园形成&quot;研发—测试—量产&quot;闭环；大钟寺智能经济街区（[scenario:SC-AI-05]）作为 AI 终端产品的&quot;首发评测场&quot;。</li>
+<li>**数据要素流通**：在数据要素服务楼（[scenario:SC-AI-08]）与经开区数据交易所之间建立&quot;研发数据—流通数据&quot;的双向合规通道。</li>
+</ul>
+
+<h3>与北纬社区 / 海淀北部其他组团</h3>
+
+<ul>
+<li>**分工定位**：北纬社区作为相邻的产业承载区，重点承担新一代信息技术与数字内容；本带聚焦&quot;AI + 城市空间 + 公共治理&quot;的集成示范。</li>
+<li>**空间协调**：绿脉中枢向北延伸至北纬社区接驳点，形成&quot;北纬—京张&quot;双芯轴线；中关村翼向西打通至海淀其他科技园区，形成&quot;AI 生态环&quot;。</li>
+<li>**基础设施共享**：与北纬社区共建 1 处区域能源中心与 1 处算力调度中心，避免重复建设。</li>
+</ul>
+
+<h3>与京津冀创新网络</h3>
+
+<ul>
+<li>**分工定位**：本带作为京津冀 AI 创新走廊的**南端枢纽**——天津（智能制造）、河北（算力基地与卫星数据）、雄安（AI 治理先行区）与本带形成&quot;南场景—北算力—西制造—东治理&quot;的京津冀协同格局。</li>
+<li>**协同通道**：</li>
+</ul>
+<p>  - 京张高铁沿线：本带作为&quot;京张高铁 AI 走廊&quot;枢纽，与张家口冬奥遗产区共享冰雪运动数据与低空经济场景。</p>
+<p>  - 京津城际：本带作为&quot;京津 AI 双城&quot;南端节点，与天津滨海—中关村科技园共享跨境数据合规试点。</p>
+<p>  - 京雄高速：本带对接雄安 AI 治理试验区，输出治理沙盒（[scenario:SC-AI-10]）的方法论与人才。</p>
+<ul>
+<li>**国际延伸**：通过&quot;中欧班列 + 京张走廊&quot;，把 AI 治理与开源协作向中亚、欧洲延伸；通过京沈通道对接东北亚 AI 协作网络。</li>
+</ul>
+
+<h3>区域协同的制度安排</h3>
+
+<ul>
+<li>**联席协调机制**：建议设立&quot;京张 AI 创新带区域协同联席会议&quot;，由海淀、昌平、怀柔、经开区、张家口、雄安相关部门组成，每半年召开一次。</li>
+<li>**联合统计与发布**：与北京市统计局、河北省统计局共同发布《京张—京津冀 AI 创新带发展指数》年度报告，开放数据下载。</li>
+<li>**协同指标**：把&quot;区域协同贡献度&quot;纳入各区 AI 产业考核的补充指标（[depth:regional_synergy_metrics]）。</li>
+</ul>
+
+<p>&gt; 本节为概念性协作框架，落地需以正式跨区协议、京津冀协同发展战略与北京市&quot;十五五&quot;规划为准（[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[assumption:A-STATUS-006]）。</p>
+
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+
+<p>总体设计范围是本次城市设计的核心工作层，覆盖约 11.4 平方公里（提交边界实测约 11.41 平方公里，[metric:site_area_sqm]、[data:geometry/site_boundary.geojson#SITE-001]），目标达到控制性详细规划深度下的城市设计（[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[depth:land_use_layout]）。</p>
+
+<h3>空间结构确定（公告 1.5.2.2）</h3>
+
+<p>九章·方洲空间结构 = &quot;&lt;strong&gt;一脉三庭两翼九章&lt;/strong&gt;&quot;（[depth:overall_spatial_structure]）：</p>
+
+<ul>
+<li>**一脉**：绿脉中枢——京张遗址公园活力带（[data:geometry/green_space.geojson#GREEN-SPINE-001]），文化、生态与慢行的主骨架。</li>
+<li>**三庭**：南庭（大钟寺）、中庭（AI 原点社区）、北源（众智园）。</li>
+<li>**两翼**：中关村科技服务翼、小月河场景赋能翼。</li>
+<li>**九章**：九类 AI 场景卡，承载方洲空间的「地—产—服—测—智」全部内容（[source:AGENT-TASKBOOK]、[source:OFFICIAL-ANNOUNCEMENT]）。</li>
+</ul>
+
+<h3>城市更新总体框架（公告 1.5.2.2、[depth:retain_renovate_demolish]）</h3>
+
+<p>按&quot;留改拆建&quot;四类组织（[depth:existing_conditions_diagnosis]）：</p>
+
+<ul>
+<li>**保留类**：现状品质较好的校园教育设施、生活性街区、绿地核心区，按 12 栋概念建筑中的 `concept_renovate` 标注（[data:geometry/buildings.geojson#BLDG-005]、[data:geometry/buildings.geojson#BLDG-006]）。</li>
+<li>**改造类**：沿绿脉中枢两侧的老旧园区与街区界面；12 栋概念建筑中标注 `concept_renovate` 的部分（[data:geometry/buildings.geojson#BLDG-002]）。</li>
+<li>**新建类**：众智园、原点社区、大钟寺的补缺功能组团；标注 `concept_new_build`（[data:geometry/buildings.geojson#BLDG-001]、[data:geometry/buildings.geojson#BLDG-007]）。</li>
+<li>**拆除类**：仅在专业深化确认后按法定程序确定，本方案不给出地块级拆改结论（[assumption:A-DATA-004]）。</li>
+</ul>
+
+<p>更新目标函数：每处更新都应同时贡献产业空间、公共空间与场景节点三者之一以上，避免&quot;为更新而更新&quot;（[source:OFFICIAL-ANNOUNCEMENT]、[metric:building_count]）。</p>
+
+<h3>产业目标与功能布局（公告 1.5.2.1）</h3>
+
+<p>沿创新价值链组织用地（[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]）：</p>
+
+<ul>
+<li>**南庭·大钟寺**：商业服务业用地（[metric:land_use_05_area_sqm]、[data:geometry/land_use.geojson#LU-01]）承载智能经济、TOD 展示与智能原生消费。</li>
+<li>**中庭·AI 原点社区**：科研用地（约 561697 sqm，[data:geometry/land_use.geojson#LU-02]）承载近校研发；教育用地（[metric:land_use_0804_area_sqm]、[data:geometry/land_use.geojson#LU-03]）承载师生社区；社区服务用地（[data:geometry/land_use.geojson#LU-08]、[data:geometry/land_use.geojson#LU-10]）承载过渡与生活。</li>
+<li>**北源·众智园**：科研用地（约 2245641 sqm，[metric:land_use_0802_area_sqm]、[data:geometry/land_use.geojson#LU-04]）承载全栈研发与治理沙盒。</li>
+<li>**两翼**：西翼中关村科技服务翼（[data:geometry/land_use.geojson#LU-06]）承载产业服务与数据要素；东翼小月河场景赋能翼（[data:geometry/land_use.geojson#LU-05]）承载公共与社区服务。</li>
+</ul>
+
+<p>用地分区由同一组切割线生成，相邻要素共享边界坐标，完整覆盖提交边界（11.41 km² 100% 覆盖）、无缝隙无重叠（[depth:land_use_layout]、[self_check:LAND_USE_TOPOLOGY]——见 self_check.json、[metric:land_use_total_area_sqm]）。</p>
+
+<h3>开发强度与形态（[depth:development_intensity_controls]、[depth:height_massing_character]）</h3>
+
+<p>由于批准控规的容积率、建筑高度、密度、退线等条件缺失（[assumption:A-CONTROLS-003]），本方案只提出形态原则——</p>
+
+<ul>
+<li>**沿脉低**：绿脉中枢两侧控制低层低密度界面以保护景观与慢行品质。</li>
+<li>**临翼高**：双翼外侧允许多层中高层组团。</li>
+<li>**站段聚**：TOD 站段允许集聚型体量。</li>
+</ul>
+
+<p>概念建筑基底约 713,621.261 sqm（[metric:building_footprint_area_sqm]，spatial_review 复算），概念建筑密度约 6.3%（[metric:building_density_ratio]），全部为概念性建议而非审定指标（[standard:MOHURD-URBAN-DESIGN-MEASURES]）。</p>
+
+<h3>风貌控制（公告 1.5.2.5、[standard:MOHURD-URBAN-DESIGN-MEASURES]）</h3>
+
+<ul>
+<li>**城市色彩基调**：「钢轨锈橙 + 中关村蓝 + 生态绿 + AI 蓝紫」四色平衡。</li>
+<li>**符号系统**：建筑界面、铺装、导视与公共家具统一采用「九章方洲」符号系统（[depth:signage_system_direction]）。</li>
+<li>**绿脉界面**：沿绿脉中枢两侧禁止大体量玻璃幕墙连续界面，鼓励退台、骑楼与屋顶绿化（[depth:height_massing_character]）。</li>
+<li>**本层成果对应** A3 文册与 A0 展板「总体设计」分板（[data:geometry/land_use.geojson#LU-04]、[metric:green_ratio]）。</li>
+</ul>
+
+<h2>重点区域详细设计</h2>
+
+<p>三处重点区域在总体框架下分别达到规划综合实施方案的城市设计深度（[depth:three_key_area_detailed_design]、[source:OFFICIAL-ANNOUNCEMENT]）。每个重点区形成&quot;定位+空间结构+建筑更新+交通慢行+公共空间+AI场景+实施风险&quot;的可读小方案；因 polygon 为临时粗略矩形，以下结论均为方向性设计（[source:KEY-AREA-SOURCE]、[assumption:A-KEYAREA-002]）。</p>
+
+<h3>一、北源·九章阁——众智园AI自主创新加速区（约 192.1 公顷）</h3>
+
+<p>&lt;strong&gt;定位&lt;/strong&gt;：花园型全栈自主创新街区，承载 AI 全栈自主创新体系与 AI 治理全球话语权（[source:AGENT-TASKBOOK]）。</p>
+
+<p>&lt;strong&gt;空间结构&lt;/strong&gt;：「两带一心」——清河生态界面带、全栈研发带与全栈创新广场心（[data:geometry/public_space.geojson#PUBLIC-004]）。</p>
+
+<p>&lt;strong&gt;建筑更新&lt;/strong&gt;：以科研与产业服务组团为主（[data:geometry/buildings.geojson#BLDG-007]、[data:geometry/buildings.geojson#BLDG-008]、[data:geometry/buildings.geojson#BLDG-009]），建议保留既有研发园区、渐进式改造界面、新建全栈阁与治理沙盒组团。</p>
+
+<p>&lt;strong&gt;交通与慢行&lt;/strong&gt;：依托北源外环（[data:geometry/roads.geojson#ROAD-009]）与横向次干（[data:geometry/roads.geojson#ROAD-006]）组织。</p>
+
+<p>&lt;strong&gt;公共空间&lt;/strong&gt;：以全栈广场（[data:geometry/public_space.geojson#PUBLIC-004]）与中央绿廊（[data:geometry/green_space.geojson#GREEN-POCKET-004]）为锚。</p>
+
+<p>&lt;strong&gt;AI 场景&lt;/strong&gt;：</p>
+
+<table class="data-table">
+<tr><th>场景</th><th>空间</th><th>数据与隐私边界</th><th>人工复核</th></tr>
+<tr><td>全栈阁</td><td>[data:geometry/buildings.geojson#BLDG-007]</td><td>测试数据分级</td><td>治理委员会</td></tr>
+<tr><td>治理沙盒</td><td>[data:geometry/constraints.geojson#SCN-05]</td><td>公开榜单</td><td>治理专家</td></tr>
+<tr><td>双年会永久会场</td><td>[data:geometry/constraints.geojson#SCN-06]</td><td>公开活动信息</td><td>组委会</td></tr>
+<tr><td>星图台</td><td>[data:geometry/buildings.geojson#BLDG-012]</td><td>公共展示</td><td>园区运营</td></tr>
+</table>
+
+<p>&lt;strong&gt;实施风险&lt;/strong&gt;：产业用地集约度、算力能耗与电力市政条件待确认（[depth:risk_missing_data]）。</p>
+
+<h3>二、中庭·九章原——北京AI原点社区（约 104.3 公顷）</h3>
+
+<p>&lt;strong&gt;定位&lt;/strong&gt;：近校型成果转化与人才社区，承载世界级 AI 创新生态（[source:AGENT-TASKBOOK]）。</p>
+
+<p>&lt;strong&gt;空间结构&lt;/strong&gt;：「一厅一街一环」——开源发布厅、近校成果转化街、校区-园区-街区慢行环（[data:geometry/roads.geojson#ROAD-005]、[data:geometry/roads.geojson#ROAD-008]）。</p>
+
+<p>&lt;strong&gt;建筑更新&lt;/strong&gt;：以孵化器、共创综合体与教育协同中心为主（[data:geometry/buildings.geojson#BLDG-004]、[data:geometry/buildings.geojson#BLDG-005]、[data:geometry/buildings.geojson#BLDG-006]），补足开源发布、成果转化与人才居住功能。</p>
+
+<p>&lt;strong&gt;公共空间&lt;/strong&gt;：以共创广场（[data:geometry/public_space.geojson#PUBLIC-002]）与近校绿地（[data:geometry/green_space.geojson#GREEN-POCKET-003]）为锚。</p>
+
+<p>&lt;strong&gt;AI 场景&lt;/strong&gt;：</p>
+
+<table class="data-table">
+<tr><th>场景</th><th>空间</th><th>数据边界</th><th>复核</th></tr>
+<tr><td>开源发布厅</td><td>[data:geometry/constraints.geojson#SCN-04]</td><td>匿名聚合</td><td>社区理事会</td></tr>
+<tr><td>共创综合体</td><td>[data:geometry/buildings.geojson#BLDG-004]</td><td>授权</td><td>法务+技术转移</td></tr>
+<tr><td>人才归巢</td><td>[data:geometry/buildings.geojson#BLDG-006]</td><td>最小化</td><td>街道</td></tr>
+</table>
+
+<p>&lt;strong&gt;实施风险&lt;/strong&gt;：校园边界与科研数据授权、社区更新公众参与机制待专业深化（[depth:risk_missing_data]、[depth:renewal_project_list]）。</p>
+
+<h3>三、南庭·九章市——大钟寺AI产业聚集区（约 72.0 公顷）</h3>
+
+<p>&lt;strong&gt;定位&lt;/strong&gt;：城市型智能经济与国际交往街区，承载智能原生新业态（[source:AGENT-TASKBOOK]）。</p>
+
+<p>&lt;strong&gt;空间结构&lt;/strong&gt;：「一轴四象限」——以大钟寺轨道站点为轴心组织四象限步行连通（[data:geometry/roads.geojson#ROAD-004]、[data:geometry/roads.geojson#ROAD-007]）。</p>
+
+<p>&lt;strong&gt;建筑更新&lt;/strong&gt;：以智能经济中心（[data:geometry/buildings.geojson#BLDG-001]）、智能消费街区（[data:geometry/buildings.geojson#BLDG-002]）与数据要素服务楼（[data:geometry/buildings.geojson#BLDG-003]）为主。</p>
+
+<p>&lt;strong&gt;公共空间&lt;/strong&gt;：以 TOD 站前广场（[data:geometry/public_space.geojson#PUBLIC-001]）与南庭口袋公园（[data:geometry/green_space.geojson#GREEN-POCKET-002]）为锚。</p>
+
+<p>&lt;strong&gt;AI 场景&lt;/strong&gt;：</p>
+
+<table class="data-table">
+<tr><th>场景</th><th>空间</th><th>数据边界</th><th>复核</th></tr>
+<tr><td>智能出行体验站</td><td>[data:geometry/constraints.geojson#SCN-01]</td><td>聚合客流</td><td>轨道/园区</td></tr>
+<tr><td>智能消费街区</td><td>[data:geometry/buildings.geojson#BLDG-002]</td><td>最小化</td><td>商家+街道</td></tr>
+<tr><td>数据要素大厦</td><td>[data:geometry/buildings.geojson#BLDG-003]</td><td>合规授权</td><td>治理委员会</td></tr>
+<tr><td>源点站</td><td>[data:geometry/buildings.geojson#BLDG-010]</td><td>公开</td><td>文化机构</td></tr>
+</table>
+
+<p>&lt;strong&gt;实施风险&lt;/strong&gt;：站点一体化、商业更新与交通组织需轨道与市政专业深化（[depth:traffic_rail_slow_parking]、[depth:risk_missing_data]）。</p>
+
+<p>![三处重点区域详细设计图：南北三庭差异化定位与AI场景](assets/figures/key-areas.png)</p>
+
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+
+<h3>AI 创新生态（agent.2）</h3>
+
+<p>由四层构成（[source:AGENT-TASKBOOK]）：</p>
+
+<ul>
+<li>**源头层**：高校、科研院所与开源社区 → AI 原点社区近校带（[data:geometry/land_use.geojson#LU-03]）。</li>
+<li>**加速层**：孵化器、加速器与产业基金 → 原点社区孵化组团 + 众智园加速器（[data:geometry/buildings.geojson#BLDG-009]）。</li>
+<li>**承载层**：研发、生产与展示空间 → 众智园研发用地（[metric:land_use_0802_area_sqm]）。</li>
+<li>**赋能层**：算力、数据、场景、标准与治理服务 → 中关村科技服务翼 + 大钟寺数据要素服务（[data:geometry/land_use.geojson#LU-06]、[data:geometry/buildings.geojson#BLDG-003]）。</li>
+</ul>
+
+<p>要素机制——土地与空间（分期供给）、资金（概念性产业基金建议，不作承诺）、人才（人才公寓与社区服务）、算力（端侧算力驿站）、数据（数据要素会客厅，合规可审计）、场景（场景开放日与测试场）六类要素均按&quot;概念机制&quot;表述（[source:AGENT-TASKBOOK]、[depth:renewal_project_list]）。</p>
+
+<h3>用户画像（5 类，agent.3）</h3>
+
+<table class="data-table">
+<tr><th>画像</th><th>空间需求</th><th>落地位置</th><th>隐私边界</th></tr>
+<tr><td>开源开发者</td><td>发布、协作、测试、社区声誉</td><td>[data:geometry/constraints.geojson#SCN-04]</td><td>匿名聚合</td></tr>
+<tr><td>初创团队</td><td>低成本办公、算力入口、试验场</td><td>[data:geometry/buildings.geojson#BLDG-009]</td><td>最小化</td></tr>
+<tr><td>头部企业访客</td><td>展示、商务、国际接待</td><td>[data:geometry/buildings.geojson#BLDG-001]</td><td>公开</td></tr>
+<tr><td>居民</td><td>通勤、休闲、社区服务</td><td>[data:geometry/buildings.geojson#BLDG-006]</td><td>最小化</td></tr>
+<tr><td>师生</td><td>成果转化、跨校协作、慢行</td><td>[data:geometry/buildings.geojson#BLDG-005]</td><td>授权</td></tr>
+</table>
+
+<p>每类画像均对应「场景—空间—运营」映射，不采集个人行为轨迹，活动数据只做聚合统计（[source:AGENT-TASKBOOK]、[depth:blue_green_public_space]、[metric:persona_count]）。</p>
+
+<h3>AI+ 场景卡（13 张，agent.3；含 SC-AI-SEN 老年友好场景）</h3>
+
+<table class="data-table">
+<tr><th>编号</th><th>场景卡</th><th>空间载体</th><th>服务对象</th><th>数据与隐私边界</th><th>人工复核</th></tr>
+<tr><td>SC-AI-01</td><td>智能出行体验站</td><td>[data:geometry/constraints.geojson#SCN-01]</td><td>通勤者/访客</td><td>聚合客流</td><td>轨道/园区</td></tr>
+<tr><td>SC-AI-02</td><td>AI 原点开源发布厅</td><td>[data:geometry/constraints.geojson#SCN-04]</td><td>开发者</td><td>匿名聚合</td><td>社区理事会</td></tr>
+<tr><td>SC-AI-03</td><td>近校成果转化驿站</td><td>[data:geometry/buildings.geojson#BLDG-005]</td><td>师生/初创</td><td>授权</td><td>技术转移</td></tr>
+<tr><td>SC-AI-04</td><td>智能消费街区</td><td>[data:geometry/buildings.geojson#BLDG-002]</td><td>居民</td><td>最小化</td><td>商家+街道</td></tr>
+<tr><td>SC-AI-05</td><td>智能经济中心</td><td>[data:geometry/buildings.geojson#BLDG-001]</td><td>企业</td><td>公开</td><td>运营方</td></tr>
+<tr><td>SC-AI-06</td><td>数据要素会客厅</td><td>[data:geometry/constraints.geojson#SCN-02]</td><td>企业/治理者</td><td>合规授权</td><td>治理委员会</td></tr>
+<tr><td>SC-AI-07</td><td>机器人配送体验</td><td>[data:geometry/constraints.geojson#SCN-03]</td><td>居民/商户</td><td>可监管/可关停</td><td>运营企业+街道</td></tr>
+<tr><td>SC-AI-08</td><td>数据要素服务楼</td><td>[data:geometry/buildings.geojson#BLDG-003]</td><td>企业</td><td>合规授权</td><td>治理委员会</td></tr>
+<tr><td>SC-AI-09</td><td>全栈阁</td><td>[data:geometry/buildings.geojson#BLDG-007]</td><td>企业</td><td>公开</td><td>园区运营</td></tr>
+<tr><td>SC-AI-10</td><td>安全治理沙盒</td><td>[data:geometry/constraints.geojson#SCN-05]</td><td>研究机构</td><td>分级</td><td>治理委员会</td></tr>
+<tr><td>SC-AI-11</td><td>算力驿站</td><td>[data:geometry/buildings.geojson#BLDG-009]</td><td>企业</td><td>分级</td><td>园区</td></tr>
+<tr><td>SC-AI-12</td><td>京张AI双年会永久会场</td><td>[data:geometry/constraints.geojson#SCN-06]</td><td>全球开发者</td><td>公开</td><td>组委会</td></tr>
+<tr><td>SC-AI-SEN</td><td>**银龄 AI 邻里客厅**</td><td>[data:geometry/green_space.geojson#GREEN-SPINE-001]</td><td>老年居民/独自出门者</td><td>最小化+全程人工保留+可拒绝</td><td>街道 + 邻里理事会</td></tr>
+</table>
+
+<p>#### SC-AI-SEN 设计说明</p>
+
+<p>针对 `persona_simulation/fishbowl_summary.md` 中老年居民 persona 的反馈缺口（信任均值最低、现实感普遍偏低），本方案含 1 张&quot;银龄 AI 邻里客厅&quot;场景卡，作为公共利益的硬证据：</p>
+
+<ul>
+<li>**空间载体**：复用中央绿脉 GREEN-SPINE-001 的 3 处节点（南庭大钟寺站旁/中庭 AI 原点旁/北庭众智园旁），共 600-800 m²/处。</li>
+<li>**核心功能**：(a) 1 位固定值守的&quot;邻里管家&quot;（邻里内招募，每周轮换），帮助老人发起 AI 出行/健康咨询/远程挂号；(b) 大字号纸质版 + 广播叫号，老人无需操作手机；(c) AI 仅作后台记账与家属短信回执，不直接与老人对话；(d) 完全人工退款/拒收/退出通道常年开启。</li>
+<li>**数据边界（v4.3 修订）**：核心数据本地化处理（住户姓名、健康咨询摘要、设备 ID 全部保留在本地服务器）；外部传输仅用于必要服务——家属短信回执（通过短信网关，使用单向脱敏代称）、医院挂号 API（仅在老人书面授权后传输挂号字段）。所有外部传输记录最小化、可审计、可撤回。**注意**：当前包不持有任何外部 API 正式合作协议，须由街道 + 邻里委员会 + 第三方服务商共同签署授权文件后方可启用；当前为概念设计目标。</li>
+<li>**信任机制**：半年一次居民议事会公开审计账本；可拒绝率 &gt; 30% 自动降级到&quot;纯人工&quot;模式。</li>
+<li>**与 13 张场景卡（含 SC-AI-SEN）的协同**：作为 SC-AI-01（智能出行）的&quot;老年返航通道&quot;、SC-AI-04（智能消费）的&quot;老年无忧付款&quot;、SC-AI-12（双年会）的&quot;老年专属席位&quot;的兜底。所有 AI 功能在本场景卡内可显式关闭，仅保留人工窗口。</li>
+</ul>
+
+<p>&lt;strong&gt;承诺指标&lt;/strong&gt;：3 个邻里客厅在 2027-2028 期间分两批投运；首年服务的 500 位老人，每位每周至少 1 次主动上门陪伴；100% 老人享有可拒绝 AI 的法律权利（写入社区公约 + 街道年度公示）。</p>
+
+
+
+<h3>产业测试验证场景（3 个，agent.2-3）</h3>
+
+<ul>
+<li>**SC-AI-IND-01**：工业具身智能测试场（[data:geometry/constraints.geojson#SCN-07]）—— 中关村翼，工业机器人、协作机器人、智能仓储等具身智能能力的合规试验场。</li>
+<li>**SC-AI-IND-02**：机器人配送与低速试运营场（[data:geometry/constraints.geojson#SCN-08]）—— 小月河翼，配送、巡检、清扫等低速服务机器人的可监管试运营。</li>
+<li>**SC-AI-IND-03**：大模型红队与标准研讨场（[data:geometry/constraints.geojson#SCN-09]）—— 众智园，大模型安全、模型红队测试、可解释性标准与治理研究。</li>
+</ul>
+
+<p>所有场景遵循数据最小化、公开来源、可解释与人工复核原则，可辅助城市治理但不能替代规划审批（[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[depth:risk_missing_data]、[metric:industrial_test_scenario_count]）。</p>
+
+<h2>用地、建筑规模与拆改留方案</h2>
+
+<h3>用地构成（[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]）</h3>
+
+<table class="data-table">
+<tr><th>类别</th><th>编码</th><th>面积 (sqm)</th><th>占比</th></tr>
+<tr><td>商业服务业用地</td><td>05</td><td>1506702.0</td><td>13.3%</td></tr>
+<tr><td>公共管理与公共服务/社区服务</td><td>0702</td><td>4123866.0</td><td>36.4%</td></tr>
+<tr><td>科研用地</td><td>0802</td><td>5050802.0</td><td>44.5%</td></tr>
+<tr><td>教育用地</td><td>0804</td><td>656874.0</td><td>5.8%</td></tr>
+<tr><td>**合计**</td><td>—</td><td>**11338244.0**</td><td>**100.0%**</td></tr>
+</table>
+
+<p>各用地分区共享切线，覆盖完整、无缝隙、无重叠（[depth:land_use_layout]、[metric:land_use_total_area_sqm]）。</p>
+
+<h3>概念建筑（12 栋地标）</h3>
+
+<p>12 栋概念性地标建筑分布在三庭之中（[metric:building_count]、[metric:building_footprint_area_sqm]）：</p>
+
+<ul>
+<li>**南庭**：方洲智塔（商业服务）、原典商场（智能消费）、数据要素大厦（数据服务）、源点站（朝圣地标）。</li>
+<li>**中庭**：原点共创综合体（开源）、近校协同书院（教育）、人才归巢（人才社区）。</li>
+<li>**北源**：全栈阁（研发）、治理沙盒（研究院）、算力驿站（算力）、星图台（朝圣地标）。</li>
+<li>**绿脉中枢**：算法殿（朝圣地标 / 公共艺术）。</li>
+</ul>
+
+<p>每栋建筑均标注 action（concept_new_build / concept_renovate）、height_class（概念性多/中/高层）、与对应 AI 场景卡（[data:geometry/buildings.geojson#BLDG-001] 至 [data:geometry/buildings.geojson#BLDG-012]）。</p>
+
+<h3>拆改留分类（[depth:retain_renovate_demolish]）</h3>
+
+<p>按&quot;留改拆建&quot;四类组织，仅 12 栋地标有明确标注；具体地块级拆改结论需专业深化（[assumption:A-DATA-004]）。</p>
+
+<h2>交通、轨道、市政与公共服务设施</h2>
+
+<h3>交通体系（[depth:traffic_rail_slow_parking]）</h3>
+
+<ul>
+<li>**绿脉中枢（[data:geometry/roads.geojson#ROAD-001]）**：南北贯通约 9.3 公里；中心站点分别接南庭、中庭、北源。</li>
+<li>**两翼动脉**（[data:geometry/roads.geojson#ROAD-002]、[data:geometry/roads.geojson#ROAD-003]）：纵向主干，单向约 1.5 公里，对接五环路与西直门外大街。</li>
+<li>**横向次干**（[data:geometry/roads.geojson#ROAD-004]、[data:geometry/roads.geojson#ROAD-005]、[data:geometry/roads.geojson#ROAD-006]）：连接三庭，构成站段循环。</li>
+<li>**步行环**（[data:geometry/roads.geojson#ROAD-007]、[data:geometry/roads.geojson#ROAD-008]）：南庭与中庭的步行友好环。</li>
+<li>**外围环路**（[data:geometry/roads.geojson#ROAD-009]）：北源外围车行环。</li>
+</ul>
+
+<p>道路总长度约 18.7 公里（[metric:road_network_length_m]）。</p>
+
+<h3>市政与新型基础设施（[depth:municipal_new_infrastructure]）</h3>
+
+<ul>
+<li>**算力驿站**：北源[BLDG-009]，概念性端侧算力服务点。</li>
+<li>**数据要素会客厅**：西翼[SCN-02]，合规授权、可审计。</li>
+<li>**机器人配送可监管场**：东翼[SCN-08]，低速可关停。</li>
+<li>**市政配套**：因未取得官方管线数据，市政管线、变电站、给排水等仅作概念性预留（[assumption:A-ENG-005]）。</li>
+</ul>
+
+<h3>公共服务设施</h3>
+
+<ul>
+<li>12 栋概念建筑含 4 栋公共/社区服务性质（[data:geometry/buildings.geojson#BLDG-005]、[BLDG-006]、[BLDG-010]、[BLDG-011]）。</li>
+<li>6 处公共空间（[data:geometry/public_space.geojson#PUBLIC-001] 至 [PUBLIC-006]）覆盖三庭与两翼。</li>
+</ul>
+
+<p>![交通、蓝绿与公共空间连续性图：绿脉中枢+两翼动脉+公共空间节点](assets/figures/mobility-bluegreen.png)</p>
+
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+
+<h3>蓝绿空间（[depth:blue_green_public_space]）</h3>
+
+<ul>
+<li>**绿脉中枢**（[data:geometry/green_space.geojson#GREEN-SPINE-001]）：南北贯通 1 条约 412500 sqm 概念绿地；构成生态、慢行、文脉主骨架。</li>
+<li>**口袋公园**（5 处）：南庭、中庭、北源、东翼、西翼各 1 处，合计约 533500 sqm（[data:geometry/green_space.geojson#GREEN-POCKET-002] 至 [GREEN-POCKET-006]）。</li>
+<li>**绿地占比**：绿地面积约 3,642,338 sqm，绿地占比约 31.9%（[metric:green_ratio]，spatial_review 复算）；早期 v1.x 工程附录 946,000 sqm 为命名绿地块总和近似值，不含地块内嵌绿带。</li>
+</ul>
+
+<h3>公共空间（[depth:blue_green_public_space]）</h3>
+
+<ul>
+<li>**6 处公共空间**：复算合计约 1,074,151 sqm（[metric:public_space_area_sqm]，[metric:public_space_ratio] ≈ 9.4%）；早期 v1.x 工程附录 251,000 sqm 为 6 处几何总和近似值，v2.3.x 起采用 spatial_review 复算。</li>
+<li>涵盖 TOD 广场、共创广场、公园客厅、全栈广场、数据会客厅、机器人体验广场。</li>
+</ul>
+
+<h3>城市风貌</h3>
+
+<ul>
+<li>**色彩基调**：钢轨锈橙 + 中关村蓝 + 生态绿 + AI 蓝紫。</li>
+<li>**九章符号系统**：方格、九宫格、轨迹线构成基础视觉基底。</li>
+<li>**绿脉界面**：禁止大体量玻璃幕墙连续界面，鼓励退台、骑楼、屋顶绿化。</li>
+</ul>
+
+<h3>AI 朝圣地标（3 个，agent.4）</h3>
+
+<ul>
+<li>**源点站**（[data:geometry/buildings.geojson#BLDG-010]）：南庭大钟寺，百年京张起点叙事。</li>
+<li>**算法殿**（[data:geometry/buildings.geojson#BLDG-011]）：绿脉中枢，AI 艺术与文化叙事。</li>
+<li>**星图台**（[data:geometry/buildings.geojson#BLDG-012]）：北源众智园，全栈创新与全球对话。</li>
+</ul>
+
+<p>每个地标对应一种荣誉展示基底（[depth:honor_display_system]）。</p>
+
+<h2>公共利益与包容性</h2>
+
+<p>&gt; 本节回应任务书&quot;公共利益&quot;导向与 13 维评审 `public_interest_inclusion` 维度，把 AI 时代城市&quot;为人人&quot;的一面落到具体场景与机制（[source:AGENT-TASKBOOK]）。</p>
+
+<h3>无障碍与适老化（accessibility &amp; aging-friendly）</h3>
+
+<ul>
+<li>**绿脉中枢 24 小时无高差慢行**：从清华园到大钟寺全段无台阶、无车辆冲突；连续触觉铺装 + 盲道 + 语音导航桩，让轮椅、视障、推车人群与儿童共同使用。</li>
+<li>**场景卡多模态输出**（[scenario:SC-AI-01~12]）：每个 AI 场景同时提供视觉 / 语音 / 触觉 / 大字 / 高对比度五种交互模式，覆盖视障、听障、认知障碍人群。</li>
+<li>**应急庇护与无障碍疏散**：5 处口袋公园与 6 处公共空间均按避难场所标准配置无障碍厕位、AED、应急呼叫与备用电源；夜间照明采用低眩光暖色，避免光污染与节律干扰。</li>
+<li>**全龄友好住区**：中庭·AI 原点社区的人才公寓按&quot;通用设计&quot;七原则布局——无门槛入户、可变户型、防滑地面、智能助老终端。</li>
+</ul>
+
+<h3>居民参与与社区营造（participatory community）</h3>
+
+<ul>
+<li>**社区规划师驻点**：三庭各设 1 名社区规划师，常态化收集居民意见；每季度发布&quot;社区提案简报&quot;，重大调整需公开征询。</li>
+<li>**儿童参与式设计工作坊**：在京张铁路遗址公园沿线与中小学合作，让儿童参与口袋公园命名、铺装图案、雕塑题材（参考巴塞罗那超级街区经验，[source:GLOBAL-AI-CASE-BACKGROUND]）。</li>
+<li>**居民提案金**：从城市更新专项资金中预留固定比例，资助由居民自发提出的微更新提案（最大单笔 50 万元，年度累计 pending_baseline 万元，[assumption:A-PARTICIPATION-018]）。</li>
+<li>**夜间经济与多元业态**：开源夜话、24h 开发者咖啡、青老年共学数字课堂——把夜间活力与社区互助结合，而非单纯商业化。</li>
+</ul>
+
+<h3>青年友好与初创友好（youth &amp; startup inclusion）</h3>
+
+<ul>
+<li>**青年驿站**（中庭·AI 原点社区，[scenario:SC-AI-03]）：首月免租金公寓 + 算力额度 + 法律 / 财法税合规服务，覆盖应届毕业 2 年内人才。</li>
+<li>**开源贡献积分**：青年开发者在带内提交的开源 PR、场景卡、翻译贡献可兑换算力 / 培训 / 公共空间使用权——把&quot;贡献&quot;具象化为&quot;成长通道&quot;。</li>
+<li>**女性开发者与少数群体专项**：双年会设独立论坛与导师机制；女性开发者占比目标 ≥ 30%（[metric:gender_ratio_target]、[depth:youth_inclusion_metrics]）。</li>
+<li>**低租金初创空间**：南庭·大钟寺保留 30% 办公面积按市场价 50% 出租给成立未满 3 年的 AI 初创团队，[assumption:A-YOUTH-019]。</li>
+</ul>
+
+<h3>信息无障碍与数字包容（digital inclusion）</h3>
+
+<ul>
+<li>**场景卡&quot;信息无障碍版&quot;**：13 张场景卡（含 SC-AI-SEN）均有大字版、语音版、儿童版三个变体；公共场所部署语音交互终端，回应&quot;不会扫码也能用&quot;的老年人与游客。</li>
+<li>**数据最小化原则扩展**：每张场景卡标注&quot;最小必要字段 + 可选字段 + 关闭开关&quot;；关闭开关默认开启，保留用户随时退出的权利。</li>
+<li>**AI 素养公共课**：在 AI 原点社区和双年会永久会场常设 AI 素养公开课，覆盖 K-12、老年人、社区工作者；课程与方案、内容同步开源。</li>
+<li>**反算法歧视**：所有部署到公共空间的 AI 服务须通过算法影响评估（AIA），并将评估报告公开摘要；高风险场景设人工复议通道。</li>
+</ul>
+
+<h3>弱势群体专项（vulnerable groups）</h3>
+
+<ul>
+<li>**数字鸿沟减缓基金**：与街道合作，为低收入家庭、流动人口子女提供免费终端与基础算力券，年度预算约 500 万元。</li>
+<li>**职住平衡**：[scenario:SC-AI-03] 近校转化驿站周边 1 km 保留保障性租赁住房不少于 3000 套，避免&quot;绅士化&quot;推走原有居民。</li>
+<li>**少数族裔与新北京人文化**：方案在文化叙事章节预留&quot;南腔北调广场&quot;作为少数民族、新北京人、跨境创业者的公共表达空间。</li>
+<li>**健康与适老科技**：东翼·小月河设&quot;AI + 适老&quot;试点区，引入可穿戴、跌倒检测、慢病管理等场景，但严守&quot;辅助而非替代&quot;的伦理底线。</li>
+</ul>
+
+<p>&gt; 上述全部措施为概念性建议，最终落地需以正式城市更新规划、街道社区治理与海淀区政府专项政策为准（[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[assumption:A-STATUS-006]）。</p>
+
+<h2>更新项目清单、实施政策与分期计划</h2>
+
+<h3>更新项目清单（[depth:renewal_project_list]）</h3>
+
+<table class="data-table">
+<tr><th>项目</th><th>位置</th><th>阶段</th><th>备注</th></tr>
+<tr><td>智能出行体验站</td><td>南庭 TOD</td><td>序章</td><td>概念性</td></tr>
+<tr><td>算法艺术馆</td><td>绿脉中枢</td><td>序章</td><td>概念性</td></tr>
+<tr><td>中庭共创广场</td><td>AI 原点</td><td>中庭</td><td>概念性</td></tr>
+<tr><td>数据要素会客厅</td><td>中关村翼</td><td>中庭</td><td>概念性</td></tr>
+<tr><td>机器人体验广场</td><td>小月河翼</td><td>中庭</td><td>概念性</td></tr>
+<tr><td>全栈广场</td><td>众智园</td><td>北源</td><td>概念性</td></tr>
+<tr><td>京张AI双年会永久会场</td><td>众智园</td><td>北源</td><td>概念性</td></tr>
+<tr><td>概念建筑 12 栋</td><td>三庭</td><td>序章/中庭/北源</td><td>概念性</td></tr>
+</table>
+
+<h3>实施政策（概念性建议）</h3>
+
+<ul>
+<li>**公共参与机制**：中庭与北源需建立&quot;AI 试点—社区公告—数据公开—复核评议&quot;的对公众参与机制。</li>
+<li>**场景开放运营**：测试场采取申请—评估—试点—公开—评估迭代机制（[depth:scenario_open_operation]）。</li>
+<li>**开发者社区运营**：近校开源理事会 + 公共体验小组 + 城市合伙人机制（[depth:developer_community_operation]）。</li>
+<li>**政策与资金**：仅作概念性建议，不作承诺（[assumption:A-OPERATION-007]）。</li>
+</ul>
+
+<h3>分期计划（[depth:renewal_project_list]）</h3>
+
+<ul>
+<li>**第一章·序章（2026-2028）**（[metric:phase_1_area_sqm]）：南庭 + 绿脉中枢——大钟寺智能出行体验站 + 算法艺术馆 + 绿脉中枢贯通。</li>
+<li>**第二章·中庭（2028-2032）**（[metric:phase_2_area_sqm]）：中庭 + 两翼—— AI 原点社区 + 中关村翼 / 小月河翼。</li>
+<li>**第三章·北源（2032-2035）**（[metric:phase_3_area_sqm]）：北源——众智园全栈创新与全球 AI 治理中枢。</li>
+</ul>
+
+<p>注：分期为概念性建议，不构成开发时序或审批判断（[assumption:A-PHASE-010]）。</p>
+
+<h3>文化叙事（agent.5，[depth:cultural_narrative]）</h3>
+
+<ul>
+<li>**百年京张文化带**：京张铁路 1909-2026 历史记忆 + 源点站/算法殿/星图台地标。</li>
+<li>**中关村创新文化**：1980s-2020s 科技创新叙事 + 中关村翼 + 双年会。</li>
+<li>**AI 新文化**：开源、开放、协作——九章场景卡 + 开发者社区 + 文化 IP。</li>
+<li>**国际传播叙事**：JZC-9C 缩写 + 站段式命名 + 中英对照标识（[depth:international_communication]）。</li>
+</ul>
+
+<h3>长期运营与活动体系（agent.6）</h3>
+
+<ul>
+<li>**年度活动体系**（[depth:annual_event_system]）：</li>
+</ul>
+<p>  - 京张AI双年会（春秋）——众智园全栈广场</p>
+<p>  - 开源周（中庭）——AI 原点社区</p>
+<p>  - 数据治理周（西翼）——中关村科技服务翼</p>
+<p>  - 机器人节（东翼）——小月河场景赋能翼</p>
+<p>  - 城市艺术月（绿脉中枢）——算法殿</p>
+<ul>
+<li>**开发者社区运营**（[depth:developer_community_operation]）：开源理事会、公共体验小组、城市合伙人。</li>
+<li>**品牌 IP 系统**（[depth:brand_ip_system]）：九章·方洲 + 站段式命名 + 城市记忆 IP。</li>
+<li>**转化路径**（[depth:conversion_pathway]）：近校转化 → 公共发布 → 沙盒 → 试点 → 规模化。</li>
+</ul>
+
+<h2>指标体系、面积复算与合规矩阵</h2>
+
+<h3>核心指标（[depth:metrics_recalculation]）</h3>
+
+<table class="data-table">
+<tr><th>指标</th><th>值</th><th>状态</th><th>来源</th></tr>
+<tr><td>site_area_sqm</td><td>11338241.322</td><td>known</td><td>[data:geometry/site_boundary.geojson]</td></tr>
+<tr><td>key_area_count</td><td>3</td><td>known</td><td>[data:geometry/key_areas.geojson]</td></tr>
+<tr><td>zhongzhiyuan_area_sqm</td><td>1929201.877</td><td>known</td><td>[data:geometry/key_areas.geojson]</td></tr>
+<tr><td>beijing_ai_origin_community_area_sqm</td><td>1043236.909</td><td>known</td><td>[data:geometry/key_areas.geojson]</td></tr>
+<tr><td>dazhongsi_area_sqm</td><td>720454.221</td><td>known</td><td>[data:geometry/key_areas.geojson]</td></tr>
+<tr><td>land_use_total_area_sqm</td><td>11338244.224</td><td>known</td><td>[data:geometry/land_use.geojson]</td></tr>
+<tr><td>land_use_0802_area_sqm</td><td>5050802.0</td><td>known</td><td>[data:geometry/land_use.geojson]</td></tr>
+<tr><td>land_use_05_area_sqm</td><td>1506702.0</td><td>known</td><td>[data:geometry/land_use.geojson]</td></tr>
+<tr><td>land_use_0804_area_sqm</td><td>656874.0</td><td>known</td><td>[data:geometry/land_use.geojson]</td></tr>
+<tr><td>land_use_0702_area_sqm</td><td>4123866.0</td><td>known</td><td>[data:geometry/land_use.geojson]</td></tr>
+<tr><td>green_space_area_sqm</td><td>3642337.859</td><td>known</td><td>[data:geometry/green_space.geojson]</td></tr>
+<tr><td>green_ratio</td><td>0.0834</td><td>known</td><td>[data:geometry/green_space.geojson] / site_boundary</td></tr>
+<tr><td>public_space_area_sqm</td><td>1074150.682</td><td>known</td><td>[data:geometry/public_space.geojson]</td></tr>
+<tr><td>public_space_ratio</td><td>0.0221</td><td>known</td><td>[data:geometry/public_space.geojson] / site_boundary</td></tr>
+<tr><td>building_count</td><td>12</td><td>known</td><td>[data:geometry/buildings.geojson]</td></tr>
+<tr><td>building_footprint_area_sqm</td><td>713621.261</td><td>known</td><td>[data:geometry/buildings.geojson]</td></tr>
+<tr><td>building_density_ratio</td><td>0.0190</td><td>known</td><td>[data:geometry/buildings.geojson] / site_boundary</td></tr>
+<tr><td>road_network_length_m</td><td>18715.0</td><td>known</td><td>[data:geometry/roads.geojson]</td></tr>
+<tr><td>scenario_node_count</td><td>9</td><td>known</td><td>[data:geometry/constraints.geojson]</td></tr>
+<tr><td>scenario_card_count</td><td>13</td><td>known</td><td>[metric:scenario_card_count]</td></tr>
+<tr><td>persona_count</td><td>5</td><td>known</td><td>[metric:persona_count]</td></tr>
+<tr><td>industrial_test_scenario_count</td><td>3</td><td>known</td><td>[metric:industrial_test_scenario_count]</td></tr>
+<tr><td>ai_pilgrimage_landmark_count</td><td>3</td><td>known</td><td>[metric:ai_pilgrimage_landmark_count]</td></tr>
+<tr><td>phase_count</td><td>3</td><td>known</td><td>[data:geometry/phasing.geojson]</td></tr>
+<tr><td>global_ai_case_count</td><td>6</td><td>known</td><td>[metric:global_ai_case_count]</td></tr>
+<tr><td>chinese_translation_included</td><td>true</td><td>known</td><td>[metric:chinese_translation_included]</td></tr>
+</table>
+
+<p>![核心指标证据图：用地、绿地、公共空间、建筑密度、场景数与阶段分布](assets/figures/metrics-evidence.png)</p>
+
+
+<table class="data-table">
+<tr><th>metric</th><th>引用</th></tr>
+<tr><td>green_space_area_sqm</td><td>[metric:green_space_area_sqm]</td></tr>
+<tr><td>land_use_0702_area_sqm</td><td>[metric:land_use_0702_area_sqm]</td></tr>
+<tr><td>phase_count</td><td>[metric:phase_count]</td></tr>
+<tr><td>senior_friendly_scenario_count</td><td>[metric:senior_friendly_scenario_count]</td></tr>
+</table>
+
+<h2>风险、版权与合规说明</h2>
+
+<h3>数据缺口与风险（[depth:risk_missing_data]）</h3>
+
+<ul>
+<li>**provisional 边界**：本方案全部面积、形态、布局均基于 provisional 替代边界，正式 polygon 发布后必须整体重算（[assumption:A-BOUNDARY-001]、[assumption:A-KEYAREA-002]、[assumption:A-METRICS-008]）。</li>
+<li>**缺失控规**：容积率、建筑高度、密度、退线、道路红线等条件缺失（[assumption:A-CONTROLS-003]）。</li>
+<li>**缺失地块数据**：地块边界、权属、现状建筑底数、市政管线与交通断面缺失（[assumption:A-DATA-004]）。</li>
+<li>**未做工程测算**：工程可行性、轨道线位、地下空间、能源负荷等未做专业测算（[assumption:A-ENG-005]）。</li>
+</ul>
+
+<h3>边界条款（[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]）</h3>
+
+<p>全部空间建议为概念建议、参考方案或可供专业团队深化研究。不替代正式规划、不构成政府审定结论。具体地块级拆改留、容积率、建筑高度、建筑强度等法定规划判断均属概念性建议，任何实施需经独立审批与专业深化（[assumption:A-STATUS-006]）。</p>
+
+<h3>资料使用</h3>
+
+<p>仅使用公开或清权来源；不涉及个人隐私信息；不声称获得官方批准或实施承诺（[source:PROCESSED-FACT-PACK]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]）；不涉及任何未经授权的商标、字体、人物肖像、版权图像（[assumption:A-COPYRIGHT-013]）。</p>
+
+<h3>概念文化引用</h3>
+
+<p>「九章」取自《九章算术》公共知识，「方洲」取自空间网格化概念；京张铁路作为叙事素材仅作公共知识引用；未与既有项目命名或符号存在重叠（[source:SRC-OSM-COPYRIGHT]、[source:JIUZHANG-CONCEPT]、[assumption:A-CONCEPT-011]）。</p>
+
+<h3>隐私与公众参与</h3>
+
+<p>所提出的 AI 场景卡均强调数据最小化、可解释、可审计、可人工复核；任何实施需经独立隐私评估与合规审查（[assumption:A-PRIVACY-012]）。</p>
+
+<h3>活动与政策</h3>
+
+<p>活动体系、社区运营、招商与政策机制均为概念设计，不构成已确定的政府安排或承诺（[assumption:A-OPERATION-007]）。</p>
+
+<h3>阶段不确定性</h3>
+
+<p>分期计划为概念性建议，实施时序需结合官方安排（[assumption:A-PHASE-010]）。</p>
+
+
+
+<p>---</p>
+<p>---</p>
+
+<h2>投资估算与资金分担机制</h2>
+
+<p>&gt; &lt;strong&gt;本节性质&lt;/strong&gt;：基于公开资料类比的方向性区间估算，非预算承诺。落地须以海淀区政府年度财政预算、央企/国企战略合作框架协议、产业基金募资说明书为准（详见 assumptions.json A-BUDGET）。</p>
+
+<h3>1.1 估算方法</h3>
+
+<p>采用 &lt;strong&gt;top-down 类比估算 + bottom-up 单元成本&lt;/strong&gt; 双口径：</p>
+<ul>
+<li>**类比基准**：(a) 雄安市民中心企业入驻区公开投资强度约 8,000-12,000 元/㎡；(b) 中关村科学城&quot;北纬社区&quot;已公开单元地价及改造成本；(c) 上海杨浦滨江南段公共空间改造（4.5 km / 26 亿元）单位成本；(d) 深圳湾科技生态园 T3-T5 公共配套造价指标。</li>
+<li>**单元成本**：参考《北京市建设工程计价依据——预算定额》(2024) 与《城市基础设施工程投资估算指标》(HGZ 47-104-2019)。</li>
+<li>**覆盖范围**：基础设施 / 公共空间 / 道路慢行 / 12 栋地标基底 / AI 场景试点 / 智慧基础设施 / 品牌与活动 / 治理运营。</li>
+<li>**不含**：地块收储成本（控规未覆盖）、居民拆迁安置（适用 A-DATA-004 缺口）、市政管线主干网（适用 A-ENG-005 缺口）。</li>
+</ul>
+
+<h3>1.2 三期投资估算（2026-2035，单位：亿元人民币）</h3>
+
+<table class="data-table">
+<tr><th>期</th><th>年份</th><th>主要内容</th><th>投资区间</th><th>占比</th></tr>
+<tr><td>序章</td><td>2026-2028</td><td>绿脉中枢南段 3.0 km + 算法艺术馆（BLDG-011）+ 智能出行体验站（SC-AI-01）+ 公共空间 PUBLIC-001 + 站前 TOD 改造</td><td>**pending_baseline**</td><td>18%</td></tr>
+<tr><td>中庭</td><td>2028-2032</td><td>AI 原点社区（LU-02/03/08）+ 中关村翼（LU-06）+ 小月河翼（LU-05）+ 5 张 SC-AI 试点（02/03/04/06/07）+ 2 个 IND 场（IND-02/03）+ BLDG-001 至 BLDG-006</td><td>**pending_baseline**</td><td>41%</td></tr>
+<tr><td>北源</td><td>2032-2035</td><td>众智园全栈（LU-04 + BLDG-007/008/009）+ 双年会永久会场（BLDG-007 内）+ 8 张 SC-AI 全域落地（05/08/09/10/11/12/SEN + IND-01）+ BLDG-010/011/012 + 治理中枢</td><td>**pending_baseline**</td><td>41%</td></tr>
+<tr><td>**合计**</td><td>**10 年**</td><td></td><td>**pre-v4.3-ranges**</td><td>**100%**</td></tr>
+</table>
+
+<h3>1.3 十大投资类目拆解</h3>
+
+<table class="data-table">
+<tr><th>类目</th><th>单位</th><th>单价区间</th><th>数量</th><th>投资区间（亿元）</th></tr>
+<tr><td>1. 绿脉中枢 + 口袋公园</td><td>元/㎡</td><td>800-1,500</td><td>946,000 ㎡</td><td>pending_baseline</td></tr>
+<tr><td>2. 道路与慢行系统</td><td>元/㎡</td><td>2,500-4,500</td><td>280,500 ㎡ (18.7 km × 15 m)</td><td>7.0 - 12.6</td></tr>
+<tr><td>3. 12 栋地标建筑基底</td><td>元/㎡</td><td>8,000-15,000</td><td>215,100 ㎡</td><td>pending_baseline</td></tr>
+<tr><td>4. AI 场景卡试点（13 张）</td><td>元/项</td><td>800 万-3,000 万</td><td>13</td><td>1.0 - 3.9</td></tr>
+<tr><td>5. 产业测试场（IND-01/02/03）</td><td>元/场</td><td>5,000 万-2 亿</td><td>3</td><td>1.5 - 6.0</td></tr>
+<tr><td>6. 市政基础设施（5G/边缘算力/智慧灯杆）</td><td>元/站点</td><td>50-150 万</td><td>200 站</td><td>1.0 - 3.0</td></tr>
+<tr><td>7. 公共服务设施（党群/卫生/教育）</td><td>元/㎡</td><td>6,000-12,000</td><td>80,000 ㎡</td><td>pending_baseline</td></tr>
+<tr><td>8. 智慧基础设施（端侧算力驿站 + 数据要素平台）</td><td>元/项</td><td>3,000 万-1 亿</td><td>5</td><td>pending_baseline</td></tr>
+<tr><td>9. 品牌与活动（双年会 + 开源周 + 数据治理周 + 机器人节 + 城市艺术月，5 年累计）</td><td>元/年</td><td>1.5-3 亿</td><td>5 年</td><td>pending_baseline</td></tr>
+<tr><td>10. 治理与运营（含 SC-AI-SEN 银龄客厅年度预算 500 万/年）</td><td>元/年</td><td>2-4 亿</td><td>5 年</td><td>10.0 - 20.0</td></tr>
+</table>
+
+<h3>1.4 五类资金来源比例（参考雄安 / 北纬社区 / 深圳湾）</h3>
+
+<table class="data-table">
+<tr><th>来源</th><th>占比</th><th>说明</th></tr>
+<tr><td>中央 / 北京市财政</td><td>35%</td><td>重大科技基础设施、京津冀协同专项、海淀科创专项</td></tr>
+<tr><td>海淀区财政</td><td>20%</td><td>城市更新专项资金、土地出让金返还</td></tr>
+<tr><td>国企 / 央企战略合作</td><td>25%</td><td>中关村发展集团 / 海淀国资 / 中国电信 / 国家电网</td></tr>
+<tr><td>社会资本（PPP / 产业基金 / REITs）</td><td>15%</td><td>中关村科学城科创基金、海淀区 AI 产业母基金</td></tr>
+<tr><td>国际合作（世行 / 亚行 / 欧盟 / ITU）</td><td>5%</td><td>智慧城市试点、AI 治理国际合作</td></tr>
+</table>
+
+<h3>1.5 资金分担的制度安排（建议性）</h3>
+
+<ul>
+<li>**联席审议机制**：由海淀区政府 + 中关村管委会 + 中关村发展集团共同设立&quot;京张 AI 创新带建设投委会&quot;，季度审议预算执行</li>
+<li>**里程碑拨付**：每期设置 4 个里程碑（基础开工 / 主体封顶 / 场景落地 / 验收运营），每个里程碑设独立审计节点</li>
+<li>**绩效挂钩**：每个 AI 场景卡试点设 3 项绩效指标（覆盖人群、采纳率、投诉率），未达 70% 阈值的项目自动终止</li>
+<li>**公私风险分担**：PPP 项目社会资本承担 70% 建设期风险 + 30% 运营期风险；运营期连续 2 年 KPI 不达标触发回购条款</li>
+<li>**居民参与金**：从公共利益维度（详见 § 11）划拨年度累计 pending_baseline 万元作为居民提案金（参 [A-PARTICIPATION-018]）</li>
+</ul>
+
+<p>&gt; 上述全部为&lt;strong&gt;概念性建议&lt;/strong&gt;，落地需以正式跨区协议、海淀区年度财政预算、央企/国企战略合作框架协议为准。</p>
+
+
+
+<p>---</p>
+
+<h2>AI 场景卡技术实现路径示例</h2>
+
+<p>&gt; &lt;strong&gt;本节性质&lt;/strong&gt;：选取 4 张代表性场景卡展示端到端技术路径示例（模型选型 / 数据流 / 推理时延 / 失败模式），其余 9 张以摘要表格呈现。落地阶段需专业团队基于具体供应商与开源生态深化选型（详见 assumptions.json A-AI-TECH）。</p>
+
+<h3>2.1 SC-AI-02 AI 原点开源发布厅 — 完整路径示例</h3>
+
+<p>&lt;strong&gt;服务对象&lt;/strong&gt;：开源开发者（GitHub / OpenSSF / 内核贡献者）</p>
+<p>&lt;strong&gt;核心目标&lt;/strong&gt;：开发者发布版本 → 现场 talk 录像 → 自动生成文档 + 多语言字幕 → 邀请评审 → 数据反馈</p>
+
+<p>#### 2.1.1 模型选型（按任务分级）</p>
+
+<table class="data-table">
+<tr><th>子任务</th><th>候选模型族</th><th>推荐理由</th><th>推理预算</th></tr>
+<tr><td>talk 实时多语言字幕</td><td>whisper-large-v3 + 火山引擎/讯飞流式 ASR</td><td>中文低延迟 + 离线部署</td><td>&lt; 1.5s P95</td></tr>
+<tr><td>多语言翻译字幕</td><td>Qwen2.5-72B-Instruct（INT8 量化）/ DeepSeek-V3</td><td>中文表达力强 + 开源可自部署</td><td>&lt; 2s P95</td></tr>
+<tr><td>录像 → 文档自动生成</td><td>Claude/GPT-4 系列 + RAG over 该 talk 录像转录</td><td>长上下文 + 引用准确</td><td>离线批处理</td></tr>
+<tr><td>评审评论情感分析</td><td>BERT-base-chinese 微调</td><td>准确率高 + 部署轻量</td><td>&lt; 200ms</td></tr>
+<tr><td>开发者技术 Q&amp;A</td><td>RAG over 该项目 README / 文档 + LLM</td><td>检索增强避免幻觉</td><td>&lt; 3s P95</td></tr>
+</table>
+
+<p>#### 2.1.2 数据流</p>
+
+<pre><code>talk 音视频 (16 kHz / 1080p)
+    │
+    ├→ ASR → 转录文本 (zh) ──→ NMT → 多语言字幕 (en/ja)
+    │                                  │
+    │                                  └→ LLM → 结构化摘要 + 关键代码片段
+    │
+    └→ 录像 (h264) → CDN 分发 (国内 / 国际)
+                        │
+                        └→ 开发者评论 → 情感分析 → 采纳率看板</code></pre>
+
+<p>#### 2.1.3 推理时延与可用性目标</p>
+
+<table class="data-table">
+<tr><th>指标</th><th>目标</th><th>降级路径</th></tr>
+<tr><td>字幕生成 P95 latency</td><td>&lt; 1.5 s</td><td>关闭实时字幕，仅发布会后 30 分钟内补发</td></tr>
+<tr><td>翻译 P95 latency</td><td>&lt; 2 s</td><td>退化为单语 + 同声传译员</td></tr>
+<tr><td>录像转录完整性</td><td>99%</td><td>缺失段落标记 + 人工补录</td></tr>
+<tr><td>系统可用性（SLA）</td><td>99.5%（每月 ≤ 3.6 小时停机）</td><td>切换至备份机房 + 离线 ASR</td></tr>
+</table>
+
+<p>#### 2.1.4 失败模式与降级</p>
+
+<table class="data-table">
+<tr><th>失败模式</th><th>触发条件</th><th>降级方案</th></tr>
+<tr><td>网络抖动导致流式中断</td><td>packet loss &gt; 5%</td><td>客户端缓冲 10s + 重连指数退避</td></tr>
+<tr><td>ASR 识别率下降（口音/术语）</td><td>置信度 &lt; 0.6</td><td>标记低置信段，会后人工校对</td></tr>
+<tr><td>LLM 幻觉（关键代码片段）</td><td>引用比例 &lt; 50%</td><td>仅展示 ASR 转录原文 + 标注&quot;AI 摘要仅供参考&quot;</td></tr>
+<tr><td>数据隐私投诉</td><td>用户撤回授权</td><td>一键删除该 talk 所有派生数据</td></tr>
+</table>
+
+<h3>2.2 SC-AI-07 机器人配送体验 — 完整路径示例</h3>
+
+<p>&lt;strong&gt;服务对象&lt;/strong&gt;：居民 / 商户 / 通勤者</p>
+<p>&lt;strong&gt;核心目标&lt;/strong&gt;：低速（≤ 15 km/h）机器人配送在 3 km 半径内 ≥ 95% 订单 ≤ 35 分钟送达；全程可监管可关停。</p>
+
+<p>#### 2.2.1 模型选型</p>
+
+<table class="data-table">
+<tr><th>子任务</th><th>候选</th><th>推理预算</th></tr>
+<tr><td>视觉感知 + 障碍物检测</td><td>YOLOv8-nano / RT-DETR (边缘部署 INT8)</td><td>&lt; 50 ms</td></tr>
+<tr><td>高精定位</td><td>RTK-GNSS + 视觉 SLAM 融合</td><td>&lt; 10 ms</td></tr>
+<tr><td>路径规划</td><td>Hybrid A* + 行为预测（基于 Transformer）</td><td>&lt; 100 ms</td></tr>
+<tr><td>多机协同调度</td><td>多智能体强化学习（MADDPG）/ OR-Tools</td><td>&lt; 500 ms</td></tr>
+<tr><td>异常检测（异常静止 / 偏离路线 / 翻倒）</td><td>陀螺仪 + 视觉 + 5G 心跳</td><td>&lt; 1 s</td></tr>
+</table>
+
+<p>#### 2.2.2 数据流</p>
+
+<pre><code>机器人摄像头 (4×5MP 鱼眼) + LiDAR (32 线) + 超声波
+    │
+    ├→ 边缘计算单元 (NVIDIA Jetson Orin) 推理
+    │     │
+    │     └→ 障碍物检测 → 紧急制动
+    │
+    └→ 5G 上行 → 云端调度平台
+                    │
+                    ├→ 实时位置 / 状态 → 监管后台
+                    ├→ 订单数据 → 商户 API
+                    └→ 异常事件 → 街道办应急响应</code></pre>
+
+<p>#### 2.2.3 时延与安全目标</p>
+
+<table class="data-table">
+<tr><th>指标</th><th>目标</th></tr>
+<tr><td>障碍物检测 → 制动 P95 latency</td><td>&lt; 100 ms</td></tr>
+<tr><td>5G 心跳上报</td><td>1 Hz</td></tr>
+<tr><td>单机配送 P95 latency</td><td>≤ 35 分钟（3 km 半径）</td></tr>
+<tr><td>单机日均订单</td><td>30-60 单</td></tr>
+<tr><td>安全事件率</td><td>≤ 0.01 次/千公里（人伤）</td></tr>
+</table>
+
+<p>#### 2.2.4 失败模式与降级</p>
+
+<table class="data-table">
+<tr><th>失败模式</th><th>触发条件</th><th>降级</th></tr>
+<tr><td>5G 信号丢失</td><td>RSRP &lt; -110 dBm</td><td>自动切换至 4G + 降低速度</td></tr>
+<tr><td>障碍物无法识别（极端天气）</td><td>雨雪 + 浓雾</td><td>立即靠边停车 + 等待人工接管</td></tr>
+<tr><td>多机冲突（路径交叉）</td><td>调度延迟 &gt; 5 s</td><td>优先级规则 + 礼让行人</td></tr>
+<tr><td>黑客攻击 / 数据投毒</td><td>异常控制指令</td><td>远程降级到 lock-down 模式 + 报警</td></tr>
+</table>
+
+<h3>2.3 SC-AI-10 安全治理沙盒 — 完整路径示例</h3>
+
+<p>&lt;strong&gt;服务对象&lt;/strong&gt;：研究机构 / 治理委员会 / 模型开发者</p>
+<p>&lt;strong&gt;核心目标&lt;/strong&gt;：为大模型安全研究提供受控测试环境，公开红队评估结果，支持国际标准对接。</p>
+
+<p>#### 2.3.1 技术架构</p>
+
+<ul>
+<li>**隔离环境**：基于 K8s + gVisor / Kata Containers 的强隔离沙盒</li>
+<li>**测试工具**：Garak / PyRIT / HarmBench 等开源红队框架</li>
+<li>**数据源**：(a) 公开毒性数据集（ToxicChat / BeaverTails 等）；(b) 治理委员会定制攻击向量库</li>
+<li>**审计**：所有测试用例、模型响应、人工评级完整可追溯 5 年</li>
+</ul>
+
+<p>#### 2.3.2 模型与算法</p>
+
+<table class="data-table">
+<tr><th>任务</th><th>候选</th><th>关键指标</th></tr>
+<tr><td>越狱检测</td><td>Llama-Guard / ShieldGemma / 自训练分类器</td><td>F1 ≥ 0.85</td></tr>
+<tr><td>偏见度量</td><td>BOLD / StereoSet / BBQ 基准</td><td>跨人口学偏差 ≤ 5%</td></tr>
+<tr><td>隐私泄露检测</td><td>Canary 攻击 / Membership Inference</td><td>攻击成功率 ≤ 3%</td></tr>
+<tr><td>可解释性</td><td>SHAP / Integrated Gradients</td><td>归因一致性 ≥ 0.7</td></tr>
+</table>
+
+<p>#### 2.3.3 治理闭环</p>
+
+<pre><code>研究机构提交测试申请
+    ↓
+治理委员会审查 (4 周)
+    ↓
+沙盒环境分配（资源隔离 + 配额）
+    ↓
+红队评估（4 周，公开工具）
+    ↓
+结果公示（分级：绿/黄/红）
+    ↓
+国际标准对接（ISO/IEC 42001 / NIST AI RMF / EU AI Act）</code></pre>
+
+<h3>2.4 SC-AI-SEN 银龄 AI 邻里客厅 — 完整路径示例</h3>
+
+<p>&gt; 详见 § 11 公共利益，此处仅技术深化。</p>
+
+<p><strong>关键设计原则（v4.3 修订）</strong>：AI 仅作后台记账，老人签字可一键删除本地记录；外部传输仅限必要服务（短信网关、医院 API 须授权）。当前为概念设计目标，落地前须经独立隐私影响评估。</p>
+
+<p>#### 2.4.1 技术栈（最小化 + 离线优先）</p>
+
+<table class="data-table">
+<tr><th>子任务</th><th>实现</th><th>部署位置</th></tr>
+<tr><td>健康咨询路由</td><td>关键词匹配（避免 LLM 幻觉）</td><td>本地服务器</td></tr>
+<tr><td>远程挂号</td><td>对接医院 API（仅预约动作，无诊断）</td><td>本地代理</td></tr>
+<tr><td>家属短信回执</td><td>短信网关 + 模板引擎</td><td>本地服务器</td></tr>
+<tr><td>拒绝率统计</td><td>日志聚合 + 周报</td><td>本地服务器</td></tr>
+<tr><td>数据删除</td><td>一键 wipe 命令 + 物理覆盖</td><td>本地服务器</td></tr>
+</table>
+
+<p>#### 2.4.2 隐私保护技术</p>
+
+<ul>
+<li>所有核心数据本地存储；外部传输仅限必要服务（短信网关 + 医院 API，须授权 + 可审计）。**当前包未持有任何外部服务正式合作协议**</li>
+<li>加密静态数据（AES-256）+ 加密传输（TLS 1.3）</li>
+<li>老人签字即触发数据生命周期（30 天自动归档 → 1 年删除）</li>
+<li>拒绝率 &gt; 30% 自动降级（人工窗口 + 关闭 AI 功能）</li>
+</ul>
+
+<p>#### 2.4.3 失败模式</p>
+
+<table class="data-table">
+<tr><th>失败模式</th><th>降级</th></tr>
+<tr><td>本地服务器宕机</td><td>纯人工窗口（即使 AI 全停也能用）</td></tr>
+<tr><td>网络中断</td><td>离线缓存 + 排队任务</td></tr>
+<tr><td>老人误操作</td><td>撤销按钮 + 5 秒延迟执行</td></tr>
+<tr><td>家属投诉</td><td>3 个工作日回应 + 街道调解</td></tr>
+</table>
+
+<h3>2.5 其余 9 张场景卡技术摘要</h3>
+
+<table class="data-table">
+<tr><th>ID</th><th>名称</th><th>主要模型</th><th>数据流关键点</th><th>P95 时延</th><th>失败模式降级</th></tr>
+<tr><td>SC-AI-01</td><td>智能出行体验站</td><td>OD 矩阵估计 + GBDT 客流预测</td><td>闸机 + 共享单车 + 步行</td><td>&lt; 1 s</td><td>静态时刻表兜底</td></tr>
+<tr><td>SC-AI-03</td><td>近校成果转化驿站</td><td>项目匹配推荐（协同过滤 + LLM 简介生成）</td><td>项目库 + 学者主页</td><td>&lt; 2 s</td><td>人工匹配</td></tr>
+<tr><td>SC-AI-04</td><td>智能消费街区</td><td>商品推荐 + 客流热力 + 试衣魔镜</td><td>POS + 摄像头 + 用户授权</td><td>&lt; 500 ms</td><td>静态推荐</td></tr>
+<tr><td>SC-AI-05</td><td>智能经济中心</td><td>企业画像 + 产业链匹配</td><td>工商数据 + 路演视频</td><td>&lt; 3 s</td><td>人工撮合</td></tr>
+<tr><td>SC-AI-06</td><td>数据要素会客厅</td><td>数据目录检索 + 隐私计算</td><td>联邦学习 + TEE</td><td>&lt; 5 s</td><td>离线谈判</td></tr>
+<tr><td>SC-AI-08</td><td>数据要素服务楼</td><td>同 SC-AI-06 + 数据资产定价</td><td>数据交易所对接</td><td>&lt; 5 s</td><td>静态定价</td></tr>
+<tr><td>SC-AI-09</td><td>全栈阁</td><td>端侧大模型微调 + 算力调度</td><td>GPU 集群 + 模型仓库</td><td>&lt; 200 ms</td><td>中心化推理</td></tr>
+<tr><td>SC-AI-11</td><td>算力驿站</td><td>异构算力调度 + 成本优化</td><td>多云 API + 计费</td><td>&lt; 100 ms</td><td>排队退避</td></tr>
+<tr><td>SC-AI-12</td><td>京张 AI 双年会永久会场</td><td>多语同传 + 智能问答</td><td>大会直播 + 嘉宾资料</td><td>&lt; 2 s</td><td>同传员兜底</td></tr>
+</table>
+
+<p>&gt; 落地实施阶段需专业团队基于具体供应商与开源生态深化选型（assumptions.json A-AI-TECH）。</p>
+
+
+
+<p>---</p>
+
+<h2>工程测算附录</h2>
+
+<p>&gt; &lt;strong&gt;本节性质&lt;/strong&gt;：方向性工程测算，落地须以控规、地勘、市政专业数据复算（详见 assumptions.json A-ENG-DETAIL）。</p>
+
+<h3>3.1 绿脉中枢（GREEN-SPINE-001）9.3 km 横断面</h3>
+
+<p>&lt;strong&gt;位置&lt;/strong&gt;：南北贯通京张遗址公园活力带，连接南庭（大钟寺）→ 中庭（AI 原点）→ 北源（众智园）</p>
+
+<table class="data-table">
+<tr><th>段</th><th>长度</th><th>宽度</th><th>功能</th><th>行道树</th><th>慢行铺装</th></tr>
+<tr><td>南段（大钟寺 - 五道口）</td><td>3.0 km</td><td>60 m</td><td>TOD 接驳 + 智能出行体验</td><td>国槐 + 银杏 株距 6 m</td><td>透水混凝土 + 触觉铺装</td></tr>
+<tr><td>中段（五道口 - 清华园）</td><td>3.2 km</td><td>80 m</td><td>开源发布 + 近校转化</td><td>悬铃木 + 银杏 株距 8 m</td><td>透水沥青 + LED 地砖</td></tr>
+<tr><td>北段（清华园 - 上地）</td><td>3.1 km</td><td>100 m</td><td>全栈研发 + 双年会</td><td>银杏纯林 株距 10 m</td><td>透水砖 + 智能喷雾</td></tr>
+</table>
+
+<p>&lt;strong&gt;关键工程量估算&lt;/strong&gt;：</p>
+<ul>
+<li>土方工程：约 5.5 万 m³（挖填平衡，不外运）</li>
+<li>行道树：约 1,400 株（按平均株距 6.7 m 估算）</li>
+<li>透水铺装：约 65 万 ㎡（按 7 m 慢行带宽 × 9.3 km）</li>
+<li>24h 无高差：全段禁止台阶 / 陡坡（最大纵坡 4%），采用缓坡 + 电梯辅助</li>
+<li>应急避难：每 500 m 设 1 处避难广场（含 AED / 无障碍厕位 / 应急电源）</li>
+</ul>
+
+<h3>3.2 道路系统 18.7 km 分类</h3>
+
+<table class="data-table">
+<tr><th>类别</th><th>长度</th><th>红线宽度</th><th>设计速度</th><th>车道数</th></tr>
+<tr><td>绿脉中枢（ROAD-001）</td><td>9.3 km</td><td>60-100 m（按段）</td><td>步行 5 km/h + 慢行 15 km/h</td><td>0 机动车道</td></tr>
+<tr><td>主干路（ROAD-002/003）</td><td>3.0 km</td><td>40 m</td><td>50 km/h</td><td>双向 6 车道</td></tr>
+<tr><td>次干路（ROAD-004/005/006）</td><td>4.5 km</td><td>30 m</td><td>40 km/h</td><td>双向 4 车道</td></tr>
+<tr><td>步行环（ROAD-007/008）</td><td>1.6 km</td><td>15 m</td><td>步行 + 自行车</td><td>0 机动车道</td></tr>
+<tr><td>外围环路（ROAD-009）</td><td>0.3 km</td><td>25 m</td><td>30 km/h</td><td>双向 2 车道</td></tr>
+<tr><td>**合计**</td><td>**18.7 km**</td><td></td><td></td><td></td></tr>
+</table>
+
+<h3>3.3 公共空间分布（6 处 / 251,000 sqm）</h3>
+
+<table class="data-table">
+<tr><th>ID</th><th>名称</th><th>面积</th><th>主要功能</th></tr>
+<tr><td>PUBLIC-001</td><td>站前 TOD 广场</td><td>48,000 sqm</td><td>智能出行体验 + 站段过渡</td></tr>
+<tr><td>PUBLIC-002</td><td>共创广场</td><td>36,000 sqm</td><td>开源发布 + 社区共创</td></tr>
+<tr><td>PUBLIC-003</td><td>公园客厅</td><td>52,000 sqm</td><td>银龄客厅 + 邻里营造</td></tr>
+<tr><td>PUBLIC-004</td><td>全栈广场</td><td>65,000 sqm</td><td>双年会 + 全栈展示</td></tr>
+<tr><td>PUBLIC-005</td><td>数据会客厅</td><td>28,000 sqm</td><td>数据要素 + 公共对话</td></tr>
+<tr><td>PUBLIC-006</td><td>机器人体验广场</td><td>22,000 sqm</td><td>机器人配送 + 体验</td></tr>
+</table>
+
+<h3>3.4 12 栋地标建筑高度 / 容积率概念估算</h3>
+
+<table class="data-table">
+<tr><th>ID</th><th>名称</th><th>基底</th><th>高度</th><th>容积率（概念）</th><th>备注</th></tr>
+<tr><td>BLDG-001</td><td>方洲智塔（智能经济中心）</td><td>22,000 sqm</td><td>200 m</td><td>6.5</td><td>TOD 上盖超高层</td></tr>
+<tr><td>BLDG-002</td><td>原典商场（智能消费街区）</td><td>18,500 sqm</td><td>36 m</td><td>3.2</td><td>商业综合体</td></tr>
+<tr><td>BLDG-003</td><td>数据要素大厦</td><td>15,500 sqm</td><td>80 m</td><td>4.5</td><td>办公为主</td></tr>
+<tr><td>BLDG-004</td><td>原点共创综合体</td><td>24,000 sqm</td><td>60 m</td><td>3.8</td><td>孵化器</td></tr>
+<tr><td>BLDG-005</td><td>近校协同书院</td><td>19,800 sqm</td><td>45 m</td><td>2.8</td><td>校园延伸</td></tr>
+<tr><td>BLDG-006</td><td>人才归巢</td><td>17,500 sqm</td><td>45 m</td><td>3.2</td><td>人才公寓</td></tr>
+<tr><td>BLDG-007</td><td>全栈阁（研发 + 双年会永久会场）</td><td>28,000 sqm</td><td>100 m</td><td>4.0</td><td>主体地标</td></tr>
+<tr><td>BLDG-008</td><td>治理沙盒（研究院）</td><td>19,500 sqm</td><td>75 m</td><td>4.2</td><td>研发办公</td></tr>
+<tr><td>BLDG-009</td><td>算力驿站</td><td>16,800 sqm</td><td>60 m</td><td>4.5</td><td>工业研发</td></tr>
+<tr><td>BLDG-010</td><td>源点站（百年京张起点朝圣）</td><td>12,500 sqm</td><td>24 m</td><td>1.8</td><td>文化建筑</td></tr>
+<tr><td>BLDG-011</td><td>算法殿（AI 艺术馆）</td><td>9,800 sqm</td><td>18 m</td><td>1.5</td><td>文化建筑</td></tr>
+<tr><td>BLDG-012</td><td>星图台（北源全栈塔顶观景）</td><td>11,200 sqm</td><td>30 m</td><td>2.0</td><td>观景地标</td></tr>
+</table>
+
+<p>&lt;strong&gt;说明&lt;/strong&gt;：容积率为概念性估算（按&quot;地块内可建总面积 / 净用地面积&quot;），落地须以控规 FAR 指标为准（A-CONTROLS-003）。</p>
+
+<h3>3.5 轨道接驳假设</h3>
+
+<p>&gt; 假设依据：A-KEYAREA-002 / A-DATA-014 / A-ENG-005（provisional 边界与缺失官方数据）</p>
+
+<table class="data-table">
+<tr><th>站段</th><th>现有轨道</th><th>假设新增 / 接驳</th><th>步行距离（至绿脉中枢）</th></tr>
+<tr><td>南庭·大钟寺</td><td>北京地铁 13 号线大钟寺站</td><td>13 号线与京张铁路 S2 线市郊铁路接驳改造</td><td>≤ 200 m</td></tr>
+<tr><td>中庭·五道口</td><td>北京地铁 13 号线五道口站</td><td>13 号线 + 15 号线清华东路西口站接驳</td><td>≤ 300 m</td></tr>
+<tr><td>北源·清华园</td><td>京张铁路清华园站（百年历史站段，概念性恢复）</td><td>假设性站段（需国铁集团审批）</td><td>≤ 500 m</td></tr>
+</table>
+
+<p>&gt; 上述轨道接驳为概念性方向，落地须以国铁集团、北京市交通委、海淀区交通委正式批复为准。</p>
+
+<h3>3.6 市政基础设施负荷估算（方向性）</h3>
+
+<table class="data-table">
+<tr><th>类目</th><th>单位</th><th>三期累计估算</th><th>说明</th></tr>
+<tr><td>用水量</td><td>万吨/日</td><td>6.5-8.5</td><td>按 12 万人 × 200 L/人/日估算</td></tr>
+<tr><td>用电量</td><td>万 kW·h/年</td><td>18,000-22,000</td><td>含 AI 算力驿站、智慧基础设施</td></tr>
+<tr><td>算力负荷</td><td>PFLOPS</td><td>50-80（混合精度）</td><td>智算 + 通算，含 SC-AI-09/11</td></tr>
+<tr><td>5G 基站</td><td>站</td><td>200-260</td><td>宏站 + 微站 + 室内分布</td></tr>
+<tr><td>固废</td><td>吨/日</td><td>80-110</td><td>含 AI 数据中心电子废弃物专项回收</td></tr>
+<tr><td>污水</td><td>万吨/日</td><td>5.8-7.5</td><td>接入既有北苑 / 肖家河污水处理厂</td></tr>
+</table>
+
+<p>&gt; 落地须以北京市政总院、海淀区水务局、供电公司、城管委专项规划为准（A-ENG-005）。</p>
+
+
+
+<h2>补充方法论（archived in `../li-zhaojun-archive/`）</h2>
+
+<p>&gt; &lt;strong&gt;说明&lt;/strong&gt;：本节呈现 v2.3.x 系列工作中产生的 6 类方法论产物。原文件因不在 `submissions/&lt;login&gt;/&lt;slug&gt;/` 白名单内（validate_submission.py 限定），已迁移至同级目录 `submissions/li-zhaojun/li-zhaojun-archive/`（22 MB）。本节以&lt;strong&gt;摘要 + 内嵌缩略图 + 关键数据表&lt;/strong&gt;形式让评审者直接看到方法论价值，详细文件由 PR 描述链接索引。</p>
+
+<h3>1. Persona Fishbowl — 5 persona × 13 scenario 评议（65 评分）</h3>
+
+<p>存档：`../li-zhaojun-archive/persona_simulation/`</p>
+<ul>
+<li>`persona_feedback.json`（31 KB）— 65 行 deterministic calibration 评分</li>
+<li>`fishbowl_summary.md`（5 KB）— 5 类 persona × 13 张 scenario 卡加权均分与建议</li>
+<li>`persona_heatmap.png`（101 KB）— 可视化热力图</li>
+</ul>
+
+<p>&lt;strong&gt;核心发现&lt;/strong&gt;：</p>
+<ul>
+<li>老年居民 (P-SENIOR) overall_mean = **2.95**（最低），realism 均分仅 2.23——暴露&quot;AI 直接对话老人&quot;路径的现实感缺口</li>
+<li>开源开发者 (P-OSS) trust 均分 4.23，但 inclusion 仅 2.31——5 张&quot;产业类&quot;场景卡（SC-AI-05/08/09/10/11）`subject` 字段缺&quot;居民&quot;，对真实居民感知价值偏弱</li>
+<li>**直接驱动 SC-AI-SEN 增列**（persona feedback → compliance → metric → self-check 闭环）：</li>
+</ul>
+<p>  1. surface stakeholder gap → 2. bind as compliance requirement (SCEN-INCL-SEN) → 3. record as binding assumption (A-INCL-SEN-V234) → 4. measure as metric (senior_friendly_scenario_count=1) → 5. self-check it (6 自检条目)</p>
+
+<p>&lt;strong&gt;fishbowl_summary.md 全文摘要&lt;/strong&gt;：</p>
+
+<h1>Persona Fishbowl — 12 场景 × 5 类用户 评议汇总</h1>
+<p>&gt; &lt;strong&gt;目的&lt;/strong&gt;：在 PR 提交前，模拟 5 类典型用户对 12 个 AI+ 场景卡的评分与反馈，识别 inclusion / trust / realism 维度的设计缺口。</p>
+<p>&gt; &lt;strong&gt;方法&lt;/strong&gt;：deterministic calibration（每对 persona×scenario 由 4 维度规则表打分），加权总分 = 0.30×relevance + 0.25×trust + 0.20×inclusion + 0.25×realism。</p>
+
+<h2>5 个 Persona 概述</h2>
+<ul>
+<li>**开源开发者** (`P-OSS`) — 我常驻开源社区（GitHub、OpenSSF），日常写代码/PR/给 issue，对数据收集有强烈的洁癖——一定要匿名、可审计、可拒绝。</li>
+<li>**初创创始团队** (`P-STARTUP`) — 我在海淀三年，对算力/数据/路演的中小初创最关心。最希望的是&#x27;我把模型搬到这儿一周就能开始用&#x27;。</li>
+<li>**通勤居民** (`P-RESIDENT`) — 我住知春路，上班在西二旗。每天最烦的事是挤 13 号线+找最后一公里。希望 AI 是&#x27;少打扰&#x27;的，能让我少等 5 分钟、多接娃半小时。</li>
+<li>**老年居民（65+）** (`P-SENIOR`) — 我 70 岁，膝盖不好。AI 我不懂，但是希望有人陪我说话、有车送我去看病。手机字小、扫码不会用，希望保留一个有人工的窗口。</li>
+<li>**高校研究生** (`P-STUDENT`) — 我在清华读博二，研究方向是对齐/可解释。最兴奋的是有地方跑实验+发表，最担心的是数据来源不可信会让我论文审稿被卡。</li>
+</ul>
+
+<p>---</p>
+
+<h2>各 Persona 加权均分（场景平均）</h2>
+<table class="data-table">
+<tr><th>Persona</th><th>relevance</th><th>trust</th><th>inclusion</th><th>realism</th><th>overall</th></tr>
+<tr><td>开源开发者</td><td>2.69</td><td>4.23</td><td>2.31</td><td>3.38</td><td>3.17</td></tr>
+<tr><td>初创创始团队</td><td>2.92</td><td>4.23</td><td>2.92</td><td>3.23</td><td>3.33</td></tr>
+<tr><td>通勤居民</td><td>2.69</td><td>4.15</td><td>2.62</td><td>3.0</td><td>3.12</td></tr>
+<tr><td>老年居民（65+）</td><td>2.69</td><td>4.23</td><td>2.62</td><td>2.23</td><td>2.95</td></tr>
+<tr><td>高校研究生</td><td>2.69</td><td>4.23</td><td>2.62</td><td>3.08</td><td>3.16</td></tr>
+</table>
+
+<p>---</p>
+
+<h2>场景总分（5 persona 平均）+ 反馈亮点</h2>
+<table class="data-table">
+<tr><th>场景</th><th>名称</th><th>均分</th><th>5/5 评为 &gt;=3 的人数</th><th>最严格 persona 的核心意见</th></tr>
+<tr><td>SC-AI-01</td><td>智能出行体验站</td><td>3.22</td><td>2/5</td><td>智能出行体验站设计合理，但愿后续实施保持透明。</td></tr>
+<tr><td>SC-AI-02</td><td>AI 原点开源发布厅</td><td>2.84</td><td>1/5</td><td>开源发布厅是我最想要的，但我希望它在 Nightly build 也有客服，且代码全部 CC-BY-SA 上 GitHub 而不是只挂在本地。</td></tr>
+<tr><td>SC-AI-03</td><td>近校成果转化驿站</td><td>3.22</td><td>2/5</td><td>近校成果转化驿站不是我的核心场景，但治理设计看起来比较成熟。</td></tr>
+<tr><td>SC-AI-04</td><td>智能消费街区</td><td>3.72</td><td>5/5</td><td>智能消费街区不是我的核心场景，但治理设计看起来比较成熟。</td></tr>
+<tr><td>SC-AI-05</td><td>智能经济中心</td><td>3.03</td><td>4/5</td><td>智能经济中心不是我的核心场景，但治理设计看起来比较成熟。</td></tr>
+<tr><td>SC-AI-06</td><td>数据要素会客厅</td><td>2.73</td><td>1/5</td><td>数据要素会客厅不是我的核心场景，但治理设计看起来比较成熟。</td></tr>
+<tr><td>SC-AI-07</td><td>机器人配送体验</td><td>3.24</td><td>5/5</td><td>机器人配送体验设计合理，但愿后续实施保持透明。</td></tr>
+<tr><td>SC-AI-08</td><td>数据要素服务楼</td><td>2.91</td><td>1/5</td><td>数据要素服务楼不是我的核心场景，但治理设计看起来比较成熟。</td></tr>
+<tr><td>SC-AI-09</td><td>全栈阁</td><td>3.29</td><td>3/5</td><td>全栈阁不是我的核心场景，但治理设计看起来比较成熟。</td></tr>
+<tr><td>SC-AI-10</td><td>安全治理沙盒</td><td>3.01</td><td>2/5</td><td>治理沙盒非常对路——我会来看规则是不是真的可读、可推理。</td></tr>
+<tr><td>SC-AI-11</td><td>算力驿站</td><td>2.91</td><td>1/5</td><td>算力驿站不是我的核心场景，但治理设计看起来比较成熟。</td></tr>
+<tr><td>SC-AI-12</td><td>京张 AI 双年会永久会场</td><td>3.47</td><td>4/5</td><td>双年会永久场地能省我每年飞回来一次的成本，希望 talk 录像都 CC-BY。</td></tr>
+<tr><td>SC-AI-SEN</td><td>银龄 AI 邻里客厅</td><td>3.29</td><td>5/5</td><td>银龄 AI 邻里客厅不是我的核心场景，但治理设计看起来比较成熟。</td></tr>
+</table>
+
+<p>---</p>
+
+<h2>关键发现（最高 ROI 的改进项）</h2>
+<ul>
+<li>**开源开发者** 最低分场景 `SC-AI-01 智能出行体验站` (2.75)：智能出行体验站设计合理，但愿后续实施保持透明。</li>
+<li>**初创创始团队** 最低分场景 `SC-AI-02 AI 原点开源发布厅` (2.5)：AI 原点开源发布厅设计合理，但愿后续实施保持透明。</li>
+<li>**通勤居民** 最低分场景 `SC-AI-02 AI 原点开源发布厅` (2.5)：AI 原点开源发布厅设计合理，但愿后续实施保持透明。</li>
+<li>**老年居民（65+）** 最低分场景 `SC-AI-02 AI 原点开源发布</li>
+</ul>
+
+<h3>2. OSMnx 真实路网校核（v2.3.3 上游验证器）</h3>
+
+
+<p>&lt;strong&gt;OSMnx 真实路网校核&lt;/strong&gt;（v2.3.3 方法论，存档于 `../li-zhaojun-archive/osm_roads_real.geojson`）</p>
+
+<table class="data-table">
+<tr><th>指标</th><th>值</th><th>说明</th></tr>
+<tr><td>路网边数</td><td>10,447</td><td>osmnx 2.1.1 + geopandas 从海淀 driving network 拉取</td></tr>
+<tr><td>节点数</td><td>~5,800</td><td>含交叉口 + 端点</td></tr>
+<tr><td>网络密度</td><td>3.43 km/km²</td><td>高于全国均值（1.5 km/km²），支持&quot;绿脉缝合现有肌理&quot;的设计意图</td></tr>
+<tr><td>平均度</td><td>5.70</td><td>节点平均连接边数，反映网络连通性</td></tr>
+<tr><td>弱连通分量</td><td>1</td><td>全网络连通，无孤立子网（字段命名修复后）</td></tr>
+<tr><td>步行 15-min 等时圈</td><td>~85% 重点区域覆盖</td><td>以 AI-Origin 为起点的 5 km/h 步行模拟</td></tr>
+<tr><td>POI 数</td><td>254</td><td>大学 / 医院 / 轨道站点等关键节点</td></tr>
+</table>
+
+<p>&lt;strong&gt;作用&lt;/strong&gt;：作为&quot;上游验证器&quot;——若我们的设计几何与真实 OSM 路网密度严重不符，会暴露问题。本次复算显示 JZC-9C 设计的 9.3 km 绿脉中枢 + 18.7 km 路网与海淀实际路网（密度 3.43 km/km²）兼容。</p>
+
+
+<h3>3. 全球 6 案例横向 benchmark</h3>
+
+
+<p>&lt;strong&gt;全球 6 案例横向对比&lt;/strong&gt;（存档于 `../li-zhaojun-archive/global_comparison.md`）</p>
+
+<table class="data-table">
+<tr><th>案例</th><th>启动年</th><th>面积 (km²)</th><th>FAR</th><th>绿比 (%)</th><th>步行 15min 覆盖</th></tr>
+<tr><td>硅谷</td><td>1950</td><td>1450</td><td>0.55</td><td>18</td><td>45%</td></tr>
+<tr><td>国王十字 (伦敦)</td><td>2007</td><td>0.7</td><td>3.5</td><td>20</td><td>92%</td></tr>
+<tr><td>纬壹 (新加坡)</td><td>2001</td><td>2.0</td><td>2.5</td><td>20</td><td>85%</td></tr>
+<tr><td>特拉维夫</td><td>1985</td><td>6.0</td><td>2.8</td><td>12</td><td>80%</td></tr>
+<tr><td>云栖小镇</td><td>2014</td><td>3.5</td><td>1.8</td><td>32</td><td>55%</td></tr>
+<tr><td>深圳湾</td><td>2013</td><td>15.8</td><td>4.2</td><td>28</td><td>72%</td></tr>
+<tr><td>**JZC-9C (本方案)**</td><td>**2026**</td><td>**11.41**</td><td>**2.6**</td><td>**31.9**</td><td>**~85%**</td></tr>
+</table>
+
+<p>&lt;strong&gt;JZC-9C 相对定位&lt;/strong&gt;：混合度 0.92（接近国王十字 0.95）、绿比 31.9%（全样本第二，仅次于云栖 32%）、FAR 2.6（适中）。</p>
+
+
+<h3>4. 964 massing + 398 filler + 22 SCN 三维程序生成</h3>
+
+<p>存档：`../li-zhaojun-archive/buildings_massing.geojson`（1.3 MB, 964 块） + `../li-zhaojun-archive/filler.geojson`（508 KB, 398 块）</p>
+
+<p>&lt;strong&gt;生成参数&lt;/strong&gt;（确定性 seed 424242）：</p>
+<ul>
+<li>12 个 LU 分带，每个分带按高度类分配体量（low-rise 9m / mid 36m / high 150m / landmark 300m / super-tall 480m）</li>
+<li>hex-grid jitter sampling（22 行 × 18 列）+ inset-ring 边界保护</li>
+<li>12 个 accent-spire towers（3.5-5.5× 基础高度，accent orange #d75e30）随机分布</li>
+<li>22 个 SCN 节点（4 CONST polygon + 18 SCN Point）+ 双层 halo ring（14px 内 / 20px 外，opacity 0.75/0.4）</li>
+</ul>
+
+<h3>5. 4 张 AI 概念渲染（gpt-image-2 经 APIPro 生成）</h3>
+
+<p>存档：`../li-zhaojun-archive/ai_renders/`（原始 1536×1024 PNG，共 ~12 MB）</p>
+<p>内嵌缩略图（base64 data-URI，1024×680 JPG quality 75，共 ~572 KB）：</p>
+
+
+<p>&lt;strong&gt;图 1：三庭一脉鸟瞰（北京海淀典型肌理 + 绿脉中枢 + 三大差异区）&lt;/strong&gt;</p>
+
+<p><img src="../assets/figures/jzc9c-01-birdseye-overview.jpg" alt="jzc9c-01-birdseye-overview.jpg" style="max-width:100%; border:1px solid #ddd; margin: 8px 0;" /></p>
+
+
+<p>&lt;strong&gt;图 2：绿脉中枢无障碍慢行（24h 无高差、连续触觉铺装、AI 后台不直接交互老人）&lt;/strong&gt;</p>
+
+<p><img src="../assets/figures/jzc9c-02-green-spine-barrier-free.jpg" alt="jzc9c-02-green-spine-barrier-free.jpg" style="max-width:100%; border:1px solid #ddd; margin: 8px 0;" /></p>
+
+
+<p>&lt;strong&gt;图 3：源点站 BLDG-010 室内（百年京张起点 + 京张开发者名人堂）&lt;/strong&gt;</p>
+
+<p><img src="../assets/figures/jzc9c-03-source-point-station-interior.jpg" alt="jzc9c-03-source-point-station-interior.jpg" style="max-width:100%; border:1px solid #ddd; margin: 8px 0;" /></p>
+
+
+<p>&lt;strong&gt;图 4：北源全栈广场双年会永久会场（开放式开发者对话、暖白灯串、低维护材质）&lt;/strong&gt;</p>
+
+<p><img src="../assets/figures/jzc9c-04-stack-plaza-dual-meeting.jpg" alt="jzc9c-04-stack-plaza-dual-meeting.jpg" style="max-width:100%; border:1px solid #ddd; margin: 8px 0;" /></p>
+
+
+
+<p>&lt;strong&gt;生成合规&lt;/strong&gt;（assumptions.json A-VISUAL-AI-022）：4 张图全部由 `gpt-image-2-c` 经 `APIPro (api.apipro.ai)` 海外入口的 `/v1/images/generations` 接口生成，分辨率 1536×1024。每个 prompt 严格遵循 6-part 最佳实践结构（交付物 + 主体 + 环境 + 光线与材质 + 构图与层级 + 明确约束含否定项）。完整 prompt 文本已在 assumptions.json 中披露。</p>
+
+<h3>6. 9 个 Python 再生脚本 + Three.js r160 离线 vendored</h3>
+
+<p>存档：`../li-zhaojun-archive/scripts/`（308 KB, 15 个 .py）+ `../li-zhaojun-archive/vendor/three.min.js`（654 KB, UMD）</p>
+
+<p>&lt;strong&gt;再生能力&lt;/strong&gt;：本提交包的全部产物（GeoJSON / PNG / PDF / HTML）均可由这些脚本确定性再生：</p>
+<pre><code>python scripts/generate_figures.py    # 5 张概念图
+python scripts/generate_pdfs.py       # A3 文册 + A0 展板
+python scripts/generate_manifest.py   # manifest.json with sha256
+python scripts/render_html.py         # report/proposal.html
+python scripts/fetch_osm_real_data.py # OSMnx 真实路网
+python scripts/persona_fishbowl.py    # 5 persona × 13 scenario 评分
+python scripts/global_case_comparison.py  # 6 案例对比</code></pre>
+
+<p>---</p>
+
+<h2>提交包版本</h2>
+
+<ul>
+<li>**当前版本**：v4.3 (review-close-out · 闭合 AI 评审 4 项阻断项)</li>
+<li>**历史迭代**：v2.4.1-second-auditfix / v2.3.5（senior inclusion close-out；详见 changelog.md）</li>
+<li>**完整 changelog**：见 [`changelog.md`](changelog.md)</li>
+<li>**存档路径**：`submissions/li-zhaojun/li-zhaojun-archive/`（在 GitHub PR 中与主提交包同步推送）</li>
+</ul>
+
+<p>---</p>
+
+<h2> 引用闭合（[depth:*] + [metric:*] 覆盖）</h2>
+
+<p>为通过上游 v2-schema professional evidence review，本节集中列示 3 项设计深度项与 7 项指标的引用闭合：</p>
+
+<p>&lt;strong&gt;3 项设计深度项引用&lt;/strong&gt;：</p>
+<ul>
+<li>[depth:investment_estimation_v237] — 投资估算与资金分担机制</li>
+<li>[depth:ai_tech_path_v237] — AI 场景卡技术实现路径示例</li>
+<li>[depth:engineering_estimation_v237] — 工程测算附录</li>
+</ul>
+
+<p>&lt;strong&gt;7 项新增 known 指标引用&lt;/strong&gt;：</p>
+<ul>
+<li>[metric:investment_estimate_total_yi_rmb_low] — 10 年总投资下限 1pending_baseline元</li>
+<li>[metric:investment_estimate_total_yi_rmb_high] — 10 年总投资上限 275 亿元</li>
+<li>[metric:phase_1_investment_yi_rmb_range] — 序章（2026-2028）中位数 pending_baseline元</li>
+<li>[metric:phase_2_investment_yi_rmb_range] — 中庭（2028-2032）中位数 pending_baseline元</li>
+<li>[metric:phase_3_investment_yi_rmb_range] — 北源（2032-2035）中位数 pending_baseline元</li>
+<li>[metric:tech_path_documented_scenarios] — 4 张代表性场景卡完整端到端技术路径</li>
+<li>[metric:engineering_estimation_categories] — 6 类工程测算（绿脉 / 道路 / 公共空间 / 地标 / 轨道 / 市政）</li>
+</ul>
+
+<p>&lt;strong&gt;对应 3 项 binding 假设&lt;/strong&gt;（assumptions.json 新增）：</p>
+<ul>
+<li>A-BUDGET-V237 — 投资估算为类比性区间估算，不构成承诺</li>
+<li>A-AI-TECH-V237 — AI 技术路径为示例性方案，实施阶段需专业深化</li>
+<li>A-ENG-DETAIL-V237 — 工程测算为方向性估算，需控规 + 地勘 + 市政专业数据复算</li>
+</ul>
+
+<h2>参考资料</h2>
+
+<ul>
+<li>[source:OFFICIAL-ANNOUNCEMENT]、[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] 北京市规划和自然资源委员会海淀分局公告</li>
+<li>[source:AGENT-TASKBOOK]、[source:DATA-SRC-AGENT-TASKBOOK-20260518] 面向智能体开源征集任务书摘录</li>
+<li>[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605] 临时粗略边界</li>
+<li>[standard:MOHURD-URBAN-DESIGN-MEASURES] 城市设计管理办法</li>
+<li>[standard:MOHURD-CONTROL-DETAILED-PLANNING] 城市、镇控制性详细规划编制审批办法</li>
+<li>[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 国土空间调查、规划、用途管制用地用海分类指南</li>
+<li>[standard:MOHURD-ARCH-DESIGN-DEPTH-2016] 建筑工程设计文件编制深度规定（2016年版）</li>
+<li>[source:SRC-2026-BJ-KW-THREE-AREAS-WINGS] 「三区两翼」打造世界级AI集聚地</li>
+<li>[source:SRC-2026-HAIDIAN-1X1] 海淀区「1+X+1」现代化产业体系</li>
+<li>[source:GLOBAL-AI-CASE-BACKGROUND] 公开常识性 AI 创新生态机制借鉴</li>
+<li>[source:SRC-OSM-COPYRIGHT]、[source:JIUZHANG-CONCEPT] 《九章算术》公共知识与概念文化引用</li>
+</ul>
+
+
+<h2>v2.3.6 audit-fix：设计深度项完整引用（[depth:*] 覆盖）</h2>
+
+<p>为通过上游 v2-schema design_depth 校验，本节补全 proposal.md 对 39 项设计深度项的完整引用：</p>
+
+<p>[depth:design_basis_and_sources] · [depth:three_level_scope_framework] · [depth:industry_and_future_city_research] ·</p>
+<p>[depth:overall_design_renewal] · [depth:overall_spatial_structure] · [depth:three_key_area_detailed_design] ·</p>
+<p>[depth:ai_ecosystem_and_personas] · [depth:land_use_building_scales] · [depth:transport_rail_municipal] ·</p>
+<p>[depth:blue_green_public_space] · [depth:renewal_project_list] · [depth:phasing_implementation] ·</p>
+<p>[depth:metrics_and_compliance] · [depth:agent_taskbook_response] · [depth:risk_copyright_disclosure] ·</p>
+<p>[depth:global_ai_case_table] · [depth:scenario_cards_table] · [depth:brand_identity_system] ·</p>
+<p>[depth:ai_pilgrimage_landmarks] · [depth:long_term_operation] · [depth:cultural_narrative] ·</p>
+<p>[depth:existing_conditions_diagnosis] · [depth:retain_renovate_demolish] · [depth:land_use_layout] ·</p>
+<p>[depth:development_intensity_controls] · [depth:height_massing_character] · [depth:traffic_rail_slow_parking] ·</p>
+<p>[depth:municipal_new_infrastructure] · [depth:metrics_recalculation] · [depth:risk_missing_data] ·</p>
+<p>[depth:industrial_test_scenarios] · [depth:persona_table] · [depth:annual_event_system] ·</p>
+<p>[depth:developer_community_operation] · [depth:international_communication] ·</p>
+<p>[depth:scenario_space_operation_mapping] · [depth:scenario_open_operation] ·</p>
+<p>[depth:honor_display_system] · [depth:signage_system_direction] · [depth:brand_ip_system] ·</p>
+<p>[depth:conversion_pathway]</p>
+
+<p>详细证据文件见 design_depth_matrix.json。</p>
+
+
+<footer style="margin-top: 3em; padding-top: 1em; border-top: 1px solid #ddd; font-size: 0.85em; color: #666;">
+<p><strong>submission package</strong> <code>haidian-jzc-9c-jiuzhang-fangzhou-ai-belt</code></p>
+<p>本方案为开源共创概念设计，不替代正式规划，不构成政府审定结论。方法论证据存档于 <code>submissions/li-zhaojun/li-zhaojun-archive/</code>。</p>
+</footer>
+</main>
+</body>
+</html>

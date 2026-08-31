@@ -307,6 +307,19 @@
       "assumptions": [],
       "reason": "Requires actual retirement events and independent recovery records."
     },
+    "complaint_review_closure_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/preimplementation-package.json",
+        "visual/assets/execution-contract.json"
+      ],
+      "formula": "complaints with review-conditioned closure / all complaints accepted for review, with unresolved and withdrawn cases reported separately",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No live service, complaint docket, named reviewer or field baseline exists."
+    },
     "p0_reference_envelope_sqm": {
       "status": "known",
       "value": 96.0,
@@ -396,6 +409,116 @@
       "confidence": "high",
       "assumptions": [
         "Scope packages and percentage shares are participant pre-costing structure; monetary values remain null."
+      ]
+    },
+    "p0_unregistered_channel_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/correction-receipt-demo.json"
+      ],
+      "formula": "count(case propagation channels not present in case_dossier.intake_receipt.registered_channel_ids)",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic two-channel drill only; this is not evidence about a live publication network."
+      ]
+    },
+    "p0_illegal_pause_bypass_transition_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/preimplementation-package.json",
+        "visual/assets/preimplementation-test.js"
+      ],
+      "formula": "count(permitted institutional-state transitions that bypass PAUSE before REVIEW)",
+      "confidence": "high",
+      "assumptions": [
+        "Protocol-structure result, not an observed field-event count."
+      ]
+    },
+    "p0_review_conflict_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/correction-receipt-demo.json",
+        "visual/assets/correction-engine-test.js"
+      ],
+      "formula": "case_dossier.independent_review_record.conflict_count in the synthetic fixture",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic role test only; no real reviewer has been appointed or cleared."
+      ]
+    },
+    "p0_same_channel_ack_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/correction-receipt-demo.json",
+        "visual/assets/correction-engine-test.js"
+      ],
+      "formula": "acknowledged original drill channels / registered original drill channels",
+      "confidence": "high",
+      "assumptions": [
+        "Two of two controlled offline drill channels; not a live correction KPI."
+      ]
+    },
+    "p0_backend_only_closure_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/correction-engine-test.js",
+        "visual/assets/correction-engine-results.json"
+      ],
+      "formula": "count(backend-only failure injections evaluated as CLOSED)",
+      "confidence": "high",
+      "assumptions": [
+        "Local deterministic protocol test, not observed service performance."
+      ]
+    },
+    "p0_restore_before_retest_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/correction-engine-test.js",
+        "visual/assets/correction-engine-results.json"
+      ],
+      "formula": "count(incomplete-retest or self-authorized-restoration injections evaluated as CLOSED)",
+      "confidence": "high",
+      "assumptions": [
+        "Local deterministic protocol test, not observed service performance."
+      ]
+    },
+    "p0_unclosed_recovery_item_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/correction-receipt-demo.json"
+      ],
+      "formula": "case_dossier.recovery_retirement_receipt.unclosed_item_count",
+      "confidence": "high",
+      "assumptions": [
+        "Synthetic drill reset only; real asset, cache, backup and space recovery remain field-dependent."
+      ]
+    },
+    "p0_screenless_path_blocker_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/correction-receipt-demo.json",
+        "visual/assets/preimplementation-package.json"
+      ],
+      "formula": "case_dossier.intake_receipt.critical_path_blockers for the synthetic screenless script",
+      "confidence": "medium",
+      "assumptions": [
+        "Script-level result only; it is not an accessibility-compliance or actual-user co-test conclusion."
       ]
     },
     "floor_area_ratio": {

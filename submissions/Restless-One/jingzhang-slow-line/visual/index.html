@@ -185,26 +185,109 @@
     .p0-status{display:inline-flex;gap:9px;flex-wrap:wrap;margin-top:14px;}
     .p0-status b{padding:7px 10px;border-radius:8px;background:#ba3a35;color:#fff;font-size:13px;letter-spacing:.04em;}
     .p0-status b.neutral{background:#527f67;}
-    @media(max-width:850px){.p0-hero-grid{grid-template-columns:1fr}.hero{min-height:0}}
+    .hero .lead{max-width:1180px;font-size:clamp(1.2rem,1.75vw,1.8rem);white-space:nowrap;}
+    @media(max-width:850px){.p0-hero-grid{grid-template-columns:1fr}.hero{min-height:0}.hero .lead{white-space:normal}}
   </style><!-- V1.3_P0_CSS_END -->
+
+  <!-- DYNAMIC_EXPERIENCE_CSS_START --><style>
+    .experience-lab{position:relative;overflow:hidden;padding:72px 5vw;background:#071522;color:#f7f3e9}
+    .experience-lab::before{content:"";position:absolute;inset:-40% 38% 25% -18%;background:radial-gradient(circle,#2f849138 0,transparent 66%);pointer-events:none}
+    .experience-head{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:32px;max-width:1280px;margin:0 auto 34px}
+    .experience-kicker{display:block;margin-bottom:10px;color:#e9b43b;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+    .experience-head h2{max-width:760px;margin:0;color:#fff;font-size:clamp(2.2rem,4.8vw,5rem);letter-spacing:-.045em}
+    .experience-head p{max-width:760px;margin:16px 0 0;color:#b9c8d4}
+    .experience-controls{display:flex;align-items:center;gap:6px;padding:6px;border:1px solid #ffffff24;border-radius:14px;background:#ffffff0b;box-shadow:0 16px 38px #0004}
+    .experience-control{min-height:44px;padding:0 16px;border:0;border-radius:9px;background:transparent;color:#c7d2dc;font-weight:750;cursor:pointer;transition:background .22s,color .22s,transform .12s}
+    .experience-control:hover{background:#ffffff12;color:#fff}.experience-control:active{transform:scale(.96)}
+    .experience-control[aria-pressed="true"]{background:#e9b43b;color:#172434;box-shadow:0 7px 18px #0004}
+    .experience-control:focus-visible{outline:3px solid #65b7ff;outline-offset:2px}
+    .experience-stage{--stage-accent:#e9b43b;position:relative;z-index:2;max-width:1280px;min-height:440px;margin:auto;overflow:hidden;border:1px solid #ffffff25;border-radius:28px;background:radial-gradient(circle at 74% 22%,#1d617055 0,transparent 25%),linear-gradient(145deg,#0d2434,#102c3c 54%,#0b1d2a);box-shadow:inset 0 1px #ffffff18,0 32px 70px #0007}
+    .experience-stage::before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#0008,transparent 88%)}
+    .slow-path{position:absolute;left:6%;right:6%;top:45%;height:88px;border:1px solid #7db99a66;border-radius:999px;background:linear-gradient(90deg,#5c9e6c18,#74c18e32,#5c9e6c18);box-shadow:inset 0 0 32px #5c9e6c16}
+    .slow-path::before{content:"SLOW LINE · PEOPLE FIRST · EVERY STOP";position:absolute;left:4%;top:12px;color:#c3dccb;font-size:10px;font-weight:800;letter-spacing:.18em}
+    .heritage-rail{position:absolute;left:6%;right:6%;top:69%;height:58px;background:repeating-linear-gradient(90deg,transparent 0 27px,#cbd5dd22 27px 30px)}
+    .heritage-rail::before,.heritage-rail::after{content:"";position:absolute;left:0;right:0;height:3px;border-radius:99px;background:#96a5b2b8;box-shadow:0 1px #ffffff24}
+    .heritage-rail::before{top:14px}.heritage-rail::after{bottom:14px}
+    .heritage-label{position:absolute;right:7%;top:80%;color:#7f929f;font-size:10px;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+    .service-spur{position:absolute;left:69%;top:7%;width:58px;height:39%;border:1px solid #6fb9cf5c;border-radius:0 0 12px 12px;background:linear-gradient(90deg,#2f849114,#60b4c42f,#2f849114)}
+    .stop-line{position:absolute;left:calc(69% - 14px);top:35%;width:86px;height:8px;background:repeating-linear-gradient(90deg,#f7f3e9 0 7px,transparent 7px 13px);filter:drop-shadow(0 0 6px #fff4)}
+    .gate-signal{position:absolute;left:calc(69% + 18px);top:41%;display:grid;place-items:center;width:24px;height:24px;border:5px solid #d9e2e8;border-radius:50%;background:#e95c45;box-shadow:0 0 0 8px #e95c4520,0 0 22px #e95c45a8;animation:signal-breathe 1.9s ease-in-out infinite}
+    .walker-track{position:absolute;left:10%;right:10%;top:48%;height:66px}
+    .walker{position:absolute;left:0;top:3px;display:grid;justify-items:center;gap:5px;color:#fff;animation:walk-line 9s linear infinite}
+    .walker i{position:relative;width:18px;height:30px;border-radius:9px 9px 6px 6px;background:#f7f3e9;box-shadow:0 5px 18px #0008}
+    .walker i::before{content:"";position:absolute;left:4px;top:-12px;width:10px;height:10px;border-radius:50%;background:#e9b43b}
+    .walker small,.robot small{padding:4px 7px;border-radius:99px;background:#071522d9;color:#dce7ee;font-size:9px;font-weight:800;white-space:nowrap;letter-spacing:.05em}
+    .robot{position:absolute;left:calc(69% + 7px);top:10%;display:grid;justify-items:center;gap:5px;color:#fff;animation:robot-yield 6s cubic-bezier(.45,0,.2,1) infinite;transition:opacity .28s,filter .28s}
+    .robot i{position:relative;width:34px;height:29px;border:2px solid #a8d7e3;border-radius:8px;background:#184b5d;box-shadow:0 10px 20px #0007}
+    .robot i::before{content:"";position:absolute;left:6px;right:6px;top:8px;height:5px;border-radius:5px;background:linear-gradient(90deg,#e9b43b 0 28%,transparent 28% 72%,#e9b43b 72%)}
+    .human-route{position:absolute;left:73%;top:12%;width:16%;height:30%;border-top:2px dashed #e9b43b;border-right:2px dashed #e9b43b;border-radius:0 18px 0 0;opacity:.18;transition:opacity .28s,filter .28s}
+    .human-booth{position:absolute;right:9%;top:16%;display:grid;gap:4px;width:126px;padding:13px;border:1px solid #e9b43b66;border-radius:12px;background:#142635d9;color:#fff;box-shadow:0 14px 28px #0005;transition:background .28s,border-color .28s,transform .28s}
+    .human-booth b{color:#e9b43b;font-size:12px}.human-booth span{color:#aebeca;font-size:10px}
+    .experience-status{position:absolute;left:6%;right:6%;bottom:20px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;overflow:hidden;border:1px solid #ffffff1f;border-radius:14px;background:#ffffff18;backdrop-filter:blur(14px)}
+    .experience-reading{min-width:0;padding:13px 16px;background:#071522bd}
+    .experience-reading span{display:block;color:#7f94a3;font-size:9px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+    .experience-reading strong{display:block;margin-top:5px;color:#f7f3e9;font-size:13px;line-height:1.35}
+    .experience-stage[data-mode="ai-off"]{--stage-accent:#5c9e6c}.experience-stage[data-mode="ai-off"] .robot{animation-play-state:paused;opacity:.15;filter:grayscale(1)}
+    .experience-stage[data-mode="ai-off"] .human-route{opacity:1;filter:drop-shadow(0 0 6px #e9b43b88)}
+    .experience-stage[data-mode="ai-off"] .human-booth{border-color:#e9b43b;background:#274535;transform:translateY(-3px)}
+    .experience-stage[data-mode="hold"]{--stage-accent:#e95c45}.experience-stage[data-mode="hold"] .walker,.experience-stage[data-mode="hold"] .robot,.experience-stage[data-mode="hold"] .gate-signal{animation-play-state:paused}
+    .experience-stage[data-mode="hold"] .walker,.experience-stage[data-mode="hold"] .robot{filter:grayscale(1);opacity:.5}.experience-stage[data-mode="hold"] .human-route{opacity:.08}.experience-stage[data-mode="hold"] .gate-signal{background:#e95c45;box-shadow:0 0 0 10px #e95c4520}
+    .has-js .experience-stage:not(.is-visible) .walker,.has-js .experience-stage:not(.is-visible) .robot,.has-js .experience-stage:not(.is-visible) .gate-signal{animation-play-state:paused}
+    @keyframes walk-line{0%{left:0;transform:translateX(-50%)}100%{left:100%;transform:translateX(-50%)}}
+    @keyframes robot-yield{0%,12%{transform:translateY(0)}46%,78%{transform:translateY(102px)}100%{transform:translateY(0)}}
+    @keyframes signal-breathe{0%,100%{transform:scale(.9);box-shadow:0 0 0 5px #e95c4518,0 0 12px #e95c4575}50%{transform:scale(1);box-shadow:0 0 0 11px #e95c4520,0 0 24px #e95c45b5}}
+    @media(max-width:850px){.experience-lab{padding:52px 24px}.experience-head{grid-template-columns:1fr}.experience-controls{width:100%;overflow:auto}.experience-control{flex:1 0 auto}.experience-stage{min-height:500px;border-radius:20px}.human-booth{right:5%;width:110px}.experience-status{grid-template-columns:1fr;bottom:14px}.experience-reading{padding:9px 12px}.heritage-label{display:none}}
+    @media(prefers-reduced-motion:reduce){.experience-control{transition:none}.walker,.robot,.gate-signal{animation:none!important}.walker{left:58%}.robot{transform:translateY(102px)}.experience-stage{scroll-behavior:auto}}
+  </style><!-- DYNAMIC_EXPERIENCE_CSS_END -->
 
 </head>
   <body>
     <main>
       <header class="hero">
     <div class="hero-copy">
-      <div class="eyebrow">京张慢线 · v1.3 P0 可实施性</div>
+      <div class="eyebrow">京张慢线 · v1.5 专业执行交接</div>
       <h1>让城市跟上最慢的人</h1>
       <p class="lead">P0-ALL-STOP-01 · 尺寸可核验、责任可交接、失败可停止、退出可恢复</p>
       <div class="p0-status"><b>NOT_AUTHORIZED</b><b>HOLD</b><b class="neutral">unassigned/conditional</b><b class="neutral">prices null/TBC</b></div>
       <div class="p0-hero-grid">
-        <div class="p0-hero-card"><h3>30 秒 P0 摘要</h3><p>216 m² 非定位概念筛查包络；3.0 m 有效慢行净宽；12 项任务、16 行不计价 BOQ、8 类参数化成本。不是现场实测、选址、许可或工程签章。</p></div>
-        <div class="p0-hero-card"><h3>当前包内可判断</h3><p><span data-metric="p0_current_package_pass_count" data-value="6">6 PASS</span> / <span data-metric="p0_current_package_hold_count" data-value="2">2 HOLD</span>。审计与 AI-off 等价仍为 11/12，因此不得请求 G4。</p></div>
-        <div class="p0-hero-card"><h3>仍待现实条件</h3><p><span data-metric="p0_field_check_hold_count" data-value="12">12/12 HOLD</span>：现场使用、真人响应、冲突、环境、居民接受、排班与真实成本。任一群体关键失败，整体 HOLD。</p></div>
+        <div class="p0-hero-card"><h3>可直接接手</h3><p>7 类双语空表、18 个证据回执字段，覆盖调查、D0、成本、专业复核、复演维护与变更控制。</p></div>
+        <div class="p0-hero-card"><h3>四个外部决策</h3><p><span data-metric="p0_external_decision_bundle_hold_count" data-value="4">4/4 HOLD</span>；无损覆盖 12 项现场指标与 12 道外部门。容量 null，现场核实退出路径 0。</p></div>
+        <div class="p0-hero-card"><h3>运维与退出可填写</h3><p>4 个维护周期与 10%–20% 恢复储备模板已定义；真实记录、签认、成本、资金与授权仍为 0/null。</p></div>
       </div>
     </div>
   </header>
-<section class="alt" id="p0-fixed-evidence"><h2>P0 固定评审证据</h2><p>同一数据源生成尺寸/接口图与任务/工程量/成本/验收图；关键信息不再只存在于独立试点附图。</p><div class="grid2"><div class="card"><img src="../assets/figures/key-areas.png" alt="P0 dimensioned launch unit"></div><div class="card"><img src="../assets/figures/metrics-evidence.png" alt="P0 task quantities cost acceptance"></div></div></section>
+      <section class="experience-lab" id="live-experience" aria-labelledby="experience-title">
+        <div class="experience-head">
+          <div>
+            <span class="experience-kicker">Live protocol · 每站必停</span>
+            <h2 id="experience-title">看见“最慢者优先”如何工作</h2>
+            <p>切换三种状态，观察机器人在停止线让行、AI 关闭后真人服务接管，以及现场授权缺失时全系统 HOLD。这个小型演练只解释运行协议，不代表真实交通仿真。</p>
+          </div>
+          <div class="experience-controls" role="group" aria-label="切换演练状态">
+            <button class="experience-control" type="button" data-demo-mode="flow" data-walker="优先通行" data-agent="停止线等待" data-service="AI + 真人热备" aria-pressed="true">通行演练</button>
+            <button class="experience-control" type="button" data-demo-mode="ai-off" data-walker="不受影响" data-agent="AI 已退出" data-service="真人窗口接管" aria-pressed="false">AI 关闭</button>
+            <button class="experience-control" type="button" data-demo-mode="hold" data-walker="安全停留" data-agent="动作冻结" data-service="等待现场授权" aria-pressed="false">全部 HOLD</button>
+          </div>
+        </div>
+        <div class="experience-stage" data-experience-stage data-mode="flow" aria-label="通行演练：行人优先，机器人在停止线等待，真人服务热备">
+          <div class="slow-path" aria-hidden="true"></div>
+          <div class="heritage-rail" aria-hidden="true"></div>
+          <span class="heritage-label" aria-hidden="true">遗产铁路 · 不跨越</span>
+          <div class="service-spur" aria-hidden="true"></div>
+          <div class="stop-line" aria-hidden="true"></div>
+          <div class="gate-signal" aria-hidden="true"></div>
+          <div class="walker-track" aria-hidden="true"><span class="walker"><i></i><small>行人优先</small></span></div>
+          <span class="robot" aria-hidden="true"><i></i><small>机器人让行</small></span>
+          <div class="human-route" aria-hidden="true"></div>
+          <div class="human-booth" aria-hidden="true"><b>真人服务亭</b><span>纸本 · 电话 · 现场协助</span></div>
+          <div class="experience-status" role="status" aria-live="polite">
+            <div class="experience-reading"><span>慢行者</span><strong data-demo-reading="walker">优先通行</strong></div>
+            <div class="experience-reading"><span>智能体</span><strong data-demo-reading="agent">停止线等待</strong></div>
+            <div class="experience-reading"><span>等价服务</span><strong data-demo-reading="service">AI + 真人热备</strong></div>
+          </div>
+        </div>
+      </section>
+<section class="alt" id="p0-fixed-evidence"><h2>P0 固定评审证据</h2><p>同一数据链生成尺寸、任务、排班、成本、四个外部决策、容量/疏散、维护与退出模板；v15 验证器检查覆盖、哈希和假释放。人工填写入口：<a href="../assets/media/p0-execution-workbook.md">p0-execution-workbook.md</a>。</p><div class="grid2"><div class="card"><img src="../assets/figures/key-areas.png" alt="P0 dimensioned launch unit"></div><div class="card"><img src="../assets/figures/metrics-evidence.png" alt="P0 task quantities cost acceptance"></div></div></section>
       <section>
         <h2>先回答：它在哪里，什么必须保留</h2>
         <p>
@@ -244,7 +327,7 @@
         </div>
       </section>
       <section>
-        <h2>失败没有被藏起来</h2>
+        <h2>故障阻断仍然可见</h2>
         <div class="metrics">
           <div
             class="metric"
@@ -256,29 +339,23 @@
           <div
             class="metric"
             data-metric="simulation_success_rate"
-            data-value="0.8333333333333334"
+            data-value="1"
           >
-            <strong>83.3%</strong><span>达到合成结果</span>
+            <strong>100%</strong><span>达到合成结果</span>
           </div>
-          <div
-            class="metric"
-            data-metric="tool_schema_pass_rate"
-            data-value="0.9166666666666666"
-          >
-            <strong>91.7%</strong><span>schema</span>
-          </div>
+          <div class="metric" data-metric="tool_schema_pass_rate" data-value="0.9166666666666666" data-valid-payload-rate="1" data-malformed-rejection-rate="1"><strong>11/11 + 1/1</strong><span>合法载荷 + 错误拦截（保留聚合 11/12）</span></div>
           <div
             class="metric"
             data-metric="audit_completeness"
-            data-value="0.9166666666666666"
+            data-value="1"
           >
-            <strong>91.7%</strong><span>审计完整</span>
+            <strong>100%</strong><span>审计完整</span>
           </div>
         </div>
         <img
           class="wide-img"
           src="../assets/figures/simulation-rehearsal.png"
-          alt="十二项离线演练的读数、两项失败和三项设计修正"
+          alt="十二项离线演练的包内闭环、故障阻断与人工热备"
         />
       </section>
       <section class="alt">
@@ -383,8 +460,36 @@
       <footer>
         结构化文件是证据层；图片、HTML 与 PDF
         是解释层。官方数据到位后整包复算。<br />COMMUNITY-DISPLAY-ONLY ·
-        Restless-One · v1.3 · 2026-08-30
+        Restless-One · v1.5 · 2026-08-31
       </footer>
     </main>
+    <script>
+      (() => {
+        document.documentElement.classList.add("has-js");
+        const stage = document.querySelector("[data-experience-stage]");
+        if (!stage) return;
+        const controls = [...document.querySelectorAll("[data-demo-mode]")];
+        const readings = Object.fromEntries(
+          [...document.querySelectorAll("[data-demo-reading]")].map((node) => [node.dataset.demoReading, node])
+        );
+        const activate = (control) => {
+          stage.dataset.mode = control.dataset.demoMode;
+          controls.forEach((item) => item.setAttribute("aria-pressed", String(item === control)));
+          readings.walker.textContent = control.dataset.walker;
+          readings.agent.textContent = control.dataset.agent;
+          readings.service.textContent = control.dataset.service;
+          stage.setAttribute("aria-label", `${control.dataset.walker}；${control.dataset.agent}；${control.dataset.service}`);
+        };
+        controls.forEach((control) => control.addEventListener("click", () => activate(control)));
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(([entry]) => {
+            stage.classList.toggle("is-visible", entry.isIntersecting);
+          }, { rootMargin: "80px 0px" });
+          observer.observe(stage);
+        } else {
+          stage.classList.add("is-visible");
+        }
+      })();
+    </script>
   </body>
 </html>

@@ -1,0 +1,927 @@
+{
+  "schema_version": "0.1.0",
+  "model_id": "ECON-MODEL-001",
+  "model_status": "inputs_pending_no_numeric_output",
+  "currency": "CNY",
+  "price_basis_date": null,
+  "non_commitment_statement_zh": "本模型仅定义概念阶段的计算结构。当前缺少正式工程量、市场询价、采购范围、运营合同、收入记录及公共回流法律机制，不形成预算、估算批复、融资、招商、采购、收入或回流承诺。",
+  "non_commitment_statement_en": "This model defines a concept-stage calculation structure only. Formal quantities, market quotations, procurement scope, operating contracts, revenue records, and a lawful public-reinvestment mechanism are unavailable. It is not a budget, approved estimate, financing commitment, procurement basis, revenue forecast, or reinvestment commitment.",
+  "unknown_input_template": {
+    "status": "unknown",
+    "value": null,
+    "reason": "Pending measured quantity, confirmed scope and market quotation."
+  },
+  "capex_items": [
+    {
+      "item_id": "C1",
+      "name_zh": "可逆公共空间与慢行改造",
+      "name_en": "Reversible public-space and slow-mobility upgrades",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending measured implementation area and confirmed scope."
+      },
+      "quantity_unit": "sqm",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending market quotation and approved cost basis."
+      },
+      "formula": "implementation_area_sqm * composite_unit_cost_cny_per_sqm",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md",
+        "geometry/phasing.geojson#PHASE-001"
+      ],
+      "missing_inputs": [
+        "measured_implementation_area_sqm",
+        "confirmed_scope",
+        "market_quotation_cny_per_sqm"
+      ],
+      "recalculation_trigger": "Recalculate after measured implementation area, confirmed design scope, market quotations and procurement boundary are available."
+    },
+    {
+      "item_id": "C2",
+      "name_zh": "存量建筑轻改造与开放首层",
+      "name_en": "Light retrofit of existing buildings and active ground floors",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending measured retrofit area, ownership and building-condition confirmation."
+      },
+      "quantity_unit": "sqm",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending market quotation and approved cost basis."
+      },
+      "formula": "retrofit_area_sqm * composite_unit_cost_cny_per_sqm",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md",
+        "geometry/buildings.geojson#BLDG-001"
+      ],
+      "missing_inputs": [
+        "measured_retrofit_area_sqm",
+        "ownership_confirmation",
+        "building_condition_survey",
+        "market_quotation_cny_per_sqm"
+      ],
+      "recalculation_trigger": "Recalculate after ownership, building-condition survey, retrofit scope, fire-safety/MEP constraints and market quotations are confirmed."
+    },
+    {
+      "item_id": "C3",
+      "name_zh": "人工服务窗口、共创空间与验证厅",
+      "name_en": "Staffed service windows, co-creation spaces and validation halls",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending confirmed facility count and functional scope."
+      },
+      "quantity_unit": "count",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending facility specification and market quotation."
+      },
+      "formula": "facility_count * unit_facility_cost_cny",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only; three nodes and twelve scenario cards are not procurement quantities",
+      "source_refs": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "missing_inputs": [
+        "confirmed_facility_count",
+        "facility_specification",
+        "market_quotation_cny_per_facility"
+      ],
+      "recalculation_trigger": "Recalculate after facility list, service level, procurement boundary and unit quotations are confirmed."
+    },
+    {
+      "item_id": "C4",
+      "name_zh": "AI 场景设备与限域测试设施",
+      "name_en": "AI scenario equipment and bounded testing facilities",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending equipment package definition and procurement scope."
+      },
+      "quantity_unit": "count",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending equipment specifications, integration scope and quotation."
+      },
+      "formula": "equipment_package_count * unit_equipment_package_cost_cny",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only; scenario cards do not equal equipment packages",
+      "source_refs": [
+        "proposal.md",
+        "metrics.json#ai_scenario_count"
+      ],
+      "missing_inputs": [
+        "equipment_package_count",
+        "equipment_specification",
+        "integration_scope",
+        "market_quotation_cny_per_package"
+      ],
+      "recalculation_trigger": "Recalculate after scenario passports, equipment packages, integration responsibilities, removal/recovery requirements and quotations are confirmed."
+    },
+    {
+      "item_id": "C5",
+      "name_zh": "平台、算力接入、数据治理与安全底座",
+      "name_en": "Platform, compute access, data governance and safety foundation",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending platform package definition and service architecture."
+      },
+      "quantity_unit": "count",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending platform architecture, compute/network/security service quotations and contract scope."
+      },
+      "formula": "platform_package_count * unit_platform_package_cost_cny",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "missing_inputs": [
+        "platform_package_count",
+        "technical_architecture",
+        "service_contract_scope",
+        "market_quotation_cny_per_package"
+      ],
+      "recalculation_trigger": "Recalculate after platform architecture, compute access, data-governance scope, cybersecurity requirements and contract quotations are confirmed."
+    },
+    {
+      "item_id": "C6",
+      "name_zh": "导视、公共家具、无障碍和风险提示系统",
+      "name_en": "Wayfinding, public furniture, accessibility and risk-warning systems",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending implementation quantity or service coverage definition."
+      },
+      "quantity_unit": "mixed",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending unit schedule and market quotation by type."
+      },
+      "formula": "sum(confirmed_quantity_by_type * unit_cost_cny_by_type)",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md",
+        "geometry/roads.geojson#ROAD-001",
+        "geometry/public_space.geojson#PUBLIC-001"
+      ],
+      "missing_inputs": [
+        "confirmed_quantity_by_type",
+        "service_coverage",
+        "unit_cost_cny_by_type"
+      ],
+      "recalculation_trigger": "Recalculate after implementation quantities, accessibility requirements, public-furniture schedule, risk-warning scope and unit quotations are confirmed."
+    },
+    {
+      "item_id": "C7",
+      "name_zh": "专业设计、检测、保险、法律与第三方审计",
+      "name_en": "Professional design, testing, insurance, legal and third-party audit",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending professional contract list and scope."
+      },
+      "quantity_unit": "contract",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending professional service quotations and contract terms."
+      },
+      "formula": "sum(professional_contract_amount_cny)",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md",
+        "assumptions.json#A-ECON-PRICE-001"
+      ],
+      "missing_inputs": [
+        "professional_contract_list",
+        "contract_scope",
+        "quoted_contract_amounts_cny"
+      ],
+      "recalculation_trigger": "Recalculate after professional design, testing, insurance, legal and audit contracts are scoped and quoted."
+    },
+    {
+      "item_id": "C8",
+      "name_zh": "不可预见费",
+      "name_en": "Contingency",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending approved base cost after C1-C7 are validated."
+      },
+      "quantity_unit": "ratio",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending approved contingency rate."
+      },
+      "formula": "(C1 + C2 + C3 + C4 + C5 + C6 + C7) * approved_contingency_rate",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "visual/assets/economic_model.json"
+      ],
+      "missing_inputs": [
+        "validated_C1_to_C7_subtotal",
+        "approved_contingency_rate"
+      ],
+      "recalculation_trigger": "Recalculate after C1-C7 are validated and an approved contingency rate is confirmed."
+    }
+  ],
+  "revenue_stages": [
+    {
+      "stage_id": "STAGE-1",
+      "name_zh": "0-18个月，启动验证期",
+      "name_en": "0-18 months, initial validation stage",
+      "status": "unknown",
+      "revenue_items": [
+        {
+          "category_id": "R1",
+          "name_zh": "场景开放与限域测试",
+          "name_en": "Scenario access and bounded testing",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "paid_testing_project_count * service_fee_per_project_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-1.R1.paid_testing_project_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "project",
+              "reason": "Pending signed testing-service contracts and accepted project count."
+            },
+            {
+              "input_id": "STAGE-1.R1.service_fee_per_project_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/project",
+              "reason": "Pending service scope, pricing approval and market quotation."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-1.R1.paid_testing_project_count",
+            "STAGE-1.R1.service_fee_per_project_cny"
+          ]
+        },
+        {
+          "category_id": "R2",
+          "name_zh": "合规评测与测试认证",
+          "name_en": "Compliance evaluation and testing certification",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "evaluation_project_count * evaluation_fee_per_project_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-1.R2.evaluation_project_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "project",
+              "reason": "Pending accepted compliance-evaluation or certification-service count."
+            },
+            {
+              "input_id": "STAGE-1.R2.evaluation_fee_per_project_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/project",
+              "reason": "Pending evaluation scope, qualification boundary and approved price basis."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-1.R2.evaluation_project_count",
+            "STAGE-1.R2.evaluation_fee_per_project_cny"
+          ]
+        },
+        {
+          "category_id": "R3",
+          "name_zh": "平台接入与共享部署",
+          "name_en": "Platform access and shared deployment",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "paid_customer_count * annual_platform_service_fee_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-1.R3.paid_customer_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "customer",
+              "reason": "Pending signed platform-access customers and revenue-recognition eligibility."
+            },
+            {
+              "input_id": "STAGE-1.R3.annual_platform_service_fee_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/customer/year",
+              "reason": "Pending platform service level, contract term and approved annual fee."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-1.R3.paid_customer_count",
+            "STAGE-1.R3.annual_platform_service_fee_cny"
+          ]
+        },
+        {
+          "category_id": "R4",
+          "name_zh": "用户测试、产品发布与活动服务",
+          "name_en": "User testing, product release and event services",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "service_batch_count * service_fee_per_batch_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-1.R4.service_batch_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "batch",
+              "reason": "Pending validated user-testing, release or activity-service batches."
+            },
+            {
+              "input_id": "STAGE-1.R4.service_fee_per_batch_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/batch",
+              "reason": "Pending service package, cost responsibility and approved fee."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-1.R4.service_batch_count",
+            "STAGE-1.R4.service_fee_per_batch_cny"
+          ]
+        },
+        {
+          "category_id": "R5",
+          "name_zh": "订阅、授权、联合运营和采购转化服务",
+          "name_en": "Subscription, licensing, joint operation and procurement-conversion services",
+          "status": "unknown",
+          "calculation_type": "sum_contract_amounts",
+          "formula": "sum(contract_amounts_eligible_for_revenue_recognition_cny)",
+          "inputs": [
+            {
+              "input_id": "STAGE-1.R5.contract_amounts_eligible_for_revenue_recognition_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY",
+              "reason": "Pending signed contracts, invoices, cash receipts and revenue-recognition rules."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-1.R5.contract_amounts_eligible_for_revenue_recognition_cny"
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": "STAGE-2",
+      "name_zh": "18-36个月，网络形成期",
+      "name_en": "18-36 months, network formation stage",
+      "status": "unknown",
+      "revenue_items": [
+        {
+          "category_id": "R1",
+          "name_zh": "场景开放与限域测试",
+          "name_en": "Scenario access and bounded testing",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "paid_testing_project_count * service_fee_per_project_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-2.R1.paid_testing_project_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "project",
+              "reason": "Pending signed testing-service contracts and accepted project count."
+            },
+            {
+              "input_id": "STAGE-2.R1.service_fee_per_project_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/project",
+              "reason": "Pending service scope, pricing approval and market quotation."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-2.R1.paid_testing_project_count",
+            "STAGE-2.R1.service_fee_per_project_cny"
+          ]
+        },
+        {
+          "category_id": "R2",
+          "name_zh": "合规评测与测试认证",
+          "name_en": "Compliance evaluation and testing certification",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "evaluation_project_count * evaluation_fee_per_project_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-2.R2.evaluation_project_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "project",
+              "reason": "Pending accepted compliance-evaluation or certification-service count."
+            },
+            {
+              "input_id": "STAGE-2.R2.evaluation_fee_per_project_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/project",
+              "reason": "Pending evaluation scope, qualification boundary and approved price basis."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-2.R2.evaluation_project_count",
+            "STAGE-2.R2.evaluation_fee_per_project_cny"
+          ]
+        },
+        {
+          "category_id": "R3",
+          "name_zh": "平台接入与共享部署",
+          "name_en": "Platform access and shared deployment",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "paid_customer_count * annual_platform_service_fee_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-2.R3.paid_customer_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "customer",
+              "reason": "Pending signed platform-access customers and revenue-recognition eligibility."
+            },
+            {
+              "input_id": "STAGE-2.R3.annual_platform_service_fee_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/customer/year",
+              "reason": "Pending platform service level, contract term and approved annual fee."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-2.R3.paid_customer_count",
+            "STAGE-2.R3.annual_platform_service_fee_cny"
+          ]
+        },
+        {
+          "category_id": "R4",
+          "name_zh": "用户测试、产品发布与活动服务",
+          "name_en": "User testing, product release and event services",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "service_batch_count * service_fee_per_batch_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-2.R4.service_batch_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "batch",
+              "reason": "Pending validated user-testing, release or activity-service batches."
+            },
+            {
+              "input_id": "STAGE-2.R4.service_fee_per_batch_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/batch",
+              "reason": "Pending service package, cost responsibility and approved fee."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-2.R4.service_batch_count",
+            "STAGE-2.R4.service_fee_per_batch_cny"
+          ]
+        },
+        {
+          "category_id": "R5",
+          "name_zh": "订阅、授权、联合运营和采购转化服务",
+          "name_en": "Subscription, licensing, joint operation and procurement-conversion services",
+          "status": "unknown",
+          "calculation_type": "sum_contract_amounts",
+          "formula": "sum(contract_amounts_eligible_for_revenue_recognition_cny)",
+          "inputs": [
+            {
+              "input_id": "STAGE-2.R5.contract_amounts_eligible_for_revenue_recognition_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY",
+              "reason": "Pending signed contracts, invoices, cash receipts and revenue-recognition rules."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-2.R5.contract_amounts_eligible_for_revenue_recognition_cny"
+          ]
+        }
+      ]
+    },
+    {
+      "stage_id": "STAGE-3",
+      "name_zh": "36个月以后，条件性稳态期",
+      "name_en": "After 36 months, conditional stabilized stage",
+      "status": "unknown",
+      "revenue_items": [
+        {
+          "category_id": "R1",
+          "name_zh": "场景开放与限域测试",
+          "name_en": "Scenario access and bounded testing",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "paid_testing_project_count * service_fee_per_project_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-3.R1.paid_testing_project_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "project",
+              "reason": "Pending signed testing-service contracts and accepted project count."
+            },
+            {
+              "input_id": "STAGE-3.R1.service_fee_per_project_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/project",
+              "reason": "Pending service scope, pricing approval and market quotation."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-3.R1.paid_testing_project_count",
+            "STAGE-3.R1.service_fee_per_project_cny"
+          ]
+        },
+        {
+          "category_id": "R2",
+          "name_zh": "合规评测与测试认证",
+          "name_en": "Compliance evaluation and testing certification",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "evaluation_project_count * evaluation_fee_per_project_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-3.R2.evaluation_project_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "project",
+              "reason": "Pending accepted compliance-evaluation or certification-service count."
+            },
+            {
+              "input_id": "STAGE-3.R2.evaluation_fee_per_project_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/project",
+              "reason": "Pending evaluation scope, qualification boundary and approved price basis."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-3.R2.evaluation_project_count",
+            "STAGE-3.R2.evaluation_fee_per_project_cny"
+          ]
+        },
+        {
+          "category_id": "R3",
+          "name_zh": "平台接入与共享部署",
+          "name_en": "Platform access and shared deployment",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "paid_customer_count * annual_platform_service_fee_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-3.R3.paid_customer_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "customer",
+              "reason": "Pending signed platform-access customers and revenue-recognition eligibility."
+            },
+            {
+              "input_id": "STAGE-3.R3.annual_platform_service_fee_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/customer/year",
+              "reason": "Pending platform service level, contract term and approved annual fee."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-3.R3.paid_customer_count",
+            "STAGE-3.R3.annual_platform_service_fee_cny"
+          ]
+        },
+        {
+          "category_id": "R4",
+          "name_zh": "用户测试、产品发布与活动服务",
+          "name_en": "User testing, product release and event services",
+          "status": "unknown",
+          "calculation_type": "count_times_fee",
+          "formula": "service_batch_count * service_fee_per_batch_cny",
+          "inputs": [
+            {
+              "input_id": "STAGE-3.R4.service_batch_count",
+              "status": "unknown",
+              "value": null,
+              "unit": "batch",
+              "reason": "Pending validated user-testing, release or activity-service batches."
+            },
+            {
+              "input_id": "STAGE-3.R4.service_fee_per_batch_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY/batch",
+              "reason": "Pending service package, cost responsibility and approved fee."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-3.R4.service_batch_count",
+            "STAGE-3.R4.service_fee_per_batch_cny"
+          ]
+        },
+        {
+          "category_id": "R5",
+          "name_zh": "订阅、授权、联合运营和采购转化服务",
+          "name_en": "Subscription, licensing, joint operation and procurement-conversion services",
+          "status": "unknown",
+          "calculation_type": "sum_contract_amounts",
+          "formula": "sum(contract_amounts_eligible_for_revenue_recognition_cny)",
+          "inputs": [
+            {
+              "input_id": "STAGE-3.R5.contract_amounts_eligible_for_revenue_recognition_cny",
+              "status": "unknown",
+              "value": null,
+              "unit": "CNY",
+              "reason": "Pending signed contracts, invoices, cash receipts and revenue-recognition rules."
+            }
+          ],
+          "missing_inputs": [
+            "STAGE-3.R5.contract_amounts_eligible_for_revenue_recognition_cny"
+          ]
+        }
+      ]
+    }
+  ],
+  "revenue_category_templates": [
+    {
+      "category_id": "R1",
+      "name_zh": "场景开放与限域测试",
+      "name_en": "Scenario access and bounded testing",
+      "formula": "paid_testing_project_count * service_fee_per_project_cny"
+    },
+    {
+      "category_id": "R2",
+      "name_zh": "合规评测与测试认证",
+      "name_en": "Compliance evaluation and testing certification",
+      "formula": "evaluation_project_count * evaluation_fee_per_project_cny"
+    },
+    {
+      "category_id": "R3",
+      "name_zh": "平台接入与共享部署",
+      "name_en": "Platform access and shared deployment",
+      "formula": "paid_customer_count * annual_platform_service_fee_cny"
+    },
+    {
+      "category_id": "R4",
+      "name_zh": "用户测试、产品发布与活动服务",
+      "name_en": "User testing, product release and event services",
+      "formula": "service_batch_count * service_fee_per_batch_cny"
+    },
+    {
+      "category_id": "R5",
+      "name_zh": "订阅、授权、联合运营和采购转化服务",
+      "name_en": "Subscription, licensing, joint operation and procurement-conversion services",
+      "formula": "sum(contract_amounts_eligible_for_revenue_recognition_cny)"
+    }
+  ],
+  "revenue_no_double_counting_rules": [
+    "One contract may enter only one primary revenue category.",
+    "Taxes, refunds, pass-through payments and unrelated enterprise income must not enter eligible revenue.",
+    "Leasing intent, testing applications, media exposure and unsigned cooperation must not be counted as revenue.",
+    "Project counts, prices and revenue for all three stages remain unknown/null until validated inputs are available."
+  ],
+  "public_ai_reinvestment": {
+    "status": "unknown",
+    "eligible_revenue": null,
+    "contractually_approved_reinvestment_rate": null,
+    "audited_fixed_contributions": null,
+    "public_ai_reinvestment": null,
+    "formula": "max(0, commercial_cash_receipts - taxes - refunds - pass_through_payments - unrelated_enterprise_income) * contractually_approved_reinvestment_rate + audited_fixed_contributions",
+    "missing_inputs": [
+      "commercial_cash_receipts",
+      "taxes",
+      "refunds",
+      "pass_through_payments",
+      "unrelated_enterprise_income",
+      "contractually_approved_reinvestment_rate",
+      "audited_fixed_contributions",
+      "legal_account_vehicle",
+      "permitted_uses",
+      "audit_cycle",
+      "stop_conditions"
+    ],
+    "statement_zh": "公共回流比例、账户主体、合同条款、允许用途、审计周期和停止条件均未确定，因此本稿不声明任何固定金额或比例。",
+    "statement_en": "The public reinvestment rate, account entity, contract terms, permitted uses, audit cycle, and stop conditions are not confirmed, so this draft declares no fixed amount or percentage."
+  },
+  "sensitivity_method": {
+    "status": "structure_only",
+    "method": "Run scenario tables only after quantities, unit costs, contract scopes, revenue-recognition rules and reinvestment terms are validated.",
+    "variables": [
+      "measured_quantities",
+      "unit_costs",
+      "service_contract_scope",
+      "activity_calendar",
+      "paid_project_counts",
+      "eligible_revenue_basis",
+      "approved_reinvestment_rate"
+    ]
+  },
+  "recalculation_triggers": [
+    "Official redline and key-area polygons are supplied.",
+    "Measured quantities and design scope are confirmed.",
+    "Market quotations and Beijing price basis are available.",
+    "Procurement boundaries and implementing entity are confirmed.",
+    "Operator, FTE plan and service contracts are confirmed.",
+    "Revenue contracts, invoices, receipts and revenue-recognition rules are available.",
+    "Public AI reinvestment legal vehicle, account, permitted uses, audit cycle and stop conditions are approved."
+  ],
+  "opex_items": [
+    {
+      "item_id": "O1",
+      "name_zh": "人工服务窗口与运营人员",
+      "name_en": "Staffed service windows and operating personnel",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending FTE plan and operating hours."
+      },
+      "quantity_unit": "FTE",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending annual labor cost basis."
+      },
+      "formula": "fte_count * annual_composite_labor_cost_cny",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md"
+      ],
+      "missing_inputs": [
+        "fte_count",
+        "annual_composite_labor_cost_cny",
+        "operating_hours"
+      ],
+      "recalculation_trigger": "Recalculate after operator, staffing plan, operating hours and labor cost basis are confirmed."
+    },
+    {
+      "item_id": "O2",
+      "name_zh": "云、边、平台、数据治理和网络安全服务",
+      "name_en": "Cloud, edge, platform, data-governance and cybersecurity services",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending annual service contract count and scope."
+      },
+      "quantity_unit": "contract",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending annual service quotation."
+      },
+      "formula": "annual_contract_count * annual_service_fee_cny",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md"
+      ],
+      "missing_inputs": [
+        "annual_contract_count",
+        "annual_service_fee_cny",
+        "contract_scope"
+      ],
+      "recalculation_trigger": "Recalculate after platform, cloud, edge, data-governance and cybersecurity contracts are scoped and priced."
+    },
+    {
+      "item_id": "O3",
+      "name_zh": "设备维护、校准、折旧与替换",
+      "name_en": "Equipment maintenance, calibration, depreciation and replacement",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending equipment count, original value and maintenance method."
+      },
+      "quantity_unit": "count_or_asset_value",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending maintenance unit price or maintenance rate."
+      },
+      "formula": "equipment_count * annual_maintenance_unit_cost_cny OR equipment_original_value_cny * maintenance_rate",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "visual/assets/economic_model.json"
+      ],
+      "missing_inputs": [
+        "equipment_count_or_original_value",
+        "annual_maintenance_unit_cost_or_rate",
+        "replacement_cycle"
+      ],
+      "recalculation_trigger": "Recalculate after equipment list, asset value, calibration requirements, replacement cycle and maintenance contract are confirmed."
+    },
+    {
+      "item_id": "O4",
+      "name_zh": "产业服务、测试组织和开发者社区",
+      "name_en": "Industry services, testing organization and developer community",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending annual service batch count."
+      },
+      "quantity_unit": "batch",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending cost per service batch."
+      },
+      "formula": "annual_service_batch_count * cost_per_service_batch_cny",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md"
+      ],
+      "missing_inputs": [
+        "annual_service_batch_count",
+        "cost_per_service_batch_cny",
+        "service_scope"
+      ],
+      "recalculation_trigger": "Recalculate after developer-community service scope, batch count, operator responsibilities and service prices are confirmed."
+    },
+    {
+      "item_id": "O5",
+      "name_zh": "周/月/季度/年度活动体系",
+      "name_en": "Weekly, monthly, quarterly and annual activity system",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending activity calendar by level."
+      },
+      "quantity_unit": "event",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending cost per event by level."
+      },
+      "formula": "sum(activity_count_by_level * unit_event_cost_cny_by_level)",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md"
+      ],
+      "missing_inputs": [
+        "activity_count_by_level",
+        "unit_event_cost_cny_by_level",
+        "annual_calendar"
+      ],
+      "recalculation_trigger": "Recalculate after activity calendar, event scope, venue responsibilities, sponsorship boundaries and event quotations are confirmed."
+    },
+    {
+      "item_id": "O6",
+      "name_zh": "第三方评测、审计、保险和应急处置",
+      "name_en": "Third-party evaluation, audit, insurance and emergency response",
+      "quantity": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending annual contract or reserve list."
+      },
+      "quantity_unit": "contract_or_reserve",
+      "unit_cost_cny": {
+        "status": "unknown",
+        "value": null,
+        "reason": "Pending contract amount or reserve rule."
+      },
+      "formula": "sum(annual_contract_amounts_cny + approved_reserves_cny)",
+      "status": "unknown",
+      "basis": "concept-stage calculation structure only",
+      "source_refs": [
+        "proposal.md",
+        "assumptions.json#A-ECON-OPERATIONS-001"
+      ],
+      "missing_inputs": [
+        "annual_contract_list",
+        "insurance_scope",
+        "emergency_reserve_rule",
+        "quoted_contract_amounts_cny"
+      ],
+      "recalculation_trigger": "Recalculate after evaluation, audit, insurance and emergency-response scopes are contracted or approved."
+    }
+  ]
+}

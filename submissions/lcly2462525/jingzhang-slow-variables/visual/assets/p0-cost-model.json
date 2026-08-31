@@ -1,93 +1,283 @@
 {
-  "schema": "slow-variables-p0-cost-model/v1",
-  "status": "participant_assumption_model_not_a_bid",
-  "project_ref": "P2",
-  "title_zh": "P0 样板：P2 开放基线实验室与失败样本园改造的公式级测算",
-  "disclaimer_zh": "全部单价为参赛者自设单价，非北京投标价、非报价、非预算承诺；不含土地、税费、涨价、重大迁改，不含结构与消防专项。正式概算、供应商报价与计价基准日均为空。",
-  "capacity": {
-    "open_area_sqm": {
-      "value": 600,
-      "unit_price_source": "participant_assumption",
-      "confidence": "low",
-      "notes": "建筑面积约千平方米量级（P2 清单推演量级）中约六成对公众开放；其余为人工复核厅、库房与设备间。"
-    },
-    "area_per_person_sqm": {
-      "value_low": 2.5,
-      "value_high": 4.0,
-      "unit_price_source": "participant_assumption",
-      "confidence": "medium",
-      "notes": "公共实验室与阅览室的通行标准区间；2.5 对应活动日，4.0 对应日常阅览与测量操作。"
-    },
-    "capacity_persons": {
-      "formula": "open_area_sqm / area_per_person_sqm",
-      "value_low": 150,
-      "value_high": 240,
-      "confidence": "low",
-      "notes": "容量是上限而不是目标；超过 150 人的活动日采用预约与分时，不扩充面积。"
-    }
+ "schema": "slow-variables-p0-cost-model/v1",
+ "status": "participant_assumption_model_not_a_bid",
+ "project_ref": "P2",
+ "title_zh": "P0 样板：P2 开放基线实验室与失败样本园改造的公式级测算",
+ "disclaimer_zh": "全部单价为参赛者自设单价，非北京投标价、非报价、非预算承诺；不含土地、税费、涨价、重大迁改，不含结构与消防专项。正式概算、供应商报价与计价基准日均为空。",
+ "capacity": {
+  "open_area_sqm": {
+   "value": 600,
+   "unit_price_source": "participant_assumption",
+   "confidence": "low",
+   "notes": "建筑面积约千平方米量级（P2 清单推演量级）中约六成对公众开放；其余为人工复核厅、库房与设备间。"
   },
-  "staffing": {
-    "open_hours_per_day": { "value": 10, "unit_price_source": "participant_assumption", "confidence": "low" },
-    "open_days_per_year": { "value": 300, "unit_price_source": "participant_assumption", "confidence": "low" },
-    "annual_open_hours": { "formula": "open_hours_per_day * open_days_per_year", "value": 3000, "confidence": "low" },
-    "simultaneous_posts": { "value": 2, "unit_price_source": "participant_assumption", "confidence": "low", "notes": "开放帮助点与人工复核厅各一岗。" },
-    "annual_post_hours": { "formula": "annual_open_hours * simultaneous_posts", "value": 6000, "confidence": "low" },
-    "effective_hours_per_fte": { "value": 1680, "unit_price_source": "participant_assumption", "confidence": "medium" },
-    "shift_coverage_factor": { "value": 1.2, "unit_price_source": "participant_assumption", "confidence": "low" },
-    "fte": {
-      "formula": "ceil(annual_post_hours / effective_hours_per_fte * shift_coverage_factor)",
-      "value_raw": 4.29,
-      "value": 5,
-      "confidence": "low",
-      "notes": "没有这五个编制，人工复核岗即缺位，放行门 G2 不应放行。"
-    }
+  "area_per_person_sqm": {
+   "value_low": 2.5,
+   "value_high": 4.0,
+   "unit_price_source": "participant_assumption",
+   "confidence": "medium",
+   "notes": "公共实验室与阅览室的通行标准区间；2.5 对应活动日，4.0 对应日常阅览与测量操作。"
   },
-  "rom_cost": {
-    "currency": "CNY",
-    "items": [
-      { "id": "ROM-1", "item_zh": "轻修缮", "formula": "1000 sqm * 800-1500 CNY/sqm", "low": 800000, "high": 1500000, "unit_price_source": "participant_assumption", "confidence": "low" },
-      { "id": "ROM-2", "item_zh": "机电接口", "formula": "1000 sqm * 300-600 CNY/sqm", "low": 300000, "high": 600000, "unit_price_source": "participant_assumption", "confidence": "low" },
-      { "id": "ROM-3", "item_zh": "家具与帮助点", "formula": "lump_sum", "low": 150000, "high": 300000, "unit_price_source": "participant_assumption", "confidence": "low", "notes": "阅览室、共绘桌、审计台、帮助点打包估算。" },
-      { "id": "ROM-4", "item_zh": "可逆构件", "formula": "lump_sum", "low": 200000, "high": 400000, "unit_price_source": "participant_assumption", "confidence": "low", "notes": "干式隔断与可拆展陈打包估算。" },
-      { "id": "ROM-5", "item_zh": "测量设备", "formula": "lump_sum", "low": 150000, "high": 350000, "unit_price_source": "participant_assumption", "confidence": "low", "notes": "土壤观察窗、传感器与校准工具。" }
-    ],
-    "subtotal": { "formula": "sum(items)", "low": 1600000, "high": 3150000, "confidence": "low" },
-    "contingency_rate": { "value": 0.35, "unit_price_source": "participant_assumption", "confidence": "low", "notes": "参赛者自设不可预见费比例。" },
-    "total": { "formula": "subtotal * (1 + contingency_rate)", "low": 2160000, "high_exact": 4252500, "high_rounded": 4250000, "confidence": "low" },
-    "exclusions": ["land", "taxes", "price_escalation", "major_relocation", "structural_works", "fire_safety_works"]
-  },
-  "opex_per_year": {
-    "currency": "CNY",
-    "staffing": { "formula": "5 FTE * 120000-180000 CNY/FTE/year", "low": 600000, "high": 900000, "unit_price_source": "participant_assumption", "confidence": "low", "notes": "综合用工成本，含保险与培训。" },
-    "operations": { "low": 300000, "high": 600000, "unit_price_source": "participant_assumption", "confidence": "low", "notes": "能耗、耗材、设备校准与保险。" },
-    "total": { "formula": "staffing + operations", "low": 900000, "high": 1500000, "confidence": "low" }
-  },
-  "acceptance_indicators": {
-    "immediately_judgeable": [
-      { "id": "J1", "criterion_zh": "新增构件可逆比例等于 100%，干式可拆卸写入图纸与采购条款" },
-      { "id": "J2", "criterion_zh": "人工复核岗写入岗位编制与排班表，缺编即不开门" },
-      { "id": "J3", "criterion_zh": "纸质反馈箱与纸质流程在开放首日可用" },
-      { "id": "J4", "criterion_zh": "设备默认排除人脸与可识别轨迹，写入采购技术条款" },
-      { "id": "J5", "criterion_zh": "拆除与恢复原状储备条款写入合同" }
-    ],
-    "pending_field_baseline": [
-      { "id": "B1", "indicator_zh": "五类慢变量首年基线", "waits_for": "一年实测" },
-      { "id": "B2", "indicator_zh": "实验室到访与使用率", "waits_for": "开放后按日聚合" },
-      { "id": "B3", "indicator_zh": "失败样本园入库样本量", "waits_for": "试点项目实际退出或失败" },
-      { "id": "B4", "indicator_zh": "数据冲突以人工记录为准的执行率", "waits_for": "首次冲突事件后逐案登记" },
-      { "id": "B5", "indicator_zh": "共测参与者分群体通过率", "waits_for": "授权共测；判据见 group-acceptance-contract.json" }
-    ]
-  },
-  "zeros": {
-    "formal_estimate_count": 0,
-    "vendor_quote_count": 0,
-    "authorised_field_baseline_count": 0,
-    "named_operator_count": 0
-  },
-  "evidence_backlinks": {
-    "proposal_zh": "proposal.md#p0-样板p2-开放基线实验室的公式级测算",
-    "proposal_en": "proposal.en.md#the-p0-demonstrator-formula-level-calculation-for-the-p2-open-baseline-lab",
-    "assumption": "assumptions.json#A-COST-006",
-    "alternatives_register": "visual/assets/delivery-alternatives-register.json"
+  "capacity_persons": {
+   "formula": "open_area_sqm / area_per_person_sqm",
+   "value_low": 150,
+   "value_high": 240,
+   "confidence": "low",
+   "notes": "容量是上限而不是目标；超过 150 人的活动日采用预约与分时，不扩充面积。"
   }
+ },
+ "staffing": {
+  "open_hours_per_day": {
+   "value": 10,
+   "unit_price_source": "participant_assumption",
+   "confidence": "low"
+  },
+  "open_days_per_year": {
+   "value": 300,
+   "unit_price_source": "participant_assumption",
+   "confidence": "low"
+  },
+  "annual_open_hours": {
+   "formula": "open_hours_per_day * open_days_per_year",
+   "value": 3000,
+   "confidence": "low"
+  },
+  "simultaneous_posts": {
+   "value": 2,
+   "unit_price_source": "participant_assumption",
+   "confidence": "low",
+   "notes": "开放帮助点与人工复核厅各一岗。"
+  },
+  "annual_post_hours": {
+   "formula": "annual_open_hours * simultaneous_posts",
+   "value": 6000,
+   "confidence": "low"
+  },
+  "effective_hours_per_fte": {
+   "value": 1680,
+   "unit_price_source": "participant_assumption",
+   "confidence": "medium"
+  },
+  "shift_coverage_factor": {
+   "value": 1.2,
+   "unit_price_source": "participant_assumption",
+   "confidence": "low"
+  },
+  "fte": {
+   "formula": "ceil(annual_post_hours / effective_hours_per_fte * shift_coverage_factor)",
+   "value_raw": 4.29,
+   "value": 5,
+   "confidence": "low",
+   "notes": "没有这五个编制，人工复核岗即缺位，放行门 G2 不应放行。"
+  }
+ },
+ "rom_cost": {
+  "currency": "CNY",
+  "items": [
+   {
+    "id": "ROM-1",
+    "item_zh": "轻修缮",
+    "formula": "1000 sqm * 800-1500 CNY/sqm",
+    "low": 800000,
+    "high": 1500000,
+    "unit_price_source": "participant_assumption",
+    "confidence": "low"
+   },
+   {
+    "id": "ROM-2",
+    "item_zh": "机电接口",
+    "formula": "1000 sqm * 300-600 CNY/sqm",
+    "low": 300000,
+    "high": 600000,
+    "unit_price_source": "participant_assumption",
+    "confidence": "low"
+   },
+   {
+    "id": "ROM-3",
+    "item_zh": "家具与帮助点",
+    "formula": "lump_sum",
+    "low": 150000,
+    "high": 300000,
+    "unit_price_source": "participant_assumption",
+    "confidence": "low",
+    "notes": "阅览室、共绘桌、审计台、帮助点打包估算。"
+   },
+   {
+    "id": "ROM-4",
+    "item_zh": "可逆构件",
+    "formula": "lump_sum",
+    "low": 200000,
+    "high": 400000,
+    "unit_price_source": "participant_assumption",
+    "confidence": "low",
+    "notes": "干式隔断与可拆展陈打包估算。"
+   },
+   {
+    "id": "ROM-5",
+    "item_zh": "测量设备",
+    "formula": "lump_sum",
+    "low": 150000,
+    "high": 350000,
+    "unit_price_source": "participant_assumption",
+    "confidence": "low",
+    "notes": "土壤观察窗、传感器与校准工具。"
+   }
+  ],
+  "subtotal": {
+   "formula": "sum(items)",
+   "low": 1600000,
+   "high": 3150000,
+   "confidence": "low"
+  },
+  "contingency_rate": {
+   "value": 0.35,
+   "unit_price_source": "participant_assumption",
+   "confidence": "low",
+   "notes": "参赛者自设不可预见费比例。"
+  },
+  "total": {
+   "formula": "subtotal * (1 + contingency_rate)",
+   "low": 2160000,
+   "high_exact": 4252500,
+   "high_rounded": 4250000,
+   "confidence": "low"
+  },
+  "exclusions": [
+   "land",
+   "taxes",
+   "price_escalation",
+   "major_relocation",
+   "structural_works",
+   "fire_safety_works"
+  ]
+ },
+ "opex_per_year": {
+  "currency": "CNY",
+  "staffing": {
+   "formula": "5 FTE * 120000-180000 CNY/FTE/year",
+   "low": 600000,
+   "high": 900000,
+   "unit_price_source": "participant_assumption",
+   "confidence": "low",
+   "notes": "综合用工成本，含保险与培训。"
+  },
+  "operations": {
+   "low": 300000,
+   "high": 600000,
+   "unit_price_source": "participant_assumption",
+   "confidence": "low",
+   "notes": "能耗、耗材、设备校准与保险。"
+  },
+  "total": {
+   "formula": "staffing + operations",
+   "low": 900000,
+   "high": 1500000,
+   "confidence": "low"
+  }
+ },
+ "acceptance_indicators": {
+  "immediately_judgeable": [
+   {
+    "id": "J1",
+    "criterion_zh": "新增构件可逆比例等于 100%，干式可拆卸写入图纸与采购条款"
+   },
+   {
+    "id": "J2",
+    "criterion_zh": "人工复核岗写入岗位编制与排班表，缺编即不开门"
+   },
+   {
+    "id": "J3",
+    "criterion_zh": "纸质反馈箱与纸质流程在开放首日可用"
+   },
+   {
+    "id": "J4",
+    "criterion_zh": "设备默认排除人脸与可识别轨迹，写入采购技术条款"
+   },
+   {
+    "id": "J5",
+    "criterion_zh": "拆除与恢复原状储备条款写入合同"
+   }
+  ],
+  "pending_field_baseline": [
+   {
+    "id": "B1",
+    "indicator_zh": "五类慢变量首年基线",
+    "waits_for": "一年实测"
+   },
+   {
+    "id": "B2",
+    "indicator_zh": "实验室到访与使用率",
+    "waits_for": "开放后按日聚合"
+   },
+   {
+    "id": "B3",
+    "indicator_zh": "失败样本园入库样本量",
+    "waits_for": "试点项目实际退出或失败"
+   },
+   {
+    "id": "B4",
+    "indicator_zh": "数据冲突以人工记录为准的执行率",
+    "waits_for": "首次冲突事件后逐案登记"
+   },
+   {
+    "id": "B5",
+    "indicator_zh": "共测参与者分群体通过率",
+    "waits_for": "授权共测；判据见 group-acceptance-contract.json"
+   }
+  ]
+ },
+ "zeros": {
+  "formal_estimate_count": 0,
+  "vendor_quote_count": 0,
+  "authorised_field_baseline_count": 0,
+  "named_operator_count": 0
+ },
+ "evidence_backlinks": {
+  "proposal_zh": "proposal.md#p0-样板p2-开放基线实验室的公式级测算",
+  "proposal_en": "proposal.en.md#the-p0-demonstrator-formula-level-calculation-for-the-p2-open-baseline-lab",
+  "assumption": "assumptions.json#A-COST-006",
+  "alternatives_register": "visual/assets/delivery-alternatives-register.json"
+ },
+ "public_anchors": {
+  "note_zh": "参赛者自设单价的公开锚定：下列五个公开数字用于界定自设单价所处的公开区间，全部为其他项目的公开口径，非本方案报价。北京市造价总站逐月信息价与半年度老旧小区改造造价指数登记为校准渠道，其图片表格数值未逐项机读复核，故不直接引用。",
+  "retrofit_band_cny_per_sqm": {
+   "low": {
+    "value": 700,
+    "source": "SRC-COST-CHANGYING-RETROFIT-2024",
+    "caliber": "政府投资楼本体综合整治合同估算价口径，含无障碍与上下水，按建筑面积摊薄"
+   },
+   "high": {
+    "value": 1721,
+    "source": "SRC-COST-TONGFANG-RETROFIT-2026",
+    "caliber": "海淀区既有建筑内装改造合同估算价口径，含拆除、隔断、强弱电、消防与空调改造"
+   },
+   "participant_set_range": [
+    800,
+    1500
+   ],
+   "position": "自设轻修缮单价 800-1,500 元/㎡ 落在公开区间 700-1,721 元/㎡ 之内"
+  },
+  "barrier_free_package_wan_cny": {
+   "range": [
+    0.5,
+    1.0
+   ],
+   "source": "SRC-COST-BARRIER-FREE-SUBSIDY-2020",
+   "caliber": "政府补贴限额口径（京残发〔2020〕15号），非工程单价；用于论证单处无障碍改造为万元级"
+  },
+  "soil_sensor_cny_per_set": {
+   "value": 31800,
+   "source": "SRC-COST-SOIL-SENSOR-2024",
+   "caliber": "货物类公开招标中标单价（外地采购，量级参照）；P2 测量设备打包 15-35 万元约对应 5-10 套及校准工具"
+  },
+  "property_opex_ceiling_cny_per_sqm_year": {
+   "value": 230,
+   "source": "SRC-COST-PROPERTY-OPEX-2024",
+   "caliber": "全委外物业服务中标价 3 年折算（含 40 人团队）；P2 的 OPEX 另含能耗、耗材、校准与保险，不在此口径内"
+  },
+  "calibration_channel": {
+   "source": "SRC-COST-BJ-PRICE-INFO",
+   "note": "正式团队成立后应按北京市造价总站逐月信息价与半年度改造造价指数重新校准全部自设单价"
+  }
+ }
 }

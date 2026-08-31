@@ -1,0 +1,150 @@
+{
+  "schema_note": "v4.3 参数化成本模型骨架 — 应对评审 '投资证据链无法支撑精度'。四个成本科目（土地整理 / 建安 / 市政工程 / 运营）仅承载维度占位，三个灵敏度参数接受 ±20% 扰动，输入排序方法学步骤 ③ 和 ⑤。模型输出鲁棒区间而非点估计；在所有触发条件满足前不输出任何估算值。",
+  "version": "v4.3",
+  "status": "skeleton_only_no_estimates",
+  "source_baseline": [
+    "A-BUDGET-V237 (类比估算仅作方向性参考)",
+    "A-INVEST-CLEAN-V241 (v2.4.1 移除未登记精确类比单价)",
+    "A-ENG-DETAIL-V237 (方向性估算，需控规+地勘复算)"
+  ],
+  "cost_subjects": [
+    {
+      "subject_zh": "土地整理",
+      "subject_en": "Land preparation",
+      "dimensions": [
+        {
+          "name_zh": "整治面积",
+          "name_en": "Preparation area",
+          "unit": "ha",
+          "value_status": "pending_baseline"
+        },
+        {
+          "name_zh": "整治强度等级",
+          "name_en": "Preparation intensity grade",
+          "unit": "pending_definition",
+          "value_status": "pending_baseline"
+        }
+      ],
+      "rationale_zh": "等待控规覆盖边界与地块权属图（A-DATA-004 缺口）后启动",
+      "rationale_en": "Initiated after regulatory coverage and parcel ownership maps arrive (A-DATA-004 gap)"
+    },
+    {
+      "subject_zh": "建安",
+      "subject_en": "Construction and installation",
+      "dimensions": [
+        {
+          "name_zh": "建筑面积",
+          "name_en": "Floor area",
+          "unit": "sqm",
+          "value_status": "pending_baseline"
+        },
+        {
+          "name_zh": "构造等级",
+          "name_en": "Construction grade",
+          "unit": "pending_definition",
+          "value_status": "pending_baseline"
+        },
+        {
+          "name_zh": "业态组合",
+          "name_en": "Program mix",
+          "unit": "pending_definition",
+          "value_status": "pending_baseline"
+        }
+      ],
+      "rationale_zh": "等待正式控规与地勘报告（A-ENG-005 缺口）后启动",
+      "rationale_en": "Initiated after official regulatory plan and geotechnical reports arrive (A-ENG-005 gap)"
+    },
+    {
+      "subject_zh": "市政工程",
+      "subject_en": "Municipal works",
+      "dimensions": [
+        {
+          "name_zh": "市政管线主干",
+          "name_en": "Main municipal utilities",
+          "unit": "km",
+          "value_status": "pending_baseline"
+        },
+        {
+          "name_zh": "供电/给排水/燃气容量",
+          "name_en": "Power/water/gas capacity",
+          "unit": "pending_definition",
+          "value_status": "pending_baseline"
+        },
+        {
+          "name_zh": "轨道接驳",
+          "name_en": "Rail interface",
+          "unit": "pending_definition",
+          "value_status": "pending_baseline"
+        }
+      ],
+      "rationale_zh": "等待市政基础设施现状图与跨界协议（A-RAIL-006 / A-DATA-009 缺口）后启动",
+      "rationale_en": "Initiated after municipal infrastructure maps and cross-boundary agreements arrive (A-RAIL-006 / A-DATA-009 gaps)"
+    },
+    {
+      "subject_zh": "运营",
+      "subject_en": "Operations",
+      "dimensions": [
+        {
+          "name_zh": "年度运营费",
+          "name_en": "Annual OPEX",
+          "unit": "yi_rmb",
+          "value_status": "pending_baseline"
+        },
+        {
+          "name_zh": "治理委员会预算",
+          "name_en": "Governance committee budget",
+          "unit": "yi_rmb",
+          "value_status": "pending_baseline"
+        },
+        {
+          "name_zh": "居民参与金",
+          "name_en": "Resident participation fund",
+          "unit": "yi_rmb",
+          "value_status": "pending_baseline"
+        }
+      ],
+      "rationale_zh": "等待海淀区政府年度财政预算与跨界合作协议（A-BUDGET-V237 / A-PARTY-016 缺口）后启动",
+      "rationale_en": "Initiated after Haidian annual fiscal budget and cross-boundary agreements arrive (A-BUDGET-V237 / A-PARTY-016 gaps)"
+    }
+  ],
+  "sensitivity_parameters": [
+    {
+      "name_zh": "类比精度",
+      "name_en": "analogue_precision",
+      "perturbation_range": "±20%",
+      "feed_to_step_zh": "步骤 ③ 类比匹配",
+      "feed_to_step_en": "step 3 analogue matching"
+    },
+    {
+      "name_zh": "材料价格",
+      "name_en": "material_price",
+      "perturbation_range": "±20%",
+      "feed_to_step_zh": "步骤 ⑤ 排序复核",
+      "feed_to_step_en": "step 5 sequencing review"
+    },
+    {
+      "name_zh": "施工季节折减",
+      "name_en": "seasonal_factor",
+      "perturbation_range": "±20%",
+      "feed_to_step_zh": "步骤 ③ + ⑤",
+      "feed_to_step_en": "step 3 + 5"
+    }
+  ],
+  "trigger_conditions_zh": [
+    "正式控规图则发布（A-DATA-004 缺口闭合）",
+    "海淀区政府年度财政预算公开（A-BUDGET-V237 缺口闭合）",
+    "跨界合作框架协议签署（A-PARTY-016 / A-RAIL-006 缺口闭合）"
+  ],
+  "trigger_conditions_en": [
+    "Official regulatory plan drawings released (A-DATA-004 gap closed)",
+    "Haidian District annual fiscal budget published (A-BUDGET-V237 gap closed)",
+    "Cross-boundary cooperation framework agreement signed (A-PARTY-016 / A-RAIL-006 gaps closed)"
+  ],
+  "outputs": {
+    "form_zh": "鲁棒区间（[low, high]）而非点估计",
+    "form_en": "Robust intervals ([low, high]) rather than point estimates",
+    "publication_zh": "不输出任何估算值直至所有 trigger 满足；满足后通过 difference-ledger 公开",
+    "publication_en": "No estimates emitted until all triggers satisfied; after satisfaction, published via difference-ledger"
+  },
+  "v2_4_1_status_note_en": "v4.3: pre-v4.3 directional ranges REMOVED from this package; only skeleton + triggers + sensitivity perturbation remain."
+}

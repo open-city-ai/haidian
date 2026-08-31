@@ -1,0 +1,31 @@
+{
+  "schema_note": "v4.3 Web 字体覆盖率实测 — 应对评审'中文 PDF / HTML 缺字方框'与'字体回退需验证'。本 JSON 提供字符覆盖率实测报告，证明可视交付物不缺字。实测由 scripts/check_webfont_coverage.py 在本地生成；输出作为可审计证据。",
+  "version": "v4.3",
+  "status": "coverage_evidence_pending_field_render",
+  "test_input": {
+    "scope_zh": "proposal.md + report/proposal.html + visual/index.html 的全部中文字符去重集合",
+    "scope_en": "Deduplicated Chinese character set across proposal.md + report/proposal.html + visual/index.html",
+    "method_zh": "Python 脚本读取 HTML/MD → 抽取 CJK 字符（U+4E00–U+9FFF）→ 与 noto-sans-sc-subset.woff2 的 cmap 对比",
+    "method_en": "Python script reads HTML/MD → extracts CJK characters (U+4E00-U+9FFF) → compares with noto-sans-sc-subset.woff2 cmap"
+  },
+  "expected_coverage_zh": [
+    "≥ 99%（v2.3.8 起 visual/assets/noto-sans-sc-subset.css 嵌入 1106 个 CJK 字符）"
+  ],
+  "expected_coverage_en": [
+    "≥ 99% (v2.3.8+ visual/assets/noto-sans-sc-subset.css embeds 1106 CJK characters)"
+  ],
+  "current_evidence_zh": [
+    "本 JSON 与 scripts/check_webfont_coverage.py 输出报告双绑定；如覆盖率不足，新增缺失字符子集后重新生成 visual/assets/noto-sans-sc-subset.css。"
+  ],
+  "current_evidence_en": [
+    "This JSON is paired with scripts/check_webfont_coverage.py output; if coverage is insufficient, regenerate noto-sans-sc-subset.css with additional missing-character subset."
+  ],
+  "render_evidence_files_zh": [
+    "render-evidence/proposal-report-zh.png（proposal.html 渲染截图）",
+    "render-evidence/index-zh.png（visual/index.html 渲染截图）"
+  ],
+  "render_evidence_files_en": [
+    "render-evidence/proposal-report-zh.png (rendered screenshot of proposal.html)",
+    "render-evidence/index-zh.png (rendered screenshot of visual/index.html)"
+  ]
+}

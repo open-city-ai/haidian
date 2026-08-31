@@ -7,10 +7,12 @@
 
 ## 已知形式差异（据实声明）
 
-为避免读者把气氛示意误读为设计成果，以下两处片中表达与正文口径不一致，一律以断面图与正文为准：
+为避免读者把气氛示意误读为设计成果，以下四条逐条说明片中表达与正文口径的关系（其中第 2 条的差异已重绘消除，现存差异为三处），一律以断面图与正文为准：
 
 1. **铜道钉位置**：片中道钉带段的道钉嵌于步道中部；正文口径为「步道边缘」。
 2. 人字之跃段画面已按断面 ZZY-1/ZZY-2 口径重绘（桥面平直、无上部构筑物、两端并排折返坡道），原桥型差异已消除、不再构成差异。
+3. **敲钟资格表述**：片中字幕写「完成备案或 IPO」，举的是最常见的两类事件；正文口径为「达成可公开核验的里程碑事件」——事件类型开放，但须有政府、交易所或其他第三方的公开可查记录。字幕已烧录进画面、本轮不重新渲染，故此处表述窄于正文，一律以正文为准。
+4. **并列梯段**：片中人字之跃画面只有折返坡道、没有梯段——梯段为本轮新增，短片生成在先、本轮不重新渲染。梯段的形式与尺寸以断面 ZZY-2 与正文为准。
 
 ## 逐段文字
 
@@ -73,4 +75,4 @@ Silent film, 1920x1080 / 24 fps / 55 s, no audio track. The imagery is AI-genera
 - **00:42.500-00:48.700** East-west crossing, the Answer Gates. 46 Answer Gates reach into nearly 70 communities; dual-use ramps carry wheelchairs and low-speed robots alike.
 - **00:52.000-00:54.900** Citizens do not come to read display boards. They crouch down and count the spikes: how far has China's independent innovation got? All spatial and development content is a conceptual recommendation, not an approved government conclusion.
 
-**Declared divergence**: in the Rail-Spike Band segment the bronze spikes appear mid-walkway, whereas the written calibre places them at the walkway edge. The sections and the proposal text govern.
+**Declared divergences** — three stand, a fourth has been resolved: (1) in the Rail-Spike Band segment the bronze spikes appear mid-walkway, whereas the written calibre places them at the walkway edge; (2) the Ringing Bell subtitle says “completes registration or lists”, naming the two commonest cases, whereas the body text binds ringing eligibility to any publicly verifiable milestone — the kind of event is open, but it must carry a public record from a government body, an exchange, or another third party; (3) the Ren-Shaped Leap footage shows the switchback ramps only and no flight of steps, the steps having been added to the text this round, after the film was made. The subtitles are burnt into the picture and the film is not re-rendered this round. The fourth, the earlier Ren-Shaped Leap bridge form, has been resolved by redrawing that segment to sections ZZY-1/ZZY-2 and no longer stands. The sections and the proposal text govern.

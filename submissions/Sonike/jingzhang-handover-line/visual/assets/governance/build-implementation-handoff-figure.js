@@ -53,6 +53,13 @@ function checkData() {
     [register.delivery_projects.length === 9, "projects"],
     [register.delivery_packages.length === 6, "packages"],
     [register.implementation_modules.length === 11, "modules"],
+    [register.implementation_scheme_module_register.length === 11, "implementation-plan classes"],
+    [near(register.implementation_policy_basis.programme_level_mapping_ratio, 1), "implementation-plan mapping"],
+    [register.implementation_policy_basis.external_module_receipt_count === 0, "implementation-plan receipts"],
+    [register.formal_cost_method.method_steps.length === 6, "formal cost method"],
+    [register.formal_cost_method.formal_unit_rate_receipt_count === 0, "formal rates"],
+    [register.formal_cost_method.comparable_vendor_quote_count === 0, "vendor quotes"],
+    [register.formal_cost_method.approved_budget_cny === null, "approved budget"],
     [register.documentary_release_gates.length === 12, "gates"],
     [register.professional_role_classes.length === 12, "roles"],
     [register.conditional_programme.tasks.length === 12, "tasks"],
@@ -164,15 +171,15 @@ const copy = {
   zh: {
     kicker: "F / 06 · 专业实施交接梯",
     title: "从 1:500 到 1:20，再决定能不能进场",
-    subtitle: "四级空间筛查 × 五张图纸 × 九项项目 × 六个交付包 × 十一道模块 × 十二道外部门",
+    subtitle: "四级空间筛查 × 五张图纸 × 九项项目 × 六个交付包 × 11 个物理运营模块 × 11 类实施方案",
     scaleTitle: "四级嵌套尺度｜只能由外向内筛选",
     scaleNote: "24 m 场地筛查 → 12 m 协调区 → 7.2 m 控制区 → 6 m 可撤工作面",
     notSite: "不是场地测绘 / 不是直接落位",
-    counts: ["交付项目", "交付包", "实施模块", "外部门（全 HOLD）"],
+    counts: ["交付项目", "交付包", "物理运营模块", "实施方案类目", "外部门（全 HOLD）"],
     chainTitle: "五张分尺度图｜同一数据源，不同决策问题",
     gateTitle: "十二道文件门｜回执 0/12",
     taskTitle: "T00—T11 条件时序｜15 周只在真实 T0 后计时",
-    handoff: "16 行无价数量 · 12 项交接验收（8 项现在可判） · 12 类角色（具名任命 0）",
+    handoff: "16 行无价数量 · 11/11 方案类目 · 6 步未来计价 · 12 项交接验收（8 项现在可判）",
     geometry: "中心至角点 5.091 m · 两处开口目标总宽 3.6 m",
     geometryHold: "几何筛选，不是法定人数、疏散、消防或出口能力结论",
     footer: "现场 0/12 · 门回执 0/12 · 正式单价 0 · 报价 0/3 · 预算 NULL · 保险 0 · 签认 0 · 开放放行 0",
@@ -180,15 +187,15 @@ const copy = {
   en: {
     kicker: "F / 06 · PROFESSIONAL IMPLEMENTATION HANDOFF",
     title: "FROM 1:500 TO 1:20 · THEN DECIDE ON SITE ENTRY",
-    subtitle: "4 NESTED SCREENS × 5 DRAWINGS × 9 PROJECTS × 6 PACKAGES × 11 MODULES × 12 EXTERNAL GATES",
+    subtitle: "4 SCREENS × 5 DRAWINGS × 9 PROJECTS × 6 PACKAGES × 11 PHYSICAL/OPERATING MODULES × 11 PLAN CLASSES",
     scaleTitle: "FOUR NESTED SCALES · SCREEN OUTSIDE-IN ONLY",
     scaleNote: "24 m SITE SCREEN → 12 m COORDINATION COURT → 7.2 m CONTROL → 6 m REVERSIBLE PATCH",
     notSite: "NOT A SURVEY / NOT DIRECT SITING",
-    counts: ["DELIVERY PROJECTS", "DELIVERY PACKAGES", "IMPLEMENTATION MODULES", "EXTERNAL GATES · ALL HOLD"],
+    counts: ["DELIVERY PROJECTS", "DELIVERY PACKAGES", "PHYSICAL / OPERATING MODULES", "PLAN CLASSES", "EXTERNAL GATES · ALL HOLD"],
     chainTitle: "FIVE SCALED DRAWINGS · ONE SOURCE, FIVE DECISIONS",
     gateTitle: "TWELVE DOCUMENTARY GATES · RECEIPTS 0/12",
     taskTitle: "T00-T11 CONDITIONAL PROGRAMME · 15 WEEKS STARTS ONLY AFTER REAL T0",
-    handoff: "16 UNPRICED LINES · 12 HANDOFF INDICATORS (8 JUDGEABLE NOW) · 12 ROLE CLASSES (0 APPOINTED)",
+    handoff: "16 UNPRICED LINES · 11/11 PLAN CLASSES · 6-STEP FUTURE PRICING · 12 INDICATORS (8 JUDGEABLE NOW)",
     geometry: "CENTRE-TO-CORNER 5.091 m · TWO OPENINGS TOTAL TARGET 3.6 m",
     geometryHold: "GEOMETRY SCREEN ONLY · NOT OCCUPANCY, EGRESS, FIRE OR EXIT-CAPACITY COMPLIANCE",
     footer: "FIELD 0/12 · GATE RECEIPTS 0/12 · FORMAL RATES 0 · QUOTES 0/3 · BUDGET NULL · INSURANCE 0 · SIGN-OFF 0 · OPENING RELEASE 0",
@@ -318,8 +325,8 @@ function drawFigure(lang) {
   drawNestedScales(ctx, lang, 64, 172, 790, 478);
 
   const rx = 882, ry = 172, rw = 654;
-  const counts = [9, 6, 11, 12], colours = [C.blue, C.cyan, C.yellow, C.red];
-  const cardGap = 10, cardW = (rw - cardGap * 3) / 4;
+  const counts = [9, 6, 11, 11, 12], colours = [C.blue, C.cyan, C.yellow, C.coal, C.red];
+  const cardGap = 8, cardW = (rw - cardGap * 4) / 5;
   counts.forEach((value, index) => metricCard(ctx, rx + index * (cardW + cardGap), ry, cardW, 82, value, t.counts[index], colours[index]));
   drawGateGrid(ctx, lang, rx, ry + 119, rw);
 

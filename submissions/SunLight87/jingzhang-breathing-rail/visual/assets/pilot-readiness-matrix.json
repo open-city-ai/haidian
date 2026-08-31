@@ -1,0 +1,273 @@
+{
+  "schema_version": "1.0.0",
+  "status": "planning_assumption_not_procurement_or_authorization",
+  "title_zh": "三个代表节点90天实施就绪矩阵",
+  "title_en": "90-day implementation-readiness matrix for three representative nodes",
+  "purpose_zh": "把概念节点转译为可审核的小试任务书，明确责任角色、资源级别、规划成本区间、时段与容量假设、基线、验收、停止、回滚和依赖；不虚构运营主体、采购报价、场地同意或实施授权。",
+  "purpose_en": "Translate concept nodes into auditable pilot briefs with role ownership, resource class, planning cost bands, service and capacity assumptions, baselines, acceptance, stop/rollback rules, and dependencies, without inventing operators, quotations, site consent, or implementation authorization.",
+  "currency_and_price_basis": {
+    "currency": "CNY",
+    "price_basis": "2026 planning order of magnitude",
+    "included_zh": "临时设计、可移动构件或设备租赁、安装拆除、测试、专业复核、基础运维、保险与预备费的概念性合计。",
+    "included_en": "Concept allowance for temporary design, movable components or equipment rental, installation and removal, testing, professional review, basic operations, insurance, and contingency.",
+    "excluded_zh": "土地、永久土建、法定审批、管线迁改、永久机电、长期人员编制、税费和任何未核实的场地修复。",
+    "excluded_en": "Land, permanent civil works, statutory approvals, utility relocation, permanent MEP, long-term staffing, taxes, and any unverified site remediation.",
+    "not_a_quote": true
+  },
+  "common_90_day_sequence": [
+    {
+      "days": "01-15",
+      "stage_zh": "清权与基线",
+      "stage_en": "clearance and baseline",
+      "deliverables": [
+        "site_permission_checklist",
+        "data_and_media_rights_check",
+        "access_fire_utility_walkthrough",
+        "staffed_or_static_baseline_record"
+      ]
+    },
+    {
+      "days": "16-30",
+      "stage_zh": "设计冻结与桌面演练",
+      "stage_en": "design freeze and tabletop rehearsal",
+      "deliverables": [
+        "reversible_layout_freeze",
+        "raci_and_contact_tree",
+        "incident_complaint_and_rollback_drill",
+        "human_decision_release_modify_reject_pause"
+      ]
+    },
+    {
+      "days": "31-60",
+      "stage_zh": "受控小试",
+      "stage_en": "controlled pilot",
+      "deliverables": [
+        "daily_operation_log",
+        "exception_and_manual_override_log",
+        "maintenance_record",
+        "weekly_threshold_review"
+      ]
+    },
+    {
+      "days": "61-75",
+      "stage_zh": "校准与修订",
+      "stage_en": "calibration and revision",
+      "deliverables": [
+        "issue_triage",
+        "accessibility_and_public_interest_review",
+        "cost_and_maintenance_reforecast",
+        "candidate_revision_or_pause"
+      ]
+    },
+    {
+      "days": "76-90",
+      "stage_zh": "验收与退出决定",
+      "stage_en": "acceptance and exit decision",
+      "deliverables": [
+        "evidence_pack",
+        "professional_review_note",
+        "human_decision_continue_modify_pause_rollback_exit",
+        "removal_or_next_stage_plan"
+      ]
+    }
+  ],
+  "pilots": [
+    {
+      "pilot_id": "PILOT-N-S01",
+      "scenario_id": "S01",
+      "field": "source_calibration_yard",
+      "name_zh": "北部校准庭：多传感器共置校准",
+      "name_en": "North calibration yard: multi-sensor co-location",
+      "spatial_scope_zh": "众智园候选既有开放空间中的可围合设备带、公众等候区与独立维护后场；不改变道路、绿地边界或建筑结构。",
+      "spatial_scope_en": "A cordonable equipment strip, public waiting area, and separate maintenance back-of-house in a candidate existing open space at Zhongzhiyuan, without changing streets, green boundaries, or building structure.",
+      "resource_class": "M",
+      "planning_cost_band_cny": [
+        300000,
+        800000
+      ],
+      "cost_driver_zh": "设备租赁与共置、供电网络临设、专业校准、围合与遮荫、运维值守、撤场。",
+      "cost_driver_en": "Equipment rental and co-location, temporary power/network, professional calibration, cordon and shade, staffed operations, and removal.",
+      "operating_assumption": {
+        "public_service_hours": "no unsupervised public service",
+        "controlled_sessions": "weekdays 09:00-17:00 by booking",
+        "capacity": "up to 3 calibration batches/day and 6 candidate devices/batch",
+        "baseline_period_days": 14,
+        "capacity_is_unverified": true
+      },
+      "accountable_roles": {
+        "A": "authorized_decision_owner",
+        "R": [
+          "technical_operator",
+          "environmental_professional"
+        ],
+        "C": [
+          "data_rights_steward",
+          "independent_safety_reviewer",
+          "site_property_fire_and_network_roles"
+        ],
+        "I": [
+          "public_interest_reviewer",
+          "complaint_contact"
+        ]
+      },
+      "baseline_zh": "人工复核、纸质校准记录和设备断电撤回流程可独立运行；参考条件未授权时只使用合成故障。",
+      "baseline_en": "Staff review, paper calibration records, and power-off withdrawal work independently; synthetic faults only when reference conditions are not authorized.",
+      "acceptance_thresholds": [
+        "100% inputs have source, authorization, retention, and expiry records",
+        "100% exceptions receive named professional review before any internal record is retained",
+        ">=95% scheduled batches produce a complete reviewable record; this is a documentation threshold, not an accuracy claim",
+        "paper record and emergency power-off drill pass in every weekly review",
+        "zero public regulatory, medical, or real-time air-quality claims"
+      ],
+      "stop_or_rollback": [
+        "missing reference authorization or professional reviewer",
+        "unexplained drift or device behavior",
+        "loss of safe separation, power, network, fire access, or staffed supervision",
+        "privacy, security, or complaint incident not closed within one working day",
+        "manual record or safe power-off path unavailable"
+      ],
+      "dependencies": [
+        "site and property consent",
+        "fire and electrical review",
+        "authorized reference or synthetic-data protocol",
+        "device, network-security, maintenance, and insurance plan",
+        "professional sign-off and candidate-level HumanDecision"
+      ],
+      "current_state": "concept_ready_for_authorized_due_diligence_not_deployment"
+    },
+    {
+      "pilot_id": "PILOT-C-S05",
+      "scenario_id": "S05",
+      "field": "civic_translation_commons",
+      "name_zh": "中部共译客厅：无障碍呼吸驿",
+      "name_en": "Central civic-translation room: accessible breathing post",
+      "spatial_scope_zh": "AI 原点社区候选既有首层或街角的可移动服务台、遮荫座椅、纸质/语音说明和人工确认点；不封闭既有通行。",
+      "spatial_scope_en": "A movable service desk, shaded seating, paper/voice information, and staffed confirmation point in a candidate existing ground floor or street corner at the AI Origin Community, without closing existing passage.",
+      "resource_class": "S-M",
+      "planning_cost_band_cny": [
+        200000,
+        500000
+      ],
+      "cost_driver_zh": "无障碍现场审查、可移动构件、纸质/语音内容、人工值守、更新维护与撤场。",
+      "cost_driver_en": "Accessibility audit, movable elements, paper/voice content, staffing, update maintenance, and removal.",
+      "operating_assumption": {
+        "static_service_hours": "08:00-20:00 subject to host opening hours",
+        "staffed_windows": "two 2-hour windows/day during the controlled pilot",
+        "capacity": "up to 20 assisted interactions per staffed window",
+        "baseline_period_days": 14,
+        "capacity_is_unverified": true
+      },
+      "accountable_roles": {
+        "A": "authorized_decision_owner",
+        "R": [
+          "public_space_or_asset_steward",
+          "staffed_service_operator"
+        ],
+        "C": [
+          "accessibility_public_interest_reviewer",
+          "property_and_fire_roles",
+          "data_rights_steward"
+        ],
+        "I": [
+          "local_users",
+          "complaint_contact"
+        ]
+      },
+      "baseline_zh": "纸质地图、语音协助和工作人员确认持续可用，任何数字界面关闭后仍能完成同一基本服务。",
+      "baseline_en": "Paper maps, voice assistance, and staff confirmation remain available; the same basic service still works when every digital interface is switched off.",
+      "acceptance_thresholds": [
+        "100% displayed facilities have verification date, responsible contact, and expiry/update state",
+        "100% staffed windows retain a paper, voice, and human-equivalent path",
+        "zero unresolved critical access or safety issue in the displayed inventory",
+        "verified change or critical correction reflected within one working day",
+        "all complaints acknowledged within one staffed window and triaged within one working day"
+      ],
+      "stop_or_rollback": [
+        "critical route condition is unknown or changes without update",
+        "paper, voice, or staffed equivalent becomes unavailable",
+        "unsafe queue, obstruction, glare, weather, or fire-access conflict",
+        "privacy or accessibility complaint remains unresolved",
+        "host opening, property consent, or maintenance responsibility lapses"
+      ],
+      "dependencies": [
+        "host and property consent",
+        "on-site accessibility and fire walkthrough",
+        "verified facility inventory and update owner",
+        "staffing, weather, cleaning, power, and complaint arrangements",
+        "candidate-level HumanDecision"
+      ],
+      "current_state": "concept_ready_for_authorized_due_diligence_not_public_service"
+    },
+    {
+      "pilot_id": "PILOT-S-S03",
+      "scenario_id": "S03",
+      "field": "adoption_market_court",
+      "name_zh": "南部转化前场：室内外终端可用性实验",
+      "name_en": "South adoption forecourt: indoor/outdoor terminal usability",
+      "spatial_scope_zh": "大钟寺候选既有综合体首层或交通前场中的人工主持区、纸质任务区、可关闭终端和无障碍等候位；不虚构地下站或新建综合体。",
+      "spatial_scope_en": "A staffed facilitation zone, paper-task area, switchable terminals, and accessible waiting positions in a candidate existing ground floor or mobility forecourt at Dazhongsi, without inventing an underground station or new megacomplex.",
+      "resource_class": "M",
+      "planning_cost_band_cny": [
+        300000,
+        700000
+      ],
+      "cost_driver_zh": "可关闭终端、无障碍交互设计、主持和值守、匿名记录、隐私安全审查、测试保险和撤场。",
+      "cost_driver_en": "Switchable terminals, accessible interaction design, facilitation and staffing, anonymous records, privacy/security review, test insurance, and removal.",
+      "operating_assumption": {
+        "controlled_sessions": "10:00-18:00, appointment or on-site voluntary enrolment",
+        "capacity": "up to 8 voluntary participants/day and 30 minutes/participant",
+        "pilot_session_days": 20,
+        "baseline_period_days": 10,
+        "capacity_is_unverified": true
+      },
+      "accountable_roles": {
+        "A": "authorized_decision_owner",
+        "R": [
+          "staffed_facilitator",
+          "technical_operator"
+        ],
+        "C": [
+          "accessibility_public_interest_reviewer",
+          "privacy_and_data_rights_steward",
+          "property_fire_and_network_roles"
+        ],
+        "I": [
+          "voluntary_participants",
+          "complaint_contact"
+        ]
+      },
+      "baseline_zh": "人工主持、纸质任务和语音协助可独立完成同一任务；不采人脸、声纹、身份画像或连续轨迹。",
+      "baseline_en": "Staff facilitation, paper tasks, and voice assistance complete the same task independently; no face, voiceprint, identity profile, or continuous trace is collected.",
+      "acceptance_thresholds": [
+        "100% sessions show consent, exit, deletion, staffed assistance, and incident routes before participation",
+        "100% records are anonymous task records with retention and deletion timestamps",
+        ">=80% pilot-task completion across each tested access mode, reported with sample size and without population inference",
+        "zero dark-pattern, biometric, identity-profile, or forced-scan behavior",
+        "all critical accessibility, privacy, or safety issues trigger immediate pause until reviewed"
+      ],
+      "stop_or_rollback": [
+        "consent, deletion, or staffed fallback fails",
+        "sample bias is hidden or results are generalized beyond the pilot",
+        "device, network, weather, queue, glare, or accessibility condition becomes unsafe",
+        "privacy, dark-pattern, or security incident",
+        "property, fire, network, or staffing permission lapses"
+      ],
+      "dependencies": [
+        "host and property consent",
+        "privacy and cybersecurity review",
+        "accessibility, fire, power, network, and weather plan",
+        "staffing, informed participation, deletion, complaint, and insurance protocol",
+        "candidate-level HumanDecision"
+      ],
+      "current_state": "concept_ready_for_authorized_due_diligence_not_research_approval"
+    }
+  ],
+  "portfolio_gate": {
+    "release_rule_zh": "三个节点均不得因文档完整而自动进入现场；任一依赖未闭合时，HumanDecision 必须为 modify、pause、reject、rollback 或 exit。",
+    "release_rule_en": "No node enters the field merely because its documentation is complete; if any dependency is open, HumanDecision must be modify, pause, reject, rollback, or exit.",
+    "human_decision": "pending",
+    "partner_commitment": false,
+    "procurement_status": "not_started",
+    "site_authorization": "not_obtained"
+  }
+}

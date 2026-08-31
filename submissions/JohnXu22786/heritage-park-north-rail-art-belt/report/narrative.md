@@ -1,0 +1,3 @@
+# Formal Narrative
+
+Steelstring Belt is an original concept package for the north rail-art belt. Its core is One Rail–Three Nodes: Rail-Trace Gallery, Sleeper Echo Stage and Switch-Star Plaza. It links evidence-first heritage interpretation, reversible public art, AI-assisted services, paper/staffed fallback and a decision–demonstration–oversight operating loop. All geometry and site conditions remain provisional until survey, archives, tenure, safety, accessibility and rights checks pass. The structured evidence is carried by proposal.md, proposal.en.md, 12 scenario cards, 3 test protocols, 7 citation-only cases, 3 AI landmarks, the eight-resource ecosystem map, bilingual figures, drawings, metrics and matrices.

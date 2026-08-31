@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intelligence Grown from Place: Centennial Jing-Zhang Urban AI Growth System | Visual Presentation</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17201b;
+      --muted: #5f6b64;
+      --line: #d8ddd5;
+      --paper: #f6f3ec;
+      --panel: #ffffff;
+      --rail: #315f7d;
+      --signal: #b76438;
+      --shadow: 0 18px 46px rgba(23, 32, 27, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, Arial, Helvetica, "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .hero-night {
+      position: relative;
+      width: 100%;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .hero-night img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .metrics-section {
+      padding: 56px 32px 68px;
+      background: var(--paper);
+    }
+
+    .metrics-wrap {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--rail);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .section-title {
+      margin: 0;
+      max-width: 860px;
+      font-size: clamp(26px, 3.2vw, 44px);
+      line-height: 1.12;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .section-intro {
+      margin: 16px 0 0;
+      max-width: 880px;
+      color: #3d4942;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .metric-card {
+      min-height: 168px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .metric-card .label {
+      min-height: 42px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .metric-card .value {
+      margin-top: 14px;
+      color: var(--ink);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1;
+      font-weight: 800;
+    }
+
+    .metric-card .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .chain-panel,
+    .boundary-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: 0 10px 26px rgba(23, 32, 27, 0.06);
+    }
+
+    .chain-panel {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .chain-step {
+      min-height: 112px;
+      padding: 16px 14px;
+      border-right: 1px solid var(--line);
+    }
+
+    .chain-step:last-child {
+      border-right: 0;
+    }
+
+    .chain-step b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .chain-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .boundary-panel {
+      padding: 16px 18px;
+      border-left: 4px solid var(--signal);
+    }
+
+    .boundary-panel h2 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .boundary-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .status-pill {
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    .status-pill strong {
+      color: var(--ink);
+    }
+
+    .day-section {
+      padding: 0 32px 76px;
+      background: var(--paper);
+    }
+
+    .day-wrap {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+    }
+
+    .day-figure {
+      position: relative;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #dde6dc;
+      box-shadow: var(--shadow);
+    }
+
+    .day-figure img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      display: block;
+    }
+
+    .day-caption {
+      position: static;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px 16px;
+      border-top: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .day-caption strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .day-caption span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .scope-header {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: end;
+      margin-top: 42px;
+    }
+
+    .scope-header p {
+      margin: 0;
+      color: #3d4942;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .scope-card {
+      min-height: 278px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 12px 30px rgba(23, 32, 27, 0.07);
+    }
+
+    .scope-card .index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      margin-bottom: 16px;
+      border-radius: 50%;
+      background: #ecf1ec;
+      color: var(--rail);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .scope-card h3 {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .scope-card .area {
+      margin: 8px 0 16px;
+      color: var(--signal);
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .scope-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .scope-card .limit {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: #7a6650;
+    }
+
+    .scope-note {
+      margin: 22px 0 0;
+      padding: 16px 18px;
+      border-left: 4px solid var(--rail);
+      border-radius: 0 8px 8px 0;
+      background: rgba(255, 255, 255, 0.62);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .content-section {
+      padding: 0 32px 76px;
+      background: var(--paper);
+    }
+
+    .content-wrap {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: #3d4942;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .figure-panel {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: var(--shadow);
+    }
+
+    .figure-panel img {
+      width: 100%;
+      display: block;
+      background: #ffffff;
+    }
+
+    .figure-panel figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .figure-panel figcaption strong {
+      color: var(--ink);
+    }
+
+    .framework-grid,
+    .node-copy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .brief-card {
+      min-height: 168px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 10px 26px rgba(23, 32, 27, 0.06);
+    }
+
+    .brief-card .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--signal);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .brief-card h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      line-height: 1.25;
+    }
+
+    .brief-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .render-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .render-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .render-card img {
+      width: 100%;
+      height: auto;
+      min-height: 0;
+      object-fit: contain;
+      display: block;
+      background: #f8faf7;
+    }
+
+    .render-card .caption {
+      min-height: 104px;
+      padding: 18px 20px 20px;
+    }
+
+    .render-card h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+      line-height: 1.3;
+    }
+
+    .render-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .persona-card {
+      min-height: 176px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 10px 26px rgba(23, 32, 27, 0.06);
+    }
+
+    .persona-card .persona-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: #edf3f0;
+      color: var(--rail);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .persona-card h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.28;
+    }
+
+    .persona-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .scene-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 10px 26px rgba(23, 32, 27, 0.06);
+    }
+
+    .scene-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: #dfe7df;
+    }
+
+    .scene-card .scene-caption {
+      min-height: 132px;
+      padding: 13px 14px 15px;
+    }
+
+    .scene-card .scene-id {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--signal);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .scene-card h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+      line-height: 1.3;
+    }
+
+    .scene-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .indicator-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .indicator-panel {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .indicator-panel h3 {
+      margin: 0 0 16px;
+      font-size: 22px;
+      line-height: 1.3;
+    }
+
+    .indicator-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .indicator-item {
+      display: grid;
+      grid-template-columns: minmax(108px, 0.34fr) minmax(0, 0.66fr);
+      gap: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+
+    .indicator-item:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .indicator-item b {
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .indicator-item span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .metric-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .metric-table th,
+    .metric-table td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .metric-table th {
+      color: var(--ink);
+      background: #eef2ec;
+      font-weight: 800;
+    }
+
+    .metric-table td {
+      color: var(--muted);
+    }
+
+    .metric-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero-night {
+        min-height: 0;
+      }
+
+      .metrics-grid,
+      .chain-panel,
+      .support-grid,
+      .scope-header,
+      .section-head,
+      .framework-grid,
+      .node-copy-grid,
+      .render-grid,
+      .persona-grid,
+      .scene-grid,
+      .indicator-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .render-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .render-card img {
+        height: auto;
+        min-height: 0;
+      }
+
+      .scope-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chain-step:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .chain-step:nth-child(n + 3) {
+        border-top: 1px solid var(--line);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero-night {
+        min-height: 0;
+      }
+
+      .metrics-section {
+        padding: 38px 16px 52px;
+      }
+
+      .metrics-grid,
+      .chain-panel,
+      .support-grid,
+      .scope-header,
+      .section-head,
+      .framework-grid,
+      .node-copy-grid,
+      .render-grid,
+      .persona-grid,
+      .scene-grid,
+      .indicator-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .render-card img {
+        height: auto;
+        min-height: 0;
+      }
+
+      .indicator-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .metric-table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      .day-section {
+        padding: 0 16px 54px;
+      }
+
+      .content-section {
+        padding: 0 16px 54px;
+      }
+
+      .day-caption {
+        position: static;
+        border-top: 1px solid var(--line);
+        border-radius: 0;
+        background: #fff;
+      }
+
+      .figure-panel figcaption {
+        display: block;
+      }
+
+      .metric-card {
+        min-height: 138px;
+      }
+
+      .metric-card .label {
+        min-height: auto;
+      }
+
+      .chain-step,
+      .chain-step:nth-child(2n) {
+        border-right: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .chain-step:first-child {
+        border-top: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero-night" aria-labelledby="hero-title">
+      <h1 id="hero-title" class="sr-only">Overall Aerial View: Place-Grown Intelligence: Centennial Jing-Zhang Urban AI Growth System</h1>
+      <img src="../assets/figures/user-first-image-en.png" alt="Overall Aerial View of the Centennial Jing-Zhang Urban AI Growth System, showing the Jing-Zhang corridor, transit axis, blue-green slow mobility belt, AI Origin Community, Zhongzhiyuan, Dazhongsi Renewal Gateway, and figure note">
+    </section>
+
+    <section class="metrics-section" id="metrics" aria-labelledby="metrics-title">
+      <div class="metrics-wrap">
+        <p class="section-kicker">Core Metrics</p>
+        <h2 class="section-title" id="metrics-title">The night aerial establishes the spatial memory first; the metrics then explain the scale, scope, and boundaries of the system.</h2>
+        <p class="section-intro">The following numbers support the reading layer after the hero section. For formal submission, they must remain consistent with `metrics.json`, GeoJSON, and matrix files. Any provisional scope must be recalculated after official polygons are available.</p>
+
+        <div class="metrics-grid" aria-label="Core metric cards">
+          <article class="metric-card">
+            <div class="label">Coordinated Research Area</div>
+            <div class="value" data-metric="coordinated_research_area_sqm" data-value="43600000">43.6 km²</div>
+            <div class="note">Area from official text; precise boundaries require formal data.</div>
+          </article>
+          <article class="metric-card">
+            <div class="label">Overall Design Area</div>
+            <div class="value" data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</div>
+            <div class="note">Current working basis; to be recalculated from `site_boundary.geojson` before submission.</div>
+          </article>
+          <article class="metric-card">
+            <div class="label">Three Key Areas Total</div>
+            <div class="value" data-metric="key_area_total_sqm" data-value="3684000">368.4 ha</div>
+            <div class="note">Zhongzhi Park, AI Origin Community, and Dazhongsi as three responsibility nodes.</div>
+          </article>
+          <article class="metric-card">
+            <div class="label">Initial AI Scenarios</div>
+            <div class="value" data-metric="ai_scenario_count" data-value="12">12</div>
+            <div class="note">Four of them are industry testing and validation scenarios.</div>
+          </article>
+        </div>
+
+        <div class="support-grid">
+          <div class="chain-panel" aria-label="Core Operating Chain">
+            <div class="chain-step">
+              <b>Origin Demand Intake</b>
+              <span>Residents, young people, enterprises, and operators raise real urban problems.</span>
+            </div>
+            <div class="chain-step">
+              <b>Zhongzhi R&D</b>
+              <span>Universities, research teams, and enterprises translate problems into testable prototypes.</span>
+            </div>
+            <div class="chain-step">
+              <b>River-Park Validation</b>
+              <span>Xiaoyue River and the Jing-Zhang Heritage Park provide parallel real-world validation environments.</span>
+            </div>
+            <div class="chain-step">
+              <b>Dazhongsi Conversion</b>
+              <span>Dazhongsi supports productization, classified operations, and industry services.</span>
+            </div>
+            <div class="chain-step">
+              <b>Public Reinvestment</b>
+              <span>Commercial returns and public investment jointly support the next cycle of public AI upgrades.</span>
+            </div>
+          </div>
+
+          <aside class="boundary-panel" aria-label="Boundary Statement">
+            <h2>Boundary Statement</h2>
+            <p>This page is the English working draft of `visual/index-en.html`. Current scopes, routes, and key areas use public information and provisional geometry to explain design logic; they are not official redlines, statutory planning indicators, approvals, quantities, or investment commitments.</p>
+          </aside>
+        </div>
+
+        <div class="status-row" aria-label="Trusted AI Principles">
+          <span class="status-pill"><strong>Traceable</strong> source / metric / geometry</span>
+          <span class="status-pill"><strong>Reviewable</strong> linked self-checks and matrices</span>
+          <span class="status-pill"><strong>Human-Takeover Ready</strong> human service and exit mechanisms</span>
+          <span class="status-pill"><strong>Sustainable</strong> dual public and commercial AI paths</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="day-section" id="scope" aria-labelledby="scope-title">
+      <div class="day-wrap">
+        <figure class="day-figure">
+          <img src="../assets/figures/15-day-overall-aerial-board-en.png" alt="English labeled daytime aerial view showing the Jing-Zhang rail corridor, blue-green slow-mobility experience belt, AI Origin Community, Zhongzhi Park, and Dazhongsi renewal gateway">
+          <figcaption class="day-caption">
+            <div>
+              <strong>Daytime Overall Aerial</strong>
+              <span>The daytime urban interface explains the organization of transit connections, public open space, AI nodes, and renewal gateways.</span>
+            </div>
+            <div>
+              <strong>Drawing Boundary</strong>
+              <span>Concept-stage aerial expression; specific boundaries, metrics, and implementation scopes are subject to subsequent data ledgers and design development.</span>
+            </div>
+          </figcaption>
+        </figure>
+
+        <div class="scope-header">
+          <div>
+            <p class="section-kicker">Scope Study</p>
+            <h2 class="section-title" id="scope-title">The three scope layers are not isolated maps, but a continuous study framework from regional judgement to implementable nodes.</h2>
+          </div>
+          <p>The proposal first clarifies the innovation ecosystem across 43.6 km², then organizes the public framework, slow-mobility blue-green links, renewal projects, and AI scenarios within the 11.4 km² overall design area. Finally, the three key areas are translated into spatial and operational tasks for professional design development.</p>
+        </div>
+
+        <div class="scope-grid" aria-label="Three Scope Study Cards">
+          <article class="scope-card">
+            <span class="index">01</span>
+            <h3>Coordinated Research Area</h3>
+            <div class="area" data-metric="coordinated_research_area_sqm" data-value="43600000">43.6 km²</div>
+            <p>Studies regional relationships among universities, research institutes, enterprises, communities, transit stations, blue-green spaces, and Zhongguancun technology service resources, identifying which innovation capabilities can enter real urban problems along the Centennial Jing-Zhang corridor.</p>
+            <p class="limit">Boundary: this layer does not set statutory indicators, building heights, road redlines, or engineering implementation conclusions.</p>
+          </article>
+
+          <article class="scope-card">
+            <span class="index">02</span>
+            <h3>Overall Design Area</h3>
+            <div class="area" data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</div>
+            <p>Organizes a low-disturbance urban renewal structure: continuous public framework, river-park validation belt, community/university/industry short loops, three AI key areas, and the Zhongguancun technology service network.</p>
+            <p class="limit">Boundary: this is a concept-level overall design; area, green-space ratio, and public-space ratio must be recalculated from GeoJSON in the submission package.</p>
+          </article>
+
+          <article class="scope-card">
+            <span class="index">03</span>
+            <h3>Three Key Areas</h3>
+            <div class="area" data-metric="key_area_total_sqm" data-value="3684000">368.4 ha</div>
+            <p>Zhongzhi Park handles technology validation and governance admission, AI Origin Community handles real-problem intake and youth co-creation, and Dazhongsi handles productization, classified operations, and international exchange. Together they form one urban AI growth chain.</p>
+            <p class="limit">Boundary: the key areas still use provisional geometry and concept carriers; they do not represent secured space, approvals, leasing, ownership, or enterprise commitments.</p>
+          </article>
+        </div>
+
+        <p class="scope-note">The key to the scope study is not filling the map with lines, but separating what can be evidenced from what cannot yet be evidenced. Official text areas can explain scale, while provisional geometry can support concept testing. Once formal redlines, planning conditions, ownership, buildings, utilities, and on-site flow data are available, relevant metrics must be recalculated and updated in `metrics.json`, drawings, and the web page.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="framework" aria-labelledby="framework-title">
+      <div class="content-wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Concept Framework</p>
+            <h2 class="section-title" id="framework-title">This is not an AI display corridor, but an urban AI growth system from problem intake to technology validation and public reinvestment.</h2>
+          </div>
+          <p>The English drawing is taken from the user-supplied A3 PDF set. It aligns the three-level scope map, continuous public spine, and concept framework, so the web presentation and English booklet use the same source drawing rather than the earlier draft diagram.</p>
+        </div>
+
+        <figure class="figure-panel">
+          <img src="../assets/figures/site-overview.en.png" alt="English A3 site overview board showing the three-layer scope map, continuous public spine, and conceptual framework">
+          <figcaption>
+            <span><strong>Site Overview + Overall Concept v3</strong>: The same English PDF board is used for the proposal text, report, and website.</span>
+            <span>Boundary status: provisional constraint; must align with GeoJSON, metrics, and sources before formal submission.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure-panel" style="margin-top: 18px;">
+          <img src="../assets/figures/mobility-bluegreen.en.png" alt="English A3 mobility and blue-green public-space board from the user-supplied PDF">
+          <figcaption>
+            <span><strong>Mobility + Blue-Green Public Space v1</strong>: Important-station mobility, river-park dual validation, continuous slow mobility, and phased activation are shown in one English drawing.</span>
+            <span>The drawing is a concept-stage coordination diagram, not a road-redline, utility, or construction approval document.</span>
+          </figcaption>
+        </figure>
+
+        <div class="framework-grid" aria-label="Concept Framework Points">
+          <article class="brief-card">
+            <span class="tag">01 · Intake</span>
+            <h3>Real Problems Enter First</h3>
+            <p>Start from real problems raised by residents, young people, passers-by, cultural participants, enterprises, and operators, while preserving offline human service, refusal rights, and feedback receipts.</p>
+          </article>
+          <article class="brief-card">
+            <span class="tag">02 · Validation</span>
+            <h3>Technology Must Prove Reliability</h3>
+            <p>Each AI scenario first passes scenario passporting, data-boundary review, safety assessment, human takeover, and exit/recovery checks before entering public-space validation.</p>
+          </article>
+          <article class="brief-card">
+            <span class="tag">03 · Continuity</span>
+            <h3>Outcomes Split and Reinvest</h3>
+            <p>Public-value projects enter continued public assessment, while commercial projects enter productization. Commercial returns are proposed as a mechanism to support public AI renewal.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="key-areas" aria-labelledby="key-areas-title">
+      <div class="content-wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Three Key Areas</p>
+            <h2 class="section-title" id="key-areas-title">The three nodes are not isolated districts, but three responsibilities within the same growth chain.</h2>
+          </div>
+          <p>The English drawings in this section come from the user-supplied A3 PDF pages for the final English board set. Land-use structure, scenario carrier selection, and the three key areas now use the same source pages as the English booklet.</p>
+        </div>
+
+        <figure class="figure-panel">
+          <img src="../assets/figures/land-use-structure.en.png" alt="English A3 public framework and land-use structure board from the user-supplied PDF">
+          <figcaption>
+            <span><strong>Function Zoning + Overall Spatial Structure v2</strong>: The continuous public framework, three key areas, scenario carrier selection, and scope guidance are shown as one coordinated drawing.</span>
+            <span>All carriers remain concept suggestions pending official boundaries, ownership, engineering checks, and professional design development.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure-panel" style="margin-top: 18px;">
+          <img src="../assets/figures/key-areas.en.png" alt="English A3 three key areas board from the user-supplied PDF">
+          <figcaption>
+            <span><strong>Three Key Areas Spatial Evaluation v1</strong>: Crowd Intelligence Garden, AI Origin Community, and Dazhong Temple are compared through spatial logic, carrier expansion, and governance flow.</span>
+            <span>The scopes shown are concept-stage expressions, not approved construction boundaries, ownership adjustments, or leasing commitments.</span>
+          </figcaption>
+        </figure>
+
+        <div class="node-copy-grid" aria-label="Required Three-Node Notes">
+          <article class="brief-card">
+            <span class="tag">Zhongzhi Park</span>
+            <h3>Technology Validation and Governance Admission</h3>
+            <p>Hosts shared governance sandboxes, controlled testing courtyards, public observation corridors, and maintenance backrooms. The public can understand testing, while high-risk tests require separation, records, and human takeover.</p>
+          </article>
+          <article class="brief-card">
+            <span class="tag">AI Origin Community</span>
+            <h3>Real-Problem Intake and Youth Co-Creation</h3>
+            <p>Provides human service desks, urban problem walls, co-creation tables, prototype workshops, and community review rooms, turning needs into queryable and feedback-ready scenario passports.</p>
+          </article>
+          <article class="brief-card">
+            <span class="tag">Dazhongsi</span>
+            <h3>Productization and Operational Scaling</h3>
+            <p>Hosts product validation halls, shared enterprise services, international exchange, and public/commercial classification assessment. Lanjing Lijia-type carriers remain conditional candidates, not secured spaces.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="node-renders" aria-labelledby="node-renders-title">
+      <div class="content-wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Key Area Renderings</p>
+            <h2 class="section-title" id="node-renders-title">Renderings describe spatial atmosphere and use scenarios only; they do not replace boundaries, metrics, or approval basis.</h2>
+          </div>
+          <p>Each node rendering uses the labeled effect image from the current English board set, keeping the same concept-stage boundary statement as the Chinese page.</p>
+        </div>
+
+        <div class="render-grid" aria-label="Three labeled key-area renderings">
+          <article class="render-card">
+            <img src="../assets/figures/10-zhongzhiyuan-aerial-transport-en-dark-legend.png" alt="English labeled aerial rendering for the Zhongzhiyuan technology validation and governance admission node">
+            <div class="caption">
+              <h3>Crowd Intelligence Garden</h3>
+              <p>Labeled effect rendering for the technology validation and governance-access node.</p>
+            </div>
+          </article>
+          <article class="render-card">
+            <img src="../assets/figures/11-ai-origin-community-aerial-en-dark-legend.png" alt="English labeled aerial rendering for the AI Origin Community real-problem entry and youth co-creation node">
+            <div class="caption">
+              <h3>AI Origin Community</h3>
+              <p>Labeled effect rendering for the real-problem intake and youth co-creation node.</p>
+            </div>
+          </article>
+          <article class="render-card">
+            <img src="../assets/figures/12-dazhongsi-aerial-en-dark-legend.png" alt="English labeled aerial rendering for the Dazhongsi productization and operational scaling node">
+            <div class="caption">
+              <h3>Dazhong Temple</h3>
+              <p>Labeled effect rendering for productization, operations scaling, and commercial/public classification.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="personas" aria-labelledby="personas-title">
+      <div class="content-wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Persona Analysis</p>
+            <h2 class="section-title" id="personas-title">The six persona groups are not mutually exclusive labels, but six participation roles in one urban AI growth chain.</h2>
+          </div>
+          <p>The proposal reframes people from passive footfall into urban participants who raise problems, validate together, support operations, and receive feedback. Each persona must correspond to real tasks, spatial entry points, AI capabilities, human fallback, and refusal boundaries, preventing public-space AI from becoming one-way extraction.</p>
+        </div>
+
+        <div class="persona-grid" aria-label="Six persona groups">
+          <article class="persona-card">
+            <span class="persona-number">P1</span>
+            <h3>Nearby Daily Residents</h3>
+            <p>Focus on walking safety, rest and supply points, senior/child-friendly service, community problem feedback, and public-service accessibility; need offline human counters, non-smartphone entry, and clear feedback receipts.</p>
+          </article>
+          <article class="persona-card">
+            <span class="persona-number">P2</span>
+            <h3>Commuting Young Passers-by</h3>
+            <p>Focus on continuous travel from stations, communities, and universities to river-park and industry nodes; need explainable detours, night help, cycling/walking support, and low-disturbance prompts.</p>
+          </article>
+          <article class="persona-card">
+            <span class="persona-number">P3</span>
+            <h3>University and Developer Co-Creators</h3>
+            <p>Focus on real problems, rapid prototypes, testing sites, and review feedback; need open workstations, prototype workshops, scenario passports, and controlled testing opportunities.</p>
+          </article>
+          <article class="persona-card">
+            <span class="persona-number">P4</span>
+            <h3>Cultural Explorers and Public Experience Users</h3>
+            <p>Focus on Centennial Jing-Zhang memory, Xiaoyue River experiences, heritage park activities, and traceable interpretation; need low-disturbance displays, content-rights notices, and optional participation.</p>
+          </article>
+          <article class="persona-card">
+            <span class="persona-number">P5</span>
+            <h3>AI Enterprise Product Validators</h3>
+            <p>Focus on compliance assessment, user testing, device trials, product launches, and procurement conversion; need Zhongzhi Park admission, Dazhongsi classification operations, and clear IP boundaries.</p>
+          </article>
+          <article class="persona-card">
+            <span class="persona-number">P6</span>
+            <h3>Public Operators and Human Fallback Teams</h3>
+            <p>Focus on device maintenance, human takeover, complaint closure, risk review, and annual operations; need readable logs, work orders, stop conditions, and asset ledgers.</p>
+          </article>
+        </div>
+
+        <figure class="figure-panel" style="margin-top: 18px;">
+          <img src="../assets/figures/personas.en.png" alt="English A3 persona and population labels board from the user-supplied PDF">
+          <figcaption>
+            <span><strong>Personas and Population Labels</strong>: Six user groups and the scenario-space-operation positioning table come from the final English PDF page.</span>
+            <span>Persona labels are design hypotheses for service planning, not personal-data records or completed field-interview results.</span>
+          </figcaption>
+        </figure>
+
+        <figure class="figure-panel" style="margin-top: 18px;">
+          <img src="../assets/figures/persona-scenario-map.en.png" alt="English A3 persona priorities and AI growth-chain board from the user-supplied PDF">
+          <figcaption>
+            <span><strong>Persona Priorities and AI Growth Chain</strong>: The English PDF page links six persona profiles to the 12 scenario coverage system.</span>
+            <span>This drawing is a design hypothesis and submission expression; it does not claim to come from completed field interviews or personal data.</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="content-section" id="scenarios" aria-labelledby="scenarios-title">
+      <div class="content-wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">12 Initial AI Scenarios</p>
+            <h2 class="section-title" id="scenarios-title">Scenarios first enter the city at small scale, with reversible deployment and human staffing, before any decision to scale into a network.</h2>
+          </div>
+          <p>All 12 scenarios enter the scenario passport system, recording data boundaries, responsible parties, human takeover, stop conditions, and exit/recovery. SC-07 to SC-10 are industry testing and validation scenarios; they enter productization or scaling discussion only after passing public-value, community-acceptance, technical-performance, and operational-feasibility assessment.</p>
+        </div>
+
+        <div class="scene-grid" aria-label="12 Scenario Images">
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc01.en.png" alt="SC-01 Urban Problem Desk scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-01</span>
+              <h3>Urban Problem Desk</h3>
+              <p>The Origin Community and mobile service points organize problems raised by residents, passers-by, and operators into reviewable scenario passports.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc02.en.png" alt="SC-02 One-Day Youth Prototype Workshop scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-02</span>
+              <h3>One-Day Youth Prototype Workshop</h3>
+              <p>Translates real urban problems into low-fidelity models, service flows, and testing plans, forming first-round prototypes for discussion.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc03.en.png" alt="SC-03 North-South Walking Companion and accessible detour scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-03</span>
+              <h3>North-South Walking Companion</h3>
+              <p>Provides detours, rest, help, and human service along the continuous walking experience line without turning route service into mandatory tracking.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc04.en.png" alt="SC-04 Xiaoyue River Ecological Co-Management scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-04</span>
+              <h3>Xiaoyue River Ecological Co-Management</h3>
+              <p>Uses environmental and facility data to help identify water, planting, heat, and facility anomalies, generating maintenance work orders.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc05.en.png" alt="SC-05 Jing-Zhang Memory Co-Creation Station scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-05</span>
+              <h3>Jing-Zhang Memory Co-Creation Station</h3>
+              <p>Organizes oral histories, railway archives, and community content into traceable interpretation, with source and authorization recorded.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc06.en.png" alt="SC-06 Night Safety and Human Assistance scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-06</span>
+              <h3>Night Safety and Human Assistance</h3>
+              <p>Station loops and river-park spaces prioritize human-staffed response for facility faults, help requests, and night-safety feedback.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc07.en.png" alt="SC-07 Embodied Device Shared-Path Testing Yard scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-07 · Industry Validation</span>
+              <h3>Embodied Device Shared-Path Testing Yard</h3>
+              <p>Tests avoidance, stopping, takeover, and exit/recovery for delivery, cleaning, inspection, and other devices in controlled areas of Zhongzhi Park.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc08.en.png" alt="SC-08 Trusted Agent Governance Sandbox scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-08 · Industry Validation</span>
+              <h3>Trusted Agent Governance Sandbox</h3>
+              <p>Reviews agent permissions, tool calls, logs, bias, safety, and human takeover, preventing direct deployment without governance.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc09.en.png" alt="SC-09 Smart Terminal Public Testing Street scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-09 · Industry Validation</span>
+              <h3>Smart Terminal Public Testing Street</h3>
+              <p>Tests usability, accessibility, stability, maintenance cost, and human-service boundaries of public terminals in real pedestrian flow.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc10.en.png" alt="SC-10 Enterprise Agent Deployment Service Desk scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-10 · Industry Validation</span>
+              <h3>Enterprise Agent Deployment Service Desk</h3>
+              <p>Supports product deployment, API access, compliance checks, user testing, and operations handover at Dazhongsi.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc11.en.png" alt="SC-11 AI Content Consumption and Copyright Lab scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-11</span>
+              <h3>AI Content Consumption and Copyright Lab</h3>
+              <p>Tests interactive content, digital copyright, willingness to pay, and minor protection, with source and authorization recorded for all content.</p>
+            </div>
+          </article>
+          <article class="scene-card">
+            <img loading="lazy" src="../assets/figures/scene-sc12.en.png" alt="SC-12 Public AI Operations and Feedback Room scenario image">
+            <div class="scene-caption">
+              <span class="scene-id">SC-12</span>
+              <h3>Public AI Operations and Feedback Room</h3>
+              <p>Aggregates public value, acceptance, technical performance, and operations data to support continue, adjust, or exit decisions.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="indicators" aria-labelledby="indicators-title">
+      <div class="content-wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Technical and Economic Metrics</p>
+            <h2 class="section-title" id="indicators-title">Technical metrics show whether the system is trustworthy; economic metrics show whether it can run over the long term.</h2>
+          </div>
+          <p>This page includes only the main metrics that can be expressed at concept stage. All amounts, ratios, route lengths, public-space ratios, and green/blue-green ratios must be checked against boundaries, drawings, `metrics.json`, GeoJSON, and cost-estimation tables before formal submission.</p>
+        </div>
+
+        <div class="indicator-grid" aria-label="Technical and Economic Metrics Notes">
+          <figure class="figure-panel" style="grid-column: 1 / -1;">
+            <img src="../assets/figures/metrics-evidence.en.png" alt="Recomputable economic model with pending validated inputs">
+            <figcaption>
+              <span><strong>Recomputable Economic Model</strong>: CAPEX, OPEX, three-stage revenue, and public reinvestment remain pending until their required inputs are validated.</span>
+              <span>No numeric commitment is published; recalculate after formal quantities, market quotations, contracts, and applicable revenue rules are validated.</span>
+            </figcaption>
+          </figure>
+
+          <section class="indicator-panel" aria-labelledby="tech-indicators-title">
+            <h3 id="tech-indicators-title">Technical Metrics</h3>
+            <div class="indicator-list">
+              <div class="indicator-item">
+                <b>P1 Physical Connectivity</b>
+                <span>Fiber/wireless networks, power, edge nodes, device mounting, environmental/operations sensing, and maintenance access must remain maintainable.</span>
+              </div>
+              <div class="indicator-item">
+                <b>P2 Digital Platform</b>
+                <span>Scenario passports, identity and permissions, data catalogs, model versions, interface management, operations logs, and evidence archives are registered consistently.</span>
+              </div>
+              <div class="indicator-item">
+                <b>P3 Trusted Governance</b>
+                <span>Consent, data minimization, safety assessment, human takeover, emergency stop, incident response, and exit/recovery are all required.</span>
+              </div>
+              <div class="indicator-item">
+                <b>P4 Continuous Operations</b>
+                <span>Service work orders, device maintenance, model updates, public feedback, cost ledgers, and asset ledgers enter the annual operations system.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Scenario Validation</b>
+                <span>Twelve initial scenarios and four industry validation scenarios are assessed across public value, community acceptance, technical performance, and operational feasibility.</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="indicator-panel" aria-labelledby="economic-indicators-title">
+            <h3 id="economic-indicators-title">Economic Metrics</h3>
+            <div class="indicator-list">
+              <div class="indicator-item">
+                <b>One-Time CAPEX</b>
+                <span data-model-ref="ECON-MODEL-001" data-status="unknown">Pending recalculation after formal quantities, procurement scope, and market quotations are validated.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Annual OPEX</b>
+                <span data-model-ref="ECON-MODEL-001" data-status="unknown">Pending recalculation after operator, FTE plan, platform contract, maintenance contract, and activity plan are validated.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Commercial Revenue Ledger</b>
+                <span data-model-ref="ECON-MODEL-001" data-status="unknown">Pending recalculation after three-stage, five-category revenue contracts, pricing, receipts, and recognition rules are validated.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Public Reinvestment Ledger</b>
+                <span data-model-ref="ECON-MODEL-001" data-status="unknown">Pending recalculation after eligible revenue, contractually approved rate, account entity, audit cycle, and permitted uses are validated.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Phasing Rhythm</b>
+                <span>0-6 months for launch preparation, 6-18 months for initial validation, 18-36 months for network expansion, and 3+ years for long-term operations.</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <table class="metric-table" aria-label="Main Metrics Table">
+          <thead>
+            <tr>
+              <th>Metric Category</th>
+              <th>Current Expression</th>
+              <th>Boundary Statement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Spatial Scope</td>
+              <td>Coordinated research: 43.6 km²; overall design: 11.4 km²; three key areas: 368.4 ha total.</td>
+              <td>Official text areas plus provisional geometry; recalculate after formal boundaries are available.</td>
+            </tr>
+            <tr>
+              <td>Mobility and Public Framework</td>
+              <td>North-south fast connection about 22.0 km; continuous walking about 10.5 km; heritage park experience about 10.3 km; five east-west stitching links about 9.3 km total.</td>
+              <td>Routes include shared and overlapping segments, so they cannot be directly summed as construction length.</td>
+            </tr>
+            <tr>
+              <td>Scenarios and Governance</td>
+              <td>Twelve initial AI scenarios, including four industry testing and validation scenarios, using shared scenario passports and four-dimensional validation.</td>
+              <td>Do not state these as already deployed, approved, or supported by operational data.</td>
+            </tr>
+            <tr>
+              <td>Investment and Operations</td>
+              <td>Financial outputs have been withdrawn to unknown/value=null; only a recomputable parameter model remains.</td>
+              <td>Not a budget, approved estimate, financing, leasing, procurement, revenue, or public-reinvestment commitment.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-section" id="evidence" aria-labelledby="evidence-title">
+      <div class="content-wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Sources and Evidence Chain</p>
+            <h2 class="section-title" id="evidence-title">Every judgment on this web page should trace back to sources, assumptions, geometry, metrics, and drawing-production records.</h2>
+          </div>
+          <p>This page is not a poster, but a traceable web presentation draft: official materials define tasks and scopes, public data supports background judgment, user-confirmed inputs form the concept framework, and project working files generate spatial, scenario, technical, and economic expressions. All provisional boundaries, estimates, candidate spaces, and renderings retain conditional statements.</p>
+        </div>
+
+        <figure class="figure-panel">
+          <img src="../assets/figures/14-source-evidence-chain-en.png" alt="Sources and evidence-chain diagram showing traceability among official materials, public data, user inputs, geometry and metrics, drawing production, and web presentation">
+          <figcaption>
+            <span><strong>Sources and Evidence-Chain Diagram</strong>: Connects official rules, public basemaps, user-confirmed content, project analysis files, geometry metrics, and drawing production into one audit path.</span>
+            <span>Before formal submission, rely on the latest official repository, final GeoJSON, `metrics.json`, source ledger, and preflight results.</span>
+          </figcaption>
+        </figure>
+
+        <div class="indicator-grid" style="margin-top: 18px;" aria-label="Source Category Notes">
+          <section class="indicator-panel" aria-labelledby="source-types-title">
+            <h3 id="source-types-title">Sources</h3>
+            <div class="indicator-list">
+              <div class="indicator-item">
+                <b>Official Rules</b>
+                <span>Public brief, competition announcement, proposal template, review criteria, and official site package define tasks, scopes, submission structure, and scoring boundaries.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Public Background Data</b>
+                <span>OpenStreetMap and Overpass snapshots support background judgments on roads, rail, transit, water/green systems, institutions, and building footprints, with OSM contributors and ODbL attribution required.</span>
+              </div>
+              <div class="indicator-item">
+                <b>User Design Inputs</b>
+                <span>User-confirmed concept frameworks, drawing revisions, visual templates, and replacement drawings shape the design proposition and expression style, but are not external facts or approved mechanisms.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Project Working Files</b>
+                <span>Site analysis, positioning report, concept proposal, scenario cards, AI infrastructure framework, economic estimates, and drawing contracts jointly support this web page.</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="indicator-panel" aria-labelledby="evidence-chain-title">
+            <h3 id="evidence-chain-title">Evidence Chain Basis</h3>
+            <div class="indicator-list">
+              <div class="indicator-item">
+                <b>Claim</b>
+                <span>Each project judgment is classified first as fact, design hypothesis, provisional geometry, concept estimate, or conditional recommendation; evidence levels are not mixed.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Source</b>
+                <span>Key claims trace back to `source-ledger-v0.1.md`, official links, local data snapshots, or user-confirmed files, with dates and usage boundaries retained.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Metric</b>
+                <span>Area, route, investment, and operating metrics are expressed on the current working basis first, then synchronized with GeoJSON, `metrics.json`, and economic estimate tables before formal submission.</span>
+              </div>
+              <div class="indicator-item">
+                <b>Figure</b>
+                <span>Drawings and renderings are explanatory design layers only; they cannot replace redlines, ownership, statutory planning, approvals, leasing, construction, or revenue commitments.</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <p class="scope-note">The current web page completes a presentation-ready English working draft. It can explain design logic, spatial character, scenario systems, and metric basis, but before formal submission the official rule version, source ledger, GeoJSON, `metrics.json`, bilingual drawings, web files, A0 boards, A3 booklet, and final preflight record must still be updated consistently.</p>
+      </div>
+    </section>
+  
+<section class="metrics-section" aria-label="Formal submission audit index">
+  <div class="metrics-wrap">
+    <p class="section-kicker">Formal Submission Audit Index</p>
+    <h2 class="section-title">Overview map, three-level scope, land use, buildings, mobility, blue-green public space, renewal projects, AI scenarios, core metrics, task coverage, sources, assumptions, self-check status</h2>
+    <p class="section-intro">This restored page keeps the final full visual presentation and adds machine-readable core metrics required by the official checker.</p>
+    <div class="metrics-grid">
+      <article class="metric-card"><div class="value" data-metric="green_ratio" data-value="0.123423">12.34%</div><p>Blue-green public space</p></article>
+      <article class="metric-card"><div class="value" data-metric="public_space_ratio" data-value="0.073281">7.33%</div><p>Public-space ratio</p></article>
+      <article class="metric-card"><div class="value" data-metric="key_area_count" data-value="3">3</div><p>Key areas</p></article>
+    </div>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

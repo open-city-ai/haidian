@@ -1,0 +1,492 @@
+{
+  "schema_version": "0.1.0",
+  "artifact_id": "FP01-EXECUTION-KIT-001",
+  "artifact_version": "v0.15",
+  "artifact_status": "blank_execution_templates_unexecuted",
+  "title_zh": "FP01 双语执行工具包",
+  "title_en": "FP01 Bilingual Execution Kit",
+  "form_count": 7,
+  "claim_boundary": {
+    "zh": "本工具包只提供可执行空表、字段定义、证据要求和停线逻辑，不构成现场调查、任命接受、报价预算、采购决定、专业审查、授权、复演结果、签署或实施证明。",
+    "en": "This kit provides executable blank forms, field definitions, evidence requirements, and stop logic only. It is not evidence of a site survey, accepted appointment, quote, budget, procurement decision, professional review, authorization, rehearsal result, sign-off, or implementation.",
+    "named_entity_committed": false,
+    "site_condition_verified": false,
+    "quote_or_budget_verified": false,
+    "procurement_route_selected": false,
+    "professional_signoff_obtained": false,
+    "field_result_obtained": false,
+    "implementation_authorized": false
+  },
+  "blank_value_policy": {
+    "zh": "所有待外部责任主体填写的初始值均为 null。若现场确实无法获知，可在执行副本中填 unknown，并同时记录原因、责任人、处置和复核；不得把 unknown 当作通过。",
+    "en": "Every field to be completed by an external accountable party starts as null. If a value is genuinely unavailable in an executed copy, unknown may be entered only with its reason, owner, disposition, and review; unknown never means pass.",
+    "permitted_initial_values": [null, "unknown"],
+    "unknown_is_pass": false
+  },
+  "synthetic_fixture_policy": {
+    "marker": "synthetic_fixture_not_observed",
+    "synthetic_fixture_count": 0,
+    "excluded_from_field_metrics": true,
+    "zh": "如以后增加合成示例，必须逐条标记 synthetic_fixture_not_observed，并从现场样本量、实测值、通过率、成本和实施指标中排除。",
+    "en": "Any future synthetic example must be marked synthetic_fixture_not_observed and excluded from field sample, observed-value, pass-rate, cost, and implementation metrics."
+  },
+  "execution_rules": [
+    {
+      "rule_id": "ER-01",
+      "zh": "先复制空表形成带版本的执行记录；不得覆盖本空白母版。",
+      "en": "Create a versioned execution record from the blank form; never overwrite this blank master."
+    },
+    {
+      "rule_id": "ER-02",
+      "zh": "凡涉及权利、安全、预算、采购或开放的字段，缺失、过期或矛盾即保持 HOLD 或 STOP。",
+      "en": "A missing, expired, or contradictory rights, safety, budget, procurement, or release field keeps the gate at HOLD or STOP."
+    },
+    {
+      "rule_id": "ER-03",
+      "zh": "外部事实必须附可归属来源、日期、权利等级、独立复核和处置；设计引用不得替代现场证据。",
+      "en": "External facts require an attributable source, date, rights class, independent review, and disposition; design references cannot substitute for field evidence."
+    }
+  ],
+  "common_record_fields": [
+    {"id":"record_instance_id","zh":"执行记录实例编号","en":"Execution-record instance ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"record_version","zh":"执行记录版本","en":"Execution-record version","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"record_date","zh":"记录日期","en":"Record date","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"preparer_name_and_role","zh":"填报人姓名与角色","en":"Preparer name and role","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"method_and_sample","zh":"方法与样本说明","en":"Method and sample statement","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"limitations_and_missingness","zh":"局限、偏差与缺失说明","en":"Limitations, bias, and missingness statement","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"source_and_evidence_refs","zh":"来源与证据索引","en":"Source and evidence references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"rights_and_publication_class","zh":"权利、隐私与公开等级","en":"Rights, privacy, and publication class","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"independent_reviewer_and_conflict","zh":"独立复核人及利益冲突说明","en":"Independent reviewer and conflict statement","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"record_disposition","zh":"记录处置","en":"Record disposition","type":"enum_accept_revise_reject_hold_stop_unknown","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"accountable_signoff","zh":"责任主体签署","en":"Accountable sign-off","type":"signature","required":true,"value_class":"external_actual","initial_value":null},
+    {"id":"signoff_date","zh":"签署日期","en":"Sign-off date","type":"date","required":true,"value_class":"external_actual","initial_value":null}
+  ],
+  "forms": [
+    {
+      "form_id": "EX-01",
+      "title_zh": "候选载体现场调查与证据请求表",
+      "title_en": "Candidate Carrier Survey and Evidence Request",
+      "status": "blank_template_unexecuted",
+      "applicable_gates": ["H0", "H1", "H2"],
+      "control_refs": ["FP01-EVIDENCE-READINESS-001", "FP01-DELIVERY-CONTROL-001"],
+      "completion_rule_zh": "测量、权属、许可、照片权利、消防、无障碍和专业复核均须有可核验来源；任一关键项缺失即不得进入现场安装。",
+      "completion_rule_en": "Measurements, control, permission, image rights, life safety, accessibility, and professional review require verifiable sources; a missing critical item blocks site installation.",
+      "sections": [
+        {
+          "section_id": "EX-01-A",
+          "title_zh": "记录与位置",
+          "title_en": "Record and location",
+          "fields": [
+            {"id":"carrier_candidate_id","zh":"候选载体编号","en":"Candidate carrier ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"survey_record_version","zh":"调查记录版本","en":"Survey record version","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"survey_date","zh":"现场调查日期","en":"Survey date","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"coordinate_or_location_reference","zh":"坐标或位置索引","en":"Coordinate or location reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"survey_team_role_classes","zh":"调查团队角色类别","en":"Survey team role classes","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"source_record_reference","zh":"原始记录索引","en":"Source record reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-01-B",
+          "title_zh": "实测条件",
+          "title_en": "Measured conditions",
+          "fields": [
+            {"id":"measured_boundary","zh":"实测边界","en":"Measured boundary","type":"geometry_or_reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"measured_dimensions","zh":"实测尺寸及方法","en":"Measured dimensions and method","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"access_points","zh":"到达与入口条件","en":"Access and entry conditions","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"egress_paths","zh":"疏散路径与阻碍","en":"Egress paths and obstructions","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"approved_life_safety_occupancy","zh":"经核定生命安全容量","en":"Approved life-safety occupancy","type":"integer_or_reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"surveyed_accessible_positions","zh":"实测无障碍服务位置数","en":"Surveyed accessible service positions","type":"integer","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"utilities_and_power","zh":"市政与供电条件","en":"Utilities and power conditions","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"connectivity_conditions","zh":"网络与通信条件","en":"Connectivity conditions","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"heritage_and_planning_constraints","zh":"遗产与规划限制","en":"Heritage and planning constraints","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"existing_asset_condition","zh":"既有资产状况","en":"Existing asset condition","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"site_photo_evidence_refs","zh":"现场照片证据索引","en":"Site photo evidence references","type":"list","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-01-C",
+          "title_zh": "权属、许可与处置",
+          "title_en": "Control, permissions, and disposition",
+          "fields": [
+            {"id":"owner_or_site_controller","zh":"所有权人或场地控制主体","en":"Owner or site controller","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"ownership_or_control_evidence_ref","zh":"权属或控制证据索引","en":"Ownership or control evidence reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"site_use_permission_ref","zh":"场地使用许可索引","en":"Site-use permission reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"photo_publication_rights_ref","zh":"照片采集与公开权利索引","en":"Photo capture and publication rights reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"data_collection_rights_ref","zh":"数据采集权利索引","en":"Data-collection rights reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"survey_deviations_and_missingness","zh":"调查偏差与缺失项","en":"Survey deviations and missingness","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"professional_reviewer_name_and_qualification","zh":"专业复核人及资格","en":"Professional reviewer and qualification","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"professional_review_report_ref","zh":"专业复核报告索引","en":"Professional review report reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"h1_disposition","zh":"H1 处置","en":"H1 disposition","type":"enum_go_revise_stop_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"accountable_signature","zh":"责任人签署","en":"Accountable signature","type":"signature","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"decision_date","zh":"决定日期","en":"Decision date","type":"date","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        }
+      ]
+    },
+    {
+      "form_id": "EX-02",
+      "title_zh": "责任接受、授权边界与利益冲突表",
+      "title_en": "Responsibility Acceptance, Authority Boundary, and Conflict Form",
+      "status": "blank_template_unexecuted",
+      "applicable_gates": ["H0", "H1", "H2", "H3", "H4"],
+      "control_refs": ["FP01-DELIVERY-CONTROL-001.hold_point_raci"],
+      "completion_rule_zh": "每一 H0—H4 决策角色及必要会签角色均须明确接受职责、权限和服务覆盖；静默、邮件抄送或职务推定不构成接受。",
+      "completion_rule_en": "Every H0-H4 decision role and required cosignatory must explicitly accept duties, authority, and service coverage; silence, copied email, or inferred office does not constitute acceptance.",
+      "sections": [
+        {
+          "section_id": "EX-02-A",
+          "title_zh": "主体与授权",
+          "title_en": "Party and authority",
+          "fields": [
+            {"id":"role_class","zh":"角色类别","en":"Role class","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"applicable_gate_ids","zh":"适用门槛编号","en":"Applicable gate IDs","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"organization_name","zh":"机构名称","en":"Organization name","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"person_name","zh":"具名责任人","en":"Named accountable person","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"authority_basis_ref","zh":"授权依据索引","en":"Authority basis reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"accepted_duties","zh":"明确接受的职责","en":"Explicitly accepted duties","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"excluded_duties","zh":"不接受或排除的职责","en":"Excluded or declined duties","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"delegation_limit","zh":"委托与转授权边界","en":"Delegation and sub-delegation limit","type":"text","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-02-B",
+          "title_zh": "运行覆盖与冲突",
+          "title_en": "Operational coverage and conflicts",
+          "fields": [
+            {"id":"service_coverage_commitment","zh":"服务覆盖承诺","en":"Service coverage commitment","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"availability_window","zh":"可响应时段","en":"Availability window","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"escalation_route","zh":"升级路径与时限","en":"Escalation route and time limit","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"backup_or_replacement_arrangement","zh":"替补或替换安排","en":"Backup or replacement arrangement","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"conflict_of_interest_disclosure","zh":"利益冲突披露","en":"Conflict-of-interest disclosure","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"conflict_mitigation","zh":"冲突回避或缓解措施","en":"Conflict recusal or mitigation","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"data_duty_acceptance","zh":"数据责任接受","en":"Data-duty acceptance","type":"boolean_with_basis","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"safety_duty_acceptance","zh":"安全责任接受","en":"Safety-duty acceptance","type":"boolean_with_basis","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"acceptance_disposition","zh":"接受处置","en":"Acceptance disposition","type":"enum_accept_revise_decline_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"authorized_signature","zh":"授权签署","en":"Authorized signature","type":"signature","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"acceptance_date","zh":"接受日期","en":"Acceptance date","type":"date","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        }
+      ]
+    },
+    {
+      "form_id": "EX-03",
+      "title_zh": "D0 观察记录、数据字典与缺失处置表",
+      "title_en": "D0 Observation Record, Data Dictionary, and Missingness Form",
+      "status": "blank_template_unexecuted",
+      "applicable_gates": ["H0", "H1", "H2", "H3"],
+      "control_refs": ["FP01-DELIVERY-CONTROL-001.d0_measurement_methods", "FP01-DELIVERY-CONTROL-001.formative_observation_protocol"],
+      "completion_rule_zh": "一行只记录一个有效任务会话；不得记录直接身份标识。缺失、退出或失败均保留，不得从分母静默删除。",
+      "completion_rule_en": "Each row records one valid task session and excludes direct identifiers. Missing, withdrawn, and failed observations are retained and never silently removed from the denominator.",
+      "sections": [
+        {
+          "section_id": "EX-03-A",
+          "title_zh": "会话与合法性",
+          "title_en": "Session and lawful basis",
+          "fields": [
+            {"id":"pseudonymous_session_id","zh":"化名会话编号","en":"Pseudonymous session ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"service_day_id","zh":"服务日编号","en":"Service-day ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"observation_date","zh":"观察日期","en":"Observation date","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"scenario_and_route_id","zh":"场景与路线编号","en":"Scenario and route ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"accommodation_need_and_provision","zh":"便利需求与实际提供","en":"Accommodation need and provision","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"eligibility_confirmation","zh":"纳入资格确认","en":"Eligibility confirmation","type":"boolean_with_basis","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"consent_or_lawful_basis_ref","zh":"同意或合法处理依据索引","en":"Consent or lawful-basis reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"privacy_notice_version","zh":"隐私告知版本","en":"Privacy-notice version","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"direct_identifier_exclusion_check","zh":"直接身份标识排除确认","en":"Direct-identifier exclusion check","type":"boolean","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"observer_role_class","zh":"观察员角色类别","en":"Observer role class","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"configuration_version_and_hash","zh":"配置版本与哈希","en":"Configuration version and hash","type":"text","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-03-B",
+          "title_zh": "事件、结果与权利",
+          "title_en": "Events, outcome, and rights",
+          "fields": [
+            {"id":"observation_start_timestamp","zh":"观察开始时间戳","en":"Observation start timestamp","type":"datetime","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"observation_end_timestamp","zh":"观察结束时间戳","en":"Observation end timestamp","type":"datetime","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"outcome_class","zh":"结果类别","en":"Outcome class","type":"enum_success_refusal_takeover_exit_failure_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"human_confirmation_record","zh":"人工确认记录","en":"Human confirmation record","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"takeover_trigger","zh":"人工接管触发","en":"Human-takeover trigger","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"takeover_acknowledgement_timestamp","zh":"接管响应时间戳","en":"Takeover acknowledgement timestamp","type":"datetime","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"appeal_or_refusal_offer","zh":"申诉或拒绝路径是否主动提供","en":"Appeal or refusal path proactively offered","type":"boolean","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"appeal_teachback_result","zh":"申诉路径复述结果","en":"Appeal-path teach-back result","type":"enum_pass_fail_not_applicable_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"exit_restoration_result","zh":"退出与普通服务恢复结果","en":"Exit and ordinary-service restoration result","type":"enum_pass_fail_not_applicable_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"missingness_code","zh":"缺失码","en":"Missingness code","type":"enum_none_user_withdrawal_system_failure_observer_gap_rights_block_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"missingness_reason","zh":"缺失原因与分母处置","en":"Missingness reason and denominator disposition","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"evidence_capture_refs","zh":"取证文件索引","en":"Evidence-capture references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"privacy_and_publication_class","zh":"隐私与公开等级","en":"Privacy and publication class","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"independent_reviewer","zh":"独立复核人","en":"Independent reviewer","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"review_disposition","zh":"复核处置","en":"Review disposition","type":"enum_accept_revise_reject_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"review_date","zh":"复核日期","en":"Review date","type":"date","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        }
+      ]
+    },
+    {
+      "form_id": "EX-04",
+      "title_zh": "工程量、成本基准与非约束采购包表",
+      "title_en": "Quantity, Cost Basis, and Non-binding Procurement Pack Form",
+      "status": "blank_template_unexecuted",
+      "applicable_gates": ["H1", "H2"],
+      "control_refs": ["FP01-DELIVERY-CONTROL-001.concept_installation_boq", "C01-C12"],
+      "completion_rule_zh": "设计测试数量不得冒充实测工程量；价格必须可追溯并按同一范围、地区、日期、币种和税口径归一化。采购路线、预算、供应商与授标在授权前保持空白。",
+      "completion_rule_en": "Design-test quantities cannot stand in for measured quantities. Prices must be traceable and normalized to a common scope, location, date, currency, and tax basis. Route, budget, supplier, and award remain blank before authorization.",
+      "sections": [
+        {
+          "section_id": "EX-04-A",
+          "title_zh": "工程量计量",
+          "title_en": "Quantity measurement",
+          "fields": [
+            {"id":"boq_item_id","zh":"工程量项目编号","en":"BoQ item ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"wbs_or_package_id","zh":"WBS 或采购包编号","en":"WBS or package ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"item_description","zh":"项目描述","en":"Item description","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"specification_and_control_refs","zh":"规格与控制条款索引","en":"Specification and control references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"measurement_unit","zh":"计量单位","en":"Measurement unit","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"unit_definition","zh":"单位定义","en":"Unit definition","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"measurement_rule","zh":"计量方法","en":"Measurement rule","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"scope_inclusions","zh":"计价范围包含项","en":"Scope inclusions","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"scope_exclusions","zh":"计价范围排除项","en":"Scope exclusions","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"actual_quantity","zh":"实测工程量","en":"Measured quantity","type":"number","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"quantity_source_and_date","zh":"数量来源与日期","en":"Quantity source and date","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"measurement_review_ref","zh":"计量复核索引","en":"Measurement review reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-04-B",
+          "title_zh": "成本基准与归一化",
+          "title_en": "Cost basis and normalization",
+          "fields": [
+            {"id":"cost_source_class","zh":"价格来源类别","en":"Cost-source class","type":"enum_quote_framework_public_index_benchmark_other_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"cost_source_provider","zh":"价格来源提供方","en":"Cost-source provider","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"quote_or_source_reference","zh":"报价或来源索引","en":"Quote or source reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"source_date_and_validity","zh":"来源日期与有效期","en":"Source date and validity","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"source_geography","zh":"价格地域口径","en":"Source geography","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"currency_and_exchange_basis","zh":"币种与汇率口径","en":"Currency and exchange basis","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"tax_and_fee_treatment","zh":"税费口径","en":"Tax and fee treatment","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"scope_adjustments","zh":"范围调整项","en":"Scope adjustments","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"normalization_method","zh":"可比价格归一化方法","en":"Comparable-rate normalization method","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"normalized_unit_rate_cny","zh":"归一化含税单价（人民币）","en":"Normalized tax-inclusive unit rate (CNY)","type":"currency","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"source_rejection_reason","zh":"来源拒绝或剔除原因","en":"Source rejection or exclusion reason","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"independent_cost_reviewer","zh":"独立成本复核人","en":"Independent cost reviewer","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"selected_cost_basis_and_rationale","zh":"选用成本基准及理由","en":"Selected cost basis and rationale","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"contingency_basis_and_rate","zh":"预备费依据与费率","en":"Contingency basis and rate","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"verified_item_amount_cny","zh":"经核验项目金额（人民币）","en":"Verified item amount (CNY)","type":"currency","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"capital_budget_amount_cny","zh":"资本预算金额（人民币）","en":"Capital budget amount (CNY)","type":"currency","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"operating_budget_amount_cny","zh":"运营预算金额（人民币）","en":"Operating budget amount (CNY)","type":"currency","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"funding_source","zh":"资金来源","en":"Funding source","type":"text","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-04-C",
+          "title_zh": "非约束采购包",
+          "title_en": "Non-binding procurement pack",
+          "fields": [
+            {"id":"procurement_package_scope","zh":"采购包范围","en":"Procurement package scope","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"proposed_procurement_route","zh":"拟议采购路线","en":"Proposed procurement route","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"supplier_eligibility_requirements","zh":"供应方资格条件","en":"Supplier eligibility requirements","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"c01_c12_requirement_schedule","zh":"C01—C12 条款响应表","en":"C01-C12 requirement schedule","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"data_ip_and_portability_terms","zh":"数据、知识产权与可携带性条款","en":"Data, IP, and portability terms","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"accessibility_requirements","zh":"无障碍要求","en":"Accessibility requirements","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"acceptance_and_payment_logic","zh":"验收与付款逻辑","en":"Acceptance and payment logic","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"evaluation_conflict_separation","zh":"评估独立性与利益冲突隔离","en":"Evaluation independence and conflict separation","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"exit_and_no_lock_in_terms","zh":"退出与防锁定条款","en":"Exit and no-lock-in terms","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"evaluation_criteria_and_weights","zh":"评选标准与权重","en":"Evaluation criteria and weights","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"selected_procurement_route","zh":"已批准采购路线","en":"Approved procurement route","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"procurement_notice_ref","zh":"采购公告索引","en":"Procurement notice reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"selected_supplier","zh":"选定供应方","en":"Selected supplier","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"award_or_contract_ref","zh":"授标或合同索引","en":"Award or contract reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        }
+      ]
+    },
+    {
+      "form_id": "EX-05",
+      "title_zh": "专业复核、门槛证书与验收记录",
+      "title_en": "Professional Review, Gate Certificate, and Acceptance Record",
+      "status": "blank_template_unexecuted",
+      "applicable_gates": ["H1", "H2", "H3", "H4"],
+      "control_refs": ["T01-T07", "AT01-AT12", "H0-H4"],
+      "completion_rule_zh": "专业意见、阈值测试、门槛决定和授权范围必须可追溯；涉及基本权利、生命安全、隐私、人工接管或退出恢复的关键项不得豁免。",
+      "completion_rule_en": "Professional opinion, threshold testing, gate decision, and authorized scope must be traceable. Critical rights, life-safety, privacy, human-takeover, and exit-restoration items cannot be waived.",
+      "sections": [
+        {
+          "section_id": "EX-05-A",
+          "title_zh": "专业复核",
+          "title_en": "Professional review",
+          "fields": [
+            {"id":"review_record_id","zh":"复核记录编号","en":"Review record ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"review_discipline","zh":"复核专业","en":"Review discipline","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"applicable_standards","zh":"适用标准","en":"Applicable standards","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"review_scope","zh":"复核范围","en":"Review scope","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"review_input_refs","zh":"输入资料索引","en":"Review input references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"review_method","zh":"复核方法","en":"Review method","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"findings","zh":"复核发现","en":"Findings","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"nonconformities","zh":"不符合项","en":"Nonconformities","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"required_remediation","zh":"必要整改","en":"Required remediation","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"residual_risk","zh":"残余风险","en":"Residual risk","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"reviewer_name_and_qualification","zh":"复核人姓名与资格","en":"Reviewer name and qualification","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"professional_report_ref","zh":"专业报告索引","en":"Professional report reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-05-B",
+          "title_zh": "阈值、验收与门槛",
+          "title_en": "Threshold, acceptance, and gate",
+          "fields": [
+            {"id":"threshold_refs","zh":"T01—T07 阈值索引","en":"T01-T07 threshold references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"acceptance_indicator_refs","zh":"AT01—AT12 验收指标索引","en":"AT01-AT12 acceptance indicator references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"test_method_and_sample","zh":"测试方法与样本","en":"Test method and sample","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"test_evidence_refs","zh":"测试证据索引","en":"Test evidence references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"test_result","zh":"测试结果","en":"Test result","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"pass_fail_hold","zh":"通过、失败或暂停","en":"Pass, fail, or hold","type":"enum_pass_fail_hold_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"critical_no_waiver_check","zh":"关键项不得豁免确认","en":"Critical no-waiver check","type":"boolean","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"gate_id","zh":"H0—H4 门槛编号","en":"H0-H4 gate ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"gate_prerequisite_evidence_ids","zh":"门槛前置证据编号","en":"Gate prerequisite evidence IDs","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"gate_disposition","zh":"门槛处置","en":"Gate disposition","type":"enum_go_revise_stop_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"decision_rationale","zh":"决定理由","en":"Decision rationale","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"dissent_or_exception_record","zh":"异议或例外记录","en":"Dissent or exception record","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"authorized_scope","zh":"获准范围","en":"Authorized scope","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"authorization_expiry","zh":"授权有效期","en":"Authorization expiry","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"decision_owner_name","zh":"决策责任人","en":"Decision owner","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"required_cosignatories","zh":"必要会签人","en":"Required cosignatories","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"signatures","zh":"签署","en":"Signatures","type":"signature_set","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"decision_and_signoff_date","zh":"决定与签署日期","en":"Decision and sign-off date","type":"date","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        }
+      ]
+    },
+    {
+      "form_id": "EX-06",
+      "title_zh": "复演、维护与退出交接记录",
+      "title_en": "Rehearsal, Maintenance, and Exit Handover Record",
+      "status": "blank_template_unexecuted",
+      "applicable_gates": ["H3", "H4"],
+      "control_refs": ["success", "refusal", "human_takeover", "exit_restoration", "MNT01-MNT04", "ALT01-ALT04"],
+      "completion_rule_zh": "四类事件须分别复演并保留版本、触发、步骤、证据、偏差与重试；任何关键失败均保持暂停。退出必须同时证明数据、资产、未结案件和普通服务恢复。",
+      "completion_rule_en": "Each of the four events is rehearsed separately with version, trigger, steps, evidence, deviation, and retest records. Any critical failure keeps release on hold. Exit must cover data, assets, open cases, and ordinary-service restoration.",
+      "sections": [
+        {
+          "section_id": "EX-06-A",
+          "title_zh": "受控复演与复现清单",
+          "title_en": "Controlled rehearsal and replay manifest",
+          "fields": [
+            {"id":"rehearsal_record_id","zh":"复演记录编号","en":"Rehearsal record ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"rehearsal_event_type","zh":"事件类别","en":"Rehearsal event type","type":"enum_success_refusal_human_takeover_exit_restoration","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"protocol_reference","zh":"复演协议索引","en":"Protocol reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"preconditions","zh":"前置条件","en":"Preconditions","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"configuration_versions_and_hashes","zh":"配置版本与哈希清单","en":"Configuration versions and hashes","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"injected_trigger","zh":"注入触发","en":"Injected trigger","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"operator_steps","zh":"操作步骤","en":"Operator steps","type":"ordered_list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"expected_state_transitions","zh":"预期状态转移","en":"Expected state transitions","type":"ordered_list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"evidence_capture_plan","zh":"证据采集方案","en":"Evidence-capture plan","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"pass_fail_rule","zh":"通过与失败规则","en":"Pass/fail rule","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"evaluator_name_and_role","zh":"评估人姓名与角色","en":"Evaluator name and role","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"witness_independence_and_conflict","zh":"见证独立性与利益冲突","en":"Witness independence and conflict","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"actual_start_and_end","zh":"实际起止时间","en":"Actual start and end","type":"datetime_range","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"observed_result","zh":"观察结果","en":"Observed result","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"deviation_record","zh":"偏差记录","en":"Deviation record","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"remedy_and_retest_ref","zh":"整改与重试索引","en":"Remedy and retest reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"rehearsal_disposition","zh":"复演处置","en":"Rehearsal disposition","type":"enum_pass_fail_hold_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"rehearsal_signatures_and_date","zh":"复演签署与日期","en":"Rehearsal signatures and date","type":"signature_set","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-06-B",
+          "title_zh": "维护与停线日志",
+          "title_en": "Maintenance and stop log",
+          "fields": [
+            {"id":"maintenance_record_id","zh":"维护记录编号","en":"Maintenance record ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"maintenance_control_id","zh":"MNT01—MNT04 控制编号","en":"MNT01-MNT04 control ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"checklist_version","zh":"检查表版本","en":"Checklist version","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"line_item_result","zh":"逐项检查结果","en":"Line-item result","type":"enum_pass_fail_hold_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"defect_or_incident_id","zh":"缺陷或事件编号","en":"Defect or incident ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"stop_state_and_scope","zh":"停线状态与范围","en":"Stop state and scope","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"corrective_action_owner","zh":"整改责任人","en":"Corrective-action owner","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"corrective_action_due_date","zh":"整改截止日期","en":"Corrective-action due date","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"closure_evidence_ref","zh":"关闭证据索引","en":"Closure evidence reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"maintenance_independent_reviewer","zh":"维护独立复核人","en":"Maintenance independent reviewer","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"maintenance_signature_and_date","zh":"维护签署与日期","en":"Maintenance signature and date","type":"signature","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-06-C",
+          "title_zh": "退出与交接",
+          "title_en": "Exit and handover",
+          "fields": [
+            {"id":"exit_record_id","zh":"退出记录编号","en":"Exit record ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"exit_trigger_and_alt_ref","zh":"退出触发与 ALT01—ALT04 索引","en":"Exit trigger and ALT01-ALT04 reference","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"asset_inventory_and_disposition","zh":"资产清单与处置","en":"Asset inventory and disposition","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"portable_record_inventory","zh":"可携带记录清单","en":"Portable-record inventory","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"data_categories_and_disposition","zh":"数据类别与处置","en":"Data categories and disposition","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"data_retention_exception_basis","zh":"数据保留例外依据","en":"Data-retention exception basis","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"open_cases_and_appeals","zh":"未结案件与申诉清单","en":"Open cases and appeals","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"ordinary_service_restoration","zh":"普通服务恢复证明","en":"Ordinary-service restoration evidence","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"component_removal_record","zh":"组件拆除记录","en":"Component-removal record","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"space_restoration_record","zh":"空间恢复记录","en":"Space-restoration record","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"public_notice_ref","zh":"公众告知索引","en":"Public-notice reference","type":"reference","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"receiving_party","zh":"接收主体","en":"Receiving party","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"handover_acceptance_disposition","zh":"交接接受处置","en":"Handover acceptance disposition","type":"enum_accept_revise_reject_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"handover_signatures_and_date","zh":"交接签署与日期","en":"Handover signatures and date","type":"signature_set","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        }
+      ]
+    },
+    {
+      "form_id": "EX-07",
+      "title_zh": "参考进度、RAID 与变更控制台账",
+      "title_en": "Reference Programme, RAID, and Change-control Register",
+      "status": "blank_template_unexecuted",
+      "applicable_gates": ["H0", "H1", "H2", "H3", "H4"],
+      "control_refs": ["K01-K10", "D0", "D30", "D60", "D90", "D100"],
+      "completion_rule_zh": "参考窗口和持续时间只用于依赖审查，不是承诺工期。实际日期、责任主体、风险状态、决定和变更批准必须在授权后由相应责任人填写。",
+      "completion_rule_en": "Reference windows and durations support dependency review and are not programme commitments. Actual dates, accountable parties, risk status, decisions, and change approvals are completed by authorized parties only.",
+      "sections": [
+        {
+          "section_id": "EX-07-A",
+          "title_zh": "依赖与交付物",
+          "title_en": "Dependencies and deliverables",
+          "fields": [
+            {"id":"dependency_step_id","zh":"K01—K10 步骤编号","en":"K01-K10 dependency step ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"work_package","zh":"工作包","en":"Work package","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"owner_role_class","zh":"责任角色类别","en":"Owner role class","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"predecessor_ids","zh":"前置步骤编号","en":"Predecessor IDs","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"parallel_step_ids","zh":"可并行步骤编号","en":"Parallel step IDs","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"entry_evidence_refs","zh":"进入条件证据索引","en":"Entry-evidence references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"deliverable_or_output","zh":"交付物或输出","en":"Deliverable or output","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"exit_evidence_refs","zh":"退出条件证据索引","en":"Exit-evidence references","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"reference_window","zh":"D0/D30/D60/D90/D100 参考窗口","en":"D0/D30/D60/D90/D100 reference window","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"participant_reference_duration_range","zh":"投稿方参考持续时间范围","en":"Participant reference duration range","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"planned_start","zh":"经批准计划开始日期","en":"Approved planned start","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"planned_finish","zh":"经批准计划完成日期","en":"Approved planned finish","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"actual_start","zh":"实际开始日期","en":"Actual start","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"actual_finish","zh":"实际完成日期","en":"Actual finish","type":"date","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        },
+        {
+          "section_id": "EX-07-B",
+          "title_zh": "风险、假设、问题、决定与变更",
+          "title_en": "Risk, assumption, issue, decision, and change",
+          "fields": [
+            {"id":"raid_or_change_id","zh":"RAID 或变更编号","en":"RAID or change ID","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"record_type","zh":"记录类型","en":"Record type","type":"enum_risk_assumption_issue_decision_change","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"description","zh":"描述","en":"Description","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"trigger_or_cause","zh":"触发或原因","en":"Trigger or cause","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"impact_and_probability","zh":"影响与概率","en":"Impact and probability","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"action_owner","zh":"行动责任人","en":"Action owner","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"due_date","zh":"到期日期","en":"Due date","type":"date","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"record_status","zh":"记录状态","en":"Record status","type":"enum_open_monitor_hold_closed_unknown","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"decision_record","zh":"决定记录","en":"Decision record","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"change_request_and_reason","zh":"变更请求与理由","en":"Change request and reason","type":"text","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"affected_baselines","zh":"受影响基线","en":"Affected baselines","type":"list","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"change_approval","zh":"变更批准","en":"Change approval","type":"signature","required":true,"value_class":"external_actual","initial_value":null},
+            {"id":"closure_evidence_and_date","zh":"关闭证据与日期","en":"Closure evidence and date","type":"reference","required":true,"value_class":"external_actual","initial_value":null}
+          ]
+        }
+      ]
+    }
+  ],
+  "current_actual_record_count": 0,
+  "current_verified_external_record_count": 0,
+  "current_named_signatory_count": 0,
+  "current_verified_cost_input_count": 0,
+  "current_field_result_count": 0
+}

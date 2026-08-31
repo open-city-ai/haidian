@@ -1,0 +1,780 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "access_points_planned": {
+   "status": "known",
+   "value": 42,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space features)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 136,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(building_footprints)",
+   "confidence": "low",
+   "assumptions": [
+    "A-MASSING-001"
+   ]
+  },
+  "building_density": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm (statutory controls missing)",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved building density controls are not publicly available."
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1977712.437,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "low",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-MASSING-001"
+   ],
+   "note_zh": "概念体量与低置信度设计量，不等于法定建筑规模、容积率、密度或高度控制值。"
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "N/A; requires aviation/heritage/landscape and statutory controls",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official height controls and statutory constraints are not publicly available."
+  },
+  "equivalent_access_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/roads.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "formula": "equivalent_access_path_count / near_unit_count",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ],
+   "note_zh": "非数字化人群等效通道覆盖率的设计值：每个近端单元 1 条 24 小时公共穿越通道。一期现场验收目标为常态开放率 ≥60%，二期 ≥90%；设计值不等于现场验收值。"
+  },
+  "equivalent_access_path_count": {
+   "status": "known",
+   "value": 33,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(roads.geojson features where is_equivalent_access_path=true and length inside near-side band > 30 m)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ]
+  },
+  "equivalent_access_path_length_m": {
+   "status": "known",
+   "value": 33017.93,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(centerline_length_m where is_equivalent_access_path=true)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.305054,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(green_space_area_sqm) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "净口径：要素之间已做互斥处理（后生成的要素减去已生成要素的并集），因此原始求和 = 并集 = 各要素 area_sqm_declared 之和；本值由 geometry/green_space.geojson 在 EPSG:4548 下复算。外联环防护与林荫带按 18 米单侧边缘带计算（zone 减去其向内 18 米缓冲）。"
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 3481526.071,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "净口径：要素之间已做互斥处理（后生成的要素减去已生成要素的并集），因此原始求和 = 并集 = 各要素 area_sqm_declared 之和；本值由 geometry/green_space.geojson 在 EPSG:4548 下复算。外联环防护与林荫带按 18 米单侧边缘带计算（zone 减去其向内 18 米缓冲）。"
+  },
+  "human_fallback_scenario_ratio": {
+   "status": "known",
+   "value": 0.666667,
+   "unit": "ratio",
+   "source_files": [
+    "proposal.md",
+    "visual/index.html"
+   ],
+   "formula": "count(scenario cards with a mandatory human-review node) / count(scenario cards) = 8 / 12",
+   "confidence": "high",
+   "assumptions": [],
+   "note_zh": "12 张场景卡中 8 张直接输出可影响个人行动的判断（S01、S02、S03、S04、S05、S06、S09、S11），必须配置强制人工复核节点；其余 4 张（S07、S08、S10、S12）配置人工咨询而非强制复核。该比例由场景卡表逐张计数得出，可人工复核。"
+  },
+  "key_area_001_area_sqm": {
+   "status": "known",
+   "value": 1929201.877,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson#PROV-KEY-001"
+   ],
+   "formula": "polygon_area(EPSG:4548 projection of PROV-KEY-001)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "众智园 AI 自主创新加速区，复算 192.9 ha。"
+  },
+  "key_area_002_area_sqm": {
+   "status": "known",
+   "value": 1043236.909,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson#PROV-KEY-002"
+   ],
+   "formula": "polygon_area(EPSG:4548 projection of PROV-KEY-002)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "北京 AI 原点社区，复算 104.3 ha。"
+  },
+  "key_area_003_area_sqm": {
+   "status": "known",
+   "value": 720454.219,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson#PROV-KEY-003"
+   ],
+   "formula": "polygon_area(EPSG:4548 projection of PROV-KEY-003)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "大钟寺 AI 产业集聚区，复算 72.0 ha。"
+  },
+  "key_area_area_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of key_areas features))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "三处临时重点区域复算合计 369.3 ha，与公告 368.4 ha 相差 0.9 ha，差异来自临时粗略边界。",
+   "note_en": "Recomputed total 369.3 ha versus the announced 368.4 ha; the 0.9 ha gap comes from the provisional boundary."
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_area_0701_sqm": {
+   "status": "known",
+   "value": 1654689.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '0701'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 0701（城镇住宅用地）复算面积。",
+   "note_en": "Land-use code 0701 (residential) recomputed area."
+  },
+  "land_use_area_0702_sqm": {
+   "status": "known",
+   "value": 360180.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '0702'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 0702（城镇社区服务设施用地）复算面积。",
+   "note_en": "Land-use code 0702 (community facilities) recomputed area."
+  },
+  "land_use_area_0802_sqm": {
+   "status": "known",
+   "value": 1830312.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '0802'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 0802（科研用地）复算面积。",
+   "note_en": "Land-use code 0802 (research) recomputed area."
+  },
+  "land_use_area_0803_sqm": {
+   "status": "known",
+   "value": 90012.7,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '0803'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 0803（文化用地）复算面积。",
+   "note_en": "Land-use code 0803 (cultural) recomputed area."
+  },
+  "land_use_area_0804_sqm": {
+   "status": "known",
+   "value": 600211.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '0804'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 0804（教育用地）复算面积。",
+   "note_en": "Land-use code 0804 (education) recomputed area."
+  },
+  "land_use_area_0901_sqm": {
+   "status": "known",
+   "value": 300126.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '0901'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 0901（商业用地）复算面积。",
+   "note_en": "Land-use code 0901 (commercial) recomputed area."
+  },
+  "land_use_area_0902_sqm": {
+   "status": "known",
+   "value": 370095.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '0902'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 0902（商务金融用地）复算面积。",
+   "note_en": "Land-use code 0902 (business/finance) recomputed area."
+  },
+  "land_use_area_0904_sqm": {
+   "status": "known",
+   "value": 810344.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '0904'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 0904（其他商业服务业用地）复算面积。",
+   "note_en": "Land-use code 0904 (other commercial) recomputed area."
+  },
+  "land_use_area_1207_sqm": {
+   "status": "known",
+   "value": 1455998.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '1207'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 1207（城镇道路用地）复算面积。",
+   "note_en": "Land-use code 1207 (urban road) recomputed area."
+  },
+  "land_use_area_1401_sqm": {
+   "status": "known",
+   "value": 2915339.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '1401'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 1401（公园绿地）复算面积。",
+   "note_en": "Land-use code 1401 (park green) recomputed area."
+  },
+  "land_use_area_1403_sqm": {
+   "status": "known",
+   "value": 845314.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '1403'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 1403（广场用地）复算面积。",
+   "note_en": "Land-use code 1403 (square) recomputed area."
+  },
+  "land_use_area_16_sqm": {
+   "status": "known",
+   "value": 180200.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '16'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "用地代码 16（留白用地）复算面积。",
+   "note_en": "Land-use code 16 (strategic reserve) recomputed area."
+  },
+  "land_use_parcel_count": {
+   "status": "known",
+   "value": 139,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(land_use features)",
+   "confidence": "high",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "link_ring_area_sqm": {
+   "status": "known",
+   "value": 1692532.575,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "area(site - buffer(spine,500m))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ]
+  },
+  "mean_distance_to_spine_m": {
+   "status": "known",
+   "value": 295.7,
+   "unit": "m",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "area-weighted mean distance from submitted site to inferred spine, by 25 m rings",
+   "confidence": "low",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ],
+   "note_zh": "面积加权平均；用于论证这条带没有腹地。"
+  },
+  "median_block_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "median(polygon_area(land_use_parcels))",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Calculated in digest but not a formal design objective; kept optional."
+  },
+  "near_side_band_area_sqm": {
+   "status": "known",
+   "value": 5831917.298,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "area(site_intersection_buffer(spine,300m))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ]
+  },
+  "near_side_band_ratio": {
+   "status": "known",
+   "value": 0.510997,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "near_side_band_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ]
+  },
+  "near_unit_count": {
+   "status": "known",
+   "value": 33,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space features with near_unit_id)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 5831917.298,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of phasing features where phase_id == phase_1))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "分期范围与三环分带一致，可由三环距离阈值复算。"
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 3888375.512,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of phasing features where phase_id == phase_2))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "分期范围与三环分带一致，可由三环距离阈值复算。"
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 1692532.575,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of phasing features where phase_id == phase_3))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "分期范围与三环分带一致，可由三环距离阈值复算。"
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 1168127.401,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "净口径：要素之间已做互斥处理（后生成的要素减去已生成要素的并集），因此原始求和 = 并集 = 各要素 area_sqm_declared 之和，毛面积与净面积相等；本值由 geometry/public_space.geojson 在 EPSG:4548 下复算。"
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.102352,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(public_space_area_sqm) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "净口径：要素之间已做互斥处理（后生成的要素减去已生成要素的并集），因此原始求和 = 并集 = 各要素 area_sqm_declared 之和，毛面积与净面积相等；本值由 geometry/public_space.geojson 在 EPSG:4548 下复算。"
+  },
+  "road_centerline_length_m": {
+   "status": "known",
+   "value": 147609.99,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(centerline_length_m)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "road_network_density_km_per_sqkm": {
+   "status": "known",
+   "value": 12.934,
+   "unit": "km/km2",
+   "source_files": [
+    "geometry/roads.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(centerline_length_m) / (site_area_sqm / 1,000,000)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "设计路网总密度，含绿道、骑行道与 33 条 24 小时公共穿越通道；机动车路网密度另见 vehicle_road_density_km_per_sqkm。"
+  },
+  "seep_ring_area_sqm": {
+   "status": "known",
+   "value": 3888375.512,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "area(site_intersection_buffer(spine,500m) - buffer(spine,300m))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ]
+  },
+  "setback_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "N/A; requires road redline and building control line",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official road redlines and building setback controls are not publicly available."
+  },
+  "share_within_300m": {
+   "status": "known",
+   "value": 0.510997,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "area(site_intersection_buffer(spine,300m)) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ]
+  },
+  "share_within_500m": {
+   "status": "known",
+   "value": 0.851699,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "area(site_intersection_buffer(spine,500m)) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ]
+  },
+  "share_within_650m": {
+   "status": "known",
+   "value": 0.99976,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "area(site_intersection_buffer(spine,650m)) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ],
+   "note_zh": "99.98% 在 650 米以内；说明在临时边界内无法容纳公告「周边 1–2 公里」。"
+  },
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(EPSG:4548 projection of submitted site boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "提交范围复算值与公告约 11.4 km² 同量级；不等于官方精确面积。"
+  },
+  "site_width_mean_m": {
+   "status": "known",
+   "value": 1187.9,
+   "unit": "m",
+   "source_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/roads.geojson"
+   ],
+   "formula": "site_area_sqm / spine_length_m",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ],
+   "note_zh": "平均宽度 1,188 米，半宽 594 米，是「无腹地」的几何证据。"
+  },
+  "spine_length_m": {
+   "status": "known",
+   "value": 9607.56,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "length(inferred_spine_centerline)",
+   "confidence": "low",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-SPINE-001"
+   ],
+   "note_zh": "推定主脊长度，不等于实测京张遗址公园线位；官方公园线位发布后须整体重算。"
+  },
+  "strategic_reserve_area_sqm": {
+   "status": "known",
+   "value": 180200.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson#L-16"
+   ],
+   "formula": "sum(polygon_area(EPSG:4548 projection of land_use features where land_use_code == '16'))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "留白用地约 18.0 ha，用于低速自动驾驶、机器人配送与智能设施的受控测试。",
+   "note_en": "Strategic reserve of about 18.0 ha for controlled testing of low-speed autonomy, delivery robots and smart infrastructure."
+  },
+  "vehicle_road_density_km_per_sqkm": {
+   "status": "known",
+   "value": 8.357,
+   "unit": "km/km2",
+   "source_files": [
+    "geometry/roads.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "vehicle_road_length_m / (site_area_sqm / 1,000,000)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "仅计次干路、支路与地块出入道路；与 GB/T 51328-2018 建成区 8 km/km² 的参考要求同量级，该标准未在仓库保存本地快照，仅作背景引用 [source:NEAR-BACKGROUND-20260830]。"
+  },
+  "vehicle_road_length_m": {
+   "status": "known",
+   "value": 95376.64,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(centerline_length_m where road_class not in (pedestrian, cycleway, greenway))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  }
+ }
+}

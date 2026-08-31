@@ -1,0 +1,267 @@
+{
+  "schema_version": "0.2.0",
+  "package_version": "v2.1-review-5061474033-2026-08-31",
+  "units": {
+    "area": "sqm",
+    "length": "m",
+    "ratio": "ratio",
+    "count": "count"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Known only as a reproducible calculation from the submitted provisional boundary; it is not an official redline and must be replaced and recomputed when official geometry arrives."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1393756.159,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(concept green polygons, EPSG:4548); area only, not legal green-space status",
+      "confidence": "low",
+      "assumptions": [
+        "This is a reproducible provisional geometry calculation, not a statutory green-space conclusion; recompute after official survey and boundary review."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 36150.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(concept public-space polygons, EPSG:4548); area only, not ownership or legal public access",
+      "confidence": "low",
+      "assumptions": [
+        "This is a reproducible provisional geometry calculation, not an ownership or legal public-access conclusion; recompute after official survey and boundary review."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 111600.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(concept reuse-first envelopes, EPSG:4548); area only, not buildable area",
+      "confidence": "low",
+      "assumptions": [
+        "This is a reproducible provisional envelope calculation, not buildable area, floor area or approved building scale; recompute after survey and controls review.",
+        "This is not an effect, legal/statutory indicator, approved building scale or built condition."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.122122,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm; rounded to 6 decimals for display",
+      "confidence": "low",
+      "assumptions": [
+        "Known only as a reproducible calculation from provisional polygons; it is not a statutory green-space conclusion and must be recomputed after official geometry review."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.003167,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm; rounded to 6 decimals for display",
+      "confidence": "low",
+      "assumptions": [
+        "Known only as a reproducible calculation from provisional polygons; it does not establish ownership, legal public access or an approved ratio."
+      ]
+    },
+    "road_network_length_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(concept mobility lines, EPSG:4548)",
+      "confidence": "low",
+      "reason": "Concept lines are not road redlines or construction alignments.",
+      "assumptions": [
+        "Concept lines are not road redlines or construction alignments."
+      ]
+    },
+    "key_area_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(area_id in key_areas.geojson)",
+      "confidence": "medium",
+      "reason": "Three concept areas require official boundary confirmation.",
+      "assumptions": [
+        "Three concept areas follow the taskbook structure and require official boundary confirmation."
+      ]
+    },
+    "land_use_zone_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(features in concept land_use.geojson)",
+      "confidence": "medium",
+      "reason": "Feature count is a design-layer count, not a statutory parcel count.",
+      "assumptions": [
+        "Feature count is a design-layer count, not a statutory parcel count."
+      ]
+    },
+    "building_unit_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features in concept buildings.geojson)",
+      "confidence": "medium",
+      "reason": "Features are conceptual envelopes, not approved building units.",
+      "assumptions": [
+        "Features are conceptual envelopes."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(scenario_type == ai_landmark)",
+      "confidence": "low",
+      "assumptions": [
+        "Three is a known count of concept landmark records, not built objects or a heritage designation.",
+        "This is not a built landmark, heritage designation or construction authorization."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(concept public-space scenario nodes and landmarks)",
+      "confidence": "low",
+      "assumptions": [
+        "Eight is a known count of concept records; nodes may be added or removed after site and operator review."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(independent concept protocols T1, T2 and T3)",
+      "confidence": "low",
+      "assumptions": [
+        "Three is a known count of proposed protocols only; no industry validation has occurred and authorization/pilot review is required.",
+        "This is not a completed industry test, validation result or authorized pilot."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(concept persona categories)",
+      "confidence": "low",
+      "assumptions": [
+        "Five is a known count of concept persona categories, not a demographic or visitor survey.",
+        "This is not a population statistic, user sample or needs survey."
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(global AI ecosystem verification-queue entries)",
+      "confidence": "low",
+      "assumptions": [
+        "Eight is a known count of research pointers; six have a primary-page review and two remain to_verify. None is performance, partnership, funding, ranking or endorsement evidence.",
+        "This is not case fact, performance, ranking, partnership or endorsement evidence."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(P1, P2 and P3 concept phases)",
+      "confidence": "low",
+      "assumptions": [
+        "Three is a known count of concept phases; time windows are research suggestions, not delivery commitments.",
+        "This is not a delivery schedule, approval or operating commitment."
+      ]
+    },
+    "annual_program_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(concept activity brands: memory open day, oral-history market, low-stimulus season)",
+      "confidence": "high",
+      "reason": "No annual programme has been confirmed.",
+      "assumptions": [
+        "No annual programme has been confirmed."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(C01–C12 cards with the eleven required fields)",
+      "confidence": "low",
+      "assumptions": [
+        "Twelve is a known count of current concept records; cards may be withdrawn or revised and are not completed pilots or outcome evidence.",
+        "This is not a completed pilot, industry validation or outcome measure; cards remain provisional and withdrawable."
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema_note": "v4.3 重算证据 — 应对评审'公共空间附录 251,000 vs metrics.json 1,074,150 冲突'。说明 251,000 系 v1.x 早期版本的 6 处公共空间几何总和近似值（不含地块内嵌公共空间）；1,074,150 系 v2.3.x 起的 spatial_review 投影面积 + 几何 union 复算结果。两值并非冲突，而是不同口径下的近似与精确值。",
+  "version": "v4.3",
+  "status": "reconcile_v1_approximate_vs_v2_recompute",
+  "diff": {
+    "v1_approximate_value": {
+      "value_sqm": 251000,
+      "source_zh": "v1.x 早期版本 proposal.md 附录中 6 处公共空间的几何总和近似",
+      "source_en": "v1.x earlier proposal.md appendix; approximate geometric sum of 6 public spaces",
+      "scope_zh": "仅 6 处公共空间，不含地块内嵌公共空间",
+      "scope_en": "Only 6 public-space geometries; excludes parcel-embedded public space",
+      "method_zh": "概念性示意（手算或粗略 Python）",
+      "method_en": "Conceptual illustration (manual or rough Python)"
+    },
+    "v2_recompute_value": {
+      "value_sqm": 1074150.682,
+      "source_zh": "metrics.json public_space_area_sqm（v2.3.6 起 EPSG:4548 pyproj 复算）",
+      "source_en": "metrics.json public_space_area_sqm (v2.3.6+ EPSG:4548 pyproj recompute)",
+      "scope_zh": "全部 public_space.geojson features 投影面积 union",
+      "scope_en": "EPSG:4548 projected area union of all public_space.geojson features",
+      "method_zh": "pyproj EPSG:4548 + shapely unary_union",
+      "method_en": "pyproj EPSG:4548 + shapely unary_union"
+    },
+    "delta_zh": "823,150 sqm = v2 较 v1 增加地块内嵌公共空间 + 几何 union 修正",
+    "delta_en": "823,150 sqm = v2 adds parcel-embedded public space + geometric union correction over v1"
+  },
+  "canonical_decision": {
+    "current_canonical_zh": "v4.3 采用 1,074,150.682（metrics.json）",
+    "current_canonical_en": "v4.3 adopts 1,074,150.682 (metrics.json)",
+    "old_value_disposition_zh": "251,000 标注为 deprecated；proposal.md 不再使用该值",
+    "old_value_disposition_en": "251,000 marked as deprecated; not used in proposal.md anymore",
+    "trigger_zh": "如未来官方 polygon 发布，本值整体重算（A-DATA-004 缺口闭合后）",
+    "trigger_en": "If official polygon is released, this value is recomputed in full (after A-DATA-004 gap closes)"
+  },
+  "audit_trail_zh": [
+    "v2.3.6 changelog 已记录 v1.approximate_value → v2.recompute_value 的口径切换；本 JSON 提供双语说明与触发条件。"
+  ],
+  "audit_trail_en": [
+    "v2.3.6 changelog recorded the v1.approximate → v2.recompute switch; this JSON provides bilingual explanation and triggers."
+  ]
+}

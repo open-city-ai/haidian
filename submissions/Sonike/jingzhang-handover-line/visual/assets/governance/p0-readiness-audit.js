@@ -111,6 +111,13 @@ const EXPECTED_ALTERNATIVES = [
 ];
 const EXPECTED_DRAWINGS = Array.from({ length: 5 }, (_, index) => `D${String(index + 1).padStart(2, "0")}`);
 const EXPECTED_DRAWING_SCALES = ["1:500", "1:200", "1:100", "1:50", "1:20"];
+const EXPECTED_TECHNICAL_VIEWS = {
+  "V01-control-plan": ["D03"],
+  "V02-operating-overlay": ["D04"],
+  "V03-two-face-interface": ["D05"],
+  "V04-screen-and-restore": ["D01", "D02"],
+  "V05-release-chain": ["D01", "D02", "D03", "D04", "D05"],
+};
 const EXPECTED_RELEASE_STATES = [
   "S0_EVIDENCE_FREEZE", "S1_P0_HUMAN_FLOOR", "S2_THREE_YARDS_AND_LINKS",
   "S3_CORRIDOR_OPERATION_AND_RETIREMENT",
@@ -118,6 +125,14 @@ const EXPECTED_RELEASE_STATES = [
 const EXPECTED_DELIVERY_PROJECTS = Array.from({ length: 9 }, (_, index) => `PJ${String(index + 1).padStart(2, "0")}`);
 const EXPECTED_DELIVERY_PACKAGES = Array.from({ length: 6 }, (_, index) => `WP${String(index + 1).padStart(2, "0")}`);
 const EXPECTED_IMPLEMENTATION_MODULES = Array.from({ length: 11 }, (_, index) => `M${String(index + 1).padStart(2, "0")}`);
+const EXPECTED_IMPLEMENTATION_SCHEME_MODULES = Array.from({ length: 11 }, (_, index) => `IP${String(index + 1).padStart(2, "0")}`);
+const EXPECTED_COST_METHOD_STEPS = Array.from({ length: 6 }, (_, index) => `CST${String(index + 1).padStart(2, "0")}`);
+const EXPECTED_IMPLEMENTATION_POLICY_SOURCES = [
+  "BEIJING-URBAN-RENEWAL-IMPLEMENTATION-GUIDE-2024",
+  "BEIJING-URBAN-RENEWAL-JOINT-REVIEW-2024",
+  "BEIJING-COST-BASIS-2026",
+  "BEIJING-COST-INFORMATION-2026",
+];
 const EXPECTED_DOCUMENTARY_GATES = Array.from({ length: 12 }, (_, index) => `G${String(index + 1).padStart(2, "0")}`);
 const EXPECTED_ROLE_CLASSES = Array.from({ length: 12 }, (_, index) => `R${String(index + 1).padStart(2, "0")}`);
 const EXPECTED_PROGRAMME_TASKS = Array.from({ length: 12 }, (_, index) => `T${String(index).padStart(2, "0")}`);
@@ -412,6 +427,28 @@ if (handoffRegister) {
     drawings.every((item) => Array.isArray(item.checks) && item.checks.length >= 5 &&
       String(item.status || "").startsWith("participant_")));
 
+  const technicalFigure = handoffRegister.technical_figure_binding || {};
+  const technicalViews = Array.isArray(technicalFigure.views) ? technicalFigure.views : [];
+  recordHandoff("F/05 技术图板表面未绑定到双语图件与确定性生成器",
+    technicalFigure.surface_id === "F/05-v2.0-p0-technical-board-revision-20260831" &&
+    technicalFigure.figure_zh === "assets/figures/metrics-evidence.png" &&
+    technicalFigure.figure_en === "assets/figures/metrics-evidence.en.png" &&
+    technicalFigure.builder === "visual/assets/governance/build-p0-feasibility-figure.js" &&
+    fs.existsSync(resolveIn(PKG, technicalFigure.figure_zh)) &&
+    fs.existsSync(resolveIn(PKG, technicalFigure.figure_en)) &&
+    fs.existsSync(resolveIn(PKG, technicalFigure.builder)));
+  recordHandoff("F/05 五个视图未逐项绑定 D01—D05、源路径与可见检查项",
+    exactSet(technicalViews.map((item) => item.view_id), Object.keys(EXPECTED_TECHNICAL_VIEWS)) &&
+    technicalViews.every((item) => exactSet(item.drawing_ids, EXPECTED_TECHNICAL_VIEWS[item.view_id]) &&
+      Array.isArray(item.source_paths) && item.source_paths.length >= 2 &&
+      item.source_paths.every((sourcePath) => String(sourcePath || "").includes(".json#")) &&
+      Array.isArray(item.visible_checks) && item.visible_checks.length >= 4));
+  recordHandoff("F/05 主张边界未明确排除测绘、施工、合规、报价、签认与开放批准",
+    ["测绘", "施工图", "合规图", "报价", "专业签认", "开放批准"].every((term) =>
+      String(technicalFigure.claim_boundary_zh || "").includes(term)) &&
+    ["survey", "construction drawing", "compliance plan", "quotation", "professional sign-off", "opening approval"].every((term) =>
+      String(technicalFigure.claim_boundary_en || "").includes(term)));
+
   const capacity = handoffRegister.capacity_and_open_edge_screen || {};
   recordHandoff("容量、开口与对角线筛查算术不一致",
     capacity.operational_public_cap_persons === 8 && capacity.simultaneous_staff_positions === 3 &&
@@ -452,9 +489,41 @@ if (handoffRegister) {
 
   const modules = Array.isArray(handoffRegister.implementation_modules)
     ? handoffRegister.implementation_modules : [];
-  recordHandoff("十一项实施模块不完整",
+  const schemeModules = Array.isArray(handoffRegister.implementation_scheme_module_register)
+    ? handoffRegister.implementation_scheme_module_register : [];
+  const policyBasis = handoffRegister.implementation_policy_basis || {};
+  const costMethod = handoffRegister.formal_cost_method || {};
+  const costSteps = Array.isArray(costMethod.method_steps) ? costMethod.method_steps : [];
+  recordHandoff("十一项物理运营模块、十一类实施方案与六步计价方法不完整",
     exactSet(modules.map((item) => item.module_id), EXPECTED_IMPLEMENTATION_MODULES) &&
-    modules.every((item) => typeof item.removable === "boolean" && String(item.title_zh || "").trim()));
+    modules.every((item) => typeof item.removable === "boolean" && String(item.title_zh || "").trim()) &&
+    exactSet(schemeModules.map((item) => item.module_id), EXPECTED_IMPLEMENTATION_SCHEME_MODULES) &&
+    schemeModules.every((item) => item.status === "MAPPED_EXTERNAL_HOLD" &&
+      String(item.participant_input || "").trim() &&
+      String(item.future_external_receipt || "").trim() &&
+      Array.isArray(item.package_ids) && item.package_ids.length >= 1 &&
+      Array.isArray(item.gate_ids) && item.gate_ids.length >= 1) &&
+    policyBasis.status === "PARTICIPANT_MAPPING_COMPLETE_EXTERNAL_PROCEDURE_NOT_STARTED" &&
+    exactSet(policyBasis.source_refs, EXPECTED_IMPLEMENTATION_POLICY_SOURCES) &&
+    policyBasis.programme_level_module_count === 11 &&
+    policyBasis.programme_level_modules_mapped_count === 11 &&
+    policyBasis.programme_level_mapping_ratio === 1 &&
+    policyBasis.external_module_receipt_count === 0 &&
+    policyBasis.joint_review_file_number === null &&
+    policyBasis.appointed_coordinating_entity === null &&
+    policyBasis.appointed_implementation_entity === null &&
+    costMethod.status === "METHOD_MAPPED_FORMAL_PRICING_NOT_STARTED" &&
+    exactSet(costMethod.method_source_refs, EXPECTED_IMPLEMENTATION_POLICY_SOURCES.slice(2)) &&
+    exactSet(costSteps.map((item) => item.step_id), EXPECTED_COST_METHOD_STEPS) &&
+    costSteps.every((item) => String(item.action_zh || "").trim() &&
+      String(item.current_state || "").trim() && String(item.release_gate || "").trim()) &&
+    costMethod.formal_unit_rate_receipt_count === 0 &&
+    costMethod.comparable_vendor_quote_count === 0 &&
+    costMethod.required_comparable_vendor_quote_count === 3 &&
+    costMethod.formal_cost_information_period === null &&
+    costMethod.formal_price_base_date === null &&
+    costMethod.formal_estimate_cny === null && costMethod.approved_budget_cny === null &&
+    costMethod.funding_commitment_cny === null);
 
   const roles = Array.isArray(handoffRegister.professional_role_classes)
     ? handoffRegister.professional_role_classes : [];
@@ -874,7 +943,7 @@ const result = {
   pre_feasibility_checks_valid: validFeasibilityChecks,
   pre_feasibility_checks_expected: 12,
   implementation_handoff_checks_valid: validHandoffChecks,
-  implementation_handoff_checks_expected: 23,
+  implementation_handoff_checks_expected: 26,
   jury_paths_valid: validJuryPaths,
   jury_paths_expected: 3,
   rubric_dimensions_valid: validRubricDimensions,
@@ -892,7 +961,7 @@ const result = {
 
 if (process.argv.includes("--json")) console.log(JSON.stringify(result, null, 2));
 else if (result.ok) {
-  console.log("PASS  SCN-05 单场景 P0：8 门／5 阶段／10 RACI／12 构件／8 验收；预可研 12/12；专业交接 23/23（5 尺度／4 状态／9 项目／6 包逐包验收／11 模块／12 文件闸门／12 角色／三席四人排班／双钥匙／8 调试退役检查／5 时段 × 7 基线表／12 条件任务／16 未计价数量／12 交接验收）；评委路径 3/3／评分索引 7/7；6 类公共群体／12 场景硬门槛；资格证据 6/6／评审归类 7/7；离线原型 14/14；真实观察 0");
+  console.log("PASS  SCN-05 单场景 P0：8 门／5 阶段／10 RACI／12 构件／8 验收；预可研 12/12；专业交接 26/26（5 尺度／F/05 五视图绑定与边界／4 状态／9 项目／6 包逐包验收／11 物理运营模块／11 类实施方案／6 步计价方法／12 文件闸门／12 角色／三席四人排班／双钥匙／8 调试退役检查／5 时段 × 7 基线表／12 条件任务／16 未计价数量／12 交接验收）；评委路径 3/3／评分索引 7/7；6 类公共群体／12 场景硬门槛；资格证据 6/6／评审归类 7/7；离线原型 14/14；真实观察 0");
 } else {
   console.error("FAIL  P0 可实施性与公共利益就绪包不完整");
   for (const error of errors) console.error(`- ${error}`);

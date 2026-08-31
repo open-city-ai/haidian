@@ -1,0 +1,293 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional site boundary polygon; projected for area estimate)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary, not an official redline.",
+        "Geometry stored as geographic lon/lat (no CRS declared); area is an approximate projection with confidence low/medium."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1671167.96,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union(conceptual green polygons; projected area estimate)",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry stored as geographic lon/lat (no CRS declared); area is an approximate projection with confidence low/medium."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 48250.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union(conceptual public-space polygons; projected area estimate)",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry stored as geographic lon/lat (no CRS declared); area is an approximate projection with confidence low/medium."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 111600.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union(conceptual reuse-first envelopes; projected area estimate)",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry stored as geographic lon/lat (no CRS declared); area is an approximate projection with confidence low/medium."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.146429,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.004228,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 10154.351,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(conceptual path lengths; projected from lon/lat)",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry stored as geographic lon/lat (no CRS declared); area is an approximate projection with confidence low/medium."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(area_id in key_areas.geojson)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 27,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use.geojson features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_unit_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings.geojson features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_type == ai_landmark)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space scenario nodes + landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_validation test protocols in proposal.md table)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(五类人才 in proposal.md AI section)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(global ecosystem mechanism cases in proposal.md table)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards in 场景卡索引 table)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_program_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(annual event brands in 年度活动体系 table)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_test_protocol_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI technical test protocols)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing polygons)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  },
+  "test_protocols": {
+    "status": "proposed_to_verify",
+    "provisional": true,
+    "baseline_status": "not_available_until_professional_pilot_setup",
+    "missing_data_rule": "do not impute a missing baseline; label to_verify and do not expand",
+    "source": "proposal.md",
+    "review_owner": "participant; final gate requires business, privacy/compliance and operator review",
+    "protocols": [
+      {
+        "id": "T1",
+        "name": "IP valuation assistant",
+        "baseline_window": "8 weeks pre-pilot; >=30 de-identified reviewable intervals",
+        "pilot_window": "4 weeks; >=10 cases/week",
+        "formula": "MAPE=mean(abs(predicted_midpoint-observed_midpoint)/max(abs(observed_midpoint),epsilon))",
+        "thresholds": {
+          "mape_max": 0.2,
+          "false_positive_rate_max": 0.1,
+          "min_cases_per_error_stratum": 10
+        },
+        "owner": "valuation specialist + privacy lead",
+        "status": "participant-proposed/to_verify",
+        "failure": "two consecutive breaches -> disable and manual valuation"
+      },
+      {
+        "id": "T2",
+        "name": "ZC screen / data ledger",
+        "baseline_window": "2 weeks manual double-entry; >=100 reconciliation records",
+        "pilot_window": "4 weeks; weekly checks with 20 records sampled",
+        "formula": "reconciliation_rate=matched_records/checked_records",
+        "thresholds": {
+          "reconciliation_rate_min": 0.98,
+          "alert_closure_rate_min": 0.95
+        },
+        "owner": "ledger administrator + compliance reviewer",
+        "status": "participant-proposed/to_verify",
+        "failure": "any weekly breach -> revert to manual registration"
+      },
+      {
+        "id": "T3",
+        "name": "Zero-Number validation",
+        "baseline_window": "one comparable quarterly baseline; >=20 de-identified projects",
+        "pilot_window": "8 weeks",
+        "formula": "graduation_rate=graduated/admitted; PSI drift computed against locked baseline",
+        "thresholds": {
+          "evaluation_sample_min": 20,
+          "psi_max": 0.2,
+          "graduation_rate_floor": "20% below locked baseline triggers review"
+        },
+        "owner": "university/station review pair",
+        "status": "participant-proposed/to_verify",
+        "failure": "two PSI breaches or graduation floor breach -> manual review"
+      }
+    ]
+  },
+  "go_no_go": {
+    "status": "participant-proposed/to_verify",
+    "provisional": true,
+    "numeric_gate_scope": "T1, T2 and T3 thresholds are participant-proposed starting points, not measured results or official acceptance criteria",
+    "rule": "Expansion requires threshold evidence plus safety/privacy/human-review records; missing baseline is not a pass.",
+    "review_cycle": "lead proposes; compliance reviewer confirms; operator records weekly; two consecutive breaches trigger disable, withdrawal or manual fallback."
+  }
+}

@@ -14,7 +14,7 @@ iteration: "v2.0"
 
 # 京张交接线 / 技术证据册
 
-> **v2.0 阅读说明（2026-08-30）**：本文件保存技术基线的长表、推导、场景卡与逐项证据，供复算和追溯；正式主叙事由根目录 `proposal.md` / `proposal.en.md` 承担。四套 PDF 的第 1 页为空间命题优先、文字可检索的首页，并新增同源 P0 预可行性条带；既有技术基线页保持不变，末两页新增 F/06 专业实施交接与 F/07 运营就绪控制附页，四套共 46 页的**可见投稿包标识**统一为 v2.0。网页入口与 F/03 使用“三场三剖面”图，F/05 由 `p0-pre-feasibility-envelope.json` 程序化生成，F/06 与 F/07 由 `implementation-handoff-register.json` 程序化生成。若本册与主叙事的章节组织不同，以主叙事为评审入口、以本册为技术证据层。
+> **v2.0 阅读说明（2026-08-31）**：本文件保存技术基线的长表、推导、场景卡与逐项证据，供复算和追溯；正式主叙事由根目录 `proposal.md` / `proposal.en.md` 承担。四套 PDF 的第 1 页为空间命题优先、文字可检索的首页，并新增同源 P0 预可行性条带；既有技术基线页保持不变，末两页新增 F/06 专业实施交接与 F/07 运营就绪控制附页，四套共 46 页的**可见投稿包标识**统一为 v2.0。网页入口与 F/03 使用“三场三剖面”图；F/05 现由 `p0-pre-feasibility-envelope.json`、`p0-delivery-contract.json` 与 `implementation-handoff-register.json#technical_figure_binding` 共同确定性生成五级比例技术板，F/06 与 F/07 由 `implementation-handoff-register.json` 程序化生成。若本册与主叙事的章节组织不同，以主叙事为评审入口、以本册为技术证据层。
 
 ## 让好 AI 更快进城，让每次交接都有回路
 
@@ -28,9 +28,11 @@ iteration: "v2.0"
 
 本轮已经完成一项参与者可控制的实施证据：十二个合成场景逐条跑过“智能层关闭—异常触发—接入方拒收—人工接管—合成记录清零—回到基础服务”的离线状态机，12/12 任务成功、48/48 断言通过。它证明协议能够被执行和审计，但不冒充现场安全、公众测试或上线批准；现场演练仍是 0/12 [metric:simulation_task_count] [metric:simulation_success_rate] [metric:field_rehearsal_task_count]。
 
-![P0 预可行性总览：7.2 米控制包络、6 米可撤工作面、运营与队列上限、参赛者成本敏感性、四个备选及现场证据边界](assets/figures/metrics-evidence.png)
+![P0 五级比例技术板：1:100 控制平面、1:50 运营叠图、1:20 双面接口、24→12→7.2→6 米筛查与 36 平方米恢复、12 项构件、成本排班和四个回退；现场与文件闸回执均为 0/12](assets/figures/metrics-evidence.png)
 
 > **这张图怎么看。** 左侧只回答“参考包络装不装得下”：7.2 × 7.2 m 控制范围、6 × 6 m 可撤工作面、双面服务岛、两处开口与 1.8 m 环线都是参赛者概念筛选值。右上只回答“参考班次跑不跑得动”：公众上限 8、三个同时在岗角色、队列 6 人即停、每日 36 个缓冲任务槽都是规划上限，不是现场容量或吞吐实测。中部成本只回答“哪些变量最敏感”：约 12万—29万元/90 天与约 30万—65万元/年的区间来自参赛者费率变量，排除场地、保险、税费、法定专业服务、永久工程和未知公用事业，正式预算继续为 `null`。底部四个备选没有一个绕过八道门；所有条件不成立时选择 A0 不启动。图上同时保留离线 12/12、接管 48/48、现场 0/12、报价 0/3、保险/预算为空和专业签认 0，防止预可行性试算被误读成实施已经发生。
+
+> **实施层级纠偏。** 图上的 11 个物理／运营模块不是实施方案的 11 类编制内容。`implementation-handoff-register.json#implementation_scheme_module_register` 另按京建发〔2024〕182号建立 IP01—IP11：项目基本信息、前期评估、功能、规划、建筑、土地、未登记建筑、资金、运营、时序与协商；11/11 只表示参赛者交接字段已映射，外部回执仍为 0 [source:BEIJING-URBAN-RENEWAL-IMPLEMENTATION-GUIDE-2024]。成本亦另设 CST01—CST06 六步未来正式计价方法，公开计价依据与造价信息索引不进入当前金额计算；正式单价 0、同口径报价 0/3、概算与预算 `null` [source:BEIJING-COST-BASIS-2026] [source:BEIJING-COST-INFORMATION-2026]。
 
 | 评审要问的事 | 本方案的回答 | 当前证据状态 |
 | --- | --- | --- |
@@ -734,7 +736,7 @@ Logo 只是起点，真正落到街道上的是四类不依赖屏幕的实体符
 
 交接协议不是一句原则，而是七条可被机器判定的规则。为确认这七条**既拦得住该拦的、也不误伤合规的**，对十二份合成交接账做了两类检查：十二条基线用例（合规实例，期望全部放行）与八十四条缺陷注入用例（每条注入一类缺陷，期望全部被拦），合计 **96 条，误拦 0、漏检 0**。**两侧都测是关键**：只测注入可以靠「一律拦截」拿满分，只测基线可以靠「一律放行」拿满分；零误拦与零漏检同时成立，规则才算既有效又不过度。
 
-**这 96 条与上一节那 48 项断言可由随包脚本当场重算，不必相信本文。** `visual/assets/governance/` 下七个只读审计脚本各管一件事：协议重跑器核 96 条规则、48 项断言、360 个枚举实例与 12 条回滚证据；声明审计器把正文与交付物的可复算声明逐条重算，**69 项全部一致**；版本审计器核 30 张图件、四套 46 页 PDF、6 个静态载体与 A0 首页 4/4 内嵌图；字体审计核四页 WOFF2 权利链、可见字形与 24 类等宽标签；用地纹理审计核 7 类 × 6 载体与 98 个区域；公共服务等价审计核 12 条无 AI 路线、24 条人工渠道和 8 类需求夹具；P0 准备度审计再核 8 门、5 节点、10 项 RACI、12 项构件、8 项判据、12/12 项预可研检查、23/23 项专业交接检查、3 档评委路径、7 项评分证据索引、6 类群体、12 个场景公共闸、6 项资格事实、7 项官方后续动作与原型 14/14 项结构检查。自检脚本继续向六条审计链注入缺陷，**66 例全部通过**（2 例正向 ＋ 64 例阴性），其中十一例专门覆盖文件闸门、专业任命、单价金额、T0 启动、尺度算术、排班公式、逐包验收、具名回退、双钥匙回执、调试执行和未来基线值，均须被拒绝。逐项命令、规模守卫与“不证明现场”的边界写在 `manifest.json` 与 `compliance_matrix.json#self_check_expectations` [data:visual/assets/governance/protocol-check-runner.js] [data:visual/assets/governance/claims-audit.js] [data:visual/assets/governance/version-audit.js] [data:visual/assets/governance/webfont-audit.js] [data:visual/assets/governance/land-use-pattern-audit.js] [data:visual/assets/governance/public-service-equivalence-audit.js] [data:visual/assets/governance/p0-readiness-audit.js] [data:visual/assets/governance/audit-selftest.js] [metric:offline_takeover_assertion_count]。
+**这 96 条与上一节那 48 项断言可由随包脚本当场重算，不必相信本文。** `visual/assets/governance/` 下七个只读审计脚本各管一件事：协议重跑器核 96 条规则、48 项断言、360 个枚举实例与 12 条回滚证据；声明审计器把正文与交付物的可复算声明逐条重算，**69 项全部一致**；版本审计器核 30 张图件、四套 46 页 PDF、6 个静态载体与 A0 首页 4/4 内嵌图；字体审计核四页 WOFF2 权利链、可见字形与 24 类等宽标签；用地纹理审计核 7 类 × 6 载体与 98 个区域；公共服务等价审计核 12 条无 AI 路线、24 条人工渠道和 8 类需求夹具；P0 准备度审计再核 8 门、5 节点、10 项 RACI、12 项构件、8 项判据、12/12 项预可研检查、26/26 项专业交接检查（含 F/05 图板表面、五视图映射和主张边界）、3 档评委路径、7 项评分证据索引、6 类群体、12 个场景公共闸、6 项资格事实、7 项官方后续动作与原型 14/14 项结构检查。自检脚本继续向六条审计链注入缺陷，**66 例全部通过**（2 例正向 ＋ 64 例阴性），其中十一例专门覆盖文件闸门、专业任命、单价金额、T0 启动、尺度算术、排班公式、逐包验收、具名回退、双钥匙回执、调试执行和未来基线值，均须被拒绝。逐项命令、规模守卫与“不证明现场”的边界写在 `manifest.json` 与 `compliance_matrix.json#self_check_expectations` [data:visual/assets/governance/protocol-check-runner.js] [data:visual/assets/governance/claims-audit.js] [data:visual/assets/governance/version-audit.js] [data:visual/assets/governance/webfont-audit.js] [data:visual/assets/governance/land-use-pattern-audit.js] [data:visual/assets/governance/public-service-equivalence-audit.js] [data:visual/assets/governance/p0-readiness-audit.js] [data:visual/assets/governance/audit-selftest.js] [metric:offline_takeover_assertion_count]。
 
 **其中一条是结构断言，也是这套协议一个此前没写出来的性质：它在 schema 层面就无法表达「已全面启用」。** `smart_layer_state_after_decision` 的枚举只有 `off`、`sandbox_preview`、`limited_trial` 三个取值，**没有任何一个表示完全启用**。所以「智能层不得越过有限试用」不是一句承诺，而是结构性不可能——往枚举里加更高状态会让脚本退出 1。同类的还有兼容表：处置越保守，智能层上限越低，拒收与暂缓一律 `off` [data:visual/assets/governance/shift-ledger.schema.json]。
 
@@ -757,7 +759,7 @@ Logo 只是起点，真正落到街道上的是四类不依赖屏幕的实体符
 **R7 值得单说。** 它把「岗位尚未指派」从一句说明变成一道机器强制的联锁：没有指派，双联状态就无法被标记为已共同签认，因此任何依赖该状态推进的动作都推进不下去。岗位规格见上一节，八个岗位的启停权限与缺岗禁止条件与这条规则配套。
 ### 授权后第一步：公开交接桌 P0
 
-P0 的成本等级为 **S：小型、可移动、无固定土建的公共界面**。正式预算仍采用可替换公式：`构件数量 × 至少三方经复核询价 + 人员工时 × 经批准费率 + 专业/保险/便利/维护/撤场真实成本`；`p0-delivery-contract.json` 把它拆成 **12 条可询价构件行**，三个报价槽、单价、合价、保险、90 天预算与持续预算均保持空值。为了在没有报价时仍能检验范围是否自洽，`p0-pre-feasibility-envelope.json` 另做一组**参赛者敏感性试算**：12 条构件约 1.8万—5.7万元、三席 780 人时约 6.2万—12.5万元、专业复核约 1.9万—5.1万元、补偿/合理便利约 1.0万—3.0万元、维护约 0.7万—2.0万元、撤场储备约 0.2万—0.8万元，合计约 **12万—29万元/90 天**；同强度年度运维约 **30万—65万元/年**。这些数只用参赛者设置的费率变量，不是市场询价或预算承诺，且排除场地、保险、税费、法定专业服务、永久工程和未知公用事业。正式金额只能在场地授权后由真实询价与批准程序填入。
+P0 的成本等级为 **S：小型、可移动、无固定土建的公共界面**。正式预算仍采用可替换公式：`授权实测数量 × 冻结基准日的正式价格信息／同口径市场询价 + 措施、管理、利润、税费 + 人员工时 × 经批准费率 + 专业/保险/便利/维护/撤场真实成本`；`p0-delivery-contract.json` 把它拆成 **12 条可询价构件行**，三个报价槽、单价、合价、保险、90 天预算与持续预算均保持空值。`implementation-handoff-register.json#formal_cost_method` 再按未来正式程序把它拆成 CST01 数量、CST02 基准日／价格期次、CST03 三方询价、CST04 费用组成、CST05 运营保险恢复、CST06 预算资金六步 [source:BEIJING-COST-BASIS-2026] [source:BEIJING-COST-INFORMATION-2026]。为了在没有报价时仍能检验范围是否自洽，`p0-pre-feasibility-envelope.json` 另做一组**参赛者敏感性试算**：12 条构件约 1.8万—5.7万元、三席 780 人时约 6.2万—12.5万元、专业复核约 1.9万—5.1万元、补偿/合理便利约 1.0万—3.0万元、维护约 0.7万—2.0万元、撤场储备约 0.2万—0.8万元，合计约 **12万—29万元/90 天**；同强度年度运维约 **30万—65万元/年**。这些数只用参赛者设置的费率变量，不是市场询价或预算承诺，且排除场地、保险、税费、法定专业服务、永久工程和未知公用事业。正式金额只能在场地授权后由真实询价与批准程序填入。
 
 | 成本包 | 数量口径 | 负责主体类型 | 形成的验收证据 |
 | --- | --- | --- | --- |
@@ -862,9 +864,9 @@ P0 不是“拿到场地就开工”。以下 **8 道准入门**必须逐门交�
 | **阶段路径** | 三道**条件门**而非时间表：一期交回基线与南段公共服务试点；二期开源交接场与中段连接；三期研制交接场与全带运营 | `geometry/phasing.geojson` 三个要素逐期写入进入闸、验收闸与回滚状态，**不写固定年份** | 前一期的正负结果未继承即不进入下一期 |
 | **试点区域** | 三座交接场＋十二个场景节点＋二十个更新单元，全部有坐标与编号 | `geometry/key_areas.geojson`、`geometry/public_space.geojson#SCN-01…12`、`geometry/buildings.geojson` | 场地权利与责任主体未获授权即不落点 |
 | **参与主体** | 八个**岗位规格**（不是任命）：资质、权限、缺岗禁止条件与升级路径；P0 另有 10 项 RACI 工作包，逐项绑定责任角色类型 | `visual/assets/governance/role-spec.json` 与 `p0-delivery-contract.json`；岗位和 RACI 的真实指派均为 `unassigned` | 角色归属由主管部门确定；双联两侧或专业复核未指派即不放行 |
-| **指标** | **131 项指标，117 项已赋值可复算**；未赋值的 14 项**每一项都有一份完整测量协议** | `metrics.json`（含 `formula` 与 `source_files`）、`visual/assets/governance/measurement-protocol.json` 的 14 条协议 | 发布门槛任一不成立即保持未赋值 |
+| **指标** | **137 项指标，123 项已赋值可复算**；未赋值的 14 项**每一项都有一份完整测量协议** | `metrics.json`（含 `formula` 与 `source_files`）、`visual/assets/governance/measurement-protocol.json` 的 14 条协议 | 发布门槛任一不成立即保持未赋值 |
 
-**指标这一项的口径值得单独说清。** 117 项已赋值指标——场地面积、绿地率、公共空间占比、主轴长度、场景节点数、用地要素数、公共服务等价、P0 合同结构、参赛者预可行性输入与专业交接结构——全部按各自 `formula` 与 `source_files` 可独立复算。其中 P0 预可研指标只计算控制/工作面面积、保守容量、三席班次、排队停止线、排期余量、成本/运维敏感性、四个备选和未实测撤场目标；31 项专业实施指标只记录四级包络、开口与对角线算术、五级图纸、四种释放状态、9 项项目、6 个包、11 个模块、12 道文件闸门、12 类角色、12 条条件任务、16 行未计价数量与 12 项交接验收，以及排班公式、逐包验收、具名回退、双钥匙、8 项调试退役检查和 5 时段 × 7 表未来基线。它们明确标为**概念筛选、敏感性变量或交付结构**，不等于正式场地、法定容量、真实报价、预算、现场实施或用户通过。其余 14 项属法定控制、产业绩效与交接时间三类，其目标值须由主管部门依官方控规、导则与运营基线确定，本方案不代为设定，但已为每一项写明可直接执行的测量协议（定义、采集角色、采样单元、频率或触发、分母、缺失值处理、质量检查、争议复核、隐私与留存、发布门槛）。**其中交接时间两项专为检验标题里的「更快」而设**：`handover_to_service_days` 与 `handover_rework_rounds` 的基线只能来自授权后的真实交接账，因此同样保持待测——一个没有基线的加速承诺，比不承诺更不可复核。**发布一套测量协议不等于发布一个目标——方法做完，决定留给有权做决定的人** [metric:site_area_sqm] [depth:metrics_recalculation]。
+**指标这一项的口径值得单独说清。** 123 项已赋值指标——场地面积、绿地率、公共空间占比、主轴长度、场景节点数、用地要素数、公共服务等价、P0 合同结构、参赛者预可行性输入与专业交接结构——全部按各自 `formula` 与 `source_files` 可独立复算。其中 P0 预可研指标只计算控制/工作面面积、保守容量、三席班次、排队停止线、排期余量、成本/运维敏感性、四个备选和未实测撤场目标；37 项专业实施指标只记录四级包络、开口与对角线算术、五级图纸、四种释放状态、9 项项目、6 个包、11 个物理／运营模块、IP01—IP11 十一类实施方案字段、6 步未来计价方法、12 道文件闸门、12 类角色、12 条条件任务、16 行未计价数量与 12 项交接验收，以及排班公式、逐包验收、具名回退、双钥匙、8 项调试退役检查和 5 时段 × 7 表未来基线。它们明确标为**概念筛选、方法映射、敏感性变量或交付结构**，不等于正式场地、法定容量、真实报价、预算、现场实施或用户通过。其余 14 项属法定控制、产业绩效与交接时间三类，其目标值须由主管部门依官方控规、导则与运营基线确定，本方案不代为设定，但已为每一项写明可直接执行的测量协议（定义、采集角色、采样单元、频率或触发、分母、缺失值处理、质量检查、争议复核、隐私与留存、发布门槛）。**其中交接时间两项专为检验标题里的「更快」而设**：`handover_to_service_days` 与 `handover_rework_rounds` 的基线只能来自授权后的真实交接账，因此同样保持待测——一个没有基线的加速承诺，比不承诺更不可复核。**发布一套测量协议不等于发布一个目标——方法做完，决定留给有权做决定的人** [metric:site_area_sqm] [depth:metrics_recalculation]。
 
 **公共服务等价不是一句原则，而是第二层可审计合同。** `visual/assets/governance/public-service-equivalence-contract.json` 把十二个场景逐一绑定到“智能层关闭仍可完成同一核心结果”的基础路线与人工渠道，并把非视觉／读屏、纯键盘／无指针、低视力／色觉、轮椅／行动不便、老年／认知负荷、非中文／多语、无智能手机／无 App、拒绝算法／拒绝数据八类需求分别写成设计夹具。随包审计器核得 **12/12 条无 AI 等价路线、24/24 条人工渠道、8/8 类需求夹具**；这些都是设计要求，不是用户测试，故合同同时锁定**真实用户观察 0、实测通过 0、现场状态 `not_observed`**。任一夹具缺人工路线、退出条件、现场证据要求，或有人把 0 改写成通过，审计即退出 1 [metric:no_ai_equivalent_service_target_ratio] [metric:accessibility_requirement_fixture_coverage_ratio] [metric:real_user_accessibility_observation_count]。
 
@@ -995,7 +997,7 @@ P0 不是“拿到场地就开工”。以下 **8 道准入门**必须逐门交�
 | 四套 PDF 首页与 F/06、F/07 附页 | Noto Sans CJK SC Medium 字符子集 | SIL OFL 1.1，允许嵌入与再分发 [source:FONT-NOTO-WEB] | `pdffonts` 可见首页与末两页的 Noto Sans CJK 子集均为 `emb=yes` |
 | 30 张栅格图件文字 | Noto Sans CJK SC / Noto Sans；F/05、F/06 与 F/07 复用包内 OFL 字符子集 | SIL OFL 1.1，仅把字形渲染为像素 [source:FONT-NOTO-RASTER] [source:FONT-NOTO-WEB] | 包内完整源字体数为 0：`find <包> -name '*.tt[cf]' -o -name '*.otf'` |
 | 画廊封面文字 | Noto Sans CJK SC / Noto Sans | 同上 [source:FONT-NOTO-COVER] | 同上 |
-| 四份离线 HTML | Noto Sans CJK SC Medium 字符子集 | SIL OFL 1.1，285,844 字节 WOFF2 嵌入包内 CSS data URI，官方许可正文与版权通知另存 JSON [source:FONT-NOTO-WEB] | `node visual/assets/governance/webfont-audit.js` |
+| 四份离线 HTML | Noto Sans CJK SC Medium 字符子集 | SIL OFL 1.1，286,048 字节 WOFF2 嵌入包内 CSS data URI，官方许可正文与版权通知另存 JSON [source:FONT-NOTO-WEB] | `node visual/assets/governance/webfont-audit.js` |
 | 字符编码资源 | Adobe CMap UniGB-UCS2-H | Adobe 公开 CMap，仅作编码、不含字形 [source:FONT-ADOBE-CID] | `pdffonts` 输出中无该项字形嵌入 |
 
 音频由本机语音合成生成、不含真人音色样本 [source:TTS-MACOS-SYNTH]；工具链依赖及其许可逐项登记 [source:TOOLCHAIN-BUILD]。任何外部使用不得暗示政府背书、实施批准、已建成或已完成公众参与 [assumption:A-FONT-001]。

@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "控规条件（容积率、建筑高度、建筑密度、绿地率、退线、道路红线、建筑控制线）、土地权属、现状建筑与市政管线在公开场地包中缺失；本包所有强度与工程类内容均为概念建议，须由官方附件或清权资料确认后方可用于法定判断。",
+      "statement_en": "Regulatory-plan controls, land ownership, existing building records and utility constraints are absent from the public site package; all intensity and engineering content is a conceptual proposal pending official attachments.",
+      "impact": "空间与强度结论只能作为深化研究输入；official_boundary=false 的 provisional 几何不得作为官方红线或精确面积依据。"
+    },
+    {
+      "id": "A-BOUNDARY-002",
+      "status": "provisional_geometry",
+      "statement": "总体设计边界与三处重点区域边界来自 brief/site-package/geometry/provisional_boundaries.geojson（约 11.41 平方公里，按公告面积与文字四至在 EPSG:4548 下推定），标记为 provisional_constraint 与 provisional_rough。",
+      "statement_en": "Site and key-area boundaries come from the repository provisional rough boundaries.",
+      "impact": "官方 polygon 发布后必须重算 land_use 覆盖、绿地率、公共空间率、建筑密度、分期面积与全部派生图面。"
+    },
+    {
+      "id": "A-PROGRAM-003",
+      "status": "design_assumption",
+      "statement": "岗位密度按创新功能地上建筑面积 12 平方米/岗测算，住宅容量按 95 平方米/套测算，平均层数按各地块概念层数表取值；仅用于比较方案量级。",
+      "statement_en": "Job and housing capacity use 12 sqm per job and 95 sqm per unit design ratios for comparison only.",
+      "impact": "指标不得写成投资、招商或建设计划承诺。"
+    },
+    {
+      "id": "A-ECO-004",
+      "status": "design_assumption",
+      "statement": "八条机制假设在本版中被六个可核查案例（C1—C6）逐条对应：H1→C1/C5、H2→C5、H3→C4、H4→C3/C5、H5→C6、H6→C3、H7→C2、H8→C4/C6。案例来源已在 sources.json 登记标题、发布者、日期、精确 URL、访问日期与许可，但等级仍为 background_only：案例只界定机制类型，任何空间与指标结论仍由本包几何与矩阵支撑。",
+      "statement_en": "The eight mechanism hypotheses are mapped one-to-one onto six verifiable cases (H1 to C1/C5, H2 to C5, H3 to C4, H4 to C3/C5, H5 to C6, H6 to C3, H7 to C2, H8 to C4/C6). Each case now carries title, publisher, date, exact URL, access date and licence in sources.json, while remaining background_only: cases define mechanism types only, and every spatial or metric conclusion still derives from this package geometry and matrices.",
+      "impact": "案例事实不得作为设计依据或对外传播口径引用；若后续来源失效，须回退为待验证假设并同步正文、compliance_matrix 与双语图件。"
+    },
+    {
+      "id": "A-CLIMATE-005",
+      "status": "design_assumption",
+      "statement": "慢行与绿地连续性判断基于几何距离阈值（300 米公共空间服务半径、绿道 9.72 公里），未使用客流、气象或交通实测数据。",
+      "statement_en": "Accessibility claims are geometry-based distance thresholds, not measured demand.",
+      "impact": "需实测数据与交通模型复核。"
+    }
+  ]
+}

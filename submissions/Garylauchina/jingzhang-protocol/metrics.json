@@ -1476,6 +1476,362 @@
         "A-FP01-DELIVERY-CONTROL-001"
       ],
       "scope_note": "Dependency-model structure only. It is not a committed schedule, staffing plan, authorization path, contract or completed activity record."
+    },
+    "fp01_delivery_role_class_count": {
+      "status": "known",
+      "value": 16.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(distinct role classes across H0-H4 RACI, decision owners and required co-signatories)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Role-class register only. Named organizations, people, appointments, responsibility acceptance, rosters, staffing commitments and signatures remain null or unconfirmed."
+    },
+    "fp01_hold_point_single_decision_owner_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(H0 through H4 with exactly one non-empty decision_owner_role) / 5",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Decision-accountability template coverage only. It does not establish a named owner, accepted duty, appointment, authority or sign-off."
+    },
+    "fp01_acceptance_indicator_count": {
+      "status": "known",
+      "value": 12.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(distinct acceptance indicators AT01 through AT12)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Acceptance-register size only. It does not mean that twelve field tests have run or passed."
+    },
+    "fp01_immediately_judgeable_acceptance_indicator_count": {
+      "status": "known",
+      "value": 8.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(AT01 through AT12 with assessment_scope=proposal_structure and reviewable_now=true)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Eight proposal-structure checks are reviewable now; none authorizes site work, public use, procurement, construction or a performance claim."
+    },
+    "fp01_field_dependent_acceptance_indicator_count": {
+      "status": "known",
+      "value": 4.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(AT01 through AT12 with assessment_scope=field_evidence and reviewable_now=false)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Four indicators require attributable H0-H4 field, professional or authorization evidence; their results remain null."
+    },
+    "fp01_release_stage_count": {
+      "status": "known",
+      "value": 6.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(conditional release stages REL00 through REL05)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Conditional-stage structure only. The current package remains at desk review and grants no external release."
+    },
+    "fp01_external_release_granted_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(REL00 through REL05 with external_release_granted=true)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Current package register state only. Zero prohibits interpreting concept completeness as permission for public service, site action, procurement or construction."
+    },
+    "fp01_fallback_alternative_count": {
+      "status": "known",
+      "value": 4.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(reversible alternatives ALT01 through ALT04 with a trigger, rights-preserving fallback and site_action_allowed=false)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Participant reference alternatives only. No authority has selected, approved, funded or sited an option."
+    },
+    "fp01_cost_plan_class_count": {
+      "status": "known",
+      "value": 7.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(distinct capital, operating, and exit/reserve cost classes in the parameterized cost plan)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Cost-structure coverage only. It is not an estimate, quotation, budget, funding plan, procurement record or zero-cost claim."
+    },
+    "fp01_verified_cost_input_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(cost inputs with verified actual quantity, rights-cleared unit rate, date, source and approval)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Current package evidence count only. Missing verified inputs mean cost is unknown, never zero."
+    },
+    "fp01_documented_authorized_site_action_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-delivery-control.json"
+      ],
+      "formula": "count(attributable records supplied in this package that authorize FP01 site action)",
+      "confidence": "high",
+      "assumptions": [
+        "A-FP01-DELIVERY-CONTROL-001"
+      ],
+      "scope_note": "Package-record state only, not a claim about all external activity. No submitted record authorizes installation, public opening, real-user data collection, procurement or construction."
+    },
+    "fp01_pre_feasibility_scale_count": {
+      "status": "known",
+      "value": 4.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(distinct participant design scales SCALE-1-500, SCALE-1-100, SCALE-1-50 and SCALE-1-20 in the pre-feasibility decision package)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Design-scale structure only. The 1:20 interface dimensions are original participant envelopes, not survey, code, approval, procurement or construction dimensions."
+    },
+    "fp01_original_parameter_envelope_count": {
+      "status": "known",
+      "value": 2.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(original_parameter_envelopes with bilingual identity, bounded design parameters, non-normative status and external_actual=null)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Participant-authored spatial and architectural test envelopes only; no site condition or normative compliance is verified."
+    },
+    "fp01_capacity_egress_template_count": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(capacity_and_egress_envelope with a capacity formula, release rule and all surveyed or approved inputs null)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Calculation-template count only. It is not an occupancy, accessibility, fire or life-safety conclusion."
+    },
+    "fp01_staffing_fte_template_count": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(staffing_and_fte_template with operating and independent-evaluation formulas and all approved staffing inputs null)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Calculation-template count only. No named operator, roster, appointment, approved service hours or staffing commitment exists."
+    },
+    "fp01_rom_sensitivity_scenario_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(ROM-LOW, ROM-REFERENCE and ROM-HIGH dimensionless CAPEX/OPEX sensitivity scenarios)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Dimensionless sensitivity structure only. It is not a quotation, formal estimate, budget, funding or procurement claim, and all CNY values remain null."
+    },
+    "fp01_exit_restoration_reserve_template_count": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(exit_restoration_reserve_template with ratio range, calculation rule and all verified or funded values null)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Reserve-template count only. It does not represent a funded reserve, approved ratio, verified cost or restoration commitment."
+    },
+    "fp01_maintenance_cycle_count": {
+      "status": "known",
+      "value": 4.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(daily, weekly, quarterly and annual maintenance-cycle templates with actual_record=null)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Maintenance-cycle structure only. No inspection, maintenance action, operator record or operating result is claimed."
+    },
+    "fp01_gate_cost_permission_alternative_mapping_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(ALT01-ALT04 with gate_refs, cost_tradeoff and permission_tradeoff) / 4",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Alternative-mapping completeness only. No option has been selected, permitted, funded, procured or sited."
+    },
+    "fp01_external_evidence_receipt_required_field_count": {
+      "status": "known",
+      "value": 18.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(bilingual required external-evidence receipt fields ER01 through ER18)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Evidence-intake template structure only. All actual values remain null and no receipt is accepted or verified."
+    },
+    "fp01_accepted_external_evidence_receipt_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(external evidence receipts accepted into the pre-feasibility decision package)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Current package register state only. Zero means no attributable external receipt is supplied, never that no external evidence exists elsewhere."
+    },
+    "fp01_pre_feasibility_external_release_granted_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-delivery-control.json"],
+      "formula": "count(pre-feasibility external release decisions with granted status)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-DELIVERY-CONTROL-001"],
+      "scope_note": "Current package register state only. HOLD grants no site action, service opening, real-user exposure, procurement, construction or implementation authority."
+    },
+    "fp01_execution_form_count": {
+      "status": "known",
+      "value": 7.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-execution-kit.json",
+        "assets/media/fp01-execution-workbook.md"
+      ],
+      "formula": "count(EX-01 through EX-07 blank bilingual execution forms mirrored in the human workbook)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-EXECUTION-KIT-001"],
+      "scope_note": "Blank-template coverage only. It is not a count of completed surveys, appointments, observations, estimates, procurements, reviews, rehearsals, maintenance actions or handovers."
+    },
+    "fp01_execution_required_field_count": {
+      "status": "known",
+      "value": 230.0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/fp01-execution-kit.json",
+        "assets/media/fp01-execution-workbook.md"
+      ],
+      "formula": "count(unique required field identifiers across EX-01 through EX-07)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-EXECUTION-KIT-001"],
+      "scope_note": "Field-schema completeness only. Every external actual and signature field is initially null or unknown."
+    },
+    "fp01_execution_rehearsal_event_class_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/fp01-execution-kit.json"],
+      "formula": "count(EX-06 control references resolving success, refusal, human_takeover and exit_restoration) / 4",
+      "confidence": "high",
+      "assumptions": ["A-FP01-EXECUTION-KIT-001"],
+      "scope_note": "Rehearsal-script class coverage only. No rehearsal, result, remediation, retest or sign-off has occurred."
+    },
+    "fp01_execution_verified_external_record_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-execution-kit.json"],
+      "formula": "count(execution-kit records with attributable external source, rights status, independent review, disposition and sign-off verified)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-EXECUTION-KIT-001"],
+      "scope_note": "Current package state only. Zero means the kit is an unexecuted blank master and does not assert that no external evidence exists elsewhere."
+    },
+    "fp01_rel00_synthetic_fixture_count": {
+      "status": "known",
+      "value": 12.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-rel00-desk-replay.json"],
+      "formula": "count(participant-side REL00 synthetic replay cases: 4 positive transitions + 8 negative controls)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-REL00-DESK-REPLAY-001"],
+      "scope_note": "Synthetic design-time fixture count only. It is not a field sample, user session, service record, professional rehearsal or implementation event."
+    },
+    "fp01_rel00_positive_transition_match_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/fp01-rel00-desk-replay.json",
+        "visual/assets/verify-fp01-rel00-desk-replay.js"
+      ],
+      "formula": "count(recomputed positive cases whose decision and allow state match the recorded expectation) / 4",
+      "confidence": "high",
+      "assumptions": ["A-FP01-REL00-DESK-REPLAY-001"],
+      "scope_note": "Participant-authored interface consistency only. It does not measure accuracy, utility, accessibility, safety or benefit in a real service."
+    },
+    "fp01_rel00_negative_control_block_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/fp01-rel00-desk-replay.json",
+        "visual/assets/verify-fp01-rel00-desk-replay.js"
+      ],
+      "formula": "count(recomputed injected negative controls that fail closed with the expected block reason) / 8",
+      "confidence": "high",
+      "assumptions": ["A-FP01-REL00-DESK-REPLAY-001"],
+      "scope_note": "Synthetic fail-closed policy behavior only. It is not red-team coverage, security certification, professional approval or H3 independent rehearsal."
+    },
+    "fp01_rel00_external_evidence_credit_count": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "count",
+      "source_files": ["visual/assets/fp01-rel00-desk-replay.json"],
+      "formula": "count(REL00 replay records credited as H0-H4 field or external evidence)",
+      "confidence": "high",
+      "assumptions": ["A-FP01-REL00-DESK-REPLAY-001"],
+      "scope_note": "Must remain zero. A participant-side synthetic replay cannot populate field, named-party, cost, professional-signoff, authorization, performance or external-release evidence."
     }
   }
 }

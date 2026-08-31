@@ -1,0 +1,740 @@
+{
+  "schema_version": "1.0",
+  "matrix_id": "scenario_operations",
+  "title_zh": "S01—S12 场景运营统一矩阵",
+  "title_en": "Unified S01–S12 Scenario Operations Matrix",
+  "status": "proposed_interface",
+  "authority_status": "not_confirmed",
+  "authority_status_zh": "概念运营接口，空间、数据与责任授权尚未核实",
+  "authority_status_en": "Concept operation interfaces; space, data, and responsibility authorizations are not verified",
+  "partner_commitment": false,
+  "human_decision": "pending",
+  "design_boundary_zh": "十二项均为可暂停、可退出的概念场景，不是已安装设施、已批准服务或效果承诺；指标只定义可审查记录，不设置无证据目标。",
+  "design_boundary_en": "All twelve are pausable and exitable concept scenarios, not installed facilities, approved services, or performance commitments; metrics define reviewable records only and set no unsupported targets.",
+  "allowed_generic_roles": [
+    "authorized_decision_owner",
+    "public_space_or_asset_steward",
+    "data_rights_steward",
+    "technical_operator",
+    "heritage_planning_reviewer",
+    "accessibility_public_interest_reviewer",
+    "independent_safety_reviewer",
+    "program_coordinator"
+  ],
+  "scenarios": [
+    {
+      "id": "S01",
+      "name_zh": "多传感器共置校准",
+      "name_en": "Multi-sensor co-location calibration",
+      "users": {
+        "personas": [
+          {"id": "environment_researcher", "label_zh": "环境研究者", "label_en": "environment researcher"},
+          {"id": "ai_developer", "label_zh": "AI 开发者", "label_en": "AI developer"},
+          {"id": "operator", "label_zh": "运营人员", "label_en": "operator"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "众智园·校准场；既有开放空间候选与隔离沙盒",
+        "space_type_en": "Zhongzhiyuan Calibration Field; candidate existing open space and isolated sandbox",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "授权传感摘要、参考站数据、合成故障",
+        "inputs_en": "Authorized sensor summaries, reference-station data, and synthetic faults",
+        "rights_zh": "仅使用已授权或合成输入；专业人员签发校准记录，不把结果写成监管结论。",
+        "rights_en": "Use authorized or synthetic inputs only; a professional signs the calibration record, which is not a regulatory conclusion."
+      },
+      "operating_generic_roles": [
+        {"role": "technical_operator", "label_zh": "技术运营者", "label_en": "technical operator"},
+        {"role": "data_rights_steward", "label_zh": "数据权利管护人", "label_en": "data-rights steward"},
+        {"role": "independent_safety_reviewer", "label_zh": "独立安全审查人", "label_en": "independent safety reviewer"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "人工复核、工作人员记录和纸质校准记录必须可独立运行。",
+        "baseline_en": "Staff review, staffed records, and a paper calibration record must work independently.",
+        "fallback_modes": ["staffed_review", "paper_record"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录每次候选共置校准是否形成可审查记录；不衡量监管准确度或现场空气绩效。",
+        "definition_en": "Record whether each candidate co-location calibration produces a reviewable record; do not measure regulatory accuracy or site air performance.",
+        "unit": "reviewable_calibration_record",
+        "unit_zh": "可审查校准记录",
+        "unit_en": "reviewable calibration record",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S01", "proposal.md#S01"]
+      },
+      "human_gate": {
+        "gate_zh": "环境或相关专业人员核对来源、共置条件和异常解释后，才可保存内部记录；HumanDecision 仍待完成。",
+        "gate_en": "An environmental or relevant professional must check provenance, co-location conditions, and anomaly interpretation before an internal record is retained; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "参考条件、权利、维护或专业复核缺失时，断开设备、撤回候选输出并保留教育性静态记录。",
+        "en": "Disconnect devices, withdraw candidate output, and retain only an educational static record when reference conditions, rights, maintenance, or professional review is missing."
+      },
+      "risk": {
+        "zh": "传感漂移被误读为监管真值。",
+        "en": "Sensor drift could be misread as regulatory truth."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S01", "proposal.md#S01"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S02",
+      "name_zh": "模型漂移与极端值红队",
+      "name_en": "Model drift and outlier red team",
+      "users": {
+        "personas": [
+          {"id": "ai_developer", "label_zh": "AI 开发者", "label_en": "AI developer"},
+          {"id": "safety_reviewer", "label_zh": "安全研究者", "label_en": "safety researcher"},
+          {"id": "operator", "label_zh": "运营人员", "label_en": "operator"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "众智园沙盒；隔离的模型安全测试空间",
+        "space_type_en": "Zhongzhiyuan sandbox; isolated model-safety test space",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "合成事件、公开模型卡、清权测试集",
+        "inputs_en": "Synthetic episodes, public model cards, and cleared test sets",
+        "rights_zh": "输入只用于隔离沙盒压力测试；生产系统不接收测试输出。",
+        "rights_en": "Inputs are for isolated-sandbox stress testing only; production systems do not receive test output."
+      },
+      "operating_generic_roles": [
+        {"role": "technical_operator", "label_zh": "技术运营者", "label_en": "technical operator"},
+        {"role": "independent_safety_reviewer", "label_zh": "独立安全审查人", "label_en": "independent safety reviewer"},
+        {"role": "data_rights_steward", "label_zh": "数据权利管护人", "label_en": "data-rights steward"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "工作人员红队复核、离线沙盒和纸质问题记录必须可独立运行。",
+        "baseline_en": "Staffed red-team review, an offline sandbox, and a paper issue record must work independently.",
+        "fallback_modes": ["staffed_review", "offline_sandbox"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录合成测试事件的输入、失败类型和人工复核状态；不把通过记录解释为生产安全证明。",
+        "definition_en": "Record the synthetic test input, failure type, and human-review state; do not interpret a pass record as proof of production safety.",
+        "unit": "reviewable_red_team_case",
+        "unit_zh": "可审查红队案例",
+        "unit_en": "reviewable red-team case",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S02", "proposal.md#S02"]
+      },
+      "human_gate": {
+        "gate_zh": "独立安全审查人确认测试输入、隔离和失败解释后，才可写入内部版本记录；HumanDecision 仍待完成。",
+        "gate_en": "An independent safety reviewer must confirm test inputs, isolation, and failure interpretation before an internal version record is written; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "发生数据泄漏、隔离失效、基准投机或误报无法解释时，停止测试并与生产环境保持隔离。",
+        "en": "Stop the test and keep it isolated from production when data leakage, isolation failure, benchmark gaming, or unexplained false alerts occur."
+      },
+      "risk": {
+        "zh": "数据泄漏、基准投机或误报被误作公共警报。",
+        "en": "Data leakage, benchmark gaming, or false alerts could be mistaken for a public warning."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S02", "proposal.md#S02"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S03",
+      "name_zh": "室内外终端可用性实验",
+      "name_en": "Indoor and outdoor terminal usability",
+      "users": {
+        "personas": [
+          {"id": "resident", "label_zh": "居民", "label_en": "resident"},
+          {"id": "older_adult", "label_zh": "长者", "label_en": "older adult"},
+          {"id": "visitor", "label_zh": "访客", "label_en": "visitor"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "大钟寺·转化场；候选室内外公共节点",
+        "space_type_en": "Dazhongsi Adoption Field; candidate indoor and outdoor public nodes",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "自愿体验、匿名任务完成记录，不含生物识别",
+        "inputs_en": "Voluntary trials and anonymous task-completion records, without biometrics",
+        "rights_zh": "不记录人脸、声纹、个人轨迹或身份画像；参与者可删除记录并退出。",
+        "rights_en": "Do not record faces, voiceprints, personal traces, or identity profiles; participants may delete records and exit."
+      },
+      "operating_generic_roles": [
+        {"role": "public_space_or_asset_steward", "label_zh": "公共空间或资产管护人", "label_en": "public-space or asset steward"},
+        {"role": "accessibility_public_interest_reviewer", "label_zh": "无障碍与公共利益审查人", "label_en": "accessibility and public-interest reviewer"},
+        {"role": "technical_operator", "label_zh": "技术运营者", "label_en": "technical operator"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "人工主持、纸质任务和语音协助必须可独立提供服务。",
+        "baseline_en": "Staffed facilitation, paper tasks, and voice assistance must provide an independent service path.",
+        "fallback_modes": ["staffed_facilitation", "paper_task", "voice_assistance"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录自愿匿名任务的完成、放弃和人工协助情况；不推断总体人群可用性。",
+        "definition_en": "Record completion, abandonment, and staffed assistance for voluntary anonymous tasks; do not infer overall population usability.",
+        "unit": "anonymous_task_record",
+        "unit_zh": "匿名任务记录",
+        "unit_en": "anonymous task record",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S03", "proposal.md#S03"]
+      },
+      "human_gate": {
+        "gate_zh": "人工主持与无障碍公共利益审查确认可理解、可退出和记录删除路径后，才可保留内部反馈；HumanDecision 仍待完成。",
+        "gate_en": "Retain internal feedback only after staffed facilitation and accessibility/public-interest review confirm legibility, exit, and record deletion paths; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "出现暗黑模式、样本偏差、设备故障、隐私疑问或等效人工路径失效时，停止体验并删除或撤回记录。",
+        "en": "Stop the trial and delete or withdraw records when dark patterns, sample bias, device failure, privacy questions, or failure of the equivalent staffed path occur."
+      },
+      "risk": {
+        "zh": "暗黑模式、样本偏差或设备故障造成不公平体验。",
+        "en": "Dark patterns, sample bias, or device failure could create an inequitable experience."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S03", "proposal.md#S03"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S04",
+      "name_zh": "低暴露慢行路线",
+      "name_en": "Low-exposure active-mobility route",
+      "users": {
+        "personas": [
+          {"id": "commuter", "label_zh": "通勤者", "label_en": "commuter"},
+          {"id": "student", "label_zh": "学生", "label_en": "student"},
+          {"id": "mobility_impaired", "label_zh": "行动不便者", "label_en": "mobility-impaired person"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "遗产基底蓝绿模块；小月河场景赋能翼的候选体验路径（仅为非红线概念建议）",
+        "space_type_en": "Heritage-base blue-green module; candidate experience path of the Xiaoyuehe Scenario Enablement Wing (non-redline concept proposal only)",
+        "status_zh": "临时概念建议，非道路红线、未安装、未批准",
+        "status_en": "Provisional concept proposal; not a road redline, installed facility, or approved service"
+      },
+      "data_and_rights": {
+        "inputs_zh": "获授权的校准摘要与公开路网",
+        "inputs_en": "Authorized calibrated summaries and the public network",
+        "rights_zh": "不存储路线历史；空气预测只是次级偏好，合法、无障碍和人工确认的通行条件优先。",
+        "rights_en": "Do not store route history; exposure prediction is a secondary preference, while lawful, accessible, and staff-confirmed passage takes priority."
+      },
+      "operating_generic_roles": [
+        {"role": "public_space_or_asset_steward", "label_zh": "公共空间或资产管护人", "label_en": "public-space or asset steward"},
+        {"role": "accessibility_public_interest_reviewer", "label_zh": "无障碍与公共利益审查人", "label_en": "accessibility and public-interest reviewer"},
+        {"role": "technical_operator", "label_zh": "技术运营者", "label_en": "technical operator"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "小月河场景赋能翼的候选体验路径必须保留静态导视、纸质地图和工作人员确认；这些是可独立使用的非 AI 路径。",
+        "baseline_en": "The candidate experience path of the Xiaoyuehe Scenario Enablement Wing must retain static wayfinding, a paper map, and staff confirmation as independently usable non-AI paths.",
+        "fallback_modes": ["static_wayfinding", "paper_map", "staff_confirmation"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录候选路径的来源、时效、无障碍核查和人工确认状态；不衡量暴露改善或通行保证。",
+        "definition_en": "Record provenance, freshness, accessibility checks, and staff confirmation for a candidate path; do not measure exposure improvement or guarantee passage.",
+        "unit": "route_advice_review",
+        "unit_zh": "路径建议审查记录",
+        "unit_en": "route-advice review",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S04", "proposal.md#S04"]
+      },
+      "human_gate": {
+        "gate_zh": "运营员确认来源时效、合法通行、无障碍和现场安全后，才可展示候选路径；HumanDecision 仍待完成。",
+        "gate_en": "An operator must confirm provenance freshness, lawful passage, accessibility, and on-site safety before displaying a candidate path; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "预测过时、通行不安全、无障碍失败、投诉未处理或人工确认缺失时，停用提示并恢复静态导视、纸图和工作人员确认。",
+        "en": "Disable the prompt and restore static wayfinding, the paper map, and staff confirmation when the prediction is stale, passage is unsafe, accessibility fails, a complaint is unresolved, or staff confirmation is missing."
+      },
+      "risk": {
+        "zh": "过时预测被当作通行保证，掩盖实际无障碍或交通风险。",
+        "en": "A stale prediction could be treated as a passage guarantee and hide actual accessibility or mobility risks."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S04", "proposal.md#S04"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S05",
+      "name_zh": "无障碍呼吸驿",
+      "name_en": "Accessible breathing post",
+      "users": {
+        "personas": [
+          {"id": "older_adult", "label_zh": "长者", "label_en": "older adult"},
+          {"id": "mobility_impaired", "label_zh": "行动不便者", "label_en": "mobility-impaired person"},
+          {"id": "resident", "label_zh": "居民", "label_en": "resident"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "站点—公园—社区既有通道；可移动公共服务节点候选",
+        "space_type_en": "Existing station–park–community paths; candidate movable public-service node",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "设施清单、自愿报障，不采身份",
+        "inputs_en": "Facility inventory and voluntary obstacle reports, without identity data",
+        "rights_zh": "只记录获得授权的设施信息和自愿问题反馈，不宣称实时可达性。",
+        "rights_en": "Record authorized facility information and voluntary issue feedback only; do not claim real-time accessibility."
+      },
+      "operating_generic_roles": [
+        {"role": "public_space_or_asset_steward", "label_zh": "公共空间或资产管护人", "label_en": "public-space or asset steward"},
+        {"role": "accessibility_public_interest_reviewer", "label_zh": "无障碍与公共利益审查人", "label_en": "accessibility and public-interest reviewer"},
+        {"role": "authorized_decision_owner", "label_zh": "授权决策责任人", "label_en": "authorized decision owner"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "纸质地图、语音协助和工作人员确认必须持续可用。",
+        "baseline_en": "A paper map, voice assistance, and staff confirmation must remain available.",
+        "fallback_modes": ["paper_map", "voice_assistance", "staff_confirmation"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录设施清单的核验、更新时间和自愿报障处理状态；不衡量实时可达率。",
+        "definition_en": "Record verification, update state, and voluntary issue handling for the facility inventory; do not measure real-time accessibility rate.",
+        "unit": "accessibility_inventory_review",
+        "unit_zh": "无障碍设施清单审查",
+        "unit_en": "accessibility inventory review",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S05", "proposal.md#S05"]
+      },
+      "human_gate": {
+        "gate_zh": "现场无障碍审查人抽查设施、通行和人工服务后，才可展示清单；HumanDecision 仍待完成。",
+        "gate_en": "An accessibility reviewer must sample-check facilities, passage, and staffed service before the inventory is displayed; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "设施状态不明、信息过时、现场条件改变或工作人员确认缺失时，撤下对应提示并保留纸质和人工说明。",
+        "en": "Withdraw the affected prompt and retain paper and staffed explanation when facility status is unknown, information is stale, site conditions change, or staff confirmation is missing."
+      },
+      "risk": {
+        "zh": "设施变化造成信息误导，行动不便者无法安全使用。",
+        "en": "Facility changes could mislead users and prevent safe use by mobility-impaired people."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S05", "proposal.md#S05"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S06",
+      "name_zh": "通风建议助手",
+      "name_en": "Ventilation advice assistant",
+      "users": {
+        "personas": [
+          {"id": "property_operator", "label_zh": "物业运营人员", "label_en": "property operator"},
+          {"id": "visitor", "label_zh": "访客", "label_en": "visitor"},
+          {"id": "resident", "label_zh": "居民", "label_en": "resident"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "大钟寺候选公共室内；既有空间的概念服务接口",
+        "space_type_en": "Candidate Dazhongsi public interior; concept service interface in existing space",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "授权室内传感、设备说明和人工巡检",
+        "inputs_en": "Authorized indoor sensors, equipment manuals, and staffed inspections",
+        "rights_zh": "只提供供专业人员判断的候选提示，不将建议写成工程指令或健康判断。",
+        "rights_en": "Provide candidate prompts for professional judgment only; do not present advice as engineering instruction or health judgment."
+      },
+      "operating_generic_roles": [
+        {"role": "technical_operator", "label_zh": "技术运营者", "label_en": "technical operator"},
+        {"role": "independent_safety_reviewer", "label_zh": "独立安全审查人", "label_en": "independent safety reviewer"},
+        {"role": "public_space_or_asset_steward", "label_zh": "公共空间或资产管护人", "label_en": "public-space or asset steward"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "工作人员巡检和纸质公告必须可独立传达信息。",
+        "baseline_en": "Staff inspection and a printed notice must independently communicate the information.",
+        "fallback_modes": ["staff_inspection", "printed_notice"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录专业人员对提示来源、设备说明和人工巡检的核验状态；不衡量通风性能或健康效果。",
+        "definition_en": "Record professional verification of prompt provenance, equipment manuals, and staffed inspection; do not measure ventilation performance or health effects.",
+        "unit": "professional_inspection_record",
+        "unit_zh": "专业巡检记录",
+        "unit_en": "professional inspection record",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S06", "proposal.md#S06"]
+      },
+      "human_gate": {
+        "gate_zh": "机电或卫生专业人员确认输入和现场条件后，才可发布候选提示；HumanDecision 仍待完成。",
+        "gate_en": "A mechanical or health professional must confirm inputs and site conditions before a candidate prompt is released; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "数据权利、机电条件、人工巡检或专业判断缺失时，关闭自动化并恢复工作人员巡检和纸质公告。",
+        "en": "Turn off automation and restore staff inspection and the printed notice when data rights, mechanical conditions, staffed inspection, or professional judgment is missing."
+      },
+      "risk": {
+        "zh": "候选建议被误当作工程指令或健康保证。",
+        "en": "A candidate recommendation could be mistaken for engineering instruction or a health guarantee."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S06", "proposal.md#S06"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S07",
+      "name_zh": "花粉与扬尘公共公报",
+      "name_en": "Pollen and dust public bulletin",
+      "users": {
+        "personas": [
+          {"id": "family_visitor", "label_zh": "家庭访客", "label_en": "family visitor"},
+          {"id": "outdoor_worker", "label_zh": "户外工作人员", "label_en": "outdoor worker"},
+          {"id": "resident", "label_zh": "居民", "label_en": "resident"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "AI 原点社区·共译场与活动节点；公共信息候选界面",
+        "space_type_en": "AI Origin Community Civic Translation Field and event nodes; candidate public-information interface",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "官方公告、授权传感和人工记录",
+        "inputs_en": "Official notices, authorized sensors, and staffed records",
+        "rights_zh": "公报显示来源和时效，不发布医疗判断，不把传感器摘要写成监管结论。",
+        "rights_en": "The bulletin shows provenance and freshness, publishes no medical judgment, and does not treat a sensor summary as a regulatory conclusion."
+      },
+      "operating_generic_roles": [
+        {"role": "program_coordinator", "label_zh": "项目协调人", "label_en": "program coordinator"},
+        {"role": "data_rights_steward", "label_zh": "数据权利管护人", "label_en": "data-rights steward"},
+        {"role": "authorized_decision_owner", "label_zh": "授权决策责任人", "label_en": "authorized decision owner"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "静态公报、纸质通知和工作人员解释必须可独立提供信息。",
+        "baseline_en": "A static bulletin, paper notice, and staffed explanation must independently provide the information.",
+        "fallback_modes": ["static_bulletin", "staffed_explanation", "paper_notice"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录公报使用的来源、时间、置信度和人工发布复核状态；不衡量健康或环境改善。",
+        "definition_en": "Record the bulletin's source, time, confidence, and staffed-publication review state; do not measure health or environmental improvement.",
+        "unit": "bulletin_source_timestamp_record",
+        "unit_zh": "公报来源时效记录",
+        "unit_en": "bulletin source-timestamp record",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S07", "proposal.md#S07"]
+      },
+      "human_gate": {
+        "gate_zh": "发布员核对来源、时间和表达边界后，才可展示公报；HumanDecision 仍待完成。",
+        "gate_en": "A publisher must check provenance, time, and communication boundaries before displaying the bulletin; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "来源过期、权利不明、人工发布复核缺失或出现健康误导时，撤下动态提示并恢复静态公报和人工解释。",
+        "en": "Withdraw dynamic prompts and restore the static bulletin and staffed explanation when provenance is stale, rights are unclear, staffed publication review is missing, or health misdirection occurs."
+      },
+      "risk": {
+        "zh": "来源混淆或表达不当造成健康误导。",
+        "en": "Source confusion or poor wording could cause health misdirection."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S07", "proposal.md#S07"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S08",
+      "name_zh": "蓝绿设施巡检",
+      "name_en": "Blue-green facility inspection",
+      "users": {
+        "personas": [
+          {"id": "landscape_operator", "label_zh": "园林运营人员", "label_en": "landscape operator"},
+          {"id": "volunteer", "label_zh": "志愿者", "label_en": "volunteer"},
+          {"id": "environment_researcher", "label_zh": "环境研究者", "label_en": "environment researcher"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "小月河场景赋能翼与公园候选点；候选巡检路径（仅为非红线概念建议）",
+        "space_type_en": "Xiaoyuehe Scenario Enablement Wing and candidate park points; candidate inspection path (non-redline concept proposal only)",
+        "status_zh": "临时概念建议，非法定绿地或蓝线、未安装、未批准",
+        "status_en": "Provisional concept proposal; not a statutory green or blue line, installed facility, or approved service"
+      },
+      "data_and_rights": {
+        "inputs_zh": "公开绿地层、合成图像和授权设备摘要",
+        "inputs_en": "Public green-space layer, synthetic images, and authorized device summaries",
+        "rights_zh": "机器提示只能交给园林、水务或运维专业人员复核；不得由提示直接触发生态行动。",
+        "rights_en": "Machine prompts go to landscape, water, or maintenance professionals for review; a prompt must not directly trigger ecological action."
+      },
+      "operating_generic_roles": [
+        {"role": "public_space_or_asset_steward", "label_zh": "公共空间或资产管护人", "label_en": "public-space or asset steward"},
+        {"role": "technical_operator", "label_zh": "技术运营者", "label_en": "technical operator"},
+        {"role": "independent_safety_reviewer", "label_zh": "独立安全审查人", "label_en": "independent safety reviewer"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "小月河场景赋能翼的候选巡检路径必须保留人工巡检和纸质检查表；二者是可独立运行的静态替代。",
+        "baseline_en": "The candidate inspection path of the Xiaoyuehe Scenario Enablement Wing must retain manual inspection and a paper checklist as independently usable static alternatives.",
+        "fallback_modes": ["manual_inspection", "paper_checklist"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录候选设施提示是否经过专业复核并形成检查表；不衡量生态绩效或误报率。",
+        "definition_en": "Record whether a candidate facility prompt receives professional review and produces a checklist; do not measure ecological performance or false-alert rate.",
+        "unit": "inspection_checklist",
+        "unit_zh": "巡检检查表",
+        "unit_en": "inspection checklist",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S08", "proposal.md#S08"]
+      },
+      "human_gate": {
+        "gate_zh": "专业人员确认绿地资料、提示来源和现场条件后，才可采取维护动作；HumanDecision 仍待完成。",
+        "gate_en": "A professional must confirm green-space material, prompt provenance, and site conditions before any maintenance action; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "提示无法解释、专业复核缺失、数据权利不明或人工巡检不可用时，停用提示并恢复人工巡检和纸质检查表。",
+        "en": "Disable the prompt and restore manual inspection and the paper checklist when the prompt is unexplained, professional review is missing, data rights are unclear, or manual inspection is unavailable."
+      },
+      "risk": {
+        "zh": "误报直接触发生态操作，造成蓝绿设施损害。",
+        "en": "A false alert could directly trigger ecological action and harm blue-green facilities."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S08", "proposal.md#S08"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S09",
+      "name_zh": "活动与施工空气提示",
+      "name_en": "Event and construction air notice",
+      "users": {
+        "personas": [
+          {"id": "event_organizer", "label_zh": "活动组织者", "label_en": "event organizer"},
+          {"id": "resident", "label_zh": "居民", "label_en": "resident"},
+          {"id": "outdoor_worker", "label_zh": "户外工作人员", "label_en": "outdoor worker"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "公园活动或更新候选点；活动运营信息接口",
+        "space_type_en": "Candidate park event or renewal points; event-operations information interface",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "公开许可与时段、授权颗粒物摘要",
+        "inputs_en": "Public permits and time windows, and authorized particulate summaries",
+        "rights_zh": "提示只供现场负责人判断，不能作为处罚、审批、责任或健康结论。",
+        "rights_en": "The notice is for the site lead's judgment only and is not a penalty, approval, liability, or health conclusion."
+      },
+      "operating_generic_roles": [
+        {"role": "program_coordinator", "label_zh": "项目协调人", "label_en": "program coordinator"},
+        {"role": "public_space_or_asset_steward", "label_zh": "公共空间或资产管护人", "label_en": "public-space or asset steward"},
+        {"role": "independent_safety_reviewer", "label_zh": "独立安全审查人", "label_en": "independent safety reviewer"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "现场负责人判断和静态通知必须可独立完成暂停、调整或说明。",
+        "baseline_en": "Site-lead judgment and a static notice must independently support pause, adjustment, or explanation.",
+        "fallback_modes": ["site_lead_decision", "static_notice"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录许可与时段、输入来源、现场负责人决定和静态通知状态；不衡量活动空气效果。",
+        "definition_en": "Record permit and time-window information, input provenance, site-lead decision, and static-notice state; do not measure event air effects.",
+        "unit": "notice_decision_record",
+        "unit_zh": "提示决定记录",
+        "unit_en": "notice-decision record",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S09", "proposal.md#S09"]
+      },
+      "human_gate": {
+        "gate_zh": "现场负责人核对许可、时段、来源和安全冲突后，才可给出候选提示；HumanDecision 仍待完成。",
+        "gate_en": "The site lead must check permits, time windows, provenance, and safety conflicts before a candidate notice is shown; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "许可或时段不明、设备误报、责任边界不清或现场冲突无法处理时，停止提示并恢复静态通知和现场人工决定。",
+        "en": "Stop the notice and restore the static notice and site-lead decision when permits or time windows are unclear, the device misfires, responsibility is unclear, or site conflict cannot be handled."
+      },
+      "risk": {
+        "zh": "责任不清、设备误报或邻里冲突扩大。",
+        "en": "Unclear responsibility, device false alerts, or neighborhood conflict could escalate."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S09", "proposal.md#S09"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S10",
+      "name_zh": "夜班呼吸驿",
+      "name_en": "Shift-worker breathing post",
+      "users": {
+        "personas": [
+          {"id": "shift_worker", "label_zh": "夜班工作人员", "label_en": "shift worker"},
+          {"id": "service_staff", "label_zh": "服务人员", "label_en": "service staff"},
+          {"id": "older_adult", "label_zh": "长者", "label_en": "older adult"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "大钟寺转化场与园区服务界面；候选夜班公共服务点",
+        "space_type_en": "Dazhongsi Adoption Field and district-service interface; candidate shift-worker public-service point",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "公开设施时段、匿名需求，不采雇佣数据",
+        "inputs_en": "Public facility hours and anonymous demand, without employment data",
+        "rights_zh": "保留固定非 AI 服务，不采个人轨迹、雇佣绩效或身份画像。",
+        "rights_en": "Retain a fixed non-AI service and do not collect personal traces, employment performance, or identity profiles."
+      },
+      "operating_generic_roles": [
+        {"role": "public_space_or_asset_steward", "label_zh": "公共空间或资产管护人", "label_en": "public-space or asset steward"},
+        {"role": "program_coordinator", "label_zh": "项目协调人", "label_en": "program coordinator"},
+        {"role": "accessibility_public_interest_reviewer", "label_zh": "无障碍与公共利益审查人", "label_en": "accessibility and public-interest reviewer"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "值守人员、固定非 AI 服务和纸质时段说明必须可独立运行。",
+        "baseline_en": "Duty staff, a fixed non-AI service, and paper hours must work independently.",
+        "fallback_modes": ["duty_staff", "fixed_non_ai_service", "paper_hours"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录公开服务时段、人工值守和匿名需求的核验状态；不衡量就业、消费或服务绩效。",
+        "definition_en": "Record verification of public service hours, staffed duty, and anonymous demand; do not measure employment, consumption, or service performance.",
+        "unit": "service_hours_record",
+        "unit_zh": "服务时段记录",
+        "unit_en": "service-hours record",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S10", "proposal.md#S10"]
+      },
+      "human_gate": {
+        "gate_zh": "值守人员确认开放时段、无障碍和固定非 AI 服务后，才可展示候选信息；HumanDecision 仍待完成。",
+        "gate_en": "Duty staff must confirm opening hours, accessibility, and the fixed non-AI service before candidate information is displayed; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "服务中断、时段不明、人工值守缺失或出现劳动监控疑问时，停用候选界面并保留固定非 AI 服务或纸质说明。",
+        "en": "Disable the candidate interface and retain the fixed non-AI service or paper hours when service is interrupted, hours are unclear, staffed duty is missing, or labor-surveillance concerns arise."
+      },
+      "risk": {
+        "zh": "服务中断、劳动监控或排他性消费门槛。",
+        "en": "Service interruption, labor surveillance, or an exclusionary consumption barrier."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S10", "proposal.md#S10"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S11",
+      "name_zh": "社区传感器借用与共学",
+      "name_en": "Community sensor loan and learning",
+      "users": {
+        "personas": [
+          {"id": "student", "label_zh": "学生", "label_en": "student"},
+          {"id": "resident", "label_zh": "居民", "label_en": "resident"},
+          {"id": "environment_researcher", "label_zh": "环境研究者", "label_en": "environment researcher"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "AI 原点社区·共译场；社区借用与共学候选接口",
+        "space_type_en": "AI Origin Community Civic Translation Field; candidate community loan and learning interface",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "最小借用日志、公开教程和用户自愿数据",
+        "inputs_en": "Minimal loan logs, public tutorials, and voluntary user data",
+        "rights_zh": "借用日志最小化；数据可以不公开并可按授权规则删除。",
+        "rights_en": "Minimize loan logs; data may remain private and may be deleted under the authorization rules."
+      },
+      "operating_generic_roles": [
+        {"role": "program_coordinator", "label_zh": "项目协调人", "label_en": "program coordinator"},
+        {"role": "data_rights_steward", "label_zh": "数据权利管护人", "label_en": "data-rights steward"},
+        {"role": "technical_operator", "label_zh": "技术运营者", "label_en": "technical operator"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "工作人员培训、纸质教程和数据删除请求必须可独立提供支持。",
+        "baseline_en": "Staff training, a paper tutorial, and a data-deletion request must independently provide support.",
+        "fallback_modes": ["staff_training", "paper_tutorial", "data_delete_request"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录培训、借用、归还和数据处理选择的最小状态；不衡量社区规模或环境绩效。",
+        "definition_en": "Record minimal states for training, loan, return, and data-handling choice; do not measure community scale or environmental performance.",
+        "unit": "loan_training_record",
+        "unit_zh": "借用培训记录",
+        "unit_en": "loan-training record",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S11", "proposal.md#S11"]
+      },
+      "human_gate": {
+        "gate_zh": "工作人员确认培训、设备权利、数据选择和可删除路径后，才可借用；HumanDecision 仍待完成。",
+        "gate_en": "Staff must confirm training, device rights, data choice, and deletion path before a loan; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "设备未校准、培训缺失、数据权利不明或删除请求无法处理时，停止借用并撤回相关数据。",
+        "en": "Stop loans and withdraw related data when the device is uncalibrated, training is missing, data rights are unclear, or a deletion request cannot be handled."
+      },
+      "risk": {
+        "zh": "未校准读数被过度解释，或借用数据超出必要范围。",
+        "en": "Uncalibrated readings could be overinterpreted, or loan data could exceed what is necessary."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S11", "proposal.md#S11"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    },
+    {
+      "id": "S12",
+      "name_zh": "铁路记忆多语导览",
+      "name_en": "Multilingual railway-memory guide",
+      "users": {
+        "personas": [
+          {"id": "family_visitor", "label_zh": "家庭访客", "label_en": "family visitor"},
+          {"id": "international_visitor", "label_zh": "国际访客", "label_en": "international visitor"},
+          {"id": "older_adult", "label_zh": "长者", "label_en": "older adult"}
+        ]
+      },
+      "space_type_and_status": {
+        "space_type_zh": "遗址公园展示节点；铁路记忆导览候选界面",
+        "space_type_en": "Heritage-park display nodes; candidate railway-memory guide interface",
+        "status_zh": "临时概念建议，未安装、未批准",
+        "status_en": "Provisional concept proposal; not installed or approved"
+      },
+      "data_and_rights": {
+        "inputs_zh": "清权档案、官方文本和人工译校",
+        "inputs_en": "Cleared archives, official texts, and human translation",
+        "rights_zh": "史料逐条人工核读；静态图文和人工讲解并行，不使用未授权肖像、商标或图像。",
+        "rights_en": "Review historical material item by item; provide static text and human interpretation in parallel, without unauthorized portraits, marks, or images."
+      },
+      "operating_generic_roles": [
+        {"role": "heritage_planning_reviewer", "label_zh": "遗产与规划审查人", "label_en": "heritage and planning reviewer"},
+        {"role": "program_coordinator", "label_zh": "项目协调人", "label_en": "program coordinator"},
+        {"role": "accessibility_public_interest_reviewer", "label_zh": "无障碍与公共利益审查人", "label_en": "accessibility and public-interest reviewer"}
+      ],
+      "manual_or_static_baseline": {
+        "required": true,
+        "baseline_zh": "静态文字、纸质导览和人工讲解必须可独立提供内容。",
+        "baseline_en": "Static text, a paper guide, and human interpretation must independently provide the content.",
+        "fallback_modes": ["static_text", "human_interpretation", "paper_guide"]
+      },
+      "metric_definition": {
+        "definition_zh": "记录导览条目的史料、权利、译校和人工发布复核状态；不衡量文化传播效果。",
+        "definition_en": "Record provenance, rights, translation, and human-publication review state for each guide entry; do not measure cultural communication effect.",
+        "unit": "reviewed_guide_entry",
+        "unit_zh": "已核读导览条目",
+        "unit_en": "reviewed guide entry",
+        "source": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S12", "proposal.md#S12"]
+      },
+      "human_gate": {
+        "gate_zh": "文史审查人确认史实、权利、译文和无障碍表达后，才可发布条目；HumanDecision 仍待完成。",
+        "gate_en": "A heritage reviewer must confirm history, rights, translation, and accessible expression before an entry is released; HumanDecision remains pending.",
+        "human_decision": "pending"
+      },
+      "stop_exit": {
+        "zh": "史实、版权、译文或人工核读不能确认时，撤下动态内容并恢复已核实的静态文字、纸质导览和人工讲解。",
+        "en": "Withdraw dynamic content and restore verified static text, the paper guide, and human interpretation when history, rights, translation, or human review cannot be confirmed."
+      },
+      "risk": {
+        "zh": "史实、权利或翻译错误损害文化叙事和公众信任。",
+        "en": "Historical, rights, or translation errors could harm cultural narrative and public trust."
+      },
+      "source_refs": ["visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog/scenarios/S12", "proposal.md#S12"],
+      "partner_commitment": false,
+      "human_decision": "pending"
+    }
+  ],
+  "source_refs": [
+    "visual/assets/experiment-inputs.json#frozen_inputs/scenario_catalog",
+    "submissions/SunLight87/jingzhang-breathing-rail/proposal.md#十二原型场景卡：S01—S12",
+    "submissions/SunLight87/jingzhang-breathing-rail/proposal.en.md#Twelve prototypes: S01–S12",
+    "brief/site-package/agent_taskbook.json#required_agent_tasks.agent.3"
+  ]
+}

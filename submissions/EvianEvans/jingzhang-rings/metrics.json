@@ -1,0 +1,214 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "场地包未提供 official polygon，本值由 provisional_boundaries.geojson 的 PROV-SITE-001 复算，与公告约 11.4 平方公里一致；不得作为 official redline 或精确面积依据。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 15855.006,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "37 处新增概念体量（3 座年轮厅 + 19 里院服务亭 + 11 滨水驿站 + 4 社区服务中心）的合计基底；现状建筑底数缺失（GAP-BUILDING-001），不代表片区建筑规模，不得据此推导容积率。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.215811,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计量 / 概念场地面积；公告未给绿地率控制值，本值不得当作法定绿地率。",
+        "分子构成（按组分拆，度量方案框架覆盖量，不等于全部新增）：京张遗址公园绿轴（现状已建+已批准维护）、小月河滨水绿带（已批准/在建）、清河入河口生态缓冲带（本方案新增概念量）、三处年轮厅节点绿地（本方案新增概念量）。",
+        "八大学院等院校权属范围内的既有开敞绿地不计入分子：该范围为受限用地、本方案不进入亦不改动，仅作为生态观测的背景条件在正文说明。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.105449,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计量 / 概念场地面积；公告未给公共空间率控制值。",
+        "分子构成（按组分拆，度量方案框架覆盖量，含已建/已批/新增三类，非全部新增）：双轴连续慢行主径（含已建与本方案新增）、22 条东西缝合绿道（部分纳入维护、部分新增）、19 处里院广场（本方案新增）、三处年轮厅前广场（本方案新增）。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "场地包 planning_limits.json 中 floor_area_ratio 为 status=missing；且现状建筑底数缺失（GAP-BUILDING-001），无法复算总建筑面积，故记为 unknown。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2463013.83,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "含京张绿轴、小月河樱花长廊、清河入河口缓冲带与三处年轮厅节点绿地；均为概念设计量。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1203476.584,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "含双轴连续公共活动带、19 处里桩驻留点、7 处滨水节点与 3 处年轮厅前广场；均为概念设计量。"
+      ]
+    },
+    "ring_count": {
+      "status": "known",
+      "value": 117,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "2025 - 1909 + 1",
+      "confidence": "high",
+      "assumptions": [
+        "1909 年京张铁路建成为第 1 轮，2025 年为第 117 轮；2026 年为第 118 轮，留白待填。"
+      ]
+    },
+    "li_count": {
+      "status": "known",
+      "value": 19,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(li_posts)",
+      "confidence": "medium",
+      "assumptions": [
+        "南北轴线约 9.7 km，每里约 510 m，取整 19 里，贴合市制 1 里=500 m。"
+      ]
+    },
+    "li_length_m": {
+      "status": "known",
+      "value": 496.8,
+      "unit": "m",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "slow_traffic_spine_m / li_count = 9440 / 19",
+      "confidence": "medium",
+      "assumptions": [
+        "里长按慢行主线 9.44 km 均分，每里 496.8 m，桩距以此为准；走廊几何全长 9.72 km，折合每里约 512 m。两者之差来自慢行主线相对走廊边界的两端收束。"
+      ]
+    },
+    "scenario_positions_total": {
+      "status": "known",
+      "value": 95,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "19 li x 5 bu",
+      "confidence": "medium",
+      "assumptions": [
+        "寻址单元数：全线 19 里，每里 5 步，19 x 5 = 95 个可申请场景位，场景卡按「第 X 里第 Y 步」定位。",
+        "这是「可寻址位置数」，不等于实物设施数；一期实物设施见 scenario_posts_total=47。"
+      ]
+    },
+    "scenario_posts_total": {
+      "status": "known",
+      "value": 47,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "19 li_courtyard_squares + 17 transit_interchange_points + 11 waterfront_stations",
+      "confidence": "medium",
+      "assumptions": [
+        "仅统计本方案提出的一期实物服务设施：19 处里院广场（public_space 的 LI-* 要素）、17 处接驳驿站（roads 中 road_class=transit_connection 的端点）、11 处滨水驿站（buildings 中 building_type=mobility_hub）。",
+        "这是「设施数」，不等于可申请场景位数量；两者口径不同，不可互相推导。"
+      ]
+    },
+    "alarm_ring_threshold": {
+      "status": "known",
+      "value": 1,
+      "unit": "boolean_rule",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "alarm = (≥2 of 4 eco indicators decline YoY on 3-yr moving avg) AND (in-trial service count OR li-hour total rises YoY); flourish = (≥3 of 4 eco indicators recover YoY)",
+      "confidence": "medium",
+      "assumptions": [
+        "唯一判定式：四项生态指标（水质类别、鸟种数、植被覆盖、物候稳定性）按三年滑动平均计，其中至少两项同比下降，且当年技术侧（在试服务数 或 场景里·时总量）同比上升 → 该年记为警报轮。全文不存在第二种判定表述。",
+        "技术侧用双指标：在试服务数是供给端数量，可被少批申请操纵；里·时总量是实际使用量，操纵成本高得多。任一上升即视为技术侧扩张。",
+        "对称机制：生态侧四项中至少三项同比回升的年份记为丰轮，次年场景位申请额度上浮（概念建议）。警报轮与丰轮构成完整记账：技术欠生态的要还，生态盈出来的要兑现。",
+        "起算与缺测：基线年 = 治理工程竣工后首个完整年度（第 118 轮）；第 118–120 轮用于建立首个完整三年滑动平均窗口，期间不判定；任一年度缺测的指标该年不参与投票，按有效指标计票。",
+        "置信度说明：known 仅指规则文本本身确定且唯一；该规则当前不可运行——测量规程（观测单元/聚合口径/缺失数据/QA/跨年可比性）尚未闭合，故 confidence=medium。规程闭合前不得当作可运行的高置信指标。拟接入数据序列：水务部门河湖水质公开通报、园林绿化部门绿地与物候观测、公开观鸟记录平台；正式接入前以 V-2 的回溯验证为准。"
+      ]
+    },
+    "heritage_buffer_clearance_m": {
+      "status": "known",
+      "value": 12.24,
+      "unit": "m",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "min(distance(proposal_features, heritage_control_zone))",
+      "confidence": "low",
+      "assumptions": [
+        "清华园车站旧址建控地带为待核近似外包（市级文保，保护范围东8m/南2m/西2m/北2m；I类建控南20m/西8m/北17m）。本方案所有新增要素均位于该外包之外，正式设计前须以文物主管部门矢量为准。"
+      ]
+    }
+  }
+}

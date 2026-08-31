@@ -1,0 +1,175 @@
+{
+  "schema_version": "1.0.0",
+  "ledger_id": "JZ-STRATA-AGENT-PLANNING-RUN-20260831",
+  "title_zh": "Agent真实规划运行证据链",
+  "title_en": "Agent real-planning run evidence chain",
+  "status": "replayable_offline_planning_evidence_human_decision_pending",
+  "scope_zh": "记录本投稿已实际完成的清权输入、约束检查、候选枚举、Pareto筛选、负例拒绝、载体同步和审查整改；不公开隐藏提示词、内部推理、凭据或系统信息，也不把离线运行写成现场部署。",
+  "scope_en": "Record the cleared-input, constraint-check, candidate enumeration, Pareto filtering, negative-case rejection, carrier synchronization, and review-response work actually completed for this submission. Hidden prompts, internal reasoning, credentials, and system information are excluded, and offline runs are not represented as field deployment.",
+  "execution_facts": {
+    "planning_question": "Assign S01-S12 to three differentiated fields without coordinate changes, preserve hard gates and staffed/static fallback, compare a baseline and alternatives, and expose unresolved dependencies for human review.",
+    "runtime": "Node.js standard library",
+    "seed": 20260821,
+    "model_call_in_frozen_experiment": false,
+    "field_trial": false,
+    "approval": false,
+    "human_decision": "pending",
+    "geometry_change_mode": "attribute_only",
+    "coordinates_changed": false
+  },
+  "frozen_inputs": [
+    {
+      "path": "visual/assets/experiment-inputs.json",
+      "sha256": "25da7c03fc073bb16f2bcad7fe61e35d2b143424151f65d65a77bc7c8ada71d7",
+      "role": "scenario catalog, allowed roles, hard gates, internal ordinal evaluation metadata"
+    },
+    {
+      "path": "geometry/site_boundary.geojson",
+      "sha256": "91b652fbb32ed74d8907ae43b7f619e9925e8f82632b79997222f4546af2561f",
+      "role": "read-only provisional overall geometry; not an official redline"
+    },
+    {
+      "path": "geometry/key_areas.geojson",
+      "sha256": "ff04498b0b1e8c37ed856615b6cba5b8cf7c24326a3da842a6ea34f23a54d82d",
+      "role": "read-only provisional three-field geometry"
+    },
+    {
+      "path": "visual/assets/scenario-operations-matrix.json",
+      "sha256": "c84a8e427a81a55f4510ebaa67f98395dd3bdebd4e9ed74c507956f6503a92bb",
+      "role": "users, space, rights, baseline, metric, human gate, stop/exit, and risk for S01-S12"
+    }
+  ],
+  "run_steps": [
+    {
+      "step_id": "01_input_clearance",
+      "agent_role": "evidence_and_rights_agent",
+      "actual_action": "Validate required files, source IDs, rights status, provisional geometry status, and input hashes before candidate work.",
+      "machine_output": [
+        "sources.json",
+        "assumptions.json",
+        "visual/assets/imagery-source-ledger.json",
+        "visual/assets/experiment-inputs.json"
+      ],
+      "human_boundary": "A human remains responsible for factual authorization, legal sufficiency, and use of any non-public input.",
+      "result": "passed_with_provisional_geometry_and_future_professional_triggers_disclosed"
+    },
+    {
+      "step_id": "02_constraint_check",
+      "agent_role": "planning_constraint_agent",
+      "actual_action": "Apply fixed assignments, field cardinality, unique coverage, fallback requirements, prohibited-flag checks, and a zero-coordinate-change policy.",
+      "hard_gates": [
+        "S01/S02 fixed north, S03 fixed south, S12 fixed experimental central role",
+        "each field receives 3-5 scenarios",
+        "S01-S12 are covered exactly once",
+        "each field preserves at least one staffed or static fallback",
+        "PII, biometrics, medical, regulatory, and approval flags are forbidden",
+        "coordinate_patch must be empty"
+      ],
+      "result": "passed"
+    },
+    {
+      "step_id": "03_candidate_generation",
+      "agent_role": "scenario_allocation_agent",
+      "actual_action": "Enumerate all assignments that satisfy the frozen hard gates in deterministic scenario and role order.",
+      "feasible_assignment_count": 55,
+      "result": "passed"
+    },
+    {
+      "step_id": "04_pareto_comparison",
+      "agent_role": "multi_objective_review_agent",
+      "actual_action": "Retain non-dominated assignments across internal ordinal public-interest, fallback, reversibility, affinity, maintenance, dependency, and load-spread criteria.",
+      "pareto_assignment_count": 6,
+      "candidate_count_exposed_for_decision": 3,
+      "candidate_ids": [
+        "authored_baseline",
+        "public_interest_balance",
+        "low_burden_operable"
+      ],
+      "result": "passed",
+      "limitation": "Internal ordinals compare authored options only; they are not field performance, engineering feasibility, public preference, or approval evidence."
+    },
+    {
+      "step_id": "05_negative_case_rejection",
+      "agent_role": "red_team_validation_agent",
+      "actual_action": "Run six authored negative fixtures covering fixed-role violation, duplicate/missing coverage, cardinality overflow, PII flag, missing fallback, and coordinate mutation.",
+      "negative_fixture_count": 6,
+      "negative_fixture_rejection_count": 6,
+      "result": "passed"
+    },
+    {
+      "step_id": "06_human_decision_packet",
+      "agent_role": "decision_support_agent",
+      "actual_action": "Present baseline and two alternatives with trade-offs, failure cases, provisional limits, and release/modify/reject/pause/rollback/exit fields.",
+      "decision_status": "pending",
+      "allowed_human_decisions": [
+        "release_for_authorized_diligence",
+        "modify",
+        "reject",
+        "pause",
+        "rollback",
+        "exit"
+      ],
+      "result": "packet_ready_human_not_signed"
+    },
+    {
+      "step_id": "07_carrier_synchronization",
+      "agent_role": "delivery_consistency_agent",
+      "actual_action": "Synchronize the approved evidence boundary into bilingual proposal text, figures, offline HTML, A3/A0, metrics, matrices, rights notes, and manifest hashes.",
+      "result": "completed_in_current_corrective_package_not_external_acceptance"
+    },
+    {
+      "step_id": "08_review_feedback_loop",
+      "agent_role": "review_response_agent",
+      "actual_action": "Convert current-head reviewer findings into bounded corrections: rights closure, removal of unsupported numeric floor ranges, English figure legibility, and blocker ownership/trigger classification.",
+      "result": "completed_in_current_corrective_package_not_reviewer_accepted"
+    }
+  ],
+  "frozen_outputs": [
+    {
+      "path": "visual/assets/experiment-allocation.js",
+      "sha256": "74c138f4bd47e64480e83ae4e67993ca3a0aa4706ddc82825380d7a31f042d42",
+      "role": "replay program"
+    },
+    {
+      "path": "visual/assets/experiment-run.json",
+      "sha256": "1e62b33263aab878450a28aaebabd4f3aaee1247541ccc31d87dc94c7d415f7b",
+      "role": "candidate, Pareto, negative-fixture, and limitation record"
+    },
+    {
+      "path": "simulation.json",
+      "sha256": "f6c0a42be3a2d0aff8b55fe722006ce6b24624a351c6dec543c6666c6dd891af",
+      "role": "submission simulation task ledger"
+    }
+  ],
+  "verification_contract": {
+    "replay_command": "node visual/assets/experiment-allocation.js --check-only",
+    "expected_counts": {
+      "feasible_assignment_count": 55,
+      "pareto_assignment_count": 6,
+      "selected_candidate_count": 3,
+      "negative_fixture_rejection_count": 6,
+      "coordinate_change_count": 0
+    },
+    "failure_if": [
+      "any frozen input or output hash changes without a new ledger version",
+      "any hard gate is bypassed",
+      "a forbidden flag survives",
+      "coordinates change",
+      "HumanDecision is represented as completed without a real accountable human record"
+    ]
+  },
+  "claims_boundary": {
+    "proves": [
+      "a replayable participant-authored offline planning comparison exists",
+      "multiple feasible and Pareto candidates were generated under frozen hard gates",
+      "authored negative cases were rejected deterministically",
+      "the Agent workflow exposes evidence, constraints, trade-offs, and unresolved human decisions"
+    ],
+    "does_not_prove": [
+      "official geometry or statutory planning",
+      "model superiority or autonomous approval",
+      "field performance, public acceptance, accessibility outcome, cost certainty, or implementation authorization",
+      "professional, organizer, property, heritage, fire, transport, or utility sign-off"
+    ]
+  }
+}

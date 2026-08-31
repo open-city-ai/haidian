@@ -45,23 +45,6 @@ Space is therefore not a homogeneous renewal field. The **long-lived city** carr
 
 ---
 
-### Three Reading Paths: 60 Seconds, 5 Minutes, Deep Read
-
-To accommodate reviewers with varying time budgets and focus areas, three self-contained reading paths are provided:
-
-| Path | What to Read | Questions Answered |
-| :--- | :--- | :--- |
-| **60 Seconds** | Core Thesis ｜ Three Core Evidence Readings ｜ Five Core Figures with Reading Guides | What problem the proposal solves, what it delivers, and what it strictly avoids |
-| **5 Minutes** | Three Scopes ｜ STATUS × ACTION Spatial Mending ｜ Three Key Area Typologies ｜ 12→3 Admission & 9 NO-BUILD Tasks ｜ A Citizen's Day | Spatial structure, jurisdictional boundaries, scenario deployment, and human lived experience |
-| **Deep Read** | Full text reading ｜ Cross-audit against `simulation.json`, `metrics.json`, `compliance_matrix.json`, and `assumptions.json` | Field triggers, recalculation methods, and exit responsibilities for every spatial and institutional claim |
-
-**Three Core Evidence Readings**:
-1. **Offline State-Machine Rehearsal**: **12/12** tasks passed; Handover Assertions: **48/48** passed;
-2. **Three Deep Delivery Contracts**: CONTRACT-S01 / CONTRACT-S04 / CONTRACT-S07 close ordinary baseline, admission gate, minimum reversible delta, human authority, and exit/reset side by side; read FIG.05 first, then deepen through this section and the delivery mechanism chapter;
-3. **Field Engineering & Live Deployment**: **0/12**, strictly reserved for the field environment, contingent upon official data release, statutory redlines, and formal authorizations. [metric:deep_ai_task_packet_count]
-
----
-
 ## Six Taskbook Deliverables: From Index to City Narrative
 
 This is not a compliance checklist appended to the proposal. All six tasks are placed in one readable, reversible and reviewable city narrative: keep the ordinary city working first; distinguish fact, rule and unknown before discussing the minimum spatial delta. The diagram below gives entry points to the six tasks, twelve scenario cards, three deep validations, six personas, five cases and three landmarks. [data:visual/assets/taskbook-closure.json#reviewer_route]
@@ -120,7 +103,7 @@ The three landmarks are operationally AI-native and physically minimal reversibl
 
 ### Task 5: Culture Is Not an AI Decoration
 
-The Jing-Zhang railway switchback becomes “trading admission for resilience”; a crossing becomes “protect surface continuity first”; handover becomes “stop, sign, exit and reset.” Zhongguancun innovation culture and AI new culture are therefore not spectacle images but a testable, contestable public process that can return to ordinary city. Wayfinding uses the bilingual rule “place + STATUS + allowed ACTION + human help + stop/reset.” It is distinct from the overall Logo: the first answers where and what now; the second expresses the identity of the belt. The international line is: **“An ordinary city that earns every exceptional state - and can give it back.”** [data:visual/assets/taskbook-closure.json#public_space_and_culture]
+This proposal’s cultural translation is a participant-authored conceptual analogy, not a factual claim about exact railway engineering, operating protocols, or current spatial conditions: changing alignment becomes “trading admission for resilience”; a crossing becomes “protect surface continuity first”; and handover becomes “stop, sign, exit and reset.” Zhongguancun innovation culture and AI new culture are therefore not spectacle images but a testable, contestable public process that can return to ordinary city. Wayfinding uses the bilingual rule “place + STATUS + allowed ACTION + human help + stop/reset.” It is distinct from the overall Logo: the first answers where and what now; the second expresses the identity of the belt. The international line is: **“An ordinary city that earns every exceptional state - and can give it back.”** [data:visual/assets/taskbook-closure.json#public_space_and_culture]
 
 ### Task 6: A Stoppable Annual Operating Cycle
 
@@ -140,12 +123,12 @@ The three formal visual metrics remain calculated from participant-supplied prov
 
 ---
 
-## Historical Heritage & Spatial Precedents: Alignment, Crossing, and Handover
+## Cultural Translation & Spatial Analogies: Alignment, Crossing, and Handover
 
-The Jing-Zhang Railway left not merely a physical alignment, but engineering wisdom for navigating complex urban constraints:
-1. **Switchback Alignment (Trading Distance for Gradient)**: Jeme Tien Yow solved the steep mountain gradient at Qinglongqiao with a switchback ("人" shape). This proposal translates that into **"Trading Admission for Resilience"**—avoiding blanket corridor-wide AI deployment in favor of spatial graduation and reversible admission to handle technological uncertainty. [source:OFFICIAL-ANNOUNCEMENT]
-2. **Level Crossing Stitching (Grade Crossings and Separation)**: Historic level crossings evolved into contemporary urban stitching seams such as Tsinghua East Road and Zhichun Road. This proposal insists on continuous surface pedestrian routes and independent step-free paths, preventing technological apparatus from severing daily civic life. [source:PARK-PHASE1]
-3. **Handover Accountability (Dual-Confirmation Protocol)**: Railway handover protocols mandate that incoming and outgoing shifts verify status and unresolved items never disappear. This proposal establishes a complete `S0 Ordinary City → S1 Admitted Specialist State → S2 Reset/Exit` handover chain, ensuring every technological intervention has a designated signatory and an exit ticket. [source:AGENT-TASKBOOK]
+The following three are participant-authored cultural translations, not claims about the route's exact historical engineering, operational protocols, or current spatial condition:
+1. **Changing Alignment (Conceptual Analogy)**: A rail alignment that changes direction becomes **"Trading Admission for Resilience"**—the proposal avoids blanket corridor-wide AI deployment in favour of spatial graduation and reversible admission when technological uncertainty remains.
+2. **Crossing Stitching (Conceptual Analogy)**: A crossing becomes the rule **"protect surface continuity first."** The proposal therefore keeps continuous surface pedestrian routes and independent step-free paths ahead of any technical apparatus.
+3. **Handover Accountability (Conceptual Rule)**: Handover becomes **"stop, sign, exit and reset."** The proposal establishes an `S0 Ordinary City → S1 Admitted Specialist State → S2 Reset/Exit` chain so each proposed technological exception has a future accountable handoff and exit record.
 
 ---
 
@@ -353,6 +336,16 @@ All three deep scenarios remain `CONCEPT_PROPOSAL`. Their feasibility does not c
 ### The Site-validation Packet Is a Pause Gate, Not a Missing Promise
 
 This submission **does not contain** a site-validated implementation packet and therefore does not call any deep contract implementable. A future packet must bind official geometry, rights/access, authority, engineering and capacity, funding path, and phasing/approvals for the same carrier; every one is currently `PAUSE_UNTIL_OFFICIAL_DATA`, `AUTHORIZATION_REQUIRED`, or `PROFESSIONAL_DEEPENING_REQUIRED`. Until rights-holders and qualified professionals establish, review and authorize that packet, S01/S04/S07 can only remain an ordinary-space result or pause. The table below records feasibility **boundaries and next steps** that do not invent site data; it is not field-feasibility proof. [data:visual/assets/taskbook-closure.json#claim_qualifications]
+
+### Participant Readiness Closure: Handoff Before Action
+
+What the participant can deliver now is not a promise that a field action is ready. It is a reference professional handoff packet that puts screening, rejection, and reset before action: it first tests whether a carrier could ever satisfy rights, ordinary-route, accessibility, and interface conditions; then keeps an S01 `PARTICIPANT_REFERENCE` task packet; and finally joins role types, hazard/lockout/NO-GO, operations, acceptance, rights acquisition, and ordinary-baseline restoration into one future handoff chain. [data:visual/assets/implementation-readiness-dossier.json#carrier_screen_reject_register] [data:visual/assets/implementation-readiness-dossier.json#participant_reference_task_packet]
+
+- **Carrier—task.** The participant provides a carrier screen/reject register, an S01 reference task, and lower-tech and NO-BUILD alternatives. **External gate:** rights, access, ordinary route, real task, data, and interfaces all remain `HOLD`.
+- **Roles—safety—operations.** The participant provides a role-type RACI, a hazard/lockout/NO-GO matrix, and a pre-open—stop—isolate—reset record structure. **External gate:** no operator, statutory authority, field capacity, engineering condition, or safety performance is appointed or claimed.
+- **Cost—acceptance—rights.** The participant provides a non-BOQ CAPEX/OPEX structure, layered acceptance, a rights/authority acquisition path, and a Day-1/Week-1 HOLD-closure map. **External gate:** `market_quotation_count=0`, `approved_budget=null`, and `funding_commitment=null`; any failed gate pauses, quarantines, or returns to ordinary city.
+
+On 2026-08-31, public sources were rechecked only as **context** for the competition and city-renewal setting: they can clarify task scale or published information, but cannot prove current carrier rights, operator, budget, real task, engineering condition, or approval. A future Day 1 only opens evidence requests and observations for rights, route, and task; Week 1 may test role separation, stop/lockout, and ordinary-baseline restoration only after applicable authorization and professional review. No Day-1 or Week-1 action has occurred today, and `P0_GO=false`. [source:OFFICIAL-ANNOUNCEMENT] [data:visual/assets/implementation-readiness-dossier.json#day_1_week_1_hold_closure_map]
 
 ### Read Actor, Funding and Readiness Separately
 

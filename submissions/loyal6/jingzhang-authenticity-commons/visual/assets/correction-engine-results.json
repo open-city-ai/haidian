@@ -1,7 +1,7 @@
 {
   "ok": true,
   "scope": "local_synthetic_software_test_not_field_performance",
-  "fixture_sha256": "063bd8c348d5a064c27b0d35e06671effc486471c84dd2e1d7f53d815efd3560",
+  "fixture_sha256": "2b969fd3b03ee6e47a60ac66b915fd567704e6f97419b3511c67e2552b723728",
   "tests": [
     {
       "name": "complete synthetic fixture",
@@ -36,6 +36,62 @@
       "expected": "retire",
       "actual": "retire",
       "reason": "recovery_record_missing",
+      "passed": true
+    },
+    {
+      "name": "remove case_dossier.intake_receipt",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "intake_receipt_missing",
+      "passed": true
+    },
+    {
+      "name": "remove case_dossier.pause_receipt",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "pause_receipt_missing",
+      "passed": true
+    },
+    {
+      "name": "remove case_dossier.independent_review_record",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "independent_review_record_missing",
+      "passed": true
+    },
+    {
+      "name": "remove case_dossier.same_channel_correction_receipt",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "same_channel_correction_receipt_missing",
+      "passed": true
+    },
+    {
+      "name": "remove case_dossier.retest_ticket",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "retest_ticket_missing",
+      "passed": true
+    },
+    {
+      "name": "remove case_dossier.adoption_consequence",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "adoption_consequence_missing",
+      "passed": true
+    },
+    {
+      "name": "remove case_dossier.recovery_retirement_receipt",
+      "expected": "retire",
+      "actual": "retire",
+      "reason": "institutional_recovery_receipt_missing",
+      "passed": true
+    },
+    {
+      "name": "remove case_dossier.closure_record",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "closure_record_missing",
       "passed": true
     },
     {
@@ -99,6 +155,48 @@
       "expected": "pause",
       "actual": "pause",
       "reason": "invalid_channel_receipt",
+      "passed": true
+    },
+    {
+      "name": "backend-only change cannot close a case",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "same_channel_correction_incomplete",
+      "passed": true
+    },
+    {
+      "name": "service cannot advance before retest completes",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "retest_incomplete_or_self_authorizing",
+      "passed": true
+    },
+    {
+      "name": "retest lead cannot self-authorize restoration",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "retest_incomplete_or_self_authorizing",
+      "passed": true
+    },
+    {
+      "name": "model cannot make adoption consequence",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "human_adoption_consequence_missing",
+      "passed": true
+    },
+    {
+      "name": "unclosed recovery item requires retirement",
+      "expected": "retire",
+      "actual": "retire",
+      "reason": "institutional_recovery_incomplete",
+      "passed": true
+    },
+    {
+      "name": "state machine cannot bypass PAUSE",
+      "expected": "pause",
+      "actual": "pause",
+      "reason": "illegal_state_transition_or_shortcut",
       "passed": true
     }
   ]

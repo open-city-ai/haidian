@@ -2,14 +2,14 @@
 
 > 本文件是 OPEN RAIL · 京张AI共享带（Jing-Zhang AI Commons）提交包的在先权利证据汇编：逐版本列出本地 commit、公开 PR 编号、创建与合并时间、合并 commit 与复核命令，任何读者可独立核验（见第四节）。
 > 时间口径：commit 时间戳为作者本地时间（UTC+8，北京时间）；PR 创建/合并时间为 GitHub UTC 时间戳。表中两者并列，避免时区混淆。
-> 更新时点：本文件随 v2.3 更新；截至本次更新，最新已合并版本为 v2.2（PR #4094）。
+> 更新时点：本文件初版随 v2.3 创建，v3.0 合并后统一补登 v2.3–v3.0 公开记录；截至本次更新，最新已合并版本为 v3.0（PR #4228，UTC 2026-08-30 09:02:58）。
 > This file compiles the priority evidence of the OPEN RAIL · Jing-Zhang AI Commons submission package: per-version local commits, public PR numbers, creation and merge timestamps, merge commits and re-verification commands. Any reader can independently verify them (see Section 4).
 
 ## 一、首次公开锚点（First-publication anchor）
 
 - **首次公开时刻**：v1.0 commit `cfcab239e` 于北京时间 2026-08-27 02:01:28（UTC 2026-08-26 18:01:28）推送至公开 fork `deerred643-star/haidian`——commit 对象自此在 GitHub 公开可查。
 - **首次进入征集主仓库**：PR #4063 于 UTC 2026-08-26 18:25:46 创建，UTC 2026-08-26 20:04:12 合并进 `open-city-ai/haidian` main（合并 commit `cc666012d`）。
-- **最新已合并版本**：v2.2（commit `91c81cee8`）随 PR #4094 于 UTC 2026-08-27 13:37:47 合并（合并 commit `7406fcbf9`）。
+- **最新已合并版本**：v3.0（commits `6e340fe2`＋`d30f9c622`）随 PR #4228 于 UTC 2026-08-30 09:02:58 合并（合并 commit `162653f45`，合并人 CocoSgt，label `review/intake-accepted`）。
 - **保守口径声明**：本证据链以「commit 推送至公开 fork」与「PR 创建」两层公开时间戳为准；不主张任何早于 GitHub 公开时间戳的在先权利（如本地草稿时间）。
 - **Anchor**: v1.0 commit `cfcab239e` was pushed to the public fork `deerred643-star/haidian` at UTC 2026-08-26 18:01:28 (Beijing 2026-08-27 02:01:28). No priority earlier than these public GitHub timestamps (e.g. local draft times) is claimed.
 

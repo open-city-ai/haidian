@@ -1,0 +1,590 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "项目任务书、枚举、允许设计空间、指标范围和 schema。"
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "公开/清权/临时资料用途登记表，区分 formal、background、provisional 用途。"
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "任务、范围、资料用途与缺口导航层，不是新权威来源。"
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "提交的总体设计边界（provisional）。"
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "三处重点区域（provisional）。"
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usage": "公告 1.3/1.4/1.5 任务、三层范围、重点区、语言与成果深度。"
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "三条定位、五大功能、三区两翼、六项 agent 任务与边界条款。"
+    },
+    {
+      "id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usable_for_formal": "yes",
+      "usage": "资格预审公告登记记录（本地快照见 standards/references/）。"
+    },
+    {
+      "id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "path": "brief/site-package/standards/references/agent-open-call-taskbook-0518.md",
+      "source_type": "user_provided_cleared",
+      "usable_for_formal": "yes",
+      "usage": "面向智能体任务书摘录登记记录。"
+    },
+    {
+      "id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+      "source_type": "official_public",
+      "usable_for_formal": "yes",
+      "usage": "城市设计管理办法登记记录。"
+    },
+    {
+      "id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+      "url": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
+      "source_type": "official_public",
+      "usable_for_formal": "yes",
+      "usage": "控制性详细规划编制审批办法登记记录。"
+    },
+    {
+      "id": "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311",
+      "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+      "source_type": "official_public",
+      "usable_for_formal": "yes",
+      "usage": "用地用海分类指南登记记录。"
+    },
+    {
+      "id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "provisional_repository_data",
+      "usable_for_formal": "provisional_only",
+      "usage": "三层范围与三处重点区临时粗略 polygon；仅用于 AI 生成、可视化与自检。"
+    },
+    {
+      "id": "SRC-2026-BJ-KW-THREE-AREAS-WINGS",
+      "url": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtcyfz/202604/t20260403_4573808.html",
+      "source_type": "official_public",
+      "authority_level": "A1",
+      "usage": "「三区两翼」世界级AI集聚地背景叙事。"
+    },
+    {
+      "id": "SRC-2026-HAIDIAN-1X1",
+      "url": "https://www.bjhd.gov.cn/ztzx/2026/2026jjshgzlfzdh/yw/202603/t20260303_4806875.shtml",
+      "source_type": "official_public",
+      "authority_level": "A1",
+      "usage": "海淀区「1+X+1」现代化产业体系背景，AI 为核心产业定位。"
+    },
+    {
+      "id": "SRC-OSM-COPYRIGHT",
+      "url": "https://www.openstreetmap.org/copyright",
+      "source_type": "open_data_license",
+      "usage": "OpenStreetMap 公开数据版权与 ODbL 署名要求。"
+    },
+    {
+      "id": "GLOBAL-AI-CASE-BACKGROUND",
+      "source_type": "background_concept",
+      "usage": "硅谷 one-north / 国王十字 / 慕尼黑 / 杭州 / 深圳等公开常识性产业机制借鉴（仅作机制参照，不作数据承诺）。",
+      "usable_for_formal": "background_only"
+    },
+    {
+      "id": "JIUZHANG-CONCEPT",
+      "source_type": "concept_cultural_reference",
+      "usage": "「九章算术」为公共知识文化概念，命名与文化叙事仅作概念性公共引用，不涉及版权。",
+      "usable_for_formal": "concept_only"
+    },
+    {
+      "id": "DATA-SRC-GB-55019-2021",
+      "url": "https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefagui/202106/t20210617_250852.html",
+      "source_type": "official_public",
+      "usable_for_formal": "yes",
+      "usage": "建筑与市政工程无障碍通用规范（强制性工程建设规范，2022-04-01 实施）；应对评审'机器视觉无法验证无障碍'",
+      "version": "v4.3",
+      "registered_in": "visual/assets/accessibility-mapping.json"
+    },
+    {
+      "id": "DATA-SRC-WCAG-22-AA",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "source_type": "standard_reference",
+      "usage": "W3C Web Content Accessibility Guidelines 2.2 AA 级（数字界面补充）；visual/assets/accessibility-mapping.json",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-EPSG-4548",
+      "url": "https://epsg.io/4548",
+      "source_type": "standard_reference",
+      "usage": "EPSG:4548 (CM 117E Gauss-Kruger) 投影坐标参考；用于面积复算（visual/assets/recompute-evidence.json）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-PYPROJ",
+      "url": "https://pyproj4.github.io/pyproj/stable/",
+      "source_type": "tool_reference",
+      "usage": "pyproj 用于 EPSG:4548 ↔ WGS84 转换与投影面积计算",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-SHAPELY",
+      "url": "https://shapely.readthedocs.io/",
+      "source_type": "tool_reference",
+      "usage": "shapely 用于 polygon area + unary_union 计算",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-V1-PUBLIC-SPACE-APPROXIMATE",
+      "source_type": "legacy_package_compatibility",
+      "usage": "v1.x 早期版本 proposal.md 附录中 6 处公共空间几何总和近似值 251,000 sqm；已在 v2.3.6 起被 1,074,150.682 取代（visual/assets/recompute-evidence.json）",
+      "version": "v4.3",
+      "deprecated": true
+    },
+    {
+      "id": "SRC-2026-HAIDIAN-1X1-OFFICIAL",
+      "url": "https://www.bjhd.gov.cn/ztzx/2026/2026jjshgzlfzdh/yw/202603/t20260303_4806875.shtml",
+      "source_type": "official_public",
+      "authority_level": "A1",
+      "usage": "海淀区「1+X+1」现代化产业体系官方背景",
+      "version": "v4.3"
+    },
+    {
+      "id": "SRC-2026-BJ-KW-THREE-AREAS-WINGS-OFFICIAL",
+      "url": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtcyfz/202604/t20260403_4573808.html",
+      "source_type": "official_public",
+      "authority_level": "A1",
+      "usage": "「三区两翼」世界级AI集聚地官方背景",
+      "version": "v4.3"
+    },
+    {
+      "id": "SRC-2025-MOHURD-URBAN-DESIGN-MEASURES",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+      "source_type": "official_public",
+      "usage": "城市设计管理办法（MOHURD 2017 修订 / 2023 链接）",
+      "version": "v4.3"
+    },
+    {
+      "id": "SRC-2022-STATE-COUNCIL-CONTROL-PLANNING",
+      "url": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
+      "source_type": "official_public",
+      "usage": "城市、镇控制性详细规划编制审批办法（2022-01-25 国务院发布）",
+      "version": "v4.3"
+    },
+    {
+      "id": "SRC-2023-MNR-LAND-USE-CLASSIFICATION",
+      "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+      "source_type": "official_public",
+      "usage": "国土空间调查、规划、用途管制用地用海分类指南（MNR 2023-11）",
+      "version": "v4.3"
+    },
+    {
+      "id": "SRC-2016-MOHURD-ARCH-DESIGN-DEPTH",
+      "url": "https://www.mohurd.gov.cn/gongkai/zhengce/zhengcefagui/201612/t20161212_250886.html",
+      "source_type": "official_public",
+      "usage": "建筑工程设计文件编制深度规定（2016 年版）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "站点包（任务书、枚举、允许设计空间、指标范围和 schema）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "任务、范围、资料用途与缺口导航层",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "公开/清权/临时资料用途登记表，区分 formal、background、provisional 用途",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-AGENT-TASKBOOK-OFFICIAL",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "面向智能体任务书摘录登记记录（agent.1—agent.6 六项任务）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-PROVISIONAL-BOUNDARIES-OFFICIAL",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "provisional_repository_data",
+      "usable_for_formal": "provisional_only",
+      "usage": "三层范围与三处重点区临时粗略 polygon（provisional_constraint）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "提交的总体设计边界（provisional）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "三处重点区域（provisional）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-OSM",
+      "url": "https://www.openstreetmap.org/copyright",
+      "source_type": "open_data_license",
+      "license": "ODbL",
+      "usage": "OpenStreetMap 公开数据版权与 ODbL 署名要求",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-OSM-OVERPASS",
+      "url": "https://wiki.openstreetmap.org/wiki/Overpass_API",
+      "source_type": "tool_reference",
+      "usage": "OSM Overpass API 数据下载端点",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-GLOBAL-AI-CASE-BACKGROUND",
+      "source_type": "background_concept",
+      "usable_for_formal": "background_only",
+      "usage": "硅谷 / 国王十字 / one-north / 特拉维夫 / 云栖小镇 / 深圳湾等公开常识性产业机制借鉴",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-JIUZHANG-CONCEPT",
+      "source_type": "concept_cultural_reference",
+      "usable_for_formal": "concept_only",
+      "usage": "「九章算术」为公共知识文化概念",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-RENDER-EVIDENCE-PROTOTYPE",
+      "source_type": "self_generated",
+      "usage": "visual/assets/render-evidence/ 内的 PNG 截图作为可视交付物可读性证据（新增）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-PARAMETRIC-COST-MODEL",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/parametric-cost-model.json (skeleton_only_no_estimates)；成本模型方法论",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-STATUTORY-RECONCILIATION",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/statutory-reconciliation.json (L1/L2/L3 冲突矩阵)；法定对账方法论",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-IMPLEMENTATION-CARDS",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/implementation-cards.json (OR-P1..P8 五要素实施卡)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-COMMITMENT-THRESHOLDS",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/commitment-thresholds.json (P1-P6 阈值 + breach disposition)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-LIFECYCLE-OM-FRAMEWORK",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/lifecycle-om-framework.json (4 类数据生命周期分级)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-FAILURE-MODES",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/failure-modes.json (F1-F8 失败模式)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-OPERATOR-QUALIFICATION",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/operator-qualification.json (运营主体候选与资质)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-CAPACITY-PREASSESSMENT",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/capacity-preassessment.json (承载力评估输入参数)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-BASELINE-PROTOCOLS",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/baseline-protocols.json (BL-P1..P5 现场基线测量协议)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-RECOMPUTE-EVIDENCE",
+      "source_type": "methodology_design",
+      "usage": "visual/assets/recompute-evidence.json (251000 vs 1074150 重算证据)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-NOTO-SANS-SC",
+      "url": "https://fonts.google.com/noto/specimen/Noto+Sans+SC",
+      "source_type": "open_font_license",
+      "license": "SIL Open Font License 1.1 (redistributable)",
+      "usage": "Noto Sans SC 中文字体；HTML webfont 子集见 visual/assets/noto-sans-sc-subset.css；A0/A3 PDF 嵌入子集（由可变字体 NotoSansSC-VF.ttf 实例化 wght=400 后子集化，覆盖 1298 个码位，含全部渲染所需 CJK / CJK 标点 / 全角符号，嵌入名 NotoSansSC-Thin，嵌入 4 份 PDF，不作为独立文件分发）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-PERSONA-FISHBOWL-METHODOLOGY",
+      "source_type": "methodology_design",
+      "usage": "5 persona × 13 scenario 反馈矩阵 (persona_simulation/persona_feedback.json)",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-COMPLIANCE-MATRIX-SCHEMA",
+      "path": "brief/site-package/schemas/compliance_matrix.schema.json",
+      "source_type": "schema_reference",
+      "usage": "compliance_matrix.json 校验模式来源",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-DESIGN-DEPTH-MATRIX-SCHEMA",
+      "path": "brief/site-package/schemas/design_depth_matrix.schema.json",
+      "source_type": "schema_reference",
+      "usage": "design_depth_matrix.json 校验模式来源",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-STANDARD-MATRIX-SCHEMA",
+      "path": "brief/site-package/schemas/standard_matrix.schema.json",
+      "source_type": "schema_reference",
+      "usage": "standard_matrix.json 校验模式来源",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-METRICS-SCHEMA",
+      "path": "brief/site-package/schemas/metrics.schema.json",
+      "source_type": "schema_reference",
+      "usage": "metrics.json 校验模式来源",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-MANIFEST-SCHEMA",
+      "path": "brief/site-package/schemas/manifest.schema.json",
+      "source_type": "schema_reference",
+      "usage": "manifest.json 校验模式来源（schema_version 0.1.x）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-SELF-CHECK-SCHEMA",
+      "path": "brief/site-package/schemas/self_check.schema.json",
+      "source_type": "schema_reference",
+      "usage": "self_check.json 校验模式来源",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-PUBLIC-BRIEF",
+      "path": "docs/review-rubric.md",
+      "source_type": "official_public",
+      "usage": "评审 Rubric（公开来源；score_submission advisory 'brief/public-brief.md' 提示的源）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-THREE-JS",
+      "url": "https://threejs.org/",
+      "source_type": "open_source_library",
+      "license": "MIT",
+      "usage": "three.js 3D 渲染库（v2.3.x 用于 visual/3d.html）",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-REPORTLAB",
+      "url": "https://docs.reportlab.com/",
+      "source_type": "open_source_library",
+      "license": "BSD",
+      "usage": "reportlab PDF 生成库",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-MATPLOTLIB",
+      "url": "https://matplotlib.org/",
+      "source_type": "open_source_library",
+      "license": "PSF-based",
+      "usage": "matplotlib 图表绘制库",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-PIL-PILLOW",
+      "url": "https://pillow.readthedocs.io/",
+      "source_type": "open_source_library",
+      "license": "MIT-CMU",
+      "usage": "Pillow 图像处理库",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-OSMNX",
+      "url": "https://osmnx.readthedocs.io/",
+      "source_type": "open_source_library",
+      "license": "MIT",
+      "usage": "OSMnx 路网下载与可视化",
+      "version": "v4.3"
+    },
+    {
+      "id": "DATA-SRC-ARCHIVE-LIUZHAOJUN",
+      "path": "submissions/li-zhaojun/li-zhaojun-archive/",
+      "source_type": "submission_archive",
+      "usage": "v2.3.x 时期的方法论证据存档（proposal.en.md + 3D scene + dashboard 等）",
+      "version": "v4.3"
+    }
+  ],
+  "assets_ledger": [
+    {
+      "asset_id": "AL-LOGO-SVG",
+      "type": "logo_vector",
+      "path": "assets/figures/logo.svg",
+      "author_or_generator": "self-generated, no external template",
+      "input_materials": "self-typed vector primitives",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "embedded in proposal.md and visual/index.html（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    },
+    {
+      "asset_id": "AL-LOGO-PNG",
+      "type": "logo_raster",
+      "path": "assets/figures/logo.png + logo-horizontal.png + logo-mark.png",
+      "author_or_generator": "self-generated via PIL",
+      "input_materials": "self-typed vector primitives",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "embedded in proposal.md and visual/index.html（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    },
+    {
+      "asset_id": "AL-FIG-CORE",
+      "type": "concept_render_raster",
+      "path": "assets/figures/site-overview.png, land-use-structure.png, key-areas.png, mobility-bluegreen.png, metrics-evidence.png",
+      "author_or_generator": "self-generated via matplotlib/PIL",
+      "input_materials": "self-typed GeoJSON data",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "embedded in proposal.md and report/proposal.html（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    },
+    {
+      "asset_id": "AL-PDF-DRAWINGS",
+      "type": "architectural_diagram_pdf",
+      "path": "drawings/a3-booklet.pdf, drawings/a0-boards.pdf",
+      "author_or_generator": "self-generated via reportlab",
+      "input_materials": "self-typed text + matplotlib figures",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "embedded in proposal.md（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    },
+    {
+      "asset_id": "AL-HTML-VISUAL",
+      "type": "interactive_visualization",
+      "path": "visual/index.html, report/proposal.html",
+      "author_or_generator": "self-generated",
+      "input_materials": "self-typed HTML/CSS/JS + inline GeoJSON",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "embedded in proposal.md（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    },
+    {
+      "asset_id": "AL-MAP-OSM",
+      "type": "open_street_map_derivative",
+      "path": "raw OSM layers archived at submissions/li-zhaojun/li-zhaojun-archive/osm_roads_real.geojson (NOT shipped in submission package since v2.4.1); OSM-derived content present in-package as assets/figures/global_comparison.png + persona_heatmap.png",
+      "author_or_generator": "downloaded from OpenStreetMap via osmnx; rendered into figures via matplotlib",
+      "input_materials": "OSM data via Overpass API (10447 edges; density 3.43 km/km²)",
+      "license": "ODbL (Open Database License) — © OpenStreetMap contributors; share-alike",
+      "version": "downloaded 2026-08",
+      "attribution_location": "report/copyright_statement.md §逐路径权利登记; rights-registry.json entries for assets/figures/global_comparison.png + persona_heatmap.png（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "share-alike derivative for design analysis; raw data archived, not redistributed in package"
+    },
+    {
+      "asset_id": "AL-FONT",
+      "type": "embedded_font_subset + pdf_base14",
+      "path": "embedded into drawings/a3-booklet.pdf, a3-booklet.en.pdf, a0-boards.pdf, a0-boards.en.pdf via reportlab TTFont (subset instantiated from NotoSansSC-VF.ttf; not distributed as a standalone file)",
+      "author_or_generator": "Noto Sans SC subset instantiated from variable font NotoSansSC-VF.ttf (wght=400) via fonttools varLib.instancer + Subsetter; ASCII glyphs use PDF base-14 Helvetica (no embedding required)",
+      "input_materials": "NotoSansSC-VF.ttf (SIL OFL 1.1 source variable font); no STSong-Light or other CID font path used",
+      "license": "Noto Sans SC subset = SIL Open Font License 1.1 (redistributable, including with the embedding PDF); PDF base-14 Helvetica = Adobe PDF specification built-in (no embedding/attribution required)",
+      "version": "v4.3",
+      "attribution_location": "drawings/a3-booklet.pdf, drawings/a3-booklet.en.pdf, drawings/a0-boards.pdf, drawings/a0-boards.en.pdf（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "redistributable as part of this PDF submission under COMMUNITY-DISPLAY-ONLY; OFL 1.1 requires retaining license notice — see the 4 PDF entries' rights_basis in visual/assets/rights-registry.json",
+      "removed_dependencies": "Microsoft YaHei, SimSun (Windows system fonts; personal use only, NOT redistributable) — replaced with embedded Noto Sans SC subset + PDF base-14 Helvetica in v4.3 third-round; STSong-Light CID path (used in v4.3 second-round) was removed after PyMuPDF verification showed embedded Noto subset alone covers all CJK with 0 missing glyphs"
+    },
+    {
+      "asset_id": "AL-CODE",
+      "type": "open_source_python",
+      "path": "generation scripts (regen_figures.py, gen_pdfs_v4_3.py) maintained at repository root — NOT shipped in submission package (package scripts/ dir empty since v2.4.1; methodology retained in li-zhaojun-archive)",
+      "author_or_generator": "self-authored",
+      "input_materials": "standard library + osmnx + matplotlib + reportlab + shapely + pyproj + fonttools + PyMuPDF",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "metrics.json formula fields + changelog.md（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    },
+    {
+      "asset_id": "AL-GEOJSON",
+      "type": "self_authored_geodata",
+      "path": "geometry/*.geojson",
+      "author_or_generator": "self-generated from provisional boundary",
+      "input_materials": "self-typed coordinates",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "embedded in proposal.md and report/proposal.html（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    },
+    {
+      "asset_id": "AL-EVIDENCE-JSONS-V242",
+      "type": "structured_evidence_data",
+      "path": "visual/assets/*.json (12 files)",
+      "author_or_generator": "self-authored methodology",
+      "input_materials": "reviewer-identified gaps + bilingual structured responses",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "manifest.json evidence_assets + proposal.md inline [evidence:...] refs（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    },
+    {
+      "asset_id": "AL-RENDER-EVIDENCE-PNG-V242",
+      "type": "render_screenshot",
+      "path": "visual/assets/render-evidence/*.png (4 files: proposal-report-zh/en, index-zh/en)",
+      "author_or_generator": "self-rendered via puppeteer/playwright",
+      "input_materials": "proposal.html + index.html + system fonts",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "version": "v4.3",
+      "attribution_location": "manifest.json + visual/assets/webfont-coverage-evidence.json（免责声明见 report/copyright_statement.md；本许可范围仅限本次社区展示，不构成对第三方权利的确认或背书）",
+      "permitted_use_scope": "open-city-ai/haidian community display only"
+    }
+  ],
+  "license_status_note_zh": "v4.3: assets_ledger 与 visual/assets/rights-registry.json 列出的所有作者、生成工具、许可信息均基于公开来源与自报内容；在逐路径登记范围内未发现未经授权素材，但本包未完成最终法律清权（proposal.md 明示），所有声明仅限本次社区评审展示，不得用于商业化或法定背书。如发现权利问题，相关素材将在收到通知后立即替换或移除。",
+  "license_status_note_en": "v4.3: All authors, generators, and license info in assets_ledger and visual/assets/rights-registry.json are based on public sources and self-declaration; within the per-path registry scope no unauthorized materials have been identified, but the package has NOT completed final legal clearance (per proposal.md), and all assertions are limited to community review display only, not for commercial or statutory endorsement."
+}
