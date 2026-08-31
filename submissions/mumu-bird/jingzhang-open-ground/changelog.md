@@ -1,5 +1,12 @@
 # 方案迭代记录
 
+## v4.2 - 2026-08-31
+
+- Replaced A3 page 35's mismatched culture/wayfinding collage with one site-linked three-part visual for staffed community health, teacher-led AI learning and accessible navigation.
+- Added page-level protocols naming users, places, human decision gates and stop rules so the image can be read without guessing.
+- Clarified the internal media README, asset ledger and copyright statement without modifying the repository's public README files.
+- Rebuilt the asset, programme, mobility, infrastructure and Dazhongsi figures with named locations, physical programmes, maintainers and implementation conditions.
+
 ## v4.1 - 2026-08-31
 
 - Reworked the 40-page A3 narrative around one explicit causal line: railway spine → two wings → three open grounds → five stitches → accountable operating system.
