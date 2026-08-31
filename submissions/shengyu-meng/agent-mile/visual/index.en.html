@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FALLOW SPINE · Morphological atlas</title>
+<style>
+:root { --bg:#16110C; --plate:#E7DCC8; --ink:#1A1612; --muted:#6B5E4E; --gold:#C4A15A; --rust:#8C4A2A; --green:#2F4A38; --night:#0B1F2A; }
+* { box-sizing:border-box; }
+body { margin:0; font-family: "WenQuanYi Micro Hei", "DejaVu Serif", serif; background:var(--bg); color:var(--plate); }
+header { padding:36px 28px 18px; border-bottom:1px solid #3A2F22; }
+.atlas { letter-spacing:0.28em; font-size:11px; color:var(--gold); text-transform:uppercase; }
+h1 { margin:8px 0 10px; font-size:30px; font-weight:normal; }
+.lead { max-width:78ch; color:#C9BBA4; line-height:1.65; }
+.provisional { display:inline-block; border:1px dashed var(--gold); color:var(--gold); padding:2px 8px; font-size:12px; margin-top:10px; }
+main { display:grid; grid-template-columns: 1.45fr 0.75fr; gap:18px; padding:22px; }
+@media (max-width:900px) { main { grid-template-columns:1fr; } }
+section { background:#1E1812; padding:16px 16px 18px; margin-bottom:14px; border:1px solid #3A2F22; }
+h2 { margin:0 0 8px; font-size:15px; color:var(--gold); font-weight:normal; letter-spacing:0.08em; }
+.hero img, .plate img { width:100%; height:auto; border:1px solid #4A3B28; }
+.metric { display:flex; justify-content:space-between; border-bottom:1px solid #3A2F22; padding:8px 0; font-size:14px; }
+.metric strong { color:var(--plate); }
+canvas { width:100%; height:320px; background:#0B0A08; border:1px solid #4A3B28; }
+.fallback { display:none; }
+@media (prefers-reduced-motion: reduce) { canvas { display:none; } .fallback { display:block; } }
+.legend span { display:inline-block; margin-right:12px; font-size:12px; color:#A89880; }
+.rules { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:10px 0 0; }
+@media (max-width:900px) { .rules { grid-template-columns:1fr 1fr; } }
+.rule { border:1px solid #3A2F22; padding:8px; font-size:12px; color:#E7DCC8; min-height:4.6em; }
+.rule b { display:block; color:var(--gold); margin-bottom:4px; }
+video { width:100%; background:#000; }
+footer { padding:16px 28px 36px; color:#8A7A64; font-size:12px; }
+.note { color:#A89880; font-size:13px; line-height:1.55; }
+.plate-no { float:right; color:#8A7A64; font-size:11px; letter-spacing:0.16em; }
+</style>
+</head>
+<body>
+<header>
+  <div class="atlas">Morphological Atlas · Plate series</div>
+  <h1>THE FALLOW SPINE · Emergence Morphology Atlas</h1>
+  <p class="lead">Urban land is read as tissue that can differentiate. Five morphological generators — trace, threshold, decay, human-review gate, hybrid metabolism — grow habitat, metabolic, phenotypic, and fallow tissue. Land use is tissue, not zoning. Landmarks are accretions. This page is an atlas, not a debug dashboard and not a masterplan animation.</p>
+  <p class="provisional">Provisional geometry · not an official redline · conceptual suggestion</p>
+  <p>Independent artist Meng Shengyu / AgentBuildings师 / shengyu-meng</p>
+</header>
+<main>
+  <div>
+    <section class="hero">
+      <span class="plate-no">PLATE I</span>
+      <h2>Overview map</h2>
+      <img src="../assets/figures/site-overview.en.png" alt="01 Site Overview · Emergence Morphology">
+      <p class="legend"><span>Green = habitat</span><span>Rust = phenotype</span><span>Veins = traces</span></p>
+    </section>
+    <section>
+      <span class="plate-no">PLATE LIVE</span>
+      <h2>Emergence diagram (local Canvas)</h2>
+      <p class="note">Offline exercise: walkers, mycelium, and civic agents see only neighbour traces. The railway remnant is a weak terrain bias. Heritage-frozen cells cannot flip; high-risk flips enter the human-review gate. Complex pattern grows from local generators.</p>
+      <canvas id="emerge" width="900" height="320" role="img" aria-label="Morphological generators running: trace, threshold, decay, human-review gate, hybrid metabolism"></canvas>
+      <div class="fallback"><img src="../assets/figures/site-overview.en.png" alt="01 Site overview static fallback"></div>
+      <p id="status">Loading local morphological exercise…</p>
+      <div class="rules">
+        <div class="rule"><b>Trace</b>Local acts leave aggregable traces.</div>
+        <div class="rule"><b>Threshold</b>Only dense traces may propose a tissue flip.</div>
+        <div class="rule"><b>Decay</b>Unused traces fall back to fallow.</div>
+        <div class="rule"><b>Human-review gate</b>Heritage-near or civic proposals wait for people.</div>
+        <div class="rule"><b>Hybrid metabolism</b>Walk, bio, and civic traces convert into one another.</div>
+      </div>
+    </section>
+    <section>
+      <h2>Experience film (no autoplay)</h2>
+      <video controls preload="none" poster="../assets/media/cover.webp">
+        <source src="../assets/media/experience.mp4" type="video/mp4">
+        <track kind="captions" src="../assets/media/experience.vtt" srclang="zh" label="Chinese">
+        <track kind="captions" src="../assets/media/experience.en.vtt" srclang="en" label="English">
+      </video>
+    </section>
+    <section class="plate"><span class="plate-no">PLATE II</span><h2>Overview map</h2><p>Trace spine, three tissues, two wings, grown from one generator set.</p></section>
+    <section><h2>Three-level scope</h2><p>43.6 / 11.4 / 3.684 km² from the announcement; submitted geometry is provisional.</p></section>
+    <section class="plate"><span class="plate-no">PLATE III</span><h2>Key areas</h2><p>Origin habitat, Zhongzhiyuan metabolism, Dazhongsi phenotype — three tissues of one generator set.</p><img src="../assets/figures/key-areas.en.png" alt="03 Key Areas · Morphological Organs"></section>
+    <section class="plate"><span class="plate-no">PLATE IV</span><h2>Land-use partition</h2><p>The machine-audit layer uses MNR codes covering the submitted boundary; the design reading is tissue, not zoning.</p><img src="../assets/figures/land-use-structure.en.png" alt="02 Land-use Structure · Tissue Differentiation"></section>
+    <section><h2>Slow mobility</h2><p>Developer Walk and Xiaoyuehe low-speed edge; not road redlines.</p></section>
+    <section class="plate"><span class="plate-no">PLATE V</span><h2>Blue-green public space</h2><p>Jing-Zhang trace spine, water veins, Contribution Reef and Open Source Gallery accretions.</p><img src="../assets/figures/mobility-bluegreen.en.png" alt="04 Mobility & Blue-Green · Traces into Network"></section>
+    <section><h2>Buildings</h2><p>Conceptual footprints only.</p></section>
+    <section><h2>Renewal projects</h2><p>Germination, metabolism, phenotypic-market phases.</p></section>
+    <section><h2>AI scenarios</h2><p>Desire lines, mycelial stormwater, campus ecology, reviewed robots.</p></section>
+    <section class="plate"><span class="plate-no">PLATE VII</span><h2>Core metrics</h2><p>Numbers are recomputed from submitted geometry; the metrics plate does not replace JSON.</p><img src="../assets/figures/metrics-evidence.en.png" alt="05 Metrics & Evidence · Recomputable Core"></section>
+    <section><h2>Task coverage</h2><p>公告 1.3–1.5 与 agent.1–agent.6 见Task coverage矩阵。</p></section>
+    <section><h2>Self-check</h2><p>Four-gate self-check is recorded after PASS.</p></section>
+    <section><h2>Sources</h2><p>Announcement, agent taskbook, provisional boundaries, public cases, bilingual morphological plates.</p></section>
+    <section><h2>Assumptions</h2><p>Official redlines, FAR, height, tenure, and utilities remain pending.</p></section>
+  </div>
+  <aside>
+    <section>
+      <h2>Core metrics</h2>
+      <div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386</strong></div>
+      <div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.191149">0.191149</strong></div>
+      <div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.177639">0.177639</strong></div>
+      <p class="note">FAR and height: pending official controls</p>
+    </section>
+    <section>
+      <h2>Task coverage</h2>
+      <p>1.3 / 1.4 / 1.5 · agent.1–agent.6 · Jing-Zhang narrative / civic-agent governance / youth-friendly space</p>
+    </section>
+    <section>
+      <h2>Self-check</h2>
+      <p>deterministic · spatial · visual · professional</p>
+    </section>
+    <section>
+      <h2>Sources</h2>
+      <p>OFFICIAL-ANNOUNCEMENT · AGENT-TASKBOOK · DATA-SRC-PROVISIONAL-BOUNDARIES-20260605 · FIG-GROK-PLATES</p>
+    </section>
+    <section>
+      <h2>Assumptions</h2>
+      <p>A-BOUNDARY-PROVISIONAL · A-CONTROLS-001 · A-RECALC-OFFICIAL</p>
+    </section>
+  </aside>
+</main>
+<footer>THE FALLOW SPINE / 京张·休耕脊线 · morphological plates · Meng Shengyu · independent artist · Agent建筑师 · offline, no CDN</footer>
+<script>
+(function() {
+  var canvas = document.getElementById('emerge');
+  var status = document.getElementById('status');
+  if (!canvas || !canvas.getContext) { status.textContent = 'Canvas unavailable'; return; }
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var COLS = 90, ROWS = 28;
+  var TOP = 36;
+  var CW = W / COLS, CH = (H - TOP) / ROWS;
+  var THRESHOLD = 0.7;
+  var DECAY = 0.986;
+  var HUMAN_PERIOD = 96;
+  var seed = 20260831;
+  function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+  var field = [], type = [], y, x;
+  for (y = 0; y < ROWS; y++) {
+    field[y] = []; type[y] = [];
+    for (x = 0; x < COLS; x++) { field[y][x] = {w:0,b:0,c:0}; type[y][x] = 0; }
+  }
+  for (y = 11; y <= 16; y++) type[y][5] = 5;
+  var agents = [];
+  function addAgent(kind, n) {
+    var i;
+    for (i = 0; i < n; i++) agents.push({kind:kind,x:8+rnd()*(COLS-16),y:6+rnd()*(ROWS-12),heading:rnd()*Math.PI*2});
+  }
+  addAgent(0,30); addAgent(1,16); addAgent(2,9);
+  var confirmed=0, decayed=0, pending=0, humanTimer=0;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function attract(ix, iy, kind) {
+    var best=-1,bx=0,by=0,dx,dy,nx,ny,f,v;
+    for (dy=-1;dy<=1;dy++) for (dx=-1;dx<=1;dx++) {
+      if (!dx && !dy) continue;
+      nx=ix+dx; ny=iy+dy;
+      if (nx<1||ny<1||nx>=COLS-1||ny>=ROWS-1||type[ny][nx]===5) continue;
+      f=field[ny][nx];
+      v = kind===1 ? (f.b*1.5+f.w*0.25) : kind===2 ? (f.c*1.2+f.w*0.8) : (f.w*1.3+f.b*0.35);
+      v += 0.1*Math.exp(-((ny-ROWS*0.48)*(ny-ROWS*0.48))/16);
+      if (v>best){best=v;bx=dx;by=dy;}
+    }
+    return {dx:bx,dy:by,v:best};
+  }
+  function nearHeritage(ix, iy) {
+    var dx,dy,nx,ny;
+    for (dy=-2;dy<=2;dy++) for (dx=-2;dx<=2;dx++) {
+      nx=ix+dx; ny=iy+dy;
+      if (nx>=0&&ny>=0&&nx<COLS&&ny<ROWS&&type[ny][nx]===5) return true;
+    }
+    return false;
+  }
+  function step() {
+    var f,t,a,att,cx,cy,heat,i;
+    pending=0;
+    for (y=1;y<ROWS-1;y++) for (x=1;x<COLS-1;x++) {
+      f=field[y][x]; f.w*=DECAY; f.b*=DECAY; f.c*=DECAY; t=type[y][x];
+      if (t===1&&f.w<0.07){type[y][x]=0;decayed++;}
+      if (t===2&&f.b<0.07){type[y][x]=0;decayed++;}
+      if (t===3&&(f.w+f.c)<0.12){type[y][x]=0;decayed++;}
+      if (type[y][x]===4) pending++;
+    }
+    for (i=0;i<agents.length;i++) {
+      a=agents[i]; att=attract(a.x|0,a.y|0,a.kind);
+      if (att.v>0.04) a.heading=Math.atan2(att.dy,att.dx)+(rnd()-0.5)*0.35;
+      else a.heading+=(rnd()-0.5)*0.7;
+      a.x+=Math.cos(a.heading)*(a.kind===1?0.22:0.52);
+      a.y+=Math.sin(a.heading)*(a.kind===1?0.22:0.42);
+      if (a.x<1||a.x>COLS-2){a.heading=Math.PI-a.heading;a.x=Math.max(1,Math.min(COLS-2,a.x));}
+      if (a.y<1||a.y>ROWS-2){a.heading=-a.heading;a.y=Math.max(1,Math.min(ROWS-2,a.y));}
+      cx=a.x|0; cy=a.y|0;
+      if (type[cy][cx]===5){a.heading+=Math.PI;continue;}
+      f=field[cy][cx];
+      if (a.kind===0) f.w=Math.min(1.45,f.w+0.17);
+      if (a.kind===1){f.b=Math.min(1.45,f.b+0.15);f.w=Math.max(0,f.w-0.025);}
+      if (a.kind===2){f.c=Math.min(1.45,f.c+0.16);f.b=Math.min(1.45,f.b+0.03);}
+      if (type[cy][cx]===0) {
+        heat=f.w+f.b+f.c;
+        if (heat>THRESHOLD) {
+          if (nearHeritage(cx,cy)||(a.kind===2&&f.c>0.45)) type[cy][cx]=4;
+          else if (f.b>f.w) type[cy][cx]=2;
+          else type[cy][cx]=1;
+        }
+      } else if (type[cy][cx]===1&&f.w>0.85&&f.b>0.32&&f.c>0.38) type[cy][cx]=4;
+    }
+    humanTimer++;
+    if (humanTimer%HUMAN_PERIOD===0) {
+      for (y=1;y<ROWS-1;y++) for (x=1;x<COLS-1;x++) {
+        if (type[y][x]!==4) continue;
+        if (nearHeritage(x,y)){type[y][x]=0;field[y][x].c=0;}
+        else {type[y][x]=field[y][x].c>field[y][x].b?3:1;confirmed++;}
+      }
+    }
+  }
+  function draw() {
+    ctx.fillStyle='#0B0A08'; ctx.fillRect(0,0,W,H);
+    for (y=0;y<ROWS;y++) for (x=0;x<COLS;x++) {
+      var f=field[y][x], t=type[y][x];
+      var r=12+f.w*40+f.c*24, g=14+f.b*48+f.w*16, b=10+f.c*28;
+      if (t===1){r=47;g=90;b=62;}
+      else if (t===2){r=36;g=78;b=58;}
+      else if (t===3){r=180;g=90;b=42;}
+      else if (t===4){r=196;g=161;b=90;}
+      else if (t===5){r=92;g=38;b=38;}
+      ctx.fillStyle='rgb('+(r|0)+','+(g|0)+','+(b|0)+')';
+      ctx.fillRect(x*CW, TOP+y*CH, CW+0.5, CH+0.5);
+    }
+    var i,a;
+    for (i=0;i<agents.length;i++) {
+      a=agents[i];
+      ctx.fillStyle=a.kind===0?'#E7DCC8':a.kind===1?'#7CB89A':'#C4A15A';
+      ctx.fillRect(a.x*CW-1.2, TOP+a.y*CH-1.2, 2.6, 2.6);
+    }
+    ctx.fillStyle='#E7DCC8'; ctx.font='12px sans-serif';
+    ctx.fillText('Generators running: trace / threshold / decay / human-review gate / hybrid metabolism', 12, 16);
+    ctx.fillStyle='#A89880'; ctx.font='11px sans-serif';
+    ctx.fillText('已确认 '+confirmed+'  ·  待人审 '+pending+'  ·  已衰减 '+decayed+'  ·  琥珀=人审  Rust = phenotype  暗红=文保冻结', 12, 30);
+  }
+  function boot() {
+    var i;
+    try {
+      if (reduced) { for (i=0;i<220;i++) step(); draw(); status.textContent='Frozen one morphological frame for reduced motion'; }
+      else { function frame(){ step(); draw(); requestAnimationFrame(frame);} frame(); status.textContent='Local morphological exercise ready: tissue differentiated by generators'; }
+    } catch (err) { status.textContent='Exercise failed; static plate shown'; }
+  }
+  boot();
+})();
+</script>
+</body>
+</html>

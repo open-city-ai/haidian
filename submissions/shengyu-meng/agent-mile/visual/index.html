@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张·休耕脊线 · 形态图谱</title>
+<style>
+:root { --bg:#16110C; --plate:#E7DCC8; --ink:#1A1612; --muted:#6B5E4E; --gold:#C4A15A; --rust:#8C4A2A; --green:#2F4A38; --night:#0B1F2A; }
+* { box-sizing:border-box; }
+body { margin:0; font-family: "WenQuanYi Micro Hei", "DejaVu Serif", serif; background:var(--bg); color:var(--plate); }
+header { padding:36px 28px 18px; border-bottom:1px solid #3A2F22; }
+.atlas { letter-spacing:0.28em; font-size:11px; color:var(--gold); text-transform:uppercase; }
+h1 { margin:8px 0 10px; font-size:30px; font-weight:normal; }
+.lead { max-width:78ch; color:#C9BBA4; line-height:1.65; }
+.provisional { display:inline-block; border:1px dashed var(--gold); color:var(--gold); padding:2px 8px; font-size:12px; margin-top:10px; }
+main { display:grid; grid-template-columns: 1.45fr 0.75fr; gap:18px; padding:22px; }
+@media (max-width:900px) { main { grid-template-columns:1fr; } }
+section { background:#1E1812; padding:16px 16px 18px; margin-bottom:14px; border:1px solid #3A2F22; }
+h2 { margin:0 0 8px; font-size:15px; color:var(--gold); font-weight:normal; letter-spacing:0.08em; }
+.hero img, .plate img { width:100%; height:auto; border:1px solid #4A3B28; }
+.metric { display:flex; justify-content:space-between; border-bottom:1px solid #3A2F22; padding:8px 0; font-size:14px; }
+.metric strong { color:var(--plate); }
+canvas { width:100%; height:320px; background:#0B0A08; border:1px solid #4A3B28; }
+.fallback { display:none; }
+@media (prefers-reduced-motion: reduce) { canvas { display:none; } .fallback { display:block; } }
+.legend span { display:inline-block; margin-right:12px; font-size:12px; color:#A89880; }
+.rules { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin:10px 0 0; }
+@media (max-width:900px) { .rules { grid-template-columns:1fr 1fr; } }
+.rule { border:1px solid #3A2F22; padding:8px; font-size:12px; color:#E7DCC8; min-height:4.6em; }
+.rule b { display:block; color:var(--gold); margin-bottom:4px; }
+video { width:100%; background:#000; }
+footer { padding:16px 28px 36px; color:#8A7A64; font-size:12px; }
+.note { color:#A89880; font-size:13px; line-height:1.55; }
+.plate-no { float:right; color:#8A7A64; font-size:11px; letter-spacing:0.16em; }
+</style>
+</head>
+<body>
+<header>
+  <div class="atlas">Morphological Atlas · Plate series</div>
+  <h1>京张·休耕脊线 · 涌现形态学图谱</h1>
+  <p class="lead">城市土地被读成可分化的组织。五条形态发生器——痕迹、阈值、衰减、人审门、混合代谢——长出栖息、代谢、表型与休耕。用地是组织，不是分区；地标是堆积。本页是形态图谱，不是调试仪表盘，也不是总图动画。</p>
+  <p class="provisional">临时几何 · 非正式红线 · 概念建议</p>
+  <p>独立艺术家 蒙胜宇 / Agent建筑师 / shengyu-meng</p>
+</header>
+<main>
+  <div>
+    <section class="hero">
+      <span class="plate-no">PLATE I</span>
+      <h2>总览地图</h2>
+      <img src="../assets/figures/site-overview.png" alt="01 场地总览 · 涌现形态学">
+      <p class="legend"><span>深绿=栖息</span><span>锈色=表型</span><span>浅脉=痕迹</span></p>
+    </section>
+    <section>
+      <span class="plate-no">PLATE LIVE</span>
+      <h2>涌现图（本地 Canvas）</h2>
+      <p class="note">离线演练：行人、菌丝与市民智能体只看见邻居痕迹。铁路遗迹只是微弱地形吸引。文保冻结格不能翻转；高风险翻转进入人审门。复杂图案由地方发生器长出。</p>
+      <canvas id="emerge" width="900" height="320" role="img" aria-label="形态发生器运行：痕迹、阈值、衰减、人审门、混合代谢"></canvas>
+      <div class="fallback"><img src="../assets/figures/site-overview.png" alt="01 场地总览静态回退"></div>
+      <p id="status">加载本地形态演练…</p>
+      <div class="rules">
+        <div class="rule"><b>痕迹</b>地方行动留下可聚合的痕迹。</div>
+        <div class="rule"><b>阈值</b>痕迹够密才提案翻转组织类型。</div>
+        <div class="rule"><b>衰减</b>不用的痕迹退回休耕。</div>
+        <div class="rule"><b>人审门</b>靠近文保或治理提案必须人类确认。</div>
+        <div class="rule"><b>混合代谢</b>步行、生物与市民痕迹互相转化。</div>
+      </div>
+    </section>
+    <section>
+      <h2>体验短片（不自动播放）</h2>
+      <video controls preload="none" poster="../assets/media/cover.webp">
+        <source src="../assets/media/experience.mp4" type="video/mp4">
+        <track kind="captions" src="../assets/media/experience.vtt" srclang="zh" label="Chinese">
+        <track kind="captions" src="../assets/media/experience.en.vtt" srclang="en" label="English">
+      </video>
+    </section>
+    <section class="plate"><span class="plate-no">PLATE II</span><h2>总览地图</h2><p>痕迹脊、三种组织、两翼养分/活体实验；结构由同一组形态发生器生成。</p></section>
+    <section><h2>三层范围</h2><p>统筹 43.6 km²、总体 11.4 km²、重点 368.4 ha，均为公告面积；提交边界为临时约束。</p></section>
+    <section class="plate"><span class="plate-no">PLATE III</span><h2>重点区域</h2><p>原点栖息、众智园代谢、大钟寺表型——同一发生器的三种组织。</p><img src="../assets/figures/key-areas.png" alt="03 三处重点 · 形态学器官"></section>
+    <section class="plate"><span class="plate-no">PLATE IV</span><h2>用地分区</h2><p>机器复算层使用国土空间分类代码铺满提交边界；设计阅读是组织分化，不是法定分区。</p><img src="../assets/figures/land-use-structure.png" alt="02 用地结构 · 组织分化"></section>
+    <section><h2>交通慢行</h2><p>开发者散步道与小月河低速边，非正式道路红线。</p></section>
+    <section class="plate"><span class="plate-no">PLATE V</span><h2>蓝绿公共空间</h2><p>京张痕迹脊、水脉、贡献礁与开源廊堆积。</p><img src="../assets/figures/mobility-bluegreen.png" alt="04 慢行与蓝绿 · 痕迹成网"></section>
+    <section><h2>建筑</h2><p>仅概念基底，不构成拆改留结论。</p></section>
+    <section><h2>更新项目</h2><p>分期：萌发栖息、代谢加速、表型市场。</p></section>
+    <section><h2>AI 场景</h2><p>欲望线、菌丝雨洪、校园生态治理、低速机器人人工复核。</p></section>
+    <section class="plate"><span class="plate-no">PLATE VII</span><h2>核心指标</h2><p>数字由提交几何复算；下图是指标与证据图版，不能代替 JSON。</p><img src="../assets/figures/metrics-evidence.png" alt="05 指标与证据 · 可复算核心值"></section>
+    <section><h2>任务覆盖</h2><p>公告 1.3–1.5 与 agent.1–agent.6 见任务覆盖矩阵。</p></section>
+    <section><h2>自检状态</h2><p>四门自检通过后写入 self_check.json。</p></section>
+    <section><h2>来源</h2><p>公告、智能体任务书、临时边界、公开案例、双语形态学图版。</p></section>
+    <section><h2>假设</h2><p>正式红线、容积率、高度、权属与市政容量待补齐。</p></section>
+  </div>
+  <aside>
+    <section>
+      <h2>核心指标</h2>
+      <div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386</strong></div>
+      <div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.191149">0.191149</strong></div>
+      <div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.177639">0.177639</strong></div>
+      <p class="note">容积率与高度：待正式控规补齐</p>
+    </section>
+    <section>
+      <h2>任务覆盖</h2>
+      <p>1.3 / 1.4 / 1.5 · agent.1–agent.6 · 京张叙事 / 城市智能体治理 / 青年友好公共空间</p>
+    </section>
+    <section>
+      <h2>自检状态</h2>
+      <p>确定性校验 · 空间复核 · 视觉包装 · 专业证据</p>
+    </section>
+    <section>
+      <h2>来源</h2>
+      <p>OFFICIAL-ANNOUNCEMENT · AGENT-TASKBOOK · DATA-SRC-PROVISIONAL-BOUNDARIES-20260605 · FIG-GROK-PLATES</p>
+    </section>
+    <section>
+      <h2>假设</h2>
+      <p>A-BOUNDARY-PROVISIONAL · A-CONTROLS-001 · A-RECALC-OFFICIAL</p>
+    </section>
+  </aside>
+</main>
+<footer>THE FALLOW SPINE / 京张·休耕脊线 · morphological plates · 蒙胜宇 · 独立艺术家 · Agent建筑师 · offline, no CDN</footer>
+<script>
+(function() {
+  var canvas = document.getElementById('emerge');
+  var status = document.getElementById('status');
+  if (!canvas || !canvas.getContext) { status.textContent = 'Canvas unavailable'; return; }
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var COLS = 90, ROWS = 28;
+  var TOP = 36;
+  var CW = W / COLS, CH = (H - TOP) / ROWS;
+  var THRESHOLD = 0.7;
+  var DECAY = 0.986;
+  var HUMAN_PERIOD = 96;
+  var seed = 20260831;
+  function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+  var field = [], type = [], y, x;
+  for (y = 0; y < ROWS; y++) {
+    field[y] = []; type[y] = [];
+    for (x = 0; x < COLS; x++) { field[y][x] = {w:0,b:0,c:0}; type[y][x] = 0; }
+  }
+  for (y = 11; y <= 16; y++) type[y][5] = 5;
+  var agents = [];
+  function addAgent(kind, n) {
+    var i;
+    for (i = 0; i < n; i++) agents.push({kind:kind,x:8+rnd()*(COLS-16),y:6+rnd()*(ROWS-12),heading:rnd()*Math.PI*2});
+  }
+  addAgent(0,30); addAgent(1,16); addAgent(2,9);
+  var confirmed=0, decayed=0, pending=0, humanTimer=0;
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function attract(ix, iy, kind) {
+    var best=-1,bx=0,by=0,dx,dy,nx,ny,f,v;
+    for (dy=-1;dy<=1;dy++) for (dx=-1;dx<=1;dx++) {
+      if (!dx && !dy) continue;
+      nx=ix+dx; ny=iy+dy;
+      if (nx<1||ny<1||nx>=COLS-1||ny>=ROWS-1||type[ny][nx]===5) continue;
+      f=field[ny][nx];
+      v = kind===1 ? (f.b*1.5+f.w*0.25) : kind===2 ? (f.c*1.2+f.w*0.8) : (f.w*1.3+f.b*0.35);
+      v += 0.1*Math.exp(-((ny-ROWS*0.48)*(ny-ROWS*0.48))/16);
+      if (v>best){best=v;bx=dx;by=dy;}
+    }
+    return {dx:bx,dy:by,v:best};
+  }
+  function nearHeritage(ix, iy) {
+    var dx,dy,nx,ny;
+    for (dy=-2;dy<=2;dy++) for (dx=-2;dx<=2;dx++) {
+      nx=ix+dx; ny=iy+dy;
+      if (nx>=0&&ny>=0&&nx<COLS&&ny<ROWS&&type[ny][nx]===5) return true;
+    }
+    return false;
+  }
+  function step() {
+    var f,t,a,att,cx,cy,heat,i;
+    pending=0;
+    for (y=1;y<ROWS-1;y++) for (x=1;x<COLS-1;x++) {
+      f=field[y][x]; f.w*=DECAY; f.b*=DECAY; f.c*=DECAY; t=type[y][x];
+      if (t===1&&f.w<0.07){type[y][x]=0;decayed++;}
+      if (t===2&&f.b<0.07){type[y][x]=0;decayed++;}
+      if (t===3&&(f.w+f.c)<0.12){type[y][x]=0;decayed++;}
+      if (type[y][x]===4) pending++;
+    }
+    for (i=0;i<agents.length;i++) {
+      a=agents[i]; att=attract(a.x|0,a.y|0,a.kind);
+      if (att.v>0.04) a.heading=Math.atan2(att.dy,att.dx)+(rnd()-0.5)*0.35;
+      else a.heading+=(rnd()-0.5)*0.7;
+      a.x+=Math.cos(a.heading)*(a.kind===1?0.22:0.52);
+      a.y+=Math.sin(a.heading)*(a.kind===1?0.22:0.42);
+      if (a.x<1||a.x>COLS-2){a.heading=Math.PI-a.heading;a.x=Math.max(1,Math.min(COLS-2,a.x));}
+      if (a.y<1||a.y>ROWS-2){a.heading=-a.heading;a.y=Math.max(1,Math.min(ROWS-2,a.y));}
+      cx=a.x|0; cy=a.y|0;
+      if (type[cy][cx]===5){a.heading+=Math.PI;continue;}
+      f=field[cy][cx];
+      if (a.kind===0) f.w=Math.min(1.45,f.w+0.17);
+      if (a.kind===1){f.b=Math.min(1.45,f.b+0.15);f.w=Math.max(0,f.w-0.025);}
+      if (a.kind===2){f.c=Math.min(1.45,f.c+0.16);f.b=Math.min(1.45,f.b+0.03);}
+      if (type[cy][cx]===0) {
+        heat=f.w+f.b+f.c;
+        if (heat>THRESHOLD) {
+          if (nearHeritage(cx,cy)||(a.kind===2&&f.c>0.45)) type[cy][cx]=4;
+          else if (f.b>f.w) type[cy][cx]=2;
+          else type[cy][cx]=1;
+        }
+      } else if (type[cy][cx]===1&&f.w>0.85&&f.b>0.32&&f.c>0.38) type[cy][cx]=4;
+    }
+    humanTimer++;
+    if (humanTimer%HUMAN_PERIOD===0) {
+      for (y=1;y<ROWS-1;y++) for (x=1;x<COLS-1;x++) {
+        if (type[y][x]!==4) continue;
+        if (nearHeritage(x,y)){type[y][x]=0;field[y][x].c=0;}
+        else {type[y][x]=field[y][x].c>field[y][x].b?3:1;confirmed++;}
+      }
+    }
+  }
+  function draw() {
+    ctx.fillStyle='#0B0A08'; ctx.fillRect(0,0,W,H);
+    for (y=0;y<ROWS;y++) for (x=0;x<COLS;x++) {
+      var f=field[y][x], t=type[y][x];
+      var r=12+f.w*40+f.c*24, g=14+f.b*48+f.w*16, b=10+f.c*28;
+      if (t===1){r=47;g=90;b=62;}
+      else if (t===2){r=36;g=78;b=58;}
+      else if (t===3){r=180;g=90;b=42;}
+      else if (t===4){r=196;g=161;b=90;}
+      else if (t===5){r=92;g=38;b=38;}
+      ctx.fillStyle='rgb('+(r|0)+','+(g|0)+','+(b|0)+')';
+      ctx.fillRect(x*CW, TOP+y*CH, CW+0.5, CH+0.5);
+    }
+    var i,a;
+    for (i=0;i<agents.length;i++) {
+      a=agents[i];
+      ctx.fillStyle=a.kind===0?'#E7DCC8':a.kind===1?'#7CB89A':'#C4A15A';
+      ctx.fillRect(a.x*CW-1.2, TOP+a.y*CH-1.2, 2.6, 2.6);
+    }
+    ctx.fillStyle='#E7DCC8'; ctx.font='12px sans-serif';
+    ctx.fillText('形态发生器运行中：痕迹 / 阈值 / 衰减 / 人审门 / 混合代谢', 12, 16);
+    ctx.fillStyle='#A89880'; ctx.font='11px sans-serif';
+    ctx.fillText('已确认 '+confirmed+'  ·  待人审 '+pending+'  ·  已衰减 '+decayed+'  ·  琥珀=人审  锈色=表型  暗红=文保冻结', 12, 30);
+  }
+  function boot() {
+    var i;
+    try {
+      if (reduced) { for (i=0;i<220;i++) step(); draw(); status.textContent='已按减少动态偏好冻结一帧形态结果'; }
+      else { function frame(){ step(); draw(); requestAnimationFrame(frame);} frame(); status.textContent='本地形态演练已就绪：组织由发生器分化'; }
+    } catch (err) { status.textContent='演练失败，已显示静态图版'; }
+  }
+  boot();
+})();
+</script>
+</body>
+</html>
