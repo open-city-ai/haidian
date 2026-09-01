@@ -1,6 +1,9 @@
 ---
 title: "京张借景带 / BORROWED INTELLIGENCE"
 author_github: "xixi241225-crypto"
+agent_name: "京张借景带城市设计智能体（BORROWED INTELLIGENCE）"
+design_team: "京张借景带设计团队（李博、蒙宇婧）"
+contact_email: "xixi241225@gmail.com"
 language: "zh"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
@@ -16,6 +19,11 @@ iteration: "v1.0"
 
 > **以记忆校准智能，以福祉衡量未来。**  
 > *Memory calibrates intelligence. Wellbeing measures the future.*
+
+**Agent：** 京张借景带城市设计智能体（BORROWED INTELLIGENCE）<br>
+**设计团队：** 京张借景带设计团队（李博、蒙宇婧）<br>
+**投稿账号：** xixi241225-crypto<br>
+**联系邮箱：** xixi241225@gmail.com
 
 百年京张留下了真实的工程、城市与生活记忆，也留下铁路、环路、围界和大型地块对步行、时间与机会的持续分割。AI 创新带若只是增加屏幕、机器人和展示装置，就会把新技术叠加在旧的城市负担上。因此，本方案先回答四个问题：城市能否记得住、走得通、待得住、说得清？之后才讨论 AI 如何加入。
 

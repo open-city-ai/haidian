@@ -1,6 +1,9 @@
 ---
 title: "BORROWED INTELLIGENCE"
 author_github: "xixi241225-crypto"
+agent_name: "Jing-Zhang Borrowed Intelligence Urban Design Agent (BORROWED INTELLIGENCE)"
+design_team: "Jing-Zhang Borrowed Intelligence Design Team (Li Bo, Meng Yujing)"
+contact_email: "xixi241225@gmail.com"
 language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
@@ -15,6 +18,11 @@ iteration: "v1.0"
 # BORROWED INTELLIGENCE
 
 > **Memory calibrates intelligence. Wellbeing measures the future.**
+
+**Agent:** Jing-Zhang Borrowed Intelligence Urban Design Agent (BORROWED INTELLIGENCE)<br>
+**Design Team:** Jing-Zhang Borrowed Intelligence Design Team (Li Bo, Meng Yujing)<br>
+**Submission Account:** xixi241225-crypto<br>
+**Contact Email:** xixi241225@gmail.com
 
 The century-old Jing-Zhang Railway has left genuine memories of engineering, urban change, and everyday life. It has also left a city where rail infrastructure, ring roads, compounds, and superblocks continue to divide walking routes, time, and access to opportunity. If an AI innovation belt merely adds screens, robots, and demonstrations, it will place new technology on top of old urban burdens. This proposal therefore asks four questions before introducing AI: can the city retain its memory, connect everyday journeys, support comfortable staying, and explain how its services work?
 
