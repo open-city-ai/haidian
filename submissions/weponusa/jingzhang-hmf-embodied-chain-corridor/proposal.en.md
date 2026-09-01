@@ -89,10 +89,10 @@ Indicative land use in the submission package: green and open space about 28.4%,
 
 ### Overall Concept, Naming and Identity Direction for the Belt
 
-**Overall concept: Human–Machine Friendly Jing-Zhang · Embodied Shared Spine.**  
+**Overall concept: Human–Machine Friendly Jing-Zhang · Embodied Shared Spine.**<br>
 The Jing-Zhang railway is translated from a transport line and a landscape green belt into a public corridor that serves both everyday civic life and the iteration of the embodied-AI industry: for people, a park that is continuously accessible, offers choice and invites rest; for machines, a low-speed operating environment that is legible, allows docking and recharging, and can be taken over; for industry, a public pilot-test platform connecting "technology R&D — prototype testing — scenario validation — product display — commercial conversion".
 
-**Primary name: Human–Machine Friendly Jing-Zhang** (subtitle *Low-Speed Shared Spine*).  
+**Primary name: Human–Machine Friendly Jing-Zhang** (subtitle *Low-Speed Shared Spine*).<br>
 The naming logic maps onto the three strategic positionings: the Centennial Jing-Zhang cultural belt (memory of the rail line) → the urban AI living-experience belt (slow mobility and shared movement) → the AI convergence innovation belt (human–machine friendly operation, with data flowing back into research) [source:AGENT-TASKBOOK].
 
 Spatial slogan: **One spine, three zones; Five Settings, Five Friendliness Principles; many nodes, twin substrates; Twelve Shichen**. Implementation slogan: **if it cannot get through the door, the whole corridor is downgraded**. Method slogan: **adapt the space first, admit the machines second**.
@@ -226,23 +226,23 @@ The three key areas are developed under a division of labour of "substrate — p
 
 ### Zhongzhi Park: Technology and Hardware Validation End (approx. 192.1 ha, provisional)
 
-**Positioning**: the validation end for full-stack independent innovation and for safety protocols [source:AGENT-TASKBOOK].  
-**Structure**: predominantly research land plus a central public field plus a closed and semi-open test loop on the northern segment of the spine [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/public_space.geojson#PLZ-004].  
-**Human–machine friendly focus**: this corresponds to the "testing and display" end of the Fuxing Island pathway and to the regulatory sandbox in the thesis. High-risk, extreme-weather and platooning tests stay inside the closed test loop; before opening, identity registration, safety inspection, liability insurance and degradation testing must be complete; enterprises receive conceptual support oriented towards high-precision maps and interfaces, but raw personal data does not leave the domain. The central public field provides public observation windows, human-guided interpretation and a machine-free quiet boundary, so that testing and everyday slow mobility do not intrude on each other [data:geometry/constraints.geojson#SN-010]. Generic technology platform orientation: sensor calibration, simulation, safety assessment and a liability-insurance service desk, lowering the cost of duplicated effort for small and medium teams [source:CASE-FUXING-HMF-GUIDE].  
+**Positioning**: the validation end for full-stack independent innovation and for safety protocols [source:AGENT-TASKBOOK].<br>
+**Structure**: predominantly research land plus a central public field plus a closed and semi-open test loop on the northern segment of the spine [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/public_space.geojson#PLZ-004].<br>
+**Human–machine friendly focus**: this corresponds to the "testing and display" end of the Fuxing Island pathway and to the regulatory sandbox in the thesis. High-risk, extreme-weather and platooning tests stay inside the closed test loop; before opening, identity registration, safety inspection, liability insurance and degradation testing must be complete; enterprises receive conceptual support oriented towards high-precision maps and interfaces, but raw personal data does not leave the domain. The central public field provides public observation windows, human-guided interpretation and a machine-free quiet boundary, so that testing and everyday slow mobility do not intrude on each other [data:geometry/constraints.geojson#SN-010]. Generic technology platform orientation: sensor calibration, simulation, safety assessment and a liability-insurance service desk, lowering the cost of duplicated effort for small and medium teams [source:CASE-FUXING-HMF-GUIDE].<br>
 **Risks**: accessibility from the 5th Ring Road, municipal capacity for large facilities, and coordination of tenure remain to be confirmed [depth:risk_missing_data].
 
 ### AI Origin Community: R&D and Prototype Incubation End (approx. 104.3 ha, provisional)
 
-**Positioning**: a near-campus innovation ecosystem and prototype-production end [source:AGENT-TASKBOOK].  
-**Structure**: the commemorative space at Qinghuayuan Station plus twin plazas plus a research and culture block [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/public_space.geojson#PLZ-002].  
-**Human–machine friendly focus**: this corresponds to the "tenancy, incubation and prototype iteration" end. Open laboratories and prototype workshops are equipped with co-creation tables, simulated testing and ethical review; high-density plazas, heritage space and the community living surface are designated H0/H1, where machines must keep interference low, and actively declare their identity and movement intent. Usability testing is organised with older people, children and people with disabilities; the public may choose a staffed window and a non-sensed route. University–enterprise joint laboratories are encouraged to work on real corridor pain points such as human–machine interaction and environmental perception, rather than staging exhibitions [data:geometry/constraints.geojson#SN-006] [source:CASE-FUXING-HMF-GUIDE].  
+**Positioning**: a near-campus innovation ecosystem and prototype-production end [source:AGENT-TASKBOOK].<br>
+**Structure**: the commemorative space at Qinghuayuan Station plus twin plazas plus a research and culture block [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/public_space.geojson#PLZ-002].<br>
+**Human–machine friendly focus**: this corresponds to the "tenancy, incubation and prototype iteration" end. Open laboratories and prototype workshops are equipped with co-creation tables, simulated testing and ethical review; high-density plazas, heritage space and the community living surface are designated H0/H1, where machines must keep interference low, and actively declare their identity and movement intent. Usability testing is organised with older people, children and people with disabilities; the public may choose a staffed window and a non-sensed route. University–enterprise joint laboratories are encouraged to work on real corridor pain points such as human–machine interaction and environmental perception, rather than staging exhibitions [data:geometry/constraints.geojson#SN-006] [source:CASE-FUXING-HMF-GUIDE].<br>
 **Risks**: the heritage control zone, university tenure, and participation in community renewal [depth:risk_missing_data].
 
 ### Dazhongsi: Productisation and Commercial Validation End (approx. 72.0 ha, provisional)
 
-**Positioning**: the conversion end for intelligent agents, content consumption and smart terminals [source:AGENT-TASKBOOK].  
-**Structure**: an interchange plaza plus a test and validation corridor plus a commercial living room [data:geometry/key_areas.geojson#PROV-KEY-003] [data:geometry/public_space.geojson#PLZ-001].  
-**Human–machine friendly focus**: this corresponds to the "R&D innovation and commercial validation" end and to a pilot orientation across B2C, B2B and B2G models. Product validation is carried out in real commercial and interchange settings, but "public experience" is placed ahead of "product display". Every service provides a human alternative, explicit disclosure of price and data use, protection of minors, and a complaints channel. Low-speed connection links the metro to the campuses, and platforms provide separated human and machine waiting areas, step-free boarding, handover docking and human takeover. Clauses and toolkits are exported outward only once validated, rather than claimed replicable before validation [data:geometry/constraints.geojson#SN-001] [source:CASE-FUXING-HMF-GUIDE].  
+**Positioning**: the conversion end for intelligent agents, content consumption and smart terminals [source:AGENT-TASKBOOK].<br>
+**Structure**: an interchange plaza plus a test and validation corridor plus a commercial living room [data:geometry/key_areas.geojson#PROV-KEY-003] [data:geometry/public_space.geojson#PLZ-001].<br>
+**Human–machine friendly focus**: this corresponds to the "R&D innovation and commercial validation" end and to a pilot orientation across B2C, B2B and B2G models. Product validation is carried out in real commercial and interchange settings, but "public experience" is placed ahead of "product display". Every service provides a human alternative, explicit disclosure of price and data use, protection of minors, and a complaints channel. Low-speed connection links the metro to the campuses, and platforms provide separated human and machine waiting areas, step-free boarding, handover docking and human takeover. Clauses and toolkits are exported outward only once validated, rather than claimed replicable before validation [data:geometry/constraints.geojson#SN-001] [source:CASE-FUXING-HMF-GUIDE].<br>
 **Risks**: engineering conditions for rail integration, coordination with existing commerce, and public-safety approvals [depth:risk_missing_data].
 
 ## AI Innovation Ecosystem, Talent Profiles and AI+ Scenarios
@@ -346,7 +346,7 @@ Because official floor area ratios, heights, tenure and a building survey were n
 
 ### Transport and Slow Mobility (Dedicated Section on the Spine)
 
-Strategy: **continuity of human passage first, tiered authorisation for machines, accessible station-to-city connection, and east–west stitching** [depth:traffic_rail_slow_parking].  
+Strategy: **continuity of human passage first, tiered authorisation for machines, accessible station-to-city connection, and east–west stitching** [depth:traffic_rail_slow_parking].<br>
 In `geometry/roads.geojson`, RD-001 is defined as the **human–machine friendly shared spine**: walking and cycling dominate, and H0/H1/H2/H3 tiers govern low-speed connection and delivery and maintenance robots; the east–west connector roads carry the stitching; three rail-connection lines link the three areas [data:geometry/roads.geojson#RD-001] [metric:road_network_length_m].
 
 Node-density target (concept): from about 1.3 scenario points per km to one combined pair of points on both sides every 0.5–1 km, each comprising "staffed service / accessible rest plus docking and handover / charging and maintenance / emergency stop and takeover". Machine facilities must not encroach on tactile paving, wheelchair turning space, fire access or standing space.
@@ -371,9 +371,9 @@ The indicative green area is about 416.9 ha [metric:green_space_area_sqm] [data:
 
 Six conceptual plazas are retained as gateway and handover spaces [metric:public_space_ratio] [metric:public_space_area_sqm]. The plazas are equipped with separated human and machine docking, clear identity signalling, all-age seating, quiet corners, staffed service points and multimodal wayfinding. There are 4 conceptual pilgrimage landmarks in total [metric:ai_landmark_count]:
 
-1. Qinghuayuan Station · Human–Machine Friendly Origin Memorial (SN-006)  
-2. Developers' Promenade · Open-Source Showcase Gallery (SN-005)  
-3. Wall of Honour for Agent Contributions (SN-012)  
+1. Qinghuayuan Station · Human–Machine Friendly Origin Memorial (SN-006)<br>
+2. Developers' Promenade · Open-Source Showcase Gallery (SN-005)<br>
+3. Wall of Honour for Agent Contributions (SN-012)<br>
 4. AI Milestone Timeline nodes (updatable)
 
 None occupies the core of the heritage construction-control zone, and their form awaits professional and heritage-authority confirmation [source:AGENT-TASKBOOK].
@@ -598,17 +598,17 @@ On copyright: the text, geometry, drawings and offline HTML were conceived and a
 
 ## References
 
-1. Prequalification announcement of the Haidian Branch of the Municipal Commission of Planning and Natural Resources (2026-05-09) [source:OFFICIAL-ANNOUNCEMENT]  
-2. Extract from the agent-facing open-call taskbook (2026-05-18) [source:AGENT-TASKBOOK]  
-3. Public draft brief [source:PUBLIC-BRIEF]  
-4. Municipal Science and Technology Commission: "three zones and two wings" to build a world-class AI cluster (2026-04-03) [source:INDUSTRY-PUBLIC-HAIDIAN-AI]  
-5. Haidian statistical bulletin and public reporting on the AI industry (background on industrial structure and scale)  
-6. Method translation from the author's doctoral research *Building Human–Machine Friendly Space for the Future City*: flows–fields–networks, HME, nodes–corridors–areas–flows–policies, dual-mode simulation and the approach to engineering validation [source:METHOD-THESIS-HMF]  
-7. Method translation from the development volume of *Artificial Intelligence and the Future City* (embodied AI / human–machine friendly space): spatial adaptability first, the five-dimensional framework, and implications for urban renewal [source:METHOD-BOOK-FUTURE-CITY]  
-8. Fuxing Island human–machine friendly demonstration-area guideline (local method translation) [source:CASE-FUXING-HMF-GUIDE]  
-9. Penguin Island / WeCityX practice in human–machine friendly autonomous-driving transport systems (local method translation) [source:CASE-PENGUIN-WECITYX]  
-10. Translation of key parameters from the *Guideline for Building Human–Machine Friendly Urban Communities (Draft for Comment)*  
-11. Ministry of Housing and Urban-Rural Development (MOHURD) urban design management measures, measures for preparing regulatory detailed plans, and architectural design depth provisions; Ministry of Natural Resources land-use classification guide  
-12. OpenStreetMap Copyright / ODbL [source:OSM-COPYRIGHT]  
-13. Repository site-package, source_registry, public-brief, provisional_boundaries, and the geometry/metrics package of this proposal [source:PUBLIC-BRIEF]  
+1. Prequalification announcement of the Haidian Branch of the Municipal Commission of Planning and Natural Resources (2026-05-09) [source:OFFICIAL-ANNOUNCEMENT]<br>
+2. Extract from the agent-facing open-call taskbook (2026-05-18) [source:AGENT-TASKBOOK]<br>
+3. Public draft brief [source:PUBLIC-BRIEF]<br>
+4. Municipal Science and Technology Commission: "three zones and two wings" to build a world-class AI cluster (2026-04-03) [source:INDUSTRY-PUBLIC-HAIDIAN-AI]<br>
+5. Haidian statistical bulletin and public reporting on the AI industry (background on industrial structure and scale)<br>
+6. Method translation from the author's doctoral research *Building Human–Machine Friendly Space for the Future City*: flows–fields–networks, HME, nodes–corridors–areas–flows–policies, dual-mode simulation and the approach to engineering validation [source:METHOD-THESIS-HMF]<br>
+7. Method translation from the development volume of *Artificial Intelligence and the Future City* (embodied AI / human–machine friendly space): spatial adaptability first, the five-dimensional framework, and implications for urban renewal [source:METHOD-BOOK-FUTURE-CITY]<br>
+8. Fuxing Island human–machine friendly demonstration-area guideline (local method translation) [source:CASE-FUXING-HMF-GUIDE]<br>
+9. Penguin Island / WeCityX practice in human–machine friendly autonomous-driving transport systems (local method translation) [source:CASE-PENGUIN-WECITYX]<br>
+10. Translation of key parameters from the *Guideline for Building Human–Machine Friendly Urban Communities (Draft for Comment)*<br>
+11. Ministry of Housing and Urban-Rural Development (MOHURD) urban design management measures, measures for preparing regulatory detailed plans, and architectural design depth provisions; Ministry of Natural Resources land-use classification guide<br>
+12. OpenStreetMap Copyright / ODbL [source:OSM-COPYRIGHT]<br>
+13. Repository site-package, source_registry, public-brief, provisional_boundaries, and the geometry/metrics package of this proposal [source:PUBLIC-BRIEF]<br>
 14. Offline Chinese web fonts: Noto Sans SC / Source Han Sans subsets, SIL Open Font License 1.1 [source:FONT-NOTO-SANS-SC-OFL]
