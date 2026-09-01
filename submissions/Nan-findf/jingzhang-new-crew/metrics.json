@@ -1,0 +1,265 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 10398331.863,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary; not an official area claim."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 25892.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual footprints are not an existing-building survey or approved building envelope."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.046077,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model ratio derived from provisional geometry; recalculate after official polygons are supplied."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.013633,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Design-model ratio derived from provisional geometry; public workstations require site verification."
+      ]
+    },
+    "conceptual_road_length_m": {
+      "status": "known",
+      "value": 16778.64,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(projected_length(road_centerlines))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual connections, not surveyed roads or approved alignments."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official boundary are not available."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "The count is official; polygons are provisional rough geometry."
+      ]
+    },
+    "open_workstation_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space features)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual node count; locations require field and ownership verification."
+      ]
+    },
+    "crew_cross_link_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD-002..ROAD-007)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual pedestrian links, not engineering alignments."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(cards marked controlled test)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(landmarks)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual landmarks pending heritage, ownership, safety, and professional review."
+      ]
+    },
+    "land_use_0902_1_area_sqm": {
+      "status": "known",
+      "value": 562313.406,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-001)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition generated within repository provisional rough boundary."
+      ]
+    },
+    "land_use_0702_2_area_sqm": {
+      "status": "known",
+      "value": 1162884.122,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-002)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition generated within repository provisional rough boundary."
+      ]
+    },
+    "land_use_1401_3_area_sqm": {
+      "status": "known",
+      "value": 1755954.405,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-003)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition generated within repository provisional rough boundary."
+      ]
+    },
+    "land_use_0804_4_area_sqm": {
+      "status": "known",
+      "value": 2012575.693,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-004)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition generated within repository provisional rough boundary."
+      ]
+    },
+    "land_use_0802_5_area_sqm": {
+      "status": "known",
+      "value": 1982860.999,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-005)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition generated within repository provisional rough boundary."
+      ]
+    },
+    "land_use_0901_6_area_sqm": {
+      "status": "known",
+      "value": 1517608.783,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-006)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition generated within repository provisional rough boundary."
+      ]
+    },
+    "land_use_0802_7_area_sqm": {
+      "status": "known",
+      "value": 1404134.456,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-007)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition generated within repository provisional rough boundary."
+      ]
+    }
+  }
+}
