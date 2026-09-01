@@ -3,11 +3,14 @@ title: "人机友好京张：具身智能时代的共行、共事、共治城市
 author_github: "weponusa"
 author_display: "未来博士 wepon"
 language: "zh"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "基于作者博士研究与《人工智能与未来城市》书稿中的人机友好空间方法，以及复兴岛导则与企鹅岛/WeCityX 工程经验的概念转译，以「人机友好京张」为总品牌，把京张遗址公园重塑为连接众智园、AI原点社区与大钟寺的人机友好共行带：以“空间适应性优先于机器能力迭代”为总原则，用流—场—网与点—线—面—流—策组织空间，用通用无障碍与可审计数字孪生双底座、H0–H3 分级共行、五景五友好与测试—入驻—研发产业路径，实现人优先的共行、共事、共治。"
 tracks: ["ai-traffic-walkability", "robotics-autonomous-mobility", "jingzhang-heritage-narrative"]
 scenarios: ["ai-traffic-walkability", "robot-delivery-low-speed", "ai-cultural-guide", "enterprise-service-copilot", "public-safety-operations-review", "ai-health-service-navigation"]
-iteration: "v3.8"
+iteration: "v4.0"
 ---
 
 # 人机友好京张：具身智能时代的共行、共事、共治城市设计概念方案
@@ -27,7 +30,7 @@ iteration: "v3.8"
 3. **复兴岛人机友好城市导则（上海）**：双底座（通用无障碍 + 数字孪生）、五景五友好、测试—认证—接入企业门禁，以及第十二章“规划评估—建设同步—运营优化—规则迭代”全流程；京张只转译手续，不转译低空、专用道或 L4–L5 [source:CASE-FUXING-HMF-GUIDE]。
 4. **海淀产业公开叙事**：三区两翼与 AI 集聚背景 [source:INDUSTRY-PUBLIC-HAIDIAN-AI]。
 
-专业标准引用城市设计、控规编制深度、建筑设计深度规定与用地分类指南 [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。公开草案 brief 界定成果边界为概念建议，须经专业团队与法定程序深化 `brief/public-brief.md` [source:PUBLIC-BRIEF]。
+专业标准分别覆盖城市设计与控规编制深度 [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING]，以及建筑设计深度与用地分类 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。公开草案 brief 界定成果边界为概念建议，须经专业团队与法定程序深化 `brief/public-brief.md` [source:PUBLIC-BRIEF]。
 
 本方案所称“人机友好”，按作者研究定义，是城市空间、设施与系统同时满足人类与具身智能体的运行、交互与共存，形成**人—机—环境三位一体**秩序：人类的生命安全、尊严、无障碍通行、知情与退出权始终优先；机器必须可识别、可预测、可避让、可接管、可追责；环境同时提供物理可达、数字可读和低碳运维条件。它明确反对“机器优先挤占人的舒适与审美”，也反对把“给人的无障碍”与“给机器的适机化”拆成两套互斥工程——工程上应追求一次改造、多重收益 [source:METHOD-BOOK-FUTURE-CITY] [source:CASE-FUXING-HMF-GUIDE]。复兴岛尺度参数与 WeCityX 路权逻辑仅作概念底线，落地前须完成北京本地法规适配、文保与交通专项复核。
 
@@ -337,7 +340,7 @@ Logo 图形：双轨线 + 低速行驶包络线构成“轨—共行—站”图
 
 建筑层面，`geometry/buildings.geojson` 提供约35个概念基底、复算基底面积约53.4万㎡，仅用于讨论簇群密度与公共界面，不代表现状测绘或已批项目 [data:geometry/buildings.geojson#BLD-0001] [metric:building_footprint_area_sqm]。拆改留原则为“保留为主、修缮提升、谨慎新建、留白弹性”：文保与铁路遗产本体只做保护性展示外围组织；园区与社区以修缮与功能置换为主；新建集中于已明确更新意图的概念节点；测试场优先落在留白与低敏感边缘 [depth:retain_renovate_demolish]。
 
-因官方容积率、高度、权属与建筑普查未随公开资料提供，本方案不对地块强度与拆除量作伪法定结论，相关数值在官方控规与现状测绘到位后统一复算 [metric:floor_area_ratio] [metric:building_height_m] [depth:development_intensity_controls] [depth:risk_missing_data]。
+因官方容积率、高度、权属与建筑普查未随公开资料提供，本方案将容积率与高度保留为 unknown [metric:floor_area_ratio] [metric:building_height_m]，不对地块强度与拆除量作伪法定结论；相关数值在官方控规与现状测绘到位后，依设计深度和缺数规则统一复算 [depth:development_intensity_controls] [depth:risk_missing_data]。
 
 ## 交通、轨道、市政与公共服务设施
 
@@ -506,7 +509,7 @@ Logo 图形：双轨线 + 低速行驶包络线构成“轨—共行—站”图
 | 治理友好 | 近失事件/千公里、接管率、投诉闭环时间、数据越界事件 | 可审计、可纠偏、可问责 |
 | 公平性 | 老人/儿童/残障群体满意度与普通用户差距 | 群体差距持续缩小 |
 
-以上均为待建立基线的监测框架，不在本方案中虚构现状值或承诺达标值 [metric:accessible_route_continuity_ratio] [metric:machine_identity_compliance_ratio] [metric:human_takeover_response_time_s] [metric:near_miss_events_per_1000km] [metric:manual_service_availability_ratio]。
+以上均为待建立基线的监测框架：无障碍连续率与机器身份合规率尚待现场调查 [metric:accessible_route_continuity_ratio] [metric:machine_identity_compliance_ratio]；人工接管响应、近失事件与人工服务可用率也须从零建档 [metric:human_takeover_response_time_s] [metric:near_miss_events_per_1000km] [metric:manual_service_availability_ratio]。本方案不虚构现状值，也不承诺尚未验证的达标值。
 
 ![核心指标、联系强度与证据链图](assets/figures/metrics-evidence.png)
 
@@ -608,5 +611,4 @@ v2.0 曾直接采用生成式图件作为正式图，其中混入了正文并未
 11. 住建部城市设计管理办法、控规编制办法、建筑设计深度规定；自然资源部用地分类指南  
 12. OpenStreetMap Copyright / ODbL [source:OSM-COPYRIGHT]  
 13. 仓库 site-package、source_registry、public-brief、provisional_boundaries 与本方案 geometry/metrics 包 [source:PUBLIC-BRIEF]  
-14. 离线中文网页字体：Noto Sans SC / Source Han Sans 子集，SIL Open Font License 1.1 [source:FONT-NOTO-SANS-SC-OFL]  
-14. 离线中文字体：Noto Sans SC / Source Han Sans 子集，SIL Open Font License 1.1 [source:FONT-NOTO-SANS-SC-OFL]  
+14. 离线中文网页字体：Noto Sans SC / Source Han Sans 子集，SIL Open Font License 1.1 [source:FONT-NOTO-SANS-SC-OFL]
