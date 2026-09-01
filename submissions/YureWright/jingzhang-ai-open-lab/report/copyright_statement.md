@@ -46,7 +46,7 @@ HTML 页面不加载任何外部字体文件，仅通过 `font-family` 声明回
 
 ## 5. HTML 与静态资源安全
 
-`report/proposal.html`、`visual/index.html`、`assets/figures/scenario-cards.html` 均为离线静态页面：
+`report/proposal.html`、`report/proposal.en.html`、`visual/index.html`、`visual/index.en.html` 均为离线静态页面：
 
 - 不加载远程脚本、远程样式、远程字体、远程图片或地图瓦片
 - 不含 iframe、表单提交、外部接口调用或任何网络请求

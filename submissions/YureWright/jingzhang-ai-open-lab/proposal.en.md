@@ -3,7 +3,7 @@ title: Suture Line (绣春来) — Stitching the Broken City and Its Social Fabr
 author_github: YureWright
 language: en
 license: CC-BY-SA-4.0
-summary: A Centennial Beijing-Zhangjiakou AI Innovation Belt urban design proposal built on "suturing" as its methodology: one main thread, four stitching moves, and four layers of social weaving that turn the railway heritage belt from an urban wound into a continuous stitched greenway and AI encounter network. All 45 numbered indicators plus 6 derived visual indicators (51 entries in total) register their source files and formulas item by item in metrics.json, clearly distinguishing geometrically recalculated values, declared values, and targets awaiting verification; human and paper fallbacks run through every AI facility.
+summary: A Centennial Beijing-Zhangjiakou AI Innovation Belt urban design proposal built on "suturing" as its methodology: one main thread, four stitching moves, and four layers of social weaving that turn the railway heritage belt from an urban wound into a continuous stitched greenway and AI encounter network. All 46 numbered indicators plus 6 derived visual indicators (52 entries in total) register their source files and formulas item by item in metrics.json, clearly distinguishing geometrically recalculated values, declared values, and targets awaiting verification; human and paper fallbacks run through every AI facility.
 proposal_format_version: "2"
 translation_of: proposal.md
 ---
@@ -44,7 +44,7 @@ The industrial mechanism borrows from six publicly known, common-knowledge cases
 
 | Carrier | Mechanism | Linked indicators |
 |---|---|---|
-| XiuYu Furniture (200 units) | City-scale LLM terminals, coverage density approx. 17.5 per km² [metric:A5] | A5/D25 |
+| XiuYu Furniture (200 units) | City-scale LLM terminals, coverage density approx. 17.5 per km² [metric:D25] | A5 (200 units) · D25 (17.5 per km²) |
 | XiuJu Garden (pilgrimage landmark) | Makes the Transformer data flow walkable as a five-act pilgrimage | — |
 | XiuLi Bikes (pilot of 10) | Symbolic power generation + community compute "starlight wall" [metric:C20] | C20/C21 |
 
@@ -74,13 +74,13 @@ The three key areas are where "suturing" actually lands; each area is given a ro
 | K2 Origin Community · XiuChang | Young people's encounter plaza | Plaza 40% / commercial 20% / green 25% / facilities 15% | Station-front encounter plaza, campus frontage opening, XiuJu Garden landmark, open-air cinema |
 | K3 Dazhongsi · XiuTing | Commuters' station-front living room | Station-front plaza commerce 45% / green 17% / community service 20% / transport support 18% | Weather-protected concourse, wholesale-market memory strip, chat long tables, shared-garden greenhouse |
 
-Key-area green ratios: K1=10.0% / K2=11.4% / K3=16.4%, all above the 8% basic requirement [metric:A3]; approx. 93.8% of the total building volume concentrates in the key areas, showing the leverage effect of concentrated renewal [metric:F39].
+Key-area green ratios (E33 zone green ratio, recalculated from design layers): K1=10.0% / K2=11.4% / K3=16.4%, all above the plan&#x27;s self-set target line of 8% [metric:E33]; approx. 93.8% of the total building volume concentrates in the key areas, showing the leverage effect of concentrated renewal [metric:F39].
 
 ## 6. AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 AI is not decoration but planning logic: the placement of encounter nodes is **driven by design hypotheses** — under the expected-encounter thinking of "population density × path flow × willingness to linger," the 150 m spacing is set as a **conceptual design target** (roughly 2 minutes of walking, at the boundary between the walking-fatigue threshold and the comfortable pace of elderly people), as a design assumption for pilot verification rather than a proven optimum from reproducible optimization [metric:C14].
 
-**Two-level node–device system**: stitch points (spatial places) 31 + XiuYu Furniture (AI terminals) 200 [metric:A4]; 12 AI scenario cards cover the three signature devices and the four layers of social capital, each noting location, how AI is used, who benefits, and the human fallback [metric:D26]; 5 persona types each get a concrete fallback; 3 industry test scenarios run the "scenario-space-operation" loop [metric:D28].
+**Two-level node–device system**: stitch points (spatial places) 31 [metric:A4] + XiuYu Furniture (AI terminals) 200 [metric:A5]; 12 AI scenario cards cover the three signature devices and the four layers of social capital, each noting location, how AI is used, who benefits, and the human fallback [metric:D26]; 5 persona types each get a concrete fallback; 3 industry test scenarios run the "scenario-space-operation" loop [metric:D29].
 
 **Data loop**: perception layer (anonymized intent heatmaps of wayfinding/chat intents, de-identified, cleared by default within 24h) → decision layer (drives quarterly stitch-point micro-adjustments, i.e., "AI re-stitches") → feedback layer (annual before/after measurement of encounter-circle coverage and dwell time) [source:AGENT-TASKBOOK]. In one sentence: **this city learns how to make people meet** [depth:ai_scenarios_personas].
 
@@ -96,7 +96,7 @@ Retain/renovate/demolish plan: the overall direction adheres to "retain/renovate
 
 ## 8. Transport, Rail, Municipal Services, and Public Facilities
 
-At the transport level, roads.geojson recalculates total road length 63.42 km [metric:B6] and road network density 5.56 km/km² [metric:B7] (already meeting the general-city ≥5 km/km² requirement; the gap to the national 8 km/km² target is disclosed proactively, with a Phase II densification path: upgrading stitch alleys to minor roads, densifying internal grids in key areas, and parallel under-bridge passages) [standard:GB-T51328-2018-ROAD-DENSITY]; slow-traffic roads account for 30.9% [metric:B10], with 29 stitch alleys crossing the corridor belt [metric:B11].
+At the transport level, roads.geojson recalculates total road length 63.42 km [metric:B6] and road network density 5.56 km/km² [metric:B7] (GB/T 51328-2018 §12.1.4 requires that road-system density in the central urban area should not be less than 8 km/km²; the Phase I value falls short of this, disclosed proactively with a Phase II densification path: upgrading stitch alleys to minor roads, densifying internal grids in key areas, and parallel under-bridge passages; the standard's original text is not archived locally and is cited as background orientation only, to be verified during deepening) [standard:GB-T51328-2018-ROAD-DENSITY]; slow-traffic roads account for 30.9% [metric:B10], with 29 stitch alleys crossing the corridor belt [metric:B11].
 
 ![Blue-green space and slow-traffic suturing system](assets/figures/mobility-bluegreen.en.png)
 
@@ -106,7 +106,7 @@ At the rail and municipal level, the plan explicitly declares data gaps: rail st
 
 Blue-green space: green space + plazas total 78.7 ha [metric:E29], belt-wide green ratio 6.9% [metric:E30]; 29 healing/sensory gardens concentrate along the main thread and key areas [metric:C18], with 12 pocket green spaces (0.3–1 ha) [metric:C17]; the greenway connects rain gardens (one every 300–500 m), with pervious pavement ≥60% and native plants ≥70% as deepening targets [data:geometry/green_space.geojson].
 
-Public space: per-capita public activity space 11.2 m²/person (green space + plazas 78.7 ha ÷ directly served population 70,000) [metric:C16], above the roughly 9 m² reference line of the National Garden City per-capita park green standard; stitch points (encounter nodes) 31, 15-minute encounter-circle coverage 71.7% [metric:C15] [data:geometry/public_space.geojson].
+Public space: per-capita public activity space 11.2 m²/person (green space + plazas 78.7 ha ÷ directly served population 70,000) [metric:C16], benchmarked against the National Garden City standard (MOHURD Jiancheng [2016] No.235: per-capita park green space ≥9.00 m²/person for cities with per-capita built-up land ≥105 m², built-up-area caliber) as background orientation; this plan uses the broader "per-capita public activity space" caliber (incl. plazas), which differs from the "per-capita park green" caliber, so the comparison is directional only; stitch points (encounter nodes) 31, 15-minute encounter-circle coverage 71.7% [metric:C15] [data:geometry/public_space.geojson].
 
 Urban character: a color spectrum of rust red (rail memory) + warm wood (social warmth) + grey-green (healing greenery), unifying a "stitch-line" visual language (stitch-number signage, rust-colored guide strips, braille plaques); barrier-free ramps and age-friendly seating spacing ≤100 m across the belt; child-friendly (safe healing-garden dimensions, XiuJu Garden children's mode, car-free greenway) [depth:blue_green_public_space].
 
@@ -125,7 +125,7 @@ Implementation policy and operation: tripartite co-governance of street office +
 
 ## 11. Indicator System, Area Recalculation, and Compliance Matrix
 
-All 45 numbered indicators plus 6 derived visual indicators (51 entries in total) register their calculation methods, source files, and formulas item by item in metrics.json [data:geometry/site_boundary.geojson]; geometric indicators that can be recalculated from design layers in EPSG:4548 are given recalculated values, while declared values and targets awaiting verification (e.g., pilot operation parameters, items needing additional methodology) are annotated item by item — the plan does not claim that "everything is recalculated." Core recalculated values: SITE area 1,141.3 ha [metric:A1], road density 5.56 [metric:B7], green ratio 6.9% [metric:E30], building coverage 7.2% [metric:F37].
+All 46 numbered indicators plus 6 derived visual indicators (52 entries in total) register their calculation methods, source files, and formulas item by item in metrics.json [data:geometry/site_boundary.geojson]; geometric indicators that can be recalculated from design layers in EPSG:4548 are given recalculated values, while declared values and targets awaiting verification (e.g., pilot operation parameters, items needing additional methodology) are annotated item by item — the plan does not claim that "everything is recalculated." Core recalculated values: SITE area 1,141.3 ha [metric:A1], road density 5.56 [metric:B7], green ratio 6.9% [metric:E30], building coverage 7.2% [metric:F37].
 
 ![Indicator evidence chain](assets/figures/metrics-evidence.en.png)
 
@@ -148,7 +148,7 @@ The following table is the proposal-side item-by-item response mapping: the offi
 | Three-level scope framework | Coordinated study (approx. 43.6 km²) → overall design (SITE 1,141.3 ha) → key areas (K1 192.1 / K2 104.3 / K3 72.0 ha) | [metric:A1][depth:three_level_scope_framework] |
 | Three-zone, two-wing synergy loop | K1 accelerate ⇄ K2 ecosystem ⇄ K3 agglomerate, linked via the Suture Line data loop; two wings = Zhongguancun tech-service wing + Xiaoyue River scenario-enablement wing | [source:AGENT-TASKBOOK] |
 | One main thread · four stitching moves · four layers | Suture Line 4.03 km; running/edge-binding/back/hidden stitches; encounter/shared-activity/healing/warmth four layers | [metric:A2][metric:B11][metric:G40] |
-| Function–space–operation mapping | 12 AI scenario cards: location + how AI is used + who benefits + human fallback; 5 personas; 3 industry test scenarios | [metric:D26][metric:D28][depth:ai_scenarios_personas] |
+| Function–space–operation mapping | 12 AI scenario cards: location + how AI is used + who benefits + human fallback; 5 personas; 3 industry test scenarios | [metric:D26][metric:D29][depth:ai_scenarios_personas] |
 | Operation entity arrangement | Tripartite co-governance of street + professional operator + community volunteers; pilot-enterprise adoption; quarterly "re-stitch" announcements | [data:geometry/phasing.geojson] |
 | Regional collaboration interfaces (conceptual, not approved) | Interfaces with Beiwei community, Future Science City, Huairou Science City, Beijing E-Town, and the Beijing-Tianjin-Hebei region are in Appendix D; all are suggested mechanisms without concluded cooperation | Appendix D |
 
