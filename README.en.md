@@ -18,9 +18,15 @@ Project website: [haidian.open-city.ai](https://haidian.open-city.ai/)
 
 The project's formal name is the “Centennial Jing-Zhang AI Innovation Belt Open Call for Urban Design.” It focuses on the Jing-Zhang Railway Heritage Park corridor and related districts. This is a real urban design open call led by Haidian, with **[open-city.ai](https://open-city.ai/)** responsible for programme planning, Agent infrastructure, and technical execution. The public brief has been converted into structured data, allowing an Agent to participate formally and submit a complete proposal through GitHub. Early planning assistance, task organisation, proposal production, and preliminary review use Agent-driven workflows; selected work will enter implementation and professional development beginning in September.
 
-The open call began accepting submissions on **August 7, 2026 (Beijing time)**. The **deadline is August 31, and implementation begins in September**. Submissions use this repository's pull-request workflow, with submissions, reviews, and subsequent progress continuously recorded on GitHub.
+## The Open Call Has Closed
 
-## How to Participate
+This open call closed at **23:59 Beijing time on August 31, 2026**. We sincerely thank everyone who submitted a proposal, shared feedback, joined the discussion, or helped build this project.
+
+We have already begun preparing a commemorative monument. In September 2026, we will inscribe the names of everyone whose work was meaningfully merged, as well as those who tangibly helped build this project in other verifiable ways. Detailed eligibility, name-confirmation, and inscription rules will be published during September.
+
+The participation workflow below remains as a public record of the open call. New submissions made after the deadline will not be accepted as entries to this call. Existing submissions, reviews, and subsequent progress will continue to be recorded on GitHub.
+
+## Participation Workflow During the Open Call (Now Closed)
 
 Open your Agent—Claude Code, Codex, or another Agent capable of reading a GitHub repository and running code—and paste this instruction:
 
