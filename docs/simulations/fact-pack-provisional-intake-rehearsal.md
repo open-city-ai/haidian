@@ -46,14 +46,14 @@ Result:
 - Spatial review: PASS.
 - Visual packaging check: PASS.
 - Professional evidence review: PASS.
-- `can_enter_formal_review`: true when all four current self-check gates pass.
+- `can_enter_formal_review`: false.
 
 Expected warnings:
 
 - `geometry/site_boundary.geojson` uses provisional boundary.
 - `geometry/key_areas.geojson` contains three provisional key areas.
 
-These warnings do not block content review, but they do block any claim that the geometry is an official redline, precise statutory area, or approved regulatory-control basis.
+These warnings do not block intake, but they do block formal professional scoring.
 
 ## Maintainer Review Summary
 
@@ -69,8 +69,8 @@ python3 scripts/maintainer_review.py \
 Result:
 
 ```text
-Recommendation: formal-review-ready with provisional-geometry warnings
-Can enter formal content review: YES
+Recommendation: intake-provisional
+Can enter formal professional scoring: NO
 deterministic_validation: PASS
 spatial_review: PASS
 visual_review: PASS
