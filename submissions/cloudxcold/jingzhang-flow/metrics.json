@@ -13,9 +13,11 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
+      "confidence": "low",
       "assumptions": [
-        "Trusted official boundary is present in the site package."
+        "The submitted site boundary is a participant-derived provisional constraint, not an official redline or statutory planning boundary.",
+        "The value is a design-model output recomputed from the submitted provisional geometry in EPSG:4548 and does not constitute a statutory area indicator.",
+        "Replace the provisional boundary and synchronously recompute metrics.json, HTML, figures, and drawings when organizer-confirmed geometry becomes available."
       ]
     },
     "building_footprint_area_sqm": {
@@ -26,8 +28,12 @@
         "geometry/buildings.geojson"
       ],
       "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "The numerator and denominator are recomputed from the submitted design-model geometry and provisional site boundary in EPSG:4548.",
+        "This low-confidence ratio describes internal model consistency only; it is not an official green-space or open-space planning indicator.",
+        "Recompute after organizer-confirmed boundary and statutory land-use data are supplied."
+      ]
     },
     "green_ratio": {
       "status": "known",
@@ -38,8 +44,12 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "The numerator and denominator are recomputed from the submitted design-model geometry and provisional site boundary in EPSG:4548.",
+        "This low-confidence ratio describes internal model consistency only; it is not an official public-space planning indicator.",
+        "Recompute after organizer-confirmed boundary and statutory public-space data are supplied."
+      ]
     },
     "public_space_ratio": {
       "status": "known",

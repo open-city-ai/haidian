@@ -50,10 +50,10 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | 总体设计范围 | 约11.4 km² | 以京张公园及周边1—2 km城市范围为整体，提出结构与空间操作 |
 | 重点地区 | 合计约368.4 ha | 众智园、AI原点社区、大钟寺三处重点深化区域 |
 
-![三层范围与场地总览](assets/figures/site-overview.png)  
+![三层范围与场地总览](assets/figures/site-overview.png)
 *图2-1A 三层范围与场地总览。图示由提交包临时约束几何生成，用于对应机器审查，不替代法定红线、权属或测绘成果。*
 
-![研究范围与规划状态](assets/figures/supporting/zh/coordinated-research/cr-01-scope-planning-status.webp)  
+![研究范围与规划状态](assets/figures/supporting/zh/coordinated-research/cr-01-scope-planning-status.webp)
 *图2-1 研究范围与规划状态。边界为征集资料中的临时研究边界，仅供概念方案使用。*
 
 *研究尺度意味着：统筹研究回答区域系统，总体设计回答公园与周边城市如何协同，重点地区才进入具体场景和节点。三者不应互相替代。*
@@ -78,8 +78,8 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 资源结构：有资源，但尚未形成连续网络
 
-![知识产业生活资源网络](assets/figures/supporting/zh/coordinated-research/cr-02-knowledge-industry-life-network.webp)  
-*图3-1 知识—产业—生活资源网络。点位基于公开地图样本，反映结构而非完整机构名录。*
+![知识产业生活资源网络](assets/figures/supporting/zh/coordinated-research/cr-02-knowledge-industry-life-network.webp)
+*图3-1 知识—产业—生活资源网络。点位基于2026年8月29日提取的OpenStreetMap（OSM）公开地图样本，反映结构而非完整机构名录。* [source:OSM-OVERPASS-20260829]
 
 #### 结构性发现
 
@@ -93,7 +93,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 空间问题：纵向公园与横向城市的重新缝合
 
-![空间阻隔与缝合机会](assets/figures/supporting/zh/coordinated-research/cr-03-barriers-stitching-opportunities.webp)  
+![空间阻隔与缝合机会](assets/figures/supporting/zh/coordinated-research/cr-03-barriers-stitching-opportunities.webp)
 *图4-1 空间阻隔与缝合机会。红色判断线为结构性推断，需在后续现场踏勘和工程设计中校核。*
 
 #### 问题并非只有“接近公园”
@@ -250,14 +250,14 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 设计主题与品牌识别
 
-**中文主标题：轨联时空，智运未来**  
-**英文主标题：JINGZHANG FLOW**  
-**中文副标题：一条串联城市空间、传承京张记忆、运载创新成果的城市发展带**  
+**中文主标题：轨联时空，智运未来**
+**英文主标题：JINGZHANG FLOW**
+**中文副标题：一条串联城市空间、传承京张记忆、运载创新成果的城市发展带**
 **英文副标题：Time Linked. Space Woven. Future in Motion.**
 
 ### 品牌识别与成果使用说明
 
-![JINGZHANG FLOW标志与品牌识别](assets/figures/supporting/zh/overall-design/od-00-brand-board.webp)  
+![JINGZHANG FLOW标志与品牌识别](assets/figures/supporting/zh/overall-design/od-00-brand-board.webp)
 *图0-1 JINGZHANG FLOW最终Logo设计板：J、Z、F与纵向主脉、横向联系和斜向贯穿共同构成时空连接与成果流动意象。*
 
 > **使用边界**　本方案为概念性城市设计成果。图示边界不是法定红线；AI生成空间意向图用于解释策略，不代表现状照片、工程设计、拆建结论或政府实施承诺。
@@ -304,7 +304,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 总体结构：一脉联三区，两翼织循环，多径融城市
 
-![总体功能结构深化](assets/figures/supporting/zh/overall-design/od-01-overall-functional-structure.webp)  
+![总体功能结构深化](assets/figures/site-overview.png)
 *图3-1 总体功能结构深化图。总体设计临时边界、重点片区和结构要素均为概念承载，不代表法定用地边界。*
 
 | 结构 | 作用 | 空间含义 |
@@ -316,7 +316,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 三区两翼：创新运输与反馈循环
 
-![AI创新生态与成果流动](assets/figures/supporting/zh/overall-design/od-02-ai-ecosystem-flow.webp)  
+![AI创新生态与成果流动](assets/figures/supporting/zh/overall-design/od-02-ai-ecosystem-flow.webp)
 *图4-1 AI创新生态与成果流动：三区承担不同创新阶段，两翼持续输入专业资源与城市反馈。*
 
 > **创新回路**　AI原点策源孵化 → 众智园集成加速 → 大钟寺市场与公众采用 → 城市场景反馈 → 返回AI原点
@@ -368,42 +368,42 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 街道连续型
 
-![街道连续型空间渗透策略](assets/figures/supporting/zh/overall-design/od-09-street-continuity.webp)  
+![街道连续型空间渗透策略](assets/figures/supporting/zh/overall-design/od-09-street-continuity.webp)
 *图7-1 街道连续型：以连续慢行、过街安全、街角停留和公交站点优化形成高品质横向公共支脉。 图中空间为AI生成的概念意向。*
 
 ### 前场激活型
 
-![前场激活型空间渗透策略](assets/figures/supporting/zh/overall-design/od-10-forecourt-activation.webp)  
+![前场激活型空间渗透策略](assets/figures/supporting/zh/overall-design/od-10-forecourt-activation.webp)
 *图7-2 前场激活型：释放建筑前消极空间，将前场转化为城市与公园之间的共享节点。 图中空间为AI生成的概念意向。*
 
 ### 建筑穿透型
 
-![建筑穿透型空间渗透策略](assets/figures/supporting/zh/overall-design/od-11-building-porosity.webp)  
+![建筑穿透型空间渗透策略](assets/figures/supporting/zh/overall-design/od-11-building-porosity.webp)
 *图7-3 建筑穿透型：在权属和运营条件允许时开放首层、公共廊道与共享院落。 图中空间为AI生成的概念意向。*
 
 ### 边界共享型
 
-![边界共享型空间渗透策略](assets/figures/supporting/zh/overall-design/od-12-shared-boundary.webp)  
+![边界共享型空间渗透策略](assets/figures/supporting/zh/overall-design/od-12-shared-boundary.webp)
 *图7-4 边界共享型：以选择性开口、通透界面和分级管理重塑可共享城市边界。 图中空间为AI生成的概念意向。*
 
 ### 基础设施转化型
 
-![基础设施转化型空间渗透策略](assets/figures/supporting/zh/overall-design/od-13-infrastructure-conversion.webp)  
+![基础设施转化型空间渗透策略](assets/figures/supporting/zh/overall-design/od-13-infrastructure-conversion.webp)
 *图7-5 基础设施转化型：将桥下、高架边缘和设施夹缝转化为可通行、可停留的公共联系空间。 图中空间为AI生成的概念意向。*
 
 ### 蓝绿串联型
 
-![蓝绿串联型空间渗透策略](assets/figures/supporting/zh/overall-design/od-14-bluegreen-linkage.webp)  
+![蓝绿串联型空间渗透策略](assets/figures/supporting/zh/overall-design/od-14-bluegreen-linkage.webp)
 *图7-6 蓝绿串联型：串联绿地、水系和小游园，形成多点、多径、连续的公共开放网络。 图中空间为AI生成的概念意向。*
 
 ### 枢纽接驳型
 
-![枢纽接驳型空间渗透策略](assets/figures/supporting/zh/overall-design/od-15-hub-connection.webp)  
+![枢纽接驳型空间渗透策略](assets/figures/supporting/zh/overall-design/od-15-hub-connection.webp)
 *图7-7 枢纽接驳型：优先优化地面慢行和前场，根据条件组合地下通道、站厅与局部二层连廊。 图中空间为AI生成的概念意向。*
 
 ### 总体空间操作：主脉、界面、节点与存量更新
 
-![总体空间操作策略](assets/figures/supporting/zh/overall-design/od-16-spatial-operations.webp)  
+![总体空间操作策略](assets/figures/supporting/zh/overall-design/od-16-spatial-operations.webp)
 *图8-1 总体空间操作策略：以公园主脉为底座，强化横向支脉、公共性渗透与差异化共享节点。*
 
 | 操作层 | 设计内容 | 关键判断 |
@@ -436,7 +436,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 总体用地结构：存量兼容与少量增量
 
-![总体用地结构正式图](assets/figures/land-use-structure.png)  
+![总体用地结构正式图](assets/figures/land-use-structure.png)
 *总体用地结构正式提交图：存量兼容、混合更新与少量增量补缺。*
 
 用地结构不以全面改变现状性质为前提，而以存量兼容、混合使用和少量增量补缺为原则：公园与公共空间承担开放底座，高校科研与产业空间通过首层、前场和院落共享增强联系，商业生活与公共服务融入创新带的日常使用。
@@ -455,17 +455,14 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | 众智园 | 专业协作与分级开放的横向渗透 | 园区尺度、蓝绿空间、共享前场与专业空间开放梯度 |
 | 大钟寺 | 市场转化与城市生活接触的横向渗透 | 轨道枢纽、商业基座、企业界面与公众体验 |
 
-![三个重点片区定位与协同关系](assets/figures/key-areas.png)  
-*图11-0 三个重点片区定位与协同关系。图面表达三区分工、京张公共主脉、横向公共支脉与成果运输回路；三处范围均为征集资料支持下的临时概念边界，不作为正式选址红线或精确面积依据。*
+![三个重点片区定位与协同关系](assets/figures/key-areas.png)
+*图11-1 三个重点片区定位与协同关系。图面表达三区分工、京张公共主脉、横向公共支脉与成果运输回路；三处范围均为征集资料支持下的临时概念边界，不作为正式选址红线或精确面积依据。*
 
 > **深化原则**　重点地区应根据现状产业、城市肌理、权属与上位规划，选择需要强化的支脉层级和空间渗透策略，而不是复制统一模板。
 
 ### AI原点社区｜知识源与孵化
 
 AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知识策源与创新孵化任务。片区并不缺少高校或科研资源，真正的短板是知识集中在相对独立的校园、科研院所和建筑内部，校与校、校园与城市之间缺少连续、开放、中性的共享交流空间。因此，设计命题不是新增大型AI产业园或地标建筑，而是让知识从校园流向城市，形成“校校相联、校城共享”的近校创新网络。[depth:three_key_area_detailed_design] [data:geometry/key_areas.geojson#PROV-KEY-001]
-
-![AI原点社区总体概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-01-concept-aerial.webp)  
-*图11-1 AI原点社区总体概念鸟瞰。该图表达空间愿景，不作为现状测绘、规划边界或工程总平面依据。*
 
 #### 空间结构：一脉·一核·四站·慢行网络
 
@@ -478,11 +475,8 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 | 四站 | 四处已深化的校际共享界面与存量空间载体 | 分别承载研究、学习、资源匹配和城市问题共评等高频跨校场景 |
 | 慢行网络 | 真实公共道路、街巷、校园公共入口和公园接口 | 形成连接高校入口、四站、一核与京张主脉的毛细式知识流动网络 |
 
-![AI原点社区总体空间结构](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-02-spatial-structure.webp)  
+![AI原点社区总体空间结构](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-02-spatial-structure.webp)
 *图11-2 “一脉·一核·四站·慢行网络”总体空间结构。线路为结构性表达，具体开放和实施边界待核实。*
-
-![AI原点社区真实空间分析底图](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-03-real-space-base.webp)  
-*图11-3 真实空间分析底图。高校范围、轨道站点、主要道路、公园和公共步行网络来自公开GIS/OSM；未确认入口、院落与内部路径保留“待核实”属性。*
 
 #### 一脉：公园是交换媒介，不是活动孤岛
 
@@ -505,17 +499,12 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 
 #### 慢行网络与关键空间操作
 
-慢行网络只依托已识别的公共道路、街巷和公共步行空间组织，不为了构图自由穿越校园、建筑或未经确认开放的院落。候选支脉按照创新资源连接、慢行连续性、空间激活潜力、公共性与实施潜力、场景承载和网络补缺进行比较，筛选结果只用于城市设计人工评审。
-
-![横向公共慢行支脉候选](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-04-lateral-corridor-candidates.webp)  
-*图11-4 横向公共慢行支脉候选。校园、园区或院落穿行若未经确认，仅作为潜在联系。*
-
 慢行空间应同时满足“可走、可停、可进、可穿、可用”：连续、安全、无障碍且夜间可识别；能够在街角、前场和树荫下停留；沿线首层与共享空间低门槛可进入；只有在权属和开放条件确认后增加校园或院落穿行；并可承载学习、交流、展示、骑行、休息和小型活动。
 
 空间更新采用“连—开—启—聚—渗”五项操作：织补步行、骑行和过街联系；释放校门、临街设施、边缘绿地和建筑前场；激活首层、现有绿地、街角、桥头与存量商业；形成几十人尺度的日常偶遇空间；把慢行性、开放性、停留性、共享活动与公共服务向城市扩散，而不是机械复制公园绿化。
 
-![AI原点社区关键空间操作](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-05-key-spatial-operations.webp)  
-*图11-5 “连—开—启—聚—渗”关键空间操作。图示用于解释设计逻辑，不表示具体工程位置与边界。*
+![AI原点社区关键空间操作](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-05-key-spatial-operations.webp)
+*图11-3 “连—开—启—聚—渗”关键空间操作。图示用于解释设计逻辑，不表示具体工程位置与边界。*
 
 建筑与公共空间遵循“共享现有空间 → 优化公共通行 → 激活首层/前场 → 改造存量 → 可逆增补 → 条件性新建”的顺序。新增建筑不是节点成立的前提；只有高频场景反复证明现有空间不足，并完成权属、规划和工程条件核实后，才讨论少量增量建设。
 
@@ -523,81 +512,81 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 
 **一核·双廊·多厅·多场。** 以AI原点大厦周边前场为创新锚点，串联五道口轨道站和沿街商业公共界面。重点激活首层、地铁口及站东商业界面，形成成果发布、共创、青年交流和城市反馈等分布式“厅·场”。AI场景为成果城市发布与需求回流；具体权属、轨道边界、商业运营和工程条件均需核实。
 
-![五道口—AI原点核心功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-10-node-01-program.webp)  
-*图11-6 五道口—AI原点核心的功能、空间动作与AI场景。*
+![五道口—AI原点核心功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-10-node-01-program.webp)
+*图11-4 五道口—AI原点核心的功能、空间动作与AI场景。*
 
-![五道口—AI原点核心设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-11-node-01-analysis.webp)  
-*图11-7 五道口—AI原点核心设计分析。*
+![五道口—AI原点核心设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-11-node-01-analysis.webp)
+*图11-5 五道口—AI原点核心设计分析。*
 
-![五道口—AI原点核心概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-12-node-01-aerial.webp)  
-*图11-8 五道口—AI原点核心概念鸟瞰。*
+![五道口—AI原点核心概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-12-node-01-aerial.webp)
+*图11-6 五道口—AI原点核心概念鸟瞰。*
 
-![五道口—AI原点核心人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-13-node-01-eye-level.webp)  
-*图11-9 五道口—AI原点核心人视场景。*
+![五道口—AI原点核心人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-13-node-01-eye-level.webp)
+*图11-7 五道口—AI原点核心人视场景。*
 
 #### 节点02｜西站｜北大—清华
 
 **一楼两场，南北协同。** 以华腾科技大厦首层、东北侧前场及路口东北侧潜力开放空间为主要载体，通过存量首层激活、林下研究岛和轻型可逆设施形成跨学科研究交流节点。AI场景为跨学科AI研究会诊；学术判断、合作决策和敏感信息处理由人工完成，权属、开放、消防及增量建设条件待核实。
 
-![北大—清华节点功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-20-node-02-program.webp)  
-*图11-10 北大—清华校际共享节点的功能、空间动作与AI场景。*
+![北大—清华节点功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-20-node-02-program.webp)
+*图11-8 北大—清华校际共享节点的功能、空间动作与AI场景。*
 
-![北大—清华节点设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-21-node-02-analysis.webp)  
-*图11-11 北大—清华校际共享节点设计分析。图中潜力空间不表示已确定可建设。*
+![北大—清华节点设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-21-node-02-analysis.webp)
+*图11-9 北大—清华校际共享节点设计分析。图中潜力空间不表示已确定可建设。*
 
-![北大—清华节点概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-22-node-02-aerial.webp)  
-*图11-12 北大—清华校际共享节点概念鸟瞰。*
+![北大—清华节点概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-22-node-02-aerial.webp)
+*图11-10 北大—清华校际共享节点概念鸟瞰。*
 
-![北大—清华节点人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-23-node-02-eye-level.webp)  
-*图11-13 北大—清华校际共享节点人视场景。*
+![北大—清华节点人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-23-node-02-eye-level.webp)
+*图11-11 北大—清华校际共享节点人视场景。*
 
 #### 节点03｜北站｜清华—北林
 
 **一园·两门·一环·多点。** 利用清华与北林之间现有大尺度绿色空间，保留草坪、成熟树木和主通道，以两校入口、林下学习环和多个学习岛组织10—30分钟高频学习与交流。AI用于开放课程、讲座、共享空间和学习伙伴导航，同时保留非AI信息方式；绿地权属、校园连接和设施落位条件待核实。
 
-![清华—北林节点功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-30-node-03-program.webp)  
-*图11-14 清华—北林校际共享节点的功能、空间动作与AI场景。*
+![清华—北林节点功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-30-node-03-program.webp)
+*图11-12 清华—北林校际共享节点的功能、空间动作与AI场景。*
 
-![清华—北林节点设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-31-node-03-analysis.webp)  
-*图11-15 清华—北林校际共享节点设计分析。*
+![清华—北林节点设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-31-node-03-analysis.webp)
+*图11-13 清华—北林校际共享节点设计分析。*
 
-![清华—北林节点概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-32-node-03-aerial.webp)  
-*图11-16 清华—北林校际共享节点概念鸟瞰。*
+![清华—北林节点概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-32-node-03-aerial.webp)
+*图11-14 清华—北林校际共享节点概念鸟瞰。*
 
-![清华—北林节点人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-33-node-03-eye-level.webp)  
-*图11-17 清华—北林校际共享节点人视场景。*
+![清华—北林节点人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-33-node-03-eye-level.webp)
+*图11-15 清华—北林校际共享节点人视场景。*
 
 #### 节点04｜东站｜学院路三校
 
 **三门一环。** 节点对象为学院路交叉口周边北京语言大学、中国矿业大学（北京）、北京科技大学三处高校城市界面及现状过街系统。通过三处共享门厅、四角连续过街和统一校际信息界面，把日常通勤转化为短时、高频的知识交换。AI场景为跨校课程与团队即时匹配；不在路口中央设置共享建筑或大型广场。
 
-![学院路三校节点功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-40-node-04-program.webp)  
-*图11-18 学院路三校校际共享节点的功能、空间动作与AI场景。*
+![学院路三校节点功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-40-node-04-program.webp)
+*图11-16 学院路三校校际共享节点的功能、空间动作与AI场景。*
 
-![学院路三校节点设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-41-node-04-analysis.webp)  
-*图11-19 学院路三校校际共享节点设计分析。*
+![学院路三校节点设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-41-node-04-analysis.webp)
+*图11-17 学院路三校校际共享节点设计分析。*
 
-![学院路三校节点概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-42-node-04-aerial.webp)  
-*图11-20 学院路三校校际共享节点概念鸟瞰。*
+![学院路三校节点概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-42-node-04-aerial.webp)
+*图11-18 学院路三校校际共享节点概念鸟瞰。*
 
-![学院路三校节点人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-43-node-04-eye-level.webp)  
-*图11-21 学院路三校校际共享节点人视场景。*
+![学院路三校节点人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-43-node-04-eye-level.webp)
+*图11-19 学院路三校校际共享节点人视场景。*
 
 #### 节点05｜南站｜地大—北航
 
 **桥·廊·坊。** 以现状过街天桥、道路两侧条形绿化和南侧两层餐饮建筑为主要载体。保留天桥交通属性与首层餐饮生活，优化桥头接驳和绿廊轻介入，条件性激活局部二层作为AI城市问题工作坊。AI场景为校园—城市出行与公共服务原型共评；天桥结构、绿地与建筑权属、消防和运营条件待核实。
 
-![地大—北航节点功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-50-node-05-program.webp)  
-*图11-22 地大—北航校际共享节点的功能、空间动作与AI场景。*
+![地大—北航节点功能与空间原型](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-50-node-05-program.webp)
+*图11-20 地大—北航校际共享节点的功能、空间动作与AI场景。*
 
-![地大—北航节点设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-51-node-05-analysis.webp)  
-*图11-23 地大—北航校际共享节点设计分析。*
+![地大—北航节点设计分析](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-51-node-05-analysis.webp)
+*图11-21 地大—北航校际共享节点设计分析。*
 
-![地大—北航节点概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-52-node-05-aerial.webp)  
-*图11-24 地大—北航校际共享节点概念鸟瞰。*
+![地大—北航节点概念鸟瞰](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-52-node-05-aerial.webp)
+*图11-22 地大—北航校际共享节点概念鸟瞰。*
 
-![地大—北航节点人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-53-node-05-eye-level.webp)  
-*图11-25 地大—北航校际共享节点人视场景。*
+![地大—北航节点人视场景](assets/figures/supporting/zh/key-areas/ai-origin-community/ao-53-node-05-eye-level.webp)
+*图11-23 地大—北航校际共享节点人视场景。*
 
 #### 创新功能、更新分期与实施边界
 
@@ -613,22 +602,14 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 
 核心创新链为：**Research → Prototype → Test → Incubation → Scale**。空间设计重点提升Prototype、Test与Incubation之间的转换效率，并通过公共界面把专业创新活动转化为城市可理解、可接近的日常内容。
 
-#### 设计证据与工作边界
-
-![众智园证据边界](assets/figures/supporting/zh/key-areas/zz-analysis-01-evidence-boundary.webp)  
-*图11-ZA1 众智园证据边界：区分官方要求、公开事实、设计判断与待现场核验事项，避免以研究示意替代正式红线和工程条件。*
-
 #### 三区创新循环与周边资源输入
 
-![三区创新循环](assets/figures/supporting/zh/key-areas/zz-analysis-02-innovation-loop.webp)  
-*图11-ZA2 三区形成一条创新循环链：AI原点知识策源、众智园成果转化与创新加速、大钟寺城市应用与反馈。*
-
-![众智园周边资源](assets/figures/supporting/zh/key-areas/zz-analysis-03-resource-context.webp)  
-*图11-ZA3 众智园连接知识、交通与产业资源。图中范围及资源关系用于结构判断，具体主体和状态需逐项核验。*
+![众智园周边资源](assets/figures/supporting/zh/key-areas/zz-analysis-03-resource-context.webp)
+*图11-ZA1 众智园连接知识、交通与产业资源。图中范围及资源关系用于结构判断，具体主体和状态需逐项核验。*
 
 #### 总体定位：三流叠合的蓝绿创新界面
 
-![众智园总体定位](assets/figures/supporting/zh/key-areas/zz-00-overall-positioning.webp)  
+![众智园总体定位](assets/figures/supporting/zh/key-areas/zz-00-overall-positioning.webp)
 *图11-Z1 众智园总体定位：生态流、交通流与创新流在蓝绿界面中叠合。图中范围和节点为阶段性设计判断，正式边界、权属、道路及工程条件须另行核实。*
 
 - **生态流**依托小月河及周边蓝绿资源，为园区提供生态基底、慢行联系和公共交往空间；
@@ -639,8 +620,8 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 
 #### 五类用户与连续创新链
 
-![众智园用户与创新链](assets/figures/supporting/zh/key-areas/zz-analysis-04-users-chain.webp)  
-*图11-ZA4 五类用户共同覆盖Research—Prototype—Test—Incubation—Scale连续创新链。*
+![众智园用户与创新链](assets/figures/supporting/zh/key-areas/zz-analysis-04-users-chain.webp)
+*图11-ZA2 五类用户共同覆盖Research—Prototype—Test—Incubation—Scale连续创新链。*
 
 | 用户 | 主要需求 | 主要阶段 |
 | --- | --- | --- |
@@ -662,34 +643,34 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 
 五种机制可以在同一空间叠加，并随运营能力分阶段上线，不对应五栋固定建筑。
 
-![众智园五类空间原型](assets/figures/supporting/zh/key-areas/zz-analysis-05-spatial-prototypes.webp)  
-*图11-ZA5 CONNECT、SHARE、TEST、GROW、EXPAND转译为五类可叠加的真实空间场景，并由园区内部向街道和蓝绿界面外溢。*
+![众智园五类空间原型](assets/figures/supporting/zh/key-areas/zz-analysis-05-spatial-prototypes.webp)
+*图11-ZA3 CONNECT、SHARE、TEST、GROW、EXPAND转译为五类可叠加的真实空间场景，并由园区内部向街道和蓝绿界面外溢。*
 
 #### 五类空间场景
 
 **01｜成果连接与共享研发。** 以成果转化入口、共享研发空间、原型工具平台和项目工作室构成知识输入到可验证原型的第一段接口，对应CONNECT＋SHARE。
 
-![成果连接与共享研发](assets/figures/supporting/zh/key-areas/zz-01-connect-share.webp)  
+![成果连接与共享研发](assets/figures/supporting/zh/key-areas/zz-01-connect-share.webp)
 *图11-Z2 成果连接与共享研发意向。图像表达空间机制，不锁定现状建筑或新建工程。*
 
 **02｜园区测试验证。** 由测试仓、灰空间、园区道路与广场、数据控制空间组成分级验证系统，使原型从“能够运行”进入“经过验证”。测试按风险、时段、主体和数据责任分级，不把整个园区泛化为测试场。
 
-![园区测试验证](assets/figures/supporting/zh/key-areas/zz-02-test-validation.webp)  
+![园区测试验证](assets/figures/supporting/zh/key-areas/zz-02-test-validation.webp)
 *图11-Z3 受控测试验证意向。公众观察与专业测试分离，具体测试条件须经安全和工程核查。*
 
 **03｜企业成长与成果扩展。** 通过成长企业单元、客户验证厅、发布路演厅和企业服务接口，支撑验证后的产品进入客户、资本和市场，对应GROW＋EXPAND。
 
-![企业成长与成果扩展](assets/figures/supporting/zh/key-areas/zz-03-grow-expand.webp)  
+![企业成长与成果扩展](assets/figures/supporting/zh/key-areas/zz-03-grow-expand.webp)
 *图11-Z4 企业成长与成果扩展意向。*
 
 **04｜创新街道界面。** 通过开放首层、创新橱窗、口袋公园、慢行节点和服务前台，把园区创新资源转化为可进入、可理解的城市公共界面。该策略不预设产权、道路红线或建筑拆改条件。
 
-![创新街道界面](assets/figures/supporting/zh/key-areas/zz-04-innovation-street.webp)  
+![创新街道界面](assets/figures/supporting/zh/key-areas/zz-04-innovation-street.webp)
 *图11-Z5 创新街道界面意向。开放方式须结合权属、安全、消防和日常运营核实。*
 
 **05｜小月河生态创新界面。** 以滨水慢行、生态客厅、智慧感知节点、临时展示和可撤测试点承载生态交流、公共展示、环境监测与低风险户外验证。小月河首先是公共生态界面，测试只能以低扰动、可撤除和安全分级方式嵌入。
 
-![小月河生态创新界面](assets/figures/supporting/zh/key-areas/zz-05-xiaoyue-river.webp)  
+![小月河生态创新界面](assets/figures/supporting/zh/key-areas/zz-05-xiaoyue-river.webp)
 *图11-Z6 小月河生态创新界面意向。蓝绿公共性优先于测试功能。*
 
 #### 与总体创新循环的接口
@@ -709,24 +690,21 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 
 合作团队依据公开资料与现场观察，将片区概括为四类既有条件：西南侧1733及抖音周边具有生活与内容活力；西北侧蓝景丽家具有交换与商务基础；东北侧连接城市校园、社区生活与公共服务；东南侧存量空间具有未来应用储备潜力。主要矛盾不是功能空白，而是13号线铁路设施、京张廊道、北三环及多层交通界面共同压缩东西向慢行联系，使四个象限之间缺少连续、清晰且无障碍的公共接口。上述位置、开放条件和工程关系均需在实施前复核。
 
-![大钟寺四象限问题诊断](assets/figures/supporting/zh/key-areas/dazhongsi/dz-analysis-01-four-quadrants-gap.webp)  
+![大钟寺四象限问题诊断](assets/figures/supporting/zh/key-areas/dazhongsi/dz-analysis-01-four-quadrants-gap.webp)
 *图12-DA1 四象限现状资源与阻隔判断：资源并不缺少，核心问题是跨铁路、道路与多层界面的连续公共接口不足。图中事实、观察与推断等级须结合现场继续核验。*
 
 1733周边的轨道直达、下沉庭院、多层商业和夜间使用表明，企业内容、青年消费、居民参与和城市活动可以在邻近空间中自然叠加。方案将其视为可放大的“城市应用雏形”，而非已确定的企业合作或建设项目。
 
-![1733内容生态现实原型](assets/figures/supporting/zh/key-areas/dazhongsi/dz-analysis-02-1733-prototype.webp)  
+![1733内容生态现实原型](assets/figures/supporting/zh/key-areas/dazhongsi/dz-analysis-02-1733-prototype.webp)
 *图12-DA2 1733内容生态现实原型：现有商业、公共空间和内容活动为“智用反馈链”提供可放大的城市使用基础。*
 
-![京张公园成果输送与反馈主脉](assets/figures/supporting/zh/key-areas/dazhongsi/dz-analysis-03-flow-spine.webp)  
+![京张公园成果输送与反馈主脉](assets/figures/supporting/zh/key-areas/dazhongsi/dz-analysis-03-flow-spine.webp)
 *图12-DA3 将现状京张绿廊转译为创新成果输送与公众反馈主脉，组织MOVE—SHOW—MEET—TEST—REFLOW连续动作。*
 
 #### 空间结构：四象限 × 三层网络
 
-![大钟寺四象限立体公共枢纽总主图](assets/figures/supporting/zh/key-areas/dazhongsi/dz-01-3d-urban-commons-master.webp)  
+![大钟寺四象限立体公共枢纽总主图](assets/figures/supporting/zh/key-areas/dazhongsi/dz-01-3d-urban-commons-master.webp)
 *图12-1 大钟寺四象限立体公共枢纽。图示为城市设计概念，轨道、地下接口、保护范围、建筑开放及工程条件须经专项核验。*
-
-![大钟寺三层公共网络](assets/figures/supporting/zh/key-areas/dazhongsi/dz-analysis-04-three-layer-network.webp)  
-*图12-DA4 三层网络分别回应到达连接、地面公共性和关键跨越；地下与二层连接均为受阻处的条件性补缺，不追求全覆盖。*
 
 四个象限采用差异化定位，不做同质化开发：
 
@@ -747,7 +725,7 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 
 #### 京张主脉与双层流动
 
-![JINGZHANG FLOW双层流动图](assets/figures/supporting/zh/key-areas/dazhongsi/dz-03-dual-layer-flow.webp)  
+![JINGZHANG FLOW双层流动图](assets/figures/supporting/zh/key-areas/dazhongsi/dz-03-dual-layer-flow.webp)
 *图12-2 双层流动：上层为创新成果流，下层为承载人流、产品流、内容流、服务流与反馈流的城市空间接口。*
 
 京张铁路遗址公园在大钟寺段被转译为创新成果输送与公众反馈主脉：它不仅承载南北慢行，也通过 **MOVE—SHOW—MEET—TEST—REFLOW** 组织人群与成果移动、沿线展示、日常交往、小规模应用和反馈回流。知识与原型从AI原点社区、众智园进入大钟寺后，通过城市空间转化为发布、体验、使用、分享和反馈，再将市场与公众的新需求送回研发端。
@@ -756,27 +734,27 @@ AI原点社区承担“轨联时空，智运未来 / JINGZHANG FLOW”中的知�
 
 **场景一｜AI内容生活舞台。** 主要落位于1733及西南象限。青年创作者、居民和访客在下沉庭院、内容工作室、公共舞台及商业首层中共创、观看、体验和分享；AI提供辅助编辑、字幕和在地内容生成，公开发布与版权判断由人完成。
 
-![AI内容生活舞台](assets/figures/supporting/zh/key-areas/dazhongsi/dz-10-content-life-stage.webp)  
+![AI内容生活舞台](assets/figures/supporting/zh/key-areas/dazhongsi/dz-10-content-life-stage.webp)
 *图12-3 内容生产与传播意向：表达活动、空间与反馈机制，不锁定建筑形态。*
 
 **场景二｜城市智能体服务链。** 主要落位于大钟寺站、换乘空间及东北象限。通勤者、访客、银发人群和家庭可获得交通聚合、活动导览和无障碍辅助；高频问题与路径选择经匿名归纳后校准服务，同时保留人工服务与普通导视。
 
-![城市智能体服务链](assets/figures/supporting/zh/key-areas/dazhongsi/dz-11-urban-agent-service.webp)  
+![城市智能体服务链](assets/figures/supporting/zh/key-areas/dazhongsi/dz-11-urban-agent-service.webp)
 *图12-4 轨道到达、公共服务和无障碍体验意向。*
 
 **场景三｜智能终端体验与发布。** 主要落位于蓝景丽家及西北象限。以可变展台、开放首层、街角前场和共享会客空间承载首发、试用、比较与洽谈；AI用于终端适配、个性化体验和通俗说明，真实使用评价回到产品与商务端。
 
-![智能终端体验与发布](assets/figures/supporting/zh/key-areas/dazhongsi/dz-12-smart-terminal-experience.webp)  
+![智能终端体验与发布](assets/figures/supporting/zh/key-areas/dazhongsi/dz-12-smart-terminal-experience.webp)
 *图12-5 智能终端体验与发布意向。*
 
 **场景四｜未来应用储备。** 主要落位于东南象限的存量或可逆空间。只配置确有物理验证需要、范围受控、可随时停止的机器人、环境感知和城市服务试验；公众与测试区分隔，现场安全员保留人工急停，测试结果决定扩大、调整或停止。
 
-![未来应用储备](assets/figures/supporting/zh/key-areas/dazhongsi/dz-13-future-application-reserve.webp)  
+![未来应用储备](assets/figures/supporting/zh/key-areas/dazhongsi/dz-13-future-application-reserve.webp)
 *图12-6 受控未来应用与公众观察意向；不表示已批准测试线路或常态运营。*
 
 #### 场景运营与反馈闭环
 
-![AI场景运营主体闭合图](assets/figures/supporting/zh/key-areas/dazhongsi/dz-02-ai-scenario-operating-framework.webp)  
+![AI场景运营主体闭合图](assets/figures/supporting/zh/key-areas/dazhongsi/dz-02-ai-scenario-operating-framework.webp)
 *图12-7 四类场景由公众、市场运营、技术合作和反馈回流共同构成，不把AI设备本身等同于运营。*
 
 四类场景都由公共主体、市场运营者和技术合作方共同维护，数据与体验反馈必须回到运营优化。反馈只采用自愿参与、服务使用、偏好选择、内容分享和市场响应等必要信息；默认不进行持续身份或轨迹追踪。涉及支付、健康、身份、合同、安全与公开发布的事项保留人工确认和非AI替代路径。
@@ -851,42 +829,42 @@ AI创新生态由知识与技术底座、成果转化、行业应用和城市支
 
 ### 产业与AI+场景：从资源判断到空间落位
 
-![现状城市产业功能资源](assets/figures/supporting/zh/overall-design/od-03-current-urban-industry-resources.webp)  
+![现状城市产业功能资源](assets/figures/supporting/zh/overall-design/od-03-current-urban-industry-resources.webp)
 *图5-1 现状城市—产业功能资源场：西侧知识与技术资源密集，东侧承载社区与公共需求，三区处于不同的创新与城市接触条件。*
 
 现状判断不是替代法定用地调查，而是识别资源分布、联系断点与空间机会：片区的优势不在于重新建设一个孤立AI园区，而在于让高校科研、工程集成、商业生活和公共需求跨边界发生联系。
 
 ### AI产业生态链与实体空间需求
 
-![AI产业生态链与实体空间需求](assets/figures/supporting/zh/overall-design/od-04-ai-industry-chain-space-needs.webp)  
+![AI产业生态链与实体空间需求](assets/figures/supporting/zh/overall-design/od-04-ai-industry-chain-space-needs.webp)
 *图5-2 AI产业生态链：源头研究—原型团队—工程集成—产品服务—城市采用—反馈迭代。技术底座和成果转化需要专业空间，城市支持环节更适合进入公园沿线与城市首层。*
 
 不是所有AI环节都需要真实测试空间。总体设计优先保障共享交流、成果翻译、展示体验和城市服务；只有机器人、移动设备等具有明确物理验证需求的类型，才在安全、可控、可退出的条件下配置测试场所。
 
 ### 现有优势—能力缺口矩阵
 
-![现有优势与能力缺口矩阵](assets/figures/supporting/zh/overall-design/od-05-capability-gap-matrix.webp)  
+![现有优势与能力缺口矩阵](assets/figures/supporting/zh/overall-design/od-05-capability-gap-matrix.webp)
 *图5-3 现有优势—能力缺口矩阵：高校科研人才基础较强，但市场展示、公众采用、跨界交流和工程集成的空间可见度不足。*
 
 > **补齐方向**　不重复建设封闭科研办公，而以共享交流、成果翻译、工程协作、展示体验、市场采用和青年生活作为总体设计优先补充。
 
 ### 功能缺口×空间载体
 
-![功能缺口与空间载体矩阵](assets/figures/supporting/zh/overall-design/od-06-function-space-carrier-matrix.webp)  
+![功能缺口与空间载体矩阵](assets/figures/supporting/zh/overall-design/od-06-function-space-carrier-matrix.webp)
 *图5-4 功能缺口与空间载体适配矩阵：公共沿线开放空间、存量建筑及开放首层、已确定更新项目、居住及公服项目和分布式运营网络协同补缺。*
 
 该矩阵不直接指定地块用途，而是判断某类缺口优先借助何种存量或增量空间解决。共享交流、成果展示和青年生活宜优先接入既有公共空间与开放首层；具身智能测试则需在已确定更新项目或受控场所中审慎配置。
 
 ### AI×现有产业×公共空间融合场景
 
-![AI与现有产业及公共空间融合场景](assets/figures/supporting/zh/overall-design/od-07-ai-industry-public-space-scenarios.webp)  
+![AI与现有产业及公共空间融合场景](assets/figures/supporting/zh/overall-design/od-07-ai-industry-public-space-scenarios.webp)
 *图5-5 六类融合场景及空间动作梯度：教育、科研、京张文化、商业消费、社区服务和机器人/移动。*
 
 场景决定空间，不先造一座‘AI建筑’再寻找活动。空间实施从共享既有设施、激活首层界面和改造闲置建筑起步，只有在需求与条件均成立时才采用轻量可逆加建或条件性新建。
 
 ### AI+应用场景空间落位
 
-![AI应用场景空间落位](assets/figures/supporting/zh/overall-design/od-08-ai-scene-placement.webp)  
+![AI应用场景空间落位](assets/figures/supporting/zh/overall-design/od-08-ai-scene-placement.webp)
 *图5-6 AI+应用场景空间落位：场景点直接嵌入三个重点片区与京张公园主轴。片区范围和点位为概念分工示意，不代表法定边界或具体地块控制。*
 
 产业布局不以堆叠企业数量为目标，而以知识能否转化、系统能否集成、产品能否进入市场、城市反馈能否回到研发为主线。AI原点突出策源与近校协作，众智园突出工程集成与标准安全，大钟寺突出消费体验、商务转化与公众反馈；公园主脉承担共享交流、成果展示、公共体验和城市反馈的连续公共底座。
@@ -911,83 +889,83 @@ AI创新生态由知识与技术底座、成果转化、行业应用和城市支
 
 #### SC-01｜AI跨校知识发现与协同共创
 
-**片区 / 开放等级**：AI原点社区；开放—半开放。  
-**场景与空间**：依托北大—清华研究节点、清华—北林开放学习节点、学院路三校共享门厅及真实公共慢行联系，把公开课程、研究议题、项目需求和人才串联为“经过—发现—会面—协作”的日常路径。空间载体包括条件性共享研究首层、开放研究前场、林下学习空间、共享门厅和公共信息界面。  
-**AI与数据**：AI聚合公开课程、讲座、论文、项目和用户主动填写的兴趣/技能标签，辅助知识关联、同行者匹配和会议记录，不读取私人通讯录与未公开研究材料，不替代学术判断。  
-**人工与运营**：开放资格、团队加入、合作关系和敏感信息均由人确认；建议由高校/科研机构、公共空间及创新服务运营方协同。可关闭个性化推荐，改用公开目录、公告、二维码和人工咨询。  
+**片区 / 开放等级**：AI原点社区；开放—半开放。
+**场景与空间**：依托北大—清华研究节点、清华—北林开放学习节点、学院路三校共享门厅及真实公共慢行联系，把公开课程、研究议题、项目需求和人才串联为“经过—发现—会面—协作”的日常路径。空间载体包括条件性共享研究首层、开放研究前场、林下学习空间、共享门厅和公共信息界面。
+**AI与数据**：AI聚合公开课程、讲座、论文、项目和用户主动填写的兴趣/技能标签，辅助知识关联、同行者匹配和会议记录，不读取私人通讯录与未公开研究材料，不替代学术判断。
+**人工与运营**：开放资格、团队加入、合作关系和敏感信息均由人确认；建议由高校/科研机构、公共空间及创新服务运营方协同。可关闭个性化推荐，改用公开目录、公告、二维码和人工咨询。
 **主要风险 / 输出**：防止信息过期、错误匹配、信息茧房和把潜在空间误写为既定开放；输出跨校议题、学习关系、合作团队和待孵化问题。
 
 #### SC-02｜AI城市问题原型共创与公众共评
 
-**片区 / 开放等级**：AI原点社区；公共体验 + 半开放共创。  
-**场景与空间**：以地大—北航“桥·廊·坊”为首选落点，小月河场景赋能翼提供社区、教育、交通和公共服务问题；在现状天桥及桥头、条形绿廊、条件性二层工作坊、公众共评点和真实步行路径中完成“提出问题—形成原型—自愿体验—反馈迭代”。  
-**AI与数据**：使用公开路线和公共服务信息、原型日志、自愿反馈及最小化匿名统计，辅助归纳共性问题，不采集完整个人轨迹，不替代安全判断与公共服务决策。  
-**人工与运营**：安全、产品迭代、公共服务方案和敏感数据由人复核；建议由高校团队、节点运营方和相关公共服务协作方共同组织。可改用纸质问卷、访谈和人工工作坊。  
+**片区 / 开放等级**：AI原点社区；公共体验 + 半开放共创。
+**场景与空间**：以地大—北航“桥·廊·坊”为首选落点，小月河场景赋能翼提供社区、教育、交通和公共服务问题；在现状天桥及桥头、条形绿廊、条件性二层工作坊、公众共评点和真实步行路径中完成“提出问题—形成原型—自愿体验—反馈迭代”。
+**AI与数据**：使用公开路线和公共服务信息、原型日志、自愿反馈及最小化匿名统计，辅助归纳共性问题，不采集完整个人轨迹，不替代安全判断与公共服务决策。
+**人工与运营**：安全、产品迭代、公共服务方案和敏感数据由人复核；建议由高校团队、节点运营方和相关公共服务协作方共同组织。可改用纸质问卷、访谈和人工工作坊。
 **主要风险 / 输出**：控制样本偏差、原型被误认为正式服务、体验安全和过度采集；输出经真实反馈修正的原型、问题清单和下一轮研发任务。
 
 #### SC-03｜AI成果城市发布与需求回流
 
-**片区 / 开放等级**：AI原点社区；高开放。  
-**场景与空间**：在AI原点大厦周边前场、五道口站前、沿街商业和公共界面中，组织成果展示、Demo、人才/项目匹配、公众体验和城市需求回流。  
-**AI与数据**：AI使用经授权公开的项目、活动、需求与匿名统计，辅助通俗化解释、匹配和反馈摘要；商业机密、私人联系方式与个人敏感信息不进入公开系统。  
-**人工与运营**：合作、投资、采购、成果评价和公共服务判断由人确认；建议由创新服务平台、轨道/商业公共空间运营方和活动组织方协同，保留人工项目咨询与线下反馈。  
+**片区 / 开放等级**：AI原点社区；高开放。
+**场景与空间**：在AI原点大厦周边前场、五道口站前、沿街商业和公共界面中，组织成果展示、Demo、人才/项目匹配、公众体验和城市需求回流。
+**AI与数据**：AI使用经授权公开的项目、活动、需求与匿名统计，辅助通俗化解释、匹配和反馈摘要；商业秘密、私人联系方式与个人敏感信息不进入公开系统。
+**人工与运营**：合作、投资、采购、成果评价和公共服务判断由人确认；建议由创新服务平台、轨道/商业公共空间运营方和活动组织方协同，保留人工项目咨询与线下反馈。
 **主要风险 / 输出**：防止宣传过度、敏感信息泄漏和把Demo当作成熟部署；输出市场需求、合作机会和公众反馈，并连接众智园工程化环节。
 
 #### SC-04｜AI全栈协同开发与工程加速
 
-**片区 / 开放等级**：众智园；半开放—受控。  
-**场景与空间**：在共享工程大厅、小组协作间、Demo工作区、技术服务台、预约会议空间和受控设备空间中，组织模型、软件、芯片/终端、智能体和应用团队协同开发。  
-**AI与数据**：AI基于授权技术文档、版本记录、接口说明、测试样本和获授权数据集，辅助检索、接口定位、版本管理和问题追踪；项目数据分区，商业秘密不得进入公共模型或展示。  
-**人工与运营**：架构选择、代码合并、接口确认、质量签字和上线决定由工程人员负责；建议由园区技术平台、工程服务运营方和入驻团队组织，并保留人工评审、离线文档和隔离开发环境。  
+**片区 / 开放等级**：众智园；半开放—受控。
+**场景与空间**：在共享工程大厅、小组协作间、Demo工作区、技术服务台、预约会议空间和受控设备空间中，组织模型、软件、芯片/终端、智能体和应用团队协同开发。
+**AI与数据**：AI基于授权技术文档、版本记录、接口说明、测试样本和获授权数据集，辅助检索、接口定位、版本管理和问题追踪；项目数据分区，商业秘密不得进入公共模型或展示。
+**人工与运营**：架构选择、代码合并、接口确认、质量签字和上线决定由工程人员负责；建议由园区技术平台、工程服务运营方和入驻团队组织，并保留人工评审、离线文档和隔离开发环境。
 **主要风险 / 输出**：防止AI建议错误、知识产权泄漏、供应商锁定和错误版本传播；输出集成版本、接口规范与问题清单。
 
 #### SC-05｜AI全栈互操作工程验证场（产业测试验证）
 
-**片区 / 开放等级**：众智园；受控测试 + 非敏感观察。  
-**场景与空间**：在隔离测试实验室、设备联调间、日志/评测控制台、工程师复核室和非敏感观察窗中，验证模型、软件、工具链、终端和智能体是否“接得上、跑得稳”；普通街道、公园和开放商业空间不作为未经审批的测试场。  
-**AI与数据**：使用合成/测试数据、设备日志、性能指标和授权接口数据，辅助编排、异常聚类与性能对比；默认不接入真实生产个人数据，测试网络与公共网络隔离。  
-**人工与运营**：测试负责人确认范围、异常等级和结果并签字；建议由专业测试平台和园区工程运营团队实施。异常即停止、断网、回滚并转人工排查。  
+**片区 / 开放等级**：众智园；受控测试 + 非敏感观察。
+**场景与空间**：在隔离测试实验室、设备联调间、日志/评测控制台、工程师复核室和非敏感观察窗中，验证模型、软件、工具链、终端和智能体是否“接得上、跑得稳”；普通街道、公园和开放商业空间不作为未经审批的测试场。
+**AI与数据**：使用合成/测试数据、设备日志、性能指标和授权接口数据，辅助编排、异常聚类与性能对比；默认不接入真实生产个人数据，测试网络与公共网络隔离。
+**人工与运营**：测试负责人确认范围、异常等级和结果并签字；建议由专业测试平台和园区工程运营团队实施。异常即停止、断网、回滚并转人工排查。
 **主要风险 / 输出**：防止覆盖不足、网络安全、日志泄密和夸大局部结论；输出互操作报告、异常清单和下一阶段版本。
 
 #### SC-06｜可信AI安全治理评测场（产业测试验证）
 
-**片区 / 开放等级**：众智园；受控评测 + 公开方法展示。  
-**场景与空间**：在受控评测实验室、专家复核室、风险讨论室、脱敏展示窗口和审计设施中，对AI系统安全、鲁棒性、偏差、内容风险和治理规则进行专业评测。  
-**AI与数据**：使用授权、公开或合成测试集及评测日志，辅助任务生成、基准对比和异常归类；敏感测试集分级授权，个人隐私不进入公共展示。  
-**人工与运营**：最终风险等级、发布建议和整改要求由专业人员确认；建议由专业评测平台、园区运营方与受邀专家协作。不达阈值即退回开发环节。  
+**片区 / 开放等级**：众智园；受控评测 + 公开方法展示。
+**场景与空间**：在受控评测实验室、专家复核室、风险讨论室、脱敏展示窗口和审计设施中，对AI系统安全、鲁棒性、偏差、内容风险和治理规则进行专业评测。
+**AI与数据**：使用授权、公开或合成测试集及评测日志，辅助任务生成、基准对比和异常归类；敏感测试集分级授权，个人隐私不进入公共展示。
+**人工与运营**：最终风险等级、发布建议和整改要求由专业人员确认；建议由专业评测平台、园区运营方与受邀专家协作。不达阈值即退回开发环节。
 **主要风险 / 输出**：防止基准投机、覆盖不完整、错误分级和数据泄漏；输出可信评测报告、整改清单、审计记录和部署条件。
 
 #### SC-07｜具身智能安全验证场（产业测试验证）
 
-**片区 / 开放等级**：众智园；受控物理测试。  
-**场景与空间**：在室内高空间、围合院落、安全缓冲区、观察廊、急停点和维护区中验证机器人与智能设备的避障、异常停止和人机共处；京张公园、普通道路和日常公共空间不作为常态测试走廊。  
-**AI与数据**：使用设备遥测、传感器与测试日志，辅助工况生成、异常识别和复盘；避免人脸身份追踪，公众与测试区物理分隔。  
-**人工与运营**：现场安全员可随时急停，通过与否由专业测试人员确认；建议由具身智能测试平台和安全运营团队实施。  
+**片区 / 开放等级**：众智园；受控物理测试。
+**场景与空间**：在室内高空间、围合院落、安全缓冲区、观察廊、急停点和维护区中验证机器人与智能设备的避障、异常停止和人机共处；京张公园、普通道路和日常公共空间不作为常态测试走廊。
+**AI与数据**：使用设备遥测、传感器与测试日志，辅助工况生成、异常识别和复盘；避免人脸身份追踪，公众与测试区物理分隔。
+**人工与运营**：现场安全员可随时急停，通过与否由专业测试人员确认；建议由具身智能测试平台和安全运营团队实施。
 **主要风险 / 输出**：控制碰撞、算法异常、传感器失效和公众误入；任何异常立即急停并恢复人工控制，输出安全工况、异常数据库与部署边界。
 
 #### SC-08｜AI智能体与新终端城市体验站
 
-**片区 / 开放等级**：大钟寺；高开放。  
-**场景与空间**：在轨道/TOD、商业公共界面、开放首层、体验店/快闪空间、街角休憩点和服务台中，让居民、通勤者和访客完成一次短时真实任务并自主决定是否继续使用。  
-**AI与数据**：提供导览、生活服务、多模态交互和信息推荐，仅使用用户主动输入、经同意反馈、匿名统计和公开服务信息；避免强制登录、持续追踪和把敏感信息设为体验前提。  
-**人工与运营**：支付、健康、安全、身份和合同等高风险事项由用户或专业人员确认；建议由商业/公共空间运营方和产品团队协作，随时可转人工服务与普通导览。  
+**片区 / 开放等级**：大钟寺；高开放。
+**场景与空间**：在轨道/TOD、商业公共界面、开放首层、体验店/快闪空间、街角休憩点和服务台中，让居民、通勤者和访客完成一次短时真实任务并自主决定是否继续使用。
+**AI与数据**：提供导览、生活服务、多模态交互和信息推荐，仅使用用户主动输入、经同意反馈、匿名统计和公开服务信息；避免强制登录、持续追踪和把敏感信息设为体验前提。
+**人工与运营**：支付、健康、安全、身份和合同等高风险事项由用户或专业人员确认；建议由商业/公共空间运营方和产品团队协作，随时可转人工服务与普通导览。
 **主要风险 / 输出**：防止隐私泄漏、诱导消费、能力误导和特殊群体可达性不足；输出公众采用反馈、使用障碍和新需求。
 
 #### SC-09｜AI内容共创与数字消费场
 
-**片区 / 开放等级**：大钟寺；开放—半开放。  
-**场景与空间**：在内容共创工作室、商业首层、快闪展示和小型公共活动场中，组织AI辅助创作、人工编辑、权利检查、公开展示、消费和二次创作。  
-**AI与数据**：使用用户主动上传素材、授权内容库和公开资料，辅助图文音视频创作、多语言转换与内容组合；未经授权的肖像、声音和私密素材不得公开生成或展示。  
-**人工与运营**：公开发布、商业使用、版权/肖像权及敏感内容由人确认；建议由商业运营方、内容工作室/创作者平台和活动团队协作，并保留传统创作、人工编辑和普通展览。  
+**片区 / 开放等级**：大钟寺；开放—半开放。
+**场景与空间**：在内容共创工作室、商业首层、快闪展示和小型公共活动场中，组织AI辅助创作、人工编辑、权利检查、公开展示、消费和二次创作。
+**AI与数据**：使用用户主动上传素材、授权内容库和公开资料，辅助图文音视频创作、多语言转换与内容组合；未经授权的肖像、声音和私密素材不得公开生成或展示。
+**人工与运营**：公开发布、商业使用、版权/肖像权及敏感内容由人确认；建议由商业运营方、内容工作室/创作者平台和活动团队协作，并保留传统创作、人工编辑和普通展览。
 **主要风险 / 输出**：防止版权争议、虚假误导、同质化和过度推荐；输出AI原生内容、创作者合作、公众文化反馈和消费需求。
 
 #### SC-10｜AI商务转化与城市合作客厅
 
-**片区 / 开放等级**：大钟寺；公共展示 + 半开放商务。  
-**场景与空间**：在TOD/商业商务界面、开放产品展示、共享会议、小型发布前场、商务会客和专业服务接口中完成需求发布、项目匹配、Demo、洽谈和城市合作。  
-**AI与数据**：使用企业自愿公开的产品/需求、活动及经授权会议资料，辅助多语言沟通、供需整理和会议摘要；商业机密、报价、合同和未公开产品不得进入公共系统。  
-**人工与运营**：合同、采购、投资、招商、合作承诺和政策事项由相关主体人工完成；建议由商务/创新服务平台、场地运营方和专业服务机构协作，可退回人工洽谈和传统路演。  
-**主要风险 / 输出**：防止过度承诺、机密泄漏、自动匹配偏差和把概念合作写成确定招商；输出市场合作、客户反馈、城市应用需求与迭代任务。
+**片区 / 开放等级**：大钟寺；公共展示 + 半开放商务。
+**场景与空间**：在TOD/商业商务界面、开放产品展示、共享会议、小型发布前场、商务会客和专业服务接口中完成需求发布、项目匹配、Demo、洽谈和城市合作。
+**AI与数据**：使用企业自愿公开的产品/需求、活动及经授权会议资料，辅助多语言沟通、供需整理和会议摘要；商业秘密、报价、合同和未公开产品不得进入公共系统。
+**人工与运营**：合同、采购、投资、招商、合作承诺和政策事项由相关主体人工完成；建议由商务/创新服务平台、场地运营方和专业服务机构协作，可退回人工洽谈和传统路演。
+**主要风险 / 输出**：防止过度承诺、保密泄漏、自动匹配偏差和把概念合作写成确定招商；输出市场合作、客户反馈、城市应用需求与迭代任务。
 
 ### 场景—空间—运营映射
 
@@ -1117,7 +1095,7 @@ AI创新生态由知识与技术底座、成果转化、行业应用和城市支
 
 ### 交通、慢行与蓝绿公共空间
 
-![交通慢行与蓝绿公共空间正式图](assets/figures/mobility-bluegreen.png)  
+![交通慢行与蓝绿公共空间正式图](assets/figures/mobility-bluegreen.png)
 *交通慢行与蓝绿公共空间正式提交图：纵向主脉、横向支脉、枢纽接驳与生态节点协同。*
 
 - 慢行连续优先于形态统一，重点修补过街、无障碍、遮阴、照明和方向识别。
@@ -1255,7 +1233,7 @@ JINGZHANG FLOW以“连接—协作—流动”为共同线索，把三种文化
 
 ### 建筑存量更新与分期实施
 
-![建筑存量更新与分期实施](assets/figures/supporting/zh/overall-design/od-19-building-renewal-phasing.webp)  
+![建筑存量更新与分期实施](assets/figures/supporting/zh/overall-design/od-19-building-renewal-phasing.webp)
 *图12-1 建筑更新与分期：保留提升、开放共享、功能植入和少量增量构成渐进式更新路径。*
 
 优先实施可逆、低成本、能快速改善公共性的行动，包括慢行与过街、开放前场、共享首层、街角和桥下节点；中期通过院落、内部通道和专业服务空间的协商开放形成网络；长期增量建设仅在权属、需求、工程和运营条件充分时推进。
@@ -1342,7 +1320,7 @@ JINGZHANG FLOW以“连接—协作—流动”为共同线索，把三种文化
 
 ### 指标与证据：避免概念图脱离数据
 
-![指标与证据正式图](assets/figures/metrics-evidence.png)  
+![指标与证据正式图](assets/figures/metrics-evidence.png)
 *指标与证据正式提交图：核心指标由同一套临时设计模型和GeoJSON复算。*
 
 用地、绿地、公共空间、道路和建筑更新图层采用同一套几何基础，并据此复算场地面积、绿地比例和公共空间比例。依赖未公开法定控制条件的容积率、建筑高度等指标保持待核实，不用推测值制造伪精确。
@@ -1359,7 +1337,7 @@ AI场景的运行还需遵守个人信息保护、数据最小化、算法安全
 
 ## 参考资料
 
-以下资料用于核对项目要求、研究范围、案例机制与空间判断；临时边界和公开地图样本不作为法定规划依据。[source:OFFICIAL-ANNOUNCEMENT]
+以下资料用于核对项目要求、研究范围、案例机制与空间判断；临时边界和OpenStreetMap公开地图样本不作为法定规划依据。[source:OFFICIAL-ANNOUNCEMENT] [source:OSM-OVERPASS-20260829]
 
 ### 主要资料来源与使用说明
 
@@ -1367,7 +1345,7 @@ AI场景的运行还需遵守个人信息保护、数据最小化、算法安全
 
 - 百年京张AI创新带城市设计开源征集页面及其任务书、官方公告、开源仓库公开材料。
 - open-city-ai/haidian 仓库中的 agent_taskbook.json、project-official-announcement.md 与 provisional_boundaries.geojson。
-- 公开地图与OSM样本：仅用于识别资源分布和城市结构，不作为完整机构名录或精确测绘。
+- OpenStreetMap（OSM）公开地图样本：通过Overpass API于2026年8月29日提取，仅用于识别资源分布和城市结构，不作为完整机构名录、精确测绘、权属、开放状态或规划控制依据；详细许可、转换方法和局限记录于 `sources.json`。
 
 #### 案例资料
 
