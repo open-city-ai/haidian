@@ -110,12 +110,12 @@ scenarios: ["enterprise-service-copilot", "public-safety-operations-review"]
 
 | 案例 | 可迁移方法 | 迁移限制 | 公开来源 |
 | --- | --- | --- | --- |
-| Helsinki Smart Kalasatama, Finland | 城市作为开放测试场，分阶段验证公共服务 | 需公共部门采购、数据治理和北欧法规条件 | Helsinki Innovation Company / Smart Kalasatama 公开项目资料 |
-| Amsterdam Smart City, Netherlands | 企业、高校、居民共同提出并测试城市问题 | 协作网络和地方治理传统不能直接复制 | Amsterdam Smart City 官方公开平台 |
-| Barcelona 22@, Spain | 产业更新与公共空间、创新集群联动 | 土地制度、轨道和更新时序与海淀不同 | Barcelona City Council 22@ 官方公开资料 |
-| Toronto Sidewalk Labs proposal, Canada | 用城市场景讨论数字基础设施和公共利益边界 | 项目未实施，不能作为成功案例或政策承诺 | Waterfront Toronto 官方公开档案 |
-| MIT Senseable City Lab, USA | 将城市数据研究转化为可讨论的公共原型 | 学术研究资源和数据许可条件不同 | MIT Senseable City Lab 官方项目页 |
-| Seoul Digital Media City, Korea | 产业园区、媒体文化和公共活动复合组织 | 开发强度、土地和运营体系不可直接移植 | Seoul Metropolitan Government 公开资料 |
+| Helsinki Smart Kalasatama, Finland | 城市作为开放测试场，分阶段验证公共服务 | 需公共部门采购、数据治理和北欧法规条件 | [source:CASE-HELSINKI-KALASATAMA] |
+| Amsterdam Smart City, Netherlands | 企业、高校、居民共同提出并测试城市问题 | 协作网络和地方治理传统不能直接复制 | [source:CASE-AMSTERDAM-SMART-CITY] |
+| Barcelona 22@, Spain | 产业更新与公共空间、创新集群联动 | 土地制度、轨道和更新时序与海淀不同 | [source:CASE-BARCELONA-22AT] |
+| Toronto Sidewalk Labs proposal, Canada | 用城市场景讨论数字基础设施和公共利益边界 | 项目未实施，不能作为成功案例或政策承诺 | [source:CASE-WATERFRONT-SIDEWALK] |
+| MIT Senseable City Lab, USA | 将城市数据研究转化为可讨论的公共原型 | 学术研究资源和数据许可条件不同 | [source:CASE-MIT-SENSEABLE] |
+| Seoul Digital Media City, Korea | 产业园区、媒体文化和公共活动复合组织 | 开发强度、土地和运营体系不可直接移植 | [source:CASE-SEOUL-DMC] |
 
 迁移原则是“机制可借鉴、事实不移植”：每个案例只支持空间测试、公众参与或运营方法的讨论；不据此声称海淀已有相同机构、资金、指标或政策。
 
@@ -212,6 +212,12 @@ scenarios: ["enterprise-service-copilot", "public-safety-operations-review"]
 | 大钟寺 / S09-S10 | 街区运营方 + 活动组织方 | 公共空间使用、噪声、消防、版权和安保审查 | 现场负责人暂停活动并记录事件，必要时联系专业部门 | M0授权，M1试办，M2年度评估；无法维持公共性则撤下展示 |
 
 长期运营指标采用可核验的年度目标：每年不少于 4 次公开复盘、100% 场景保留人工接管和退出入口、100% 展示内容带来源状态、居民/访客反馈至少提供纸面与人工渠道、所有安全事件在 24 小时内完成初步记录并在季度报告中公开匿名摘要。指标是运营建议，不是已承诺绩效。
+
+### 包容性服务流程与招引转化闭环
+
+儿童活动采用家长/监护人同意、低风险离线教具和工作人员陪同；老年人和非智能终端用户可通过服务台、纸面地图、电话和人工讲解完成导览、报名与反馈；视听障碍者可选择高对比大字、触觉导视、字幕、文字转接和人工协助；认知障碍者使用短句、分步箭头、颜色与图形双重提示，并可由陪同者代办。现场组件与每季度一次的无障碍走查共同记录问题，投诉在 24 小时内登记、7 日内反馈处理状态，无法解决时提供人工申诉入口。
+
+人才与企业转化采用“公开问题 → 受理筛选 → 授权测试 → 结果发布 → 后续转介”五步链。开发者社区每季度发布问题清单和贡献记录；企业需求必须完成权属、数据和安全初筛后才进入场景撮合；国际访客获得中英文短版项目卡和联系人；符合条件的团队由科技服务翼转介至高校、园区或经开区接口。每个转介只记录匿名项目编号、阶段和结果，不建立居民画像，不承诺融资、招商或落地。
 
 ## 指标体系、面积复算与合规矩阵
 
