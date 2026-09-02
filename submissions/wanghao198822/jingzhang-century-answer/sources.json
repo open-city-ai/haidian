@@ -1,10 +1,10 @@
 {
   "schema_version": "0.1.0",
   "source_registry_summary": {
-    "scope_zh": "本块为投稿方对本包 sources.json 所列 35 条来源的自评分类，采用甲方 data/source_registry.schema.json 的原枚举值（usable_for_formal / review_status）。本块不是甲方中央登记表，也不替代它；中央登记表由主办方维护，本包无权写入。与中央登记表能一一对应的 4 条已用 central_registry_id 标注并沿用其已给档位，属引用而非本包授予；其余 31 条的 review_status 一律为 needs_review——approved 是维护者的审核动作，本包未执行、故不声称。本块不据此主张任何官方认定。",
-    "scope_en": "A self-assessment by the submitting party of the 35 sources listed in this package's sources.json, using the enumerations defined in the organiser's data/source_registry.schema.json (usable_for_formal / review_status). This block is not the organiser's central source registry and does not stand in for it; that registry is maintained by the organiser and this package has no write access to it. The four entries that correspond one-to-one with central registry entries carry central_registry_id and keep the tiers the central registry already assigned - that is a citation, not an award made here. The remaining 31 entries are review_status needs_review, because approved is a maintainer's act that this package has not performed and does not claim. Nothing here asserts any official determination.",
-    "axes_note_zh": "本块的两组分类各自独立，不是同一把尺子的两端：`usable_for_formal` 说的是来源的**性质**——这份材料是不是可以用作正式引用；`review_status` 说的是**审核状态**——中央登记表的维护者是否已经审过它。同一条来源可以既「性质上可用于正式引用」又「尚未经中央登记表审定」，二者不矛盾：本包有 20 条正属此列，它们的 `usable_for_formal` 为 `yes` 而 `review_status` 为 `needs_review`。因此下列各 id 清单一律以「字段名__取值」（双下划线分隔，因为字段名本身含下划线）命名，每份清单只按它名字里那一个字段筛选。",
-    "axes_note_en": "The two classifications in this block are independent axes, not two ends of one scale. usable_for_formal describes what a source is - whether the material is of a kind that can be cited as formal evidence. review_status describes whether the maintainer of the central registry has reviewed it. A source can be both fit for formal citation by its nature and not yet reviewed centrally; the two do not conflict. Twenty entries here are exactly that, carrying usable_for_formal yes together with review_status needs_review. Each id list below is therefore named field__value (a double underscore separates them, since the field names themselves contain underscores) and filters on that one field alone.",
+    "scope_zh": "本块为投稿方对本包 sources.json 所列 35 条来源的**性质分类**，采用甲方 data/source_registry.schema.json 的 usable_for_formal 枚举值，不自造词。本块不是甲方中央登记表，也不替代它；中央登记表由主办方维护，本包无权写入。**本块不含审核状态（review_status）**——那是中央登记表内条目的状态，而本包 35 条中只有 4 条在中央登记表内（已用 central_registry_id 逐条标注，其审核状态以中央登记表的记录为准，本包不复述、不改写）；其余 31 条从未进入中央登记表，在那套体系里因而没有审核状态可言，**本包不代为填写，也不主张这 31 条已通过任何审核**。需要判断某条来源是否经主办方审定，请以中央登记表为准，不以本块为准。",
+    "scope_en": "A classification by the submitting party of what the 35 sources listed in this package's sources.json are, using the usable_for_formal enumeration from the organiser's data/source_registry.schema.json rather than invented labels. This block is not the organiser's central source registry and does not stand in for it; that registry is maintained by the organiser and this package has no write access to it. This block carries no review_status. Review status is the state of an entry inside the central registry, and only 4 of these 35 sources have an entry there - each carries central_registry_id, and the registry's own record governs their status, which this package neither restates nor alters. The other 31 have never entered the central registry and therefore have no review status within it; this package does not fill one in on their behalf and does not claim that any of the 31 has passed any review. To judge whether a source has been vetted by the organiser, consult the central registry, not this block.",
+    "classification_note_zh": "`usable_for_formal` 说的是来源的**性质**——这份材料是不是可以用作正式引用；它不说明、也不隐含任何审核状态。下列各 id 清单以「字段名__取值」命名（双下划线分隔，因为字段名本身含下划线），每份清单只按它名字里那一个字段筛选。",
+    "classification_note_en": "usable_for_formal describes what a source is - whether the material is of a kind that can be cited as formal evidence. It states nothing about review status and implies nothing about it. Each id list below is named field__value (a double underscore separates them, since the field names themselves contain underscores) and filters on that one field alone.",
     "vocabulary_source": "data/source_registry.schema.json",
     "counts": {
       "total": 35,
@@ -12,11 +12,6 @@
         "yes": 22,
         "background_only": 11,
         "provisional_only": 2
-      },
-      "by_review_status": {
-        "approved": 2,
-        "provisional": 2,
-        "needs_review": 31
       }
     },
     "usable_for_formal__background_only": [
@@ -59,47 +54,6 @@
       "SOURCE-REGISTRY",
       "THU-STATION-HERITAGE-2025",
       "XUEBEI-PARK-2026"
-    ],
-    "review_status__approved": [
-      "AGENT-TASKBOOK",
-      "OFFICIAL-ANNOUNCEMENT"
-    ],
-    "review_status__needs_review": [
-      "AGENT-POLICY-2026",
-      "AI-DISTRICTS-2026",
-      "AI-ORIGIN-2026",
-      "BJ-STAT-2025",
-      "BJD-AI-2026",
-      "CAC-2025-SUMMARY",
-      "CAC-FILING-LIST",
-      "DONGSHENG-2026",
-      "DZS-MUSEUM-2021",
-      "FONT-NOTOSANSSC-OFL",
-      "HD-BRIDGE-SPACE-2025",
-      "HD-CENSUS7-2021",
-      "HD-CTRL-PLAN-2026",
-      "HD-LIVELIHOOD-2025",
-      "HD-PLAN-2026",
-      "HD-RENEWAL-GUIDE-2025",
-      "HD-STAT-2025",
-      "JZ-BELT-OFFICIAL-2026",
-      "LJLJ-RENEWAL-2026",
-      "OSM-ODBL-2026",
-      "PARK1-YLLHJ-2023",
-      "PARK2-OPEN-2026",
-      "PARK2-OPEN-CNS-2026",
-      "PARK2-PLAN-2024",
-      "PARK2-START-2024",
-      "PROCESSED-FACT-PACK",
-      "SITE-PACKAGE",
-      "SOURCE-REGISTRY",
-      "THU-STATION-2023",
-      "THU-STATION-HERITAGE-2025",
-      "XUEBEI-PARK-2026"
-    ],
-    "review_status__provisional": [
-      "BOUNDARY-SOURCE",
-      "KEY-AREA-SOURCE"
     ]
   },
   "sources": [
@@ -108,24 +62,21 @@
       "path": "brief/site-package/",
       "source_type": "official_public",
       "usage": "Project brief, enums, allowed design space, ranges, and schemas.",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "SOURCE-REGISTRY",
       "path": "data/source_registry.json",
       "source_type": "repository_public_registry",
       "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "PROCESSED-FACT-PACK",
       "path": "data/processed/agent_fact_pack.md",
       "source_type": "repository_processed_reference",
       "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "BOUNDARY-SOURCE",
@@ -133,8 +84,7 @@
       "source_type": "agent_inferred_from_public_data",
       "usage": "Submitted site boundary geometry source (provisional).",
       "central_registry_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
-      "usable_for_formal": "provisional_only",
-      "review_status": "provisional"
+      "usable_for_formal": "provisional_only"
     },
     {
       "id": "KEY-AREA-SOURCE",
@@ -142,8 +92,7 @@
       "source_type": "agent_inferred_from_public_data",
       "usage": "Three required detailed-design key area boundaries (provisional).",
       "central_registry_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
-      "usable_for_formal": "provisional_only",
-      "review_status": "provisional"
+      "usable_for_formal": "provisional_only"
     },
     {
       "id": "OFFICIAL-ANNOUNCEMENT",
@@ -151,8 +100,7 @@
       "source_type": "official_public",
       "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context.",
       "central_registry_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-      "usable_for_formal": "yes",
-      "review_status": "approved"
+      "usable_for_formal": "yes"
     },
     {
       "id": "AGENT-TASKBOOK",
@@ -160,8 +108,7 @@
       "source_type": "user_provided_cleared",
       "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.",
       "central_registry_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
-      "usable_for_formal": "yes",
-      "review_status": "approved"
+      "usable_for_formal": "yes"
     },
     {
       "id": "HD-STAT-2025",
@@ -172,8 +119,7 @@
       "authority_level": "official_statistics",
       "source_type": "official_public",
       "usage": "海淀区人口、经济总量与产业结构的区级年度权威统计口径；作为海淀AI家底与沿线人口表述的基础校核来源。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "HD-PLAN-2026",
@@ -184,8 +130,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "备案大模型122款（占全市近六成）与全年PCT专利申请量5000件的区政府正式口径；正文备案数统一采用本口径，道钉带开钉数量表述以此为准。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "BJ-STAT-2025",
@@ -196,8 +141,7 @@
       "authority_level": "official_statistics",
       "source_type": "official_public",
       "usage": "全市累计备案上线大模型209款、占全国近1/3；数字经济增加值占GDP比重46.4%。支撑'备案数已进入统计公报正式口径、是可审计城市KPI'的论断。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "BJD-AI-2026",
@@ -208,8 +152,7 @@
       "authority_level": "official_media",
       "source_type": "official_media_public",
       "usage": "海淀AI核心产业规模近3600亿元；截至2026年2月14日累计完成128款生成式人工智能服务备案（占全市59.5%）——作为122款区政府口径之外的时点差异脚注来源。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "THU-STATION-2023",
@@ -220,8 +163,7 @@
       "authority_level": "institutional",
       "source_type": "institutional_public",
       "usage": "清华园车站1910年建成、京张铁路距京城最近车站、1949年3月25日中共中央进京在此下车、2023年3月25日修缮开放——3·25公益纪念开放日与红色叙事使用边界一节的事实依据。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "PARK1-YLLHJ-2023",
@@ -232,8 +174,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "一期全长2.4公里、总面积16.8公顷、2023年6月建成开放——机器人/无障碍坡道测试验证场景选址（一期段）的现状依据。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "PARK2-PLAN-2024",
@@ -244,8 +185,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "全长9公里、总面积约70公顷、公园不设围墙、沿线设置46个出入口便利市民穿行（规划口径）——'46座应答门'机制的规划依据，正文一律表述为依托二期规划的46个出入口、以实际建成为准。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "PARK2-START-2024",
@@ -256,8 +196,7 @@
       "authority_level": "official_media",
       "source_type": "official_media_public",
       "usage": "二期2024年12月已开工建设的时点依据（该文未提出入口数量，46个出入口口径引 PARK2-PLAN-2024）。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "AGENT-POLICY-2026",
@@ -268,8 +207,7 @@
       "authority_level": "official_policy",
       "source_type": "official_public",
       "usage": "“扫钉即应答”机制（NFC/二维码调起模型demo与导览智能体）挂接的市级政策依据；仅作政策衔接引用，不表述为政府对本方案的承诺。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "DZS-MUSEUM-2021",
@@ -280,8 +218,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "大钟寺原名觉生寺、始建于清雍正十一年（1733年）、全国重点文物保护单位——“应答钟”为古钟之侧新铸之钟、与古钟博物馆仅为文化呼应关系的事实边界依据，绝不表述为敲击文物古钟。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "HD-CTRL-PLAN-2026",
@@ -292,8 +229,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "该控规于2026年8月11日获批公布（公开报道：https://baijiahao.baidu.com/s?id=1873234768343644569），覆盖9个街区约1668.2公顷，法定空间结构为“一带一轴两心多点”。本方案仅据此作定位声明：本方案为已批控规之上的概念深化建议，不与法定规划并列、不替代法定规划；批复文本未公开部分以官方发布为准，本方案不引用、不推测任何法定控制指标。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "OSM-ODBL-2026",
@@ -304,8 +240,7 @@
       "authority_level": "open_data",
       "source_type": "official_open_data",
       "usage": "五张核心图的城市肌理底图引导层（街道/铁路/地铁/水系/绿地），ODbL 许可署名；不作为官方边界或法定依据",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "LJLJ-RENEWAL-2026",
@@ -316,8 +251,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "大钟寺先导区内低效商业用地经城市更新转型、定位为京张遗址公园创新交往带重要节点并纳入已批控规体系的公开事实依据；本方案仅引用其作为城市更新供给公共开放空间的机制先例，不指定地块、不处置该项目权属与开发安排。公示采信情况另见 https://ghzrzyw.beijing.gov.cn/chengxiangguihua/ghlgg/hd_ghlgg/202506/t20250606_4107444.html 。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "PARK2-OPEN-2026",
@@ -328,8 +262,7 @@
       "authority_level": "authoritative_media",
       "source_type": "official_public",
       "usage": "二期于2026年8月6日正式建成并面向公众开放的时点依据；二期用地约53公顷、向南向北双向延展串联西直门至北五环、全线9公里；全线构建“三道一绿”完整慢行系统且独立步行道/慢跑道/自行车道全线无断点贯通（本方案据此把“断点”限定为东西向穿越阻隔，不称公园纵向存在断点）；直接服务沿线70个社区、约45万居民（支撑正文社区与人口表述）。交叉验证：中国侨网 http://www.chinaqw.com/qx/2026/08-07/409867.shtml 。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "CAC-FILING-LIST",
@@ -340,8 +273,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "道钉刻字四字段（大模型名称、备案单位、备案编号、备案时间）的权威公开数据源；同一公告页按批次挂载多份附件、序号全国累计连续、备案编号唯一可反查，构成道钉带“任何人可独立核对”的证据基础。实测该公开信息的属地字段仅到直辖市一级、无区级颗粒度且不含备案单位地址，故本方案不以其判定区级归属，归属认定与公示另由区级主管部门承担。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "CAC-2025-SUMMARY",
@@ -352,8 +284,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "全国累计口径：截至2025年12月31日累计748款生成式人工智能服务完成备案、435款应用或功能完成登记；2025年全年新增446款备案。用于道钉带全国分母的时点校核，不用于海淀分子。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "PARK2-OPEN-CNS-2026",
@@ -364,8 +295,7 @@
       "authority_level": "official_media",
       "source_type": "official_media_public",
       "usage": "二期建成开放的第二来源交叉验证；给出全线三道一绿完整慢行系统、独立步行道/慢跑道/自行车道全线无断点贯通的官方表述——本方案断点相关表述须据此限定为东西向穿越断点，不得笼统称公园存在纵向断点。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "JZ-BELT-OFFICIAL-2026",
@@ -376,8 +306,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "“三区两翼”官方定义的唯一直接来源：三区为北部AI自主创新加速区（学北园所在）、中部AI原点社区、南部大钟寺AI产业集聚区；两翼为西侧中关村科技服务翼（链接全球创新主体与要素的顶级服务平台）与东侧小月河场景赋能翼（具身智能、AI+医疗、AI+影视等特色集聚区）。同时为“备案大模型130款、AI企业超2000家、独角兽26家、AI核心产业规模超3500亿元”的出处——据此可销 assumptions.json 中 A-DATA-001 关于130款“未定位到可靠来源”的挂账。创新带二环至五环约37平方公里、产业空间近千万平方米、可用更新面积100万平方米。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "XUEBEI-PARK-2026",
@@ -388,8 +317,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "北跃段（众智园AI自主创新加速区）内已建成产业载体的落位依据：学北园位于创新带最北端，东侧紧邻学清路、南侧为月泉路、北侧为清河、东侧为支流小月河；5栋建筑、总建筑面积23.83万平方米；预计2026年7月具备开园条件；地铁昌平线学知园站A出入口与园区所有楼宇无缝连通；定位人工智能+国际合作和出海平台，3500平方米AI出海服务平台；国家自然科学基金委员会等已签约。用于人字之跃段的现实锚点与清河—小月河蓝绿交叠的空间依据。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "AI-ORIGIN-2026",
@@ -400,8 +328,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "AI原点社区官方四至：东至王庄路及展春园西路，西至中关村大街，北临清华大学，南抵北四环西路，辐射周边3平方公里；以东升大厦为中心1公里圈；AI原点社区东升产业空间总建筑面积13.89万平方米；集聚400余家企业。用于中答段空间关系描述与要素服务驿站选点依据；注意与甲方公告重点区口径104.3公顷为不同范围口径（核心区与辐射范围），须并列说明不得混用。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "AI-DISTRICTS-2026",
@@ -412,8 +339,7 @@
       "authority_level": "official_media",
       "source_type": "official_media_public",
       "usage": "首批四个人工智能创新街区名单与规模：海淀“原点社区”（以五道口为核心、约3平方公里，定位全球AI人才创新创业第一站）、朝阳“光智空间”（2.67平方公里）、石景山“文化智境”（0.4平方公里）、经开区“模数世界”（2平方公里）。用于国际对标章之外的市域横向对标与本方案差异化定位说明。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "DONGSHENG-2026",
@@ -424,8 +350,7 @@
       "authority_level": "official_media",
       "source_type": "official_media_public",
       "usage": "AI原点社区与东升镇产业空间载体名单：原点大厦、清华科技园、智源研究院、成府路35号院、华清嘉园；东升镇集体产业空间约273万平方米，含中关村东升科技园一期/二期/三期及众智园；全镇企业3976家、其中科技企业1974家；区域日均通行驻留人数由改造前约1200人次提升至7000余人次。用于产业空间映射与要素服务驿站选点的现实依据。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "THU-STATION-HERITAGE-2025",
@@ -436,8 +361,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "清华园车站旧址为北京市文物保护单位的法定依据（名单第26项，同批第16项为平绥西直门车站旧址），发文日期2025年1月11日。通知明文规定保护范围及建设控制地带说明及图纸由市文物局、市规划自然资源委另行印发，故具体范围与坐标不在公开渠道——本方案一切站前落位仍为待文物部门协商的概念选点，A-HERITAGE-001 继续成立。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "HD-RENEWAL-GUIDE-2025",
@@ -448,8 +372,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "拆改留方法、慢行断点与无障碍的区级方法依据。可直接引用原文：优化慢行交通出行品质、强化无障碍设计要求、重点打通断点、串联轨道站点与公共空间；完善无障碍设计和适老化改造、探索建设AI友好人机友好的城市空间；打造全龄友好的无障碍空间；重点围绕京张铁路遗址公园沿线更新塑造创新交往带；涉及不可移动文物、历史建筑的按一屋一策提出改造方案。支撑机器人坡道=无障碍坡道的双用机制与断点客厅的政策同向性。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "HD-LIVELIHOOD-2025",
@@ -460,8 +383,7 @@
       "authority_level": "official_government",
       "source_type": "official_public",
       "usage": "无障碍与适老化本地实施数据：为新增90周岁及以上高龄老年人家庭开展适老化改造、为2000户80至89周岁老年人配备助浴设备；建成开放5处公园绿地和10处小微绿地、实施2处全龄友好公园改造；新建滨水慢行步道5公里；建成不少于5个一刻钟便民生活圈。用于老年友好场景与全龄友好公共空间主张的本地实证。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "HD-CENSUS7-2021",
@@ -472,8 +394,7 @@
       "authority_level": "official_statistics",
       "source_type": "official_public",
       "usage": "全区人口结构权威口径：常住人口313.3万；0-14岁37.1万占11.8%、15-59岁218.4万占69.7%、60岁及以上57.8万占18.5%。用于老年友好与青年场景的年龄结构依据。注意该成果仅按人口规模分档列出街镇（学院路、北太平庄等15万人以上5个；清河、北下关、花园路、中关村等10-15万12个），不提供逐街道具体数值，故本方案不得推算分街道人口。",
-      "usable_for_formal": "yes",
-      "review_status": "needs_review"
+      "usable_for_formal": "yes"
     },
     {
       "id": "HD-BRIDGE-SPACE-2025",
@@ -484,8 +405,7 @@
       "authority_level": "authoritative_media",
       "source_type": "official_public",
       "usage": "桥下闲置空间功能提升已是本区在推的既有工作方向，用于支撑大钟寺段桥下通廊由无序停车转为公共使用的断面建议——本方案据此把该建议表述为接续既有工作口径的概念深化，不指定具体桥位、不处置权属。注：本条为媒体报道口径，具体处数与新增车位数未逐字核到，正文不引用其数字。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     },
     {
       "id": "FONT-NOTOSANSSC-OFL",
@@ -496,8 +416,7 @@
       "source_type": "user_provided_cleared",
       "authority_level": "",
       "usage": "随包字体。本包 report/proposal.html、report/proposal.en.html、visual/index.html、visual/index.en.html 四个 HTML 以 <link> 引用 visual/assets/fonts/notosanssc-subset.css，其中以 @font-face 声明字体，以保证在没有中文系统字体的环境（如评审用的离线容器）中，中文标题、正文、导航与图注不出现豆腐块。**交付形态**：包内任何目录都不允许字体扩展名（visual/assets/** 仅收 .css/.js/.json/.svg/图片，assets/** 仅收图片），故字体为原字体按本包四个 HTML 实际用字（1551 个码位）子集化后的 WOFF2（解码后 167,488 字节），经 data: URI 内嵌于该 CSS（CSS 共 223,958 字节）；字体族名改为「NotoSansSC Subset」以与系统同名字体区分。许可证与版权字段取自字体文件自身的 name 表：版权 © 2014, 2015 Adobe Systems Incorporated；许可 SIL Open Font License, Version 1.1（未声明保留字体名，故子集化与改名均为该许可允许的行为）。",
-      "usable_for_formal": "background_only",
-      "review_status": "needs_review"
+      "usable_for_formal": "background_only"
     }
   ]
 }
