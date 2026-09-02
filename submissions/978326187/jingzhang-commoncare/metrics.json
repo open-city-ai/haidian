@@ -1,0 +1,239 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note_zh": "面积由临时粗略边界复算，仅用于方案内部一致性；官方精确边界发布后必须整包重算。"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3001235.893,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_corridor, perimeter_buffer_belt)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-GREEN-001"
+      ],
+      "note_zh": "包含常新绿廊与外缘防护绿地环两部分，均为设计提案几何，不含现状绿地权属核验。"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1259853.036,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(care_spine, three_key_area_nodes, dazhongsi_square)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-PUBLIC-001"
+      ],
+      "note_zh": "只统计被明确编排为照护型公共界面的面，不把所有开敞空间计入。"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1424759.441,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BUILDING-001"
+      ],
+      "note_zh": "基底仅表达组团肌理与公共界面关系，不含层数、高度、容积率或现状建筑核验。"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.26297,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-GREEN-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.110389,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-PUBLIC-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "care_unit_type_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(distinct CommonCare unit types: rest_point, care_window, microclimate_post, repair_table)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "四类常新单元是组件类型数，不是建成数量或投资承诺。"
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows in AI scenario card table)",
+      "confidence": "high",
+      "assumptions": [],
+      "note_zh": "对应任务书不少于10张AI场景卡的结构性要求。"
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry test-and-verification scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phase polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PHASING-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls and the official site boundary are not published in the public site package; this proposal deliberately makes no intensity claim."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "declared_building_height_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Height controls belong to statutory regulatory planning and heritage review; no height conclusion is asserted."
+    },
+    "accessibility_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "continuous_barrier_free_length / surveyed_pedestrian_network_length",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-001"
+      ],
+      "reason": "Requires an on-site accessibility baseline survey with an authorised operator; asserting a value before the survey would be fabrication."
+    },
+    "facility_defect_exposure_hours": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "mean(hours between defect appearance and repair completion)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-001"
+      ],
+      "reason": "Depends on the responsible maintenance authority's work-order records, which are not public; only the measurement method is proposed."
+    },
+    "staffed_service_availability_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "hours_with_staffed_fallback / total_service_hours",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-001"
+      ],
+      "reason": "Staffed-window operating data belongs to the future operator; the proposal only fixes the metric definition and the human-takeover requirement."
+    }
+  }
+}
