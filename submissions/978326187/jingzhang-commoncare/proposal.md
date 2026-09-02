@@ -25,7 +25,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 资料使用边界按三类登记：可用于正式内容的公开材料、仅作背景理解的材料、仅在临时阶段可用的材料 [source:SOURCE-REGISTRY]。属于背景类的材料不得升级为正式依据；例如智慧健康养老与适老化的国家层面文件只用来解释"为什么照护能力值得作为设计主线"，不用来推导任何设施规模或服务指标 [source:ELDERLY-SMART-TECH-PLAN]。`data/processed/agent_fact_pack.md` 只作为阅读导航，事实判断仍回到原始登记材料 [source:PROCESSED-FACT-PACK]。
 
-本方案额外引入的外部依据分为三类：一是法规与规范类，包括无障碍环境建设法、生成式人工智能服务管理暂行办法，用于约束"人工优先"和"数据最小化"两条设计红线 [source:BARRIER-FREE-ENVIRONMENT-LAW] [source:GENERATIVE-AI-INTERIM-MEASURES]；二是国家层面的城市设计与用地分类技术要求，用于界定成果深度和用地表达口径 [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]；三是可迁移案例与背景报道，只提供做法参照，不提供本地结论 [source:CASE-JTC-PUNGGOL] [source:CONTEXT-JINGZHANG-CORRIDOR-PLAN-NEWS]。全部 18 条来源的链接、许可状态、核验日期与禁止用途保存在 `sources.json`，正文不重复机器索引 [depth:existing_conditions_diagnosis]。
+本方案额外引入的外部依据分为三类：一是法规与规范类，包括无障碍环境建设法、生成式人工智能服务管理暂行办法，用于约束"人工优先"和"数据最小化"两条设计红线 [source:BARRIER-FREE-ENVIRONMENT-LAW] [source:GENERATIVE-AI-INTERIM-MEASURES]；二是国家层面的城市设计与用地分类技术要求，用于界定成果深度和用地表达口径 [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]；三是可迁移案例与背景报道，只提供做法参照，不提供本地结论 [source:CASE-JTC-PUNGGOL] [source:CONTEXT-JINGZHANG-CORRIDOR-PLAN-NEWS]。全部 18 条来源的链接、逐条许可/复用状态（license_status）、复用范围、核验日期与禁止用途保存在 `sources.json`：官方文件与组织方材料按其性质记录，案例与报道仅作事实引用、未复制文本或图像，两处由 agent 从公开数据推断的临时几何来源底层数据许可尚未逐项核验，如实标为 needs_review，正文不重复机器索引 [depth:existing_conditions_diagnosis]。
 
 ## 三层范围工作框架
 
@@ -236,7 +236,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 参考资料
 
-- 完整来源清单、许可状态、核验日期与禁止用途：`sources.json`（共 18 条）
+- 完整来源清单、逐条许可/复用状态、复用范围、核验日期与禁止用途：`sources.json`（共 18 条；其中 2 条 agent 推断几何来源标为 needs_review）
 - 假设、影响与复算触发条件：`assumptions.json`（共 11 条）
 - 指标定义、复算方式与未知原因：`metrics.json`（共 17 项）
 - 任务覆盖、标准覆盖与深度覆盖：`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`
