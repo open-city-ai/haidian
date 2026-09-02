@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#071b1e">
+  <link rel="icon" href="data:,">
+  <meta name="description" content="京张可进入｜一线四章·五站：无远程依赖的正式 intake 视觉包。">
+  <title>京张可进入｜一线四章·五站</title>
+  <link rel="stylesheet" href="./assets/app.css">
+  <script defer src="./assets/app.js"></script>
+</head>
+<body data-scene="corridor" data-service="human">
+  <div class="experience">
+    <header class="topbar">
+      <div class="brand"><i class="brand-mark" aria-hidden="true"></i><span class="brand-name">京张可进入｜一线四章·五站</span><span class="brand-sub">FORMAL INTAKE · OFFLINE VISUAL</span></div>
+      <div class="status-line"><span class="status-pill" id="renderStatus">场景就绪</span><a class="language-link" id="languageSwitch" href="./index.en.html" hreflang="en">EN</a></div>
+    </header>
+
+    <section class="visual-stage" id="visualStage" aria-labelledby="sceneTitle">
+      <div class="scene-media">
+        <picture><source id="mobileImage" media="(max-width:720px)"><img id="sceneImage" src="./assets/images/corridor-overview.webp" alt="一线四章·五站总览"></picture>
+        <canvas id="staticCanvas" hidden aria-label="当前站点原创程序化静态 fallback"></canvas>
+        <i class="night-wash" aria-hidden="true"></i>
+      </div>
+      <div class="callouts" aria-label="场景标注"><span class="callout" id="callout1">铁路知识轴</span><span class="callout" id="callout2">五站直达</span><span class="callout" id="callout3">总览 / 非第六站</span></div>
+      <div class="scene-copy">
+        <div class="scene-meta"><b class="scene-index" id="sceneIndex">00</b><span class="scene-eyebrow" id="sceneEyebrow">一线四章 · 五站 · 总览不是第六站</span></div>
+        <h1 id="sceneTitle">一条可进入的铁路知识轴</h1>
+        <p class="scene-story" id="sceneStory">西直门、大钟寺、未来学习空间、AI 原点与众智园保持固定顺序，每一站都有独立入口与清楚的公共身份。</p>
+        <p class="scene-limit" id="sceneLimit">线路为概念体验结构，不构成法定红线、测绘边界或机构授权。</p>
+      </div>
+
+      <div class="control-deck" aria-label="五站体验控制">
+        <div class="route-panel">
+          <nav class="route-rail" aria-label="总览与五站直接入口">
+            <button type="button" class="route-button is-active" data-scene-target="corridor" aria-current="true"><small>00</small><span>五站总览</span></button>
+            <button type="button" class="route-button" data-scene-target="xizhimen"><small>01</small><span>西直门</span></button>
+            <button type="button" class="route-button" data-scene-target="dazhongsi"><small>02</small><span>大钟寺</span></button>
+            <button type="button" class="route-button" data-scene-target="qinghuayuan-knowledge"><small>03</small><span>未来学习空间</span></button>
+            <button type="button" class="route-button" data-scene-target="ai-origin"><small>04</small><span>AI 原点</span></button>
+            <button type="button" class="route-button" data-scene-target="zhongzhiyuan"><small>05</small><span>众智园</span></button>
+          </nav>
+          <div class="camera-rail" id="cameraRail" aria-label="当前站点镜头"></div>
+        </div>
+
+        <div class="action-panel">
+          <div class="service-row" aria-label="公共学习服务状态">
+            <button type="button" data-service-target="ai" aria-pressed="false">AI 辅助</button>
+            <button type="button" class="is-active" data-service-target="human" aria-pressed="true">人工支持</button>
+            <button type="button" data-service-target="offline" aria-pressed="false">离线学习</button>
+          </div>
+          <div class="mode-row">
+            <button type="button" class="is-active" data-presentation-target="day" aria-pressed="true">明亮日景</button>
+            <button type="button" data-presentation-target="night-signal" aria-pressed="false">夜间信号</button>
+            <button type="button" id="labelsToggle">标注开启</button>
+            <button type="button" id="fallbackToggle">静态模式</button>
+            <button type="button" id="motionToggle">标准动效</button>
+          </div>
+          <div class="tour-box">
+            <div class="tour-head"><span id="tourState">53 秒五站导览已验证</span><span id="tourTime">0.0 / 53.0 s</span></div>
+            <div class="tour-track" aria-hidden="true"><i class="tour-progress" id="tourProgress"></i></div>
+            <div class="tour-row"><button type="button" id="tourToggle" aria-pressed="false">播放 53 秒五站导览</button><button type="button" id="tourReset">重置</button></div>
+          </div>
+          <ul class="state-strip" aria-label="可恢复 URL 状态">
+            <li>SCENE <b id="sceneName">五站总览</b></li><li>CAMERA <b id="cameraName">five-station-overview</b></li><li>ERA <b id="eraState">FUTURE</b></li><li>SERVICE <b id="serviceState">人工支持</b></li><li>PRESENTATION <b id="presentationState">明亮日景</b></li><li>PILOT <b id="pilotState">ORDINARY</b></li><li>READING <b id="readingState">EXPERIENCE</b></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main class="evidence-shell">
+    <section aria-labelledby="overview-heading">
+      <header class="section-head"><div><p class="kicker">01 · 总览地图 / DIRECT ENTRY</p><h2 id="overview-heading">总览地图与五站直接入口</h2></div><p>corridor 仅用于读取固定路线，不是第六站。下列五张项目内原创表现图同时是离线 fallback 资产；点击即可带完整 URL 状态进入。</p></header>
+      <div class="station-gallery">
+        <a class="station-card" href="?scene=xizhimen&amp;camera=future-public-services&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/xizhimen-arrival.webp" alt="西直门公共抵达"><span class="station-card-copy"><small>01</small><h3>西直门</h3><p>铁路时间 → 公共抵达</p></span></a>
+        <a class="station-card" href="?scene=dazhongsi&amp;camera=r2-canopy-overview&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/dazhongsi-canopy.webp" alt="大钟寺开放梁架"><span class="station-card-copy"><small>02</small><h3>大钟寺</h3><p>遗产边界 → 开放梁架</p></span></a>
+        <a class="station-card" href="?scene=qinghuayuan-knowledge&amp;camera=r2-knowledge-arrival&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/learning-hall.webp" alt="未来公共学习主厅"><span class="station-card-copy"><small>03</small><h3>未来学习空间</h3><p>知识索引 → 阅读共学</p></span></a>
+        <a class="station-card" href="?scene=ai-origin&amp;camera=r2-dual-channel-overview&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/ai-origin-civic.webp" alt="AI 原点公共服务界面"><span class="station-card-copy"><small>04</small><h3>AI 原点</h3><p>公共服务 → 人工责任</p></span></a>
+        <a class="station-card" href="?scene=zhongzhiyuan&amp;camera=public-court-hero&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/zhongzhiyuan-campus.webp" alt="众智园公共庭院与验证场"><span class="station-card-copy"><small>05</small><h3>众智园</h3><p>受控验证 → 停止退出</p></span></a>
+      </div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="scope-heading">
+      <p class="kicker">02 · 三层范围 / SCOPE</p><h2 id="scope-heading">三层范围</h2>
+      <div class="three-layers"><article class="layer-card"><span>01 / 统筹研究范围</span><h3>京张创新机制走廊</h3><p>铁路知识轴串联遗产、公共学习、公共服务和受控验证，不将研究范围伪装成法定边界。</p></article><article class="layer-card"><span>02 / 总体设计范围</span><h3>一线四章·五站</h3><p>固定五站顺序、直接入口、交通慢行、蓝绿公共空间与普通公共服务底座共同组织总体体验。</p></article><article class="layer-card"><span>03 / 重点设计范围</span><h3>同源五站完整路线</h3><p>同一 cue source 的 53 秒导览与终点 Portfolio Explore 已通过限定验证；真实空间审批与运营仍属外部触发条件。</p></article></div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="design-heading">
+      <p class="kicker">03 · DESIGN LAYERS</p><h2 id="design-heading">重点区域与设计图层</h2>
+      <div class="evidence-grid">
+        <article class="evidence-card"><strong>重点区域</strong><ul><li>大钟寺边界外开放雨棚</li><li>未来公共学习主厅</li><li>AI 原点人工责任界面</li></ul></article>
+        <article class="evidence-card"><strong>用地分区</strong><ul><li>遗产保护与公共接口分离</li><li>普通学习优先于智能增强</li><li>公共、受控、退出清楚分层</li></ul></article>
+        <article class="evidence-card"><strong>交通慢行</strong><ul><li>五站固定路线索引</li><li>步行与无障碍连续代理</li><li>每站均可直接进入和返回</li></ul></article>
+        <article class="evidence-card"><strong>蓝绿公共空间</strong><ul><li>遮荫、停留与公共庭院</li><li>日景为主、夜间信号可选</li><li>不以满屏霓虹表达未来</li></ul></article>
+        <article class="evidence-card"><strong>建筑</strong><ul><li>开放梁架与大跨主厅</li><li>书架、知识索引和人物尺度</li><li>原创程序化概念空间</li></ul></article>
+        <article class="evidence-card"><strong>更新项目</strong><ul><li>里程标识转为知识索引</li><li>学习凭证转为服务护照</li><li>可逆试点接受证据门控</li></ul></article>
+        <article class="evidence-card"><strong>AI 场景</strong><ul><li>AI 辅助可暂停</li><li>人工支持可接管</li><li>离线学习始终可用</li></ul></article>
+        <article class="evidence-card"><strong>实施边界</strong><ul><li>53 秒导览与 Portfolio：限定 PASS</li><li>来源 commit 与 receipt 可追溯</li><li>不宣称机构、红线或运营授权</li></ul></article>
+      </div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="metrics-heading">
+      <p class="kicker">04 · METRICS / PROVISIONAL</p><h2 id="metrics-heading">核心指标</h2>
+      <div class="metric-grid"><article class="metric-card"><span>临时总体设计模型面积</span><strong data-metric="site_area_sqm" data-value="11412825.386">11.413 km²</strong><small>由包内 provisional site boundary 复算；不是官方红线面积。</small></article><article class="metric-card"><span>概念绿地比例</span><strong data-metric="green_ratio" data-value="0.123423">12.3423%</strong><small>由包内 green_space / site_boundary 复算，低置信度。</small></article><article class="metric-card"><span>概念公共空间比例</span><strong data-metric="public_space_ratio" data-value="0.073281">7.3281%</strong><small>由包内 public_space / site_boundary 复算，低置信度。</small></article></div>
+      <p class="boundary-note">上述三项均为 provisional design-model values，只用于本次概念方案内部复算；取得官方红线、控规、权属和测绘数据后必须重新计算。</p>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="runtime-heading">
+      <p class="kicker">05 · RUNTIME RECEIPT / VIDEO</p><h2 id="runtime-heading">53 秒导览与 Portfolio Explore</h2>
+      <div class="runtime-grid">
+        <video class="runtime-video" controls preload="metadata" poster="../assets/media/jingzhang-five-station-53s-contact-sheet.jpg">
+          <source src="../assets/media/jingzhang-five-station-53s-review.mp4" type="video/mp4">
+          <track kind="captions" srclang="zh" label="中文" src="../assets/media/jingzhang-five-station-53s.vtt" default>
+          <track kind="captions" srclang="en" label="English" src="../assets/media/jingzhang-five-station-53s.en.vtt">
+          浏览器不支持本地视频播放；可查看随包 contact sheet 与 transcript。
+        </video>
+        <article class="receipt-card"><h3>同源验证回执</h3><dl><div><dt>Source commit</dt><dd>586ee76e…4258</dd></div><div><dt>Active / wall</dt><dd>53.000 / 53.513 s</dd></div><div><dt>Portfolio Explore</dt><dd>PASS · 5 / 5</dd></div><div><dt>Video</dt><dd>54.000 s · H.264 · 30 fps</dd></div><div><dt>Network / errors / 404</dt><dd>0 / 0 / 0</dd></div></dl><p>PASS 仅适用于该 commit、production package 与所列矩阵。78 条非致命 WebGL 纹理 warning 已保留在 receipt 中。</p></article>
+      </div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="coverage-heading">
+      <p class="kicker">06 · TASK / CHECK</p><h2 id="coverage-heading">任务覆盖与自检状态</h2>
+      <div class="review-grid"><article class="review-list"><h3>任务覆盖</h3><ol><li><span>五站 canonical 路线与总览</span><em>5 / 5 DIRECT</em></li><li><span>同源完整导览</span><em>53.0 s PASS</em></li><li><span>Portfolio Explore 五站镜头</span><em>5 / 5 PASS</em></li><li><span>AI / HUMAN / OFFLINE</span><em>3 STATES</em></li><li><span>URL / mobile / reduced / fallback</span><em>PASS</em></li></ol></article><article class="self-check"><h3>自检状态</h3><div class="check-row"><span>本地资源与远程依赖</span><b>PASS / 0 REMOTE</b></div><div class="check-row"><span>五站直接进入</span><b>PASS</b></div><div class="check-row"><span>中英页面与离线 CJK 字体</span><b>PASS</b></div><div class="check-row"><span>provisional 边界披露</span><b>PASS</b></div><div class="check-row"><span>机构与真实运营授权</span><b class="partial">未声称</b></div></article></div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="source-heading">
+      <p class="kicker">07 · EVIDENCE BOUNDARY</p><h2 id="source-heading">来源与假设</h2>
+      <div class="source-grid"><article class="source-card"><h3>来源</h3><p>七张 WebP、Canvas fallback 与本页界面为项目原创表达。五站顺序、镜头、53 秒 cue、Portfolio 与媒体 receipt 绑定 source commit 586ee76e…4258。中文使用由 Source Han Sans CN 2.005R 合法派生并按 OFL 重命名的内嵌 JZ Offline CJK 子集；无 CDN、远程字体、脚本、地图瓦片或跟踪代码。</p></article><article class="source-card"><h3>假设</h3><p>geometry 是非官方 provisional boundary；建筑、运营与服务关系为概念设计模型。官方红线、机构授权、真实运营主体、预算、消防、市政、权属、保险与 DPIA 继续作为未来实施触发条件。</p></article></div>
+    </section>
+  </main>
+
+  <footer class="footer">京张可进入｜一线四章·五站 · 53 秒与 Portfolio 限定 PASS · 不是机构授权、真实运营或官方红线证明。</footer>
+</body>
+</html>

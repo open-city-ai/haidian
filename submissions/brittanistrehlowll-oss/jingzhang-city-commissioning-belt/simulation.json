@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "title": "C0-C6 qualitative failure-mode tabletop ledger",
+  "summary": "定性离线失败模式演练，仅验证降级、人工接管、回滚和退出逻辑；不声称现场性能、成功率、能耗、延迟、容量或工程可靠性。",
+  "status": "conceptual_tabletop_only",
+  "method": "七个固定场景的离线桌面演练；不调用在线模型、不接入真实机器人/市政控制、不使用个人数据。metrics.json不声明保留的定量simulation指标。",
+  "task_count": 7,
+  "tasks": [
+    {
+      "task_id": "SIM-01",
+      "scenario_id": "public-safety-operations-review",
+      "outcome": "not_scored",
+      "case": "内涝预测不可用或与人工复核冲突",
+      "expected_fallback": "退回人工值守与传统应急预案；AI预测不降低实体排水标准。"
+    },
+    {
+      "task_id": "SIM-02",
+      "scenario_id": "enterprise-service-copilot",
+      "outcome": "not_scored",
+      "case": "边缘服务节点断连",
+      "expected_fallback": "关键公共服务切换人工/离线路径；网络故障不成为基础服务门槛。"
+    },
+    {
+      "task_id": "SIM-03",
+      "scenario_id": "ai-traffic-walkability",
+      "outcome": "not_scored",
+      "case": "无障碍导航与现场条件冲突",
+      "expected_fallback": "标注不确定性并转人工/现场确认；轮椅和低数字技能用户保留可用路径。"
+    },
+    {
+      "task_id": "SIM-04",
+      "scenario_id": "enterprise-service-copilot",
+      "outcome": "not_scored",
+      "case": "规划优化器高分方案违反公共利益规则",
+      "expected_fallback": "C2规则校核阻断；模型排名不替代法定程序和真实公众参与。"
+    },
+    {
+      "task_id": "SIM-05",
+      "scenario_id": "ai-health-service-navigation",
+      "outcome": "not_scored",
+      "case": "账号、模型或网络不可用",
+      "expected_fallback": "AI/人工/离线/低或无感知四路径中至少一条非AI路径保持基础服务。"
+    },
+    {
+      "task_id": "SIM-06",
+      "scenario_id": "public-safety-operations-review",
+      "outcome": "not_scored",
+      "case": "高密算力需求无法由已核实的电力或水资源条件支撑",
+      "expected_fallback": "不推定MW/MVA/水量/管径；任务延后、降级或迁移区域算力，设施保持CONDITION-BASED。"
+    },
+    {
+      "task_id": "SIM-07",
+      "scenario_id": "enterprise-service-copilot",
+      "outcome": "not_scored",
+      "case": "模型、数据、设施或规则版本变化使既有许可条件失效",
+      "expected_fallback": "触发C6复验；未通过则回滚上一稳定版本或退出真实运行。"
+    }
+  ],
+  "baselines": {
+    "urban_llm_harness": {
+      "status": "not_applicable",
+      "claim_scope": "本台账不声明定量harness性能基线。",
+      "replayable": true,
+      "high_risk_intercept_rate": null,
+      "high_risk_metric_note": "not_applicable: no quantitative high-risk interception metric is claimed"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "A-BOUNDARY-001",
+      "statement_zh": "组织方尚未发布官方总体边界与重点区域 polygon，本方案全部几何为 provisional 临时粗略约束，仅用于内容设计与机器校验；官方图形发布后必须整体复算。",
+      "statement_en": "No official boundary or key-area polygons are published yet; all geometry here is provisional and must be recomputed when official data arrives.",
+      "category": "boundary",
+      "status": "accepted_limitation"
+    },
+    {
+      "assumption_id": "A-CONTROLS-001",
+      "statement_zh": "荣誉展示带涉及的绿地蓝线、文物保护与建设控制条件未知，本方案不给出任何具体数值结论，仅保留概念口径的示意。",
+      "statement_en": "Statutory protection and control conditions are unknown; this proposal keeps concept-level indications only.",
+      "category": "statutory_control",
+      "status": "accepted_limitation"
+    },
+    {
+      "assumption_id": "A-DATA-001",
+      "statement_zh": "荣誉与贡献展示内容来源为公开信息与自主报送，仅作概念性匿名展示设计引用，不替代官方统计，不涉及任何真实个体隐私信息。",
+      "statement_en": "Honor and contribution content is concept-level anonymized display design only, not official statistics.",
+      "category": "data_boundary",
+      "status": "accepted_limitation"
+    },
+    {
+      "assumption_id": "A-DESIGN-001",
+      "statement_zh": "荣耀长廊、里程碑广场与贡献者花园设施均为原创概念建议，模块化可逆，不构成建设承诺。",
+      "statement_en": "All node facilities are original reversible conceptual proposals, not construction commitments.",
+      "category": "design_proposal",
+      "status": "concept"
+    },
+    {
+      "assumption_id": "A-PRIVACY-001",
+      "statement_zh": "参与度感知与动线建议仅提供匿名聚合与人工复核兜底，不设个体识别采集，不设无法人工终止的自动决定。",
+      "statement_en": "Participation sensing and route suggestions process anonymized aggregates only, with human review as backstop.",
+      "category": "privacy",
+      "status": "concept"
+    },
+    {
+      "assumption_id": "A-EVENT-001",
+      "statement_zh": "荣誉发布日、开源贡献者感谢周与社区共创节等均为建议性设计，不代表已确定的政府安排或投资承诺。",
+      "statement_en": "The event system and phasing are design suggestions, not confirmed government or investment commitments.",
+      "category": "operation",
+      "status": "concept"
+    },
+    {
+      "assumption_id": "A-LANDUSE-001",
+      "statement_zh": "用地比例只按 geometry/land_use.geojson 的 27 个要素，以 land_use_code 聚合并以 geometry/site_boundary.geojson 的 EPSG:4548 面积为分母；当前仅有 0701、0802、0803、0901、0902、1401 六类。0802 保持“科研”单列，不把不存在的 0801 教育或其他类虚构为占比，也不把独立 green_space.geojson 绿地叠加指标与 1401 用地类混同。",
+      "statement_en": "Land-use shares aggregate the 27 features in geometry/land_use.geojson by land_use_code and divide by the EPSG:4548 area of geometry/site_boundary.geojson. Only 0701, 0802, 0803, 0901, 0902, and 1401 occur; 0802 remains scientific research, while absent education 0801 and other classes are not fabricated or silently merged. The green_space.geojson overlay metric is kept separate from the 1401 land-use category.",
+      "category": "land_use",
+      "status": "accepted_limitation"
+    },
+    {
+      "assumption_id": "A-METRIC-001",
+      "statement_zh": "site_area_sqm、land_use 比例及 green_ratio/public_space_ratio 均为 provisional 几何推导，统一标注 low confidence、公式和星号；仅用于概念比较、包内复算和图件一致性检查，不作为法定面积、容量或工程依据。官方边界或用地数据发布后，须按同一公式重算并记录差异。",
+      "statement_en": "site_area_sqm, land-use shares, green_ratio, and public_space_ratio are provisional geometry-derived values with one consistent low-confidence label, formula, and asterisk note. They are for concept comparison, package recomputation, and figure consistency only, not statutory area, capacity, or engineering evidence. Recompute with the same formulas and record differences when official data is released.",
+      "category": "metric_confidence",
+      "status": "accepted_limitation"
+    }
+  ]
+}

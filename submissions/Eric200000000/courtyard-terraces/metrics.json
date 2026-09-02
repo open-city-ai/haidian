@@ -1,0 +1,112 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough boundary; not an official area claim."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 94656.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(conceptual_building_envelopes), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual prototypes only; no existing-building or ownership survey was available."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.167621,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_area(green_space) / area(site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model ratio; recalculate after official geometry and green controls arrive."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.092497,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_area(public_space) / area(site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model ratio; public access and ownership require confirmation."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel data are unavailable."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Locations use repository provisional polygons."
+      ]
+    },
+    "terrace_node_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "design_program_count(open_terraces)",
+      "confidence": "medium",
+      "assumptions": [
+        "Program count, not a constructed-facility count."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

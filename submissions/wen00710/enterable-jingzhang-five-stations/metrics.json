@@ -1,0 +1,469 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims; recalculate after official polygons arrive."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims; recalculate after official polygons arrive."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims; recalculate after official polygons arrive."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims; recalculate after official polygons arrive."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "station_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(canonical_route_station_ids)",
+      "confidence": "high",
+      "assumptions": [
+        "corridor is an overview state and is not counted as a sixth station."
+      ]
+    },
+    "direct_entry_station_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(canonical stations with declared direct-entry URL state at runtime checkpoint)",
+      "confidence": "high",
+      "assumptions": [
+        "Bounded to source commit 586ee76e37b0a34168054ef787b4e8c2b1ab4258 and the recorded production package."
+      ]
+    },
+    "chapter_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(frozen_narrative_chapters)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "mechanism_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(M1 through M4 coordinated mechanisms)",
+      "confidence": "high",
+      "assumptions": [
+        "Mechanisms are conceptual recommendations and do not represent confirmed operators or partnerships."
+      ]
+    },
+    "verified_wave1_segment_duration_seconds": {
+      "status": "known",
+      "value": 20.5,
+      "unit": "none",
+      "source_files": [
+        "sources.json",
+        "assumptions.json"
+      ],
+      "formula": "verified bounded runtime segment duration at declared checkpoint",
+      "confidence": "high",
+      "measurement_unit": "seconds",
+      "assumptions": [
+        "Historical Wave 1 baseline covering Dazhongsi to Future Learning Space to AI Origin; retained for provenance and superseded for complete-tour status by the 53-second readiness receipt."
+      ]
+    },
+    "full_guided_tour_verified": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/runtime-browser-qa.json",
+        "visual/assets/runtime-video-receipt.json",
+        "sources.json"
+      ],
+      "formula": "1 when the canonical cue source reaches activeMs=53000 with tourState=complete, five required station arrivals, terminal Portfolio unlock, and PASS browser/video receipts at the recorded source commit; otherwise 0",
+      "confidence": "high",
+      "assumptions": [
+        "Bounded to source commit 586ee76e37b0a34168054ef787b4e8c2b1ab4258 and the recorded production-package browser matrix; not a universal device or live-operation guarantee."
+      ]
+    },
+    "portfolio_explore_completion_ratio": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/runtime-browser-qa.json",
+        "sources.json"
+      ],
+      "formula": "verified Portfolio Explore station-camera sets / five required stations",
+      "confidence": "high",
+      "assumptions": [
+        "Equals 5/5 for the terminal-unlocked production package at the recorded source commit; open-world expansion is explicitly false."
+      ]
+    },
+    "runtime_configured_active_milliseconds": {
+      "status": "known",
+      "value": 53000,
+      "unit": "none",
+      "measurement_unit": "milliseconds",
+      "source_files": [
+        "visual/assets/runtime-browser-qa.json"
+      ],
+      "formula": "canonical cue-source configured active duration",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "runtime_observed_active_milliseconds": {
+      "status": "known",
+      "value": 53000,
+      "unit": "none",
+      "measurement_unit": "milliseconds",
+      "source_files": [
+        "visual/assets/runtime-browser-qa.json"
+      ],
+      "formula": "freshTour.activeMs at terminal",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "runtime_observed_wall_milliseconds": {
+      "status": "known",
+      "value": 53513,
+      "unit": "none",
+      "measurement_unit": "milliseconds",
+      "source_files": [
+        "visual/assets/runtime-browser-qa.json"
+      ],
+      "formula": "freshTour.wallMs at terminal",
+      "confidence": "high",
+      "assumptions": [
+        "Includes scene-readiness waits in the fresh production-package run."
+      ]
+    },
+    "runtime_preflight_milliseconds": {
+      "status": "known",
+      "value": 1,
+      "unit": "none",
+      "measurement_unit": "milliseconds",
+      "source_files": [
+        "visual/assets/runtime-browser-qa.json"
+      ],
+      "formula": "freshTour.preflightMs",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "runtime_video_duration_seconds": {
+      "status": "known",
+      "value": 54,
+      "unit": "none",
+      "measurement_unit": "seconds",
+      "source_files": [
+        "visual/assets/runtime-video-receipt.json",
+        "assets/media/jingzhang-five-station-53s-review.mp4"
+      ],
+      "formula": "ffprobe format duration for the packaged review video",
+      "confidence": "high",
+      "assumptions": [
+        "The video contains the 53-second active cue sequence plus capture and terminal hold."
+      ]
+    },
+    "runtime_average_frames_per_second": {
+      "status": "known",
+      "value": 59.629,
+      "unit": "none",
+      "measurement_unit": "frames_per_second",
+      "source_files": [
+        "visual/assets/runtime-browser-qa.json"
+      ],
+      "formula": "browser QA performance.averageFps",
+      "confidence": "high",
+      "assumptions": [
+        "Observed in the recorded environment only; 20 dropped frames and six frame gaps remain disclosed in the receipt."
+      ]
+    },
+    "valid_public_problem_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "metrics.json"
+      ],
+      "formula": "count(distinct public-problem IDs marked valid after human checks for completeness, public relevance, deduplication, privacy, and actionable boundary during the reporting period)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A future human review protocol defines the reporting period, duplicate rule, and exclusion rule before collection."
+      ],
+      "reason": "No real operating period, intake, or public-problem dataset exists at concept stage.",
+      "label_zh": "有效公共问题数量",
+      "label_en": "Valid public problem count"
+    },
+    "independent_reproduction_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "metrics.json"
+      ],
+      "formula": "eligible public results for which at least one person or team independent of the original contributor obtains a comparable result with the registered version / results due for reproduction with a complete reproduction package in the reporting period",
+      "confidence": "unknown",
+      "assumptions": [
+        "Eligibility, independence, reproduction success, and the reporting period are fixed before evaluation."
+      ],
+      "reason": "No real reproduction cohort or results exist at concept stage.",
+      "label_zh": "独立复现比例",
+      "label_en": "Independent reproduction ratio"
+    },
+    "human_takeover_reachability_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "metrics.json"
+      ],
+      "formula": "eligible cases reaching an authorized person within the preregistered service-test window / eligible cases triggering human takeover in the reporting period",
+      "confidence": "unknown",
+      "assumptions": [
+        "A future test protocol defines an eligible state and a reachable human path before testing."
+      ],
+      "reason": "No real service operator, duty roster, or takeover test exists at concept stage.",
+      "label_zh": "人工接管可达率",
+      "label_en": "Human-takeover reachability ratio"
+    },
+    "offline_service_availability_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "metrics.json"
+      ],
+      "formula": "audit windows completing every defined core ordinary service with the network disconnected and AI closed / planned and executed offline audit windows in the reporting period",
+      "confidence": "unknown",
+      "assumptions": [
+        "A future operator defines the ordinary-service checklist and scheduled test window before testing."
+      ],
+      "reason": "No real operator, service schedule, or offline test series exists at concept stage.",
+      "label_zh": "离线服务可用率",
+      "label_en": "Offline-service availability ratio"
+    },
+    "ordinary_use_restored_pilot_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "metrics.json"
+      ],
+      "formula": "count(distinct pilot IDs with an exit decision, documented asset and data disposition, and independent human sign-off that the predefined ordinary use was restored in the reporting period)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A future approved pilot defines its ordinary-use baseline and restoration acceptance checklist before admission."
+      ],
+      "reason": "No real pilot, exit, or restoration acceptance record exists at concept stage.",
+      "label_zh": "退出并恢复普通用途的试点数量",
+      "label_en": "Count of pilots exited with ordinary use restored"
+    },
+    "public_result_publication_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "metrics.json"
+      ],
+      "formula": "activities publishing an on-time equivalent bilingual results-and-limitations summary after rights, privacy, safety, and human review / activities due to publish a result in the reporting period",
+      "confidence": "unknown",
+      "assumptions": [
+        "A future publication policy defines eligibility, deadline, required limitations, and permitted withdrawal notices."
+      ],
+      "reason": "No real activity, validation result, or publication period exists at concept stage.",
+      "label_zh": "公开结果发布率",
+      "label_en": "Public-result publication ratio"
+    },
+    "maintenance_response_time_minutes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "metrics.json"
+      ],
+      "formula": "for each valid maintenance issue, minutes from human-confirmed receipt to safe state or restoration of a core ordinary service; report median and P90 by issue class for the reporting period",
+      "confidence": "unknown",
+      "assumptions": [
+        "A future maintenance protocol defines valid issues, acknowledgement, reporting window, and paused-clock conditions before measurement."
+      ],
+      "reason": "No confirmed maintenance body, issue log, service level, or reporting period exists at concept stage.",
+      "measurement_unit": "minutes",
+      "label_zh": "维护响应时间",
+      "label_en": "Maintenance response time"
+    },
+    "planning_baseline_score": {
+      "status": "known",
+      "value": 0.631921,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json",
+        "assumptions.json"
+      ],
+      "formula": "transparent weighted score after non-compensable hard gates",
+      "confidence": "low",
+      "assumptions": [
+        "Interpretive policy weights; actual_test_data=false."
+      ]
+    },
+    "planning_a1_score": {
+      "status": "known",
+      "value": 0.991476,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json",
+        "assumptions.json"
+      ],
+      "formula": "transparent weighted score after non-compensable hard gates",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional local-metre design model; actual_test_data=false."
+      ]
+    },
+    "planning_a2_score": {
+      "status": "known",
+      "value": 0.957285,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json",
+        "assumptions.json"
+      ],
+      "formula": "transparent weighted score after non-compensable hard gates",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional local-metre design model; actual_test_data=false."
+      ]
+    },
+    "planning_a1_win_share": {
+      "status": "known",
+      "value": 0.666667,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json",
+        "assumptions.json"
+      ],
+      "formula": "sensitivity cases won / 27",
+      "confidence": "low",
+      "assumptions": [
+        "Three service radii × three buffer deltas × three weight sets."
+      ]
+    },
+    "planning_sensitivity_case_count": {
+      "status": "known",
+      "value": 27,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "assumptions.json"
+      ],
+      "formula": "3 service radii * 3 device-buffer deltas * 3 weight sets",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "accessible_continuity_strict": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json",
+        "assumptions.json"
+      ],
+      "formula": "step-free path satisfying surveyed width and slope constraints",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Surveyed slopes are unavailable; the flat design-model proxy is interpretive only."
+    }
+  }
+}

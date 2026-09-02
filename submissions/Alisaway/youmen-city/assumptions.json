@@ -1,0 +1,264 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "assumptions": [
+    {
+      "assumption_id": "N2B-A01",
+      "statement": "PROV-SITE-001 and three PROV-KEY polygons are the sole spatial frame for this round",
+      "status": "working_assumption",
+      "reason": "input not yet verified",
+      "release_condition": "replace and recompute when cleared official geometry is available"
+    },
+    {
+      "assumption_id": "N2B-A02",
+      "statement": "Public continuity green envelope target width = 110.0 m and public-space envelope target width = 36.0 m",
+      "status": "design_target",
+      "reason": "Design rationale only: 110 m and 36 m reserve concept blue-green/public-realm envelopes. No surveyed existing condition or statutory input currently proves either value.",
+      "release_condition": "Retain, revise or remove only after official boundaries, site measurement, statutory and professional inputs, ownership and maintenance responsibility are verified; then recompute metrics, figures and derivatives together.",
+      "prohibited_interpretation": "Neither value is an existing width, official redline, statutory minimum, public right, navigation line or construction dimension.",
+      "evidence_ref": "n7_evidence/N7-1b_D1_spatial_dimension_contract_2026-08-25_v0.1.json"
+    },
+    {
+      "assumption_id": "N2B-A03",
+      "statement": "All roads, paths, nodes, surfaces and loops are low-confidence design proposals located within the provisional frame",
+      "status": "unknown_not_surveyed",
+      "reason": "unknown_not_surveyed",
+      "release_condition": "replace or recompute when verified input is available"
+    },
+    {
+      "assumption_id": "N2B-A04",
+      "statement": "Public and green ratios are proposal ratios, not existing or statutory ratios",
+      "status": "working_assumption",
+      "reason": "input not yet verified",
+      "release_condition": "any geometry/source/rule change"
+    },
+    {
+      "assumption_id": "N2B-A05",
+      "statement": "No capacity, power, water, people or vehicle value is asserted without engineering/institutional input",
+      "status": "working_assumption",
+      "reason": "unknown",
+      "release_condition": "replace or recompute when verified input is available"
+    },
+    {
+      "assumption_id": "N2B-A06",
+      "statement": "The Jing-Zhang source layer remains empty; N2-B proposal topology is a separate layer",
+      "status": "working_assumption",
+      "reason": "input not yet verified",
+      "release_condition": "cleared official alignment and conversion record"
+    },
+    {
+      "assumption_id": "N4-A01",
+      "statement": "Six exact scene packages are mounted and hash-locked; four upstream cards (SCN-ZZY-02/03 and SCN-DZS-02/03) remain original-ZH-only, so original machine/EN source-depth gaps remain open.",
+      "status": "known_source_depth_gap",
+      "reason": "Six archives passed exact SHA-256 and CRC verification and all 28 available canonical raw files are hash-locked; the four named upstream cards contain no original machine or English file.",
+      "release_condition": "Obtain and exact-byte hash-lock the original machine and English sources for SCN-ZZY-02/03 and SCN-DZS-02/03; derived N3/N6 bridges may not be substituted for those originals.",
+      "evidence_ref": "n7_evidence/N7-1d_startup_source_audit_2026-08-26_v0.1.json"
+    },
+    {
+      "assumption_id": "N4-A02",
+      "statement": "The nine N2-B geometry layers are formal-compatible working sources but not formal or official geometry.",
+      "status": "design_target",
+      "reason": "input not yet verified",
+      "release_condition": "formal-tree gate plus source/provenance reconciliation"
+    },
+    {
+      "assumption_id": "N4-A03",
+      "statement": "The buildings layer remains an intentional zero-feature data gap; project carriers are not buildings.",
+      "status": "unknown",
+      "reason": "input not yet verified",
+      "release_condition": "verified building footprints, use, structure, ownership, fire/accessibility and alteration evidence"
+    },
+    {
+      "assumption_id": "N4-A04",
+      "statement": "Chapter 7 may describe design support zones, retain/retrofit-first principles and data gaps, but may not assign statutory land-use codes, FAR, height, ownership or demolition decisions.",
+      "status": "design_target",
+      "reason": "input not yet verified",
+      "release_condition": "verified statutory planning and site/building evidence"
+    },
+    {
+      "assumption_id": "N51-A01",
+      "statement": "The GitHub contributor identity is verified as Alisaway; the submission path and author identity are finalized at submissions/Alisaway/youmen-city.",
+      "status": "closed",
+      "reason": "The current formal package records verified_Alisaway at the final submission path.",
+      "release_condition": "closed; reopen only if the contributor identity or submission path changes",
+      "evidence_ref": "manifest.json#validation_claim.extensions.x-n7-control.data.github_identity"
+    },
+    {
+      "assumption_id": "N51-A02",
+      "statement": "Official repository validation and finalization have completed successfully; package_state is ready_for_review and the persisted self-check passes all four gates.",
+      "status": "closed",
+      "reason": "manifest.json records ready_for_review and self_check.json records can_enter_formal_review=true with all four blocking gates PASS.",
+      "release_condition": "closed; reopen only if a later repository check fails or package_state is downgraded",
+      "evidence_ref": "self_check.json#can_enter_formal_review"
+    },
+    {
+      "assumption_id": "N51-A03",
+      "statement": "All site-located permanent facilities, exact building mass, statutory land-use codes, FAR, heights, ownership, budgets and government schedules remain unknown.",
+      "status": "unknown",
+      "reason": "official/site/professional inputs are absent",
+      "release_condition": "professional team and official data review"
+    },
+    {
+      "assumption_id": "N7-A01",
+      "statement": "Private-home terminals, household routes, and personal trajectories are deliberately excluded from public submission geometry; the privacy threshold remains a non-spatial design contract.",
+      "status": "design_constraint",
+      "reason": "Publishing residential or personal geometry would contradict the privacy and least-disclosure contract.",
+      "release_condition": "Do not release individual residential geometry; only cleared aggregate interfaces may be added after privacy review."
+    },
+    {
+      "assumption_id": "N7-A02",
+      "statement": "P10 and the distributed human-service nodes do not form a central recipient for a whole person or a master-control center; they accept only bounded tasks under domain-specific responsibility.",
+      "status": "design_constraint",
+      "reason": "The project preserves local autonomy, purpose limitation, human accountability, and complete exit.",
+      "release_condition": "Any future operator agreement must preserve distributed responsibility, ordinary access, manual bypass, recovery, and exit."
+    },
+    {
+      "assumption_id": "N7-TIME-A01",
+      "statement": "15:30 remains a design probe for testing the school-to-community handoff chain, not an asserted dismissal time for a kindergarten in Beijing, Haidian or the project area. The user-provided background range (most kindergartens 16:00–17:00, many public kindergartens around 16:30, some extended services to 18:00 or later) remains unverified background and may not be promoted to a project fact.",
+      "status": "working_assumption",
+      "reason": "No named project-area kindergarten, current operating timetable, class-level staggered-dismissal schedule or service rule has been supplied. The registered Haidian official pages support kindergarten-specific follow-up, not a dismissal-time value; the Huaibei page is a non-transferable local case.",
+      "required_inputs": [
+        "named kindergarten and project relationship",
+        "current-term operating timetable",
+        "class-level staggered dismissal schedule",
+        "ordinary dismissal and extended-service windows",
+        "temporary late-pickup or retention rules",
+        "handoff roles, named human responsibility and physical-receipt rule",
+        "holiday, seasonal and special-day differences",
+        "document version, effective period, publisher and verification date"
+      ],
+      "release_condition": "Release a kindergarten-specific operating time only after all required inputs are obtained from the named kindergarten or competent authority, cross-checked for the same effective term and service type, and recorded with version/effective-period provenance. Until then keep 15:30 explicitly labelled as a design probe and keep all actual dismissal/service windows unknown.",
+      "prohibited_interpretations": [
+        "Do not treat 15:30 as an existing or official dismissal time.",
+        "Do not convert the user-provided national background range into a Beijing, Haidian, project-area or named-kindergarten fact.",
+        "Do not treat a public-kindergarten roster, telephone consultation time or admission FAQ as an operating timetable.",
+        "Do not extrapolate the Huaibei 18:00 local case to another city or kindergarten.",
+        "Do not merge ordinary dismissal, extended service, temporary late pickup and emergency retention into one time window.",
+        "Do not release a time without its named kindergarten, version, effective period, service type and responsible human handoff chain."
+      ]
+    },
+    {
+      "assumption_id": "N7-D1-A01",
+      "statement": "The 35 spatial objects and 40 target fields in the D1 register are concept targets only; every existing-condition and statutory comparator remains unknown until separately verified.",
+      "status": "design_target",
+      "reason": "The current package provides low-confidence design geometry but no object-by-object survey, approved statutory control or complete engineering/ownership/operator evidence package.",
+      "required_inputs": [
+        "official boundary and applicable control geometry",
+        "object-by-object site survey and clear-dimension record",
+        "accessibility, fire, traffic, municipal, drainage and maintenance review as applicable",
+        "ownership, public-right and named responsibility record",
+        "approved statutory source, version, scope and responsible authority when a statutory value applies"
+      ],
+      "release_condition": "For each object × field pair, record the existing condition, applicable statutory/official input, named reviewing role and decision to retain/revise/remove. A target may not fill an unknown. Any released change triggers package-wide metrics, figure, HTML and PDF regeneration.",
+      "prohibited_interpretations": [
+        "Do not treat a concept target as an existing dimension.",
+        "Do not treat a concept target as a statutory minimum or maximum.",
+        "Do not infer a public right, navigation line, construction dimension or operating readiness.",
+        "Do not use schema sanity ranges as planning values."
+      ],
+      "evidence_ref": "n7_evidence/N7-1b_D1_spatial_dimension_contract_2026-08-25_v0.1.json",
+      "target_object_count": 35,
+      "target_field_count": 40
+    },
+    {
+      "assumption_id": "N7-D1-STAT-FAR",
+      "statement": "floor_area_ratio remains statutory unknown/null; it is not a concept target.",
+      "status": "unknown",
+      "reason": "The applicable approved official/statutory input is absent from the current package.",
+      "current_value": null,
+      "unit": "ratio",
+      "required_input": "approved regulatory planning conditions or official design brief attachments",
+      "input_responsibility_zh": "规划主管部门／经批准的控规条件；具名来源与适用范围待登记",
+      "input_responsibility_en": "Planning authority / approved regulatory conditions; named source and applicability pending",
+      "release_condition": "Obtain a verifiable official source, version, applicable parcel/scope and responsible authority; after professional review update assumptions, metrics, compliance, geometry labels, figures and derived PDFs together. Remain null until then.",
+      "prohibited_interpretation": "Do not treat the schema sanity upper bound of 12, proposal density or any design value as FAR.",
+      "evidence_ref": "n7_evidence/N7-1b_D1_spatial_dimension_contract_2026-08-25_v0.1.json#STAT-FAR"
+    },
+    {
+      "assumption_id": "N7-D1-STAT-HEIGHT",
+      "statement": "building_height_m remains statutory unknown/null; it is not a concept target.",
+      "status": "unknown",
+      "reason": "The applicable approved official/statutory input is absent from the current package.",
+      "current_value": null,
+      "unit": "m",
+      "required_input": "approved height controls, aviation/landscape/heritage constraints if applicable",
+      "input_responsibility_zh": "规划主管部门及适用的航空、景观、文保等专业责任主体",
+      "input_responsibility_en": "Planning authority and applicable aviation, landscape, heritage or other specialist authorities",
+      "release_condition": "Obtain a verifiable official source, version, applicable parcel/scope and responsible authority; after professional review update assumptions, metrics, compliance, geometry labels, figures and derived PDFs together. Remain null until then.",
+      "prohibited_interpretation": "Do not infer from illustrative massing, drawing scale, neighbouring buildings or model height.",
+      "evidence_ref": "n7_evidence/N7-1b_D1_spatial_dimension_contract_2026-08-25_v0.1.json#STAT-HEIGHT"
+    },
+    {
+      "assumption_id": "N7-D1-STAT-DENSITY",
+      "statement": "building_density remains statutory unknown/null; it is not a concept target.",
+      "status": "unknown",
+      "reason": "The applicable approved official/statutory input is absent from the current package.",
+      "current_value": null,
+      "unit": "ratio",
+      "required_input": "approved regulatory planning conditions",
+      "input_responsibility_zh": "规划主管部门／经批准的控规条件",
+      "input_responsibility_en": "Planning authority / approved regulatory conditions",
+      "release_condition": "Obtain a verifiable official source, version, applicable parcel/scope and responsible authority; after professional review update assumptions, metrics, compliance, geometry labels, figures and derived PDFs together. Remain null until then.",
+      "prohibited_interpretation": "Do not infer from public-space ratio, green ratio, the empty building layer or illustrative land use.",
+      "evidence_ref": "n7_evidence/N7-1b_D1_spatial_dimension_contract_2026-08-25_v0.1.json#STAT-DENSITY"
+    },
+    {
+      "assumption_id": "N7-D1-STAT-GREEN",
+      "statement": "statutory_green_ratio remains statutory unknown/null; it is not a concept target.",
+      "status": "unknown",
+      "reason": "The applicable approved official/statutory input is absent from the current package.",
+      "current_value": null,
+      "unit": "ratio",
+      "required_input": "approved regulatory planning conditions or local green-space standards",
+      "input_responsibility_zh": "规划主管部门、园林绿化主管部门及适用标准责任主体",
+      "input_responsibility_en": "Planning and landscape/green-space authorities and applicable standard owners",
+      "release_condition": "Obtain a verifiable official source, version, applicable parcel/scope and responsible authority; after professional review update assumptions, metrics, compliance, geometry labels, figures and derived PDFs together. Remain null until then.",
+      "prohibited_interpretation": "Do not treat the proposal green ratio 0.19838764 / 19.8% in metrics.json as the statutory green ratio.",
+      "evidence_ref": "n7_evidence/N7-1b_D1_spatial_dimension_contract_2026-08-25_v0.1.json#STAT-GREEN"
+    },
+    {
+      "assumption_id": "N7-D1-STAT-SETBACK",
+      "statement": "setback_m remains statutory unknown/null; it is not a concept target.",
+      "status": "unknown",
+      "reason": "The applicable approved official/statutory input is absent from the current package.",
+      "current_value": null,
+      "unit": "m",
+      "required_input": "road redline, building control line, fire and municipal constraints",
+      "input_responsibility_zh": "规划、道路、消防、市政及相关权属责任主体",
+      "input_responsibility_en": "Planning, road, fire, municipal and relevant land-rights authorities",
+      "release_condition": "Obtain a verifiable official source, version, applicable parcel/scope and responsible authority; after professional review update assumptions, metrics, compliance, geometry labels, figures and derived PDFs together. Remain null until then.",
+      "prohibited_interpretation": "Do not derive from provisional polygons, target widths, drawing spacing or illustrative boundaries.",
+      "evidence_ref": "n7_evidence/N7-1b_D1_spatial_dimension_contract_2026-08-25_v0.1.json#STAT-SETBACK"
+    },
+    {
+      "assumption_id": "ASM-N7-1E-STAT-01",
+      "statement_zh": "街区层面控规的获批与约 16.7 km² 背景范围，不等于竞赛 11.4 km² 范围或任何地块控制已经被本项目核定。",
+      "statement_en": "Approval of the street-level plan and its approximately 16.7 km² context do not validate the 11.4 km² competition extent or any parcel control for this project.",
+      "status": "guardrail__official_geometry_required",
+      "source_ids": [
+        "SRC-N7-1E-STAT-01",
+        "SRC-N7-1E-STAT-02"
+      ]
+    },
+    {
+      "assumption_id": "ASM-N7-1E-STAT-02",
+      "statement_zh": "大钟寺、公共服务与开放语境可作为方案背景，但不证明具体场景点位、运营者、预算或服务已就绪。",
+      "statement_en": "Dazhongsi, public-service and opening context may inform the proposal but does not prove specific scene locations, operators, budgets or service readiness.",
+      "status": "guardrail__design_context_only",
+      "source_ids": [
+        "SRC-N7-1E-STAT-02"
+      ]
+    },
+    {
+      "assumption_id": "ASM-N7-1E-STAT-03",
+      "statement_zh": "二期实施方案、招标核准与配套项目完工记录只能证明相应程序或进度事实，不等于全部工程、竞赛方案或运营责任已完成。",
+      "statement_en": "Phase II implementation, tender and supporting-works records evidence only their stated procedures or progress, not completion of all works, the competition proposal or operating responsibility.",
+      "status": "guardrail__scope_limited_evidence",
+      "source_ids": [
+        "SRC-N7-1E-STAT-03",
+        "SRC-N7-1E-STAT-04",
+        "SRC-N7-1E-STAT-05"
+      ]
+    }
+  ]
+}

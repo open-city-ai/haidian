@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#071b1e">
+  <link rel="icon" href="data:,">
+  <meta name="description" content="Enterable Jing-Zhang | One Line, Four Chapters, Five Stations — self-contained formal intake visual.">
+  <title>Enterable Jing-Zhang | One Line, Four Chapters, Five Stations</title>
+  <link rel="stylesheet" href="./assets/app.css">
+  <script defer src="./assets/app.js"></script>
+</head>
+<body data-scene="corridor" data-service="human">
+  <div class="experience">
+    <header class="topbar">
+      <div class="brand"><i class="brand-mark" aria-hidden="true"></i><span class="brand-name">ENTERABLE JING-ZHANG · FIVE STATIONS</span><span class="brand-sub">FORMAL INTAKE · OFFLINE VISUAL</span></div>
+      <div class="status-line"><span class="status-pill" id="renderStatus">SCENE READY</span><a class="language-link" id="languageSwitch" href="./index.html" hreflang="zh-CN">中文</a></div>
+    </header>
+
+    <section class="visual-stage" id="visualStage" aria-labelledby="sceneTitle">
+      <div class="scene-media">
+        <picture><source id="mobileImage" media="(max-width:720px)"><img id="sceneImage" src="./assets/images/corridor-overview.webp" alt="Overview of the five-station route"></picture>
+        <canvas id="staticCanvas" hidden aria-label="Original procedural static fallback for the active station"></canvas>
+        <i class="night-wash" aria-hidden="true"></i>
+      </div>
+      <div class="callouts" aria-label="Scene annotations"><span class="callout" id="callout1">Railway knowledge axis</span><span class="callout" id="callout2">Five direct entries</span><span class="callout" id="callout3">Overview / not station six</span></div>
+      <div class="scene-copy">
+        <div class="scene-meta"><b class="scene-index" id="sceneIndex">00</b><span class="scene-eyebrow" id="sceneEyebrow">ONE LINE · FOUR CHAPTERS · FIVE STATIONS</span></div>
+        <h1 id="sceneTitle">An enterable railway knowledge axis</h1>
+        <p class="scene-story" id="sceneStory">Xizhimen, Dazhongsi, Future Learning Space, AI Origin and Zhongzhiyuan retain a fixed order, with a direct entry and distinct public identity for every station.</p>
+        <p class="scene-limit" id="sceneLimit">The route is a conceptual experience structure, not a statutory redline, survey boundary or institutional authorization.</p>
+      </div>
+
+      <div class="control-deck" aria-label="Five-station experience controls">
+        <div class="route-panel">
+          <nav class="route-rail" aria-label="Overview and five direct station entries">
+            <button type="button" class="route-button is-active" data-scene-target="corridor" aria-current="true"><small>00</small><span>Overview</span></button>
+            <button type="button" class="route-button" data-scene-target="xizhimen"><small>01</small><span>Xizhimen</span></button>
+            <button type="button" class="route-button" data-scene-target="dazhongsi"><small>02</small><span>Dazhongsi</span></button>
+            <button type="button" class="route-button" data-scene-target="qinghuayuan-knowledge"><small>03</small><span>Learning Space</span></button>
+            <button type="button" class="route-button" data-scene-target="ai-origin"><small>04</small><span>AI Origin</span></button>
+            <button type="button" class="route-button" data-scene-target="zhongzhiyuan"><small>05</small><span>Zhongzhiyuan</span></button>
+          </nav>
+          <div class="camera-rail" id="cameraRail" aria-label="Active station cameras"></div>
+        </div>
+
+        <div class="action-panel">
+          <div class="service-row" aria-label="Public learning service states">
+            <button type="button" data-service-target="ai" aria-pressed="false">AI assist</button>
+            <button type="button" class="is-active" data-service-target="human" aria-pressed="true">Human support</button>
+            <button type="button" data-service-target="offline" aria-pressed="false">Offline learning</button>
+          </div>
+          <div class="mode-row">
+            <button type="button" class="is-active" data-presentation-target="day" aria-pressed="true">Bright day</button>
+            <button type="button" data-presentation-target="night-signal" aria-pressed="false">Night signal</button>
+            <button type="button" id="labelsToggle">Labels on</button>
+            <button type="button" id="fallbackToggle">Static mode</button>
+            <button type="button" id="motionToggle">Standard motion</button>
+          </div>
+          <div class="tour-box">
+            <div class="tour-head"><span id="tourState">Verified 53s five-station tour</span><span id="tourTime">0.0 / 53.0 s</span></div>
+            <div class="tour-track" aria-hidden="true"><i class="tour-progress" id="tourProgress"></i></div>
+            <div class="tour-row"><button type="button" id="tourToggle" aria-pressed="false">Play 53s five-station tour</button><button type="button" id="tourReset">Reset</button></div>
+          </div>
+          <ul class="state-strip" aria-label="Restorable URL state">
+            <li>SCENE <b id="sceneName">Five-station overview</b></li><li>CAMERA <b id="cameraName">five-station-overview</b></li><li>ERA <b id="eraState">FUTURE</b></li><li>SERVICE <b id="serviceState">Human support</b></li><li>PRESENTATION <b id="presentationState">Bright day</b></li><li>PILOT <b id="pilotState">ORDINARY</b></li><li>READING <b id="readingState">EXPERIENCE</b></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <main class="evidence-shell">
+    <section aria-labelledby="overview-heading">
+      <header class="section-head"><div><p class="kicker">01 · OVERVIEW MAP / DIRECT ENTRY</p><h2 id="overview-heading">Overview Map and Five Direct Entries</h2></div><p>The corridor reads the fixed route and is not a sixth station. These five original project renders are also the offline fallback assets; each card opens a complete restorable URL state.</p></header>
+      <div class="station-gallery">
+        <a class="station-card" href="?scene=xizhimen&amp;camera=future-public-services&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/xizhimen-arrival.webp" alt="Public arrival at Xizhimen"><span class="station-card-copy"><small>01</small><h3>Xizhimen</h3><p>Railway time → public arrival</p></span></a>
+        <a class="station-card" href="?scene=dazhongsi&amp;camera=r2-canopy-overview&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/dazhongsi-canopy.webp" alt="Open frame outside Dazhongsi heritage edge"><span class="station-card-copy"><small>02</small><h3>Dazhongsi</h3><p>Heritage edge → open canopy</p></span></a>
+        <a class="station-card" href="?scene=qinghuayuan-knowledge&amp;camera=r2-knowledge-arrival&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/learning-hall.webp" alt="Future public learning hall"><span class="station-card-copy"><small>03</small><h3>Future Learning Space</h3><p>Knowledge index → shared learning</p></span></a>
+        <a class="station-card" href="?scene=ai-origin&amp;camera=r2-dual-channel-overview&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/ai-origin-civic.webp" alt="Public service interface at AI Origin"><span class="station-card-copy"><small>04</small><h3>AI Origin</h3><p>Public service → human duty</p></span></a>
+        <a class="station-card" href="?scene=zhongzhiyuan&amp;camera=public-court-hero&amp;era=future&amp;presentation=day&amp;service=human&amp;pilot=ordinary&amp;demo=explore&amp;reading=experience&amp;labels=1&amp;fallback=0&amp;reduced=0"><img src="./assets/images/zhongzhiyuan-campus.webp" alt="Zhongzhiyuan public court and validation ground"><span class="station-card-copy"><small>05</small><h3>Zhongzhiyuan</h3><p>Bounded validation → stop and exit</p></span></a>
+      </div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="scope-heading">
+      <p class="kicker">02 · THREE-LAYER SCOPE</p><h2 id="scope-heading">Three-Layer Scope</h2>
+      <div class="three-layers"><article class="layer-card"><span>01 / COORDINATED RESEARCH</span><h3>Jing-Zhang innovation mechanism corridor</h3><p>The railway knowledge axis links heritage, public learning, public service and bounded validation without presenting the research extent as a statutory boundary.</p></article><article class="layer-card"><span>02 / OVERALL DESIGN</span><h3>One line, four chapters, five stations</h3><p>The fixed order, direct entries, active mobility, blue-green public space and ordinary public-service base organize the overall experience.</p></article><article class="layer-card"><span>03 / KEY-AREA DESIGN</span><h3>Complete same-source route</h3><p>The 53-second tour and terminal Portfolio Explore from one cue source passed bounded verification; real-space approvals and operation remain external triggers.</p></article></div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="design-heading">
+      <p class="kicker">03 · DESIGN LAYERS</p><h2 id="design-heading">Key Areas and Design Layers</h2>
+      <div class="evidence-grid">
+        <article class="evidence-card"><strong>Key Areas</strong><ul><li>Open canopy beyond the Dazhongsi edge</li><li>Future public learning hall</li><li>Human-duty interface at AI Origin</li></ul></article>
+        <article class="evidence-card"><strong>Land Use Zoning</strong><ul><li>Heritage protection separated from public interface</li><li>Ordinary learning before smart enhancement</li><li>Public, controlled and exit layers remain distinct</li></ul></article>
+        <article class="evidence-card"><strong>Mobility</strong><ul><li>Fixed five-station route index</li><li>Walking and step-free continuity proxy</li><li>Direct entry and return at every station</li></ul></article>
+        <article class="evidence-card"><strong>Blue-Green Public Space</strong><ul><li>Shade, pause and public courts</li><li>Day-first, optional night signal</li><li>No neon-saturated shorthand for the future</li></ul></article>
+        <article class="evidence-card"><strong>Buildings</strong><ul><li>Open frame and long-span hall</li><li>Shelves, knowledge indices and human scale</li><li>Original procedural concept space</li></ul></article>
+        <article class="evidence-card"><strong>Renewal Projects</strong><ul><li>Mileage mark becomes knowledge index</li><li>Learning credential becomes service passport</li><li>Reversible pilots remain evidence-gated</li></ul></article>
+        <article class="evidence-card"><strong>AI Scenarios</strong><ul><li>AI assist can be paused</li><li>Human support can take over</li><li>Offline learning remains available</li></ul></article>
+        <article class="evidence-card"><strong>Implementation Boundary</strong><ul><li>53s tour and Portfolio: bounded PASS</li><li>Source commit and receipts are traceable</li><li>No institutional, boundary, or operating authorization claimed</li></ul></article>
+      </div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="metrics-heading">
+      <p class="kicker">04 · METRICS / PROVISIONAL</p><h2 id="metrics-heading">Core Metrics</h2>
+      <div class="metric-grid"><article class="metric-card"><span>Provisional overall design-model area</span><strong data-metric="site_area_sqm" data-value="11412825.386">11.413 km²</strong><small>Recomputed from the packaged provisional site boundary; not an official redline area.</small></article><article class="metric-card"><span>Concept green ratio</span><strong data-metric="green_ratio" data-value="0.123423">12.3423%</strong><small>Recomputed from packaged green_space / site_boundary geometry; low confidence.</small></article><article class="metric-card"><span>Concept public-space ratio</span><strong data-metric="public_space_ratio" data-value="0.073281">7.3281%</strong><small>Recomputed from packaged public_space / site_boundary geometry; low confidence.</small></article></div>
+      <p class="boundary-note">All three figures are provisional design-model values for internal recomputation. They must be recalculated when official redlines, controls, ownership and survey data become available.</p>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="runtime-heading">
+      <p class="kicker">05 · RUNTIME RECEIPT / VIDEO</p><h2 id="runtime-heading">53-Second Tour and Portfolio Explore</h2>
+      <div class="runtime-grid">
+        <video class="runtime-video" controls preload="metadata" poster="../assets/media/jingzhang-five-station-53s-contact-sheet.jpg">
+          <source src="../assets/media/jingzhang-five-station-53s-review.mp4" type="video/mp4">
+          <track kind="captions" srclang="en" label="English" src="../assets/media/jingzhang-five-station-53s.en.vtt" default>
+          <track kind="captions" srclang="zh" label="中文" src="../assets/media/jingzhang-five-station-53s.vtt">
+          This browser cannot play the local video; use the packaged contact sheet and transcript.
+        </video>
+        <article class="receipt-card"><h3>Same-Source Receipt</h3><dl><div><dt>Source commit</dt><dd>586ee76e…4258</dd></div><div><dt>Active / wall</dt><dd>53.000 / 53.513 s</dd></div><div><dt>Portfolio Explore</dt><dd>PASS · 5 / 5</dd></div><div><dt>Video</dt><dd>54.000 s · H.264 · 30 fps</dd></div><div><dt>Network / errors / 404</dt><dd>0 / 0 / 0</dd></div></dl><p>PASS is bounded to the cited commit, production package, and matrix. The receipt retains 78 non-fatal WebGL texture warnings.</p></article>
+      </div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="coverage-heading">
+      <p class="kicker">06 · TASK / CHECK</p><h2 id="coverage-heading">Task Coverage and Self-Check</h2>
+      <div class="review-grid"><article class="review-list"><h3>Task Coverage</h3><ol><li><span>Five canonical stations plus overview</span><em>5 / 5 DIRECT</em></li><li><span>Complete same-source route</span><em>53.0 s PASS</em></li><li><span>Portfolio Explore station cameras</span><em>5 / 5 PASS</em></li><li><span>AI / HUMAN / OFFLINE</span><em>3 STATES</em></li><li><span>URL / mobile / reduced / fallback</span><em>PASS</em></li></ol></article><article class="self-check"><h3>Self-Check Status</h3><div class="check-row"><span>Local assets / remote dependencies</span><b>PASS / 0 REMOTE</b></div><div class="check-row"><span>Five direct entries</span><b>PASS</b></div><div class="check-row"><span>Bilingual pages / offline CJK font</span><b>PASS</b></div><div class="check-row"><span>Provisional boundary disclosure</span><b>PASS</b></div><div class="check-row"><span>Institutional / live-operation authority</span><b class="partial">NOT CLAIMED</b></div></article></div>
+    </section>
+
+    <section class="evidence-section" aria-labelledby="source-heading">
+      <p class="kicker">07 · EVIDENCE BOUNDARY</p><h2 id="source-heading">Sources and Assumptions</h2>
+      <div class="source-grid"><article class="source-card"><h3>Sources</h3><p>The seven WebP files, Canvas fallback, and interface are project-original expression. Station order, cameras, the 53-second cue, Portfolio, and media receipts bind to source commit 586ee76e…4258. Chinese text uses the embedded JZ Offline CJK subset, lawfully derived from Source Han Sans CN 2.005R and renamed under the OFL. No CDN, remote font, script, map tile, or tracker is used.</p></article><article class="source-card"><h3>Assumptions</h3><p>The geometry is a non-official provisional boundary; buildings, operation, and service relationships are conceptual design-model values. Official redlines, institutional permission, a real operating body, budget, fire, utilities, ownership, insurance, and DPIA remain future implementation triggers.</p></article></div>
+    </section>
+  </main>
+
+  <footer class="footer">Enterable Jing-Zhang · Bounded 53s and Portfolio PASS · Not proof of institutional authority, live operation, or an official redline.</footer>
+</body>
+</html>

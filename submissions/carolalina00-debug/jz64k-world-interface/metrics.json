@@ -1,0 +1,426 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 46611.554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(launch prototype footprints)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.004084,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2200936.784,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "polygon_area(green_space) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.192848,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1812537.202,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "polygon_area(public_space) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.158816,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 12274.102,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerlines)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines and road-area polygons are not available."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel/building data are not available."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved_building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved development intensity and floor-area schedules are not available."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls and heritage view-corridor conditions are not available."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "port_count": {
+      "status": "known",
+      "value": 64,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/evidence/port_registry.json",
+        "visual/assets/evidence/scenario_nodes.json"
+      ],
+      "formula": "count(unique port ids K01..K64)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "launch_port_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/evidence/port_registry.json"
+      ],
+      "formula": "count(status == launch_active)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "validation_scene_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/evidence/port_registry.json"
+      ],
+      "formula": "count(validation_scene == true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/evidence/port_registry.json"
+      ],
+      "formula": "count(unique declared persona categories)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(named pilgrimage landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "site_anchor_dependency_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/evidence/site_specificity_matrix.json"
+      ],
+      "formula": "passing_flagship_actions / all_flagship_actions",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 1531199.942,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code == 0802) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 1562489.564,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code == 1401) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 1576156.176,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code == 0702) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "land_use_0902_area_sqm": {
+      "status": "known",
+      "value": 1496815.306,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code == 0902) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 1345755.786,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code == 0803) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "land_use_0804_area_sqm": {
+      "status": "known",
+      "value": 1300922.847,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code == 0804) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "land_use_1207_area_sqm": {
+      "status": "known",
+      "value": 1296511.652,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code == 1207) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "land_use_16_area_sqm": {
+      "status": "known",
+      "value": 1302986.481,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code == 16) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4232697.16,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_1) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3853523.42,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_2) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3326616.036,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_3) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official redline, statutory ratio or approval claims; recalculate when official polygons arrive."
+      ]
+    }
+  }
+}

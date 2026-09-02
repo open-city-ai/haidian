@@ -1,0 +1,860 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "sources": [
+    {
+      "source_id": "SITE-PACKAGE",
+      "title": "Centennial Jing-Zhang AI Belt structured design brief",
+      "source_type": "official_repo_structured_brief",
+      "url": "https://github.com/open-city-ai/haidian/blob/main/brief/site-package/design_brief.json",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "yes",
+      "use": "scope, tasks, area values, provisional geometry policy",
+      "limitations": "exact official polygons are not yet supplied"
+    },
+    {
+      "source_id": "AGENT-TASKBOOK",
+      "title": "Agent open-call taskbook",
+      "source_type": "official_repo_cleared_taskbook",
+      "url": "https://github.com/open-city-ai/haidian/blob/main/brief/site-package/agent_taskbook.json",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "yes",
+      "use": "agent.1-agent.6 requirements and unified boundary clause",
+      "limitations": "does not prove site, operator or government commitments"
+    },
+    {
+      "source_id": "PROJECT-OFFICIAL-ANNOUNCEMENT",
+      "title": "Official open-call announcement",
+      "source_type": "official_public",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "yes",
+      "use": "scope, deliverables and design depth",
+      "limitations": "official polygon files remain unavailable"
+    },
+    {
+      "source_id": "PROVISIONAL-GEOMETRY",
+      "title": "Pinned provisional site and key-area polygons",
+      "source_type": "agent_inferred_from_public_data",
+      "url": null,
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "provisional_only",
+      "use": "design discussion, figure generation and metric recomputation",
+      "limitations": "not official redline, parcel, road, navigation or construction geometry"
+    },
+    {
+      "source_id": "PROJECT-STANDARDS-LIBRARY",
+      "title": "Official repository professional standards library",
+      "source_type": "official_repo_structured_standard",
+      "url": "https://github.com/open-city-ai/haidian/blob/main/brief/site-package/standards/standards.json",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "yes",
+      "use": "professional-standard response matrix",
+      "limitations": "records marked needs_official_file are not authoritative formal evidence"
+    },
+    {
+      "source_id": "DESIGN-N2B-GEOMETRY",
+      "title": "N2-B common design geometry bundle",
+      "source_type": "user_agent_generated_design_data",
+      "url": null,
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "design_proposal",
+      "use": "five networks, projects, figures and provisional metric recomputation",
+      "limitations": "low-confidence proposal; not existing, official or professionally verified"
+    },
+    {
+      "source_id": "SCENE-SOURCE-INDEX",
+      "title": "Twelve-scene source-lock index",
+      "source_type": "internal_audit_index",
+      "url": null,
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "background_only",
+      "use": "prevents silent source substitution",
+      "limitations": "Six exact scene archives are mounted and hash-locked. Four upstream cards (SCN-ZZY-02/03 and SCN-DZS-02/03) remain original-ZH-only; their original machine/EN depth gaps stay explicit."
+    },
+    {
+      "source_id": "CASE-01",
+      "title": "Modena Automotive Smart Area (MASA)",
+      "source_type": "primary_precedent_source_bundle",
+      "url": "https://www.automotivesmartarea.it/what-is-masa/",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "background_only",
+      "use": "limited comparison of spatial mechanism, operating organisation and stated limitations",
+      "limitations": "Research and certification environment, not a mass public mobility service; data-centre/control-room centralisation and public-access safeguards require separate scrutiny.",
+      "additional_urls": [
+        "https://www.automotivesmartarea.it/what-is-masa/infrastructure/"
+      ],
+      "verification_status": "verified_for_mechanism_not_for_unlisted_performance_claims"
+    },
+    {
+      "source_id": "CASE-02",
+      "title": "Accessibili-D Autonomous Shuttle",
+      "source_type": "primary_precedent_source_bundle",
+      "url": "https://detroitmi.gov/news/city-previews-accessibili-d-free-autonomous-vehicle-shuttle-residents-age-62-andor-disabilities",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "background_only",
+      "use": "limited comparison of spatial mechanism, operating organisation and stated limitations",
+      "limitations": "Temporary pilot; continued service depends on procurement and funding. Eligibility, stop geography and safety-operator dependence limit transferability.",
+      "additional_urls": [
+        "https://detroitmi.gov/news/detroit-expands-accessibili-d-autonomous-shuttle-routes-following-successful-initial-deployment",
+        "https://detroitmi.gov/news/accessibili-d-av-mobility-shuttle-nears-end-successful-1-year-trial-city-explore-long-term-service"
+      ],
+      "verification_status": "verified_city_reporting_operator_outcomes_not_independent_audit"
+    },
+    {
+      "source_id": "CASE-03",
+      "title": "SHOW — Shared Automation Operating Models for Worldwide Adoption",
+      "source_type": "primary_precedent_source_bundle",
+      "url": "https://cordis.europa.eu/project/id/875530",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "background_only",
+      "use": "limited comparison of spatial mechanism, operating organisation and stated limitations",
+      "limitations": "Low average speeds and context-dependent performance; accidents and conflicts occurred; pilot diversity complicates direct transfer to one district.",
+      "additional_urls": [
+        "https://cordis.europa.eu/project/id/875530/reporting"
+      ],
+      "verification_status": "verified_European_Commission_reporting"
+    },
+    {
+      "source_id": "CASE-04",
+      "title": "Punggol Autonomous Shuttle Services",
+      "source_type": "primary_precedent_source_bundle",
+      "url": "https://www.lta.gov.sg/content/ltagov/en/newsroom/2025/9/news-releases/new-autonomous-shuttle-services-to-be-progressively-deployed-in-.html",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "background_only",
+      "use": "limited comparison of spatial mechanism, operating organisation and stated limitations",
+      "limitations": "Safety operators remain onboard; service is route- and stop-constrained; resident feedback showed fixed-route limitations.",
+      "additional_urls": [
+        "https://www.lta.gov.sg/content/ltagov/en/newsroom/2026/7/news-releases/service-enhancements-autonomous-shuttle-Punggol.html"
+      ],
+      "verification_status": "verified_government_reporting"
+    },
+    {
+      "source_id": "CASE-05",
+      "title": "Beijing High-Level Autonomous Driving Demonstration Area / E-Town",
+      "source_type": "primary_precedent_source_bundle",
+      "url": "https://english.beijing.gov.cn/latest/news/202304/t20230420_3061447.html",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "background_only",
+      "use": "limited comparison of spatial mechanism, operating organisation and stated limitations",
+      "limitations": "Official sources emphasise expansion and industry development; public audit, privacy, ordinary non-app access and local failure-recovery evidence require further investigation.",
+      "additional_urls": [
+        "https://english.beijing.gov.cn/latest/news/202501/t20250102_3978829.html",
+        "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202503/t20250314_4034408.html"
+      ],
+      "verification_status": "verified_official_reporting_claim_scope_limited"
+    },
+    {
+      "source_id": "CASE-06",
+      "title": "Waymo Rider-Only Urban Service",
+      "source_type": "primary_precedent_source_bundle",
+      "url": "https://waymo.com/safety/impact/",
+      "accessed_date": "2026-08-22",
+      "usable_for_formal": "background_only",
+      "use": "limited comparison of spatial mechanism, operating organisation and stated limitations",
+      "limitations": "Operator-controlled service and data; not a public spatial governance model; equity, curb competition, deadheading and outage continuity are outside the cited evidence used here.",
+      "additional_urls": [
+        "https://waymo.com/research/comparison-of-waymo-rider-only-crash-rates-by-crash-type-to-human-benchmarks/"
+      ],
+      "verification_status": "verified_operator_and_peer_reviewed_method_specialised_use_only"
+    },
+    {
+      "source_id": "HD-KINDERGARTEN-FAQ-2025",
+      "title": "2025年海淀区幼儿园入园常见问题解答",
+      "source_type": "official_public",
+      "url": "https://zyk.bjhd.gov.cn/jbdt/auto4489_51785/zdly/202506/t20250604_4771541_hd.shtml",
+      "accessed_date": "2026-08-25",
+      "usable_for_formal": "background_only",
+      "use": "supports a kindergarten-specific evidence gate: consult the current admission brochure on the platform or contact the named kindergarten for detailed information",
+      "limitations": "does not publish or prove a dismissal time for any project-area kindergarten; cannot verify 15:30, 16:30, 18:00 or any other operating window",
+      "verification_status": "official_web_result_read_by_root; child_runtime_direct_fetch_http_403; scope_locked_to_kindergarten_specific_verification"
+    },
+    {
+      "source_id": "HD-PUBLIC-KINDERGARTEN-LIST-2024-2025",
+      "title": "2024—2025学年海淀区公办幼儿园名册",
+      "source_type": "official_public",
+      "url": "https://zyk.bjhd.gov.cn/sjkf/jyzy/202505/t20250509_4768784_m.shtml",
+      "accessed_date": "2026-08-25",
+      "usable_for_formal": "background_only",
+      "use": "identifies named public kindergartens and their published address, telephone and consultation-time fields for follow-up verification",
+      "limitations": "a kindergarten list and consultation time are not an operating timetable or dismissal time; no listed field may be reused as a child handoff window",
+      "verification_status": "official_web_result_read_by_root; child_runtime_direct_fetch_not_used_for_content; scope_locked_to_roster_and_contact_channel"
+    },
+    {
+      "source_id": "HUAIBEI-KINDERGARTEN-EXTENDED-CARE-2025-CASE",
+      "title": "淮北市教育局幼儿园延时服务地方个案（2025）",
+      "source_type": "official_public",
+      "url": "https://hbjy.huaibei.gov.cn/xwzx/pjxw/57993968.html",
+      "accessed_date": "2026-08-25",
+      "usable_for_formal": "background_only",
+      "use": "documents one local case in which extended care runs 1.5 hours after normal dismissal and no later than 18:00",
+      "limitations": "single non-Beijing local case only; cannot be extrapolated to China as a whole, Beijing, Haidian, the project area or any named kindergarten",
+      "verification_status": "official_web_result_read_by_root; child_runtime_direct_fetch_not_used_for_content; scope_locked_to_single_local_case"
+    },
+    {
+      "source_id": "N3-V0.1-SOURCE-LOCK",
+      "title": "有门的城市 N3 设计骨架工作包 v0.1 exact-byte source lock",
+      "source_type": "user_supplied_local_archive_exact_byte",
+      "url": null,
+      "accessed_date": "2026-08-26",
+      "usable_for_formal": "normalized_design_source_with_explicit_limits",
+      "use": "twelve-scene semantic registry, project/loop/GOV normalization, and the three Jing-Zhang raw scene triads",
+      "limitations": "A normalization bridge is not an original machine or English source for four upstream ZH-only scenes; Jing-Zhang project relation remains interface_only.",
+      "verification_status": "sha256_exact; crc_pass; mounted_read_only",
+      "package": {
+        "source_id": "SRC-PKG-N3-V01",
+        "filename": "有门的城市_N3_设计骨架工作包_v0.1.zip",
+        "path": "sources-mounted/有门的城市_N3_设计骨架工作包_v0.1.zip",
+        "library_file_id": null,
+        "bytes": 121310,
+        "sha256": "100889b30117fa6dce9b7676ebdadcb6088bc90a5287db4c943a97447c8e83b7",
+        "crc_test": "PASS",
+        "crc_method": "unzip -t",
+        "archive_root": "有门的城市_N3_设计骨架工作包_v0.1/",
+        "entry_count": 41,
+        "file_count": 41,
+        "role": "normalized_design_skeleton_and_jz_raw_scene_source"
+      },
+      "key_files": [
+        {
+          "source_id": "SRC-N3-SCENE-REGISTRY-12",
+          "path": "sources-mounted/N3-v0.1/scene_registry_12.json",
+          "bytes": 28508,
+          "sha256": "48100b369bcf11594255512c808a0e21c16135f6428f50ae73f2bb3d290a8d32",
+          "use": "normalized machine-semantic bridge for all twelve scenes",
+          "claim_limit": "not an original machine or English source for the four zh-only scenes"
+        },
+        {
+          "source_id": "SRC-N3-SCENE-PROJECT-LOOP-MASTER",
+          "path": "sources-mounted/N3-v0.1/matrices/scene_project_loop_master.json",
+          "bytes": 28641,
+          "sha256": "e117af7c6b26d2769e380fd80e5c4569f314214ce08cbaa64e1fa0d9c642aba5",
+          "use": "P/PRG/LOOP/GOV/metric normalization bridge",
+          "claim_limit": "does not contain project_relation and does not close raw-source gaps"
+        }
+      ]
+    },
+    {
+      "source_id": "N2B-V0.1-SOURCE-LOCK",
+      "title": "有门的城市 N2-B 11.4 km²总体空间工作包 v0.1 exact-byte source lock",
+      "source_type": "user_supplied_local_archive_exact_byte",
+      "url": null,
+      "accessed_date": "2026-08-26",
+      "usable_for_formal": "provisional_design_geometry_only",
+      "use": "common 11.4 km² working geometry and mother-plan identity candidate",
+      "limitations": "Low-confidence proposal geometry; not an official boundary, statutory control, survey, navigation or construction source.",
+      "verification_status": "sha256_exact; crc_pass; mounted_read_only; mother_plan_branch_MATCH_GEOMETRY_EXACT__BYTE_DIFFERENT_FORMAL_SCHEMA_DERIVATION",
+      "package": {
+        "source_id": "SRC-PKG-N2B-V01",
+        "filename": "有门的城市_N2-B_11.4km²总体空间工作包_v0.1.zip",
+        "path": "sources-mounted/有门的城市_N2-B_11.4km²总体空间工作包_v0.1.zip",
+        "library_file_id": null,
+        "bytes": 1097400,
+        "sha256": "731fd530e579de053da0c745d3492fb38db5d81568d5603e959c413c5a9a78eb",
+        "crc_test": "PASS",
+        "crc_method": "unzip -t",
+        "archive_root": "有门的城市_N2-B_11.4km²总体空间工作包_v0.1/",
+        "entry_count": 53,
+        "file_count": 53,
+        "role": "provisional_spatial_source_and_mother_plan_candidate"
+      },
+      "mother_plan_ruling": {
+        "evidence_ref": "n7_evidence/N7-1d_mother_plan_identity_ruling_2026-08-26_v0.1.json",
+        "geometry_feature_match": "68/68",
+        "canonical_geometry_digest": "adea25e0ecf0ad3aed87afb9f848707a637525649bef2ce3cacf620b7f608169",
+        "baseline_geometry_drift": "0/9 files"
+      }
+    },
+    {
+      "source_id": "N7-1D-12SCN-RAW-SOURCE-LOCK",
+      "title": "N7-1d twelve-scene raw-source exact-byte lock",
+      "source_type": "internal_audit_index_over_user_supplied_exact_byte_archives",
+      "url": null,
+      "accessed_date": "2026-08-26",
+      "usable_for_formal": "display_and_traceability_only; field_and_formal_readiness_false",
+      "use": "canonical source lineage for all 12 scenes and all public scene displays",
+      "limitations": "Eight scenes have original machine+ZH+EN triads. SCN-ZZY-02/03 and SCN-DZS-02/03 remain original-ZH-only; N3/N6 bridges do not close those original-source gaps.",
+      "verification_status": "12/12 scenes traceable; 28/28 canonical raw files sha256 locked; 6/6 archives crc pass; zero substitutions",
+      "source_depth_summary": {
+        "canonical_scene_count": 12,
+        "traceable_scene_count": 12,
+        "raw_triad_complete_scene_count": 8,
+        "raw_zh_only_scene_count": 4,
+        "canonical_raw_source_file_count": 28,
+        "scenes": [
+          {
+            "scene_id": "SCN-ZZY-01",
+            "source_package_id": "SRC-PKG-SCN-ZZY-01-WORKING-V01",
+            "raw_source_state": "machine_zh_en_complete",
+            "available_original_kinds": [
+              "machine",
+              "zh",
+              "en"
+            ],
+            "missing_original_kinds": []
+          },
+          {
+            "scene_id": "SCN-ZZY-02",
+            "source_package_id": "SRC-PKG-ZZY-AREA-V01",
+            "raw_source_state": "zh_only",
+            "available_original_kinds": [
+              "zh"
+            ],
+            "missing_original_kinds": [
+              "machine",
+              "en"
+            ]
+          },
+          {
+            "scene_id": "SCN-ZZY-03",
+            "source_package_id": "SRC-PKG-ZZY-AREA-V01",
+            "raw_source_state": "zh_only",
+            "available_original_kinds": [
+              "zh"
+            ],
+            "missing_original_kinds": [
+              "machine",
+              "en"
+            ]
+          },
+          {
+            "scene_id": "SCN-AIO-01",
+            "source_package_id": "SRC-PKG-SCN-AIO-01-WORKING-V01",
+            "raw_source_state": "machine_zh_en_complete",
+            "available_original_kinds": [
+              "machine",
+              "zh",
+              "en"
+            ],
+            "missing_original_kinds": []
+          },
+          {
+            "scene_id": "SCN-AIO-02",
+            "source_package_id": "SRC-PKG-AIO-0821-V01",
+            "raw_source_state": "machine_zh_en_complete",
+            "available_original_kinds": [
+              "machine",
+              "zh",
+              "en"
+            ],
+            "missing_original_kinds": []
+          },
+          {
+            "scene_id": "SCN-AIO-03",
+            "source_package_id": "SRC-PKG-AIO-0821-V01",
+            "raw_source_state": "machine_zh_en_complete",
+            "available_original_kinds": [
+              "machine",
+              "zh",
+              "en"
+            ],
+            "missing_original_kinds": []
+          },
+          {
+            "scene_id": "SCN-DZS-01",
+            "source_package_id": "SRC-PKG-SCN-DZS-01-WORKING-V01",
+            "raw_source_state": "machine_zh_en_complete",
+            "available_original_kinds": [
+              "machine",
+              "zh",
+              "en"
+            ],
+            "missing_original_kinds": []
+          },
+          {
+            "scene_id": "SCN-DZS-02",
+            "source_package_id": "SRC-PKG-DZS-AREA-V01",
+            "raw_source_state": "zh_only",
+            "available_original_kinds": [
+              "zh"
+            ],
+            "missing_original_kinds": [
+              "machine",
+              "en"
+            ]
+          },
+          {
+            "scene_id": "SCN-DZS-03",
+            "source_package_id": "SRC-PKG-DZS-AREA-V01",
+            "raw_source_state": "zh_only",
+            "available_original_kinds": [
+              "zh"
+            ],
+            "missing_original_kinds": [
+              "machine",
+              "en"
+            ]
+          },
+          {
+            "scene_id": "SCN-JZ-01",
+            "source_package_id": "SRC-PKG-N3-V01",
+            "raw_source_state": "machine_zh_en_complete",
+            "available_original_kinds": [
+              "machine",
+              "zh",
+              "en"
+            ],
+            "missing_original_kinds": []
+          },
+          {
+            "scene_id": "SCN-JZ-02",
+            "source_package_id": "SRC-PKG-N3-V01",
+            "raw_source_state": "machine_zh_en_complete",
+            "available_original_kinds": [
+              "machine",
+              "zh",
+              "en"
+            ],
+            "missing_original_kinds": []
+          },
+          {
+            "scene_id": "SCN-JZ-03",
+            "source_package_id": "SRC-PKG-N3-V01",
+            "raw_source_state": "machine_zh_en_complete",
+            "available_original_kinds": [
+              "machine",
+              "zh",
+              "en"
+            ],
+            "missing_original_kinds": []
+          }
+        ]
+      },
+      "packages": [
+        {
+          "source_id": "SRC-PKG-SCN-ZZY-01-WORKING-V01",
+          "filename": "SCN-ZZY-01_working_scene_card_v01.zip",
+          "path": "sources-mounted/scene-packages/SCN-ZZY-01_working_scene_card_v01.zip",
+          "library_file_id": "libfile_1d0dc19c88308191b8af510dd89fc919",
+          "library_path": "/有门的城市/scene_cards_working_v01/SCN-ZZY-01/SCN-ZZY-01_working_scene_card_v01.zip",
+          "bytes": 52441,
+          "sha256": "5dc3a0af5dd4cbb9f253e8e45ba0e8aa1e9c6b0787d043e537210f9575a7f069",
+          "crc_test": "PASS",
+          "crc_method": "unzip -t",
+          "archive_root": ".",
+          "root_kind": "flat",
+          "entry_count": 7,
+          "file_count": 6,
+          "scene_ids": [
+            "SCN-ZZY-01"
+          ]
+        },
+        {
+          "source_id": "SRC-PKG-SCN-AIO-01-WORKING-V01",
+          "filename": "SCN-AIO-01_working_scene_card_v01.zip",
+          "path": "sources-mounted/scene-packages/SCN-AIO-01_working_scene_card_v01.zip",
+          "library_file_id": "libfile_e27817de72088191a4529327a41e9dc3",
+          "library_path": "/有门的城市/scene_cards_working_v01/SCN-AIO-01/SCN-AIO-01_working_scene_card_v01.zip",
+          "bytes": 40798,
+          "sha256": "b9b731a9e708d0a9c233eb671864e00b7e4b131e34c58e1464482f49cf32302f",
+          "crc_test": "PASS",
+          "crc_method": "unzip -t",
+          "archive_root": ".",
+          "root_kind": "flat",
+          "entry_count": 7,
+          "file_count": 6,
+          "scene_ids": [
+            "SCN-AIO-01"
+          ]
+        },
+        {
+          "source_id": "SRC-PKG-SCN-DZS-01-WORKING-V01",
+          "filename": "SCN-DZS-01_working_scene_card_v01.zip",
+          "path": "sources-mounted/scene-packages/SCN-DZS-01_working_scene_card_v01.zip",
+          "library_file_id": "libfile_814367be7550819199dacd61e95bf473",
+          "library_path": "/有门的城市/scene_cards_working_v01/SCN-DZS-01_working_scene_card_v01.zip",
+          "bytes": 63721,
+          "sha256": "42caa718bed4c5599da15f2bb56c1cc4bda217215942c16b8b4123594e2bdb25",
+          "crc_test": "PASS",
+          "crc_method": "unzip -t",
+          "archive_root": ".",
+          "root_kind": "flat",
+          "entry_count": 7,
+          "file_count": 6,
+          "scene_ids": [
+            "SCN-DZS-01"
+          ]
+        },
+        {
+          "source_id": "SRC-PKG-AIO-0821-V01",
+          "filename": "有门的城市_AI原点_8.21工作包_v0.1.zip",
+          "path": "sources-mounted/scene-packages/有门的城市_AI原点_8.21工作包_v0.1.zip",
+          "library_file_id": "libfile_640886af346081918f225055083fb893",
+          "library_path": "/有门的城市/内部档案/有门的城市_AI原点_8.21工作包_v0.1.zip",
+          "bytes": 26638,
+          "sha256": "60e61294da2946dc19b568aa8224edec31e57745c11d76864c0e8027873dd7b4",
+          "crc_test": "PASS",
+          "crc_method": "unzip -t",
+          "archive_root": "有门的城市_AI原点_8.21工作包_v0.1/",
+          "root_kind": "single_directory",
+          "entry_count": 10,
+          "file_count": 10,
+          "manifest_file_count_excluding_manifest": 9,
+          "scene_ids": [
+            "SCN-AIO-02",
+            "SCN-AIO-03"
+          ]
+        },
+        {
+          "source_id": "SRC-PKG-ZZY-AREA-V01",
+          "filename": "有门的城市_众智园同深度工作包_v0.1.zip",
+          "path": "sources-mounted/scene-packages/有门的城市_众智园同深度工作包_v0.1.zip",
+          "library_file_id": "libfile_54b2a6f7c1208191adb09bc555612a97",
+          "library_path": "/有门的城市/zhongzhiyuan_working_v01/有门的城市_众智园同深度工作包_v0.1.zip",
+          "bytes": 19405,
+          "sha256": "8388b2d895bf36146d15a8630c771d6c3c06a489860e0d5d4176aa501a444a16",
+          "crc_test": "PASS",
+          "crc_method": "unzip -t",
+          "archive_root": "有门的城市_众智园同深度工作包_v0.1/",
+          "root_kind": "single_directory",
+          "entry_count": 18,
+          "file_count": 18,
+          "manifest_file_count_excluding_manifest": 17,
+          "scene_ids": [
+            "SCN-ZZY-02",
+            "SCN-ZZY-03"
+          ]
+        },
+        {
+          "source_id": "SRC-PKG-DZS-AREA-V01",
+          "filename": "有门的城市_大钟寺同深度工作包_v0.1.zip",
+          "path": "sources-mounted/scene-packages/有门的城市_大钟寺同深度工作包_v0.1.zip",
+          "library_file_id": "libfile_1c02e438d3948191b80c1a04558010bb",
+          "library_path": "/有门的城市/dazhongsi_working_v01/有门的城市_大钟寺同深度工作包_v0.1.zip",
+          "bytes": 19714,
+          "sha256": "84db26a8fe5e51e7eda2d9e5f4894c17d1f8e584d721ca991bbd9f43a15b93c8",
+          "crc_test": "PASS",
+          "crc_method": "unzip -t",
+          "archive_root": "有门的城市_大钟寺同深度工作包_v0.1/",
+          "root_kind": "single_directory",
+          "entry_count": 18,
+          "file_count": 18,
+          "manifest_file_count_excluding_manifest": 17,
+          "scene_ids": [
+            "SCN-DZS-02",
+            "SCN-DZS-03"
+          ]
+        }
+      ],
+      "canonical_source_files": [
+        {
+          "scene_id": "SCN-ZZY-01",
+          "kind": "machine",
+          "source_package_id": "SRC-PKG-SCN-ZZY-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-ZZY-01-v0.1/SCN-ZZY-01.json",
+          "bytes": 50146,
+          "sha256": "945ec5129173e2fc56fd59b380706ff366ba0d9dd5d809aa4ae39f61e17de8f0"
+        },
+        {
+          "scene_id": "SCN-ZZY-01",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-SCN-ZZY-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-ZZY-01-v0.1/cards/SCN-ZZY-01.zh.md",
+          "bytes": 20005,
+          "sha256": "317f96cb59e01bbd6b1e23a4893b4daaa7cee57c5dfed8040e19ae899c8cecfd"
+        },
+        {
+          "scene_id": "SCN-ZZY-01",
+          "kind": "en",
+          "source_package_id": "SRC-PKG-SCN-ZZY-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-ZZY-01-v0.1/cards/SCN-ZZY-01.en.md",
+          "bytes": 24198,
+          "sha256": "070a6a8b2e97e20180557dafcf9aa2d33a11f89dd851ad8b3dc0c05c819e167d"
+        },
+        {
+          "scene_id": "SCN-ZZY-02",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-ZZY-AREA-V01",
+          "path": "sources-mounted/scene-packages-unpacked/ZZY-area-v0.1/有门的城市_众智园同深度工作包_v0.1/scene_cards/SCN-ZZY-02.zh.md",
+          "bytes": 925,
+          "sha256": "8a5858e9da55ceaea9c7d7e0be8e216d182b0ef254f2f66b07a6989cb10a6ee6"
+        },
+        {
+          "scene_id": "SCN-ZZY-03",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-ZZY-AREA-V01",
+          "path": "sources-mounted/scene-packages-unpacked/ZZY-area-v0.1/有门的城市_众智园同深度工作包_v0.1/scene_cards/SCN-ZZY-03.zh.md",
+          "bytes": 910,
+          "sha256": "5d1a1191859c264214638588c3bfd0d9abc05f57f3c833fc8e8233924b23513b"
+        },
+        {
+          "scene_id": "SCN-AIO-01",
+          "kind": "machine",
+          "source_package_id": "SRC-PKG-SCN-AIO-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-AIO-01-v0.1/SCN-AIO-01.json",
+          "bytes": 28683,
+          "sha256": "e073ab1ad5ef9fbace0b253fddc6f3e0ef81ff664cbc7b6fd323bedc62a16d15"
+        },
+        {
+          "scene_id": "SCN-AIO-01",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-SCN-AIO-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-AIO-01-v0.1/cards/SCN-AIO-01.zh.md",
+          "bytes": 14060,
+          "sha256": "1bf6564e473212fda5b08b3ec20eed0e044acd6311acf7a9d23071813ee13fa6"
+        },
+        {
+          "scene_id": "SCN-AIO-01",
+          "kind": "en",
+          "source_package_id": "SRC-PKG-SCN-AIO-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-AIO-01-v0.1/cards/SCN-AIO-01.en.md",
+          "bytes": 17285,
+          "sha256": "ad3c69a02624ac65662c89cd863e3c9b3d57d7e7f7d2aae64be9d4ba63c40cc0"
+        },
+        {
+          "scene_id": "SCN-AIO-02",
+          "kind": "machine",
+          "source_package_id": "SRC-PKG-AIO-0821-V01",
+          "path": "sources-mounted/scene-packages-unpacked/AI-origin-8.21-v0.1/有门的城市_AI原点_8.21工作包_v0.1/SCN-AIO-02/SCN-AIO-02.json",
+          "bytes": 10649,
+          "sha256": "796c482e076ac72ec0dead732583d3935f90f957cb5b8c6e7a0677cd816c8b41"
+        },
+        {
+          "scene_id": "SCN-AIO-02",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-AIO-0821-V01",
+          "path": "sources-mounted/scene-packages-unpacked/AI-origin-8.21-v0.1/有门的城市_AI原点_8.21工作包_v0.1/SCN-AIO-02/cards/SCN-AIO-02.zh.md",
+          "bytes": 5055,
+          "sha256": "96ff075ca583e29c3357bfb01b773c469d33cf9133c9700b67fdf6fa94589ab7"
+        },
+        {
+          "scene_id": "SCN-AIO-02",
+          "kind": "en",
+          "source_package_id": "SRC-PKG-AIO-0821-V01",
+          "path": "sources-mounted/scene-packages-unpacked/AI-origin-8.21-v0.1/有门的城市_AI原点_8.21工作包_v0.1/SCN-AIO-02/cards/SCN-AIO-02.en.md",
+          "bytes": 3436,
+          "sha256": "879542b2f9e86c02f9b29bbb823ef0a7ed79a0834ccf6aba1b31a5c40543bc80"
+        },
+        {
+          "scene_id": "SCN-AIO-03",
+          "kind": "machine",
+          "source_package_id": "SRC-PKG-AIO-0821-V01",
+          "path": "sources-mounted/scene-packages-unpacked/AI-origin-8.21-v0.1/有门的城市_AI原点_8.21工作包_v0.1/SCN-AIO-03/SCN-AIO-03.json",
+          "bytes": 11476,
+          "sha256": "5883ea6902fdd377095c01b082f53b1d316892a68f023b14cc5e5ff6dcbb1d2c"
+        },
+        {
+          "scene_id": "SCN-AIO-03",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-AIO-0821-V01",
+          "path": "sources-mounted/scene-packages-unpacked/AI-origin-8.21-v0.1/有门的城市_AI原点_8.21工作包_v0.1/SCN-AIO-03/cards/SCN-AIO-03.zh.md",
+          "bytes": 5766,
+          "sha256": "64c0260116279da9a7cd95287b037aa7fccc2f869ea73ccfceb4ecddfb4905ee"
+        },
+        {
+          "scene_id": "SCN-AIO-03",
+          "kind": "en",
+          "source_package_id": "SRC-PKG-AIO-0821-V01",
+          "path": "sources-mounted/scene-packages-unpacked/AI-origin-8.21-v0.1/有门的城市_AI原点_8.21工作包_v0.1/SCN-AIO-03/cards/SCN-AIO-03.en.md",
+          "bytes": 3480,
+          "sha256": "d873be2bdc972418880eeb233bc85bedcd49b7e0eeb144075c5a3c9ad72b23d8"
+        },
+        {
+          "scene_id": "SCN-DZS-01",
+          "kind": "machine",
+          "source_package_id": "SRC-PKG-SCN-DZS-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-DZS-01-v0.1/SCN-DZS-01.json",
+          "bytes": 54599,
+          "sha256": "2dce72f7b4cd5d04ba6a8cc37df9a33335a59e03d4e144b34a890fc6d06ab983"
+        },
+        {
+          "scene_id": "SCN-DZS-01",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-SCN-DZS-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-DZS-01-v0.1/cards/SCN-DZS-01.zh.md",
+          "bytes": 23411,
+          "sha256": "104c11c2fefc32e166a0475282dce6ee23dceb32b5e6e8faf73f7cb9f7d1e06b"
+        },
+        {
+          "scene_id": "SCN-DZS-01",
+          "kind": "en",
+          "source_package_id": "SRC-PKG-SCN-DZS-01-WORKING-V01",
+          "path": "sources-mounted/scene-packages-unpacked/SCN-DZS-01-v0.1/cards/SCN-DZS-01.en.md",
+          "bytes": 28597,
+          "sha256": "a9e3fbbbace1979b06a0bb3dcc47d27d97b87c641ae955eb2bd56ea894249b2d"
+        },
+        {
+          "scene_id": "SCN-DZS-02",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-DZS-AREA-V01",
+          "path": "sources-mounted/scene-packages-unpacked/DZS-area-v0.1/有门的城市_大钟寺同深度工作包_v0.1/scene_cards/SCN-DZS-02.zh.md",
+          "bytes": 1795,
+          "sha256": "1f0355690c559fafc745ac7f920cc928ae9f095a3dfddc89ecea7699446841e3"
+        },
+        {
+          "scene_id": "SCN-DZS-03",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-DZS-AREA-V01",
+          "path": "sources-mounted/scene-packages-unpacked/DZS-area-v0.1/有门的城市_大钟寺同深度工作包_v0.1/scene_cards/SCN-DZS-03.zh.md",
+          "bytes": 1736,
+          "sha256": "5c3328671f29a5f952af5197949ffa55c5f435187de69345bf4a4d141a1b0618"
+        },
+        {
+          "scene_id": "SCN-JZ-01",
+          "kind": "machine",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/scenes/SCN-JZ-01.json",
+          "bytes": 8655,
+          "sha256": "4a59a1eb86f152662631fa1f1f2e7b2705b601b1893f88cfbf173edefbfc1601"
+        },
+        {
+          "scene_id": "SCN-JZ-01",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/cards/SCN-JZ-01.zh.md",
+          "bytes": 4918,
+          "sha256": "6eccc01d551aad7ee73e75d079915e17bea5cddc84cf6cea02f723e312d37acf"
+        },
+        {
+          "scene_id": "SCN-JZ-01",
+          "kind": "en",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/cards/SCN-JZ-01.en.md",
+          "bytes": 6404,
+          "sha256": "dc0e8a01458dc199e817f7774ea79940994d477f702607787542240cdf8451d4"
+        },
+        {
+          "scene_id": "SCN-JZ-02",
+          "kind": "machine",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/scenes/SCN-JZ-02.json",
+          "bytes": 8689,
+          "sha256": "c9a27c868df5b313353f22de6618b7c8a7b6a7072cb42adc36ec2dd0a116c321"
+        },
+        {
+          "scene_id": "SCN-JZ-02",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/cards/SCN-JZ-02.zh.md",
+          "bytes": 5068,
+          "sha256": "2ab8f3d16204a1f0f1b211ef0d1a08d7e0b7ef13ce108267274d0e4f2534d8ac"
+        },
+        {
+          "scene_id": "SCN-JZ-02",
+          "kind": "en",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/cards/SCN-JZ-02.en.md",
+          "bytes": 6772,
+          "sha256": "3c9dda4fb693db2943a42c0508a17cc537defa6c6eb2cfb8ccaa0ef98525192c"
+        },
+        {
+          "scene_id": "SCN-JZ-03",
+          "kind": "machine",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/scenes/SCN-JZ-03.json",
+          "bytes": 10730,
+          "sha256": "5421bd082c75006a29400cb595b9d81b0ee7de95393acec36b6f5793e68a238c"
+        },
+        {
+          "scene_id": "SCN-JZ-03",
+          "kind": "zh",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/cards/SCN-JZ-03.zh.md",
+          "bytes": 5397,
+          "sha256": "db1969b4db8b64242a606c6c939e5b99e156d459f67f1199646a02032a39a3c5"
+        },
+        {
+          "scene_id": "SCN-JZ-03",
+          "kind": "en",
+          "source_package_id": "SRC-PKG-N3-V01",
+          "path": "sources-mounted/N3-v0.1/cards/SCN-JZ-03.en.md",
+          "bytes": 7064,
+          "sha256": "51622a02a391466274dacc1f35aaf2af3a192173e7440cf149b01322c601ca18"
+        }
+      ],
+      "derived_bridges": [
+        {
+          "source_id": "SRC-N3-SCENE-REGISTRY-12",
+          "path": "sources-mounted/N3-v0.1/scene_registry_12.json",
+          "bytes": 28508,
+          "sha256": "48100b369bcf11594255512c808a0e21c16135f6428f50ae73f2bb3d290a8d32",
+          "use": "normalized machine-semantic bridge for all twelve scenes",
+          "claim_limit": "not an original machine or English source for the four zh-only scenes"
+        },
+        {
+          "source_id": "SRC-N3-SCENE-PROJECT-LOOP-MASTER",
+          "path": "sources-mounted/N3-v0.1/matrices/scene_project_loop_master.json",
+          "bytes": 28641,
+          "sha256": "e117af7c6b26d2769e380fd80e5c4569f314214ce08cbaa64e1fa0d9c642aba5",
+          "use": "P/PRG/LOOP/GOV/metric normalization bridge",
+          "claim_limit": "does not contain project_relation and does not close raw-source gaps"
+        },
+        {
+          "source_id": "SRC-N6-BILINGUAL-DISPLAY-DIGEST",
+          "path": "baselines/n6_freeze/有门的城市_N6_Pro第一轮冻结施工包_v0.1/02_12场景双语显示摘要源_v0.1.json",
+          "bytes": 49693,
+          "sha256": "5d29fad98f8527b5545edf2f8a25cd8f857110bb96f720e6f8be12a195d5faab",
+          "use": "frozen bilingual display derivation bridge",
+          "claim_limit": "derived display text; not an original machine or English source"
+        }
+      ],
+      "evidence_ref": "n7_evidence/N7-1d_startup_source_audit_2026-08-26_v0.1.json"
+    },
+    {
+      "source_id": "SRC-N7-1E-STAT-01",
+      "title_zh": "北京海淀区京张铁路遗址公园沿线（人工智能创新街区重点地区）HD00—1601 等街区控制性详细规划（街区层面）（2024 年—2035 年）",
+      "title_en": "Street-level Regulatory Detailed Plan for HD00-1601 and Other Districts along the Jing-Zhang Railway Heritage Park in Haidian (2024–2035)",
+      "publisher_zh": "北京市海淀区人民政府／北京市规划和自然资源委员会相关公开页面",
+      "publisher_en": "Haidian District Government / related Beijing planning-authority publication page",
+      "publication_date": "2026-08-17",
+      "url": "https://zyk.bjhd.gov.cn/zwdt/xxgk/tzgg/202608/t20260821_4826113.shtml",
+      "source_type": "primary_government_publication",
+      "supports": "Approval and public availability of a statutory street-level plan covering nine districts and approximately 16.7 km².",
+      "does_not_establish": "Competition polygons, the 11.4 km² competition boundary, parcel-level controls, site coordinates or implementation readiness.",
+      "rights": "No open license identified; facts-only short paraphrase and direct-link attribution."
+    },
+    {
+      "source_id": "SRC-N7-1E-STAT-02",
+      "title_zh": "京张铁路遗址公园沿线街区控规获批 一条“绿带”建设引领区域城市更新",
+      "title_en": "Street Plans along the Jing-Zhang Railway Heritage Park Approved; a Green Belt Guides Urban Renewal",
+      "publisher_zh": "首都之窗／北京市人民政府门户网站",
+      "publisher_en": "Beijing Municipal Government Portal",
+      "publication_date": "2026-08-12",
+      "url": "https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202608/t20260812_4819212.html",
+      "source_type": "secondary_government_reprint",
+      "supports": "High-level structure, Dazhongsi context, public-service emphasis and opening-up context described by the government reprint.",
+      "does_not_establish": "Competition polygons, parcel controls, exact programme locations, named operators, budgets or service readiness.",
+      "rights": "No open license identified; facts-only short paraphrase and direct-link attribution."
+    },
+    {
+      "source_id": "SRC-N7-1E-STAT-03",
+      "title_zh": "关于京张铁路遗址公共空间改造提升工程（二期）实施方案的批复",
+      "title_en": "Approval of the Implementation Plan for Phase II of the Jing-Zhang Railway Heritage Public-Space Improvement Project",
+      "publisher_zh": "北京市发展和改革委员会",
+      "publisher_en": "Beijing Municipal Commission of Development and Reform",
+      "publication_date": "2024-09-23",
+      "url": "https://fgw.beijing.gov.cn/fgwzwgk/ysqzzdgk/index_57.htm",
+      "source_type": "primary_government_directory_record",
+      "supports": "Existence and date of the implementation-plan approval record.",
+      "does_not_establish": "Detailed approval content beyond the directory record, competition geometry, parcel controls, costs, completion or operating status.",
+      "rights": "No open license identified; facts-only short paraphrase and direct-link attribution."
+    },
+    {
+      "source_id": "SRC-N7-1E-STAT-04",
+      "title_zh": "京张铁路遗址公共空间改造提升工程（二期）招标核准意见书",
+      "title_en": "Tender Approval Opinion for Phase II of the Jing-Zhang Railway Heritage Public-Space Improvement Project",
+      "publisher_zh": "北京市发展和改革委员会",
+      "publisher_en": "Beijing Municipal Commission of Development and Reform",
+      "publication_date": "2024-09-23",
+      "document_number": "京发改（审）〔2024〕609号",
+      "url": "https://fgw.beijing.gov.cn/fzggzl/yfxz/xzxk_sgs/202409/t20240923_3902991.htm",
+      "source_type": "primary_government_approval_record",
+      "supports": "Project and procedure cross-evidence for the Phase II implementation record.",
+      "does_not_establish": "Competition geometry, parcel controls, detailed programme locations, final budget, completion or operation.",
+      "rights": "No open license identified; facts-only short paraphrase and direct-link attribution."
+    },
+    {
+      "source_id": "SRC-N7-1E-STAT-05",
+      "title_zh": "京张铁路遗址公共空间改造提升工程（二期）配套项目完工",
+      "title_en": "Supporting Works for Phase II of the Jing-Zhang Railway Heritage Public-Space Improvement Project Completed",
+      "publisher_zh": "北京市园林绿化局",
+      "publisher_en": "Beijing Municipal Forestry and Parks Bureau",
+      "publication_date": "2026-07-13",
+      "url": "https://yllhj.beijing.gov.cn/zwgk/zwxx/202607/t20260714_4761226.shtml",
+      "source_type": "primary_government_progress_report",
+      "supports": "Recent completion context for the described supporting works and associated slow-network facts reported by the bureau.",
+      "does_not_establish": "Completion of every Jing-Zhang project component, competition geometry, parcel controls, programme readiness or operator commitment.",
+      "rights": "No open license identified; facts-only short paraphrase and direct-link attribution."
+    }
+  ]
+}

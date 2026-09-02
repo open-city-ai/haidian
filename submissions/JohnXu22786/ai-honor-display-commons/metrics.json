@@ -1,0 +1,406 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary, EPSG:4548); source geometry/site_boundary.geojson",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary, not an official redline.",
+        "Use only for concept-level comparison and local consistency checks; recalculate after official boundary release."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1255908.493,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union(conceptual green polygons, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual overlay metric; it is not added to the 1401 land-use category.",
+        "Recompute after official green/blue-line and boundary data are released."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 36150.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union(conceptual public-space polygons, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public-space layer; no public-service capacity or legal dedication is implied.",
+        "Recompute after official boundary and public-space data are released."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 111600.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union(conceptual reuse-first envelopes, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.110044,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.003167,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 10154.351,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(conceptual paths, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(area_id in key_areas.geojson)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 27,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use.geojson features; one source feature is one counted polygon/multipolygon)",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "land_use_feature_count": {
+      "status": "known",
+      "value": 27,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(features in geometry/land_use.geojson)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual land-use layer; official land-use data will replace it before statutory use."
+      ]
+    },
+    "land_use_category_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(distinct land_use_code)",
+      "confidence": "low",
+      "assumptions": [
+        "Display categories are the six codes present in the source layer: 0701, 0802, 0803, 0901, 0902, 1401."
+      ]
+    },
+    "land_use_total_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson",
+        "compliance_matrix.json"
+      ],
+      "formula": "sum(area_by_land_use_code_sqm) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "All 27 conceptual land-use features are aggregated by land_use_code and cover the provisional boundary within rounding tolerance."
+      ]
+    },
+    "land_use_1401_ratio": {
+      "status": "known",
+      "value": 0.2730344972,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson",
+        "compliance_matrix.json"
+      ],
+      "formula": "sum(area(code=1401)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "1401 is displayed as park and green space; it is not the same as the separate green_space.geojson overlay metric."
+      ]
+    },
+    "land_use_0802_ratio": {
+      "status": "known",
+      "value": 0.2738501912,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson",
+        "compliance_matrix.json"
+      ],
+      "formula": "sum(area(code=0802)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "0802 is displayed as scientific research; no 0801 education or unclassified other feature is present, so neither is fabricated or silently merged."
+      ]
+    },
+    "land_use_0803_ratio": {
+      "status": "known",
+      "value": 0.1354187406,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson",
+        "compliance_matrix.json"
+      ],
+      "formula": "sum(area(code=0803)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "0803 is displayed separately as culture."
+      ]
+    },
+    "land_use_0901_ratio": {
+      "status": "known",
+      "value": 0.1387411397,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson",
+        "compliance_matrix.json"
+      ],
+      "formula": "sum(area(code=0901)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "land_use_0902_ratio": {
+      "status": "known",
+      "value": 0.1574038208,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson",
+        "compliance_matrix.json"
+      ],
+      "formula": "sum(area(code=0902)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "land_use_0701_ratio": {
+      "status": "known",
+      "value": 0.0215516104,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson",
+        "compliance_matrix.json"
+      ],
+      "formula": "sum(area(code=0701)) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "position_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json"
+      ],
+      "formula": "count(alignment_matrix.group == position)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "function_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json"
+      ],
+      "formula": "count(alignment_matrix.group == function)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "area_wing_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json"
+      ],
+      "formula": "count(alignment_matrix.group == area_or_wing)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "district_ai_matrix_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json"
+      ],
+      "formula": "count(district_ai_matrix entries)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_experience_path_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "compliance_matrix.json",
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(named Xiaoyuehe public experience path)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual route assembled from the submitted greenway and public-space layers; no built route is claimed."
+      ]
+    },
+    "building_unit_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(buildings.geojson features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_type == ai_landmark)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space scenario nodes + landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_validation scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(auditable scenario cards S01-S10)",
+      "confidence": "high",
+      "assumptions": [
+        "Cards are concept protocols; no live deployment or observed performance is claimed."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user groups in proposal.md#八类用户画像)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(public mechanism cases in proposal.md#八个机制案例)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing polygons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_program_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(annual event system)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}
