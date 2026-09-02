@@ -209,7 +209,7 @@
   },
   "C16": {
    "status": "known",
-   "value": 11.2,
+   "value": 9.5,
    "unit": "㎡/人",
    "source_files": [
     "geometry/green_space.geojson",
@@ -392,55 +392,64 @@
   },
   "E29": {
    "status": "known",
-   "value": 78.7,
+   "value": 66.5,
    "unit": "ha",
    "source_files": [
-    "geometry/green_space.geojson"
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson"
    ],
-   "formula": "area(GREEN_SPACE 1401 + PLAZA 1403)/10000",
+   "formula": "(green_space_area_sqm + public_space_area_sqm)/10000 = (642900.752 + 22398.016)/10000",
    "confidence": "medium",
    "assumptions": [
     "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "口径：纯绿地（land_use_code=1401，green_space.geojson 全部 29 要素）+ 公共空间（public_space.geojson 全部 36 个多边形，含 31 针脚与 5 处广场/绣场），与派生键 green_space_area_sqm / public_space_area_sqm 完全一致",
+    "land_use.geojson 的 1403 广场用地（约 14.4 ha）为用地分类口径，与公共空间设计节点图层计量对象不同，不进入本指标，避免双重计数",
     "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
    ]
   },
   "E30": {
    "status": "known",
-   "value": 6.9,
+   "value": 5.8,
    "unit": "%",
    "source_files": [
     "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
     "geometry/site_boundary.geojson"
    ],
-   "formula": "E29*10000 / site_area_sqm",
+   "formula": "(green_space_area_sqm + public_space_area_sqm) / site_area_sqm = 665298.768 / 11412825.386",
    "confidence": "medium",
    "assumptions": [
     "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "口径：绿地+公共空间占 SITE 比例（5.83%→显示 5.8%）；纯绿地率另见派生键 green_ratio（642900.752/11412825.386=5.6331%），两者口径不同、各自单独表述",
     "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
    ]
   },
   "E31": {
    "status": "known",
-   "value": 6.9,
+   "value": 5.8,
    "unit": "%",
    "source_files": [
-    "geometry/green_space.geojson"
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
    ],
-   "formula": "healing green coverage = green+plaza share of SITE",
+   "formula": "healing green coverage = (green_space_area_sqm + public_space_area_sqm) / site_area_sqm",
    "confidence": "medium",
    "assumptions": [
     "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "以绿地+公共空间为疗愈型公共空间主体，与 E30 同值；疗愈绿地不重复计，另行表述为 29 处疗愈花园/感官绿地（C18）",
     "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
    ]
   },
   "E32": {
    "status": "known",
-   "value": 11.2,
+   "value": 9.5,
    "unit": "㎡/人",
    "source_files": [
-    "geometry/green_space.geojson"
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson"
    ],
-   "formula": "E29*10000 / pop_total(70000)",
+   "formula": "E29*10000 / pop_total(70000) = 665298.768 / 70000",
    "confidence": "medium",
    "assumptions": [
     "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
@@ -448,18 +457,44 @@
    ]
   },
   "E33": {
-   "status": "unknown",
-   "value": null,
+   "status": "known",
+   "value": 12.6,
    "unit": "%",
    "source_files": [
     "geometry/green_space.geojson",
     "geometry/key_areas.geojson"
    ],
-   "formula": "per-zone green ratio: K1/K2/K3",
+   "formula": "per-zone green ratio = area(green_space ∩ key_area) / area(key_area)，EPSG:4548；三重点区均值",
    "confidence": "high",
-   "reason": "分区分项绿地率为文本表达（K1=10.0%/K2=11.4%/K3=16.4%），非单一可量化数值，保留文本说明。",
+   "sub_metrics": {
+    "K1": {
+     "zone": "众智园AI自主创新加速区",
+     "zone_area_sqm": 1929201.9,
+     "green_area_sqm": 192747.5,
+     "ratio": 0.0999,
+     "display": "10.0%",
+     "formula": "area(green_space ∩ PROV-KEY-001) / area(PROV-KEY-001) = 192747.5 / 1929201.9"
+    },
+    "K2": {
+     "zone": "北京AI原点社区",
+     "zone_area_sqm": 1043236.9,
+     "green_area_sqm": 118673.5,
+     "ratio": 0.1138,
+     "display": "11.4%",
+     "formula": "area(green_space ∩ PROV-KEY-002) / area(PROV-KEY-002) = 118673.5 / 1043236.9"
+    },
+    "K3": {
+     "zone": "大钟寺AI产业聚集区",
+     "zone_area_sqm": 720454.2,
+     "green_area_sqm": 118311.3,
+     "ratio": 0.1642,
+     "display": "16.4%",
+     "formula": "area(green_space ∩ PROV-KEY-003) / area(PROV-KEY-003) = 118311.3 / 720454.2"
+    }
+   },
    "assumptions": [
     "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "分区绿地率按 green_space.geojson 纯绿地（1401）要素与 key_areas.geojson 几何求交复算，全部 ≥8%；value 为三区算术均值（(10.0+11.4+16.4)/3=12.6%），分区明细见 sub_metrics",
     "边界为仓库提供的 provisional 粗略范围（PROV-SITE-001），非官方红线；官方红线发布后全部指标须整体复算"
    ]
   },
@@ -641,7 +676,8 @@
    "formula": "polygon_area(green_space, EPSG:4548)",
    "confidence": "high",
    "assumptions": [
-    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "口径：纯绿地（land_use_code=1401，green_space.geojson 全部 29 要素），即纯绿地率分子；E29（绿地+公共空间 66.5 ha）另含 public_space.geojson 公共空间面积"
    ]
   },
   "public_space_area_sqm": {
@@ -654,7 +690,8 @@
    "formula": "polygon_area(public_space, EPSG:4548)",
    "confidence": "high",
    "assumptions": [
-    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "口径：公共空间设计节点图层（public_space.geojson 全部 36 个多边形：31 个针脚节点 + 5 处广场/绣场；主脉线要素面积为 0 不计入），非 land_use 1403 广场用地口径"
    ]
   },
   "building_footprint_area_sqm": {
@@ -681,7 +718,8 @@
    "formula": "green_space_area_sqm / site_area_sqm",
    "confidence": "high",
    "assumptions": [
-    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "口径：纯绿地率 = 642900.752/11412825.386 = 5.6331%；与 E30（绿地+公共空间占 SITE ≈5.8%）口径不同，纯绿地率不再另行加总公共空间"
    ]
   },
   "public_space_ratio": {
@@ -695,7 +733,8 @@
    "formula": "public_space_area_sqm / site_area_sqm",
    "confidence": "high",
    "assumptions": [
-    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标"
+    "指标由本方案 agent 生成的设计图层复算，属概念设计建议，不构成法定规划控制指标",
+    "口径：公共空间占比 = 22398.016/11412825.386 = 0.1963%，仅含 public_space.geojson 多边形；land_use 1403 广场用地（约 14.4 ha，占比约 1.27%）为用地分类口径，与 E29 无关、不进入本比值"
    ]
   }
  }
