@@ -1,0 +1,204 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1671470.077,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space)",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 256177.598,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space)",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 64512.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(concept_building_footprints)",
+      "confidence": "low",
+      "assumptions": [
+        "Footprints are proposal prototypes, not a survey of existing buildings."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.146455,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.022446,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 6109523.48,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2184307.488,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 3422793.412,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 1900848.565,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0702)",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 3903973.59,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "Submitted SITE_BOUNDARY is a provisional rough constraint and must be recalculated when official geometry is issued."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and the official site boundary are pending.",
+      "required_for_formal_submission": true
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved_building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing-building survey, ownership, and approved development controls are pending.",
+      "required_for_formal_submission": true
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(approved_road_redline_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The design layer contains centerlines only; official road redlines are pending.",
+      "required_for_formal_submission": true
+    }
+  }
+}
