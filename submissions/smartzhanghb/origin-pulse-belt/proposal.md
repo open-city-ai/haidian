@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「三次原点」为叙事主线、以京张铁路遗址走廊为空间主轴的概念性城市设计方案：一轴三核、蓝绿慢行复合，覆盖命名体系、AI创新生态、12张场景卡、5处朝圣地标与长期运营机制；基于 provisional 粗略边界生成并可整体复算。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.0"
+iteration: "v2.0"
 ---
 
 # 原点智脉 Origin Pulse——百年京张AI创新带城市设计开源征集方案
@@ -20,7 +20,7 @@ iteration: "v1.0"
 
 资料使用边界通过 `data/source_registry.json` 逐项核验 [source:SOURCE-REGISTRY]：公告与任务书可作为 formal 任务依据；「三区两翼」产业叙事与海淀「1+X+1」产业体系作为 A1 级背景资料引用；仓库提供的临时粗略边界仅作为 provisional intake 资料使用 [source:BOUNDARY-SOURCE][source:KEY-AREA-SOURCE]。方案生成前先读取 `brief/site-package/` 结构化任务包 [source:SITE-PACKAGE]，并以 `data/processed/agent_fact_pack.md` 及其四张 CSV 作为任务、范围、资料用途与缺口的导航层 [source:PROCESSED-FACT-PACK]，正文事实均回引原始 source id，不以处理资料替代原始来源。
 
-本方案的空间成果（用地、建筑、道路、绿地、公共空间、约束、分期共 9 个 GeoJSON 图层）全部从同一条 provisional 总体设计边界派生 [data:geometry/site_boundary.geojson#SITE-001]，并在 EPSG:4548 投影下复算全部指标 [metric:site_area_sqm]。`compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 全部 17 条任务与任务书 agent.1–agent.6；`standard_matrix.json` 逐条响应 6 项 mandatory 专业标准；`design_depth_matrix.json` 证明 15 项 formal 深度项全部达到 complete，其对应关系在正文各章以 [depth:...] 标注。
+本方案的空间成果（用地、建筑、道路、绿地、公共空间、约束、分期共 9 个 GeoJSON 图层）全部从同一条 provisional 总体设计边界派生 [data:geometry/site_boundary.geojson#SITE-001]，并在 EPSG:4548 投影下复算全部指标 [metric:site_area_sqm]。`compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 全部 17 条任务与任务书 agent.1–agent.6；`standard_matrix.json` 逐条响应 6 项 mandatory 专业标准；`design_depth_matrix.json` 为 15 项 formal 深度项的提交方逐项自检记录（标记为 complete 仅为概念自检结论，不构成专业深度认定），其对应关系在正文各章以 [depth:...] 标注。
 
 **资料缺口声明**：官方精确红线、三处重点区官方 polygon、控规容积率/高度/密度/绿地率、道路红线、文保精确范围、市政管线与权属底数目前均未取得（见 `missing_data_checklist.csv` 与 `assumptions.json`）。因此本方案全部空间结论标注为 provisional 概念成果，[metric:floor_area_ratio] 与 [metric:building_height_control_m] 明示为 unknown 而非编造数值；官方边界发布后，全部图层与指标按 `geometry/` 生成管线整体复算。
 
@@ -33,7 +33,7 @@ iteration: "v1.0"
 | 层级 | 面积（公告值） | 工作目标 | 本方案成果落点 |
 | --- | --- | --- | --- |
 | 统筹研究范围 | 约 43.6 km² | 产业生态、未来城市形态、三区两翼协同 | 产业战略、命名体系、生态图谱、区域协同回路（正文论述层） |
-| 总体设计范围 | 约 11.4 km² | 城市更新总体框架、控规深度城市设计 | 9 个 GeoJSON 图层 + 指标复算 + A3/A0 图纸 |
+| 总体设计范围 | 约 11.4 km² | 城市更新总体框架、概念城市设计（按控规深度自检清单组织） | 9 个 GeoJSON 图层 + 指标复算 + A3/A0 图纸 |
 | 重点区域范围 | 约 368.4 ha | 三处重点区详细设计（规划综合实施方案深度） | key_areas 三片区小方案 + 场景卡 + 实施项目清单 |
 
 三层范围的传导逻辑是：统筹研究范围回答「海淀 AI 产业带凭什么成为世界级的」——创新链与产业链组织；总体设计范围回答「这些产业和生活需求落在什么空间上」——用地、建筑、交通、蓝绿、风貌；重点区域回答「先动哪里、怎么动、动完什么样」——三核的详细设计与分期 [depth:overall_spatial_structure]。
@@ -54,18 +54,18 @@ iteration: "v1.0"
 
 ### 全球 AI 创新生态案例研究（5-8 个）
 
-以下来自公开出版物与公开报道的常识性整理，仅作经验参考，详细数据须专业团队核实（见 assumptions.json A-CASE-001）：
+案例按以下来源级别标注（分级定义见 `sources.json` CASE 条目与 assumptions.json A-CASE-001）：**B1 = 公开一手文献**（官方规划文件、听证与审查记录，可公开检索）；**B2 = 公开媒体与机构介绍**（主流媒体、开发主体官网的常识性整理，未逐条溯源）。本表全部案例不引用具体未核实数据，深化阶段须逐案核实（A-CASE-001）：
 
-| # | 案例 | 与本方案相关的经验 | 转化方向 |
-| --- | --- | --- | --- |
-| 1 | 波士顿 Kendall Square（MIT 邻近创新区） | 大学策源与企业研发零距离混合，「一栋楼里有教授也有初创」 | 原点社区的近校混合街坊 [data:geometry/land_use.geojson#LU-024] |
-| 2 | 伦敦 King's Cross Knowledge Quarter | 铁路遗产更新为知识区，文化机构（中央圣马丁）与科技总部共生 | 京张遗址公园 + 清华园站旧址的文化-科技共生 [data:geometry/constraints.geojson#CONS-H01] |
-| 3 | 纽约 Cornell Tech（罗斯福岛） | 高校新校区作为城市创新锚点，从校园规划开始植入创业机制 | 原点社区成果转化街区与人才公寓配置 |
-| 4 | 硅谷 Stanford–101 走廊 | 线性走廊串联大学、资本与企业，慢行与第三空间支撑非正式交流 | 智脉走廊的开发者散步道与咖啡式交往空间 [data:geometry/roads.geojson#ROAD-GREENWAY-E] |
-| 5 | 东京丸之内（大手町-东京站） | 枢纽地区通过地下步行网络与街区活化提升全天候活力 | 大钟寺站四象限步行连通与智核市集 [data:geometry/public_space.geojson#PUBLIC-N04] |
-| 6 | 慕尼黑 Werksviertel-Mitte | 工业遗址以临时使用（meanwhile use）先行激活，再滚动开发 | 留白街坊与分期实施中的临时场景运营 [data:geometry/phasing.geojson#PHASE-301] |
-| 7 | 深圳湾科技生态园 | 本土高密度创新社区的产业配套与人才服务一体化 | 智服走廊的企业服务设施体系 |
-| 8 | 多伦多 Sidewalk Labs（终止） | **反面教材**：数据治理方案滞后于空间方案导致公众信任崩塌 | 本方案把数据治理与人工复核写进每张场景卡（见 AI 场景章） |
+| # | 案例 | 来源级别 | 与本方案相关的经验 | 转化方向 |
+| --- | --- | --- | --- | --- |
+| 1 | 波士顿 Kendall Square（MIT 邻近创新区） | B2 | 大学策源与企业研发零距离混合，「一栋楼里有教授也有初创」 | 原点社区的近校混合街坊 [data:geometry/land_use.geojson#LU-024] [source:CASE-01-KENDALL-SQUARE] |
+| 2 | 伦敦 King's Cross Knowledge Quarter | B2 | 铁路遗产更新为知识区，文化机构（中央圣马丁）与科技总部共生 | 京张遗址公园 + 清华园站旧址的文化-科技共生 [data:geometry/constraints.geojson#CONS-H01] [source:CASE-02-KINGS-CROSS] |
+| 3 | 纽约 Cornell Tech（罗斯福岛） | B2 | 高校新校区作为城市创新锚点，从校园规划开始植入创业机制 | 原点社区成果转化街区与人才公寓配置 [source:CASE-03-CORNELL-TECH] |
+| 4 | 硅谷 Stanford–101 走廊 | B2 | 线性走廊串联大学、资本与企业，慢行与第三空间支撑非正式交流 | 智脉走廊的开发者散步道与咖啡式交往空间 [data:geometry/roads.geojson#ROAD-GREENWAY-E] [source:CASE-04-SV-101] |
+| 5 | 东京丸之内（大手町-东京站） | B2 | 枢纽地区通过地下步行网络与街区活化提升全天候活力 | 大钟寺站四象限步行连通与智核市集 [data:geometry/public_space.geojson#PUBLIC-N04] [source:CASE-05-MARUNOUCHI] |
+| 6 | 慕尼黑 Werksviertel-Mitte | B2 | 工业遗址以临时使用（meanwhile use）先行激活，再滚动开发 | 留白街坊与分期实施中的临时场景运营 [data:geometry/phasing.geojson#PHASE-301] [source:CASE-06-WERKSVIERTEL] |
+| 7 | 深圳湾科技生态园 | B2 | 本土高密度创新社区的产业配套与人才服务一体化 | 智服走廊的企业服务设施体系 [source:CASE-07-SHENZHEN-BAY] |
+| 8 | 多伦多 Sidewalk Labs（终止） | B1 | **反面教材**：数据治理方案滞后于空间方案导致公众信任崩塌 | 本方案把数据治理与人工复核写进每张场景卡（见 AI 场景章） [source:CASE-08-SIDEWALK-LABS] |
 
 **创新生态图谱与要素机制**（概念建议）：土地——以城市更新释放产业空间而非新增蔓延；空间——研发街坊、孵化街区、展示走廊三级供给；产业——AI 全栈（芯片-框架-模型-应用）与「AI+」垂直应用双层布局；资金——依托中关村科技服务翼对接公开化的创投网络；人才——人才公寓、国际学校与第三空间配套；算力——端侧算力节点与分布式能源融合布局于市政设施章；数据——公共数据开放清单制度先行；场景——全域测试验证场景按后文场景卡开放。以上均为机制建议，不构成任何招商、资金或政策承诺 [source:SRC-2026-HAIDIAN-1X1]。
 
@@ -73,7 +73,7 @@ iteration: "v1.0"
 
 ## 总体设计范围城市更新与控规深度城市设计
 
-总体设计范围以城市更新为抓手，达到控制性详细规划的城市设计深度 [standard:MOHURD-CONTROL-DETAILED-PLANNING][depth:land_use_layout]。**空间结构**：一轴（京张智脉线性公园走廊，全长约 9674 m 概念轴 [metric:rail_corridor_length_m]）、三核（众智园/原点社区/大钟寺）、两片（东西两侧混合街坊）、多点（广场与地标节点）。走廊本身是最核心的公共空间资产：绿地与开敞空间合计占总体设计范围约 22.9%（绿地率 [metric:green_ratio] 15.1% + 公共空间 [metric:public_space_ratio] 7.9%）。
+总体设计范围以城市更新为抓手，成果组织与自检清单参照控制性详细规划阶段的城市设计内容深度编制 [standard:MOHURD-CONTROL-DETAILED-PLANNING][depth:land_use_layout]；该深度表述属提交方概念自检，最终认定以专业复审与法定程序为准。**空间结构**：一轴（京张智脉线性公园走廊，全长约 9674 m 概念轴 [metric:rail_corridor_length_m]）、三核（众智园/原点社区/大钟寺）、两片（东西两侧混合街坊）、多点（广场与地标节点）。走廊本身是最核心的公共空间资产：绿地与开敞空间合计占总体设计范围约 22.9%（绿地率 [metric:green_ratio] 15.1% + 公共空间 [metric:public_space_ratio] 7.9%）。
 
 **用地结构**（概念建议，[data:geometry/land_use.geojson#LU-001] 起共 56 个街坊，无缝覆盖总体设计边界）：科研用地约 24.7% [metric:research_land_ratio]、居住约 17.4% [metric:residential_land_ratio]、商业服务业约 16.6% [metric:commercial_land_ratio]、教育约 14.3% [metric:education_land_ratio]、留白约 4.2% [metric:reserve_land_ratio]。这一配比回应公告「职住商服均衡」要求：研发与居住比例接近 3:2，避免睡城化或纯园区化；留白用地为不可预见的产业形态预留弹性。
 
@@ -133,7 +133,7 @@ iteration: "v1.0"
 
 用地布局以 56 个街坊完整覆盖总体设计边界（拓扑自检无缝无重叠）[data:geometry/land_use.geojson#LU-001][depth:land_use_layout]。产业功能比例与用地配比的对应关系：AI 研发与成果转化空间主要由 0802 科研用地（约 24.7% [metric:research_land_ratio]）与 0804 教育用地（约 14.3% [metric:education_land_ratio]）承载；生活平衡由 0701 居住（约 17.4% [metric:residential_land_ratio]）与 05 商业服务业（约 16.6% [metric:commercial_land_ratio]）保障；战略弹性由 16 留白（约 4.2% [metric:reserve_land_ratio]）预留。
 
-建筑规模以概念基底表达：118 个建筑基底合计约 210.3 万 sqm [metric:building_footprint_area_sqm]，按基底计占地比例约 18.4%，为花园型创新街区的中低密度取向 [data:geometry/buildings.geojson#BLDG-001]。拆改留分类（按概念基底数量）：保留约 19.5% [metric:renewal_keep_ratio]、改造约 20%、新建约 60%——保留优先铁路关联遗存与高校建筑；改造优先存量产业楼宇功能置换；新建集中于低效用地与三核启动区 [depth:retain_renovate_demolish]。建筑高度与体量控制：走廊两侧向走廊递降，保证遗址公园视野通廊；三核内部允许局部高点作为识别性节点——**以上均为概念引导，正式高度/强度以控规条件为准** [depth:height_massing_character][metric:building_height_control_m]。
+建筑规模以概念基底表达：118 个建筑基底合计约 210.3 万 sqm [metric:building_footprint_area_sqm]，按基底计占地比例约 18.4%，为花园型创新街区的中低密度取向 [data:geometry/buildings.geojson#BLDG-001]。拆改留分类（按概念基底数量）：保留约 19.5% [metric:renewal_keep_ratio]、改造约 20%、新建约 60%——保留优先铁路关联遗存与高校建筑；改造优先存量产业楼宇功能置换；新建集中于低效用地与三核启动区 [depth:retain_renovate_demolish]。建筑高度与体量控制：走廊两侧向走廊递降，以保持遗址公园视野通廊开敞（概念引导）；三核内部允许局部高点作为识别性节点——**以上均为概念引导，正式高度/强度以控规条件为准** [depth:height_massing_character][metric:building_height_control_m]。
 
 空间供给与运营策略：研发空间按「实验室-孵化器-总部街坊」三级供给；人才公寓优先布局在原点社区与轨道 10 分钟步行圈；商业按「社区商业+主题市集+旗舰展示」三级组织。待确认事项：权属底数、现状建筑质量普查、控规指标、市政容量（assumptions.json A-SURVEY-001/A-CONTROLS-001）。
 
