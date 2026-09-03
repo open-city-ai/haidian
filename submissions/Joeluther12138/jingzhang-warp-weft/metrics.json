@@ -1,0 +1,197 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 191159.987,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Footprints are massing suggestions; heights and intensities await official regulatory confirmation (A-CONTROLS-001).",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2912701.748,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(GREEN_SPACE features))",
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.25521303,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 312754.841,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(PUBLIC_SPACE features))",
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0274038,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "road_corridor_area_sqm": {
+      "status": "known",
+      "value": 392744.559,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(LAND_USE features with code 1207))",
+      "confidence": "medium",
+      "assumptions": [
+        "Corridor area equals the 1207 road zoning patches; centerline lengths are reported separately in roads.geojson.",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "land_use_patch_count": {
+      "status": "known",
+      "value": 28,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE features)",
+      "confidence": "high",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 21,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT features)",
+      "confidence": "high",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 3908569.872,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-001)",
+      "confidence": "low",
+      "assumptions": [
+        "Phase boundaries follow the warp-line stitching sequence; years are indicative.",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 5245071.85,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-002)",
+      "confidence": "low",
+      "assumptions": [
+        "Phase boundaries follow the warp-line stitching sequence; years are indicative.",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 2259237.554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-003)",
+      "confidence": "low",
+      "assumptions": [
+        "Phase boundaries follow the warp-line stitching sequence; years are indicative.",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
+    }
+  }
+}
