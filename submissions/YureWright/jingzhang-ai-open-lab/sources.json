@@ -1,0 +1,92 @@
+{
+ "schema_version": "0.1.0",
+ "sources": [
+  {
+   "id": "OFFICIAL-ANNOUNCEMENT",
+   "source_type": "official_public",
+   "usable_for_formal": "yes",
+   "usage": "官方公告：征集目的、三层范围、设计任务、成果深度要求。",
+   "limitation_zh": "公告为文字四至与面积描述，不含精确红线坐标；精确边界须以官方正式图纸为准。"
+  },
+  {
+   "id": "AGENT-TASKBOOK",
+   "path": "haidian/brief/site-package/agent_taskbook.json",
+   "source_type": "user_provided_cleared",
+   "usable_for_formal": "yes",
+   "usage": "共创原则、agent.1–agent.6 六项必答任务、评审维度、统一边界条款。",
+   "limitation_zh": "为任务书摘录，非法定规划依据；其空间落地要求必须表述为概念建议。"
+  },
+  {
+   "id": "SITE-PACKAGE",
+   "path": "haidian/brief/site-package/",
+   "source_type": "official_public",
+   "usable_for_formal": "yes",
+   "usage": "design_brief、allowed_design_space、enums（用地/图层/道路等级/来源类型）、ranges/planning_limits、schemas。",
+   "limitation_zh": "planning_limits 中容积率、高度、密度、绿地率、退线等控制条件 status=missing，不得由 agent 推定。"
+  },
+  {
+   "id": "BOUNDARY-SOURCE",
+   "path": "haidian/brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "agent_inferred_from_public_data",
+   "usable_for_formal": "provisional_only",
+   "usage": "提交 SITE_BOUNDARY（PROV-SITE-001）的几何来源。",
+   "limitation_zh": "official_boundary=false，boundary_precision=provisional_rough；不得作为官方红线、审批依据或精确面积依据。"
+  },
+  {
+   "id": "KEY-AREA-SOURCE",
+   "path": "haidian/brief/site-package/geometry/provisional_boundaries.geojson",
+   "source_type": "agent_inferred_from_public_data",
+   "usable_for_formal": "provisional_only",
+   "usage": "三处 KEY_AREA（PROV-KEY-001/002/003：众智园/原点社区/大钟寺）的几何来源。",
+   "limitation_zh": "临时粗略范围，面积以官方公告值为准；几何仅为示意。"
+  },
+  {
+   "id": "ORIGINAL-GEOMETRY",
+   "source_type": "agent_generated_original",
+   "usable_for_formal": "yes",
+   "usage": "用地、道路、建筑、绿地、公共空间、分期、约束、AI 设施（绣语家具）、场景节点共十个设计图层的原创生成几何。",
+   "limitation_zh": "设计建议图层，不构成法定规划控制指标；全部面积与密度类指标只在该图层口径下成立。"
+  },
+  {
+   "id": "PUBLIC-CASES",
+   "source_type": "public_common_knowledge",
+   "usable_for_formal": "background_only",
+   "usage": "AI 创新生态图谱中的全球案例（硅谷/南山/纬壹/国王十字/筑波/板桥），仅引用公开常识级机制，用于方法论借鉴。",
+   "limitation_zh": "不含具体投资额、企业名单或政府承诺；不作为正式产业结论。"
+  },
+  {
+   "id": "GB-STANDARDS",
+   "source_type": "public_standard",
+   "usable_for_formal": "background_only",
+   "usage": "对标 GB/T 51328-2018 路网密度等国家标准作为设计取向引用；其中道路网密度对照条款为第 12.1.4 条（中心城区内道路系统的密度不宜小于 8 km/km²）。",
+   "limitation_zh": "标准原文未在本仓库保存本地快照，仅作设计取向的公开背景引用，须在专业深化阶段核对原文；不得据此得出法定合规结论。",
+   "issuer": "住房和城乡建设部（主编：中国城市规划设计研究院）",
+   "standard": "GB/T 51328-2018《城市综合交通体系规划标准》",
+   "clause": "12.1.4（中心城区内道路系统的密度不宜小于 8 km/km²）",
+   "status": "background_only",
+   "accessed_date": "2026-08-31",
+   "reference_url": "https://www.awhouse.art/gbt51328-2018-%e5%9f%8e%e5%b8%82%e7%bb%bc%e5%90%88%e4%ba%a4%e9%80%9a%e4%bd%93%e7%b3%bb%e8%a7%84%e5%88%92%e6%a0%87%e5%87%86"
+  },
+  {
+   "id": "GARDEN-CITY-STANDARD-2016-235",
+   "source_type": "public_standard",
+   "usable_for_formal": "background_only",
+   "usage": "人均公园绿地对比参照：住建部建城〔2016〕235号《国家园林城市标准》指标 11（人均建设用地 ≥105㎡ 的城市人均公园绿地 ≥9.00 ㎡/人，建成区考核口径）。",
+   "limitation_zh": "分档阈值、建成区口径；本方案采用'人均公共活动空间（绿地+广场）'口径，与'人均公园绿地'口径不同，仅作方向性背景对比。",
+   "issuer": "住房和城乡建设部",
+   "standard": "建城〔2016〕235号《国家园林城市系列标准及申报评审管理办法》",
+   "clause": "指标 11：人均公园绿地面积（人均建设用地 ≥105㎡ 的城市 ≥9.00 ㎡/人）",
+   "status": "background_only",
+   "accessed_date": "2026-08-31",
+   "reference_url": "http://certprt.shaanxi.gov.cn/userfiles/2016-Year/12-Month/7-Day/%E9%99%84%E4%BB%B6%EF%BC%9A%E3%80%8A%E4%BD%8F%E6%88%BF%E5%9F%8E%E4%B9%A1%E5%BB%BA%E8%AE%BE%E9%83%A8%E5%85%B3%E4%BA%8E%E5%8D%B0%E5%8F%91%E5%9B%BD%E5%AE%B6%E5%9B%AD%E6%9E%97%E5%9F%8E%E5%B8%82%E7%B3%BB%E5%88%97%E6%A0%87%E5%87%86%E5%8F%8A%E7%94%B3%E6%8A%A5%E8%AF%84%E5%AE%A1%E7%90%86%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95%E7%9A%84%E9%80%9A%E7%9F%A5%E3%80%8B%EF%BC%88%E5%BB%BA%E5%9F%8E%E3%80%942016%E3%80%95235%E5%8F%B7%EF%BC%89.pdf"
+  },
+  {
+   "id": "SOURCE-REGISTRY",
+   "path": "haidian/data/source_registry.json",
+   "source_type": "official_public",
+   "usable_for_formal": "yes",
+   "usage": "组织方中央来源登记表（9 条）：approved_formal=7、provisional=1、background=1；评审脚本按 repo_root 读取，本次投稿按规范位置提交以确保 total=9。",
+   "limitation_zh": "本投稿包自报分层（5 formal / 2 provisional_only / 3 background_only + 本表对照）供评审交叉核验；正式判定以评审包 source_registry_summary 为准。"
+  }
+ ]
+}
