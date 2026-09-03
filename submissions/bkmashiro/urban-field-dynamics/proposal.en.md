@@ -10,7 +10,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A multi-world, ablation-driven approach to public urban strategy: do not prescribe one end state; identify where to commit, preserve optionality, or wait for a trigger."
 tracks: ["civic-agent-governance", "ai-traffic-walkability", "ai-origin-community"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.2"
+iteration: "v0.3"
 ---
 
 # Urban Field Dynamics
@@ -23,7 +23,7 @@ This proposal responds to the three project scopes, three key areas, and six age
 
 Spatial inputs are tiered by evidence status. The submitted site and key-area polygons are repository-provided provisional constraints. They support intake visualisation, topology checks, and concept discussion, but they are not official redlines or a precise basis for statutory controls, ownership, quantities, or engineering alignments. [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [source:SOURCE-REGISTRY] All dependent layers, metrics, figures, and model inputs must be recalculated when official polygons and control-plan data become available.
 
-The model description follows ODD. Interpretation follows UrbanSim’s warning that long-horizon parcel outcomes should not be presented as accurate individual predictions, and robust decision making’s emphasis on stress-testing policies across plausible futures. [source:ODD-PROTOCOL-2020] [source:URBANSIM-DOCUMENTATION] [source:ROBUST-DECISION-MAKING] The public Python engine is pinned to commit `524ee2f1ee5c37b9e77775e327285bf8af1c1f4a`. Its implemented evidence is only a synthetic redevelopment qualification slice, not a calibrated Haidian forecast. [source:UFD-ENGINE] [source:UFD-SMOKE-V1]
+The model description follows ODD. Interpretation follows UrbanSim’s warning that long-horizon parcel outcomes should not be presented as accurate individual predictions, and robust decision making’s emphasis on stress-testing policies across plausible futures. [source:ODD-PROTOCOL-2020] [source:URBANSIM-DOCUMENTATION] [source:ROBUST-DECISION-MAKING] The public Python repository is pinned to `e4e815f01569f608acd7145b0b7fd2acb0fc874c`; qualification artifacts pin implementation commit `518110263155b67295a2e31359cbb9a9cbdd0750`. The engine now covers weighted household and firm dynamics, a multimodal transport surrogate, labour matching, environment, public services, budgets, market clearing, equity, stress and replay, with 138 tests. A 32-world qualification, 8-world sweep and 8-world stress canary completed bounded export and full replay. [source:UFD-ENGINE] [source:UFD-QUALIFICATION-2026-08-10] The bundled `smoke-v1` remains the original intake evidence rather than being relabelled as current qualification. All evidence remains synthetic mechanism qualification, not a calibrated Haidian forecast, cost estimate or implementation claim. [source:UFD-SMOKE-V1]
 
 ![Evidence chain](assets/figures/site-overview.en.png)
 
@@ -69,7 +69,7 @@ The system uses weighted cohorts rather than personal trajectories. Five residen
 
 Ten scenario cards define objects, inputs, uncertainty, and a human gate: (1) multi-world policy room; (2) walking-link leverage scan; (3) transit-first coordination test; (4) renewal-window radar; (5) firm factor matching; (6) public-service capacity stress test; (7) heatwave and shade operations; (8) quiet-space budget; (9) Night Light Budget; and (10) Trigger/Optionality ledger. The first three relevant industrial tests examine auditable multi-world execution, infrastructure coordination failure, and asset-inertia triggers.
 
-Only scenario 4 has an implemented synthetic slice. Mobility will first use a fast surrogate; AequilibraE is reserved for selected scenarios after observed OD and capacity inputs exist. [source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-ENGINE] Every scenario remains advisory: it must display uncertainty, affected groups, data gaps, reversible exit conditions, and a named human review point. [depth:ai_scenario_system]
+The engine now implements synthetic mechanism slices supporting scenarios 1, 3, 4, 5, 6 and 7: matched policy and ablation campaigns, multimodal assignment, cohort and labour dynamics, service capacity, and heat/environment stress. It has no observed Haidian OD, capacity, firm, service or environmental calibration. AequilibraE remains a future external oracle for selected scenarios after observed OD and capacity inputs exist. [source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-ENGINE] Every scenario remains advisory: it must display uncertainty, affected groups, data gaps, reversible exit conditions, and a named human review point. [depth:ai_scenario_system]
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -81,11 +81,11 @@ Retain/renovate/demolish decisions follow evidence first, classification second,
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
-Mobility closes the loop `LandUse → Trips → Congestion → Accessibility → LandValue → Development → LandUse`. The planned network includes walking, cycling, road, bus, metro, and rail as sparse multimodal graphs. A fast surrogate runs in every world; selected policies and years can be checked with AequilibraE OD, skims, generalised cost, and assignment. The smoke input `accessibility_delta=0.35` is synthetic and does not represent station, road, ridership, or measured travel-time improvement. [source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-SMOKE-V1]
+Mobility closes the loop `LandUse → Trips → Congestion → Accessibility → LandValue → Development → LandUse`. The current Python engine runs a sparse walking, cycling, road, bus and rail fast surrogate in every world, with capacity feedback, BPR travel time, logit mode choice, MSA assignment and generalised-cost skims. It still uses stylised OD and synthetic capacity; AequilibraE comparison remains conditional on observed OD, capacity and traffic counts. The bundled smoke input `accessibility_delta=0.35` remains a synthetic mechanism input and does not represent a station, road, ridership or measured travel-time improvement. [source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-ENGINE] [source:UFD-SMOKE-V1]
 
 Public investment can shift a coordination equilibrium before private demand appears, but appraisal must compare long-run welfare, cost, exposure, and distribution. Controls include public transport, road-space allocation, walking repairs, services, blue-green infrastructure, fees, and environmental rules. A small crossing or bus-priority change may have greater leverage than a large project; project size is not a benefit metric. [data:geometry/roads.geojson#ROAD-001] [depth:transport_municipal_system]
 
-Power, drainage, fire safety, healthcare, education, and community services receive explicit capacities. The model may not silently exceed them. With no pipe, flood, fire, facility-capacity, or served-population data, the submission defines interfaces and evidence gaps only. Facility allocation considers access cost, inequality, and shortage and remains subject to professional confirmation. [standard:MOHURD-CONTROL-DETAILED-PLANNING]
+Public services and infrastructure use explicit capacity constraints. The current synthetic engine implements service capacity, quality and crowding feedback plus annual and cumulative ledgers for transport, services, capital, operations and redevelopment, including unmet-demand diagnostics. With no pipe, flood, fire, facility-capacity, served-population or public-finance data, these results qualify mechanisms and fail-closed contracts only; they do not estimate real supply or budgets. Facility allocation considers access cost, inequality and shortage and remains subject to professional confirmation. [source:UFD-QUALIFICATION-2026-08-10] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
 
 ![Mobility, blue-green, and service feedback](assets/figures/mobility-bluegreen.en.png)
 
@@ -101,7 +101,7 @@ Three “AI pilgrimage landmarks” are evidence interfaces rather than monument
 
 The 2026–2030 phase builds evidence and institutional foundations: a public source ledger, model ODD, a replacement path for provisional geometry, walking-link surveys, building-renewal baselines, and environmental/service-capacity baselines. Three reversible pilots are the World Switchyard, renewal-window radar, and one walking-leverage repair. Every physical pilot remains conditional on professional checks and competent-authority procedure.
 
-From 2030–2035, mobility, household and firm cohorts, exposure, and service capacity enter rolling planning only after qualification. Projects proceed only when named triggers are met. From 2035–2050, policy combinations are recalculated every five years, preserving adaptability to demographic, technical, economic, and climate changes. [data:geometry/phasing.geojson#PHASE-001] Current phasing is conceptual and does not prove budget, delivery body, or programme. [depth:implementation_phasing]
+From 2030–2035, the transport surrogate, household and firm cohorts, exposure, and service capacity that now have synthetic qualification may enter rolling planning only after observed-data integration, calibration and professional validation. Projects proceed only when named triggers and statutory procedures are met. From 2035–2050, policy combinations are recalculated every five years, preserving adaptability to demographic, technical, economic, and climate changes. [data:geometry/phasing.geojson#PHASE-001] Current phasing is conceptual and does not prove budget, delivery body, or programme. [depth:implementation_phasing]
 
 Operations use four public reviews each year and a five-year rolling plan. Spring updates data and assumptions; summer tests heat and event stress; autumn publishes policy/ablation comparisons; winter examines equity, capacity, and exit decisions. The developer community maintains the open engine and regression tests; specialists maintain data interpretation; residents can inspect winners, burdened groups, uncertainty, and manual-review routes.
 
@@ -117,7 +117,7 @@ The package includes `site_area_sqm`, `building_footprint_area_sqm`, `green_rati
 
 ## Risk, Copyright, and Compliance
 
-The primary risk is mistaking computational precision for factual accuracy. Provisional polygon, synthetic unit, design target, and unknown control are separate evidence statuses; no model output inherits a higher status than its inputs. A second risk is mechanism overclaim: only redevelopment is implemented, while mobility, household, firm, environment, and service modules remain development and calibration work. A third risk is automated decision making: the system compares and explains but does not approve demolition, roads, service allocation, or investment.
+The primary risk is mistaking computational precision for factual accuracy. Provisional polygon, synthetic unit, design target, and unknown control are separate evidence statuses; no model output inherits a higher status than its inputs. A second risk is mechanism overclaim: transport, household, firm, labour, environment, service, budget and market modules now have synthetic qualification but no observed Haidian calibration or validation. A third risk is automated decision making: the system compares and explains but does not approve demolition, roads, service allocation, or investment.
 
 Privacy is protected through aggregate weighted cohorts rather than identifiable trajectories. Enterprise names, output, investment, and recruitment are not invented. No undisclosed redline, ownership, utility, or heritage data is introduced. Projects, events, operations, and landmarks are concepts requiring planning, mobility, municipal, heritage, ecological, safety, copyright, and public review. [source:SITE-PACKAGE] [source:SOURCE-REGISTRY]
 
@@ -131,7 +131,7 @@ Code uses the licence declared in its public repository. Data, standards, tools,
 4. UrbanSim documentation on annual simulation, development, location choice, and multi-run interpretation.
 5. World Bank Policy Research Working Paper 6906 on robust decision making under deep uncertainty.
 6. AequilibraE documentation on assignment, skims, and generalised cost.
-7. Urban Field Dynamics engine, commit `524ee2f1ee5c37b9e77775e327285bf8af1c1f4a`.
+7. Urban Field Dynamics engine, repository commit `e4e815f01569f608acd7145b0b7fd2acb0fc874c`; qualification implementation commit `518110263155b67295a2e31359cbb9a9cbdd0750`.
 8. National urban design and control-plan-related standards listed in the package.
 
 The complete machine-readable index and usage limits are in `sources.json`. Citation does not grant a source official spatial-control status. [source:UFD-ENGINE] [source:ODD-PROTOCOL-2020]
