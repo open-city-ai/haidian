@@ -13,9 +13,9 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
+      "confidence": "low",
       "assumptions": [
-        "Trusted official boundary is present in the site package."
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
       ]
     },
     "building_footprint_area_sqm": {
@@ -28,7 +28,8 @@
       "formula": "sum(polygon_area(building_footprints))",
       "confidence": "medium",
       "assumptions": [
-        "Footprints are massing suggestions; heights and intensities await official regulatory confirmation (A-CONTROLS-001)."
+        "Footprints are massing suggestions; heights and intensities await official regulatory confirmation (A-CONTROLS-001).",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
       ]
     },
     "green_space_area_sqm": {
@@ -39,8 +40,10 @@
         "geometry/green_space.geojson"
       ],
       "formula": "sum(polygon_area(GREEN_SPACE features))",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
     },
     "green_ratio": {
       "status": "known",
@@ -51,8 +54,10 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
     },
     "public_space_area_sqm": {
       "status": "known",
@@ -62,8 +67,10 @@
         "geometry/public_space.geojson"
       ],
       "formula": "sum(polygon_area(PUBLIC_SPACE features))",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
     },
     "public_space_ratio": {
       "status": "known",
@@ -74,8 +81,10 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
     },
     "road_corridor_area_sqm": {
       "status": "known",
@@ -87,7 +96,8 @@
       "formula": "sum(polygon_area(LAND_USE features with code 1207))",
       "confidence": "medium",
       "assumptions": [
-        "Corridor area equals the 1207 road zoning patches; centerline lengths are reported separately in roads.geojson."
+        "Corridor area equals the 1207 road zoning patches; centerline lengths are reported separately in roads.geojson.",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
       ]
     },
     "land_use_patch_count": {
@@ -99,7 +109,9 @@
       ],
       "formula": "count(LAND_USE features)",
       "confidence": "high",
-      "assumptions": []
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
     },
     "building_count": {
       "status": "known",
@@ -110,7 +122,9 @@
       ],
       "formula": "count(BUILDING_FOOTPRINT features)",
       "confidence": "high",
-      "assumptions": []
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
     },
     "phase_1_area_sqm": {
       "status": "known",
@@ -120,22 +134,24 @@
         "geometry/phasing.geojson"
       ],
       "formula": "polygon_area(PHASE-001)",
-      "confidence": "medium",
+      "confidence": "low",
       "assumptions": [
-        "Phase boundaries follow the warp-line stitching sequence; years are indicative."
+        "Phase boundaries follow the warp-line stitching sequence; years are indicative.",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
       ]
     },
     "phase_2_area_sqm": {
       "status": "known",
-      "value": 5245071.850,
+      "value": 5245071.85,
       "unit": "sqm",
       "source_files": [
         "geometry/phasing.geojson"
       ],
       "formula": "polygon_area(PHASE-002)",
-      "confidence": "medium",
+      "confidence": "low",
       "assumptions": [
-        "Phase boundaries follow the warp-line stitching sequence; years are indicative."
+        "Phase boundaries follow the warp-line stitching sequence; years are indicative.",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
       ]
     },
     "phase_3_area_sqm": {
@@ -146,9 +162,10 @@
         "geometry/phasing.geojson"
       ],
       "formula": "polygon_area(PHASE-003)",
-      "confidence": "medium",
+      "confidence": "low",
       "assumptions": [
-        "Phase boundaries follow the warp-line stitching sequence; years are indicative."
+        "Phase boundaries follow the warp-line stitching sequence; years are indicative.",
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
       ]
     },
     "floor_area_ratio": {
@@ -171,8 +188,10 @@
         "geometry/key_areas.geojson"
       ],
       "formula": "count(key_detailed_design_areas)",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Interim design-model value recomputed from the provisional site boundary (provisional_constraint, official_boundary=false); not an official redline or precise-area basis; must be recalculated in full when official geometry is published."
+      ]
     }
   }
 }
