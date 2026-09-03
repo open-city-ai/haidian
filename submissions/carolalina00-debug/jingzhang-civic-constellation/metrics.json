@@ -1,0 +1,413 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary); polygon_area computed in EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E).",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.331045,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space)) / polygon_area(site_boundary)",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it.",
+    "green_space holds park green only; it is disjoint from public_space by construction (difference operation), so the two ratios never double-count."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.128608,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space)) / polygon_area(site_boundary)",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it.",
+    "public_space covers hard plazas, the BM nodes, trunk public edges and neighbourhood squares; vegetated park green is excluded here and counted once in green_ratio."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 3778158.813,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space)); polygon_area computed in EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E).",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 1467775.819,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space)); polygon_area computed in EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E).",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 379005.085,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints)); polygon_area computed in EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E).",
+   "confidence": "medium",
+   "assumptions": [
+    "Building footprints are conceptual prototypes, not surveyed footprints, approved buildings, or a retain/renovate/demolish conclusion."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA features)",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it."
+   ]
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario cards in the AI+ scenario chapter)",
+   "confidence": "medium",
+   "assumptions": [
+    "Taskbook agent.3 requires at least 10."
+   ]
+  },
+  "industry_validation_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(industry test and validation scenarios)",
+   "confidence": "medium",
+   "assumptions": [
+    "Taskbook agent.3 requires at least 3."
+   ]
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(distinct user personas)",
+   "confidence": "medium",
+   "assumptions": [
+    "Taskbook agent.3 requires at least 5."
+   ]
+  },
+  "ecosystem_case_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(global AI ecosystem cases)",
+   "confidence": "medium",
+   "assumptions": [
+    "Taskbook agent.2 requires 5-8. Only transferable mechanisms are extracted; no case form, brand or image is copied."
+   ]
+  },
+  "landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "proposal.md"
+   ],
+   "formula": "count(AI pilgrimage landmarks)",
+   "confidence": "medium",
+   "assumptions": [
+    "Taskbook agent.4 requires at least 3: BM0 origin plaza, Zhongzhiyuan calibration court, Dazhongsi launch court."
+   ]
+  },
+  "benchmark_node_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(PUBLIC_SPACE features with a BM calibration role)",
+   "confidence": "medium",
+   "assumptions": [
+    "Three are the pilgrimage landmarks; two are intermediate milestone nodes on the trunk."
+   ]
+  },
+  "milestone_marker_count": {
+   "status": "known",
+   "value": 64,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(conceptual BM milestones along the trunk)",
+   "confidence": "medium",
+   "assumptions": [
+    "Rail milestones marked at sleeper rhythm; the count is a design proposal, not a surveyed stationing."
+   ]
+  },
+  "land_use_cell_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(LAND_USE features)",
+   "confidence": "medium",
+   "assumptions": [
+    "Cells tile the submitted boundary with no gaps and no overlaps; neighbouring cells share cut-line coordinates."
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(BUILDING_FOOTPRINT features)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual prototypes only."
+   ]
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(PHASE features)",
+   "confidence": "medium",
+   "assumptions": [
+    "Phasing expresses a trial sequence; it does not imply funding, approval, or a construction commitment."
+   ]
+  },
+  "corridor_length_m": {
+   "status": "known",
+   "value": 9723.47,
+   "unit": "m",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "north_south_extent(submitted_site_boundary); polygon_area computed in EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E).",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it."
+   ]
+  },
+  "corridor_width_m": {
+   "status": "known",
+   "value": 1374.007,
+   "unit": "m",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "east_west_extent(submitted_site_boundary); polygon_area computed in EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E).",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it."
+   ]
+  },
+  "corridor_linearity_ratio": {
+   "status": "known",
+   "value": 0.1413,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "corridor_width_m / corridor_length_m",
+   "confidence": "low",
+   "assumptions": [
+    "Derived from the provisional site boundary; not an official redline. Recompute from official geometry when the organiser releases it.",
+    "Width-to-length, so the value stays within [0,1]. About 0.14 means the design area is roughly seven times longer than it is wide -- the linear rail-corridor form that makes the Y-shaped switchback reading possible on this specific site and not on a square or radial one."
+   ]
+  },
+  "road_length_m": {
+   "status": "known",
+   "value": 23063.538,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(road_centerlines)); polygon_area computed in EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E).",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual network: one trunk greenway, five east-west seams and one neighbourhood loop. Not a road red-line or alignment."
+   ]
+  },
+  "site_anchor_argument": {
+   "status": "not_applicable",
+   "value": null,
+   "unit": "narrative",
+   "source_files": [
+    "proposal.md",
+    "assumptions.json"
+   ],
+   "formula": "qualitative narrative (not a measured quantity): this proposal's core claims rest on (1) Jing-Zhang railway first autonomous survey and datum, (2) the 1:7 linear rail-corridor form, and (3) the three taskbook-named key areas. See assumptions.json#A-SITE-ANCHOR-001 for the full set of underlying facts and their scope.",
+   "confidence": "narrative",
+   "assumptions": [
+    "This entry is a narrative argument, not a measured statistic; the previously listed numeric site_anchor_dependency_ratio is removed in response to the AI review (its value of 1.0 was a single-author coding and could not be cross-checked against an external corpus)."
+   ]
+  },
+  "benchmark_anchor_lock": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(independently sufficient non-portability locks)",
+   "confidence": "medium",
+   "assumptions": [
+    "Historical lock (first自主 survey and datum), semantic lock (GROUND TRUTH as a measurement term already tied to this corridor), and exclusivity lock (a datum origin can only be declared once)."
+   ]
+  },
+  "green_public_disjoint": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "formula": "1 - intersection_area(green_space, public_space) / min(green_space_area_sqm, public_space_area_sqm)",
+   "confidence": "high",
+   "assumptions": [
+    "Built by construction: public geometry is differenced against the green geometry before it is written."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(floor_area) / site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Regulatory detailed plan, plot FAR and building height controls have not been released by the organiser; supplying a number would imply a statutory conclusion."
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "max(building_height)",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "No official height control or surveyed building data is available in the site package."
+  },
+  "total_floor_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(floor_area)",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Depends on FAR and height controls that the organiser has not supplied."
+  },
+  "population_served": {
+   "status": "unknown",
+   "value": null,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "resident population within the submitted boundary",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Only district-level statistics are public; allocating them proportionally onto a provisional boundary would fabricate precision."
+  },
+  "daily_visitor_estimate": {
+   "status": "unknown",
+   "value": null,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "modelled daily visits under the phased programme",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "No baseline survey, transport count or programme schedule has been confirmed; a forecast would be a fabricated implementation claim."
+  },
+  "ecosystem_pillar_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "assets/figures/ai-ecosystem.png"
+   ],
+   "formula": "count of distinct pillars in the AI innovation ecosystem map",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "public_space_module_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "assets/figures/public-space-kit.png"
+   ],
+   "formula": "count of modular public-space components in the kit",
+   "confidence": "high",
+   "assumptions": []
+  }
+ }
+}
