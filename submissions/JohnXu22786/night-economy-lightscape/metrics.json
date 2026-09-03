@@ -1,0 +1,373 @@
+{
+ "schema_version": "0.1.0",
+  "notes_zh": "全部面积类指标来自本包 provisional 概念几何，属参与者临时模型数据：机器可校验的完整数值仅保留在此文件与 visual 页面的 data-value 中，人类可读展示一律就近取整。land_use 1401 比例与七类用地合计均按同一 EPSG:4548 聚合规则复算，七类合计 100.0%，无未分类/其他残差。官方数据发布后按同口径整体复算。",
+ "display_precision": {
+  "rule": "provisional values are displayed rounded (site area in ha with 0-1 decimals, ratios in percent with 1 decimal); full machine values kept for validation only",
+   "example_display": "site_area_sqm -> 约1141公顷; green_ratio -> 约11.0%; land_use_1401_ratio -> 约27.3%; public_space_ratio -> 约0.45%"
+ },
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(provisional_site_boundary, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Provisional boundary, not an official redline; display rounded to ~1,141 ha (~11.4 km2, consistent with official announcement text caliber)."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1255908.493,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "union(conceptual green polygons, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Concept greenline caliber; display rounded to ~126 ha; not the land-use-class park-green share (27.3%, metric land_use_1401_ratio) which uses a different layer. See proposal land-use caliber statement."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 51850.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "union(conceptual public-space polygons, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Concept public-space caliber; display rounded to ~5.2 ha."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 111600.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "union(conceptual reuse-first envelopes, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Concept reuse-first envelopes; display rounded to ~11.2 ha."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.110044,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "Concept greenline caliber (green_space layer / site). The land-use-class park-green share is 27.3% (land_use 1401; five features aggregated from geometry/land_use.geojson) and is a different layer; both are explained in proposal.md. Display ~11.0%."
+   ]
+  },
+  "land_use_1401_area_sqm": {
+   "status": "known",
+   "value": 3116095.041,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(projected_area(feature) for land_use_code == '1401', EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Five 1401 features are aggregated from the 27 land-use features; the seven code categories exhaust the file with no residual other/unclassified category."
+   ]
+  },
+  "land_use_1401_ratio": {
+   "status": "known",
+   "value": 0.2730345,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(projected_area(feature) for land_use_code == '1401', EPSG:4548) / polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Computed from 3,116,095.041 sqm / 11,412,825.386 sqm = 27.30345%, displayed as approximately 27.3%; seven land-use codes sum to 100.0%, so no other 4.6% bucket is used."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.004543,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "Concept public-space caliber; display ~0.45%."
+   ]
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 10154.351,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(conceptual paths, EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Concept network length; display ~10.2 km."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(area_id in key_areas.geojson)",
+   "confidence": "medium",
+   "assumptions": [
+    "Three key areas per official announcement text; polygons provisional."
+   ]
+  },
+  "land_use_zone_count": {
+   "status": "known",
+   "value": 27,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(land_use.geojson features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_unit_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(buildings.geojson features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(scenario_type == ai_landmark)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 9,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space scenario nodes + landmarks)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "industry_test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(industry_validation scenario test protocols table rows)",
+   "confidence": "high",
+   "assumptions": [
+    "Three industry test protocols are explicitly listed in the proposal (产业测试场景（测试协议）table)."
+   ]
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(representative user groups in persona table)",
+   "confidence": "high",
+   "assumptions": [
+    "Six persona types: night commuter, young resident, visitor/tourist, stallholder, elderly nearby resident, night operation staff."
+   ]
+  },
+  "global_case_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md",
+    "sources.json"
+   ],
+   "formula": "count(benchmark case table rows)",
+   "confidence": "high",
+   "assumptions": [
+    "Six cases registered case-by-case in sources.json (CASE-SRC-* entries); claims are public-channel caliber only."
+   ]
+  },
+  "phase_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(phasing polygons)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "annual_program_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(annual programme table rows)",
+   "confidence": "high",
+   "assumptions": [
+    "Three annual programme brands: Night Market Season, Summer Open Stage, Winter Light Festival (concepts)."
+   ]
+  },
+  "ai_ecosystem_case_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md",
+    "sources.json"
+   ],
+   "formula": "count(rows in global AI innovation ecosystem benchmark table)",
+   "confidence": "high",
+   "assumptions": [
+    "Six global AI innovation ecosystem cases (ECOSYS-SRC-*) registered in sources.json; public-channel mechanism overviews only."
+   ]
+  },
+  "ai_ecosystem_element_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(rows in the eight-element mechanism table: land, space, industry, capital, talent, compute, data, scenario)",
+   "confidence": "high",
+   "assumptions": [
+    "Eight elements per the land-space-industry-capital-talent-compute-data-scenario mechanism in proposal.md."
+   ]
+  },
+  "pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(differentiated AI pilgrimage landmark concepts: Origin Ring, Echo Commons, Future Eye)",
+   "confidence": "high",
+   "assumptions": [
+    "Three differentiated AI pilgrimage-landmark concepts paired with the three functional night nodes; concept installations only."
+   ]
+  },
+  "honor_category_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(honor display categories: open-source co-creation, community co-building, market reputation)",
+   "confidence": "high",
+   "assumptions": [
+    "Three honor categories with award rules, review and display surfaces in the honor display system table."
+   ]
+  },
+  "component_library_count": {
+   "status": "known",
+   "value": 8,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md",
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(rows in the reversible public-space component library table)",
+   "confidence": "high",
+   "assumptions": [
+    "Eight component types with spatial and operational mappings; mapped to public_space geometry."
+   ]
+  },
+  "communication_copy_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(rows in the bilingual culture-narrative copy bank table)",
+   "confidence": "high",
+   "assumptions": [
+    "Six reusable bilingual copy blocks (mission, elevator pitch, wayfinding, invitation, disclosure intro, media one-liner)."
+   ]
+  },
+  "developer_mechanism_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(rows in the developer community operation mechanism table)",
+   "confidence": "high",
+   "assumptions": [
+    "Four developer-community mechanisms (partner plan, community rhythm, asset opening rules, operation support); concept-level."
+   ]
+  },
+  "conversion_step_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "proposal.en.md"
+   ],
+   "formula": "count(rows in the non-committal talent/enterprise/developer conversion pathway table)",
+   "confidence": "high",
+   "assumptions": [
+    "Four non-committal steps: experiencer, co-creator, pilot participant, ecosystem partner."
+   ]
+  }
+ }
+}
