@@ -1,0 +1,677 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(SITE_BOUNDARY)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ],
+      "interpretation": "provisional_design_extent_only"
+    },
+    "official_site_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(official SITE_BOUNDARY) in EPSG:4548",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official survey-grade site polygon has not been released in the repository."
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2937004.67,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(GREEN_SPACE)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.257342,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 824627.833,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(PUBLIC_SPACE polygons)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.072254,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 109917.954,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(concept BUILDING_FOOTPRINT envelopes)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Footprints are concept capacity envelopes; existing buildings, ownership, retention, and demolition are unknown."
+      ]
+    },
+    "building_envelope_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT)",
+      "confidence": "high",
+      "assumptions": [
+        "Count refers only to concept capacity envelopes."
+      ]
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE)",
+      "confidence": "high",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 30524.93,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(ROAD_CENTERLINE)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Routes are conceptual links pending transport, accessibility, and right-of-way review."
+      ]
+    },
+    "evidence_spine_length_m": {
+      "status": "known",
+      "value": 9716.124,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson#ROAD-001"
+      ],
+      "formula": "length(ROAD-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "The line is a design route, not an existing surveyed path."
+      ]
+    },
+    "road_link_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD_CENTERLINE)",
+      "confidence": "high",
+      "assumptions": [
+        "Count refers to concept links."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": [
+        "SC-01 through SC-12 mirror the bilingual proposal cards; nodes are proposed tests whose environmental performance is not yet measured."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE where industry_test=true)",
+      "confidence": "high",
+      "assumptions": [
+        "TVS cards are SC-01, SC-03, SC-04, and SC-05; the count records the design program, not completed industry tests."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(distinct non-identifying service personas in the design program)",
+      "confidence": "medium",
+      "assumptions": [
+        "Personas describe service needs and never create personal profiles."
+      ]
+    },
+    "pilgrimage_honor_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(named pilgrimage and honor nodes in the operating program)",
+      "confidence": "medium",
+      "assumptions": [
+        "Names and operations are proposals pending cultural, accessibility, and event review."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(named pilgrimage and honor landmarks in the operating program)",
+      "confidence": "medium",
+      "assumptions": [
+        "Names and operations are proposals pending cultural, accessibility, and event review."
+      ]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(global reference cases mapped to explicit transfer limits)",
+      "confidence": "medium",
+      "assumptions": [
+        "Cases are precedents only and have no legal force in Beijing."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE)",
+      "confidence": "high",
+      "assumptions": [
+        "Sequence is conceptual pending ownership, funding, approval, and implementation bodies."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(distinct renewal projects in the implementation list)",
+      "confidence": "medium",
+      "assumptions": [
+        "The nine projects are a concept implementation list pending ownership, funding, approvals, and delivery bodies."
+      ]
+    },
+    "cross_link_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson#ROAD-003",
+        "geometry/roads.geojson#ROAD-004",
+        "geometry/roads.geojson#ROAD-005"
+      ],
+      "formula": "count(design cross-links ROAD-003 through ROAD-005)",
+      "confidence": "high",
+      "assumptions": [
+        "Cross-links are conceptual and require transport, accessibility, and right-of-way review."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA)",
+      "confidence": "high",
+      "assumptions": [
+        "All three key-area geometries are provisional rough proxies, not official polygons."
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 2182189.717,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code='0802')) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2937004.67,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code='1401')) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 1967060.588,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code='0702')) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 1916612.764,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code='05')) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "land_use_0806_area_sqm": {
+      "status": "known",
+      "value": 2409957.647,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code='0806')) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from conceptual design geometry; it is not a statutory planning control or measured performance.",
+        "The site boundary is a repository-maintained provisional rough geometry, not an official redline; all derived design metrics must be recalculated when official polygons are supplied."
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "formula": "area(PROV-KEY-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "This is the area of the repository-maintained provisional rough proxy, not an official detailed-design boundary."
+      ]
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "formula": "area(PROV-KEY-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "This is the area of the repository-maintained provisional rough proxy, not an official detailed-design boundary."
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "formula": "area(PROV-KEY-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "This is the area of the repository-maintained provisional rough proxy, not an official detailed-design boundary."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(approved building floor area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved control value or survey-grade control geometry is present in the public site package."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved control value or survey-grade control geometry is present in the public site package."
+    },
+    "statutory_building_density_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "approved_building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved control value or survey-grade control geometry is present in the public site package."
+    },
+    "statutory_height_limit_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "approved maximum building height",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved control value or survey-grade control geometry is present in the public site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "approved or surveyed building height",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Neither surveyed existing heights nor approved design height controls are available."
+    },
+    "building_density_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "approved_building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved control value or survey-grade control geometry is present in the public site package."
+    },
+    "statutory_setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "approved minimum building setback",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved control value or survey-grade control geometry is present in the public site package."
+    },
+    "official_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "approved green area / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved control value or survey-grade control geometry is present in the public site package."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(approved ROAD_AREA polygons)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Only concept centerlines are available; road redlines and road-area polygons are unknown."
+    },
+    "parking_supply_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(approved parking spaces)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Parking demand, supply, ownership, and approved standards have not been provided."
+    },
+    "municipal_capacity_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "professional multi-utility capacity assessment",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Utility networks, loads, condition, and expansion capacity have not been provided."
+    },
+    "energy_capacity_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "professional energy-supply capacity assessment",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Energy-system capacity and demand data have not been provided."
+    },
+    "site_pm25_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "quality-assured site monitoring time series",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No quality-assured site-scale PM2.5 monitoring series or time-activity baseline has been collected.",
+      "display_unit": "µg/m³"
+    },
+    "site_no2_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "quality-assured site monitoring time series",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No quality-assured site-scale NO₂ monitoring series or time-activity baseline has been collected.",
+      "display_unit": "µg/m³"
+    },
+    "site_o3_baseline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "quality-assured site monitoring time series",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No quality-assured site-scale O₃ monitoring series or time-activity baseline has been collected.",
+      "display_unit": "µg/m³"
+    },
+    "personal_exposure_reduction_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "paired route concentration and time-activity comparison",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No person-level tracking is proposed and no anonymous aggregate time-activity study or validated comparison has been completed."
+    },
+    "exposure_reduction_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "validated paired concentration and time-activity comparison",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No time-activity evidence or validated before-and-after route comparison exists; exposure reduction must not be claimed."
+    },
+    "health_outcome_benefit_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "validated population health-risk assessment",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Population, baseline health, exposure-response, and uncertainty inputs are unavailable; health benefit must not be claimed."
+    },
+    "health_outcome_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "validated population health-risk outcome count",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Population, baseline health, exposure-response, and uncertainty inputs are unavailable; avoided cases or deaths must not be claimed."
+    },
+    "indoor_air_standard_compliance_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "compliant monitored rooms / tested rooms",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No completed professional indoor-air test exists; concept Indoor Air Evidence Rooms cannot be declared compliant."
+    },
+    "indoor_compliance_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "professional indoor-air test against applicable standard",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No completed professional indoor-air test exists; proposed rooms have no compliance status."
+    }
+  }
+}
