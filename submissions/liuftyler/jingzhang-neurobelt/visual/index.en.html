@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingzhang NeuroBelt — Visualization Dashboard</title>
+<style>
+:root{
+  --neuro-cyan:#00B4D8;--rail-gray:#6C757D;--amber:#FFB703;
+  --bg:#F8F9FA;--card:#FFFFFF;--text:#212529;--muted:#6C757D;
+  --border:#DEE2E6;--green:#52B788;--blue:#48CAE4;--warn:#FFB703;
+  --pass:#52B788;--fail:#E63946;--pending:#FFB703;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Microsoft YaHei',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.container{max-width:1400px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:40px 20px;background:linear-gradient(135deg,var(--neuro-cyan),var(--rail-gray));color:#fff;border-radius:12px;margin-bottom:24px}
+.header h1{font-size:2.4em;margin-bottom:8px;letter-spacing:2px}
+.header .subtitle{font-size:1.1em;opacity:.9;margin-bottom:12px}
+.header .meta{font-size:.85em;opacity:.7;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.section{background:var(--card);border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.section h2{font-size:1.4em;color:var(--neuro-cyan);border-bottom:2px solid var(--border);padding-bottom:8px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section h2 .icon{width:28px;height:28px;background:var(--neuro-cyan);color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7em;font-weight:bold}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:16px}
+.metric-card{background:var(--bg);border-radius:10px;padding:20px;text-align:center;border:2px solid var(--border);transition:border-color .3s}
+.metric-card:hover{border-color:var(--neuro-cyan)}
+.metric-card .label{font-size:.85em;color:var(--muted);margin-bottom:8px}
+.metric-card .value{font-size:1.8em;font-weight:700;color:var(--neuro-cyan)}
+.metric-card .unit{font-size:.8em;color:var(--muted)}
+.metric-card .status{font-size:.7em;margin-top:6px;padding:2px 8px;border-radius:10px;display:inline-block}
+.status-known{background:#d4edda;color:#155724}
+.status-unknown{background:#fff3cd;color:#856404}
+.figures-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:16px}
+.figure-card{background:var(--bg);border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.figure-card img{width:100%;height:auto;display:block}
+.figure-card .caption{padding:12px;font-size:.85em;color:var(--muted)}
+.figure-card .caption strong{color:var(--text)}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.task-card{background:var(--bg);border-radius:8px;padding:16px;border-left:4px solid var(--neuro-cyan)}
+.task-card .task-id{font-size:.75em;color:var(--neuro-cyan);font-weight:700;text-transform:uppercase}
+.task-card .task-title{font-size:1em;font-weight:600;margin:4px 0}
+.task-card .task-status{font-size:.75em;color:var(--pass)}
+.check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}
+.check-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg);border-radius:6px;font-size:.85em}
+.check-item .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dot-pass{background:var(--pass)}.dot-fail{background:var(--fail)}.dot-pending{background:var(--pending)}
+.source-list{list-style:none}
+.source-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:.85em}
+.source-list li:last-child{border:none}
+.source-list .src-id{font-weight:700;color:var(--neuro-cyan);font-size:.8em}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;font-size:.8em}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-item .swatch{width:16px;height:16px;border-radius:3px}
+.note{background:#fff3cd;border-left:4px solid var(--warn);padding:12px 16px;border-radius:4px;font-size:.85em;margin:12px 0}
+.footer{text-align:center;padding:24px;color:var(--muted);font-size:.8em}
+@media(max-width:768px){
+  .header h1{font-size:1.6em}
+  .figures-grid{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>Jingzhang NeuroBelt</h1>
+  <div class="subtitle">From Centennial Railway to AI Neuro-Pulse — Haidian Centennial Jingzhang AI Innovation Belt Urban Design</div>
+  <div class="meta">
+    <span>Agent: TRAE AI Urban Design Agent</span>
+    <span>Date: 2026-08-17</span>
+    <span>Package: jingzhang-neurobelt v0.1</span>
+    <span>Boundary: PROVISIONAL</span>
+  </div>
+</div>
+
+<!-- Core Metrics -->
+<div class="section">
+  <h2><span class="icon">M</span>Core Visual Metrics</h2>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="label">Site Area</div>
+      <div class="value" data-value="11412825.386">11,412,825</div>
+      <div class="unit">sqm (~11.4 km²)</div>
+      <div class="status status-known">known · medium confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Green Ratio</div>
+      <div class="value" data-value="0.2979">29.79%</div>
+      <div class="unit">ratio</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Public Space Ratio</div>
+      <div class="value" data-value="0.1489">14.89%</div>
+      <div class="unit">ratio</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Building Footprint</div>
+      <div class="value" data-value="1141283">1,141,283</div>
+      <div class="unit">sqm</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Road Length</div>
+      <div class="value" data-value="24800">24,800</div>
+      <div class="unit">m</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">FAR</div>
+      <div class="value">—</div>
+      <div class="unit">pending</div>
+      <div class="status status-unknown">unknown · awaiting official controls</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Building Height</div>
+      <div class="value">—</div>
+      <div class="unit">pending</div>
+      <div class="status status-unknown">unknown · awaiting official controls</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">AI Scenario Nodes</div>
+      <div class="value" data-value="15">15</div>
+      <div class="unit">count</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Provisional Boundary Statement:</strong> All metrics are recalculated based on provisional temporary boundaries, not official red lines. Green ratio and public space ratio can be recalculated from the submitted green_space.geojson and public_space.geojson geometry. Metrics such as FAR and building height that depend on undisclosed official control conditions remain unknown. Recalculation is required after official data is published.
+  </div>
+</div>
+
+<!-- Figures -->
+<div class="section">
+  <h2><span class="icon">F</span>Design Figures</h2>
+  <div class="legend">
+    <div class="legend-item"><div class="swatch" style="background:var(--neuro-cyan)"></div>AI / Smart</div>
+    <div class="legend-item"><div class="swatch" style="background:var(--rail-gray)"></div>Railway Heritage</div>
+    <div class="legend-item"><div class="swatch" style="background:var(--amber)"></div>Cultural Warmth</div>
+    <div class="legend-item"><div class="swatch" style="background:var(--green)"></div>Blue-Green Space</div>
+    <div class="legend-item"><div class="swatch" style="background:var(--blue)"></div>Water System</div>
+  </div>
+  <div class="figures-grid">
+    <div class="figure-card">
+      <img src="../assets/figures/site-overview.jpg" alt="Site Overview and Evidence Chain">
+      <div class="caption"><strong>Figure 1:</strong> Site Overview and Evidence Chain — Overall design area (11.4km²), three key areas, and three-zone two-wing spatial structure</div>
+    </div>
+    <div class="figure-card">
+      <img src="../assets/figures/land-use-structure.jpg" alt="Three-Tier Scope and Land Use Structure">
+      <div class="caption"><strong>Figure 2:</strong> Three-Tier Scope and Land Use Structure — Coordinated research (43.6km²), overall design (11.4km²), key areas (368.4ha), and land-use parcels</div>
+    </div>
+    <div class="figure-card">
+      <img src="../assets/figures/key-areas.jpg" alt="Three Key Areas Index and Design Tasks">
+      <div class="caption"><strong>Figure 3:</strong> Three Key Areas Detailed Design — NeuroCore, OriginNode, NeuroPort</div>
+    </div>
+    <div class="figure-card">
+      <img src="../assets/figures/mobility-bluegreen.jpg" alt="Transportation, Slow-Mobility, and Blue-Green Public Space System">
+      <div class="caption"><strong>Figure 4:</strong> Transportation, Slow-Mobility, and Blue-Green Public Space Composite System — NeuroBelt Avenue, slow-mobility network, blue-green corridor, and TOD nodes</div>
+    </div>
+    <div class="figure-card">
+      <img src="../assets/figures/metrics-evidence.jpg" alt="Core Metrics Recalculation and Evidence Chain">
+      <div class="caption"><strong>Figure 5:</strong> Core Metrics Recalculation and Evidence Chain — Three core visual metrics, land-use ratios, phasing, and evidence relationships</div>
+    </div>
+  </div>
+</div>
+
+<!-- Agent Task Coverage -->
+<div class="section">
+  <h2><span class="icon">T</span>Agent Task Coverage</h2>
+  <div class="task-grid">
+    <div class="task-card">
+      <div class="task-id">agent.1</div>
+      <div class="task-title">Belt-Wide Concept and Functional Coordination Design</div>
+      <div class="task-status">✓ Complete — NeuroBelt naming system, Logo direction, three-zone two-wing collaborative loop</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.2</div>
+      <div class="task-title">AI Full-Stack Innovation System and World-Class AI Ecosystem</div>
+      <div class="task-status">✓ Complete — 8 global AI cases, innovation signal flow, ecosystem map</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.3</div>
+      <div class="task-title">AI+ Scenario Empowerment and Smart AI Vital City</div>
+      <div class="task-status">✓ Complete — 15 scenario cards (4 test/verification), 6 user personas</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.4</div>
+      <div class="task-title">AI Public Space, Smart Native New Formats, and Pilgrimage Landmarks</div>
+      <div class="task-status">✓ Complete — 4 AI pilgrimage landmarks, honor system, Developer Starway</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.5</div>
+      <div class="task-title">Centennial Jingzhang Culture, Zhongguancun Culture, and AI New Culture Fusion Narrative</div>
+      <div class="task-status">✓ Complete — Railway-to-NeuroBelt narrative, cultural guide, international communication</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.6</div>
+      <div class="task-title">Global AI Innovation Activity System and Long-Term Operations Design</div>
+      <div class="task-status">✓ Complete — Annual event system, developer community operations, brand asset mechanism</div>
+    </div>
+  </div>
+</div>
+
+<!-- Self-Check Status -->
+<div class="section">
+  <h2><span class="icon">V</span>Self-Check Status</h2>
+  <div class="check-grid">
+    <div class="check-item"><div class="dot dot-pass"></div>package_type = professional_design_package</div>
+    <div class="check-item"><div class="dot dot-pass"></div>bilingual_contract_version = "1"</div>
+    <div class="check-item"><div class="dot dot-pass"></div>proposal_format_version = "2"</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Required JSON files (9) present</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Required GeoJSON files (9) present</div>
+    <div class="check-item"><div class="dot dot-pass"></div>visual/index.html offline static</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Core visual metrics: all known</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Agent tasks agent.1-6 covered</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Mandatory standards (5) covered</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Design depth items (14) complete</div>
+    <div class="check-item"><div class="dot dot-pending"></div>package_state → needs finalize_submission.py</div>
+    <div class="check-item"><div class="dot dot-pending"></div>SHA-256 hashes → needs finalize_submission.py</div>
+    <div class="check-item"><div class="dot dot-pending"></div>report/proposal.html → needs render_proposal_html.py</div>
+    <div class="check-item"><div class="dot dot-pending"></div>A3/A0 PDFs → needs generation</div>
+    <div class="check-item"><div class="dot dot-pending"></div>Full self-check → needs self_check_submission.py</div>
+  </div>
+  <div class="note">
+    <strong>Validation Status:</strong> This package was manually created in an environment without Python 3. Green = passed manual pre-check, yellow = requires running official scripts. Please run finalize_submission.py, render_proposal_html.py, and self_check_submission.py after installing Python 3 and project dependencies.
+  </div>
+</div>
+
+<!-- Spatial Structure -->
+<div class="section">
+  <h2><span class="icon">S</span>Spatial Structure</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+    <div style="background:var(--bg);padding:16px;border-radius:8px;border-left:4px solid var(--neuro-cyan)">
+      <strong>One Neural Pathway</strong><br>
+      <span style="font-size:.85em;color:var(--muted)">Jingzhang Railway Heritage Park corridor — the north-south cultural main artery and public space axis</span>
+    </div>
+    <div style="background:var(--bg);padding:16px;border-radius:8px;border-left:4px solid var(--amber)">
+      <strong>Three Neural Nodes</strong><br>
+      <span style="font-size:.85em;color:var(--muted)">NeuroCore (192.1ha) · OriginNode (104.3ha) · NeuroPort (72.0ha)</span>
+    </div>
+    <div style="background:var(--bg);padding:16px;border-radius:8px;border-left:4px solid var(--green)">
+      <strong>Two Wings</strong><br>
+      <span style="font-size:.85em;color:var(--muted)">Zhongguan Wing (factor input) · Yuehe Wing (scenario output)</span>
+    </div>
+    <div style="background:var(--bg);padding:16px;border-radius:8px;border-left:4px solid var(--blue)">
+      <strong>Multiple Nodes</strong><br>
+      <span style="font-size:.85em;color:var(--muted)">15 AI scenario nodes — Developer Promenade, Open-Source Gallery, Hall of Fame Wall</span>
+    </div>
+  </div>
+</div>
+
+<!-- Sources -->
+<div class="section">
+  <h2><span class="icon">R</span>Sources</h2>
+  <ul class="source-list">
+    <li><span class="src-id">SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT</span> — Centennial Jingzhang AI Innovation Belt International Urban Design Prequalification Announcement (official_public, formal-ready)</li>
+    <li><span class="src-id">SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK</span> — Global AI Agent Open Call Taskbook Excerpts (user_provided_cleared, formal-ready)</li>
+    <li><span class="src-id">DATA-SRC-PROVISIONAL-BOUNDARIES-20260605</span> — Provisional Boundary GeoJSON (provisional_only, temporary use)</li>
+    <li><span class="src-id">DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509</span> — Official Announcement Text Boundaries (official_public, formal-ready)</li>
+    <li><span class="src-id">STD-MOHURD-URBAN-DESIGN-MEASURES</span> — Urban Design Management Measures (official_public, mandatory)</li>
+    <li><span class="src-id">STD-MNR-LAND-USE-CLASSIFICATION</span> — National Territorial Space Land-Use Classification Guide (official_public, mandatory)</li>
+    <li><span class="src-id">WEB-JINGZHANG-RAILWAY-HISTORY</span> — Jingzhang Railway Historical Materials (background_only)</li>
+    <li><span class="src-id">WEB-GLOBAL-AI-CASES</span> — Global AI Innovation Ecosystem Cases (background_only)</li>
+    <li><span class="src-id">REPO-HAIDIAN-SKILL</span> — urban-design-ai-submission Skill (official_public)</li>
+  </ul>
+</div>
+
+<!-- Assumptions -->
+<div class="section">
+  <h2><span class="icon">A</span>Key Assumptions</h2>
+  <div class="check-grid">
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-001: Provisional boundaries awaiting official polygon replacement</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-003: FAR / height / density awaiting official regulatory plan</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-004: Land-use parcels awaiting regulatory plan confirmation</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-005: Green / public space area awaiting green line confirmation</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-006: AI scenarios awaiting professional validation</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-008: Events / operations awaiting government confirmation</div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Jingzhang NeuroBelt — TRAE AI Urban Design Agent · 2026-08-17</p>
+  <p>All spatial recommendations are conceptual suggestions for professional teams to deepen.</p>
+  <p>All spatial recommendations are conceptual suggestions and do not replace formal planning or constitute government-approved conclusions.</p>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary derived from official text description, not an official redline.",
+        "Official polygon release will require recalculation."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2979,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "sum(green_space_polygon_areas, EPSG:4548) / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual green-space polygons based on provisional boundary; not statutory green-line control.",
+        "Includes Jingzhang heritage park corridor, Xiaoyuehe blue-green corridor, and pocket parks."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.1489,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "sum(public_space_polygon_areas, EPSG:4548) / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public-space polygons including plazas, AI landmark nodes, and community gathering spaces.",
+        "Overlaps partially with green space; public space ratio is measured independently."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1141283,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "sum(conceptual_building_footprints, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual building envelopes for AI R&D, community, and industry functions; not confirmed architectural footprints."
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 24800,
+      "unit": "m",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "sum(road_centerline_lengths, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual road network including main corridors, service roads, and slow-mobility loops."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(key_area_features)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_gfa / site_area",
+      "confidence": "none",
+      "reason": "Required by the official announcement as a core planning control metric. The official regulatory plan FAR controls for this site have not yet been published, so the value cannot be determined without approved statutory controls. Retained as a metric entry to signal that it must be filled once the official regulatory plan is released.",
+      "assumptions": [
+        "Official regulatory plan FAR controls not yet published for the site; cannot be determined without approved statutory controls."
+      ]
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "max(building_heights)",
+      "confidence": "none",
+      "reason": "Required by the official announcement as a core planning control metric. Official height controls have not yet been published; aviation, heritage, and landscape constraints are pending confirmation. Retained as a metric entry to signal that it must be filled once the official regulatory plan is released.",
+      "assumptions": [
+        "Official height controls not yet published; aviation, heritage, and landscape constraints to be confirmed."
+      ]
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "building_footprint_area / site_area",
+      "confidence": "none",
+      "reason": "Required by the official announcement as a core planning control metric. Statutory density control is pending the official regulatory plan. Retained as a metric entry to signal that it must be filled once the official regulatory plan is released.",
+      "assumptions": [
+        "Conceptual building density estimate ~10%, but statutory density control pending official regulatory plan."
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(AI_SERVICE_ZONE and SCENARIO_NODE features)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual AI scenario nodes including 10+ scenario cards and 3+ industry test sites."
+      ]
+    },
+    "phasing_phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/phasing.geojson"],
+      "formula": "count(distinct_phasing_phases)",
+      "confidence": "low",
+      "assumptions": [
+        "Three-phase implementation: near-term (2026-2028), mid-term (2028-2030), long-term (2030-2033)."
+      ]
+    }
+  }
+}

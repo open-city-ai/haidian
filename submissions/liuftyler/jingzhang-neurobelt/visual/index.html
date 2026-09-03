@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智脉 · Jingzhang NeuroBelt — 可视化展板</title>
+<style>
+:root{
+  --neuro-cyan:#00B4D8;--rail-gray:#6C757D;--amber:#FFB703;
+  --bg:#F8F9FA;--card:#FFFFFF;--text:#212529;--muted:#6C757D;
+  --border:#DEE2E6;--green:#52B788;--blue:#48CAE4;--warn:#FFB703;
+  --pass:#52B788;--fail:#E63946;--pending:#FFB703;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Microsoft YaHei',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.container{max-width:1400px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:40px 20px;background:linear-gradient(135deg,var(--neuro-cyan),var(--rail-gray));color:#fff;border-radius:12px;margin-bottom:24px}
+.header h1{font-size:2.4em;margin-bottom:8px;letter-spacing:2px}
+.header .subtitle{font-size:1.1em;opacity:.9;margin-bottom:12px}
+.header .meta{font-size:.85em;opacity:.7;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.section{background:var(--card);border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.section h2{font-size:1.4em;color:var(--neuro-cyan);border-bottom:2px solid var(--border);padding-bottom:8px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section h2 .icon{width:28px;height:28px;background:var(--neuro-cyan);color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7em;font-weight:bold}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:16px}
+.metric-card{background:var(--bg);border-radius:10px;padding:20px;text-align:center;border:2px solid var(--border);transition:border-color .3s}
+.metric-card:hover{border-color:var(--neuro-cyan)}
+.metric-card .label{font-size:.85em;color:var(--muted);margin-bottom:8px}
+.metric-card .value{font-size:1.8em;font-weight:700;color:var(--neuro-cyan)}
+.metric-card .unit{font-size:.8em;color:var(--muted)}
+.metric-card .status{font-size:.7em;margin-top:6px;padding:2px 8px;border-radius:10px;display:inline-block}
+.status-known{background:#d4edda;color:#155724}
+.status-unknown{background:#fff3cd;color:#856404}
+.figures-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:16px}
+.figure-card{background:var(--bg);border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.figure-card img{width:100%;height:auto;display:block}
+.figure-card .caption{padding:12px;font-size:.85em;color:var(--muted)}
+.figure-card .caption strong{color:var(--text)}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.task-card{background:var(--bg);border-radius:8px;padding:16px;border-left:4px solid var(--neuro-cyan)}
+.task-card .task-id{font-size:.75em;color:var(--neuro-cyan);font-weight:700;text-transform:uppercase}
+.task-card .task-title{font-size:1em;font-weight:600;margin:4px 0}
+.task-card .task-status{font-size:.75em;color:var(--pass)}
+.check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px}
+.check-item{display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--bg);border-radius:6px;font-size:.85em}
+.check-item .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dot-pass{background:var(--pass)}.dot-fail{background:var(--fail)}.dot-pending{background:var(--pending)}
+.source-list{list-style:none}
+.source-list li{padding:8px 0;border-bottom:1px solid var(--border);font-size:.85em}
+.source-list li:last-child{border:none}
+.source-list .src-id{font-weight:700;color:var(--neuro-cyan);font-size:.8em}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;font-size:.8em}
+.legend-item{display:flex;align-items:center;gap:6px}
+.legend-item .swatch{width:16px;height:16px;border-radius:3px}
+.note{background:#fff3cd;border-left:4px solid var(--warn);padding:12px 16px;border-radius:4px;font-size:.85em;margin:12px 0}
+.footer{text-align:center;padding:24px;color:var(--muted);font-size:.8em}
+@media(max-width:768px){
+  .header h1{font-size:1.6em}
+  .figures-grid{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>京张智脉 · Jingzhang NeuroBelt</h1>
+  <div class="subtitle">从百年铁轨到AI智脉 —— 海淀百年京张AI创新带城市设计</div>
+  <div class="meta">
+    <span>Agent: TRAE AI Urban Design Agent</span>
+    <span>Date: 2026-08-17</span>
+    <span>Package: jingzhang-neurobelt v0.1</span>
+    <span>Boundary: PROVISIONAL</span>
+  </div>
+</div>
+
+<!-- Core Metrics -->
+<div class="section">
+  <h2><span class="icon">M</span>核心视觉指标 / Core Visual Metrics</h2>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="label">场地面积 / Site Area</div>
+      <div class="value" data-value="11412825.386">11,412,825</div>
+      <div class="unit">sqm (≈11.4 km²)</div>
+      <div class="status status-known">known · medium confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">绿地率 / Green Ratio</div>
+      <div class="value" data-value="0.2979">29.79%</div>
+      <div class="unit">ratio</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">公共空间比例 / Public Space Ratio</div>
+      <div class="value" data-value="0.1489">14.89%</div>
+      <div class="unit">ratio</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">建筑基底面积 / Building Footprint</div>
+      <div class="value" data-value="1141283">1,141,283</div>
+      <div class="unit">sqm</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">道路网络长度 / Road Length</div>
+      <div class="value" data-value="24800">24,800</div>
+      <div class="unit">m</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">容积率 / FAR</div>
+      <div class="value">—</div>
+      <div class="unit">pending</div>
+      <div class="status status-unknown">unknown · awaiting official controls</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">建筑高度 / Height</div>
+      <div class="value">—</div>
+      <div class="unit">pending</div>
+      <div class="status status-unknown">unknown · awaiting official controls</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">AI场景节点 / AI Nodes</div>
+      <div class="value" data-value="15">15</div>
+      <div class="unit">count</div>
+      <div class="status status-known">known · low confidence</div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>Provisional 边界声明：</strong>所有指标基于 provisional 临时边界复算，不是官方红线。绿地率和公共空间比例可从提交的 green_space.geojson 和 public_space.geojson 几何复算。容积率、建筑高度等依赖未公开官方控制条件的指标保持 unknown。官方数据发布后需要重新复算。
+  </div>
+</div>
+
+<!-- Figures -->
+<div class="section">
+  <h2><span class="icon">F</span>方案图件 / Design Figures</h2>
+  <div class="legend">
+    <div class="legend-item"><div class="swatch" style="background:var(--neuro-cyan)"></div>AI/智能</div>
+    <div class="legend-item"><div class="swatch" style="background:var(--rail-gray)"></div>铁路遗产</div>
+    <div class="legend-item"><div class="swatch" style="background:var(--amber)"></div>文化温度</div>
+    <div class="legend-item"><div class="swatch" style="background:var(--green)"></div>蓝绿空间</div>
+    <div class="legend-item"><div class="swatch" style="background:var(--blue)"></div>水系</div>
+  </div>
+  <div class="figures-grid">
+    <div class="figure-card">
+      <img src="../assets/figures/site-overview.jpg" alt="场地总览与资料证据链图">
+      <div class="caption"><strong>图1 / Figure 1：</strong>场地总览与资料证据链 — 总体设计范围(11.4km²)、三处重点区域和三区两翼空间结构</div>
+    </div>
+    <div class="figure-card">
+      <img src="../assets/figures/land-use-structure.jpg" alt="三层范围与用地结构图">
+      <div class="caption"><strong>图2 / Figure 2：</strong>三层范围与用地结构 — 统筹研究(43.6km²)、总体设计(11.4km²)、重点区域(368.4ha)和用地分区</div>
+    </div>
+    <div class="figure-card">
+      <img src="../assets/figures/key-areas.jpg" alt="三处重点区域索引与设计任务图">
+      <div class="caption"><strong>图3 / Figure 3：</strong>三处重点区域详细设计 — 智源核(NeuroCore)、原点社区(OriginNode)、智汇港(NeuroPort)</div>
+    </div>
+    <div class="figure-card">
+      <img src="../assets/figures/mobility-bluegreen.jpg" alt="交通慢行与蓝绿公共空间复合系统图">
+      <div class="caption"><strong>图4 / Figure 4：</strong>交通慢行与蓝绿公共空间复合系统 — 智脉大道、慢行网络、蓝绿走廊和TOD节点</div>
+    </div>
+    <div class="figure-card">
+      <img src="../assets/figures/metrics-evidence.jpg" alt="核心指标复算与证据链图">
+      <div class="caption"><strong>图5 / Figure 5：</strong>核心指标复算与证据链 — 三项核心视觉指标、用地比例、分期和证据关系</div>
+    </div>
+  </div>
+</div>
+
+<!-- Agent Task Coverage -->
+<div class="section">
+  <h2><span class="icon">T</span>智能体任务覆盖 / Agent Task Coverage</h2>
+  <div class="task-grid">
+    <div class="task-card">
+      <div class="task-id">agent.1</div>
+      <div class="task-title">一带总体概念与功能统筹方案设计</div>
+      <div class="task-status">✓ Complete — 京张智脉命名体系、Logo方向、三区两翼协同回路</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.2</div>
+      <div class="task-title">AI全栈自主创新体系与世界级AI创新生态</div>
+      <div class="task-status">✓ Complete — 8个全球AI案例、创新信号流向、生态图谱</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.3</div>
+      <div class="task-title">AI+场景赋能新范式与智能化AI活力城市</div>
+      <div class="task-status">✓ Complete — 15张场景卡(4张测试验证)、6类用户画像</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.4</div>
+      <div class="task-title">AI公共空间、智能原生新业态与朝圣地标</div>
+      <div class="task-status">✓ Complete — 4个AI朝圣地标、荣誉展示体系、开发者星光道</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.5</div>
+      <div class="task-title">百年京张文化、中关村文化与AI新文化融合叙事</div>
+      <div class="task-status">✓ Complete — 从铁轨到智脉叙事、文化导览、国际传播</div>
+    </div>
+    <div class="task-card">
+      <div class="task-id">agent.6</div>
+      <div class="task-title">全球AI创新活动体系与长期运营设计</div>
+      <div class="task-status">✓ Complete — 年度活动体系、开发者社区运营、品牌资产机制</div>
+    </div>
+  </div>
+</div>
+
+<!-- Self-Check Status -->
+<div class="section">
+  <h2><span class="icon">V</span>自检状态 / Self-Check Status</h2>
+  <div class="check-grid">
+    <div class="check-item"><div class="dot dot-pass"></div>package_type = professional_design_package</div>
+    <div class="check-item"><div class="dot dot-pass"></div>bilingual_contract_version = "1"</div>
+    <div class="check-item"><div class="dot dot-pass"></div>proposal_format_version = "2"</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Required JSON files (9) present</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Required GeoJSON files (9) present</div>
+    <div class="check-item"><div class="dot dot-pass"></div>visual/index.html offline static</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Core visual metrics: all known</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Agent tasks agent.1-6 covered</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Mandatory standards (5) covered</div>
+    <div class="check-item"><div class="dot dot-pass"></div>Design depth items (14) complete</div>
+    <div class="check-item"><div class="dot dot-pending"></div>package_state → needs finalize_submission.py</div>
+    <div class="check-item"><div class="dot dot-pending"></div>SHA-256 hashes → needs finalize_submission.py</div>
+    <div class="check-item"><div class="dot dot-pending"></div>report/proposal.html → needs render_proposal_html.py</div>
+    <div class="check-item"><div class="dot dot-pending"></div>A3/A0 PDFs → needs generation</div>
+    <div class="check-item"><div class="dot dot-pending"></div>Full self-check → needs self_check_submission.py</div>
+  </div>
+  <div class="note">
+    <strong>验证状态：</strong>本方案包在无Python3环境下手工创建。绿色=已通过手工预检，黄色=需要运行官方脚本完成。请在安装Python3和项目依赖后运行 finalize_submission.py、render_proposal_html.py 和 self_check_submission.py。
+  </div>
+</div>
+
+<!-- Spatial Structure -->
+<div class="section">
+  <h2><span class="icon">S</span>空间结构 / Spatial Structure</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+    <div style="background:var(--bg);padding:16px;border-radius:8px;border-left:4px solid var(--neuro-cyan)">
+      <strong>一脉</strong> One Neural Pathway<br>
+      <span style="font-size:.85em;color:var(--muted)">京张铁路遗址公园走廊 — 南北贯穿的文化主脉和公共空间主轴</span>
+    </div>
+    <div style="background:var(--bg);padding:16px;border-radius:8px;border-left:4px solid var(--amber)">
+      <strong>三核</strong> Three Neural Nodes<br>
+      <span style="font-size:.85em;color:var(--muted)">智源核(192.1ha) · 原点社区(104.3ha) · 智汇港(72.0ha)</span>
+    </div>
+    <div style="background:var(--bg);padding:16px;border-radius:8px;border-left:4px solid var(--green)">
+      <strong>两翼</strong> Two Wings<br>
+      <span style="font-size:.85em;color:var(--muted)">中关翼(要素输入) · 月河翼(场景输出)</span>
+    </div>
+    <div style="background:var(--bg);padding:16px;border-radius:8px;border-left:4px solid var(--blue)">
+      <strong>多节点</strong> Multiple Nodes<br>
+      <span style="font-size:.85em;color:var(--muted)">15个AI场景节点 — 开发者散步道、开源展示廊、荣誉墙</span>
+    </div>
+  </div>
+</div>
+
+<!-- Sources -->
+<div class="section">
+  <h2><span class="icon">R</span>资料来源 / Sources</h2>
+  <ul class="source-list">
+    <li><span class="src-id">SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT</span> — 百年京张AI创新带城市设计国际方案征集资格预审公告 (official_public, formal-ready)</li>
+    <li><span class="src-id">SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK</span> — 面向全球智能体任务书摘录 (user_provided_cleared, formal-ready)</li>
+    <li><span class="src-id">DATA-SRC-PROVISIONAL-BOUNDARIES-20260605</span> — provisional边界GeoJSON (provisional_only, 临时使用)</li>
+    <li><span class="src-id">DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509</span> — 官方公告文字四至 (official_public, formal-ready)</li>
+    <li><span class="src-id">STD-MOHURD-URBAN-DESIGN-MEASURES</span> — 城市设计管理办法 (official_public, mandatory)</li>
+    <li><span class="src-id">STD-MNR-LAND-USE-CLASSIFICATION</span> — 国土空间用地用海分类指南 (official_public, mandatory)</li>
+    <li><span class="src-id">WEB-JINGZHANG-RAILWAY-HISTORY</span> — 京张铁路历史资料 (background_only)</li>
+    <li><span class="src-id">WEB-GLOBAL-AI-CASES</span> — 全球AI创新生态案例 (background_only)</li>
+    <li><span class="src-id">REPO-HAIDIAN-SKILL</span> — urban-design-ai-submission Skill (official_public)</li>
+  </ul>
+</div>
+
+<!-- Assumptions -->
+<div class="section">
+  <h2><span class="icon">A</span>关键假设 / Key Assumptions</h2>
+  <div class="check-grid">
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-001: Provisional边界待官方polygon替换</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-003: 容积率/高度/密度待官方控规</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-004: 用地分区待控规确认</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-005: 绿地/公共空间面积待绿线确认</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-006: AI场景待专业验证</div>
+    <div class="check-item"><div class="dot dot-pending"></div>ASM-008: 活动/运营待政府确认</div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>京张智脉 · Jingzhang NeuroBelt — TRAE AI Urban Design Agent · 2026-08-17</p>
+  <p>所有空间落地建议均为概念建议，不替代正式规划，不构成政府审定结论。</p>
+  <p>All spatial recommendations are conceptual suggestions for professional teams to deepen.</p>
+</div>
+
+</div>
+</body>
+</html>

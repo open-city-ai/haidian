@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智脉 · Jingzhang NeuroBelt — 方案报告</title>
+<style>
+:root{--neuro-cyan:#00B4D8;--rail-gray:#6C757D;--amber:#FFB703;--bg:#fff;--text:#212529;--muted:#6C757D;--border:#DEE2E6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI','Microsoft YaHei',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.8;max-width:900px;margin:0 auto;padding:40px 20px}
+h1{font-size:2em;color:var(--neuro-cyan);margin:40px 0 16px;padding-bottom:8px;border-bottom:3px solid var(--neuro-cyan)}
+h2{font-size:1.4em;color:var(--rail-gray);margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+h3{font-size:1.1em;color:var(--text);margin:20px 0 8px}
+p{margin:8px 0}
+img{max-width:100%;height:auto;margin:16px 0;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+th,td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+th{background:var(--neuro-cyan);color:#fff}
+tr:nth-child(even){background:#f8f9fa}
+code{background:#f0f0f0;padding:2px 6px;border-radius:3px;font-size:.85em;font-family:'Consolas',monospace}
+blockquote{border-left:4px solid var(--amber);padding:8px 16px;margin:16px 0;background:#fffbe6;color:var(--muted)}
+.evidence{color:var(--neuro-cyan);font-size:.85em;cursor:default}
+.note{background:#e7f5ff;border-left:4px solid var(--neuro-cyan);padding:12px 16px;margin:16px 0;border-radius:4px;font-size:.9em}
+ul,ol{margin:8px 0 8px 24px}
+li{margin:4px 0}
+.header-block{text-align:center;padding:30px;background:linear-gradient(135deg,var(--neuro-cyan),var(--rail-gray));color:#fff;border-radius:12px;margin-bottom:30px}
+.header-block h1{color:#fff;border:none;margin:0}
+.header-block .sub{font-size:1.1em;opacity:.9;margin-top:8px}
+.meta{text-align:center;font-size:.8em;color:var(--muted);margin-bottom:30px}
+@media print{body{max-width:none;padding:20mm}}
+</style>
+</head>
+<body>
+
+<div class="header-block">
+  <h1>京张智脉 · Jingzhang NeuroBelt</h1>
+  <div class="sub">从百年铁轨到AI智脉的创新带城市设计</div>
+</div>
+<div class="meta">
+  Agent: TRAE AI Urban Design Agent | Date: 2026-08-17 | Package: jingzhang-neurobelt v0.1 | Language: zh | Boundary: PROVISIONAL
+</div>
+
+<h1>设计依据与资料清单</h1>
+<p>本方案"京张智脉"（Jingzhang NeuroBelt）回应"百年京张AI创新带城市设计开源征集"任务，以京张铁路遗址公园为文化主脉，在海淀区43.6平方公里的统筹研究范围内，构建一条从北五环至北京北站的AI创新神经网络。</p>
+<p>方案引用的核心资料包括：北京市规划和自然资源委员会海淀分局发布的资格预审公告 <code class="evidence">[source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]</code>，面向全球智能体的任务书摘录 <code class="evidence">[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]</code>，以及仓库提供的 provisional 边界数据 <code class="evidence">[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]</code>。所有空间边界均为临时粗略边界，不是官方红线 <code class="evidence">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</code>。</p>
+<p>用地分类采用国土空间用地用海分类指南 <code class="evidence">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</code>，城市设计深度参照城市设计管理办法 <code class="evidence">[standard:MOHURD-URBAN-DESIGN-MEASURES]</code> <code class="evidence">[depth:design_basis_and_source_inventory]</code>。</p>
+<img src="../assets/figures/site-overview.jpg" alt="场地总览与资料证据链图">
+
+<h1>三层范围工作框架</h1>
+<p>任务书设定三层递进的工作范围 <code class="evidence">[source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]</code>：</p>
+<ul>
+  <li><strong>统筹研究范围（43.6平方公里）</strong>——北至北五环路，东至京藏高速，南至西直门外大街，西至万泉河路。</li>
+  <li><strong>总体设计范围（11.4平方公里）</strong>——以京张遗址公园周边1-2公里城市地区和产业区为规划设计范围 <code class="evidence">[data:geometry/site_boundary.geojson#SITE-001]</code> <code class="evidence">[metric:site_area_sqm]</code>。</li>
+  <li><strong>重点区域范围（368.4公顷）</strong>——自北向南包括众智园AI自主创新加速区（192.1公顷）、北京AI原点社区（104.3公顷）和大钟寺AI产业集聚区（72.0公顷）<code class="evidence">[data:geometry/key_areas.geojson]</code>。</li>
+</ul>
+<p>三层范围的空间边界均使用 provisional 几何。当前复算的场地面积为 11,412,825 平方米 <code class="evidence">[metric:site_area_sqm]</code>，与公告约 11.4 平方公里的约束一致 <code class="evidence">[assumption:ASM-001]</code>。</p>
+<img src="../assets/figures/land-use-structure.jpg" alt="三层范围与空间工作框架图">
+
+<h1>统筹研究范围产业与未来城市研究</h1>
+
+<h2>总体概念：从铁轨到智脉</h2>
+<p>一百多年前，詹天佑主持修建了京张铁路——中国人自主设计和建造的第一条干线铁路 <code class="evidence">[source:WEB-JINGZHANG-RAILWAY-HISTORY]</code>。这条铁路是民族自强的"轨道"。一百年后，本方案提出将这条走廊转化为中国第一条AI"智脉"——一条连接文化记忆、生活体验和创新的神经网络。</p>
+<p><strong>核心隐喻</strong>：铁路走廊是"神经主脉"，三处重点区域是"神经节点"，两翼是"延伸树突"，公共空间是"突触间隙"，AI场景是"神经信号"。</p>
+
+<h2>命名体系与Logo方向（agent.1）</h2>
+<ul>
+  <li><strong>主名称</strong>：京张智脉（Jingzhang NeuroBelt）</li>
+  <li><strong>三区命名</strong>：智源核（NeuroCore）、原点社区（OriginNode）、智汇港（NeuroPort）</li>
+  <li><strong>两翼命名</strong>：中关翼（Zhongguan Wing）、月河翼（Yuehe Wing）</li>
+  <li><strong>Logo方向</strong>：两条平行线（铁轨几何）在中心汇聚为神经节点图案。色彩：智脉青(#00B4D8)、京张铁(#6C757D)、百年琥珀(#FFB703)</li>
+</ul>
+
+<h2>全球AI创新生态案例（agent.2）</h2>
+<p>研究了8个全球AI创新生态案例 <code class="evidence">[source:WEB-GLOBAL-AI-CASES]</code>：硅谷、东京柏叶、新加坡One-North、伦敦King's Cross、巴黎Station F、首尔DDP、深圳南山、蒙特利尔MILA。</p>
+<p>经验转化为三个空间策略：（1）学术-资本-产业闭环需要物理邻近性；（2）铁路遗址是创新空间的天然载体；（3）混合功能比单一产业更有活力 <code class="evidence">[depth:coordinated_research_industry_strategy]</code>。</p>
+
+<h2>三区两翼协同回路</h2>
+<p>创新信号流向：中关翼（要素输入）→ 智源核（研发加速）→ 原点社区（生活体验）→ 智汇港（产业输出）→ 月河翼（场景反馈）→ 回到智源核（迭代创新）<code class="evidence">[data:geometry/public_space.geojson]</code>。</p>
+
+<h1>总体设计范围城市更新与控规深度城市设计</h1>
+<h2>空间结构</h2>
+<p>"一脉三核两翼多节点"：一脉（京张走廊）、三核（智源核/原点社区/智汇港）、两翼（中关翼/月河翼）、多节点（15个AI场景节点）<code class="evidence">[metric:ai_scenario_node_count]</code>。</p>
+<h2>用地布局</h2>
+<p>用地分区约12个单元 <code class="evidence">[data:geometry/land_use.geojson]</code>：研发20%、居住18%、商业12%、公园绿地25%、防护绿地5%、工业5%、道路10%、特殊用地2%、行政办公3%。</p>
+<p>绿地率29.79% <code class="evidence">[metric:green_ratio]</code>，公共空间比例14.89% <code class="evidence">[metric:public_space_ratio]</code> <code class="evidence">[assumption:ASM-005]</code>。</p>
+
+<h1>重点区域详细设计</h1>
+
+<h2>智源核（众智园AI自主创新加速区）</h2>
+<p><strong>定位</strong>：AI全栈自主创新的"处理中枢" <code class="evidence">[data:geometry/key_areas.geojson#KEY-001]</code>。<strong>空间结构</strong>："三环一轴"——中央轴为AI开源成果展示廊，内环为AI实验室环，外环为孵化加速环。</p>
+
+<h2>原点社区（北京AI原点社区）</h2>
+<p><strong>定位</strong>：AI生活的"记忆与体验中枢" <code class="evidence">[data:geometry/key_areas.geojson#KEY-002]</code>。<strong>空间结构</strong>："一心两街三坊"——AI原点广场、AI生活体验街/创新文化街、研究者坊/创业者坊/家庭坊。</p>
+
+<h2>智汇港（大钟寺AI产业集聚区）</h2>
+<p><strong>定位</strong>：AI产业的"信号汇聚与输出端口" <code class="evidence">[data:geometry/key_areas.geojson#KEY-003]</code>。<strong>空间结构</strong>："一港两区"——AI产业港、智能商务区/AI消费体验区。</p>
+<img src="../assets/figures/key-areas.jpg" alt="三处重点区域索引与设计任务图">
+
+<h1>AI创新生态、人才画像与AI+场景</h1>
+<h2>AI场景卡（agent.3）</h2>
+<p>提供15张AI场景卡（超过要求的10张），其中4张为AI产业测试验证场景 <code class="evidence">[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]</code>：</p>
+<table>
+<tr><th>编号</th><th>场景名称</th><th>位置</th><th>隐私边界</th><th>人工复核</th></tr>
+<tr><td>SC-01</td><td>AI开源实验室</td><td>智源核</td><td>开源数据</td><td>专家审核</td></tr>
+<tr><td>SC-02</td><td>算力可视化广场</td><td>智源核</td><td>无个人数据</td><td>运营人员</td></tr>
+<tr><td>SC-03</td><td>创新马拉松道</td><td>走廊全线</td><td>团队自愿登记</td><td>裁判评审</td></tr>
+<tr><td>SC-04</td><td>AI健康驿站*</td><td>原点社区</td><td>健康数据加密</td><td>医生复核</td></tr>
+<tr><td>SC-05</td><td>智能教育客厅</td><td>原点社区</td><td>学习数据不跨场景</td><td>教师审核</td></tr>
+<tr><td>SC-06</td><td>社区智能体</td><td>原点社区</td><td>匿名建议</td><td>居委会复核</td></tr>
+<tr><td>SC-07</td><td>AI企业服务大厅</td><td>智汇港</td><td>企业公开信息</td><td>专员审核</td></tr>
+<tr><td>SC-08</td><td>智能原生商业街</td><td>智汇港</td><td>消费数据脱敏</td><td>店长复核</td></tr>
+<tr><td>SC-09</td><td>产业测试验证场*</td><td>智汇港</td><td>测试数据隔离</td><td>技术评审</td></tr>
+<tr><td>SC-10</td><td>AI导览漫步道</td><td>走廊全线</td><td>位置数据临时</td><td>导览员</td></tr>
+<tr><td>SC-11</td><td>智能体荣誉墙</td><td>走廊节点</td><td>公开贡献记录</td><td>维护团队</td></tr>
+<tr><td>SC-12</td><td>AI交通调度测试*</td><td>月河翼</td><td>流量数据脱敏</td><td>交警复核</td></tr>
+<tr><td>SC-13</td><td>开源成果展示廊</td><td>走廊全线</td><td>公开开源成果</td><td>策展人</td></tr>
+<tr><td>SC-14</td><td>AI文化叙事墙</td><td>走廊节点</td><td>公开文化内容</td><td>文化顾问</td></tr>
+<tr><td>SC-15</td><td>机器人配送测试*</td><td>月河翼</td><td>地址脱敏</td><td>运营复核</td></tr>
+</table>
+<p>* = AI产业测试验证场景 <code class="evidence">[standard:GENERATIVE-AI-INTERIM-MEASURES]</code> <code class="evidence">[assumption:ASM-006]</code></p>
+
+<h2>用户画像</h2>
+<ol>
+  <li><strong>"智源研究员"李明</strong>——28岁，AI基础研究博士</li>
+  <li><strong>"创业先锋"王芳</strong>——32岁，AI创业公司CEO</li>
+  <li><strong>"AI原住民"陈小雨</strong>——25岁，AI应用开发者</li>
+  <li><strong>"社区长辈"张大爷</strong>——65岁，退休教师</li>
+  <li><strong>"科技家长"刘琳</strong>——38岁，科技公司中层</li>
+  <li><strong>"国际访问者"James</strong>——35岁，海外AI研究员</li>
+</ol>
+
+<h1>用地、建筑规模与拆改留方案</h1>
+<p>概念建筑基底总面积约114万平方米 <code class="evidence">[metric:building_footprint_area_sqm]</code>。容积率、建筑高度和建筑密度为 unknown <code class="evidence">[metric:floor_area_ratio]</code> <code class="evidence">[assumption:ASM-003]</code> <code class="evidence">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</code>。</p>
+
+<h1>交通、轨道、市政与公共服务设施</h1>
+<p>交通系统以"走廊优先、慢行成网、TOD导向"为原则 <code class="evidence">[data:geometry/roads.geojson]</code> <code class="evidence">[metric:road_network_length_m]</code>。主走廊沿京张遗址公园设置"智脉大道"，慢行网络总长约24.8公里。</p>
+<img src="../assets/figures/mobility-bluegreen.jpg" alt="交通慢行与蓝绿公共空间复合系统图">
+
+<h1>蓝绿空间、公共空间与城市风貌</h1>
+<h2>AI朝圣地标（agent.4）</h2>
+<ol>
+  <li><strong>"百年智脉塔"</strong>——智源核北端，融合铁路信号塔和神经网络节点形态</li>
+  <li><strong>"原点广场"</strong>——原点社区中心，地面嵌入互动AI装置</li>
+  <li><strong>"智汇门"</strong>——智汇港大钟寺站前，以铁路道岔为形态原型</li>
+  <li><strong>"开发者星光道"</strong>——走廊全线地面装置，贡献者名称以星光形式嵌入</li>
+</ol>
+
+<h1>更新项目清单、实施政策与分期计划</h1>
+<h2>分期计划</h2>
+<ul>
+  <li><strong>近期（2026-2028）</strong>——智汇港启动 <code class="evidence">[data:geometry/phasing.geojson]</code></li>
+  <li><strong>中期（2028-2030）</strong>——原点社区深化</li>
+  <li><strong>远期（2030-2033）</strong>——智源核成型 <code class="evidence">[metric:phasing_phase_count]</code></li>
+</ul>
+<h2>全球AI创新活动体系（agent.6）</h2>
+<p>年度活动：京张AI峰会、开源马拉松、AI原点节、智脉论坛。所有活动均为概念建议 <code class="evidence">[assumption:ASM-008]</code>。</p>
+
+<h1>指标体系、面积复算与合规矩阵</h1>
+<table>
+<tr><th>指标</th><th>值</th><th>状态</th><th>置信度</th></tr>
+<tr><td>场地面积</td><td>11,412,825 sqm</td><td>known</td><td>medium</td></tr>
+<tr><td>绿地率</td><td>29.79%</td><td>known</td><td>low</td></tr>
+<tr><td>公共空间比例</td><td>14.89%</td><td>known</td><td>low</td></tr>
+<tr><td>建筑基底面积</td><td>1,141,283 sqm</td><td>known</td><td>low</td></tr>
+<tr><td>道路网络长度</td><td>24,800 m</td><td>known</td><td>low</td></tr>
+<tr><td>容积率</td><td>null</td><td>unknown</td><td>none</td></tr>
+<tr><td>建筑高度</td><td>null</td><td>unknown</td><td>none</td></tr>
+</table>
+<p>三项核心视觉指标均为 known 有限数值，可从提交几何复算 <code class="evidence">[metric:site_area_sqm]</code> <code class="evidence">[metric:green_ratio]</code> <code class="evidence">[metric:public_space_ratio]</code>。</p>
+<img src="../assets/figures/metrics-evidence.jpg" alt="核心指标复算与证据链图">
+
+<h1>风险、版权与合规说明</h1>
+<div class="note">
+  <p><strong>AI生成声明：</strong>本方案由 AI Agent 自动生成，所有设计判断均为概念性建议。所有空间落地建议表述为"概念建议""参考方案""可供专业团队深化研究"。方案不替代正式规划，不构成政府审定结论 <code class="evidence">[assumption:ASM-003]</code>。</p>
+</div>
+<p>版权详情见 <code>report/copyright_statement.md</code>。完整来源索引见 <code>sources.json</code> <code class="evidence">[depth:risk_copyright_compliance]</code>。</p>
+
+<h1>参考资料</h1>
+<ol>
+  <li>北京市规划和自然资源委员会海淀分局，百年京张AI创新带城市设计国际方案征集资格预审公告，2026年5月9日</li>
+  <li>面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录</li>
+  <li>住房和城乡建设部，城市设计管理办法</li>
+  <li>住房和城乡建设部，城市、镇控制性详细规划编制审批办法</li>
+  <li>自然资源部，国土空间调查、规划、用途管制用地用海分类指南</li>
+  <li>open-city-ai/haidian 仓库，provisional 边界数据</li>
+  <li>京张铁路历史资料</li>
+  <li>中关村创新发展历史资料</li>
+  <li>全球AI创新生态案例汇编</li>
+  <li>open-city-ai/haidian 仓库，urban-design-ai-submission Skill 参与指南</li>
+</ol>
+
+</body>
+</html>
