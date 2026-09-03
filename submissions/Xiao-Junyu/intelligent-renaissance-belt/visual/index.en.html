@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intelligent Renaissance Belt v1.1 — Offline Visualization</title>
+<style>
+:root{--blue:#1A3A5C;--gold:#F0A500;--red:#B02A1E;--teal:#0F6E56;--gray:#5F5E5A;--bg:#FAFAF8;--lgray:#D3D1C7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Microsoft YaHei','PingFang SC','Segoe UI',sans-serif;font-size:13px;color:#1A1A1A;background:var(--bg);line-height:1.6}
+.page{max-width:980px;margin:0 auto;padding:24px 20px 48px}
+.band{background:var(--blue);color:#fff;padding:34px 38px 26px;margin-bottom:22px}
+.band .sub{color:var(--gold);font-size:12px;letter-spacing:2px;margin-bottom:8px}
+.band h1{font-size:27px;font-weight:600;margin-bottom:6px}.band h1 em{color:var(--gold);font-style:normal}
+.band .meta{font-size:11px;color:rgba(255,255,255,.55);border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:12px}
+.prov{background:#FFF3E0;border:1px solid var(--gold);border-radius:6px;padding:10px 14px;font-size:12px;color:#6D4C00;margin-bottom:20px}
+.section{margin-bottom:30px}
+h2{font-size:16px;font-weight:600;color:var(--blue);border-left:3px solid var(--gold);padding-left:10px;margin-bottom:14px}
+h2 .redbar{border-left-color:var(--red)}
+.map-wrap{display:grid;grid-template-columns:1fr 300px;gap:16px}
+@media(max-width:760px){.map-wrap{grid-template-columns:1fr}}
+svg{width:100%;height:auto;border:1px solid var(--lgray);background:#fff}
+.legend{font-size:11.5px;color:var(--gray)}
+.legend div{margin-bottom:7px;padding-left:16px;position:relative}
+.legend i{position:absolute;left:0;top:4px;width:10px;height:10px;border-radius:2px}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+@media(max-width:760px){.acts{grid-template-columns:repeat(2,1fr)}}
+.act{background:#fff;border:1px solid var(--lgray);border-top:3px solid var(--red);border-radius:6px;padding:12px}
+.act-year{font-size:18px;font-weight:700;color:var(--red)}
+.act-name{font-size:13px;font-weight:600;color:var(--blue);margin:2px 0}
+.act-desc{font-size:11px;color:var(--gray)}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:12px}
+th,td{border:1px solid var(--lgray);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#F2F6FA;color:var(--blue);font-weight:600}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){.grid3{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--lgray);border-radius:8px;padding:14px}
+.card h3{font-size:13.5px;color:var(--blue);margin-bottom:6px}
+.card .tag{display:inline-block;font-size:10.5px;background:#FBE9E7;color:var(--red);border-radius:4px;padding:1px 7px;margin-bottom:6px}
+.card p{font-size:11.5px;color:var(--gray)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:760px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.metric{background:#fff;border:1px solid var(--lgray);border-radius:8px;padding:12px;text-align:center;font-size:11px;color:var(--gray)}
+.metric b{display:block;font-size:19px;color:var(--blue);margin-top:3px}
+.metric.red b{color:var(--red)}
+ul.tight{padding-left:18px}ul.tight li{margin-bottom:4px;font-size:12px;color:var(--gray)}
+.foot{margin-top:34px;font-size:11px;color:var(--gray);border-top:1px solid var(--lgray);padding-top:12px}
+</style>
+</head>
+<body><div class="page">
+<div class="band">
+<div class="sub">OPEN CITY · HAIDIAN · OFFLINE PAGE</div>
+<h1>Intelligent Renaissance Belt <em>v1.1</em></h1>
+<div style="font-size:12px;color:rgba(255,255,255,.75)">Century of Answers · Examination Road · People’s Review | Xiao-Junyu / WorkBuddy AI · 2026-08-16</div>
+<div class="meta">Fully offline: no external assets; all values injected from metrics.json and reproducible from geometry layers</div>
+</div>
+<div class="prov">⚠ Boundary note: provisional boundary for display only. Qinghuayuan Station (CR-01) is a real heritage anchor ~300m west of the provisional boundary (ASSUME-006). All content is conceptual.</div>
+
+<div class="section">
+<h2>Overview Map · Three-Tier Scope · Century of Answers</h2>
+<div class="map-wrap">
+<svg viewBox="0 0 760 1040" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Site overview map"><rect width="760" height="1040" fill="#FAFAF8"/><polygon points="140.7,1006.6 654.4,1006.6 654.4,717.4 584.1,439.4 654.4,33.4 211.1,33.4 175.9,261.4 105.6,606.2 140.7,1006.6" fill="#EAF3EA" stroke="#9FB8A8" stroke-width="1" fill-opacity="0.6"/><polygon points="362.4,951.0 432.8,951.0 432.8,38.9 362.4,38.9 362.4,951.0" fill="#CDE8DC" stroke="#0F6E56" stroke-width="1.2" fill-opacity="0.95"/><polygon points="168.9,439.4 292.0,439.4 292.0,355.9 168.9,355.9 168.9,439.4" fill="#CDE8DC" stroke="#0F6E56" stroke-width="1.2" fill-opacity="0.95"/><polygon points="309.6,472.7 485.6,472.7 485.6,428.2 309.6,428.2 309.6,472.7" fill="#CDE8DC" stroke="#0F6E56" stroke-width="1.2" fill-opacity="0.95"/><polygon points="140.7,1006.6 654.4,1006.6 654.4,717.4 584.1,439.4 654.4,33.4 211.1,33.4 175.9,261.4 105.6,606.2 140.7,1006.6" fill="#F2F6FA" stroke="#1A3A5C" stroke-width="2.5" fill-opacity="1"/><polygon points="221.7,244.7 608.7,244.7 608.7,38.9 221.7,38.9 221.7,244.7" fill="#E6F1FB" stroke="#1A3A5C" stroke-width="1.8" fill-opacity="0.9"/><polygon points="186.5,511.7 573.5,511.7 573.5,400.4 186.5,400.4 186.5,511.7" fill="#E6F1FB" stroke="#1A3A5C" stroke-width="1.8" fill-opacity="0.9"/><polygon points="186.5,951.0 643.9,951.0 643.9,886.1 186.5,886.1 186.5,951.0" fill="#E6F1FB" stroke="#1A3A5C" stroke-width="1.8" fill-opacity="0.9"/><polyline points="397.6,951.0 397.6,717.4 397.6,439.4 397.6,216.9 397.6,38.9" fill="none" stroke="#1A3A5C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="168.9,495.0 380.0,495.0 643.9,495.0" fill="none" stroke="#1A3A5C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="-7.0,327.0 28.1,409.3 151.3,478.3 309.6,550.6 334.3,686.3 327.2,828.7 309.6,947.7" fill="none" stroke="#333333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><polygon points="485.6,205.8 555.9,205.8 555.9,172.4 485.6,172.4 485.6,205.8" fill="#F5E3C0" stroke="#F0A500" stroke-width="1" fill-opacity="0.95"/><polygon points="344.8,500.5 450.4,500.5 450.4,472.7 344.8,472.7 344.8,500.5" fill="#F5E3C0" stroke="#F0A500" stroke-width="1" fill-opacity="0.95"/><polygon points="239.3,934.3 380.0,934.3 380.0,901.0 239.3,901.0 239.3,934.3" fill="#F5E3C0" stroke="#F0A500" stroke-width="1" fill-opacity="0.95"/><rect x="391.6" y="77.4" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><rect x="356.4" y="444.5" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><rect x="391.6" y="767.0" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><rect x="426.8" y="900.5" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><rect x="462.0" y="600.2" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><circle cx="-7.0" cy="327.0" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="5.0" y="331.0" font-size="13" font-weight="600" fill="#B02A1E">CR-01</text><circle cx="28.1" cy="409.3" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="40.1" y="413.3" font-size="13" font-weight="600" fill="#B02A1E">CR-02</text><circle cx="-728.3" cy="533.9" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="-716.3" y="537.9" font-size="13" font-weight="600" fill="#B02A1E">CR-03</text><circle cx="380.0" cy="456.0" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="392.0" y="460.0" font-size="13" font-weight="600" fill="#B02A1E">CR-04</text><circle cx="355.4" cy="695.2" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="367.4" y="699.2" font-size="13" font-weight="600" fill="#B02A1E">CR-05</text><polyline points="-7.0,327.0 28.1,409.3 204.1,439.4 380.0,456.0 309.6,550.6 344.8,695.2 355.4,695.2" fill="none" stroke="#B02A1E" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="legend">
+<div><i style="background:#1A3A5C"></i>Overall design area (provisional)</div>
+<div><i style="background:#E6F1FB;border:1px solid #1A3A5C"></i>Key areas: Zhongzhi/AI Origin/Bell Valley</div>
+<div><i style="background:#CDE8DC"></i>Blue-green public space</div>
+<div><i style="background:#F5E3C0;border:1px solid #F0A500"></i>Buildings (concept massing)</div>
+<div><i style="background:#333"></i>Jingzhang Railway (1909)</div>
+<div><i style="background:#B02A1E"></i>Examination Road + cultural nodes</div>
+<div><i style="background:#F0A500"></i>AI landmarks L-01~05</div>
+<p style="margin-top:8px">Tiers: research 43.6km² / overall 11.4km² / key areas 368.4ha.</p>
+</div>
+</div>
+<div class="acts"><div class="act"><div class="act-year">1909</div><div><div class="act-name">Self-reliance</div><div class="act-desc">Jeme Tien Yow completes the Jingzhang Railway — the first trunk line designed and built by Chinese engineers</div></div></div><div class="act"><div class="act-year">1949</div><div><div class="act-name">The Examination</div><div class="act-desc">Mar 25: the CPC Central Committee alights at Qinghuayuan Station — first stop of the 'examination journey' (municipal heritage since 2023)</div></div></div><div class="act"><div class="act-year">1980s</div><div><div class="act-name">Entrepreneurship</div><div class="act-desc">Zhongguancun 'Electronics Street' — the start of China's Silicon Valley</div></div></div><div class="act"><div class="act-year">2026</div><div><div class="act-name">The Answer</div><div class="act-desc">A full-stack autonomous AI belt answers: how AI serves the people</div></div></div></div>
+</div>
+
+<div class="section">
+<h2 class="redbar">Examination Road · Century of Answers (5.4km)</h2>
+<table><tr><th>ID</th><th>Node</th><th>Expression</th></tr><tr><td>CR-01</td><td>Trailhead: Qinghuayuan Station</td><td>AR wayfinding, light-touch heritage</td></tr><tr><td>CR-02</td><td>Wudaokou memory node</td><td>Ground heritage marking</td></tr><tr><td>CR-03</td><td>Zhongguancun memory node</td><td>Street memory signage</td></tr><tr><td>CR-04</td><td>Open-Source Answers Plaza</td><td>People's Review display</td></tr><tr><td>CR-05</td><td>Bell Tolling Answer Hall</td><td>Annual Answer Report</td></tr></table>
+<p style="font-size:11.5px;color:var(--gray);margin-top:8px">Red appears only on the timeline, benefit markers and honor inscriptions; heritage fabric untouched.</p>
+</div>
+
+<div class="section">
+<h2>Key Areas · Land Use · Mobility · Blue-Green</h2>
+<div class="grid3">
+<div class="card"><h3>Zhongzhi Origin (192.1ha)</h3><p>Full-stack AI engine; L-01 red-dot landmark at the rail junction.</p></div>
+<div class="card"><h3>AI Origin (104.3ha)</h3><p>World AI community; CR-04 plaza + People’s Review display.</p></div>
+<div class="card"><h3>Bell Valley (72.0ha)</h3><p>AI living field; CR-05 hall publishes the annual Answer Report.</p></div>
+</div>
+<ul class="tight" style="margin-top:10px">
+<li>Land use targets: R&D 30% / commercial 20% / residential 15% / green-public 25% / transport 10%</li>
+<li>Mobility: N-S slow axis + E-W corridors; fully accessible cultural route</li>
+<li>Renewal projects: park south / AI Origin / Dazhongsi (near) → Zhongzhi (mid)</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>AI Scenarios (12) & People’s Review</h2>
+<div class="grid3">
+<div class="card"><span class="tag">Public benefit</span><h3>SC-02/03/07/08/12</h3><p>Imaging / education / food traceability / accessibility / trail AR — weighted up</p></div>
+<div class="card"><span class="tag">Industry test</span><h3>TV-01~04</h3><p>Diagnosis / delivery / LLM admin / green building — regulatory approval required</p></div>
+<div class="card"><span class="tag" style="background:#FBE9E7;color:#B02A1E">People’s Review (annual)</span><h3>Rate → Report → Exit/Iterate</h3><p>Citizens rate all scenarios; two low years force re-review, exit if unresolved (charter.7/10)</p></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Core Metrics (measured, EPSG:4548)</h2>
+<div class="metrics">
+<span class="metric" data-metric="site_area_sqm" data-value="11412825.386">Site area m²: <b>11,412,825.386</b></span>
+<span class="metric" data-metric="green_ratio" data-value="0.168073">Measured green ratio: <b>0.168073</b></span>
+<span class="metric" data-metric="public_space_ratio" data-value="0.002027">Plaza ratio: <b>0.002027</b></span>
+<span class="metric" data-metric="green_space_area_sqm" data-value="1918191.783">Green area m²<b>1,918,191.783</b></span>
+<span class="metric red" data-metric="culture_route_nodes_count" data-value="5">Culture nodes<b>5</b></span>
+<span class="metric red" data-metric="people_review_cycle_count" data-value="1">Review cycles/yr<b>1</b></span>
+<span class="metric" data-metric="building_footprint_area_sqm" data-value="241892.44">Building m²<b>241,892.44</b></span>
+<span class="metric" data-metric="public_space_area_sqm" data-value="23129.42">Plaza m²<b>23,129.42</b></span>
+</div>
+<p style="font-size:11px;color:var(--gray)">Counts: scenarios 12 / tests 4 / personas 6 / landmarks 5 / cases 7 / events 8. The 35% green figure is a concept target; measured 16.8% listed separately.</p>
+</div>
+
+<div class="section">
+<h2>Task Coverage · Self-Check</h2>
+<ul class="tight">
+<li>agent.1 Naming/Logo/visuals (red dot + Examination Red) · agent.2 7-case ecosystem · agent.3 12 scenarios + 6 personas · agent.4 5 landmarks · agent.5 four acts + route · agent.6 8 events + People’s Review</li>
+<li>Self-check: four gates in self_check.json; metrics on this page match metrics.json exactly.</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Sources · Assumptions</h2>
+<ul class="tight">
+<li>Sources (7): announcement / taskbook / provisional boundary / OSM / measures / industry report / Qinghuayuan Station history</li>
+<li>Assumptions (6): boundary precision / key-area values / OSM inference / target metrics / industry dynamics / culture-node vs boundary (ASSUME-006)</li>
+</ul>
+</div>
+
+<div class="foot">Intelligent Renaissance Belt v1.1 · CC BY 4.0 · generated by WorkBuddy AI · full proposal in proposal.md / proposal.en.md · zero external dependencies</div>
+</div></body></html>

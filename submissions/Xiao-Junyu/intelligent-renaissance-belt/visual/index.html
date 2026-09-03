@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智境复兴带 v1.1 — 百年京张 AI 城市设计方案(离线可视化)</title>
+<style>
+:root{--blue:#1A3A5C;--gold:#F0A500;--red:#B02A1E;--teal:#0F6E56;--gray:#5F5E5A;--bg:#FAFAF8;--lgray:#D3D1C7}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Microsoft YaHei','PingFang SC','Segoe UI',sans-serif;font-size:13px;color:#1A1A1A;background:var(--bg);line-height:1.6}
+.page{max-width:980px;margin:0 auto;padding:24px 20px 48px}
+.band{background:var(--blue);color:#fff;padding:34px 38px 26px;margin-bottom:22px}
+.band .sub{color:var(--gold);font-size:12px;letter-spacing:2px;margin-bottom:8px}
+.band h1{font-size:27px;font-weight:600;margin-bottom:6px}.band h1 em{color:var(--gold);font-style:normal}
+.band .meta{font-size:11px;color:rgba(255,255,255,.55);border-top:1px solid rgba(255,255,255,.15);padding-top:10px;margin-top:12px}
+.prov{background:#FFF3E0;border:1px solid var(--gold);border-radius:6px;padding:10px 14px;font-size:12px;color:#6D4C00;margin-bottom:20px}
+.section{margin-bottom:30px}
+h2{font-size:16px;font-weight:600;color:var(--blue);border-left:3px solid var(--gold);padding-left:10px;margin-bottom:14px}
+h2 .redbar{border-left-color:var(--red)}
+.map-wrap{display:grid;grid-template-columns:1fr 300px;gap:16px}
+@media(max-width:760px){.map-wrap{grid-template-columns:1fr}}
+svg{width:100%;height:auto;border:1px solid var(--lgray);background:#fff}
+.legend{font-size:11.5px;color:var(--gray)}
+.legend div{margin-bottom:7px;padding-left:16px;position:relative}
+.legend i{position:absolute;left:0;top:4px;width:10px;height:10px;border-radius:2px}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+@media(max-width:760px){.acts{grid-template-columns:repeat(2,1fr)}}
+.act{background:#fff;border:1px solid var(--lgray);border-top:3px solid var(--red);border-radius:6px;padding:12px}
+.act-year{font-size:18px;font-weight:700;color:var(--red)}
+.act-name{font-size:13px;font-weight:600;color:var(--blue);margin:2px 0}
+.act-desc{font-size:11px;color:var(--gray)}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:12px}
+th,td{border:1px solid var(--lgray);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#F2F6FA;color:var(--blue);font-weight:600}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:760px){.grid3{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--lgray);border-radius:8px;padding:14px}
+.card h3{font-size:13.5px;color:var(--blue);margin-bottom:6px}
+.card .tag{display:inline-block;font-size:10.5px;background:#FBE9E7;color:var(--red);border-radius:4px;padding:1px 7px;margin-bottom:6px}
+.card p{font-size:11.5px;color:var(--gray)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:760px){.metrics{grid-template-columns:repeat(2,1fr)}}
+.metric{background:#fff;border:1px solid var(--lgray);border-radius:8px;padding:12px;text-align:center;font-size:11px;color:var(--gray)}
+.metric b{display:block;font-size:19px;color:var(--blue);margin-top:3px}
+.metric.red b{color:var(--red)}
+ul.tight{padding-left:18px}ul.tight li{margin-bottom:4px;font-size:12px;color:var(--gray)}
+.foot{margin-top:34px;font-size:11px;color:var(--gray);border-top:1px solid var(--lgray);padding-top:12px}
+</style>
+</head>
+<body><div class="page">
+<div class="band">
+<div class="sub">OPEN CITY · HAIDIAN · 离线成果页</div>
+<h1>智境复兴带 <em>v1.1</em> — 百年京张·AI共生城市设计</h1>
+<div style="font-size:12px;color:rgba(255,255,255,.75)">百年答卷 · 赶考之路 · 人民阅卷 | 提交:Xiao-Junyu / WorkBuddy AI · 2026-08-16</div>
+<div class="meta">本页完全离线:无外部资源/CDN/字体/追踪;全部数值由 metrics.json 注入并可通过几何图层复算</div>
+</div>
+<div class="prov">⚠ <b>边界声明</b>:临时边界仅用于AI生成与展示,非官方法定范围线;清华园车站旧址(CR-01)为真实文保锚点,位于临时边界外西侧约300米(假设ASSUME-006)。全部内容为概念建议,不构成政府审定结论。</div>
+
+<div class="section">
+<h2>总览地图 · 三层范围 · 百年答卷</h2>
+<div class="map-wrap">
+<svg viewBox="0 0 760 1040" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="总体设计范围总览地图"><rect width="760" height="1040" fill="#FAFAF8"/><polygon points="140.7,1006.6 654.4,1006.6 654.4,717.4 584.1,439.4 654.4,33.4 211.1,33.4 175.9,261.4 105.6,606.2 140.7,1006.6" fill="#EAF3EA" stroke="#9FB8A8" stroke-width="1" fill-opacity="0.6"/><polygon points="362.4,951.0 432.8,951.0 432.8,38.9 362.4,38.9 362.4,951.0" fill="#CDE8DC" stroke="#0F6E56" stroke-width="1.2" fill-opacity="0.95"/><polygon points="168.9,439.4 292.0,439.4 292.0,355.9 168.9,355.9 168.9,439.4" fill="#CDE8DC" stroke="#0F6E56" stroke-width="1.2" fill-opacity="0.95"/><polygon points="309.6,472.7 485.6,472.7 485.6,428.2 309.6,428.2 309.6,472.7" fill="#CDE8DC" stroke="#0F6E56" stroke-width="1.2" fill-opacity="0.95"/><polygon points="140.7,1006.6 654.4,1006.6 654.4,717.4 584.1,439.4 654.4,33.4 211.1,33.4 175.9,261.4 105.6,606.2 140.7,1006.6" fill="#F2F6FA" stroke="#1A3A5C" stroke-width="2.5" fill-opacity="1"/><polygon points="221.7,244.7 608.7,244.7 608.7,38.9 221.7,38.9 221.7,244.7" fill="#E6F1FB" stroke="#1A3A5C" stroke-width="1.8" fill-opacity="0.9"/><polygon points="186.5,511.7 573.5,511.7 573.5,400.4 186.5,400.4 186.5,511.7" fill="#E6F1FB" stroke="#1A3A5C" stroke-width="1.8" fill-opacity="0.9"/><polygon points="186.5,951.0 643.9,951.0 643.9,886.1 186.5,886.1 186.5,951.0" fill="#E6F1FB" stroke="#1A3A5C" stroke-width="1.8" fill-opacity="0.9"/><polyline points="397.6,951.0 397.6,717.4 397.6,439.4 397.6,216.9 397.6,38.9" fill="none" stroke="#1A3A5C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="168.9,495.0 380.0,495.0 643.9,495.0" fill="none" stroke="#1A3A5C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><polyline points="-7.0,327.0 28.1,409.3 151.3,478.3 309.6,550.6 334.3,686.3 327.2,828.7 309.6,947.7" fill="none" stroke="#333333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><polygon points="485.6,205.8 555.9,205.8 555.9,172.4 485.6,172.4 485.6,205.8" fill="#F5E3C0" stroke="#F0A500" stroke-width="1" fill-opacity="0.95"/><polygon points="344.8,500.5 450.4,500.5 450.4,472.7 344.8,472.7 344.8,500.5" fill="#F5E3C0" stroke="#F0A500" stroke-width="1" fill-opacity="0.95"/><polygon points="239.3,934.3 380.0,934.3 380.0,901.0 239.3,901.0 239.3,934.3" fill="#F5E3C0" stroke="#F0A500" stroke-width="1" fill-opacity="0.95"/><rect x="391.6" y="77.4" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><rect x="356.4" y="444.5" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><rect x="391.6" y="767.0" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><rect x="426.8" y="900.5" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><rect x="462.0" y="600.2" width="12" height="12" fill="#F0A500" stroke="white" stroke-width="1.5"/><circle cx="-7.0" cy="327.0" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="5.0" y="331.0" font-size="13" font-weight="600" fill="#B02A1E">CR-01</text><circle cx="28.1" cy="409.3" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="40.1" y="413.3" font-size="13" font-weight="600" fill="#B02A1E">CR-02</text><circle cx="-728.3" cy="533.9" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="-716.3" y="537.9" font-size="13" font-weight="600" fill="#B02A1E">CR-03</text><circle cx="380.0" cy="456.0" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="392.0" y="460.0" font-size="13" font-weight="600" fill="#B02A1E">CR-04</text><circle cx="355.4" cy="695.2" r="9" fill="#B02A1E" stroke="white" stroke-width="2"/><text x="367.4" y="699.2" font-size="13" font-weight="600" fill="#B02A1E">CR-05</text><polyline points="-7.0,327.0 28.1,409.3 204.1,439.4 380.0,456.0 309.6,550.6 344.8,695.2 355.4,695.2" fill="none" stroke="#B02A1E" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="legend">
+<div><i style="background:#1A3A5C"></i>总体设计范围(临时 11.4km²)</div>
+<div><i style="background:#E6F1FB;border:1px solid #1A3A5C"></i>三处重点区域:众智源/AI原点/钟鸣谷</div>
+<div><i style="background:#CDE8DC"></i>蓝绿公共空间(绿地系统)</div>
+<div><i style="background:#F5E3C0;border:1px solid #F0A500"></i>建筑(概念体量)</div>
+<div><i style="background:#333"></i>京张铁路既有线位(1909)</div>
+<div><i style="background:#B02A1E"></i>赶考之路·百年答卷线 + 文化节点</div>
+<div><i style="background:#F0A500"></i>AI朝圣地标 L-01~05</div>
+<p style="margin-top:8px">三层范围:统筹研究43.6km² / 总体设计11.4km² / 重点区域368.4ha。</p>
+</div>
+</div>
+<div class="acts"><div class="act"><div class="act-year">1909</div><div><div class="act-name">自强</div><div class="act-desc">詹天佑建成京张铁路——中国人自主设计建造的第一条干线铁路</div></div></div><div class="act"><div class="act-year">1949</div><div><div class="act-name">赶考</div><div class="act-desc">3月25日中共中央抵达北平,在清华园车站下车——进京赶考第一站(2023年列为北京市文保单位)</div></div></div><div class="act"><div class="act-year">1980s</div><div><div class="act-name">创业</div><div class="act-desc">中关村电子一条街——中国硅谷起点</div></div></div><div class="act"><div class="act-year">2026</div><div><div class="act-name">答卷</div><div class="act-desc">全栈自主AI创新带回答:AI如何服务于人民</div></div></div></div>
+</div>
+
+<div class="section">
+<h2 class="redbar">赶考之路 · 百年答卷线(文化导览线 5.4km)</h2>
+<table><tr><th>ID</th><th>节点</th><th>表达</th></tr><tr><td>CR-01</td><td>赶考起点·清华园车站旧址</td><td>AR数字导览驿站,文保轻介入</td></tr><tr><td>CR-02</td><td>五道口·京张记忆节点</td><td>地面历史标线</td></tr><tr><td>CR-03</td><td>中关村·电子一条街记忆节点</td><td>街区记忆标识</td></tr><tr><td>CR-04</td><td>开源答卷广场</td><td>人民阅卷公示屏</td></tr><tr><td>CR-05</td><td>钟鸣交卷厅</td><td>年度答卷报告发布</td></tr></table>
+<p style="font-size:11.5px;color:var(--gray);margin-top:8px">红色只出现在时间轴、惠民标记与荣誉铭刻;文保本体"不停留、不触摸、可撤回"。</p>
+</div>
+
+<div class="section">
+<h2>重点区域 · 用地分区 · 交通慢行 · 蓝绿公共空间</h2>
+<div class="grid3">
+<div class="card"><h3>众智源(192.1ha)</h3><p>全栈自主AI引擎:研发集群+荣誉廊;L-01人字红点地标。</p></div>
+<div class="card"><h3>AI原点(104.3ha)</h3><p>世界级AI生态社区;CR-04开源答卷广场+人民阅卷公示屏。</p></div>
+<div class="card"><h3>钟鸣谷(72.0ha)</h3><p>AI生活体验场;CR-05钟鸣交卷厅,年度答卷报告发布。</p></div>
+</div>
+<ul class="tight" style="margin-top:10px">
+<li>用地分区(概念目标):研发30% / 商业20% / 居住15% / 绿地公共25% / 交通市政10%</li>
+<li>交通慢行:南北慢行主轴+东西通廊,缝合铁路走廊;文化线全程无障碍</li>
+<li>更新项目:遗址公园南段/AI原点展示/大钟寺启动(近)→众智苑全面(中)</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>AI 场景(12卡)与人民阅卷机制</h2>
+<div class="grid3">
+<div class="card"><span class="tag">惠民场景</span><h3>SC-02/03/07/08/12</h3><p>医疗影像/教育陪伴/农食溯源/无障碍/朝圣步道AR——评价权重上浮</p></div>
+<div class="card"><span class="tag">产业测试</span><h3>TV-01~04</h3><p>医疗诊断/末端配送/大模型行政/绿色建筑——须监管审批</p></div>
+<div class="card"><span class="tag" style="background:#FBE9E7;color:#B02A1E">人民阅卷(年度)</span><h3>评价→答卷报告→退出/迭代</h3><p>市民匿名评价全部场景;连续两年低分复审,无效退出,资源向惠民场景倾斜(charter.7/10)</p></div>
+</div>
+</div>
+
+<div class="section">
+<h2>核心指标(实测复算, EPSG:4548)</h2>
+<div class="metrics">
+<span class="metric" data-metric="site_area_sqm" data-value="11412825.386">总体范围面积 m²: <b>11,412,825.386</b></span>
+<span class="metric" data-metric="green_ratio" data-value="0.168073">实测绿地率: <b>0.168073</b></span>
+<span class="metric" data-metric="public_space_ratio" data-value="0.002027">广场footprint占比: <b>0.002027</b></span>
+<span class="metric" data-metric="green_space_area_sqm" data-value="1918191.783">绿地面积 m²<b>1,918,191.783</b></span>
+<span class="metric red" data-metric="culture_route_nodes_count" data-value="5">文化节点<b>5</b></span>
+<span class="metric red" data-metric="people_review_cycle_count" data-value="1">人民阅卷轮/年<b>1</b></span>
+<span class="metric" data-metric="building_footprint_area_sqm" data-value="241892.44">建筑体量 m²<b>241,892.44</b></span>
+<span class="metric" data-metric="public_space_area_sqm" data-value="23129.42">广场面积 m²<b>23,129.42</b></span>
+</div>
+<p style="font-size:11px;color:var(--gray)">其余计数指标:场景卡12/测试4/画像6/地标5/案例7/活动8;35%绿地率为概念目标,与实测16.8%分列。</p>
+</div>
+
+<div class="section">
+<h2>任务覆盖 · 自检状态</h2>
+<ul class="tight">
+<li>agent.1 命名/Logo/视觉(人字红点+赶考红) · agent.2 7案例生态 · agent.3 12场景+6画像 · agent.4 5朝圣地标 · agent.5 百年答卷四幕+文化线 · agent.6 8活动+人民阅卷</li>
+<li>自检状态:四门自检(确定性/空间/视觉/专业)详见 self_check.json;本页指标与 metrics.json 逐项一致。</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>来源 · 假设</h2>
+<ul class="tight">
+<li>来源(7):官方公告/任务书/临时边界/OSM/城市设计办法/产业报告/清华园车站史实(SRC-QHY-STATION-2023)</li>
+<li>假设(6):临时边界精度/重点区临时值/OSM用地推断/指标为目标值/产业数据动态/文化节点与边界关系(ASSUME-006)</li>
+</ul>
+</div>
+
+<div class="foot">智境复兴带 v1.1 · CC BY 4.0 · 由 WorkBuddy AI 生成 · 完整方案见 proposal.md / proposal.en.md · 本页无任何外部依赖</div>
+</div></body></html>
