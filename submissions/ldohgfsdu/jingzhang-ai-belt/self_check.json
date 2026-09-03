@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary PROV-SITE-001 used; not an official redline. Recalculate on official geometry."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three key areas are provisional; not official redlines."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Land-use polygons fully partition the site boundary (no gaps/overlaps)."
+    },
+    {
+      "check_id": "GREEN_PUBLIC_INSIDE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/green_space.geojson",
+      "message": "Green and public space layers lie inside the site boundary."
+    },
+    {
+      "check_id": "BUILDINGS_INSIDE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/buildings.geojson",
+      "message": "Building footprints lie inside the site boundary."
+    },
+    {
+      "check_id": "METRIC_CONSISTENCY",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Known metrics recomputed from projected geometry (EPSG:4548) and match spatial review."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static offline HTML; no remote scripts, maps, fonts, forms, or trackers."
+    },
+    {
+      "check_id": "BILINGUAL_COMPLETE",
+      "result": "pass",
+      "severity": "major",
+      "target": "manifest.json",
+      "message": "Primary zh display files and en counterparts listed with translation_of metadata."
+    },
+    {
+      "check_id": "PROVISIONAL_DISCLOSED",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Provisional-boundary limitation disclosed in proposal, sources, assumptions, and self_check."
+    }
+  ]
+}
