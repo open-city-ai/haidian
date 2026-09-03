@@ -1,8 +1,66 @@
 {
  "schema_version": "0.1.0",
+ "enhancements": [
+  {
+   "enhancement_id": "v1.8-E01",
+   "parent_ring": "C07/C08",
+   "parent_object_ids": ["S09", "S12", "C07", "C08", "MY-ARCH-*"],
+   "carrier_outputs": ["proposal.md", "proposal.en.md", "C07/C08 subrecord", "visual offline card"],
+   "render_targets": ["proposal", "visual", "offline_snapshot"],
+   "evidence_refs": ["decision_log_id", "archive_id", "changelog.md#CL-v1.8-E01"],
+   "failure_condition": "Missing accountable person, date, status outcome, manual next step or archive reference.",
+   "rollback_to": "C07 manual work order or previous valid archive version",
+   "verification_status": "blocked"
+  },
+  {
+   "enhancement_id": "v1.8-E02",
+   "parent_ring": "C04/C08",
+   "parent_object_ids": ["S06", "S08", "S12", "C04", "C08"],
+   "carrier_outputs": ["compliance_matrix", "C04/C08 subrecord", "public operations summary"],
+   "render_targets": ["proposal", "visual", "offline_snapshot"],
+   "evidence_refs": ["unresolved_objections", "revision_id", "changelog.md#CL-v1.8-E02"],
+   "failure_condition": "An unresolved objection is hidden, or a revision cannot point back to its source objection.",
+   "rollback_to": "C04 human review or C07 manual entry",
+   "verification_status": "blocked"
+  },
+  {
+   "enhancement_id": "v1.8-E03",
+   "parent_ring": "MY-DEMO-001/S07",
+   "parent_object_ids": ["MY-DEMO-001", "S07", "meet-protocol.schema.json"],
+   "carrier_outputs": ["proposal.md", "proposal.en.md", "visual", "offline HTML/PDF"],
+   "render_targets": ["proposal", "visual", "offline_snapshot"],
+   "evidence_refs": ["meet-protocol-drill.json#drill_pass", "replay_trace_id", "changelog.md#CL-v1.8-E03"],
+   "failure_condition": "Any scenario/component/decision/archive ID link is missing, or the conceptual declaration is absent.",
+   "rollback_to": "Do not render the demonstration; retain the ordinary MY-DEMO-001 manual explanation",
+   "verification_status": "blocked"
+  },
+  {
+   "enhancement_id": "v1.8-E04",
+   "parent_ring": "S03/C06/C07",
+   "parent_object_ids": ["S03", "C06", "C07", "INCLUSION-SERVICE-01", "OPS-WIN-01", "OPS-WIN-02"],
+   "carrier_outputs": ["S03 review", "existing metrics research fields", "aggregated operations summary"],
+   "render_targets": ["proposal", "visual", "offline_snapshot"],
+   "evidence_refs": ["metrics.json#INCLUSION-SERVICE-01", "metrics.json#OPS-WIN-01", "metrics.json#OPS-WIN-02", "changelog.md#CL-v1.8-E04"],
+   "failure_condition": "Labor, accessibility or safety feedback is missing, individualized, or an unresolved objection is treated as closed.",
+   "rollback_to": "Manual dispatch and on-site scheduling",
+   "verification_status": "blocked"
+  },
+  {
+   "enhancement_id": "v1.8-E05",
+   "parent_ring": "C01/C05/C07",
+   "parent_object_ids": ["S02", "S05", "S10", "S14", "C01", "C05", "C07"],
+   "carrier_outputs": ["offline HTML snapshot", "A3/PDF paper card", "phone/manual window summary"],
+   "render_targets": ["offline_snapshot", "paper_card", "manual_channel"],
+   "evidence_refs": ["offline_snapshot", "snapshot_hash", "manual_channel", "changelog.md#CL-v1.8-E05"],
+   "failure_condition": "Any channel is stale, corrupt, online-only, or lacks a readable manual entrance.",
+   "rollback_to": "Static explanation and manual service",
+   "verification_status": "blocked"
+  }
+ ],
  "requirements": [
   {
    "requirement_id": "agent.1.proposal_narrative",
+   "enhancement_refs": ["v1.8-E01", "v1.8-E03"],
    "agent_id": "agent.1",
    "output_id": "proposal_narrative",
    "title_zh": "总体概念叙事（含会车档案 001 号位置）",
@@ -229,6 +287,7 @@
   },
   {
    "requirement_id": "agent.1.visual_index_section",
+   "enhancement_refs": ["v1.8-E03", "v1.8-E05"],
    "agent_id": "agent.1",
    "output_id": "visual_index_section",
    "title_zh": "视觉索引章节（离线 visual/index.html）",
@@ -441,6 +500,7 @@
   },
   {
    "requirement_id": "agent.2.metrics_and_sources",
+   "enhancement_refs": ["v1.8-E04"],
    "agent_id": "agent.2",
    "output_id": "metrics_and_sources",
    "title_zh": "指标与来源登记（metrics.json/sources.json）",
@@ -551,6 +611,7 @@
   },
   {
    "requirement_id": "agent.3.scenario_cards",
+   "enhancement_refs": ["v1.8-E02", "v1.8-E04"],
    "agent_id": "agent.3",
    "output_id": "scenario_cards",
    "title_zh": "场景卡清单（S01–S14，14 张）",
@@ -974,6 +1035,7 @@
   },
   {
    "requirement_id": "agent.4.component_library",
+   "enhancement_refs": ["v1.8-E01", "v1.8-E02", "v1.8-E04", "v1.8-E05"],
    "agent_id": "agent.4",
    "output_id": "component_library",
    "title_zh": "公共空间组件库（C01–C08）",

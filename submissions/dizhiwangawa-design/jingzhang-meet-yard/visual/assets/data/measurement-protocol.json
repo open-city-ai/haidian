@@ -1,0 +1,146 @@
+{
+  "schema_version": "0.1.0",
+  "purpose": "把 6 项 unknown 指标从“待定义”升级为“已定义测量协议、待基线、待真实值”。不预填任何目标值。",
+  "scope": "GOV-OBS-01/02/03、OPS-WIN-01/02、INCLUSION-SERVICE-01，与 metrics.json 及 proposal §06.3.2 阈值草案一致。",
+  "value_policy_global": "所有指标 value=null、status=unknown，直到真实试点产生数据并经人审写入；测量协议本身是方案交付物。",
+  "protocols": [
+    {
+      "metric_id": "GOV-OBS-01",
+      "title_zh": "双向凭证互证界面的凭证对完整率",
+      "definition": "进入试行的场景中，完成双向凭证互证（智能体上下文凭证 + 人类责任/质询凭证）的场景数 ÷ 进入试行的场景总数。",
+      "measurement_instrument": "会车协议公开运行板的 credential_exchange_log 与试行档案；离线快照经 sha256 登记。",
+      "sampling_frequency": "每个场景在 CROSS_VERIFICATION 状态结束、HUMAN_REVIEWED 之前必测一次；季度汇总。",
+      "responsible_role": "档案维护角色 + 领域/安全审核角色；缺失时场景不得进入人审。",
+      "data_fields": [
+        "trial_id",
+        "scenario_id",
+        "credential_exchange_log_id",
+        "agent_context_present",
+        "human_accountability_present",
+        "missing_fields",
+        "verified_at",
+        "reviewer_role_id"
+      ],
+      "baseline_method": "前 10 个完成互证的场景作为首批基线样本，记录字段缺失类型与原因，不据此修改分母定义。",
+      "acceptance_gate": "进入 HUMAN_REVIEWED 前凭证对必须 100% 完整；任何缺失保持 CROSS_VERIFICATION 或回退。",
+      "calibration_rule": "阈值不得在无基线时承诺；每次定义变更须重新进入披露—互证。",
+      "value_policy": "status 保持 unknown、value=null，直到真实试行数据产生。"
+    },
+    {
+      "metric_id": "GOV-OBS-02",
+      "title_zh": "人审决定日志关联率",
+      "definition": "带可复核链接证据（场景卡、审核意见、数据来源、停止条件）的 decision_log 数量 ÷ decision_log 总数。",
+      "measurement_instrument": "decision_log_id 台账 + 公开运行板离线快照；抽样复核链接可解析。",
+      "sampling_frequency": "每一条人审决定即时登记；每周抽检 20% 或至少 3 条；季度全量复核。",
+      "responsible_role": "可问责负责人 + 档案维护角色；审核角色对专业内容负责。",
+      "data_fields": [
+        "decision_log_id",
+        "scenario_id",
+        "review_date",
+        "reviewer_roles",
+        "decision",
+        "evidence_refs",
+        "linked_check",
+        "missing_refs",
+        "disposition"
+      ],
+      "baseline_method": "首个试行月全量采集，按“缺失链接类型”分类；第二个月起用于报告与复核。",
+      "acceptance_gate": "进入 ARCHIVED 的试行档案必须 100% 关联；关联率低于 90% 时暂停新增试行并回查台账。",
+      "calibration_rule": "目标值不预设；先以 100% 档案入库为硬门槛，运行率通过基线后由人审决定。",
+      "value_policy": "status 保持 unknown、value=null。"
+    },
+    {
+      "metric_id": "GOV-OBS-03",
+      "title_zh": "治理状态索引快照新鲜度",
+      "definition": "状态快照实际刷新间隔与承诺刷新周期之差落在合规范围内的比例。",
+      "measurement_instrument": "visual/assets/data/meet-protocol.schema.json 配套的 offline_snapshot 记录：snapshot_at、snapshot_hash、not_live。",
+      "sampling_frequency": "每发布一次离线快照即登记一次；活跃试行期至少每 24 小时一次；季度审计。",
+      "responsible_role": "档案维护角色发布快照；可问责负责人确认刷新承诺周期。",
+      "data_fields": [
+        "snapshot_id",
+        "snapshot_at",
+        "snapshot_hash",
+        "promised_interval_hours",
+        "actual_delta_hours",
+        "fresh",
+        "late_reason"
+      ],
+      "baseline_method": "以 4 周连续快照记录建立刷新能力基线；承诺周期只能由人类责任角色确认。",
+      "acceptance_gate": "活跃试行期内，快照超过承诺周期未刷新即触发黄灯（琥珀）并在运行板显示；连续 2 次迟滞暂停相关试行。",
+      "calibration_rule": "快照是辅助索引，不是实时系统；不以颜色替代文字与状态码。",
+      "value_policy": "status 保持 unknown、value=null。"
+    },
+    {
+      "metric_id": "OPS-WIN-01",
+      "title_zh": "公共复核与质询窗口产出率",
+      "definition": "窗口内完成答复并归档的意见数 ÷ 窗口意见总数。",
+      "measurement_instrument": "公共复核与质询窗口台账；每条意见有 received_at、disposition、archived_at、manual_alternative。",
+      "sampling_frequency": "每个窗口（建议 s_weekly 开放会车日）结束时统计；月度汇总。",
+      "responsible_role": "公共服务值守 + 社区联络角色；独立申诉复核角色处理未结异议。",
+      "data_fields": [
+        "window_id",
+        "opinion_id",
+        "scenario_id",
+        "received_at",
+        "disposition",
+        "responded_by",
+        "archived_at",
+        "unresolved",
+        "appeal_ref"
+      ],
+      "baseline_method": "首个 3 个窗口全量记录作为基线；只报告分布，不预设百分比。",
+      "acceptance_gate": "窗口关闭时未结异议必须显式进入申诉链或人工窗口；存在未归档意见时不得宣称窗口完成。",
+      "calibration_rule": "产出率的目标值由试点后人审校准；硬门槛是“零丢失意见”。",
+      "value_policy": "status 保持 unknown、value=null。"
+    },
+    {
+      "metric_id": "OPS-WIN-02",
+      "title_zh": "开放场次 / 维护者留存 / 知识包复用三项运营统计",
+      "definition": "三合一统计：①有效开放场次数；②维护者连续贡献与退出记录；③经许可审核的知识包被复用次数。",
+      "measurement_instrument": "会车档案运营台账：session_log、maintainer_log、knowledge_package_reuse_log。",
+      "sampling_frequency": "每次活动即时登记；季度汇总；年度复盘发布公开摘要。",
+      "responsible_role": "program owner + site operator + archive maintainer；任一角色缺失时活动降级为创意储备。",
+      "data_fields": [
+        "session_id",
+        "owner_role",
+        "resources",
+        "public_output",
+        "maintainer_id",
+        "contribution_window",
+        "exit_reason",
+        "knowledge_package_id",
+        "reuse_count",
+        "reuse_license"
+      ],
+      "baseline_method": "前 2 个季度采集三项原始计数与原因分布，形成基线报告；不复用竞品目标值。",
+      "acceptance_gate": "无 owner/资源/复盘记录的场次不计入有效开放场次；无许可的知识包不得发布。",
+      "calibration_rule": "三项子指标分别报告，不合并为单一“运营健康度”分数。",
+      "value_policy": "status 保持 unknown、value=null。"
+    },
+    {
+      "metric_id": "INCLUSION-SERVICE-01",
+      "title_zh": "无障碍连续性 / 人工替代 / 可退出成功率",
+      "definition": "三合一服务底线：①每个试行场景至少绑定 1 个无障碍/人工替代入口；②停止触发后人工替代在承诺时间内可用；③用户退出请求被完成处理的比例。",
+      "measurement_instrument": "组件字段检查（C05/C07 + operator_role/backup_role/accessibility）+ 服务连续性日志 + 退出请求台账。",
+      "sampling_frequency": "试点前逐场景检查；试行中每周抽检；每次停止/回退事件即时记录；月度汇总。",
+      "responsible_role": "场地运营角色 + 受影响群体/无障碍评议角色；没有预授权替补时只能暂停或恢复人工服务。",
+      "data_fields": [
+        "scenario_id",
+        "component_id",
+        "non_digital_entry",
+        "manual_alternative",
+        "backup_role",
+        "stop_trigger",
+        "fallback_ready_at",
+        "exit_request_id",
+        "exit_completed",
+        "completion_hours",
+        "complaint_id"
+      ],
+      "baseline_method": "以 S01–S14 阈值草案（§06.3.2）为校准起点，试点前逐卡做真实基线测量；基线未完成不得进入限域试行。",
+      "acceptance_gate": "任一场景无人工替代即不得试行；停止触发后人工替代未按时可用则保持停止并复盘；退出请求 100% 可追踪。",
+      "calibration_rule": "阈值草案不构成承诺值；真实目标由试点基线与受影响群体评议共同校准。",
+      "value_policy": "status 保持 unknown、value=null。"
+    }
+  ]
+}
