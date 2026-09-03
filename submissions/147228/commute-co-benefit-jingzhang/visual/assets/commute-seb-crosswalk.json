@@ -1,0 +1,117 @@
+{
+  "document_type": "optional_service_equivalence_crosswalk",
+  "package_iteration": "v1.9",
+  "adoption": {
+    "mode": "component_level_opt_in",
+    "spec_name": "Service Equivalence Baseline",
+    "spec_name_zh": "服务等价基准",
+    "spec_abbreviation": "SEB",
+    "spec_version": "0.5.0",
+    "spec_status": "draft_concept_recommendation",
+    "license": "CC-BY-SA-4.0",
+    "attribution": "SEB v0.5.0 by lqqk7, used as an optional component-level reference; no institutional endorsement is implied.",
+    "source_id": "SEB-V0.5.0",
+    "canonical_public_reference": "https://github.com/open-city-ai/haidian/blob/main/submissions/lqqk7/every-sense-jingzhang/visual/assets/seb-spec.json",
+    "accessed_date": "2026-08-22",
+    "adopter_lexicon": [
+      "交通与属地管理角色",
+      "企业交通与接驳运营角色",
+      "社区、无障碍与人工服务角色",
+      "维护、数据保护与独立复核角色"
+    ],
+    "adopter_lexicon_evidence": {
+      "交通与属地管理角色": "The package-local responsibility contract names this role as the owner of approvals, right-of-way boundaries, public safety and traffic-impact interfaces.",
+      "企业交通与接驳运营角色": "The package-local responsibility contract names this role as the owner of grouped demand versions, schedules, loading windows, cost and on-site guidance.",
+      "社区、无障碍与人工服务角色": "The package-local responsibility contract names this role as the owner of public-route continuity, alternatives, redress and low-digital-capacity access.",
+      "维护、数据保护与独立复核角色": "The package-local responsibility contract names this role as the owner of asset state, privacy, evidence retention and independent review."
+    },
+    "scope_zh": "只采用本包已公开的活动链、人工替代、责任角色和阶段门字段做互操作对照；不采用外部包的叙事、几何或数据，不新增仓库硬门禁、正式评分项、服务覆盖或现场成效主张。",
+    "scope_en": "This maps already-public activity-chain, human-alternative, role and phase-gate fields for interoperability only. It adopts no external package narrative, geometry or data, and adds no repository hard gate, formal score item, service coverage or field-outcome claim."
+  },
+  "nodes": [
+    {
+      "node_id": "AC-01-LEAVE",
+      "scenario_source_ref": "visual/assets/commute-service-equivalence-atlas.json#nodes[AC-01-LEAVE]",
+      "local_gate_source_ref": "visual/assets/responsibility-acceptance-contract.json#phases[P0]",
+      "local_gate_id": "P0",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "纸面导向、电话入口、有人服务台和公开公交信息可独立完成同一出门与选择任务。", "en": "Paper wayfinding, telephone entry, a staffed desk and public-transport information can independently complete the leaving-and-choice task."},
+      "human_handoff": {"zh": "社区、无障碍与人工服务角色（待授权指定）", "en": "Community, accessibility and human-service role (pending authorization)"},
+      "responsible_role": {"zh": "社区、无障碍与人工服务角色（待授权指定）", "en": "Community, accessibility and human-service role (pending authorization)"}
+    },
+    {
+      "node_id": "AC-02-FEEDER",
+      "scenario_source_ref": "visual/assets/commute-service-equivalence-atlas.json#nodes[AC-02-FEEDER]",
+      "local_gate_source_ref": "visual/assets/responsibility-acceptance-contract.json#phases[P1]",
+      "local_gate_id": "P1",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "固定班次、纸面时刻表、步行替代和人工指路不依赖账号、网络或模型。", "en": "Fixed services, a paper timetable, a walking alternative and staffed wayfinding do not depend on an account, network or model."},
+      "human_handoff": {"zh": "企业交通与接驳运营角色（待授权指定）", "en": "Enterprise mobility and feeder-operator role (pending authorization)"},
+      "responsible_role": {"zh": "企业交通与接驳运营角色（待授权指定）", "en": "Enterprise mobility and feeder-operator role (pending authorization)"}
+    },
+    {
+      "node_id": "AC-03-ARRIVE",
+      "scenario_source_ref": "visual/assets/commute-service-equivalence-atlas.json#nodes[AC-03-ARRIVE]",
+      "local_gate_source_ref": "visual/assets/responsibility-acceptance-contract.json#phases[P1]",
+      "local_gate_id": "P1",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "人工交通台账、现场指挥、公开路缘状态和固定公共路线保持可用，不把企业服务当成公共路线替代。", "en": "A staffed transport ledger, on-site direction, public curb status and a fixed public route remain available; enterprise service is not a substitute for the public route."},
+      "human_handoff": {"zh": "交通与属地管理角色（待授权指定）", "en": "Transport and local-management role (pending authorization)"},
+      "responsible_role": {"zh": "交通与属地管理角色（待授权指定）", "en": "Transport and local-management role (pending authorization)"}
+    },
+    {
+      "node_id": "AC-04-MIDDAY",
+      "scenario_source_ref": "visual/assets/commute-service-equivalence-atlas.json#nodes[AC-04-MIDDAY]",
+      "local_gate_source_ref": "visual/assets/responsibility-acceptance-contract.json#phases[P1]",
+      "local_gate_id": "P1",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "现场柜台、电话、纸面目录和公共服务人员转介可完成或接住基本服务。", "en": "A walk-in desk, telephone, paper catalogue and public-service referral can complete or receive the basic service."},
+      "human_handoff": {"zh": "社区、无障碍与人工服务角色（待授权指定）", "en": "Community, accessibility and human-service role (pending authorization)"},
+      "responsible_role": {"zh": "社区、无障碍与人工服务角色（待授权指定）", "en": "Community, accessibility and human-service role (pending authorization)"}
+    },
+    {
+      "node_id": "AC-05-RETURN",
+      "scenario_source_ref": "visual/assets/commute-service-equivalence-atlas.json#nodes[AC-05-RETURN]",
+      "local_gate_source_ref": "visual/assets/responsibility-acceptance-contract.json#phases[P1]",
+      "local_gate_id": "P1",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "末班时刻、有人值守换乘点、电话回家登记和必要公共交通提供可见的退出与回家方式。", "en": "Last-service times, staffed transfer points, a telephone return-home register and necessary public transport provide visible exit and return-home routes."},
+      "human_handoff": {"zh": "社区、无障碍与人工服务角色（待授权指定）", "en": "Community, accessibility and human-service role (pending authorization)"},
+      "responsible_role": {"zh": "社区、无障碍与人工服务角色（待授权指定）", "en": "Community, accessibility and human-service role (pending authorization)"}
+    },
+    {
+      "node_id": "AC-06-REVIEW",
+      "scenario_source_ref": "visual/assets/commute-service-equivalence-atlas.json#nodes[AC-06-REVIEW]",
+      "local_gate_source_ref": "visual/assets/responsibility-acceptance-contract.json#phases[P2]",
+      "local_gate_id": "P2",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {"zh": "纸面登记、人工分派、维修单和公开状态牌继续承接投诉、维修和复核。", "en": "Paper registration, staffed assignment, repair orders and a public status board continue to receive complaints, repairs and review."},
+      "human_handoff": {"zh": "维护、数据保护与独立复核角色（待授权指定）", "en": "Maintenance, data-protection and independent-review role (pending authorization)"},
+      "responsible_role": {"zh": "维护、数据保护与独立复核角色（待授权指定）", "en": "Maintenance, data-protection and independent-review role (pending authorization)"}
+    }
+  ],
+  "negative_fixtures": [
+    {"id": "NEG-01", "node_id": "AC-01-LEAVE", "mutation": "ai_off_path_dependency", "expected_fail_code": "AI_OFF_PATH_DEPENDENCY"},
+    {"id": "NEG-02", "node_id": "AC-02-FEEDER", "mutation": "human_handoff_role_missing", "expected_fail_code": "HUMAN_HANDOFF_ROLE_MISSING"},
+    {"id": "NEG-03", "node_id": "AC-03-ARRIVE", "mutation": "gate_id_invalid", "expected_fail_code": "GATE_ID_INVALID"},
+    {"id": "NEG-04", "node_id": "AC-04-MIDDAY", "mutation": "operating_mode_missing", "expected_fail_code": "OPERATING_MODE_MISSING"},
+    {"id": "NEG-05", "node_id": "AC-05-RETURN", "mutation": "source_alignment_changed", "expected_fail_code": "SOURCE_ALIGNMENT_MISMATCH"}
+  ],
+  "boundary": {
+    "decision": "HOLD",
+    "field_state": "not_authorized_not_run",
+    "operational_status": "not_authorized_not_run",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "performance_results": null,
+    "public_rank_claim": false,
+    "formal_score_claim": false
+  }
+}
