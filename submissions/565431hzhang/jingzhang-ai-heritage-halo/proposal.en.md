@@ -487,7 +487,7 @@ Three-layer cultural integration narrative:
 **International Communication Narrative (conceptual copy, for campaign and brand development):**
 - **English brand line**: "From Iron Rails to Intelligent Trails — The Centennial Belt of AI Innovation"
 - **Chinese brand line**: "京张智脉，光晕未来" (Jing-Zhang Heritage Halo — where rail memory meets the AI future)
-- **Three communication themes**: ① "China's First AI Innovation Belt on a Century Rail"; ② "Where Heritage Meets Algorithm"; ③ "Open, Verified, Human-Centered AI"
+- **Three communication themes**: ① "AI Innovation Belt on a Century Rail"; ② "Where Heritage Meets Algorithm"; ③ "Open, Verified, Human-Centered AI"
 - **International communication vehicles**: Global AI Open Day (autumn), international roadshow hall, multilingual wayfinding and scenario guides, multilingual AI Pilgrimage Path experience routes, open-source project international collaboration page
 - **Authenticity principle**: All communication content must be based on verifiable public facts and authorized outcomes; no overstatement of implementation commitments; conceptual proposals must not be presented as completed facts
 
@@ -647,29 +647,30 @@ To avoid writing operational vision as mere promotional slogans, the proposal ad
 
 The following is a conceptual economic analysis framework based on publicly comparable project data and industry experience. It does not constitute investment commitments or financial advice. Formal investment estimates must be completed by professional cost consultants following confirmation of regulatory plans, property rights, engineering geology, and design depth.
 
-**Investment Scale Framework (Conceptual, Project-level Estimates):**
+**Investment Scale Framework (Conceptual, relative tiers only — no specific amounts):**
 
-| Project ID | Project Name | Range (100M CNY) | Level | Comparable Reference | Core Assumption | Risk Adjustment |
-| --- | --- | --- | --- | --- | --- | --- |
-| JZ-01 | Slow-traffic gap stitching | 0.3-0.8 | Conceptual | Beijing similar slow-traffic upgrades | 6 gaps, including underpass and overpass | ±50% |
-| JZ-02 | Qinghe Innovation Frontage | 1.5-3.0 | Conceptual | Shanghai Huangpu Riverside | 1.5km waterfront, including eco-restoration | ±40% |
-| JZ-03 | Achievement Transformation Street | 5.0-10.0 | Conceptual | Shenzhen Nanshan Sci-Tech Park urban renewal | Ground-floor renovation and spatial upgrade | ±50% |
-| JZ-04 | Station-city pedestrian connectivity | 3.0-6.0 | Conceptual | Beijing station integration precedents | Underground connectivity + ground-level walking | ±50% |
-| JZ-05 | Edge compute nodes | 0.5-1.5 | Conceptual | Edge computing deployment cases | 5-10 nodes, including equipment and network | ±60% |
-| JZ-06 | Event week route | 0.1-0.3 | Conceptual | Beijing public event cases | Lightweight facilities, operations-focused | ±30% |
-| **Total** | | **10.4-21.6** | | | | |
+> Consistent with the project list in §6.1, the following gives only relative scale tiers (small / mid-small / mid-large) without specific amounts or precision ranges, to avoid false precision without sourced support. Formal investment estimates must be completed by professional cost consultants following confirmation of regulatory plans, property rights, engineering geology, and design depth.
 
-> The above estimates are conceptual (±50% precision), based on publicly comparable project experience. Formal estimates must be completed by professional cost consultants during the detailed design phase.
+| Project ID | Project Name | Scale Tier | Comparable Reference (qualitative, not per-item verified) | Core Assumption |
+| --- | --- | --- | --- | --- |
+| JZ-01 | Slow-traffic gap stitching | Mid-small | Beijing similar slow-traffic upgrades | 6 gaps, including underpass and overpass |
+| JZ-02 | Qinghe Innovation Frontage | Mid-small | Shanghai Huangpu Riverside | 1.5km waterfront, including eco-restoration |
+| JZ-03 | Achievement Transformation Street | Mid-large | Shenzhen Nanshan Sci-Tech Park urban renewal | Ground-floor renovation and spatial upgrade |
+| JZ-04 | Station-city pedestrian connectivity | Mid-large | Beijing station integration precedents | Underground connectivity + ground-level walking |
+| JZ-05 | Edge compute nodes | Mid-large | Edge computing deployment cases | 5-10 nodes, including equipment and network |
+| JZ-06 | Event week route | Small | Beijing public event cases | Lightweight facilities, operations-focused |
+
+> Comparable references are qualitative contrasts of public cases, not per-item verified in sources.json for baseline year, unit conversion, or adjustment method, and are not quantitative basis; tiers are consistent with the project list's "mid-small/mid-large" and no specific amounts are aggregated.
 
 **Funding Model (Conceptual Suggestions):**
 
-| Fund Type | Suggested Share | Source | Use | Exit Mechanism | Risk Allocation |
+| Fund Type | Relative Weight | Source | Use | Exit Mechanism | Risk Allocation |
 | --- | --- | --- | --- | --- | --- |
-| Government guiding funds | 20-30% | District/municipal urban renewal funds | Infrastructure (roads, slow-traffic, utilities, public space) | Non-exit (public goods) | Government bears policy and approval risk |
-| Policy loans | 15-25% | China Development Bank / policy banks | Industrial park infrastructure | Installment repayment | Government + operator shared |
-| Industrial funds | 15-25% | Government guiding funds + social capital | AI incubation, accelerators, testbeds | Equity exit (IPO/M&A/buyback) | Market-based risk allocation |
-| Enterprise self-investment | 20-30% | Tenant enterprises | Headquarters/R&D center construction/renovation | Enterprise-owned assets | Enterprise bears market risk |
-| Operating revenue | 5-10% | Scene service fees, event sponsorship, data services | Public space maintenance, community services | Ongoing operations | Operator bears operational risk |
+| Government guiding funds | Lead | District/municipal urban renewal funds | Infrastructure (roads, slow-traffic, utilities, public space) | Non-exit (public goods) | Government bears policy and approval risk |
+| Policy loans | Major | China Development Bank / policy banks | Industrial park infrastructure | Installment repayment | Government + operator shared |
+| Industrial funds | Major | Government guiding funds + social capital | AI incubation, accelerators, testbeds | Equity exit (IPO/M&A/buyback) | Market-based risk allocation |
+| Enterprise self-investment | Lead | Tenant enterprises | Headquarters/R&D center construction/renovation | Enterprise-owned assets | Enterprise bears market risk |
+| Operating revenue | Supplemental | Scene service fees, event sponsorship, data services | Public space maintenance, community services | Ongoing operations | Operator bears operational risk |
 
 **Cost-Benefit Analysis Framework (Conceptual):**
 
@@ -687,11 +688,11 @@ The following is a conceptual economic analysis framework based on publicly comp
 
 | Risk | Impact | Likelihood | Funding Mitigation |
 | --- | --- | --- | --- |
-| Land/property rights changes delay project | Cost increase 20-50% | High | Use lightweight reversible facilities first; defer formal engineering until conditions confirmed |
-| Industry attraction below expectations | Revenue decrease 30-50% | Medium | Phased development; Phase 1 focuses on public services and public spaces, reducing dependence on industrial revenue |
-| Interest rate/financing cost increase | Financial cost increase 10-20% | Medium | Prioritize policy loans and government funds; reduce reliance on commercial financing |
+| Land/property rights changes delay project | Cost increase (magnitude pending condition confirmation) | High | Use lightweight reversible facilities first; defer formal engineering until conditions confirmed |
+| Industry attraction below expectations | Revenue decline (magnitude pending market calibration) | Medium | Phased development; Phase 1 focuses on public services and public spaces, reducing dependence on industrial revenue |
+| Interest rate/financing cost increase | Financial cost increase (magnitude pending market conditions) | Medium | Prioritize policy loans and government funds; reduce reliance on commercial financing |
 | Community opposition/approval delay | Schedule extension 1-3yr | Medium | Community engagement upfront; major adjustments subject to community consultation |
-| Technology iteration obsoletes AI facilities | Facility value loss 20-40% | Medium | Modular, replaceable design; avoid one-time large-scale investment |
+| Technology iteration obsoletes AI facilities | Facility value loss (magnitude pending tech-cycle calibration) | Medium | Modular, replaceable design; avoid one-time large-scale investment |
 
 ### Implementation Roadmap
 
@@ -708,7 +709,7 @@ Conceptual implementation roadmap based on the principle of "lightweight launch 
 | M5 | Month 18-30 | Safety governance sandbox Phase 1 | Model red-teaming room, standards workshop | Standards consortium, partner agreements | Safety compliance |
 | M6 | Month 24-36 | Data element hall pilot | Data display, compliance consulting, transaction matching | Data governance framework, authorization agreements | Compliance review |
 
-**Phase 1 Investment Estimate: 2-4 hundred million CNY (lightweight operations and public spaces, controlling capital expenditure)**
+**Phase 1 Investment Scale: predominantly small (lightweight operations and public spaces, controlling capital expenditure; no specific amounts — see Investment Scale Framework)**
 
 **Phase 2: Three Zones Formed & Renewal (Conceptual 3-7yr)**
 
@@ -719,7 +720,7 @@ Conceptual implementation roadmap based on the principle of "lightweight launch 
 | M9 | Year 4-6 | Station-city pedestrian connectivity (JZ-04) | Four-quadrant pedestrian network | Station agreement, utility relocation |
 | M10 | Year 5-7 | Three key area public spaces complete | Landscape nodes, public art, accessibility | Zoning detailed design |
 
-**Phase 2 Investment Estimate: 5-10 hundred million CNY (city renewal and public space construction)**
+**Phase 2 Investment Scale: predominantly mid-large (city renewal and public space construction; no specific amounts — see Investment Scale Framework)**
 
 **Phase 3: Ecosystem & Global Voice (Conceptual 7-15yr)**
 
