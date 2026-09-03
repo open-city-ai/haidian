@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "id": "PUBLIC-VALUE-CONTRACT",
+  "title_zh": "100天公共价值决策契约",
+  "title_en": "100-Day Public-Value Decision Contract",
+  "status": "offline_tabletop_run",
+  "evidence_boundary_zh": "12项故障场景已完成离线桌面协议检查，只证明安全停止、非AI备选、人工责任、审计字段和恢复/退出条件已经写全，不证明现场系统、人员响应时间或公共服务绩效已经验证。六项决策指标仍须在第0至14天基线调查及专业复核后校准。",
+  "evidence_boundary_en": "Twelve failure scenarios completed an offline tabletop protocol check. This proves only that safe stop, non-AI fallback, human ownership, audit fields and recovery/exit rules are specified; it does not validate field systems, staff response times or public-service performance. All six decision measures still require day-0-to-14 baseline calibration and professional review.",
+  "phases": [
+    {"id": "P0", "days": "0-14", "decision": "baseline_and_permissions", "automatic_service": "off"},
+    {"id": "P1", "days": "15-45", "decision": "minimum_reversible_units", "automatic_service": "limited"},
+    {"id": "P2", "days": "46-90", "decision": "public_review_and_failure_rehearsal", "automatic_service": "conditional"},
+    {"id": "P3", "days": "91-100", "decision": "return_acceptance_continue_revise_or_exit", "automatic_service": "decision_dependent"}
+  ],
+  "task_count": 3,
+  "tasks": [
+    {"task_id": "J-A", "scenario_id": "accessible_interchange", "outcome": "protocol_rehearsal_pass_operational_not_run"},
+    {"task_id": "J-B", "scenario_id": "youth_commons_without_profiling", "outcome": "protocol_rehearsal_pass_operational_not_run"},
+    {"task_id": "J-C", "scenario_id": "resident_appeal_and_site_return", "outcome": "protocol_rehearsal_pass_operational_not_run"}
+  ],
+  "decision_measures": [
+    {"id": "public_notice_completeness_ratio", "status": "not_run", "protocol_status": "covered_by_12_scenario_tabletop", "unit": "ratio", "provisional_target": 1.0, "stop_condition": "any_active_scene_incomplete", "recovery": "complete_disclosure_and_human_review"},
+    {"id": "non_ai_equivalent_service_ratio", "status": "not_run", "protocol_status": "covered_by_12_scenario_tabletop", "unit": "ratio", "provisional_target": 1.0, "stop_condition": "any_basic_task_ai_only", "recovery": "restore_staffed_path_or_exit"},
+    {"id": "accessible_route_completion_ratio", "status": "not_run", "protocol_status": "covered_by_12_scenario_tabletop", "unit": "ratio", "provisional_target": 1.0, "stop_condition": "critical_access_obstruction", "recovery": "restore_continuous_access_and_retest"},
+    {"id": "human_takeover_p95_minutes", "status": "not_run", "protocol_status": "covered_by_12_scenario_tabletop", "unit": "minutes", "provisional_target_max": 5, "stop_condition": "p95_above_10_or_no_named_owner", "recovery": "pass_staffed_takeover_rehearsal"},
+    {"id": "appeal_first_response_hours", "status": "not_run", "protocol_status": "covered_by_12_scenario_tabletop", "unit": "hours", "provisional_target_max": 24, "stop_condition": "safety_or_rights_appeal_unanswered_above_48", "recovery": "publish_disposition_repeat_failure_exits"},
+    {"id": "site_return_acceptance_hours", "status": "not_run", "protocol_status": "covered_by_12_scenario_tabletop", "unit": "hours", "provisional_target_max": 72, "stop_condition": "equipment_accounts_or_data_overstay", "recovery": "remove_delete_and_staffed_return_acceptance"}
+  ],
+  "everyday_journeys": [
+    {"id": "J-A", "persona": "visually_impaired_commuter", "required_outcome": "complete_interchange_without_login_or_smart_device", "failure_evidence": ["blocked_segment", "takeover_time", "remedy", "retest"]},
+    {"id": "J-B", "persona": "young_public_space_user", "required_outcome": "use_non_commercial_space_while_refusing_profiling", "failure_evidence": ["access_denial", "human_review", "remedy", "retest"]},
+    {"id": "J-C", "persona": "resident_appeal", "required_outcome": "reach_staffed_channel_pause_false_notice_and_reuse_returned_space", "failure_evidence": ["false_notice", "appeal_response", "pause_record", "return_acceptance"]}
+  ],
+  "failure_scenarios": [
+    {"id": "FR-A01", "journey": "J-A", "fault_mode": "network_loss", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-A02", "journey": "J-A", "fault_mode": "ramp_blocked", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-A03", "journey": "J-A", "fault_mode": "crowd_surge", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-A04", "journey": "J-A", "fault_mode": "wrong_accessible_route", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-B01", "journey": "J-B", "fault_mode": "no_account", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-B02", "journey": "J-B", "fault_mode": "profiling_refused", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-B03", "journey": "J-B", "fault_mode": "double_booking", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-B04", "journey": "J-B", "fault_mode": "night_capacity_exceeded", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-C01", "journey": "J-C", "fault_mode": "false_public_notice", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-C02", "journey": "J-C", "fault_mode": "staff_unavailable", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-C03", "journey": "J-C", "fault_mode": "appeal_overdue", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"},
+    {"id": "FR-C04", "journey": "J-C", "fault_mode": "data_deletion_overdue", "safe_stop_defined": true, "non_ai_fallback_defined": true, "human_owner_defined": true, "audit_fields_defined": true, "recovery_or_exit_defined": true, "operational_validation": "not_run"}
+  ],
+  "field_baseline_plan": {
+    "transects": [
+      {"id": "F-NORTH", "name_zh": "众智园—学知园站—清河接口"},
+      {"id": "F-CENTRAL", "name_zh": "五道口—成府路—AI原点D座界面"},
+      {"id": "F-SOUTH", "name_zh": "大钟寺站—蓟门停车场—京张公园接口"}
+    ],
+    "day_types": ["weekday", "weekend"],
+    "time_slots": ["07:30-09:30", "11:30-13:30", "17:00-19:00", "20:00-22:00"],
+    "planned_duration_minutes_each": 20,
+    "planned_sample_count": 24,
+    "field_collected_count": 0,
+    "source_status": "field_not_collected",
+    "required_evidence_chain": ["observer", "start_end_time", "wgs84_coordinates", "original_photos", "photo_sha256", "raw_counts", "safety_note"]
+  },
+  "rehearsal_summary": {
+    "run_date": "2026-08-27",
+    "run_type": "offline_tabletop_protocol_rehearsal",
+    "scenario_count": 12,
+    "protocol_pass_count": 12,
+    "operationally_validated_count": 0,
+    "field_performance_status": "not_run",
+    "results": "embedded_failure_scenarios_and_summary",
+    "field_baseline": "embedded_field_baseline_plan"
+  },
+  "decision_rule": "expand_only_if_all_applicable_measures_pass; otherwise_revise_localize_or_exit",
+  "human_authority": "planning_approval_public_safety_and_service_rights_remain_human_responsibilities"
+}
