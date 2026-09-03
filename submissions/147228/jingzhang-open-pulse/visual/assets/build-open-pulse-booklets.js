@@ -12,7 +12,7 @@ const { PDFDocument, StandardFonts, rgb } = require(pdfLibPath);
 const packageRoot = path.resolve(__dirname, '..', '..');
 const figureDir = path.join(packageRoot, 'assets', 'figures');
 const drawingDir = path.join(packageRoot, 'drawings');
-const stems = ['site-overview', 'land-use-structure', 'key-areas', 'mobility-bluegreen', 'metrics-evidence'];
+const stems = ['site-overview', 'land-use-structure', 'key-areas', 'mobility-bluegreen', 'metrics-evidence', 'open-pulse-station-design', 'open-pulse-delivery-readiness'];
 const pageSizes = {
   A3_LANDSCAPE: [1190.551, 841.89],
   A0_LANDSCAPE: [3370.394, 2383.937],
@@ -20,9 +20,9 @@ const pageSizes = {
 
 async function buildBooklet(outputName, pageSize, language) {
   const pdf = await PDFDocument.create();
-  pdf.setTitle('Jing-Zhang Open Pulse v3.0 civic release boards');
+  pdf.setTitle('Jing-Zhang Open Pulse v3.2 civic release boards');
   pdf.setAuthor('许丙南 / Codex');
-  pdf.setSubject('Five bilingual, evidence-bounded urban design review boards');
+  pdf.setSubject('Seven bilingual, evidence-bounded urban design review boards');
   const font = await pdf.embedFont(StandardFonts.Helvetica);
   const [pageWidth, pageHeight] = pageSize;
   const margin = Math.min(pageWidth, pageHeight) * 0.035;
@@ -45,7 +45,7 @@ async function buildBooklet(outputName, pageSize, language) {
       width: drawWidth,
       height: drawHeight,
     });
-    const footer = `V3.0  ${index + 1}/5`;
+    const footer = `V3.2  ${index + 1}/${stems.length}`;
     const fontSize = Math.max(7, Math.min(pageWidth, pageHeight) * 0.009);
     const footerWidth = font.widthOfTextAtSize(footer, fontSize);
     page.drawText(footer, {

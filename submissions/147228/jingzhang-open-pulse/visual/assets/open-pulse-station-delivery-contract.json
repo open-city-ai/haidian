@@ -1,0 +1,253 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "open-pulse-station-delivery-v1",
+  "package": "submissions/147228/jingzhang-open-pulse",
+  "status": "design_review_candidate",
+  "design_only": true,
+  "authorization_count": 0,
+  "field_observation_count": 0,
+  "official_geometry_status": "not_supplied",
+  "decision": "HOLD",
+  "boundary": "All dimensions are provisional design targets for option comparison. They are not surveyed conditions, statutory controls, construction dimensions, quantities, prices, permits or commitments. Replace them after official geometry, ownership, utilities, access and professional review are available.",
+  "scale_chain": ["1:5000", "1:2000", "1:500", "1:100", "1:50"],
+  "dimension_rule": {
+    "status": "parameter_envelope_only",
+    "unit": "m",
+    "must_recalculate": true,
+    "recalculation_triggers": [
+      "official boundary or key-area polygon",
+      "topographic and existing-condition survey",
+      "ownership and parcel-access record",
+      "road, rail, fire, drainage and utility review",
+      "accessibility walkthrough with affected users"
+    ]
+  },
+  "public_states": ["BASE", "TEST_WINDOW", "BLACKOUT", "CLOSEOUT"],
+  "stations": [
+    {
+      "station_id": "ST-01",
+      "site_ref": "PROV-KEY-001",
+      "name_zh": "众智园可信测试花园",
+      "name_en": "Collective Intelligence trusted test garden",
+      "role_zh": "把风险留在可绕行、可清空的测试口袋",
+      "role_en": "Keep risk inside a bypassable and clearable test pocket",
+      "spatial_review": {
+        "plan_scale": "1:500",
+        "detail_scale": "1:50",
+        "plan_modules": [
+          {"id": "Z-BASE", "name_zh": "连续普通步行与无障碍主链", "name_en": "continuous ordinary and accessible route", "target_width_m": [2.4, 3.6], "state": "provisional_target"},
+          {"id": "Z-STATUS", "name_zh": "离线状态与人工求助点", "name_en": "offline status and staffed help point", "target_width_m": [2.0, 3.0], "target_depth_m": [2.0, 3.0], "state": "provisional_target"},
+          {"id": "Z-TEST", "name_zh": "可撤回测试口袋", "name_en": "retractable test pocket", "target_width_m": [8.0, 12.0], "target_depth_m": [6.0, 10.0], "state": "provisional_target"},
+          {"id": "Z-RETURN", "name_zh": "树荫休息与公园返回带", "name_en": "shaded rest and park-return band", "target_width_m": [3.0, 5.0], "state": "provisional_target"}
+        ],
+        "section_bands": [
+          {"id": "Z-S1", "name_zh": "普通主链", "name_en": "ordinary route", "target_width_m": [2.4, 3.6]},
+          {"id": "Z-S2", "name_zh": "安全缓冲", "name_en": "safety buffer", "target_width_m": [0.8, 1.5]},
+          {"id": "Z-S3", "name_zh": "可撤回分支", "name_en": "retractable branch", "target_width_m": [2.0, 3.5]},
+          {"id": "Z-S4", "name_zh": "维护与恢复边", "name_en": "maintenance and reinstatement edge", "target_width_m": [0.8, 1.5]}
+        ],
+        "frontage_states": {
+          "BASE": "Park edge, ordinary route, passive status and staffed help remain open.",
+          "TEST_WINDOW": "A bounded pocket opens behind a visible buffer and staffed takeover point.",
+          "BLACKOUT": "Digital and autonomous functions stop; the pocket is isolated and the ordinary route remains.",
+          "CLOSEOUT": "Temporary assets leave, surfaces and planting are checked, and the ordinary park edge is restored."
+        },
+        "flows": {
+          "ordinary": "arrival -> status -> accessible stitch -> shaded rest -> park return",
+          "test": "booked entry -> visible boundary -> supervised test -> stop bay -> signed exit",
+          "maintenance": "service edge -> asset check -> isolated repair -> reinstatement receipt",
+          "emergency": "ordinary route kept clear; test pocket closes before emergency access is reduced"
+        },
+        "capacity_check": {
+          "formula": "release_capacity = min(usable_area / reviewed_density, egress_capacity, staffed_supervision_cap, noise_and_access_cap)",
+          "usable_area": null,
+          "reviewed_density": null,
+          "egress_capacity": null,
+          "staffed_supervision_cap": null,
+          "noise_and_access_cap": null,
+          "release_capacity": null,
+          "decision": "HOLD"
+        },
+        "ownership_interfaces": [
+          {"interface": "public park and ordinary route", "owner_archetype": "public-space asset owner", "status": "unconfirmed"},
+          {"interface": "temporary test pocket", "owner_archetype": "time-bounded test permit holder", "status": "unconfirmed"},
+          {"interface": "equipment and data", "owner_archetype": "test operator and data steward", "status": "unconfirmed"}
+        ]
+      },
+      "delivery": {
+        "responsibility_archetypes": {
+          "design_lead": "planning and landscape design team",
+          "accountable_decision": "district public-space review lead",
+          "window_operator": "bounded test operator",
+          "maintenance_owner": "park asset and landscape maintenance team",
+          "rights_and_data": "independent rights and data steward",
+          "independent_acceptance": "accessibility, traffic, fire and public-interest reviewers"
+        },
+        "role_status": "unconfirmed",
+        "procurement_sequence": ["survey and option review", "reversible mock-up", "independent acceptance", "time-bounded service purchase", "retain-redesign-retire decision"],
+        "cost_envelope_cny": {"lower": null, "upper": null, "confidence": "not_estimated", "method": "quantity survey by reversible component, staffing window, maintenance cycle and reinstatement liability"},
+        "minimum_staffing_roles": ["public host", "safety spotter", "maintenance responder", "independent observer"],
+        "service_level_targets": [
+          {"id": "Z-SLA-01", "target": "critical route obstruction triggers immediate stop and isolation within 15 minutes", "basis": "design_target_not_observed"},
+          {"id": "Z-SLA-02", "target": "public state board updates within 15 minutes of a stop decision", "basis": "design_target_not_observed"},
+          {"id": "Z-SLA-03", "target": "ordinary route and surface condition receive a signed closeout check before reopening", "basis": "design_target_not_observed"}
+        ],
+        "acceptance_gate": "No test window until river, flood, traffic, ownership, fire, accessibility, staffing, maintenance and reinstatement responsibilities are confirmed.",
+        "rollback": "Stop, isolate the pocket, keep the ordinary route open, remove temporary equipment and issue a reinstatement receipt."
+      }
+    },
+    {
+      "station_id": "ST-02",
+      "site_ref": "PROV-KEY-002",
+      "name_zh": "AI 原点开源复核街",
+      "name_en": "AI Origin open review street",
+      "role_zh": "把来源、贡献、撤回与人工服务留在同一条街上",
+      "role_en": "Keep provenance, contribution, withdrawal and staffed service on one street",
+      "spatial_review": {
+        "plan_scale": "1:500",
+        "detail_scale": "1:50",
+        "plan_modules": [
+          {"id": "A-BASE", "name_zh": "连续普通步行与安静返回链", "name_en": "continuous ordinary and quiet-return route", "target_width_m": [2.4, 4.0], "state": "provisional_target"},
+          {"id": "A-DESK", "name_zh": "人工服务与清权桌", "name_en": "staffed service and rights desk", "target_width_m": [3.0, 4.0], "target_depth_m": [3.0, 5.0], "state": "provisional_target"},
+          {"id": "A-ROOM", "name_zh": "可关闭的开放发布室", "name_en": "closeable open-publishing room", "target_width_m": [8.0, 12.0], "target_depth_m": [6.0, 10.0], "state": "provisional_target"},
+          {"id": "A-QUIET", "name_zh": "住宅安静边与不消费停留", "name_en": "residential quiet edge and non-commercial stay", "target_width_m": [4.0, 6.0], "state": "provisional_target"}
+        ],
+        "section_bands": [
+          {"id": "A-S1", "name_zh": "普通主链", "name_en": "ordinary route", "target_width_m": [2.4, 4.0]},
+          {"id": "A-S2", "name_zh": "人工服务带", "name_en": "staffed-service band", "target_width_m": [2.0, 3.0]},
+          {"id": "A-S3", "name_zh": "可关闭发布界面", "name_en": "closeable release frontage", "target_width_m": [3.0, 5.0]},
+          {"id": "A-S4", "name_zh": "安静缓冲", "name_en": "quiet buffer", "target_width_m": [2.0, 4.0]}
+        ],
+        "frontage_states": {
+          "BASE": "Ordinary service, quiet edge, paper directory and rights contact remain visible.",
+          "TEST_WINDOW": "A reviewed contribution is shown for a declared period with staffed correction and withdrawal.",
+          "BLACKOUT": "Screens and automated retrieval stop; paper, staff and quiet-return route remain.",
+          "CLOSEOUT": "The contribution is archived, corrected or removed and the frontage returns to ordinary learning and service."
+        },
+        "flows": {
+          "ordinary": "campus edge -> staffed service -> paper directory -> quiet seat -> residential return",
+          "contribution": "rights desk -> provenance check -> bounded display -> correction/withdrawal -> archive",
+          "maintenance": "service access -> content and fixing check -> isolated repair -> public correction log",
+          "emergency": "release room closes while the ordinary route and egress remain independent"
+        },
+        "capacity_check": {
+          "formula": "release_capacity = min(usable_area / reviewed_density, egress_capacity, staffed_service_cap, quiet_edge_cap)",
+          "usable_area": null,
+          "reviewed_density": null,
+          "egress_capacity": null,
+          "staffed_service_cap": null,
+          "quiet_edge_cap": null,
+          "release_capacity": null,
+          "decision": "HOLD"
+        },
+        "ownership_interfaces": [
+          {"interface": "campus or parcel edge", "owner_archetype": "parcel or campus access authority", "status": "unconfirmed"},
+          {"interface": "public-facing release room", "owner_archetype": "public service and culture operator", "status": "unconfirmed"},
+          {"interface": "contribution, display and archive", "owner_archetype": "rights holder, curator and archive steward", "status": "unconfirmed"}
+        ]
+      },
+      "delivery": {
+        "responsibility_archetypes": {
+          "design_lead": "urban design and service-design team",
+          "accountable_decision": "public service and culture review lead",
+          "window_operator": "staffed publishing-room operator",
+          "maintenance_owner": "building and public-realm asset team",
+          "rights_and_data": "rights, provenance and archive steward",
+          "independent_acceptance": "accessibility, heritage, residential-impact and public-interest reviewers"
+        },
+        "role_status": "unconfirmed",
+        "procurement_sequence": ["access and heritage review", "service and frontage mock-up", "rights and accessibility acceptance", "time-bounded operating service", "retain-redesign-retire decision"],
+        "cost_envelope_cny": {"lower": null, "upper": null, "confidence": "not_estimated", "method": "quantity survey by frontage adaptation, staffed service hours, rights review, archive, maintenance and reinstatement"},
+        "minimum_staffing_roles": ["service host", "rights/provenance steward", "maintenance responder", "independent observer"],
+        "service_level_targets": [
+          {"id": "A-SLA-01", "target": "a rights dispute hides the affected content immediately while offline contact remains", "basis": "design_target_not_observed"},
+          {"id": "A-SLA-02", "target": "correction or withdrawal receives acknowledgment within one working day and a status within five working days", "basis": "design_target_not_observed"},
+          {"id": "A-SLA-03", "target": "invalid material is removed or replaced within 48 hours after confirmation", "basis": "design_target_not_observed"}
+        ],
+        "acceptance_gate": "No fit-out or release until campus/parcel access, heritage, displacement risk, egress, accessibility, rights, staffing and withdrawal responsibilities are confirmed.",
+        "rollback": "Hide disputed content, close the release room, preserve paper and staffed service, remove temporary display elements and publish a correction/withdrawal receipt."
+      }
+    },
+    {
+      "station_id": "ST-03",
+      "site_ref": "PROV-KEY-003",
+      "name_zh": "大钟寺日常发布客厅",
+      "name_en": "Dazhongsi everyday release room",
+      "role_zh": "让活动容量能够降到零，居民归家路线仍然成立",
+      "role_en": "Let event capacity fall to zero while the resident return route remains",
+      "spatial_review": {
+        "plan_scale": "1:500",
+        "detail_scale": "1:50",
+        "plan_modules": [
+          {"id": "D-BASE", "name_zh": "轨道至普通商业连续归家链", "name_en": "continuous rail-to-retail resident route", "target_width_m": [3.0, 5.0], "state": "provisional_target"},
+          {"id": "D-QUIET", "name_zh": "安静等候与照护停留湾", "name_en": "quiet waiting and care bay", "target_width_m": [4.0, 6.0], "target_depth_m": [4.0, 8.0], "state": "provisional_target"},
+          {"id": "D-EVENT", "name_zh": "可清空短时发布界面", "name_en": "clearable short-release frontage", "target_width_m": [8.0, 16.0], "target_depth_m": [6.0, 10.0], "state": "provisional_target"},
+          {"id": "D-SERVICE", "name_zh": "服务、清运与复原边", "name_en": "service, removal and reinstatement edge", "target_width_m": [3.0, 5.0], "state": "provisional_target"}
+        ],
+        "section_bands": [
+          {"id": "D-S1", "name_zh": "归家主链", "name_en": "resident return route", "target_width_m": [3.0, 5.0]},
+          {"id": "D-S2", "name_zh": "安静照护带", "name_en": "quiet care band", "target_width_m": [2.0, 4.0]},
+          {"id": "D-S3", "name_zh": "可清空活动界面", "name_en": "clearable event frontage", "target_width_m": [3.0, 6.0]},
+          {"id": "D-S4", "name_zh": "服务与复原边", "name_en": "service and reinstatement edge", "target_width_m": [2.0, 4.0]}
+        ],
+        "frontage_states": {
+          "BASE": "Rail arrival, crossing, quiet seat, ordinary retail and resident return remain open.",
+          "TEST_WINDOW": "A bounded short event opens with a public capacity state and staffed quiet route.",
+          "BLACKOUT": "Event capacity drops to zero; displays stop and the resident route remains.",
+          "CLOSEOUT": "Temporary assets and waste leave, defects are logged and the frontage returns to daily retail."
+        },
+        "flows": {
+          "ordinary": "rail arrival -> crossing -> quiet seat -> ordinary retail -> resident return",
+          "event": "checked entry -> short display -> staffed route -> timed exit -> public closeout",
+          "maintenance": "service edge -> waste and asset removal -> defect check -> daily-use release",
+          "emergency": "event capacity falls to zero before rail, fire or resident access is reduced"
+        },
+        "capacity_check": {
+          "formula": "release_capacity = min(usable_area / reviewed_density, rail_and_crossing_cap, fire_egress_cap, quiet_route_cap, staffed_control_cap)",
+          "usable_area": null,
+          "reviewed_density": null,
+          "rail_and_crossing_cap": null,
+          "fire_egress_cap": null,
+          "quiet_route_cap": null,
+          "staffed_control_cap": null,
+          "release_capacity": null,
+          "decision": "HOLD"
+        },
+        "ownership_interfaces": [
+          {"interface": "rail arrival and crossing", "owner_archetype": "rail, road and traffic authorities", "status": "unconfirmed"},
+          {"interface": "public frontage and ordinary retail", "owner_archetype": "public-space and retail asset operators", "status": "unconfirmed"},
+          {"interface": "short event and temporary assets", "owner_archetype": "time-bounded event permit holder", "status": "unconfirmed"}
+        ]
+      },
+      "delivery": {
+        "responsibility_archetypes": {
+          "design_lead": "station-area urban design and event-service team",
+          "accountable_decision": "station and public-space review lead",
+          "window_operator": "event control room",
+          "maintenance_owner": "public-realm, retail and cleaning asset teams",
+          "rights_and_data": "event content and data steward",
+          "independent_acceptance": "rail, traffic, fire, accessibility, noise and resident-access reviewers"
+        },
+        "role_status": "unconfirmed",
+        "procurement_sequence": ["station and route capacity review", "zero-capacity and quiet-route rehearsal", "fire/accessibility acceptance", "time-bounded event service", "retain-redesign-retire decision"],
+        "cost_envelope_cny": {"lower": null, "upper": null, "confidence": "not_estimated", "method": "quantity survey by temporary frontage, crowd control, staffing, cleaning, quiet-route protection and reinstatement"},
+        "minimum_staffing_roles": ["event controller", "resident-route host", "safety/accessibility steward", "maintenance responder", "independent observer"],
+        "service_level_targets": [
+          {"id": "D-SLA-01", "target": "a fire, crowd, water, noise or resident-access breach reduces event capacity to zero immediately", "basis": "design_target_not_observed"},
+          {"id": "D-SLA-02", "target": "ordinary-use recovery receives a signed check within 30 minutes of planned event close", "basis": "design_target_not_observed"},
+          {"id": "D-SLA-03", "target": "defects, complaints and unresolved impacts enter a public review within 14 days", "basis": "design_target_not_observed"}
+        ],
+        "acceptance_gate": "No event window until rail, road, crossing, fire, crowd, weather, accessibility, quiet-route, cleaning and reinstatement responsibilities are confirmed.",
+        "rollback": "Set capacity to zero, keep the resident route open, stop displays, clear temporary assets and publish the closeout and defect receipt."
+      }
+    }
+  ],
+  "shared_delivery_gates": [
+    {"id": "DG-01", "gate": "Every target dimension remains provisional and is recalculated after official geometry and survey."},
+    {"id": "DG-02", "gate": "Every station preserves a BASE route independent of account, model, network and power."},
+    {"id": "DG-03", "gate": "Capacity is formula-bound and remains null until egress, access, staffing and site inputs are reviewed."},
+    {"id": "DG-04", "gate": "Organization names, cost envelopes and procurement commitments remain unconfirmed until authorized."},
+    {"id": "DG-05", "gate": "Every TEST_WINDOW has a BLACKOUT and CLOSEOUT path with a public receipt."},
+    {"id": "DG-06", "gate": "A retained element enters statutory design, funding, approval and procurement separately."}
+  ]
+}

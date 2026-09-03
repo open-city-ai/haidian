@@ -14,6 +14,7 @@ const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(packageR
 const tabletop = readJson('visual/assets/open-pulse-tabletop-evidence.json');
 const testWindow = readJson('visual/assets/example-s02-embodied-test-window.json');
 const protocol = readJson('visual/assets/civic-pulse-protocol.json');
+const stationDelivery = readJson('visual/assets/open-pulse-station-delivery-contract.json');
 const metrics = readJson('metrics.json').metrics;
 const geometry = {
   site: readJson('geometry/site_boundary.geojson'),
@@ -28,6 +29,7 @@ if (tabletop.tabletop_status !== 'pass') throw new Error('Expected a passing loc
 if (tabletop.operational_status !== 'not_authorized_not_run') throw new Error('Operational boundary changed; review wording before rendering.');
 if (testWindow.release_decision?.decision !== 'hold') throw new Error('Expected the bounded field window to remain on hold.');
 if (!protocol.release_rule || protocol.stages?.length !== 6) throw new Error('Expected a six-stage civic release contract.');
+if (stationDelivery.decision !== 'HOLD' || stationDelivery.design_only !== true || stationDelivery.stations?.length !== 3) throw new Error('Expected a three-station, design-only delivery contract on HOLD.');
 
 const W = 2400;
 const H = 1350;
@@ -197,7 +199,7 @@ function header(meta, titleValue, subtitle, dark, lang) {
   const main = dark ? C.white : C.ink;
   const quiet = dark ? '#91a9bb' : C.muted;
   let out = text(78, 72, meta, 22, { fill: C.gold, letter: 1.4, weight: 650 });
-  out += text(2322, 72, 'V3.0 / PROVISIONAL / CONCEPT ONLY', 20, { anchor: 'end', fill: dark ? C.cyan : C.orange, letter: 0.8 });
+  out += text(2322, 72, 'V3.2 / PROVISIONAL / DESIGN TARGETS ONLY', 20, { anchor: 'end', fill: dark ? C.cyan : C.orange, letter: 0.8 });
   out += text(78, 154, titleValue, lang === 'zh' ? 58 : 45, { fill: main, weight: 720 });
   out += text(78, 208, subtitle, lang === 'zh' ? 25 : 20, { fill: quiet });
   out += line(78, 238, 2322, 238, { stroke: dark ? '#36516a' : C.pale, sw: 2 });
@@ -442,6 +444,143 @@ function buildMetrics(lang) {
   return out;
 }
 
+function rangeLabel(range) {
+  return `${range[0]}–${range[1]} m`;
+}
+
+function buildStationDesignSpread(lang) {
+  const zh = lang === 'zh';
+  const titleValue = zh ? '三处版本站：把概念关系推进到平面、剖面与容量门' : 'Three release stations: from concept links to plans, sections and capacity gates';
+  const subtitle = zh ? '所有尺寸均为可替换的设计目标区间；正式边界、勘察、权属和专业复核到位后必须重算' : 'Every dimension is a replaceable design-target range and must be recalculated after official geometry, survey, title and professional review';
+  let out = svgStart(titleValue, false);
+  out += header('STATION DESIGN HANDOFF / 06', titleValue, subtitle, false, lang);
+  const cardX = [78, 850, 1622];
+  const roleShort = zh
+    ? ['可绕行测试口袋', '清权—服务—安静返回', '归家主链优先，活动可归零']
+    : ['bypassable test pocket', 'rights, service and quiet return', 'resident route first; event can fall to zero'];
+  const flowShort = zh
+    ? [
+        ['普通：到达—状态—休息—返回', '维护：服务边—隔离—复原', '应急：先关测试，主链不断'],
+        ['普通：校园边—人工服务—安静返回', '维护：内容/构件检查—更正回执', '应急：关发布室，疏散独立'],
+        ['普通：轨道—过街—安静座—归家', '维护：清运—缺陷—日常放行', '应急：活动归零，归家不断'],
+      ]
+    : [
+        ['BASE: arrive, status, rest, return', 'MAINTAIN: service, isolate, reinstate', 'EMERGENCY: close test, keep route'],
+        ['BASE: campus edge, staff, quiet return', 'MAINTAIN: inspect, correct, receipt', 'EMERGENCY: close room, keep egress'],
+        ['BASE: rail, cross, quiet seat, return', 'MAINTAIN: clear, inspect, release', 'EMERGENCY: zero event, keep route'],
+      ];
+  const sectionShortEn = [
+    ['ordinary route', 'safety buffer', 'test branch', 'restore edge'],
+    ['ordinary route', 'staffed service', 'release front', 'quiet buffer'],
+    ['resident route', 'quiet care', 'event front', 'restore edge'],
+  ];
+  stationDelivery.stations.forEach((station, index) => {
+    const x = cardX[index];
+    const color = stationColors[index];
+    out += rect(x, 280, 720, 930, { fill: C.white, stroke: color, radius: 26, sw: 4 });
+    out += `<rect x="${x}" y="280" width="720" height="92" rx="24" fill="${color}"/>`;
+    out += text(x + 30, 326, zh ? station.name_zh : station.name_en, zh ? 27 : 20, { weight: 750, fill: C.ink });
+    out += text(x + 30, 355, roleShort[index], zh ? 17 : 14, { weight: 650, fill: C.ink });
+    out += text(x + 30, 410, zh ? '1:500 参数平面 / 四个必需模块' : '1:500 PARAMETRIC PLAN / FOUR MODULES', zh ? 20 : 16, { weight: 700 });
+    station.spatial_review.plan_modules.forEach((module, moduleIndex) => {
+      const column = moduleIndex % 2;
+      const row = Math.floor(moduleIndex / 2);
+      const mx = x + 30 + column * 330;
+      const my = 438 + row * 103;
+      out += rect(mx, my, 310, 82, { fill: index === 0 ? C.greenSoft : index === 1 ? C.blueSoft : C.orangeSoft, stroke: color, radius: 14, sw: 2 });
+      out += text(mx + 14, my + 31, zh ? module.name_zh : module.name_en, zh ? 15 : 12, { weight: 650 });
+      const dimension = module.target_depth_m ? `${rangeLabel(module.target_width_m)} × ${rangeLabel(module.target_depth_m)}` : rangeLabel(module.target_width_m);
+      out += text(mx + 14, my + 62, dimension, 14, { fill: C.muted, weight: 650 });
+    });
+    out += text(x + 30, 672, zh ? '1:50 接口剖面 / 区间不等于施工尺寸' : '1:50 INTERFACE SECTION / NOT CONSTRUCTION DIMENSIONS', zh ? 19 : 14, { weight: 700 });
+    const bands = station.spatial_review.section_bands;
+    const total = bands.reduce((sum, band) => sum + band.target_width_m[1], 0);
+    let bx = x + 30;
+    bands.forEach((band, bandIndex) => {
+      const width = 660 * band.target_width_m[1] / total;
+      const fill = [C.greenSoft, C.goldSoft, C.blueSoft, C.orangeSoft][bandIndex];
+      out += `<rect x="${bx}" y="702" width="${width}" height="112" fill="${fill}" stroke="${color}" stroke-width="2"/>`;
+      out += text(bx + width / 2, 748, zh ? band.name_zh : sectionShortEn[index][bandIndex], zh ? 14 : 10, { anchor: 'middle', weight: 650 });
+      out += text(bx + width / 2, 781, rangeLabel(band.target_width_m), 12, { anchor: 'middle', fill: C.muted, weight: 650 });
+      bx += width;
+    });
+    const stateLabels = zh ? ['BASE 普通开放', 'TEST 有界窗口', 'BLACKOUT 停用', 'CLOSEOUT 复原'] : ['BASE OPEN', 'TEST WINDOW', 'BLACKOUT', 'CLOSEOUT'];
+    stateLabels.forEach((label, stateIndex) => {
+      const sx = x + 30 + stateIndex * 165;
+      out += rect(sx, 840, 152, 48, { fill: stateIndex === 0 ? C.greenSoft : stateIndex === 1 ? C.blueSoft : stateIndex === 2 ? '#f5d8d4' : C.goldSoft, stroke: stateIndex === 2 ? C.red : color, radius: 12, sw: 2 });
+      out += text(sx + 76, 872, label, zh ? 12 : 10, { anchor: 'middle', weight: 700 });
+    });
+    out += lines(x + 32, 930, flowShort[index], zh ? 15 : 12, { fill: C.ink, gap: 31, weight: 600 });
+    out += rect(x + 30, 1030, 660, 130, { fill: C.navy, stroke: C.navy, radius: 16 });
+    out += text(x + 52, 1068, zh ? '容量门：五类输入取最小值' : 'CAPACITY GATE: MINIMUM OF REVIEWED INPUTS', zh ? 17 : 12, { fill: C.gold, weight: 700 });
+    out += text(x + 52, 1104, zh ? '面积 / 疏散 / 人员值守 / 无障碍与安静阈值' : 'area / egress / staffed control / access and quiet thresholds', zh ? 14 : 11, { fill: '#d5e0e8' });
+    out += text(x + 52, 1139, zh ? '当前：全部 null → HOLD' : 'CURRENT: all inputs null → HOLD', zh ? 17 : 14, { fill: C.orange, weight: 750 });
+  });
+  out += text(78, 1310, zh ? '参数可帮助比较和交接，但不能替代勘察、权属、容量、消防、市政、无障碍或施工复核。' : 'Parameters support option review and handoff; they do not replace survey, title, capacity, fire, utilities, access or construction review.', 16, { fill: C.muted });
+  out += svgEnd();
+  return out;
+}
+
+function buildDeliveryReadiness(lang) {
+  const zh = lang === 'zh';
+  const titleValue = zh ? '三站交付回执：责任、采购、人员、成本方法和退出同时入场' : 'Three-station delivery receipt: responsibility, procurement, staffing, cost method and exit together';
+  const subtitle = zh ? '只定义责任类型和验收路径；真实单位、金额、许可、SLA 实绩仍未确认' : 'Defines accountable archetypes and acceptance paths only; organizations, prices, permits and observed SLA remain unconfirmed';
+  let out = svgStart(titleValue, true);
+  out += header('DELIVERY + OPERATIONS RECEIPT / 07', titleValue, subtitle, true, lang);
+  const cardX = [78, 850, 1622];
+  const roleLines = zh
+    ? [
+        ['规划/景观设计', '限时测试运营', '公园资产维护', '权利与数据管家', '独立无障碍/消防复核'],
+        ['城市/服务设计', '发布室人工运营', '建筑与公共界面维护', '清权与档案管家', '独立文保/居民影响复核'],
+        ['站区/活动设计', '活动控制室', '公共空间/商业/清运维护', '内容与数据管家', '独立轨道/交通/消防复核'],
+      ]
+    : [
+        ['planning + landscape design', 'time-bounded test operator', 'park asset maintenance', 'rights and data steward', 'independent access/fire review'],
+        ['urban + service design', 'staffed release-room operator', 'building/public-edge maintenance', 'rights and archive steward', 'independent heritage/resident review'],
+        ['station + event design', 'event control room', 'public/retail/cleaning maintenance', 'content and data steward', 'independent rail/traffic/fire review'],
+      ];
+  const slaLines = zh
+    ? [
+        ['障碍即停；15 分钟内隔离', '停止决定 15 分钟内更新状态板', '重开前签署主链与地面复原检查'],
+        ['权利争议内容立即隐藏', '1 个工作日受理，5 个工作日给状态', '确认无效后 48 小时内移除或替换'],
+        ['消防/客流/积水/噪声越线即归零', '计划闭场后 30 分钟内复原检查', '14 日内公开缺陷、投诉与影响复盘'],
+      ]
+    : [
+        ['stop on obstruction; isolate within 15 min', 'update status board within 15 min', 'signed route/surface check before reopening'],
+        ['hide disputed content immediately', 'acknowledge in 1 day; status in 5 days', 'remove/replace within 48 h after confirmation'],
+        ['zero capacity on fire/crowd/water/noise breach', 'signed recovery check within 30 min', 'public defect/complaint review within 14 days'],
+      ];
+  stationDelivery.stations.forEach((station, index) => {
+    const x = cardX[index];
+    const color = stationColors[index];
+    out += rect(x, 280, 720, 790, { fill: C.navy2, stroke: color, radius: 26, sw: 4 });
+    out += text(x + 32, 330, zh ? station.name_zh : station.name_en, zh ? 25 : 19, { fill: C.white, weight: 750 });
+    out += text(x + 32, 370, zh ? '六类责任角色 / 全部待确认' : 'SIX RESPONSIBILITY ROLES / ALL UNCONFIRMED', zh ? 17 : 13, { fill: color, weight: 700 });
+    out += lines(x + 48, 415, roleLines[index].map((item) => `• ${item}`), zh ? 16 : 13, { fill: '#d5e0e8', gap: 31 });
+    out += line(x + 32, 590, x + 688, 590, { stroke: '#36516a', sw: 2 });
+    out += text(x + 32, 630, zh ? '采购与成本边界' : 'PROCUREMENT + COST BOUNDARY', zh ? 18 : 14, { fill: C.gold, weight: 700 });
+    out += text(x + 48, 670, zh ? '勘察 → 可逆样机 → 独立验收' : 'survey → reversible mock-up → independent acceptance', zh ? 15 : 12, { fill: '#d5e0e8' });
+    out += text(x + 48, 704, zh ? '限时服务 → 保留 / 重做 / 退出' : 'time-bounded service → retain / redesign / retire', zh ? 15 : 12, { fill: '#d5e0e8' });
+    out += text(x + 48, 744, zh ? '金额：unknown；按构件、人员、维护和复原询价' : 'Price: unknown; QS by component, staff, upkeep and reinstatement', zh ? 14 : 11, { fill: C.orange, weight: 650 });
+    out += text(x + 32, 800, zh ? '服务目标 / 尚未现场观测' : 'SERVICE TARGETS / NOT FIELD OBSERVED', zh ? 18 : 14, { fill: C.cyan, weight: 700 });
+    out += lines(x + 48, 842, slaLines[index].map((item) => `• ${item}`), zh ? 14 : 11, { fill: '#d5e0e8', gap: 34 });
+    out += rect(x + 32, 958, 656, 76, { fill: '#381f25', stroke: C.red, radius: 14, sw: 2 });
+    out += text(x + 360, 1005, zh ? '任一责任、容量或复原门不清：保持 HOLD' : 'UNCLEAR DUTY, CAPACITY OR RESTORE GATE: HOLD', zh ? 16 : 12, { anchor: 'middle', fill: '#ffc5bd', weight: 750 });
+  });
+  out += rect(78, 1110, 2264, 122, { fill: '#102943', stroke: C.gold, radius: 20, sw: 3 });
+  out += text(110, 1150, zh ? '六道共享交付门' : 'SIX SHARED DELIVERY GATES', zh ? 20 : 16, { fill: C.gold, weight: 750 });
+  const gates = zh
+    ? ['尺寸可替换', '普通路线独立', '容量输入未齐不放行', '单位与金额不冒认', '测试必有停用与复原', '永久保留另走法定程序']
+    : ['replaceable dimensions', 'independent ordinary route', 'no capacity release without inputs', 'no invented owner or price', 'test includes blackout + closeout', 'retention enters statutory process'];
+  gates.forEach((gate, index) => {
+    const gx = 110 + index * 365;
+    out += text(gx, 1196, `${index + 1}. ${gate}`, zh ? 14 : 11, { fill: '#d5e0e8', weight: 600 });
+  });
+  out += text(78, 1310, zh ? '本页是交付问题清单，不是预算、采购文件、组织承诺、许可或已达到的服务水平。' : 'This is a delivery question set, not a budget, procurement document, organizational commitment, permit or achieved service level.', 16, { fill: '#91a9bb' });
+  out += svgEnd();
+  return out;
+}
+
 async function writeFigure(stem, language, svg) {
   const suffix = language === 'zh' ? '' : '.en';
   const svgPath = path.join(figureDir, `${stem}${suffix}.svg`);
@@ -459,7 +598,7 @@ function updateCopyrightLedger() {
   const ledgerPath = path.join(__dirname, 'copyright-ledger.json');
   const ledger = JSON.parse(fs.readFileSync(ledgerPath, 'utf8'));
   const byPath = new Map(ledger.assets.map((asset) => [asset.path, asset]));
-  const stems = ['site-overview', 'land-use-structure', 'key-areas', 'mobility-bluegreen', 'metrics-evidence'];
+  const stems = ['site-overview', 'land-use-structure', 'key-areas', 'mobility-bluegreen', 'metrics-evidence', 'open-pulse-station-design', 'open-pulse-delivery-readiness'];
   const specs = [];
   for (const stem of stems) {
     for (const suffix of ['.png', '.en.png', '.svg', '.en.svg']) {
@@ -475,15 +614,15 @@ function updateCopyrightLedger() {
   specs.push({
     path: 'visual/assets/build-open-pulse-review-boards.js',
     asset_class: 'self_generated_render_script',
-    generation_method: 'authored in the submission worktree to render ten bilingual SVG/PNG review figures',
-    source_inputs: ['geometry/*.geojson', 'metrics.json', 'visual/assets/civic-pulse-protocol.json', 'visual/assets/open-pulse-tabletop-evidence.json'],
+    generation_method: 'authored in the submission worktree to render fourteen bilingual SVG/PNG review figures',
+    source_inputs: ['geometry/*.geojson', 'metrics.json', 'visual/assets/civic-pulse-protocol.json', 'visual/assets/open-pulse-tabletop-evidence.json', 'visual/assets/open-pulse-station-delivery-contract.json'],
     attribution: 'Self-generated renderer with evidence-state assertions and no network request.',
   });
   specs.push({
     path: 'visual/assets/build-open-pulse-booklets.js',
     asset_class: 'self_generated_render_script',
-    generation_method: 'authored in the submission worktree to assemble the five bilingual review boards into true-size A3 and A0 PDFs',
-    source_inputs: ['assets/figures/site-overview*.png', 'assets/figures/land-use-structure*.png', 'assets/figures/key-areas*.png', 'assets/figures/mobility-bluegreen*.png', 'assets/figures/metrics-evidence*.png'],
+    generation_method: 'authored in the submission worktree to assemble the seven bilingual review boards into true-size A3 and A0 PDFs',
+    source_inputs: ['assets/figures/site-overview*.png', 'assets/figures/land-use-structure*.png', 'assets/figures/key-areas*.png', 'assets/figures/mobility-bluegreen*.png', 'assets/figures/metrics-evidence*.png', 'assets/figures/open-pulse-station-design*.png', 'assets/figures/open-pulse-delivery-readiness*.png'],
     attribution: 'Self-generated offline pdf-lib renderer; no remote asset fetch.',
   });
   specs.push({
@@ -499,6 +638,9 @@ function updateCopyrightLedger() {
     ['visual/assets/open-pulse-service-equivalence-atlas.json', 'metadata_or_matrix', 'authored in the submission worktree to connect ordinary routes, bounded AI gains, stop rules and restoration receipts', ['visual/assets/scenario-operation-matrix.json', 'visual/assets/operations-matrix.json', 'visual/assets/key-area-node-plans.json', 'visual/assets/persona-and-inclusion-matrix.json'], 'Self-generated structural contract with explicit HOLD and no-field-result boundary.'],
     ['visual/assets/run-open-pulse-service-equivalence.js', 'self_generated_audit_script', 'authored in the submission worktree to replay the ordinary-service equivalence contract offline', ['visual/assets/open-pulse-service-equivalence-atlas.json'], 'Self-generated offline runner; no network request or field authorization.'],
     ['visual/assets/test-open-pulse-service-equivalence.js', 'self_generated_regression_test', 'authored in the submission worktree to prove duplicate, unknown-route and unregistered-decision fixtures fail closed', ['visual/assets/run-open-pulse-service-equivalence.js', 'visual/assets/open-pulse-service-equivalence-atlas.json'], 'Self-generated offline regression test; temporary fixtures are isolated outside the package.'],
+    ['visual/assets/open-pulse-station-delivery-contract.json', 'metadata_or_matrix', 'authored in the submission worktree to parameterize three station plans, sections, capacity gates, ownership interfaces, delivery roles, procurement, service targets and rollback', ['visual/assets/key-area-node-plans.json', 'visual/assets/operations-matrix.json', 'visual/assets/construction-readiness.json', 'visual/assets/open-pulse-spatial-decision.json'], 'Self-generated design-review contract. Dimensions are replaceable targets; field facts, organizations, prices and authorization remain absent.'],
+    ['visual/assets/run-open-pulse-station-delivery.js', 'self_generated_audit_script', 'authored in the submission worktree to keep station delivery evidence fail-closed', ['visual/assets/open-pulse-station-delivery-contract.json'], 'Self-generated offline runner; no network request or field inference.'],
+    ['visual/assets/test-open-pulse-station-delivery.js', 'self_generated_regression_test', 'authored in the submission worktree to reject invented observations, capacities, owners, costs and missing rollback', ['visual/assets/run-open-pulse-station-delivery.js', 'visual/assets/open-pulse-station-delivery-contract.json'], 'Self-generated offline regression test with isolated temporary fixtures.'],
   ]) {
     specs.push({ path: assetPath, asset_class: assetClass, generation_method: method, source_inputs: inputs, attribution });
   }
@@ -506,8 +648,8 @@ function updateCopyrightLedger() {
     specs.push({
       path: pdfPath,
       asset_class: 'derived_review_booklet',
-      generation_method: 'generated locally by build-open-pulse-booklets.js from the five registered bilingual PNG review boards',
-      source_inputs: ['assets/figures/site-overview*.png', 'assets/figures/land-use-structure*.png', 'assets/figures/key-areas*.png', 'assets/figures/mobility-bluegreen*.png', 'assets/figures/metrics-evidence*.png'],
+      generation_method: 'generated locally by build-open-pulse-booklets.js from the seven registered bilingual PNG review boards',
+      source_inputs: ['assets/figures/site-overview*.png', 'assets/figures/land-use-structure*.png', 'assets/figures/key-areas*.png', 'assets/figures/mobility-bluegreen*.png', 'assets/figures/metrics-evidence*.png', 'assets/figures/open-pulse-station-design*.png', 'assets/figures/open-pulse-delivery-readiness*.png'],
       attribution: 'Self-generated review PDF. Provisional geometry and evidence-state boundaries remain printed on every source board.',
     });
   }
@@ -537,7 +679,7 @@ function updateManifest() {
   const manifestPath = path.join(packageRoot, 'manifest.json');
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
   const byPath = new Map(manifest.files.map((item) => [item.path, item]));
-  const stems = ['site-overview', 'land-use-structure', 'key-areas', 'mobility-bluegreen', 'metrics-evidence'];
+  const stems = ['site-overview', 'land-use-structure', 'key-areas', 'mobility-bluegreen', 'metrics-evidence', 'open-pulse-station-design', 'open-pulse-delivery-readiness'];
   const paths = [];
   for (const stem of stems) {
     paths.push([`assets/figures/${stem}.svg`, 'figure_source', 'zh', null]);
@@ -547,9 +689,16 @@ function updateManifest() {
   paths.push(['visual/assets/build-open-pulse-booklets.js', 'visualization', null, null]);
   paths.push(['assets/figures/open-pulse-service-equivalence-atlas.svg', 'figure_source', 'zh', null]);
   paths.push(['assets/figures/open-pulse-service-equivalence-atlas.en.svg', 'figure_source', 'en', 'assets/figures/open-pulse-service-equivalence-atlas.svg']);
+  paths.push(['assets/figures/open-pulse-station-design.png', 'proposal_figure', 'zh', null]);
+  paths.push(['assets/figures/open-pulse-station-design.en.png', 'proposal_figure', 'en', 'assets/figures/open-pulse-station-design.png']);
+  paths.push(['assets/figures/open-pulse-delivery-readiness.png', 'proposal_figure', 'zh', null]);
+  paths.push(['assets/figures/open-pulse-delivery-readiness.en.png', 'proposal_figure', 'en', 'assets/figures/open-pulse-delivery-readiness.png']);
   paths.push(['visual/assets/open-pulse-service-equivalence-atlas.json', 'evidence_register', 'neutral', null]);
   paths.push(['visual/assets/run-open-pulse-service-equivalence.js', 'validation_runner', 'neutral', null]);
   paths.push(['visual/assets/test-open-pulse-service-equivalence.js', 'regression_test', 'neutral', null]);
+  paths.push(['visual/assets/open-pulse-station-delivery-contract.json', 'evidence_register', 'neutral', null]);
+  paths.push(['visual/assets/run-open-pulse-station-delivery.js', 'validation_runner', 'neutral', null]);
+  paths.push(['visual/assets/test-open-pulse-station-delivery.js', 'regression_test', 'neutral', null]);
   for (const [filePath, role, language, translationOf] of paths) {
     const item = byPath.get(filePath) || { path: filePath, role, required: false };
     item.role = role;
@@ -573,6 +722,8 @@ async function main() {
     ['key-areas', buildKeyAreas],
     ['mobility-bluegreen', buildMobility],
     ['metrics-evidence', buildMetrics],
+    ['open-pulse-station-design', buildStationDesignSpread],
+    ['open-pulse-delivery-readiness', buildDeliveryReadiness],
   ];
   for (const [stem, builder] of builders) {
     await writeFigure(stem, 'zh', builder('zh'));

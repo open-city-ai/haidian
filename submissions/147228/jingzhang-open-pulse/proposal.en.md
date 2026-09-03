@@ -8,7 +8,7 @@ translation_of: "proposal.md"
 translation_file: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A city does not chase model versions; it releases its own civic versions. Every AI-assisted urban test must leave a public issue, bounded fork, evidence test, dual review, civic release and repair-or-retire path."
-iteration: "v3.0"
+iteration: "v3.2"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed", "ai-cultural-guide"]
 ---
@@ -40,6 +40,16 @@ Each key area keeps an ordinary service route that does not depend on an account
 | Restore and receipt | Remove the device or digital layer and retain the decision record | Field result unknown |
 
 The replay checks only the links among 14 package scenarios, 8 operating actions, 3 nodes and 8 personas, with four negative fixtures returning to HOLD. It provides no resident experience, service performance, field accessibility, permit, staffing or official-score evidence [data:visual/assets/open-pulse-service-equivalence-atlas.json].
+
+## Spatial Options Before AI Release
+
+The ordinary-route contract says what cannot be sacrificed; the next decision must explain why this spatial organisation is selected. `visual/assets/open-pulse-spatial-decision.json` puts three alternatives on one receipt: OP-A, a single AI spectacle spine, is `REJECT`; OP-B, a single flagship release hall, is `REVISE` until distributed care, appeal and maintenance are added; only OP-C, the three-node civic release network, may `ADVANCE_TO_DESIGN_REVIEW`. Advance means entering the next spatial design review only. It is not approval, construction, procurement, deployment or a ranking claim.
+
+![Spatial decision receipt](assets/figures/open-pulse-spatial-decision.en.svg)
+
+The decision follows `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50`: regional public-service relationships, corridor seams, the three-key-area network, status/route/appeal/maintenance handoffs, and finally whether a person can read, enter, refuse, appeal and leave. The five rights are ordinary access and no-app service, accessibility and care fallback, status/appeal/pause, privacy/refusal/exit, and maintenance/worker safety. The five gates are `BASE` before `BOOST`, three-node continuity, human receiver and maintainer, public status and redress, and `BLACKOUT` returning to `BASE` with a clean closeout. The contract remains `HOLD`, with zero authorization, zero field observations, an `unknown` baseline, empty performance and empty field claims; `numeric_dimensions=null` and the scale chain is not a construction dimension. [data:visual/assets/open-pulse-spatial-decision.json] [source:NIST-AI-RMF-1.0]
+
+`run-open-pulse-spatial-decision.js` and its six negative fixtures reject a non-`HOLD` contract, an invalid option, a broken scale chain, missing rights or field claims. If any shared gate fails, OP-C returns to `BASE` and cannot scale. This adds a reviewer-visible choice and stop path, not new field facts.
 
 ## Design Basis and Source List
 
@@ -98,6 +108,22 @@ Spatial control has three classes. Durable, account-free and low-maintenance ele
 
 All three forms come from provisional `geometry/key_areas.geojson`. The routes are conceptual spatial and operating contracts, not construction drawings, quantities, approvals or completed experiences. [data:visual/assets/key-area-node-plans.json] [depth:three_key_area_detailed_design]
 
+![Parametric plans, interface sections and capacity gates for the three release stations](assets/figures/open-pulse-station-design.en.png)
+
+### Collective Intelligence: the test pocket can close; the park route cannot
+
+Collective Intelligence Garden sets a 2.4–3.6 m ordinary and accessible route as a design-target baseline, with an offline status/staffed-help point, retractable test pocket, shaded rest and park-return band beside it. The 1:50 interface section separates the ordinary route, safety buffer, test branch and maintenance/reinstatement edge so a bay, barrier or repair cannot quietly consume daily access. These ranges compare options; they are not surveyed widths or construction dimensions. Capacity inputs remain null and the decision remains HOLD until river, flood, transport, title, fire and accessibility review is complete. [data:visual/assets/open-pulse-station-delivery-contract.json]
+
+### AI Origin: rights, staffed service and quiet return share one street
+
+AI Origin first keeps a 2.4–4.0 m ordinary and quiet-return route, then adds a staffed rights desk, closeable publishing room, residential quiet edge and non-commercial stay. The frontage has four states—BASE, TEST_WINDOW, BLACKOUT and CLOSEOUT. A rights dispute hides the digital layer first; paper information, staff, egress and quiet return do not close with it. Release capacity is the minimum of usable area, egress, staffed-service and quiet-edge limits, and remains unset until those inputs are reviewed. [data:visual/assets/open-pulse-station-delivery-contract.json]
+
+### Dazhongsi: event capacity can fall to zero while the resident route remains
+
+Dazhongsi uses a 3.0–5.0 m rail-to-retail return route as the baseline and places quiet waiting, care, short release and removal/reinstatement on a clearable side frontage. Any fire, crowd, water, noise or resident-access breach immediately reduces event capacity to zero. Displays and events stop, while rail arrival, crossing, quiet seating, ordinary retail and the resident route continue. Usable area, rail/crossing, fire egress, quiet route and staffing inputs remain null rather than being inferred from a concept drawing. [data:visual/assets/open-pulse-station-delivery-contract.json]
+
+Together the stations register twelve parametric plan modules, twelve interface-section bands, nine unconfirmed ownership interfaces and three capacity formulas. Parameters make spatial choices and survey questions reviewable; they do not replace official boundaries, existing-condition survey, title, utilities, fire, transport, accessibility or construction review.
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 Five user groups operate as independent acceptance viewpoints, not marketing profiles. Residents test ordinary access and low disturbance. Older and disabled people and carers test accessibility and no-app service. Maintainers test failure, spares and takeover. Students and developers test contribution, reproducibility and withdrawal. Firms and visitors test service interfaces, compliance and international communication. An average must never conceal one group's exclusion or extra risk. [metric:user_persona_count] [data:visual/assets/persona-and-inclusion-matrix.json]
@@ -149,6 +175,20 @@ Urban character retains the railway's line, rhythm, durable material and maintai
 | P3 review and migrate | annual | compare versions; expand, repair or retire; publish failure records | annual evidence account, budget, work orders, dissent and retirement list | retire if evidence cannot replay or lifecycle cost is unsustainable |
 
 Eight operating packages cover official geometry, human-experience baseline, wind-heat-water validation, embodied-AI testing, open-source rights, Dazhongsi event reduction, rain/quiet-night operations, and annual review. Responsibility slots first name the organizer's data steward, transport/accessibility specialists, community liaison, site maintainer, test observer and independent reviewer; real bodies, budget, procurement and SLA require professional and public confirmation. The first P1/P2 screen uses five measures: ordinary-route completion, staffed-takeover response time, complaint closure, withdrawal execution and on-time maintenance work orders. If a measure has no baseline, it remains `unknown` and no release is issued. [data:visual/assets/operations-matrix.json]
+
+![Responsibility, procurement, cost method, service targets and exit receipt for the three stations](assets/figures/open-pulse-delivery-readiness.en.png)
+
+### Responsibility begins with roles, not invented organizations
+
+Each station starts with six duties: design lead, accountable decision, window operator, asset maintenance, rights/data and independent acceptance. Collective Intelligence emphasizes planning/landscape design, test operation and park maintenance; AI Origin emphasizes urban/service design, staffed publishing, rights/archive and residential-impact review; Dazhongsi emphasizes station/event design, event control, public-realm removal and rail/traffic/fire review. These are responsibility archetypes, not contracted bodies. Every role remains unconfirmed, and a missing duty keeps the window closed. [data:visual/assets/open-pulse-station-delivery-contract.json]
+
+### Procurement and cost start with a method, not a false number
+
+All three stations follow one sequence: survey and option review, reversible mock-up, independent acceptance, time-bounded service purchase, then retain/redesign/retire. Cost lower and upper bounds remain null until quantities and market checks exist. A quantity survey must separate components, staffed window hours, maintenance cycles, rights/data work and final reinstatement liability. This exposes where cost arises without presenting an unsupported estimate as a budget commitment. [data:visual/assets/open-pulse-station-delivery-contract.json]
+
+### Service levels are next-round acceptance targets, not achieved performance
+
+The three stations define nine service targets. Collective Intelligence stops on a critical obstruction, isolates within 15 minutes and updates public state within 15 minutes. AI Origin hides disputed content immediately, acknowledges within one working day, gives a status within five days and removes confirmed invalid material within 48 hours. Dazhongsi reduces activity to zero on a breached gate, checks ordinary-use recovery within 30 minutes of planned close and reviews defects and complaints within 14 days. Every time is marked `design_target_not_observed`. The runner rejects an observed-performance claim, invented capacity or cost, confirmed ownership, or a missing BLACKOUT/CLOSEOUT path. [data:visual/assets/run-open-pulse-station-delivery.js] [data:visual/assets/test-open-pulse-station-delivery.js]
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
