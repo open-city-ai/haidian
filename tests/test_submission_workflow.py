@@ -5,6 +5,7 @@ import json
 import os
 import subprocess
 import hashlib
+import http.client
 import io
 import re
 import struct
@@ -282,6 +283,29 @@ class GitHubApiResilienceTests(unittest.TestCase):
         self.assertEqual(1, urlopen.call_count)
         sleep.assert_not_called()
 
+    def test_request_retries_incomplete_read_then_succeeds(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        incomplete_read = http.client.IncompleteRead(b'{"ok":', 5)
+        with patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[incomplete_read, _Response(b'{"ok":true}')],
+        ), patch("github_pr_validation.time.sleep") as sleep:
+            payload, _ = client.request("GET", "/test")
+        self.assertEqual({"ok": True}, payload)
+        sleep.assert_called_once_with(1.0)
+
+    def test_request_does_not_retry_mutating_network_failure(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        incomplete_read = http.client.IncompleteRead(b"partial", 5)
+        with patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[incomplete_read, _Response(b'{"ok":true}')],
+        ) as urlopen, patch("github_pr_validation.time.sleep") as sleep:
+            with self.assertRaisesRegex(RuntimeError, "failed after network error"):
+                client.request("POST", "/test", {"body": "comment"})
+        self.assertEqual(1, urlopen.call_count)
+        sleep.assert_not_called()
+
     def test_comment_patch_forbidden_falls_back_to_new_comment(self) -> None:
         client = GitHubClient("token", "open-city-ai/haidian")
         existing = {"id": 42, "body": f"{COMMENT_MARKER}\nold result"}
@@ -406,6 +430,18 @@ class GitHubApiResilienceTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir, patch(
             "github_pr_validation.urllib.request.urlopen",
             side_effect=[network_error, _Response(b"payload")],
+        ), patch("github_pr_validation.time.sleep") as sleep:
+            destination = Path(temp_dir) / "asset.bin"
+            client.download_content("fork/repo", "asset.bin", "head-sha", destination)
+            self.assertEqual(b"payload", destination.read_bytes())
+        sleep.assert_called_once_with(1.0)
+
+    def test_download_incomplete_read_retries_then_succeeds(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        incomplete_read = http.client.IncompleteRead(b"partial", 5)
+        with tempfile.TemporaryDirectory() as temp_dir, patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[incomplete_read, _Response(b"payload")],
         ), patch("github_pr_validation.time.sleep") as sleep:
             destination = Path(temp_dir) / "asset.bin"
             client.download_content("fork/repo", "asset.bin", "head-sha", destination)

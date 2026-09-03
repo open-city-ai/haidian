@@ -35,6 +35,7 @@ Exit code is 0 when the PR passes validation and 1 when it fails or errors.
 from __future__ import annotations
 
 import base64
+import http.client
 import json
 import os
 import shutil
@@ -124,9 +125,10 @@ def _retry_delay_seconds(error: urllib.error.HTTPError, attempt: int) -> float:
     return min(MAX_RETRY_DELAY_SECONDS, float(2**attempt))
 
 
-def _network_error_message(error: urllib.error.URLError) -> str:
+def _network_error_message(error: Exception) -> str:
     """Return a bounded network error description without request credentials."""
-    return str(error.reason or "network request failed")[:300].replace("\n", " ")
+    detail = error.reason if isinstance(error, urllib.error.URLError) else error
+    return str(detail or "network request failed")[:300].replace("\n", " ")
 
 
 def _is_download_not_found(error: Exception, path: str) -> bool:
@@ -181,6 +183,16 @@ class GitHubClient:
                         f"GitHub API {method} {url} failed with HTTP {error.code}: {message}"
                     ) from error
                 time.sleep(_retry_delay_seconds(error, attempt))
+            except (http.client.IncompleteRead, urllib.error.URLError) as error:
+                if (
+                    method.upper() not in RETRYABLE_METHODS
+                    or attempt + 1 >= MAX_API_ATTEMPTS
+                ):
+                    raise RuntimeError(
+                        f"GitHub API {method} {url} failed after network error: "
+                        f"{_network_error_message(error)}"
+                    ) from error
+                time.sleep(min(MAX_RETRY_DELAY_SECONDS, float(2**attempt)))
         raise AssertionError("unreachable")
 
     def paginate(self, path: str) -> list[dict]:
@@ -230,7 +242,7 @@ class GitHubClient:
                         f"GitHub API download {path} failed with HTTP {error.code}: {message}"
                     ) from error
                 time.sleep(_retry_delay_seconds(error, attempt))
-            except urllib.error.URLError as error:
+            except (http.client.IncompleteRead, urllib.error.URLError) as error:
                 if attempt + 1 >= MAX_API_ATTEMPTS:
                     raise RuntimeError(
                         f"GitHub API download {path} failed after network error: "
