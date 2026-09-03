@@ -1,0 +1,3444 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385553982,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(transform(geometry/site_boundary.geojson#PROV-SITE-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-SPATIAL-DESIGN-V09",
+        "A-OFFICIAL-REPLACEMENT-V09"
+      ],
+      "reason": "当前provisional设计模型可在EPSG:4548中复算；known只表示模型内唯一值，不是官方精确面积。",
+      "recompute_trigger": "official边界发布、边界字节变化或空间母盘规则变化时立即替换并全量复算",
+      "responsible_actor": "规划、测绘与对应专业复核方",
+      "audit_frequency": "正式数据到位或边界/方案变更时",
+      "disaggregation": "空间范围、数据来源与版本",
+      "anti_gaming_note": "不得把provisional模型面积表述为官方红线面积、法定指标或达标证明。"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 401582.4124437269,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(unary_union(transform(geometry/buildings.geojson[*], EPSG:4548)))",
+      "confidence": "low",
+      "assumptions": [
+        "A-EXISTING-001",
+        "A-DESIGN-GEOMETRY-001",
+        "A-SPATIAL-DESIGN-V09",
+        "A-OFFICIAL-REPLACEMENT-V09"
+      ],
+      "reason": "24个provisional概念建筑基底已形成可复算模型；不代表现状建筑、总建筑面积、建设量或拆改留决定。",
+      "recompute_trigger": "official边界、现状建筑、权属、控规、消防或概念建筑基底变化时全量复算",
+      "responsible_actor": "规划、测绘与对应专业复核方",
+      "audit_frequency": "正式数据到位或边界/方案变更时",
+      "disaggregation": "空间范围、数据来源与版本",
+      "anti_gaming_note": "不得由概念基底反推层数、容积率、高度、投资、拆除量或获批建设规模。"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.22500000000000023,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(transform(geometry/green_space.geojson[*], EPSG:4548))) / area(transform(geometry/site_boundary.geojson#PROV-SITE-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-DESIGN-GEOMETRY-001",
+        "A-SPATIAL-DESIGN-V09",
+        "A-OFFICIAL-REPLACEMENT-V09"
+      ],
+      "reason": "8块provisional绿地模型在EPSG:4548中合并去重后可复算；该比例不是法定绿地率或生态达标值。",
+      "recompute_trigger": "official边界、水务生态控制线、绿地设计或空间母盘规则变化时全量复算",
+      "responsible_actor": "规划、测绘与对应专业复核方",
+      "audit_frequency": "正式数据到位或边界/方案变更时",
+      "disaggregation": "空间范围、数据来源与版本",
+      "anti_gaming_note": "模型目标区间不得替代法定绿地分类、现场本底、水务生态审查或工程验收。"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.1400000000000002,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(unary_union(transform(area_features(geometry/public_space.geojson), EPSG:4548))) / area(transform(geometry/site_boundary.geojson#PROV-SITE-001, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-DESIGN-GEOMETRY-001",
+        "A-SPATIAL-DESIGN-V09",
+        "A-OFFICIAL-REPLACEMENT-V09"
+      ],
+      "reason": "19个provisional公共空间要素中的4个面积型要素合并去重后可复算；12个场景点和3个地标点不计面积。",
+      "recompute_trigger": "official边界、权属、公共可达条件、面积型公共空间或空间母盘规则变化时全量复算",
+      "responsible_actor": "规划、测绘与对应专业复核方",
+      "audit_frequency": "正式数据到位或边界/方案变更时",
+      "disaggregation": "空间范围、数据来源与版本",
+      "anti_gaming_note": "场景点和地标点不得虚增面积；概念公共空间不得冒充法定公共空间、产权或开放承诺。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-EXISTING-001"
+      ],
+      "reason": "法定控规和建筑面积资料缺失。",
+      "recompute_trigger": "正式数据到位或边界/方案变更时",
+      "responsible_actor": "规划、测绘与对应专业复核方",
+      "audit_frequency": "正式数据到位或边界/方案变更时",
+      "disaggregation": "空间范围、数据来源与版本",
+      "anti_gaming_note": "临时几何、空图层或未经现场核验的数据不得充当正式空间绩效。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-KEY-AREAS-001"
+      ],
+      "recompute_trigger": "规格、设计记录或对应来源文件变更时",
+      "responsible_actor": "对应能力规格维护者",
+      "audit_frequency": "规格或设计记录变更时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入来源文件中已明确形成的设计项，不计部署、审批或验收成果。",
+      "reason": "三处重点区域的临时设计计数可由现有来源核对；不代表正式边界、选址或审批已经确定。"
+    },
+    "walk_connectivity_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "connected_verified_walk_segments / tested_walk_segments",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-001",
+        "A-DESIGN-GEOMETRY-001"
+      ],
+      "reason": "真实站口、路网、过街和现场验证尚未完成。",
+      "recompute_trigger": "正式数据到位或边界/方案变更时",
+      "responsible_actor": "规划、测绘与对应专业复核方",
+      "audit_frequency": "正式数据到位或边界/方案变更时",
+      "disaggregation": "空间范围、数据来源与版本",
+      "anti_gaming_note": "临时几何、空图层或未经现场核验的数据不得充当正式空间绩效。"
+    },
+    "accessible_route_continuity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "fully_accessible_tested_routes / all_tested_routes",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "reason": "设施状态和实际使用者路线测试尚未完成。",
+      "recompute_trigger": "正式数据到位或边界/方案变更时",
+      "responsible_actor": "规划、测绘与对应专业复核方",
+      "audit_frequency": "正式数据到位或边界/方案变更时",
+      "disaggregation": "空间范围、数据来源与版本",
+      "anti_gaming_note": "临时几何、空图层或未经现场核验的数据不得充当正式空间绩效。"
+    },
+    "service_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "resident_verified_closed_cases / due_service_cases",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "全能力运行样本尚未建立。",
+      "recompute_trigger": "真实系统、责任目录、入口、样本或规则变化时",
+      "responsible_actor": "对应服务运营主体与独立专业复核方",
+      "audit_frequency": "真实系统部署并建立基线后；当前无运行频率",
+      "disaggregation": "能力、事项类型、入口与空间层级",
+      "anti_gaming_note": "自动回执、系统自报或选择性抽样不得冒充真实完成与等价服务。"
+    },
+    "non_ai_equivalent_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "completed_non_ai_sample_tasks / sampled_non_ai_tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "电话、窗口、线下和无障碍入口尚未进行任务抽样。",
+      "recompute_trigger": "真实系统、责任目录、入口、样本或规则变化时",
+      "responsible_actor": "对应服务运营主体与独立专业复核方",
+      "audit_frequency": "真实系统部署并建立基线后；当前无运行频率",
+      "disaggregation": "能力、事项类型、入口与空间层级",
+      "anti_gaming_note": "自动回执、系统自报或选择性抽样不得冒充真实完成与等价服务。"
+    },
+    "scenario_card_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(final_deduplicated_scenario_cards)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DESIGN-GEOMETRY-001"
+      ],
+      "reason": "当前v0.4—v0.8共形成30张候选卡，八能力最终卡尚未统一去重。",
+      "recompute_trigger": "候选场景卡、跨能力去重规则或proposal.md变更时",
+      "responsible_actor": "跨能力规格与正式包维护者",
+      "audit_frequency": "候选场景卡、去重规则或正式proposal变更时",
+      "disaggregation": "能力、版本、场景卡状态",
+      "anti_gaming_note": "重复场景卡不得重复计数；候选卡数量不代表部署、演练或运行绩效。"
+    },
+    "industrial_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(locked_industry_test_scenario_designs)",
+      "confidence": "high",
+      "assumptions": [
+        "A-INDUSTRY-SPATIAL-001"
+      ],
+      "reason": "第六能力枝已锁定自主全栈工具链、具身智能空间任务、公共服务/中小企业Agent任务交付三类概念测试；其实体位置和运行通过率仍未知。",
+      "recompute_trigger": "规格、设计记录或对应来源文件变更时",
+      "responsible_actor": "对应能力规格维护者",
+      "audit_frequency": "规格或设计记录变更时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入来源文件中已明确形成的设计项，不计部署、审批或验收成果。"
+    },
+    "industry_service_chain_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(capability_six_end_to_end_service_chains)",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "第六能力枝十二条端到端服务链已经在v0.6检查点形成完整八字段规格。",
+      "recompute_trigger": "规格、设计记录或对应来源文件变更时",
+      "responsible_actor": "对应能力规格维护者",
+      "audit_frequency": "规格或设计记录变更时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入来源文件中已明确形成的设计项，不计部署、审批或验收成果。"
+    },
+    "industrial_test_gate_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "agent.json"
+      ],
+      "formula": "industry_tests_with_all_applicable_gate_evidence / industry_tests_entering_physical_or_human_environment",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-INDUSTRY-SPATIAL-001",
+        "A-METRICS-001"
+      ],
+      "reason": "测试场、责任主体、专业审查、运行样本和独立复核尚未建立。",
+      "recompute_trigger": "系统、规则、测试范围、样本或专业结论变化时",
+      "responsible_actor": "第六能力运营主体与对应专业复核方",
+      "audit_frequency": "真实系统与测试条件建立后；当前无运行频率",
+      "disaggregation": "事项或测试类型、风险级、入口与空间范围",
+      "anti_gaming_note": "不得以跳过失败样本、缩小分母或自报状态替代独立核验。"
+    },
+    "personal_capability_control_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "personal_capability_fields_viewable_correctable_hideable_and_revocable / all_personal_capability_fields",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "个人能力证据接口和实际授权审计尚未实现。",
+      "recompute_trigger": "系统、规则、测试范围、样本或专业结论变化时",
+      "responsible_actor": "第六能力运营主体与对应专业复核方",
+      "audit_frequency": "真实系统与测试条件建立后；当前无运行频率",
+      "disaggregation": "事项或测试类型、风险级、入口与空间范围",
+      "anti_gaming_note": "不得以跳过失败样本、缩小分母或自报状态替代独立核验。"
+    },
+    "enterprise_one_door_first_routing_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "enterprise_cases_routed_to_actual_responsible_actor_first_time / sampled_enterprise_cases",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-POLICY-TRANSFER-001",
+        "A-METRICS-001"
+      ],
+      "reason": "权威事项接口、责任目录和企业服务抽样尚未建立。",
+      "recompute_trigger": "系统、规则、测试范围、样本或专业结论变化时",
+      "responsible_actor": "第六能力运营主体与对应专业复核方",
+      "audit_frequency": "真实系统与测试条件建立后；当前无运行频率",
+      "disaggregation": "事项或测试类型、风险级、入口与空间范围",
+      "anti_gaming_note": "不得以跳过失败样本、缩小分母或自报状态替代独立核验。"
+    },
+    "full_stack_migration_success_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "approved_test_tasks_meeting_quality_and_safety_threshold_on_alternative_stack / approved_cross_stack_test_tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-INDUSTRY-SPATIAL-001",
+        "A-METRICS-001"
+      ],
+      "reason": "多栈测试环境、阈值、任务样本和独立验证尚未建立。",
+      "recompute_trigger": "系统、规则、测试范围、样本或专业结论变化时",
+      "responsible_actor": "第六能力运营主体与对应专业复核方",
+      "audit_frequency": "真实系统与测试条件建立后；当前无运行频率",
+      "disaggregation": "事项或测试类型、风险级、入口与空间范围",
+      "anti_gaming_note": "不得以跳过失败样本、缩小分母或自报状态替代独立核验。"
+    },
+    "industry_exit_recovery_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "agent.json"
+      ],
+      "formula": "exit_cases_closing_applicable_labor_contract_data_equipment_space_and_access_obligations / cases_entering_exit_process",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "企业退出流程、样本、法定状态和空间恢复记录尚未建立。",
+      "recompute_trigger": "系统、规则、测试范围、样本或专业结论变化时",
+      "responsible_actor": "第六能力运营主体与对应专业复核方",
+      "audit_frequency": "真实系统与测试条件建立后；当前无运行频率",
+      "disaggregation": "事项或测试类型、风险级、入口与空间范围",
+      "anti_gaming_note": "不得以跳过失败样本、缩小分母或自报状态替代独立核验。"
+    },
+    "creativity_service_chain_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "agent.json",
+        "proposal.md"
+      ],
+      "formula": "count(capability_seven_end_to_end_service_chains)",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "v0.7已形成十二条创意、想法与真人资产端到端服务链。",
+      "recompute_trigger": "规格、设计记录或对应来源文件变更时",
+      "responsible_actor": "对应能力规格维护者",
+      "audit_frequency": "规格或设计记录变更时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入来源文件中已明确形成的设计项，不计部署、审批或验收成果。"
+    },
+    "creativity_scenario_card_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "agent.json",
+        "proposal.md"
+      ],
+      "formula": "count(capability_seven_candidate_scenario_cards)",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "v0.7已形成六张候选场景卡；最终投稿仍须跨八能力去重。",
+      "recompute_trigger": "规格、设计记录或对应来源文件变更时",
+      "responsible_actor": "对应能力规格维护者",
+      "audit_frequency": "规格或设计记录变更时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入来源文件中已明确形成的设计项，不计部署、审批或验收成果。"
+    },
+    "creativity_private_default_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "new_personal_objects_not_proactively_disclosed_shared_or_trained / all_new_personal_objects",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001",
+        "A-METRICS-001"
+      ],
+      "reason": "私域舱尚未实现且没有真实运行样本。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_original_expression_confirmation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "ai_organized_objects_preserving_original_and_user_confirmed_differences / ai_organized_objects",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "原话—整理并排界面及本人确认审计尚未实现。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_provenance_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "sampled_objects_with_complete_material_sources_third_party_content_and_ai_role / sampled_objects",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "对象版本、来源物料表和抽样规则尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_ai_assistance_disclosure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "public_objects_with_applicable_ai_assistance_or_generation_disclosure / public_objects_requiring_disclosure",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "公开内容、适用性判断和标识核验样本尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_permission_field_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "permissions_with_object_version_actor_purpose_action_duration_return_and_exit_fields / sampled_permissions",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "逐项授权卡和真实授权记录尚未实现。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_granular_choice_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "multi_action_permissions_allowing_separate_training_publication_commercial_derivative_and_sublicense_choices / sampled_multi_action_permissions",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "授权交互和反默认全选测试尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_requester_purpose_verification_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "disclosure_or_use_requests_with_verified_requester_role_and_specific_purpose / disclosure_or_use_requests",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "请求方目录和核验接口尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_use_receipt_delivery_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "permissions_receiving_required_access_use_publication_or_deletion_receipts / permissions_requiring_receipts",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "使用方回执协议和运行日志尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_unauthorized_use_incident_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "verified_objects_used_beyond_permission / sampled_used_objects",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "越权使用的审计范围、样本和独立核验尚未建立；报告数不得被压低冒充安全。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_attribution_accuracy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "published_outputs_matching_confirmed_name_pseudonym_no_name_and_order / outputs_requiring_attribution_handling",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "公开成果和贡献者确认样本尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_ai_label_compliance_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "content_meeting_applicable_explicit_implicit_or_user_declaration_requirements / content_requiring_ai_labels",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "生成内容、传播方式和适用合规核验尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_third_party_clearance_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "objects_with_third_party_materials_resolved_before_publication_or_license / objects_with_third_party_materials",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "第三方材料清单和专业清权样本尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_collaborator_confirmation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "collaborators_confirming_or_formally_disputing_contribution_records_before_delivery / collaborators_required_to_review",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "协作项目账、失联规则和异议机制尚未运行。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_uncompensated_labor_misuse_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "cases_where_due_labor_commission_or_procurement_is_mislabeled_as_volunteer_learning_or_cocreation / sampled_contribution_cases",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "劳动、委托、采购和志愿属性的专业抽样尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_benefit_return_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "due_cases_completing_promised_payment_share_attribution_or_civic_return / due_cases",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "合同、支付、署名和公共回馈的真实到期样本尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_civic_substantive_response_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "due_accepted_proposals_receiving_adopted_partial_not_adopted_or_waiting_status_with_reasons / due_accepted_proposals",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-SPATIAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "公共责任目录、法定参与和提案运行样本尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_adoption_reason_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "sampled_civic_decisions_with_basis_impact_responsible_actor_next_step_and_limits / sampled_civic_decisions",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-SPATIAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "公共决定、理由字段和抽样规则尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_personal_information_request_timeliness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "personal_information_rights_requests_completed_or_lawfully_explained_within_applicable_time / due_requests",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "处理者、适用时限、请求接口和样本尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_deletion_retention_explanation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "processed_requests_explaining_deletion_anonymization_backup_and_lawful_retention_by_object / processed_deletion_requests",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "跨系统删除、备份和法定留存接口尚未实现。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_revocation_notice_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "known_use_actors_receiving_valid_revocation_notice / use_actors_required_to_be_notified",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "授权传播图和有效撤回通知机制尚未实现。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_asset_export_success_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "export_requests_delivering_complete_open_readable_objects_versions_and_permissions / export_requests",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "开放导出格式和跨平台测试尚未实现。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_agent_workflow_migration_success_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "workflows_meeting_predefined_core_quality_safety_and_fallback_requirements_in_alternative_environment / migration_tests",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001",
+        "A-METRICS-001"
+      ],
+      "reason": "替代环境、阈值、秘密扫描和迁移测试尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_non_ai_equivalent_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "telephone_counter_paper_or_proxy_tasks_completed_with_equivalent_quality_time_and_rights / sampled_non_ai_capability_seven_tasks",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-OPERATIONS-001",
+        "A-METRICS-001"
+      ],
+      "reason": "第七能力非AI入口尚未实施和抽样。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "creativity_dispute_exit_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "exit_or_dispute_cases_closing_applicable_evidence_access_data_display_payment_and_responsibility_items / cases_entering_exit_or_dispute",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP7-LEGAL-001",
+        "A-CAP7-OPERATIONS-001"
+      ],
+      "reason": "权利请求、争议渠道和跨系统退出样本尚未建立。",
+      "recompute_trigger": "系统、规则、样本、权限或专业结论变化时",
+      "responsible_actor": "第七能力运营主体与对应法律或专业复核方",
+      "audit_frequency": "真实系统部署并建立审计计划后；当前无运行频率",
+      "disaggregation": "对象或事项类型、入口与风险级；只做必要聚合",
+      "anti_gaming_note": "不得以减少上报、缩小分母、自动状态或选择性抽样替代真实核验。"
+    },
+    "governance_service_chain_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "formula": "count(capability_eight_end_to_end_service_chains)",
+      "source_files": [
+        "agent.json",
+        "proposal.md"
+      ],
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "v0.8已形成十二条第八能力端到端服务链的完整概念规格。",
+      "recompute_trigger": "agent.json或proposal.md中的第八能力服务链结构变更时",
+      "responsible_actor": "第八能力规格维护者",
+      "audit_frequency": "规格或正式正文变更时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入已形成完整八字段规格的服务链，不计部署、审批或验收成果。"
+    },
+    "governance_scenario_card_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "formula": "count(capability_eight_candidate_scenario_cards)",
+      "source_files": [
+        "agent.json",
+        "proposal.md"
+      ],
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "v0.8已形成六张第八能力候选场景卡；最终投稿仍须跨八能力去重。",
+      "recompute_trigger": "agent.json或proposal.md中的第八能力场景卡结构变更时",
+      "responsible_actor": "第八能力规格维护者",
+      "audit_frequency": "规格或正式正文变更时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入已形成完整八字段规格的场景卡，不计演练、部署或验收成果。"
+    },
+    "governance_first_route_accuracy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "首次送达正确有权/责任主体事项数 ÷ 抽样已路由事项数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "责任目录、路由系统与真实抽样尚未部署。",
+      "recompute_trigger": "责任目录或路由规则变更即重算",
+      "responsible_actor": "C目录运营者与接收L",
+      "audit_frequency": "月度抽样",
+      "disaggregation": "入口、事项类、空间层级",
+      "anti_gaming_note": "人工纠偏后不得倒填为首次正确"
+    },
+    "governance_due_response_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "到期且含责任、理由、下一步和救济的回应数 ÷ 到期受理数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "受理流程、时限规则与真实回应样本尚未部署。",
+      "recompute_trigger": "流程/时限变更即重算",
+      "responsible_actor": "L受理主体",
+      "audit_frequency": "月度",
+      "disaggregation": "入口、事项类、超期原因",
+      "anti_gaming_note": "自动回执和“处理中”不算实质回应"
+    },
+    "governance_affected_group_participation_accessibility_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "满足适用无障碍、多入口和语言支持的参与活动数 ÷ 抽样活动数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "参与活动、无障碍支持与抽样审计尚未部署。",
+      "recompute_trigger": "参与规则或设施变更即重算",
+      "responsible_actor": "L发起主体与无障碍B",
+      "audit_frequency": "每次活动后/季度",
+      "disaggregation": "年龄、残障需求、入口、地区；只做非识别聚合",
+      "anti_gaming_note": "报名人数不替代可达性"
+    },
+    "governance_minority_opinion_retention_response_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "少数意见原文保留且获实质回应的议题数 ÷ 含少数意见的到期议题数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "意见保存、回应流程与到期议题样本尚未建立。",
+      "recompute_trigger": "回应/复核后重算",
+      "responsible_actor": "L程序主体",
+      "audit_frequency": "季度",
+      "disaggregation": "影响群体、议题类、采纳状态",
+      "anti_gaming_note": "不以意见数量冲淡高影响意见"
+    },
+    "governance_decision_basis_reason_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "含职权、依据、影响、理由、责任和救济的抽样公共决定数 ÷ 抽样决定数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "公共决定台账、依据索引与抽样机制尚未建立。",
+      "recompute_trigger": "依据或决定版本变更即重算",
+      "responsible_actor": "L决定主体与法务B",
+      "audit_frequency": "季度",
+      "disaggregation": "决定类型、风险级、公开限制",
+      "anti_gaming_note": "模板空字段不算完整"
+    },
+    "governance_commitment_execution_state_accuracy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "经现场/权威记录核验与公开状态一致的承诺节点数 ÷ 抽样节点数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "承诺台账、权威状态源与现场核验尚未建立。",
+      "recompute_trigger": "状态、范围或验收变化即重算",
+      "responsible_actor": "项目L与独立核验B",
+      "audit_frequency": "月度/节点",
+      "disaggregation": "项目、空间层级、延期原因",
+      "anti_gaming_note": "自报“完成”不算核验"
+    },
+    "governance_authority_procedure_signature_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "职权、适用程序和具责签署均完整的高影响事项数 ÷ 抽样高影响事项数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "逐事项职权、程序与签署记录尚未建立。",
+      "recompute_trigger": "法规/职权变化即重算",
+      "responsible_actor": "L与法律B",
+      "audit_frequency": "逐事项/季度汇总",
+      "disaggregation": "事项类型、程序类型、风险级",
+      "anti_gaming_note": "Agent签名或系统状态不能代替具责签署"
+    },
+    "governance_conflict_disclosure_recusal_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成冲突检查并执行适用披露/回避的事项数 ÷ 应检查事项数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "冲突检查、披露与回避运行记录尚未建立。",
+      "recompute_trigger": "主体或关系变化即重算",
+      "responsible_actor": "L监督主体",
+      "audit_frequency": "逐事项/季度",
+      "disaggregation": "主体类型、冲突类型、处置方式",
+      "anti_gaming_note": "“无冲突”须有检查记录"
+    },
+    "governance_cross_actor_handoff_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "发送、接收、责任确认、执行回传均完整的交接数 ÷ 到期交接数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-EMERGENCY-001"
+      ],
+      "reason": "共同事件状态、跨主体交接与真实到期样本尚未部署。",
+      "recompute_trigger": "责任或状态变更即重算",
+      "responsible_actor": "C协同运营者与各接收L",
+      "audit_frequency": "月度",
+      "disaggregation": "主办/协办、事项类、空间层级",
+      "anti_gaming_note": "自动派单不等于接收与闭环"
+    },
+    "governance_conflicting_instruction_escalation_timeliness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在风险级时限内升级并由有权主体裁定的冲突指令数 ÷ 到期冲突数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-EMERGENCY-001"
+      ],
+      "reason": "冲突升级规则、法定指挥链与真实事件样本尚未建立。",
+      "recompute_trigger": "冲突结案或时限规则变更即重算",
+      "responsible_actor": "牵头L与应急/专业B",
+      "audit_frequency": "事件后",
+      "disaggregation": "风险级、指令来源、生命线类型",
+      "anti_gaming_note": "删除冲突记录不得改善指标"
+    },
+    "governance_high_risk_algorithm_impact_assessment_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "上线/重大变更前完成适用影响评估的高风险算法数 ÷ 应评估算法数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-ALGORITHM-001"
+      ],
+      "reason": "具体算法、用途、运营者与影响评估流程尚未选定或部署。",
+      "recompute_trigger": "模型、数据、用途或法规变化即重算",
+      "responsible_actor": "运营者、算法/法律/数据B",
+      "audit_frequency": "版本前/季度",
+      "disaggregation": "风险级、用途、涉及人群",
+      "anti_gaming_note": "形式化空报告不算"
+    },
+    "governance_major_model_change_revalidation_suspension_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "重大变更后完成复验或按规则停用的模型数 ÷ 重大变更模型数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-ALGORITHM-001"
+      ],
+      "reason": "模型登记、重大变更分类、复验与停用流程尚未部署。",
+      "recompute_trigger": "模型/数据/工具变化即重算",
+      "responsible_actor": "运营者与独立安全B",
+      "audit_frequency": "每次变更",
+      "disaggregation": "模型、场景、风险级、处置",
+      "anti_gaming_note": "将重大变更标为小修不得规避"
+    },
+    "governance_complaint_independent_review_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "原执行侧之外完成复核的适用投诉数 ÷ 到期适用投诉数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "独立投诉入口、复核主体与真实到期样本尚未建立。",
+      "recompute_trigger": "复核或回避状态变化即重算",
+      "responsible_actor": "独立复核L/B",
+      "audit_frequency": "月度",
+      "disaggregation": "决定类型、入口、风险级",
+      "anti_gaming_note": "原系统重复输出不算独立复核"
+    },
+    "governance_remedy_execution_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "纠正、恢复、赔补或其他决定已真正执行的到期救济数 ÷ 到期救济数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001"
+      ],
+      "reason": "救济决定、执行接口与真实到期样本尚未建立。",
+      "recompute_trigger": "执行或后续救济变化即重算",
+      "responsible_actor": "决定/执行L",
+      "audit_frequency": "月度",
+      "disaggregation": "救济类型、影响群体、执行状态",
+      "anti_gaming_note": "仅发决定书不算执行"
+    },
+    "governance_risk_event_verification_timeliness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在风险级时限内完成现场/专业核验或合法说明的事件数 ÷ 到期事件数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-EMERGENCY-001",
+        "A-CAP8-ALGORITHM-001"
+      ],
+      "reason": "风险事件系统、时限、现场核验与真实样本尚未部署。",
+      "recompute_trigger": "风险定级、证据或处置变化即重算",
+      "responsible_actor": "设施运营L与安全B",
+      "audit_frequency": "事件后/月度",
+      "disaggregation": "风险级、事件类、空间层级",
+      "anti_gaming_note": "自动告警不算核验"
+    },
+    "governance_stop_condition_human_takeover_availability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "演练/事件中按预定阈值成功停止并人工接管的关键任务数 ÷ 受测任务数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-EMERGENCY-001",
+        "A-CAP8-ALGORITHM-001"
+      ],
+      "reason": "停止阈值、人工接管流程、实体测试与演练均未建立。",
+      "recompute_trigger": "系统/人员/流程变化即重算",
+      "responsible_actor": "运营L与安全B",
+      "audit_frequency": "每次演练/事件",
+      "disaggregation": "设施、风险级、失效模式",
+      "anti_gaming_note": "只检查按钮存在不算可用"
+    },
+    "governance_multichannel_warning_access_equivalence_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "同时满足授权来源、多通道、无障碍、更新时间和失效说明的预警数 ÷ 抽样预警数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-EMERGENCY-001",
+        "A-CAP8-ALGORITHM-001"
+      ],
+      "reason": "授权预警、多通道与无障碍送达演练尚未建立。",
+      "recompute_trigger": "渠道或预警版本变化即重算",
+      "responsible_actor": "预警L与无障碍/应急B",
+      "audit_frequency": "每次预警",
+      "disaggregation": "渠道、地区、无障碍需求",
+      "anti_gaming_note": "发送成功不等于可达理解"
+    },
+    "governance_emergency_command_rescue_handoff_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "指令来源、接收确认、救援交接和状态回传完整的任务数 ÷ 抽样应急任务数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-AUTHORITY-001",
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-EMERGENCY-001",
+        "A-CAP8-ALGORITHM-001"
+      ],
+      "reason": "法定指挥链、救援交接、演练与真实任务样本尚未建立。",
+      "recompute_trigger": "指令/交接/复盘变化即重算",
+      "responsible_actor": "指挥L与救援B",
+      "audit_frequency": "事件/演练后",
+      "disaggregation": "事件级别、任务类型、空间层级",
+      "anti_gaming_note": "C自动路由不算有权指令"
+    },
+    "governance_critical_service_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "AI/网络/电力失效情景中达到预定最低服务结果的关键任务数 ÷ 受测任务数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-EMERGENCY-001",
+        "A-CAP8-ALGORITHM-001"
+      ],
+      "reason": "最低服务定义、恢复目标、备份与失效演练尚未建立。",
+      "recompute_trigger": "架构/恢复目标/演练变化即重算",
+      "responsible_actor": "运营L与连续性B",
+      "audit_frequency": "演练/事件后",
+      "disaggregation": "服务、失效模式、持续时间、入口",
+      "anti_gaming_note": "降低最低服务定义不得倒算"
+    },
+    "governance_recovery_postmortem_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成恢复目标验证、数据对账、权限回收和整改的事件数 ÷ 到期恢复事件数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-EMERGENCY-001",
+        "A-CAP8-ALGORITHM-001"
+      ],
+      "reason": "恢复目标、权限回收、复盘与真实到期事件样本尚未建立。",
+      "recompute_trigger": "恢复/整改证据变化即重算",
+      "responsible_actor": "运营L与独立复盘B",
+      "audit_frequency": "事件后/月度",
+      "disaggregation": "事件类型、恢复阶段、整改状态",
+      "anti_gaming_note": "业务重启不等于恢复闭环"
+    },
+    "governance_ecological_baseline_evidence_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "具来源、季节、方法、范围、质量和专业复核的生态判断数 ÷ 抽样生态判断数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-ECOLOGY-001"
+      ],
+      "reason": "跨季节生态本底、监测方法与专业复核样本尚未形成。",
+      "recompute_trigger": "新监测季、方法或边界变化即重算",
+      "responsible_actor": "生态/水务L与专业B",
+      "audit_frequency": "季节/年度",
+      "disaggregation": "生态要素、季节、空间层级",
+      "anti_gaming_note": "模型填补不得冒充实测"
+    },
+    "governance_public_ecology_report_verification_feedback_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成专业核验、责任处理和面向报告者反馈的到期公众报告数 ÷ 到期报告数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-ECOLOGY-001"
+      ],
+      "reason": "公众报告入口、专业核验、养护与复测反馈尚未部署。",
+      "recompute_trigger": "核验/养护/复测变化即重算",
+      "responsible_actor": "维护L与生态B",
+      "audit_frequency": "月度/季节",
+      "disaggregation": "报告类、空间、处理状态",
+      "anti_gaming_note": "自动收件或仅聚类不算反馈"
+    },
+    "governance_ecological_threshold_action_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "超限后按规则停止、避免或减缓并留证的事件数 ÷ 经核实超限事件数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-ECOLOGY-001"
+      ],
+      "reason": "正式生态阈值、监测与超限处置记录尚未建立。",
+      "recompute_trigger": "阈值/监测/处置变化即重算",
+      "responsible_actor": "项目/维护L与生态B",
+      "audit_frequency": "事件后",
+      "disaggregation": "阈值类、项目/活动、处置",
+      "anti_gaming_note": "调高阈值或漏报不得改善指标"
+    },
+    "governance_restoration_decommissioning_revalidation_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成撤场、修复、责任交接和长期复验的到期事项数 ÷ 到期事项数",
+      "source_files": [
+        "agent.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CAP8-OPERATIONS-001",
+        "A-CAP8-ECOLOGY-001"
+      ],
+      "reason": "修复、退役、责任交接与长期复验证据尚未形成。",
+      "recompute_trigger": "退役、修复或复验变化即重算",
+      "responsible_actor": "项目/维护L与独立生态B",
+      "audit_frequency": "节点/年度",
+      "disaggregation": "项目类、空间、修复阶段",
+      "anti_gaming_note": "视觉清理不等于生态恢复"
+    },
+    "identity_intent_confirmation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "居民明确确认事项方向与提交意愿的建案数 ÷ 抽样建案数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "愿望表达、居民确认和真实建案样本尚未部署。",
+      "recompute_trigger": "事项识别、确认界面、入口或抽样规则变化时重算",
+      "responsible_actor": "公共服务受理主体与独立服务审计方",
+      "audit_frequency": "真实系统部署并建立基线后月度；当前无运行频率",
+      "disaggregation": "事项类型、入口、语言和人工接管状态",
+      "anti_gaming_note": "默认勾选、自动建案或仅统计成功提交不得计为居民确认"
+    },
+    "identity_minimum_evidence_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "仅收集适用规则最小证明且无无关字段的抽样案件数 ÷ 抽样案件数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "逐事项最小证明规则、字段审计和真实案件尚未建立。",
+      "recompute_trigger": "证明规则、字段目录、政策或系统调用变化时重算",
+      "responsible_actor": "受理主体、数据保护责任人和独立审计方",
+      "audit_frequency": "部署后季度抽样；当前无运行频率",
+      "disaggregation": "事项、证明类型、入口和是否人工办理",
+      "anti_gaming_note": "把额外字段标成可选但实际阻断办理不得算作最小证明"
+    },
+    "identity_multichannel_case_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "换入口后保持同案号、材料、时限与状态连续的交接数 ÷ 抽样跨入口交接数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "多入口同案号和跨入口真实交接记录尚未部署。",
+      "recompute_trigger": "入口、案件状态模型或交接规则变化时重算",
+      "responsible_actor": "多入口服务运营主体与各接收窗口",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "起止入口、事项类型、失败原因和人群支持需求",
+      "anti_gaming_note": "新建案件后后台合并不得倒算为首次连续"
+    },
+    "identity_verification_handoff_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "核验请求、证据范围、接收人和结果回传均完整的交接数 ÷ 到期核验交接数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "有权核验主体、人工交接和结果回传样本尚未建立。",
+      "recompute_trigger": "核验方法、责任主体或交接时限变化时重算",
+      "responsible_actor": "身份核验主体与多入口服务运营主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "核验方式、入口、风险级和人工升级原因",
+      "anti_gaming_note": "发送核验请求不等于接收、核验或结果回传完成"
+    },
+    "identity_proxy_authorization_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "主体、事项、字段、期限、撤回和各方意愿均完整的代理授权数 ÷ 抽样代理授权数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "逐事项代理授权、各方分别确认和撤回运行记录尚未建立。",
+      "recompute_trigger": "代理规则、授权字段或监护要求变化时重算",
+      "responsible_actor": "有权登记主体与代理授权服务运营者",
+      "audit_frequency": "部署后季度；当前无运行频率",
+      "disaggregation": "代理类型、事项、期限和是否发生冲突",
+      "anti_gaming_note": "一揽子授权或只记录代理人点击不得计为完整授权"
+    },
+    "identity_guardian_scope_review_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "由有权主体核验监护依据、范围、利益冲突和复核路径的适用案件数 ÷ 应核验监护案件数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "监护范围审核、利益冲突检查和真实案件样本尚未建立。",
+      "recompute_trigger": "监护规则、当事人状态或复核要求变化时重算",
+      "responsible_actor": "民政、司法或其他有权监护核验主体",
+      "audit_frequency": "逐案并季度汇总；当前无运行频率",
+      "disaggregation": "事项、监护依据、冲突类型和复核结果",
+      "anti_gaming_note": "关系证明存在不等于授权范围和利益冲突已复核"
+    },
+    "identity_repeated_material_reduction_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "可依法核验且未要求居民重复提交的材料项数 ÷ 抽样案件中可依法复用的材料项数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "字段级材料索引、合法复用条件和真实办理样本尚未建立。",
+      "recompute_trigger": "材料规则、接口、来源或授权方式变化时重算",
+      "responsible_actor": "材料原控制者与接收公共服务主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "事项、材料类型、来源和未复用原因",
+      "anti_gaming_note": "取消必要材料或漏记居民线下补交不得改善该指标"
+    },
+    "identity_authorized_reuse_receipt_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "具逐项授权、发送、接收、用途和期限回执的复用次数 ÷ 抽样材料复用次数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "跨主体复用回执、撤回接口和真实调用样本尚未部署。",
+      "recompute_trigger": "接收主体、用途、授权或回执结构变化时重算",
+      "responsible_actor": "发送与接收数据责任主体及数据保护复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "材料、发送方、接收方、用途和撤回状态",
+      "anti_gaming_note": "系统内部成功状态不得替代居民可读的接收与用途回执"
+    },
+    "identity_address_service_handoff_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "地址变更后获接收确认、服务衔接或具责不联动理由的到期事项数 ÷ 到期联动事项数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "权威地址接口、服务联动台账和到期样本尚未建立。",
+      "recompute_trigger": "地址规则、社区边界、服务责任或状态变化时重算",
+      "responsible_actor": "地址登记主体与各公共服务接收主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "服务类型、社区、联动状态和失败原因",
+      "anti_gaming_note": "自动派送或删除失败事项不得计为闭环"
+    },
+    "identity_address_change_propagation_accuracy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "与权威变更、居民逐项选择和有效日期一致的下游更新数 ÷ 抽样地址传播数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "下游地址状态、居民选择和权威记录对账样本尚未建立。",
+      "recompute_trigger": "权威地址、传播范围或下游系统变化时重算",
+      "responsible_actor": "地址登记主体、下游服务主体与独立审计方",
+      "audit_frequency": "部署后季度；当前无运行频率",
+      "disaggregation": "下游主体、字段、有效日期和错改类型",
+      "anti_gaming_note": "仅检查接口发送成功不得替代下游内容准确性"
+    },
+    "identity_eligibility_reason_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "含职权、适用规则、关键事实、理由、责任人和救济的资格决定数 ÷ 抽样资格决定数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "资格决定台账、理由字段和真实决定样本尚未建立。",
+      "recompute_trigger": "资格规则、决定模板、职权或救济路径变化时重算",
+      "responsible_actor": "法定资格决定主体与法律复核方",
+      "audit_frequency": "部署后季度；当前无运行频率",
+      "disaggregation": "服务、决定结果、依据版本和复核状态",
+      "anti_gaming_note": "模板字段存在但为空、套话或无法对应事实不得算完整"
+    },
+    "identity_adverse_decision_human_review_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "执行前由具责人员实质审查并可独立复核的不利资格决定数 ÷ 抽样不利资格决定数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "不利决定、人工审查签署和独立复核样本尚未建立。",
+      "recompute_trigger": "决定规则、人工职责或申诉流程变化时重算",
+      "responsible_actor": "法定决定主体与独立复核主体",
+      "audit_frequency": "逐案并季度汇总；当前无运行频率",
+      "disaggregation": "服务、风险级、审查主体和复核结果",
+      "anti_gaming_note": "批量点击确认或事后抽样不得冒充执行前实质人工审查"
+    },
+    "identity_non_ai_equivalent_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "通过非AI入口在同等费用、时限、结果和救济下完成的抽样任务数 ÷ 抽样非AI任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "电话、窗口、纸面和人工服务尚未进行等价任务测试。",
+      "recompute_trigger": "入口、排班、费用、时限或任务流程变化时重算",
+      "responsible_actor": "公共服务运营主体与独立无障碍测试方",
+      "audit_frequency": "部署后季度任务测试；当前无运行频率",
+      "disaggregation": "入口、事项、语言、支持需求和失败阶段",
+      "anti_gaming_note": "只提供入口、预约成功或降低任务难度不得算等价完成"
+    },
+    "identity_accessibility_support_availability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在公布时段内经真人测试可用的适用语言与无障碍支持项数 ÷ 抽样应提供支持项数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "支持目录、实体排班和使用者现场测试尚未建立。",
+      "recompute_trigger": "服务时段、人员、设施、内容或支持标准变化时重算",
+      "responsible_actor": "服务运营主体与语言、无障碍专业复核方",
+      "audit_frequency": "部署后月度可用性抽测；当前无运行频率",
+      "disaggregation": "支持类型、地点、时段、入口和断点原因",
+      "anti_gaming_note": "目录标注、设备存在或预约入口存在不等于支持实际可用"
+    },
+    "identity_record_correction_timeliness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在适用时限内由有权主体调查并作出纠正或不纠正理由的案件数 ÷ 到期纠错案件数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "纠错责任目录、时限和真实争议案件尚未建立。",
+      "recompute_trigger": "纠错规则、证据、责任主体或时限变化时重算",
+      "responsible_actor": "原记录控制者或有权登记主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "记录类型、错误来源、决定和超期原因",
+      "anti_gaming_note": "自动收件、临时隐藏或关闭案件不得算纠正完成"
+    },
+    "identity_correction_propagation_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "更正决定后各已知下游完成更新或给出具责拒绝理由的传播项数 ÷ 到期传播项数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "传播清单、下游回执和真实更正样本尚未建立。",
+      "recompute_trigger": "更正决定、下游范围或同步状态变化时重算",
+      "responsible_actor": "原记录控制者与各下游责任主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "下游主体、字段、状态和未闭环原因",
+      "anti_gaming_note": "仅发送通知、遗漏下游或删除失败项不得计为闭环"
+    },
+    "identity_credential_recovery_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成适用挂失、替代核验、补领或访问恢复及临时权限回收的案件数 ÷ 到期恢复案件数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "凭证恢复、替代核验和真实到期案件尚未部署。",
+      "recompute_trigger": "核验方式、凭证规则、账户接口或恢复状态变化时重算",
+      "responsible_actor": "凭证签发主体与账户运营主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "凭证类型、恢复方式、入口和失败原因",
+      "anti_gaming_note": "只完成挂失、临时放行或重建新账户不得算完整恢复"
+    },
+    "identity_fraud_risk_human_escalation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "按规则及时交由有权人工审查并保留理由的高欺诈风险案件数 ÷ 到期高风险案件数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "风险分级、人工审查流程和真实欺诈风险样本尚未建立。",
+      "recompute_trigger": "风险规则、人工职责、时限或处置结果变化时重算",
+      "responsible_actor": "凭证主体、账户安全人员与适用执法主体",
+      "audit_frequency": "逐案并月度汇总；当前无运行频率",
+      "disaggregation": "风险信号、凭证、升级时限和人工结果",
+      "anti_gaming_note": "自动封禁、降低风险阈值或排除复杂案件不得改善指标"
+    },
+    "identity_vulnerable_group_safeguard_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成适用本人表达、受训人工、最小数据、冲突升级和复核保障的案件数 ÷ 抽样需保护案件数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "保护条件、受训人工和真实脆弱情境案件尚未建立。",
+      "recompute_trigger": "保护规则、人员、支持渠道或案件状态变化时重算",
+      "responsible_actor": "有权保护主体与独立权利保障复核方",
+      "audit_frequency": "逐案并季度汇总；当前无运行频率",
+      "disaggregation": "支持需要、事项、保护措施和复核状态",
+      "anti_gaming_note": "永久贴标签、排除高风险案件或仅记录监护人意见不得计为保障"
+    },
+    "identity_minor_guardian_notice_choice_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "按适龄方式记录未成年人本人选择并完成适用监护通知或合法例外的案件数 ÷ 抽样未成年人案件数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "适龄表达、监护通知规则和真实案件样本尚未建立。",
+      "recompute_trigger": "年龄适配、监护通知、例外或事项风险变化时重算",
+      "responsible_actor": "儿童服务责任主体与适用保护专业人员",
+      "audit_frequency": "部署后季度；当前无运行频率",
+      "disaggregation": "年龄段、事项、通知状态和合法例外",
+      "anti_gaming_note": "只取得监护人点击或把沉默视为本人同意不得计为完成"
+    },
+    "identity_offline_basic_service_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "数字身份、网络或电力失效时仍达到预定最低基本服务结果的受测任务数 ÷ 受测离线任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "最低服务定义、离线台账、备用链和失效演练尚未建立。",
+      "recompute_trigger": "最低服务、系统架构、备用通信或演练情景变化时重算",
+      "responsible_actor": "基本服务运营主体与应急连续性专业方",
+      "audit_frequency": "每次演练或事件后；当前无运行频率",
+      "disaggregation": "服务、失效模式、持续时间、地点和入口",
+      "anti_gaming_note": "降低最低服务标准、缩短测试或排除失败地点不得改善指标"
+    },
+    "identity_emergency_human_takeover_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "达到停止条件后由法定指挥或现场人工及时接管并完成交接的任务数 ÷ 受测应急任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "停止条件、法定指挥链、人工接管和演练样本尚未建立。",
+      "recompute_trigger": "应急预案、人员、停止阈值或交接规则变化时重算",
+      "responsible_actor": "法定应急指挥主体与基本服务运营主体",
+      "audit_frequency": "每次演练或事件后；当前无运行频率",
+      "disaggregation": "事件级别、任务、接管主体和延误原因",
+      "anti_gaming_note": "按钮存在、自动路由或事后补签不得算人工及时接管"
+    },
+    "identity_complaint_independent_review_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "由原执行侧之外具责人员实质复核并说明理由的到期投诉数 ÷ 到期适用投诉数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "独立投诉入口、复核主体和真实到期投诉样本尚未建立。",
+      "recompute_trigger": "复核主体、回避、投诉状态或法定救济变化时重算",
+      "responsible_actor": "独立复核或法定救济主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "原决定主体、事项、入口、风险级和复核结果",
+      "anti_gaming_note": "原系统重复输出、转回原执行人或只发收件回执不算独立复核"
+    },
+    "identity_data_export_exit_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成可读导出、未来调用停止、非必要副本处理和保留依据回执的退出数 ÷ 到期退出请求数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "完整导出、撤回传播、删除回执和真实退出样本尚未建立。",
+      "recompute_trigger": "数据结构、接收方、保留依据、撤回或删除状态变化时重算",
+      "responsible_actor": "各数据控制责任主体与独立数据保护复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "请求类型、数据类别、接收方、保留依据和超期原因",
+      "anti_gaming_note": "关闭前端账号、不可读导出或隐藏副本不得算完整退出"
+    },
+    "identity_service_chain_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "formula": "count(capabilities.json capability_id_1.service_chains)",
+      "source_files": ["capabilities.json"],
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Capability 1已形成十二条具有完整角色、数据、非AI、退出及接口字段的设计规格；该计数不代表部署或验收。",
+      "recompute_trigger": "Capability 1服务链规格或capabilities.json变化时重算",
+      "responsible_actor": "第一能力规格维护者",
+      "audit_frequency": "规格或正式装配文件变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入通过Capability 1契约的完整服务链，不计标题、候选项或部署成果"
+    },
+    "identity_scenario_binding_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "formula": "count(capabilities.json capability_id_1.scenario_bindings)",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Capability 1已映射六张既有正式场景卡；这些记录是绑定而非新增全局场景。",
+      "recompute_trigger": "Capability 1场景绑定或正式场景卡集合变化时重算",
+      "responsible_actor": "第一能力规格维护者与跨能力总装维护者",
+      "audit_frequency": "规格或正式场景卡变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "重复绑定、候选场景或链内引用不得重复计数，也不得表述为运行完成"
+    },
+    "health_need_confirmation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "由居民以可理解方式确认原始健康或照护需求、联系偏好及交接范围的抽样案件数 ÷ 抽样健康需求表达案件数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "居民需求确认、人工接收和真实健康导航案件尚未部署或采集。",
+      "recompute_trigger": "需求确认字段、入口、抽样规则或人工交接流程变化时重算",
+      "responsible_actor": "健康服务运营主体与独立使用者权益复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "入口、语言、无障碍支持、需求类别和未确认原因",
+      "anti_gaming_note": "Agent自动摘要、默认勾选或照护者单方确认不得计为居民本人确认"
+    },
+    "health_danger_signal_human_escalation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "触发既定危险或危机停止条件后及时交由具责真人、专业或法定紧急渠道并获接收状态的受测任务数 ÷ 受测危险或危机任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "危险信号停止条件、真人接收链和演练样本尚未建立。",
+      "recompute_trigger": "危险信号规则、接收主体、时限或演练情景变化时重算",
+      "responsible_actor": "持证临床、危机专业与法定应急责任主体",
+      "audit_frequency": "每次演练或事件后；当前无运行频率",
+      "disaggregation": "信号类别、入口、停止时间、接收主体和延误原因",
+      "anti_gaming_note": "仅显示提示、自动转发或事后补签不得计为具责真人及时接收"
+    },
+    "health_primary_care_routing_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "获得经核验责任入口、最小交接、真人接收或具责未接收理由的到期导航任务数 ÷ 到期社区或基层医疗导航任务数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "公开健康服务目录、人工接收回执和真实到期任务尚未建立。",
+      "recompute_trigger": "目录版本、责任入口、服务规则或任务状态变化时重算",
+      "responsible_actor": "健康服务目录运营主体与基层人工接诊责任人",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "入口、服务类别、地区粒度、接收状态和失败原因",
+      "anti_gaming_note": "目录点击、自动派送或删除未接收任务不得计为路由完成"
+    },
+    "health_human_intake_availability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在公布条件下经真人测试可接续的电话、柜台、社区卫生、无障碍、纸面或现场人工入口数 ÷ 抽样应提供人工入口数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "人工接诊入口、排班、现场可达性及等价任务测试尚未建立。",
+      "recompute_trigger": "入口、排班、适配、服务范围或测试条件变化时重算",
+      "responsible_actor": "健康服务运营主体与独立无障碍测试方",
+      "audit_frequency": "部署后月度抽测；当前无运行频率",
+      "disaggregation": "入口类型、语言、支持需求、公布时段和断点原因",
+      "anti_gaming_note": "目录存在、电话响铃或预约按钮存在不等于真人可接续"
+    },
+    "health_appointment_information_accuracy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "与带时间来源及具责人工确认一致的预约、检查准备和既有用药信息项数 ÷ 抽样展示信息项数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "权威预约检查信息、版本对账和真实展示样本尚未建立。",
+      "recompute_trigger": "来源、预约规则、检查说明、药学信息或展示逻辑变化时重算",
+      "responsible_actor": "预约运营主体、持证临床与药学复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "信息类型、来源版本、入口、错漏类型和人工更正",
+      "anti_gaming_note": "只检查格式、接口成功或排除过期信息不得改善准确率"
+    },
+    "health_result_handoff_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "检查或健康结果由指定具责临床人员接收并形成复核状态或具责退回理由的到期交接数 ÷ 到期结果交接数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "结果接收人、临床复核状态和真实到期交接样本尚未建立。",
+      "recompute_trigger": "结果格式、接收责任、交接时限或复核状态变化时重算",
+      "responsible_actor": "结果控制主体与持证临床接收责任人",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "结果类型、入口、接收主体、复核状态和未闭环原因",
+      "anti_gaming_note": "文件上传、消息已读或Agent解释不得计为临床结果交接闭环"
+    },
+    "health_chronic_care_handoff_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "按具责签署计划完成接收、复诊、异常升级或具责未完成理由的到期慢病照护任务数 ÷ 到期慢病照护任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "具责照护计划、跨主体回执和真实随访任务尚未建立。",
+      "recompute_trigger": "计划版本、责任分工、复诊要求或异常升级状态变化时重算",
+      "responsible_actor": "慢病照护临床责任人与经授权接收主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "计划类型、责任主体、入口、任务状态和未闭环原因",
+      "anti_gaming_note": "提醒发送、患者点击或删除复杂任务不得计为照护交接闭环"
+    },
+    "health_followup_state_accuracy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "与具责人工记录、居民确认及计划版本一致的抽样复诊和随访状态数 ÷ 抽样展示状态数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "人工随访记录、居民确认与状态对账样本尚未建立。",
+      "recompute_trigger": "计划、状态模型、接收主体或对账规则变化时重算",
+      "responsible_actor": "慢病照护临床责任人与服务状态运营主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "任务、入口、状态、计划版本和错误类型",
+      "anti_gaming_note": "系统发送成功、默认完成或把失联案件排除不得改善准确率"
+    },
+    "health_rehabilitation_access_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "使用者通过所选数字或非AI方式完成康复服务人工接洽、适配交接和具责接收的抽样任务数 ÷ 抽样康复接入任务数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "康复人工接洽、使用者任务测试和真实完成样本尚未建立。",
+      "recompute_trigger": "康复入口、支持方式、任务定义或具责接收状态变化时重算",
+      "responsible_actor": "康复服务责任主体与残障使用者参与的独立测试方",
+      "audit_frequency": "部署后季度任务测试；当前无运行频率",
+      "disaggregation": "入口、支持需求、任务阶段、地区粒度和失败原因",
+      "anti_gaming_note": "仅提供列表、预约入口或降低任务要求不得计为康复接入完成"
+    },
+    "health_accessibility_support_continuity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "本人选择的沟通、移动与照护支持在家庭、旅程、现场和服务交接各阶段均经测试连续的任务数 ÷ 抽样需连续支持任务数",
+      "source_files": ["capabilities.json", "proposal.md", "spatial.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "跨场景支持交接、现场核验和使用者全程测试尚未建立。",
+      "recompute_trigger": "支持偏好、路线、现场设施、服务入口或测试范围变化时重算",
+      "responsible_actor": "健康、交通、无障碍服务责任主体与使用者测试方",
+      "audit_frequency": "部署后季度及每次重大变更后；当前无运行频率",
+      "disaggregation": "支持类型、旅程阶段、地点、入口和断点原因",
+      "anti_gaming_note": "单点可用、目录标注或排除现场断点不得算全程支持连续"
+    },
+    "health_elder_care_navigation_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "保留老年居民本人表达并获得具责照护评估接收、服务选择或具责未接收理由的到期导航数 ÷ 到期老年照护导航数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "本人表达、具责照护评估和真实到期导航样本尚未建立。",
+      "recompute_trigger": "照护入口、评估责任、本人选择或导航状态变化时重算",
+      "responsible_actor": "老年健康、长期照护与适用社会服务责任主体",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "入口、照护需求、本人或协助表达、接收状态和失败原因",
+      "anti_gaming_note": "仅取得照护者点击、自动资格判断或删除未接收案件不得计为完成"
+    },
+    "health_caregiver_support_handoff_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "经服务使用者授权后由具责真人接收照护者支持、培训、休息或协调任务的到期交接数 ÷ 到期照护者支持交接数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "照护者支持责任、授权回执和真实交接样本尚未建立。",
+      "recompute_trigger": "支持类型、授权边界、接收主体或到期状态变化时重算",
+      "responsible_actor": "照护服务责任主体与服务使用者权益复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "支持类型、入口、授权范围、接收主体和未接收原因",
+      "anti_gaming_note": "向照护者自动推送、扩大本人数据或仅发收件通知不得计为交接"
+    },
+    "health_mental_health_human_escalation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "符合既定人工升级条件并及时由受训危机人员、持证临床或法定紧急主体接收的受测心理支持任务数 ÷ 应人工升级的受测任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "心理危机人工升级协议、接收回执和演练样本尚未建立。",
+      "recompute_trigger": "升级条件、人工职责、接收时限或演练情景变化时重算",
+      "responsible_actor": "心理健康专业主体、危机支持责任人与法定应急主体",
+      "audit_frequency": "每次演练或事件后；当前无运行频率",
+      "disaggregation": "信号、入口、接收主体、时限和未升级原因",
+      "anti_gaming_note": "自动安抚、仅显示号码、降低危机识别范围或排除复杂案例不得改善指标"
+    },
+    "health_crisis_stop_condition_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "既定危机测试集中Agent按要求停止普通对话和非必要采集并启动人工升级的通过情景数 ÷ 危机测试情景总数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "危机停止条件测试集、不可绕过停止机制和审计结果尚未建立。",
+      "recompute_trigger": "危机规则、交互模式、采集字段或升级机制变化时重算",
+      "responsible_actor": "心理危机专业主体、AI安全复核方与法定应急责任主体",
+      "audit_frequency": "每次版本发布前及重大事件后；当前无运行频率",
+      "disaggregation": "危机类型、语言、媒介、停止阶段和失败模式",
+      "anti_gaming_note": "缩窄测试集、只停止一个界面或后台继续采集不得计为通过"
+    },
+    "health_minor_guardian_choice_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "以适龄方式记录未成年人本人选择并完成适用监护通知、授权或合法例外复核的抽样健康任务数 ÷ 抽样未成年人健康任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "适龄表达、监护规则、合法例外和真实健康任务样本尚未建立。",
+      "recompute_trigger": "年龄适配、监护通知、合法例外或任务风险变化时重算",
+      "responsible_actor": "妇幼儿童临床、未成年人保护与有权监护核验主体",
+      "audit_frequency": "部署后季度；当前无运行频率",
+      "disaggregation": "年龄段、任务、本人选择、监护状态和合法例外",
+      "anti_gaming_note": "只记录监护人点击、默认本人同意或排除冲突案例不得计为覆盖"
+    },
+    "health_maternal_child_privacy_protection_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "满足任务最小数据、字段授权、接收限制、合法保留说明和非必要删除的抽样妇幼儿童健康任务数 ÷ 抽样适用任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "妇幼儿童数据流、授权回执、保存删除和真实任务样本尚未建立。",
+      "recompute_trigger": "数据字段、接收方、授权、保留依据或删除状态变化时重算",
+      "responsible_actor": "健康数据控制者、妇幼儿童服务责任人与数据保护复核方",
+      "audit_frequency": "部署后季度；当前无运行频率",
+      "disaggregation": "数据类别、服务使用者、接收方、保留依据和违规类型",
+      "anti_gaming_note": "笼统同意、隐藏接收方、删除审计证据或排除高风险任务不得改善指标"
+    },
+    "health_caregiver_authorization_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "具服务使用者和照护者分别确认、具体任务、字段、期限、撤回与冲突路径的有效授权数 ÷ 抽样照护者授权数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "照护者授权结构、分别确认和真实授权样本尚未建立。",
+      "recompute_trigger": "授权规则、任务、字段、期限或当事人状态变化时重算",
+      "responsible_actor": "服务使用者、健康服务责任主体与代理监护核验方",
+      "audit_frequency": "部署后季度；当前无运行频率",
+      "disaggregation": "任务、关系、字段、期限、撤回和冲突状态",
+      "anti_gaming_note": "亲属关系、一揽子授权或照护者单方点击不得计为完整授权"
+    },
+    "health_caregiver_scope_violation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "超出有效照护者任务、字段、用途或期限的已阻断及未阻断调用数 ÷ 抽样照护者数据与操作调用数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "字段级授权、调用审计、越界分类和真实运行样本尚未建立。",
+      "recompute_trigger": "授权边界、调用接口、审计规则或违规分类变化时重算",
+      "responsible_actor": "健康数据控制者、服务运营主体与独立数据保护复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "任务、字段、照护者关系、阻断状态和违规原因",
+      "anti_gaming_note": "删除违规日志、扩大授权定义或仅统计已阻断调用不得人为降低违规率"
+    },
+    "health_public_risk_notice_access_equivalence_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "经测试能以数字、广播、电话、社区、柜台、纸面、无障碍和离线方式获得同等来源与关键信息的通知任务数 ÷ 抽样应等价通知任务数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "多渠道公共健康通知、无障碍测试和真实事件样本尚未建立。",
+      "recompute_trigger": "通知来源、渠道、格式、地区粒度或测试任务变化时重算",
+      "responsible_actor": "公共卫生信息发布主体与独立无障碍传播测试方",
+      "audit_frequency": "每次演练、事件或重大通知变更后；当前无运行频率",
+      "disaggregation": "渠道、语言、支持需求、地区粒度和缺失信息",
+      "anti_gaming_note": "仅统计发送、缩短非数字内容或排除断网人群不得算等价可达"
+    },
+    "health_source_currency_accuracy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "与具责来源、发布日期、适用范围和更正状态一致的抽样健康风险信息项数 ÷ 抽样展示信息项数",
+      "source_files": ["capabilities.json", "sources.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "公共健康信息源对账、过期处理和真实展示样本尚未建立。",
+      "recompute_trigger": "来源、发布日期、适用范围、更正或展示内容变化时重算",
+      "responsible_actor": "具责公共卫生信息发布主体与专业内容复核方",
+      "audit_frequency": "每次发布或更正后；当前无运行频率",
+      "disaggregation": "来源、主题、发布日期、渠道和错漏类型",
+      "anti_gaming_note": "隐藏发布日期、选择性抽样或把转载时间当作来源更新不得改善准确率"
+    },
+    "health_emergency_rescue_handoff_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "危险触发后最小信息及时由持证急救临床或法定现场主体接收并形成交接状态的受测任务数 ÷ 受测紧急任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "法定接收链、离线交接、演练和真实紧急事件样本尚未建立。",
+      "recompute_trigger": "停止条件、接收主体、备用通信、交接时限或演练情景变化时重算",
+      "responsible_actor": "持证急救临床、现场安全与法定应急指挥主体",
+      "audit_frequency": "每次演练或事件后；当前无运行频率",
+      "disaggregation": "事件类型、入口、接收主体、通信方式和延误原因",
+      "anti_gaming_note": "Agent自动派送、仅显示号码、宣称救援到达或事后补签不得计为交接"
+    },
+    "health_emergency_agent_stop_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "紧急测试中Agent在触发点按要求停止普通建议和非必要采集并让位真人法定渠道的通过任务数 ÷ 紧急测试任务总数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "不可绕过停止机制、紧急测试集和审计证据尚未建立。",
+      "recompute_trigger": "停止规则、交互界面、后台采集或紧急交接机制变化时重算",
+      "responsible_actor": "AI安全复核方、持证急救临床与法定应急责任主体",
+      "audit_frequency": "每次版本发布前及事件后；当前无运行频率",
+      "disaggregation": "事件、媒介、触发信号、停止阶段和失败模式",
+      "anti_gaming_note": "仅隐藏前端、后台继续采集、缩窄测试集或等待自动建议完成不得计为停止"
+    },
+    "health_data_rights_request_timeliness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在适用时限内由具责主体完成访问、来源接收方说明、医疗记录纠正决定或具责拒绝理由的到期请求数 ÷ 到期健康数据权利请求数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "健康数据责任目录、请求时限和真实到期案件尚未建立。",
+      "recompute_trigger": "数据结构、权利类型、责任主体、法定时限或请求状态变化时重算",
+      "responsible_actor": "医疗记录控制者、健康数据控制责任人与独立复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "请求类型、数据类别、责任主体、决定和超期原因",
+      "anti_gaming_note": "自动收件、临时隐藏记录、转回Agent或关闭请求不得计为具责处理"
+    },
+    "health_data_export_exit_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成可读导出、未来Agent调用停止、非必要副本处理、法定保留说明和非AI服务连续的到期退出数 ÷ 到期健康数据退出请求数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "健康数据导出、撤回传播、删除回执和真实退出样本尚未建立。",
+      "recompute_trigger": "数据结构、接收方、保留依据、撤回删除或非AI连续入口变化时重算",
+      "responsible_actor": "健康数据控制责任主体与独立数据保护复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "数据类别、接收方、入口、保留依据和未闭环原因",
+      "anti_gaming_note": "关闭前端账号、不可读导出、隐藏副本或中断非AI医疗服务不得计为完整退出"
+    },
+    "health_service_chain_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "formula": "count(capabilities.json capability_id_2.service_chains)",
+      "source_files": ["capabilities.json"],
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Capability 2已形成十二条具有角色、临床和应急边界、最小数据、非AI、失败退出及接口字段的设计规格；该计数不代表部署、容量、健康结果或验收。",
+      "recompute_trigger": "Capability 2服务链规格或capabilities.json变化时重算",
+      "responsible_actor": "第二能力规格维护者",
+      "audit_frequency": "规格或正式装配文件变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入通过Capability 2契约的完整服务链，不计标题、候选项、系统实例或医疗成果"
+    },
+    "health_scenario_binding_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "formula": "count(capabilities.json capability_id_2.scenario_bindings)",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Capability 2已用稳定ID映射六张既有正式场景卡；这些记录仅为设计绑定，不新增场景，也不证明设施、容量、响应或部署。",
+      "recompute_trigger": "Capability 2场景绑定或正式场景卡集合变化时重算",
+      "responsible_actor": "第二能力规格维护者与跨能力总装维护者",
+      "audit_frequency": "规格或正式场景卡变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "重复绑定、链内引用、候选场景或运行任务不得重复计数"
+    },
+    "education_goal_confirmation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "由学习者逐项确认原话、目标版本、已有能力证据选择和不愿推断事项的到期目标表达任务数 ÷ 到期目标表达任务数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "学习目标确认界面、具责教育者接收规则和真实运行样本尚未建立；不得从设计规格推算运行比例。",
+      "recompute_trigger": "目标字段、确认方式、教育者接收规则或任务样本变化时重算",
+      "responsible_actor": "教育服务责任主体、具责教育者与学习者代表",
+      "audit_frequency": "部署后月度并在流程变更后；当前无运行频率",
+      "disaggregation": "入口、年龄段、语言、无障碍支持、确认方式和未确认原因",
+      "anti_gaming_note": "自动生成摘要、监护人或教师单方确认、隐藏不愿推断事项不得计为学习者确认"
+    },
+    "education_existing_capability_evidence_control_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "学习者可逐项查看、选择、排除、更正并撤回已有能力证据的抽样任务数 ÷ 抽样已有能力证据任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "证据控制、撤回审计和真实学习者任务尚未建立。",
+      "recompute_trigger": "证据字段、推断规则、控制界面、撤回传播或抽样任务变化时重算",
+      "responsible_actor": "教育记录控制者、具责教育者与独立数据保护复核方",
+      "audit_frequency": "部署后季度及重大版本变更前；当前无运行频率",
+      "disaggregation": "证据类型、来源、入口、控制动作、推断状态和失败原因",
+      "anti_gaming_note": "只允许查看而不能排除更正撤回、默认勾选全部证据或把模型推断算本人证据不得计入"
+    },
+    "education_portfolio_provenance_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完整记录作品版本、来源、本人第三方与AI贡献、可见范围和授权状态的抽样作品数 ÷ 抽样作品数",
+      "source_files": ["capabilities.json", "sources.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "作品版本、来源许可、AI贡献说明和真实作品样本尚未建立。",
+      "recompute_trigger": "作品格式、来源字段、贡献分类、许可规则或样本集合变化时重算",
+      "responsible_actor": "教育档案责任人、学习者代表与知识产权复核方",
+      "audit_frequency": "部署后季度并在发布或迁移前；当前无运行频率",
+      "disaggregation": "作品类型、版本、来源类型、贡献角色、AI使用和许可状态",
+      "anti_gaming_note": "用统一作者标签覆盖第三方或AI贡献、删除失败版本或缺少许可仍标完整不得改善指标"
+    },
+    "education_private_default_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "首次保存时不被公共搜索、不对候选接收方可见且不授权训练或商业使用的抽样作品数 ÷ 抽样首次保存作品数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "私域默认技术控制、访问审计和真实作品保存事件尚未建立。",
+      "recompute_trigger": "默认可见性、索引、训练接口、分享流程或访问控制变化时重算",
+      "responsible_actor": "作品数据控制责任主体与独立隐私知识产权复核方",
+      "audit_frequency": "每次版本发布前及部署后月度；当前无运行频率",
+      "disaggregation": "作品类型、年龄段、入口、索引状态、访问主体和训练授权状态",
+      "anti_gaming_note": "仅隐藏前端但后台可检索、预勾公开或把服务同意当训练授权不得计为私域默认"
+    },
+    "education_resource_match_explanation_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "展示来源日期、匹配字段、未知项、条件费用、非AI入口且不承诺结果的抽样资源候选数 ÷ 抽样展示候选数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "可核资源目录、解释模板、过期处理和真实导航样本尚未建立。",
+      "recompute_trigger": "目录来源、匹配字段、费用条件、未知项或解释界面变化时重算",
+      "responsible_actor": "教育资源目录责任主体、教育者与独立信息质量复核方",
+      "audit_frequency": "部署后月度及目录规则变更后；当前无运行频率",
+      "disaggregation": "资源类别、来源、时间、地区、语言无障碍需求和缺失字段",
+      "anti_gaming_note": "隐藏不匹配项、虚构学校课程导师容量或把排序当录取保证不得提高解释完整率"
+    },
+    "education_non_ai_navigation_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "通过电话、人工窗口、图书馆、纸面、无障碍或离线方式取得同等候选信息和下一步说明的到期导航任务数 ÷ 选择非AI入口的到期导航任务数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "非AI入口责任、等价测试和真实完成任务尚未建立。",
+      "recompute_trigger": "入口、目录内容、服务时限、无障碍支持或完成定义变化时重算",
+      "responsible_actor": "教育服务窗口、图书馆与无障碍人工服务责任主体",
+      "audit_frequency": "部署后月度及渠道变更后；当前无运行频率",
+      "disaggregation": "渠道、语言、设备、支持需求、地区和未完成原因",
+      "anti_gaming_note": "仅提供电话号码、缩减非AI候选、额外收费或延后处理不得计为完成"
+    },
+    "education_mentor_handoff_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成专业身份核验、利益冲突披露、学习者确认、真人接收和责任边界回执的到期导师或专业反馈请求数 ÷ 到期请求数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "具责导师或专业角色目录、接收协议和真实交接记录尚未建立。",
+      "recompute_trigger": "专业角色核验、冲突披露、接收回执、责任边界或请求状态变化时重算",
+      "responsible_actor": "具责教育者、导师或领域专业责任主体与教育服务运营方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "专业角色、请求类型、学习者年龄段、接收状态、冲突和失败原因",
+      "anti_gaming_note": "机器人回复、未核验联系人、仅发送消息或虚构导师不得计为真人交接完成"
+    },
+    "education_practice_feedback_timeliness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在预先披露时限内由具责真人提供带版本、证据、下一步或无法完成理由的到期实践反馈数 ÷ 到期实践反馈数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "反馈服务级别、具责签署和真实到期实践样本尚未建立。",
+      "recompute_trigger": "反馈时限、证据要求、专业责任、任务状态或暂停规则变化时重算",
+      "responsible_actor": "具责教师导师、实践项目与实验安全伦理责任主体",
+      "audit_frequency": "部署后月度及每次受控实践后；当前无运行频率",
+      "disaggregation": "实践类型、风险级别、反馈角色、结果、延误和停止原因",
+      "anti_gaming_note": "自动生成评语、无证据打分、删除负面结果或停止计时不得计为及时专业反馈"
+    },
+    "education_accessibility_equivalence_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "由目标使用者测试能以所选语言格式、辅助支持和非AI方式完成同一关键学习结果的抽样任务数 ÷ 抽样等价任务数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "目标使用者测试、现场核验、合理便利和真实任务证据尚未建立。",
+      "recompute_trigger": "任务、界面、内容、空间、辅助技术、语言或目标使用者测试变化时重算",
+      "responsible_actor": "学习者代表、无障碍特殊教育语言与教育空间责任主体",
+      "audit_frequency": "每次重大版本或空间流程变更前及部署后季度；当前无运行频率",
+      "disaggregation": "支持需求、语言、格式、入口、空间、设备和失败断点",
+      "anti_gaming_note": "仅提供入口、仅测自动工具、排除未完成者或降低非数字任务标准不得算等价"
+    },
+    "education_device_language_support_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在声明支持的低带宽、低端或共享设备及语言条件下完整通过关键任务测试的支持组合数 ÷ 抽样声明支持组合数",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "设备语言支持矩阵、真实测试设备、人工翻译复核和运行样本尚未建立。",
+      "recompute_trigger": "设备基线、带宽、内容、语言版本、翻译或任务流程变化时重算",
+      "responsible_actor": "教育技术、语言服务、图书馆设备与无障碍测试责任主体",
+      "audit_frequency": "每次版本发布前及部署后季度；当前无运行频率",
+      "disaggregation": "设备、系统、带宽、语言、文字方向、任务和失败模式",
+      "anti_gaming_note": "只测高端设备主流语言、机器翻译未复核或把部分页面加载当任务通过不得改善指标"
+    },
+    "education_minor_guardian_choice_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完整记录适龄本人表达、监护选择、权限依据、合法例外、数据范围和独立求助方式的抽样未成年人任务数 ÷ 抽样未成年人任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "适龄说明、监护权限核验、保护升级和真实未成年人任务尚未建立。",
+      "recompute_trigger": "年龄分层、任务类型、监护规则、合法例外、求助或权限流程变化时重算",
+      "responsible_actor": "教育服务、未成年人保护、监护核验与独立数据保护责任主体",
+      "audit_frequency": "每次未成年人流程发布前及部署后月度；当前无运行频率",
+      "disaggregation": "年龄段、任务、本人选择、监护状态、合法例外、入口和冲突状态",
+      "anti_gaming_note": "把监护人点击等同本人选择、隐藏合法例外或排除冲突案件不得计为覆盖"
+    },
+    "education_minor_data_minimization_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "逐字段证明本次目的必要、保存期限、访问主体和到期处理且未采集禁限字段的抽样未成年人任务数 ÷ 抽样未成年人任务数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "字段级必要性账、访问日志、到期处理和真实运行样本尚未建立。",
+      "recompute_trigger": "任务目的、字段、访问角色、保存期限、训练接口或保护规则变化时重算",
+      "responsible_actor": "未成年人数据控制责任主体、保护专业人员与独立隐私复核方",
+      "audit_frequency": "部署后月度及每次字段或训练接口变化前；当前无运行频率",
+      "disaggregation": "年龄段、字段、目的、访问主体、期限、处理状态和违规类型",
+      "anti_gaming_note": "扩大必要性定义、后台保留精确位置生物识别课堂全程影像或未披露训练不得计为最小化"
+    },
+    "education_project_reproducibility_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "独立复核者按记录的问题、基线、数据来源、版本、步骤和停止条件得到一致结论范围的抽样项目数 ÷ 抽样项目数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "项目复现包、独立复核协议和真实项目样本尚未建立。",
+      "recompute_trigger": "数据、代码、工具、环境、步骤、结论范围或复核者变化时重算",
+      "responsible_actor": "具责教师、研究方法领域专业人员与独立复现复核方",
+      "audit_frequency": "每次项目阶段结项或重大版本变更后；当前无运行频率",
+      "disaggregation": "项目类型、数据来源、环境、风险级别、复现结果和失败原因",
+      "anti_gaming_note": "选择性公开成功步骤、删除负面结果、使用未披露数据或把近似输出写成完全复现不得提高比例"
+    },
+    "education_real_challenge_gate_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在进入相应阶段前完成来源、风险、安全伦理、参与者授权、人工接管、停止、负面结果、复验和退出字段的抽样真实挑战阶段数 ÷ 抽样阶段数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "真实挑战分级闸门、具责签署和受控测试样本尚未建立。",
+      "recompute_trigger": "挑战类型、风险等级、参与者、环境、闸门字段或授权责任变化时重算",
+      "responsible_actor": "教育项目、研究伦理、安全、场地与适用法定责任主体",
+      "audit_frequency": "每次阶段升级前和事件后；当前无运行频率",
+      "disaggregation": "挑战、阶段、风险、闸门、责任主体、停止和复验状态",
+      "anti_gaming_note": "以Demo替代闸门、事后补签、隐藏近失或把仿真写成真人实体验证不得算完整"
+    },
+    "education_collaborator_attribution_accuracy_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "经贡献者抽样确认与版本、来源、角色、署名或匿名选择及本人第三方AI贡献一致的归属记录数 ÷ 抽样归属记录数",
+      "source_files": ["capabilities.json", "sources.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "贡献版本账、参与者确认和真实协作样本尚未建立。",
+      "recompute_trigger": "贡献者、版本、来源、角色、署名选择、AI使用或争议状态变化时重算",
+      "responsible_actor": "贡献者、教育项目责任人和知识产权合同复核方",
+      "audit_frequency": "每次发表许可回馈前及部署后季度；当前无运行频率",
+      "disaggregation": "项目、版本、贡献角色、署名方式、AI使用、争议和错漏类型",
+      "anti_gaming_note": "删除退出者、合并少数贡献、默认集体署名或隐去第三方AI来源不得改善准确率"
+    },
+    "education_license_choice_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完整记录具体版本、授权主体权限、接收方、目的动作、排除项、期限、署名、AI训练、衍生转授权、回馈、撤回和争议路线的抽样许可数 ÷ 抽样许可数",
+      "source_files": ["capabilities.json", "sources.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "细粒度许可界面、权利复核、使用回执和真实许可样本尚未建立。",
+      "recompute_trigger": "许可字段、作品版本、接收方、用途、训练或撤回规则变化时重算",
+      "responsible_actor": "贡献者、知识产权合同数据保护专业人员与使用责任主体",
+      "audit_frequency": "每次授权前后及部署后季度；当前无运行频率",
+      "disaggregation": "资产类型、许可动作、接收方、期限、训练选择、回馈和争议状态",
+      "anti_gaming_note": "一揽子默认同意、用服务访问替代训练许可、缺少排除撤回字段或强迫公开不得算完整"
+    },
+    "education_learning_to_opportunity_conversion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "经学习者逐次授权、真实性核验和具责真人复核后进入学习者选择下一步并形成回执的到期机会请求数 ÷ 到期且符合统计口径的机会请求数",
+      "source_files": ["capabilities.json", "proposal.md", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "机会责任目录、真实性核验、人类复核、劳动合同边界和真实请求结果尚未建立；该指标不得推算个人命运或保证就业创业成果。",
+      "recompute_trigger": "机会口径、真实性规则、人工复核、学习者选择、劳动合同边界或请求状态变化时重算",
+      "responsible_actor": "教育职业辅导、具责机会提供与劳动合同创业专业责任主体",
+      "audit_frequency": "部署后月度并由劳动教育专业人员季度复核；当前无运行频率",
+      "disaggregation": "机会类别、入口、核验状态、人工复核、学习者选择、未匹配和退出原因",
+      "anti_gaming_note": "不得虚构机会、把自动推荐或发送材料计为转化、排除未匹配者、强迫接受低质机会或形成个人命运分"
+    },
+    "education_opportunity_human_review_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "在共享材料或进入选择前由具名具责真人核验机会主体、条件、劳动合同IP边界、材料范围和理由的抽样机会候选数 ÷ 抽样机会候选数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "具责机会提供方、教育劳动合同专业复核和真实候选样本尚未建立。",
+      "recompute_trigger": "机会主体、条件、材料、人工角色、劳动合同规则或选择流程变化时重算",
+      "responsible_actor": "具责机会提供方、教育职业辅导与劳动合同知识产权复核方",
+      "audit_frequency": "每批机会发布前及部署后月度；当前无运行频率",
+      "disaggregation": "机会类型、提供方、复核角色、材料范围、决定状态和失败原因",
+      "anti_gaming_note": "机器人签名、批量形式点击、未核验提供方或事后补签不得计为人类复核"
+    },
+    "education_high_stakes_human_decision_coverage_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "具有有权真人身份、必要材料核验、冲突回避、签署、理由、更正和申诉记录的抽样招生评分处分资格决定数 ÷ 抽样高影响教育决定数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "高影响教育决定目录、有权真人签署、回避申诉和真实决定样本尚未建立。",
+      "recompute_trigger": "决定类型、权限、材料、自动辅助范围、回避、签署或申诉流程变化时重算",
+      "responsible_actor": "招生、教师评价、学术纪律、资格授予和独立复核责任主体",
+      "audit_frequency": "每个决定周期及规则变更后；当前无运行频率",
+      "disaggregation": "决定类型、机构角色、AI辅助范围、结果、回避、更正和申诉状态",
+      "anti_gaming_note": "预填真人签名、自动分直接触发、批量盖章或把不利自动建议改名为人工决定不得计入"
+    },
+    "education_decision_reason_completeness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "向学习者提供适用规则、所用资料来源版本、事实认定、真人判断、AI辅助范围、结果、纠错和申诉时限的抽样高影响决定数 ÷ 抽样高影响决定数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "决定理由模板、材料来源账、AI辅助披露和真实决定样本尚未建立。",
+      "recompute_trigger": "规则、资料、理由字段、AI辅助、纠错申诉或通知方式变化时重算",
+      "responsible_actor": "高影响教育决定责任主体与独立程序复核方",
+      "audit_frequency": "每个决定周期抽检及重大规则变更后；当前无运行频率",
+      "disaggregation": "决定类型、结果、资料来源、AI辅助、通知格式和缺失字段",
+      "anti_gaming_note": "模板化空泛理由、隐藏自动分、不给资料来源或仅提供申诉链接不得计为完整"
+    },
+    "education_feedback_correction_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "由具责主体完成事实核验、决定、原记录与下游更正或具责拒绝理由并通知学习者的到期反馈纠错数 ÷ 到期反馈纠错数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "反馈证据链、更正责任、下游传播账和真实到期请求尚未建立。",
+      "recompute_trigger": "反馈类型、记录控制者、时限、下游接收方、更正规则或状态变化时重算",
+      "responsible_actor": "具责教育者、教育记录控制者与独立数据保护复核方",
+      "audit_frequency": "部署后月度；当前无运行频率",
+      "disaggregation": "反馈类型、错误类型、责任主体、决定、下游更正和超期原因",
+      "anti_gaming_note": "只改前端显示、关闭请求、删除申诉记录或让旧标签继续传播不得计为闭环"
+    },
+    "education_appeal_independent_review_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "由未参与原决定且无未披露利益冲突的具责真人获取完整材料、听取学习者意见并给出理由和执行状态的到期申诉数 ÷ 到期申诉数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "独立复核角色、利益冲突规则、材料访问和真实到期申诉尚未建立。",
+      "recompute_trigger": "申诉类型、复核角色、冲突规则、材料范围、时限或执行状态变化时重算",
+      "responsible_actor": "独立教育复核、无障碍数据保护与适用法定救济主体",
+      "audit_frequency": "部署后月度及每个决定周期后；当前无运行频率",
+      "disaggregation": "原决定、复核角色、冲突、学习者支持、结果、执行和超期原因",
+      "anti_gaming_note": "原决定者自审、机器人复核、隐藏材料、因申诉报复或不执行复核结果不得计入"
+    },
+    "education_record_export_success_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "通过学习者可读性、结构完整性、作品原件、来源许可、版本和校验值测试的到期学习记录导出数 ÷ 到期导出请求数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "导出格式、接收校验、作品原件和真实迁移请求尚未建立。",
+      "recompute_trigger": "记录结构、作品格式、来源许可、校验规则、接收系统或导出流程变化时重算",
+      "responsible_actor": "教育记录控制者、学习者代表与迁入迁出技术责任主体",
+      "audit_frequency": "每次格式变更前及部署后月度；当前无运行频率",
+      "disaggregation": "记录类型、作品格式、入口、设备、接收方式、校验结果和失败原因",
+      "anti_gaming_note": "只有截图、缺少原件版本许可、专有不可读格式或删除唯一原件不得计为成功"
+    },
+    "education_workflow_migration_exit_closure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "完成记录作品与工作流导出、接收或失败回执、未来调用停止、训练复用撤回、非必要副本处理、保留说明和非AI连续学习的到期退出数 ÷ 到期退出请求数",
+      "source_files": ["capabilities.json", "agent.json"],
+      "confidence": "unknown",
+      "assumptions": ["A-METRICS-001"],
+      "reason": "跨提供方迁移、撤回传播、删除保留对账、非AI连续入口和真实退出样本尚未建立。",
+      "recompute_trigger": "工作流组件、接收方、训练用途、撤回删除、保留依据或非AI服务变化时重算",
+      "responsible_actor": "教育记录控制者、原接收服务主体与独立数据知识产权复核方",
+      "audit_frequency": "部署后月度及每次提供方或格式变更后；当前无运行频率",
+      "disaggregation": "记录作品工作流类型、提供方、接收状态、撤回删除保留和未闭环原因",
+      "anti_gaming_note": "关闭前端账号、继续训练、隐藏副本、不可读导出或降低退出者基本教育服务不得计为完整退出"
+    },
+    "education_service_chain_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "formula": "count(capabilities.json capability_id_3.service_chains)",
+      "source_files": ["capabilities.json"],
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Capability 3已形成十二条具有学习者结果、A/C边界、教育与专业责任、最小数据、非AI、失败退出及接口字段的设计规格；该计数不代表学校、课程、导师、名额、系统部署、学习或就业成果。",
+      "recompute_trigger": "Capability 3服务链规格或capabilities.json变化时重算",
+      "responsible_actor": "第三能力规格维护者",
+      "audit_frequency": "规格或正式装配文件变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入通过Capability 3契约的完整服务链，不计标题、候选项、课程、系统实例或学习就业成果"
+    },
+    "education_scenario_binding_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "formula": "count(capabilities.json capability_id_3.scenario_bindings)",
+      "source_files": ["capabilities.json", "proposal.md"],
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Capability 3已用稳定ID映射六张既有正式场景卡；这些记录仅为设计绑定，不新增场景，也不证明学校、课程、导师、机会、空间、响应、部署或结果。",
+      "recompute_trigger": "Capability 3场景绑定或正式场景卡集合变化时重算",
+      "responsible_actor": "第三能力规格维护者与跨能力总装维护者",
+      "audit_frequency": "规格或正式场景卡变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "重复绑定、链内引用、候选场景、运行任务或学习机会不得重复计数"
+    },
+    "housing_path_source_validity_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在抽样住房路径中具有权威来源、版本、有效期、具责维护者、未知项和人工核验入口的路径数 ÷ 抽样住房路径数",
+      "source_files": ["capabilities.json", "sources.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "住房权威目录、有效期核验、具责维护者和真实导航样本尚未建立；该指标不证明存在房源、价格、资格或获批结果。",
+      "recompute_trigger": "政策来源、版本、有效期、责任目录、人工入口或抽样任务变化时重算",
+      "responsible_actor": "住房信息维护、住房保障房屋管理与独立来源复核责任主体",
+      "audit_frequency": "每次目录版本变化前及有真实运行后定期抽检；当前无运行频率",
+      "disaggregation": "住房路径、来源、版本、入口、未知项和失效原因",
+      "anti_gaming_note": "历史政策、无责任来源、自动抓取条目、重复入口或把未知房源写成可用不得计为有效"
+    },
+    "housing_cost_disclosure_completeness_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在签约前完整展示租金或价款口径、押金、服务费、物业、公用费用、金融成本、税费、违约与未知项且由当事人确认的抽样交易流程数 ÷ 抽样交易流程数",
+      "source_files": ["capabilities.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "权威房源与交易样本、费用字段、合同版本和当事人确认记录尚未建立；不提供任何实际租金、价格或成交结论。",
+      "recompute_trigger": "交易类型、费用字段、合同版本、金融税费规则或确认流程变化时重算",
+      "responsible_actor": "住房交易保障、市场监管、金融法律与当事人权益责任主体",
+      "audit_frequency": "每次合同费用模板变化前及有真实运行后定期抽检；当前无运行频率",
+      "disaggregation": "交易类型、费用类别、未知项、人工入口和缺失字段",
+      "anti_gaming_note": "隐藏可选必选费用、把估算当报价、排除未成交者或以总价掩盖分项不得计为完整"
+    },
+    "housing_contract_human_review_handoff_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在签约付款前按风险规则送达具名具责真人并形成接收、意见、当事人分别确认或停止记录的到期高风险合同事项数 ÷ 到期高风险合同事项数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "合同风险规则、法律金融专业目录、真人接收和真实签约样本尚未建立；不判断合同效力、资格、所有权或批准。",
+      "recompute_trigger": "风险条款、专业角色、接收责任、当事人权限、签约支付或停止规则变化时重算",
+      "responsible_actor": "合同、住房、金融、法律专业责任主体与当事人",
+      "audit_frequency": "每批合同模板变化前及有真实运行后定期抽检；当前无运行频率",
+      "disaggregation": "合同类型、风险类别、复核角色、接收状态和停止原因",
+      "anti_gaming_note": "机器人签名、批量形式点击、事后补签或由Agent直接决定不得计为真人复核交接"
+    },
+    "housing_move_checklist_closure_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "完成新旧房交接、本人选择的生活服务、逐项关闭或明确未完成责任并经居民验收的到期搬迁案件数 ÷ 到期搬迁案件数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "搬迁清单、物业公用事业责任目录、逐项状态和真实居民验收样本尚未建立。",
+      "recompute_trigger": "清单项目、服务主体、地址接口、验收规则或案件状态变化时重算",
+      "responsible_actor": "居民、物业、搬迁、公用事业、社区与法定地址服务责任主体",
+      "audit_frequency": "有真实运行后按月并在清单版本变化后复核；当前无运行频率",
+      "disaggregation": "搬迁类型、清单项目、接收方、入口、未完成和争议原因",
+      "anti_gaming_note": "自动发送、单项完成、隐藏未完成、另建新单或未经居民验收不得计为闭环"
+    },
+    "housing_address_authorization_control_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "完整记录每一地址接收方、字段、目的、期限、本人确认、撤回和执行状态的抽样地址联动项数 ÷ 抽样地址联动项数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "逐接收方地址授权账、法定接口、撤回传播和真实联动样本尚未建立；不证明任何法定地址已变更。",
+      "recompute_trigger": "接收方、地址字段、目的、期限、权限、撤回或执行流程变化时重算",
+      "responsible_actor": "居民、地址数据控制者、法定登记与各接收服务责任主体",
+      "audit_frequency": "每次地址接口或授权字段变化前及有真实运行后定期抽检；当前无运行频率",
+      "disaggregation": "接收方、字段、用途、期限、入口、撤回和失败状态",
+      "anti_gaming_note": "一次总同意、默认全同步、把发送当变更完成或隐藏撤回失败不得计为可控"
+    },
+    "housing_adaptation_user_acceptance_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "由受影响家庭成员分别确认选择并在实施后由实际使用者完成任务级验收的到期住宅适配事项数 ÷ 到期住宅适配事项数",
+      "source_files": ["capabilities.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "家庭分别表达、适配方案、实际使用者任务和验收样本尚未建立；不证明建筑条件、改造效果或安全合规。",
+      "recompute_trigger": "家庭事件、使用者、适配方案、任务、实施状态或验收标准变化时重算",
+      "responsible_actor": "家庭实际使用者、物业产权与适配专业责任主体",
+      "audit_frequency": "每项适配验收和自愿复评时；当前无运行频率",
+      "disaggregation": "家庭事件、使用者、方案强度、入口、验收和未接受原因",
+      "anti_gaming_note": "家属代替有表达能力本人、施工完成照片、设备安装或排除未接受者不得计为验收"
+    },
+    "housing_adaptation_professional_gate_completeness_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在施工或公共部位变更前完成适用产权、物业、结构、消防、无障碍、费用范围、停止和专业签署字段的抽样适配事项数 ÷ 抽样适配事项数",
+      "source_files": ["capabilities.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "住宅现状、产权、结构消防资料、具责专业人员和真实工程样本尚未建立。",
+      "recompute_trigger": "方案强度、产权物业条件、结构消防无障碍规则、专业角色或停止条件变化时重算",
+      "responsible_actor": "产权物业、建筑结构消防无障碍与施工专业责任主体",
+      "audit_frequency": "每项拟施工事项开始前及重大变更后；当前无运行频率",
+      "disaggregation": "方案类型、专业闸门、签署角色、停止和缺失原因",
+      "anti_gaming_note": "AI草稿、无资质签名、事后补签、跳过公共部位责任或把低风险分类用于规避审查不得计完整"
+    },
+    "housing_repair_recurrence_escalation_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在观察期内同位置同原因复发后沿原案件升级到具责公共设施、专业或监管处理且未被改名重建的复发工单数 ÷ 抽样复发工单数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "工单原因位置、观察期、历史维修、升级责任和真实复发样本尚未建立；不承诺维修时间或实际修复。",
+      "recompute_trigger": "工单分类、位置原因规则、观察期、责任目录或升级状态变化时重算",
+      "responsible_actor": "物业、市政、专业维修、监管与居民验收责任主体",
+      "audit_frequency": "有真实运行后按月并在责任目录变化后复核；当前无运行频率",
+      "disaggregation": "故障类型、空间层级、原责任、升级主体和未升级原因",
+      "anti_gaming_note": "把复发改名为新问题、关闭旧单、排除争议单或仅发通知不得计为升级"
+    },
+    "housing_accessibility_user_acceptance_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "由实际使用者按住宅至目标服务完整任务走完并确认可用、或记录明确断点和责任的抽样适配路线数 ÷ 抽样适配路线数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "真实路线、设施状态、专业复核和实际使用者测试尚未完成；不证明设施可用、容量或无障碍结果。",
+      "recompute_trigger": "路线、设施、使用者、目标服务、开放状态、天气或适配措施变化时重算",
+      "responsible_actor": "实际使用者、无障碍专业、物业交通和目标服务责任主体",
+      "audit_frequency": "每次路线或设施重大变化后及有真实使用者测试时；当前无运行频率",
+      "disaggregation": "使用需求、路线、设施、时段、断点、责任和替代方案",
+      "anti_gaming_note": "地图标识、设备安装、陪同代走、只测无障碍路段或排除失败路线不得计为使用者验收"
+    },
+    "housing_community_service_reachability_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在公开时间阈值、真实步行路网、过街阻隔、开放时段、容量状态和无障碍条件下完成核验的基本服务到达任务数 ÷ 抽样基本服务到达任务数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "真实路网、设施点位、开放时段、容量、无障碍和使用者任务尚未形成可复算基线；不提供任何服务覆盖结论。",
+      "recompute_trigger": "路网、过街、设施、开放时段、容量、无障碍或公开时间阈值变化时重算",
+      "responsible_actor": "规划交通、社区公共服务、设施运营与无障碍复核责任主体",
+      "audit_frequency": "正式数据到位、设施运营变化或有真实任务测试时；当前无运行频率",
+      "disaggregation": "服务类型、时段、路线、使用需求、入口和失败断点",
+      "anti_gaming_note": "几何圆、直线距离、仅目录存在、忽略关闭容量铁路道路断点或排除失败使用者不得计为可达"
+    },
+    "housing_service_information_accuracy_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "经具责主体或现场抽样核验后与目录中的位置、联系、开放、费用口径、无障碍和未知项状态一致的服务条目数 ÷ 抽样服务条目数",
+      "source_files": ["capabilities.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "全量社区服务目录、具责维护者、现场抽检和真实运行样本尚未建立。",
+      "recompute_trigger": "服务主体、目录字段、开放状态、费用口径、无障碍或核验方式变化时重算",
+      "responsible_actor": "社区服务目录维护、设施运营与现场独立核验责任主体",
+      "audit_frequency": "每次目录更新和有真实运行后定期抽检；当前无运行频率",
+      "disaggregation": "服务类型、字段、维护者、核验方式和不一致原因",
+      "anti_gaming_note": "只核验存在、不核验开放与无障碍、删除错误条目后改分母或把用户点击当准确不得改善指标"
+    },
+    "housing_new_resident_human_help_handoff_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "按新居民自愿选择送达具名社区真人联系人或服务主体并形成接收、边界、结果或拒绝理由的到期帮助请求数 ÷ 到期帮助请求数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "可信社区组织和真人联系人目录、安全规则、接单及真实请求样本尚未建立。",
+      "recompute_trigger": "社区组织、联系人、请求类型、安全边界、接单或退出流程变化时重算",
+      "responsible_actor": "街道社区、物业、社会组织与相应公共服务责任主体",
+      "audit_frequency": "有真实运行后按月并在联系人目录变化后复核；当前无运行频率",
+      "disaggregation": "新居民需要、语言格式、入口、接收角色、结果和未接原因",
+      "anti_gaming_note": "自动匹配、未核身份联系人、虚假志愿者、仅发送消息或把公共责任转给互助不得计为真人帮助"
+    },
+    "housing_mutual_aid_exit_control_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "可查看并执行范围缩小、取消、屏蔽、资料处理且不影响基本服务的到期互助退出数 ÷ 到期互助退出请求数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "互助范围、联系人、退出传播、资料处理和基本服务隔离的真实样本尚未建立。",
+      "recompute_trigger": "互助规则、联系范围、退出操作、资料保存或基本服务接口变化时重算",
+      "responsible_actor": "社区组织、物业、数据控制与基本公共服务责任主体",
+      "audit_frequency": "有真实运行后按月及每次互助规则变化后；当前无运行频率",
+      "disaggregation": "互助类型、联系范围、退出动作、资料状态和基本服务影响",
+      "anti_gaming_note": "只关闭前端、继续联系、保留无依据标签、隐藏副本或降低退出者服务不得计为可控退出"
+    },
+    "housing_device_manual_override_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在断网、主Agent不可用或居民主动暂停条件下通过手动控制完成声明基本安全功能测试的抽样家庭设备控制项数 ÷ 抽样声明可手动覆盖控制项数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "设备清单、协议、离线手动测试、安全专业复核和真实家庭授权尚未建立；不证明设备安全或部署。",
+      "recompute_trigger": "设备、协议、控制逻辑、网络条件、Agent、手动界面或安全功能变化时重算",
+      "responsible_actor": "居民、设备厂商、物业能源与电气燃气消防安全责任主体",
+      "audit_frequency": "每次设备固件控制逻辑变化前及有受控测试时；当前无运行频率",
+      "disaggregation": "设备类型、控制功能、离线条件、入口、测试结果和失败模式",
+      "anti_gaming_note": "仅显示手动按钮、模拟未连接设备、跳过高风险功能或把专业强制停机算居民覆盖不得计为成功"
+    },
+    "housing_home_data_authorization_control_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "完整显示设备字段、处理位置、目的、期限、接收方、控制级别、撤回、导出和删除状态的抽样家庭数据授权数 ÷ 抽样家庭数据授权数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "逐设备数据账、本地处理核验、接收日志、撤回删除和真实授权样本尚未建立。",
+      "recompute_trigger": "设备、字段、处理位置、目的、接收方、期限、控制或退出变化时重算",
+      "responsible_actor": "居民、家庭数据控制者、厂商物业能源与独立数据保护复核方",
+      "audit_frequency": "每次设备数据接口变化前及有真实运行后定期抽检；当前无运行频率",
+      "disaggregation": "设备、字段、处理位置、用途、控制级别、撤回删除和违规类型",
+      "anti_gaming_note": "一揽子同意、默认上传音视频门锁在家状态、隐藏接收方、前端撤回后继续处理不得算可控"
+    },
+    "housing_emergency_multichannel_reach_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在权威预警版本下由至少一个适合目标使用者且可独立核验的广播、电话、社区、纸面、声光触觉、备用无线或Agent通道送达的抽样预警任务数 ÷ 抽样预警任务数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "权威预警接口、目标使用者通道、离线演练和实际送达证据尚未建立；不提供响应时间、安全或部署结论。",
+      "recompute_trigger": "预警来源、风险类型、目标使用者、通道、网络电力条件或演练范围变化时重算",
+      "responsible_actor": "法定预警应急、社区物业、通信无障碍与独立演练复核责任主体",
+      "audit_frequency": "每次应急通道重大变化和依法组织的演练后；当前无运行频率",
+      "disaggregation": "风险、预警版本、通道、使用需求、网络电力条件和未达原因",
+      "anti_gaming_note": "仅系统发送、摄像覆盖、重复通道、排除未响应者或非权威消息不得计为送达"
+    },
+    "housing_emergency_authorization_expiry_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在法定或本人授权期限结束后停止非必要访问、记录实际调用、告知、保留依据和事后审计状态的抽样居住应急授权数 ÷ 抽样居住应急授权数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "应急授权模型、法定调用依据、访问日志、到期控制和真实事件或演练样本尚未建立。",
+      "recompute_trigger": "风险、法定依据、数据字段、访问角色、期限、告知或审计规则变化时重算",
+      "responsible_actor": "法定应急救援、数据控制、居民代表与独立审计责任主体",
+      "audit_frequency": "每次授权到期、事件复盘和规则变化后；当前无运行频率",
+      "disaggregation": "风险、字段、依据、访问角色、期限、到期告知和异常状态",
+      "anti_gaming_note": "只隐藏前端权限、无限延长紧急状态、转作常态画像、缺少调用告知或事后补录不得计为到期"
+    },
+    "housing_dispute_case_traceability_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "具有统一编号、原始证据索引、当前具责主体、状态、期限、理由、下一救济和当事人通知的抽样居住争议案件数 ÷ 抽样居住争议案件数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "争议案件状态机、法定渠道、原件索引、责任目录和真实案件样本尚未建立；不提供法律责任或胜诉结论。",
+      "recompute_trigger": "争议类型、证据、责任主体、期限、通知、结果或救济路径变化时重算",
+      "responsible_actor": "物业社区、住房监管、法律服务、行政司法与独立程序复核责任主体",
+      "audit_frequency": "有真实运行后按月及每次救济流程变化后；当前无运行频率",
+      "disaggregation": "争议类型、入口、责任主体、状态、证据和未闭环原因",
+      "anti_gaming_note": "只有编号、删除原件、自动关闭、另建新案、隐藏超期或不给下一救济不得计为可追踪"
+    },
+    "housing_remedy_independent_review_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "由未参与原执行或决定且无未披露利益冲突的具责真人取得必要材料、听取当事人意见并给出理由和执行状态的到期救济复核数 ÷ 到期救济复核数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "独立复核角色、利益冲突规则、材料访问、反报复和真实到期救济样本尚未建立。",
+      "recompute_trigger": "救济类型、复核角色、冲突规则、材料、期限、理由或执行状态变化时重算",
+      "responsible_actor": "独立住房物业法律行政司法与数据保护复核责任主体",
+      "audit_frequency": "有真实运行后按月及每次救济制度变化后；当前无运行频率",
+      "disaggregation": "原事项、复核角色、冲突、材料、结果、执行和超期原因",
+      "anti_gaming_note": "原执行者自审、机器人裁决、形式签名、隐藏材料、申诉报复或不执行结果不得计为独立复核"
+    },
+    "housing_resident_opinion_response_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "获得采纳、部分采纳或不采纳的具体依据、取舍、责任、下一程序和可复核状态的有效居民更新意见数 ÷ 到期有效居民更新意见数",
+      "source_files": ["capabilities.json", "proposal.md"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "更新议题、受影响群体、法定参与、专业审查、到期意见和真实回应样本尚未建立；不证明项目批准或实施。",
+      "recompute_trigger": "议题范围、参与规则、专业依据、决定主体、时限或回应字段变化时重算",
+      "responsible_actor": "城市更新、规划、街道社区、产权与公众参与责任主体",
+      "audit_frequency": "每轮法定或正式参与结束后；当前无运行频率",
+      "disaggregation": "议题、群体、入口、意见立场、回应类型、依据和未回应原因",
+      "anti_gaming_note": "自动套话、合并抹除少数意见、只统计采纳、删除反对意见或无具责主体理由不得计为回应"
+    },
+    "housing_contribution_authorization_completeness_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "完整记录贡献者、具体内容版本、用途、接收方、期限、署名匿名、公共商业AI训练选择、回馈、撤回和争议路线的抽样已使用社区贡献数 ÷ 抽样已使用社区贡献数",
+      "source_files": ["capabilities.json", "sources.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "社区贡献版本账、权利核验、使用回执、回馈规则和真实使用样本尚未建立；不承诺产权、收益或分红。",
+      "recompute_trigger": "贡献内容、版本、用途、接收方、许可、署名、回馈、撤回或争议变化时重算",
+      "responsible_actor": "居民贡献者、社区更新项目、知识产权合同与数据保护责任主体",
+      "audit_frequency": "每次公开商业训练使用前后及有真实运行后定期抽检；当前无运行频率",
+      "disaggregation": "贡献类型、版本、用途、接收方、许可、署名、回馈和争议状态",
+      "anti_gaming_note": "一揽子默认同意、参与即授权、隐藏商业训练用途、默认无偿、事后补签或Agent代授权不得计完整"
+    },
+    "housing_service_chain_count": {
+      "status": "known", "value": 12, "unit": "count",
+      "formula": "count(capabilities.json capability_id_4.service_chains)",
+      "source_files": ["capabilities.json"], "confidence": "high", "assumptions": [],
+      "reason": "Capability 4已形成十二条具有居民结果、A/C边界、专业法定责任、最小数据、非AI、失败退出及接口字段的设计规格；该计数不代表房源供应、资格、价格、产权、设施、维修、节能、安全或部署结果。",
+      "recompute_trigger": "Capability 4服务链规格或capabilities.json变化时重算",
+      "responsible_actor": "第四能力规格维护者",
+      "audit_frequency": "规格或正式装配文件变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入通过Capability 4契约的完整独立服务链，不计标题、候选房源、设施、工单、系统实例或运行结果"
+    },
+    "housing_scenario_binding_count": {
+      "status": "known", "value": 6, "unit": "count",
+      "formula": "count(capabilities.json capability_id_4.scenario_bindings)",
+      "source_files": ["capabilities.json", "proposal.md"], "confidence": "high", "assumptions": [],
+      "reason": "Capability 4以六个稳定绑定ID保留六张v0.4居住场景含义并映射既有正式场景卡；多个绑定可合法汇聚到同一正式场景，该计数不新增事件，也不证明房源、设施、响应、安全或部署结果。",
+      "recompute_trigger": "Capability 4场景绑定或正式场景卡集合变化时重算",
+      "responsible_actor": "第四能力规格维护者与跨能力总装维护者",
+      "audit_frequency": "规格或正式场景卡变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "链内引用、运行案件、重复场景事件或把同一绑定拆分不得增加计数；只计六个稳定绑定ID"
+    },
+    "mobility_real_journey_completion_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在本人确认约束下实际抵达经核目的地入口的抽样旅程数 ÷ 抽样旅程数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "真实站口、目的地入口、运营状态、现场旅程和人工接管样本尚未建立；导航结束、订单完成或到达站点中心均不证明真实抵达。",
+      "recompute_trigger": "入口、路网、运营状态、本人约束、抽样协议或人工接管定义变化时重算",
+      "responsible_actor": "交通运营、目的地、无障碍、现场核验与独立旅程抽检责任主体",
+      "audit_frequency": "正式数据和真实旅程样本到位后按场景定期抽检；当前无运行频率",
+      "disaggregation": "旅程目的类型、入口、交通方式、时段、辅助需要和失败出口",
+      "anti_gaming_note": "安全人工接管和返程只作单列安全证据，不得计入完成分子；到达站点中心、导航结束、订单支付、排除失败者、事后改写约束或未经现场确认不得计为完成"
+    },
+    "mobility_station_transfer_continuity_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "从经核真实站口至步行、公交、骑行、接送或目的地入口之间不存在不可替代断点的有效接驳组合数 ÷ 所测接驳组合数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "权威站口、运营、电梯、过街、停车和目的地入口数据及现场接驳样本尚未形成；不证明任何站城工程、时间或容量。",
+      "recompute_trigger": "站口、设施、运营、路网、接驳方式、时段或现场验证变化时重算",
+      "responsible_actor": "轨道公交、交通规划、站城设施、无障碍与现场核验责任主体",
+      "audit_frequency": "正式站口数据和现场复核到位后按站点及重大变化复测；当前无运行频率",
+      "disaggregation": "站口、接驳方式、时段、使用需求、断点和替代状态",
+      "anti_gaming_note": "站点中心圆、直线距离、只测成功组合、忽略电梯开放过街和目的地入口不得计为连续"
+    },
+    "mobility_station_direction_misdirection_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "因站口、导视、围栏、开放或目的地入口信息错误导致明显绕行、返回或失败的抽样站点旅程数 ÷ 抽样站点旅程数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "站口方向、导视、临时封闭、目的地入口和真实旅程抽样尚未建立；不提供当前误导率或承诺改善。",
+      "recompute_trigger": "站口、导视、围栏开放、目的地入口、抽样定义或现场状态变化时重算",
+      "responsible_actor": "轨道站点、目的地导视、交通信息与独立现场抽检责任主体",
+      "audit_frequency": "正式数据到位后按站点、导视调整和投诉复发复测；当前无运行频率",
+      "disaggregation": "站点、站口、误导原因、时段、旅程结果和纠正状态",
+      "anti_gaming_note": "删除失败样本、把系统误导归责用户、只测熟悉乘客或以点击正确代替现场走行不得降低指标"
+    },
+    "mobility_high_percentile_detour_coefficient": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "实际可行步行距离 ÷ 两点真实可通行网络合理基准距离，并同时报告中位及公开高分位",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "正式路网、真实入口、过街、铁路环路河流断点和现场步行样本尚未建立；不提供任何现状绕行结论。",
+      "recompute_trigger": "路网、入口、过街、围栏开放、施工、基准或分位定义变化时重算",
+      "responsible_actor": "规划交通铁路水务、步行无障碍专业与独立现场核验责任主体",
+      "audit_frequency": "正式路网和现场协议到位后按断点及工程运营变化复测；当前无运行频率",
+      "disaggregation": "断点类型、入口、时段、使用需求、中位高分位和失败原因",
+      "anti_gaming_note": "直线距离、站点中心、概念线、排除高绕行失败路线或只报告平均值不得作为合理基准"
+    },
+    "mobility_cycling_route_continuity_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "起终点间无强迫进入危险机动车混行、不可替代断点或无法合法到达停放点的有效骑行路线数 ÷ 所测骑行路线数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "连续车道、交叉口冲突、停放点、施工天气和实际骑行样本尚未形成；车道线存在不等于安全连续。",
+      "recompute_trigger": "车道、交叉口、公交冲突、施工、天气、停放点或现场验证变化时重算",
+      "responsible_actor": "交通公安交管、骑行设施、站点停车与独立安全核验责任主体",
+      "audit_frequency": "正式网络和现场骑行复核后按重大变化定期复测；当前无运行频率",
+      "disaggregation": "路线、车辆类别、时段、冲突类型、停放结果和失败状态",
+      "anti_gaming_note": "只数车道长度、忽略路口公交站停车断点、排除配送和弱势骑行者或用事故零报告替代验证不得计连续"
+    },
+    "mobility_micromobility_parking_demand_match_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "目标时段经核可合法使用且不占盲道消防基本人行空间的非机动车停放容量 ÷ 经清权方法估算的真实需求",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "权威停车位置、合法容量、时段供需、消防无障碍影响和现场样本尚未建立；不提供空位或供给结论。",
+      "recompute_trigger": "停车设施、合法容量、需求方法、时段、共享调度或占道影响变化时重算",
+      "responsible_actor": "交通城管消防、站点学校医院园区、共享运营和独立供需核验责任主体",
+      "audit_frequency": "正式供需基线到位后按重点点位和重大运营变化复测；当前无运行频率",
+      "disaggregation": "点位、时段、车辆类别、合法容量、需求、占道和替代点",
+      "anti_gaming_note": "把盲道消防通道和无权空间算容量、只清理不增供给、删去满位样本或抓取猜测实时空位不得改善指标"
+    },
+    "mobility_accessibility_user_acceptance_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "由实际使用者按门口至目的地入口完整任务走完并确认端到端连续可用的抽样无障碍旅程数 ÷ 抽样无障碍旅程数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "真实路线、设施动态状态、专业复核和不同实际使用者任务测试尚未完成；不证明连续性、安全或改造效果。",
+      "recompute_trigger": "路线、设施、入口、使用需求、运营状态、天气或替代方式变化时重算",
+      "responsible_actor": "实际使用者、无障碍康复交通、设施运营与目的地责任主体",
+      "audit_frequency": "每次路线设施重大变化及有真实使用者任务测试时；当前无运行频率",
+      "disaggregation": "使用需求、路线段、设施、时段、断点、替代、责任和本人结果",
+      "anti_gaming_note": "断点、替代和责任只作单列失败证据，不得计入接受分子；地图标识、设备安装、家属代走、只测无障碍段、排除失败者或让Agent代替本人验收不得计为接受"
+    },
+    "mobility_rigid_journey_completion_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在本人声明的通勤、上学、就医、照护或夜班时限与入口条件下实际完成的抽样刚性旅程数 ÷ 抽样刚性旅程数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "目的地入口时段、交通状态、敏感目的保护和真实旅程样本尚未建立；不承诺到达时间或服务资格。",
+      "recompute_trigger": "入口、服务时段、交通状态、本人时限、目的类型或抽样协议变化时重算",
+      "responsible_actor": "交通、学校医院照护园区、社区与独立旅程核验责任主体",
+      "audit_frequency": "真实任务样本到位后按目的类型和高风险中断复测；当前无运行频率",
+      "disaggregation": "目的类型、时段、入口、交通方式、辅助需要和失败原因",
+      "anti_gaming_note": "以预约成功、到站、修改原时限、排除错过任务者或泄露敏感目的换取完成率不得计入"
+    },
+    "mobility_rigid_journey_fallback_success_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "主方案失效后按事前明确保底方案实际抵达经核目的地入口并完成刚性旅程的旅程数 ÷ 主方案失效旅程数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "主保底定义、最晚决策点、人工接管和真实中断样本尚未建立；不提供中断保底成效。",
+      "recompute_trigger": "主保底规则、最晚决策点、人工角色、中断类型或真实结果变化时重算",
+      "responsible_actor": "交通目的地、人工支持、法定应急与独立中断复核责任主体",
+      "audit_frequency": "真实中断或演练后逐案复盘并定期汇总；当前无运行频率",
+      "disaggregation": "目的类型、中断原因、保底方式、人工接管、返程和结果",
+      "anti_gaming_note": "人工接管和返程只作单列安全结果，不得计入保底成功分子；事后临时改称保底成功、强迫危险改道、排除失败旅程或隐去未完成者不得改善指标"
+    },
+    "mobility_curb_task_compliant_completion_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在经核合法点和约定时段完成停车、上下客、装卸或配送且未侵占盲道公交消防基本通行的抽样任务数 ÷ 抽样任务数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "法定路权、点位容量、费用时段、任务与外部影响样本尚未建立；不证明停车供应或合法完成。",
+      "recompute_trigger": "路权、点位、时段、容量、收费、任务或人行骑行消防影响变化时重算",
+      "responsible_actor": "交通交管城管消防、停车物流学校医院园区与独立现场核验责任主体",
+      "audit_frequency": "正式路侧规则和任务样本到位后按重点时段复测；当前无运行频率",
+      "disaggregation": "任务类型、点位、时段、车辆、合法状态、占用影响和失败原因",
+      "anti_gaming_note": "以违法临停、盲道公交消防占用、事后补预约、排除满位失败或只看任务速度不得计为合规完成"
+    },
+    "mobility_curb_conflict_resolution_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "经利益相关方和法定专业主体处理后由现场复测确认对人行骑行公交消防及周边生活未转移危害的到期路侧冲突数 ÷ 到期路侧冲突数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "路侧冲突账、责任主体、分时方案、现场复测和真实到期事项尚未建立；不承诺改造、执法或关闭时间。",
+      "recompute_trigger": "冲突分类、路权、主体、方案、复测范围或到期状态变化时重算",
+      "responsible_actor": "交通交管消防、相关运营劳动者居民与独立影响复核责任主体",
+      "audit_frequency": "真实冲突处理后逐案复测并按复发定期审计；当前无运行频率",
+      "disaggregation": "冲突类型、主体、时段、方案、受影响群体、复发和未解决原因",
+      "anti_gaming_note": "清拖罚单、转移到邻近空间、关闭投诉、排除劳动者或忽略人行骑行消防影响不得计为解决"
+    },
+    "mobility_autonomous_safety_gate_completion_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在当前仿真、受控现场、获准限定开放或持续运行级别中证据完整且经具责专业法定主体通过的适用测试项数 ÷ 该级全部适用测试项数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "具体机器人、版本、获准场地路线、测试计划、许可和安全证据尚未建立；不证明审批、安全或部署。",
+      "recompute_trigger": "产品版本、场景、级别、许可、测试项、失败模式、事故或复验状态变化时重算",
+      "responsible_actor": "企业场地、监管许可、功能网络安全、人因无障碍和独立测试责任主体",
+      "audit_frequency": "每次版本场景级别变化、事故近失和复运前；当前无运行频率",
+      "disaggregation": "产品版本、场景、闸门级别、测试项、失败模式、签署和停运状态",
+      "anti_gaming_note": "跨级累计、里程、演示、零事故宣传、跳过失败项、无资质签署或未许可运行不得替代闸门证据"
+    },
+    "mobility_human_takeover_effectiveness_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在适用安全边界内进入安全状态并由具责现场或远程真人实际接管、处置和记录结果的事件数 ÷ 需要接管事件数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "接管边界、时间要求、安全状态、真人责任和真实受控事件尚未建立；坐席在线或急停按钮存在不等于有效接管。",
+      "recompute_trigger": "接管规则、产品版本、现场远程角色、通信、事件或安全状态变化时重算",
+      "responsible_actor": "现场远程接管、场地运营、专业安全与监管复核责任主体",
+      "audit_frequency": "每次受控测试、真实接管、事故近失和复运审查后；当前无运行频率",
+      "disaggregation": "事件类型、场景、接管方式、安全状态、人工角色、失败和停运结果",
+      "anti_gaming_note": "仅在线、自动停止未获真人接收、排除失败事件、事后补记录或把A/C当具责接管不得计为有效"
+    },
+    "mobility_public_space_basic_floor_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "同时具备连续通行、无障碍替代、免费休息、非数字导视、维护责任和消防救援条件的经核公共空间数 ÷ 所评公共空间数",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "权属开放、设施容量、维护、无障碍、消防和现场使用数据尚未建立；不证明任何公共空间已开放或达标。",
+      "recompute_trigger": "空间权属开放、设施、活动、维护、无障碍、消防或评估范围变化时重算",
+      "responsible_actor": "公共空间产权运营、规划园林城管消防无障碍与独立现场核验责任主体",
+      "audit_frequency": "正式空间清单和现场复核后按开放活动及维护变化复测；当前无运行频率",
+      "disaggregation": "空间、时段、底盘要素、使用群体、缺失和维护状态",
+      "anti_gaming_note": "面积、智能设备、商业活动、扫码量、临时摆拍、排除关闭空间或侵占基本通道不得计作底盘"
+    },
+    "mobility_public_space_time_equity_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "不同年龄能力与不消费使用者在日常、夜间、周末和活动日可实际使用的经核时段与基本设施中较小可用量 ÷ 较大可用量",
+      "source_files": ["capabilities.json", "spatial.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "开放时段、容量、不同使用者任务和非识别现场样本尚未建立；不提供公平度或权属开放结论。",
+      "recompute_trigger": "开放时段、活动、容量、设施、使用者任务或抽样规则变化时重算",
+      "responsible_actor": "公共空间运营、社区活动、无障碍与独立公平性复核责任主体",
+      "audit_frequency": "真实开放和使用样本到位后按时段活动变化复测；当前无运行频率",
+      "disaggregation": "空间、时段、使用任务、年龄能力需要、不消费使用和差异原因",
+      "anti_gaming_note": "用人脸推断身份、排除不消费或未预约者、只看总人次、压缩安静区和基本通行不得改善公平度"
+    },
+    "mobility_heritage_route_traceability_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "同时记录史料来源版本、事实/解释/个人记忆区分、版权许可、空间节点状态和纠错责任的抽样京张体验节点数 ÷ 抽样节点数",
+      "source_files": ["capabilities.json", "sources.json"], "confidence": "unknown", "assumptions": ["A-EXISTING-001", "A-METRICS-001"],
+      "reason": "权威史料、版权、现状节点、可达开放和贡献审核样本尚未建立；不证明路线开放、活动批准或工程实施。",
+      "recompute_trigger": "史料、解释、贡献、版权、节点、开放或纠错状态变化时重算",
+      "responsible_actor": "文保档案铁路文旅、版权、居民贡献与独立事实核验责任主体",
+      "audit_frequency": "每次内容版本、贡献使用和节点状态重大变化时；当前无运行频率",
+      "disaggregation": "节点、内容类型、来源版本、版权许可、空间状态和纠错",
+      "anti_gaming_note": "AI生成无来源、混写记忆史实、事后补许可、扫码量、概念线或未经核验节点不得计为可追溯"
+    },
+    "mobility_cultural_route_non_digital_access_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "无需登录扫码设备即可通过纸质、实体导视、真人讲解或无障碍现场服务获得等价核心内容和普通通行的抽样体验任务数 ÷ 抽样体验任务数",
+      "source_files": ["capabilities.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "实体内容、真人服务、无障碍格式、开放时段和真实任务样本尚未建立；不证明非数字访问已提供或空间已开放。",
+      "recompute_trigger": "内容、实体导视、真人服务、语言格式、开放状态或任务标准变化时重算",
+      "responsible_actor": "文旅场地运营、无障碍信息、社区学校与独立非数字任务核验责任主体",
+      "audit_frequency": "真实内容服务到位后按版本和开放变化复测；当前无运行频率",
+      "disaggregation": "任务、入口、语言格式、辅助需要、时段、完成和失败原因",
+      "anti_gaming_note": "只提供二维码、缩减核心内容、要求消费、让陪同者代完成或排除弱数字使用者不得计为等价访问"
+    },
+    "mobility_extreme_event_basic_operability_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "断网、断电、道路或站点中断及不利天气下通过演练或可靠现场复核仍可完成人工告知、安全等待、替代交通、求助和返程的核心步骤数 ÷ 核心步骤总数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "权威预警、断网回退、设施状态、法定指挥、演练和真实事件证据尚未建立；预案文字不证明可运行。",
+      "recompute_trigger": "风险类型、预警来源、网络电力、交通设施、人工通道、演练或事件结果变化时重算",
+      "responsible_actor": "气象水务应急交通运营、社区现场、法定救援与独立演练复核责任主体",
+      "audit_frequency": "依法组织的多情景演练和真实事件恢复后；当前无运行频率",
+      "disaggregation": "风险、区域、通道、核心步骤、使用需求、人工接管和失败",
+      "anti_gaming_note": "只写预案、系统发送、排除断网弱势人群、模拟未连接设施或把A/C自动响应当法定处置不得计为可运行"
+    },
+    "mobility_emergency_authorization_expiry_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "在事件或授权期限结束后停止非必要位置支持数据访问、记录调用、保留依据、事后告知和审计状态的抽样出行应急授权数 ÷ 抽样出行应急授权数",
+      "source_files": ["capabilities.json", "agent.json"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "应急授权模型、法定依据、访问日志、到期控制和真实事件演练样本尚未建立；不提供数据合规或安全结果。",
+      "recompute_trigger": "事件、法定依据、位置支持字段、访问角色、期限、告知或审计规则变化时重算",
+      "responsible_actor": "法定应急救援、交通服务、数据控制、居民代表与独立审计责任主体",
+      "audit_frequency": "每次授权到期、事件复盘和规则重大变化后；当前无运行频率",
+      "disaggregation": "事件、字段、依据、角色、期限、到期、告知和异常状态",
+      "anti_gaming_note": "只隐藏前端、无限延长紧急状态、转作常态轨迹画像、缺少调用告知或事后补录不得计为到期"
+    },
+    "mobility_resident_suggestion_substantive_response_rate": {
+      "status": "unknown", "value": null, "unit": "ratio",
+      "formula": "获得采纳、部分采纳或不采纳的具体依据、取舍、具责主体、下一程序和可复核状态的到期有效交通公共空间建议数 ÷ 到期有效建议数",
+      "source_files": ["capabilities.json", "proposal.md"], "confidence": "unknown", "assumptions": ["A-METRICS-001"],
+      "reason": "公共问题账、有效建议规则、专业现场复核、公众参与和真实到期回应样本尚未建立；不证明项目获批或实施。",
+      "recompute_trigger": "建议范围、有效性规则、专业依据、决定主体、时限或回应字段变化时重算",
+      "responsible_actor": "交通公共空间、规划工程、运营维护、社区公众参与与独立复核责任主体",
+      "audit_frequency": "每轮正式参与和真实到期建议处理后；当前无运行频率",
+      "disaggregation": "链、地点、群体、入口、立场、回应类型、依据、复发和未回应原因",
+      "anti_gaming_note": "自动套话、后台关闭、合并抹除少数意见、只统计采纳、删除反对意见或无责任依据不得计为实质回应"
+    },
+    "mobility_service_chain_count": {
+      "status": "known", "value": 12, "unit": "count",
+      "formula": "count(capabilities.json capability_id_5.service_chains)",
+      "source_files": ["capabilities.json"], "confidence": "high", "assumptions": [],
+      "reason": "Capability 5已形成十二条具有居民结果、A/C边界、专业法定责任、最小数据、非AI、失败退出及接口字段的设计规格；该计数不代表站口路线、工程线位、停车容量、时间、无障碍、安全、许可、开放或部署结果。",
+      "recompute_trigger": "Capability 5服务链规格或capabilities.json变化时重算",
+      "responsible_actor": "第五能力规格维护者",
+      "audit_frequency": "规格或正式装配文件变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "仅计入通过Capability 5契约的完整独立服务链，不计标题、路线、设施、工单、场景实例或运行结果"
+    },
+    "mobility_scenario_binding_count": {
+      "status": "known", "value": 6, "unit": "count",
+      "formula": "count(capabilities.json capability_id_5.scenario_bindings)",
+      "source_files": ["capabilities.json", "proposal.md"], "confidence": "high", "assumptions": [],
+      "reason": "Capability 5以六个稳定MOB-SC绑定ID保留六张v0.5出行场景含义并映射既有正式场景卡；多个绑定可合法汇聚到同一正式场景，该计数不新增事件，也不证明路线、设施、时间、安全、许可、开放或部署结果。",
+      "recompute_trigger": "Capability 5场景绑定或正式场景卡集合变化时重算",
+      "responsible_actor": "第五能力规格维护者与跨能力总装维护者",
+      "audit_frequency": "规格或正式场景卡变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "链内引用、运行旅程、重复场景事件或把同一绑定拆分不得增加计数；只计六个稳定MOB-SC绑定ID"
+    },
+    "industry_verified_opportunity_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "proposal.md"
+      ],
+      "formula": "具有可核发布主体、来源、版本、有效期、待遇或任务条件、责任人和未知项且经抽样仍真实存在的机会数 ÷ 抽样展示机会数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "权威岗位任务订单目录、发布责任、有效期和真实抽样尚未建立；不证明存在任何官方机会、岗位或订单。",
+      "recompute_trigger": "机会来源、版本、有效期、条件字段、责任主体或抽样协议变化时重算",
+      "responsible_actor": "就业服务、用人任务发布、劳动与独立机会核验责任主体",
+      "audit_frequency": "真实目录建立后按来源版本变化和定期抽样；当前无运行频率",
+      "disaggregation": "机会类型、来源、条件完整性、入口、有效期和失效原因",
+      "anti_gaming_note": "聚合转载、广告、重复条目、过期信息、关联方虚假任务或把点击申请当真实机会不得计入分子"
+    },
+    "industry_learning_to_verified_task_conversion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json"
+      ],
+      "formula": "完成至少一项由真实责任主体验收且劳动或学习属性、贡献和成果权利明确的任务人数 ÷ 完成相应学习实践人数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "真实任务、学习实践、人工验收和成果权利样本尚未建立；证书与模拟作业不证明真实转化。",
+      "recompute_trigger": "任务要求、学习实践、劳动属性、验收或成果权利规则变化时重算",
+      "responsible_actor": "教育培训、导师、用人劳动与成果权利复核责任主体",
+      "audit_frequency": "有真实学习任务样本后按项目周期复核；当前无运行频率",
+      "disaggregation": "学习类型、任务类型、劳动属性、群体、入口和失败原因",
+      "anti_gaming_note": "模拟作业、内部摆拍、证书、无偿替代劳动、只统计成功者或关联方自验不得计为真实任务转化"
+    },
+    "industry_unpaid_labor_misuse_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "agent.json"
+      ],
+      "formula": "经具责劳动或合同复核确认本应支付工资或采购款却被标为学习、实习、志愿或共创的抽样案件数 ÷ 抽样相关案件数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "学习劳动采购分类、合同付款和独立复核样本尚未建立；当前不提供误用率结论。",
+      "recompute_trigger": "劳动采购分类、合同、付款、共创规则或抽样案件变化时重算",
+      "responsible_actor": "人社工会、合同采购、用人任务发布与独立劳动复核责任主体",
+      "audit_frequency": "有真实案件后按月并在规则变化后复核；当前无运行频率",
+      "disaggregation": "案件类型、主体、报酬方式、群体、入口和纠正状态",
+      "anti_gaming_note": "改名为实践共创、事后补同意、排除投诉者、用曝光积分证书抵款或压低应付范围不得降低该指标"
+    },
+    "industry_high_impact_recruitment_human_review_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "agent.json"
+      ],
+      "formula": "在录用淘汰报酬排班解雇等到期高影响自动辅助案件中由具名具责真人取得必要材料、独立判断并向当事人提供结果理由与复核入口的案件数 ÷ 到期高影响自动辅助案件数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "高影响招聘规则、工具登记、具责复核和真实案件尚未建立；不判断任何人的录用资格。",
+      "recompute_trigger": "高影响定义、工具版本、人工责任、理由复核或案件范围变化时重算",
+      "responsible_actor": "用人主体、人社工会、反歧视无障碍与独立劳动审计责任主体",
+      "audit_frequency": "真实工具运行后按版本和周期抽检；当前无运行频率",
+      "disaggregation": "决定类型、工具版本、岗位、群体、入口、理由和复核结果",
+      "anti_gaming_note": "机器复跑、形式签名、事后补签、隐藏自动工具、让无决定权坐席盖章或排除被拒者不得计为人工复核"
+    },
+    "industry_group_opportunity_gap_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "capabilities.json"
+      ],
+      "formula": "在合法必要且防反识别抽样下各群体进入下一真实阶段比例相对总体基线的绝对差异，并同时报告样本不确定性与专业解释",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "合法公平性抽样、群体保护、阶段定义和真实招聘数据尚未建立；不得用该指标给个人或群体贴标签。",
+      "recompute_trigger": "合法基础、群体定义、阶段、样本、工具或岗位结构变化时重算",
+      "responsible_actor": "人社反歧视、数据保护、统计与独立公平性复核责任主体",
+      "audit_frequency": "真实高影响招聘基线建立后按工具版本复核；当前无运行频率",
+      "disaggregation": "合法群体、岗位、阶段、入口、样本不确定性和差异原因",
+      "anti_gaming_note": "反向识别、删去被拒者、改阶段分母、用代理群体、隐藏小样本或把差异归责个人不得改善指标"
+    },
+    "industry_flexible_work_condition_disclosure_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json"
+      ],
+      "formula": "在接受前完整展示服务范围、资格、总价、平台费用、时间、安全、取消、验收、付款和争议字段并经双方确认的抽样灵活工作或小微任务数 ÷ 抽样相关任务数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "真实服务任务、平台费用、合同付款和双方确认样本尚未建立；不证明订单或持续经营。",
+      "recompute_trigger": "任务类型、资格、费用、合同、安全、验收付款或争议字段变化时重算",
+      "responsible_actor": "平台小微经营、市场监管、人社工会、合同支付与社区影响责任主体",
+      "audit_frequency": "真实任务建立后按平台规则和合同版本抽检；当前无运行频率",
+      "disaggregation": "任务类型、主体、费用、劳动属性、入口、验收付款和争议",
+      "anti_gaming_note": "隐藏抽成、把可选费用变必选、事后补条款、排除取消争议单或用共创积分替代付款不得计为完整披露"
+    },
+    "industry_idea_rights_choice_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "agent.json"
+      ],
+      "formula": "在披露组队或验证前由权利主体完成私有、指定接收方授权或公开选择，并记录内容版本、目的、期限、衍生使用和撤回条件的想法数 ÷ 进入流程的想法数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "想法版本、权利主体、细粒度授权和真实披露样本尚未建立；不构成知识产权确权或许可有效结论。",
+      "recompute_trigger": "想法版本、接收方、目的、授权字段、披露或撤回规则变化时重算",
+      "responsible_actor": "想法贡献者、知识产权合同、数据保护与接收方责任主体",
+      "audit_frequency": "每次真实披露、组队或授权前后抽检；当前无运行频率",
+      "disaggregation": "想法类型、版本、选择、接收方、用途、期限和撤回状态",
+      "anti_gaming_note": "默认公开、使用服务即同意、园区入驻即招商训练、事后补签、Agent代授权或把沉默算同意不得计为权利选择"
+    },
+    "industry_idea_to_first_real_validation_days": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "capabilities.json"
+      ],
+      "formula": "从本人确认问题与起始时间到第一项由非关联真实使用者或真实环境按事前标准完成的验证之间的日历日数分布",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "起始事件、真实使用者、环境、事前标准和验证记录尚未建立；注册、路演、融资和Demo不算验证。",
+      "recompute_trigger": "起始定义、真实使用者、环境、标准、暂停时段或验证结果变化时重算",
+      "responsible_actor": "创业者、真实使用者、行业专业与独立验证责任主体",
+      "audit_frequency": "每项真实验证完成或停止后复核；当前无运行频率",
+      "disaggregation": "问题类型、验证环境、使用者、暂停原因、结果和继续停止决定",
+      "anti_gaming_note": "注册企业、内部访谈、关联方点赞、AI模拟、路演融资、事后改标准或删除失败项目不得缩短该时间"
+    },
+    "industry_service_state_truthfulness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "agent.json"
+      ],
+      "formula": "目录系统显示的提交、受理、核验、决定、兑现、申诉和关闭状态与有权主体真实状态及时间一致的抽样企业事项数 ÷ 抽样企业事项数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "权威事项状态接口、责任目录和真实企业服务抽样尚未建立；不证明任何事项获批或兑现。",
+      "recompute_trigger": "事项、状态词典、责任接口、版本或抽样范围变化时重算",
+      "responsible_actor": "有权企业事项部门、企业服务窗口与独立状态核验责任主体",
+      "audit_frequency": "真实接口建立后按状态版本和周期抽检；当前无运行频率",
+      "disaggregation": "事项、责任主体、入口、显示状态、真实状态和不一致原因",
+      "anti_gaming_note": "把已提交写成已批准、平台内部队列当有权受理、删除超期失败项或另建新案不得提高真实性"
+    },
+    "industry_result_independent_reproducibility_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json"
+      ],
+      "formula": "由未参与原开发且取得合法环境与材料的人员在声明版本依赖数据权限和阈值下复现核心结果的成果数 ÷ 进入独立复现的成果数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "成果权利、复现包、隔离环境、阈值和独立人员样本尚未建立；论文代码存在不证明可复现转化。",
+      "recompute_trigger": "成果版本、依赖、数据权限、环境、阈值或独立复现协议变化时重算",
+      "responsible_actor": "成果团队、开源维护、技术转移、独立工程和安全复核责任主体",
+      "audit_frequency": "每个候选版本进入转化或重大更新时；当前无运行频率",
+      "disaggregation": "成果类型、版本、环境、依赖、数据权限、失败模式和修复状态",
+      "anti_gaming_note": "原团队自演、关联方环境、隐藏依赖、只报告成功运行、改变阈值或删除负面结果不得计为独立复现"
+    },
+    "industry_contribution_license_provenance_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "sources.json"
+      ],
+      "formula": "完整记录每项本人第三方AI贡献、来源版本、权利依据、许可证兼容、署名、允许禁止用途和纠错状态的抽样转化成果数 ÷ 抽样转化成果数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "贡献版本账、许可证依赖、权利复核和真实转化样本尚未建立；不判断知识产权权属或许可有效。",
+      "recompute_trigger": "贡献者、版本、依赖、许可、用途、署名或纠错变化时重算",
+      "responsible_actor": "贡献者权利人、开源维护、知识产权合同和独立来源复核责任主体",
+      "audit_frequency": "每次发布转化许可或重大版本变化前后；当前无运行频率",
+      "disaggregation": "贡献类型、主体、版本、来源、许可、用途和冲突状态",
+      "anti_gaming_note": "把开源当无权利、忽略第三方或AI贡献、事后补许可、删除冲突依赖或用仓库提交数替代权利核验不得计完整"
+    },
+    "industry_small_team_full_stack_affordability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "proposal.md"
+      ],
+      "formula": "在事前公开的总成本阈值内完成真实任务复现、安全评测和可迁移退出且没有隐藏补贴费用的小微或个人测试数 ÷ 小微或个人全栈测试数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-INDUSTRY-SPATIAL-001",
+        "A-METRICS-001"
+      ],
+      "reason": "多栈价格、资源容量、任务、安全阈值、补贴来源和真实小微测试尚未建立；不证明算力或能源可用。",
+      "recompute_trigger": "价格、阈值、补贴、资源、任务、评测或退出规则变化时重算",
+      "responsible_actor": "算力模型工具运营、小微服务、财务安全与独立成本复核责任主体",
+      "audit_frequency": "真实资源目录和测试建立后按价格版本复核；当前无运行频率",
+      "disaggregation": "团队规模、任务、技术栈、费用项、补贴、结果和退出状态",
+      "anti_gaming_note": "隐藏人工迁移安全费用、用免费试用代替持续成本、排除失败团队、降低质量安全阈值或虚构容量不得计为可负担"
+    },
+    "industry_physical_human_takeover_effectiveness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "agent.json"
+      ],
+      "formula": "在具身或实体测试达到接管条件后于事前阈值内完成物理停机或安全状态、具名真人取得控制、现场保护和事件记录的事件数 ÷ 所有触发接管条件的事件数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-INDUSTRY-SPATIAL-001",
+        "A-METRICS-001"
+      ],
+      "reason": "测试场清权、接管阈值、物理急停、现场责任和真实事件演练尚未建立；不证明机器人安全或获批。",
+      "recompute_trigger": "设备、场地、风险级、接管阈值、网络电力、现场角色或事件变化时重算",
+      "responsible_actor": "测试场运营、机器人工程、交通消防无障碍、现场安全与独立事故复核责任主体",
+      "audit_frequency": "每次受控测试演练事件和重大版本变更后；当前无运行频率",
+      "disaggregation": "设备、场景、触发、停机方式、接管人、时长、近失和恢复状态",
+      "anti_gaming_note": "坐席在线、远程消息、软件自报停止、排除失联近失、无现场控制权人员确认或未恢复公共底盘不得计为有效接管"
+    },
+    "industry_first_verified_paid_task_days": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "capabilities.json",
+        "proposal.md"
+      ],
+      "formula": "从本人或团队确认方案与起始时间到第一项非关联真实任务按事前合同交付、双方验收并实际付款之间的日历日数分布",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "真实机会、合同、非关联交易、验收付款和起始事件样本尚未建立；不证明订单或收入存在。",
+      "recompute_trigger": "起始定义、合同、关联方规则、交付验收、付款或争议状态变化时重算",
+      "responsible_actor": "任务委托与交付方、合同支付、财税与独立交易复核责任主体",
+      "audit_frequency": "每项首个真实付费任务完成或争议后；当前无运行频率",
+      "disaggregation": "主体类型、任务、来源、合同、验收、付款、暂停和争议",
+      "anti_gaming_note": "关联方虚假订单、预充值、未验收转账、补贴、路演承诺、点击投递或删除无首单团队不得缩短该时间"
+    },
+    "industry_contract_payment_timeliness_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json"
+      ],
+      "formula": "按事前合同完成具责验收并在约定时限实际支付工资或采购款的到期案件数 ÷ 到期合同或劳动支付案件数，争议案件单列",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "真实合同、验收、到期付款、争议和独立核验样本尚未建立；不证明任何付款成效。",
+      "recompute_trigger": "合同版本、验收规则、到期时间、付款状态或争议分类变化时重算",
+      "responsible_actor": "雇主采购委托方、劳动者供应商、合同财务与独立支付复核责任主体",
+      "audit_frequency": "有真实到期案件后按月并在合同规则变化后复核；当前无运行频率",
+      "disaggregation": "劳动采购类型、主体规模、验收、付款、逾期和争议原因",
+      "anti_gaming_note": "排除争议或未付款者、把承诺开票当付款、用积分曝光抵款、事后改时限或关联方循环付款不得提高指标"
+    },
+    "industry_affordable_innovation_space_availability_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "spatial.json"
+      ],
+      "formula": "经权属开放消防无障碍运营核验且在公开可负担阈值内可预约的工位会面制作时段数 ÷ 经合法去标识方法核验的相应需求时段数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-INDUSTRY-SPATIAL-001",
+        "A-METRICS-001"
+      ],
+      "reason": "空间权属、开放、容量、费用、消防无障碍、需求和现场核验尚未建立；不证明任何空间可用或已建。",
+      "recompute_trigger": "空间、权属、开放、容量、收费、无障碍、需求或运营规则变化时重算",
+      "responsible_actor": "产权物业运营、规划消防无障碍、社区与独立供需核验责任主体",
+      "audit_frequency": "正式空间清单和需求基线到位后按开放费用变化复核；当前无运行频率",
+      "disaggregation": "空间类型、位置、时段、费用、使用需求、无障碍和未满足原因",
+      "anti_gaming_note": "把未清权关闭消防不合规空间算供给、隐藏会员消费成本、只数面积、排除未排到者或虚构需求不得提高可得率"
+    },
+    "industry_event_site_restoration_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "spatial.json"
+      ],
+      "formula": "活动测试后按事前清单恢复连续通行、无障碍、消防、蓝绿、安静、卫生设施和运营状态并经现场责任人与受影响使用者复核的到期事件数 ÷ 到期活动测试事件数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-INDUSTRY-SPATIAL-001",
+        "A-METRICS-001"
+      ],
+      "reason": "正式场地、恢复清单、现场基线、责任人和真实活动测试样本尚未建立；不证明公共空间已开放或恢复。",
+      "recompute_trigger": "活动测试、场地、基线、恢复清单、使用者或复核规则变化时重算",
+      "responsible_actor": "活动测试运营、产权物业、消防生态无障碍、居民使用者与独立现场复核责任主体",
+      "audit_frequency": "每次真实活动测试结束及投诉复发后；当前无运行频率",
+      "disaggregation": "事件、场地、底盘要素、恢复时间、使用群体、投诉和未恢复原因",
+      "anti_gaming_note": "只清走设备、摆拍照片、忽略噪声蓝绿无障碍、排除投诉者、另建工单或未经现场使用者复核不得计为恢复"
+    },
+    "industry_restart_without_permanent_negative_label_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "capabilities.json",
+        "agent.json"
+      ],
+      "formula": "在完成适用责任与合法状态处理后可进入就业学习照护或再创业，且失败投诉争议退出信息未越权传播为跨场景永久标签的抽样重启人数或主体数 ÷ 抽样符合重启条件人数或主体数",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-METRICS-001"
+      ],
+      "reason": "退出责任、合法记录边界、跨场景访问和真实重启样本尚未建立；不判断破产信用或重启许可。",
+      "recompute_trigger": "退出责任、合法状态、数据隔离、服务入口、重启规则或样本变化时重算",
+      "responsible_actor": "有权退出重启、人社教育公共服务、数据保护与独立反污名复核责任主体",
+      "audit_frequency": "有真实退出重启后按案件周期审计；当前无运行频率",
+      "disaggregation": "退出类型、合法记录、重启路径、数据访问、基本服务影响和申诉",
+      "anti_gaming_note": "删除合法必要记录、排除被拒者、把改名重注册当重启、隐藏跨场景黑名单或要求放弃申诉不得提高指标"
+    },
+    "industry_scenario_binding_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "capabilities.json",
+        "proposal.md"
+      ],
+      "formula": "count(capabilities.json capability_id_6.scenario_bindings)",
+      "confidence": "high",
+      "assumptions": [],
+      "reason": "Capability 6以六个稳定IND-SC绑定ID保留三张普通人产业卡与ITV-01至03三类产业测试，并映射既有正式场景；该计数不新增事件，也不证明机会、入驻、资金、场地、安全、部署或产业成效。",
+      "recompute_trigger": "Capability 6场景绑定或正式场景卡集合变化时重算",
+      "responsible_actor": "第六能力规格维护者与跨能力总装维护者",
+      "audit_frequency": "规格或正式场景卡变化时",
+      "disaggregation": "不适用（设计计数）",
+      "anti_gaming_note": "链内引用、运行案件、把ITV-01数字全栈、ITV-02具身物理安全与ITV-03高影响任务交付合并或拆分均不得改变计数；只计六个稳定绑定ID"
+    }
+  }
+}

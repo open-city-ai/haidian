@@ -1,0 +1,201 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "当前总体设计边界采用官方仓库PROV-SITE-001临时粗略几何，而非官方精确红线。",
+      "impact": "所有空间裁剪、面积和比例只能用于临时生成与一致性检查。",
+      "resolution_path": "取得资格预审或正式任务书附件中的官方多边形后替换并在EPSG:4548统一复算。"
+    },
+    {
+      "id": "A-KEY-AREAS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "三处重点区域采用PROV-KEY-001至003粗略几何。",
+      "impact": "重点区可生成非地籍概念单元、建筑基底与公共空间接口，但不能据此确定地块、站口、连廊、现状/拟建建筑或项目位置。",
+      "resolution_path": "以官方三处重点区边界和现状测绘替换并重新完成详细设计。"
+    },
+    {
+      "id": "A-DAZHONGSI-001",
+      "status": "pending_official_clarification",
+      "statement": "社区Issue #1029指出PROV-KEY-003可能与大钟寺文字锚点错位；该Issue不是官方修正。",
+      "impact": "不能用当前多边形确定四象限步行、站口、桥隧或产权动作。",
+      "resolution_path": "等待维护者或组织方提供正式边界/答疑并据此复算。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "控规、道路红线、铁路、水系、文保、消防、市政和其他锁定约束的正式几何尚未进入当前工作区。",
+      "impact": "constraints.geojson刻意为空；任何工程和法定控制结论均被阻断。",
+      "resolution_path": "取得官方或已清权图层，登记来源、坐标系和转换方法后加入只读约束。"
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_professional_confirmation",
+      "statement": "现状用地、地块、建筑、权属、设施容量和运营状态资料不足。",
+      "impact": "可复算概念用地分区和概念建筑基底面积，但现状用地、总建筑规模、拆改留、开发强度和真实更新项目不能复算。",
+      "resolution_path": "完成正式资料登记、现状调查和专业审核后逐层建立设计要素。"
+    },
+    {
+      "id": "A-DESIGN-GEOMETRY-001",
+      "status": "active_provisional_design_model",
+      "statement": "v0.9已由同一生成规则形成用地、地块、概念建筑基底、连接线、绿地、公共空间和依赖分期七类设计图层；constraints继续为空。",
+      "impact": "可用于概念空间一致性、场景挂接、模型面积复算和后续图件派生，但不形成现状、控规、权属、道路、水系、建筑或建设结论。",
+      "resolution_path": "取得official边界、现状、控规和专业资料后替换输入、重跑生成与验证，并由规划建筑交通、水务生态、消防市政和法定主体复核。"
+    },
+    {
+      "id": "A-METRICS-001",
+      "status": "active_provisional_metric_boundary",
+      "statement": "site_area_sqm、green_ratio、public_space_ratio和building_footprint_area_sqm可从v0.9 provisional几何在EPSG:4548中唯一复算；法定、现状和真实运行绩效仍缺正式资料或基线。",
+      "impact": "四项指标的known只表示当前设计模型内可复算且confidence=low；容积率、高度、拆改留、真实可达、运营、投资和成效指标继续为unknown。",
+      "resolution_path": "official geometry、现状调查、专业条件或设计规则变化后全量复算四项空间值；真实运营指标只在取得合规样本和独立核验后建立。"
+    },
+    {
+      "id": "A-SPATIAL-DESIGN-V09",
+      "status": "active_provisional_design_model",
+      "statement": "空间母盘v0.9是参赛者依据已批准概念、provisional边界和固定生成规则形成的设计模型，全部生成要素均为low confidence和provisional_design。",
+      "impact": "模型可表达一骨两水三区两翼、六类缝合问题、12张正式场景卡和五层依赖分期，但不能冒充官方、法定、地籍、权属、现状或施工数据。",
+      "resolution_path": "每次输入、设计规则或official合同变化均重跑生成、面积复算、空间验证、矩阵同步和图件派生。"
+    },
+    {
+      "id": "A-OSM-CONTEXT-V09",
+      "status": "active_source_fallback",
+      "statement": "本轮两个Overpass端点分别返回HTTP 406和500，因此source_mode固定为provisional_only；没有使用或伪装任何OSM替代背景数据。",
+      "impact": "道路、水系、站点、建筑和设施的现实位置均未由OSM补足；概念连接线只表达设计关系。",
+      "resolution_path": "只有在取得可登记时间、查询、许可和哈希的OSM响应后才可作为背景重跑；无响应时继续provisional_only。"
+    },
+    {
+      "id": "A-LOCKED-CONSTRAINTS-V09",
+      "status": "active_integrity_lock",
+      "statement": "site_boundary.geojson与key_areas.geojson保持恢复基线字节锁；未提供的正式控规、道路、铁路、水系、文保、市政和其他约束不得自行生成。",
+      "impact": "所有设计要素只能裁剪在锁定provisional总体边界内，constraints.geojson必须保持空集合。",
+      "resolution_path": "仅在组织方或已清权专业来源提供正式数据后，以新版本显式解除锁、登记来源并重新验证。"
+    },
+    {
+      "id": "A-OFFICIAL-REPLACEMENT-V09",
+      "status": "pending_official_replacement",
+      "statement": "当前空间值和几何均以未来official边界、现状、控规与专业资料整体替换为前提，不把局部修补当作正式转换。",
+      "impact": "official数据一旦到位，全部生成图层、四项空间指标、正文数字、矩阵、图件、Manifest和检查点必须同批重建。",
+      "resolution_path": "记录官方文件版本、坐标系、转换方法和哈希，执行全量替换、独立复算、空间验证、48项变异测试和专业复核。"
+    },
+    {
+      "id": "A-OUTPUTS-001",
+      "status": "active_production_dependency",
+      "statement": "核心图、中英文HTML、A3册、A0展板和最终版权清单尚未制作。",
+      "impact": "双语多模态和离线阅读契约尚未满足。",
+      "resolution_path": "由同一版本GeoJSON、metrics和正文派生全部语言副本并核对哈希。"
+    },
+    {
+      "id": "A-VALIDATION-001",
+      "status": "active_validation_dependency",
+      "statement": "官方finalize、self-check和participant preflight尚未在本包运行。",
+      "impact": "本包不是可投稿成果，不能发起正式PR。",
+      "resolution_path": "所有内容与输出完成后在当前官方main工具链上运行并逐项修复阻断错误。"
+    },
+    {
+      "id": "A-POLICY-TRANSFER-001",
+      "status": "active_scope_boundary",
+      "statement": "北京市和海淀区人工智能、智能体、企业服务与营商政策只作为本方案的现实背景和机制参考。",
+      "impact": "政策中的全市目标、支持方向、资金、项目和统计不得直接写成京张片区已批准安排。",
+      "resolution_path": "任何具体适用主张均须取得对应现行政策文本、适用条件、有权部门确认和项目证据后单独登记。"
+    },
+    {
+      "id": "A-INDUSTRY-SPATIAL-001",
+      "status": "active_design_dependency",
+      "statement": "第六能力枝为众智园、AI原点社区、大钟寺及两翼配置的是条件性产业能力网络，不是已落位的企业、设施和项目。",
+      "impact": "全栈、共享、企业服务、测试和市场能力只可作为provisional概念界面或场景接口进入GeoJSON，不能成为现状设施、固定选址、运营状态或建设规模结论。",
+      "resolution_path": "取得正式边界、用地建筑、权属、市政能源、消防交通、生态文保和运营资料后，逐项完成专业选址、复算和审查。"
+    },
+    {
+      "id": "A-CAP7-LEGAL-001",
+      "status": "active_legal_boundary",
+      "statement": "‘真人资产’和三层权益架构是城市设计与服务设计概念，不是新增法定物权、知识产权、数据确权、金融资产或政府信用。",
+      "impact": "对象记录、版本、哈希、授权卡和贡献账只能提供管理与证据接口，不能自动决定著作权、专利、商业秘密、个人信息、数据登记、合同、税务、继承或争议结果。",
+      "resolution_path": "每项真实使用按照对象、主体、目的和现行规则进入知识产权、合同、数据、劳动、财税、继承及争议B侧，并由有权主体作出具体判断。"
+    },
+    {
+      "id": "A-CAP7-OPERATIONS-001",
+      "status": "active_implementation_dependency",
+      "statement": "第七能力枝目前只有完整概念规格，私域舱、授权账、公共贡献账、使用回执、支付回馈、权利请求和退出联动均未实际部署。",
+      "impact": "除十二链和六张候选场景的设计计数外，二十四项权益运行指标均无真实基线，值必须保持unknown。",
+      "resolution_path": "明确运营主体和法定责任，完成系统、非AI入口、专业审查、异常测试、独立审计和真实样本后再建立基线及目标。"
+    },
+    {
+      "id": "A-CAP7-SPATIAL-001",
+      "status": "active_design_dependency",
+      "statement": "第七能力枝提出的是个人—社区—校园园区—三区两翼—创新带五级功能网络，没有确定创意中心、数据空间、展示廊、荣誉墙或专业服务点的位置。",
+      "impact": "这些功能可通过provisional场景点、地标点、公共空间或概念建筑基底表达设计接口，但不能成为固定设施、正式选址、约束、建设规模或运营机构结论。",
+      "resolution_path": "在正式边界、现状、权属、控规、文保生态、市政消防、数据安全、无障碍、居民影响和长期运营资料齐备后逐项选址、复算和审查。"
+    },
+    {
+      "id": "A-CAP8-AUTHORITY-001",
+      "status": "active_legal_boundary",
+      "statement": "具体事项的有权主体、法定程序、审批/备案和公开救济路径尚须逐项核验，C不因此取得职权",
+      "impact": "第八能力的路由、提示和协同不能替代有权主体的受理、决定、签署、指挥或救济责任。",
+      "resolution_path": "按事项核对现行权责清单、法定程序、专业门槛、签署主体和公开救济渠道，并由有权主体确认。"
+    },
+    {
+      "id": "A-CAP8-OPERATIONS-001",
+      "status": "active_implementation_dependency",
+      "statement": "第八能力只有完整概念规格，责任目录、四图、审计、非AI入口、演练和真实运营均未部署",
+      "impact": "除十二条服务链和六张候选场景卡的设计计数外，二十四项治理运行指标均无真实基线，必须保持unknown/null。",
+      "resolution_path": "明确运营与法定责任，部署等价入口、责任目录、四图和审计机制，完成异常与恢复演练并取得真实样本后建立基线。"
+    },
+    {
+      "id": "A-CAP8-EMERGENCY-001",
+      "status": "active_safety_dependency",
+      "statement": "真实灾害阈值、预案、指挥链、避险容量、生命线拓扑、备份和恢复目标尚未取得或演练",
+      "impact": "预警、应急指挥、救援交接、业务连续和恢复成效不能宣称已建立或达标。",
+      "resolution_path": "取得适用预案与正式设施资料，由法定和专业主体确认阈值、指挥链、容量、拓扑、备份及恢复目标并完成演练复盘。"
+    },
+    {
+      "id": "A-CAP8-ECOLOGY-001",
+      "status": "active_data_gap",
+      "statement": "正式生态控制线、跨季节本底、监测阈值、维护责任和修复/退役证据尚未形成",
+      "impact": "生态判断、阈值处置、养护反馈、修复和退役闭环均不能计算成效或宣称达标。",
+      "resolution_path": "取得正式控制线和跨季节现场本底，明确专业方法、监测阈值、维护责任、修复退役义务及长期复验证据。"
+    },
+    {
+      "id": "A-CAP8-ALGORITHM-001",
+      "status": "active_implementation_dependency",
+      "statement": "具体模型、训练/评测数据、用途、风险级、运营主体、影响评估和回滚方案尚未选定或验证",
+      "impact": "算法影响评估、重大变更复验、风险核验、人工接管和应急连续指标均不能形成真实运行值。",
+      "resolution_path": "逐模型登记运营主体、合法数据来源、用途和风险级，完成影响评估、负面测试、专业复核、人工替代与回滚验证。"
+    },
+    {
+      "id": "A-RUNTIME-METRICS-V10",
+      "status": "active_evidence_boundary",
+      "statement": "八项能力共有192个运行指标槽位，引用188个唯一运行指标ID；这些运行定义在metrics.json中继续保持status=unknown、value=null、confidence=unknown，没有任何运行指标是已部署绩效。",
+      "impact": "212项指标定义中的22项known只可解释为18项设计/结构计数和4项low-confidence provisional模型复算；190项unknown不能被候选卡数量、规格完整度、模拟值或宣传结果替代。",
+      "resolution_path": "仅在具责运营主体、合法样本、真实运行台账、专业方法和独立核验齐备后，逐指标建立基线、目标和可审计结果。"
+    },
+    {
+      "id": "A-SCENARIO-BINDINGS-V10",
+      "status": "active_design_boundary",
+      "statement": "48个稳定场景绑定已经汇聚到12张去重后的SC-FINAL正式卡；历史30张候选卡是设计来源与验收切片，不是已部署事件或30项运行成果。",
+      "impact": "绑定计数、候选卡计数和正式卡计数只能证明设计接口存在，不能证明场景已经发生、演练、运行、救济、修复或产生收益。",
+      "resolution_path": "未来每次真实运行必须另建事件ID、具责主体、时间、空间、证据、结果、失败、人工接管、申诉与退出记录，并与设计卡分离。"
+    },
+    {
+      "id": "A-GEOMETRY-INTERFACES-V10",
+      "status": "active_provisional_design_boundary",
+      "statement": "能力和0+13对geometry接口的引用只证明provisional设计模型中存在可追踪消费者，不证明设施、权属、开放、容量、时段、安全或运营。",
+      "impact": "场景节点、概念建筑、连接线、绿地、公共空间和分期单元不得被转写为官方设施、已建项目、确定站口/道路、已开放空间或可用服务容量。",
+      "resolution_path": "取得official边界、现状、权属、控规、设施、运营和专业资料后，执行现场核验、法定程序、全量重建和独立复算。"
+    },
+    {
+      "id": "A-STRUCTURED-FACT-CONTRACTS-V10",
+      "status": "active_claim_control",
+      "statement": "能力5—8的structured authority_contract与fact_status_contract是官方事实和高风险职权声明的机器闸门；unknown事实必须保持null且没有权威来源。",
+      "impact": "未经权威资料、现场或业务核验、专业复核和法定批准/授权/验收四类证据，不得宣称线路、容量、机会、权属、许可、安全、生态、收益、部署或运行成效。",
+      "resolution_path": "任何正向事实更新必须先补齐结构化证据、具责验证者和适用审批状态，再经独立复核同步正文、矩阵、图件和Manifest。"
+    },
+    {
+      "id": "A-CAPABILITY-STATUS-V10",
+      "status": "active_status_interpretation",
+      "statement": "八个canonical能力及agent目录的design_status已统一为complete_specification_pending_formal_assembly；0+13机器总装完成不等于formal成果完成。",
+      "impact": "Agent恢复索引中能力1—3的技术债只保留历史迁移 provenance，并由相邻capability_technical_debt_closure指向capabilities.json@1.0；当前开放项是图件、官方数据、专业审查和投稿工具链。",
+      "resolution_path": "保持历史对象不删改，以capabilities.json@1.0、zero_plus_thirteen.json@1.0和self_check.json为当前状态源；仅在全部正式阻断项消除后改变包级状态。"
+    }
+  ]
+}
