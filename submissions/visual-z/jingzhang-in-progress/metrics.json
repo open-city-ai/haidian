@@ -1,0 +1,144 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(serialized SITE-001), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "provisional geometry; not an official area"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "official-qualification-announcement"
+      ],
+      "formula": "count(PROV-KEY-001..003)",
+      "confidence": "high",
+      "assumptions": [
+        "positions and polygons remain provisional"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.12366775,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(serialized concept GREEN_SPACE), EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "concept layer; not statutory green ratio or mapped existing park"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.068179379,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(serialized concept PUBLIC_SPACE), EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "concept layer pending G0/G1; not statutory ratio"
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(intersection(union(land_use), site)) / area(site)",
+      "confidence": "low",
+      "assumptions": [
+        "topology completeness only; not an approved land-use plan"
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/submission-model.json"
+      ],
+      "formula": "count(SC-01..SC-12)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "hard_gate_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/submission-model.json"
+      ],
+      "formula": "count(G0..G8); G0 prerequisite plus G1-G8 implementation gates",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union(area(cleared existing + approved proposed footprints))",
+      "confidence": "unknown",
+      "assumptions": [
+        "submitted footprints are concept components only"
+      ],
+      "reason": "No cleared existing-building survey or approved development layout; concept component area is not a development capacity metric."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "approved total floor area / official planning site area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official planning boundary, capacity, land-use and FAR controls are unavailable."
+    },
+    "project_cost": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json",
+        "visual/assets/submission-model.json"
+      ],
+      "formula": "quantity × unit rate + OPEX + monitoring + insurance/review + removal/return",
+      "confidence": "unknown",
+      "assumptions": [
+        "G7 not passed"
+      ],
+      "reason": "Quantities, funding, procurement, OPEX and receivers are unconfirmed; S/M/L is complexity only."
+    }
+  }
+}
