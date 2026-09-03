@@ -1,17 +1,24 @@
 {
   "fixtures_id": "jingzhang-diagram-seb-fixtures",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "consumes": {
     "spec": "seb-spec.json",
-    "spec_version": "0.3.0",
-    "node_source_of_record": "geometry/public_space.geojson",
-    "runner": "seb-tabletop-run.js"
+    "spec_version": "0.5.0",
+    "node_source_of_record": "../../geometry/constraints.geojson",
+    "runner": "seb-tabletop-run.js",
+    "baseline_version": "0.5.0"
   },
   "evidence_class": "methodology_demonstration",
   "contains_no_measurement_values": true,
-  "adopter_lexicon": ["志愿者", "社工", "网格员", "安全员", "辅导员"],
-  "disclaimer_zh": "本文件是桌面推演样例，不是测试记录。将京张运行图方案的十二张场景卡映射为 SEB 节点，检验联锁制四条硬接线是否可通过 SEB v0.3 判据的逐条校验。样例中没有任何参与者、任何现场、任何计数或比例；运行本文件不产生绩效指标数值。",
-  "disclaimer_en": "This file holds tabletop fixtures, not test records. The twelve scenario cards of the Jingzhang Diagram proposal are mapped to SEB nodes to test whether the four hardwired interlock constraints pass SEB v0.3 item-by-item. No participant, no site, no count and no ratio; running it produces no performance metric value.",
+  "adopter_lexicon": [
+    "志愿者",
+    "社工",
+    "网格员",
+    "安全员",
+    "辅导员"
+  ],
+  "disclaimer_zh": "本文件是桌面推演样例，不是测试记录。将京张运行图方案的 7 条代表性场景样例映射为 SEB 节点，检验联锁制硬接线是否可通过 SEB v0.5.0 判据的逐条校验。样例中没有任何参与者、任何现场、任何计数或比例；运行本文件不产生绩效指标数值。",
+  "disclaimer_en": "This file holds tabletop fixtures, not test records. Seven representative scenario fixtures of the Jingzhang Diagram proposal are mapped to SEB nodes to test whether the hardwired interlock constraints pass SEB v0.5.0 item-by-item. No participant, no site, no count and no ratio; running it produces no performance metric value.",
   "verdict_semantics": {
     "accept": "四个基准组件逐项通过，该样例可以进入下一步；不表示服务已达标。",
     "reject": "至少一个基准组件被违反，该样例在桌面阶段即被拒绝，理由逐条给出。"
@@ -31,7 +38,11 @@
         "human_handoff": "调度大厅值守人员接管人工登记与公示",
         "gate_id": "G0",
         "operating_mode": "资料核对与场景清单编制，不进行现场测试",
-        "responsible_role": "城市治理服务人员与社区代表"
+        "responsible_role": "城市治理服务人员与社区代表",
+        "funding_owner": {
+          "name": "运营维护与人工兜底预算主体（概念设计待核定）",
+          "status": "to_be_confirmed"
+        }
       },
       "measurement_declaration": null,
       "level_claim": {
@@ -42,7 +53,11 @@
         "accountable_operator": "城市治理服务人员与社区代表"
       },
       "decision": {
-        "risk_ids": ["R-03", "R-05", "R-08"],
+        "risk_ids": [
+          "R-03",
+          "R-05",
+          "R-08"
+        ],
         "stop_condition_triggered": false,
         "action_taken": "proceed"
       },
@@ -63,7 +78,11 @@
         "human_handoff": "社区健康服务专员接管并安排医生面诊",
         "gate_id": "G1",
         "operating_mode": "可撤除构件安装与撤除演练，附维护卡与故障绕行方案",
-        "responsible_role": "社区健康服务专员与家庭医生"
+        "responsible_role": "社区健康服务专员与家庭医生",
+        "funding_owner": {
+          "name": "运营维护与人工兜底预算主体（概念设计待核定）",
+          "status": "to_be_confirmed"
+        }
       },
       "measurement_declaration": null,
       "level_claim": {
@@ -74,7 +93,11 @@
         "accountable_operator": "产品设计、安全与维护人员"
       },
       "decision": {
-        "risk_ids": ["R-01", "R-04", "R-08"],
+        "risk_ids": [
+          "R-01",
+          "R-04",
+          "R-08"
+        ],
         "stop_condition_triggered": false,
         "action_taken": "proceed"
       },
@@ -95,11 +118,20 @@
         "human_handoff": "工坊维护者接管安全指导与设备操作",
         "gate_id": "G2",
         "operating_mode": "封闭条件下成对测试，AI 辅助与人工操作交替进行",
-        "responsible_role": "工坊维护者与安全监督员"
+        "responsible_role": "工坊维护者与安全监督员",
+        "funding_owner": {
+          "name": "运营维护与人工兜底预算主体（概念设计待核定）",
+          "status": "to_be_confirmed"
+        }
       },
       "measurement_declaration": {
         "metric_id": "ai_off_service_equivalence_gap",
-        "denominator_categories_declared": ["completed", "withdrawn", "technical_fault", "non_completion_other"],
+        "denominator_categories_declared": [
+          "completed",
+          "withdrawn",
+          "technical_fault",
+          "non_completion_other"
+        ],
         "denominator_categories_excluded": []
       },
       "level_claim": {
@@ -110,7 +142,11 @@
         "accountable_operator": "工坊维护者与安全监督员"
       },
       "decision": {
-        "risk_ids": ["R-02", "R-07", "R-08"],
+        "risk_ids": [
+          "R-02",
+          "R-07",
+          "R-08"
+        ],
         "stop_condition_triggered": false,
         "action_taken": "proceed"
       },
@@ -131,7 +167,11 @@
         "human_handoff": "站点导览志愿者提供人工讲解",
         "gate_id": "G1",
         "operating_mode": "可逆原型安装与测试",
-        "responsible_role": "文化遗产导览志愿者"
+        "responsible_role": "文化遗产导览志愿者",
+        "funding_owner": {
+          "name": "运营维护与人工兜底预算主体（概念设计待核定）",
+          "status": "to_be_confirmed"
+        }
       },
       "measurement_declaration": null,
       "level_claim": {
@@ -142,12 +182,17 @@
         "accountable_operator": "导览志愿者团队"
       },
       "decision": {
-        "risk_ids": ["R-03", "R-08"],
+        "risk_ids": [
+          "R-03",
+          "R-08"
+        ],
         "stop_condition_triggered": false,
         "action_taken": "proceed"
       },
       "expected_verdict": "reject",
-      "expected_reasons": ["NODE_CONSTRAINT_VIOLATION:ai_off_path"]
+      "expected_reasons": [
+        "NODE_CONSTRAINT_VIOLATION:ai_off_path"
+      ]
     },
     {
       "fixture_id": "JZ-N2",
@@ -163,7 +208,11 @@
         "human_handoff": "城市管理委员会",
         "gate_id": "G0",
         "operating_mode": "资料与许可阶段",
-        "responsible_role": "城市管理委员会"
+        "responsible_role": "城市管理委员会",
+        "funding_owner": {
+          "name": "运营维护与人工兜底预算主体（概念设计待核定）",
+          "status": "to_be_confirmed"
+        }
       },
       "measurement_declaration": null,
       "level_claim": {
@@ -174,12 +223,17 @@
         "accountable_operator": "城市管理委员会"
       },
       "decision": {
-        "risk_ids": ["R-03", "R-05"],
+        "risk_ids": [
+          "R-03",
+          "R-05"
+        ],
         "stop_condition_triggered": false,
         "action_taken": "proceed"
       },
       "expected_verdict": "reject",
-      "expected_reasons": ["NODE_CONSTRAINT_VIOLATION:human_handoff"]
+      "expected_reasons": [
+        "NODE_CONSTRAINT_VIOLATION:human_handoff"
+      ]
     },
     {
       "fixture_id": "JZ-N3",
@@ -195,12 +249,22 @@
         "human_handoff": "配送站值守人员接管人工配送",
         "gate_id": "G2",
         "operating_mode": "封闭成对测试",
-        "responsible_role": "配送运营人员与安全监督员"
+        "responsible_role": "配送运营人员与安全监督员",
+        "funding_owner": {
+          "name": "运营维护与人工兜底预算主体（概念设计待核定）",
+          "status": "to_be_confirmed"
+        }
       },
       "measurement_declaration": {
         "metric_id": "independent_task_completion_rate",
-        "denominator_categories_declared": ["completed", "withdrawn", "non_completion_other"],
-        "denominator_categories_excluded": ["technical_fault"]
+        "denominator_categories_declared": [
+          "completed",
+          "withdrawn",
+          "non_completion_other"
+        ],
+        "denominator_categories_excluded": [
+          "technical_fault"
+        ]
       },
       "level_claim": {
         "level_id": "L2",
@@ -210,12 +274,17 @@
         "accountable_operator": "配送运营人员"
       },
       "decision": {
-        "risk_ids": ["R-02", "R-07"],
+        "risk_ids": [
+          "R-02",
+          "R-07"
+        ],
         "stop_condition_triggered": false,
         "action_taken": "proceed"
       },
       "expected_verdict": "reject",
-      "expected_reasons": ["DENOMINATOR_SAMPLE_DROPPED:technical_fault"]
+      "expected_reasons": [
+        "DENOMINATOR_SAMPLE_DROPPED:technical_fault"
+      ]
     },
     {
       "fixture_id": "JZ-N4",
@@ -231,7 +300,11 @@
         "human_handoff": "随车安全员接管人工驾驶",
         "gate_id": "G2",
         "operating_mode": "封闭成对测试",
-        "responsible_role": "交通运营专员与安全监督员"
+        "responsible_role": "交通运营专员与安全监督员",
+        "funding_owner": {
+          "name": "运营维护与人工兜底预算主体（概念设计待核定）",
+          "status": "to_be_confirmed"
+        }
       },
       "measurement_declaration": null,
       "level_claim": {
@@ -242,13 +315,28 @@
         "accountable_operator": "交通运营专员"
       },
       "decision": {
-        "risk_ids": ["R-02", "R-07"],
+        "risk_ids": [
+          "R-02",
+          "R-07"
+        ],
         "stop_condition_triggered": true,
         "action_taken": "corrective_action_deadline",
         "resumed": false
       },
       "expected_verdict": "reject",
-      "expected_reasons": ["STOP_NOT_ENFORCED"]
+      "expected_reasons": [
+        "STOP_NOT_ENFORCED"
+      ]
     }
-  ]
+  ],
+  "expected_fixture_count": 7,
+  "expected_accept_count": 3,
+  "expected_reject_count": 4,
+  "adopter_lexicon_evidence": {
+    "志愿者": "大钟寺与原点社区青年志愿服务岗，现场佩戴袖章与工作证 / Youth volunteer service post at Dazhongsi and Origin Community",
+    "社工": "北下关与中关村街道社区服务站专职社工，工作日驻点办公 / Full-time social workers at Beixiaguan and Zhongguancun community service stations",
+    "网格员": "五道口与成府路片区网格责任岗，挂牌公示联系方式 / Grid managers for Wudaokou and Chengfu Road areas",
+    "安全员": "众智园试车线与清河滨河低速测试区专职巡检员 / Dedicated safety inspection officers along Qinghe river and Zhongzhi Park",
+    "辅导员": "清华园原点夜校常设市民数字化辅导员，定期开展线下答疑 / Permanent civic literacy tutors at Qinghuayuan Night School"
+  }
 }

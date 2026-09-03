@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0",
+  "title": "百年京张 AI 场景离线演练台账",
+  "summary": "用可复算的任务台账说明《京张运行图》10 个核心 AI 场景在离线合成演练中的真实读数，诚实披露恶劣天气能耗超限、历史 AR 审计缺口及边界越界拦截等不利读数。本文件为离线合成演练台账，非现场实测承诺。",
+  "status": "validated_offline_synthetic",
+  "method": "基于固定 seed (20260831) 的离线合成轨迹演练；不调用外部在线 API，不接入实体机器人，不采集个人隐私；全量任务支持本地确定性重放。",
+  "seed": 20260831,
+  "replan_p95_method": "nearest-rank percentile over tasks[].replan_seconds",
+  "task_count": 10,
+  "tasks": [
+    {
+      "task_id": "SIM-001",
+      "scenario_id": "ai-traffic-walkability",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 3.0,
+      "energy_used_kwh": 1.2,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-002",
+      "scenario_id": "ai-traffic-walkability",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 0.9,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-003",
+      "scenario_id": "robot-delivery-low-speed",
+      "outcome": "replanned_success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.5,
+      "energy_used_kwh": 1.8,
+      "replan_seconds": 5.8
+    },
+    {
+      "task_id": "SIM-004",
+      "scenario_id": "robot-delivery-low-speed",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 2.3,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-005",
+      "scenario_id": "enterprise-service-copilot",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 1.1,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-006",
+      "scenario_id": "enterprise-service-copilot",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 1.3,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-007",
+      "scenario_id": "ai-cultural-guide",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": false,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 0.8,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-008",
+      "scenario_id": "ai-cultural-guide",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 1.0,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-009",
+      "scenario_id": "public-safety-operations-review",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 1.5,
+      "energy_used_kwh": 0.5,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-010",
+      "scenario_id": "public-safety-operations-review",
+      "outcome": "failure",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 1.2,
+      "replan_seconds": 0.0
+    }
+  ],
+  "baselines": {
+    "urban_llm_harness": {
+      "status": "validated_offline_synthetic",
+      "claim_scope": "离线合成演练读数，非现场实测承诺",
+      "replayable": true,
+      "success_rate": 0.9,
+      "tool_schema_pass_rate": 1.0,
+      "energy_budget_violations": 1,
+      "audit_completeness": 0.9,
+      "replan_p95_seconds": 5.8,
+      "high_risk_intercept_rate": null,
+      "high_risk_metric_note": "not_applicable: 本任务清单 SIM-001~SIM-010 为常规慢行与运营调度场景（SIM-010 为噪音与合规受控拦截），未包含涉及生命安全的高风险特种拦截用例"
+    },
+    "ai_off_equivalent": {
+      "status": "validated_offline_synthetic",
+      "claim_scope": "AI 关闭后的人工兜底等价基准，用于说明系统在无 AI 介入时仍可保持基础通行与人工服务通道",
+      "replayable": true,
+      "success_rate": 0.8,
+      "note": "与 urban_llm_harness 是不同的评测口径，登记在独立基线名下。"
+    }
+  }
+}
