@@ -43,6 +43,18 @@ iteration: "v1.0"
 
 **未来城市形态与技术体系（agent.2）**：面向 AI 新质生产力，一带的空间供给重点从"写字楼"转向"实验场"：科研用地约 348.5 公顷 [metric:land_use_research_area_sqm]、概念建筑基底约 280.7 公顷 [metric:building_footprint_area_sqm]，以"森林式研发群落 + 开放实验街区"组合供给；小试中试、模型评测、机器人测试等功能要求地面层高、可改造、邻近测试动线，这决定了本方案在总体设计范围保留约 45.3 公顷留白用地作为弹性 [metric:land_use_reserved_area_sqm]。AI 城市形态强调算力-数据-场景三要素的空间邻近：算力服务枢纽落位北段，数据治理沙盘落位中段公共场馆，场景测试落位南段与东翼，以慢行环线串联形成"十五分钟 AI 创新圈"。
 
+**区域创新协同矩阵（responding to 公告 1.5.1.1 与评审维度"区域协同性"）**：一带不是孤立的增长极，其创新功能需在北京创新格局中错位协同。以下矩阵按"协同对象—对方核心功能—一带的协同角色—协同接口（空间/机制）"四列组织，全部为概念建议，供专业团队与区域规划深化 [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] [source:DATA-SRC-AGENT-TASKBOOK-20260518]：
+
+| 协同对象 | 对方核心功能 | 智涌京张的协同角色 | 协同接口（空间/机制，概念建议） |
+|---|---|---|---|
+| 北纬社区（海淀北部AI社区群） | 大模型企业与算力集聚 | 中试加速与场景验证伙伴：北段众智园的测试场与评测平台承接北部的模型验证需求 | 京藏高速—北五环通道；全栈模型评测开放平台（SC-03）向北部企业开放登记 |
+| 未来科学城（昌平） | 能源央企研发与重大科技基础设施 | "央企研发 × AI 应用"转化接口：一带提供 AI+能源、AI+制造的场景沙盒 | 轨道 13 号线—8 号线联络概念；场景开放月（夏季活动）定向邀请 |
+| 怀柔科学城 | 大科学装置与基础研究 | 基础研究→产业化接力站：AI 原点社区承接怀柔成果的孵化与社区化落地 | 学院路知识走廊；开发者大会（春季）设"科学城专场" |
+| 经开区（亦庄） | 高端制造与机器人产业集群 | 机器人标准与测试互认：众智园测试场（SC-11）与亦庄产线共享测试工况库 | 京津走廊概念接口；机器人标准化测试场联合运营机制设想 |
+| 京津冀（区域尺度） | 区域产业梯度与场景腹地 | 场景输出与治理经验外溢：一带的场景卡、导则与荣誉体系可复制输出 | 年度活动体系的巡回分场；开源星光墙设"区域贡献"板块 |
+
+协同机制总结：一带对内以"研发—孵化—场景—服务"闭环组织三区两翼，对外以上述五个接口嵌入北京创新网络——向北承接算力与大模型，向东对接智能制造，向北偏东衔接基础研究，向南联动消费门户与区域腹地。该矩阵回应评审维度中"与北纬社区、未来科学城、怀柔科学城、经开区及京津冀的创新协同"要求，矩阵内全部接口均为概念建议，不构成任何跨区规划承诺 [source:DATA-SRC-AGENT-TASKBOOK-20260518]。
+
 ## 总体设计范围城市更新与控规深度城市设计
 
 总体设计范围按控制性详细规划的城市设计深度组织 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:overall_spatial_structure]。**空间结构**为"一脉一环三区两翼"：一脉即南北贯通的京张遗址公园智脉（约 130 米宽概念绿带，含京张铁路遗址线与绿道）[data:geometry/roads.geojson#SLW-GW-1]；一环即串联三区两翼的 AI 生活体验环骑行环线 [data:geometry/roads.geojson#SLW-CY-1]；三区即三处重点区域；两翼即中关村科技服务翼与小月河场景赋能翼。结构要素全部落在可复算图层上：用地分区以道路带、公园带为切割线对边界做无缝划分 [data:geometry/land_use.geojson#LU-0701-001]，道路系统区分现状快速路/轨道（概念线位）与设计次支路网 [data:geometry/roads.geojson#RD-NS-01]，分期分区以近中远三期滚动 [data:geometry/phasing.geojson#PHS-001]。
@@ -61,7 +73,7 @@ iteration: "v1.0"
 
 **A 众智园AI自主创新加速区**（临时边界约 192.9 公顷 [metric:key_area_zhongzhiyuan_sqm]，公告约 192.1 公顷）。定位为 AI 全栈自主创新体系与 AI 治理全球话语权的承载区（对应 agent.2）。空间结构为"森林式研发群落 + 全栈开源体验馆穹顶"：西侧为连续科研组团 [data:geometry/land_use.geojson#LU-0802-001]，中部嵌入公园绿带缓解研发街区压迫感，东侧保留留白用地 [data:geometry/land_use.geojson#LU-16-001] 以弹性吸纳大模型、具身智能等新型研发设施的不确定需求。建筑更新以新建与既有园区改造并行为主，不涉及成片拆除判断。交通慢行强调研发组团间的绿道连接与智轨测试线接驳；公共空间以"众智穹顶"前区广场组织学术交流 [data:geometry/public_space.geojson#SCN-003]。AI 场景包括全栈模型评测开放平台（测试验证场景 SC-03）与机器人标准化测试场（SC-11）。实施风险：留白用地用途、研发设施的环境与安全评估均需官方程序确认。
 
-**B 北京AI原点社区**（临时边界约 104.3 公顷 [metric:key_area_origin_sqm]，公告约 104.3 公顷）。定位为世界级 AI 创新生态与全球开发者朝圣原点（对应 agent.2 与 agent.4）。空间结构为"京张智脉核心 + 人字原点朝圣广场 + 社区渐进更新"：京张公园带在此最宽，与"人字原点"广场共同构成一带的精神锚点 [data:geometry/public_space.geojson#SCN-001]；西侧以居住社区渐进更新为主，配套人才公寓与社区服务设施 [data:geometry/land_use.geojson#LU-0701-001]；东侧布局创新组团与文化设施。近期实施范围即以本区与公园带为主体（近期约 199.2 公顷 [metric:phasing_phase_1_area_sqm]）[data:geometry/phasing.geojson#PHS-001]。交通慢行：骑行环线在此设枢纽站，轨道接驳线直连 13 号线站点 [data:geometry/roads.geojson#SLW-TR-1]。AI 场景包括 AI 原点开发者之家结对编程沙盒（SC-02）、AR 时光列车（SC-01）、社区 AI 健康小屋（SC-06）。实施风险：现状社区更新的拆改留比例需权属与现状建筑底数确认，本方案不给出拆除结论。
+**B 北京AI原点社区**（临时边界约 104.3 公顷 [metric:key_area_origin_sqm]，公告约 104.3 公顷）。定位为世界级 AI 创新生态与全球开发者朝圣原点（对应 agent.2 与 agent.4）。空间结构为"京张智脉核心 + 人字原点朝圣广场 + 社区渐进更新"：京张公园带在此最宽，与"人字原点"广场共同构成一带的精神锚点 [data:geometry/public_space.geojson#SCN-001]；西侧以居住社区渐进更新为主，配套人才公寓与社区服务设施 [data:geometry/land_use.geojson#LU-0701-001]；东侧布局创新组团与文化设施。近期实施范围即以本区与公园带为主体（近期约 216.3 公顷 [metric:phasing_phase_1_area_sqm]）[data:geometry/phasing.geojson#PHS-001]。交通慢行：骑行环线在此设枢纽站，轨道接驳线直连 13 号线站点 [data:geometry/roads.geojson#SLW-TR-1]。AI 场景包括 AI 原点开发者之家结对编程沙盒（SC-02）、AR 时光列车（SC-01）、社区 AI 健康小屋（SC-06）。实施风险：现状社区更新的拆改留比例需权属与现状建筑底数确认，本方案不给出拆除结论。
 
 **C 大钟寺AI产业聚集区**（临时边界约 72.0 公顷 [metric:key_area_dazhongsi_sqm]，公告约 72.0 公顷）。定位为智能原生新业态与西直门消费门户（对应 agent.4）。空间结构为"智能原生消费街 + 钟鸣智响剧场"：以大钟寺商圈为载体植入智能原生商业与机器人服务场景，商业服务业用地在该区集中 [data:geometry/land_use.geojson#LU-05-001]；利用大钟寺（觉生寺）历史文化资源组织"钟鸣智响"文化事件空间，但严格尊重文保控制要求 [data:geometry/constraints.geojson#CST-HER-001] [data:geometry/public_space.geojson#SCN-002]。交通慢行：南门户广场组织西直门方向人流集散，慢行街周末步行优先（概念）。AI 场景包括智能原生消费街（测试运行 SC-09）与无人配送示范街区（SC-07）。实施风险：文保缓冲范围与交通安全约束需专项论证，商圈改造需与权属主体协商。
 
@@ -116,7 +128,7 @@ iteration: "v1.0"
 
 **概念更新项目清单（12 项）** [depth:renewal_project_list] [metric:renewal_project_count]——(1) 京张遗址公园活力带贯通工程（公园带全线，近期启动）；(2) 人字原点朝圣广场（原点社区核心，近期）；(3) AI 原点开发者之家（原点社区，近期）；(4) 社区渐进更新与人才公寓先行区（原点社区西翼，近期至中期）；(5) 众智穹顶全栈开源体验馆（众智园，中期）；(6) 全栈模型评测开放平台（众智园，中期）；(7) 机器人标准化测试场（众智园东翼，中期）；(8) 留白用地弹性储备（众智园东翼，中期至远期）；(9) 大钟寺智能原生消费街（大钟寺，近期至中期）；(10) 无人配送示范街区（大钟寺，中期）；(11) 钟鸣智响智能原生剧场（大钟寺，中期至远期）；(12) 小月河场景赋能翼绿廊与自然课堂（东翼，近期至中期）。所有项目均为概念建议，实施主体、资金与权属安排需另行论证，不构成投资或开发承诺。
 
-**分期实施** [depth:phasing_implementation] [data:geometry/phasing.geojson#PHS-002]：近期（2026–2028）以原点社区与公园带为主体约 199.2 公顷 [metric:phasing_phase_1_area_sqm]，完成公园带贯通、朝圣广场与开发者之家先导项目；中期（2028–2030）以轨道站点一体化与两翼拓展为主体约 235.8 公顷 [metric:phasing_phase_2_area_sqm]，落位评测平台、测试场与消费街；远期（2030 之后）全带成势约 706.3 公顷 [metric:phasing_phase_3_area_sqm]，包括留白用地弹性释放。分期为概念时序建议 [data:geometry/phasing.geojson#PHS-003]，不代表投资安排或政府实施计划。
+**分期实施** [depth:phasing_implementation] [data:geometry/phasing.geojson#PHS-002]：近期（2026–2028）以原点社区与公园带为主体约 216.3 公顷 [metric:phasing_phase_1_area_sqm]，完成公园带贯通、朝圣广场与开发者之家先导项目；中期（2028–2030）以轨道站点一体化与两翼拓展为主体约 114.8 公顷 [metric:phasing_phase_2_area_sqm]，落位评测平台、测试场与消费街；远期（2030 之后）全带成势约 810.2 公顷 [metric:phasing_phase_3_area_sqm]，包括留白用地弹性释放。分期为概念时序建议 [data:geometry/phasing.geojson#PHS-003]，不代表投资安排或政府实施计划。
 
 **全球 AI 创新活动体系与长期运营（agent.6）**：年度活动体系按"季季有主题"设计——春季"智涌开发者大会"（开源社区年度集会，锚定人字原点广场）、夏季"AI+ 场景开放月"（东西两翼场景集中开放与公众体验）、秋季"全栈自主创新峰会"（众智园，链接全球治理议题）、冬季"智能原生文化节"（大钟寺，钟鸣智响剧场）。活动品牌与一带视觉识别同源；开发者社区运营采取"常设据点 + 线上社区 + 场景开放"三层机制；场景开放运营以统一的场景清单、脱敏数据接口与人工复核规则为前提；公共体验路线串联三大地标与公园带叙事节点，配套多语种导览（SC-10）。国际传播与招引转化：以活动体系沉淀全球开发者名录（自愿登记）、以孵化网络承接项目落地意向、以专业招商机构完成企业转化。全部活动与运营安排均为概念机制设计，需运营主体确认后实施 [source:DATA-SRC-AGENT-TASKBOOK-20260518]。
 
@@ -145,9 +157,9 @@ iteration: "v1.0"
 | key_area_zhongzhiyuan_sqm | 约 192.9 公顷 [metric:key_area_zhongzhiyuan_sqm] | 众智园加速区（公告 192.1 公顷） |
 | key_area_origin_sqm | 约 104.3 公顷 [metric:key_area_origin_sqm] | AI 原点社区（公告 104.3 公顷） |
 | key_area_dazhongsi_sqm | 约 72.0 公顷 [metric:key_area_dazhongsi_sqm] | 大钟寺聚集区（公告 72.0 公顷） |
-| phasing_phase_1_area_sqm | 约 199.2 公顷 [metric:phasing_phase_1_area_sqm] | 近期分区面积 |
-| phasing_phase_2_area_sqm | 约 235.8 公顷 [metric:phasing_phase_2_area_sqm] | 中期分区面积 |
-| phasing_phase_3_area_sqm | 约 706.3 公顷 [metric:phasing_phase_3_area_sqm] | 远期分区面积 |
+| phasing_phase_1_area_sqm | 约 216.3 公顷 [metric:phasing_phase_1_area_sqm] | 近期分区面积 |
+| phasing_phase_2_area_sqm | 约 114.8 公顷 [metric:phasing_phase_2_area_sqm] | 中期分区面积 |
+| phasing_phase_3_area_sqm | 约 810.2 公顷 [metric:phasing_phase_3_area_sqm] | 远期分区面积 |
 | ai_scenario_node_count | 12 [metric:ai_scenario_node_count] | SCENARIO_NODE 要素数量 |
 | renewal_project_count | 12 [metric:renewal_project_count] | 概念更新项目数量 |
 
