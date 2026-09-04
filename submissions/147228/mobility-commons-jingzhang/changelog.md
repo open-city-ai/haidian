@@ -1,17 +1,59 @@
 # 方案迭代记录
 
-## v1.9 - 2026-08-12
+## v2.6 - 2026-08-22
 
-- Added a bilingual responsibility-transfer board and a machine-readable contract for seven mobility resource units and eight service groups.
-- Added explicit denominators, non-AI equivalents, refusal conditions and event writeback fields for route/curb, transit, enterprise, resident, maintenance, data and equity interfaces.
-- Added an offline fail-closed checker; it reports 8/8 contract checks, real transfers 0, real authorization 0 and field status HOLD.
-- Kept all resource quantities, staffing, capacity, public acceptance and operating outcomes unknown until dated local evidence exists.
+- 新增可选 SEB v0.5.0 字段对照，把三处空间接口的普通服务、人工接管、P0/P1/P2 公共基线阶段、运行模式和责任角色接到 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode`、`responsible_role`。
+- 新增中英双语图板、source-of-record 证据回读和 5 个负向 fixture；3/3 正例与 5/5 负例通过。
+- 明确这是 component-level opt-in，不新增仓库硬门、正式评分项、服务覆盖或现场成效主张；保持 HOLD、0 授权、0 现场观察、unknown 基线和无官方分数主张。
 
-## v1.8 - 2026-08-12
+## v2.5 - 2026-08-22
 
-- Restored the exact concise evidence summaries from the historical 69/100 package; the current template-expanded matrix wording had changed the Review Agent input even though the proposal and figures were otherwise restored.
-- Put one candidate Dazhongsi-to-AI-Origin trip home on the bilingual review cover, with five visible human/public-transport fallback steps.
-- Separated package-replay evidence (4/4 requests, 6/6 checks and 5/5 rollback steps) from field HOLD items; the new cover makes no surveyed-route, staffing, safety, public-acceptance or operating-performance claim.
+- 重做中文离线视觉页，使 v2.2–v2.4 的连续性回执、空间选项、接口原型、公共基线、责任移交与发布链进入同一条评审阅读路径，并保留五张主图、指标状态和 provisional/HOLD 边界。
+- 在英文视觉页补齐对应双语图板与证据边界说明；所有链接仍指向包内本地 JSON、runner、GeoJSON 或图件，不加载远程资源。
+- 本轮只改善可读性和审阅导航，不新增现场事实、授权、容量、权属、许可、绩效或官方评分主张。
+
+## v2.4 - 2026-08-21
+
+- Added a bilingual system-level spatial-options board comparing four alternatives: unmanaged peak, ground-first multimodal, air-first feeder and extreme-weather ground fallback.
+- Added five review scales from `1:5000` to `1:50`, five public-rights rows and five hard-gate results; S1 advances only to professional design review while the package remains `HOLD`.
+- Added a deterministic runner with one positive control and six fail-closed negative fixtures; no numeric construction dimensions, authorization, field claims or performance results were added.
+
+## v2.3 - 2026-08-21
+
+- Added three bilingual spatial interface prototypes: Zhongzhiyuan arrival/loading forecourt, AI Origin care/human-continuity loop, and Dazhongsi rail-to-curb transfer porch.
+- Added a `1:500` concept to `1:50` handoff board and a machine-readable contract with ordinary-service-first, named-owner, dated-evidence and stop/return gates.
+- Added positive and fail-closed negative fixtures; kept numeric dimensions null, authorization and field observations at 0, performance null and decision HOLD.
+
+## v2.2 - 2026-08-21
+
+- Added a fail-closed first-168-hour receipt and first-12-week delivery contract with proposed receivers, evidence, stop conditions and ordinary fallbacks.
+- Added a seven-dimension reviewer evidence map and a bilingual release-chain board connecting the three spatial interfaces to the HOLD/repair/withdrawal decision.
+- Added a deterministic supplemental runner with a positive control plus four negative fixtures; it proves contract completeness only and does not create field authorization, baseline or performance.
+
+## v2.0 - 2026-08-21
+
+- Closed the responsibility-transfer coverage gap identified in the previous Mobility review: seven resource units now declare explicit mappings to eight affected groups.
+- Hardened the supplemental contract audit against duplicate, empty, unknown and unmapped group IDs, and added four deterministic negative fixtures.
+- Kept this audit separate from the four formal self-check gates; a PASS proves contract completeness only, not field coverage, authorization, user observation or transport performance.
+
+## v2.1 - 2026-08-21
+
+- Added three key-area public-baseline prototypes with explicit BASE, BOOST, BLACKOUT and BEQUEST states.
+- Added a five-stage P0–P4 sequence and offline negative-fixture runner so the package records what ordinary mobility and maintainable public assets remain after AI withdrawal.
+- Kept every state design-only: authorization and field observations remain zero, baseline unknown, performance null and decision HOLD.
+
+## v1.9 - 2026-08-21
+
+- Added a bilingual four-window continuity receipt for weekday arrival, daily access, evening return, and outage/weather fallback.
+- Added four handoff seams, twelve receipt fields, four positive controls and six negative HOLD fixtures with an offline regression runner.
+- Kept ordinary rail/bus/human/paper service first; AI remains limited to grouped demand, conflict explanation and rollback preparation.
+- Kept authorization and field observations at 0, local baseline unknown, result `not_run`, and performance results null.
+
+## v1.8.1 - 2026-08-21
+
+- Added a bilingual route-service atlas for the three key areas, with spatial interfaces, denominators, non-AI equivalents, refusal rules and fallbacks.
+- Added an offline checker for the three-node chain, five gates and field-status boundary; it keeps authorization and real observations at zero.
+- Kept the atlas as design-only evidence and did not turn provisional geometry, synthetic inputs or role labels into current operations.
 
 ## v1.7 - 2026-08-09
 

@@ -1,0 +1,76 @@
+{
+  "schema_version": "mobility-seb-crosswalk-evidence-v1",
+  "crosswalk_id": "MOBILITY-SEB-CROSSWALK-01",
+  "source_of_record": "visual/assets/mobility-route-service-atlas.json",
+  "nodes_checked": 3,
+  "role_fields_checked": 6,
+  "positive_controls": 3,
+  "negative_controls": 5,
+  "negative_controls_rejected": 5,
+  "boundary": {
+    "decision": "HOLD",
+    "field_state": "not_authorized_not_run",
+    "operational_status": "not_authorized_not_run",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "performance_results": null,
+    "public_rank_claim": false,
+    "formal_score_claim": false
+  },
+  "claims": {
+    "service_equivalence": false,
+    "adoption": false,
+    "field_authorized": false,
+    "public_rank": false,
+    "official_score": false
+  },
+  "fixture_results": [
+    {
+      "id": "NEG-01",
+      "mutation": "ai_off_path_dependency",
+      "expected_fail_code": "AI_OFF_PATH_DEPENDENCY",
+      "rejected": true,
+      "errors": [
+        "MS-01-ZHONGZHIYUAN:AI_OFF_PATH_DEPENDENCY"
+      ]
+    },
+    {
+      "id": "NEG-02",
+      "mutation": "human_handoff_role_missing",
+      "expected_fail_code": "HUMAN_HANDOFF_ROLE_MISSING",
+      "rejected": true,
+      "errors": [
+        "MS-02-AI-ORIGIN:HUMAN_HANDOFF_ROLE_MISSING"
+      ]
+    },
+    {
+      "id": "NEG-03",
+      "mutation": "gate_id_invalid",
+      "expected_fail_code": "GATE_ID_INVALID",
+      "rejected": true,
+      "errors": [
+        "MS-03-DAZHONGSI:GATE_SOURCE_ALIGNMENT_MISMATCH",
+        "MS-03-DAZHONGSI:GATE_ID_INVALID"
+      ]
+    },
+    {
+      "id": "NEG-04",
+      "mutation": "operating_mode_missing",
+      "expected_fail_code": "OPERATING_MODE_MISSING",
+      "rejected": true,
+      "errors": [
+        "MS-01-ZHONGZHIYUAN:OPERATING_MODE_MISSING"
+      ]
+    },
+    {
+      "id": "NEG-05",
+      "mutation": "source_alignment_changed",
+      "expected_fail_code": "SOURCE_ALIGNMENT_MISMATCH",
+      "rejected": true,
+      "errors": [
+        "MS-02-AI-ORIGIN:SOURCE_ALIGNMENT_MISMATCH"
+      ]
+    }
+  ]
+}

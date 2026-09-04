@@ -6,10 +6,10 @@ title: "Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating
 author_github: "147228"
 language: "en"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "A time-windowed curb ledger brings metro, bus, bicycle, walking/accessibility, cars, parking and loading into one auditable system, while external commuting, people flow and multimodal simulation remain explicit; future air mobility is only a conditional, reversible, ground-first experiment."
+summary: "A time-windowed curb ledger brings metro, bus, bicycle, walking/accessibility, cars, parking and loading into one auditable system, while external commuting, people flow and multimodal simulation remain explicit. v2.5 compresses the continuity receipt, spatial options, three interfaces, public baseline, responsibility transfer and release chain into one bilingual reviewer path. Future air mobility remains only a conditional, reversible, ground-first experiment."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.8"
+iteration: "v2.5"
 ---
 
 # Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating System
@@ -18,13 +18,9 @@ iteration: "v1.8"
 
 This is a new independent submission package. It does not modify the existing first-place project. The proposal uses one time-windowed curb ledger, two aggregated demand registers, three connection types, four service levels and five verification gates. Enterprise data is submitted as grouped time windows, not personal traces. Resident needs cover school, care, health, daily shopping, night return and accessibility. Metro and bus remain the structural backbone; bicycle and walking/accessibility provide the first/last mile; cars are managed for necessary trips, parking, loading, charging and emergency access; shared shuttles and AI recommendations are reversible feeder services. External commuting is kept in the OD boundary, and future air mobility is only a conditional experiment. All geometry remains provisional until official boundaries, right-of-way, traffic counts, ownership and field audits are available.
 
-## One-Page Executive Brief: Accept the Dazhongsi–AI Origin Door-to-Door Chain Before Expanding Shared Feeders
+## One-Page Executive Brief: Accept One Door-to-Door Chain Before Expanding Shared Feeders
 
-The review begins with one person's trip home. They transfer at Dazhongsi and continue toward the AI Origin Community by a walking, wheelchair-accessible and bus-priority route. If an outage, rain or snow, a curb conflict or a missed connection interrupts the trip, a member of staff must be able to hand them back to bus service, human assistance or a paper/telephone entry. This revision places that candidate service relationship on the review cover: **a Dazhongsi rail/curb transfer candidate → a continuous walking, wheelchair and bus-priority route → a human-service-desk candidate in the AI Origin Community**. Neither interface nor the route between them has been surveyed. Entrances, distance, gradients, headways, right-of-way, field demand and staffing remain `unknown`; exact locations require official geometry, a field walk and a confirmed responsible operator.
-
-The relationship chain does only five things: **choose a public/accessibility or human route → request one mobility service → trigger human or rail/bus takeover when a transfer is missed, the network is offline, weather turns bad or a curb conflict occurs → freeze the booking and exit when the state is unsafe or unreachable → let an independent reviewer replay the evidence and decide whether to repair, expand or withdraw**. It remains a conceptual design and makes no operational claim. The current M-09 is only a local, offline, no-personal-data tabletop replay of four synthetic requests; `performance_results=null` and `operational_status=not_authorized_not_run`.
-
-![Review cover: the Dazhongsi–AI Origin door-to-door candidate chain, five-step human fallback and evidence boundary](assets/figures/site-overview.en.png)
+An ordinary person is not a flow point in a model. At each step—leaving, transferring, encountering disruption, asking for help and returning home—they need an understandable choice. The first reversible pilot accepts one minimum chain: **choose a public/accessibility or human route → request one mobility service → trigger human or rail/bus takeover when a transfer is missed, the network is offline, weather turns bad or a curb conflict occurs → freeze the booking and exit when the state is unsafe or unreachable → let an independent reviewer replay the evidence and decide whether to repair, expand or withdraw**. This is not an operational claim. The current M-09 is only a local, offline, no-personal-data tabletop replay of four synthetic requests; `performance_results=null` and `operational_status=not_authorized_not_run`.
 
 | Step | Space/service visible to an ordinary person | Evidence retained | Fail-closed action |
 | --- | --- | --- | --- |
@@ -34,15 +30,17 @@ The relationship chain does only five things: **choose a public/accessibility or
 | 4. Exit | Signage, human desk and paper/phone complaint route allow rerouting, getting home or cancelling | Cancellation reason, alternative route, unresolved item and `not_authorized_not_run` state | Do not expand or report success when fire, accessibility, privacy or safety gates fail |
 | 5. Replay | An independent reviewer replays one door-to-door chain and compares continue, repair or withdraw | Minimal log, grouped result, complaint-closure evidence, version and review decision | Return to P0 investigation and human service when evidence is missing or the slowest group worsens |
 
-This table connects the design boards, curb ledger, M-09 fallback tabletop and P0/P1/P2 phasing to one acceptance entry point. **The package proves** that 4/4 synthetic requests retain a human/public-transport fallback, 6/6 deterministic checks pass and 5/5 rollback steps can be replayed. **The field remains on HOLD** for entrance and route continuity, gradients and crossings, real demand, staffing, public acceptance, safety and service performance. If any item lacks a dated field record and a responsible person, the proposal stays at P0; tabletop PASS is not permission to open.
+This table connects the design boards, curb ledger, M-09 fallback tabletop and P0/P1/P2 phasing to one acceptance entry point. PASS for four synthetic requests proves only that the state machine and rollback logic can be replayed; it does not prove real demand, accessibility performance, staffing, public acceptance or safety.
 
-### Responsibility transfer and public coverage contract | Make the burden visible
+### First 168 hours and first 12 weeks: turn “can this proceed?” into an exit receipt
 
-A mobility service can enter pilot discussion only when its responsibility, resources and refusal conditions are readable together. The new `visual/assets/mobility-responsibility-transfer.json` defines seven resource units covering route and curb space, rail and bus capacity, enterprise booking, resident daily access, field maintenance, data and privacy, and public equity. Each unit names a recipient role, a non-AI equivalent, at least three denominators, required evidence, a refusal condition and a writeback action. The denominators are survey tasks rather than local measurements; real transfers, real authorization and the field baseline remain 0 or `unknown`.
+High-scoring packages often compress a vision into a delivery chain that a reviewer can interrogate one step at a time. This version adds two time receipts, while keeping them explicitly as design contracts rather than completed work: `visual/assets/mobility-first-168h.json` binds 0–24, 24–72, 72–120, and 120–168 hours to the ordinary route, the three interfaces, failure tabletop, and independent review; `visual/assets/mobility-first-12-weeks.json` connects W01–02 boundary and consent, W03–04 route audit, W05–07 ordinary-service parity, W08–09 failure tabletop, W10–11 professional review, and W12 HOLD/repair/withdrawal.
 
-The eight coverage groups are enterprise employees, residents, carers or children, wheelchair and assistive-device users, night-shift workers, visitors, logistics and maintenance workers, and emergency responders. Evidence for `MRT-01` through `MRT-07` must retain acceptance or refusal, the human fallback, the responsible role, the evidence version and the next decision. An overall average, a success-only log or treating an AI recommendation as public service cannot pass the coverage review. The offline checker `node visual/assets/run-mobility-responsibility-transfer.js --json` checks contract completeness and fail-closed logic only; it creates no field result.
+Every window states four things: **who receives the handoff, what evidence is retained, what stops the work, and which ordinary path remains after the stop**. The “12 weeks” is therefore not an operating promise, and an offline replay is not field performance; authorization, field observation, and the local baseline remain zero or `unknown`. The default output of the first 168 hours is `HOLD`, a request for evidence, repair, or withdrawal—not service opening. The bilingual overview is `assets/figures/mobility-release-chain.svg` and `.en.svg`.
 
-![Mobility responsibility transfer: seven resource units, eight groups and refusal writeback](assets/figures/responsibility-transfer-board.en.svg)
+![First 168 hours to first 12 weeks: mobility delivery chain and exit conditions](assets/figures/mobility-release-chain.en.svg)
+
+`visual/assets/mobility-release-evidence-map.json` binds seven review questions—ordinary-person journey, three spatial interfaces, delivery and maintenance, source boundary, governance, reversibility, and reviewer navigation—to concrete files; every dimension keeps an empty `field_claims` list. A reviewer can start at one board and follow the same path back to the JSON, drawings, assumptions, and negative fixtures, without mistaking “many files” for “already operating.”
 
 ## Design Basis and Source List
 
@@ -96,7 +94,77 @@ The first intervention is reversible: signs, wayfinding, rain shelters, seats, b
 
 Zhongzhiyuan tests enterprise arrival, shuttle consolidation and loading. The AI Origin Community tests daily resident access, care and a genuinely equivalent human route. Dazhongsi tests rail transfer, bicycle parking, loading and event-day public-space management. Each area has an accountable enterprise or community operator, a transport reviewer and a maintenance owner; no partner, permit or existing operation is claimed [metric:key_area_count] [depth:three_key_area_detailed_design].
 
+The responsibility-transfer table maps seven resource units to eight affected groups and checks a named receiver, ordinary equivalent, refusal condition and write-back field for each unit. `run-mobility-responsibility-transfer.js` is a supplemental contract audit, not one of the four formal self-check gates; it additionally rejects duplicate, empty, unknown or unmapped groups. `test-mobility-responsibility-transfer.js` replays all four negative fixtures. A pass proves only that the audit contract is complete; it proves no field coverage, authorization, user observation or transport performance [data:visual/assets/mobility-responsibility-transfer.json] [data:visual/assets/run-mobility-responsibility-transfer.js] [data:visual/assets/test-mobility-responsibility-transfer.js].
+
 The first pilot is a small morning and evening window in Zhongzhiyuan, an accessible daily-route comparison in the Origin Community, and a rail/curb separation rehearsal at Dazhongsi. Enterprise bookings cannot become permanent community bans. Shared vehicles cannot occupy a fire route, accessible path or emergency corridor.
+
+### Readback order for the three interfaces
+
+The three key areas share one candidate service route, while each receives a different responsibility. Zhongzhiyuan first checks enterprise arrival and loading denominators. The AI Origin Community first checks grouped daily services and an equivalent accessible route. Dazhongsi first checks headways, crossings and curb observation windows. Each interface states a refusal rule and a human fallback. Missing field records keep the package at `HOLD` [data:visual/assets/mobility-route-service-atlas.json] [depth:three_key_area_detailed_design].
+
+| Interface | Field denominators | Non-AI equivalent | Action when evidence is missing |
+| --- | --- | --- | --- |
+| Zhongzhiyuan arrival and loading | arrival attempts, available curb minutes, protected fire/access minutes | paper register, staffed marshal, public transport | refuse booking, freeze and return to staffed transit |
+| AI Origin daily access | grouped attempts, continuous route segments, staffed service windows | walk-in, telephone, paper, public transport | disable recommendation, keep the staffed route and return to P0 |
+| Dazhongsi rail transfer | headways, transfer observations, crossing windows, event-day curb minutes | timetable, staffed wayfinding, public crossing information | remove feeder demand, preserve the public route and dispatch staff |
+
+This is a design-interface atlas, not a current map. It places the three key areas, service groups, denominators, refusal rules and fallbacks on one review surface. Real route observations, responsibility handoffs and authorization remain zero until official geometry and field audits are available [data:visual/assets/mobility-route-service-atlas.json].
+
+![Three key-area mobility interfaces, denominators and human fallbacks](assets/figures/mobility-route-service-atlas.en.svg)
+
+### Three spatial interface prototypes: from “a route exists” to “enter, hand over, and withdraw”
+
+The route ledger answers where a service passes, but a reviewer also needs to see how a person enters, who receives a failure, and where the service returns. This revision therefore gives each key area one spatial interface prototype for professional deepening: Zhongzhiyuan is an **arrival and loading forecourt**, the AI Origin Community is a **care and human-continuity loop**, and Dazhongsi is a **rail-to-curb transfer porch**. `1:500` and `1:50` are review-level labels, not construction dimensions. The board describes only the relationship between the public route, staffed node, curb window, receipt and stop action [data:visual/assets/mobility-interface-prototypes.json] [depth:three_key_area_detailed_design].
+
+| Prototype | Ordinary service first | AI is limited to | Stop when evidence is missing |
+| --- | --- | --- | --- |
+| Zhongzhiyuan arrival and loading forecourt | public transport, walk-in, staffed wayfinding, paper register | explain grouped time-window conflicts | refuse booking when no ordinary equivalent, a fire/access conflict or receiver is missing |
+| AI Origin care and human-continuity loop | walk-in, telephone, paper, public transport, staffed service | group service windows and prepare fallback options | disable recommendations when basic access requires an app, the accessible route breaks or privacy is unclear |
+| Dazhongsi rail-to-curb transfer porch | rail, bus, public crossing, staffed wayfinding, bike transfer | explain transfer conflicts and offer reversible separation | freeze feeder demand when the public route is displaced or crossing/curb evidence is missing |
+
+All three prototypes share four gates: ordinary route first, a named receiving and maintenance role, dated observations with public readback, and immediate return to staffed or public transport after failure. `run-mobility-interface-prototypes.js` rejects authorization, field observations, numeric dimensions, an empty ordinary service list or non-empty `field_claims`; its negative fixtures make sure a concept board cannot be promoted into a current-state or construction claim [data:visual/assets/run-mobility-interface-prototypes.js] [data:visual/assets/test-mobility-interface-prototypes.js].
+
+![Three spatial interface prototypes: 1:500 concept to 1:50 handoff detail](assets/figures/mobility-interface-prototypes.en.svg)
+
+### System spatial options: decide the public baseline before adding modes
+
+The interface prototypes answer how a person enters, hands over and exits. This section puts the three interfaces back into one system comparison so that a polished node board is not mistaken for a complete transport plan. `mobility-spatial-options.json` compares four alternatives across five review scales (`1:5000` → `1:50`), five public rights and five hard gates: it rejects S0, which externalizes conflict to public space; it keeps S2 air mobility as a conditional layer above the ground baseline; and it treats S3 as the ground fallback for rain, outage and maintenance. All four alternatives cover the three key areas, but only S1 **Ground-first multimodal** earns entry to professional design review. That status is not authorization, construction, capacity, performance or ranking [data:visual/assets/mobility-spatial-options.json] [source:BEIJING-14TH-TRANSPORT-PLAN] [depth:three_key_area_detailed_design].
+
+| Option | Spatial decision | Review status | Return when evidence is missing |
+| --- | --- | --- | --- |
+| S0 Unmanaged peak | Cars, loading and feeders compete for one curb; public crossing and accessibility become residual space | **REJECT** | Return to P0 to inventory ownership, right-of-way, public routes and receivers |
+| S1 Ground-first multimodal | Rail/bus/walking-accessibility form the base; each node has a staffed receiver, time-windowed curb and withdrawal path | **ADVANCE_TO_DESIGN_REVIEW** | Freeze the feeder, keep the ordinary route and return to P0 |
+| S2 Air-first feeder | Keep only a ground–air transfer relationship; airspace, weather, insurance, noise, emergency and operator duties remain unverified | **REVISE** | Return to S1; the air layer cannot displace public interchange |
+| S3 Extreme-weather ground fallback | During rain, outage and maintenance, switch to rail/bus, human, paper and telephone routes; curb states become human-only/emergency | **REVISE** | Return to S1 as the ground system's resilience layer |
+
+The five scales carry one decision from corridor to handoff: `1:5000` tests corridor mode choice, `1:2000` the three key-area connections, `1:500` station/curb/community relationships, `1:100` the ordinary route and protected conflict zone, and `1:50` only the staffed handoff, appeal, pause and withdrawal detail. They are review-level labels; `numeric_dimensions=null`, and no construction dimension may be inferred. The five public rights must also be read back separately: ordinary access, accessibility and care, rail/bus protection, appeal and pause, and privacy and exit. The runner's positive control and six negative fixtures reject a missing option, selecting REJECT, numeric dimensions, missing rights, a field claim or an ordinary-route bypass. A pass proves only that the comparison contract is replayable offline; it proves no field outcome [data:visual/assets/run-mobility-spatial-options.js] [data:visual/assets/test-mobility-spatial-options.js].
+
+![System spatial options: four alternatives, five scales and five public rights](assets/figures/mobility-spatial-options.en.svg)
+
+### One-day continuity receipt | One ordinary service chain across four windows
+
+A door-to-door chain must remain understandable beyond one peak period. The package places weekday arrival, daily access, evening transfer and outage or weather fallback in one receipt. Rail, bus, walking, human, telephone and paper routes stay available first; AI only groups demand, explains conflicts and prepares a rollback list. Missing a receiver, an equivalent route or a dated restoration record keeps the service at `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation].
+
+![Four-window mobility continuity receipt with ordinary routes, bounded AI and stop actions](assets/figures/mobility-continuity-receipt.en.svg)
+
+| Window | Ordinary service comes first | AI is limited to | Action when evidence is missing |
+| --- | --- | --- | --- |
+| Weekday arrival | Rail/bus, protected curb and staffed guidance | Group arrival windows and flag curb conflicts | Refuse booking when receiver or capacity is missing |
+| Daily access | Walk-in, telephone, paper and a continuous accessible route | Group service windows without continuous traces | Disable the recommendation and return to P0 |
+| Evening return | Timetable, public crossing information and staffed wayfinding | Explain transfer conflicts and suggest reversible separation | Remove feeder demand when capacity or responsibility is unknown |
+| Outage, weather and maintenance | Human, rail, bus, paper and telephone fallback | Organize an offline freeze, reroute and restore list | Keep HOLD when a safe handoff or dated record is missing |
+
+`mobility-continuity-receipt.json` fixes four windows, four handoff seams, twelve receipt fields, four positive controls and six negative fixtures. `run-mobility-continuity-receipt.js` and its regression cases prove only that the contract can be checked offline; they do not prove field continuity. Authorization remains 0, field observations remain 0, the result remains `not_run`, and `performance_results=null`.
+
+To make “what remains after AI is unplugged” a spatial acceptance test rather than a slogan, each key area now has a `BASE → BOOST → BLACKOUT → BEQUEST` public-baseline contract. Zhongzhiyuan leaves a protected route, paper curb register and maintenance card; the AI Origin Community leaves a static/tactile route card, human service directory and correction log; Dazhongsi leaves an interchange map, event-day curb protocol and public withdrawal notice. The five P0–P4 stages define a debugging sequence only and carry no field authorization. The supplemental runner checks three prototypes, four states, five stages and the HOLD boundary; a pass proves contract completeness, not a real route, staff, capacity or performance [data:visual/assets/mobility-public-baseline-contract.json] [data:visual/assets/run-mobility-public-baseline-contract.js] [data:visual/assets/test-mobility-public-baseline-contract.js].
+
+### Optional interoperability crosswalk: three spatial interfaces to SEB v0.5.0
+
+This package maps the existing ordinary service, human-takeover role, P0/P1/P2 public-baseline phase, `contract_check_only` mode and accountable role for its three interfaces to SEB v0.5.0's `ai_off_path`, `human_handoff`, `gate_id`, `operating_mode` and `responsible_role`. The source of record remains this package's `mobility-route-service-atlas.json` and `mobility-public-baseline-contract.json`, not another submission package; the crosswalk is for cross-package reading only and adopts no external narrative, geometry or data [source:SEB-V0.5.0] [data:visual/assets/mobility-seb-crosswalk.json] [data:visual/assets/run-mobility-seb-crosswalk.js].
+
+The offline runner checks three positive nodes and uses five negative fixtures to reject an AI-only bypass, a missing human role, an invalid phase gate, a missing operating mode and a changed source alignment. `HOLD`, `authorization=0`, `field_observations=0`, `local_baseline=unknown` and `operational_status=not_authorized_not_run` remain unchanged; this is not service equivalence already delivered, a field outcome, a repository hard gate, a formal score item or an official-score claim [data:visual/assets/mobility-seb-crosswalk-evidence.json].
+
+![Mobility Commons spatial interfaces and SEB crosswalk: ordinary service, handoff roles and the HOLD boundary](assets/figures/mobility-seb-crosswalk.en.svg)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 

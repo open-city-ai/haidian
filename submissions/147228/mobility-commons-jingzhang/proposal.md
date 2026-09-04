@@ -6,10 +6,10 @@ author_github: "147228"
 language: "zh"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "把地铁、公交、自行车、步行/无障碍、汽车与停车装卸纳入同一张可审计的时段路缘账本，并把企业—居民对外通勤、人员动线和综合仿真接上；未来空中出行只作为受审批、可撤回、地面接驳优先的实验接口，三处重点区以五道硬门逐步验证。"
+summary: "把地铁、公交、自行车、步行/无障碍、汽车与停车装卸纳入同一张可审计的时段路缘账本，并把企业—居民对外通勤、人员动线和综合仿真接上；v2.5 将连续性回执、空间选项、三处接口、公共基线、责任移交和发布链压缩到同一条双语评审阅读路径。未来空中出行只作为受审批、可撤回、地面接驳优先的实验接口，三处重点区以五道硬门逐步验证。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.8"
+iteration: "v2.6"
 ---
 
 # 京张共行环：企业—居民交通共益系统
@@ -18,31 +18,29 @@ iteration: "v1.8"
 
 本方案是一份独立的新投稿包，第一名项目 `zhongzhiyuan-autonomy-commons` 不在本目录中修改。方案提出“**一张时段路缘账本、两侧需求台账、三类接驳、四项服务水平、五道验证门**”：企业侧登记到岗、班车、货运和充电需求；居民侧登记不含个人轨迹的日常服务需求；空间侧用地铁—公交—自行车—步行/无障碍—汽车的多方式接驳链和可逆路缘窗口消化峰值，同时把跨边界对外通勤纳入 OD；未来空中出行仅保留一个有审批前置条件的实验接口。全部空间仍属于概念设计，官方边界、路权、交通量、权属和现场体验到位后才能复算，不把开放数据筛查写成现状容量。
 
-## 一页执行摘要｜先验收“大钟寺到 AI 原点”的到站回家链，再谈共享接驳扩展
+## 一页执行摘要：先验收一条到站—到家链，再谈共享接驳扩展
 
-评审先从一个普通人的回家路开始。他在大钟寺换乘，沿连续步行、轮椅与公交优先路径前往 AI 原点社区；中途若遇断网、雨雪、路缘冲突或错过衔接，现场人员应能把他交回公交、人工服务或纸面/电话入口。本版只把这条候选服务关系放到首屏。**大钟寺轨道/路缘换乘候选界面 → 连续步行、轮椅与公交优先路径 → AI 原点社区人工服务台候选**。两处界面和中间路径都尚未完成现场测量；站口、距离、坡度、班次、权属、真实需求和排班保持 `unknown`，正式点位须等待 official geometry、现场走测和责任主体确认。
+普通人不是模型里的流量点，而是要在出门、换乘、受阻、求助和回家每一步都保有可理解的选择。第一个可逆试点只验收一条最小链：**选择公共/无障碍或人工路径 → 请求一项交通服务 → 在断网、雨雪、路缘冲突或错过衔接时触发人工/轨道公交接管 → 对不安全或不可达状态冻结预约并退出 → 由独立复核者回放证据后决定修复、扩展或撤回**。这不是现实运营承诺；当前 M-09 只在本地、无网络、无个人数据的合成桌面演练中复演 4 条请求，`performance_results=null`、`operational_status=not_authorized_not_run`。
 
-这条关系链固定五个动作。**选择公共/无障碍或人工路径 → 请求一项交通服务 → 在断网、雨雪、路缘冲突或错过衔接时触发人工/轨道公交接管 → 对不安全或不可达状态冻结预约并退出 → 由独立复核者回放证据后决定修复、扩展或撤回**。它仍是概念设计，不构成现实运营承诺。当前 M-09 只在本地、无网络、无个人数据的合成桌面演练中复演 4 条请求，`performance_results=null`、`operational_status=not_authorized_not_run`。
-
-![评审首屏展示大钟寺到 AI 原点的到站回家候选链、五步人工回退与证据边界](assets/figures/site-overview.png)
-
-| 步骤 | 普通人看到的空间/服务 | 必须留存的证据 | 失效后的动作 |
+| 步骤 | 普通人看到的空间/服务 | 必须留存的证据 | 失效即闭环的动作 |
 | --- | --- | --- | --- |
 | 1. 选择 | 站口导向、连续步行/轮椅路线、人工/电话/纸面入口与共享接驳候选并列展示 | 选择方式、服务窗口、无障碍需求类别和版本号；不留连续个人轨迹 | 数字入口不可用时保留人工等价路径；没有等价路径就不开放 |
 | 2. 请求 | 公共交通换乘、班车/小巴候选、路缘装卸或社区日常服务台 | 请求 ID、服务对象分组、起止时间窗、责任人和替代路线 | 权属、责任人、容量或同意边界未知时只登记、不预约 |
 | 3. 接管 | 错过衔接、断网、雨雪、无障碍受阻或路缘冲突后，现场人员指向轨道/公交或人工路线 | 触发事件、接管人、到达/转交时间、清场动作和投诉入口 | 冻结自动预约，优先人工/公共交通；无人可接管时停止服务 |
 | 4. 退出 | 消息牌、人工窗口和纸面/电话申诉让人能改道、回家或取消 | 取消原因、替代路线、未解决项和 `not_authorized_not_run` 状态 | 消防、无障碍、隐私或安全硬门失败时不扩容、不写成达标 |
-| 5. 复核 | 独立复核者回放一条到站回家链，比较是否继续、修复或撤回 | 原始最小日志、分组结果、投诉关闭证据、版本和复核意见 | 证据缺失或最慢群体变差时回到 P0 调查与人工服务 |
+| 5. 复核 | 独立复核者回放一条到站—到家链，比较是否继续、修复或撤回 | 原始最小日志、分组结果、投诉关闭证据、版本和复核意见 | 证据缺失或最慢群体变差时回到 P0 调查与人工服务 |
 
-这张表把设计图、路缘账本、M-09 回退桌演和 P0/P1/P2 分期接成同一个验收入口。**包内可证明**的是 4/4 合成请求保留人工/公共交通回退、6/6 确定性检查通过、5/5 回滚步骤可复演；**现场继续 HOLD** 的是站口与路线连续性、坡度/过街、真实需求、人员值守、公众接受、安全和服务绩效。任一项没有带日期、责任人和现场记录，就停在 P0，不得把桌演 PASS 写成开放资格。
+这张表把设计图、路缘账本、M-09 回退桌演和 P0/P1/P2 分期接成同一个验收入口；4 条合成请求的 PASS 只证明状态机和回滚逻辑可重放，不证明真实客流、无障碍绩效、人员值守、公众接受或安全结果。
 
-### 责任移交与公共覆盖合同｜先把承担的资源写清楚
+### 首 168 小时与首 12 周：把“能不能做”先变成退出票据
 
-一条出行服务只有在责任、资源和拒收条件同时可读时，才有资格进入小试讨论。新增的 `visual/assets/mobility-responsibility-transfer.json` 把路线与路缘、轨道公交容量、企业预约、居民日常、现场维护、数据隐私和公共公平列为七个资源单元；每个单元都绑定接收角色、非 AI 等价路径、至少三项分母、必备证据、拒收条件和回写动作。这里的分母是调查任务，不是现状数值；当前真实移交数、真实授权数和现场基线均为 0 或 `unknown`。
+高分方案常把愿景压缩成评审者可以逐项追问的交付链。本版新增两张时间票据，但它们仍是设计合同，不是已经发生的工作：`visual/assets/mobility-first-168h.json` 把首 0–24、24–72、72–120、120–168 小时分别绑定到普通路线、三处接口、失效桌演和独立复核；`visual/assets/mobility-first-12-weeks.json` 再把 W01–02 的边界与同意、W03–04 的路线审计、W05–07 的普通服务等价、W08–09 的失效桌演、W10–11 的专业复核和 W12 的 HOLD/修复/撤回接起来。
 
-八类服务对象分别是企业员工、居民、照护者或儿童、轮椅及助行器使用者、夜班员工、访客、物流维护人员和应急响应者。`MRT-01` 至 `MRT-07` 的证据记录必须保留接受或拒绝、人工回退、责任角色、版本和下一步决定；只看总体平均值、只记录成功案例或把 AI 推荐当成公共服务，都不能通过覆盖审查。离线检查器 `node visual/assets/run-mobility-responsibility-transfer.js --json` 只验证合同字段完整和 fail-closed 逻辑，不创造现场成绩。
+时间表每一段都写四件事：**谁接收、要留下什么证据、什么情况必须停、停下后回到哪条普通路径**。因此它不把“12 周”写成承诺，也不把离线回放写成现场绩效；授权、现场观察和本地 baseline 仍为 0 或 `unknown`。首 168 小时的默认产出是 `HOLD`、补证据、修复或撤回，而不是开通服务。双语总览见 `assets/figures/mobility-release-chain.svg` 与 `.en.svg`。
 
-![交通责任移交屏：七个资源单元、八类服务对象与拒收回写路径](assets/figures/responsibility-transfer-board.svg)
+![首 168 小时到首 12 周的交通服务交付链与退出条件](assets/figures/mobility-release-chain.svg)
+
+`visual/assets/mobility-release-evidence-map.json` 把普通人旅程、三处空间接口、交付维护、来源边界、治理权责、可逆性和视觉导航七个评审问题绑定到具体文件；每个维度的 `field_claims` 保持为空。这样评审者可以先看一张板，再沿同一条路径回到 JSON、图纸、假设与负例，而不会把“文件很多”误读成“已经运营”。
 
 ## 设计依据与资料清单
 
@@ -117,6 +115,76 @@ iteration: "v1.8"
 | 大钟寺 AI 产业聚集区 | 轨道换乘、企业访客、停车装卸、活动日人流 | 站口—骑行停放—步行穿越—企业入口统一导向；路缘按分钟级窗口清场 | 在工作日高峰与活动日做轨道接驳、装卸和居民归家分流演练 | 不占消防/无障碍通道；共享自动驾驶不替代轨道，不承诺社会道路许可 |
 
 每个重点区都要有企业责任人、社区/公共服务责任人、交通专业复核人和维护责任人，记录目标、输入、停止条件和回读证据；现阶段不声称已有合作方或运营许可 [depth:three_key_area_detailed_design] [source:HAIDIAN-ROAD-PARKING-TENDER-2026]。
+
+责任移交表把七个资源单元映射到八类受影响群体，并逐项检查“有名责任人—普通替代—拒绝条件—回写字段”。`run-mobility-responsibility-transfer.js` 是 supplemental contract audit，不属于四道正式 self-check gate；它额外拒绝重复、空值、未知或未被任何资源单元覆盖的群组。`test-mobility-responsibility-transfer.js` 对这四类负例逐一回放。通过只证明审计契约完整，不证明现场覆盖、授权、用户观察或交通绩效 [data:visual/assets/mobility-responsibility-transfer.json] [data:visual/assets/run-mobility-responsibility-transfer.js] [data:visual/assets/test-mobility-responsibility-transfer.js]。
+
+### 三处接口的回读顺序
+
+三处重点区共用一条候选服务链，但各自接收不同责任。众智园先核对企业到岗与装卸分母，AI 原点社区先核对分组日常服务和无障碍等价路径，大钟寺先核对班次、过街和路缘观察窗。每个接口都给出拒绝条件和人工回退，缺少现场记录时保持 `HOLD` [data:visual/assets/mobility-route-service-atlas.json] [depth:three_key_area_detailed_design]。
+
+| 接口 | 现场回读分母 | 无 AI 等价路径 | 证据缺失时的动作 |
+| --- | --- | --- | --- |
+| 众智园到岗与装卸 | 到岗尝试、可用路缘分钟、受保护消防/无障碍分钟 | 纸面登记、现场引导、公共交通 | 拒收预约，冻结并回到公共交通/人工台 |
+| AI 原点社区日常到达 | 分组尝试、连续路线段、人工服务窗 | 步入、电话、纸面、公共交通 | 关闭推荐，保持值守路线并回到 P0 |
+| 大钟寺轨道换乘 | 班次、换乘观察窗、过街窗、活动日路缘分钟 | 时刻表、站内人工台、公共过街信息 | 删除 feeder 需求，保持公共路线并人工引导 |
+
+这张图是设计接口图，不是现状地图。它把三处重点区、服务对象、分母、拒绝和回退放在同一页；真实路线观察、责任交接和授权数量仍为 0，待正式边界与现场审计补齐 [data:visual/assets/mobility-route-service-atlas.json]。
+
+![三处重点区的交通服务接口、回读分母与人工回退](assets/figures/mobility-route-service-atlas.svg)
+
+### 三处空间接口原型：从“有路线”推进到“能进入、能接管、能撤回”
+
+路线账本回答“服务经过哪里”，但评审还需要看到“人如何进入、谁在现场接手、失败后怎样退回”。因此本版把三处重点区各自压成一个可被专业团队继续深化的空间接口原型：众智园是**到岗—装卸前厅**，AI 原点是**照护—人工连续环**，大钟寺是**轨道—路缘换乘廊**。图板使用 `1:500` 与 `1:50` 作为审阅层级标签，不提供施工尺寸；它只描述公共路线、人工节点、路缘窗口、回执与停止关系 [data:visual/assets/mobility-interface-prototypes.json] [depth:three_key_area_detailed_design]。
+
+| 原型 | 先交付的普通服务 | AI 只做什么 | 缺证据时怎么停 |
+| --- | --- | --- | --- |
+| 众智园到岗—装卸前厅 | 公共交通、步入、人工导向、纸面登记 | 解释聚合时窗冲突 | 没有普通等价、消防/无障碍冲突或接收人时拒收预约 |
+| AI 原点照护—人工连续环 | 步入、电话、纸面、公共交通、人工服务 | 聚合服务时窗、准备回退选项 | 基本通行依赖 App、无障碍断裂或隐私边界不清时关闭推荐 |
+| 大钟寺轨道—路缘换乘廊 | 轨道、公交、公共过街、人工导向、骑行换乘 | 解释换乘冲突、提出可逆分流 | 公共路线被挤占、过街/路缘记录缺失时冻结 feeder |
+
+三个原型共享四道闸门：普通路线先行、接收人与维护责任明确、观察证据带日期并可公开回读、失败即停止并回到人工/公共交通。`run-mobility-interface-prototypes.js` 还会拒绝授权值、现场观察、数字尺寸、空的普通服务或非空 `field_claims`；负例测试用于证明这个空间契约不会把概念图板升级为现状或工程结论 [data:visual/assets/run-mobility-interface-prototypes.js] [data:visual/assets/test-mobility-interface-prototypes.js]。
+
+![三处空间接口原型：1:500 概念原型到 1:50 交接细节](assets/figures/mobility-interface-prototypes.svg)
+
+### 系统级空间选项：先裁决公共基线，再谈扩展方式
+
+前面的接口原型回答“一个人如何进入、接管和退出”。本节再把三处接口放回同一套系统选项中，避免把一张漂亮节点图误当成完整交通方案。`mobility-spatial-options.json` 用五级尺度（`1:5000` → `1:50`）、四个候选、五项公共权利和五道硬门做概念比较：先拒绝把冲突外部化给公共空间的 S0，再把空中出行 S2 限制为地面基线之上的条件附加项；S3 是雨雪、断网和维护时的地面回退层。四个选项都覆盖三处重点区，但只有 S1 **地面优先多方式协同**获得“进入专业设计复核”的资格。这个资格不是授权、施工、容量、绩效或排名结论 [data:visual/assets/mobility-spatial-options.json] [source:BEIJING-14TH-TRANSPORT-PLAN] [depth:three_key_area_detailed_design]。
+
+| 选项 | 空间裁决 | 评审状态 | 缺证据时的回退 |
+| --- | --- | --- | --- |
+| S0 无协同高峰 | 车流、装卸和接驳争用同一路缘；公共过街与无障碍路线成为剩余空间 | **REJECT** | 回到 P0，先清点权属、路权、公共路线和责任人 |
+| S1 地面优先多方式协同 | 轨道/公交/步行无障碍是底座；三处接口都有人工接收、时段路缘和撤回路径 | **ADVANCE_TO_DESIGN_REVIEW** | 冻结 feeder，保留普通路线并回到 P0 |
+| S2 空中优先接驳 | 只保留地面—空中换乘关系；空域、天气、保险、噪声、应急与运营责任未核 | **REVISE** | 回到 S1，空中层不得挤占公共换乘 |
+| S3 极端天气地面回退 | 雨雪、断网、维护时切换到轨道/公交、人工、纸面和电话；路缘转为 human-only/emergency | **REVISE** | 回到 S1，作为地面系统的韧性层 |
+
+五级尺度把同一裁决逐级压到空间关系：`1:5000` 看走廊方式选择，`1:2000` 看三处重点区连接，`1:500` 看站口/路缘/社区节点，`1:100` 看普通路线和保护区，`1:50` 只看人工接管、申诉、暂停和撤回的交接细节。它们都是审阅层级标签，`numeric_dimensions=null`，不得从图板反推施工尺寸。五项公共权利也必须逐项回读：普通通行、无障碍与照护、轨道/公交保护、申诉与暂停、隐私与退出。`run-mobility-spatial-options.js` 的正向控制与 6 个负例会拒绝缺选项、选中 REJECT、数字尺寸、缺权利、现场声称和绕过普通路线；通过只证明比较合同可离线复核，不证明任何现场结果 [data:visual/assets/run-mobility-spatial-options.js] [data:visual/assets/test-mobility-spatial-options.js]。
+
+![系统级空间选项：四个候选、五级尺度与五项公共权利](assets/figures/mobility-spatial-options.svg)
+
+### 一日连续性回执｜同一条普通服务链要经得住四个时段
+
+一条到站回家链不能只在单一高峰时段成立。方案把早高峰到岗、日常服务到达、晚间换乘和断网雨雪回退放进同一份回执。每个时段都先保留轨道、公交、步行、人工、电话或纸面入口，再让 AI 处理分组需求、冲突说明和回退清单；没有接收人、等价路线或带日期的恢复记录时，服务停在 `HOLD` [data:visual/assets/mobility-continuity-receipt.json] [source:NIST-HUMAN-CENTERED-AI] [depth:phasing_implementation]。
+
+![一日四段服务回执：普通路线、AI 辅助、人工等价与停止动作](assets/figures/mobility-continuity-receipt.svg)
+
+### 可选互操作对照：三处空间接口接入 SEB v0.5.0
+
+本包把三处已有接口的普通服务、人工接管角色、P0/P1/P2 公共基线阶段、`contract_check_only` 状态和责任角色，对照到 SEB v0.5.0 的 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode`、`responsible_role`。source of record 仍是本包的 `mobility-route-service-atlas.json` 与 `mobility-public-baseline-contract.json`，不是另一份投稿包；对照只服务于跨包阅读，不采用外部叙事、几何或数据 [source:SEB-V0.5.0] [data:visual/assets/mobility-seb-crosswalk.json] [data:visual/assets/run-mobility-seb-crosswalk.js]。
+
+离线 runner 对 3 个节点做正向检查，并用 5 个负向 fixture 拒绝 AI-only 旁路、缺失人工角色、非法阶段门、缺失运行模式和 source 对齐变化。当前仍是 `HOLD`、`authorization=0`、`field_observations=0`、`local_baseline=unknown`、`operational_status=not_authorized_not_run`；这不是已发生的服务等价、现场成效、仓库硬门、正式评分项或官方分数 [data:visual/assets/mobility-seb-crosswalk-evidence.json]。
+
+![共行环三处空间接口与 SEB 字段对照：普通服务、接管角色和 HOLD 边界](assets/figures/mobility-seb-crosswalk.svg)
+
+| 时段 | 普通服务先做什么 | AI 只承担什么 | 证据缺失时的动作 |
+| --- | --- | --- | --- |
+| 早高峰到岗 | 轨道/公交、受保护路缘和现场引导 | 聚合到岗时段，提示路缘冲突 | 无接收人或容量记录时拒收预约 |
+| 日常服务到达 | 步入、电话、纸面和连续无障碍路线 | 按服务类型聚合时段，不留连续轨迹 | 基本通行受损时关闭推荐并回到 P0 |
+| 晚间换乘回家 | 时刻表、公共过街信息和人工引导 | 解释换乘冲突，提出可逆分流 | 容量或责任未知时删除 feeder 需求 |
+| 断网雨雪与维护 | 人工、轨道、公交、纸面和电话回退 | 离线整理冻结、改道和恢复清单 | 无安全交接或无日期记录时保持 HOLD |
+
+`mobility-continuity-receipt.json` 固定 4 个时段、4 个交接缝、12 个回执字段、4 个正向控制和 6 个负例。`run-mobility-continuity-receipt.js` 与负例回归只证明合同能够离线复核，不能证明现场连续性；当前授权为 0，现场观察为 0，结果保持 `not_run`，`performance_results=null`。
+
+为了让“AI 拔掉后还剩什么”成为空间验收，而不是一句口号，三个重点区各自绑定一份 `BASE → BOOST → BLACKOUT → BEQUEST` 公共基线合同：众智园留下受保护路线、纸面路缘账和维护卡；AI 原点留下静态/触觉路线卡、人工服务目录和更正记录；大钟寺留下换乘图、活动日路缘规程和公开撤回通知。五段 P0—P4 只规定调试顺序，仍没有现场授权。supplemental runner 检查三处原型、四种状态、五段阶段和 HOLD 边界；通过只证明合同完整，不证明真实路线、人员、容量或绩效 [data:visual/assets/mobility-public-baseline-contract.json] [data:visual/assets/run-mobility-public-baseline-contract.js] [data:visual/assets/test-mobility-public-baseline-contract.js]。
 
 ## AI 创新生态、人才画像与 AI+ 场景
 

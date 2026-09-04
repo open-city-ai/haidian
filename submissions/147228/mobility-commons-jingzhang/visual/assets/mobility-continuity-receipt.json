@@ -1,0 +1,84 @@
+{
+  "schema_version": "mobility-continuity-receipt-v1",
+  "receipt_id": "MOB-CONTINUITY-001",
+  "status": "design_only",
+  "authorization": 0,
+  "field_observations": 0,
+  "local_baseline": "unknown",
+  "result_status": "not_run",
+  "decision": "HOLD",
+  "boundary": "Four conceptual service windows make one ordinary door-to-door chain reviewable. They do not prove route continuity, staffing, capacity, safety, public acceptance or operating performance.",
+  "ordinary_service_first": true,
+  "ai_role": "Aggregate grouped demand, explain conflicts and prepare a rollback list. It cannot replace public transport, human service or a named receiving role.",
+  "states": [
+    {
+      "id": "T01-AM-ARRIVAL",
+      "window_zh": "工作日早高峰到岗",
+      "window_en": "weekday arrival",
+      "node_id": "MS-01-ZHONGZHIYUAN",
+      "ordinary_service": "Rail or bus arrival with a staffed public route and a declared curb window.",
+      "ai_assist": "Compare grouped arrival windows and flag curb conflicts; no automatic reservation.",
+      "human_equivalent": "Paper register, staffed marshal and published public-transport route.",
+      "accountable_roles": ["enterprise mobility desk", "curb marshal", "public-transport liaison"],
+      "receipt_fields": ["grouped_arrival_window", "protected_route_minutes", "receiver_role", "fallback_route"],
+      "stop_condition": "No named receiver, capacity record or protected fire/access route means refuse the booking and keep the public route open."
+    },
+    {
+      "id": "T02-DAY-ACCESS",
+      "window_zh": "日常服务到达",
+      "window_en": "daily access",
+      "node_id": "MS-02-AI-ORIGIN",
+      "ordinary_service": "Walk-in, telephone, paper and public-transport options for school, care, health and shopping trips.",
+      "ai_assist": "Group service requests by time and accessibility need without retaining continuous personal traces.",
+      "human_equivalent": "Staffed desk, telephone, paper wayfinding and a continuous accessible route.",
+      "accountable_roles": ["community service desk", "accessibility reviewer", "route maintenance lead"],
+      "receipt_fields": ["service_group", "route_segments", "human_window", "refusal_reason"],
+      "stop_condition": "If the digital option becomes necessary for basic access or an equivalent route disappears, disable the recommendation and return to P0 review."
+    },
+    {
+      "id": "T03-PM-RETURN",
+      "window_zh": "晚间换乘回家",
+      "window_en": "evening return",
+      "node_id": "MS-03-DAZHONGSI",
+      "ordinary_service": "Rail and bus timetable, staffed wayfinding, a public crossing and a protected return path.",
+      "ai_assist": "Explain observed transfer conflicts and suggest a reversible separation of loading and resident return.",
+      "human_equivalent": "Station information, staffed wayfinding and public crossing information.",
+      "accountable_roles": ["station interface lead", "crossing marshal", "resident-service contact"],
+      "receipt_fields": ["dated_headway", "transfer_window", "crossing_window", "return_fallback"],
+      "stop_condition": "Unknown capacity, fire clearance, accessibility or transfer responsibility means remove feeder demand and keep the public route open."
+    },
+    {
+      "id": "T04-OUTAGE-WEATHER",
+      "window_zh": "断网、雨雪与维护回退",
+      "window_en": "outage, weather and maintenance",
+      "node_id": "ROUTE-SYSTEM",
+      "ordinary_service": "Human, rail, bus, paper and telephone routes remain available while a temporary service state is reviewed.",
+      "ai_assist": "Summarize the affected grouped requests and prepare a stop, reroute or restore checklist offline.",
+      "human_equivalent": "Named duty lead, public information, staffed handoff and a recorded route restoration decision.",
+      "accountable_roles": ["duty lead", "maintenance lead", "public information contact"],
+      "receipt_fields": ["trigger", "route_state", "handoff_time", "restore_or_withdraw_decision"],
+      "stop_condition": "No safe handoff or no dated restoration evidence means freeze service, notify the public route and keep the result at HOLD."
+    }
+  ],
+  "handoff_seams": [
+    {"id": "HS-01", "from": "T01-AM-ARRIVAL", "to": "T02-DAY-ACCESS", "required_evidence": ["grouped demand ledger", "named receiving role", "human equivalent route"]},
+    {"id": "HS-02", "from": "T02-DAY-ACCESS", "to": "T03-PM-RETURN", "required_evidence": ["route segment audit", "service-window record", "public route preserved"]},
+    {"id": "HS-03", "from": "T03-PM-RETURN", "to": "T04-OUTAGE-WEATHER", "required_evidence": ["transfer observation", "trigger record", "fallback handoff"]},
+    {"id": "HS-04", "from": "T04-OUTAGE-WEATHER", "to": "T01-AM-ARRIVAL", "required_evidence": ["restoration decision", "maintenance closeout", "independent replay"]}
+  ],
+  "receipt_fields": ["receipt_id", "state_id", "node_id", "service_group", "ordinary_route", "ai_used_or_not", "human_equivalent", "receiver_role", "accepted_or_refused", "fallback", "evidence_version", "next_decision"],
+  "positive_controls": [
+    {"id": "PC-01", "trigger": "ordinary public route and named receiver are present", "expected_decision": "CONTINUE_ORDINARY_SERVICE"},
+    {"id": "PC-02", "trigger": "AI unavailable but human equivalent remains open", "expected_decision": "CONTINUE_WITHOUT_AI"},
+    {"id": "PC-03", "trigger": "temporary route state has a dated public fallback", "expected_decision": "CONTINUE_WITH_RECORDED_FALLBACK"},
+    {"id": "PC-04", "trigger": "concept review is complete without field authorization", "expected_decision": "KEEP_NOT_RUN_AND_HOLD"}
+  ],
+  "negative_fixtures": [
+    {"id": "NC-01", "trigger": "no_named_receiver", "expected_decision": "HOLD"},
+    {"id": "NC-02", "trigger": "equivalent_accessible_route_missing", "expected_decision": "HOLD"},
+    {"id": "NC-03", "trigger": "protected_fire_or_public_route_not_clear", "expected_decision": "HOLD"},
+    {"id": "NC-04", "trigger": "outage_without_human_or_public_fallback", "expected_decision": "HOLD"},
+    {"id": "NC-05", "trigger": "restoration_record_has_no_date_or_owner", "expected_decision": "HOLD"},
+    {"id": "NC-06", "trigger": "synthetic_replay_present_without_field_result", "expected_decision": "HOLD"}
+  ]
+}
