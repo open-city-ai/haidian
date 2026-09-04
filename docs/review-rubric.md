@@ -67,7 +67,7 @@
 
 ## 输出边界
 
-七维度评审可由 `scripts/ai_review_submission.py` 在维护者本地调用多模态模型生成，也可交由独立专业评审复核。仓库不在 GitHub Actions 中调用模型；受信任的外部 worker 可按维护者 intake 政策自动 review，并仅在强制退件检查、四项本地 gate 和 60/100 分门槛全部通过后自动 merge。merge 只代表仓库 intake，不代表展示、精选、正式评分、实施批准或政府背书。最终对参赛者可见的内容应是 `pr-comment.md`，而不是公开展示页的一部分。
+七维度评审可由 `scripts/ai_review_submission.py` 在维护者本地调用多模态模型生成，也可交由独立专业评审复核。仓库不在 GitHub Actions 中调用模型；受信任的外部 worker 可按维护者 intake 政策自动 review，并仅在强制退件检查和四项本地 gate 通过、分数不低于 60/100、`recommendation=formal-review-ready`、`can_enter_formal_review=true`，且参与者 `required_next_actions_zh` 恰为空列表时自动 merge。只有以明确的 `组织方：`、`组织方:`、`主办方：` 或 `主办方:` 前缀标注的外部后续事项才归入 `data_gaps_zh`；含糊表述仍保留为参与者 `required_next_actions_zh` 并继续 fail closed。merge 只代表仓库 intake；`publication_recommendation` 仍是独立的展示建议，不代表精选、正式评分、实施批准或政府背书。最终对参赛者可见的内容应是 `pr-comment.md`，而不是公开展示页的一部分。
 
 `required_next_actions_zh` 与逐维 `required_repairs_zh` 只用于当前版本中参与者可立即关闭的
 阻断项。官方资料到位、外部授权取得、现场试点开始或以后实质修改时才生效的要求必须写入
@@ -98,6 +98,8 @@ This rubric is used by local AI review agents and independent professional revie
 | `expression_completeness` | 表达完整度 | 15% | Clear structure, sufficient evidence, can be continued and deepened |
 
 Scores are 0–5 per dimension. Weighted total is out of 100. Formal professional scoring applies only to submissions that have passed the maintainer gate (`formal-review-ready`). The gate never blocks scoring for organizer-missing geometry; only participant-controlled checks matter.
+
+The trusted queue worker may auto-merge only when mandatory rejection and all four local gates pass, the weighted score is at least 60/100, `recommendation` is `formal-review-ready`, `can_enter_formal_review` is `true`, and participant `required_next_actions_zh` is exactly empty. Only external follow-ups explicitly prefixed `组织方：`, `组织方:`, `主办方：`, or `主办方:` belong in `data_gaps_zh`; ambiguous wording remains in participant `required_next_actions_zh` and fails closed. `publication_recommendation` remains a separate gallery recommendation.
 
 ## Mandatory Rejection (English Summary)
 
