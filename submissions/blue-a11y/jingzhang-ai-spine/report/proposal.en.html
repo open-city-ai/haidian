@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jingzhang AI Spine - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  white-space: nowrap;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #31506f;
+  border-radius: 4px;
+  padding: 0.03em 0.32em;
+  font-size: 0.92em;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>Jingzhang AI Spine</h1>
+<p class="summary">A formal AI urban design proposal for the Centennial Jing-Zhang AI Innovation Belt, built on provisional boundaries with structured self-checks. All spatial conclusions are conceptual suggestions, not statutory planning.</p>
+<p class="translation-link"><a href="proposal.html">阅读中文版本</a></p>
+</section>
+<h1>Jingzhang AI Spine</h1>
+<h2>Design Basis and Data Inventory</h2>
+<p>This formal proposal takes the &quot;Centennial Jing-Zhang AI Innovation Belt International Urban Design Open Call Prequalification Announcement&quot; published by the Beijing Municipal Planning and Natural Resources Commission Haidian Branch as its primary basis, supplemented by the machine-readable provisional boundaries, key areas, enums, metrics, and source registry maintained in <code>brief/site-package/</code>. All design judgments decompose into traceable sources, recalculable metrics, verifiable layers, and human-reviewable assumptions. The announcement requires the proposal to reach the urban design depth of regulatory detailed planning and comprehensive implementation planning; therefore narrative text cannot substitute for GeoJSON, metric tables, A3 booklets, A0 boards, and the HTML exhibit.</p>
+<p>Evidence tags used: <span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span>, <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span>, <span class="evidence evidence-source">[source:SITE-PACKAGE]</span>, <span class="evidence evidence-standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span>, <span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span>, <span class="evidence evidence-standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span>, <span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span>, <span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span>, <span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="Site overview and evidence chain"><figcaption>Site overview and evidence chain</figcaption></figure>
+<p>When official SITE_BOUNDARY or KEY_AREA polygons are not yet available, the scaffold uses <code>brief/site-package/geometry/provisional_boundaries.geojson</code>. Both <code>geometry/site_boundary.geojson</code> and <code>geometry/key_areas.geojson</code> are marked <code>provisional_constraint</code> with <code>official_boundary=false</code>, usable only for proposal generation, self-check, visualization, and design discussion — not as official redline, approval basis, precise area basis, or statutory control. This organizer data gap does not block content scoring; after official polygons are available, site boundary, key areas, land use, roads, green space, public space, buildings, phasing, and metrics must all be recalculated.</p>
+<p>Boundary and key area interpretations map to <span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE-001]</span>, <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span>, <span class="evidence evidence-metric">[metric:site_area_sqm]</span>, and <span class="evidence evidence-metric">[metric:key_area_count]</span>.</p>
+<h2>Three-Level Scope Framework</h2>
+<p>The proposal organizes work across three levels per the announcement: the coordinated research area (43.6 km²) addresses AI industry ecosystem, strategic positioning, and future urban form; the overall design area (11.4 km²) forms the urban renewal framework, industrial spatial layout, and transportation/utility support; the key detailed design area (368.4 ha) covers three mandatory detailed design districts. All three levels are mapped item-by-item in <code>compliance_matrix.json</code> to ensure announcement tasks 1.3, 1.4, 1.5 and agent.1–agent.6 all have chapter, layer, metric, drawing, and HTML evidence.</p>
+<p>| Level | Design Question | Answer | Data Anchor | | --- | --- | --- | --- | | Coordinated Research | How to organize AI ecosystem and future urban form | &quot;University sourcing → open collaboration → enterprise conversion → public experience → international communication&quot; innovation chain | compliance_matrix.json | | Overall Design | How to map industry, renewal, transport to space | Land use, buildings, roads, green, public space, phasing layers | <span class="evidence evidence-data">[data:geometry/land_use.geojson#LU-001]</span>, <span class="evidence evidence-data">[data:geometry/roads.geojson#ROAD-001]</span> | | Key Areas | How to reach detailed design depth | Positioning, spatial actions, AI scenarios, implementation dependencies per district | <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span> |</p>
+<h2>Overall Concept: Jingzhang AI Spine</h2>
+<p>The core concept is &quot;Jingzhang AI Spine&quot; (京张智脊): using the Jing-Zhang Heritage Park as the historical and public-space spine, with three key areas as innovation anchors, connected along a north-south axis. &quot;Spine&quot; evokes the rail backbone laid by Zhan Tianlou a century ago, overlaid with the semantics of an AI innovation nervous system. The naming system: main name &quot;Jingzhang AI Spine&quot;; three cores named &quot;Zhongzhiyuan Chip&quot;, &quot;Origin Community&quot;, &quot;Dazhongsi Hub&quot;.</p>
+<h3>Visual Identity &amp; Logo Direction</h3>
+<ul>
+<li>**Main graphic**: the north-south rail axis as a spine, transitioning from historical rail lines into AI network nodes.</li>
+<li>**Color system**: &quot;Jingzhang Rail Blue&quot; (#1a4a8b) + &quot;AI Aurora Purple&quot; (#4f46e5) + &quot;Vitality Gold&quot; (#c79838).</li>
+<li>**Typography**: open-source commercial fonts only (Source Han Sans, Geist Sans / Inter).</li>
+<li>**Extension**: the spine motif is reusable for wayfinding, scenario cards, and event visuals.</li>
+</ul>
+<p>This addresses agent.1 must-address requirements for naming, visual identity, and logo <span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span>, but does not constitute an approved government brand asset.</p>
+<h3>Global AI Innovation Ecosystem Case Studies (agent.2)</h3>
+<p>| ID | Case | Spatial Pattern | Transferable Mechanism | Spine Translation | | --- | --- | --- | --- | --- | | CS-01 | Silicon Valley Sand Hill Road | campus-capital-incubator triangle | VC clustering drives conversion | Origin Community conversion street | | CS-02 | London King&#x27;s Cross | station × university × tech | brownfield + station-city integration | Dazhongsi quadrant connectivity | | CS-03 | Shenzhen Nanshan Science Park | high-density R&amp;D cluster | government + enterprise + open blocks | Zhongzhiyuan full-stack district | | CS-04 | Singapore One-North | research-living-culture mix | functional fusion | Three-core composite strategy | | CS-05 | Tokyo Shibuya Stream | rail hub redevelopment | station-city + HQ | Dazhongsi station integration | | CS-06 | Beijing Zhongguancun Inno Way | incubation-display-capital | dense startup services | Origin open-source hall | | CS-07 | NYC Cornell Tech | campus-as-innovation-community | cross-discipline + co-build | Zhongzhiyuan campus ecosystem |</p>
+<h2>Overall Design Area: Urban Renewal &amp; Regulatory-Depth Urban Design</h2>
+<p>The overall design area must reach regulatory detailed planning urban design depth. <code>geometry/land_use.geojson</code> must completely cover the design boundary with no gaps or overlaps (verified: 58 parcels, union area = site area). <code>geometry/buildings.geojson</code> expresses building footprints (107 features). <code>geometry/roads.geojson</code> expresses micro-circulation, slow mobility, and rail connectivity (12 road segments). <code>metrics.json</code> recalculates core areas, ratios, and layer counts.</p>
+<p>Key metrics <span class="evidence evidence-metric">[metric:site_area_sqm]</span>=11,412,825 sqm, <span class="evidence evidence-metric">[metric:floor_area_ratio]</span>=0.35 (concept), <span class="evidence evidence-metric">[metric:green_ratio]</span>=0.225, <span class="evidence evidence-metric">[metric:public_space_ratio]</span>=0.032, <span class="evidence evidence-metric">[metric:building_density]</span> and <span class="evidence evidence-metric">[metric:key_area_count]</span>=3. Regulatory FAR, height, density, green ratio, and setback are all <code>unknown</code> (official values not released).</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="Land use structure"><figcaption>Land use structure</figcaption></figure>
+<h2>Key Areas Detailed Design</h2>
+<p>| Key Area | Positioning | Spatial Actions | AI Scenarios | Evidence | | --- | --- | --- | --- | --- | | Zhongzhiyuan AI Acceleration | Garden-type full-stack innovation district | Qinghe interface, industry display, low-carbon exchange, transit | Model testing, standards, safety governance | <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span> | | Beijing AI Origin Community | Campus-adjacent conversion &amp; talent community | Campus-park-street slow stitching; talent services | Open-source, result publishing, near-campus incubation | <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-002]</span> | | Dazhongsi AI Industry Cluster | Urban intelligent-economy district | Station integration, four-quadrant pedestrian links | Agent &amp; terminal display, content, data factors | <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-003]</span> |</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="Three key areas detailed design"><figcaption>Three key areas detailed design</figcaption></figure>
+<h2>AI Scenarios, Personas &amp; Public Space</h2>
+<p>The proposal includes ≥10 AI scenario cards, ≥3 industry test scenarios, ≥5 user personas, and ≥3 AI pilgrimage landmarks — all located in specific layers and metrics.</p>
+<p>| Persona | Needs | Spatial Response | Privacy Boundary | | --- | --- | --- | --- | | Open-source developer | Publishing, collaboration, testing | Origin open-source hall, code wall | No personal tracking | | Startup team | Low-cost office, compute, testbed | Zhongzhiyuan shared testbed | Compute needs authorization | | Enterprise visitor | Display, business, recruiting | Dazhongsi roadshow lounge | Brand assets need clearance | | Local resident | Commute, leisure, services | Heritage park slow loop | No commercial profiling | | Faculty/student | Conversion, cross-campus, daily mobility | Campus-park stitching | Campus data authorized |</p>
+<h3>AI Pilgrimage Landmarks (agent.4)</h3>
+<p>| Landmark | Location | Concept | Evidence | | --- | --- | --- | --- | | L-01 Spine Tower | Zhongzhiyuan central plaza | Rail signal tower → AI compute tower with Zhan Tianyou memorial | <span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC-002]</span> | | L-02 Origin Lighthouse | AI Origin open-source hall | Open circular publishing space for developer conferences | <span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC-003]</span> | | L-03 Data Bell Tower | Dazhongsi station plaza | Smart terminal &amp; data-factor node, bells → data visualization | <span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC-004]</span> |</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="Mobility and blue-green network"><figcaption>Mobility and blue-green network</figcaption></figure>
+<h2>Transportation, Utilities &amp; Phasing</h2>
+<p>Transportation covers rail station integration, road micro-circulation, slow mobility breakpoints, and green transport. Agent may only edit secondary roads and below; expressways and arterials are locked. <code>geometry/roads.geojson</code> keeps all roads within the submission boundary. Utility strategy covers AI service facilities, distributed energy, edge compute, and traditional infrastructure fusion.</p>
+<p>Phasing <code>geometry/phasing.geojson</code> expresses three phases: Phase 1 Zhongzhiyuan (2026-2028), Phase 2 Origin Community (2028-2030), Phase 3 Dazhongsi (2030-2032). The 100-day call cycle is for submission, not implementation phasing.</p>
+<h2>Metrics, Recalculation &amp; Compliance</h2>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="Metrics evidence"><figcaption>Metrics evidence</figcaption></figure>
+<p>All <code>known</code> metrics are recalculable from GeoJSON at EPSG:4548. The five regulatory indicators (FAR, height, density, green ratio, setback) are <code>unknown</code> with explicit reasons, as official values are not released in the site package. The compliance matrix maps every announcement and agent_taskbook task to report sections, layers, metrics, drawings, HTML pages, sources, and assumptions. Missing any of announcement 1.3, 1.4, 1.5 or agent.1–agent.6 would block entry to formal professional scoring.</p>
+<h2>Risks, Copyright &amp; Compliance</h2>
+<ul>
+<li>**Boundary**: site_boundary and key_areas are <code>provisional_constraint</code>, <code>official_boundary=false</code>.</li>
+<li>**Regulatory gap**: FAR/height/density/green ratio/setback are <code>unknown</code>.</li>
+<li>**AI scenarios**: all are conceptual suggestions, not government commitments.</li>
+<li>**Data sources**: official announcement + provisional boundaries + national land use classification standard.</li>
+<li>**Copyright**: all figures and drawings are agent-generated programmatically; no third-party copyrighted materials.</li>
+</ul>
+<p>This proposal does not claim official approval, statutory regulatory planning, final land ownership, final construction scale, or guaranteed implementation.</p>
+</main>
+</body>
+</html>
