@@ -1,5 +1,13 @@
 # 方案迭代记录
 
+## v4.3 - 2026-09-04 (local review-fix branch)
+
+- Embedded pinned Noto Sans CJK SC Regular/Bold character subsets in all four offline HTML files, with SIL OFL 1.1 provenance and source checksums.
+- Rebuilt four English core diagrams with word wrapping and safe margins to remove right/bottom clipping.
+- Added a prominent bilingual “AI-assisted concept / not existing / not approved” label to every rendered realistic concept image in A3, A0, report HTML and scrolling HTML.
+- Reduced the provisional envelope's visual weight and strengthened the public intelligence spine, five transverse stitches, three place nodes and four conceptual regional collaboration interfaces.
+- This revision is local only; it has not been pushed to PR #4381 or used to reply to reviewers.
+
 ## v4.2 - 2026-08-31
 
 - Replaced A3 page 35's mismatched culture/wayfinding collage with one site-linked three-part visual for staffed community health, teacher-led AI learning and accessible navigation.

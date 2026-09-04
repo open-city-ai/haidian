@@ -204,7 +204,7 @@ The approximately 192.1-hectare brief area supports full-stack AI R&D, robot val
 
 ![Zhongzhiyuan verification open ground conceptual plan](assets/figures/atlas-zhongzhi.en.png)
 
-![Controlled robot-validation concept scene](assets/media/scene-01-zhongzhi-verification.jpg)
+![AI-assisted concept: controlled robot validation at Zhongzhiyuan. Not existing and not approved. See the asset ledger for source and licence.](assets/media/scene-01-zhongzhi-verification.jpg)
 
 Xuebei Park, Xueqing Road, Yuequan Road and Qinghe provide location context.
 
@@ -255,7 +255,7 @@ The approximately 104.3-hectare brief area organises university transfer, open-s
 
 ![AI Origin co-creation open ground conceptual plan](assets/figures/atlas-origin.en.png)
 
-![Qinghuayuan open-source workshop concept scene](assets/media/scene-02-qinghuayuan-workshop.jpg)
+![AI-assisted concept: Qinghuayuan open-source workshop. Not existing and not approved. See the asset ledger for source and licence.](assets/media/scene-02-qinghuayuan-workshop.jpg)
 
 Wudaokou, Heqing Road and Qinghua East Road West Exit anchor the interface.
 
@@ -306,7 +306,7 @@ The approximately 72-hectare brief area makes the four Dazhongsi station quadran
 
 ![Dazhongsi living open ground conceptual plan](assets/figures/atlas-dazhongsi.en.png)
 
-![Dazhongsi agent-native commerce night concept](assets/media/scene-07-ai-consumer-night.jpg)
+![AI-assisted concept: Dazhongsi agent-native commerce at night. Not existing and not approved. See the asset ledger for source and licence.](assets/media/scene-07-ai-consumer-night.jpg)
 
 Interchange, public life and content production must coexist.
 

@@ -204,7 +204,7 @@ MIT City Science启发可讨论的城市模型；AMS生活实验室强调真实�
 
 ![众智园验证开路场概念总平](assets/figures/atlas-zhongzhi.png)
 
-![众智园机器人受控验证概念场景](assets/media/scene-01-zhongzhi-verification.jpg)
+![AI辅助概念效果：众智园机器人受控验证；非现状、未获实施批准。来源与许可见资产台账。](assets/media/scene-01-zhongzhi-verification.jpg)
 
 学北园、学清路、月泉路和清河提供空间定位线索，不提供自动建设许可。
 
@@ -255,7 +255,7 @@ MIT City Science启发可讨论的城市模型；AMS生活实验室强调真实�
 
 ![AI原点共创开路场概念总平](assets/figures/atlas-origin.png)
 
-![清华园旧站开源工坊概念场景](assets/media/scene-02-qinghuayuan-workshop.jpg)
+![AI辅助概念效果：清华园旧站开源工坊；非现状、未获实施批准。来源与许可见资产台账。](assets/media/scene-02-qinghuayuan-workshop.jpg)
 
 五道口、荷清路与清华东路西口形成真实的换乘与创新界面。
 
@@ -306,7 +306,7 @@ AI原点的公共界面采用“短停—讨论—制作—复核”的深度梯
 
 ![大钟寺生活开路场概念总平](assets/figures/atlas-dazhongsi.png)
 
-![大钟寺智能原生商业夜间概念场景](assets/media/scene-07-ai-consumer-night.jpg)
+![AI辅助概念效果：大钟寺智能原生商业夜间场景；非现状、未获实施批准。来源与许可见资产台账。](assets/media/scene-07-ai-consumer-night.jpg)
 
 站口换乘、公共生活与内容生产叠合，而不是互相挤占。
 

@@ -34,7 +34,7 @@ question-desk-concept.jpg derives from the heritage-entry photograph above. Open
 
 Eleven V4 raster scenes in `assets/media/` were generated with the OpenAI image-generation tool on 2026-08-31. Nine are image-to-image edits of the dated photographs listed above; the cover is a compressed derivative of one edited corridor scene; `scene-11-inclusive-services.jpg` is a three-part composite concept visualisation based on the Qinghuayuan heritage-station and public-question-desk references. Its prompt required: (1) a staffed community health point with an older adult, carer and nurse; (2) a teacher-led AI learning commons with children and a wheelchair user; and (3) a tactile accessible route shared by a wheelchair user, a person with a pram and a low-speed delivery robot at a designated kerb. It prohibited logos and embedded text and required realistic, non-science-fiction architectural representation.
 
-All prompts required the existing heritage, railway, trees, station structures or street massing to remain recognisable and limited additions to buildable public-space actions. The scenes are labelled “concept” in the A3/A0 documents and are not photographs of completed works, evidence of consent, or engineering and heritage approvals. Source-photo CC BY-SA4.0 conditions are retained for derivatives. File-to-source and claim mapping is recorded in `assets/media/asset-ledger.md`.
+All prompts required the existing heritage, railway, trees, station structures or street massing to remain recognisable and limited additions to buildable public-space actions. Every rendered use carries a high-contrast bilingual in-image label: “AI辅助概念效果 / AI-assisted concept” and “非现状 · 未获实施批准 / Not existing · Not approved”. The scenes are not photographs of completed works, evidence of consent, or engineering and heritage approvals. Source-photo CC BY-SA4.0 conditions are retained for derivatives. File-to-source and claim mapping is recorded in `assets/media/asset-ledger.md`.
 
 ## Maps and geometry
 
@@ -42,7 +42,9 @@ All prompts required the existing heritage, railway, trees, station structures o
 
 ## Fonts and tools
 
-System CJK fonts are embedded or referenced by the local PDF renderer. Node.js, Sharp and Playwright generate authored SVG figures, HTML, A3/A0 PDFs and offline web pages. Poppler and ImageMagick are used for page rendering and contact-sheet QA. Generated diagrams use submitted GeoJSON as a design model and do not upgrade provisional geometry to official fact.
+The four offline HTML files embed character-subset WOFF2 data derived from **Noto Sans CJK SC Regular/Bold**, pinned to noto-cjk commit `f8d157532fbfaeda587e826d4cd5b21a49186f7c`, under the [SIL Open Font License 1.1](https://scripts.sil.org/OFL). Source OTF SHA-256 values are Regular `2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b` and Bold `b5f0d1a190a7f9b43c310a8850630af12553df32c4c050543f9059732d9b4c0a`. The original OTF files are not submitted; only Base64-encoded subsets required by the bilingual proposal are stored in `visual/assets/open-ground-fonts.css`.
+
+Node.js, Sharp and Playwright generate authored SVG figures, HTML, A3/A0 PDFs and offline web pages. Poppler and ImageMagick are used for page rendering and contact-sheet QA. Generated diagrams use submitted GeoJSON as a design model and do not upgrade provisional geometry to official fact.
 
 ## Official publications
 
