@@ -1,0 +1,2665 @@
+{
+  "schema_version": "0.1.0",
+  "method_version": "ai-native-facility-v0.1",
+  "dataset_kind": "project_assessment",
+  "synthetic": false,
+  "evidence_register": [
+    {
+      "evidence_id": "E-PROJECT-PROVISIONAL-001",
+      "status": "provisional",
+      "description": "公开任务书、临时粗略边界和现状数据试跑，仅支撑概念阶段记录。",
+      "source_ref": "project_control/G1_PUBLIC_SOURCE_AUDIT_20260813.md",
+      "confidence": "low",
+      "limitations": [
+        "无官方精确边界、控规、权属和现场设施调查；不得作为法定或工程依据。"
+      ]
+    }
+  ],
+  "assumption_register": [
+    {
+      "assumption_id": "A-PROJECT-CONCEPT-001",
+      "description": "六类设施的容量、成本、RTO 和替代路径为概念假设，需后续专业调查与双评审校准。",
+      "status": "active",
+      "confidence": "low"
+    }
+  ],
+  "facilities": [
+    {
+      "facility_id": "FAC-ROAD_INTERSECTION-001",
+      "title": "道路/交叉口 AI 交接口",
+      "facility_class": "road_intersection",
+      "calibration_wave": 1,
+      "criticality": "critical",
+      "assessment_maturity": "concept",
+      "assessment_status": "draft",
+      "overall_confidence": "low",
+      "users": {
+        "human_users": [
+          "pedestrians",
+          "wheelchair users"
+        ],
+        "ai_users": [
+          {
+            "actor_type": "delivery_robot",
+            "physical_actions": [
+              "traverse",
+              "queue",
+              "occupy_capacity"
+            ]
+          }
+        ]
+      },
+      "baseline_b0": {
+        "description": "非 AI 普通设施：由人步行、人工车辆或人工值守完成基本服务；容量与服务底线待现状调查校准。"
+      },
+      "basic_service": {
+        "definition": "概念服务单元，待现场基线校准",
+        "unit": "crossings_per_hour",
+        "baseline_capacity": 100,
+        "required_floor": 100,
+        "ai_off_immediate_capacity": 100,
+        "capacity_group_id": "safe_crossings"
+      },
+      "reverse_design": {
+        "decision": "adapt",
+        "why_change": "AI 使用者必须直接进入、停靠、排队、装卸、充电或占用容量，现有设施缺少相应的物理交接空间。",
+        "counterfactual": "若只增加摄像头或后台算法，AI 仍无法安全占用设施容量，不能满足 AI-native 门槛。",
+        "necessity_gate": "pass"
+      },
+      "physical_change": {
+        "summary": "概念性空间、物理接口和运营顺序重构；不等同于工程尺寸或建设许可。",
+        "dimensions": [
+          "space",
+          "physical_interface",
+          "operations"
+        ],
+        "interventions": [
+          {
+            "kind": "space",
+            "description": "为 AI 使用者划出可被人识别的进入/停靠/排队或装卸空间"
+          },
+          {
+            "kind": "physical_interface",
+            "description": "设置开放、可替换、可人工操作的实体交接界面"
+          },
+          {
+            "kind": "operations",
+            "description": "AI-Native、AI-Degraded、AI-Off 三态采用不同控制权和服务路径"
+          }
+        ],
+        "measurable_changes": [
+          {
+            "attribute": "queue_width",
+            "baseline": 0,
+            "proposed": 1.5,
+            "unit": "m"
+          }
+        ]
+      },
+      "compatibility": {
+        "human_priority_preserved": true,
+        "non_ai_access_preserved": true,
+        "accessibility_preserved": true,
+        "human_decision_authority": "Human operator and public authority",
+        "legacy_compatibility": "AI-Off 后转换为普通人工设施，基础服务保持率目标为 100%；具体数值待基线调查。",
+        "interface_strategy": "开放协议 + 实体标识 + 本地人工控制；不依赖单一厂商或单一云服务。"
+      },
+      "operation_states": {
+        "ai_native": {
+          "description": "Synthetic normal state"
+        },
+        "ai_degraded": {
+          "network": {
+            "status": "tested",
+            "trigger": "network loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "manual crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore network"
+          },
+          "localization": {
+            "status": "tested",
+            "trigger": "localization loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "restore localization"
+          },
+          "model": {
+            "status": "tested",
+            "trigger": "model unavailable",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "validated fallback"
+          },
+          "sensing": {
+            "status": "tested",
+            "trigger": "sensor loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "replace sensor"
+          },
+          "power": {
+            "status": "tested",
+            "trigger": "power loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "passive crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore power"
+          },
+          "vendor_interface": {
+            "status": "tested",
+            "trigger": "vendor exit",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "public authority",
+            "safe_state": "open manual mode",
+            "max_duration_hours": 24,
+            "recovery": "switch provider"
+          }
+        },
+        "ai_off": {
+          "entry_condition": "AI service withdrawn",
+          "maintained_basic_services": [
+            "safe human crossing"
+          ],
+          "control_authority": "public authority",
+          "safe_state": "ordinary crossing",
+          "conversion_time_hours": 1,
+          "recovery_time_objective_hours": 10,
+          "conversion_cost_amount": 1,
+          "capital_replacement_value_amount": 100,
+          "currency": "CNY"
+        }
+      },
+      "second_life": {
+        "asset_scope": "fixed_or_long_lived",
+        "status": "known",
+        "paths": [
+          {
+            "path_type": "alternate_use",
+            "description": "撤除或迁移 AI 专用部件后，空间转为普通公共服务、人工维修或无障碍等候用途。",
+            "target_users": [
+              "pedestrians"
+            ],
+            "conversion_steps": [
+              "remove machine marker"
+            ],
+            "owner": "public authority",
+            "status": "tabletop_verified"
+          }
+        ]
+      },
+      "gates": {
+        "necessity": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "public_value": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "safety": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "accessibility": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "ats": {
+        "components": {
+          "p": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "f": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "i": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "u": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "r_score": {
+        "components": {
+          "rq": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rt": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rc": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rd": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "ro": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rl": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "raw": {
+          "retention_pct": 100,
+          "time_to_rto_ratio": 0.1,
+          "cost_to_crv_ratio": 0.01,
+          "ai_dedicated_asset_ratio": 0.1,
+          "stranded_ai_asset_ratio": 0.05
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "futures": {
+        "boom": {
+          "parameters": {
+            "demand_multiplier": 2,
+            "concurrency_multiplier": 2,
+            "curb_load_multiplier": 1.5
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "fragmentation": {
+          "parameters": {
+            "vendor_count": 3,
+            "standard_count": 2,
+            "single_cloud_unavailable": true
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "retreat": {
+          "parameters": {
+            "ai_demand_share_pct": 0,
+            "vendor_support_available": false
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "classification": {
+        "declared_quadrant": "not_evaluable",
+        "high_high_eligible": false
+      },
+      "evidence_ids": [
+        "E-PROJECT-PROVISIONAL-001"
+      ],
+      "assumption_ids": [
+        "A-PROJECT-CONCEPT-001"
+      ]
+    },
+    {
+      "facility_id": "FAC-CURB_LOADING-002",
+      "title": "路缘装卸区 AI 装卸舱",
+      "facility_class": "curb_loading",
+      "calibration_wave": 1,
+      "criticality": "non_critical",
+      "assessment_maturity": "concept",
+      "assessment_status": "draft",
+      "overall_confidence": "low",
+      "users": {
+        "human_users": [
+          "pedestrians",
+          "wheelchair users"
+        ],
+        "ai_users": [
+          {
+            "actor_type": "cargo_robot",
+            "physical_actions": [
+              "dock",
+              "queue",
+              "load",
+              "unload"
+            ]
+          }
+        ]
+      },
+      "baseline_b0": {
+        "description": "非 AI 普通设施：由人步行、人工车辆或人工值守完成基本服务；容量与服务底线待现状调查校准。"
+      },
+      "basic_service": {
+        "definition": "概念服务单元，待现场基线校准",
+        "unit": "crossings_per_hour",
+        "baseline_capacity": 100,
+        "required_floor": 100,
+        "ai_off_immediate_capacity": 100,
+        "capacity_group_id": "loading_events"
+      },
+      "reverse_design": {
+        "decision": "adapt",
+        "why_change": "AI 使用者必须直接进入、停靠、排队、装卸、充电或占用容量，现有设施缺少相应的物理交接空间。",
+        "counterfactual": "若只增加摄像头或后台算法，AI 仍无法安全占用设施容量，不能满足 AI-native 门槛。",
+        "necessity_gate": "pass"
+      },
+      "physical_change": {
+        "summary": "概念性空间、物理接口和运营顺序重构；不等同于工程尺寸或建设许可。",
+        "dimensions": [
+          "space",
+          "physical_interface",
+          "operations"
+        ],
+        "interventions": [
+          {
+            "kind": "space",
+            "description": "为 AI 使用者划出可被人识别的进入/停靠/排队或装卸空间"
+          },
+          {
+            "kind": "physical_interface",
+            "description": "设置开放、可替换、可人工操作的实体交接界面"
+          },
+          {
+            "kind": "operations",
+            "description": "AI-Native、AI-Degraded、AI-Off 三态采用不同控制权和服务路径"
+          }
+        ],
+        "measurable_changes": [
+          {
+            "attribute": "queue_width",
+            "baseline": 0,
+            "proposed": 1.5,
+            "unit": "m"
+          }
+        ]
+      },
+      "compatibility": {
+        "human_priority_preserved": true,
+        "non_ai_access_preserved": true,
+        "accessibility_preserved": true,
+        "human_decision_authority": "Human operator and public authority",
+        "legacy_compatibility": "AI-Off 后转换为普通人工设施，基础服务保持率目标为 100%；具体数值待基线调查。",
+        "interface_strategy": "开放协议 + 实体标识 + 本地人工控制；不依赖单一厂商或单一云服务。"
+      },
+      "operation_states": {
+        "ai_native": {
+          "description": "Synthetic normal state"
+        },
+        "ai_degraded": {
+          "network": {
+            "status": "tested",
+            "trigger": "network loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "manual crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore network"
+          },
+          "localization": {
+            "status": "tested",
+            "trigger": "localization loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "restore localization"
+          },
+          "model": {
+            "status": "tested",
+            "trigger": "model unavailable",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "validated fallback"
+          },
+          "sensing": {
+            "status": "tested",
+            "trigger": "sensor loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "replace sensor"
+          },
+          "power": {
+            "status": "tested",
+            "trigger": "power loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "passive crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore power"
+          },
+          "vendor_interface": {
+            "status": "tested",
+            "trigger": "vendor exit",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "public authority",
+            "safe_state": "open manual mode",
+            "max_duration_hours": 24,
+            "recovery": "switch provider"
+          }
+        },
+        "ai_off": {
+          "entry_condition": "AI service withdrawn",
+          "maintained_basic_services": [
+            "safe human crossing"
+          ],
+          "control_authority": "public authority",
+          "safe_state": "ordinary crossing",
+          "conversion_time_hours": 1,
+          "recovery_time_objective_hours": 10,
+          "conversion_cost_amount": 1,
+          "capital_replacement_value_amount": 100,
+          "currency": "CNY"
+        }
+      },
+      "second_life": {
+        "asset_scope": "fixed_or_long_lived",
+        "status": "known",
+        "paths": [
+          {
+            "path_type": "alternate_use",
+            "description": "撤除或迁移 AI 专用部件后，空间转为普通公共服务、人工维修或无障碍等候用途。",
+            "target_users": [
+              "pedestrians"
+            ],
+            "conversion_steps": [
+              "remove machine marker"
+            ],
+            "owner": "public authority",
+            "status": "tabletop_verified"
+          }
+        ]
+      },
+      "gates": {
+        "necessity": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "public_value": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "safety": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "accessibility": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "ats": {
+        "components": {
+          "p": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "f": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "i": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "u": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "r_score": {
+        "components": {
+          "rq": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rt": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rc": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rd": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "ro": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rl": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "raw": {
+          "retention_pct": 100,
+          "time_to_rto_ratio": 0.1,
+          "cost_to_crv_ratio": 0.01,
+          "ai_dedicated_asset_ratio": 0.1,
+          "stranded_ai_asset_ratio": 0.05
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "futures": {
+        "boom": {
+          "parameters": {
+            "demand_multiplier": 2,
+            "concurrency_multiplier": 2,
+            "curb_load_multiplier": 1.5
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "fragmentation": {
+          "parameters": {
+            "vendor_count": 3,
+            "standard_count": 2,
+            "single_cloud_unavailable": true
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "retreat": {
+          "parameters": {
+            "ai_demand_share_pct": 0,
+            "vendor_support_available": false
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "classification": {
+        "declared_quadrant": "not_evaluable",
+        "high_high_eligible": false
+      },
+      "evidence_ids": [
+        "E-PROJECT-PROVISIONAL-001"
+      ],
+      "assumption_ids": [
+        "A-PROJECT-CONCEPT-001"
+      ]
+    },
+    {
+      "facility_id": "FAC-BUILDING_ENTRANCE-003",
+      "title": "建筑入口 AI 通行门",
+      "facility_class": "building_entrance",
+      "calibration_wave": 1,
+      "criticality": "non_critical",
+      "assessment_maturity": "concept",
+      "assessment_status": "draft",
+      "overall_confidence": "low",
+      "users": {
+        "human_users": [
+          "pedestrians",
+          "wheelchair users"
+        ],
+        "ai_users": [
+          {
+            "actor_type": "service_robot",
+            "physical_actions": [
+              "enter",
+              "queue",
+              "occupy_capacity"
+            ]
+          }
+        ]
+      },
+      "baseline_b0": {
+        "description": "非 AI 普通设施：由人步行、人工车辆或人工值守完成基本服务；容量与服务底线待现状调查校准。"
+      },
+      "basic_service": {
+        "definition": "概念服务单元，待现场基线校准",
+        "unit": "crossings_per_hour",
+        "baseline_capacity": 100,
+        "required_floor": 100,
+        "ai_off_immediate_capacity": 100,
+        "capacity_group_id": "entrance_events"
+      },
+      "reverse_design": {
+        "decision": "adapt",
+        "why_change": "AI 使用者必须直接进入、停靠、排队、装卸、充电或占用容量，现有设施缺少相应的物理交接空间。",
+        "counterfactual": "若只增加摄像头或后台算法，AI 仍无法安全占用设施容量，不能满足 AI-native 门槛。",
+        "necessity_gate": "pass"
+      },
+      "physical_change": {
+        "summary": "概念性空间、物理接口和运营顺序重构；不等同于工程尺寸或建设许可。",
+        "dimensions": [
+          "space",
+          "physical_interface",
+          "operations"
+        ],
+        "interventions": [
+          {
+            "kind": "space",
+            "description": "为 AI 使用者划出可被人识别的进入/停靠/排队或装卸空间"
+          },
+          {
+            "kind": "physical_interface",
+            "description": "设置开放、可替换、可人工操作的实体交接界面"
+          },
+          {
+            "kind": "operations",
+            "description": "AI-Native、AI-Degraded、AI-Off 三态采用不同控制权和服务路径"
+          }
+        ],
+        "measurable_changes": [
+          {
+            "attribute": "queue_width",
+            "baseline": 0,
+            "proposed": 1.5,
+            "unit": "m"
+          }
+        ]
+      },
+      "compatibility": {
+        "human_priority_preserved": true,
+        "non_ai_access_preserved": true,
+        "accessibility_preserved": true,
+        "human_decision_authority": "Human operator and public authority",
+        "legacy_compatibility": "AI-Off 后转换为普通人工设施，基础服务保持率目标为 100%；具体数值待基线调查。",
+        "interface_strategy": "开放协议 + 实体标识 + 本地人工控制；不依赖单一厂商或单一云服务。"
+      },
+      "operation_states": {
+        "ai_native": {
+          "description": "Synthetic normal state"
+        },
+        "ai_degraded": {
+          "network": {
+            "status": "tested",
+            "trigger": "network loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "manual crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore network"
+          },
+          "localization": {
+            "status": "tested",
+            "trigger": "localization loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "restore localization"
+          },
+          "model": {
+            "status": "tested",
+            "trigger": "model unavailable",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "validated fallback"
+          },
+          "sensing": {
+            "status": "tested",
+            "trigger": "sensor loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "replace sensor"
+          },
+          "power": {
+            "status": "tested",
+            "trigger": "power loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "passive crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore power"
+          },
+          "vendor_interface": {
+            "status": "tested",
+            "trigger": "vendor exit",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "public authority",
+            "safe_state": "open manual mode",
+            "max_duration_hours": 24,
+            "recovery": "switch provider"
+          }
+        },
+        "ai_off": {
+          "entry_condition": "AI service withdrawn",
+          "maintained_basic_services": [
+            "safe human crossing"
+          ],
+          "control_authority": "public authority",
+          "safe_state": "ordinary crossing",
+          "conversion_time_hours": 1,
+          "recovery_time_objective_hours": 10,
+          "conversion_cost_amount": 1,
+          "capital_replacement_value_amount": 100,
+          "currency": "CNY"
+        }
+      },
+      "second_life": {
+        "asset_scope": "fixed_or_long_lived",
+        "status": "known",
+        "paths": [
+          {
+            "path_type": "alternate_use",
+            "description": "撤除或迁移 AI 专用部件后，空间转为普通公共服务、人工维修或无障碍等候用途。",
+            "target_users": [
+              "pedestrians"
+            ],
+            "conversion_steps": [
+              "remove machine marker"
+            ],
+            "owner": "public authority",
+            "status": "tabletop_verified"
+          }
+        ]
+      },
+      "gates": {
+        "necessity": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "public_value": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "safety": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "accessibility": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "ats": {
+        "components": {
+          "p": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "f": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "i": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "u": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "r_score": {
+        "components": {
+          "rq": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rt": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rc": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rd": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "ro": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rl": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "raw": {
+          "retention_pct": 100,
+          "time_to_rto_ratio": 0.1,
+          "cost_to_crv_ratio": 0.01,
+          "ai_dedicated_asset_ratio": 0.1,
+          "stranded_ai_asset_ratio": 0.05
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "futures": {
+        "boom": {
+          "parameters": {
+            "demand_multiplier": 2,
+            "concurrency_multiplier": 2,
+            "curb_load_multiplier": 1.5
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "fragmentation": {
+          "parameters": {
+            "vendor_count": 3,
+            "standard_count": 2,
+            "single_cloud_unavailable": true
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "retreat": {
+          "parameters": {
+            "ai_demand_share_pct": 0,
+            "vendor_support_available": false
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "classification": {
+        "declared_quadrant": "not_evaluable",
+        "high_high_eligible": false
+      },
+      "evidence_ids": [
+        "E-PROJECT-PROVISIONAL-001"
+      ],
+      "assumption_ids": [
+        "A-PROJECT-CONCEPT-001"
+      ]
+    },
+    {
+      "facility_id": "FAC-PARK_PUBLIC_SPACE-004",
+      "title": "公园公共空间 AI 慢行节点",
+      "facility_class": "park_public_space",
+      "calibration_wave": 1,
+      "criticality": "non_critical",
+      "assessment_maturity": "concept",
+      "assessment_status": "draft",
+      "overall_confidence": "low",
+      "users": {
+        "human_users": [
+          "pedestrians",
+          "wheelchair users"
+        ],
+        "ai_users": [
+          {
+            "actor_type": "mobility_robot",
+            "physical_actions": [
+              "enter",
+              "traverse",
+              "queue"
+            ]
+          }
+        ]
+      },
+      "baseline_b0": {
+        "description": "非 AI 普通设施：由人步行、人工车辆或人工值守完成基本服务；容量与服务底线待现状调查校准。"
+      },
+      "basic_service": {
+        "definition": "概念服务单元，待现场基线校准",
+        "unit": "crossings_per_hour",
+        "baseline_capacity": 100,
+        "required_floor": 100,
+        "ai_off_immediate_capacity": 100,
+        "capacity_group_id": "park_visits"
+      },
+      "reverse_design": {
+        "decision": "adapt",
+        "why_change": "AI 使用者必须直接进入、停靠、排队、装卸、充电或占用容量，现有设施缺少相应的物理交接空间。",
+        "counterfactual": "若只增加摄像头或后台算法，AI 仍无法安全占用设施容量，不能满足 AI-native 门槛。",
+        "necessity_gate": "pass"
+      },
+      "physical_change": {
+        "summary": "概念性空间、物理接口和运营顺序重构；不等同于工程尺寸或建设许可。",
+        "dimensions": [
+          "space",
+          "physical_interface",
+          "operations"
+        ],
+        "interventions": [
+          {
+            "kind": "space",
+            "description": "为 AI 使用者划出可被人识别的进入/停靠/排队或装卸空间"
+          },
+          {
+            "kind": "physical_interface",
+            "description": "设置开放、可替换、可人工操作的实体交接界面"
+          },
+          {
+            "kind": "operations",
+            "description": "AI-Native、AI-Degraded、AI-Off 三态采用不同控制权和服务路径"
+          }
+        ],
+        "measurable_changes": [
+          {
+            "attribute": "queue_width",
+            "baseline": 0,
+            "proposed": 1.5,
+            "unit": "m"
+          }
+        ]
+      },
+      "compatibility": {
+        "human_priority_preserved": true,
+        "non_ai_access_preserved": true,
+        "accessibility_preserved": true,
+        "human_decision_authority": "Human operator and public authority",
+        "legacy_compatibility": "AI-Off 后转换为普通人工设施，基础服务保持率目标为 100%；具体数值待基线调查。",
+        "interface_strategy": "开放协议 + 实体标识 + 本地人工控制；不依赖单一厂商或单一云服务。"
+      },
+      "operation_states": {
+        "ai_native": {
+          "description": "Synthetic normal state"
+        },
+        "ai_degraded": {
+          "network": {
+            "status": "tested",
+            "trigger": "network loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "manual crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore network"
+          },
+          "localization": {
+            "status": "tested",
+            "trigger": "localization loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "restore localization"
+          },
+          "model": {
+            "status": "tested",
+            "trigger": "model unavailable",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "validated fallback"
+          },
+          "sensing": {
+            "status": "tested",
+            "trigger": "sensor loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "replace sensor"
+          },
+          "power": {
+            "status": "tested",
+            "trigger": "power loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "passive crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore power"
+          },
+          "vendor_interface": {
+            "status": "tested",
+            "trigger": "vendor exit",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "public authority",
+            "safe_state": "open manual mode",
+            "max_duration_hours": 24,
+            "recovery": "switch provider"
+          }
+        },
+        "ai_off": {
+          "entry_condition": "AI service withdrawn",
+          "maintained_basic_services": [
+            "safe human crossing"
+          ],
+          "control_authority": "public authority",
+          "safe_state": "ordinary crossing",
+          "conversion_time_hours": 1,
+          "recovery_time_objective_hours": 10,
+          "conversion_cost_amount": 1,
+          "capital_replacement_value_amount": 100,
+          "currency": "CNY"
+        }
+      },
+      "second_life": {
+        "asset_scope": "fixed_or_long_lived",
+        "status": "known",
+        "paths": [
+          {
+            "path_type": "alternate_use",
+            "description": "撤除或迁移 AI 专用部件后，空间转为普通公共服务、人工维修或无障碍等候用途。",
+            "target_users": [
+              "pedestrians"
+            ],
+            "conversion_steps": [
+              "remove machine marker"
+            ],
+            "owner": "public authority",
+            "status": "tabletop_verified"
+          }
+        ]
+      },
+      "gates": {
+        "necessity": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "public_value": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "safety": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "accessibility": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "ats": {
+        "components": {
+          "p": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "f": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "i": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "u": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "r_score": {
+        "components": {
+          "rq": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rt": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rc": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rd": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "ro": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rl": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "raw": {
+          "retention_pct": 100,
+          "time_to_rto_ratio": 0.1,
+          "cost_to_crv_ratio": 0.01,
+          "ai_dedicated_asset_ratio": 0.1,
+          "stranded_ai_asset_ratio": 0.05
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "futures": {
+        "boom": {
+          "parameters": {
+            "demand_multiplier": 2,
+            "concurrency_multiplier": 2,
+            "curb_load_multiplier": 1.5
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "fragmentation": {
+          "parameters": {
+            "vendor_count": 3,
+            "standard_count": 2,
+            "single_cloud_unavailable": true
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "retreat": {
+          "parameters": {
+            "ai_demand_share_pct": 0,
+            "vendor_support_available": false
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "classification": {
+        "declared_quadrant": "not_evaluable",
+        "high_high_eligible": false
+      },
+      "evidence_ids": [
+        "E-PROJECT-PROVISIONAL-001"
+      ],
+      "assumption_ids": [
+        "A-PROJECT-CONCEPT-001"
+      ]
+    },
+    {
+      "facility_id": "FAC-MUNICIPAL_LOGISTICS-005",
+      "title": "市政物流节点 AI 交接站",
+      "facility_class": "municipal_logistics",
+      "calibration_wave": 1,
+      "criticality": "critical",
+      "assessment_maturity": "concept",
+      "assessment_status": "draft",
+      "overall_confidence": "low",
+      "users": {
+        "human_users": [
+          "pedestrians",
+          "wheelchair users"
+        ],
+        "ai_users": [
+          {
+            "actor_type": "maintenance_robot",
+            "physical_actions": [
+              "dock",
+              "load",
+              "unload",
+              "occupy_capacity"
+            ]
+          }
+        ]
+      },
+      "baseline_b0": {
+        "description": "非 AI 普通设施：由人步行、人工车辆或人工值守完成基本服务；容量与服务底线待现状调查校准。"
+      },
+      "basic_service": {
+        "definition": "概念服务单元，待现场基线校准",
+        "unit": "crossings_per_hour",
+        "baseline_capacity": 100,
+        "required_floor": 100,
+        "ai_off_immediate_capacity": 100,
+        "capacity_group_id": "municipal_dispatches"
+      },
+      "reverse_design": {
+        "decision": "adapt",
+        "why_change": "AI 使用者必须直接进入、停靠、排队、装卸、充电或占用容量，现有设施缺少相应的物理交接空间。",
+        "counterfactual": "若只增加摄像头或后台算法，AI 仍无法安全占用设施容量，不能满足 AI-native 门槛。",
+        "necessity_gate": "pass"
+      },
+      "physical_change": {
+        "summary": "概念性空间、物理接口和运营顺序重构；不等同于工程尺寸或建设许可。",
+        "dimensions": [
+          "space",
+          "physical_interface",
+          "operations"
+        ],
+        "interventions": [
+          {
+            "kind": "space",
+            "description": "为 AI 使用者划出可被人识别的进入/停靠/排队或装卸空间"
+          },
+          {
+            "kind": "physical_interface",
+            "description": "设置开放、可替换、可人工操作的实体交接界面"
+          },
+          {
+            "kind": "operations",
+            "description": "AI-Native、AI-Degraded、AI-Off 三态采用不同控制权和服务路径"
+          }
+        ],
+        "measurable_changes": [
+          {
+            "attribute": "queue_width",
+            "baseline": 0,
+            "proposed": 1.5,
+            "unit": "m"
+          }
+        ]
+      },
+      "compatibility": {
+        "human_priority_preserved": true,
+        "non_ai_access_preserved": true,
+        "accessibility_preserved": true,
+        "human_decision_authority": "Human operator and public authority",
+        "legacy_compatibility": "AI-Off 后转换为普通人工设施，基础服务保持率目标为 100%；具体数值待基线调查。",
+        "interface_strategy": "开放协议 + 实体标识 + 本地人工控制；不依赖单一厂商或单一云服务。"
+      },
+      "operation_states": {
+        "ai_native": {
+          "description": "Synthetic normal state"
+        },
+        "ai_degraded": {
+          "network": {
+            "status": "tested",
+            "trigger": "network loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "manual crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore network"
+          },
+          "localization": {
+            "status": "tested",
+            "trigger": "localization loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "restore localization"
+          },
+          "model": {
+            "status": "tested",
+            "trigger": "model unavailable",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "validated fallback"
+          },
+          "sensing": {
+            "status": "tested",
+            "trigger": "sensor loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "replace sensor"
+          },
+          "power": {
+            "status": "tested",
+            "trigger": "power loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "passive crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore power"
+          },
+          "vendor_interface": {
+            "status": "tested",
+            "trigger": "vendor exit",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "public authority",
+            "safe_state": "open manual mode",
+            "max_duration_hours": 24,
+            "recovery": "switch provider"
+          }
+        },
+        "ai_off": {
+          "entry_condition": "AI service withdrawn",
+          "maintained_basic_services": [
+            "safe human crossing"
+          ],
+          "control_authority": "public authority",
+          "safe_state": "ordinary crossing",
+          "conversion_time_hours": 1,
+          "recovery_time_objective_hours": 10,
+          "conversion_cost_amount": 1,
+          "capital_replacement_value_amount": 100,
+          "currency": "CNY"
+        }
+      },
+      "second_life": {
+        "asset_scope": "fixed_or_long_lived",
+        "status": "known",
+        "paths": [
+          {
+            "path_type": "alternate_use",
+            "description": "撤除或迁移 AI 专用部件后，空间转为普通公共服务、人工维修或无障碍等候用途。",
+            "target_users": [
+              "pedestrians"
+            ],
+            "conversion_steps": [
+              "remove machine marker"
+            ],
+            "owner": "public authority",
+            "status": "tabletop_verified"
+          }
+        ]
+      },
+      "gates": {
+        "necessity": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "public_value": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "safety": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "accessibility": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "ats": {
+        "components": {
+          "p": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "f": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "i": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "u": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "r_score": {
+        "components": {
+          "rq": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rt": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rc": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rd": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "ro": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rl": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "raw": {
+          "retention_pct": 100,
+          "time_to_rto_ratio": 0.1,
+          "cost_to_crv_ratio": 0.01,
+          "ai_dedicated_asset_ratio": 0.1,
+          "stranded_ai_asset_ratio": 0.05
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "futures": {
+        "boom": {
+          "parameters": {
+            "demand_multiplier": 2,
+            "concurrency_multiplier": 2,
+            "curb_load_multiplier": 1.5
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "fragmentation": {
+          "parameters": {
+            "vendor_count": 3,
+            "standard_count": 2,
+            "single_cloud_unavailable": true
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "retreat": {
+          "parameters": {
+            "ai_demand_share_pct": 0,
+            "vendor_support_available": false
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "classification": {
+        "declared_quadrant": "not_evaluable",
+        "high_high_eligible": false
+      },
+      "evidence_ids": [
+        "E-PROJECT-PROVISIONAL-001"
+      ],
+      "assumption_ids": [
+        "A-PROJECT-CONCEPT-001"
+      ]
+    },
+    {
+      "facility_id": "FAC-ENERGY_EDGE_NODE-006",
+      "title": "能源/边缘节点 AI 维护舱",
+      "facility_class": "energy_edge_node",
+      "calibration_wave": 1,
+      "criticality": "critical",
+      "assessment_maturity": "concept",
+      "assessment_status": "draft",
+      "overall_confidence": "low",
+      "users": {
+        "human_users": [
+          "pedestrians",
+          "wheelchair users"
+        ],
+        "ai_users": [
+          {
+            "actor_type": "inspection_robot",
+            "physical_actions": [
+              "enter",
+              "dock",
+              "charge",
+              "occupy_capacity"
+            ]
+          }
+        ]
+      },
+      "baseline_b0": {
+        "description": "非 AI 普通设施：由人步行、人工车辆或人工值守完成基本服务；容量与服务底线待现状调查校准。"
+      },
+      "basic_service": {
+        "definition": "概念服务单元，待现场基线校准",
+        "unit": "crossings_per_hour",
+        "baseline_capacity": 100,
+        "required_floor": 100,
+        "ai_off_immediate_capacity": 100,
+        "capacity_group_id": "maintenance_visits"
+      },
+      "reverse_design": {
+        "decision": "adapt",
+        "why_change": "AI 使用者必须直接进入、停靠、排队、装卸、充电或占用容量，现有设施缺少相应的物理交接空间。",
+        "counterfactual": "若只增加摄像头或后台算法，AI 仍无法安全占用设施容量，不能满足 AI-native 门槛。",
+        "necessity_gate": "pass"
+      },
+      "physical_change": {
+        "summary": "概念性空间、物理接口和运营顺序重构；不等同于工程尺寸或建设许可。",
+        "dimensions": [
+          "space",
+          "physical_interface",
+          "operations"
+        ],
+        "interventions": [
+          {
+            "kind": "space",
+            "description": "为 AI 使用者划出可被人识别的进入/停靠/排队或装卸空间"
+          },
+          {
+            "kind": "physical_interface",
+            "description": "设置开放、可替换、可人工操作的实体交接界面"
+          },
+          {
+            "kind": "operations",
+            "description": "AI-Native、AI-Degraded、AI-Off 三态采用不同控制权和服务路径"
+          }
+        ],
+        "measurable_changes": [
+          {
+            "attribute": "queue_width",
+            "baseline": 0,
+            "proposed": 1.5,
+            "unit": "m"
+          }
+        ]
+      },
+      "compatibility": {
+        "human_priority_preserved": true,
+        "non_ai_access_preserved": true,
+        "accessibility_preserved": true,
+        "human_decision_authority": "Human operator and public authority",
+        "legacy_compatibility": "AI-Off 后转换为普通人工设施，基础服务保持率目标为 100%；具体数值待基线调查。",
+        "interface_strategy": "开放协议 + 实体标识 + 本地人工控制；不依赖单一厂商或单一云服务。"
+      },
+      "operation_states": {
+        "ai_native": {
+          "description": "Synthetic normal state"
+        },
+        "ai_degraded": {
+          "network": {
+            "status": "tested",
+            "trigger": "network loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "manual crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore network"
+          },
+          "localization": {
+            "status": "tested",
+            "trigger": "localization loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "restore localization"
+          },
+          "model": {
+            "status": "tested",
+            "trigger": "model unavailable",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "validated fallback"
+          },
+          "sensing": {
+            "status": "tested",
+            "trigger": "sensor loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "robot stop",
+            "max_duration_hours": 24,
+            "recovery": "replace sensor"
+          },
+          "power": {
+            "status": "tested",
+            "trigger": "power loss",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "human",
+            "safe_state": "passive crossing",
+            "max_duration_hours": 24,
+            "recovery": "restore power"
+          },
+          "vendor_interface": {
+            "status": "tested",
+            "trigger": "vendor exit",
+            "service_floor": "100 crossings/hour",
+            "control_authority": "public authority",
+            "safe_state": "open manual mode",
+            "max_duration_hours": 24,
+            "recovery": "switch provider"
+          }
+        },
+        "ai_off": {
+          "entry_condition": "AI service withdrawn",
+          "maintained_basic_services": [
+            "safe human crossing"
+          ],
+          "control_authority": "public authority",
+          "safe_state": "ordinary crossing",
+          "conversion_time_hours": 1,
+          "recovery_time_objective_hours": 10,
+          "conversion_cost_amount": 1,
+          "capital_replacement_value_amount": 100,
+          "currency": "CNY"
+        }
+      },
+      "second_life": {
+        "asset_scope": "fixed_or_long_lived",
+        "status": "known",
+        "paths": [
+          {
+            "path_type": "alternate_use",
+            "description": "撤除或迁移 AI 专用部件后，空间转为普通公共服务、人工维修或无障碍等候用途。",
+            "target_users": [
+              "pedestrians"
+            ],
+            "conversion_steps": [
+              "remove machine marker"
+            ],
+            "owner": "public authority",
+            "status": "tabletop_verified"
+          }
+        ]
+      },
+      "gates": {
+        "necessity": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "public_value": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "safety": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "accessibility": {
+          "status": "unknown",
+          "rationale": "概念阶段未完成专业/公众复核",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "ats": {
+        "components": {
+          "p": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "f": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "i": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "u": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待双评审校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "r_score": {
+        "components": {
+          "rq": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rt": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rc": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rd": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "ro": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          },
+          "rl": {
+            "status": "unknown",
+            "score": null,
+            "rationale": "概念评分待成本、RTO 和服务基线校准",
+            "evidence_ids": [
+              "E-PROJECT-PROVISIONAL-001"
+            ],
+            "assumption_ids": [
+              "A-PROJECT-CONCEPT-001"
+            ]
+          }
+        },
+        "raw": {
+          "retention_pct": 100,
+          "time_to_rto_ratio": 0.1,
+          "cost_to_crv_ratio": 0.01,
+          "ai_dedicated_asset_ratio": 0.1,
+          "stranded_ai_asset_ratio": 0.05
+        },
+        "total": {
+          "status": "unknown",
+          "value": null
+        }
+      },
+      "futures": {
+        "boom": {
+          "parameters": {
+            "demand_multiplier": 2,
+            "concurrency_multiplier": 2,
+            "curb_load_multiplier": 1.5
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "fragmentation": {
+          "parameters": {
+            "vendor_count": 3,
+            "standard_count": 2,
+            "single_cloud_unavailable": true
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        },
+        "retreat": {
+          "parameters": {
+            "ai_demand_share_pct": 0,
+            "vendor_support_available": false
+          },
+          "status": "unknown",
+          "required_capacity": null,
+          "delivered_capacity": null,
+          "unit": "crossings_per_hour",
+          "service_floor_met": null,
+          "safety": "unknown",
+          "accessibility": "unknown",
+          "rationale": "概念阶段尚未完成压力测试。",
+          "evidence_ids": [
+            "E-PROJECT-PROVISIONAL-001"
+          ],
+          "assumption_ids": [
+            "A-PROJECT-CONCEPT-001"
+          ]
+        }
+      },
+      "classification": {
+        "declared_quadrant": "not_evaluable",
+        "high_high_eligible": false
+      },
+      "evidence_ids": [
+        "E-PROJECT-PROVISIONAL-001"
+      ],
+      "assumption_ids": [
+        "A-PROJECT-CONCEPT-001"
+      ]
+    }
+  ],
+  "portfolio_summary": {
+    "facility_class_ats_medians": [
+      {
+        "facility_class": "road_intersection",
+        "status": "not_applicable",
+        "value": null
+      },
+      {
+        "facility_class": "curb_loading",
+        "status": "not_applicable",
+        "value": null
+      },
+      {
+        "facility_class": "building_entrance",
+        "status": "not_applicable",
+        "value": null
+      },
+      {
+        "facility_class": "park_public_space",
+        "status": "not_applicable",
+        "value": null
+      },
+      {
+        "facility_class": "municipal_logistics",
+        "status": "not_applicable",
+        "value": null
+      },
+      {
+        "facility_class": "energy_edge_node",
+        "status": "not_applicable",
+        "value": null
+      },
+      {
+        "facility_class": "parking",
+        "status": "not_applicable",
+        "value": null
+      },
+      {
+        "facility_class": "lamp_street_furniture",
+        "status": "not_applicable",
+        "value": null
+      }
+    ],
+    "critical_min_r_score": {
+      "status": "not_applicable",
+      "value": null
+    },
+    "evaluation_coverage_pct": {
+      "status": "known",
+      "value": 0
+    },
+    "high_high_capacity_shares": [
+      {
+        "capacity_group_id": "safe_crossings",
+        "unit": "crossings_per_hour",
+        "status": "known",
+        "numerator": 0,
+        "denominator": 100,
+        "value_pct": 0
+      },
+      {
+        "capacity_group_id": "loading_events",
+        "unit": "crossings_per_hour",
+        "status": "known",
+        "numerator": 0,
+        "denominator": 100,
+        "value_pct": 0
+      },
+      {
+        "capacity_group_id": "entrance_events",
+        "unit": "crossings_per_hour",
+        "status": "known",
+        "numerator": 0,
+        "denominator": 100,
+        "value_pct": 0
+      },
+      {
+        "capacity_group_id": "park_visits",
+        "unit": "crossings_per_hour",
+        "status": "known",
+        "numerator": 0,
+        "denominator": 100,
+        "value_pct": 0
+      },
+      {
+        "capacity_group_id": "municipal_dispatches",
+        "unit": "crossings_per_hour",
+        "status": "known",
+        "numerator": 0,
+        "denominator": 100,
+        "value_pct": 0
+      },
+      {
+        "capacity_group_id": "maintenance_visits",
+        "unit": "crossings_per_hour",
+        "status": "known",
+        "numerator": 0,
+        "denominator": 100,
+        "value_pct": 0
+      }
+    ]
+  }
+}
