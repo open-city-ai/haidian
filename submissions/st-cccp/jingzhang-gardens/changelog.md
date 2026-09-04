@@ -1,0 +1,272 @@
+# 方案迭代记录（jingzhang-gardens）
+
+## v1.2.8 - 2026-08-30（衍生物重渲染完成：PDF×4 + HTML×2 同步至 v1.2.7 源 · v1.2.6 ⚠ 提醒解除 · 用户授权 base 直接执行）
+
+### 改动摘要
+
+**衍生物六件重渲染（v1.2.7 源直渲，base 侧执行）**：
+- **执行依据**：用户 2026-08-30 17:55 授权（MSG-73fab5ad1a）——放行 python 执行权限并授予 git 权限，「可以完成后面的内容了」。据此选择此前上送的 **A 路径**（base 侧直接渲染），不再等待 design-node 侧 python 窗口（其 04:5x 起持续关闭）。
+- **HTML×2**：`outputs/render_report_port.py`（canonical 移植脚本，AST 路径）从 `proposal.md` / `proposal.en.md`（v1.2.7，551878e9 / f9af775e）直渲——`report/proposal.html` 254,810B `f202253d…`、`report/proposal.en.html` 325,683B `60369fca…`。
+- **PDF×4**：`outputs/make_pdfs_v127.py` 复刻正典配方（pandoc 3.8.3 + xelatex/TeX Live 2022，CJKmainfont=Microsoft YaHei；A4 margin 2.2cm / Letter margin 1in；两遍编译稳定分页）——`proposal-A4.pdf` 2,306,041B `8dbc2fdd…`（46 页 A4）、`proposal-Letter.pdf` 2,307,104B `b3bad48b…`、`proposal.en-A4.pdf` 1,526,417B `1760e616…`、`proposal.en-Letter.pdf` 1,531,418B `6835e5e6…`（en-Letter 88 页 letter）。字重嵌入实测（MicrosoftYaHei + Bold 子集 + Latin Modern，pdffonts 全 emb=yes uni=yes）；v1.2.7 标记（Q1/Q2 段 10A- 前缀）与 v1.2.6 标记（T-9 触发行）均在 PDF 文本层实测在位。
+- **字节差 vs 08-29 12:45 批**（v1.2.4 源时代）：+34,850 / +34,559 / +11,087 / +9,248（+0.6%–1.5%，与 v1.2.5–v1.2.7 三版内容增量相符：A.4 表重构 + T-9 行 + csv 引用 + 10A- 前缀段）。
+- **manifest 6 行重锚**：上列六行 sha256 按新真值更新；全包 0/0 复验（manifest 哈希 == 磁盘实件，逐行）。
+
+### ⚠ v1.2.6「交付物状态提醒」解除
+
+v1.2.6 所载「PDF/HTML 衍生产物不代表 v1.2.5/v1.2.6 内容」的提醒**自本版起解除**——`report/` 下六件衍生物已与 `proposal.md` / `proposal.en.md`（v1.2.7）同源同版，md/HTML/PDF 三层内容同构恢复。文本基准仍以 md 为准（PDF 对象流压缩非确定性，字节不逐位可比）。
+
+### 采纳反馈
+
+- 用户 17:55 授权（A 路径采纳 + git 权限下放）。
+- reviewer-implementation a851 终评（08-30 04:11 签收）与 reviewer-originality 0522 复验（4.0/5）此前均基于 md 文本基准；本版后衍生物与该基准一致。
+
+### 暂未采纳或待复核事项
+
+- 官方公告全文条款逐字对照仍待官方原文（T-9 触发）。
+- R2 五项裁定与 T-8 / T-9 / A-10 触发器回传仍待采纳方（不阻塞终态）。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本次为衍生物同步（重渲染 + 台账重锚），无正文内容改动。
+
+## v1.2.7 - 2026-08-30（originality r17 复验收口 · hygiene 修正补登记：Q1/Q2 决策映射 A1 标签消歧）
+
+### 改动摘要（补登记：本版 08-30 ~05:2x 已落源与 manifest，因当时托管模式写入通道故障未及登记 changelog，本条补录）
+
+- **Q1/Q2 决策映射段消歧**：L198「A 类决策映射的性质声明」段（Q1/Q2 decision-mapping）为「10 A 决策」清单语境中的 A1 标签添加 **10A- 前缀**（双语两处选项标签 + 括注范围标记），使用户「十个 A 决策」清单中的 A1 条目不再与 originality 评审 A.1/A.2/A.4 表标签在视觉上冲突。P2 hygiene 级，非内容改动。
+- **源重哈希**：`proposal.md` 815c3947→`551878e9…`、`proposal.en.md` 66257829→`f9af775e…`（manifest 同步，实测一致）。
+- **originality 线程收口**：r17 复验后 4.0/5 终评维持（novelty 4.0 / method 4 / writing 4）。
+
+### 暂未采纳或待复核事项
+
+- 衍生物重渲染（本版源）→ 已由 v1.2.8 完成。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；标签消歧不改变任何主张、数据或承诺。
+
+## v1.2.6 - 2026-08-30（originality r16 A.4 判据兑现：逐字基座改列 + T-9 升级触发器 + 引用追踪表 csv 落包）
+
+### 改动摘要
+
+**A.4 判据两条件兑现（reviewer-originality r16，04:39 回执）**：
+- **条件 1（对照基座限定）**：§3.4 A.4 对照表重构——新增「官方原始表述（逐字基座，§6.x 职能锚内嵌引文）」列，逐字收录 §6.1/§6.2/§6.3 官方职能锚中的 direct_public 引文片段（「更具智慧型与未来感的花园型人工智能创新街区」等，均带 `[standard:PROJECT-OFFICIAL-ANNOUNCEMENT §1.5(3)-N)]` 锚），不以转述替代；原「职能文本是否在场」否定式列撤销，改为「全文条款级暂不可达 + 片段级逐字在场」的分层披露。大钟寺行命名对齐 §6.3 锚（集聚）。双语。
+- **条件 2（升级路径登记）**：§14 触发表新增 **T-9「官方三区职能公告原文到达」**——采纳方提供全文或开放官方渠道 → A.4 表按逐字口径升级 + 标准矩阵同步更新；使方向性对照显式为暂态。双语。
+- **8.3 csv 落包兑现**：`report/archetype-citation-tracking.csv` 新建（表头 {date,referrer,context,tier} + 5 行 TBD 占位——方案 X 年回填/三年首复盘节奏未启动，占位为诚实态）；§12.3 引用追踪表段落补文件路径引用。双语。
+
+### ⚠ 交付物状态提醒（第三方须知）
+
+**PDF/HTML 衍生产物重渲染完成前，`report/` 下双语 PDF 与 HTML 不代表 v1.2.5/v1.2.6 内容**——现行 4 份 PDF（08-29 12:45）与 2 份 HTML（08-28 22:52）为 v1.2.4 及更早源渲染。文本基准以 `proposal.md` / `proposal.en.md`（v1.2.6）为准。重渲染由 design-node 执行中（08-30 04:40 委托）。
+
+### 采纳反馈
+
+- reviewer-originality r16（08-30 04:39）：A.4 判据接受方向性对照 + 两条件（逐字基座限定 / T 触发器登记升级路径）——本版全部兑现；复验三项前置（终包重发 / manifest 校验 / 小节标题定位）随本版交付。
+
+### 暂未采纳或待复核事项
+
+- 衍生产物重渲染（PDF×4 + HTML×2 + EN visual）由 design-node 执行中，完成后 7 行 manifest 重锚。
+- 官方公告全文条款逐字对照仍待官方原文（T-9 触发）。
+- 外层工作区 commit 仍待用户执行。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本次为评审判据兑现（对照基座重构 / 触发器登记 / 追踪表落包），无新增空间承诺。
+
+## v1.2.5 - 2026-08-30（implementation 六问 + originality v3 P0 双评审处置：时序倒挂修复 + 决策原文明示 + 双表落位 + 口径修正）
+
+### 改动摘要
+
+**implementation 六问处置（round 10，a851）**：
+- **Q1（P0）治理时序倒挂**：S-13 智能体沙盒增「一期治理过渡舱」（PHASE-001 南门户服务基座临时沙盒，B 系列业态可合规启动，造园常设沙盒建成后迁移）；§14 园规试点工具补「一期衔接」；触发表新增 **T-3.5「治理试点启动」**（与 T-3 解耦独立推进）。双语。
+- **Q2（P1）指标重叠**：metrics.json 两指标增 `overlap_note_sqm`（1,650,353）+ `overlap_note`（共享园脊 / 并集率≈0.281 / 硬质广场净率≈0.81%）；§15.1 补「指标重叠口径声明」段；visual/index.html 补 overlap-note 指标行。双语。
+- **Q3（P1）留白地广场**：PUBLIC-008 增 `reversibility_note`（可拆卸铺装/无地下构筑/复原条款）；§5.4 增「留白用地管控条目」（禁建清单 / A-TRIGGER-001 触发 / R5 复核）。双语 + public_space.geojson。
+- **Q4（P1）遗产地理错位 + 觉生寺缺位**：三山五园两行改写（实距约 5km、隔中关村建成区、不主张穿越/视廊）；新增 **觉生寺（大钟寺）全国重点文保单位行**（建控地带核查入 A-TRIGGER-003）；BLDG-009/010 增 `heritage_sensitivity_note`（88m 概念高度按「待文保核查封顶」处理）。双语 + buildings.geojson。
+- **Q5（P1）园丁人力底座**：§12.1.1 R6 增「概念级人力测算区间」（十二驿+摊档+门厅 ≈ 36–72 FTE 常设 + 1–3 年认证爬坡）；园丁岗到位率/R2 并行位覆盖率入 R5 年度复核与 §14 三段流程③；§19.2 园丁岗编制登记为治理硬基础设施资金科目。双语。
+- **Q6（P2）13 号线依赖**：§10.1 增「园径外环 B 案」（西侧市政路侧绕行 1.5–2.5km、与 BP 断点清单逐段挂接、复用无障碍标准层）；§17.2 增 **A-8b** 假设行。双语。
+- **附注 2（phasing +1,390.6 ㎡）**：§15.1 补披露 + phasing.geojson metadata 补说明。
+- **附注 3（proposal.en.md 免发）**：v1.2.4 起双语已随包交付并经多轮核验，闭环。
+
+**originality v3 P0 处置（fec1/70ef）**：
+- **P0-1（Q1/Q2 决策原文缺环）**：§3.4 补「A 类决策映射的性质声明」——Q1=A1/Q2=A1 系本节点执行判断映射（非用户原文），评级责任归属明示。双语。
+- **P0-2（A.1/A.2 双表）**：§3.4 落 **Q1 最小单位并列表**（9 行：官方表述/去园可还原/园增量）+ **Q2 三层差异表**（原则/操作/空间级 × EU AI Act/NIST/UNESCO/OECD）。双语。
+- **P0-3（A.4 官方三区对照）**：§3.4 落「官方三区职能原文对照」表 + **诚实披露官方原文不在工作区**；§11.x 建控地带/50m 误引已核实并弃用。双语。
+- **P1-4（Q3 转译代价表）**：§3.4 落「四类被避开母题的转译代价自认」表（轴脉脊/铁路图解/口号化/缝合，含「命名差异非结构突破」「语义同源」两句自认）。双语。
+- **P1-5（Q6.3 分流）**：§13.1 补「人流分流机制」（不经主径/大事件两翼分流/日夜错峰）。双语。
+- **P1-6（Q6.4 断面图归属）**：§13.1 补「断面图校核下阶段归属」+ §14 新增 **T-8「断面图校核交付」**。双语。
+- **P1-7（§17.2 挂跟踪）**：§17.2 新增 **A-10「可引用史实锚点核对状态跟踪」**（汪菊渊/陈从周）。双语。
+- **8.3 csv**：字段语义一致，随 v1.2.5 包附送。
+
+### 采纳反馈
+
+- reviewer-implementation round 10（08-30 03:17）：六问 + 附注全处置；其「手工核验交叉验证」记录在案；字节级机核待其权限窗口补跑（不阻塞评审结论）。
+- reviewer-originality v3（08-30 03:17）：0.0 通过、overall 3.5/5；3 项 P0 + 其余 P1 全处置，请求复验后上调 4.0。
+
+### 暂未采纳或待复核事项
+
+- A.4 官方三区**逐字**原文对照待官方原文（不在工作区）——已以方向性对照 + 诚实披露承担。
+- implementation 字节级机核（extract_batches.py / assemble_verify.py）待其权限窗口。
+- 外层工作区 commit 仍待用户执行。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本次为评审处置（时序衔接 / 口径声明 / 管控条目 / 人力测算 / 表落位），无新增空间承诺。
+
+## v1.2.4 - 2026-08-29（M-7 口径声明落位：frontmatter 三层轨道/场景口径 + 摘要层正典映射）
+
+### 改动摘要
+
+- **M-7（P2，relevance 终评「Q8 md 层 tracks↔scenarios 对齐不可验」）前置落位**：proposal.md / proposal.en.md frontmatter **新增两字段（纯加性，双语文本镜像）**——
+  - `tracks_note`：三层口径声明——tracks＝提报轨道分类层（8 项，其中 3 项正文锚定：enterprise-services-ecosystem 西翼要素服务链段 / ai-traffic-walkability「无障碍园径」段 / civic-agent-governance 园规 R1–R5 映射表「可复核」行）；scenarios＝提报摘要层（5 项 highlight slug，**早于正典场景体系的历史命名，保留作提报标识**）；§7.3 场景卡 S-01~S-13＝正典场景层；三层命名空间不要求互相包含。
+  - `scenario_mapping`：摘要层 5 slug 全量映射至正典层——ai-traffic-walkability→S-01+园径慢行/无障碍、enterprise-service-copilot→S-09、public-safety-operations-review→§18 专章+S-03 基准评测口径、ai-cultural-guide→S-04、robot-delivery-low-speed→B-03+S-01/S-02 测试组——无悬空、无重名、无外延声明。
+- **影响面实测**：渲染脚本仅消费 frontmatter 的 title/summary/translation_file 三字段，新增字段不入 HTML/PDF 输出 → **HTML×2 与 PDF×4 字节不变、无需重渲**（三层同构维持）；仅 md 双语两行 rehash（proposal.md `550a2721…`→`5848b799…`、proposal.en.md `327280d0…`→`451d0fb8…`）。
+- **M-6（md 追加件）同批安排**：本条与 md 双语原件、compliance_matrix、visual 双页、changelog 共 6 件经 hub 附件通道一次性发 reviewer-relevance（其 13:05 信选定的 A 通道），供其一轮 certutil 双闸实算同时闭 M-6/M-7/M-2/M-3-post-fix 四项。
+
+### 采纳反馈
+
+- reviewer-relevance 13:05（fec2）：M-6/M-7 定义全文补齐（均为 P2、同批触发、≤70min 一轮可完）；其建议「关包 commit 前完成 M-6 更稳」——本条即按此时序执行（外层 commit 尚未发生）；4 件 post-fix 复验通道选 A（hub 附件再试）+ C（base64 信体内联）兜底、明确拒绝 B（读上游工作区越界）——遵其选择。
+
+### 暂未采纳或待复核事项
+
+- M-6/M-7 的 relevance 独立复验结果待其回执（A 通道若再失联即转 C）。
+- 外层工作区 commit 仍待用户执行（命令已随 v1.2.3 更正信送达，gitlink 目标现为内层最新 commit，见 manifest）。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本条仅 frontmatter 元数据加性声明（双语镜像），无正文内容、空间内容与渲染层改动。
+
+## v1.2.3 - 2026-08-29（PDF×4 重渲落位 + M-5 同源闭环：md↔HTML↔PDF 三层全同构）
+
+### 改动摘要
+
+- **PDF×4 重渲落位（design-node 10:47-10:48 批，本轮回执 12:42 全量内联台账 + canonical 直取）**：`report/proposal-A4.pdf` 2,271,191B `c505a37c…`、`report/proposal-Letter.pdf` 2,272,545B `6ad48525…`、`report/proposal.en-A4.pdf` 1,515,330B `f3e57e93…`、`report/proposal.en-Letter.pdf` 1,522,170B `1f42e8d7…`。落位双闸 4/4 PASS（bytes + sha256 逐一核对 design-node 信内台账）；manifest 四行按新真值重锚。字节差 vs 14:59 旧批 +177/+135/+134/+2,153（<0.2%，PDF 对象流压缩非确定性正常范围；en-Letter 稍大 = §15.3 表格分页重排）。
+- **M-5（PDF 同源）闭环**：渲染命令（pandoc 3.8.3 + xelatex/TeXLive 2022，Microsoft YaHei CJK）+ 源字节审计链齐备——渲染前后 proposal.md `550a2721…`（199,116B）/ proposal.en.md `327280d0…`（258,115B）与 manifest 登记逐字一致，源零改动三禁令回执（源/manifest/fig-6/7）齐。**§15.3 句漂移（旧批唯一已知差异）随本批消除 → md↔HTML↔PDF 三层全同构**。
+- **HTML×2 零改动确认**：design-node 独立重渲（10:51）输出与盘上 `d2e11df4…` / `e8883087…` **逐字节一致**（渲染器确定性，§15.3 句修订对 HTML 输出零影响）→ HTML 两行无需 rehash，跨节点可复现性获证。
+- manifest 同步：PDF 四行 rehash + changelog 行 rehash + generated_at + pending_reason（M-5 关闭，外协渲染链全清）。
+
+### 采纳反馈
+
+- design-node ce43 回执（12:42）：两件委托 10:47-10:51 完成但 10:50/10:55 回信经 hub 转运丢失（信体通道首次 observed 破例）——我方 12:25 催报触发全量内联补账；三问全答（收达✓/无阻塞✓/无需降级✓）。
+
+### 暂未采纳或待复核事项
+
+- relevance 终评六项发现至此 M-1~M-5 全闭环（M-1/M-4 v1.2.1、M-2/M-3 v1.2.2、M-5 本条）。
+- 外层工作区 commit 仍待用户执行（托管模式对外层仓持 commit-policy exception 口径）。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本条仅渲染产物层（PDF×4 + 台账），无空间内容、正文与机读层改动。
+
+## v1.2.2 - 2026-08-29（relevance 终评 M-2/M-3 落位：机读层 agent_inferred 填实 + visual 场景卡对齐正典）
+
+### 改动摘要
+
+- **M-2（P1）compliance_matrix.json agent_inferred 按行分类填实**：修正此前 23 行 `agent_inferred` 全为空集、与 §17.3 四档口径（carriers：concept_mechanism / rule_schema / trigger_matrix / carrier_design）矛盾、charter.7 R-02 人类复核对象在机读层为空集的缺陷。赋值规则（已写入 annotation_policy）：① concept_mechanism 注于全部 23 行（各行证据清单均含「三层范围工作框架」等本方案自拟的工作流分解与概念机制层）；② rule_schema 加注 3 行（1.5.2.2 / agent.2 / agent.6——园规 R1–R6 实际锚定行）；③ trigger_matrix 加注 2 行（1.5.2.2 / agent.6——§14 触发矩阵锚定行）；④ carrier_design 加注 6 行（1.5.2.4 / 1.5.3.1~1.5.3.3 / agent.4 / agent.6——B 系列业态承载与园丁认证锚定行）。python json.load 验证：23 行、0 空集、载体分布 {concept_mechanism:23, rule_schema:3, trigger_matrix:2, carrier_design:6}。
+- **M-3（P1）visual/index.html + visual/index.en.html 场景卡 sheet 对齐正典**：原 10 卡为 S 卡体系建立前的旧命名（开源发布厅 / 人才生活管家 / 低碳算力驿站等——该等场景命名在正文中已不存在），与正文 §7.3 场景卡体系（S-01~S-13）不一致。本轮 zh/en 双语整卡替换为正典 S-01~S-13（名称与一行描述逐卡对齐 §7.3；en 名称对齐 proposal.en.md 正典译名），sheet 标签改「13个AI场景卡（§7.3 S-01~S-13）」，sheet 说明补「与正文 §7.3 一一对应」句。选择整卡替换而非「注节选说明」：旧卡名在正文中已无对应物，节选说明会把失效命名固化进交付物。结构断言：双页各 13 卡、旧命名零残留。
+- manifest 同步：compliance_matrix / visual zh+en 三行 rehash + changelog 行 rehash + generated_at / pending_reason 更新（M-2/M-3 自待办清单移除）。
+
+### 采纳反馈
+
+- reviewer-relevance 终评（rel-supp-3-2247）M-2/M-3 于 v1.2.1 承诺「下轮落位」，本轮兑现；M-1/M-4 已于 v1.2.1 修复并经其 10:52 回执闭环，M-5（PDF 同源）仍待 design-node 重渲后一并验。
+
+### 暂未采纳或待复核事项
+
+- M-5（PDF×4 同源）待 design-node HTML×2 / PDF×4 重渲交付后按新真值重锚四行并验同源。
+- 外层 commit 仍待用户删除 `.git/index.lock` 陈旧锁后执行。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本次仅机读层与可视化页对齐修复，无空间内容与 proposal 正文改动（proposal.md / proposal.en.md 双语与 report/*.html 均未触碰）。
+
+## v1.2.1 - 2026-08-29（终包锁定后台账修复：relevance 终评 M-1/M-4）
+
+### 改动摘要
+
+- **M-1（P0，relevance 00:02 终评）manifest 哈希台账 4 行修复**：22:50 重锚时新 HTML 哈希（d2e11df4 / e8883087）误贴入两个 A4 PDF 行、HTML 两行未更新，致 4 行损坏且真 PDF 哈希从台账丢失。本轮 certutil 实测修复：`report/proposal.html` 行 → d2e11df4…、`report/proposal.en.html` 行 → e8883087…（与实件一致）；`report/proposal-A4.pdf` 行 → d7a6a7e8…、`report/proposal.en-A4.pdf` 行 → 163206c0…（14:59 批真值恢复；design-node §15.3 重渲交付后按新真值再锚）。Letter 两行经 certutil 复核本就正确（989649be… / df56d5f2…），未动。
+- **M-4（P1）metrics.json 三处修复**：site_area_sqm confidence high→medium、assumption 改为 provisional 口径（#PROV-SITE-001, official_boundary=false，与 §15.1 一致）；新增顶层 `sources` 块（五图层来源 + A-1/A-TRIGGER-001 复算触发）；新增 `garden_line_spine_length_m = 9715.87`（ROAD-001，§15.1 配套值入册，兑现 §15.2「全部指标机读化」）。
+- manifest 同步：metrics 行 rehash（c3cb5ea4→0cf0191d）+ changelog 行 rehash + pending_reason 更正叙事（22:50 entry 的 d7a6a7e8→d2e11df4 / 163206c0→e8883087 实为 PDF 哈希误作 HTML 哈希，本行更正）。
+
+### 采纳反馈
+
+- reviewer-relevance 补评终评（rel-supp-3-2247，00:02）：六类核查——①HTML 同构通过、②visual 对账数据侧通过、③三矩阵闭环通过、⑤§17.4 通过、⑥机读层通过；M-1 即本轮修复对象，M-4 同窗落位；M-2（agent_inferred 桶空 vs §17.3 口径）、M-3（visual 场景卡 10 vs 正文 12）下轮落位；M-5（PDF 同源）待 design-node 重渲后一并验。
+
+### 暂未采纳或待复核事项
+
+- M-2/M-3 计划下轮：compliance_matrix agent_inferred 逐行补条目（或修 §17.3 口径声明）+ visual/index.html 场景卡 sheet 补齐 S-11/S-12 或注「节选 10/12」。
+- PDF×4 仍为 14:59 批（c0b320df 时代源）——§15.3 句漂移为唯一已知差异；design-node 重渲交付后 A4/Letter 四行按新真值重锚 + M-5 同源验。
+
+### 公开资料与合规说明
+
+- 同 v1.2 口径；本次仅台账与机读层修复，无空间内容改动。
+
+## v1.2 - 2026-08-28（终包锁定）
+
+### 改动摘要
+
+- 内容层十项决策（A1-A10，用户 2026-08-28 01:48 全部批准）落位：公共性画像 11 类与三层时段表（A1）、R5 量化基线六项（A2）、园规可达扩展 R6（A3）、S-03 治理产品七项工程规格（A6）、国际名词谱系定位（A7）、遗产保护对接清单（A8）、§14 触发矩阵（A9）、§18 公共安全与灾害韧性专章（A10）。
+- 三轮评审意见闭环：originality v2 八问（§6.3/§6.4 回路表述改写为「各自独立运行、偶发性交集」，§11.1 物候限定句，§12.1 口号定位句）；compliance 八问（§17.3 法律免责声明块、四档来源等级表、A-9 机读层行）；ai-urban R3 八问（S-13 智能体沙盒卡、B-01 T3→T2 升级门限三条件、S-01 ODD 与接管预算、AI+ 五领域接入锚点）。
+- 机读层：compliance_matrix.json 增补 source_grade_schema（direct_public / derived_public / processed_reference / agent_inferred 四档）；§17.4 人类复核节点附录（charter.7，A-9）双语落位；compliance 回归评审 P0 修复（21:38）：23 行 requirement 逐行补齐 `source_grade` 字段（按 §17.3 四档对 source_ids 做级别映射），proposal 双语 §15.3 行数声明统一为实数 23 行（原「约 53 行」口径废弃）。
+- 资产层：fig-6~10 全部双语 PNG 落位（双闸验收：字节 + sha256 + 视觉五维复检）；proposal 双语占位→内嵌升级 10 处完成；report/proposal.html（235,744B）与 report/proposal.en.html（300,897B）本地终渲（用户 12:53 授权通道），图源校验 10/10 zh + 10/10 en。
+- PDF×4（proposal zh/en × A4/Letter）由 design-node 以 pandoc 3.8.3 + xelatex（TeXLive 2022，Microsoft YaHei CJK）自同一终版源渲染交付（源文件零改动），本地落位经字节 + sha256 双闸 4/4 通过，登记入 manifest。
+- self_check.json 四闸（deterministic / spatial / visual / professional）全 pass，can_enter_formal_review = true；内容门 17 模式扫描 zh/en 均 0 命中。
+
+### 采纳反馈
+
+- reviewer-originality v2：8 问全部处置（Q3/Q5/Q7 全采纳，Q4 重构采纳，Q6/Q8 部分采纳并兑现，Q1/Q2 经用户 A 决策落位）。
+- reviewer-compliance v1：8 问全部落位，Q5 机读层按 A-9 验收。
+- reviewer-ai-urban R3：8 问处置表已发（Q1/Q4/Q5/Q6/Q7/Q8 ✅，Q2/Q3 概念层闭合 + 挂账），异议窗口至终包关闭。
+- design-node P0-P3 系列：P1 切片（园丁认证、触发矩阵）、P2 五图规格、P3 图件三轮重渲全部验收并入包；P0 三块因结构冲突降级为工程层深化候选池，未切片。
+- 用户 10 A 决策与 12:53 授权（执行通道恢复 + 时间表要求）。
+
+### 暂未采纳或待复核事项
+
+- P0 工程层深化文本（§18/§19/§5.5 另一视角版本）保留在协作档案，未并入正卷（避免与既有结构重复叙述）。
+- 可引用史实锚点（汪菊渊《中国古代园林史》/陈从周《说园》）仅作背景引用，终稿实引前须核对原文与观点归属。
+- Letter 版式 PDF 作为 A4 主版式的变体提供（required: false）。
+
+### 公开资料与合规说明
+
+- 本版本仅使用公开任务书与可公开资料；机读层逐行标注来源等级（四档 schema）；不包含个人隐私、涉密资料、内部图件或未审定规划控制指标。
+- 本方案为概念提案（concept proposal），不构成合规承诺或认证；开源制度产品的法律免责声明见 §17.3。
+
+## v1.1 - 2026-08-25
+
+### 改动摘要
+
+- manifest 哈希口径修正（metrics.json CRLF→LF canonical，commit ec0fd398）。
+- 设计深度矩阵、标准矩阵、合规矩阵三矩阵定稿口径对齐。
+
+## v1.0 - 2026-08-24
+
+### 改动摘要
+
+- jingzhang-gardens 专业设计包首版提交（commit 80f682bc）：proposal 双语、10 类几何图层、5+5 图件、A3 手册与 A0 展板（双语）、visual 总览、manifest 0.2.0 全量登记。
+
+### 采纳反馈
+
+- 任务书硬约束自检（6 条）全过。
+
+### 暂未采纳或待复核事项
+
+- 建设强度、道路线位、设施落位与权属判断需在深化阶段以断面图与现场核对校准。
+
+### 公开资料与合规说明
+
+- 同 v0.1 口径。
+
+## v0.1 - 2026-06-14
+
+### 改动摘要
+
+- 创建方案初稿，说明核心概念、空间与产业方案、AI 治理场景和落地路径。
+
+### 采纳反馈
+
+- 暂无，首版提交。
+
+### 暂未采纳或待复核事项
+
+- 具体建设强度、道路线位、设施落位和权属判断均需基于公开资料进一步复核。
+
+### 公开资料与合规说明
+
+- 本版本仅使用公开任务书和可公开资料，不包含个人隐私、涉密资料、内部图件或未审定规划控制指标。

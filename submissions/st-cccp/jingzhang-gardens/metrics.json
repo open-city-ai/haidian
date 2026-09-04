@@ -1,0 +1,105 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "sources": {
+  "boundary": "geometry/site_boundary.geojson (official provisional layer #PROV-SITE-001; official_boundary=false; see proposal §1.2/§15.1)",
+  "green_space": "geometry/green_space.geojson",
+  "public_space": "geometry/public_space.geojson",
+  "buildings": "geometry/buildings.geojson",
+  "roads": "geometry/roads.geojson",
+  "recalculation_trigger": "Official SITE_BOUNDARY release (proposal §14 T-1 / §17.2 A-1; superset trigger A-TRIGGER-001)"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "Value computed on the official provisional boundary layer (#PROV-SITE-001, official_boundary=false, provisional_rough); it is a low-confidence design-model value recomputable from submitted geometry, per proposal §15.1 — not an official/statutory area. Recompute on official boundary release (trigger A-1)."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 382190.394,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.266321,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [],
+   "overlap_note_sqm": 1650353,
+   "overlap_note": "Two formal ratios share a common green-spine numerator of 1,650,353 sqm: the linear-park segments of public_space (PUBLIC-001..007) coincide in coordinates and declared area with the green-space garden-ridge segments (GREEN-001/003/004/006/008/009/011). The union of green-space and public-space area is approx. 3,213,681 sqm (net ratio approx. 0.281), not the sum of the two ratios; hard civic-plaza net ratio is 0.81%."
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.152684,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [],
+   "overlap_note_sqm": 1650353,
+   "overlap_note": "Two formal ratios share a common green-spine numerator of 1,650,353 sqm (94.5% of this ratio's numerator). Union with green-space is approx. 3,213,681 sqm (net ratio approx. 0.281); hard civic-plaza net ratio is 0.81%."
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "garden_line_spine_length_m": {
+   "status": "known",
+   "value": 9715.87,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "length(ROAD-001 centerline, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Concept centerline of the GARDEN LINE greenway spine (proposal §15.1 companion value); not a surveyed alignment."
+   ]
+  }
+ }
+}
