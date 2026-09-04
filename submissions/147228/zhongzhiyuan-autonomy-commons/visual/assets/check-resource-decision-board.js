@@ -25,8 +25,8 @@ check('STAGES', data.decision_stages.length === 4 && data.decision_stages.every(
 check('ANCHORS', data.coverage.key_area_refs.every((ref) => { const [file] = ref.split('#'); return fs.existsSync(path.join(root, file)); }), 'all key-area anchors resolve');
 check('FIGURES', ['resource-decision-board.svg', 'resource-decision-board.en.svg'].every((name) => fs.existsSync(path.join(root, 'assets', 'figures', name))), 'bilingual SVG figures exist');
 const figurePairs = [
-  ['resource-decision-board.svg', 'resource-decision-board.png', 1600, 1100],
-  ['resource-decision-board.en.svg', 'resource-decision-board.en.png', 1600, 1100],
+  ['resource-decision-board.svg', 'resource-decision-board.png', 1600, 1180],
+  ['resource-decision-board.en.svg', 'resource-decision-board.en.png', 1600, 1180],
   ['autonomy-node-interface.svg', 'autonomy-node-interface.png', 1600, 1060],
   ['autonomy-node-interface.en.svg', 'autonomy-node-interface.en.png', 1600, 1060],
 ];

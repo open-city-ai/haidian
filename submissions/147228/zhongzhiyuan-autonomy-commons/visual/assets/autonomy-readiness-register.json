@@ -23,7 +23,7 @@
     "authorization_status",
     "operational_status"
   ],
-  "mapping_rule": "Each AV card has one participant-proposed primary S row. S06, S07, S08, S09 and S12 remain supporting operations rather than silently becoming AV cards; the mapping must be confirmed by a future professional/operator review.",
+  "mapping_rule": "Each AV card has one participant-proposed primary S row. S06, S07, S08, S09 and S12 remain supporting operations rather than silently becoming AV cards; the mapping must be confirmed by a future professional/operator review. Gate references are also participant-proposed review routes: AV-T01 covers curb/safety conflict, AV-T02 covers equivalent accessible service and complaint/opt-out continuity, and AV-T03 covers rollback, weather, network and public-window recovery; they are not permits or field assignments.",
   "supporting_matrix_rows": [
     {
       "row_id": "S06",
@@ -571,7 +571,10 @@
       "node_id": "AUTO-NODE-001",
       "matrix_row_ref": "S04",
       "matrix_mapping_status": "participant_proposed",
-      "gate_refs": [],
+      "gate_refs": [
+        "AV-T01",
+        "AV-T03"
+      ],
       "metric": "evaluation_reproducibility_ratio",
       "user_groups": [
         "student",
@@ -621,7 +624,9 @@
       "node_id": "AUTO-NODE-002",
       "matrix_row_ref": "S05",
       "matrix_mapping_status": "participant_proposed",
-      "gate_refs": [],
+      "gate_refs": [
+        "AV-T02"
+      ],
       "metric": "complaint_closure_ratio",
       "user_groups": [
         "resident",
@@ -668,4 +673,3 @@
     }
   ]
 }
-
