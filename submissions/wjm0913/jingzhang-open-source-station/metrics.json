@@ -1,0 +1,272 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "research_area_sqm": {
+      "status": "known",
+      "value": 43609232.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "polygon_area(CONSTRAINT-RESEARCH-SCOPE projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Organizer-maintained provisional rough boundary; not official."
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(SITE-001 projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Organizer-maintained provisional rough boundary; recalculate after official polygon."
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(analytical_land_use_partition))",
+      "confidence": "high",
+      "assumptions": [
+        "Analytical partition only; not statutory land use."
+      ]
+    },
+    "land_use_gap_ratio": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "abs(site_area-land_use_union_area)/site_area",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_overlap_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(pairwise_intersection_area)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(projected provisional key-area polygon areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three rough rectangles from organizer-maintained provisional geometry."
+      ]
+    },
+    "station_node_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(open-source station prototype nodes)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design count, not approved project count."
+      ]
+    },
+    "pilot_station_area_sqm": {
+      "status": "known",
+      "value": 240.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "polygon_area(STATION-ORIGIN-01)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept target of about 240 sqm; final area depends on an existing room or approved reversible module."
+      ]
+    },
+    "total_station_footprint_sqm": {
+      "status": "known",
+      "value": 720.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(station concept footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept footprints only."
+      ]
+    },
+    "public_space_apron_sqm": {
+      "status": "known",
+      "value": 2970.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(station arrival/waiting apron areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Reversible public-space concept areas."
+      ]
+    },
+    "concept_green_area_sqm": {
+      "status": "known",
+      "value": 192809.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(concept green features))",
+      "confidence": "low",
+      "assumptions": [
+        "Not statutory green space; used to express shade and continuity."
+      ]
+    },
+    "concept_green_ratio": {
+      "status": "known",
+      "value": 0.016894,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_green_area/site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Not a regulatory green-ratio claim."
+      ]
+    },
+    "slow_mobility_length_m": {
+      "status": "known",
+      "value": 9721.5,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(projected concept centerline lengths)",
+      "confidence": "low",
+      "assumptions": [
+        "Relationship diagram only; no road or crossing approval claimed."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(SC-01..SC-10)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(SC-07..SC-09)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilot_duration_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "fixed design-stage pilot window",
+      "confidence": "medium",
+      "assumptions": [
+        "Candidate duration, subject to operator and site approval."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved floor area/site area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official parcel, floor area and approved FAR controls are not available."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved height control or surveyed existing-building file is available."
+    },
+    "capital_cost": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "site-specific bill of quantities after survey and procurement",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified site, scope, procurement standard or quantity survey; the proposal intentionally avoids invented budgets."
+    }
+  }
+}

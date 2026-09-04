@@ -1,0 +1,180 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundaries are explicitly marked non-official and carry a recalculation rule."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/key_areas.geojson",
+      "message": "All three required rough key areas are present and marked provisional."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/land_use.geojson",
+      "message": "Analytical land-use polygons cover the submitted overall polygon with zero gap and zero overlap within numerical tolerance."
+    },
+    {
+      "check_id": "GEOJSON_SCHEMA",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "All features include id, layer, source_type, confidence and geometry_role."
+    },
+    {
+      "check_id": "METRICS_RECOMPUTABLE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "metrics.json",
+      "message": "Known spatial metrics include source files, formula, confidence and assumptions."
+    },
+    {
+      "check_id": "BILINGUAL_CONTRACT",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Chinese and English proposal, figures, HTML, visual and drawings are paired."
+    },
+    {
+      "check_id": "SCENARIO_MINIMUM",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Ten scenario cards are readable in the narrative."
+    },
+    {
+      "check_id": "TEST_SCENARIO_MINIMUM",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Three bounded test/validation scenarios are identified."
+    },
+    {
+      "check_id": "PERSONA_MINIMUM",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Six user personas include public users and maintainers."
+    },
+    {
+      "check_id": "FIGURE_SET",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "assets/figures/",
+      "message": "Five core figures and five English counterparts are declared."
+    },
+    {
+      "check_id": "DRAWING_SET",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "drawings/",
+      "message": "A3 and A0 Chinese/English PDF pairs are declared."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Offline visual is designed without CDN, external scripts, iframes, forms or API calls."
+    },
+    {
+      "check_id": "OFFLINE_ASSETS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "report/",
+      "message": "Rendered reports use only local assets."
+    },
+    {
+      "check_id": "COPYRIGHT",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "Original assets and external-case citation boundaries are stated."
+    },
+    {
+      "check_id": "PROVISIONAL_DISCLOSURE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "The narrative repeatedly states that rough geometry is not an official redline or site selection."
+    },
+    {
+      "check_id": "HUMAN_FALLBACK",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Important AI scenarios provide human fallback and stopping conditions."
+    },
+    {
+      "check_id": "NO_INVENTED_COST",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Cost, FAR and height remain unknown instead of using invented values."
+    },
+    {
+      "check_id": "PACKAGE_SCOPE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/wjm0913/jingzhang-open-source-station/",
+      "message": "All submission files are contained in the author-owned directory."
+    },
+    {
+      "check_id": "HASH_INTEGRITY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "All non-manifest artifacts are hashed in manifest.json; the final local validator verifies every declared hash."
+    }
+  ],
+  "ok": true,
+  "submission_dir": "submissions/wjm0913/jingzhang-open-source-station",
+  "pr_author": "wjm0913",
+  "stage": "formal",
+  "deterministic_validation": {
+    "ok": true,
+    "producer": "local_submission_builder_v0.1",
+    "trusted_ci": false,
+    "note": "Contributor-controlled local replay; official upstream scripts/CI must rerun after upload."
+  },
+  "spatial_review": {
+    "ok": true,
+    "producer": "Shapely 2.x + PyProj EPSG:4548 local recomputation",
+    "trusted_ci": false,
+    "notes": [
+      "Single overall SITE_BOUNDARY; three provisional key areas; land-use analytical partition has zero gap and zero overlap within tolerance."
+    ]
+  },
+  "visual_review": {
+    "ok": true,
+    "producer": "matplotlib PDF generation + repository PDF render script visual inspection",
+    "trusted_ci": false,
+    "notes": [
+      "Chinese and English A3/A0 PDFs rendered without observed clipping, overlap or missing glyphs."
+    ]
+  },
+  "professional_review": {
+    "ok": true,
+    "producer": "contributor-controlled evidence review",
+    "trusted_ci": false,
+    "notes": [
+      "Concept-only status, provisional boundaries, human fallback and unknown planning/engineering values are explicit."
+    ]
+  },
+  "spatial_issue_ids": [],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "missing_review_dependencies": [],
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "formal-review-ready",
+  "next_actions": []
+}
