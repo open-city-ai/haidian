@@ -13,9 +13,11 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from generate_submissions_data import (  # noqa: E402
     build_data,
     build_item,
+    classify_submission,
     discover_submissions,
     load_publication_registry,
     package_sha256,
+    REQUIRED_PACKAGE_FILES,
 )
 DATA_FILE = ROOT / "submissions-data.js"
 INDEX_FILE = ROOT / "index.html"
@@ -107,6 +109,60 @@ class TestSubmissionsGallery(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertEqual([], build_data(root))
+
+    def test_current_formal_blocker_overrides_stale_readiness_as_provisional(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "example"
+            for rel in REQUIRED_PACKAGE_FILES:
+                path = submission / rel
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"placeholder")
+            (submission / "self_check.json").write_text(
+                json.dumps({"ok": True, "can_enter_formal_review": True}),
+                encoding="utf-8",
+            )
+            manifest = {
+                "submission_stage": "formal",
+                "validation_claim": {
+                    "self_checked": True,
+                    "known_blockers": [
+                        "Official boundary is unavailable; professional scoring must wait."
+                    ],
+                },
+            }
+
+            self.assertEqual("intake_provisional", classify_submission(submission, manifest))
+
+    def test_blocking_self_check_still_overrides_manifest_readiness(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "example"
+            for rel in REQUIRED_PACKAGE_FILES:
+                path = submission / rel
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"placeholder")
+            (submission / "self_check.json").write_text(
+                json.dumps(
+                    {
+                        "ok": False,
+                        "can_enter_formal_review": True,
+                        "checks": [
+                            {"result": "fail", "severity": "blocking"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest = {
+                "submission_stage": "formal",
+                "validation_claim": {
+                    "self_checked": True,
+                    "known_blockers": ["Official boundary is unavailable."],
+                },
+            }
+
+            self.assertEqual("needs_revision", classify_submission(submission, manifest))
 
     def test_publication_registry_rejects_missing_selection_metadata(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -358,9 +414,9 @@ class TestSubmissionsGallery(unittest.TestCase):
         self.assertIn("View All Proposals", index)
         self.assertIn("STATUS_META", index)
         self.assertIn("data-filter=\"formal\"", submissions)
+        self.assertIn("data-filter=\"intake\"", submissions)
         self.assertIn("data-filter=\"revision\"", submissions)
         self.assertIn("data-filter=\"fixture\"", submissions)
-        self.assertNotIn("data-filter=\"intake\"", submissions)
         self.assertIn("formal_review_ready", submissions)
         self.assertIn("intake_provisional", submissions)
         self.assertIn('<script src="proposal-cover.js"></script>', index)
