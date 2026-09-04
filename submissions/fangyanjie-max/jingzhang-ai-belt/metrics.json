@@ -1,0 +1,126 @@
+{
+  "schema_version": "0.1.0",
+  "metrics": [
+    {
+      "id": "site_area_sqm",
+      "label_zh": "总体设计范围用地面积",
+      "value": 11412825,
+      "unit": "sqm",
+      "status": "known",
+      "confidence": "medium",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "面积由PROV-SITE-001 polygon在EPSG:4548投影下计算所得",
+      "assumptions": [
+        "ASM-001"
+      ],
+      "notes": "基于临时边界，待正式数据补齐后重新复算"
+    },
+    {
+      "id": "green_ratio",
+      "label_zh": "绿地率",
+      "value": 0.35,
+      "unit": "ratio",
+      "status": "known",
+      "confidence": "low",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "assumptions": [
+        "ASM-002",
+        "ASM-001"
+      ],
+      "notes": "设计目标值，基于临时几何；待正式边界和控规后重新复算"
+    },
+    {
+      "id": "public_space_ratio",
+      "label_zh": "公共空间率",
+      "value": 0.2,
+      "unit": "ratio",
+      "status": "known",
+      "confidence": "low",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "assumptions": [
+        "ASM-003",
+        "ASM-001"
+      ],
+      "notes": "设计目标值，基于临时几何；待正式边界和控规后重新复算"
+    },
+    {
+      "id": "floor_area_ratio",
+      "label_zh": "容积率",
+      "value": null,
+      "unit": "ratio",
+      "status": "unknown",
+      "confidence": "n/a",
+      "assumptions": [
+        "ASM-006"
+      ],
+      "notes": "依赖未公开官方控规，暂保持unknown"
+    },
+    {
+      "id": "building_height_m",
+      "label_zh": "建筑高度控制",
+      "value": null,
+      "unit": "m",
+      "status": "unknown",
+      "confidence": "n/a",
+      "assumptions": [
+        "ASM-006"
+      ],
+      "notes": "依赖未公开官方控规，暂保持unknown"
+    },
+    {
+      "id": "key_area_zhongzhiyuan_sqm",
+      "label_zh": "众智园AI自主创新加速区面积",
+      "value": 1921000,
+      "unit": "sqm",
+      "status": "known",
+      "confidence": "high",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "来自官方公告文字面积值",
+      "assumptions": [
+        "ASM-004"
+      ]
+    },
+    {
+      "id": "key_area_aiorigin_sqm",
+      "label_zh": "北京AI原点社区面积",
+      "value": 1043000,
+      "unit": "sqm",
+      "status": "known",
+      "confidence": "high",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "来自官方公告文字面积值",
+      "assumptions": [
+        "ASM-004"
+      ]
+    },
+    {
+      "id": "key_area_dazhongsi_sqm",
+      "label_zh": "大钟寺AI产业聚集区面积",
+      "value": 720000,
+      "unit": "sqm",
+      "status": "known",
+      "confidence": "high",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "来自官方公告文字面积值",
+      "assumptions": [
+        "ASM-004"
+      ]
+    }
+  ]
+}
