@@ -214,12 +214,12 @@
     },
     "persona_count": {
       "status": "known",
-      "value": 8,
+      "value": 7,
       "unit": "count",
       "source_files": [
         "proposal.md"
       ],
-      "formula": "count(persona_rows)",
+      "formula": "count(P01..P07 journey_personas)",
       "confidence": "medium",
       "assumptions": []
     },
@@ -229,9 +229,9 @@
       "unit": "count",
       "source_files": [
         "proposal.md",
-        "visual/assets/v75-phase2-evidence.json"
+        "visual/assets/v78-evidence-ledger.json"
       ],
-      "formula": "count(v7.5_journey_persona_rows)",
+      "formula": "count(v7.8_journey_persona_rows)",
       "confidence": "medium",
       "assumptions": [
         "任务画像用于服务路径检查，不用于个人评分或自动分类。"
@@ -243,7 +243,7 @@
       "unit": "count",
       "source_files": [
         "proposal.md",
-        "visual/assets/v75-phase2-evidence.json"
+        "visual/assets/v78-evidence-ledger.json"
       ],
       "formula": "count(T01..T03)",
       "confidence": "medium",
@@ -257,9 +257,9 @@
       "unit": "count",
       "source_files": [
         "proposal.md",
-        "visual/assets/v75-phase2-evidence.json"
+        "visual/assets/v78-evidence-ledger.json"
       ],
-      "formula": "count(v7.5_industry_enabling_factors)",
+      "formula": "count(v7.8_industry_enabling_factors)",
       "confidence": "medium",
       "assumptions": [
         "要素为设计检查项，不表示已有机构、资金或合作。"
@@ -267,28 +267,29 @@
     },
     "culture_evidence_item_count": {
       "status": "known",
-      "value": 6,
+      "value": 10,
       "unit": "count",
       "source_files": [
         "proposal.md",
         "sources.json",
-        "visual/assets/v75-phase2-evidence.json"
+        "visual/assets/v78-evidence-ledger.json",
+        "visual/assets/culture-evidence-v78.json"
       ],
-      "formula": "count(E01..E06)",
+      "formula": "count(C01..C10 sourced_cultural_evidence)",
       "confidence": "medium",
       "assumptions": [
-        "E01-E05为公开事实或背景，E06为明确标注的设计命题。"
+        "10项均有公开来源；设计命题单列，不计入历史文化事实。"
       ]
     },
     "pilgrimage_landmark_count": {
       "status": "known",
-      "value": 4,
+      "value": 3,
       "unit": "count",
       "source_files": [
         "proposal.md",
         "geometry/public_space.geojson"
       ],
-      "formula": "count(civic_credit_landmarks)",
+      "formula": "count(validation_arcade,coauthor_court,civic_echo_court)",
       "confidence": "medium",
       "assumptions": []
     },
@@ -372,14 +373,14 @@
       "confidence": "medium",
       "assumptions": []
     },
-    "five_ledger_count": {
+    "rights_and_exit_audit_field_count": {
       "status": "known",
       "value": 5,
       "unit": "count",
       "source_files": [
         "proposal.md"
       ],
-      "formula": "count(public_culture_rights_safety_operations_ledgers)",
+      "formula": "count(public_value,cultural_fact_and_rights,safety_and_environment,operations_and_maintenance,exit_and_public_restoration)",
       "confidence": "medium",
       "assumptions": []
     },
@@ -513,14 +514,14 @@
         "概念功能叠层，不是审定控规比例。"
       ]
     },
-    "conversion_accountability_chain_schema_count": {
+    "rights_and_exit_audit_schema_count": {
       "status": "known",
       "value": 1,
       "unit": "count",
       "source_files": [
-        "visual/assets/jingzhang-civic-conversion-accountability-chain.schema.json"
+        "visual/assets/rights-and-exit-audit.schema.json"
       ],
-      "formula": "count(machine_readable_jingzhang_conversion_accountability_chain_schemas)",
+      "formula": "count(machine_readable_rights_operations_exit_audit_schemas)",
       "confidence": "high",
       "assumptions": [
         "只表示概念协议结构完整，不表示政府许可、认证、部署或采用。"
@@ -539,31 +540,31 @@
         "三重转化是设计与交付框架，不表示任何项目已完成成果转化、社会采用或价值实现。"
       ]
     },
-    "adoption_gate_count": {
+    "statutory_gate_count": {
       "status": "known",
       "value": 5,
       "unit": "count",
       "source_files": [
-        "visual/assets/jingzhang-civic-conversion-accountability-chain.schema.json",
+        "visual/assets/rights-and-exit-audit.schema.json",
         "proposal.md"
       ],
-      "formula": "count(G1_PUBLIC_NECESSITY..G5_ADOPT_RENEW_OR_EXIT)",
+      "formula": "count(G0_DATA_FREEZE,G1_STATUTORY_CONTROL,G2_SPATIAL_DELIVERY,G3_SPECIALIST_TECHNICAL,G4_BUILT_AND_IN_USE)",
       "confidence": "high",
       "assumptions": [
-        "五道门是设计协议，不替代法定审批和专业审查。"
+        "G0—G4是本案唯一编号门体系；它组织交付成熟度，不替代法定审批和专业审查。"
       ]
     },
-    "spatial_access_level_count": {
+    "area_role_count": {
       "status": "known",
       "value": 3,
       "unit": "count",
       "source_files": [
         "visual/assets/urban-room-control-code.json"
       ],
-      "formula": "count(L1_CONTROLLED_VALIDATION,L2_CO_CREATION,L3_PUBLIC_PREMIERE)",
+      "formula": "count(controlled_validation,co_creation,low_risk_public_trial)",
       "confidence": "high",
       "assumptions": [
-        "空间等级为概念性准入结构，不是法定分区。"
+        "三处角色为普通空间与运营词，不构成另一套编号等级或法定分区。"
       ]
     },
     "spatial_layer_count": {
@@ -576,7 +577,7 @@
       "formula": "count(permanent_public_baseline,reversible_civic_interface,time_limited_ai_service)",
       "confidence": "high",
       "assumptions": [
-        "空间层为性能与运营概念，不生成高度、退线、容量或工程结论。"
+        "三类空间对象为后台性能与运营检查，不生成编号体系、高度、退线、容量或工程结论。"
       ]
     },
     "public_safeguard_count": {
@@ -585,7 +586,7 @@
       "unit": "count",
       "source_files": [
         "proposal.md",
-        "visual/assets/jingzhang-civic-conversion-accountability-chain.schema.json"
+        "visual/assets/rights-and-exit-audit.schema.json"
       ],
       "formula": "count(free_basic_service,non_ai_channel,staffed_override,field_accessibility,no_scan_bypass,complaint_and_restoration)",
       "confidence": "medium",
@@ -667,7 +668,7 @@
         "只表示建议的2×3公共生活观察时段，不虚构任何客流、停留或满意度实测结果；冷热雨雪与活动日另行复测。"
       ]
     },
-    "spatial_decision_layer_count": {
+    "spatial_decision_check_count": {
       "status": "known",
       "value": 5,
       "unit": "count",
@@ -676,10 +677,10 @@
         "proposal.md",
         "proposal.en.md"
       ],
-      "formula": "count(L1_DAILY_LIFE..L5_INCREMENTAL_PATTERN)",
+      "formula": "count(daily_life,legibility,ecological_fit,five_minute_sequence,incremental_reversible_pattern)",
       "confidence": "high",
       "assumptions": [
-        "只表示方案规定的决策层数量；现场证据不足时相应区块必须缩小、移动或取消。"
+        "只表示后台决策检查维度数量，不作为公众层级；现场证据不足时相应区块必须缩小、移动或取消。"
       ]
     },
     "positioning_count": {
@@ -816,6 +817,119 @@
       "formula": "count(statutory_control_fields)",
       "confidence": "medium",
       "assumptions": []
+    },
+    "land_official_record_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(parcels_with_authoritative_boundary_use_and_rights)/count(all_parcels_in_official_scope)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方边界、地块和权属资料未提供",
+      "baseline": "官方边界、地块和权属资料未提供",
+      "remeasure_trigger": "收到官方polygon、地块ID、用途和权属/管理资料后重算"
+    },
+    "site_survey_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "skills/urban-design-ai-submission/SKILL.md"
+      ],
+      "formula": "surveyed_required_spatial_objects/required_spatial_objects",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "现状测绘、首层、消防、无障碍和树冠基线未完成",
+      "baseline": "现状测绘、首层、消防、无障碍和树冠基线未完成",
+      "remeasure_trigger": "完成统一坐标测绘和专项踏勘后重算"
+    },
+    "verified_industry_capability_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(capabilities_with_named_owner_evidence_and_maturity_record)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "未核验具体企业、机构、设备与成熟度",
+      "baseline": "未核验具体企业、机构、设备与成熟度",
+      "remeasure_trigger": "完成主体访谈、设备清单、成熟度和责任边界核验后统计"
+    },
+    "approved_funding_channel_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "skills/urban-design-ai-submission/SKILL.md"
+      ],
+      "formula": "count(channels_with_legal_basis_approved_amount_owner_and_exit_liability)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "无获批预算、资金或投资承诺",
+      "baseline": "无获批预算、资金或投资承诺",
+      "remeasure_trigger": "有权主体完成预算、采购和利益冲突审查后统计"
+    },
+    "verified_talent_service_demand_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(anonymised_verified_demand_records)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "未开展真实岗位和服务需求调查",
+      "baseline": "未开展真实岗位和服务需求调查",
+      "remeasure_trigger": "完成自愿、去标识的岗位与生活服务调查后统计"
+    },
+    "confirmed_compute_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "kW_or_GPU_equivalent",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "sum(capacity_with_operator_energy_network_procurement_and_data_clearance)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "供电、散热、网络、采购和合规边界未知",
+      "baseline": "供电、散热、网络、采购和合规边界未知",
+      "remeasure_trigger": "正式市政容量、服务合同和任务负荷到位后计算"
+    },
+    "rights_cleared_dataset_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "skills/urban-design-ai-submission/SKILL.md"
+      ],
+      "formula": "count(datasets_with_source_purpose_retention_access_and_deletion_owner)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "未建立可用于实施的清权数据清单",
+      "baseline": "未建立可用于实施的清权数据清单",
+      "remeasure_trigger": "完成数据影响评估和权利复核后统计"
+    },
+    "auditable_scenario_contract_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json"
+      ],
+      "formula": "count(scenarios_with_problem_input_evidence_ai_human_spatial_baseline_test_threshold_privacy_no_ai_rollback_exit_gate)",
+      "confidence": "high_for_design_inventory",
+      "assumptions": [
+        "v7.8设计阶段场景合同；实施前须以正式场地、责任主体和现场阈值逐项替换设计状态。"
+      ],
+      "baseline": "v7.8设计阶段场景合同",
+      "remeasure_trigger": "实施前以正式场地、责任主体和现场阈值逐项替换设计状态"
     }
   }
 }

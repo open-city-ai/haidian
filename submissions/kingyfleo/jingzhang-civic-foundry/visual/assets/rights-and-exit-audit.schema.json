@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-city.ai/schemas/jingzhang-rights-and-exit-audit-1.0.0.json",
+  "title": "Jing-Zhang Rights, Operations and Exit Audit",
+  "description": "A concept-only machine-readable audit record. It supports the cultural-production conversion process without becoming a fourth public-facing narrative system, permit, approval, certification, procurement decision, or legal contract.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "audit_record_id",
+    "proposal_status",
+    "commission",
+    "audit_fields",
+    "spatial_assignment",
+    "statutory_gates",
+    "delivery",
+    "public_safeguards",
+    "adoption_or_exit_review",
+    "sunset_and_rollback",
+    "disclaimer"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "audit_record_id": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9-]{5,80}$"},
+    "proposal_status": {
+      "enum": ["concept_only", "commissioned", "under_review", "time_limited_trial", "adoption_review", "adopted", "revised", "suspended", "exited", "archived"]
+    },
+    "synthetic_evidence_registry": {
+      "description": "Optional local registry for synthetic example-only evidence references. Entries cannot support deployment, approval, procurement, funding or completed-test claims.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"pattern": "^synthetic:evidence/[a-z0-9][a-z0-9-]*$"},
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["status", "evidence_kind", "description_zh", "external_target", "deployment_claim_allowed"],
+        "properties": {
+          "status": {"const": "synthetic_placeholder"},
+          "evidence_kind": {"type": "string", "minLength": 3},
+          "description_zh": {"type": "string", "minLength": 5},
+          "external_target": {"type": "null"},
+          "deployment_claim_allowed": {"const": false}
+        }
+      }
+    },
+    "commission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem_statement", "commissioning_role", "primary_beneficiaries", "non_ai_baseline"],
+      "properties": {
+        "problem_statement": {"type": "string", "minLength": 10},
+        "commissioning_role": {"type": "string", "minLength": 3},
+        "primary_beneficiaries": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 2}},
+        "non_ai_baseline": {"type": "string", "minLength": 5}
+      }
+    },
+    "audit_fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["public_value", "cultural_fact_and_rights", "safety_and_environment", "operations_and_maintenance", "exit_and_public_restoration"],
+      "properties": {
+        "public_value": {"$ref": "#/$defs/audit_field"},
+        "cultural_fact_and_rights": {"$ref": "#/$defs/audit_field"},
+        "safety_and_environment": {"$ref": "#/$defs/audit_field"},
+        "operations_and_maintenance": {"$ref": "#/$defs/audit_field"},
+        "exit_and_public_restoration": {"$ref": "#/$defs/audit_field"}
+      }
+    },
+    "spatial_assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["area_role", "space_ids", "time_limited", "reversible", "public_baseline_protected", "official_geometry_confirmed"],
+      "properties": {
+        "area_role": {"enum": ["controlled_validation", "co_creation", "low_risk_public_trial"]},
+        "space_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 2}},
+        "time_limited": {"const": true},
+        "reversible": {"const": true},
+        "public_baseline_protected": {"const": true},
+        "official_geometry_confirmed": {"type": "boolean"},
+        "start_at": {"type": ["string", "null"], "format": "date-time"},
+        "expires_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "statutory_gates": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "prefixItems": [
+        {"$ref": "#/$defs/gate_g0"},
+        {"$ref": "#/$defs/gate_g1"},
+        {"$ref": "#/$defs/gate_g2"},
+        {"$ref": "#/$defs/gate_g3"},
+        {"$ref": "#/$defs/gate_g4"}
+      ],
+      "items": false
+    },
+    "delivery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["accountable_operator_role", "maintenance_owner_role", "funding_status", "annual_operation_status", "exit_reserve_status"],
+      "properties": {
+        "accountable_operator_role": {"type": "string", "minLength": 3},
+        "maintenance_owner_role": {"type": "string", "minLength": 3},
+        "funding_status": {"enum": ["identified", "pending", "not_applicable"]},
+        "annual_operation_status": {"enum": ["identified", "pending", "not_applicable"]},
+        "exit_reserve_status": {"enum": ["identified", "pending", "not_applicable"]}
+      }
+    },
+    "public_safeguards": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["non_ai_channel", "staffed_human_override", "accessibility_verified", "quiet_or_no_scan_bypass", "complaint_route_published", "data_minimisation"],
+      "properties": {
+        "non_ai_channel": {"type": "boolean"},
+        "staffed_human_override": {"type": "boolean"},
+        "accessibility_verified": {"type": "boolean"},
+        "quiet_or_no_scan_bypass": {"type": "boolean"},
+        "complaint_route_published": {"type": "boolean"},
+        "data_minimisation": {"type": "boolean"}
+      }
+    },
+    "adoption_or_exit_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["months_observed", "decision", "evidence_refs"],
+      "properties": {
+        "months_observed": {"type": "integer", "minimum": 0, "maximum": 12},
+        "decision": {"enum": ["pending", "adopt", "revise", "reduce", "suspend", "exit"]},
+        "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 2}}
+      }
+    },
+    "sunset_and_rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stop_conditions", "rollback_plan", "data_disposal_or_retention_rule", "public_space_after_exit"],
+      "properties": {
+        "stop_conditions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 3}},
+        "rollback_plan": {"type": "string", "minLength": 10},
+        "data_disposal_or_retention_rule": {"type": "string", "minLength": 10},
+        "public_space_after_exit": {"type": "string", "minLength": 10}
+      }
+    },
+    "disclaimer": {"type": "string", "minLength": 20}
+  },
+  "$defs": {
+    "audit_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "human_owner_role", "evidence_refs", "open_issues"],
+      "properties": {
+        "status": {"enum": ["unknown", "incomplete", "ready_for_review", "verified", "failed", "not_applicable"]},
+        "human_owner_role": {"type": "string", "minLength": 3},
+        "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 2}},
+        "open_issues": {"type": "array", "items": {"type": "string", "minLength": 2}}
+      }
+    },
+    "gate_common": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["gate_id", "gate_name_zh", "decision", "human_owner_role", "evidence_refs"],
+      "properties": {
+        "gate_id": {"type": "string"},
+        "gate_name_zh": {"type": "string"},
+        "decision": {"enum": ["not_submitted", "pending", "pass", "conditional", "stop"]},
+        "human_owner_role": {"type": "string", "minLength": 3},
+        "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 2}}
+      }
+    },
+    "gate_g0": {"allOf": [{"$ref": "#/$defs/gate_common"}, {"properties": {"gate_id": {"const": "G0"}, "gate_name_zh": {"const": "资料冻结"}}}]},
+    "gate_g1": {"allOf": [{"$ref": "#/$defs/gate_common"}, {"properties": {"gate_id": {"const": "G1"}, "gate_name_zh": {"const": "法定控制"}}}]},
+    "gate_g2": {"allOf": [{"$ref": "#/$defs/gate_common"}, {"properties": {"gate_id": {"const": "G2"}, "gate_name_zh": {"const": "空间交付"}}}]},
+    "gate_g3": {"allOf": [{"$ref": "#/$defs/gate_common"}, {"properties": {"gate_id": {"const": "G3"}, "gate_name_zh": {"const": "专项技术"}}}]},
+    "gate_g4": {"allOf": [{"$ref": "#/$defs/gate_common"}, {"properties": {"gate_id": {"const": "G4"}, "gate_name_zh": {"const": "建成与使用"}}}]}
+  }
+}
