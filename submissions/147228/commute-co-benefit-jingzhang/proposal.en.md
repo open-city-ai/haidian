@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "An activity-chain model links employer staggering, resident care, external commuting, metro, bus, bicycle, walking/accessibility, cars and enterprise shuttles; a population-scale synthetic screen compares arrival reliability, transfer waiting, curb conflict and group equity, while future air mobility remains a conditional, reversible, ground-first experiment."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.4"
+iteration: "v2.35"
 ---
 
 # Jing-Zhang Commute Commons: An Enterprise–Resident Activity-Chain Network
@@ -37,6 +37,22 @@ This contract puts “what the enterprise receives” beside “who cannot be sa
 The contract also needs an evidence ladder so that a synthetic score cannot be mistaken for permission to open a service. P0 registers grouped OD, headways and capacity, resident care and accessibility validation, complaint and fallback rehearsal, and privacy rules. P1 tests one reversible minimum chain. P2 discusses wider time windows and service scope only after the evidence closes. The current package stays at P0; expired evidence, protected-group decline or missing ownership returns it to P0 or stops it. The air candidate is a separate blocked item and cannot fill a ground-evidence gap [data:visual/assets/commute-co-benefit-authorization.json] [data:assets/figures/commute-co-benefit-authorization-board.en.svg].
 
 ![Evidence ladder from synthetic screen to field authorisation: current hold at P0](assets/figures/commute-co-benefit-authorization-board.en.svg)
+
+## Six Handoffs Before Efficiency Comparison
+
+The activity chain is only as strong as its handoffs. Leaving home, first and last mile transfer, work and loading arrival, midday care, return home, and complaint and repair each involve different people and spaces. The new receipt places the field denominator, non-AI equivalent, refusal rule, fallback action and maintenance write-back beside every node. It is a design contract; authorisation and field observation counts remain zero, and the local baseline remains pending official data [data:visual/assets/commute-service-equivalence-atlas.json] [data:visual/assets/run-commute-service-equivalence-atlas.js].
+
+![Full-day activity-chain service-equivalence receipt: six handoffs and five gates](assets/figures/commute-service-equivalence-atlas.en.svg)
+
+The board starts with the ordinary route and human takeover, then shows the AI option. Refusals, withdrawals and unresolved items keep a write-back location; missing dated baseline, receiving role or independent review keeps the package at HOLD. The board does not provide field demand, resident experience, service performance or authorisation evidence [data:visual/assets/commute-service-equivalence-atlas.json].
+
+## Spatial decision: protect the public return before dispatch
+
+Service equivalence must return to a spatial choice. Three approaches at the same station/curb edge are reviewed side by side: **ALT-A enterprise-first booked curb** puts arrival, loading and ordinary movement on one edge and is rejected; **ALT-B three independent feeder windows** reduces direct conflict but splits cross-node handoff, appeal and blackout ownership and therefore requires revision; **ALT-C public spine plus reversible curb window** protects rail/bus, ordinary return, accessibility and human routes first, then treats enterprise service as a pausable, removable layer for professional design review. Selecting ALT-C is not authorisation to operate; the whole decision remains HOLD [data:visual/assets/commute-spatial-decision.json].
+
+![Spatial decision: three alternatives, five scales, three nodes and five public rights](assets/figures/commute-spatial-decision.en.svg)
+
+The board asks one question at each of five scales—1:5000, 1:2000, 1:500, 1:200 and 1:50: first the rail–bus–public spine, then the three key areas and full-day handoffs, then waiting, human takeover, appeal, removal and the removable edge. All three nodes share five rights: ordinary access, accessible continuity, the rail/bus backbone, appeal/pause, and privacy/exit. Authorisation is 0, field observations are 0 and field claims are empty. `run-commute-spatial-decision.js` and its negative regression fixtures prove only that the design contract can be replayed offline; they do not prove capacity, resident experience, service performance or an operating permit [data:visual/assets/commute-spatial-decision.json] [data:visual/assets/run-commute-spatial-decision.js] [depth:traffic_rail_slow_parking].
 
 To show where the proxy score comes from, the model now holds the C3 ground modes, curb, reliability and accessibility controls fixed while sweeping the declared employer shift input from 0% to 24%. Under these declared inputs, the enterprise readout changes slightly, the minimum protected-group access and satisfaction stay unchanged, and the overall proxy moves only within a narrow range. The current 18% is a declared C3 input, not accepted employer participation and not a real-world optimal stagger rate. Employer acceptance, timetable capacity, resident response and field satisfaction still need dated evidence [data:visual/assets/commute-co-benefit-sensitivity.json] [data:assets/figures/commute-co-benefit-sensitivity-board.en.svg].
 
@@ -67,6 +83,14 @@ To make the tabletop replay a readable spatial acceptance entry point, the four 
 | 5. Replay | An independent reviewer replays one door-to-door chain and compares continue, repair or withdraw | Minimal log, grouped result, complaint-closure evidence, version and review decision | Return to P0 investigation and human service when evidence is missing or the slowest group worsens |
 
 This table connects the design boards, curb ledger, M-09 fallback tabletop and P0/P1/P2 phasing to one acceptance entry point. PASS for four synthetic requests proves only that the state machine and rollback logic can be replayed; it does not prove real demand, accessibility performance, staffing, public acceptance or safety.
+
+## Minimum P0 Evidence Pack: Name Who Can Stop Before Discussing a Pilot
+
+This iteration turns “collect data later” into a participant-controlled field-protocol template. The AI Origin Community care loop is split into weekday AM peak, community daytime service, PM peak and care return, and night human fallback. Every record must carry date, weather, counter role, missing interval and spatial version. Seven evidence streams cover grouped flow and requests, a segment accessibility walk, curb and public-route responsibility, human and public-transport fallback, data minimisation, participatory threshold sign-off, and public status and closeout [data:visual/assets/commute-p0-pilot-evidence-pack.json].
+
+![Minimum P0 evidence pack for the AI Origin Community care loop: currently zero field records, five roles unassigned and five release gates on HOLD](assets/figures/commute-p0-pilot.en.png)
+
+The current state intentionally remains `HOLD`: seven templates are ready, field records are zero, five roles—site/data steward, transport/accessibility reviewer, resident-carer-disabled-user panel, human-service/transit handoff, and independent closeout reviewer—are unassigned, and none of the five release gates has passed. A missing group denominator, incomparable window, changed route version or unmodelled barrier invalidates the model; an average cannot turn `unknown` into zero or advance P1. This is an evidence entry point, not a field result, recruitment, schedule or authorisation [data:visual/assets/commute-p0-pilot-evidence-pack.json] [data:assets/figures/commute-p0-pilot.en.svg].
 
 ## Why This Is a Jing-Zhang Public-Space Proposal: History, Industry and Daily Mobility on One Line
 
@@ -115,20 +139,32 @@ The table reduces reviewer search across long evidence and repeated boundary sta
 
 ## How the six taskbook tasks land in this package
 
-The six taskbook tasks remain belt-wide work. This mobility package is responsible only for the part it can actually deliver. The table puts the mobility contribution first and leaves unsupported work to the organiser, planners, cultural researchers, and future operators. The full machine-readable crosswalk is `visual/assets/taskbook-crosswalk.json`; the bilingual board is `assets/figures/taskbook-crosswalk-board.en.svg`.
+The package now gives each task a separately reviewable **conceptual output**, instead of leaving only a mobility-side interface. The set includes three positions, five functions and three areas plus two wings; six global mechanism cases, eight resources and five regional interfaces; ten scenario cards; three responsibility landmarks; commute culture and five-layer wayfinding; and a four-season activity–P0/P1/P2–repair/retirement loop. The machine-readable delivery is `visual/assets/commute-taskbook-delivery.json`; the detailed navigation remains in `visual/assets/taskbook-crosswalk.json`.
 
-![Taskbook crosswalk board for the mobility package](assets/figures/taskbook-crosswalk-board.en.svg)
+![Commute Commons taskbook delivery atlas: one distinct visible output for each of six tasks, all kept within conceptual and no-commitment boundaries](assets/figures/commute-taskbook-delivery.en.png)
 
-| Task | Package deliverable | Read first | Not claimed |
+| Task | Distinct output in this iteration | Read first | Still not claimed |
 | --- | --- | --- | --- |
-| agent.1 overall coordination | Three scales, three nodes, rail/bus backbone, and a reversible mobility chain | `mobility-spatial-plan.svg`, overall-structure section | Belt-wide master brand, statutory redlines, regulatory metrics, engineering conclusions |
-| agent.2 AI ecosystem | Mobility-side ledgers for enterprise, residents, external commuters, vehicles, nodes, curbs, and maintenance | `demand-ledger.json`, `resource-pressure-readout.json` | Industrial attraction, funding, enterprise lists, confirmed partnerships |
+| agent.1 overall coordination | C↔C concept identity, three positions, five functions, three areas plus two wings, and overall task atlas | `commute-taskbook-delivery.en.png`, `mobility-spatial-plan.svg` | Official brand, statutory redline, regulatory metrics or engineering conclusion |
+| agent.2 AI ecosystem | Six global mechanism cases, eight resource-exchange conditions and five regional interfaces | `commute-taskbook-delivery.json`, `sources.json` | Copying foreign systems, industrial funding, enterprise lists or confirmed partnership |
 | agent.3 AI+ scenarios | Ten bilingual scenario cards, six participant groups, three industry tests, and card-level stop rules | `scenario-cards-board.svg`, startup checks, people-flow section | Resident surveys, observed OD, field operation, public acceptance |
-| agent.4 public space | Mobility interfaces at entrances, waiting areas, ramps, bicycle parking, curb desks, and maintenance points | `brand-system-board.svg`, key-area and blue-green sections | Three landmarks, heritage approval, bridge/tunnel engineering, official events |
-| agent.5 cultural narrative | A bilingual public-service narrative of arrival, transfer, waiting, maintenance, and home | Commute Commons public-space section and bilingual boards | Belt-wide cultural system, historical verification, unauthorised copyrighted material |
-| agent.6 long-term operation | P0 registration, P1 pilot, P2 review, redress, retention, stop rules, and human fallback | Responsibility contract and M-09 readiness evidence | Annual events, developer community, attraction/conversion, operating contracts |
+| agent.4 public space | Three responsibility-landmark concepts: Jing-Zhang Return Marker, Origin Contribution Exchange, and Four-Quadrant Responsibility Beacon | Taskbook atlas, key areas and blue-green section | Landmark siting, heritage approval, bridge/tunnel engineering or official event |
+| agent.5 cultural narrative | “Every intelligent commute owes the city a public way home,” five-layer wayfinding and bilingual expression | Taskbook atlas, public-space section and rights statement | Historical conclusion, official slogan, unlicensed portrait, trademark or material |
+| agent.6 long-term operation | Open Questions Season, Care and Commute Co-test Week, Public Urban-Agent Review and Jing-Zhang Return Forum, plus P0-to-P2 conversion | Taskbook atlas, P0 pack and responsibility contract | Scheduled events, developer community, budget/procurement, operating contract or outcomes |
 
-This table lets a reader find evidence quickly and see the gaps just as quickly. The 3,122,000 synthetic agents, tabletop replay, and package self-checks show only that the model and state logic can be replayed. They do not establish resident needs, field capacity, public consent, approval, or rank. All spatial layers remain provisional constraints, and air mobility stays blocked when evidence or approval is insufficient [data:visual/assets/taskbook-crosswalk.json].
+The six cases transfer mechanisms rather than institutional conclusions. Helsinki and Amsterdam inform public registers and appeal; Singapore AI Verify informs testing and takeover [source:CASE-HELSINKI-AI-REGISTER] [source:CASE-AMSTERDAM-ALGORITHM-REGISTER] [source:CASE-SINGAPORE-AI-VERIFY].
+
+Decidim informs multi-channel participation; the UK ATRS informs public-record fields; and the Seoul AI Foundation informs a problem–pilot–review loop. None becomes Chinese law, certification, partnership or local validity [source:CASE-DECIDIM-BARCELONA] [source:CASE-UK-ATRS] [source:CASE-SEOUL-AI-FOUNDATION].
+
+| Regional interface | Proposed role | Commute evidence that could be exchanged | Current state |
+| --- | --- | --- | --- |
+| Beiwei Community | Resident daily-life and care-demand interface | Grouped demand, ordinary route, accessibility and repair readback | Unconfirmed conceptual interface |
+| Future Science City | Cross-area commute interface for research talent | Grouped OD, rail-bus chain, shift windows and no-car fallback | Unconfirmed conceptual interface |
+| Huairou Science City | Long-distance research activity and flexible-travel interface | Event windows, transfer reliability, weather fallback and overnight return | Unconfirmed conceptual interface |
+| Beijing E-Town | Manufacturing and industry-shift commute interface | Shift groups, feeder-transit competition, logistics conflict and capacity unknowns | Unconfirmed conceptual interface |
+| Jing-Jin-Ji | Intercity transit and talent-return interface | Intercity rail, first-last mile, grouped denominators and responsibility handoff | Unconfirmed conceptual interface |
+
+These names define who should later check which aggregate fields; there is currently no agreement, data exchange, partner or joint implementation. The 3,122,000 synthetic agents, tabletop replay and package self-checks still prove only replayable model and state logic, not resident needs, field capacity, public consent, approval or rank. All spatial layers remain provisional constraints, and air mobility stays blocked when evidence or approval is insufficient [data:visual/assets/commute-taskbook-delivery.json] [data:visual/assets/taskbook-crosswalk.json].
 
 ## Reading Labels and Evidence Boundaries
 

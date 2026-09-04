@@ -1,0 +1,132 @@
+{
+  "schema_version": "commute-service-equivalence-atlas-v1",
+  "atlas_id": "COMMUTE-SERVICE-EQUIVALENCE-01",
+  "title_zh": "全日活动链服务等价回执",
+  "title_en": "Full-Day Activity-Chain Service-Equivalence Receipt",
+  "purpose": "把活动链的每一次服务交接写成可拒绝、可回退、可维护的空间接口。",
+  "status": {
+    "design_only": true,
+    "authorization_count": 0,
+    "field_observation_count": 0,
+    "local_baseline": "unknown",
+    "performance_results": null,
+    "decision": "HOLD"
+  },
+  "nodes": [
+    {
+      "id": "AC-01-LEAVE",
+      "key_area": "beijing_ai_origin_community",
+      "moment_zh": "出门与选择",
+      "moment_en": "Leaving and choosing",
+      "groups": ["resident_worker", "carer_child", "wheelchair_user"],
+      "denominators": ["choice_success", "manual_entry_available", "accessible_route_available"],
+      "ai_option": "按时段解释可选路线与服务窗口",
+      "non_ai_equivalent": "纸面导向、电话入口、有人服务台和公开公交信息",
+      "acceptance": "同一任务至少保留一条无需账号、网络或模型的可理解入口",
+      "refusal": "路线、责任人或无障碍连续性未经日期化核对时不开放推荐",
+      "fallback": "回到有人服务台、电话和公共交通，不保留自动预约",
+      "maintenance_writeback": ["route_version", "desk_owner", "last_walkthrough_date"]
+    },
+    {
+      "id": "AC-02-FEEDER",
+      "key_area": "beijing_ai_origin_community",
+      "moment_zh": "首末端接驳",
+      "moment_en": "First and last mile",
+      "groups": ["resident_worker", "night_worker", "carer_child"],
+      "denominators": ["feeder_request_completed", "transfer_window_met", "human_takeover_available"],
+      "ai_option": "在公开时间窗内整理接驳候选与换乘提示",
+      "non_ai_equivalent": "固定班次、纸面时刻表、步行替代和人工指路",
+      "acceptance": "接驳候选能被人工路线逐项对照，且容量与接管角色已有记录",
+      "refusal": "容量、末班时间或接管角色未知时只登记，不接受预约",
+      "fallback": "冻结接驳请求，转向轨道、公交或人工步行路线",
+      "maintenance_writeback": ["headway_version", "capacity_record", "takeover_role", "fallback_notice"]
+    },
+    {
+      "id": "AC-03-ARRIVE",
+      "key_area": "zhongzhiyuan_ai_acceleration_area",
+      "moment_zh": "到岗、到校与装卸",
+      "moment_en": "Work, school and loading arrival",
+      "groups": ["enterprise_worker", "student_carer", "logistics_maintenance"],
+      "denominators": ["arrival_window_met", "curb_clearance_completed", "public_route_unblocked"],
+      "ai_option": "按聚合时窗提示班车、装卸和公共路线冲突",
+      "non_ai_equivalent": "人工交通台账、现场指挥、公开路缘状态和固定公共路线",
+      "acceptance": "企业服务时窗不减少公共通行净宽，并留下清场与投诉责任",
+      "refusal": "消防、无障碍或公共路线冲突没有现场决定人时停止排程",
+      "fallback": "取消预约，恢复公共通行和人工调度，保留冲突记录",
+      "maintenance_writeback": ["curb_state", "clearance_receipt", "public_route_check", "complaint_owner"]
+    },
+    {
+      "id": "AC-04-MIDDAY",
+      "key_area": "beijing_ai_origin_community",
+      "moment_zh": "午间服务与照护",
+      "moment_en": "Midday service and care",
+      "groups": ["resident_worker", "older_adult", "carer_child"],
+      "denominators": ["service_task_completed", "care_window_preserved", "paper_or_phone_access"],
+      "ai_option": "整理服务目录、时间窗和替代路径",
+      "non_ai_equivalent": "现场柜台、电话、纸面目录和公共服务人员转介",
+      "acceptance": "基本服务可在不提交个人连续轨迹的情况下完成或被人工接住",
+      "refusal": "数据用途、服务责任或照护替代没有说明时不作自动分配",
+      "fallback": "转为现场或电话办理，记录未解决事项和下一次回访责任",
+      "maintenance_writeback": ["service_catalog_version", "human_referral", "unresolved_item", "next_review_date"]
+    },
+    {
+      "id": "AC-05-RETURN",
+      "key_area": "dazhongsi_ai_industry_cluster",
+      "moment_zh": "返程与夜间回家",
+      "moment_en": "Return and night arrival home",
+      "groups": ["enterprise_worker", "night_worker", "wheelchair_user"],
+      "denominators": ["return_route_available", "night_service_window", "safe_exit_completed"],
+      "ai_option": "按公开时段提示轨道、公交、步行和人工回家组合",
+      "non_ai_equivalent": "末班时刻、有人值守换乘点、电话回家登记和必要的公共交通",
+      "acceptance": "夜间服务保留可见的退出方式，不以模型建议替代值守或应急判断",
+      "refusal": "末班接驳、照明、无障碍或应急回退未核实时不扩展夜间服务",
+      "fallback": "停止自动推荐，保留人工联系、轨道公交和安全等待点",
+      "maintenance_writeback": ["last_service_time", "lighting_check", "return_contact", "safe_waiting_point"]
+    },
+    {
+      "id": "AC-06-REVIEW",
+      "key_area": "dazhongsi_ai_industry_cluster",
+      "moment_zh": "投诉、维修与复核",
+      "moment_en": "Complaint, repair and review",
+      "groups": ["resident_worker", "enterprise_worker", "logistics_maintenance"],
+      "denominators": ["complaint_received", "repair_handoff_accepted", "independent_replay_completed"],
+      "ai_option": "按版本聚合冲突、投诉和未解决项，生成回放清单",
+      "non_ai_equivalent": "纸面登记、人工分派、维修单和公开状态牌",
+      "acceptance": "拒绝、失败和撤回请求保留在分母中，记录不会被成功率覆盖",
+      "refusal": "没有接收角色、复核时间或继任服务时不关闭事件",
+      "fallback": "维持人工服务和公共路线，发布待处理状态并重新进入 P0",
+      "maintenance_writeback": ["receipt_id", "receiver", "decision", "prior_record_id", "next_review_date"]
+    }
+  ],
+  "handoffs": [
+    {"from": "AC-01-LEAVE", "to": "AC-02-FEEDER", "required": ["choice_record", "route_version", "fallback_route"]},
+    {"from": "AC-02-FEEDER", "to": "AC-03-ARRIVE", "required": ["transfer_record", "capacity_record", "takeover_role"]},
+    {"from": "AC-03-ARRIVE", "to": "AC-04-MIDDAY", "required": ["curb_clearance_receipt", "public_route_check", "complaint_owner"]},
+    {"from": "AC-05-RETURN", "to": "AC-06-REVIEW", "required": ["exit_record", "unresolved_item", "independent_reviewer"]}
+  ],
+  "gates": [
+    "dated local baseline",
+    "named accountable role",
+    "non-AI equivalent path",
+    "withdrawal and record retention",
+    "independent review before expansion"
+  ],
+  "writeback_fields": [
+    "chain_version",
+    "grouped_denominator",
+    "route_or_service_id",
+    "human_owner",
+    "fallback_action",
+    "refusal_reason",
+    "unresolved_item",
+    "next_review_date",
+    "prior_record_id"
+  ],
+  "negative_cases": [
+    "missing local baseline",
+    "missing takeover role",
+    "public route blocked by enterprise window",
+    "AI route available without a paper or human equivalent",
+    "complaint closed without repair or independent replay"
+  ]
+}
