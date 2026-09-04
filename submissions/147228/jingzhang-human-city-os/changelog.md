@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v2.8 - 2026-08-22
+
+- 新增三替代空间裁决：ALT-A `REJECT`、ALT-B `REVISE`、ALT-C `ADVANCE_TO_DESIGN_REVIEW`，把四条价值链、三处重点区和人机接口原型接成一张评审入口。
+- 增加 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 尺度链、五项公共权利、五道共享闸门、中英双语图板、离线 runner 和五个 fail-closed 负例。
+- 保留人的主线、G0/HOLD、0 授权、0 现场观察、baseline unknown、not_authorized_not_run 与 provisional 边界；不新增现场事实、容量、权属、许可、部署或排名主张。
+
 ## v2.7 - 2026-08-11
 
 - 跟随主线双语渲染器重生成英文 HTML 报告，证据标签在英文页显示为 `Source`、`Standard`、`Depth`、`Spatial data` 与 `Metric`，不改正文、几何、指标或图件内容。

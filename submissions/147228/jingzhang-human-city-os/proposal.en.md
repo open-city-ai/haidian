@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v2.6"
-summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v2.6 extends the six base personas with youth and early entrants, developers and researchers, and first-time or international visitors, making benefit, impact, human alternative, and stop conditions replayable. Provisional geometry, known metrics, and unknowns remain unchanged."
+iteration: "v2.8"
+summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v2.8 adds a three-alternative spatial decision, a five-scale chain, five public rights, and five shared gates on top of the public-interest coverage work, connecting the human mainline and bounded machine increments as an offline-reviewable HOLD contract. Provisional geometry, known metrics, and unknowns remain unchanged."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -51,6 +51,14 @@ v2.4 adds no new spatial commitment. Instead, each of the 23 announcement / task
 Once authorized energy design, credentials, and metering exist, drawings, HTML, PDFs, and self-check must be recalculated together.[metric:operational_pue] [metric:green_electricity_share]
 
 This increment improves evidence legibility, missing-data ordering, and policy boundaries only. It does not turn any unknown into an outcome or create an official score, government endorsement, or implementation approval.[depth:metrics_recalculation] [depth:risk_missing_data]
+
+## v2.8 One Spatial Decision | Protect the Human Mainline Before Locating Machines
+
+The four value chains, three key areas and human-machine interface prototypes still need an explicit spatial choice. Three organizations of the same city operating system are reviewed side by side: **ALT-A machine-first belt** makes API, screens and test lanes the public default while ordinary movement, community repair and human judgement move behind them, so it is rejected; **ALT-B four value-chain rooms** separate programs but split the mainline, appeal, maintenance and public release, so it must be revised; **ALT-C human mainline plus bounded machine lanes** keeps ordinary, accessible, staffed service, community repair and public release first, while API, robot and low-air concepts remain pausable, withdrawable and replayable, so it advances to design review. Selecting ALT-C is not authorization; the decision remains HOLD [data:visual/assets/human-city-spatial-decision.json].
+
+![Figure 28 | One spatial decision: three alternatives, five scales, three nodes and five public rights](assets/figures/human-city-spatial-decision.en.svg)
+
+The board asks, in order, `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50`: first the human mainline and four value chains, then three key areas, ordinary entry, takeover, appeal and removable machine lanes. All three nodes share five rights: dignity/ordinary access, non-digital/accessibility equivalence, consent/pause/appeal/exit, community repair/retention, and public asset/privacy. Any unclear shared gate keeps the decision at HOLD. `run-human-city-spatial-decision.js` and five negative fixtures prove only that this design contract can be replayed offline; they do not prove field geometry, capacity, tenure, permits, deployment, social outcomes or an official score [data:visual/assets/human-city-spatial-decision.json] [data:visual/assets/run-human-city-spatial-decision.js] [depth:overall_spatial_structure].
 
 ## v2.3 six-step city-API sequence | Make callability replayable as accountability
 
