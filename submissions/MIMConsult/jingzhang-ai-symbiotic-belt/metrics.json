@@ -1,0 +1,122 @@
+{
+  "schema_version": "0.1.0",
+  "scope": "jingzhang-ai-symbiotic-belt",
+  "boundary_status": "provisional",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "metric_id": "site_area_sqm",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "scope": "overall_design",
+      "status": "known",
+      "recalculable_from": [
+        "geometry/site_boundary.geojson"
+      ],
+      "note": "Provisional polygon recompute for overall_design scope (announcement nominal 11.4 km²). Three-tier scope: coordination_research=43.6 km² (strategic, no polygon), overall_design=11.41 km² (this metric, provisional), key_areas=368.4 ha (three sites, provisional). Official redline pending; recalc when supplied."
+    },
+    "overall_design_area_sqm": {
+      "metric_id": "overall_design_area_sqm",
+      "value": null,
+      "unit": "sqm",
+      "scope": "overall_design",
+      "status": "unknown",
+      "recalculable_from": [
+        "geometry/site_boundary.geojson"
+      ],
+      "reason": "Provisional boundary pending official redline; will recalculate after official geometry supplied."
+    },
+    "key_area_count": {
+      "metric_id": "key_area_count",
+      "value": null,
+      "unit": "count",
+      "scope": "key_areas",
+      "status": "unknown",
+      "recalculable_from": [
+        "geometry/key_areas.geojson"
+      ],
+      "reason": "Provisional boundary pending official redline; will recalculate after official geometry supplied."
+    },
+    "key_area_total_sqm": {
+      "metric_id": "key_area_total_sqm",
+      "value": null,
+      "unit": "sqm",
+      "scope": "key_areas",
+      "status": "unknown",
+      "recalculable_from": [
+        "geometry/key_areas.geojson"
+      ],
+      "reason": "Provisional boundary pending official redline; will recalculate after official geometry supplied."
+    },
+    "heritage_belt_length_m": {
+      "metric_id": "heritage_belt_length_m",
+      "value": null,
+      "unit": "m",
+      "scope": "overall_design",
+      "status": "unknown",
+      "recalculable_from": [
+        "geometry/roads.geojson"
+      ],
+      "reason": "Provisional boundary pending official redline; will recalculate after official geometry supplied."
+    },
+    "green_ratio": {
+      "metric_id": "green_ratio",
+      "value": 0.123423,
+      "unit": "ratio",
+      "scope": "overall_design",
+      "status": "known",
+      "recalculable_from": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "note": "Recomputed from provisional geometry; recalc when official redline supplied."
+    },
+    "public_space_ratio": {
+      "metric_id": "public_space_ratio",
+      "value": 0.073281,
+      "unit": "ratio",
+      "scope": "overall_design",
+      "status": "known",
+      "recalculable_from": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "note": "Recomputed from provisional geometry; recalc when official redline supplied."
+    },
+    "geojson_layer_count": {
+      "metric_id": "geojson_layer_count",
+      "value": 9,
+      "unit": "count",
+      "scope": "submission",
+      "status": "known",
+      "recalculable_from": [
+        "manifest.json"
+      ]
+    },
+    "bilingual_contract_version": {
+      "metric_id": "bilingual_contract_version",
+      "value": 1,
+      "unit": "version",
+      "scope": "submission",
+      "status": "known",
+      "recalculable_from": [
+        "proposal.md",
+        "proposal.en.md"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "metric_id": "building_footprint_area_sqm",
+      "value": 310807.184,
+      "unit": "sqm",
+      "scope": "building_footprint",
+      "status": "known",
+      "recalculable_from": [
+        "geometry/buildings.geojson"
+      ],
+      "note": "AI R&D demonstration building footprint (BLDG-001, design_proposal layer, agent-generated massing within the provisional boundary). Value = area_sqm_declared of BLDG-001. FAR-type derived metrics stay out of scope until official cadastral data arrives; recalc via the same provisional_recalc path (official building stock trigger). See A-BUILDING-CADASTRAL-007."
+    }
+  }
+}
