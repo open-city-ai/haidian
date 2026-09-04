@@ -13,9 +13,11 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from generate_submissions_data import (  # noqa: E402
     build_data,
     build_item,
+    describe_gallery_mismatch,
     discover_submissions,
     load_publication_registry,
     package_sha256,
+    render_js,
 )
 DATA_FILE = ROOT / "submissions-data.js"
 INDEX_FILE = ROOT / "index.html"
@@ -229,6 +231,17 @@ class TestSubmissionsGallery(unittest.TestCase):
             check=False,
         )
         self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+
+    def test_gallery_mismatch_reports_counts_and_paths(self):
+        expected = [
+            {"sourceUrl": "submissions/alice/alpha/proposal.md"},
+            {"sourceUrl": "submissions/bob/beta/proposal.md"},
+        ]
+        existing = render_js([expected[0]])
+        message = describe_gallery_mismatch(existing, expected)
+        self.assertIn("expected 2 public items, found 1", message)
+        self.assertIn("missing 1 paths: submissions/bob/beta", message)
+        self.assertTrue(message.endswith("run scripts/generate_submissions_data.py"))
 
     def test_public_gallery_matches_merged_submission_count(self):
         registry = json.loads((ROOT / "gallery-publication.json").read_text(encoding="utf-8"))
