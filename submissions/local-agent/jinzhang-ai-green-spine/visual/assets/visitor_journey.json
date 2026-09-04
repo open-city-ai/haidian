@@ -1,0 +1,274 @@
+{
+  "schema_version": "0.1.0",
+  "status": "conceptual_recommendation",
+  "title_zh": "京张游客体验系统",
+  "title_en": "Jingzhang Visitor Experience System",
+  "design_question": "A first-time visitor should know where to arrive, what to see, how long each route takes, where to rest, and how to continue without a smartphone.",
+  "design_answer": "Turn the green spine into a legible sequence of arrival, memory, everyday life, AI demonstration, and return. Every digital enhancement has a paper, physical-signage, and human-service fallback.",
+  "boundary_note": "All route geometry and distances are conceptual targets drawn inside the submitted provisional boundary. They are not surveyed walking measurements, official access points, or engineering alignments.",
+  "arrival_options": [
+    {
+      "id": "ARRIVAL-TRANSIT",
+      "mode_zh": "轨道/公交到达",
+      "mode_en": "Rail or bus arrival",
+      "experience": "A visible welcome flag, large-print paper map, tactile route strip, toilets, water, and a staffed orientation desk are available before the visitor chooses a route.",
+      "convenience": ["step-free orientation", "no account or app", "3-minute route choice"],
+      "pending": "Exact station interface and step-free engineering require official transport and accessibility review."
+    },
+    {
+      "id": "ARRIVAL-DROPOFF",
+      "mode_zh": "出租车/网约车临时下客",
+      "mode_en": "Taxi or ride-hail drop-off",
+      "experience": "A short-stay drop-off is separated from the walking spine. A person can be dropped close to the welcome desk without crossing the main cycle path.",
+      "convenience": ["weather-protected curb", "seating", "luggage pause bay"],
+      "pending": "Curb geometry, traffic management, and parking supply require professional confirmation."
+    },
+    {
+      "id": "ARRIVAL-BIKE",
+      "mode_zh": "自行车到达",
+      "mode_en": "Bicycle arrival",
+      "experience": "A staffed bicycle park, pump, repair shelf, and clear pedestrian dismount line sit beside the welcome desk.",
+      "convenience": ["dismount before the plaza", "secure short-stay parking", "repair point"],
+      "pending": "Capacity and operating responsibility are design targets, not commitments."
+    }
+  ],
+  "visitor_nodes": [
+    {
+      "node_id": "NODE-01",
+      "name_zh": "大钟寺到达前厅",
+      "name_en": "Dazhongsi Arrival Foyer",
+      "kind": "arrival",
+      "coordinates_wgs84": [116.348, 39.945],
+      "highlight": "The first 10 minutes: orient, choose a route, store a bicycle, use the toilet, and meet a person.",
+      "services": ["large-print map", "tactile route strip", "water", "toilet", "human help", "luggage pause"],
+      "no_app_fallback": "A paper route card uses color, number, and landmark icons; no QR code is required.",
+      "visitor_problem_solved": "I do not know where the public entrance is or what I can do in two hours."
+    },
+    {
+      "node_id": "NODE-02",
+      "name_zh": "无门槛欢迎台",
+      "name_en": "No-App Welcome Desk",
+      "kind": "orientation",
+      "coordinates_wgs84": [116.344, 39.95],
+      "highlight": "A 3-minute human briefing offers a short route, half-day route, quiet route, family route, and rainy-day alternative.",
+      "services": ["paper map", "multilingual key phrases", "route stamp", "lost-and-found log", "human route planning"],
+      "no_app_fallback": "The route card is stamped at physical nodes; optional digital narration is never the only information channel.",
+      "visitor_problem_solved": "I do not want to download an app or share identity data before entering."
+    },
+    {
+      "node_id": "NODE-03",
+      "name_zh": "京张记忆庭院",
+      "name_en": "Jingzhang Memory Yard",
+      "kind": "heritage",
+      "coordinates_wgs84": [116.345, 39.958],
+      "highlight": "The historic railway story begins with a physical timeline, shade, model fragments, and a short audio/large-print explanation.",
+      "services": ["seated interpretation", "tactile timeline", "large-print text", "quiet edge"],
+      "no_app_fallback": "Every story panel has a short printed version and a human explanation point.",
+      "visitor_problem_solved": "I want to understand why this place matters before seeing the AI-related spaces."
+    },
+    {
+      "node_id": "NODE-04",
+      "name_zh": "绿脉生活街",
+      "name_en": "Green Spine Everyday Street",
+      "kind": "daily_life",
+      "coordinates_wgs84": [116.346, 39.972],
+      "highlight": "The proposal becomes useful, not only spectacular: a shaded walking edge, small food and repair services, seating, and visible wayfinding.",
+      "services": ["shade", "food pause", "repair shelf", "cash-compatible service", "high-contrast signs"],
+      "no_app_fallback": "Prices, opening hours, and directions are printed on a shared physical board.",
+      "visitor_problem_solved": "I need food, a seat, and a simple way to continue without losing the route."
+    },
+    {
+      "node_id": "NODE-05",
+      "name_zh": "雨水花园休息站",
+      "name_en": "Rain Garden Rest Stop",
+      "kind": "blue_green",
+      "coordinates_wgs84": [116.347, 39.982],
+      "highlight": "A legible pause every 300–450 m combines shade, water, seating with backs and arms, drainage explanation, and a safe crossing.",
+      "services": ["shade", "water", "back-and-arm seating", "accessible crossing", "weather board"],
+      "no_app_fallback": "The weather and route diversion board is updated by staff and readable from standing and seated height.",
+      "visitor_problem_solved": "I need to rest, understand the weather, and decide whether to continue or shorten the route."
+    },
+    {
+      "node_id": "NODE-06",
+      "name_zh": "AI 原点开放庭院",
+      "name_en": "AI Origin Open Courtyard",
+      "kind": "community",
+      "coordinates_wgs84": [116.347, 39.988],
+      "highlight": "The visitor sees how AI is translated into everyday public service: accessible information, open demonstrations, and a real person who can explain limits.",
+      "services": ["open demo table", "community display", "human explanation", "quiet room", "family table"],
+      "no_app_fallback": "The same demonstration is available as a physical flipbook, printed decision tree, or guided conversation.",
+      "visitor_problem_solved": "I want to see something meaningful, not just a slogan or a screen."
+    },
+    {
+      "node_id": "NODE-07",
+      "name_zh": "人工接管站",
+      "name_en": "Human Takeover Station",
+      "kind": "civic_service",
+      "coordinates_wgs84": [116.346, 39.996],
+      "highlight": "Every route has an explicit human handover point for questions, accessibility needs, lost items, safety concerns, and turning back.",
+      "services": ["first aid contact", "route change", "complaint card", "lost-and-found", "manual wayfinding"],
+      "no_app_fallback": "A numbered paper ticket links a question to a person and a response time; no personal profile is needed.",
+      "visitor_problem_solved": "If the automated or digital service fails, I know exactly where a human can take over."
+    },
+    {
+      "node_id": "NODE-08",
+      "name_zh": "众智园测试港",
+      "name_en": "Zhongzhiyuan Test Harbor",
+      "kind": "ai_lab",
+      "coordinates_wgs84": [116.347, 40.012],
+      "highlight": "The most distinctive AI visit: three small, observable tests show robot yielding, service interoperability, and offline degradation with a safety steward.",
+      "services": ["test schedule", "physical safety line", "manual stop", "large-print result board", "steward"],
+      "no_app_fallback": "Visitors can watch a fixed demonstration or read the test result without registering or being recorded.",
+      "visitor_problem_solved": "I want to see a real innovation test while knowing what is simulated, optional, and safe."
+    },
+    {
+      "node_id": "NODE-09",
+      "name_zh": "亲子与安静花园",
+      "name_en": "Family and Quiet Garden",
+      "kind": "rest",
+      "coordinates_wgs84": [116.35, 40.017],
+      "highlight": "A low-stimulation detour offers toilets, shade, a child-safe pause, and a quiet seating edge away from demonstrations.",
+      "services": ["family seating", "quiet seating", "toilet", "shade", "clear return arrows"],
+      "no_app_fallback": "A physical color band leads back to the main spine; children can follow landmarks instead of a phone map.",
+      "visitor_problem_solved": "Different members of my group need different levels of stimulation and walking speed."
+    },
+    {
+      "node_id": "NODE-10",
+      "name_zh": "北端回程台",
+      "name_en": "North Return Point",
+      "kind": "return",
+      "coordinates_wgs84": [116.3449, 40.022],
+      "highlight": "The visit closes with a choice: return along the green spine, take the short quiet loop, or record a paper feedback card.",
+      "services": ["return map", "feedback card", "water", "human route confirmation"],
+      "no_app_fallback": "A printed return strip shows distance bands and the next rest point; there is no forced digital check-out.",
+      "visitor_problem_solved": "I know how to leave without retracing confusing crossings or depending on a live map."
+    }
+  ],
+  "routes": [
+    {
+      "route_id": "ROUTE-01",
+      "name_zh": "首次到访·铁轨记忆线",
+      "name_en": "First Visit: Railway Memory Loop",
+      "route_file": "visual/assets/visitor_routes.json",
+      "feature_id": "ROUTE-01",
+      "recommended_for": ["first-time visitor", "older visitor", "visitor with limited time"],
+      "distance_target_m": 2400,
+      "duration_target_min": 120,
+      "sequence": ["NODE-01", "NODE-02", "NODE-03", "NODE-04", "NODE-05", "NODE-06", "NODE-07"],
+      "story": "Arrive, understand the railway memory, experience everyday public space, see one meaningful AI demonstration, and return with a human fallback.",
+      "convenience": ["maximum one-way walking segment under 650 m", "rest/water at NODE-05", "turn-back choice at NODE-07", "paper route card"],
+      "rain_option": "Use the covered NODE-02–NODE-06 sequence and replace the open garden pause with the courtyard demonstration."
+    },
+    {
+      "route_id": "ROUTE-02",
+      "name_zh": "半日三核·创新接力线",
+      "name_en": "Half Day: Three-Anchor Innovation Line",
+      "route_file": "visual/assets/visitor_routes.json",
+      "feature_id": "ROUTE-02",
+      "recommended_for": ["design student", "technology visitor", "family with older children"],
+      "distance_target_m": 5200,
+      "duration_target_min": 240,
+      "sequence": ["NODE-01", "NODE-03", "NODE-04", "NODE-06", "NODE-08", "NODE-09", "NODE-10"],
+      "story": "Read the past, observe daily life, compare community-scale AI with industry-scale testing, then decompress in a quiet garden before returning.",
+      "convenience": ["three clear anchors", "scheduled test windows", "family detour", "two return options", "food and water on the spine"],
+      "rain_option": "Keep the same sequence but use indoor/covered exhibits at NODE-03, NODE-06, and NODE-08; staff issue a shortened return card."
+    },
+    {
+      "route_id": "ROUTE-03",
+      "name_zh": "慢行友好·安静体验线",
+      "name_en": "Slow and Quiet: Accessible Experience Loop",
+      "route_file": "visual/assets/visitor_routes.json",
+      "feature_id": "ROUTE-03",
+      "recommended_for": ["wheelchair user", "visitor with fatigue", "young child", "sensory-sensitive visitor"],
+      "distance_target_m": 1600,
+      "duration_target_min": 90,
+      "sequence": ["NODE-02", "NODE-04", "NODE-05", "NODE-06", "NODE-09", "NODE-07"],
+      "story": "A shorter loop with predictable rest, low-stimulation edges, human guidance, and a clear escape to the arrival foyer.",
+      "convenience": ["rest point every 250–350 m target", "no compulsory stairs", "quiet detour", "visible human takeover", "clear return arrows"],
+      "rain_option": "Switch to the covered courtyard path and keep the same paper route color. Final slope, crossing, and accessible toilet details require specialist review."
+    }
+  ],
+  "service_standards": [
+    {
+      "id": "SERVICE-01",
+      "topic": "wayfinding",
+      "target": "At every decision point, provide a large-print sign, a color band, a route number, and a landmark icon; digital directions are optional.",
+      "verification": "walk the route with first-time visitors and record wrong turns"
+    },
+    {
+      "id": "SERVICE-02",
+      "topic": "rest_and_water",
+      "target": "Provide a shaded rest/water opportunity every 300–450 m on the main route and 250–350 m on the slow/quiet route target.",
+      "verification": "measure the built route after official geometry and facility locations are confirmed"
+    },
+    {
+      "id": "SERVICE-03",
+      "topic": "human_takeover",
+      "target": "A visible person or staffed contact point is reachable from each anchor; paper tickets and response-time commitments replace invisible digital queues.",
+      "verification": "mystery-visitor test for questions, lost items, safety, accessibility, and route change"
+    },
+    {
+      "id": "SERVICE-04",
+      "topic": "no_app_baseline",
+      "target": "A visitor can complete the short route with printed information, physical signs, cash-compatible everyday services, and human assistance only.",
+      "verification": "run an offline/no-phone visitor test and publish failures plus repairs"
+    },
+    {
+      "id": "SERVICE-05",
+      "topic": "weather_and_emergency",
+      "target": "Rain, heat, fatigue, lost child, lost item, and service failure each have a visible short route and a human contact point.",
+      "verification": "tabletop exercise followed by controlled site test"
+    }
+  ],
+  "visitor_personas": [
+    {
+      "id": "PERSONA-01",
+      "name_zh": "第一次来的外地游客",
+      "name_en": "First-time out-of-town visitor",
+      "need": "One coherent story and a route that fits two hours.",
+      "design_response": "NODE-02 route briefing, ROUTE-01, physical memory sequence, and a clear return point."
+    },
+    {
+      "id": "PERSONA-02",
+      "name_zh": "带孩子的家庭",
+      "name_en": "Family with children",
+      "need": "Short attention cycles, toilets, food, safe pauses, and a way to split and reunite.",
+      "design_response": "NODE-04, NODE-09, family detour, landmark-based wayfinding, and no-road-crossing pause zones."
+    },
+    {
+      "id": "PERSONA-03",
+      "name_zh": "银龄或行动较慢的游客",
+      "name_en": "Older or slower visitor",
+      "need": "Predictable rest, shade, seating with backs and arms, and a human who can change the route.",
+      "design_response": "ROUTE-03, NODE-05, NODE-07, and a paper distance band rather than a live map."
+    },
+    {
+      "id": "PERSONA-04",
+      "name_zh": "无障碍与低数字技能游客",
+      "name_en": "Visitor with accessibility or low digital confidence",
+      "need": "No mandatory registration, clear physical information, and the ability to stop or ask for help.",
+      "design_response": "No-App Welcome Desk, tactile/large-print route strip, human takeover, and specialist accessibility testing before construction."
+    },
+    {
+      "id": "PERSONA-05",
+      "name_zh": "专业参访者",
+      "name_en": "Professional or student visitor",
+      "need": "A meaningful explanation of what is real, simulated, tested, and still pending.",
+      "design_response": "ROUTE-02, test result boards, visible safety boundaries, source notes, and explicit AI limits."
+    }
+  ],
+  "weather_and_safety": [
+    "Rain: use the covered NODE-02–NODE-06 sequence and issue a paper short-route card.",
+    "Heat: prioritize shaded rest points, water, shorter loops, and a human recommendation to stop.",
+    "Fatigue: every route has a visible turn-back node; no visitor is penalized for leaving early.",
+    "Lost child or item: use the numbered human takeover station and paper log; do not require a personal profile.",
+    "AI or sensor failure: switch to fixed signs, paper boards, and a staffed explanation point.",
+    "Accessibility: all slopes, crossings, toilets, tactile cues, and emergency clearances remain subject to specialist and real-user testing."
+  ],
+  "evidence": {
+    "route_geometry": "visual/assets/visitor_routes.json",
+    "spatial_context": ["geometry/site_boundary.geojson", "geometry/key_areas.geojson", "geometry/roads.geojson", "geometry/green_space.geojson", "geometry/public_space.geojson"],
+    "source_ids": ["SITE-PACKAGE", "AGENT-TASKBOOK", "SOURCE-REGISTRY", "ACCESSIBILITY-LAW-2023", "SMART-ELDERLY-2020", "PIPL-AUTOMATED-DECISION"],
+    "review_limit": "Route distance, travel time, facility spacing, slope, crossing safety, and operating hours are design targets until official geometry, engineering surveys, and user testing are available."
+  }
+}
