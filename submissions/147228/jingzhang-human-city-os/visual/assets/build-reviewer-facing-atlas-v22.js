@@ -10,6 +10,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 
 const here = __dirname;
 const packageRoot = path.resolve(here, '../..');
@@ -33,6 +34,22 @@ const roads = readGeo('roads.geojson');
 const green = readGeo('green_space.geojson');
 const publicSpace = readGeo('public_space.geojson');
 const constraints = readGeo('constraints.geojson');
+const tabletopContract = JSON.parse(fs.readFileSync(path.join(here, 'human-city-public-service-tabletop-v1.json'), 'utf8'));
+const tabletopEvidence = JSON.parse(fs.readFileSync(path.join(here, 'human-city-public-service-tabletop-v1-evidence.json'), 'utf8'));
+const publicInterestCoverage = JSON.parse(fs.readFileSync(path.join(here, 'public-interest-coverage-v26.json'), 'utf8'));
+
+function assertV26ReviewSurfaceInputs() {
+  const firstPath = (tabletopContract.scenario_registry || [])
+    .find((item) => item.id === 'HC-T01');
+  if (!firstPath || firstPath.scenario_id !== 'SC-A03' || firstPath.space !== 'geometry/public_space.geojson#PUBLIC-A-INCLUSION') {
+    throw new Error('HC-T01 / SC-A03 first-path contract drift');
+  }
+  if (publicInterestCoverage.not_a_score !== true || publicInterestCoverage.extensions?.map((item) => item.persona_id).join(',') !== 'P-07,P-08,P-09') {
+    throw new Error('public-interest coverage drift');
+  }
+}
+
+assertV26ReviewSurfaceInputs();
 
 function esc(value) { return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
 
@@ -89,6 +106,15 @@ function shortAreaLabel(feature, english) {
     ? { 'PROV-KEY-001': 'Zhongzhiyuan', 'PROV-KEY-002': 'AI Origin', 'PROV-KEY-003': 'Dazhongsi' }
     : { 'PROV-KEY-001': '众智园', 'PROV-KEY-002': '北京 AI 原点', 'PROV-KEY-003': '大钟寺' };
   return labels[id] || featureLabel(feature, english);
+}
+
+function conciseAreaQuestion(area) {
+  const questions = {
+    'PROV-KEY-001': 'How are machine tests bounded and exited in public space?',
+    'PROV-KEY-002': 'How can ordinary people use AI, learn, and leave?',
+    'PROV-KEY-003': 'How can innovation become a contestable public service?',
+  };
+  return questions[area.area_id] || area.question_en;
 }
 
 function wrap(text, max, english) {
@@ -170,7 +196,7 @@ function render(english = false) {
   lines.push('.title{font:700 44px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#142B4A}.sub{font:22px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#60748D}.label{font:700 22px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#173554}.small{font:17px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#61748B}.maplabel{font:700 18px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#173554}.mapnote{font:16px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#61748B}.legend{font:16px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#36526E}.area{font:700 21px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#142B4A}.nodehead{font:700 17px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#FFFFFF}.body{font:16px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#1D3955}.foot{font:16px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#C95D5D}.chip{font:700 18px -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif;fill:#173554}</style>');
   lines.push(`<text x="84" y="70" class="title">${esc(title)}</text>`);
   lines.push(`<text x="84" y="108" class="sub">${esc(subtitle)}</text>`);
-  lines.push(`<text x="2315" y="70" text-anchor="end" class="small">PACKAGE v2.2</text>`);
+  lines.push(`<text x="2315" y="70" text-anchor="end" class="small">ATLAS v2.2 · PACKAGE v2.8</text>`);
   lines.push(`<text x="2315" y="101" text-anchor="end" class="foot">${esc(english ? 'CONCEPT / PROVISIONAL' : '概念 / 临时约束')}</text>`);
   lines.push(`<text x="84" y="192" class="label">${esc(english ? '01 / shared geometry frame' : '01 / 同源空间底图')}</text>`);
   lines.push(`<text x="1200" y="192" class="label">${esc(english ? '02 / visible action rooms' : '02 / 可读空间动作房间')}</text>`);
@@ -186,12 +212,17 @@ function render(english = false) {
     const color = COLORS.area[area.area_id] || '#173554';
     lines.push(`<rect x="${actionX}" y="${y}" width="${areaW}" height="${rowH}" rx="14" fill="#FFFFFF" stroke="#CBD7E3" stroke-width="2"/>`);
     lines.push(`<rect x="${actionX}" y="${y}" width="10" height="${rowH}" rx="5" fill="${color}"/>`);
-    lines.push(`<text x="${actionX + 24}" y="${y + 38}" class="area">${esc(english ? area.name_en.replace(' AI Autonomous Innovation Accelerator', '') : area.name_zh.replace(' AI 自主创新加速区', ''))}</text>`);
-    lines.push(`<text x="${actionX + 24}" y="${y + 68}" class="small">${esc(area.area_id)}</text>`);
-    lines.push(`<text x="${actionX + 24}" y="${y + 91}" class="small">official_boundary=false</text>`);
-    const q = wrap(english ? area.question_en : area.question_zh, english ? 28 : 16, english);
-    lines.push(textLines(q.slice(0, 2), actionX + 24, y + 123, 'body', 21));
-    lines.push(`<text x="${actionX + 24}" y="${y + rowH - 22}" class="small">${esc(english ? 'human equivalent + stop/return' : '人工等效 + 停止 / 回退')}</text>`);
+    const areaName = english ? area.name_en.replace(' AI Autonomous Innovation Accelerator', '') : area.name_zh.replace(' AI 自主创新加速区', '');
+    if (english) {
+      lines.push(textLines(wrap(areaName, 18, true).slice(0, 2), actionX + 24, y + 34, 'area', 22));
+    } else {
+      lines.push(`<text x="${actionX + 24}" y="${y + 38}" class="area">${esc(areaName)}</text>`);
+    }
+    lines.push(`<text x="${actionX + 24}" y="${y + (english ? 84 : 68)}" class="small">${esc(area.area_id)}</text>`);
+    lines.push(`<text x="${actionX + 24}" y="${y + (english ? 107 : 91)}" class="small">official_boundary=false</text>`);
+    const q = wrap(english ? conciseAreaQuestion(area) : area.question_zh, english ? 22 : 16, english);
+    lines.push(textLines(q.slice(0, english ? 3 : 2), actionX + 24, y + (english ? 132 : 123), 'body', 21));
+    lines.push(`<text x="${actionX + 24}" y="${y + rowH - 22}" class="small">${esc(english ? 'human + stop/return' : '人工等效 + 停止 / 回退')}</text>`);
     area.nodes.forEach((node, i) => {
       const x = actionX + areaW + i * (cardW + gap);
       const colorStage = COLORS.stage[i];
@@ -214,6 +245,9 @@ function render(english = false) {
   ] : [
     ['几何', '7 个 GeoJSON 图层 · 仅显示变换'], ['指标', `${Number(metrics.site_area_sqm.value / 1e6).toFixed(2)} km² 临时输入 · EPSG:4548`], ['人工路径', '纸面 / 电话 / 人工申诉保留'], ['缺口', '官方边界 · 权属 · 安全 · 能源 · 现场基线'],
   ];
+  chips[3] = english
+    ? ['G0 FIRST PROOF', 'HC-T01 / SC-A03 · 4/4 positive · 8/8 negative rejected · 4/4 bilingual · G1 HOLD']
+    : ['G0 首发契约', 'HC-T01 / SC-A03 · 4/4 正样本 · 8/8 负样本拒绝 · 4/4 双语 · G1 HOLD'];
   chips.forEach((chip, i) => {
     const x = 84 + i * 575;
     lines.push(`<rect x="${x}" y="${chipY}" width="545" height="116" rx="14" fill="#FFFFFF" stroke="#CBD7E3" stroke-width="2"/>`);
@@ -221,7 +255,7 @@ function render(english = false) {
     lines.push(textLines(wrap(chip[1], english ? 48 : 30, english), x + 22, chipY + 68, 'small', 22));
   });
   lines.push(`<rect x="84" y="1240" width="2232" height="152" rx="16" fill="#EEF3F8" stroke="#CBD7E3" stroke-width="2"/>`);
-  const rule = english ? 'The same reviewer-facing contract runs through every row: arrive → human explanation → bounded interface → screen-free pause → staffed exit / replay. No card is an operating result or an official redline.' : '每一行都沿用同一条评审契约：到达 → 人工解释 → 受限接口 → 无屏停留 → 人工退出 / 回放。任何卡片都不是运营结果，也不是官方红线。';
+  const rule = english ? 'Read every row through one review contract: arrive → human explanation → bounded interface → screen-free pause → staffed exit / replay. HC-T01 proves only that synthetic package fields replay offline; official geometry, rights, safety, energy and field baselines remain pending.' : '每一行都按同一评审契约阅读：到达 → 人工解释 → 受限接口 → 无屏停留 → 人工退出 / 回放。HC-T01 只证明包内合成字段可回放，官方边界、权属、安全、能源与现场基线仍待补齐。';
   lines.push(`<text x="112" y="1290" class="label">${esc(english ? 'Reading rule' : '阅读规则')}</text>`);
   lines.push(textLines(wrap(rule, english ? 155 : 92, english), 112, 1330, 'body', 25));
   lines.push(`<text x="84" y="1450" class="foot">${esc(english ? 'official_boundary=false · geometry_role=provisional_constraint · conceptual suggestions for professional teams to deepen' : 'official_boundary=false · geometry_role=provisional_constraint · 概念建议，供专业团队深化研究')}</text>`);
@@ -232,7 +266,9 @@ function render(english = false) {
 function evidence() {
   return {
     schema_version: '0.1.0',
-    package_iteration: 'v2.2',
+    package_iteration: 'v2.8-candidate',
+    atlas_contract_version: 'v2.2',
+    review_surface_revision: 'v2.8',
     status: 'reviewer_facing_spatial_evidence_atlas',
     official_boundary: false,
     geometry_role: 'provisional_constraint',
@@ -244,6 +280,25 @@ function evidence() {
     metrics: { site_area_sqm: metrics.site_area_sqm.value, source: 'metrics.json#site_area_sqm', confidence: metrics.site_area_sqm.confidence },
     human_equivalent_visible: true,
     stop_return_visible: true,
+    minimum_proof: {
+      id: 'HC-T01',
+      scenario_id: 'SC-A03',
+      spatial_ref: 'geometry/public_space.geojson#PUBLIC-A-INCLUSION',
+      evidence_ref: 'visual/assets/human-city-public-service-tabletop-v1-evidence.json',
+      status: 'package_replay_pass_field_hold',
+      coverage: {
+        positive_fixtures: tabletopEvidence.coverage.positive_fixtures,
+        negative_fixtures: tabletopEvidence.coverage.negative_fixtures,
+        bilingual_qa: tabletopEvidence.coverage.bilingual_qa,
+      },
+      not_a_score: true,
+    },
+    public_interest_coverage: {
+      extension_ids: publicInterestCoverage.extensions.map((item) => item.persona_id),
+      evidence_ref: 'visual/assets/public-interest-coverage-v26.json',
+      status: publicInterestCoverage.status,
+      not_a_score: true,
+    },
     operational_status: 'not_authorized_not_run',
     performance_results: null,
     recompute_trigger: 'official geometry, rights, safety, accessibility, energy, climate, or public-baseline inputs change',
@@ -252,9 +307,20 @@ function evidence() {
   };
 }
 
-fs.writeFileSync(path.join(here, 'reviewer-facing-atlas-v22.json'), `${JSON.stringify(evidence(), null, 2)}\n`);
-fs.writeFileSync(path.join(figureRoot, 'site-overview-v22.svg'), render(false));
-fs.writeFileSync(path.join(figureRoot, 'site-overview-v22.en.svg'), render(true));
-// The PNG names are the five-file reviewer contract.  The caller converts
-// the two SVGs with the local offline renderer after this script exits.
-console.log(JSON.stringify({ package_iteration: 'v2.2', areas: actionRooms.areas.length, stages: actionRooms.stages.length, core_targets: ['site-overview.png', 'site-overview.en.png'] }, null, 2));
+async function build() {
+  const zhSvg = render(false);
+  const enSvg = render(true);
+  fs.writeFileSync(path.join(here, 'reviewer-facing-atlas-v22.json'), `${JSON.stringify(evidence(), null, 2)}\n`);
+  fs.writeFileSync(path.join(figureRoot, 'site-overview-v22.svg'), zhSvg);
+  fs.writeFileSync(path.join(figureRoot, 'site-overview-v22.en.svg'), enSvg);
+  await Promise.all([
+    sharp(Buffer.from(zhSvg)).resize(2400, 1500).png({ compressionLevel: 9, adaptiveFiltering: false }).toFile(path.join(figureRoot, 'site-overview.png')),
+    sharp(Buffer.from(enSvg)).resize(2400, 1500).png({ compressionLevel: 9, adaptiveFiltering: false }).toFile(path.join(figureRoot, 'site-overview.en.png')),
+  ]);
+  console.log(JSON.stringify({ package_iteration: 'v2.8-candidate', atlas_contract_version: 'v2.2', review_surface_revision: 'v2.8', areas: actionRooms.areas.length, stages: actionRooms.stages.length, core_targets: ['site-overview.png', 'site-overview.en.png'] }, null, 2));
+}
+
+build().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
