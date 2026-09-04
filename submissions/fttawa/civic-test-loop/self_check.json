@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "The submitted site boundary is explicitly provisional and is not described as an official redline."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are present, non-overlapping and explicitly provisional."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Land-use polygons are generated as a shared-edge partition of the submitted site geometry."
+    },
+    {
+      "check_id": "METRICS_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Known spatial metrics are recomputed from the submitted GeoJSON layers; statutory controls remain unknown where source data is absent."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Primary and English visualization pages are offline HTML with local image references and no active network content."
+    },
+    {
+      "check_id": "BILINGUAL_DISPLAY",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md",
+      "message": "Chinese and English proposal, report, visual, figure and drawing counterparts are present and mapped in manifest.json."
+    },
+    {
+      "check_id": "PDF_PAGES",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/a3-booklet.pdf",
+      "message": "A3 and A0 Chinese and English PDFs contain non-empty pages generated from the evidence figures."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Every required chapter contains claim-adjacent evidence anchors and the structured matrices retain exhaustive coverage."
+    }
+  ]
+}
