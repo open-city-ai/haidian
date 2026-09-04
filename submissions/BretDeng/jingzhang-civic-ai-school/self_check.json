@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时粗略边界已明确标注；官方 polygon 到位后整包重算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区均为 provisional_constraint 且未声称为官方红线。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地由同一边界做差与切分生成，完整覆盖且无重叠。"
+    },
+    {
+      "check_id": "SCENARIO_HUMAN_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "12 个场景节点均要求人工复核、非 AI 替代、可退出与可申诉。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "展示页为 UTF-8 离线静态 HTML，无远程资源、表单、跟踪或网络请求。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文引用全部标准、深度项、核心图层、已知指标、来源与假设。"
+    }
+  ]
+}
