@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "jingzhang-ai-civic-loop",
+  "check_time": "2026-08-07T06:46:00Z",
+  "package_state": "scaffold",
+  "checks": [
+    {
+      "check_id": "CHK-001",
+      "category": "geometry_completeness",
+      "check_zh": "几何数据完整性",
+      "status": "pass",
+      "detail": "9个GeoJSON文件均已生成：site_boundary, key_areas, land_use, roads, green_space, public_space, buildings, constraints, phasing"
+    },
+    {
+      "check_id": "CHK-002",
+      "category": "coordinate_system",
+      "check_zh": "坐标系一致性",
+      "status": "pass",
+      "detail": "所有GeoJSON使用EPSG:4326坐标系"
+    },
+    {
+      "check_id": "CHK-003",
+      "category": "land_use_coverage",
+      "check_zh": "用地覆盖完整性",
+      "status": "pass",
+      "detail": "用地分块覆盖总体设计范围，共18个polygon"
+    },
+    {
+      "check_id": "CHK-004",
+      "category": "standard_codes",
+      "check_zh": "用地代码规范",
+      "status": "pass",
+      "detail": "采用国土空间分类标准代码：R2, B2, A3, M1, G1, S, U, B9"
+    },
+    {
+      "check_id": "CHK-005",
+      "category": "figures",
+      "check_zh": "图纸完整性",
+      "status": "pass",
+      "detail": "5张PNG图纸均已生成"
+    },
+    {
+      "check_id": "CHK-006",
+      "category": "metrics",
+      "check_zh": "指标计算",
+      "status": "pass",
+      "detail": "核心指标已计算并写入metrics.json"
+    },
+    {
+      "check_id": "CHK-007",
+      "category": "provisional_labeling",
+      "check_zh": "临时边界标注",
+      "status": "pass",
+      "detail": "所有provisional边界均已标注official_boundary: false"
+    },
+    {
+      "check_id": "CHK-008",
+      "category": "standards_coverage",
+      "check_zh": "标准覆盖",
+      "status": "pass",
+      "detail": "5项强制性标准均已纳入standard_matrix.json"
+    },
+    {
+      "check_id": "CHK-009",
+      "category": "assumptions",
+      "check_zh": "假设记录",
+      "status": "pass",
+      "detail": "10条假设已记录"
+    },
+    {
+      "check_id": "CHK-010",
+      "category": "design_depth",
+      "check_zh": "设计深度",
+      "status": "pass",
+      "detail": "12项必选深度内容全部覆盖"
+    },
+    {
+      "check_id": "CHK-011",
+      "category": "submission_readiness",
+      "check_zh": "提交就绪状态",
+      "status": "warn",
+      "detail": "package_state仍为scaffold，需finalize流程后更新为ready_for_review"
+    },
+    {
+      "check_id": "CHK-012",
+      "category": "official_boundary",
+      "check_zh": "官方红线",
+      "status": "fail",
+      "detail": "尚未获取官方红线边界，所有几何数据基于provisional边界"
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "pass": 10,
+    "warn": 1,
+    "fail": 1
+  }
+}
