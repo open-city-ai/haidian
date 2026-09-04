@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v4.15"
+iteration: "v4.17"
 summary: "以百年京张铁路遗产走廊为骨架，把海淀 AI 产业带重构为一条人与智能体共同使用的原力带：一带三区两翼五门户的空间结构，八处叙事地标，八类人才画像，十二张可审计的 AI+ 场景卡，十六项实施机制与十二个编号更新项目，全部锚定临时边界口径、结构化指标与可复算证据链，并由同一份数据源同时渲染中英文本。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
@@ -20,12 +20,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **本文档的读法**：全文十三章按公告要求的顺序排列，章内所有结论都带编号与证据引用。区段用 Z1–Z3、W1–W2，机制用 X01–X16，场景用 S01–S12，项目用 R-01–R-12，地标用 M1–M8，构件用 K01–K12。任一结论都可沿编号回溯到资料、几何要素或指标条目。中英文两份文本由同一份数据源渲染，等价性可被机器复核。
 
-
-### 设计方法声明
-
-本方案采用「约束优先」的设计方法：先列出所有不可触碰的边界——文物、临时粗略边界、数据缺口、智能体投稿的责任禁区；再在剩余空间内寻找最大化公共价值的机会。这种方法与传统规划「先定愿景再削足适履」的顺序相反，它把诚实放在野心之前。约束不是创造力的敌人，而是创造力的坐标系；只有在清楚知道不能做什么之后，「能做什么」才变得真正有力 [source:AGENT-TASKBOOK] [source:BOUNDARY-SOURCE]。
-
-另一个核心方法是**把每个设计决策写成可证伪的命题**。例如，「这条带应该成为城市操作系统界面」不是一个命题，「在这条带上部署的每一个 AI 触点都必须可被公众否决」才是。命题的好处在于它可以被检验：要么否决通道存在且有效，要么不存在。本方案尽力把结论都写成后一种形式，并把检验路径写入 `evidence-ledger.json` 的 verification 字段 [source:PKG-EVIDENCE-LEDGER]。
 
 ## 设计依据与资料清单
 
@@ -48,12 +42,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 - 场地资料包中的取值区间用于约束指标推演的上下限，超出区间的取值一律标注为假设 [source:SITE-PACKAGE]。
 - 官方精确红线、现状建筑普查、地下管线与产权信息属于组织方数据缺口，方案以复算接口预留处理 [depth:risk_missing_data]。
 
-#### 资料来源的审计路径
-
-本方案把资料分成两类使用方式：一类是**被写入结构化文件并可被脚本回读**的，另一类是**仅作为叙事背景出现**的。前者包括边界、指标、来源 ID 与风险条目，它们必须能在 `sources.json` 中找到对应登记，并在 `claim-provenance.json` 中写明 JSON 指针；后者包括历史背景、国际案例的叙事性描述，它们不会进入指标复算，也不得被引申为官方立场。这种二分法的好处是：评审可以关闭正文，只读取 JSON 文件与审计脚本，就能独立完成一次最小化的信任复核 [source:SOURCE-REGISTRY] [source:PKG-CLAIM-PROVENANCE]。
-
-每一条被引用的来源都携带四个元数据：权威层级（official / authoritative / public / processed）、获取日期、可用范围与不可用范围。方案在正文中只使用「可用范围」内的结论；一旦某条来源的「不可用范围」涉及空间精度或法定效力，方案就在该处切换为临时边界或假设声明。例如，官方公告可用于建立任务范围与三大定位，但其附带的粗略边界不可用于计算精确容积率，因此所有面积与密度都被标记为临时口径 [source:OFFICIAL-ANNOUNCEMENT] [source:BOUNDARY-SOURCE]。
-
 #### 六个维度的逐项诊断
 
 六个维度不是并列的清单，而是一条因果链：遗产的线性可达性决定了公共空间能否连续，
@@ -74,11 +62,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 其中面积与长度类数值随官方几何发布而自动更新，结论方向不随之改变
 [source:BOUNDARY-SOURCE] [source:PKG-METRICS]。
 
-需要特别说明第五个维度。建筑存量的年代与结构是拆改留判断的前提，而这项资料恰好
-处于组织方数据缺口之中。方案在此处**主动拒绝给出结论**：不列拆迁名单，不标注单体
-处置意见，只给出判定流程与判定所需的资料清单。这是一次刻意的留白——在缺乏普查
-数据时给出拆改留名单，看起来更「完整」，实际上是把风险转嫁给后续实施主体
-[depth:retain_renovate_demolish] [depth:risk_missing_data]。
+需要特别说明第五个维度：建筑存量恰好处于数据缺口，本方案在此**主动拒绝给出结论**——不列拆迁名单，只给判定流程，因为在缺乏普查数据时列名单，看似完整，实则是把风险转嫁给后续主体 [depth:retain_renovate_demolish] [depth:risk_missing_data]。
 
 ### 对任务书六项任务的应答索引
 
@@ -106,12 +90,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | 国土空间用地分类指南 | 建立用地功能的表述口径与分类对齐 | 不作为地块划定与权属判定依据 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] |
 | 建筑工程设计文件深度规定 | 校准重点区「实施方案深度」的表达边界 | 不进行建筑工程设计，不出施工图深度成果 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] |
 
-裁剪的意义在于防止一种常见的误读：把「引用了标准」等同于「符合了标准」。本方案在
-每一处标准引用旁都写明了不适用层级，评审因此可以快速判断哪些结论属于方案责任，
-哪些结论必须留给法定程序。消防、结构、市政容量、地下管线与人防等专业要求，
-均不在本方案的判断范围之内，须在获得官方资料后由具备资质的主体复核
-[depth:risk_missing_data]。
-
 ## 三层范围工作框架
 
 方案严格按公告建立三层嵌套工作框架，并让每一层承担不同的成果精度与责任边界 [depth:three_level_scope_framework] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。第一层统筹研究范围回答「这条走廊在城市与产业格局中扮演什么角色」，成果形态是研究结论、趋势判断与策略框架，不出具控制性图则。第二层总体设计范围回答「城市更新怎么落到地块与街道」，成果形态达到控制性详细规划的城市设计深度，输出用地结构、强度分区、高度与风貌控制、道路与蓝绿骨架的**概念建议**。第三层重点区域回答「人在这里的每一天会怎么被改变」，成果形态达到规划综合实施方案的城市设计深度，输出建筑体量关系、地面与地下衔接、公共界面与实施时序的**参考方案**。
@@ -119,8 +97,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 ### 精度与不确定性的分层处理
 
 三层框架不仅分工不同，对不确定性的处理方式也不同。统筹层的不确定性通过**情景研究**吸收：我们给出产业演化的几种可能方向，但不为任何一种方向押注具体空间。总体层的不确定性通过**控制逻辑**吸收：不给出容积率与高度数值，而给出取值原则与边界条件，让有资质团队在法定程序中填空。重点区的不确定性通过**可逆设计**吸收：任何智能设施、临时构筑与场景装置都使用可逆基座，48 小时内可撤除，且撤除后地面不留结构性痕迹 [depth:development_intensity_controls] [depth:three_key_area_detailed_design]。
-
-这种分层处理把「不知道」写进了方案本身，而不是用漂亮数字掩盖它。评审在复核时可以清楚看到：哪些结论是可靠的，哪些结论是受前置条件约束的，哪些结论必须等待官方数据发布后才能确定。这正是智能体投稿相对于传统文本的优势——它可以把不确定性的结构也变成可审计的对象 [source:AGENT-TASKBOOK]。
 
 ### 三层范围的空间嵌套关系
 
@@ -203,7 +179,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | L4 | 治理输出回路 | 众智园 → 全带 → 国际 | 算法影响评估与可逆性契约先在带内试行，再以公开文本形式输出为可被引用的城市治理范式。 |
 | L5 | 人才留驻回路 | 全带 → 原点社区 → 中关村翼 | 以时间银行、共有产权与驻留计划降低人才流失，把短期项目人口转化为长期居民。 |
 
-五条闭环不是抽象逻辑，而是被映射到具体空间路径上的。以 L1 技术下楼回路为例：起点在众智园的自主技术栈研发空间，中转为原点社区的孵化与开源广场，终点为小月河翼的真实城市场景测试段；测试段产生的失败数据与约束清单，通过年度开发者节的公开复盘回流到众智园的标准制定环节。这种回流机制在空间上表现为「场景卡—标准修订议题—公共发布」的三角循环，而不是一次性的技术转移 [source:PKG-SPATIAL] [source:PKG-SIMULATION]。
+五条闭环在空间上有可指认的起点、中转与终点，并在年度事件中被公开复盘。以 L1 技术下楼回路为例：起点在众智园的自主技术栈研发空间，中转为原点社区的孵化与开源广场，终点为小月河翼的真实城市场景测试段；测试段产生的失败数据与约束清单，通过年度公开复盘回流到众智园的标准制定环节 [source:PKG-SPATIAL] [source:PKG-SIMULATION]。
 
 ### 产业演化的三种情景
 
@@ -221,9 +197,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 所有案例的引用都限于公开可获取资料，方案不声称与其运营方存在合作关系，也不引用任何非公开数据。案例年份、规模与运营数据在深化阶段应由专业团队按最新公开文本复核 [source:SOURCE-REGISTRY]。
 
-参考资料的最终作用是支持「可复核性」。评审在审阅正文时，可以随时回到 `sources.json`、`standard_matrix.json` 与 `design_depth_matrix.json` 查看某条结论的来源、标准依据与深度定位。对于智能体投稿而言，这种结构化参考比传统的参考文献列表更有价值：它把参考资料从「文末装饰」变成了「证据链的一部分」，从而提高了整个方案的可信度与可审计性 [source:SOURCE-REGISTRY] [source:PKG-CLAIM-PROVENANCE]。
-
-案例研究最常见的失败是只写优点。本方案为八个具名案例逐一写出**适用性与不适用边界**，因为一条走廊真正的设计决策往往发生在「这个经验在这里为什么行不通」的位置上 [source:AGENT-TASKBOOK]。所有案例均为公开可查的城市或园区实践，方案只引用其空间组织与治理方式的公开特征，不引用任何非公开数据，也不声称与其运营方存在合作关系。
+案例研究最常见的失败是只写优点，本方案为八个案例逐一写出**适用性与不适用边界**——一条走廊真正的设计决策往往发生在「这个经验在这里为什么行不通」的位置上 [source:AGENT-TASKBOOK]。
 
 | 编号 | 案例 | 地点 | 起始 | 空间组织特征 | 适用性与不适用边界 |
 | --- | --- | --- | --- | --- | --- |
@@ -329,10 +303,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 的自洽性。这个接口的存在，把「相信作者」替换成了「复核数据」
 [source:ASSET-EVIDENCE] [source:PKG-CLAIM-PROVENANCE]。
 
-四个接口共同表达一个立场：智能体投稿不应该是一份等待被采纳的成品，
-而应该是一套可以被接管、被替换、被复核的中间件。方案的成功不在于被原样实施，
-而在于它的方法与数据能在后续工作中继续起作用。
-
 ### 强度、高度与风貌的控制逻辑
 
 本方案不给出容积率与高度的数值结论，而给出**控制逻辑**，供有资质团队在法定程序中取值 [depth:development_intensity_controls] [depth:height_massing_character] [standard:MOHURD-CONTROL-DETAILED-PLANNING]。逻辑有三条：其一，强度自区段核心向遗产带方向递减，保证遗产界面获得连续的天空与日照；其二，临带第一排建筑以低层高密度的方式组织，避免出现背向公园的实体长墙；其三，高度以「视线通廊优先」为准则，任何体量不得遮断门户到地标的主视线。三条逻辑均可用几何脚本检验，检验结果写入 `design_depth_matrix.json`。
@@ -373,8 +343,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 **大钟寺的日常剧本（初创合伙人 · 秦望）**：上午在中关村翼完成知识产权与法律咨询；中午乘 13 号线到大钟寺站，通过四象限步行系统到达会客厅；下午与投资人、律师和潜在客户在三间可预约的短时洽谈舱里完成三场会议；傍晚在大钟寺 AI 产业集聚区体验一家智能体原生咖啡馆，观察消费者如何与店内的推荐系统互动。剧本检验的是：科技服务、交通换乘、商务配套与消费场景是否能在 1 小时步行圈内完成。
 
 三个剧本共同指向一个设计原则：重点区域不是被观赏的，而是被使用的；判断其成功与否的标准，是一个人能否在不依赖私家车的情况下完成其主导日常 [depth:three_key_area_detailed_design]。
-
-*图 · 重点区域与叙事地标分布。地标全部免费开放，形成可记忆的空间序列。*
 
 ### 一个案例贯穿全文：郑姐的早高峰
 
