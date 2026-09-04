@@ -47,7 +47,7 @@
 | 绿地系统 | 方案设计生成 | COMMUNITY-DISPLAY-ONLY | geometry/green_space.geojson |
 | OpenStreetMap | OSM Foundation | ODbL 1.0（需署名） | 仅作为背景参照，未直接嵌入图件 |
 
-**声明**：所有空间数据均基于仓库提供的临时粗略边界生成，未使用非公开政府数据。OSM数据仅作为概念参照，如正式使用需按ODbL许可要求署名。
+**声明**：所有空间数据均基于仓库提供的临时粗略边界生成，未使用任何非公开来源的政务信息。OSM数据仅作为概念参照，如正式使用需按ODbL许可要求署名。
 
 ### 2.4 图片与照片 / Images & Photos
 

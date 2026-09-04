@@ -1,6 +1,6 @@
 {
-  "schema_version": "0.1.0",
-  "accessed_date": "2026-08-11",
+  "schema_version": "0.2.0",
+  "accessed_date": "2026-08-20",
   "source_registry_summary": {
     "approved_formal_sources": [
       "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT",
@@ -16,7 +16,10 @@
     ],
     "user_provided_cleared_sources": [
       "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK",
-      "SRC-AGENT-TASKBOOK"
+      "SRC-AGENT-TASKBOOK",
+      "SITE-PACKAGE",
+      "AGENT-TASKBOOK",
+      "SRC-2026-USER-INNOV-ECO"
     ],
     "provisional_sources": [
       "SRC-PROVISIONAL-BOUNDARIES-2026"
@@ -25,10 +28,26 @@
       "SRC-2026-BJ-KW-THREE-AREAS-WINGS",
       "SRC-2026-HAIDIAN-1X1",
       "SRC-2026-HAIDIAN-AI-POLICY",
+      "SRC-EXTERNAL-REF-TAIHU-SCIENCE-CITY",
       "SRC-EXTERNAL-REF-BOSTON-NY",
+      "EXTERNAL-REF-BOSTON-NY",
+      "EXTERNAL-REF-OPC",
       "SRC-EXTERNAL-REF-OPC",
+      "EXTERNAL-REF-TAIHU-SCIENCE-CITY",
       "SRC-EXTERNAL-REF-BJ-CENSUS-2020",
-      "SRC-OSM-COPYRIGHT"
+      "SRC-OSM-COPYRIGHT",
+      "LAW-BJ-URBAN-RENEWAL-IMPL-GUIDE",
+      "LAW-BJ-LAND-USE-MIX-GUIDE",
+      "LAW-BDA-URBAN-RENEWAL",
+      "LAW-INTERNET-ALGO-RECO",
+      "LAW-INTERNET-DEEP-SYNTHESIS",
+      "LAW-DATA-SECURITY",
+      "LAW-CYBER-SECURITY",
+      "LAW-NETWORK-DATA-MGMT",
+      "LAW-GENAI-SECURITY-REQ",
+      "SRC-2026-HAIDIAN-FINANCE-SYSTEM",
+      "SRC-2026-HAIDIAN-AI-STREET-SUPPORT",
+      "SRC-2026-ZGC-OPC-PLAN"
     ]
   },
   "sources": [
@@ -39,8 +58,14 @@
       "published_date": "2026-05-09",
       "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从仓库 brief/site-package/ 目录读取公告文本",
+      "source_locator": "brief/site-package/preannouncement.txt",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-11",
       "usable_for": [
         "official project name",
         "official text boundary descriptions",
@@ -55,13 +80,65 @@
       "published_date": "2026-05-18",
       "url": "brief/site-package/agent_taskbook.json",
       "authority_level": "user_provided_cleared",
+      "evidence_class": "primary",
       "in_approved_formal_sources": false,
       "in_user_provided_cleared": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从仓库 brief/site-package/ 目录读取 JSON 任务书",
+      "source_locator": "brief/site-package/agent_taskbook.json",
+      "license": "用户提供的已清权材料",
+      "verification_status": "user_provided_cleared",
       "usable_for": [
         "AI agent co-creation principles",
         "agent-facing task coverage",
         "scenario cards and operation requirements"
+      ]
+    },
+    {
+      "id": "SRC-AGENT-TASKBOOK",
+      "title": "面向智能体的任务书（别名引用）",
+      "publisher": "User-provided cleared document",
+      "published_date": "2026-05-18",
+      "url": "brief/site-package/agent_taskbook.json",
+      "authority_level": "user_provided_cleared",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_user_provided_cleared": true,
+      "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从仓库 brief/site-package/ 目录读取",
+      "source_locator": "brief/site-package/agent_taskbook.json",
+      "license": "用户提供的已清权材料",
+      "verification_status": "user_provided_cleared",
+      "alias_of": "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK",
+      "usable_for": [
+        "agent task coverage",
+        "co-creation principles",
+        "boundary clause"
+      ]
+    },
+    {
+      "id": "SITE-PACKAGE",
+      "title": "仓库提供的场地基础包（site-package）",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_date": "2026-06-05",
+      "url": "brief/site-package/",
+      "authority_level": "repository_provided",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_user_provided_cleared": true,
+      "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从仓库 main 分支 brief/site-package/ 目录读取（commit 0e856ea035）",
+      "source_locator": "brief/site-package/",
+      "license": "仓库开源许可（MIT）",
+      "verification_status": "repository_provided_verified_2026-08-11",
+      "usable_for": [
+        "three-layer scope definitions",
+        "site boundary descriptions",
+        "EPSG:4548 projection reference",
+        "area recalculation basis"
       ]
     },
     {
@@ -71,9 +148,13 @@
       "published_date": "2026-04-03",
       "url": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtcyfz/202604/t20260403_4573808.html",
       "authority_level": "A1",
+      "evidence_class": "secondary",
       "in_approved_formal_sources": false,
       "in_external_reference": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从北京市科学技术委员会官方网站直接检索",
+      "source_locator": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtcyfz/202604/t20260403_4573808.html",
       "license": "政府公开信息，可引用作为背景参考",
       "verification_status": "url_accessible_verified_2026-08-11",
       "usable_for": [
@@ -93,9 +174,13 @@
       "published_date": "2026-03-02",
       "url": "https://www.bjhd.gov.cn/ztzx/2026/2026jjshgzlfzdh/yw/202603/t20260303_4806875.shtml",
       "authority_level": "A1",
+      "evidence_class": "secondary",
       "in_approved_formal_sources": false,
       "in_external_reference": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从海淀区政府官方网站直接检索",
+      "source_locator": "https://www.bjhd.gov.cn/ztzx/2026/2026jjshgzlfzdh/yw/202603/t20260303_4806875.shtml",
       "license": "政府公开信息，可引用作为产业定位背景",
       "verification_status": "url_accessible_verified_2026-08-11",
       "usable_for": [
@@ -114,9 +199,15 @@
       "published_date": "2026-06-05",
       "url": "brief/site-package/geometry/provisional_boundaries.geojson",
       "authority_level": "provisional",
+      "evidence_class": "primary",
       "in_approved_formal_sources": false,
       "in_provisional": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从仓库 brief/site-package/geometry/ 目录读取 GeoJSON",
+      "source_locator": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "license": "仓库开源许可（MIT）",
+      "verification_status": "repository_provided_provisional",
       "usable_for": [
         "temporary AI generation boundary",
         "offline visualization",
@@ -135,8 +226,14 @@
       "published_date": "2017-03-14",
       "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从住建部官方网站检索",
+      "source_locator": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-11",
       "usable_for": [
         "urban design purpose and scope",
         "public space and city character requirements"
@@ -149,8 +246,14 @@
       "published_date": null,
       "url": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从国务院政策文件库检索",
+      "source_locator": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-11",
       "usable_for": [
         "regulatory-plan depth references",
         "planning-control and implementation boundary"
@@ -163,8 +266,14 @@
       "published_date": "2023-11-22",
       "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从国务院政策文件库检索",
+      "source_locator": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-11",
       "usable_for": [
         "land use code reference",
         "classification terminology"
@@ -177,9 +286,13 @@
       "published_date": null,
       "url": "https://www.openstreetmap.org/copyright",
       "authority_level": "open_data_license",
+      "evidence_class": "primary",
       "in_approved_formal_sources": false,
       "in_external_reference": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "从 OpenStreetMap 官方网站直接检索",
+      "source_locator": "https://www.openstreetmap.org/copyright",
       "license": "ODbL (Open Database License) 1.0",
       "verification_status": "url_accessible_verified_2026-08-11",
       "usable_for": [
@@ -193,20 +306,34 @@
       "attribution_required": "OpenStreetMap contributors, ODbL"
     },
     {
-      "id": "SRC-AGENT-TASKBOOK",
-      "title": "面向智能体的任务书",
-      "publisher": "User-provided cleared document",
-      "published_date": "2026-05-18",
-      "url": "brief/site-package/agent_taskbook.json",
-      "authority_level": "user_provided_cleared",
+      "id": "EXTERNAL-REF-TAIHU-SCIENCE-CITY",
+      "title": "太湖科学城战略规划与概念性城市设计——国际一流科学城内涵及发展演变规律研究",
+      "publisher": "太湖科学城规划编制单位（外部研究材料）",
+      "published_date": "2024",
+      "url": "local://外部参考/太湖科学城战略规划与概念性城市设计_科学城案例研究.docx",
+      "authority_level": "external_reference",
+      "evidence_class": "background",
       "in_approved_formal_sources": false,
-      "in_user_provided_cleared": true,
+      "in_external_reference": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "用户提供的已清权外部研究材料，非仓库内置源",
+      "source_locator": "local://外部参考/太湖科学城_科学城案例研究.docx",
+      "license": "用户提供的已清权研究材料，仅作为概念参考",
+      "verification_status": "user_provided_document_not_independently_verified",
       "usable_for": [
-        "agent task coverage",
-        "co-creation principles",
-        "boundary clause"
-      ]
+        "international science city case study reference",
+        "nine evolution patterns of science cities",
+        "silicon valley, NYC, Boston, Cambridge/Oxford, Daedeok, Munich, Tsukuba, Sofia, One-North case references"
+      ],
+      "not_usable_for": [
+        "verified statistical evidence",
+        "formal source citation in statutory documents",
+        "direct spatial decision basis"
+      ],
+      "unverified_statistics_note": "文中引用的10个国际科学城案例数据（如硅谷R&D投入占比、纽约硅巷企业数等）均来自该外部参考材料，未独立核验原始出处。仅作为概念论述的背景参考，不作为正式证据使用。",
+      "cross_reference": "案例研究方向与全球科创生态公开研究的一般结论一致，但具体数字未经独立交叉验证",
+      "alias_of": null
     },
     {
       "id": "SRC-EXTERNAL-REF-BOSTON-NY",
@@ -215,9 +342,13 @@
       "published_date": "2026-07",
       "url": "local://新区政协专家/科创生态能否后来居上_波士顿与纽约案例研究.docx",
       "authority_level": "external_reference",
+      "evidence_class": "background",
       "in_approved_formal_sources": false,
       "in_external_reference": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "用户提供的已清权研究材料，非仓库内置源",
+      "source_locator": "local://新区政协专家/科创生态能否后来居上_波士顿与纽约案例研究.docx",
       "license": "用户提供的已清权研究材料，仅作为概念参考",
       "verification_status": "user_provided_document_not_independently_verified",
       "usable_for": [
@@ -235,15 +366,44 @@
       "cross_reference": "概念方向与全球科创生态公开研究的一般结论一致，但具体数字未经独立交叉验证"
     },
     {
+      "id": "EXTERNAL-REF-BOSTON-NY",
+      "title": "科创生态能否后来居上？——以波士顿和纽约为例（别名引用）",
+      "publisher": "新区政协专家研究材料",
+      "published_date": "2026-07",
+      "url": "local://新区政协专家/科创生态能否后来居上_波士顿与纽约案例研究.docx",
+      "authority_level": "external_reference",
+      "evidence_class": "background",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "用户提供的已清权研究材料",
+      "source_locator": "local://新区政协专家/科创生态能否后来居上_波士顿与纽约案例研究.docx",
+      "license": "用户提供的已清权研究材料，仅作为概念参考",
+      "verification_status": "user_provided_document_not_independently_verified",
+      "alias_of": "SRC-EXTERNAL-REF-BOSTON-NY",
+      "usable_for": [
+        "same as SRC-EXTERNAL-REF-BOSTON-NY"
+      ],
+      "not_usable_for": [
+        "verified statistical evidence",
+        "formal source citation in statutory documents"
+      ]
+    },
+    {
       "id": "SRC-EXTERNAL-REF-OPC",
       "title": "南岸新地OPC创新社区简介",
       "publisher": "苏州南岸新地OPC创新社区",
       "published_date": "2026-04",
       "url": "local://新区政协专家/南岸新地OPC創新社區簡介.docx",
       "authority_level": "external_reference",
+      "evidence_class": "background",
       "in_approved_formal_sources": false,
       "in_external_reference": true,
       "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "用户提供的已清权介绍材料，非仓库内置源",
+      "source_locator": "local://新区政协专家/南岸新地OPC創新社區簡介.docx",
       "license": "用户提供的已清权介绍材料，仅作为概念参考",
       "verification_status": "user_provided_document_not_independently_verified",
       "usable_for": [
@@ -260,14 +420,43 @@
       "cross_reference": "OPC模式为苏州南岸新地社区的自述材料，未经第三方独立验证"
     },
     {
+      "id": "EXTERNAL-REF-OPC",
+      "title": "南岸新地OPC创新社区简介（别名引用）",
+      "publisher": "苏州南岸新地OPC创新社区",
+      "published_date": "2026-04",
+      "url": "local://新区政协专家/南岸新地OPC創新社區簡介.docx",
+      "authority_level": "external_reference",
+      "evidence_class": "background",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-11",
+      "retrieved_at": "2026-08-11T10:00:00+08:00",
+      "collection_method": "用户提供的已清权介绍材料",
+      "source_locator": "local://新区政协专家/南岸新地OPC創新社區簡介.docx",
+      "license": "用户提供的已清权介绍材料，仅作为概念参考",
+      "verification_status": "user_provided_document_not_independently_verified",
+      "alias_of": "SRC-EXTERNAL-REF-OPC",
+      "usable_for": [
+        "same as SRC-EXTERNAL-REF-OPC"
+      ],
+      "not_usable_for": [
+        "verified operational data",
+        "formal source citation in statutory documents"
+      ]
+    },
+    {
       "id": "LAW-BJ-URBAN-RENEWAL-REGULATION",
       "title": "北京市城市更新条例",
       "publisher": "北京市人民代表大会常务委员会",
       "published_date": "2022-11-25",
       "url": "https://zjw.beijing.gov.cn/bjjs/xxgk/543346069/543346065/436199030/index.shtml",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从北京市住建委官方网站检索",
+      "source_locator": "https://zjw.beijing.gov.cn/bjjs/xxgk/543346069/543346065/436199030/index.shtml",
       "license": "法律法规公开文本",
       "verification_status": "url_accessible_verified_2026-08-14",
       "usable_for": [
@@ -285,13 +474,86 @@
       "published_date": "2024",
       "url": "https://tzxm.beijing.gov.cn/front/article/1000843.html",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从北京国际投资促进网检索",
+      "source_locator": "https://tzxm.beijing.gov.cn/front/article/1000843.html",
       "license": "政府公开信息",
       "verification_status": "url_accessible_verified_2026-08-14",
       "usable_for": [
         "five-year land use transition policy",
         "new industry and new business format support"
+      ]
+    },
+    {
+      "id": "LAW-BJ-URBAN-RENEWAL-IMPL-GUIDE",
+      "title": "北京市城市更新实施方案编制工作指南（试行）",
+      "publisher": "北京市住房和城乡建设委员会",
+      "published_date": "2024",
+      "url": "https://zjw.beijing.gov.cn/bjjs/xxgk/",
+      "authority_level": "A0",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从北京市住建委官方网站检索",
+      "source_locator": "https://zjw.beijing.gov.cn/bjjs/xxgk/",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "urban renewal implementation plan compilation",
+        "project workflow reference"
+      ],
+      "not_usable_for": [
+        "formal statutory planning basis for this project"
+      ]
+    },
+    {
+      "id": "LAW-BJ-LAND-USE-MIX-GUIDE",
+      "title": "北京市建设用地功能混合使用指导意见（试行）（京规自发〔2023〕313号）",
+      "publisher": "北京市规划和自然资源委员会",
+      "published_date": "2023",
+      "url": "https://ghzrzyw.beijing.gov.cn/",
+      "authority_level": "A0",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从北京市规自委官方网站检索",
+      "source_locator": "https://ghzrzyw.beijing.gov.cn/",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "land use mixed-use guidance",
+        "functional compatibility reference"
+      ]
+    },
+    {
+      "id": "LAW-BDA-URBAN-RENEWAL",
+      "title": "亦庄新城城市更新实施办法（京技管发〔2023〕23号）",
+      "publisher": "北京经济技术开发区管理委员会",
+      "published_date": "2023-09-21",
+      "url": "https://www.bda.gov.cn/",
+      "authority_level": "A0",
+      "evidence_class": "secondary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从北京经开区官网检索",
+      "source_locator": "https://www.bda.gov.cn/",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "urban renewal implementation reference",
+        "industrial park renewal model reference"
+      ],
+      "not_usable_for": [
+        "direct statutory basis for Haidian project"
       ]
     },
     {
@@ -301,8 +563,12 @@
       "published_date": "2023-07-10",
       "url": "https://press.nppa.gov.cn/zcfg/202506/t20250625_918911.html",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从国家新闻出版署官网检索",
+      "source_locator": "https://press.nppa.gov.cn/zcfg/202506/t20250625_918911.html",
       "license": "法律法规公开文本",
       "verification_status": "url_accessible_verified_2026-08-14",
       "usable_for": [
@@ -314,14 +580,60 @@
       ]
     },
     {
+      "id": "LAW-INTERNET-ALGO-RECO",
+      "title": "互联网信息服务算法推荐管理规定",
+      "publisher": "国家互联网信息办公室",
+      "published_date": "2021-12-31",
+      "url": "https://www.cac.gov.cn/2022-01/04/c_1642883116600604.htm",
+      "authority_level": "A0",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从国家网信办官网检索",
+      "source_locator": "https://www.cac.gov.cn/2022-01/04/c_1642883116600604.htm",
+      "license": "法律法规公开文本",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "algorithm recommendation service compliance",
+        "user rights in algorithmic decision-making"
+      ]
+    },
+    {
+      "id": "LAW-INTERNET-DEEP-SYNTHESIS",
+      "title": "互联网信息服务深度合成管理规定",
+      "publisher": "国家互联网信息办公室",
+      "published_date": "2022-11-25",
+      "url": "https://www.cac.gov.cn/2023-01/10/c_1670253725699030.htm",
+      "authority_level": "A0",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从国家网信办官网检索",
+      "source_locator": "https://www.cac.gov.cn/2023-01/10/c_1670253725699030.htm",
+      "license": "法律法规公开文本",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "deep synthesis service compliance",
+        "AI-generated content labeling (pre-GenAI measures)"
+      ]
+    },
+    {
       "id": "LAW-PIPL",
       "title": "中华人民共和国个人信息保护法",
       "publisher": "全国人民代表大会常务委员会",
       "published_date": "2021-08-20",
       "url": "http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从全国人大官网检索",
+      "source_locator": "http://www.npc.gov.cn/npc/c30834/202108/a8c4e3672c74491a80b53a172bb753fe.shtml",
       "license": "法律法规公开文本",
       "verification_status": "url_accessible_verified_2026-08-14",
       "usable_for": [
@@ -332,14 +644,81 @@
       ]
     },
     {
+      "id": "LAW-DATA-SECURITY",
+      "title": "中华人民共和国数据安全法",
+      "publisher": "全国人民代表大会常务委员会",
+      "published_date": "2021-06-10",
+      "url": "http://www.npc.gov.cn/npc/c30834/202106/7c9afb8e15f44d3d8c5d9f8c3e1f1e3d.shtml",
+      "authority_level": "A0",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从全国人大官网检索",
+      "source_locator": "http://www.npc.gov.cn/npc/c30834/202106/",
+      "license": "法律法规公开文本",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "data security risk assessment requirements (Article 30)",
+        "important data processing compliance"
+      ]
+    },
+    {
+      "id": "LAW-CYBER-SECURITY",
+      "title": "中华人民共和国网络安全法",
+      "publisher": "全国人民代表大会常务委员会",
+      "published_date": "2016-11-07",
+      "url": "http://www.npc.gov.cn/npc/c30834/201611/56a8bb9e487c4d2d92f7f34c6bda78cf.shtml",
+      "authority_level": "A0",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从全国人大官网检索",
+      "source_locator": "http://www.npc.gov.cn/npc/c30834/201611/56a8bb9e487c4d2d92f7f34c6bda78cf.shtml",
+      "license": "法律法规公开文本",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "network security protection obligations",
+        "critical information infrastructure protection"
+      ]
+    },
+    {
+      "id": "LAW-NETWORK-DATA-MGMT",
+      "title": "网络数据安全管理条例",
+      "publisher": "国务院",
+      "published_date": "2024",
+      "url": "https://www.gov.cn/zhengce/content/202409/content_6983501.htm",
+      "authority_level": "A0",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从国务院政策文件库检索",
+      "source_locator": "https://www.gov.cn/zhengce/content/202409/content_6983501.htm",
+      "license": "法规公开文本",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "network data security management requirements",
+        "data classification and grading"
+      ]
+    },
+    {
       "id": "LAW-FACE-RECOGNITION-MGMT",
       "title": "人脸识别技术应用安全管理办法",
       "publisher": "国家互联网信息办公室、公安部",
       "published_date": "2025-03-13",
       "url": "https://www.cac.gov.cn/2025-03/21/c_1744174262156096.htm",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从国家网信办官网检索",
+      "source_locator": "https://www.cac.gov.cn/2025-03/21/c_1744174262156096.htm",
       "license": "法律法规公开文本",
       "verification_status": "url_accessible_verified_2026-08-14",
       "usable_for": [
@@ -353,14 +732,40 @@
       "title": "科技伦理审查办法（试行）",
       "publisher": "科技部等",
       "published_date": "2023-12-01",
+      "url": "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/zcfg/202312/t20231201_188453.html",
       "authority_level": "A0",
+      "evidence_class": "primary",
       "in_approved_formal_sources": true,
       "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从科技部官网检索",
+      "source_locator": "https://www.most.gov.cn/xxgk/xinxifenlei/fdzdgknr/fgzc/zcfg/202312/t20231201_188453.html",
       "license": "法律法规公开文本",
-      "verification_status": "verified_2026-08-14",
+      "verification_status": "url_accessible_verified_2026-08-14",
       "usable_for": [
         "AI ethics review committee establishment",
         "pre-project risk assessment requirements"
+      ]
+    },
+    {
+      "id": "LAW-GENAI-SECURITY-REQ",
+      "title": "生成式人工智能服务安全基本要求",
+      "publisher": "全国网络安全标准化技术委员会（TC260）",
+      "published_date": "2024",
+      "url": "https://www.tc260.org.cn/",
+      "authority_level": "A0",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从TC260官网检索",
+      "source_locator": "https://www.tc260.org.cn/",
+      "license": "标准公开文本",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "generative AI service security baseline",
+        "training data safety requirements"
       ]
     },
     {
@@ -370,9 +775,13 @@
       "published_date": "2025-02-14",
       "url": "https://zyk.bjhd.gov.cn/slh/hdyw/202502/t20250217_4757964.shtml",
       "authority_level": "A1",
+      "evidence_class": "secondary",
       "in_approved_formal_sources": false,
       "in_external_reference": true,
       "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从海淀区政府官网检索",
+      "source_locator": "https://zyk.bjhd.gov.cn/slh/hdyw/202502/t20250217_4757964.shtml",
       "license": "政府公开信息，可引用作为政策背景参考",
       "verification_status": "url_accessible_verified_2026-08-14",
       "usable_for": [
@@ -389,15 +798,69 @@
       "cross_reference": "与SRC-2026-HAIDIAN-1X1政策方向一致"
     },
     {
+      "id": "SRC-2026-HAIDIAN-FINANCE-SYSTEM",
+      "title": "海淀区财政+基金+金融三位一体AI产业资金保障体系",
+      "publisher": "海淀区财政局",
+      "published_date": "2025",
+      "url": "https://www.bjhd.gov.cn/",
+      "authority_level": "A1",
+      "evidence_class": "secondary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从海淀区政府官网检索",
+      "source_locator": "https://www.bjhd.gov.cn/",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "AI industry funding system reference",
+        "cumulative 40.24 billion yuan investment context"
+      ],
+      "not_usable_for": [
+        "confirmed funding allocation for this project"
+      ]
+    },
+    {
+      "id": "SRC-2026-HAIDIAN-AI-STREET-SUPPORT",
+      "title": "海淀区人工智能创新街区建设五方面支持措施",
+      "publisher": "海淀区",
+      "published_date": "2025-03-29",
+      "url": "https://www.bjhd.gov.cn/",
+      "authority_level": "A1",
+      "evidence_class": "secondary",
+      "in_approved_formal_sources": false,
+      "in_external_reference": true,
+      "accessed_date": "2026-08-14",
+      "retrieved_at": "2026-08-14T10:00:00+08:00",
+      "collection_method": "从海淀区政府官网检索",
+      "source_locator": "https://www.bjhd.gov.cn/",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-14",
+      "usable_for": [
+        "AI innovation street construction support reference",
+        "100 billion yuan coordinated arrangement context",
+        "670,000 sqm industrial park renewal",
+        "500,000 sqm industrial space expansion"
+      ],
+      "not_usable_for": [
+        "confirmed space allocation for this project"
+      ]
+    },
+    {
       "id": "SRC-EXTERNAL-REF-BJ-CENSUS-2020",
       "title": "北京市第七次全国人口普查公报及分区公开数据、北京市及海淀区历年统计年鉴与统计公报",
       "publisher": "北京市统计局、国务院第七次全国人口普查领导小组办公室",
       "published_date": "2021",
       "url": "https://tjj.beijing.gov.cn/",
       "authority_level": "external_reference",
+      "evidence_class": "secondary",
       "in_approved_formal_sources": false,
       "in_external_reference": true,
       "accessed_date": "2026-08-18",
+      "retrieved_at": "2026-08-18T10:00:00+08:00",
+      "collection_method": "从北京市统计局官网检索公开数据",
+      "source_locator": "https://tjj.beijing.gov.cn/",
       "license": "政府公开统计数据",
       "verification_status": "public_statistical_data_based_estimation",
       "usable_for": [
@@ -410,6 +873,71 @@
         "official census data for the provisional study boundary"
       ],
       "estimation_note": "统筹研究范围常住人口约45-55万人、人口密度约1.0-1.3万人/km²等数值，基于海淀区常住人口总量（七普）按面积密度与建成区特征推算，非本范围普查数据，待官方现状普查数据补齐后需重新校核。"
+    },
+    {
+      "id": "SRC-2026-ZGC-OPC-PLAN",
+      "title": "中关村AI北纬社区发布人工智能OPC服务计划（北京市首个人工智能“一人创业公司”服务计划）",
+      "publisher": "北京市海淀区人民政府门户网站",
+      "published_date": "2025-12-08",
+      "url": "https://www.bjhd.gov.cn/qyfw/bulletIndexDetail/1998591501383491584",
+      "authority_level": "A1",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "accessed_date": "2026-08-27",
+      "retrieved_at": "2026-08-27T10:30:00+08:00",
+      "collection_method": "海淀区政府门户网站公开报道检索",
+      "source_locator": "中关村AI北纬社区人工智能OPC服务计划报道全文",
+      "license": "政府公开信息",
+      "verification_status": "url_accessible_verified_2026-08-27",
+      "usable_for": [
+        "Haidian official OPC (one-person company) service plan background",
+        "AI OPC cultivation system structure (1 super server + 4 pillars + 3 acceleration engines)",
+        "Zhongguancun AI Beipro community OPC-friendly ecosystem facts"
+      ]
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "title": "面向智能体的任务书（正文简引别名）",
+      "publisher": "User-provided cleared document",
+      "published_date": "2026-05-18",
+      "url": "brief/site-package/agent_taskbook.json",
+      "authority_level": "user_provided_cleared",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_user_provided_cleared": true,
+      "accessed_date": "2026-08-27",
+      "retrieved_at": "2026-08-27T10:45:00+08:00",
+      "collection_method": "正文 [source:AGENT-TASKBOOK] 简引的别名解析条目",
+      "source_locator": "brief/site-package/agent_taskbook.json",
+      "license": "用户提供的已清权材料",
+      "verification_status": "user_provided_cleared",
+      "alias_of": "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK",
+      "usable_for": [
+        "agent task coverage reference (in-text shorthand alias)"
+      ]
+    },
+    {
+      "id": "SRC-2026-USER-INNOV-ECO",
+      "title": "《创新生态是科创城市发展的核心》城市创新论坛演讲资料整理（演讲人：陈劲，清华大学经济管理学院教授、清华大学技术创新研究中心主任；含苏州—杭州创新指标对比数据，数据来源：施琴芬课题组，2025年）",
+      "publisher": "User-provided cleared document (Tsinghua University city innovation forum keynote transcript)",
+      "published_date": "2026-08-27",
+      "url": "local/user-provided/创新生态是科创城市发展的核心.docx",
+      "authority_level": "user_provided_cleared",
+      "evidence_class": "primary",
+      "in_approved_formal_sources": false,
+      "in_user_provided_cleared": true,
+      "accessed_date": "2026-08-27",
+      "retrieved_at": "2026-08-27T13:30:00+08:00",
+      "collection_method": "用户提供本地 docx 文档，经 zipfile 提取正文校读",
+      "source_locator": "全文：国家科技创新战略；深圳与杭州案例；苏州—杭州创新主体/创新环境指标对比（高校技术转移收入、VC/PE数量、知识密集型产业从业人员）；杭州城西科创大走廊；《天才地理学》",
+      "license": "用户提供的已清权材料",
+      "verification_status": "user_provided_cleared",
+      "usable_for": [
+        "Innovation ecosystem theory foundation (factor-driven to innovation-driven, late-mover to first-mover advantage)",
+        "Suzhou-Hangzhou soft-environment empirical comparison data (VC/PE count, university tech transfer income, knowledge-intensive employment)",
+        "Hangzhou Chengxi Sci-Tech Corridor isomorphic benchmark (university + industry engine + spatial carrier)",
+        "The Geography of Genius design view: innovation as environment-conditioned emergence"
+      ]
     }
   ]
 }
