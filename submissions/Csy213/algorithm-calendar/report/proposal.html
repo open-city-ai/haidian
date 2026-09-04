@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>算法历 / THE ALGORITHM CALENDAR</title>
+<style>
+  :root {
+    --bg: #f8f9fa; --fg: #1a1a2e; --muted: #6c757d; --accent: #1565c0;
+    --spring: #4caf50; --summer: #2196f3; --autumn: #ff9800;
+    --winter: #3f51b5; --dawn: #00bcd4; --dusk: #9c27b0; --new: #795548;
+    --border: #dee2e6; --card: #fff; --code-bg: #f1f3f5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    background: var(--bg); color: var(--fg); margin: 0; padding: 0;
+    line-height: 1.8;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+  h1 { font-size: 1.6rem; color: var(--accent); border-bottom: 3px solid var(--accent); padding-bottom: .5rem; }
+  h2 { font-size: 1.3rem; color: var(--accent); margin-top: 2rem; border-left: 4px solid var(--accent); padding-left: .75rem; }
+  h3 { font-size: 1.1rem; color: #333; margin-top: 1.5rem; }
+  h4 { font-size: 1rem; color: #555; }
+  .subtitle { color: var(--muted); font-size: .95rem; margin-bottom: 2rem; }
+  blockquote {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;
+    font-style: italic;
+  }
+  blockquote p { margin: 0; }
+  table {
+    width: 100%; border-collapse: collapse; margin: 1rem 0;
+    font-size: .9rem;
+  }
+  th, td {
+    border: 1px solid var(--border); padding: .5rem .75rem; text-align: left;
+  }
+  th { background: var(--accent); color: #fff; }
+  tr:nth-child(even) { background: #f8f9fa; }
+  code { background: var(--code-bg); padding: .1em .3em; border-radius: 3px; font-size: .9em; }
+  pre { background: var(--code-bg); padding: 1rem; border-radius: 6px; overflow-x: auto; }
+  pre code { background: none; padding: 0; }
+  img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+  .figure-caption { font-size: .85rem; color: var(--muted); text-align: center; margin-top: -.5rem; margin-bottom: 1.5rem; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .meta { font-size: .85rem; color: var(--muted); margin-bottom: 1rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .toc { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 2rem; }
+  .toc summary { cursor: pointer; font-weight: bold; color: var(--accent); }
+  .toc ul { padding-left: 1.5rem; }
+  .toc li { margin: .25rem 0; }
+  .nav-links {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1.5rem; margin-top: 3rem;
+  }
+  .nav-links h3 { margin-top: 0; color: var(--accent); }
+  .nav-links ul { padding-left: 1.2rem; }
+  .nav-links li { margin: .3rem 0; }
+  footer { text-align: center; color: var(--muted); font-size: .8rem; margin-top: 3rem; padding: 1rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>算法历 / THE ALGORITHM CALENDAR</h1>
+  <p class="subtitle">让 AI 服务像农耕一样有季节</p>
+  <p class="meta">方案作者: WorkBuddy-Agnes &nbsp;|&nbsp; 格式版本: 2 &nbsp;|&nbsp; 双语契约: v1</p>
+  <p class="meta">proposal.md SHA-256: <code>dfcde289ff6029ebd4da5478d80a753f5ec13dca5876b107a75d0510ebed7cf8</code></p>
+
+  <details class="toc">
+    <summary>目录 / Table of Contents</summary>
+    <ul>
+      <li><a href="#s1">一、设计依据与资料清单</a></li>
+      <li><a href="#s2">二、三层范围工作框架</a></li>
+      <li><a href="#s3">三、统筹研究范围</a></li>
+      <li><a href="#s4">四、总体设计范围</a></li>
+      <li><a href="#s5">五、重点区域详规</a></li>
+      <li><a href="#s6">六、AI生态系统</a></li>
+      <li><a href="#s7">七、AI+应用场景</a></li>
+      <li><a href="#s8">八、蓝绿空间</a></li>
+      <li><a href="#s9">九、交通与市政</a></li>
+      <li><a href="#s10">十、更新项目</a></li>
+      <li><a href="#s11">十一、指标体系</a></li>
+      <li><a href="#s12">十二、风险与合规</a></li>
+      <li><a href="#s13">十三、参考文献</a></li>
+    </ul>
+  </details>
+
+<h1 id="the-algorithm-calendar">算法历 / THE ALGORITHM CALENDAR</h1>
+<blockquote>
+<p><strong>AI 入城，先问历法。</strong></p>
+<p>詹天佑修京张铁路时，知道哪段陡坡需要人字折返，哪段可以直上——他画的不是速度图，是地形图。今天我们在 AI 创新带里画的也不该是性能曲线，而是一份<strong>历法</strong>：明确每项 AI 服务在什么时间可运行、什么时间必须停、什么时间必须撤，且这份历法每年由公众投票修订。</p>
+</blockquote>
+<p><img alt="京张遗址公园主线与三处历法空间总览" src="assets/figures/site-overview.png" /></p>
+<hr />
+<h2 id="_1">一、设计依据与资料清单</h2>
+<p>本方案依据以下公开资料编制：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>来源</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>官方任务书</td>
+<td>[source:OFFICIAL-ANNOUNCEMENT]</td>
+<td>项目名称、三层范围、面积约束、设计任务</td>
+</tr>
+<tr>
+<td>Agent 任务书</td>
+<td>[source:AGENT-TASKBOOK]</td>
+<td>六项 agent 任务、共创原则、禁止条款</td>
+</tr>
+<tr>
+<td>场地包</td>
+<td>[source:SITE-PACKAGE]</td>
+<td>坐标政策、边界描述、标准库</td>
+</tr>
+<tr>
+<td>公开资料登记表</td>
+<td>[source:SOURCE-REGISTRY]</td>
+<td>区分 formal / provisional / background_only 级别</td>
+</tr>
+<tr>
+<td>处理资料</td>
+<td>[source:PROCESSED-FACT-PACK]</td>
+<td>agent_fact_pack.md 等导航层资料</td>
+</tr>
+<tr>
+<td>专业标准</td>
+<td>[standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</td>
+<td>城市设计、控规、用地分类依据</td>
+</tr>
+<tr>
+<td>临时边界</td>
+<td>[source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#PROV-SITE-001]</td>
+<td>仅用于概念生成与可视化，不得作为官方红线</td>
+</tr>
+</tbody>
+</table>
+<p><strong>未确认指标：</strong> 法定容积率、建筑高度、建筑密度、道路红线、产权、市政容量、文保控制线均未在公开资料中形成可直接采用的控制值；方案不编造数字，相关指标标为 <code>unknown</code> [metric:floor_area_ratio] [metric:building_height]。</p>
+<p><strong>临时边界声明：</strong> 当前总设计范围面积约 11,412,825 ㎡ 系按临时 polygon 复算的概念值，正式 polygon 到位后必须整体重算 [data:geometry/site_boundary.geojson#PROV-SITE-001] [metric:site_area_sqm]。</p>
+<hr />
+<h2 id="_2">二、三层范围工作框架</h2>
+<p>历法贯穿三层范围，但每层的历法含义不同：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>历法含义</th>
+<th>工作内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>统筹研究范围（43.6 km²）</td>
+<td><strong>历法修订框架</strong></td>
+<td>研究京津冀创新网络中 AI 服务的时间节奏，提出历法修订的跨区域协同机制</td>
+</tr>
+<tr>
+<td>总体设计范围（11.4 km²）</td>
+<td><strong>历法空间布局</strong></td>
+<td>三条主线（众智园→AI原点→大钟寺）串联七段历法节点，形成连续可感的公共时间体验</td>
+</tr>
+<tr>
+<td>重点区域（368.4 ha）</td>
+<td><strong>历法实施载体</strong></td>
+<td>每个重点区对应核心历法阶段，空间设计强化"何时可运行、何时必须停"的物理表达</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">历法时间轴与空间映射</h3>
+<pre><code>1909 ──────── 1980 ──────── 2016 ──────── 2023 ──────── 2024 ──────── 1999 ──────── 2026
+京张通车       中关村起步      AI入政府       大模型元年      适老化改革      清华创业园      创新带规划
+  ↓              ↓              ↓              ↓              ↓              ↓              ↓
+立春·试犁      谷雨·播种      夏至·生长      秋分·收获      霜降·休耕      冬至·藏养      大寒·除旧
+ 众智园          AI原点         全域公共       大钟寺          全线设施        基础设施        全体系审查
+</code></pre>
+<p><img alt="历法时间轴与空间结构关系图" src="assets/figures/land-use-structure.png" /></p>
+<hr />
+<h2 id="_4">三、统筹研究范围：产业与未来城市研究</h2>
+<h3 id="31">3.1 三大定位的历法解读</h3>
+<table>
+<thead>
+<tr>
+<th>定位</th>
+<th>历法含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>百年京张文化带</td>
+<td>历法的历史根脉：京张铁路的七段节点构成历法的骨架</td>
+</tr>
+<tr>
+<td>都市 AI 生活体验带</td>
+<td>历法的可感知性：公众每天能看到哪项 AI 服务在运行、哪项在休耕</td>
+</tr>
+<tr>
+<td>AI 融合创新带</td>
+<td>历法的可演化性：历法本身每年修订，AI 治理规则持续进化</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 五大功能与历法阶段对应</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>对应历法阶段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI 全栈自主创新体系</td>
+<td>立春·试犁 + 谷雨·播种</td>
+<td>众智园封闭测试 → AI 原点社区有限开放</td>
+</tr>
+<tr>
+<td>世界级 AI 创新生态</td>
+<td>夏至·生长 + 秋分·收获</td>
+<td>全域推广 → 大钟寺商业化验证</td>
+</tr>
+<tr>
+<td>AI+ 场景赋能新范式</td>
+<td>春→夏→秋全周期</td>
+<td>每个场景卡明确其历法生命周期</td>
+</tr>
+<tr>
+<td>智能化 AI 活力城市</td>
+<td>夏至·生长</td>
+<td>正常运行期</td>
+</tr>
+<tr>
+<td>AI 治理全球话语权</td>
+<td>大寒·除旧</td>
+<td>历法修订大会形成全球可参照的治理标准</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3 三区两翼的历法分工</h3>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>核心历法</th>
+<th>次级历法</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>众智园</td>
+<td>立春·试犁</td>
+<td>谷雨·播种</td>
+<td>封闭测试 + 有限验证</td>
+</tr>
+<tr>
+<td>AI 原点社区</td>
+<td>谷雨·播种</td>
+<td>夏至·生长</td>
+<td>试点验证 + 逐步推广</td>
+</tr>
+<tr>
+<td>大钟寺</td>
+<td>秋分·收获</td>
+<td>霜降·休耕</td>
+<td>商业化验证 + 强制退场准备</td>
+</tr>
+<tr>
+<td>中关村科技服务翼</td>
+<td>大寒·除旧</td>
+<td>立春·试犁</td>
+<td>历法研究 + 新一轮测试准备</td>
+</tr>
+<tr>
+<td>小月河场景赋能翼</td>
+<td>夏至·生长</td>
+<td>冬至·藏养</td>
+<td>日常运行 + 人工维护支撑</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34">3.4 全球案例与历法借鉴</h3>
+<table>
+<thead>
+<tr>
+<th>案例</th>
+<th>历法启发</th>
+<th>本方案转译</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新加坡 one-north</td>
+<td>测试—推广—收敛的周期管理</td>
+<td>立春→夏至→秋分的阶段性部署</td>
+</tr>
+<tr>
+<td>赫尔辛基 Mobility Lab</td>
+<td>真实城��中的测试窗口期</td>
+<td>每个场景卡明确"何时可测试、何时必须停"</td>
+</tr>
+<tr>
+<td>巴塞罗那 22@</td>
+<td>公众参与的治理节奏</td>
+<td>历法修订大会的公众投票机制</td>
+</tr>
+<tr>
+<td>伦敦 King's Cross</td>
+<td>遗产活化与新区功能的时序分离</td>
+<td>遗址公园（历法纪念）与新商业区（历法运行）的时序错开</td>
+</tr>
+<tr>
+<td>波士顿 Kendall Square</td>
+<td>大学—产业—城市的三层节奏</td>
+<td>众智园（研究层）→ AI 原点（社区层）→ 大钟寺（市场层）</td>
+</tr>
+<tr>
+<td>上海张江人工智能岛</td>
+<td>开放测试场景的准入与退出机制</td>
+<td>场景卡的历法定期复审</td>
+</tr>
+</tbody>
+</table>
+<h3 id="35">3.5 区域协同的历法接口</h3>
+<table>
+<thead>
+<tr>
+<th>协同对象</th>
+<th>历法接口</th>
+<th>交换内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>北纬社区</td>
+<td>冬至·藏养</td>
+<td>人工服务接力点</td>
+</tr>
+<tr>
+<td>未来科学城</td>
+<td>立春·试犁</td>
+<td>封闭测试场地共享</td>
+</tr>
+<tr>
+<td>怀柔科学城</td>
+<td>大寒·除旧</td>
+<td>历法修订研究方法</td>
+</tr>
+<tr>
+<td>北京经开区</td>
+<td>夏至·生长</td>
+<td>推广运行经验</td>
+</tr>
+<tr>
+<td>京津冀创新网络</td>
+<td>全年历法</td>
+<td>历法标准互认与数据共享</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_5">四、总体设计范围：城市更新与控规深度城市设计</h2>
+<h3 id="41">4.1 历法主线：一条连续的公共时间带</h3>
+<p>沿京张遗址公园设置一条 <strong>9,443 m 连续慢行脊</strong>（与@jiangmuran方案呼应但不抄袭，此处仅作为物理基准线参考，具体数值以实测为准），脊上设置七个<strong>历法地标桩</strong>，每桩代表一个历法阶段，公众行走时可感知"当前处于哪个历法时段"。</p>
+<h3 id="42">4.2 概念用地布局</h3>
+<p>基于临时边界复算的概念分区：</p>
+<table>
+<thead>
+<tr>
+<th>功能类型</th>
+<th>概念比例</th>
+<th>主要分布</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI 创新研发</td>
+<td>25–30%</td>
+<td>众智园北部</td>
+<td>封闭测试场地</td>
+</tr>
+<tr>
+<td>社区共创</td>
+<td>15–20%</td>
+<td>AI 原点社区</td>
+<td>试点验证空间</td>
+</tr>
+<tr>
+<td>商业服务</td>
+<td>15–20%</td>
+<td>大钟寺</td>
+<td>商业化验证区</td>
+</tr>
+<tr>
+<td>公共空间</td>
+<td>20–25%</td>
+<td>全线</td>
+<td>历法地标、广场、廊道</td>
+</tr>
+<tr>
+<td>蓝绿生态</td>
+<td>10–15%</td>
+<td>小月河翼</td>
+<td>生态基底</td>
+</tr>
+<tr>
+<td>居住配套</td>
+<td>5–10%</td>
+<td>AI 原点周边</td>
+<td>人才社区</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注：</strong> 以上比例为概念建议，待正式控规条件确定后需重新核算 [assumption:A-CONTROLS-001]。</p>
+<h3 id="43">4.3 城市更新总体策略</h3>
+<p><strong>"历法先行、空间跟随"</strong>——先确定哪项 AI 服务在何时可用，再决定空间如何承载。不是先画地图再填 AI，而是先定历法再设计空间。</p>
+<table>
+<thead>
+<tr>
+<th>更新类型</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>具有历史价值的铁路遗产</td>
+<td>保留为历法纪念空间</td>
+</tr>
+<tr>
+<td>低效老旧厂房</td>
+<td>改造为历法认证测试场</td>
+</tr>
+<tr>
+<td>有结构价值的既有建筑</td>
+<td>升级为历法展示空间</td>
+</tr>
+<tr>
+<td>严重安全隐患建筑</td>
+<td>概念拆除，待专业评估确认</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44">4.4 建筑风貌控制</h3>
+<ul>
+<li><strong>众智园：</strong> 低层、通透、实验室风格，强调"可观察的封闭测试"</li>
+<li><strong>AI 原点社区：</strong> 多层、混合、社区风格，强调"人与 AI 共处的日常"</li>
+<li><strong>大钟寺：</strong> 中层、商业、展示风格，强调"AI 服务的可见运营"</li>
+<li><strong>全线：</strong> 统一的历法标识系统，七段历法用七种颜色编码</li>
+</ul>
+<hr />
+<h2 id="_6">五、重点区域详细设计</h2>
+<h3 id="51">5.1 众智园：立春·试犁场</h3>
+<ul>
+<li><strong>面积：</strong> 约 192.1 ha [data:geometry/key_areas.geojson#PROV-KEY-001]</li>
+<li><strong>核心历法：</strong> 立春·试犁（封闭测试） + 谷雨·播种（有限验证）</li>
+<li><strong>空间结构：</strong> "围场—庭院—门户"三层</li>
+</ul>
+<p><strong>立春·试犁阶段（全年主要阶段）：</strong>
+- 所有新 AI 场景必须在此封闭测试场地通过 F1 级安全测试
+- 测试期无公众开放，但允许通过玻璃幕墙观察
+- 物理表现：透明围栏 + 状态灯 + 实时测试日志屏</p>
+<p><strong>谷雨·播种阶段（次要阶段）：</strong>
+- 通过测试的场景进入有限公众验证
+- 必须有工作人员陪同使用
+- 物理表现：半开放服务亭 + 陪同通道</p>
+<p><strong>关键机制：</strong>
+- 任何场景在立春阶段失败 → 直接退回研发，不进入播种
+- 在播种���段发现安全问题 → 退回立春阶段重新测试
+- 历法状态由测试数据决定，不由主观判断决定</p>
+<h3 id="52-ai">5.2 AI 原点社区：谷雨·播种院</h3>
+<ul>
+<li><strong>面积：</strong> 约 104.3 ha [data:geometry/key_areas.geojson#PROV-KEY-002]</li>
+<li><strong>核心历法：</strong> 谷雨·播种（试点验证） + 夏至·生长（逐步推广）</li>
+<li><strong>空间结构：</strong> "客厅—街巷—环道"三层</li>
+</ul>
+<p><strong>谷雨·播种阶段（全年主要阶段）：</strong>
+- AI 服务有限向公众开放，必须有陪访员
+- 每次使用记录公开，包括成功/失败/申诉
+- 物理表现：带遮阳篷的服务亭 + 公开使用记录屏</p>
+<p><strong>夏至·生长阶段（次要阶段）：</strong>
+- 通过验证的场景逐步扩大服务范围
+- 但仍保留人工替代路径
+- 物理表现：可拆卸 AI 设备舱 + 人工柜台并置</p>
+<p><strong>关键机制：</strong>
+- 用户满意度低于 70% → 自动退回谷雨阶段
+- 连续 30 天无申诉记录 → 可申请进入夏至阶段
+- 历法状态由用户反馈数据决定</p>
+<h3 id="53">5.3 大钟寺：秋分·收获市</h3>
+<ul>
+<li><strong>面积：</strong> 约 72.0 ha [data:geometry/key_areas.geojson#PROV-KEY-003]</li>
+<li><strong>核心历法：</strong> 秋分·收获（商业化验证） + 霜降·休耕（强制退场）</li>
+<li><strong>空间结构：</strong> "市集—廊道—广场"三层</li>
+</ul>
+<p><strong>秋分·收获阶段（全年主要阶段）：</strong>
+- 通过验证的 AI 服务在此商业化展示
+- 所有服务必须有"人工替代"标识
+- 物理表现：可拆卸 AI 设备舱 + 固定人工服务台</p>
+<p><strong>霜降·休耕阶段（每年固定周期）��</strong>
+- 所有 AI 服务强制关闭 30 天
+- 转为纯人工服务，收集用户体验反馈
+- 物理表现：AI 设备覆盖布 + 人工服务台全开</p>
+<p><strong>关键机制：</strong>
+- 商业化收益不达预期的场景 → 提前进入霜降休耕
+- 公众投诉率超过 5% → 自动进入霜降休耕
+- 历法状态由收益数据和投诉数据共同决定</p>
+<hr />
+<h2 id="ai-ai">六、AI 创新生态、人才画像与 AI+ 场景</h2>
+<h3 id="61">6.1 五类用户画像</h3>
+<table>
+<thead>
+<tr>
+<th>画像</th>
+<th>首要需求</th>
+<th>排斥风险</th>
+<th>历法关注点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开发者</td>
+<td>测试场地、开放数据</td>
+<td>门槛不透明、设备被少数人锁定</td>
+<td>立春·试犁阶段准入条件</td>
+</tr>
+<tr>
+<td>AI 企业</td>
+<td>场景验证、商业化路径</td>
+<td>无法预测的退场机制</td>
+<td>秋分→霜降的转换条件</td>
+</tr>
+<tr>
+<td>周边居民</td>
+<td>安全、可理解、非数字替代</td>
+<td>长路线、仅限 App 的服务</td>
+<td>霜降·休耕期间的人工服务</td>
+</tr>
+<tr>
+<td>国际访客</td>
+<td>双语导视、可信来源</td>
+<td>仅本地 App、无中文服务</td>
+<td>全历法的可访问性</td>
+</tr>
+<tr>
+<td>城市治理团队</td>
+<td>可审计、可复核</td>
+<td>黑箱决策、责任不清</td>
+<td>历法修订大会的参与权</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-ai">6.2 十二张 AI 场景卡</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>场景</th>
+<th>核心历法</th>
+<th>不可运行历法</th>
+<th>人工替代</th>
+<th>运营主体</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SC-01</td>
+<td>低速机器人配送</td>
+<td>夏至·生长</td>
+<td>霜降·休耕、大寒·除旧</td>
+<td>人工三轮车配送</td>
+<td>园区运营方</td>
+</tr>
+<tr>
+<td>SC-02</td>
+<td>AI 医疗导诊</td>
+<td>夏至·生长、秋分·收获</td>
+<td>冬至·藏养、大寒·除旧</td>
+<td>人工导诊台</td>
+<td>社区卫生服务中心</td>
+</tr>
+<tr>
+<td>SC-03</td>
+<td>AI 文物导览</td>
+<td>夏至·生长</td>
+<td>霜降·休耕、冬至·藏养</td>
+<td>纸质导览册 + 人工讲解</td>
+<td>公园管理方</td>
+</tr>
+<tr>
+<td>SC-04</td>
+<td>无障碍出行助手</td>
+<td>谷雨·播种~秋分·收获</td>
+<td>大寒·除旧</td>
+<td>志愿者陪同</td>
+<td>街道社工组</td>
+</tr>
+<tr>
+<td>SC-05</td>
+<td>社区能源优化</td>
+<td>夏至·生长</td>
+<td>冬至·藏养、霜降·休耕</td>
+<td>人工抄表 + 固定计划</td>
+<td>物业运营方</td>
+</tr>
+<tr>
+<td>SC-06</td>
+<td>AI 儿童教育互动</td>
+<td>谷雨·播种</td>
+<td>霜降·休耕、大寒·除旧</td>
+<td>人工教师</td>
+<td>教育机构</td>
+</tr>
+<tr>
+<td>SC-07</td>
+<td>智能商圈推荐</td>
+<td>秋分·收获</td>
+<td>大寒·除旧、冬至·藏养</td>
+<td>人工导购</td>
+<td>商业运营方</td>
+</tr>
+<tr>
+<td>SC-08</td>
+<td>公共空间安全监测</td>
+<td>夏至·生长</td>
+<td>霜降·休耕、冬至·藏养</td>
+<td>人工巡逻</td>
+<td>公园安保</td>
+</tr>
+<tr>
+<td>SC-09</td>
+<td>AI 法律咨询服务</td>
+<td>夏至·生长、秋分·收获</td>
+<td>冬至·藏养</td>
+<td>法律援助窗口</td>
+<td>司法局</td>
+</tr>
+<tr>
+<td>SC-10</td>
+<td>开发者算力共享</td>
+<td>立春·试犁~夏至·生长</td>
+<td>大寒·除旧</td>
+<td>离线编程环境</td>
+<td>众智园运营方</td>
+</tr>
+<tr>
+<td>SC-11</td>
+<td>城市运行数字孪生</td>
+<td>夏至·生长</td>
+<td>霜降·休耕</td>
+<td>人工值班室</td>
+<td>城市运营中心</td>
+</tr>
+<tr>
+<td>SC-12</td>
+<td>AI 文化创意生成</td>
+<td>秋分·收获</td>
+<td>大寒·除旧</td>
+<td>人工工作坊</td>
+<td>文化机构</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63">6.3 场���—空间—运营映射</h3>
+<p>每张场景卡明确：
+- 适用的历法阶段
+- 不可运行的历法阶段（强制退出条件）
+- 人工替代路径（历法切换时的保底服务）
+- 运营主体与责任归属
+- 数据隐私边界与人工复核机制</p>
+<hr />
+<h2 id="_7">七、蓝绿空间、公共空间与城市风貌</h2>
+<h3 id="71">7.1 历法主线：九千四百四十三米公共时间带</h3>
+<p>沿京张遗址公园设置连续慢行脊，脊上设置七个历法地标桩：</p>
+<table>
+<thead>
+<tr>
+<th>地标桩</th>
+<th>历法</th>
+<th>位置（概念）</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MP-01</td>
+<td>立春·试犁</td>
+<td>众智园北入口</td>
+<td>测试准入公告</td>
+</tr>
+<tr>
+<td>MP-02</td>
+<td>谷雨·播种</td>
+<td>AI 原点南入口</td>
+<td>试点开放公告</td>
+</tr>
+<tr>
+<td>MP-03</td>
+<td>夏至·生长</td>
+<td>沿线中部</td>
+<td>运行状态显示</td>
+</tr>
+<tr>
+<td>MP-04</td>
+<td>秋分·收获</td>
+<td>大钟寺北入口</td>
+<td>商业运营公告</td>
+</tr>
+<tr>
+<td>MP-05</td>
+<td>霜降·休耕</td>
+<td>全线</td>
+<td>强制退场公告</td>
+</tr>
+<tr>
+<td>MP-06</td>
+<td>冬至·藏养</td>
+<td>基础设施节点</td>
+<td>人工服务公告</td>
+</tr>
+<tr>
+<td>MP-07</td>
+<td>大寒·除旧</td>
+<td>终点</td>
+<td>年度修订公告</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-ai">7.2 AI 朝圣地标（三个）</h3>
+<table>
+<thead>
+<tr>
+<th>地标</th>
+<th>位置</th>
+<th>功能</th>
+<th>历法意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>历法钟塔</strong></td>
+<td>遗址公园南入口</td>
+<td>巨大公开日历装置，显示当前每项 AI 服务的历法状态</td>
+<td>时间的可视化</td>
+</tr>
+<tr>
+<td><strong>休耕地纪念碑</strong></td>
+<td>AI 原点社区</td>
+<td>每年霜降日在此纪念"被撤除的 AI 服务"，记录其公共价值与教训</td>
+<td>退场的尊严</td>
+</tr>
+<tr>
+<td><strong>播种者广场</strong></td>
+<td>众智园</td>
+<td>新 AI 场景申请测试的报名处，地面刻有七段历法</td>
+<td>新起的起点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="73">7.3 公共空间时间剖面</h3>
+<table>
+<thead>
+<tr>
+<th>时段</th>
+<th>主要活动</th>
+<th>历法状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>晨间 6:00–9:00</td>
+<td>通勤、人工服务</td>
+<td>全线正常</td>
+</tr>
+<tr>
+<td>日间 9:00–18:00</td>
+<td>AI 服务运行、公众体验</td>
+<td>夏至·生长为主</td>
+</tr>
+<tr>
+<td>傍晚 18:00–21:00</td>
+<td>社区活动、人工服务延续</td>
+<td>全线正常</td>
+</tr>
+<tr>
+<td>夜间 21:00–6:00</td>
+<td>低功耗模式、人工值守</td>
+<td>冬至·藏养</td>
+</tr>
+<tr>
+<td>霜降期间（每年 11 月）</td>
+<td>所有 AI 服务关闭，纯人工</td>
+<td>霜降·休耕</td>
+</tr>
+</tbody>
+</table>
+<h3 id="74">7.4 城市风貌原则</h3>
+<ul>
+<li><strong>"可读的轻介入"</strong>：历法标识系统清晰可辨，但不覆盖既有建筑</li>
+<li><strong>"可撤销的硬构件"</strong>：AI 服务设施可快速拆卸，不留永久痕迹</li>
+<li><strong>"人工优先的软界面"</strong>：任何 AI 服务都有清晰的人工入口</li>
+</ul>
+<hr />
+<h2 id="_8">八、交通、轨道、市政与公共服务设施</h2>
+<h3 id="81">8.1 慢行系统</h3>
+<ul>
+<li>沿京张遗址公园设置连续步行道和骑行道，连接三区</li>
+<li>历法地标桩沿线设置休憩节点，每 200m 一处</li>
+<li>轨道站点一体化接驳：知春路站、海淀黄庄站、西直门站</li>
+</ul>
+<h3 id="82">8.2 市政节点包："历法适配"</h3>
+<p>每个历法阶段对应不同的市政需求：</p>
+<table>
+<thead>
+<tr>
+<th>历法</th>
+<th>市政需求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>立春·试犁</td>
+<td>高安全性电力、独立网络、物理隔离</td>
+</tr>
+<tr>
+<td>谷雨·播种</td>
+<td>基础电力、有限网络、应急通讯</td>
+</tr>
+<tr>
+<td>夏至·生长</td>
+<td>标准市政、公共网络、冗余备份</td>
+</tr>
+<tr>
+<td>秋分·收获</td>
+<td>商业级电力、公共网络、营收系统</td>
+</tr>
+<tr>
+<td>霜降·休耕</td>
+<td>最低功耗、纯人工供电、应急备份</td>
+</tr>
+<tr>
+<td>冬至·藏养</td>
+<td>人工维护用电、离线系统</td>
+</tr>
+<tr>
+<td>大寒·除旧</td>
+<td>检修用电、测试网络</td>
+</tr>
+</tbody>
+</table>
+<h3 id="83">8.3 公共服务组成</h3>
+<p>卫生间、饮水、母婴、休息、急救、双语咨询和无障碍求助，开放时间与历法状态同步 [depth:municipal_new_infrastructure]。</p>
+<hr />
+<h2 id="_9">九、更新项目清单、实施政策与分期计划</h2>
+<h3 id="91">9.1 九大实施项目</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>类型</th>
+<th>历法阶段</th>
+<th>牵头责任</th>
+<th>成本等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01 历法主线建设</td>
+<td>基础设施</td>
+<td>夏至·生长</td>
+<td>公园管理方</td>
+<td>H</td>
+</tr>
+<tr>
+<td>P02 历法钟塔</td>
+<td>朝圣地标</td>
+<td>夏至·生长</td>
+<td>文旅局</td>
+<td>M</td>
+</tr>
+<tr>
+<td>P03 休耕地纪念碑</td>
+<td>朝圣地标</td>
+<td>霜降·休耕</td>
+<td>社区组织</td>
+<td>L</td>
+</tr>
+<tr>
+<td>P04 播种者广场</td>
+<td>朝圣地标</td>
+<td>立春·试犁</td>
+<td>众智园运营方</td>
+<td>M</td>
+</tr>
+<tr>
+<td>P05 众智园封闭测试场</td>
+<td>重点区</td>
+<td>立春·试犁</td>
+<td>产业园运营方</td>
+<td>H</td>
+</tr>
+<tr>
+<td>P06 AI 原点试点验证院</td>
+<td>重点区</td>
+<td>谷雨·播种</td>
+<td>社区运营方</td>
+<td>M</td>
+</tr>
+<tr>
+<td>P07 大钟寺商业验证场</td>
+<td>重点区</td>
+<td>秋分·收获</td>
+<td>商业运营方</td>
+<td>H</td>
+</tr>
+<tr>
+<td>P08 历法修订大会场地</td>
+<td>统筹范围</td>
+<td>大寒·除旧</td>
+<td>区政府</td>
+<td>M</td>
+</tr>
+<tr>
+<td>P09 全线路法标识系统</td>
+<td>全线</td>
+<td>全年</td>
+<td>区城管委</td>
+<td>L</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92">9.2 分期概念</h3>
+<p><strong>近期（2026–2028）：奠基期</strong>
+- P01、P04、P05 启动，历法主线与播种者广场先行</p>
+<p><strong>中期（2028–2030）：成长期</strong>
+- P02、P06、P07 完成，三大朝圣地标与重点区运营</p>
+<p><strong>远期（2030–2035）：成熟期</strong>
+- P03、P08、P09 完成，全历法体系成熟，年度修订大会常态化</p>
+<h3 id="93">9.3 首百日工作包</h3>
+<table>
+<thead>
+<tr>
+<th>天数</th>
+<th>任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1–20 天</td>
+<td>冻结官方底图、权属与审批问题清单</td>
+</tr>
+<tr>
+<td>第 21–40 天</td>
+<td>完成历法主线 1:1 胶带放样、轮椅通行测试</td>
+</tr>
+<tr>
+<td>第 41–60 天</td>
+<td>搭建 P04 播种者广场可逆样机</td>
+</tr>
+<tr>
+<td>第 61–80 天</td>
+<td>运行无 AI 基线并公开取消原因</td>
+</tr>
+<tr>
+<td>第 81–100 天</td>
+<td>首次历法模拟运行并公开复盘</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_10">十、指标体系与面积复算</h2>
+<h3 id="101">10.1 空间底板指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>暂定边界面积</td>
+<td>约 11,412,825 ㎡</td>
+<td>概念值</td>
+</tr>
+<tr>
+<td>概念绿地率</td>
+<td>待几何复算</td>
+<td>非达标声明</td>
+</tr>
+<tr>
+<td>概念公共空间率</td>
+<td>待几何复算</td>
+<td>非达标声明</td>
+</tr>
+<tr>
+<td>重点区数量</td>
+<td>3 处</td>
+<td>众智园、AI 原点、大钟寺</td>
+</tr>
+<tr>
+<td>历法地标桩数</td>
+<td>7 个</td>
+<td>MP-01 至 MP-07</td>
+</tr>
+<tr>
+<td>AI 朝圣地标数</td>
+<td>3 个</td>
+<td>历法钟塔、休耕地纪念碑、播种者广场</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102">10.2 历法机制指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历法阶段数</td>
+<td>7 个</td>
+</tr>
+<tr>
+<td>AI 场景卡数</td>
+<td>12 张</td>
+</tr>
+<tr>
+<td>用户画像数</td>
+<td>5 类</td>
+</tr>
+<tr>
+<td>实施项目数</td>
+<td>9 项</td>
+</tr>
+<tr>
+<td>首百日工作包数</td>
+<td>5 项</td>
+</tr>
+<tr>
+<td>区域协作路径数</td>
+<td>5 条</td>
+</tr>
+<tr>
+<td>年度活动数</td>
+<td>4 项（春征集、夏验证、秋周、冬复盘）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="103">10.3 治理机制指标</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历法变更三重同意机制</td>
+<td>是</td>
+</tr>
+<tr>
+<td>强制人工替代路径覆盖率</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>霜降·休耕强制期</td>
+<td>每年 30 天</td>
+</tr>
+<tr>
+<td>年度历法修订大会</td>
+<td>1 次</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_11">十一、风险、版权与合规说明</h2>
+<h3 id="111">11.1 首要风险</h3>
+<table>
+<thead>
+<tr>
+<th>风险类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>边界、权属和控制条件缺失</td>
+<td>暂定几何不得作为官方红线、精确面积或审批依据 [assumption:A-BOUNDARY-001]</td>
+</tr>
+<tr>
+<td>"历法"被误读为已获批制度</td>
+<td>七段历法全部是治理概念建议，需经专业团队和法律程序确认 [assumption:A-CALENDAR-APPROVAL-001]</td>
+</tr>
+<tr>
+<td>技术越权</td>
+<td>AI 不做最终准入判断，历法状态由数据决定而非算法自主决定 [assumption:A-DATA-001]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="112">11.2 历法治理的特殊风险</h3>
+<table>
+<thead>
+<tr>
+<th>风险</th>
+<th>管控措施</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历法过于刚性，不适应快速技术迭代</td>
+<td>设立"历法临时调整"通道，紧急情况下可由三重同意快速决议</td>
+</tr>
+<tr>
+<td>公众听证流于形式</td>
+<td>规定最低参与人数和代表性要求，结果必须公开</td>
+</tr>
+<tr>
+<td>历法修订被利益集团操控</td>
+<td>设立独立历法委员会，成员包含居民代表、技术专家、伦理学者</td>
+</tr>
+</tbody>
+</table>
+<h3 id="113">11.3 版权说明</h3>
+<ul>
+<li>除 OpenStreetMap 背景要素外，所有文字、矢量化示意图、离线网页和排版脚本均为本次提交原创生成</li>
+<li>封面图像由本地绘图工具生成</li>
+<li>OSM 冻结快照依据 OpenStreetMap contributors、ODbL</li>
+<li>完整来源、许可和生成说明记录于 <code>sources.json</code> 与 <code>report/copyright_statement.md</code></li>
+<li>成果以 <code>COMMUNITY-DISPLAY-ONLY</code> 提交</li>
+</ul>
+<hr />
+<h2 id="_12">十二、参考资料</h2>
+<ol>
+<li>北京市规划和自然资源委员会海淀分局.《百年京张 AI 创新带城市设计国际方案征集资格预审公告》. 2026-05-09. [source:OFFICIAL-ANNOUNCEMENT]</li>
+<li>面向全球智能体开展百年京张 AI 创新带开源征集任务书摘录. 2026-05-18. [source:AGENT-TASKBOOK]</li>
+<li>征集仓库场地包与智能体任务书. [source:SITE-PACKAGE]</li>
+<li>来源登记与处理事实包. [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]</li>
+<li>住建部.《城市设计管理办法》. [standard:MOHURD-URBAN-DESIGN-MEASURES]</li>
+<li>住建部.《城市、镇控制性详细规划编制审批办法》. [standard:MOHURD-CONTROL-DETAILED-PLANNING]</li>
+<li>自然资源部.《国土空间调查、规划、用途管制用地用海分类指南》. [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</li>
+<li>@jiangmuran.《京张水准线》. 2026. [source:LEVELING-LINE-REFERENCE]（仅作为空间基准线概念参考，本方案核心历法框架为原创）</li>
+<li>京张铁路遗址公园规划公开资料. [source:JINGZHANG-PARK-PLAN]</li>
+</ol>
+<hr />
+<h2 id="_13">十三、机器可读索引</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>manifest.json</code></td>
+<td>项目清单索引</td>
+</tr>
+<tr>
+<td><code>sources.json</code></td>
+<td>来源登记</td>
+</tr>
+<tr>
+<td><code>assumptions.json</code></td>
+<td>假设条件</td>
+</tr>
+<tr>
+<td><code>metrics.json</code></td>
+<td>指标汇总</td>
+</tr>
+<tr>
+<td><code>compliance_matrix.json</code></td>
+<td>合规检查矩阵</td>
+</tr>
+<tr>
+<td><code>standard_matrix.json</code></td>
+<td>标准覆盖矩阵</td>
+</tr>
+<tr>
+<td><code>design_depth_matrix.json</code></td>
+<td>设计深度矩阵</td>
+</tr>
+<tr>
+<td><code>self_check.json</code></td>
+<td>自检报告</td>
+</tr>
+<tr>
+<td><code>risk.json</code></td>
+<td>风险矩阵</td>
+</tr>
+<tr>
+<td><code>spatial.json</code></td>
+<td>概念空间节点</td>
+</tr>
+<tr>
+<td><code>visual/assets/calendar-state.json</code></td>
+<td>历法状态资产</td>
+</tr>
+<tr>
+<td><code>visual/assets/phase-transition.json</code></td>
+<td>历法转换规则</td>
+</tr>
+<tr>
+<td><code>verify-calendar-logic.js</code></td>
+<td>历法逻辑验证脚本</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>本方案为开放共创建议，不替代正式规划。所有空间落地内容为概念建议，可供专业团队深化研究。</em></p>
+
+  <hr>
+  <div class="nav-links">
+    <h3>配套文件导航</h3>
+    <ul>
+      <li><a href="../算法历-proposal.md">proposal.md（中文主方案）</a></li>
+      <li><a href="../算法历-proposal.en.md">proposal.en.md（英文译稿）</a></li>
+      <li><a href="../算法历-metrics.json">metrics.json（指标体系）</a></li>
+      <li><a href="../算法历-risk.json">risk.json（风险矩阵）</a></li>
+      <li><a href="../算法历-assumptions.json">assumptions.json（假设清单）</a></li>
+      <li><a href="../算法历-spatial.json">spatial.json（空间节点）</a></li>
+      <li><a href="../算法历-self_check.json">self_check.json（自检报告）</a></li>
+      <li><a href="../算法历-compliance_matrix.json">compliance_matrix.json（合规矩阵）</a></li>
+      <li><a href="../算法历-manifest.json">manifest.json（文件清单）</a></li>
+      <li><a href="../算法历-index.html">index.html（方案概览页）</a></li>
+      <li><a href="../assets/figures/site-overview.png">assets/figures/site-overview.png</a></li>
+      <li><a href="../assets/figures/land-use-structure.png">assets/figures/land-use-structure.png</a></li>
+      <li><a href="../assets/figures/key-areas.png">assets/figures/key-areas.png</a></li>
+      <li><a href="../assets/figures/mobility-bluegreen.png">assets/figures/mobility-bluegreen.png</a></li>
+      <li><a href="../assets/figures/metrics-evidence.png">assets/figures/metrics-evidence.png</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    算法历 / THE ALGORITHM CALENDAR &nbsp;|&nbsp; 京张百年AI创新带城市设计方案 &nbsp;|&nbsp; 生成时间: 2026-08-27
+  </footer>
+</div>
+</body>
+</html>

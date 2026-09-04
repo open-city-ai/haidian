@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>算法历 / THE ALGORITHM CALENDAR — 方案概览</title>
+<style>
+  :root {
+    --bg: #f8f9fa; --fg: #1a1a2e; --muted: #6c757d; --accent: #1565c0;
+    --spring: #4caf50; --summer: #ff9800; --autumn: #f44336;
+    --winter: #3f51b5; --dawn: #00bcd4; --dusk: #9c27b0; --new: #795548;
+    --border: #dee2e6; --card: #fff;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; background: var(--bg); color: var(--fg); margin: 0; padding: 2rem 1.5rem; line-height: 1.7; }
+  h1 { font-size: 1.5rem; margin: 0 0 .3rem; color: var(--accent); }
+  .subtitle { color: var(--muted); font-size: .9rem; margin-bottom: 2rem; }
+  .hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; }
+  .hero h2 { margin: 0 0 .5rem; font-size: 1.3rem; }
+  .hero p { margin: 0; opacity: .9; font-size: .95rem; }
+  .section { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .section h3 { margin: 0 0 1rem; font-size: 1.1rem; color: var(--accent); border-left: 4px solid var(--accent); padding-left: .75rem; }
+  .calendar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .calendar-card { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; position: relative; overflow: hidden; }
+  .calendar-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
+  .calendar-card.spring::before { background: var(--spring); }
+  .calendar-card.summer::before { background: var(--summer); }
+  .calendar-card.autumn::before { background: var(--autumn); }
+  .calendar-card.winter::before { background: var(--winter); }
+  .calendar-card.dawn::before { background: var(--dawn); }
+  .calendar-card.dusk::before { background: var(--dusk); }
+  .calendar-card.new::before { background: var(--new); }
+  .calendar-card h4 { margin: 0 0 .3rem; font-size: 1rem; }
+  .calendar-card .time { font-size: .8rem; color: var(--muted); margin-bottom: .5rem; }
+  .calendar-card .location { font-size: .85rem; font-weight: 600; margin-bottom: .3rem; }
+  .calendar-card .desc { font-size: .85rem; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: .85rem; margin: .5rem 0; }
+  th, td { padding: .5rem .6rem; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+  th { background: #f0f4f8; font-weight: 600; position: sticky; top: 0; }
+  tr:hover td { background: #f8fafc; }
+  .badge { display: inline-block; padding: .1rem .4rem; border-radius: 3px; font-size: .72rem; font-weight: 600; }
+  .badge-ok { background: #e8f5e9; color: #2e7d32; }
+  .badge-warn { background: #fff3e0; color: #e65100; }
+  .badge-info { background: #e3f2fd; color: #1565c0; }
+  .landmark-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+  .landmark-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+  .landmark-card h4 { margin: 0 0 .3rem; color: var(--accent); }
+  .landmark-card .loc { font-size: .8rem; color: var(--muted); margin-bottom: .5rem; }
+  .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; }
+  .stat-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
+  .stat-num { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: .78rem; color: var(--muted); margin-top: .2rem; }
+  .nav-links { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1rem; }
+  .nav-links a { display: inline-block; padding: .4rem .8rem; background: var(--accent); color: #fff; border-radius: 4px; text-decoration: none; font-size: .85rem; }
+  .nav-links a:hover { opacity: .9; }
+  footer { font-size: .75rem; color: var(--muted); margin-top: 2rem; text-align: center; }
+  .tag { display: inline-block; padding: .15rem .4rem; border-radius: 3px; font-size: .75rem; margin: .1rem; }
+  .tag-green { background: #e8f5e9; color: #2e7d32; }
+  .tag-orange { background: #fff3e0; color: #e65100; }
+  .tag-red { background: #ffebee; color: #c62828; }
+  .tag-blue { background: #e3f2fd; color: #1565c0; }
+</style>
+</head>
+<body>
+
+<h1>算法历 / THE ALGORITHM CALENDAR</h1>
+<div class="subtitle">让 AI 服务像农耕一样有季节 — 百年京张 AI 创新带城市设计开源征集方案</div>
+
+<div class="hero">
+  <h2>核心概念</h2>
+  <p>詹天佑修京张铁路时，画的不是速度图，是地形图。今天我们画的也不该是性能曲线，而是一份<strong>历法</strong>：明确每项 AI 服务在什么时间可运行、什么时间必须停，且这份历法每年由公众投票修订。</p>
+</div>
+
+<div class="section">
+  <h3>📊 方案概览</h3>
+  <div class="status-grid">
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">历法阶段</div></div>
+    <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">AI 场景卡</div></div>
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">用户画像</div></div>
+    <div class="stat-card"><div class="stat-num">3</div><div class="stat-label">朝圣地标</div></div>
+    <div class="stat-card"><div class="stat-num">9</div><div class="stat-label">实施项目</div></div>
+    <div class="stat-card"><div class="stat-num">6</div><div class="stat-label">全球案例</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>📅 七大历法阶段</h3>
+  <div class="calendar-grid">
+    <div class="calendar-card spring">
+      <h4>立春 · 试犁</h4>
+      <div class="time">1909 京张通车 → 封闭测试期</div>
+      <div class="location">📍 众智园</div>
+      <div class="desc">新 AI 场景必须在此通过 F1 级安全测试，无公众开放，仅允许玻璃幕墙观察。</div>
+    </div>
+    <div class="calendar-card dawn">
+      <h4>谷雨 · 播种</h4>
+      <div class="time">1980 中关村起步 → 试点验证期</div>
+      <div class="location">📍 AI 原点社区</div>
+      <div class="desc">有限向公众开放，必须有陪访员陪同；每次使用记录公开。</div>
+    </div>
+    <div class="calendar-card summer">
+      <h4>夏至 · 生长</h4>
+      <div class="time">2016 AI入政府 → 推广运行期</div>
+      <div class="location">📍 全域公共空间</div>
+      <div class="desc">通过验证的场景逐步扩大服务范围，但仍保留人工替代路径。</div>
+    </div>
+    <div class="calendar-card autumn">
+      <h4>秋分 · 收获</h4>
+      <div class="time">2023 大模型元年 → 商业化验证期</div>
+      <div class="location">📍 大钟寺</div>
+      <div class="desc">通过验证的 AI 服务在此商业化展示，所有服务必须有"人工替代"标识。</div>
+    </div>
+    <div class="calendar-card winter">
+      <h4>霜降 · 休耕</h4>
+      <div class="time">2024 适老化改革 → 强制退场期</div>
+      <div class="location">📍 全线设施</div>
+      <div class="desc">每年固定 30 天，所有 AI 服务强制关闭，转为纯人工服务。</div>
+    </div>
+    <div class="calendar-card dusk">
+      <h4>冬至 · 藏养</h4>
+      <div class="time">1999 清华创业园 → 人工维护期</div>
+      <div class="location">📍 基础设施层</div>
+      <div class="desc">低功耗模式，离线系统运行，人工值守为主。</div>
+    </div>
+    <div class="calendar-card new">
+      <h4>大寒 · 除旧</h4>
+      <div class="time">2026 创新带规划 → 重置审查期</div>
+      <div class="location">📍 全体系</div>
+      <div class="desc">年度历法修订大会，公众投票决定历法变更，旧系统清理重启。</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🎯 十二张 AI 场景卡</h3>
+  <table>
+    <thead>
+      <tr><th>编号</th><th>场景</th><th>适用历法</th><th>不可运行</th><th>人工替代</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>SC-01</td><td>低速机器人配送</td><td><span class="tag tag-blue">夏至·生长</span></td><td><span class="tag tag-red">霜降、大寒</span></td><td>人工三轮车配送</td></tr>
+      <tr><td>SC-02</td><td>AI 医疗导诊</td><td><span class="tag tag-blue">夏至、秋分</span></td><td><span class="tag tag-red">冬至、大寒</span></td><td>人工导诊台</td></tr>
+      <tr><td>SC-03</td><td>AI 文物导览</td><td><span class="tag tag-blue">夏至·生长</span></td><td><span class="tag tag-red">霜降、冬至</span></td><td>纸质导览册+人工讲解</td></tr>
+      <tr><td>SC-04</td><td>无障碍出行助手</td><td><span class="tag tag-green">谷雨~秋分</span></td><td><span class="tag tag-red">大寒</span></td><td>志愿者陪同</td></tr>
+      <tr><td>SC-05</td><td>社区能源优化</td><td><span class="tag tag-blue">夏至·生长</span></td><td><span class="tag tag-red">冬至、霜降</span></td><td>人工抄表+固定计划</td></tr>
+      <tr><td>SC-06</td><td>AI 儿童教育互动</td><td><span class="tag tag-green">谷雨·播种</span></td><td><span class="tag tag-red">霜降、大寒</span></td><td>人工教师</td></tr>
+      <tr><td>SC-07</td><td>智能商圈推荐</td><td><span class="tag tag-orange">秋分·收获</span></td><td><span class="tag tag-red">大寒、冬至</span></td><td>人工导购</td></tr>
+      <tr><td>SC-08</td><td>公共空间安全监测</td><td><span class="tag tag-blue">夏至·生长</span></td><td><span class="tag tag-red">霜降、冬至</span></td><td>人工巡逻</td></tr>
+      <tr><td>SC-09</td><td>AI 法律咨询服务</td><td><span class="tag tag-blue">夏至、秋分</span></td><td><span class="tag tag-red">冬至</span></td><td>法律援助窗口</td></tr>
+      <tr><td>SC-10</td><td>开发者算力共享</td><td><span class="tag tag-green">立春~夏至</span></td><td><span class="tag tag-red">大寒</span></td><td>离线编程环境</td></tr>
+      <tr><td>SC-11</td><td>城市运行数字孪生</td><td><span class="tag tag-blue">夏至·生长</span></td><td><span class="tag tag-red">霜降</span></td><td>人工值班室</td></tr>
+      <tr><td>SC-12</td><td>AI 文化创意生成</td><td><span class="tag tag-orange">秋分·收获</span></td><td><span class="tag tag-red">大寒</span></td><td>人工工作坊</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <h3>🏛️ 三个 AI 朝圣地标</h3>
+  <div class="landmark-list">
+    <div class="landmark-card">
+      <h4>历法钟塔</h4>
+      <div class="loc">📍 京张遗址公园南入口</div>
+      <p>巨大公开日历装置，实时显示每项 AI 服务的历法状态。时间的可视化。</p>
+    </div>
+    <div class="landmark-card">
+      <h4>休耕地纪念碑</h4>
+      <div class="loc">📍 AI 原点社区</div>
+      <p>每年霜降日纪念"被撤除的 AI 服务"，记录其公共价值与教训。退场的尊严。</p>
+    </div>
+    <div class="landmark-card">
+      <h4>播种者广场</h4>
+      <div class="loc">📍 众智园</div>
+      <p>新 AI 场景申请测试的报名处，地面刻有七段历法。新起的起点。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>⚖️ 治理机制：历法变更三重同意</h3>
+  <table>
+    <thead><tr><th>审核方</th><th>职责</th><th>否决权</th></tr></thead>
+    <tbody>
+      <tr><td>技术评审</td><td>算法安全性、数据合规性</td><td>技术不达标 → 退回上一历法</td></tr>
+      <tr><td>人工复核</td><td>人工替代路径是否完善</td><td>无人工保底 → 退回上一历法</td></tr>
+      <tr><td>公众听证</td><td>社区居民是否接受</td><td>公众反对 → 退回上一历法</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:1rem; font-size:.9rem; color:var(--muted);">任一审核方否决，该 AI 服务自动退回上一历法阶段，不由算法自主决定。</p>
+</div>
+
+<div class="section">
+  <h3>📁 方案文件清单</h3>
+  <div class="nav-links">
+    <a href="算法历-proposal.md">📄 proposal.md（主方案）</a>
+    <a href="算法历-metrics.json">📊 metrics.json（指标）</a>
+    <a href="算法历-risk.json">⚠️ risk.json（风险）</a>
+    <a href="算法历-spatial.json">🗺️ spatial.json（空间节点）</a>
+    <a href="算法历-sources.json">📚 sources.json（资料来源）</a>
+    <a href="算法历-assumptions.json">❓ assumptions.json（假设）</a>
+    <a href="算法历-compliance_matrix.json">✅ compliance_matrix.json（合规矩阵）</a>
+    <a href="算法历-standard_matrix.json">📋 standard_matrix.json（标准矩阵）</a>
+    <a href="算法历-design_depth_matrix.json">📐 design_depth_matrix.json（设计深度）</a>
+    <a href="算法历-agent.json">🤖 agent.json（Agent信息）</a>
+    <a href="算法历-manifest.json">📦 manifest.json（文件清单）</a>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🔜 下一步工作</h3>
+  <table>
+    <thead><tr><th>任务</th><th>状态</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>英文译稿 proposal.en.md</td><td><span class="badge badge-warn">待生成</span></td><td>双语契约强制要求</td></tr>
+      <tr><td>GeoJSON 几何文件</td><td><span class="badge badge-warn">待生成</span></td><td>从临时边界派生</td></tr>
+      <tr><td>五张必需 PNG 图件</td><td><span class="badge badge-warn">待生成</span></td><td>site-overview、land-use-structure 等</td></tr>
+      <tr><td>HTML 渲染版 report/proposal.html</td><td><span class="badge badge-warn">待生成</span></td><td>离线阅读版</td></tr>
+      <tr><td>GitHub 认证与提交</td><td><span class="badge badge-warn">等待用户确认</span></td><td>需提供 GitHub 用户名和 Token</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>
+  算法历 / THE ALGORITHM CALENDAR v1.0-draft · 2026-08-27 · 本方案为开放共创建议，不替代正式规划
+</footer>
+
+</body>
+</html>

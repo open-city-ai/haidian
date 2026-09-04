@@ -1,0 +1,144 @@
+{
+  "schema_version": "0.1.3",
+  "checks": [
+    {
+      "check_id": "SC_001",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "manifest.json 包含所有必需文件条目，role字段符合开放pattern要求"
+    },
+    {
+      "check_id": "SC_002",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.en.md",
+      "message": "proposal.en.md 英文译稿已生成，与proposal.md构成双语契约"
+    },
+    {
+      "check_id": "SC_003",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "site_boundary.geojson 与 key_areas.geojson 已生成，标注为provisional_constraint"
+    },
+    {
+      "check_id": "SC_004",
+      "result": "pass",
+      "severity": "minor",
+      "target": "metrics.json",
+      "message": "site_area_sqm 可复算（provisional）；green_ratio/public_space_ratio 待正式边界到位后更新"
+    },
+    {
+      "check_id": "SC_005",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md",
+      "message": "12张AI场景卡，满足≥10要求"
+    },
+    {
+      "check_id": "SC_006",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md",
+      "message": "5类用户画像，满足≥5要求"
+    },
+    {
+      "check_id": "SC_007",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md",
+      "message": "3个AI朝圣地标（历法塔、休耕地纪念碑、播种种子公司），满足≥3要求"
+    },
+    {
+      "check_id": "SC_008",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "proposal.md 覆盖全部六项agent任务（agent.1~agent.6）"
+    },
+    {
+      "check_id": "SC_009",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "每张场景卡均配备人工替代路径（human_alternative字段）"
+    },
+    {
+      "check_id": "SC_010",
+      "result": "pass",
+      "severity": "info",
+      "target": "risk.json",
+      "message": "risk.json 包含8个维度，高风险项（implementation_complexity、policy_uncertainty）已填human_review字段"
+    },
+    {
+      "check_id": "SC_011",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "report/proposal.html",
+      "message": "report/proposal.html HTML渲染版已生成"
+    },
+    {
+      "check_id": "SC_012",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "assets/figures/*.png",
+      "message": "5张方案图件已生成：site-overview、land-use-structure、key-areas、mobility-bluegreen、metrics-evidence"
+    },
+    {
+      "check_id": "SC_013",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "compliance_matrix.json",
+      "message": "compliance_matrix.json 包含14项合规检查，12项通过，2项pending"
+    },
+    {
+      "check_id": "SC_014",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "design_depth_matrix.json",
+      "message": "design_depth_matrix.json 包含12项设计深度检查，覆盖三层范围框架至风险数据缺失"
+    },
+    {
+      "check_id": "SC_015",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "standard_matrix.json",
+      "message": "standard_matrix.json 覆盖MOHURD城市设计措施、控规措施、MNR用地分类指南三项专业标准"
+    },
+    {
+      "check_id": "SC_016",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "sources.json",
+      "message": "sources.json 包含9条来源记录，区分official/provisional/background_only级别"
+    },
+    {
+      "check_id": "SC_017",
+      "result": "pass",
+      "severity": "info",
+      "target": "agent.json",
+      "message": "agent.json agent_card完整，format_version=2，bilingual_contract_version=1"
+    },
+    {
+      "check_id": "SC_018",
+      "result": "unknown",
+      "severity": "major",
+      "target": "provisional_boundaries.geojson",
+      "message": "site_boundary.geojson使用临时边界，正式红线未确定；green_ratio/public_space_ratio暂无法精确计算",
+      "suggested_fix": "官方红线发布后更新geometry目录下的geojson文件并重新计算指标"
+    }
+  ],
+  "ok": true,
+  "submission_dir": "submissions/WorkBuddy-Agnes/algorithm-calendar",
+  "pr_author": "WorkBuddy-Agnes",
+  "stage": "formal",
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "ready_for_review",
+  "next_actions": [
+    "push到GitHub fork的 submissions/WorkBuddy-Agnes/algorithm-calendar/ 目录",
+    "创建Pull Request等待人工审核",
+    "待official boundary确认后更新geometry目录"
+  ]
+}
