@@ -12,6 +12,54 @@
    "status": "known_official_context",
    "statement": "Upper-level planning context adopted: 海淀分区规划（2017-2035）、海淀区详细规划街区指引（2021）、北京AI原点社区官方定位（2026）作为规划语境与指标依据；具体街区的法定控规图则指标（容积率/高度/退线）仍待官方图则确认。",
    "impact": "生活圈/三大设施/原点社区定位可引用官方语境；管控类指标保持 pending 直至街区控规图则提供。"
+  },
+  {
+   "id": "A-FIELD-EVIDENCE-001",
+   "status": "professional_team_todo",
+   "statement": "现场踏勘、居民/商户/高校师生/无障碍使用者访谈、昼夜使用观察等专业团队校准，需经相关部门行政审批（海淀区相关街道、文保单位、市政管线权属等）与学术伦理审查（涉及个人信息采集），AI 智能体无法以个人方式获得。**已列为专业团队/政府/学术协作方待办**；本方案不就此主张已具备现场证据，但明确未现场部分仅作设计启发使用",
+   "impact": "评审/打分中需以'需专业团队补充'标注；本方案不把'无现场证据'等同于'无现场实情'，而是用公开可复算的几何与设施分布（包内 GeoJSON 复算）、公开遥感与案例机制启发作非访谈型佐证（不引入第三方 POI 数据）",
+   "field_evidence_pending_items": [
+    "重点区现状踏勘照片（清华西门城中村/大钟寺站 4 象限/五道口青年人流）",
+    "弱势群体与小商贩小业主访谈（防挤出依据）",
+    "无障碍专业审查（坡度、盲道、信号灯语音）",
+    "文保单位现场踏勘（觉生寺建控地带与设计区边界 3m 实际关系）",
+    "夜间使用与公共安全观察"
+   ],
+   "non_interview_proxy_used": [
+    "设施点位密度（几何复算，非第三方 POI）",
+    "地铁 800/1200m 覆盖",
+    "夜间灯光遥感(备选)",
+    "百度热力(备选)",
+    "知乎/小红书公众叙事(辅助)"
+   ]
+  },
+  {
+   "id": "A-MULTIMODAL-ORIGIN",
+   "status": "agent_self_designed_artifacts",
+   "statement": "本方案全部多模态设计图（02 总体结构图、04 场景矩阵、01 VI、05—07 组件/符号/荣誉体系、08 离线交互沙盒等）与所有正文、几何、代码、指标，均由 EvidenceRail Agent（ltf0109）及其空间分析子智能体（subagent）自主设计完成，使用本智能体自写的 Python/SVG 渲染脚本与 HTML 生成，**未使用任何第三方生成式 AI（如 Gemini）生成图像或文本**。不存在任何第三方生成式 AI 生成、且权属未清的资产。图中叙述性设计要素（场景卡命名、空间形式、运营治理机制、EBIP 指标交付）均来自本方案 EBIP 方法论与 12 场景设计；精确数字来源见 metrics.json 注释（重点区 POI 类指标已按 v16 改为 status=unknown 缺口，recovery 见 sources.json AMAP-TIANDITU-DERIVED-DATA-REMOVED）；未列入 metrics 的设计建议值为 design_target（待专业团队核验）",
+   "impact": "多模态图作为设计可视化与跨学科沟通工具，由本智能体自主绘制，不替代规划图纸；设计建议值与已知值的边界在图中明确标注。资产权利状态（按 categories 逐项披露，非全面清权主张）：本包自有内容（叙事/图面/几何/指标/代码/品牌）为 EvidenceRail Agent (ltf0109) 原创；第三方字体/数据/底图/协议按其各自条款与来源稳定性列入 sources.json COPYRIGHT-REVIEW-NOTE 逐项声明；usable_for_formal=no 条目仅作背景/机制启发参考，不构成正式主张依据。",
+   "artifacts": [
+    "01 VI 视觉识别总图（自主设计 Logo/几何规范/色卡）",
+    "02 总体空间结构图（assets/figures/structure-overview.png，自主渲染）",
+    "03 AI 创新生态图谱（assets/figures/ecosystem-map.png，几何可复算示意）",
+    "04 场景-空间-运营协同矩阵图（assets/figures/scenario-matrix.png，自主渲染）",
+    "05 三朝圣地标与贡献者荣誉展示体系（附录图）",
+    "06 空间设计组件库（附录图）",
+    "07 导视与符号系统（附录图）",
+    "08 离线多模态交互沙盒（report/proposal.html#interactive-sandbox，自主生成）"
+   ]
+  },
+  {
+   "id": "EBIP-AI-NATIVE-001",
+   "status": "design_framework",
+   "statement": "12 场景的 AI 运行机制（证据分级 + 反事实检验 + 自检闭环 + 失败模式）按 EBIP 方法论定义；这是 AI 原生场景设计（charter.4 响应）而非'传统+AI 标签'。每个机制可在运营合同与审批中具体落地。",
+   "impact": "场景卡从'概念标签'升级为'可审计运行机制'，回应评审'场景未充分转化为街段/站点/建筑界面设计决策'与'scenario tables not giving operation/data/role/exit'两条"
+  },
+  {
+   "id": "A-AGENT-BOUNDARY-DETAIL",
+   "status": "boundary_declaration",
+   "statement": "Key-area detailed design (internal blocks/interfaces/existing-vs-proposed/project boundaries/walking-break points/retain-renovate-demolish/phasing) exceeds current agent capability. AI agent does NOT participate in any decision involving displacement risk (residents relocation, ownership restructuring, compensation). Final design decisions must be made by humans (local government + community + professional teams + property owners + affected residents) under administrative approval and social assessment procedures.",
+   "impact": "These five items are marked design_target (to be confirmed on site by humans); not formal implementation claims. The 'retain-first' methodological principle is provided as orientation only."
   }
  ]
 }
