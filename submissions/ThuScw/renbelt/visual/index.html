@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>百年京张AI创新带 · 概念方案总览（离线版）</title>
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23c8161f'/><rect x='6' y='6' width='4' height='4' fill='%23f4edda'/></svg>">
+<style>
+/* ================= tokens ================= */
+:root{
+  --red:#c8161f; --red-deep:#8e0e16;
+  --ink:#1b1712; --paper:#f4edda; --paper-2:#ece1c6; --cream:#fbf6e8;
+  --gold:#e0a32e; --gold-deep:#b08a3e; --green:#3f7d4e;
+  --bd:2px solid var(--ink);
+  --mono:ui-monospace,"SF Mono","Cascadia Mono",Consolas,"Courier New",monospace;
+  --sans:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC","Hiragino Sans GB",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);color:var(--ink);background:var(--paper);
+  background-image:linear-gradient(rgba(27,23,18,.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(27,23,18,.05) 1px,transparent 1px);
+  background-size:28px 28px;line-height:1.6;
+}
+section[id],header[id]{scroll-margin-top:56px}
+a{color:inherit}
+::selection{background:var(--red);color:#fff}
+
+/* ================= top line / ticker ================= */
+#pbar{position:fixed;top:0;left:0;height:4px;width:0;background:var(--red);z-index:120}
+.ticker{background:var(--ink);color:var(--paper);overflow:hidden;border-bottom:3px solid var(--red)}
+.ticker-track{display:flex;width:max-content;animation:tick 38s linear infinite}
+.ticker span{padding:7px 0 7px 26px;font-size:12px;letter-spacing:3px;white-space:nowrap}
+.ticker b{color:var(--gold)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ================= rail nav ================= */
+.rail{position:fixed;left:0;top:0;bottom:0;width:88px;background:var(--ink);color:var(--paper);
+  z-index:110;display:flex;flex-direction:column;align-items:center;padding:14px 0;overflow:auto;border-right:3px solid var(--red)}
+.rail-star{width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--red);margin-bottom:14px}
+.rail-star svg{width:26px;height:26px;fill:#fff}
+.rail nav{display:flex;flex-direction:column;gap:6px;width:100%}
+.rail a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 4px;text-decoration:none;border-left:4px solid transparent}
+.rail a b{font-family:var(--mono);font-size:13px;color:var(--gold)}
+.rail a span{writing-mode:vertical-rl;font-size:11px;letter-spacing:3px;opacity:.85}
+.rail a:hover{background:rgba(255,255,255,.08)}
+.rail a.on{border-left-color:var(--red);background:rgba(200,22,31,.18)}
+.rail a.on b{color:#fff}
+.rail-foot{margin-top:auto;writing-mode:vertical-rl;font-size:10px;letter-spacing:4px;color:var(--gold);padding-top:14px}
+main{margin-left:88px}
+
+/* ================= layout ================= */
+.wrap{max-width:1200px;margin:0 auto;padding:0 30px}
+section{padding:58px 0 6px}
+.divider{height:14px;background:repeating-linear-gradient(-45deg,var(--ink) 0 10px,var(--red) 10px 20px,var(--gold) 20px 24px)}
+.skip{position:absolute;left:-999px;top:0;background:var(--red);color:#fff;padding:8px 14px;z-index:200}
+.skip:focus{left:8px;top:8px}
+
+/* ================= masthead ================= */
+.masthead{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;padding:54px 0 0}
+.beam{position:absolute;top:-160px;width:460px;height:1100px;transform:rotate(24deg);pointer-events:none}
+.beam-red{right:-120px;background:var(--red)}
+.beam-gold{right:210px;background:var(--gold);width:26px}
+.beam-line{right:260px;background:transparent;border-left:2px dashed rgba(244,237,218,.5);width:0}
+.mast-grid{display:flex;gap:40px;align-items:flex-end;justify-content:space-between;position:relative;z-index:2;padding-bottom:40px}
+.eyebrow{color:var(--gold);font-size:13px;letter-spacing:4px;font-weight:700;margin-bottom:14px}
+.masthead h1{font-size:clamp(40px,7vw,86px);line-height:1.06;font-weight:900;letter-spacing:2px}
+.masthead h1 .ai{display:inline-block;background:var(--red);color:#fff;padding:0 .18em;transform:skewX(-8deg);box-shadow:5px 5px 0 rgba(224,163,46,.9)}
+.mast-sub{margin-top:14px;font-size:15px;letter-spacing:2px;color:rgba(244,237,218,.85)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip-lite{border:1.5px solid rgba(244,237,218,.7);font-size:11px;letter-spacing:2px;padding:4px 10px;font-family:var(--mono)}
+.badge{width:190px;height:190px;flex:none}
+.badge .ring{animation:spin 40s linear infinite;transform-origin:100px 100px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.prov{position:relative;z-index:2;background:var(--gold);color:var(--ink);font-size:13px;font-weight:600;
+  padding:10px 30px;border-top:3px solid var(--ink);letter-spacing:.5px}
+.banner{background:var(--red);color:#fff;text-align:center;font-weight:900;letter-spacing:6px;
+  font-size:clamp(16px,2.6vw,26px);padding:14px 20px;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);position:relative;z-index:2}
+
+/* ================= section head ================= */
+.sec-head{display:flex;align-items:stretch;border:var(--bd);background:var(--cream);box-shadow:6px 6px 0 rgba(27,23,18,.85);margin-bottom:28px}
+.sec-no{background:var(--red);color:#fff;font-family:var(--mono);font-weight:900;font-size:30px;
+  display:flex;align-items:center;justify-content:center;min-width:92px;padding:12px 16px;border-right:var(--bd)}
+.sec-tt{padding:12px 20px;flex:1}
+.sec-tt .en{font-size:10px;letter-spacing:4px;color:var(--red);font-weight:700;text-transform:uppercase;font-family:var(--mono)}
+.sec-tt h2{font-size:26px;letter-spacing:3px;line-height:1.2}
+.sec-meta{display:flex;align-items:center;padding:0 20px;font-size:12px;color:#6a5f4c;border-left:2px dashed rgba(27,23,18,.35);font-family:var(--mono)}
+
+/* ================= reveal ================= */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+
+/* ================= scope + manifesto ================= */
+.scope{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:26px}
+.scope-card{border:var(--bd);background:var(--cream);padding:18px 20px;position:relative;box-shadow:6px 6px 0 rgba(27,23,18,.85)}
+.scope-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:8px;background:var(--ink)}
+.scope-card.l1::before{background:var(--red)}
+.scope-card.l2::before{background:var(--gold)}
+.scope-card.l3::before{background:var(--green)}
+.scope-card .lv{font-size:12px;letter-spacing:3px;font-weight:700;color:#6a5f4c}
+.scope-card .num{font-family:var(--mono);font-size:40px;font-weight:900;line-height:1.15}
+.scope-card .num small{font-size:16px;font-weight:700}
+.scope-card .cap{font-size:14px;font-weight:700;letter-spacing:1px}
+.manif{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mf{border:var(--bd);background:var(--cream);padding:18px;position:relative;box-shadow:6px 6px 0 rgba(27,23,18,.85)}
+.mf .glyph{width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;background:var(--ink);margin-bottom:12px}
+.mf.red .glyph{background:var(--red)} .mf.gold .glyph{background:var(--gold-deep)} .mf.green .glyph{background:var(--green)}
+.mf h3{font-size:17px;letter-spacing:2px;margin-bottom:6px}
+.mf p{font-size:13px;color:#4c4436}
+.mf::after{content:"";position:absolute;right:-2px;top:-2px;border:11px solid var(--red);border-left-color:transparent;border-bottom-color:transparent}
+
+/* ================= stats ================= */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.stat{border:var(--bd);background:var(--cream);box-shadow:6px 6px 0 rgba(27,23,18,.85);position:relative;overflow:hidden}
+.stat .lab{background:var(--ink);color:var(--paper);font-size:12px;letter-spacing:2px;padding:6px 12px;display:flex;justify-content:space-between}
+.stat .lab i{color:var(--gold);font-style:normal}
+.stat .val{font-family:var(--mono);font-size:38px;font-weight:900;padding:14px 14px 2px;line-height:1.1}
+.stat .val small{font-size:16px}
+.stat .note{font-size:12px;color:#6a5f4c;padding:2px 14px 14px}
+.stat.hot{background:var(--red);color:#fff}
+.stat.hot .lab{background:var(--red-deep)}
+.stat.hot .lab i{color:var(--gold)}
+.stat.hot .note{color:rgba(255,255,255,.85)}
+
+/* ================= map ================= */
+.map-grid{display:grid;grid-template-columns:minmax(0,470px) 1fr;gap:26px;align-items:start}
+.map-panel{border:var(--bd);background:#f8f2e2;box-shadow:6px 6px 0 rgba(27,23,18,.85);padding:14px}
+.map-panel svg{width:100%;height:auto;display:block}
+.map-side{display:flex;flex-direction:column;gap:16px}
+.panel-box{border:var(--bd);background:var(--cream);box-shadow:6px 6px 0 rgba(27,23,18,.85)}
+.panel-box h3{background:var(--ink);color:var(--paper);font-size:14px;letter-spacing:3px;padding:8px 14px}
+.panel-box .bd{padding:14px}
+.layers{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.layers label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--ink);padding:7px 10px;font-size:13px;cursor:pointer;background:#fff8;user-select:none}
+.layers label:hover{background:var(--paper-2)}
+.layers input{appearance:none;width:16px;height:16px;border:2px solid var(--ink);background:#fff;cursor:pointer;flex:none;position:relative}
+.layers input:checked{background:var(--red)}
+.layers input:checked::after{content:"";position:absolute;inset:2px;background:
+  linear-gradient(45deg,transparent 44%,#fff 44%,#fff 56%,transparent 56%),
+  linear-gradient(-45deg,transparent 44%,#fff 44%,#fff 56%,transparent 56%)}
+.legend{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:13px}
+.legend .sw{display:inline-block;width:13px;height:13px;border:1.5px solid var(--ink);margin-right:7px;vertical-align:-2px}
+.layer-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:20px}
+.lchip{border:var(--bd);background:var(--cream);padding:10px 12px;font-size:12px}
+.lchip b{display:block;font-size:13px;letter-spacing:1px;margin-bottom:2px}
+.lchip code{font-family:var(--mono);font-size:11px;color:var(--red)}
+.fig-note{font-size:12px;color:#6a5f4c;margin-top:10px}
+
+/* ================= tables ================= */
+table{width:100%;border-collapse:collapse;background:var(--cream);border:var(--bd);box-shadow:6px 6px 0 rgba(27,23,18,.85)}
+th{background:var(--ink);color:var(--paper);padding:10px 12px;font-size:13px;letter-spacing:2px;text-align:left}
+td{padding:10px 12px;border-top:1px solid rgba(27,23,18,.25);font-size:14px;vertical-align:top}
+tbody tr:nth-child(even){background:rgba(27,23,18,.045)}
+.num{font-family:var(--mono);white-space:nowrap}
+td.right,th.right{text-align:right}
+.lu-name b{letter-spacing:1px}
+.lu-code{font-family:var(--mono);font-size:11px;color:#6a5f4c;display:block}
+.bar{height:20px;border:1.5px solid var(--ink);background:repeating-linear-gradient(45deg,rgba(27,23,18,.07) 0 6px,transparent 6px 12px);position:relative;min-width:90px}
+.bar i{position:absolute;top:0;bottom:0;left:0;border-right:1.5px solid var(--ink)}
+
+/* ================= phasing ================= */
+.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.phase{border:var(--bd);background:var(--cream);box-shadow:6px 6px 0 rgba(27,23,18,.85);position:relative;padding:20px;clip-path:polygon(0 0,100% 0,calc(100% - 20px) 100%,0 100%)}
+.phase .ph-tag{position:absolute;top:0;right:26px;background:var(--ink);color:var(--gold);font-family:var(--mono);font-size:11px;letter-spacing:2px;padding:3px 8px}
+.phase h3{font-size:18px;letter-spacing:2px}
+.phase .big{font-family:var(--mono);font-weight:900;font-size:46px;line-height:1.2}
+.phase .big small{font-size:18px}
+.phase .sub{font-size:12px;color:#6a5f4c;margin-bottom:10px}
+.phase.p1{border-top:10px solid var(--red)} .phase.p1 .big{color:var(--red)}
+.phase.p2{border-top:10px solid #dd8a5c} .phase.p2 .big{color:#b2622f}
+.phase.p3{border-top:10px solid #4b7aae} .phase.p3 .big{color:#38618f}
+
+/* ================= key areas ================= */
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.key{border:var(--bd);background:var(--cream);box-shadow:6px 6px 0 rgba(27,23,18,.85);padding:0;overflow:hidden}
+.key .k-top{display:flex;align-items:center;gap:12px;background:var(--ink);color:var(--paper);padding:12px 16px}
+.key .k-top .idx{font-family:var(--mono);font-size:26px;font-weight:900;color:var(--gold)}
+.key .k-top h3{font-size:16px;letter-spacing:1px;line-height:1.3}
+.key .k-top code{display:block;font-family:var(--mono);font-size:10px;color:rgba(244,237,218,.7)}
+.key .k-bd{padding:16px}
+.key .area{font-family:var(--mono);font-size:34px;font-weight:900;color:var(--red)}
+.key .area small{font-size:15px;color:var(--ink)}
+.key .kv{font-size:12px;color:#6a5f4c;margin:4px 0 10px}
+.kbar{height:14px;border:1.5px solid var(--ink);background:#fff;position:relative}
+.kbar i{position:absolute;inset:0 auto 0 0;background:var(--gold);border-right:1.5px solid var(--ink)}
+.key .share{font-size:11px;color:#6a5f4c;margin-top:5px;font-family:var(--mono)}
+
+/* ================= tasks ================= */
+.cov-summary{border:var(--bd);background:var(--ink);color:var(--paper);padding:14px 18px;display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.cov-summary .n{font-family:var(--mono);font-size:30px;font-weight:900;color:var(--gold)}
+.cov-bar{flex:1;min-width:200px;height:16px;border:2px solid var(--paper);position:relative}
+.cov-bar i{position:absolute;inset:0;background:var(--red)}
+.task-group{margin-bottom:22px}
+.tg-head{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:2px;margin-bottom:10px}
+.tg-head b{background:var(--red);color:#fff;width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono)}
+.tg-head span{font-size:12px;color:#6a5f4c;font-weight:400;font-family:var(--mono)}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.task{border:var(--bd);background:var(--cream);padding:9px 12px;display:flex;gap:9px;align-items:flex-start;font-size:13px}
+.task .tick{color:var(--red);font-weight:900;flex:none}
+.task code{font-family:var(--mono);font-size:11px;background:var(--ink);color:#fff;padding:1px 6px;flex:none;margin-top:1px}
+.task.agent{background:#fdf0e6}
+.task.agent code{background:var(--red)}
+
+/* ================= pills / standards ================= */
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border:2px solid var(--ink);letter-spacing:1px}
+.pill.ok{background:var(--green);color:#fff}
+.pill.gap{background:var(--gold);color:var(--ink)}
+.pill.blk{background:var(--red);color:#fff}
+.std-desc{font-size:13px;color:#4c4436}
+
+/* ================= depth ================= */
+.depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.depth{border:var(--bd);background:var(--cream);padding:10px 12px;display:flex;gap:10px;align-items:flex-start;font-size:13px}
+.depth code{font-family:var(--mono);font-size:10px;color:var(--red);flex:none;margin-top:2px}
+.depth .tick{color:var(--green);font-weight:900}
+
+/* ================= gates ================= */
+.gates{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.gate{border:var(--bd);background:var(--cream);box-shadow:6px 6px 0 rgba(27,23,18,.85);padding:18px;text-align:center;position:relative}
+.gate h3{font-family:var(--mono);font-size:13px;letter-spacing:1px;margin-bottom:4px}
+.gate .g-cn{font-size:12px;color:#6a5f4c;margin-bottom:14px}
+.stamp{display:inline-block;border:4px solid var(--red);color:var(--red);padding:5px 18px;font-weight:900;
+  letter-spacing:8px;transform:rotate(-8deg);font-size:28px;background:rgba(255,255,255,.6)}
+.gate .lvl{margin-top:14px}
+
+/* ================= appendix ================= */
+details{border:var(--bd);background:var(--cream);box-shadow:6px 6px 0 rgba(27,23,18,.85);margin-bottom:24px}
+summary{cursor:pointer;padding:14px 18px;font-weight:900;letter-spacing:2px;display:flex;align-items:center;gap:10px;user-select:none}
+summary::before{content:"";width:14px;height:14px;background:var(--red);flex:none}
+details[open] summary{border-bottom:var(--bd);background:var(--paper-2)}
+details .dt{padding:16px}
+.apx{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.apx-box{border:var(--bd);background:var(--cream);box-shadow:6px 6px 0 rgba(27,23,18,.85)}
+.apx-box h3{background:var(--ink);color:var(--paper);padding:8px 14px;font-size:14px;letter-spacing:3px}
+.apx-box ol{list-style:none;padding:14px;counter-reset:n}
+.apx-box li{counter-increment:n;padding:8px 0 8px 40px;border-bottom:1px dashed rgba(27,23,18,.3);font-size:13px;position:relative}
+.apx-box li:last-child{border-bottom:none}
+.apx-box li::before{content:counter(n,decimal-leading-zero);position:absolute;left:0;top:8px;font-family:var(--mono);
+  font-size:11px;background:var(--red);color:#fff;padding:1px 5px}
+.apx-box.assume li::before{background:var(--gold-deep);color:var(--ink)}
+
+/* ================= footer ================= */
+footer{background:var(--ink);color:var(--paper);margin-top:70px;border-top:6px solid var(--red)}
+.foot-grid{display:flex;justify-content:space-between;gap:30px;padding:36px 0;flex-wrap:wrap}
+.foot-star{color:var(--red);font-size:20px;letter-spacing:8px}
+footer .fn{font-size:13px;color:rgba(244,237,218,.85);max-width:760px}
+footer .note{margin-top:10px;font-size:12px;color:var(--gold);letter-spacing:1px}
+.off-badge{border:2px solid var(--gold);color:var(--gold);font-family:var(--mono);font-size:12px;letter-spacing:3px;
+  padding:10px 16px;text-align:center;line-height:1.8;flex:none}
+
+/* ================= misc ================= */
+#toTop{position:fixed;right:22px;bottom:26px;width:46px;height:46px;border:var(--bd);background:var(--red);color:#fff;
+  font-size:18px;cursor:pointer;display:none;z-index:115;box-shadow:4px 4px 0 var(--ink)}
+#toTop:hover{background:var(--red-deep)}
+noscript .ns{display:block;background:var(--gold);border:2px solid var(--ink);padding:10px 16px;margin:14px 30px;font-size:13px}
+
+/* ================= responsive ================= */
+@media(max-width:1080px){
+  .rail{display:none} main{margin-left:0}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .manif{grid-template-columns:repeat(2,1fr)}
+  .map-grid{grid-template-columns:1fr}
+  .gates{grid-template-columns:repeat(2,1fr)}
+  .depth-grid{grid-template-columns:repeat(2,1fr)}
+  .apx{grid-template-columns:1fr}
+  .layer-strip{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  .scope,.phases,.keys,.stats,.manif,.gates,.depth-grid{grid-template-columns:1fr}
+  .sec-meta{display:none}
+  .bar{display:none}
+  .layer-strip{grid-template-columns:repeat(2,1fr)}
+  .mast-grid{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
+@media print{
+  .rail,.ticker,#toTop,#pbar{display:none!important}
+  main{margin-left:0} body{background:#fff}
+  .rv{opacity:1!important;transform:none!important}
+  .stamp{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#s00">跳到正文</a>
+<div id="pbar" aria-hidden="true"></div>
+
+
+<!-- ============ rail ============ -->
+<aside class="rail" aria-label="目录导航">
+  <div class="rail-star" aria-hidden="true">
+    <svg viewBox="0 0 20 20"><path d="M10 0l2.9 6.9 7.1.7-5.3 4.8 1.5 7.2L10 15.8 3.8 19.6l1.5-7.2L0 7.6l7.1-.7z"/></svg>
+  </div>
+  <nav>
+    <a href="#s00"><b>00</b><span>纲领</span></a>
+    <a href="#s01"><b>01</b><span>指标</span></a>
+    <a href="#s02"><b>02</b><span>结构</span></a>
+    <a href="#s03"><b>03</b><span>用地</span></a>
+    <a href="#s04"><b>04</b><span>分期</span></a>
+    <a href="#s05"><b>05</b><span>重点</span></a>
+    <a href="#s06"><b>06</b><span>任务</span></a>
+    <a href="#s07"><b>07</b><span>标准</span></a>
+    <a href="#s08"><b>08</b><span>深度</span></a>
+    <a href="#s09"><b>09</b><span>自检</span></a>
+    <a href="#s10"><b>10</b><span>附录</span></a>
+  </nav>
+  <div class="rail-foot">1909 — 2026</div>
+</aside>
+
+<main>
+<!-- ============ masthead ============ -->
+<header class="masthead" id="top">
+  <div class="beam beam-red" aria-hidden="true"></div>
+  <div class="beam beam-gold" aria-hidden="true"></div>
+  <div class="beam beam-line" aria-hidden="true"></div>
+  <div class="wrap mast-grid">
+    <div>
+      <p class="eyebrow">★ 城市设计国际方案征集 · 全球智能体开源共创</p>
+      <h1>百年京张<br><span class="ai">AI</span> 创新带</h1>
+      <p class="mast-sub">概念方案离线总览 —— 左笔策源 / 中脊人民 / 右笔应用</p>
+      <div class="chips">
+        <span class="chip-lite">OFFLINE · 零外链</span>
+        <span class="chip-lite">EPSG:4548 复算</span>
+        <span class="chip-lite">四门禁 PASS</span>
+        <span class="chip-lite">生成于 2026-08-15</span>
+      </div>
+    </div>
+    <svg class="badge" viewBox="0 0 200 200" role="img" aria-label="1909至2026徽记">
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#f4edda" stroke-width="2"/>
+      <circle class="ring" cx="100" cy="100" r="86" fill="none" stroke="#e0a32e" stroke-width="2" stroke-dasharray="5 7"/>
+      <circle cx="100" cy="100" r="72" fill="none" stroke="#c8161f" stroke-width="8"/>
+      <path d="M100 58l10.9 25.9 26.7 2.6-20 18 5.7 27.1L100 117.4 76.7 131.6l5.7-27.1-20-18 26.7-2.6z" fill="#e0a32e"/>
+      <text x="100" y="34" text-anchor="middle" fill="#f4edda" font-size="16" font-family="monospace" letter-spacing="4">1909</text>
+      <text x="100" y="178" text-anchor="middle" fill="#f4edda" font-size="16" font-family="monospace" letter-spacing="4">2026</text>
+    </svg>
+  </div>
+  <div class="prov wrap">⚠ 本页为概念方案离线静态总览：provisional 几何仅用于生成、自检与可视化，指标置信 mixed_provisional_and_conceptual，不构成官方规划结论或面积主张。</div>
+  <div class="banner">左 笔 策 源 · 中 脊 人 民 · 右 笔 应 用</div>
+</header>
+<noscript><span class="ns">当前未启用脚本交互：图层开关与动效不可用，但全部内容完整可读。</span></noscript>
+
+<!-- ============ 00 纲领 ============ -->
+<section id="s00">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">00</div>
+      <div class="sec-tt"><span class="en">Programme / Scope</span><h2>纲领 · 三层范围</h2></div>
+      <div class="sec-meta">任务书摘录 · provisional</div>
+    </div>
+    <div class="scope">
+      <div class="scope-card l1 rv"><div class="lv">LEVEL 1 · 统筹研究范围</div><div class="num">43.6<small> km²</small></div><div class="cap">AI创新生态体系 · 未来城市形态统筹</div></div>
+      <div class="scope-card l2 rv"><div class="lv">LEVEL 2 · 总体设计范围</div><div class="num">11.4<small> km²</small></div><div class="cap">产业 / 更新 / 交通 / 绿带 / 风貌总体设计</div></div>
+      <div class="scope-card l3 rv"><div class="lv">LEVEL 3 · 重点区域范围</div><div class="num">368.4<small> 公顷</small></div><div class="cap">三处重点区域详细设计（必选项）</div></div>
+    </div>
+    <div class="manif">
+      <div class="mf red rv"><div class="glyph">丿</div><h3>左笔 · 策源</h3><p>以原始创新起笔：实验室、人才与资本在此汇入城市。</p></div>
+      <div class="mf gold rv"><div class="glyph">丨</div><h3>中脊 · 人民</h3><p>百年京张脊梁贯穿南北，遗址公园绿带串联人民日常。</p></div>
+      <div class="mf green rv"><div class="glyph">乀</div><h3>右笔 · 应用</h3><p>以场景应用收笔：让智能技术在街区中落地生长。</p></div>
+      <div class="mf rv"><div class="glyph">★</div><h3>交汇 · AI原点</h3><p>两笔交汇点燃一带精神坐标——北京AI原点社区。</p></div>
+    </div>
+    <div class="layer-strip">
+      <div class="lchip rv"><b>任务书关键词</b><code>十条共创原则</code></div>
+      <div class="lchip rv"><b>总体定位</b><code>三大定位</code></div>
+      <div class="lchip rv"><b>功能体系</b><code>五大功能</code></div>
+      <div class="lchip rv"><b>空间格局</b><code>三区两翼</code></div>
+      <div class="lchip rv"><b>智能体任务</b><code>六项 agent</code></div>
+      <div class="lchip rv"><b>成果约束</b><code>统一边界条款</code></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============ 01 指标 ============ -->
+<section id="s01">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">01</div>
+      <div class="sec-tt"><span class="en">Core Metrics</span><h2>核心指标</h2></div>
+      <div class="sec-meta">metrics.json · 内联一致</div>
+    </div>
+    <div class="stats">
+      <div class="stat hot rv"><div class="lab">场地面积 <i>SITE</i></div><div class="val" data-metric="site_area_sqm" data-value="11412825.4">1,141.3<small> 公顷</small></div><div class="note">EPSG:4548 复算 · provisional · 与官方公告差异 &lt;0.5%</div></div>
+      <div class="stat rv"><div class="lab">绿地率 <i>GREEN</i></div><div class="val" data-metric="green_ratio" data-value="0.4114">41.14<small>%</small></div><div class="note">469.5 万 m² · 含京张遗址公园活力带</div></div>
+      <div class="stat rv"><div class="lab">道路用地率 <i>ROAD</i></div><div class="val">20.41<small>%</small></div><div class="note">道路骨架与慢行串联 · 232.9 万 m²</div></div>
+      <div class="stat rv"><div class="lab">公共空间率 <i>PUBLIC</i></div><div class="val" data-metric="public_space_ratio" data-value="0.0216">2.16<small>%</small></div><div class="note">广场 / 活力公共空间 · 24.7 万 m²</div></div>
+      <div class="stat rv"><div class="lab">建筑密度 <i>DENSITY</i></div><div class="val">23.12<small>%</small></div><div class="note">概念建筑基底（示意，非法定）· FAR 待确认</div></div>
+      <div class="stat hot rv"><div class="lab">重点区域 <i>KEY AREA</i></div><div class="val">3<small> 处 · 369.3 公顷</small></div><div class="note">KEY_AREA-001 / 002 / 003</div></div>
+      <div class="stat rv"><div class="lab">AI 场景节点 <i>SCENARIO</i></div><div class="val">10<small> 张场景卡</small></div><div class="note">compliance_matrix · 判据六问筛选</div></div>
+      <div class="stat rv"><div class="lab">更新项目 / 人才 <i>RENEWAL</i></div><div class="val">5<small> 项 · 200.58 万人</small></div><div class="note">更新项目清单 · 区域人才总量（公开报道口径）</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 结构 ============ -->
+<section id="s02">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">02</div>
+      <div class="sec-tt"><span class="en">Spatial Structure</span><h2>人字带空间结构</h2></div>
+      <div class="sec-meta">总览地图 · 风格化示意 · 非法定图则</div>
+    </div>
+    <div class="map-grid">
+      <figure class="map-panel rv">
+        <svg viewBox="0 0 460 840" role="img" aria-label="人字带空间结构示意图：左笔策源、中脊人民、右笔应用，三处重点区域与京张遗址公园绿带">
+          <defs>
+            <clipPath id="corrClip"><path d="M170,46 L330,46 L318,210 L338,420 L330,806 L150,806 L162,560 L140,330 Z"/></clipPath>
+          </defs>
+          <path d="M170,46 L330,46 L318,210 L338,420 L330,806 L150,806 L162,560 L140,330 Z" fill="#f1e9d2" stroke="#1b1712" stroke-width="2.5"/>
+          <g clip-path="url(#corrClip)">
+            <g id="L-lu">
+              <rect x="138" y="46" width="58" height="762" fill="#5f9d6e"/>
+              <rect x="200" y="46" width="12" height="762" fill="#8f9aa6"/>
+              <rect x="246" y="46" width="12" height="762" fill="#8f9aa6"/>
+              <rect x="214" y="46" width="30" height="682" fill="#f7f1e0"/>
+              <rect x="214" y="728" width="30" height="80" fill="#a9d3b2"/>
+              <rect x="260" y="46"  width="82" height="150" fill="#6f7fd1"/>
+              <rect x="260" y="198" width="82" height="118" fill="#c9605f"/>
+              <rect x="260" y="318" width="82" height="112" fill="#e2bd6e"/>
+              <rect x="260" y="432" width="82" height="136" fill="#4b7aae"/>
+              <rect x="260" y="570" width="82" height="118" fill="#c9605f"/>
+              <rect x="260" y="690" width="82" height="118" fill="#6f7fd1"/>
+            </g>
+          </g>
+          <g id="L-axes" stroke="#b08a3e" stroke-width="1.6" stroke-dasharray="7 5" opacity=".9">
+            <line x1="196" y1="38" x2="196" y2="814"/>
+            <line x1="229" y1="38" x2="229" y2="814"/>
+            <line x1="262" y1="38" x2="262" y2="814"/>
+          </g>
+          <g id="L-ren">
+            <line x1="229" y1="170" x2="168" y2="798" stroke="#c8161f" stroke-width="9"/>
+            <line x1="229" y1="170" x2="312" y2="798" stroke="#c8161f" stroke-width="9"/>
+            <path d="M229,150 l6.5,15.4 15.9,1.6 -11.9,10.7 3.4,16.1 -13.9,-8.4 -13.9,8.4 3.4,-16.1 -11.9,-10.7 15.9,-1.6 z" fill="#e0a32e" stroke="#1b1712" stroke-width="1.5"/>
+          </g>
+          <g id="L-key">
+            <rect x="176" y="60" width="148" height="132" fill="rgba(224,163,46,.10)" stroke="#b08a3e" stroke-width="3"/>
+            <rect x="170" y="336" width="158" height="118" fill="rgba(224,163,46,.10)" stroke="#b08a3e" stroke-width="3"/>
+            <rect x="162" y="630" width="164" height="112" fill="rgba(224,163,46,.10)" stroke="#b08a3e" stroke-width="3"/>
+            <circle cx="190" cy="74" r="4" fill="#c8161f"/><circle cx="184" cy="350" r="4" fill="#c8161f"/><circle cx="176" cy="644" r="4" fill="#c8161f"/>
+          </g>
+          <g id="L-ai" fill="#ffffff" stroke="#c8161f" stroke-width="2">
+            <circle cx="206" cy="120" r="4"/><circle cx="252" cy="150" r="4"/><circle cx="229" cy="246" r="4"/>
+            <circle cx="206" cy="360" r="4"/><circle cx="252" cy="392" r="4"/><circle cx="229" cy="472" r="4"/>
+            <circle cx="206" cy="560" r="4"/><circle cx="252" cy="600" r="4"/><circle cx="229" cy="682" r="4"/><circle cx="206" cy="742" r="4"/>
+          </g>
+          <g id="L-txt" font-family="'PingFang SC','Microsoft YaHei',sans-serif">
+            <text x="168" y="430" transform="rotate(-90 168 430)" text-anchor="middle" fill="#204a2c" font-size="12" letter-spacing="3">京张遗址公园绿带</text>
+            <text x="240" y="262" transform="rotate(-90 240 262)" text-anchor="middle" fill="#8e0e16" font-size="11" letter-spacing="3">中脊 · 人民脊梁</text>
+            <text x="16" y="562" fill="#8e0e16" font-size="13" font-weight="700">左笔 · 策源</text>
+            <line x1="96" y1="566" x2="190" y2="566" stroke="#8e0e16" stroke-width="1.4" stroke-dasharray="4 3"/>
+            <text x="354" y="562" fill="#8e0e16" font-size="13" font-weight="700">右笔 · 应用</text>
+            <line x1="350" y1="566" x2="284" y2="566" stroke="#8e0e16" stroke-width="1.4" stroke-dasharray="4 3"/>
+            <text x="248" y="140" fill="#1b1712" font-size="12" font-weight="700">AI 原点 · 交汇</text>
+            <line x1="246" y1="146" x2="236" y2="162" stroke="#1b1712" stroke-width="1.2"/>
+            <text x="150" y="30" fill="#1b1712" font-size="11" letter-spacing="2">Ⅰ 众智园</text>
+            <text x="146" y="322" fill="#1b1712" font-size="11" letter-spacing="2">Ⅱ AI原点社区</text>
+            <text x="140" y="618" fill="#1b1712" font-size="11" letter-spacing="2">Ⅲ 大钟寺</text>
+            <path d="M400,86 l8,-22 8,22 z" fill="#1b1712"/>
+            <text x="408" y="104" text-anchor="middle" fill="#1b1712" font-size="12" font-weight="700">N</text>
+            <line x1="354" y1="800" x2="434" y2="800" stroke="#1b1712" stroke-width="2"/>
+            <line x1="354" y1="795" x2="354" y2="805" stroke="#1b1712" stroke-width="2"/>
+            <line x1="434" y1="795" x2="434" y2="805" stroke="#1b1712" stroke-width="2"/>
+            <text x="394" y="820" text-anchor="middle" fill="#6a5f4c" font-size="10">示意比例</text>
+          </g>
+        </svg>
+        <figcaption class="fig-note">图 02-1 · 人字带空间结构（风格化示意，非法定图则；几何基准为仓库 provisional polygon，EPSG:4548）。</figcaption>
+      </figure>
+      <div class="map-side">
+        <div class="panel-box rv">
+          <h3>专题图层开关</h3>
+          <div class="bd layers">
+            <label><input type="checkbox" data-layer="L-lu" checked> 用地分区</label>
+            <label><input type="checkbox" data-layer="L-axes" checked> 三带轴线</label>
+            <label><input type="checkbox" data-layer="L-ren" checked> 人字结构</label>
+            <label><input type="checkbox" data-layer="L-key" checked> 重点区域</label>
+            <label><input type="checkbox" data-layer="L-ai" checked> AI 场景节点</label>
+            <label><input type="checkbox" data-layer="L-txt" checked> 图面标注</label>
+          </div>
+        </div>
+        <div class="panel-box rv">
+          <h3>用地色标（7 类 · EPSG:4548 复算）</h3>
+          <div class="bd">
+            <ul class="legend">
+              <li><span class="sw" style="background:#5f9d6e"></span>1401 公园绿地</li>
+              <li><span class="sw" style="background:#a9d3b2"></span>1403 广场用地</li>
+              <li><span class="sw" style="background:#c9605f"></span>05 商业服务业</li>
+              <li><span class="sw" style="background:#e2bd6e"></span>0701 城镇住宅</li>
+              <li><span class="sw" style="background:#6f7fd1"></span>0802 科研（创新产业）</li>
+              <li><span class="sw" style="background:#4b7aae"></span>0804 教育科研</li>
+              <li><span class="sw" style="background:#8f9aa6"></span>1207 城镇道路</li>
+              <li><span class="sw" style="background:rgba(224,163,46,.35);border-color:#b08a3e"></span>重点区域框（Ⅰ/Ⅱ/Ⅲ）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="panel-box rv">
+          <h3>图层清单</h3>
+          <div class="bd" style="font-size:13px">
+            <p>① 用地分区 <code>land_use</code> · 7 类用地 · EPSG:4548 复算<br>
+            ② 交通慢行 <code>roads</code> · 道路骨架与慢行串联<br>
+            ③ 蓝绿公共空间 <code>green_space + public_space</code> · 京张遗址公园活力带与蓝绿廊道<br>
+            ④ 建筑 <code>buildings</code> · 概念建筑基底（示意，非法定）<br>
+            ⑤ AI 场景 <code>ai_scenario_node</code> · 10 张场景卡（compliance_matrix）<br>
+            ⑥ 自检状态 <code>self_check</code> · 4 门禁（deterministic / professional / spatial / visual）</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============ 03 用地 ============ -->
+<section id="s03">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">03</div>
+      <div class="sec-tt"><span class="en">Land Use</span><h2>用地纲领</h2></div>
+      <div class="sec-meta">7 类 · 无间隙无重叠 · 共享边界</div>
+    </div>
+    <table class="rv">
+      <thead><tr><th>用地类型</th><th>色标</th><th>强度对比</th><th class="right">面积</th><th class="right">占比</th></tr></thead>
+      <tbody>
+        <tr><td class="lu-name"><b>公园绿地</b><span class="lu-code">1401</span></td><td><span class="sw" style="background:#5f9d6e;display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink)"></span></td><td><div class="bar"><i style="width:100%;background:#5f9d6e"></i></div></td><td class="num right">3,364,712 m²</td><td class="num right">29.48%</td></tr>
+        <tr><td class="lu-name"><b>商业服务业用地</b><span class="lu-code">05</span></td><td><span style="background:#c9605f;display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink)"></span></td><td><div class="bar"><i style="width:80.4%;background:#c9605f"></i></div></td><td class="num right">2,703,704 m²</td><td class="num right">23.69%</td></tr>
+        <tr><td class="lu-name"><b>城镇道路</b><span class="lu-code">1207</span></td><td><span style="background:#8f9aa6;display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink)"></span></td><td><div class="bar"><i style="width:69.2%;background:#8f9aa6"></i></div></td><td class="num right">2,329,347 m²</td><td class="num right">20.41%</td></tr>
+        <tr><td class="lu-name"><b>城镇住宅用地</b><span class="lu-code">0701</span></td><td><span style="background:#e2bd6e;display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink)"></span></td><td><div class="bar"><i style="width:34.4%;background:#e2bd6e"></i></div></td><td class="num right">1,157,218 m²</td><td class="num right">10.14%</td></tr>
+        <tr><td class="lu-name"><b>科研用地（创新产业）</b><span class="lu-code">0802</span></td><td><span style="background:#6f7fd1;display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink)"></span></td><td><div class="bar"><i style="width:33.2%;background:#6f7fd1"></i></div></td><td class="num right">1,116,189 m²</td><td class="num right">9.78%</td></tr>
+        <tr><td class="lu-name"><b>教育科研用地</b><span class="lu-code">0804</span></td><td><span style="background:#4b7aae;display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink)"></span></td><td><div class="bar"><i style="width:18.7%;background:#4b7aae"></i></div></td><td class="num right">627,852 m²</td><td class="num right">5.50%</td></tr>
+        <tr><td class="lu-name"><b>广场用地</b><span class="lu-code">1403</span></td><td><span style="background:#a9d3b2;display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink)"></span></td><td><div class="bar"><i style="width:3.4%;background:#a9d3b2"></i></div></td><td class="num right">113,821 m²</td><td class="num right">1.00%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 04 分期 ============ -->
+<section id="s04">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">04</div>
+      <div class="sec-tt"><span class="en">Phasing</span><h2>分期实施（概念级）</h2></div>
+      <div class="sec-meta">合计 11,412,837.4 m²</div>
+    </div>
+    <div class="phases">
+      <div class="phase p1 rv"><span class="ph-tag">PH-01</span><h3>首期 · 近期实施</h3><div class="big">580.8<small> 公顷</small></div><div class="sub">5,807,877.9 m² · 占总面积 50.9%</div><div class="kbar"><i style="width:50.9%;background:#c8161f"></i></div></div>
+      <div class="phase p2 rv"><span class="ph-tag">PH-02</span><h3>二期 · 中期推进</h3><div class="big">270.9<small> 公顷</small></div><div class="sub">2,709,272.4 m² · 占总面积 23.7%</div><div class="kbar"><i style="width:23.7%;background:#dd8a5c"></i></div></div>
+      <div class="phase p3 rv"><span class="ph-tag">PH-03</span><h3>三期 · 远期留白</h3><div class="big">289.6<small> 公顷</small></div><div class="sub">2,895,687.1 m² · 占总面积 25.4%</div><div class="kbar"><i style="width:25.4%;background:#4b7aae"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 重点区域 ============ -->
+<section id="s05">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">05</div>
+      <div class="sec-tt"><span class="en">Key Areas</span><h2>重点区域详细设计</h2></div>
+      <div class="sec-meta">与官方公告核对差异 &lt;0.5%</div>
+    </div>
+    <div class="keys">
+      <div class="key rv">
+        <div class="k-top"><span class="idx">Ⅰ</span><div><h3>众智园AI自主创新加速区</h3><code>KEY_AREA-001</code></div></div>
+        <div class="k-bd"><div class="area">192.9<small> 公顷</small></div><div class="kv">1,929,201.9 m² · 几何面积（provisional）</div><div class="kbar"><i style="width:52.2%"></i></div><div class="share">占三处重点区域 52.2%</div></div>
+      </div>
+      <div class="key rv">
+        <div class="k-top"><span class="idx">Ⅱ</span><div><h3>北京AI原点社区</h3><code>KEY_AREA-002</code></div></div>
+        <div class="k-bd"><div class="area">104.3<small> 公顷</small></div><div class="kv">1,043,236.9 m² · 几何面积（provisional）</div><div class="kbar"><i style="width:28.2%"></i></div><div class="share">占三处重点区域 28.2%</div></div>
+      </div>
+      <div class="key rv">
+        <div class="k-top"><span class="idx">Ⅲ</span><div><h3>大钟寺AI产业聚集区</h3><code>KEY_AREA-003</code></div></div>
+        <div class="k-bd"><div class="area">72.0<small> 公顷</small></div><div class="kv">720,454.2 m² · 几何面积（provisional）</div><div class="kbar"><i style="width:19.5%"></i></div><div class="share">占三处重点区域 19.5%</div></div>
+      </div>
+    </div>
+    <p class="fig-note">面积不可用于官方面积主张；概念地标（“人”字原点广场、京张“人”字纪念径、中关村创新荣誉廊）为精神锚点，不等于已批准建设。</p>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============ 06 任务覆盖 ============ -->
+<section id="s06">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">06</div>
+      <div class="sec-tt"><span class="en">Compliance Matrix</span><h2>任务覆盖 · 23 项</h2></div>
+      <div class="sec-meta">compliance_matrix</div>
+    </div>
+    <div class="cov-summary rv"><span class="n">23 / 23</span><span>任务书条款与智能体任务全覆盖</span><div class="cov-bar"><i></i></div><span class="pill ok">100% ✔</span></div>
+
+    <div class="task-group rv">
+      <div class="tg-head"><b>A</b>定位目标<span>1.3.x · 3 项</span></div>
+      <div class="task-grid">
+        <div class="task"><span class="tick">✔</span><code>1.3.1</code><span>构建世界级AI创新生态体系</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.3.2</code><span>建设适配AI新质生产力的新型城市形态</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.3.3</code><span>打造全球AI创新人才向往的高品质城区</span></div>
+      </div>
+    </div>
+    <div class="task-group rv">
+      <div class="tg-head"><b>B</b>三层范围<span>1.4.x · 3 项</span></div>
+      <div class="task-grid">
+        <div class="task"><span class="tick">✔</span><code>1.4.1</code><span>统筹研究范围</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.4.2</code><span>总体设计范围</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.4.3</code><span>重点区域范围</span></div>
+      </div>
+    </div>
+    <div class="task-group rv">
+      <div class="tg-head"><b>C</b>设计任务<span>1.5.x · 11 项</span></div>
+      <div class="task-grid">
+        <div class="task"><span class="tick">✔</span><code>1.5.1.1</code><span>统筹研究范围：AI创新生态体系</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.1.2</code><span>统筹研究范围：适配人工智能的未来城市形态</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.2.1</code><span>总体设计范围：产业目标与功能布局</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.2.2</code><span>总体设计范围：城市更新总体框架</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.2.3</code><span>总体设计范围：交通轨道市政配套设施</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.2.4</code><span>总体设计范围：京张遗址公园活力带</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.2.5</code><span>总体设计范围：城市风貌</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.3.required</code><span>重点区域范围详细设计必选项</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.3.1</code><span>众智园AI自主创新加速区</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.3.2</code><span>北京AI原点社区</span></div>
+        <div class="task"><span class="tick">✔</span><code>1.5.3.3</code><span>大钟寺AI产业聚集区</span></div>
+      </div>
+    </div>
+    <div class="task-group rv">
+      <div class="tg-head"><b>D</b>智能体任务<span>agent.1–6 · 6 项</span></div>
+      <div class="task-grid">
+        <div class="task agent"><span class="tick">✔</span><code>agent.1</code><span>一带总体概念与功能统筹方案设计</span></div>
+        <div class="task agent"><span class="tick">✔</span><code>agent.2</code><span>AI全栈自主创新体系与世界级AI创新生态设计</span></div>
+        <div class="task agent"><span class="tick">✔</span><code>agent.3</code><span>AI+场景赋能新范式与智能化AI活力城市设计</span></div>
+        <div class="task agent"><span class="tick">✔</span><code>agent.4</code><span>AI公共空间、智能原生新业态与朝圣地标设计</span></div>
+        <div class="task agent"><span class="tick">✔</span><code>agent.5</code><span>百年京张文化、中关村文化与AI新文化融合叙事设计</span></div>
+        <div class="task agent"><span class="tick">✔</span><code>agent.6</code><span>一带全球AI创新活动体系与长期运营设计</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 标准 ============ -->
+<section id="s07">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">07</div>
+      <div class="sec-tt"><span class="en">Standard Matrix</span><h2>专业标准合规</h2></div>
+      <div class="sec-meta">9 项标准 · 1 项 data_gap</div>
+    </div>
+    <table class="rv">
+      <thead><tr><th style="width:250px">标准</th><th>要求摘要</th><th style="width:110px">状态</th></tr></thead>
+      <tbody>
+        <tr><td class="num">PROJECT-OFFICIAL-ANNOUNCEMENT</td><td class="std-desc">百年京张AI创新带城市设计国际方案征集资格预审公告：本项目的三层范围、三处重点区域、设计任务、语言、设计深度和成果语境的主控依据。</td><td><span class="pill ok">addressed</span></td></tr>
+        <tr><td class="num">PROJECT-AGENT-OPEN-CALL-TASKBOOK</td><td class="std-desc">面向全球智能体任务书：十条共创原则、三大定位、五大功能、三区两翼、六项智能体任务、表达完整性和统一边界条款。</td><td><span class="pill ok">addressed</span></td></tr>
+        <tr><td class="num">MOHURD-URBAN-DESIGN-MEASURES</td><td class="std-desc">城市设计管理办法：城市设计应落实规划、指导建筑设计、塑造特色风貌，并统筹平面和立体空间、公共空间、建筑高度体量风格色彩等控制要求。</td><td><span class="pill ok">addressed</span></td></tr>
+        <tr><td class="num">MOHURD-CONTROL-DETAILED-PLANNING</td><td class="std-desc">城市、镇控制性详细规划编制审批办法：控规是规划许可和实施管理依据，涉及用地、开发强度、道路、市政和实施管理时必须区分已知控制条件、设计建议和待确认事项。</td><td><span class="pill ok">addressed</span></td></tr>
+        <tr><td class="num">MNR-LAND-USE-CLASSIFICATION-GUIDE</td><td class="std-desc">国土空间调查、规划、用途管制用地用海分类指南：用地分类和指标表达应采用统一的国土空间用地用海分类逻辑，不得用自造分类替代可校验用地代码。</td><td><span class="pill ok">addressed</span></td></tr>
+        <tr><td class="num">MOHURD-ARCH-DESIGN-DEPTH-2016</td><td class="std-desc">建筑工程设计文件编制深度规定（2016年版）：建筑专业深度参照项，尚未取得官方 PDF 或清权文件，不把非官方镜像作为 formal 权威依据。</td><td><span class="pill gap">data_gap</span></td></tr>
+        <tr><td class="num">GENERATIVE-AI-INTERIM-MEASURES</td><td class="std-desc">生成式人工智能服务管理暂行办法：仅对向境内公众提供生成内容服务的场景适用，且第14/15/17条有明确边界，不泛化为一般性规定。</td><td><span class="pill ok">addressed</span></td></tr>
+        <tr><td class="num">BARRIER-FREE-ENVIRONMENT-LAW</td><td class="std-desc">无障碍环境建设法：第39条针对医疗、社会保障、金融、生活缴费等公共服务场所，规定现场指导与人工办理边界，不得泛化为所有空间或数字界面结论。</td><td><span class="pill ok">addressed</span></td></tr>
+        <tr><td class="num">ELDERLY-SMART-TECH-PLAN-2020-45</td><td class="std-desc">国务院办公厅国办发〔2020〕45号：传统服务方式与智能化服务并行及老年人高频服务场景的政策参照；不作为本项目法定控制或本地落实事实。</td><td><span class="pill ok">addressed</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 08 深度 ============ -->
+<section id="s08">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">08</div>
+      <div class="sec-tt"><span class="en">Design Depth</span><h2>设计深度 · 15 项</h2></div>
+      <div class="sec-meta">design_depth_matrix · 全部 complete</div>
+    </div>
+    <div class="depth-grid rv">
+      <div class="depth"><span class="tick">✔</span><code>existing_conditions_diagnosis</code><span>现状诊断图与资料缺口</span></div>
+      <div class="depth"><span class="tick">✔</span><code>three_level_scope_framework</code><span>三层范围工作框架</span></div>
+      <div class="depth"><span class="tick">✔</span><code>overall_spatial_structure</code><span>总体空间结构</span></div>
+      <div class="depth"><span class="tick">✔</span><code>land_use_layout</code><span>用地布局</span></div>
+      <div class="depth"><span class="tick">✔</span><code>development_intensity_controls</code><span>开发强度或待确认控规条件</span></div>
+      <div class="depth"><span class="tick">✔</span><code>height_massing_character</code><span>建筑高度、体量与风貌控制</span></div>
+      <div class="depth"><span class="tick">✔</span><code>retain_renovate_demolish</code><span>建筑拆改留分类</span></div>
+      <div class="depth"><span class="tick">✔</span><code>traffic_rail_slow_parking</code><span>道路、轨道、慢行与停车组织</span></div>
+      <div class="depth"><span class="tick">✔</span><code>municipal_new_infrastructure</code><span>市政与新型基础设施策略</span></div>
+      <div class="depth"><span class="tick">✔</span><code>blue_green_public_space</code><span>蓝绿系统与公共空间</span></div>
+      <div class="depth"><span class="tick">✔</span><code>three_key_area_detailed_design</code><span>三大重点片区详细设计</span></div>
+      <div class="depth"><span class="tick">✔</span><code>renewal_project_list</code><span>更新项目清单</span></div>
+      <div class="depth"><span class="tick">✔</span><code>phasing_implementation</code><span>分期实施计划</span></div>
+      <div class="depth"><span class="tick">✔</span><code>metrics_recalculation</code><span>指标复算</span></div>
+      <div class="depth"><span class="tick">✔</span><code>risk_missing_data</code><span>风险与缺资料清单</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"></div>
+
+<!-- ============ 09 自检 ============ -->
+<section id="s09">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">09</div>
+      <div class="sec-tt"><span class="en">Self Check / Four Gates</span><h2>确定性自检 · 四门禁</h2></div>
+      <div class="sec-meta">blocking 级 · 4/4 PASS</div>
+    </div>
+    <div class="gates">
+      <div class="gate rv"><h3>DETERMINISTIC_VALIDATION</h3><div class="g-cn">确定性校验</div><span class="stamp">PASS</span><div class="lvl"><span class="pill blk">blocking</span></div></div>
+      <div class="gate rv"><h3>PROFESSIONAL_EVIDENCE</h3><div class="g-cn">专业证据审查</div><span class="stamp">PASS</span><div class="lvl"><span class="pill blk">blocking</span></div></div>
+      <div class="gate rv"><h3>SPATIAL_REVIEW</h3><div class="g-cn">空间审查</div><span class="stamp">PASS</span><div class="lvl"><span class="pill blk">blocking</span></div></div>
+      <div class="gate rv"><h3>VISUAL_PACKAGING</h3><div class="g-cn">视觉表达审查</div><span class="stamp">PASS</span><div class="lvl"><span class="pill blk">blocking</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 附录 ============ -->
+<section id="s10">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-no">10</div>
+      <div class="sec-tt"><span class="en">Appendix</span><h2>附录 · 指标 / 来源 / 假设</h2></div>
+      <div class="sec-meta">submission/*.json 内联</div>
+    </div>
+
+    <details class="rv">
+      <summary>指标数据表（与 metrics.json 一致 · 32 条）</summary>
+      <div class="dt">
+        <table>
+          <thead><tr><th>指标</th><th>状态</th><th class="right">值</th><th>置信</th><th>单位</th></tr></thead>
+          <tbody>
+            <tr><td class="num">site_area / site_area_sqm</td><td>known</td><td class="num right">11,412,825.4</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">site_area_official_check</td><td>known</td><td class="num right">0.0011</td><td>medium</td><td>ratio</td></tr>
+            <tr><td class="num">land_use_area_by_code</td><td>known</td><td class="num right">11,412,842.3</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">green_space_area</td><td>known</td><td class="num right">4,694,685.5</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">green_ratio</td><td>known</td><td class="num right">0.4114</td><td>low</td><td>ratio</td></tr>
+            <tr><td class="num">public_space_area</td><td>known</td><td class="num right">246,601.2</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">public_space_ratio</td><td>known</td><td class="num right">0.0216</td><td>low</td><td>ratio</td></tr>
+            <tr><td class="num">road_area</td><td>known</td><td class="num right">2,329,346.6</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">road_ratio</td><td>known</td><td class="num right">0.2041</td><td>low</td><td>ratio</td></tr>
+            <tr><td class="num">building_footprint_area_sqm</td><td>known</td><td class="num right">2,638,182.1</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">building_density</td><td>known</td><td class="num right">0.2312</td><td>low</td><td>ratio</td></tr>
+            <tr><td class="num">total_floor_area</td><td>unknown</td><td class="num right">—</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">far</td><td>unknown</td><td class="num right">—</td><td>low</td><td>ratio</td></tr>
+            <tr><td class="num">key_area_count</td><td>known</td><td class="num right">3</td><td>low</td><td>count</td></tr>
+            <tr><td class="num">key_area_area</td><td>known</td><td class="num right">3,692,893.0</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">phasing_area</td><td>known</td><td class="num right">11,412,837.4</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">renewal_project_count</td><td>known</td><td class="num right">5</td><td>medium</td><td>count</td></tr>
+            <tr><td class="num">talent_total</td><td>known</td><td class="num right">2,005,800</td><td>low</td><td>count</td></tr>
+            <tr><td class="num">ai_scenario_node_count</td><td>known</td><td class="num right">10</td><td>medium</td><td>count</td></tr>
+            <tr><td class="num">land_use_area_05</td><td>known</td><td class="num right">2,703,703.5</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">land_use_area_0701</td><td>known</td><td class="num right">1,157,218.4</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">land_use_area_0802</td><td>known</td><td class="num right">1,116,188.9</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">land_use_area_0804</td><td>known</td><td class="num right">627,852.5</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">land_use_area_1207</td><td>known</td><td class="num right">2,329,346.6</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">land_use_area_1401</td><td>known</td><td class="num right">3,364,711.5</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">land_use_area_1403</td><td>known</td><td class="num right">113,820.8</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">key_area_area_KEY_AREA-001</td><td>known</td><td class="num right">1,929,201.9</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">key_area_area_KEY_AREA-002</td><td>known</td><td class="num right">1,043,236.9</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">key_area_area_KEY_AREA-003</td><td>known</td><td class="num right">720,454.2</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">phasing_area_PH-01</td><td>known</td><td class="num right">5,807,877.9</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">phasing_area_PH-02</td><td>known</td><td class="num right">2,709,272.4</td><td>low</td><td>sqm</td></tr>
+            <tr><td class="num">phasing_area_PH-03</td><td>known</td><td class="num right">2,895,687.1</td><td>low</td><td>sqm</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <div class="apx">
+      <div class="apx-box rv">
+        <h3>资料来源 · sources.json</h3>
+        <ol>
+          <li>百年京张AI创新带城市设计国际方案征集资格预审公告</li>
+          <li>面向全球智能体开展“百年京张AI创新带城市设计开源征集”的任务书摘录</li>
+          <li>百年京张AI创新带开源征集官方仓库 site-package（任务书/标准/模板/方案schema/临时几何）</li>
+          <li>海淀区基础数据（面积/人口/经济/教育/实验室）</li>
+          <li>京张铁路历史与遗址公园数据（1909人字展线 / 9km公园 / 约3.3km² / 70社区 / 45万居民）</li>
+          <li>海淀区AI产业与科技创新数据（AI企业1900余家 / 备案大模型89款 / 算力3500P / 人才200.58万人）</li>
+          <li>海淀区国家级战略项目与百年京张AI创新带数据（中关村示范区 / 三区两翼 / 重点区面积）</li>
+          <li>三层范围与三处重点区临时粗略 polygon（provisional）</li>
+          <li>城市设计管理办法</li>
+          <li>城市、镇控制性详细规划编制审批办法</li>
+          <li>自然资源部《国土空间调查、规划、用途管制用地用海分类指南》</li>
+          <li>中华人民共和国无障碍环境建设法</li>
+          <li>国务院办公厅《关于切实解决老年人运用智能技术困难实施方案》（国办发〔2020〕45号）</li>
+          <li>生成式人工智能服务管理暂行办法</li>
+          <li>OpenStreetMap Copyright and License</li>
+        </ol>
+      </div>
+      <div class="apx-box assume rv">
+        <h3>假设登记 · assumptions.json</h3>
+        <ol>
+          <li>三层范围（统筹43.6km² / 总体11.4km² / 重点368.4公顷）与三处重点区使用仓库 provisional 粗略 polygon 作为生成、自检与可视化基准。</li>
+          <li>面积复算统一在 EPSG:4548（北京地方坐标系）下进行；provisional 来源指标的 confidence 标为 low。</li>
+          <li>land_use.geojson 的多边形覆盖提交边界且无间隙、无重叠；相邻地块共享边界坐标。</li>
+          <li>海淀公开数据包（basic_info / ai_industry / jingzhang_railway / national_strategic_projects 等）为公开统计与权威报道汇编，按 background_only 管理。</li>
+          <li>京张遗址公园公开现状（全长约9km、约3.3km²、串联约70社区、服务约45万居民、一期已建成二期已开放）按公开事实引用，用于存量更新与文化叙事。</li>
+          <li>AI产业数据（AI企业1900余家、备案大模型89款、算力3500P、人才总量200.58万人等）为公开报道口径，非精确普查。</li>
+          <li>对搜索/参考信息做真伪鉴别与时间线甄别，区分历史事实、现状、推测、愿景四类，不反复陈述过去的问题。</li>
+          <li>容积率、建筑高度、建筑强度等法定控制值缺官方控规、现状建筑、权属或工程条件，统一记 status=unknown。</li>
+          <li>拆改留方案为概念级分类（保留/改造/拆除），拆除仅限危房、违建与确无法利用的低质空间，以保留利用提升为主，不作法定结论与时序定论。</li>
+          <li>市政管网、能源负荷、市政容量、轨道与道路工程条件等专业测算缺控规条件，属待确认事项，不作测算结论。</li>
+          <li>“人”字四笔（左笔策源 / 右笔应用 / 竖脊人民脊梁 / 交汇点AI原点）与三带三面为设计方案的空间概念映射，非官方规定的空间结构。</li>
+          <li>概念地标（“人”字原点广场、京张“人”字纪念径、中关村创新荣誉廊）为精神锚点，不等于已批准建设；测试场景不等于已批准运营。</li>
+          <li>长期运营机制（年度活动体系、开发者社区、场景开放运营、国际传播与招引转化）及所有招商、资金、政策安排均为概念建议与深化方向，非已确定政府安排。</li>
+          <li>每个AI场景须通过技术适用性判据六问方可保留；C级“刻意不用”记录为方案“有判断力”的可审计实证。</li>
+          <li>隐私与数字鸿沟：不采集个人身份敏感信息；公共服务类场景保留人工复核与人工办理通道；传统服务方式与智能化服务并行。</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ footer ============ -->
+<footer>
+  <div class="wrap foot-grid">
+    <div class="fn">
+      <div class="foot-star" aria-hidden="true">★ ★ ★</div>
+      <p style="margin-top:10px"><b>百年京张AI创新带 · 概念方案离线总览</b><br>
+      本页为离线静态文件：全部图形为内联 SVG（风格化示意），指标、矩阵、来源与假设均内联生成，无任何外部请求。</p>
+      <p class="note">数据置信：mixed_provisional_and_conceptual · 概念内容不代表官方规划结论 · 生成于 2026-08-15</p>
+    </div>
+    <div class="off-badge">OFFLINE READY<br>单文件 · 零外链<br>断网可用 · 1909—2026</div>
+  </div>
+</footer>
+</main>
+
+<button id="toTop" aria-label="返回顶部">▲</button>
+
+<script>
+(function(){
+  'use strict';
+  var d=document;
+
+  /* progress + toTop */
+  var bar=d.getElementById('pbar'), top=d.getElementById('toTop');
+  function onScroll(){
+    var h=d.documentElement, max=h.scrollHeight-h.clientHeight;
+    if(bar&&max>0) bar.style.width=(h.scrollTop/max*100)+'%';
+    if(top) top.style.display=h.scrollTop>600?'block':'none';
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  if(top) top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+  /* layer toggles */
+  var cbs=d.querySelectorAll('input[data-layer]');
+  Array.prototype.forEach.call(cbs,function(cb){
+    cb.addEventListener('change',function(){
+      var g=d.getElementById(cb.getAttribute('data-layer'));
+      if(g) g.style.display=cb.checked?'':'none';
+    });
+  });
+
+  /* reveal on scroll */
+  var els=d.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+    Array.prototype.forEach.call(els,function(el){io.observe(el)});
+  }else{
+    Array.prototype.forEach.call(els,function(el){el.classList.add('in')});
+  }
+
+  /* rail active state */
+  var links={};
+  Array.prototype.forEach.call(d.querySelectorAll('.rail a'),function(a){
+    links[a.getAttribute('href').slice(1)]=a;
+  });
+  var secs=d.querySelectorAll('main section[id]');
+  if('IntersectionObserver' in window){
+    var io2=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          Object.keys(links).forEach(function(k){links[k].classList.remove('on')});
+          var l=links[e.target.id]; if(l) l.classList.add('on');
+        }
+      });
+    },{rootMargin:'-30% 0px -60% 0px'});
+    Array.prototype.forEach.call(secs,function(s){io2.observe(s)});
+  }
+  onScroll();
+})();
+</script>
+</body>
+</html>

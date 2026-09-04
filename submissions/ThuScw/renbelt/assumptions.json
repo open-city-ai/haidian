@@ -1,0 +1,148 @@
+{
+  "schema_version": "0.1.0",
+  "description": "百年京张AI创新带城市设计方案——假设登记册",
+  "updated_date": "2026-08-14",
+  "purpose": "登记方案中所有非官方、待确认、概念性假设，及其影响与复核触发条件，确保“概念建议”与“事实”的边界清晰、可审计。",
+  "principles": [
+    "凡缺官方数据处，如实标注待补，不以概念冒充事实（status=unknown）。",
+    "凡概念性内容，一律表述为“概念建议/参考方案/可供专业团队深化”，不写成已批准建设、已批准运营或既定结论。",
+    "每条假设都有复核触发条件；触发即重算或升级为事实。"
+  ],
+  "assumptions": [
+    {
+      "id": "ASM-GEO-01",
+      "category": "geometry_and_metrics",
+      "statement": "三层范围（统筹43.6km²/总体11.4km²/重点368.4公顷）与三处重点区使用仓库 provisional 粗略 polygon 作为生成、自检与可视化基准。",
+      "evidence_status": "provisional_only",
+      "impact": "全部面积敏感指标（场地面积、用地分项、绿地与公共空间比例、重点区面积）为临时值，不可用于官方面积主张。",
+      "review_trigger": "官方 polygon 发布后，在 EPSG:4548 下重算全部指标。",
+      "related": ["PROVISIONAL-BOUNDARIES-20260605", "metric:site_area", "metric:key_area_area"]
+    },
+    {
+      "id": "ASM-GEO-02",
+      "category": "geometry_and_metrics",
+      "statement": "面积复算统一在 EPSG:4548（北京地方坐标系）下进行；provisional 来源指标的 confidence 标为 low。",
+      "evidence_status": "provisional_only",
+      "impact": "指标与正文数字自洽；官方几何到位后数值变化属预期。",
+      "review_trigger": "官方几何发布；坐标系如不同则先行投影转换。",
+      "related": ["PROVISIONAL-BOUNDARIES-20260605", "metric:site_area"]
+    },
+    {
+      "id": "ASM-GEO-03",
+      "category": "geometry_and_metrics",
+      "statement": "land_use.geojson 的多边形覆盖提交边界且无间隙、无重叠；相邻地块共享边界坐标。",
+      "evidence_status": "provisional_only",
+      "impact": "用地分项面积可加总为场地面积，支撑指标复算。",
+      "review_trigger": "每次编辑 geometry 后以脚本校验无缝覆盖。",
+      "related": ["data:geometry/land_use.geojson", "metric:green_ratio", "metric:public_space_ratio"]
+    },
+    {
+      "id": "ASM-DATA-01",
+      "category": "data_and_sources",
+      "statement": "海淀公开数据包（basic_info/ai_industry/jingzhang_railway/national_strategic_projects 等）为公开统计与权威报道汇编，按 background_only 管理。",
+      "evidence_status": "background_only",
+      "impact": "可作为宏观定位、产业叙事、历史事实与公开现状的事实支撑；不作为精确企业级或投资级结论依据。",
+      "review_trigger": "逐条关键数据登记具体URL后，可将对应条目升级为 formal-ready。",
+      "related": ["HAIDIAN-BASIC-2025", "HAIDIAN-AI-INDUSTRY", "JINGZHANG-RAILWAY", "NATIONAL-STRATEGIC-PROJECTS"]
+    },
+    {
+      "id": "ASM-DATA-02",
+      "category": "data_and_sources",
+      "statement": "京张遗址公园公开现状（全长约9km、约3.3km²、串联约70社区、服务约45万居民、一期已建成二期已开放）按公开事实引用，用于存量更新与文化叙事。",
+      "evidence_status": "background_only",
+      "impact": "方案“物理动作全部是存量更新”的判断以此为基础；不据此推导新增项目已获批准。",
+      "review_trigger": "官方或权威来源发布更新数据时复核数值。",
+      "related": ["JINGZHANG-RAILWAY"]
+    },
+    {
+      "id": "ASM-DATA-03",
+      "category": "data_and_sources",
+      "statement": "AI产业数据（AI企业1900余家、备案大模型89款、算力3500P、人才总量200.58万人等）为公开报道口径，非精确普查。",
+      "evidence_status": "background_only",
+      "impact": "用于产业叙事与宏观定位；不据此作企业级、投资级或绩效承诺。",
+      "review_trigger": "官方统计公报或权威年度报告发布时复核。",
+      "related": ["HAIDIAN-AI-INDUSTRY"]
+    },
+    {
+      "id": "ASM-DATA-04",
+      "category": "data_and_sources",
+      "statement": "对搜索/参考信息做真伪鉴别与时间线甄别，区分历史事实、现状、推测、愿景四类，不反复陈述过去的问题。",
+      "evidence_status": "formal-ready",
+      "impact": "历史是精神资源而非重复叙事；所有论述须基于事实。",
+      "review_trigger": "每引用一条外部信息即先过四类时间线归类。",
+      "related": ["GOV-WRITING-CONVENTION"]
+    },
+    {
+      "id": "ASM-DEPTH-01",
+      "category": "planning_depth",
+      "statement": "容积率、建筑高度、建筑强度等法定控制值缺官方控规、现状建筑、权属或工程条件，统一记 status=unknown。",
+      "evidence_status": "unknown",
+      "impact": "正文只给由几何复算的概念体量或低置信度设计量，明确不等于法定控制值。",
+      "review_trigger": "官方控规或现状建筑数据发布后补充。",
+      "related": ["MOHURD-CONTROL-DETAILED-PLANNING"]
+    },
+    {
+      "id": "ASM-DEPTH-02",
+      "category": "planning_depth",
+      "statement": "拆改留方案为概念级分类（保留/改造/拆除），拆除仅限危房、违建与确无法利用的低质空间，以保留利用提升为主，不作法定结论与时序定论。",
+      "evidence_status": "provisional_only",
+      "impact": "第7章与第10章表述保持在概念建议级，可进入法定文件的路径给方向、不给定论。",
+      "review_trigger": "现状建筑与权属数据补齐后复算。",
+      "related": ["depth:retain_renovate_demolish", "depth:renewal_project_list"]
+    },
+    {
+      "id": "ASM-DEPTH-03",
+      "category": "planning_depth",
+      "statement": "市政管网、能源负荷、市政容量、轨道与道路工程条件等专业测算缺控规条件，属待确认事项，不作测算结论。",
+      "evidence_status": "unknown",
+      "impact": "第8章只给布局方向与融合原则，不给管线线位或容量结论。",
+      "review_trigger": "市政与工程条件数据补齐后补充。",
+      "related": ["depth:traffic_rail_slow_parking", "depth:risk_missing_data"]
+    },
+    {
+      "id": "ASM-CONCEPT-01",
+      "category": "design_concept",
+      "statement": "“人”字四笔（左笔策源/右笔应用/竖脊人民脊梁/交汇点AI原点）与三带三面为设计方案的空间概念映射，非官方规定的空间结构。",
+      "evidence_status": "concept",
+      "impact": "空间语言统一从“人”字生长，但不改变官方三区两翼、三带定位的事实框架。",
+      "review_trigger": "设计定稿时与官方框架逐条对表，确保概念不覆盖事实。",
+      "related": ["AGENT-TASKBOOK-20260518"]
+    },
+    {
+      "id": "ASM-CONCEPT-02",
+      "category": "design_concept",
+      "statement": "概念地标（“人”字原点广场、京张“人”字纪念径、中关村创新荣誉廊）为精神锚点，不等于已批准建设；测试场景不等于已批准运营。",
+      "evidence_status": "concept",
+      "impact": "正文与图中地标/场景均以“概念建议”表述，导视与Logo等一并清权。",
+      "review_trigger": "若后续进入实施阶段，须重新走法定流程。",
+      "related": ["AGENT-TASKBOOK-20260518"]
+    },
+    {
+      "id": "ASM-OP-01",
+      "category": "operational_and_compliance",
+      "statement": "长期运营机制（年度活动体系、开发者社区、场景开放运营、国际传播与招引转化）及所有招商、资金、政策安排均为概念建议与深化方向，非已确定政府安排。",
+      "evidence_status": "concept",
+      "impact": "第10章运营表述保持“可供专业团队深化”口径。",
+      "review_trigger": "如进入实施，运营主体与机制另定。",
+      "related": ["AGENT-TASKBOOK-20260518"]
+    },
+    {
+      "id": "ASM-COMPLIANCE-01",
+      "category": "operational_and_compliance",
+      "statement": "每个AI场景须通过技术适用性判据六问方可保留；C级“刻意不用”记录为方案“有判断力”的可审计实证。",
+      "evidence_status": "formal-ready",
+      "impact": "反炫技方法可操作、可审计；判据覆盖AI+战略新兴技术全谱系。",
+      "review_trigger": "每新增一张场景卡先过六问；未通过的用传统方式并记录。",
+      "related": ["GOV-WRITING-CONVENTION"]
+    },
+    {
+      "id": "ASM-COMPLIANCE-02",
+      "category": "operational_and_compliance",
+      "statement": "隐私与数字鸿沟：不采集个人身份敏感信息；公共服务类场景保留人工复核与人工办理通道；传统服务方式与智能化服务并行。",
+      "evidence_status": "formal-ready",
+      "impact": "第6章场景边界合规；呼应无障碍环境建设法第39条与国办发〔2020〕45号精神。",
+      "review_trigger": "每个涉数据场景逐卡登记隐私边界与人工复核。",
+      "related": ["BARRIER-FREE-ENVIRONMENT-LAW", "ELDERLY-SMART-TECH-PLAN-2020-45"]
+    }
+  ]
+}
