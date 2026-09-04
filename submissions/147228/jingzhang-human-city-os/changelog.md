@@ -1,5 +1,26 @@
 # 方案迭代记录
 
+## v3.0 - 2026-08-22
+
+- 将 v2.8 选中的 ALT-C 压到 `PROV-KEY-002` 的一个包容性公共服务节点：新增非打印比例的 1:500 平面层级、1:100 剖面层级、1:50 接口层级示意、五组空间冲突消解和双语图 30；30 m × 18 m 明确为 `verified_anchor_count=0` 的未落位参数包络，不是测绘、选址、法定、施工或无障碍认证结论。
+- 更正无障碍来源混写：GB 55019-2021 第 2.2.2 条按 1.20 m 通道 / 1.80 m 人员密集场所校准，第 2.5.4 / 2.5.5 条区分 0.90 m 手动门与 1.00 m 自动门；低位台、容膝和 1.50 m 回转值另列浙江省 DBJ33/T 1267-2022 二次参照及非北京法定依据边界。
+- 新增条件性交付合同和双语图 31：六阶段依赖进度、全部未确认的五组 RACI、两阶段竞争性采购、量价 CAPEX / OPEX、五项未观测 SLA、保险门、验收门和完整退役回滚；0 授权、0 现场观察、容量 `null`、现场验收 `not_run`，整项保持 HOLD。
+- 新增五任务预走查协议：事前知情同意、非 AI 路径、无理由退出、默认不录音、参与者组合责任、八字段障碍日志、分组报告、重大失败归零；当前仍是 0 招募、0 参与者、结果 `null`，不冒充公众参与。
+- 拆开设计深度矩阵的机器状态与证据等级：`status=complete` 仅表示 15 个仓库必需槽位已交付，每项未落位、未授权、未专业复核、未走查或未知结果均另写入 `completeness_limited_by` 与假设台账。
+- 新增确定性 runner、1 个正例与 19 个 fail-closed 负例；四份中英文 A3/A0 评审 PDF 统一为 B01–B24 的 24 页同序包，并写入等价记录。同步 proposal、来源、假设、设计深度、双语/无障碍/版权审计、离线 visual index 与 manifest；不修改正式 geometry、metrics、公共排序或官方分数。
+
+## v2.9 - 2026-08-22
+
+- 新增 `human-city-seb-crosswalk.json`，采用 SEB v0.5.0 的组件级可选互操作路径，把四个已有公共服务桌面合同回接到 `ai_off_path`、`human_handoff`、`gate_id`、`operating_mode` 与 `responsible_role` 五个公开字段；保留 CC-BY-SA-4.0 署名、来源 URL 和无机构背书边界。
+- 新增 `run-human-city-seb-crosswalk.js`、5 个 fail-closed 负例和双语图 29；4/4 正例、5/5 负例通过，来源记录、角色词表、G0/HOLD、contract_check_only、0 授权、0 现场观察和 performance=null 均保持可回读。
+- 同步中英文 proposal、离线 visual index、sources 与 manifest；本轮不把 crosswalk 当作认证、仓库硬门禁、正式评分项、服务覆盖、现场绩效或机构采用，不修改 geometry、metrics、public sorting、`submissions-data.js` 或 `gallery-publication.json`。
+
+## v2.8 - 2026-08-22
+
+- 新增三替代空间裁决：ALT-A `REJECT`、ALT-B `REVISE`、ALT-C `ADVANCE_TO_DESIGN_REVIEW`，把四条价值链、三处重点区和人机接口原型接成一张评审入口。
+- 增加 `1:5000 → 1:2000 → 1:500 → 1:100 → 1:50` 尺度链、五项公共权利、五道共享闸门、中英双语图板、离线 runner 和五个 fail-closed 负例。
+- 保留人的主线、G0/HOLD、0 授权、0 现场观察、baseline unknown、not_authorized_not_run 与 provisional 边界；不新增现场事实、容量、权属、许可、部署或排名主张。
+
 ## v2.7 - 2026-08-11
 
 - 跟随主线双语渲染器重生成英文 HTML 报告，证据标签在英文页显示为 `Source`、`Standard`、`Depth`、`Spatial data` 与 `Metric`，不改正文、几何、指标或图件内容。

@@ -1,0 +1,183 @@
+{
+  "document_type": "optional_service_equivalence_crosswalk",
+  "schema_version": "0.1.0",
+  "package_id": "HUMAN-CITY-SEB-CROSSWALK-001",
+  "package_iteration": "v2.9",
+  "adoption": {
+    "mode": "component_level_opt_in",
+    "spec_name": "Service Equivalence Baseline",
+    "spec_name_zh": "服务等价基准",
+    "spec_abbreviation": "SEB",
+    "spec_version": "0.5.0",
+    "spec_status": "draft_concept_recommendation",
+    "license": "CC-BY-SA-4.0",
+    "attribution": "SEB v0.5.0 by lqqk7, used as an optional component-level reference; no institutional endorsement is implied.",
+    "source_id": "SEB-V0.5.0",
+    "canonical_public_reference": "https://github.com/open-city-ai/haidian/blob/main/submissions/lqqk7/every-sense-jingzhang/visual/assets/seb-spec.json",
+    "accessed_date": "2026-08-22",
+    "adopter_lexicon": ["事故响应角色", "复核角色", "校对角色"],
+    "adopter_lexicon_evidence": {
+      "事故响应角色": "The package-local operator_role field names the pending test-accountability and incident-response role at HC-T03.",
+      "复核角色": "The package-local operator_role field names the pending data-steward and independent-review role at HC-T02.",
+      "校对角色": "The package-local operator_role field names the pending multilingual-service and content-QA role at HC-T04."
+    },
+    "scope_zh": "只采用已公开字段的互操作对照，不采用整包叙事、几何或数据；不新增仓库硬门禁、正式评分项、服务覆盖或现场成效主张。",
+    "scope_en": "This maps already-public fields for interoperability only. It adopts no package narrative, geometry, or data, and adds no repository hard gate, formal score item, service coverage, or field-outcome claim."
+  },
+  "boundary": {
+    "decision": "HOLD",
+    "field_state": "not_authorized_not_run",
+    "operational_status": "not_authorized_not_run",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "performance_results": null,
+    "public_rank_claim": false,
+    "formal_score_claim": false
+  },
+  "source_of_record": {
+    "nodes": "visual/assets/human-city-public-service-tabletop-v1.json#scenario_registry",
+    "release_gates": "visual/assets/human-city-ordinary-journey.json#replay_bindings",
+    "package_status": "visual/assets/human-city-spatial-decision.json#boundary"
+  },
+  "field_crosswalk": [
+    {
+      "seb_field": "ai_off_path",
+      "local_field": "human_alternative",
+      "local_source": "human-city-public-service-tabletop-v1.json#scenario_registry[].human_alternative",
+      "mapping_zh": "AI 关闭后的路径逐字采用包内人工、电话、纸本或无设备替代；不得把同一数字系统的入口当作等价路径。",
+      "mapping_en": "Copy the package's staffed, telephone, paper, or device-free alternative; an entry into the same digital system is not equivalent."
+    },
+    {
+      "seb_field": "human_handoff",
+      "local_field": "operator_role",
+      "local_source": "human-city-public-service-tabletop-v1.json#scenario_registry[].operator_role",
+      "mapping_zh": "把待授权的可寻找角色原样带入，不把机构名或建议角色写成现实任命。",
+      "mapping_en": "Carry the pending-authorisation findable role verbatim; do not turn an organisation or suggested role into a real appointment."
+    },
+    {
+      "seb_field": "gate_id",
+      "local_field": "release_gate_id",
+      "local_source": "human-city-ordinary-journey.json#replay_bindings[].release_gate_id",
+      "mapping_zh": "保留本包 PHASE-V01/V02 的发布门，同时以未授权、未运行状态保守折算为 SEB G0。",
+      "mapping_en": "Retain the package's PHASE-V01/V02 release gate and conservatively map the unauthorised, not-run state to SEB G0."
+    },
+    {
+      "seb_field": "operating_mode",
+      "local_field": "tabletop_state",
+      "local_source": "human-city-public-service-tabletop-v1.json#status.tabletop_state",
+      "mapping_zh": "运行方式只记录离线合同检查，不暗示部署、排班或真实服务。",
+      "mapping_en": "The operating mode records an offline contract check only; it does not imply deployment, staffing, or live service."
+    },
+    {
+      "seb_field": "responsible_role",
+      "local_field": "operator_role",
+      "local_source": "human-city-public-service-tabletop-v1.json#scenario_registry[].operator_role",
+      "mapping_zh": "责任角色沿用同一包内角色字段，避免另造责任方；待指定状态保持不变。",
+      "mapping_en": "Reuse the package-local role field rather than inventing an accountable party; pending assignment remains pending."
+    }
+  ],
+  "nodes": [
+    {
+      "node_id": "HC-T01",
+      "scenario_id": "SC-A03",
+      "scenario_source_ref": "visual/assets/human-city-public-service-tabletop-v1.json#scenario_registry[HC-T01]",
+      "local_gate_source_ref": "visual/assets/human-city-ordinary-journey.json#replay_bindings[SC-A03].release_gate_id",
+      "local_gate_id": "PHASE-V01",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {
+        "zh": "人工、电话、纸本和无设备办理具有同等入口地位。",
+        "en": "Staffed, telephone, paper, and device-free service remain equivalent entry routes."
+      },
+      "human_handoff": {
+        "zh": "未来授权的公共服务值守角色（待指定）",
+        "en": "Future authorized public-service desk role (not assigned)"
+      },
+      "responsible_role": {
+        "zh": "未来授权的公共服务值守角色（待指定）",
+        "en": "Future authorized public-service desk role (not assigned)"
+      }
+    },
+    {
+      "node_id": "HC-T02",
+      "scenario_id": "SC-B01",
+      "scenario_source_ref": "visual/assets/human-city-public-service-tabletop-v1.json#scenario_registry[HC-T02]",
+      "local_gate_source_ref": "visual/assets/human-city-ordinary-journey.json#replay_bindings[SC-B01].release_gate_id",
+      "local_gate_id": "PHASE-V02",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {
+        "zh": "人工复核、撤销授权和非数字说明与目录并列。",
+        "en": "Human review, revocation, and non-digital explanation remain alongside the catalogue."
+      },
+      "human_handoff": {
+        "zh": "未来授权的数据责任与独立复核角色（待指定）",
+        "en": "Future authorized data steward and independent reviewer (not assigned)"
+      },
+      "responsible_role": {
+        "zh": "未来授权的数据责任与独立复核角色（待指定）",
+        "en": "Future authorized data steward and independent reviewer (not assigned)"
+      }
+    },
+    {
+      "node_id": "HC-T03",
+      "scenario_id": "SC-C03",
+      "scenario_source_ref": "visual/assets/human-city-public-service-tabletop-v1.json#scenario_registry[HC-T03]",
+      "local_gate_source_ref": "visual/assets/release-gate-ledger.json#releases[PHASE-V02]",
+      "local_gate_id": "PHASE-V02",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {
+        "zh": "人工暂停、现场处置和公开申诉优先于自动响应。",
+        "en": "Human stop, on-site handling, and public appeal take priority over automated response."
+      },
+      "human_handoff": {
+        "zh": "未来授权的测试责任与事故响应角色（待指定）",
+        "en": "Future authorized test-accountability and incident-response role (not assigned)"
+      },
+      "responsible_role": {
+        "zh": "未来授权的测试责任与事故响应角色（待指定）",
+        "en": "Future authorized test-accountability and incident-response role (not assigned)"
+      }
+    },
+    {
+      "node_id": "HC-T04",
+      "scenario_id": "SC-D03",
+      "scenario_source_ref": "visual/assets/human-city-public-service-tabletop-v1.json#scenario_registry[HC-T04]",
+      "local_gate_source_ref": "visual/assets/release-gate-ledger.json#releases[PHASE-V01]",
+      "local_gate_id": "PHASE-V01",
+      "seb_gate_id": "G0",
+      "operating_mode": "contract_check_only",
+      "ai_off_path": {
+        "zh": "人工翻译、电话、图标和纸面表单可替代数字导览。",
+        "en": "Human translation, telephone, icons, and paper forms can replace digital guidance."
+      },
+      "human_handoff": {
+        "zh": "未来授权的多语人工服务与内容校对角色（待指定）",
+        "en": "Future authorized multilingual service and content-QA role (not assigned)"
+      },
+      "responsible_role": {
+        "zh": "未来授权的多语人工服务与内容校对角色（待指定）",
+        "en": "Future authorized multilingual service and content-QA role (not assigned)"
+      }
+    }
+  ],
+  "positive_fixtures": [
+    {"id": "POS-01", "node_id": "HC-T01", "expected": "PASS"},
+    {"id": "POS-02", "node_id": "HC-T02", "expected": "PASS"},
+    {"id": "POS-03", "node_id": "HC-T03", "expected": "PASS"},
+    {"id": "POS-04", "node_id": "HC-T04", "expected": "PASS"}
+  ],
+  "negative_fixtures": [
+    {"id": "NEG-01", "node_id": "HC-T01", "mutation": "ai_off_path_dependency", "expected_fail_code": "AI_OFF_PATH_DEPENDENCY"},
+    {"id": "NEG-02", "node_id": "HC-T02", "mutation": "human_handoff_role_missing", "expected_fail_code": "HUMAN_HANDOFF_ROLE_MISSING"},
+    {"id": "NEG-03", "node_id": "HC-T03", "mutation": "gate_id_invalid", "expected_fail_code": "GATE_ID_INVALID"},
+    {"id": "NEG-04", "node_id": "HC-T04", "mutation": "operating_mode_missing", "expected_fail_code": "OPERATING_MODE_MISSING"},
+    {"id": "NEG-05", "node_id": "HC-T01", "mutation": "source_alignment_changed", "expected_fail_code": "SOURCE_ALIGNMENT_MISMATCH"}
+  ],
+  "limits": {
+    "zh": "crosswalk PASS 只证明四个已公开桌面合同可按 SEB 字段回接、正负夹具可离线复核；不证明 SEB 已被机构采用，不证明服务等价、人员值守、空间实施、居民结果或官方评分。",
+    "en": "A crosswalk PASS proves only that four already-public tabletop contracts can be mapped to SEB fields and replayed offline; it does not prove institutional adoption, service equivalence, staffing, spatial implementation, resident outcomes, or an official score."
+  }
+}

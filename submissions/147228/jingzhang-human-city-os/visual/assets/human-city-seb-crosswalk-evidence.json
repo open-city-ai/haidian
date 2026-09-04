@@ -1,0 +1,78 @@
+{
+  "runner": "run-human-city-seb-crosswalk.js",
+  "status": "PASS",
+  "package_id": "HUMAN-CITY-SEB-CROSSWALK-001",
+  "spec": "SEB 0.5.0",
+  "execution_mode": "read_only_contract_and_fixture_check",
+  "coverage": {
+    "mapped_nodes": 4,
+    "field_crosswalk": 5,
+    "positive_fixtures": 4,
+    "negative_fixtures": 5
+  },
+  "positive_results": [
+    {
+      "id": "POS-01",
+      "node_id": "HC-T01",
+      "status": "PASS"
+    },
+    {
+      "id": "POS-02",
+      "node_id": "HC-T02",
+      "status": "PASS"
+    },
+    {
+      "id": "POS-03",
+      "node_id": "HC-T03",
+      "status": "PASS"
+    },
+    {
+      "id": "POS-04",
+      "node_id": "HC-T04",
+      "status": "PASS"
+    }
+  ],
+  "negative_results": [
+    {
+      "id": "NEG-01",
+      "expected_fail_code": "AI_OFF_PATH_DEPENDENCY",
+      "observed_fail_code": "AI_OFF_PATH_DEPENDENCY",
+      "status": "REJECT"
+    },
+    {
+      "id": "NEG-02",
+      "expected_fail_code": "HUMAN_HANDOFF_ROLE_MISSING",
+      "observed_fail_code": "HUMAN_HANDOFF_ROLE_MISSING",
+      "status": "REJECT"
+    },
+    {
+      "id": "NEG-03",
+      "expected_fail_code": "GATE_ID_INVALID",
+      "observed_fail_code": "GATE_ID_INVALID",
+      "status": "REJECT"
+    },
+    {
+      "id": "NEG-04",
+      "expected_fail_code": "OPERATING_MODE_MISSING",
+      "observed_fail_code": "OPERATING_MODE_MISSING",
+      "status": "REJECT"
+    },
+    {
+      "id": "NEG-05",
+      "expected_fail_code": "SOURCE_ALIGNMENT_MISMATCH",
+      "observed_fail_code": "SOURCE_ALIGNMENT_MISMATCH",
+      "status": "REJECT"
+    }
+  ],
+  "claims": {
+    "service_equivalence": false,
+    "institutional_adoption": false,
+    "field_authorized": false,
+    "public_rank": false,
+    "official_score": false
+  },
+  "limits": {
+    "zh": "crosswalk PASS 只证明四个已公开桌面合同可按 SEB 字段回接、正负夹具可离线复核；不证明 SEB 已被机构采用，不证明服务等价、人员值守、空间实施、居民结果或官方评分。",
+    "en": "A crosswalk PASS proves only that four already-public tabletop contracts can be mapped to SEB fields and replayed offline; it does not prove institutional adoption, service equivalence, staffing, spatial implementation, resident outcomes, or an official score."
+  }
+}
