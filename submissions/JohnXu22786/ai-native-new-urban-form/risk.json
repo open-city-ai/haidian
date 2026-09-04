@@ -1,0 +1,120 @@
+{
+ "schema_version": "0.1.0",
+ "risks": [
+  {
+   "risk_id": "R-BOUNDARY",
+   "title_zh": "边界精度",
+   "category": "data_gap",
+   "severity": "medium",
+   "description_zh": "全部几何基于 provisional 边界；正式图形到位后需重新计算面积与指标并调整图件。",
+   "mitigation_zh": "已在正文、矩阵与图件中标明 provisional 状态与复算触发条件。"
+  },
+  {
+   "risk_id": "R-TRANSIT",
+   "title_zh": "元胞街坊与城市交通组织衔接",
+   "category": "policy",
+   "severity": "high",
+   "description_zh": "元胞街坊改造与街道时段响应涉及多部门协调，实施路径未定型。",
+   "mitigation_zh": "方案仅表达概念意图，街道响应与交通组织须经主管部门依法审定。"
+  },
+  {
+   "risk_id": "R-PRIVACY",
+   "title_zh": "虚实融合感知与公众数据边界",
+   "category": "data_boundary",
+   "severity": "medium",
+   "description_zh": "虚实融合公共空间与空间感知涉及人员信息，若未设边界可能造成隐私风险。",
+   "mitigation_zh": "仅处理匿名聚合数据，个人与轨迹信息不跨场景留存，关键决策人工复核。"
+  },
+  {
+   "risk_id": "R-CONTROL",
+   "title_zh": "法定控制缺位",
+   "category": "statutory",
+   "severity": "medium",
+   "description_zh": "控规指标与轨道保护区控制未公开，开发强度与退距表述仅限概念层面。",
+   "mitigation_zh": "不给出数值结论；正文、图件与矩阵明确 official GIS/主管部门资料到位后的复算和复核责任。"
+  },
+  {
+   "risk_id": "R-TECH",
+   "title_zh": "数字孪生与形态评估技术成熟度",
+   "category": "technology",
+   "severity": "medium",
+   "description_zh": "数字孪生、负荷预测与形态绩效评估依赖数据质量，技术与运维能力需要小规模验证。",
+   "mitigation_zh": "只使用离线能力卡和匿名汇总，AI 输出仅作参考；故障时由人工台、纸本导览和人工复核兜底。"
+  },
+  {
+   "risk_id": "R-ACCEPTANCE",
+   "title_zh": "新型形态与公众接受度",
+   "category": "public_acceptance",
+   "severity": "medium",
+   "description_zh": "新型城市形态概念可能存在接受度不确定性或过度科技化观感。",
+   "mitigation_zh": "形态表达以克制与渐进为主、开放意见通道、重大事项依法公示。"
+  }
+ ],
+ "version": 1,
+ "dimensions": [
+  {
+   "id": "data_privacy",
+   "label": "数据隐私",
+   "score": 2,
+   "note": "人流与轨迹数据仅采用匿名聚合，不做个体识别；AI生成内容全部人工复核后发布。",
+   "mitigation": "在文本与图件中声明仅聚合不识别，发布流程设人工复核岗。",
+   "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+  },
+  {
+   "id": "implementation_complexity",
+   "label": "实施复杂度",
+   "score": 3,
+   "note": "可逆公共空间构件需场地、结构、消防、无障碍和运维协同，概念到落地跨度大。",
+   "mitigation": "方案明确为概念建议，各专项预留深化接口与分阶段决策点；组件先试后扩。",
+   "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+  },
+  {
+   "id": "public_acceptance",
+   "label": "公众接受度",
+   "score": 3,
+   "note": "AI观测装置与数据展示可能引发隐私与‘过度科技化’疑虑。",
+   "mitigation": "匿名聚合+人工复核边界明确披露，设施以低侵入、可关闭设计为主。",
+   "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+  },
+  {
+   "id": "operations_cost",
+   "label": "运维成本",
+   "score": 2,
+   "note": "信息屏、组件、服务台和公开活动存在持续运维成本。",
+   "mitigation": "采用组件库、年度运维台账和人工服务兜底；未达 KPI 的设备或活动停用、拆除或交接。",
+   "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+  },
+  {
+   "id": "policy_uncertainty",
+   "label": "政策不确定性",
+   "score": 3,
+   "note": "河道管理、蓝线与数据开放政策仍在演进，审批路径未定型。",
+   "mitigation": "以现行法规为参照，保留弹性接口；正式实施前完成法定审批。",
+   "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+  },
+  {
+   "id": "spatial_dispute",
+   "label": "空间争议",
+   "score": 3,
+   "note": "全部几何基于 provisional 边界，正式边界发布后面积与指标可能有变。",
+   "mitigation": "已在 geometry、矩阵与指标复算说明中标注 provisional 状态与复算条件。",
+   "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+  },
+  {
+   "id": "technology_maturity",
+   "label": "技术成熟度",
+   "score": 3,
+   "note": "匿名汇总、离线模型和公共信息屏仍需验证可解释性与维护能力。",
+   "mitigation": "新场景先小规模测试、人工复核和公开复盘，再决定是否扩展。",
+   "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+  },
+  {
+   "id": "equity_inclusion",
+   "label": "公平与包容性",
+   "score": 2,
+   "note": "滨水体验设施可能造成使用门槛，需兼顾无障碍与适老化。",
+   "mitigation": "无障碍与适老化标准同步设计，科普与体验内容提供离线人工替代路径。",
+   "human_review": "由 JohnXu22786 在汇总阶段逐项人工核对该条目（AI生成初稿后人工复核）。"
+  }
+ ]
+}
