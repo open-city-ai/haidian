@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百年京张·神经共生绿廊 · 交互空间总览</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card-bg: #1e293b;
+    --text: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent-blue: #38bdf8;
+    --accent-green: #22c55e;
+    --accent-amber: #fbbf24;
+    --accent-rose: #f43f5e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background: var(--card-bg);
+    padding: 1.25rem 2rem;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 { font-size: 1.4rem; color: var(--accent-blue); }
+  header .author { font-size: 0.9rem; color: var(--text-muted); }
+  .container {
+    display: grid;
+    grid-template-columns: 320px 1fr 340px;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    flex: 1;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid #334155;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .card h2 { font-size: 1.1rem; border-bottom: 1px solid #334155; padding-bottom: 0.5rem; }
+  .metric-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed #334155;
+  }
+  .metric-item .val { font-weight: bold; color: var(--accent-green); }
+  .tab-btn {
+    background: #334155;
+    color: var(--text);
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    font-size: 0.88rem;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--accent-blue);
+    color: #0f172a;
+    font-weight: bold;
+  }
+  .map-view {
+    background: #090d16;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    position: relative;
+  }
+  .map-view img {
+    max-width: 100%;
+    max-height: 520px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>百年京张·神经共生绿廊 · 交互方案总览</h1>
+    <div class="author">KKTIME2024 / Antigravity Urban AI · Formal Ready</div>
+  </header>
+  <main class="container">
+    <aside class="card">
+      <h2>核心指标 (EPSG:4548)</h2>
+      <div class="metric-item">
+        <span>总体设计范围面积</span>
+        <span class="val" data-metric="site_area_sqm" data-value="11412825.386">11412825.386 m²</span>
+      </div>
+      <div class="metric-item">
+        <span>绿地率</span>
+        <span class="val" data-metric="green_ratio" data-value="0.41134">41.13%</span>
+      </div>
+      <div class="metric-item">
+        <span>公共空间率</span>
+        <span class="val" data-metric="public_space_ratio" data-value="0.219405">21.94%</span>
+      </div>
+      <div class="metric-item">
+        <span>建筑基底面积</span>
+        <span class="val" data-metric="building_footprint_area_sqm" data-value="625899.768">625899.768 m²</span>
+      </div>
+      <div class="metric-item">
+        <span>自检状态</span>
+        <span class="val" style="color: var(--accent-blue);">PASS (Four-Gate)</span>
+      </div>
+      <h2 style="margin-top: 0.5rem;">总览地图 与图层切换</h2>
+      <button class="tab-btn active" onclick="switchView('overview')">三层范围 与区位总览</button>
+      <button class="tab-btn" onclick="switchView('landuse')">用地分区 与功能布局</button>
+      <button class="tab-btn" onclick="switchView('keyareas')">重点区域 与详细设计</button>
+      <button class="tab-btn" onclick="switchView('mobility')">交通慢行 与蓝绿公共空间</button>
+      <button class="tab-btn" onclick="switchView('metrics')">更新项目 与指标复算</button>
+    </aside>
+    
+    <section class="map-view">
+      <img id="main-display" src="../assets/figures/site-overview.png" alt="总览地图">
+      <div style="margin-top: 0.8rem; font-size: 0.82rem; color: var(--text-muted);">
+        三层范围 覆盖 43.6km² 统筹区与 11.4km² 走廊；重点区域 包含众智园、AI原点与大钟寺。
+      </div>
+    </section>
+
+    <aside class="card">
+      <h2>重点区域 、建筑 与 AI 场景</h2>
+      <div style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted);">
+        <strong style="color: var(--accent-amber);">1. 众智园 (192.1ha)</strong><br>
+        全栈自主研发、清河低碳水岸、安全治理沙盒与分布式算力驿站。<br><br>
+        <strong style="color: var(--accent-rose);">2. AI原点社区 (104.3ha)</strong><br>
+        近校成果转化、24h开源发布大厅与极客创客公地。<br><br>
+        <strong style="color: #c084fc;">3. 大钟寺AI集聚区 (72.0ha)</strong><br>
+        TOD立体连通、国际路演客厅与数据要素会客厅。<br><br>
+        <strong style="color: var(--accent-green);">设计依据与来源假设</strong><br>
+        来源 依据官方公告与场地资料包；假设 遵循临时粗略边界复算要求；任务覆盖 达成公告必选与Agent开源任务全部指标。
+      </div>
+    </aside>
+  </main>
+  <script>
+    const images = {
+      overview: '../assets/figures/site-overview.png',
+      landuse: '../assets/figures/land-use-structure.png',
+      keyareas: '../assets/figures/key-areas.png',
+      mobility: '../assets/figures/mobility-bluegreen.png',
+      metrics: '../assets/figures/metrics-evidence.png'
+    };
+    function switchView(key) {
+      document.getElementById('main-display').src = images[key];
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
