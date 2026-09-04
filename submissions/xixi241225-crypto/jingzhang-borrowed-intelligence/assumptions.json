@@ -1,0 +1,230 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-GEOMETRY-PROVISIONAL",
+      "assumption_id": "A-GEOMETRY-PROVISIONAL",
+      "status": "active_provisional",
+      "current_status": "active_provisional",
+      "statement": "site boundary 与三处 key areas 均沿用官方仓库 provisional geometry，仅用于投稿校验与带披露的设计模型。",
+      "statement_zh": "site boundary 与三处 key areas 均沿用官方仓库 provisional geometry，仅用于投稿校验与带披露的设计模型。",
+      "statement_en": "The site boundary and all three key areas use repository-maintained provisional geometry for validation and disclosed design modelling only.",
+      "reason": "公开资料中尚无可验证的精确官方 GIS/CAD 红线。",
+      "impact_scope": [
+        "all_geometry",
+        "all_area_metrics"
+      ],
+      "verification_method": "获取官方可验证坐标数据并与 provisional 几何对比。",
+      "recompute_or_update_trigger": "官方精确边界发布。",
+      "source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ]
+    },
+    {
+      "id": "A-DBZ-DUAL-TRACK",
+      "assumption_id": "A-DBZ-DUAL-TRACK",
+      "status": "active_provisional",
+      "current_status": "active_provisional",
+      "statement": "大钟寺继续双轨：PROV-KEY-003 是机器校验 geometry；真实设计研究围绕大钟寺站、觉生寺与四象限步行联系，official_anchor_status=pending。",
+      "statement_zh": "大钟寺继续双轨：PROV-KEY-003 是机器校验 geometry；真实设计研究围绕大钟寺站、觉生寺与四象限步行联系，official_anchor_status=pending。",
+      "statement_en": "Dazhongsi uses a dual track: PROV-KEY-003 remains the validation geometry while real design research references Dazhongsi Station, Juesheng Temple and four-quadrant walking links; official_anchor_status=pending.",
+      "reason": "Issue #1029 在 2026-08-28 仍为 Open；official_validation_geometry_not_equal_real_design_research_location。",
+      "impact_scope": [
+        "key_areas",
+        "dazhongsi_design_research",
+        "key_area_count"
+      ],
+      "verification_method": "跟踪 Issue #1029 与上游 provisional geometry 更新，不由参赛者平移或重画。",
+      "recompute_or_update_trigger": "Issue #1029 关闭且官方锚点或边界可用。",
+      "source_ids": [
+        "BACKGROUND-GITHUB-ISSUE-1029",
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ]
+    },
+    {
+      "id": "A-GREEN-MODEL",
+      "assumption_id": "A-GREEN-MODEL",
+      "status": "active_design_model",
+      "current_status": "active_design_model",
+      "statement": "green_space.geojson 表达方案的蓝绿结构，green_ratio 为 low-confidence design-model value，非现状完整统计、非法定绿地率。",
+      "statement_zh": "green_space.geojson 表达方案的蓝绿结构，green_ratio 为 low-confidence design-model value，非现状完整统计、非法定绿地率。",
+      "statement_en": "green_space.geojson represents the proposed blue-green structure; green_ratio is a low-confidence design-model value, not a complete existing inventory or statutory green ratio.",
+      "reason": "缺少完整现状绿地普查、测绘和法定口径。",
+      "impact_scope": [
+        "green_space",
+        "green_space_area_sqm",
+        "green_ratio"
+      ],
+      "verification_method": "依据官方边界、测绘和法定绿地口径复算。",
+      "recompute_or_update_trigger": "官方边界、现场测绘或法定绿地数据可用。",
+      "source_ids": [
+        "PARTICIPANT-GEOMETRY-V1"
+      ]
+    },
+    {
+      "id": "A-PUBLIC-MODEL",
+      "assumption_id": "A-PUBLIC-MODEL",
+      "status": "active_design_model",
+      "current_status": "active_design_model",
+      "statement": "public_space.geojson 表达概念性公共空间模型；面积在 EPSG:4548 中合并去重并裁切至 site 内，不代表已开放或法定公共空间。",
+      "statement_zh": "public_space.geojson 表达概念性公共空间模型；面积在 EPSG:4548 中合并去重并裁切至 site 内，不代表已开放或法定公共空间。",
+      "statement_en": "public_space.geojson is a conceptual public-space model; area is unioned in EPSG:4548, counted once and clipped to the site, without implying current access or statutory status.",
+      "reason": "公共开放、产权和管理条件尚未完整确认。",
+      "impact_scope": [
+        "public_space",
+        "public_space_area_sqm",
+        "public_space_ratio"
+      ],
+      "verification_method": "现场核实并获得管理方确认后更新可达性与面积口径。",
+      "recompute_or_update_trigger": "公共开放、产权或管理条件更新。",
+      "source_ids": [
+        "PARTICIPANT-GEOMETRY-V1",
+        "PARTICIPANT-DESIGN-V01",
+        "PARTICIPANT-DESIGN-V02"
+      ]
+    },
+    {
+      "id": "A-WALK-CONTINUITY",
+      "assumption_id": "A-WALK-CONTINUITY",
+      "status": "pending_field_verification",
+      "current_status": "pending_field_verification",
+      "statement": "连续步行路径尚未全线现场核实，相关道路与公共空间均为 PROVISIONAL / FIELD_VERIFY。",
+      "statement_zh": "连续步行路径尚未全线现场核实，相关道路与公共空间均为 PROVISIONAL / FIELD_VERIFY。",
+      "statement_en": "Continuous walking routes have not been verified end-to-end on site; relevant roads and public-space links remain PROVISIONAL / FIELD_VERIFY.",
+      "reason": "首轮提交前未完成连续路线踏勘。",
+      "impact_scope": [
+        "roads",
+        "public_space",
+        "mobility_claims"
+      ],
+      "verification_method": "工作日/非活动日分段走航、记录断点并回写。",
+      "recompute_or_update_trigger": "V0.3 提交后现场迭代。",
+      "source_ids": [
+        "PARTICIPANT-DESIGN-V03"
+      ]
+    },
+    {
+      "id": "A-ACCESSIBILITY-CONTINUITY",
+      "assumption_id": "A-ACCESSIBILITY-CONTINUITY",
+      "status": "pending_field_verification",
+      "current_status": "pending_field_verification",
+      "statement": "无障碍连续性尚未完成不同能力用户联合审计，不声称已验证。",
+      "statement_zh": "无障碍连续性尚未完成不同能力用户联合审计，不声称已验证。",
+      "statement_en": "Barrier-free continuity has not undergone a joint audit with users of different abilities and is not claimed as verified.",
+      "reason": "缺少现场断点、坡道、过街、铺装和门禁连续证据。",
+      "impact_scope": [
+        "roads",
+        "public_space",
+        "accessibility_claims"
+      ],
+      "verification_method": "联合用户审计、量测并形成问题闭环。",
+      "recompute_or_update_trigger": "V0.3 无障碍联合审计完成。",
+      "source_ids": [
+        "DATA-SRC-BARRIER-FREE-ENVIRONMENT-LAW",
+        "PARTICIPANT-DESIGN-V03"
+      ]
+    },
+    {
+      "id": "A-NIGHT-USE",
+      "assumption_id": "A-NIGHT-USE",
+      "status": "pending_field_verification",
+      "current_status": "pending_field_verification",
+      "statement": "夜间实际使用、照明与 22:00 后可达性尚未核实。",
+      "statement_zh": "夜间实际使用、照明与 22:00 后可达性尚未核实。",
+      "statement_en": "Actual night use, lighting and accessibility after 22:00 have not been verified.",
+      "reason": "缺少夜间分时现场证据。",
+      "impact_scope": [
+        "public_space",
+        "roads",
+        "night_use_claims"
+      ],
+      "verification_method": "夜间定点观察、走航和安全记录。",
+      "recompute_or_update_trigger": "V0.3 夜间观察完成。",
+      "source_ids": [
+        "PARTICIPANT-DESIGN-V03"
+      ]
+    },
+    {
+      "id": "A-GATE-HOURS",
+      "assumption_id": "A-GATE-HOURS",
+      "status": "pending_management_verification",
+      "current_status": "pending_management_verification",
+      "statement": "校园、园区、院落和场站的门禁及开放时段尚未经管理方确认。",
+      "statement_zh": "校园、园区、院落和场站的门禁及开放时段尚未经管理方确认。",
+      "statement_en": "Gate controls and opening hours for campuses, parks, courtyards and station-related spaces have not been confirmed by their operators.",
+      "reason": "缺少管理方规则和分时核验。",
+      "impact_scope": [
+        "public_space",
+        "roads",
+        "access_claims"
+      ],
+      "verification_method": "管理方访谈、制度文件核对与分时现场观察。",
+      "recompute_or_update_trigger": "取得管理方正式回复。",
+      "source_ids": [
+        "PARTICIPANT-ASSUMPTION-REGISTER"
+      ]
+    },
+    {
+      "id": "A-MANAGEMENT-OPENNESS",
+      "assumption_id": "A-MANAGEMENT-OPENNESS",
+      "status": "pending_management_verification",
+      "current_status": "pending_management_verification",
+      "statement": "校园、园区和共享庭院的公共开放意愿及运营责任尚未经管理方确认。",
+      "statement_zh": "校园、园区和共享庭院的公共开放意愿及运营责任尚未经管理方确认。",
+      "statement_en": "Management willingness and operating responsibility for public access to campuses, parks and shared courtyards remain unconfirmed.",
+      "reason": "空间概念不能替代产权人和管理方承诺。",
+      "impact_scope": [
+        "public_space",
+        "buildings",
+        "implementation"
+      ],
+      "verification_method": "分主体访谈并形成权责、开放时段和运营维护协议。",
+      "recompute_or_update_trigger": "取得管理方书面意愿与运营方案。",
+      "source_ids": [
+        "PARTICIPANT-ASSUMPTION-REGISTER"
+      ]
+    },
+    {
+      "id": "A-CONTROLS-UNKNOWN",
+      "assumption_id": "A-CONTROLS-UNKNOWN",
+      "status": "pending_official_inputs",
+      "current_status": "pending_official_inputs",
+      "statement": "法定控规、建筑高度、FAR、建筑密度、精确建设规模、产权、道路红线、市政与工程条件均为 unknown/null。",
+      "statement_zh": "法定控规、建筑高度、FAR、建筑密度、精确建设规模、产权、道路红线、市政与工程条件均为 unknown/null。",
+      "statement_en": "Statutory controls, building heights, FAR, density, exact development capacity, ownership, road redlines, municipal and engineering conditions remain unknown/null.",
+      "reason": "当前公开资料不足以支持宗地级或法定结论。",
+      "impact_scope": [
+        "buildings",
+        "roads",
+        "land_use",
+        "unknown_metrics",
+        "implementation"
+      ],
+      "verification_method": "获取官方控规、测绘、产权、市政和工程专项资料后逐项复核。",
+      "recompute_or_update_trigger": "官方控制和专项资料可用。",
+      "source_ids": [
+        "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+        "PARTICIPANT-ASSUMPTION-REGISTER"
+      ]
+    },
+    {
+      "id": "A-V03-POST-SUBMIT",
+      "assumption_id": "A-V03-POST-SUBMIT",
+      "status": "post_submission_iteration",
+      "current_status": "post_submission_iteration",
+      "statement": "V0.3 整体定位为首轮提交后的现场证据迭代工作包，不作为 2026-08-31 首轮投稿前置条件。",
+      "statement_zh": "V0.3 整体定位为首轮提交后的现场证据迭代工作包，不作为 2026-08-31 首轮投稿前置条件。",
+      "statement_en": "V0.3 is the post-first-submission field-evidence iteration package and is not a precondition for the 2026-08-31 first submission.",
+      "reason": "现场、夜间、联合无障碍、雨后与季节补测无法在截止前完整执行。",
+      "impact_scope": [
+        "field_verification_program",
+        "evidence_status"
+      ],
+      "verification_method": "按优先级执行 V0.3，将证据回写至 assumptions、geometry、metrics 与方案文本。",
+      "recompute_or_update_trigger": "首轮 PR 后迭代。",
+      "source_ids": [
+        "PARTICIPANT-DESIGN-V03"
+      ]
+    }
+  ]
+}
