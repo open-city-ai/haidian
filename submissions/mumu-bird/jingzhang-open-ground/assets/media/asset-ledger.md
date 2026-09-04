@@ -1,6 +1,6 @@
 # Open Ground scene asset ledger / 开路场场景资产台账
 
-Author: 王浩冉 (mumu-bird) × Codex  
+Author: 王浩冉 (mumu-bird) × Codex
 Status: every raster scene below is a conceptual projection, not existing-condition photography or an approved work. Every rendered use in A3, A0, report HTML and scrolling HTML carries the same prominent bilingual in-image status label; captions point back to this ledger and the copyright statement.
 
 | File | A3/A0 use | Design claim | Site basis / source | Generation and licence | Status / alt text |
