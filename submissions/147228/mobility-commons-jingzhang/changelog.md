@@ -1,18 +1,5 @@
 # 方案迭代记录
 
-## v1.9 - 2026-08-12
-
-- Added a bilingual responsibility-transfer board and a machine-readable contract for seven mobility resource units and eight service groups.
-- Added explicit denominators, non-AI equivalents, refusal conditions and event writeback fields for route/curb, transit, enterprise, resident, maintenance, data and equity interfaces.
-- Added an offline fail-closed checker; it reports 8/8 contract checks, real transfers 0, real authorization 0 and field status HOLD.
-- Kept all resource quantities, staffing, capacity, public acceptance and operating outcomes unknown until dated local evidence exists.
-
-## v1.8 - 2026-08-12
-
-- Restored the exact concise evidence summaries from the historical 69/100 package; the current template-expanded matrix wording had changed the Review Agent input even though the proposal and figures were otherwise restored.
-- Put one candidate Dazhongsi-to-AI-Origin trip home on the bilingual review cover, with five visible human/public-transport fallback steps.
-- Separated package-replay evidence (4/4 requests, 6/6 checks and 5/5 rollback steps) from field HOLD items; the new cover makes no surveyed-route, staffing, safety, public-acceptance or operating-performance claim.
-
 ## v1.7 - 2026-08-09
 
 - Added a bilingual one-page executive brief at the top of both readable proposals.
