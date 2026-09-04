@@ -1,0 +1,560 @@
+{
+  "schema_version": "1.0.0",
+  "freeze_id": "JZ100-A08R-IMPLEMENTATION-DESIGN-FREEZE",
+  "version": "1.0.0",
+  "status": "PARTICIPANT_REFERENCE_DESIGN_FROZEN",
+  "authority_statement": "This is the single authoritative participant selection for the S01 implementation reference. It records what the participant has finished designing now. It is not an external approval, appointment, survey, construction drawing, specification, procurement record, field result, or activation authorization.",
+  "scope": {
+    "submission": "submissions/JerrySkywalker/jingzhang-in-place",
+    "task_id": "S01",
+    "project_id": "PRJ-06",
+    "applies_to": "A zero-coordinate, carrier-neutral, reversible reference topology for deciding whether a genuine future physical task can ever justify a minimum P0 intervention.",
+    "excludes": [
+      "final coordinates",
+      "real site dimensions",
+      "statutory clearances",
+      "approved capacity or egress",
+      "structural load or anchorage",
+      "electrical capacity or energization",
+      "rights, operator appointment, professional acceptance, or authority release",
+      "field observation, quotation, budget, funding, procurement, commissioning, or actual operation"
+    ]
+  },
+  "supersession_rule": {
+    "rule": "This freeze governs participant design choices until a later version explicitly supersedes it. New organizer, carrier, professional, field, or authority evidence does not silently turn this reference into an approval; it triggers a documented rebind, accept/revise/reject decision, and an explicit successor or NO-BUILD decision.",
+    "superseded_by": null,
+    "current_external_approval": false
+  },
+  "truth_boundary": {
+    "participant_design_complete": true,
+    "participant_method_complete": true,
+    "professional_acceptance_complete": false,
+    "field_acceptance_complete": false,
+    "authority_release_complete": false,
+    "external_releases_open": false,
+    "p0_go": false,
+    "rule": "Only the participant-authored reference, its alternatives, method, role topology and handoff logic are complete. Every real-world condition remains a future evidence question."
+  },
+  "canonical_s01_participant_reference_topology": {
+    "reference_id": "S01-Z0-Z6-FROZEN-001",
+    "status": "PARTICIPANT_REFERENCE_ONLY",
+    "topology_chain": [
+      "ordinary/public route",
+      "human handoff threshold",
+      "bounded controlled test",
+      "observation",
+      "stop/isolation",
+      "removal",
+      "reset/restoration",
+      "ordinary city"
+    ],
+    "zones": [
+      {
+        "zone": "Z0",
+        "selection": "ordinary/public route",
+        "participant_rule": "Legible, continuous ordinary route; no walk-in queue, task occupancy, or AI dependency."
+      },
+      {
+        "zone": "Z1",
+        "selection": "human handoff threshold",
+        "participant_rule": "A human handoff steward confirms the conditional boundary before any task state."
+      },
+      {
+        "zone": "Z2",
+        "selection": "bounded controlled test",
+        "participant_rule": "One bounded task/device category only; no autonomous public-space activity."
+      },
+      {
+        "zone": "Z3",
+        "selection": "authority/operator threshold",
+        "participant_rule": "Operation and human safety authority are visibly separate."
+      },
+      {
+        "zone": "Z4",
+        "selection": "booked observation",
+        "participant_rule": "Observation is supervised, booked and non-queueing."
+      },
+      {
+        "zone": "Z5",
+        "selection": "stop/isolation and reset custody",
+        "participant_rule": "Isolation, quarantine, inventory and removal remain available before and after any future session."
+      },
+      {
+        "zone": "Z6",
+        "selection": "professional buffer",
+        "participant_rule": "Extent is deliberately null until a future competent assessment; no clearance or capacity is asserted."
+      }
+    ],
+    "selected_sequence": "Z0 -> Z1 -> Z2 -> Z4; Z3 governs the threshold; Z5 is the stop/isolation/removal/reset route; Z6 remains null; every exit returns to Z0 ordinary city.",
+    "frozen_reference_envelope": "12 m x 9 m zero-coordinate conceptual envelope only; it is a typological reference, not a site layout or measured condition.",
+    "ordinary_city_floor": "Ordinary route, ordinary training/work, maintenance access, human help and non-digital fallback remain first and cannot be displaced."
+  },
+  "authoritative_alternative_hierarchy": [
+    {
+      "alternative_id": "ALT-00",
+      "participant_ranking": 1,
+      "label": "ordinary city / NO-BUILD",
+      "state": "DEFAULT_SELECTED",
+      "reason": "The ordinary-space sufficiency test is the default design conclusion; no physical intervention is justified until a genuine necessity survives admission.",
+      "triggering_gate": "Any absent, stale, contradictory, or insufficient evidence; ordinary-space sufficiency confirmed.",
+      "failure_condition": "Any route, rights, role, task, professional, field, funding, or authority gap remains unresolved.",
+      "fallback": "Retain ordinary city and record NO-BUILD.",
+      "external_approval_status": false
+    },
+    {
+      "alternative_id": "ALT-01",
+      "participant_ranking": 2,
+      "label": "ordinary or lower-tech reversible solution",
+      "state": "FIRST_RESPONSE_SELECTED_IF_NEEDED",
+      "reason": "If a future need exists but can be met without the frozen P0 edge, use ordinary room, simulation, review, or a lower-tech reversible arrangement first.",
+      "triggering_gate": "A bounded future task is evidenced but P0 physical necessity is not yet demonstrated.",
+      "failure_condition": "The lower-tech arrangement would still displace the ordinary-city floor or lacks applicable verification.",
+      "fallback": "Return to ALT-00 ordinary city / NO-BUILD.",
+      "external_approval_status": false
+    },
+    {
+      "alternative_id": "ALT-02",
+      "participant_ranking": 3,
+      "label": "minimum P0 reversible condition",
+      "state": "DEFERRED_UNTIL_PHYSICAL_NECESSITY_SURVIVES_ADMISSION",
+      "reason": "This is the frozen Z0-Z6 reference, used only when a genuine, bounded physical necessity cannot be met by ALT-00 or ALT-01 and all applicable future gates close.",
+      "triggering_gate": "A real task, carrier, rights, separated roles, applicable professional evidence, field baseline, stop/reset rehearsal, funding/procurement authority and release evidence are valid and scope-matched.",
+      "failure_condition": "Any missing, expired, unsafe, conflicting, or unverified condition; any ordinary-space sufficiency finding.",
+      "fallback": "ALT-01 first; otherwise ALT-00.",
+      "external_approval_status": false
+    },
+    {
+      "alternative_id": "ALT-03",
+      "participant_ranking": 4,
+      "label": "alternate linear side-bay",
+      "state": "SECONDARY_FALLBACK_DEFERRED",
+      "reason": "This is the current secondary alternative when the preferred frozen reference cannot be verified, and only if a future professional process finds it preserves the ordinary-city floor and reversibility better for the actual carrier.",
+      "triggering_gate": "Preferred reference is rejected or cannot be verified after a genuine task need is established.",
+      "failure_condition": "It creates route, accessibility, maintenance, safety, rights, or restoration conflict, or cannot meet a future professional/authority requirement.",
+      "fallback": "ALT-01 or ALT-00; no substitute intervention is automatically selected.",
+      "external_approval_status": false
+    }
+  ],
+  "acceptance_hierarchy": {
+    "A_PARTICIPANT_DESIGN_ACCEPTANCE": {
+      "current_state": "COMPLETE_WITHIN_PARTICIPANT_SCOPE",
+      "items": [
+        "Frozen Z0-Z6 reference topology is internally coherent and carrier-neutral.",
+        "Authoritative alternative hierarchy has one default, one first response, one minimum P0 condition and one secondary fallback.",
+        "D0 method definitions are complete as methods and contain no field result.",
+        "Transition, role-type, gate and receipt schemas are complete as participant design artifacts.",
+        "Bilingual reviewer-facing four-question closure is materially aligned.",
+        "Arithmetic and cross-reference consistency is subject to deterministic package validation."
+      ],
+      "decision_role_type": "participant author",
+      "release_effect": "R0 and R1 may be true; R2 may be package-ready only."
+    },
+    "B_PROFESSIONAL_ACCEPTANCE": {
+      "current_state": "HOLD_EXTERNAL",
+      "scope": "Applicable planning, architecture, structure, fire/life-safety, transport, municipal/utilities, ecology, accessibility, privacy/legal, heritage, cost/procurement and operational questions.",
+      "release_effect": "No carrier preparation or activation."
+    },
+    "C_FIELD_ACCEPTANCE": {
+      "current_state": "HOLD_EXTERNAL",
+      "scope": "Same-carrier route/accessibility, maintenance, task, interface, stop/reset and ordinary-baseline observation.",
+      "release_effect": "No rehearsal or P0 session."
+    },
+    "D_AUTHORITY_RELEASE": {
+      "current_state": "HOLD_EXTERNAL",
+      "scope": "Rights, access, appointments, applicable approvals, procurement/funding authority and final operating release.",
+      "release_effect": "EXTERNAL_RELEASES_OPEN=false and P0_GO=false."
+    }
+  },
+  "release_state_model": [
+    {
+      "state": "R0_DESIGN_PACKAGE_COMPLETE",
+      "entry_evidence": "Participant design freeze, D0 methods, external-input contract, internal consistency checks.",
+      "decision_role_type": "participant author",
+      "allowed_activities": "Package synthesis, bilingual synchronization and future evidence-request preparation.",
+      "forbidden_activities": "Claiming real site selection, professional acceptance, procurement, field work or activation.",
+      "exit_evidence": "Participant design acceptance receipt and complete handoff references.",
+      "failure_state": "R0_REVISE_PARTICIPANT_PACKAGE",
+      "fallback": "Retain ordinary city / NO-BUILD.",
+      "external_dependencies": [],
+      "current_truth_state": "TRUE_WITHIN_PARTICIPANT_SCOPE"
+    },
+    {
+      "state": "R1_DESK_VERIFICATION_ALLOWED",
+      "entry_evidence": "R0 complete and a bounded future evidence request can be made without asserting a site fact.",
+      "decision_role_type": "participant author or future receiving reviewer",
+      "allowed_activities": "Desk review, scope matching, evidence-request routing and no-build sufficiency review.",
+      "forbidden_activities": "Treating a desk review as professional or authority acceptance; field preparation.",
+      "exit_evidence": "Scope-matched request/receipt record or a documented NO-BUILD conclusion.",
+      "failure_state": "R1_HOLD_OR_NO_BUILD",
+      "fallback": "ALT-00 or ALT-01.",
+      "external_dependencies": ["future inputs may be requested but are not presumed received"],
+      "current_truth_state": "TRUE_WITHIN_PARTICIPANT_METHOD_SCOPE"
+    },
+    {
+      "state": "R2_PROFESSIONAL_REVIEW_PACKAGE_READY",
+      "entry_evidence": "R0/R1 references, gap register, role and discipline questions, and rebinding method are complete.",
+      "decision_role_type": "future qualified professional review lead",
+      "allowed_activities": "Receive, scope, accept/revise/reject future evidence; coordinate applicable discipline intake.",
+      "forbidden_activities": "Carrier preparation, procurement, installation, energization or field activation.",
+      "exit_evidence": "Applicable professional findings and a same-carrier evidence package.",
+      "failure_state": "R2_HOLD_OR_NO_BUILD",
+      "fallback": "ALT-01 or ALT-00.",
+      "external_dependencies": ["official geometry/controls where applicable", "professional findings", "rights/access context"],
+      "current_truth_state": "PACKAGE_READY_NOT_REVIEWED"
+    },
+    {
+      "state": "R3_CONTROLLED_CARRIER_PREPARATION_ALLOWED",
+      "entry_evidence": "Applicable R2 findings, valid carrier rights/access, real task scope, role appointments and authority for limited preparation.",
+      "decision_role_type": "future authorized carrier steward",
+      "allowed_activities": "Only authorized, reversible, non-activation preparation within the accepted future scope.",
+      "forbidden_activities": "Procurement beyond authority, energization, unsupervised task activity or public-route displacement.",
+      "exit_evidence": "Current carrier/interface record, accepted preparation record and applicable readiness evidence.",
+      "failure_state": "R3_HOLD_OR_QUARANTINED",
+      "fallback": "Remove/revert and return to ALT-01 or ALT-00.",
+      "external_dependencies": ["rights", "appointments", "professional acceptance", "carrier conditions", "authority limits"],
+      "current_truth_state": "FALSE_HOLD_EXTERNAL"
+    },
+    {
+      "state": "R4_NON_ENERGIZED_REHEARSAL_ALLOWED",
+      "entry_evidence": "R3 evidence plus applicable separate safety authority, stop/isolation plan and independent witness route.",
+      "decision_role_type": "future authorized operating lead with separate human safety authority",
+      "allowed_activities": "Non-energized, bounded rehearsal of handoff, stop, isolation, removal and reset only as authorized.",
+      "forbidden_activities": "Live P0 task, public queueing, autonomous public-space activity or treating rehearsal as activation.",
+      "exit_evidence": "Dated witnessed rehearsal, stop/isolation result and reset/ordinary-baseline record.",
+      "failure_state": "R4_QUARANTINED",
+      "fallback": "Stop, isolate, remove, restore and return to ALT-01 or ALT-00.",
+      "external_dependencies": ["all applicable R3 dependencies", "rehearsal authority", "qualified roles"],
+      "current_truth_state": "FALSE_HOLD_EXTERNAL"
+    },
+    {
+      "state": "R5_P0_ACTIVATION_ELIGIBLE",
+      "entry_evidence": "Current and scope-matched professional, field, rights, role, authority, procurement/funding and rehearsal evidence without contradiction.",
+      "decision_role_type": "future authorized decision-maker with required separated cosignatories",
+      "allowed_activities": "One future authorized bounded P0 session only; human stop authority remains absolute.",
+      "forbidden_activities": "Continuous operation, scope expansion, implied public-service dependency or activation without a current release.",
+      "exit_evidence": "Authorized session record, stop/reset record and independent ordinary-baseline acceptance.",
+      "failure_state": "R5_STOP_AND_QUARANTINE",
+      "fallback": "Immediate stop, isolation, removal/restoration and ALT-00 ordinary city.",
+      "external_dependencies": ["all applicable B/C/D acceptance", "current release evidence"],
+      "current_truth_state": "FALSE_HOLD_EXTERNAL_P0_GO_FALSE"
+    },
+    {
+      "state": "R6_ORDINARY_BASELINE_CLOSEOUT",
+      "entry_evidence": "After any future R4/R5 activity, a complete removal, inventory, reset and independent ordinary-baseline record.",
+      "decision_role_type": "future reset custodian with independent witness",
+      "allowed_activities": "Close out, archive receipt and retain/re-establish ordinary city.",
+      "forbidden_activities": "New session while a deviation, missing inventory, unresolved appeal or restoration gap exists.",
+      "exit_evidence": "Independent acceptance of ordinary route/service/restoration; any expiration supersedes active-release claims.",
+      "failure_state": "R6_QUARANTINED",
+      "fallback": "Keep no-build ordinary baseline and resolve only through a fresh future review.",
+      "external_dependencies": ["field and independent acceptance evidence"],
+      "current_truth_state": "NOT_STARTED_NO_FIELD_ACTIVITY"
+    }
+  ],
+  "gate_authority_topology": [
+    {
+      "gate": "G0_PARTICIPANT_DESIGN_FREEZE",
+      "decision_owner_role_type": "participant author",
+      "required_cosignatory_role_types": [],
+      "responsible": "participant author",
+      "consulted": ["future professional recipients as role types only"],
+      "informed": ["future evidence owners and review recipients as applicable"],
+      "separation_conflict_rule": "Participant design acceptance cannot self-certify professional, field or authority acceptance.",
+      "required_evidence_class": "A_PARTICIPANT_DESIGN_ACCEPTANCE",
+      "resulting_release": "R0/R1 and R2 package-ready only",
+      "fallback": "Revise participant package or retain ALT-00."
+    },
+    {
+      "gate": "G1_PROFESSIONAL_AND_INPUT_VERIFICATION",
+      "decision_owner_role_type": "future qualified professional review lead",
+      "required_cosignatory_role_types": ["applicable discipline reviewer", "rights/access context reviewer where applicable"],
+      "responsible": "future evidence coordinator",
+      "consulted": ["accessibility/community representative", "carrier steward", "task proposer"],
+      "informed": ["participant author", "independent witness role type"],
+      "separation_conflict_rule": "The future reviewer cannot accept an evidence class outside their competence or substitute generic context for same-carrier evidence.",
+      "required_evidence_class": "B_PROFESSIONAL_ACCEPTANCE plus scope-matched external input",
+      "resulting_release": "Potential R3 consideration only",
+      "fallback": "ALT-01 or ALT-00."
+    },
+    {
+      "gate": "G2_CARRIER_RIGHTS_AND_ROLE_READINESS",
+      "decision_owner_role_type": "future rights-holder or authorized carrier steward",
+      "required_cosignatory_role_types": ["separate human safety authority", "qualified operator", "maintenance/reset custodian"],
+      "responsible": "future carrier steward",
+      "consulted": ["applicable professionals", "public/service handoff steward", "accessibility/community representative"],
+      "informed": ["independent witness", "participant author"],
+      "separation_conflict_rule": "No one person may combine incompatible carrier, operation, safety and acceptance decisions; absent appointment is HOLD.",
+      "required_evidence_class": "D_AUTHORITY_RELEASE and applicable B acceptance",
+      "resulting_release": "Potential R3 only",
+      "fallback": "No carrier preparation; ALT-01 or ALT-00."
+    },
+    {
+      "gate": "G3_STOP_RESET_REHEARSAL",
+      "decision_owner_role_type": "future authorized operating lead",
+      "required_cosignatory_role_types": ["separate human safety authority", "maintenance/reset custodian", "independent witness"],
+      "responsible": "future authorized operating lead",
+      "consulted": ["carrier steward", "applicable professionals", "public/service handoff steward"],
+      "informed": ["rights-holder and future decision-maker"],
+      "separation_conflict_rule": "The person operating cannot be the sole safety or independent acceptance witness; any conflict stops the process.",
+      "required_evidence_class": "C_FIELD_ACCEPTANCE plus current D release",
+      "resulting_release": "Potential R4/R5 eligibility only",
+      "fallback": "STOP, isolate, quarantine, remove and restore."
+    },
+    {
+      "gate": "G4_ACTIVATION_OR_CLOSEOUT",
+      "decision_owner_role_type": "future authorized decision-maker",
+      "required_cosignatory_role_types": ["separate human safety authority", "authorized carrier steward", "independent witness", "applicable professional reviewer"],
+      "responsible": "future authorized decision-maker",
+      "consulted": ["qualified operator", "public/service handoff steward", "maintenance/reset custodian"],
+      "informed": ["participant author and affected future recipients as applicable"],
+      "separation_conflict_rule": "Human stop authority overrides activation; expired, scope-mismatched or contradictory evidence prevents release.",
+      "required_evidence_class": "Current A/B/C/D receipt set",
+      "resulting_release": "R5 one bounded future session or R6 closeout",
+      "fallback": "No activation; ordinary baseline closeout or ALT-00."
+    }
+  ],
+  "role_phase_pattern": {
+    "setup": {
+      "operator": "prepares only within a future authorized scope",
+      "human_safety_authority": "confirms independent stop/isolation readiness",
+      "handoff_steward": "keeps Z0 independent and confirms human boundary",
+      "reset_custodian": "records inventory, quarantine route and restoration prerequisites",
+      "independent_witness": "observes required separation and evidence completeness"
+    },
+    "session": {
+      "operator": "acts only within the bounded future task",
+      "human_safety_authority": "may stop at any time without operator override",
+      "handoff_steward": "protects ordinary service and non-digital fallback",
+      "reset_custodian": "maintains isolation/removal readiness",
+      "independent_witness": "records only the defined future evidence"
+    },
+    "stop": {
+      "operator": "ceases task activity",
+      "human_safety_authority": "initiates or confirms STOP and isolation",
+      "handoff_steward": "returns people to ordinary route/service",
+      "reset_custodian": "quarantines unresolved items",
+      "independent_witness": "records deviation and no-release condition"
+    },
+    "reset": {
+      "operator": "does not restart activity",
+      "human_safety_authority": "confirms no unsafe restart",
+      "handoff_steward": "confirms ordinary human service remains available",
+      "reset_custodian": "removes, reconciles and restores",
+      "independent_witness": "independently verifies ordinary-baseline evidence"
+    },
+    "review": {
+      "operator": "provides only defined records",
+      "human_safety_authority": "supplies stop/isolation record",
+      "handoff_steward": "supplies route/service record",
+      "reset_custodian": "supplies inventory/restoration record",
+      "independent_witness": "cannot be the sole operator, safety authority or release owner"
+    }
+  },
+  "reset_failure_crosswalk": [
+    {"condition": "route/accessibility conflict", "required_state": "STOP", "fallback": "ordinary city / NO-BUILD"},
+    {"condition": "unknown required interface", "required_state": "NO_GO", "fallback": "ALT-01 or ALT-00"},
+    {"condition": "missing authority", "required_state": "HOLD_NO_BUILD", "fallback": "ordinary city"},
+    {"condition": "reset failure or unresolved inventory/deviation", "required_state": "QUARANTINED", "fallback": "no further session; restore ordinary baseline"},
+    {"condition": "stale or scope-mismatched evidence", "required_state": "HOLD", "fallback": "fresh verification or ALT-00"},
+    {"condition": "ordinary-space sufficiency", "required_state": "NO_BUILD", "fallback": "retain ordinary city"}
+  ],
+  "common_evidence_receipt_contract": {
+    "required_fields": [
+      "id",
+      "scope",
+      "method_version",
+      "observation_window",
+      "role_type",
+      "status",
+      "result",
+      "missingness",
+      "failure",
+      "escalation",
+      "decision",
+      "expiry",
+      "supersession",
+      "hash_or_reference"
+    ],
+    "rule": "A receipt is valid only for its stated scope, role, method version and observation window. Missing, expired, superseded, contradictory or scope-mismatched receipts do not release a gate."
+  },
+  "d0_method_book": {
+    "method_book_id": "JZ100-D0-PARTICIPANT-METHOD-001",
+    "status": "PARTICIPANT_METHOD_COMPLETE_NO_FIELD_RESULTS",
+    "methods": [
+      {
+        "measurement_id": "D0-PACKAGE-001",
+        "purpose": "Check that the participant design package is internally complete and truthful before external verification.",
+        "observation_start": "participant package review window; actual date=null",
+        "observation_end": "participant package review window; actual date=null",
+        "numerator": "required participant-design records that are present, internally consistent and truth-bounded",
+        "denominator": "all required participant-design records for this freeze",
+        "formula": "semantic completeness check; no field-performance value is calculated",
+        "missingness_handling": "Missing participant-design record=REVISE; missing external input=HOLD_EXTERNAL and is not counted as participant design absence.",
+        "explicit_failure_semantics": "Any inconsistency, unsupported claim or omitted participant decision blocks R0.",
+        "reporting_statistic": "PASS_PARTICIPANT_SCOPE / REVISE_PARTICIPANT_PACKAGE / HOLD_EXTERNAL",
+        "segmentation": "participant design / professional / field / authority",
+        "participant_reference_floor": "Every required participant artifact is complete and makes no external completion claim.",
+        "validity_condition": "Same package version and manifest references.",
+        "stop_threshold": "Any unsupported or internally contradictory participant claim.",
+        "escalation_role_type": "participant author",
+        "evidence_artifact": "implementation-design-freeze.json and manifest-linked package",
+        "method_version": "1.0.0",
+        "actual_sample_size": null,
+        "actual_value": null
+      },
+      {
+        "measurement_id": "D0-S01-ROUTE-001",
+        "purpose": "Define how a future same-carrier process tests whether the ordinary route and human service remain independent.",
+        "observation_start": "future authorized pre-open observation; actual date=null",
+        "observation_end": "future authorized post-reset observation; actual date=null",
+        "numerator": "future observed route/service segments without conflict",
+        "denominator": "all applicable future observed route/service segments",
+        "formula": "conforming observed segments / applicable observed segments; no value exists now",
+        "missingness_handling": "No same-carrier observation=HOLD_EXTERNAL; no inferred route value.",
+        "explicit_failure_semantics": "Any route, accessibility, maintenance, queue or human-service conflict=STOP and NO_BUILD for the affected reference.",
+        "reporting_statistic": "future segmented route/service observation with issue register",
+        "segmentation": "Z0/Z1 threshold, access mode, service mode, time window",
+        "participant_reference_floor": "No conflict is acceptable; this is a stop rule, not an observed result.",
+        "validity_condition": "Authorized same-carrier observation with applicable professional/accessibility review.",
+        "stop_threshold": "One unresolved ordinary-city conflict.",
+        "escalation_role_type": "future human safety authority and accessibility/community representative",
+        "evidence_artifact": "future D0-S01 route receipt",
+        "method_version": "1.0.0",
+        "actual_sample_size": null,
+        "actual_value": null
+      },
+      {
+        "measurement_id": "D0-S01-STOP-001",
+        "purpose": "Define future evidence for visible human stop, isolation and non-restart behavior.",
+        "observation_start": "future authorized rehearsal/session start; actual date=null",
+        "observation_end": "future isolation confirmation; actual date=null",
+        "numerator": "future stop events with human authority, isolation state and receipt recorded",
+        "denominator": "all applicable future stop/rehearsal events",
+        "formula": "documented conforming stop events / applicable events; no result exists now",
+        "missingness_handling": "Missing role, event record or isolation confirmation=HOLD/STOP.",
+        "explicit_failure_semantics": "Unavailable stop, role conflict, incomplete isolation or unauthorized restart=STOP and QUARANTINED.",
+        "reporting_statistic": "future event-level receipt, not an aggregate performance claim",
+        "segmentation": "rehearsal/session, event type, role separation, isolation outcome",
+        "participant_reference_floor": "Human stop authority must be able to halt and isolate before any future activation.",
+        "validity_condition": "Current appointment, authorized scope and independent witness route.",
+        "stop_threshold": "One failed or unrecorded applicable stop event.",
+        "escalation_role_type": "future separate human safety authority",
+        "evidence_artifact": "future D0-S01 stop receipt",
+        "method_version": "1.0.0",
+        "actual_sample_size": null,
+        "actual_value": null
+      },
+      {
+        "measurement_id": "D0-S01-RESET-001",
+        "purpose": "Define future evidence for removal, reset and independent ordinary-baseline restoration.",
+        "observation_start": "future shutdown or stop; actual date=null",
+        "observation_end": "future independent ordinary-baseline review; actual date=null",
+        "numerator": "future applicable components/routes/services with completed removal, reconciliation and restoration evidence",
+        "denominator": "all applicable components/routes/services in the authorized future scope",
+        "formula": "restored applicable items / all applicable items; no result exists now",
+        "missingness_handling": "Missing inventory, removal or independent baseline evidence=QUARANTINED.",
+        "explicit_failure_semantics": "Any unresolved item, deviation, service gap or restoration conflict prevents a new session.",
+        "reporting_statistic": "future receipt by component, route/service and independent witness outcome",
+        "segmentation": "inventory, surface/interface, route/service, unresolved deviation",
+        "participant_reference_floor": "All applicable future items must be reconciled and ordinary city independently accepted before closeout.",
+        "validity_condition": "Authorized future scope and independent witness distinct from reset custodian.",
+        "stop_threshold": "One unresolved restoration or inventory issue.",
+        "escalation_role_type": "future maintenance/reset custodian with independent witness",
+        "evidence_artifact": "future D0-S01 reset receipt",
+        "method_version": "1.0.0",
+        "actual_sample_size": null,
+        "actual_value": null
+      },
+      {
+        "measurement_id": "D0-S04-HANDOFF-001",
+        "purpose": "Define future handoff evidence for S04 without creating an appointment or public-service claim.",
+        "observation_start": "future authorized handoff window; actual date=null",
+        "observation_end": "future authorized handoff window; actual date=null",
+        "numerator": "future handoff instances with a human explanation, non-digital fallback and receipt",
+        "denominator": "all applicable future S04 handoff instances",
+        "formula": "documented conforming handoffs / applicable handoffs; no value exists now",
+        "missingness_handling": "No authorized S04 carrier/task=HOLD_EXTERNAL; do not substitute a proxy service result.",
+        "explicit_failure_semantics": "Missing human handoff, inaccessible alternative or unclear responsibility=STOP/ordinary service.",
+        "reporting_statistic": "future handoff receipt by service pathway",
+        "segmentation": "service pathway, fallback type, accessibility need, appeal route",
+        "participant_reference_floor": "Human explanation and ordinary/non-digital fallback remain available.",
+        "validity_condition": "Future lawful service scope and applicable responsible role type.",
+        "stop_threshold": "One unresolved loss of ordinary service or appeal route.",
+        "escalation_role_type": "future public/service handoff steward",
+        "evidence_artifact": "future D0-S04 handoff receipt",
+        "method_version": "1.0.0",
+        "actual_sample_size": null,
+        "actual_value": null
+      },
+      {
+        "measurement_id": "D0-S07-APPEAL-001",
+        "purpose": "Define future evidence for an accessible human appeal and ordinary-service fallback in S07.",
+        "observation_start": "future authorized appeal window; actual date=null",
+        "observation_end": "future resolution/closeout window; actual date=null",
+        "numerator": "future appeal instances with accessible intake, human review path and non-public receipt",
+        "denominator": "all applicable future appeal instances",
+        "formula": "documented conforming appeal pathways / applicable pathways; no value exists now",
+        "missingness_handling": "No authorized scope or lawful review route=HOLD_EXTERNAL; no personal data is assumed.",
+        "explicit_failure_semantics": "Inaccessible appeal, loss of ordinary service, missing human review or public personal-data exposure=STOP and privacy/legal escalation.",
+        "reporting_statistic": "future de-identified pathway receipt, if lawfully permitted",
+        "segmentation": "appeal pathway, accessibility accommodation, disposition class, privacy boundary",
+        "participant_reference_floor": "A human, accessible, non-digital route must remain available.",
+        "validity_condition": "Future lawful data/privacy and service-process acceptance.",
+        "stop_threshold": "One material access, privacy or human-review failure.",
+        "escalation_role_type": "future privacy/legal reviewer and appeal steward",
+        "evidence_artifact": "future D0-S07 appeal receipt",
+        "method_version": "1.0.0",
+        "actual_sample_size": null,
+        "actual_value": null
+      },
+      {
+        "measurement_id": "D0-GATE-FRESH-001",
+        "purpose": "Define how future evidence is checked for currentness, scope match, owner role and supersession before a release decision.",
+        "observation_start": "future gate review start; actual date=null",
+        "observation_end": "future gate review decision; actual date=null",
+        "numerator": "future required receipts that are current, scope-matched, role-valid and unsuperseded",
+        "denominator": "all applicable future required receipts",
+        "formula": "valid required receipts / applicable required receipts; no value exists now",
+        "missingness_handling": "Absent, expired, superseded, contradictory or scope-mismatched receipt=HOLD.",
+        "explicit_failure_semantics": "Any invalid required receipt prevents release and returns the affected state to HOLD/NO-GO.",
+        "reporting_statistic": "future gate validity register by evidence class",
+        "segmentation": "A/B/C/D acceptance, gate, scope, role type, expiry state",
+        "participant_reference_floor": "Every applicable future receipt must be valid; no partial release is implied.",
+        "validity_condition": "Receipt contract fields are complete and independently reviewable.",
+        "stop_threshold": "One invalid required receipt.",
+        "escalation_role_type": "future authorized decision-maker",
+        "evidence_artifact": "future gate-freshness register",
+        "method_version": "1.0.0",
+        "actual_sample_size": null,
+        "actual_value": null
+      },
+      {
+        "measurement_id": "D0-ALTERNATIVE-001",
+        "purpose": "Define a future decision record that proves the frozen alternative hierarchy was considered before any physical P0 choice.",
+        "observation_start": "future need/admission review start; actual date=null",
+        "observation_end": "future alternative decision; actual date=null",
+        "numerator": "future alternatives with scope-matched sufficiency, impact and reversibility evidence",
+        "denominator": "ALT-00 through ALT-03 applicable to the future task",
+        "formula": "decision is valid only when the first sufficient, least-impact reversible alternative is documented; no result exists now",
+        "missingness_handling": "No bounded real task or missing alternative evidence=ALT-00 DEFAULT_SELECTED.",
+        "explicit_failure_semantics": "If ordinary city or lower-tech solution is sufficient, P0 is not selected. Any uncertainty defaults to NO-BUILD.",
+        "reporting_statistic": "future alternative decision receipt with reason and fallback",
+        "segmentation": "task necessity, ordinary-space sufficiency, reversibility, impact, evidence validity",
+        "participant_reference_floor": "Ordinary city/NO-BUILD is the default and P0 is never presumed necessary.",
+        "validity_condition": "Same-carrier evidence and applicable professional/authority review.",
+        "stop_threshold": "Any unresolved necessity, impact or release question.",
+        "escalation_role_type": "future qualified professional review lead",
+        "evidence_artifact": "future alternative decision receipt",
+        "method_version": "1.0.0",
+        "actual_sample_size": null,
+        "actual_value": null
+      }
+    ]
+  },
+  "links": {
+    "p0_reference": "visual/assets/p0-s01-reference.json",
+    "readiness_dossier": "visual/assets/implementation-readiness-dossier.json",
+    "external_input_contract": "visual/assets/implementation-external-input-contract.json",
+    "assumption_ids": ["A-READINESS-001", "A-DELIVERY-001", "A-P0-S01-001"]
+  }
+}

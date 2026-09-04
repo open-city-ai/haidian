@@ -341,6 +341,18 @@ AI-off 时，公共路径、混合城市、蓝绿、普通房间、人工服务�
 
 本次投稿不含已验证、已授权的现场实施包，却已经完整交付参与者可控制的**量化预可研与专业交接包**。未来现场包仍必须在同一载体上绑定官方几何、权利/进入、真实任务、任命、工程与容量、报价、预算/资金和批准；当前每一项均为 `HOLD_EXTERNAL`。因此 S01/S04/S07 保持普通空间或暂停，但原因不再是参与者概念未完成，而是已完成的下一决策包正在等待真实 G1 外部核验。[data:visual/assets/implementation-readiness-dossier.json#participant_release_state] [data:visual/assets/taskbook-closure.json#claim_qualifications]
 
+### 实施闭合：四个评审问题
+
+**Q1｜分期：路径是什么？** `G0—G4` 把证据与决定依次交给参与者设计冻结、G1 专业/输入核验、载体与角色准备、停止—复位排演、以及未来的有界释放或普通基线收尾。更精确的 `R0—R6` 说明当前仅 `R0` 设计包完成、`R1` 桌面核验可用、`R2` 专业审查包就绪；`R3—R6` 均未开始且保持 HOLD。任何失效都回到低技术/普通空间或 NO-BUILD，而不是绕过门。[data:visual/assets/implementation-design-freeze.json#release_state_model]
+
+**Q2｜试点：冻结了什么？** 冻结的是 S01 的零坐标、载体中立参考类型，而不是已选场地：`Z0` 普通路线 → `Z1` 人工交接 → `Z2` 有界测试 → `Z4` 预约观察；`Z3` 保持操作/安全分离，`Z5` 承担停止、隔离、移除与复位，`Z6` 的专业缓冲保持 `null`。普通城市/NO-BUILD 是默认，低技术可撤方案是第一响应；P0 仅在真实物理必要性通过未来准入后才可能被考虑。[data:visual/assets/implementation-design-freeze.json#canonical_s01_participant_reference_topology] [data:visual/assets/implementation-design-freeze.json#authoritative_alternative_hierarchy]
+
+**Q3｜主体：谁参与、谁决定？** 参与者已冻结角色**类型**与分离关系：操作人、独立人类安全权威、公共/服务交接人、复位保管人和独立见证人。G0 只确认参与者设计；未来 G1—G4 必须由适用专业、权利/载体、授权、独立见证和人类停止权共同形成当前、同范围的收据。没有任何真实人员、机构或运营者在本投稿中被任命。[data:visual/assets/implementation-design-freeze.json#gate_authority_topology] [data:visual/assets/implementation-design-freeze.json#role_phase_pattern]
+
+**Q4｜指标：如何测量？** 八个紧凑 D0 方法定义了未来的包完整性、S01 路线/停止/复位、S04 交接、S07 申诉、证据时效和备选方案判断。`A` 仅接受参与者此刻可决定的设计完整性；`B` 专业、`C` 现场、`D` 权威释放全部仍为 HOLD。每个方法的实际样本和实际值都是 `null`，并以缺失、失败、升级、到期与复位为硬停止语义，而非虚构的性能结果。[data:visual/assets/implementation-design-freeze.json#d0_method_book] [data:visual/assets/implementation-design-freeze.json#acceptance_hierarchy]
+
+**事实边界。** 官方几何、真实载体权利、任命、专业发现、现场观察/结果、报价、批准预算/资金和激活均是未来外部输入，未被本投稿升级或声称取得。#4344 的七类数据缺口与六项条件后续已逐项变成接收、复算/重绑、失效和回退合同；当前可读结论仅为：**参与者参考设计已冻结 → 参与者方法设计完整 → 可进入 G1/专业核验 → 外部释放 HOLD → 不采购、不做现场激活。** `P0_GO=false`。[data:visual/assets/implementation-external-input-contract.json#reviewer_gaps] [data:visual/assets/implementation-external-input-contract.json#conditional_followups]
+
 ### 参与者就绪闭环：让交接先于行动
 
 参与者现在交付的是一份可被未来专业团队直接核验的完整参考包，而不是现场行动承诺。它把 12 个未定价批次、20/26/38 角色小时、CAPEX/OPEX 低/参考/高相对指数、全生命周期和未注资退出准备，连接到 9 阶段且实际日期全为 `null` 的依赖程序。[metric:s01_unpriced_delivery_lot_count] [metric:s01_reference_session_role_hours] [data:visual/assets/implementation-readiness-dossier.json#conditional_dependency_programme]
