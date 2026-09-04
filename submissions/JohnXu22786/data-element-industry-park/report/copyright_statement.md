@@ -1,0 +1,5 @@
+# Copyright and rights boundary
+
+All submitted text, geometry, diagrams, PDFs and static HTML are original concept deliverables generated for this package or cite public sources itemized in `sources.json`. The source register records URL, publisher, publication/access date, allowed use and prohibited use; unresolved rights stop reuse. No third-party logo, portrait, photograph, paper figure or remote asset is embedded. The DATA·JZ mark is an internal concept direction, not a claimed registered trademark or endorsement.
+
+The offline HTML surfaces embed the locally available, embeddable Noto Sans SC font so Chinese glyph coverage does not depend on a viewer's fallback font. English and Chinese HTML/PDF surfaces are separately rendered from their corresponding language content; the HTML front matter is metadata only and is not displayed as proposal prose. The geometry is provisional and is not an official survey or boundary. Figures and PDFs are conceptual representations and must not be reused as statutory plans, engineering drawings or approval evidence.
