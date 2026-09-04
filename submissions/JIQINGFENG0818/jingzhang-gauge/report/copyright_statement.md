@@ -78,17 +78,21 @@ and degrades to a text notice pointing at the static figures when JavaScript or 
 ## Typefaces
 
 Figures and drawings are rendered with matplotlib using **Noto Sans CJK**, licensed under the
-SIL Open Font License 1.1 (OFL). The four PDFs in `drawings/` contain zero `FontFile`, `FontFile2` or
-`FontFile3` objects: all glyphs are rasterised into the PNG and PDF output, so those files carry no
-font program. A reviewer can confirm this by scanning the PDFs for those object names.
+SIL Open Font License 1.1 (OFL). The PNG figures are rasterised, so they carry no font data. The four
+PDFs in `drawings/` contain zero `FontFile`, `FontFile2` or `FontFile3` streams; their text is written
+by matplotlib as Type 3 glyph procedures (vector outlines of the glyphs actually used, subset from
+Noto Sans CJK), which is the form in which the OFL typeface is embedded there. A reviewer can confirm
+this with `pdffonts` (Type 3, embedded, subset) or by scanning the PDFs for the object names above.
 
 The four HTML deliverables — `report/proposal.html`, `report/proposal.en.html`, `visual/index.html`
 and `visual/index.en.html` — each embed **one** font program: a WOFF2 subset of **Noto Sans CJK SC
 Regular** (© 2014-2021 Adobe, OFL 1.1, "Noto" is a trademark of Google Inc.), written inline in the
-page's own `<style>` block as a base64 `data:` URI inside a single `@font-face` rule. Each subset is
-limited to the non-ASCII characters that the page it lives in actually uses (the exact character count
-is stated in the CSS comment next to the rule), which keeps the payload at roughly 150 KB for the
-Chinese pages and 14 KB for the English pages. The subset is a *Modified Version* in OFL terms and is
+page's own `<style>` block as a base64 `data:` URI inside a single `@font-face` rule. The two Chinese
+pages share one subset and the two English pages share another; each subset is limited to the
+non-ASCII characters actually used by the two same-language pages plus a small set of common
+punctuation (the exact character count is stated in the CSS comment next to the rule), which keeps
+the WOFF2 payload at roughly 150 KB (about 200 KB as base64) for the Chinese pages and roughly 7 KB
+(about 9 KB as base64) for the English pages. The subset is a *Modified Version* in OFL terms and is
 therefore renamed **`JZ Gauge CJK`** (OFL §3: no Reserved Font Name or trademark is reused); the
 original copyright (name ID 0), trademark (7) and licence (13, 14) records are retained inside the
 font, and the complete OFL text is reproduced in Appendix A below (OFL §2). **No standalone font file

@@ -240,7 +240,9 @@ Total building scale, floor area ratio, building height, density, green ratio, a
 
 This proposal covers three key areas [metric:key_area_count]. They are not three parallel blocks of industrial land but three stations on one production line [data:geometry/key_areas.geojson#KEY-001] [depth:three_key_area_detailed_design].
 
-### Zhongzhiyuan AI Independent Innovation Acceleration Area (ZY-AIIA) → Gauge Works (192.1 ha)
+Each of the three areas is given in two registers: the announced value, taken from `key_areas` in `brief/site-package/design_brief.json`, and the provisional-geometry recalculation, taken from `breakdowns.key_area_area_sqm` in this package's `metrics.json` — computed in EPSG:4548 over the organizer's `PROV-KEY-001/002/003` rectangles, within 1 m² of the `area_sqm_calculated` recorded in the organizer's own `provisional_boundaries.geojson`, and deviating from the announced values by +0.43%, +0.02% and +0.06%. The figures and the video frames carry the announced values.
+
+### Zhongzhiyuan AI Independent Innovation Acceleration Area (ZY-AIIA) → Gauge Works (announced 192.1 ha / provisional-geometry recalculation 192.92 ha)
 
 - **Positioning**: specification drafting, conformance testing laboratory, red-teaming and certification; addressing "Full-Stack Independent AI Innovation System" and "global discourse power in AI governance"
 - **Spatial structure**: the conformance testing laboratory at the core, with drafting bodies, certification bodies, and open-source community space around it, opening toward the Version Line
@@ -250,7 +252,7 @@ This proposal covers three key areas [metric:key_area_count]. They are not three
 - **AI scenarios**: S-10 developer on-site debugging channel, T-01 conformance testing laboratory, T-03 red-team stress testing
 - **Implementation risk**: the administrative attribution of standard-setting authority is undetermined; this proposal offers only a mechanism concept and makes no judgement on administrative authorisation
 
-### Beijing AI Origin Community (BAIOC) → Proto Blocks (104.3 ha)
+### Beijing AI Origin Community (BAIOC) → Proto Blocks (announced 104.3 ha / provisional-geometry recalculation 104.32 ha)
 
 - **Positioning**: first installation of standard parts, resident jury, rapid iteration and version rollback; addressing "world-class AI innovation ecosystem"
 - **Spatial structure**: predominantly residential and community-service land, with community facility land on the corridor side carrying jury and display functions
@@ -259,7 +261,7 @@ This proposal covers three key areas [metric:key_area_count]. They are not three
 - **AI scenarios**: S-05 community service desk, S-09 accessibility and age-friendly guidance, T-02 first-installation jury
 - **Implementation risk**: resident acceptance of being the first installation site is the largest uncertainty. The design treats "refusable, reversible, with a non-AI redundant path" as a precondition rather than a remedy
 
-### Dazhongsi AI Industry Cluster (DSAIC) → Market Floor (72.0 ha)
+### Dazhongsi AI Industry Cluster (DSAIC) → Market Floor (announced 72.0 ha / provisional-geometry recalculation 72.05 ha)
 
 - **Positioning**: scale deployment of certified standard parts; addressing "AI-native new business forms"
 - **Spatial structure**: predominantly commercial service land, forming AI-native consumption and business scenarios
@@ -603,7 +605,7 @@ The rights status of each modality asset is stated item by item below:
 
 - **Video**: `assets/media/gauge-mechanism.mp4` is produced by this proposal. Every frame is drawn programmatically from the geometry and metrics submitted in this package; no third-party footage, stock-library shot, aerial photograph, or satellite imagery is used. The video is silent, containing no speech, music, or sound effects, so no soundtrack, sound-library, or voice-over licence is involved. `assets/media/gauge-mechanism.md` records its segment-by-segment content and rights note, and `assets/media/gauge-mechanism.vtt` supplies the full captions.
 - **3D tour code**: `visual/assets/gauge-tour.js` (386 lines) is a hand-written WebGL 1 renderer with no third-party runtime library such as Three.js; `visual/assets/gauge-tour-data.js` is a static export of this package's own geometry. Neither issues a network request at runtime.
-- **Fonts**: `report/proposal.html`, `report/proposal.en.html`, `visual/index.html` and `visual/index.en.html` each embed, through one `@font-face` rule inside their own `<style>` block, a WOFF2 subset of Noto Sans CJK SC Regular (a base64 `data:` URI limited to the non-ASCII characters that page actually uses; the character count is stated in the comment next to the rule). The purpose is that on a machine with no Chinese system font at all (for example a headless Linux review host) the Chinese text of the four pages still renders with proper glyphs instead of degrading to boxes. The typeface is licensed under the SIL Open Font License 1.1; the subset is a Modified Version in OFL terms and is renamed "JZ Gauge CJK" as §3 requires, with the original copyright, trademark and licence name records kept inside the font, and the full licence text in Appendix A of `report/copyright_statement.md`. No standalone font file is added to the package; the font travels only inside these four HTML files, opens offline and issues no network request; the rest of the system font stack falls back in the same order as before.
+- **Fonts**: `report/proposal.html`, `report/proposal.en.html`, `visual/index.html` and `visual/index.en.html` each embed, through one `@font-face` rule inside their own `<style>` block, a WOFF2 subset of Noto Sans CJK SC Regular (a base64 `data:` URI; the two Chinese pages share one subset and the two English pages share another, each limited to the non-ASCII characters actually used by the two same-language pages plus a small set of common punctuation; the character count is stated in the comment next to the rule). The purpose is that on a machine with no Chinese system font at all (for example a headless Linux review host) the Chinese text of the four pages still renders with proper glyphs instead of degrading to boxes. The typeface is licensed under the SIL Open Font License 1.1; the subset is a Modified Version in OFL terms and is renamed "JZ Gauge CJK" as §3 requires, with the original copyright, trademark and licence name records kept inside the font, and the full licence text in Appendix A of `report/copyright_statement.md`. No standalone font file is added to the package; the font travels only inside these four HTML files, opens offline and issues no network request; the rest of the system font stack falls back in the same order as before.
 - **Mark and identity system**: `assets/identity/jz-gauge-logo.svg` and `assets/identity/jz-gauge-identity.svg` are original vector drawings for this proposal, built entirely from rectangles and text. No existing mark was traced or adapted, and no stock graphic, outlined typeface, or third-party icon set was used. Neither SVG embeds a font file; both only declare a system font stack. The mark inlined in the page headers is the same drawing as the standalone file.
 - **Cover and posters**: `assets/media/cover.webp` (1600×900), `assets/media/gauge-mechanism.webp` (1280×720), and `assets/media/gauge-tour-still.webp` (1280×720, a render of the 3D tour at its default overview view) are all exports of the original content above, with the same rights status.
 

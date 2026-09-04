@@ -240,7 +240,9 @@ iteration: "v0.1"
 
 本方案共设三个重点区 [metric:key_area_count]，它们不是三块并列的产业用地，而是同一条生产线上的三个工位 [data:geometry/key_areas.geojson#KEY-001] [depth:three_key_area_detailed_design]。
 
-### 众智园 AI 自主创新加速区 → 制标区 Gauge Works（192.1 ha）
+三处面积均给出两个口径：公告值取自 `brief/site-package/design_brief.json` 的 `key_areas`；临时几何复算值取自本包 `metrics.json` 的 `breakdowns.key_area_area_sqm`，即在 EPSG:4548 下对组织方 `PROV-KEY-001/002/003` 三个矩形复算所得，与组织方 `provisional_boundaries.geojson` 自身记录的 `area_sqm_calculated` 相差均小于 1 m²，相对公告值的偏差为 +0.43%、+0.02%、+0.06%。图件与视频画面标注的是公告值。
+
+### 众智园 AI 自主创新加速区 → 制标区 Gauge Works（公告 192.1 ha／临时几何复算 192.92 ha）
 
 - **定位**：规范编制、一致性测试实验室、红队与认证；对应"AI 全栈自主创新体系"与"AI 治理全球话语权"
 - **空间结构**：以一致性测试实验室为核心，规范编制机构、认证机构、开源社区空间环绕布置，向版本线开口
@@ -250,7 +252,7 @@ iteration: "v0.1"
 - **AI 场景**：S-10 开发者现场调试通道、T-01 一致性测试实验室、T-03 红队压力测试
 - **实施风险**：标准制定权的行政归属未定，本方案只提机制设想，不涉及行政授权判断
 
-### 北京 AI 原点社区 → 首装区 Proto Blocks（104.3 ha）
+### 北京 AI 原点社区 → 首装区 Proto Blocks（公告 104.3 ha／临时几何复算 104.32 ha）
 
 - **定位**：标准件首次实装、居民陪审、快速迭代退版；对应"世界级 AI 创新生态"
 - **空间结构**：居住与社区服务用地为主，走廊侧配置社区服务设施用地承接陪审与展示功能
@@ -259,7 +261,7 @@ iteration: "v0.1"
 - **AI 场景**：S-05 社区服务窗口、S-09 无障碍与适老导引、T-02 首装陪审
 - **实施风险**：居民对被首装的接受度是最大不确定性。设计上以"可拒绝、可回退、有非 AI 冗余路径"作为前置条件，而非事后补救
 
-### 大钟寺 AI 产业聚集区 → 量产区 Market Floor（72.0 ha）
+### 大钟寺 AI 产业聚集区 → 量产区 Market Floor（公告 72.0 ha／临时几何复算 72.05 ha）
 
 - **定位**：通过认证的标准件规模化部署；对应"智能原生新业态"
 - **空间结构**：商业服务业用地为主，形成智能原生消费与商务场景
@@ -603,7 +605,7 @@ JZ-Parts / <编号>
 
 - **视频**：`assets/media/gauge-mechanism.mp4` 为本方案自制，画面全部由本包已提交的几何与指标数据程序化绘制，未使用任何第三方影像、素材库画面、航拍照片或卫星影像。该视频为无声视频，不含语音、音乐或音效，因此不涉及配乐、音效库或配音授权。`assets/media/gauge-mechanism.md` 记录其分段内容与权利说明，`assets/media/gauge-mechanism.vtt` 提供完整字幕。
 - **三维巡览代码**：`visual/assets/gauge-tour.js`（386 行）为自写 WebGL 1 渲染器，未引入 Three.js 等任何第三方运行库；`visual/assets/gauge-tour-data.js` 为本包几何数据的静态导出。两者运行时均不发起网络请求。
-- **字体**：`report/proposal.html`、`report/proposal.en.html`、`visual/index.html` 与 `visual/index.en.html` 各在自身 `<style>` 内以一条 `@font-face` 规则内嵌一份 Noto Sans CJK SC Regular 的 WOFF2 子集（base64 `data:` URI，只含该页面实际用到的非 ASCII 字符，字符数写在该规则旁的注释里），目的是在没有任何中文系统字体的机器（例如无头 Linux 评审环境）上，四份页面的中文仍以正常字形显示而不退化为方框。该字体以 SIL Open Font License 1.1 授权；子集属于 OFL 意义上的修改版本，已按第 3 条更名为「JZ Gauge CJK」，原版权、商标与许可声明记录保留在字体内，完整许可文本见 `report/copyright_statement.md` 附录 A。包内不新增任何独立字体文件，字体只随这四份 HTML 一起离线打开，不发起网络请求；其余系统字体栈按序回退不变。
+- **字体**：`report/proposal.html`、`report/proposal.en.html`、`visual/index.html` 与 `visual/index.en.html` 各在自身 `<style>` 内以一条 `@font-face` 规则内嵌一份 Noto Sans CJK SC Regular 的 WOFF2 子集（base64 `data:` URI，两份中文页面共用一份子集、两份英文页面共用另一份子集，各自只含同语言两份页面实际用到的非 ASCII 字符及少量通用标点，字符数写在该规则旁的注释里），目的是在没有任何中文系统字体的机器（例如无头 Linux 评审环境）上，四份页面的中文仍以正常字形显示而不退化为方框。该字体以 SIL Open Font License 1.1 授权；子集属于 OFL 意义上的修改版本，已按第 3 条更名为「JZ Gauge CJK」，原版权、商标与许可声明记录保留在字体内，完整许可文本见 `report/copyright_statement.md` 附录 A。包内不新增任何独立字体文件，字体只随这四份 HTML 一起离线打开，不发起网络请求；其余系统字体栈按序回退不变。
 - **标志与识别系统**：`assets/identity/jz-gauge-logo.svg` 与 `assets/identity/jz-gauge-identity.svg` 为本方案原创矢量绘制，全部由矩形与文本构成，未描摹、未改绘任何既有标志，未使用图库图形、字体轮廓转曲或第三方图标集；两份 SVG 内不内嵌字体文件，仅声明系统字体栈。页眉内联的标志与独立文件同源。
 - **封面与海报**：`assets/media/cover.webp`（1600×900）、`assets/media/gauge-mechanism.webp`（1280×720）与 `assets/media/gauge-tour-still.webp`（1280×720，三维巡览默认总览视角的渲染静帧）均为上述自制内容的导出，权利状态同上。
 
