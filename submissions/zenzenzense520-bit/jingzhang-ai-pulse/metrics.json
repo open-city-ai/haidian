@@ -55,7 +55,7 @@
     },
     "green_space_area_sqm": {
       "status": "known",
-      "value": 3141601.166,
+      "value": 3232839.434,
       "unit": "sqm",
       "source_files": [
         "geometry/green_space.geojson"
@@ -66,7 +66,7 @@
     },
     "public_space_area_sqm": {
       "status": "known",
-      "value": 813108.231,
+      "value": 861890.101,
       "unit": "sqm",
       "source_files": [
         "geometry/public_space.geojson"
@@ -77,7 +77,7 @@
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 1703290.64,
+      "value": 1066517.184,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
@@ -88,7 +88,7 @@
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.275269,
+      "value": 0.283264,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
@@ -100,7 +100,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.071245,
+      "value": 0.075519,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -112,7 +112,7 @@
     },
     "building_density": {
       "status": "known",
-      "value": 0.149244,
+      "value": 0.093449,
       "unit": "ratio",
       "source_files": [
         "geometry/buildings.geojson",
@@ -124,7 +124,7 @@
     },
     "road_length_m": {
       "status": "known",
-      "value": 92721.7,
+      "value": 95524.1,
       "unit": "m",
       "source_files": [
         "geometry/roads.geojson"
@@ -135,7 +135,7 @@
     },
     "greenway_length_m": {
       "status": "known",
-      "value": 30786.3,
+      "value": 39205.8,
       "unit": "m",
       "source_files": [
         "geometry/roads.geojson"
@@ -146,14 +146,16 @@
     },
     "phase_1_area_sqm": {
       "status": "known",
-      "value": 3056479.715,
+      "value": 2270832.447,
       "unit": "sqm",
       "source_files": [
         "geometry/phasing.geojson"
       ],
       "formula": "sum(polygon_area(phase_1))",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Phasing polygons are conceptual design proposals clipped to the provisional site boundary; sum of phases equals site_area_sqm."
+      ]
     },
     "ai_scenario_node_count": {
       "status": "known",
@@ -191,6 +193,45 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "Approved height controls require official regulatory-plan conditions."
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 2449533.14,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phase_2))",
+      "confidence": "medium",
+      "assumptions": [
+        "Phasing polygons are conceptual design proposals clipped to the provisional site boundary; sum of phases equals site_area_sqm."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 6692494.466,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phase_3))",
+      "confidence": "medium",
+      "assumptions": [
+        "Phasing polygons are conceptual design proposals clipped to the provisional site boundary; sum of phases equals site_area_sqm."
+      ]
+    },
+    "phasing_total_sqm": {
+      "status": "known",
+      "value": 11412860.053,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phase_1..3))",
+      "confidence": "medium",
+      "assumptions": [
+        "Phases tile the provisional site exactly."
+      ]
     }
   }
 }

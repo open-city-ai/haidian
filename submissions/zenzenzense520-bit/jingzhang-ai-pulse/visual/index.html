@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>京张智脉 | 百年京张AI创新带城市设计概念方案</title>
+<title>京张智脉 v1.4 | 百年京张AI创新带城市设计概念方案</title>
 <style>
 :root {
   --paper: #f7f8fa;
@@ -26,151 +26,36 @@ body {
   color: var(--ink);
   line-height: 1.6;
 }
-.wrap { max-width: 1240px; margin: 0 auto; padding: 24px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding: 24px; }
 .hero {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 28px;
-  margin-bottom: 20px;
+  display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center;
+  background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 28px; margin-bottom: 20px;
 }
 .hero h1 { font-size: 28px; line-height: 1.3; }
-.hero .sub { color: var(--muted); margin-top: 8px; font-size: 14px; max-width: 760px; }
+.hero .sub { color: var(--muted); margin-top: 8px; font-size: 14px; max-width: 780px; }
 .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 .pill {
-  background: #eef3f8;
-  border: 1px solid var(--line);
-  color: var(--ink);
-  font-size: 13px;
-  padding: 5px 12px;
-  border-radius: 999px;
+  background: #eef3f8; border: 1px solid var(--line); color: var(--ink);
+  font-size: 13px; padding: 5px 12px; border-radius: 999px;
 }
+.pill.v14 { background: #eef2ff; border-color: #c7d2fe; color: #4338ca; font-weight: 700; }
 .status-box {
-  min-width: 260px;
-  background: #fff7ec;
-  border: 1px solid #f3d9b4;
-  border-radius: 10px;
-  padding: 16px;
+  min-width: 260px; background: #fff7ec; border: 1px solid #f3d9b4; border-radius: 10px; padding: 16px;
 }
 .status-box strong { color: var(--orange); display: block; margin-bottom: 6px; }
 .status-box p { color: var(--muted); font-size: 13px; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 20px;
-}
-.sheet {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 22px;
-}
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+.sheet { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
 .sheet.wide { grid-column: 1 / -1; }
 .sheet-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
 .sheet-head h2 { font-size: 18px; }
 .sheet-head p { color: var(--muted); font-size: 13px; }
 .tag {
-  background: #e8f0f7;
-  color: var(--steel);
-  font-size: 12px;
-  padding: 3px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
+  background: #e8f0f7; color: var(--steel); font-size: 12px; padding: 3px 10px;
+  border-radius: 999px; white-space: nowrap;
 }
-.map-frame {
-  position: relative;
-  height: 360px;
-  background:
-    linear-gradient(90deg, rgba(31,111,139,0.06) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(31,111,139,0.06) 1px, transparent 1px),
-    #fbfcfe;
-  background-size: 40px 40px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.map-belt {
-  position: absolute;
-  top: 12%;
-  bottom: 12%;
-  left: 50%;
-  width: 12%;
-  transform: translateX(-50%);
-  background: rgba(62,158,95,0.55);
-  border-radius: 20px;
-}
-.map-axis {
-  position: absolute;
-  top: 10%;
-  bottom: 10%;
-  left: 46%;
-  width: 4px;
-  background: var(--steel);
-}
-.map-axis.alt { left: 56%; }
-.map-core {
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 12px;
-  text-align: center;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 14px rgba(24,32,46,0.25);
-}
-.map-core.c1 { top: 18%; left: 44%; background: var(--blue); }
-.map-core.c2 { top: 50%; left: 58%; background: var(--orange); }
-.map-core.c3 { top: 76%; left: 42%; background: var(--purple); }
-.map-wing {
-  position: absolute;
-  padding: 8px 12px;
-  color: #fff;
-  font-size: 12px;
-  border-radius: 8px;
-}
-.map-wing.w1 { top: 28%; left: 6%; background: var(--steel); }
-.map-wing.w2 { bottom: 12%; right: 6%; background: var(--orange); }
-.map-node {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--gold);
-  border: 2px solid #fff;
-}
-.map-note {
-  position: absolute;
-  left: 12px;
-  bottom: 10px;
-  right: 12px;
-  color: var(--muted);
-  font-size: 12px;
-  background: rgba(255,255,255,0.88);
-  padding: 8px 12px;
-  border-radius: 8px;
-}
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
-  margin-top: 14px;
-}
-.metric-card {
-  background: #fbfcfe;
-  border: 1px solid var(--line);
-  border-left: 5px solid var(--steel);
-  border-radius: 10px;
-  padding: 12px 14px;
-}
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 14px; }
+.metric-card { background: #fbfcfe; border: 1px solid var(--line); border-left: 5px solid var(--steel); border-radius: 10px; padding: 12px 14px; }
 .metric-card .label { color: var(--muted); font-size: 13px; }
 .metric-card .value { font-size: 20px; font-weight: 700; margin-top: 4px; }
 .list { margin-top: 10px; }
@@ -180,18 +65,35 @@ body {
 .table th { background: #f2f6fa; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .chip {
-  background: #f4f7fb;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  padding: 7px 11px;
-  font-size: 13px;
+  background: #f4f7fb; border: 1px solid var(--line); border-radius: 8px;
+  padding: 7px 11px; font-size: 13px;
 }
 .check { color: var(--green); font-weight: 700; }
 .warn { color: var(--orange); font-size: 13px; margin-top: 8px; }
+.map-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+.map-legend .lg { display: inline-flex; align-items: center; gap: 6px; }
+.map-legend .sw { width: 16px; height: 12px; border-radius: 3px; display: inline-block; border: 1px solid rgba(0,0,0,0.15); }
+.core-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 18px; margin-top: 8px; }
+.core-card { background: #fbfcfe; border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.core-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 4px; }
+.core-name { font-size: 20px; font-weight: 800; }
+.core-role { font-size: 13px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+.core-sub { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+.core-list { margin-top: 10px; }
+.core-list li { margin: 6px 0 6px 16px; font-size: 13.5px; }
+.phase-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px dashed var(--line); }
+.phase-row:last-child { border-bottom: none; }
+.phase-meta { display: flex; flex-direction: column; gap: 4px; min-width: 96px; }
+.phase-badge { color: #fff; font-size: 13px; font-weight: 700; padding: 3px 12px; border-radius: 8px; text-align: center; }
+.phase-time { color: var(--muted); font-size: 12.5px; text-align: center; }
+.phase-bar-wrap { position: relative; flex: 1 1 180px; height: 26px; background: #eef2f6; border-radius: 6px; overflow: hidden; }
+.phase-bar { height: 100%; border-radius: 6px; }
+.phase-pct { position: absolute; right: 10px; top: 3px; font-size: 12.5px; color: #334155; font-weight: 600; }
+.phase-body { flex: 1 1 340px; font-size: 13.5px; }
+.muted { color: var(--muted); }
 @media (max-width: 720px) {
   .hero h1 { font-size: 22px; }
   .grid { grid-template-columns: 1fr; }
-  .map-frame { height: 300px; }
   .sheet { padding: 16px; }
 }
 </style>
@@ -201,12 +103,13 @@ body {
   <header class="hero">
     <div>
       <div class="sub">百年京张AI创新带城市设计开源征集 · 智能体正式方案包</div>
-      <h1>京张智脉 | 一脉 · 两翼 · 三核 · 多场景节点</h1>
-      <p class="sub">把百年京张铁路文脉转化为 AI 创新生态、公共生活与国际传播的复合城市系统。本页为离线电子展示成果，权威数据仍以 GeoJSON、metrics.json、矩阵和自检结果为准。</p>
+      <h1>京张智脉 v1.4 | 一脉 · 两翼 · 三核 · 多场景节点</h1>
+      <p class="sub">三核差异化（硬测试场—转化通道—流通门户）与分期"先测试、再转化、后开放"叙事已重写；地图由提交 GeoJSON 真实几何内嵌渲染，指标与 metrics.json 自动同步。本页完全离线，不加载任何远程资源。</p>
       <div class="pill-row">
-        <span class="pill">总览地图</span>
-        <span class="pill">三层范围</span>
-        <span class="pill">重点区域</span>
+        <span class="pill v14">v1.4 升级</span>
+        <span class="pill">真实几何地图</span>
+        <span class="pill">三核差异化</span>
+        <span class="pill">分期时间轴</span>
         <span class="pill">用地分区</span>
         <span class="pill">交通慢行</span>
         <span class="pill">蓝绿公共空间</span>
@@ -224,35 +127,50 @@ body {
     <div class="sheet wide">
       <div class="sheet-head">
         <div>
-          <h2>总览地图</h2>
-          <p>京张智脉绿廊、三处重点区域、两翼功能区与 AI 场景节点示意（几何证据见 geometry/*.geojson）</p>
+          <h2>总览地图（真实几何）</h2>
+          <p>由 geometry/*.geojson 内嵌渲染：三核描边、三期虚线（已裁剪至提交边界）、绿地、公共空间、建筑与道路。权威数据以 GeoJSON 与 metrics.json 为准。</p>
         </div>
-        <span class="tag">geometry + metrics</span>
+        <span class="tag">geometry → SVG 内嵌</span>
       </div>
-      <div class="map-frame" role="img" aria-label="京张智脉空间结构总览示意">
-        <div class="map-belt"></div>
-        <div class="map-axis"></div>
-        <div class="map-axis alt"></div>
-        <div class="map-core c1">众智园</div>
-        <div class="map-core c2">AI原点社区</div>
-        <div class="map-core c3">大钟寺</div>
-        <div class="map-wing w1">中关村科技服务翼</div>
-        <div class="map-wing w2">小月河场景赋能翼</div>
-        <div class="map-node" style="top:16%;left:30%"></div>
-        <div class="map-node" style="top:28%;left:64%"></div>
-        <div class="map-node" style="top:42%;left:24%"></div>
-        <div class="map-node" style="top:55%;left:68%"></div>
-        <div class="map-node" style="top:70%;left:28%"></div>
-        <div class="map-node" style="top:82%;left:60%"></div>
-        <div class="map-note">注：边界为 provisional_constraint；图面重点为设计意图、廊道、节点与重点区，不作为精确地图。</div>
+      <svg viewBox="0 0 520 3883" role="img" aria-label="京张智脉空间结构总览（真实几何）" style="display:block;margin:0 auto;background:#fbfcfe;border:1px solid #d6dce4;border-radius:10px;max-height:680px"><path d="M -73.33,1663.97 -73.33,-1772.73" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -6.67,1707.48 -6.67,-1816.23" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -200.0,1455.16 210.0,1455.16" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -190.0,-263.19 166.67,-263.19" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -156.67,-1468.21 210.0,-1468.21" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -43.33,1620.47 -43.33,-1685.73" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M 156.67,1620.47 156.67,-1598.72" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -183.33,1620.47 -183.33,-1278.98" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M 203.33,1598.72 203.33,-152.26 M 203.33,-553.57 203.33,-1511.71" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -150.0,-1468.21 210.0,-1468.21" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -150.0,-263.19 166.67,-263.19" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -183.33,1555.22 250.0,1555.22" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -43.33,1337.7 -43.33,-1794.48" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M 133.33,1337.7 133.33,-1533.47" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -200.0,337.15 -100.0,337.15" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M 203.33,337.15 203.33,-1076.69" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -73.33,1455.16 -73.33,-1772.73" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M 66.67,1685.73 66.67,-1076.69" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -6.67,1563.92 -6.67,-263.19" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -156.67,-1272.45 216.67,-1272.45" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M -183.33,-32.63 183.33,-32.63" fill="none" stroke="#0f766e" stroke-width="2" opacity="0.7"/><path d="M 16.67,1903.24 -100.0,1903.24 -100.0,1337.7 16.67,1337.7 16.67,1903.24 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M -100.0,1337.7 -100.0,-663.41 16.67,-663.41 16.67,1337.7 -100.0,1337.7 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M -100.0,-663.41 -100.0,-1903.24 16.67,-1903.24 16.67,-663.41 -100.0,-663.41 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M -16.67,-1359.46 66.67,-1359.46 66.67,-1489.96 -16.67,-1489.96 -16.67,-1359.46 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M -116.67,-1750.98 -50.0,-1750.98 -50.0,-1859.74 -116.67,-1859.74 -116.67,-1750.98 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M -83.33,-184.89 -16.67,-184.89 -16.67,-293.64 -83.33,-293.64 -83.33,-184.89 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M 100.0,-97.88 166.67,-97.88 166.67,-184.89 100.0,-184.89 100.0,-97.88 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M 33.33,1685.73 100.0,1685.73 100.0,1620.47 33.33,1620.47 33.33,1685.73 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M 166.67,1511.71 233.33,1511.71 233.33,1402.96 166.67,1402.96 166.67,1511.71 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M -200.0,-663.41 -166.67,-663.41 -166.67,-793.92 -200.0,-793.92 -200.0,-663.41 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M 166.67,-663.41 190.0,-663.41 190.0,-793.92 166.67,-793.92 166.67,-663.41 Z" fill="#86efac" stroke="#4ade80" stroke-width="0.8" opacity="0.8"/><path d="M 207.95,-663.41 193.33,-315.39 233.33,337.15 183.33,337.15 183.33,-663.41 207.95,-663.41 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M -6.67,1703.13 -6.67,1563.92 106.67,1563.92 106.67,1703.13 -6.67,1703.13 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M -73.33,1476.91 -73.33,1307.25 6.67,1307.25 6.67,1476.91 -73.33,1476.91 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M -73.33,-176.19 -73.33,-345.85 6.67,-345.85 6.67,-176.19 -73.33,-176.19 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M -73.33,-1350.76 -73.33,-1520.42 6.67,-1520.42 6.67,-1350.76 -73.33,-1350.76 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M -33.33,-1402.96 33.33,-1402.96 33.33,-1489.96 -33.33,-1489.96 -33.33,-1402.96 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M 116.67,-1576.97 166.67,-1576.97 166.67,-1642.22 116.67,-1642.22 116.67,-1576.97 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M 0.0,-97.88 66.67,-97.88 66.67,-184.89 0.0,-184.89 0.0,-97.88 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M -100.0,-315.39 -33.33,-315.39 -33.33,-402.4 -100.0,-402.4 -100.0,-315.39 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M 16.67,1555.22 100.0,1555.22 100.0,1468.21 16.67,1468.21 16.67,1555.22 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M 166.67,1620.47 233.33,1620.47 233.33,1533.47 166.67,1533.47 166.67,1620.47 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M -83.33,641.66 -16.67,641.66 -16.67,532.91 -83.33,532.91 -83.33,641.66 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M 116.67,1163.69 183.33,1163.69 183.33,1076.69 116.67,1076.69 116.67,1163.69 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M 183.33,-924.43 216.67,-924.43 216.67,-1011.44 183.33,-1011.44 183.33,-924.43 Z" fill="#fde68a" stroke="#eab308" stroke-width="0.8" opacity="0.8"/><path d="M 50.0,-1489.96 50.0,-1663.97 110.0,-1663.97 110.0,-1489.96 50.0,-1489.96 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 23.33,-1663.97 23.33,-1816.23 83.33,-1816.23 83.33,-1663.97 23.33,-1663.97 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 110.0,-1446.46 110.0,-1576.97 150.0,-1576.97 150.0,-1446.46 110.0,-1446.46 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 43.33,-119.63 43.33,-250.14 103.33,-250.14 103.33,-119.63 43.33,-119.63 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 50.0,-263.19 50.0,-393.7 110.0,-393.7 110.0,-263.19 50.0,-263.19 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 83.33,-54.38 83.33,-163.13 150.0,-163.13 150.0,-54.38 83.33,-54.38 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 66.67,1650.92 66.67,1489.96 150.0,1489.96 150.0,1650.92 66.67,1650.92 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 156.67,1620.47 156.67,1489.96 216.67,1489.96 216.67,1620.47 156.67,1620.47 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 66.67,1294.2 66.67,1163.69 123.33,1163.69 123.33,1294.2 66.67,1294.2 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -156.67,-902.68 -156.67,-750.42 -206.24,-750.42 -198.71,-902.68 -156.67,-902.68 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 150.0,989.68 150.0,859.18 200.0,859.18 200.0,989.68 150.0,989.68 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 183.33,1607.42 183.33,1489.96 223.33,1489.96 223.33,1607.42 183.33,1607.42 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 123.33,-1533.47 190.0,-1533.47 190.0,-1629.17 123.33,-1629.17 123.33,-1533.47 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -33.33,-1707.48 33.33,-1707.48 33.33,-1794.48 -33.33,-1794.48 -33.33,-1707.48 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 66.67,-1794.48 116.67,-1794.48 116.67,-1859.74 66.67,-1859.74 66.67,-1794.48 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -16.67,-1489.96 33.33,-1489.96 33.33,-1555.22 -16.67,-1555.22 -16.67,-1489.96 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 150.0,-1663.97 200.0,-1663.97 200.0,-1729.23 150.0,-1729.23 150.0,-1663.97 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -83.33,-1576.97 -33.33,-1576.97 -33.33,-1642.22 -83.33,-1642.22 -83.33,-1576.97 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 116.67,-141.38 166.67,-141.38 166.67,-206.64 116.67,-206.64 116.67,-141.38 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 16.67,-76.13 66.67,-76.13 66.67,-141.38 16.67,-141.38 16.67,-76.13 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -50.0,-184.89 0.0,-184.89 0.0,-250.14 -50.0,-250.14 -50.0,-184.89 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 133.33,-76.13 183.33,-76.13 183.33,-141.38 133.33,-141.38 133.33,-76.13 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 210.0,1598.72 256.67,1598.72 256.67,1533.47 210.0,1533.47 210.0,1598.72 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 0.0,1642.22 50.0,1642.22 50.0,1576.97 0.0,1576.97 0.0,1642.22 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 100.0,1598.72 150.0,1598.72 150.0,1533.47 100.0,1533.47 100.0,1598.72 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 200.0,1294.2 250.0,1294.2 250.0,1228.95 200.0,1228.95 200.0,1294.2 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 143.33,1076.69 193.33,1076.69 193.33,1011.44 143.33,1011.44 143.33,1076.69 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -133.33,-837.42 -83.33,-837.42 -83.33,-902.68 -133.33,-902.68 -133.33,-837.42 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -66.67,1381.21 -16.67,1381.21 -16.67,1315.95 -66.67,1315.95 -66.67,1381.21 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 166.67,-663.41 190.0,-663.41 190.0,-728.67 166.67,-728.67 166.67,-663.41 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M 66.67,-358.9 110.0,-358.9 110.0,-424.15 66.67,-424.15 66.67,-358.9 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -116.67,-402.4 -66.67,-402.4 -66.67,-467.65 -116.67,-467.65 -116.67,-402.4 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.8"/><path d="M -150.0,-1076.69 216.67,-1076.69 216.67,-1881.49 -150.0,-1881.49 -150.0,-1076.69 Z" fill="#2b7fff" fill-opacity="0.10" stroke="#2b7fff" stroke-width="3"/><path d="M -183.33,-32.63 183.33,-32.63 183.33,-467.65 -183.33,-467.65 -183.33,-32.63 Z" fill="#e8833a" fill-opacity="0.10" stroke="#e8833a" stroke-width="3"/><path d="M -183.33,1685.73 250.0,1685.73 250.0,1431.67 -183.33,1431.67 -183.33,1685.73 Z" fill="#7a5af8" fill-opacity="0.10" stroke="#7a5af8" stroke-width="3"/><path d="M 216.67,1489.96 216.67,1685.73 -50.0,1685.73 -50.0,1489.96 216.67,1489.96 Z M 216.67,-1881.49 216.67,-1076.69 -150.0,-1076.69 -150.0,-1881.49 216.67,-1881.49 Z" fill="none" stroke="#ef4444" stroke-width="1.6" stroke-dasharray="6 5"/><path d="M 233.33,-1268.1 193.33,-315.39 233.33,337.15 233.33,1337.7 123.33,1337.7 123.33,-32.63 -183.33,-32.63 -183.33,-467.65 123.33,-467.65 123.33,-1076.69 216.67,-1076.69 216.67,-1533.47 233.33,-1533.47 233.33,-1268.1 Z" fill="none" stroke="#f59e0b" stroke-width="1.6" stroke-dasharray="6 5"/><path d="M 260.0,772.17 260.0,1903.24 -226.67,1903.24 -260.0,337.15 -193.33,-1011.44 -160.0,-1903.24 260.0,-1903.24 233.33,-1268.1 233.33,-1533.47 216.67,-1533.47 216.67,-1881.49 -150.0,-1881.49 -150.0,-1076.69 123.33,-1076.69 123.33,-467.65 -183.33,-467.65 -183.33,-32.63 123.33,-32.63 123.33,1337.7 233.33,1337.7 233.33,337.15 193.33,-315.39 260.0,772.17 Z" fill="none" stroke="#22c55e" stroke-width="1.6" stroke-dasharray="6 5"/><path d="M -226.67,1903.24 260.0,1903.24 260.0,772.17 193.33,-315.39 260.0,-1903.24 -160.0,-1903.24 -193.33,-1011.44 -260.0,337.15 -226.67,1903.24 Z" fill="none" stroke="#475569" stroke-width="2.5" stroke-dasharray="8 6"/></svg>
+      <div class="map-legend">
+        <span class="lg"><span class="sw" style="background:#86efac"></span>绿地</span>
+        <span class="lg"><span class="sw" style="background:#fde68a"></span>公共空间</span>
+        <span class="lg"><span class="sw" style="background:#cbd5e1"></span>建筑</span>
+        <span class="lg"><span class="sw" style="background:rgba(43,127,255,0.25);border:2px solid #2b7fff"></span>众智园</span>
+        <span class="lg"><span class="sw" style="background:rgba(232,131,58,0.25);border:2px solid #e8833a"></span>原点社区</span>
+        <span class="lg"><span class="sw" style="background:rgba(122,90,248,0.25);border:2px solid #7a5af8"></span>大钟寺</span>
+        <span class="lg"><span class="sw" style="border:2px dashed #ef4444;background:none"></span>一期</span>
+        <span class="lg"><span class="sw" style="border:2px dashed #f59e0b;background:none"></span>二期</span>
+        <span class="lg"><span class="sw" style="border:2px dashed #22c55e;background:none"></span>三期</span>
+        <span class="lg"><span class="sw" style="border:2px dashed #475569;background:none"></span>提交边界</span>
       </div>
       <div class="metric-grid">
-        <div class="metric-card"><div class="label">提交边界面积</div><div class="value"><span data-metric="site_area_sqm" data-value="11412825.386">约 1,141 公顷</span></div></div>
-        <div class="metric-card" style="border-left-color:var(--green)"><div class="label">绿地率</div><div class="value"><span data-metric="green_ratio" data-value="0.275269">27.5%</span></div></div>
-        <div class="metric-card" style="border-left-color:var(--blue)"><div class="label">公共空间占比</div><div class="value"><span data-metric="public_space_ratio" data-value="0.071245">7.1%</span></div></div>
-        <div class="metric-card" style="border-left-color:var(--orange)"><div class="label">建筑密度</div><div class="value">14.9%</div></div>
+        <div class="metric-card"><div class="label">提交边界面积</div><div class="value"><span data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</span></div></div>
+        <div class="metric-card" style="border-left-color:var(--green)"><div class="label">绿地率</div><div class="value"><span data-metric="green_ratio" data-value="0.283264">28.3%</span></div></div>
+        <div class="metric-card" style="border-left-color:var(--blue)"><div class="label">公共空间占比</div><div class="value"><span data-metric="public_space_ratio" data-value="0.075519">7.6%</span></div></div>
+        <div class="metric-card" style="border-left-color:var(--orange)"><div class="label">建筑密度</div><div class="value">9.3%</div></div>
         <div class="metric-card" style="border-left-color:var(--purple)"><div class="label">AI 场景卡</div><div class="value">12 张</div></div>
       </div>
+      <p class="warn">注：边界为 provisional_constraint；地图为真实几何的等距投影内嵌渲染，仅用于展示设计意图，不作为精确地图或审批依据。</p>
+    </div>
+
+    <div class="sheet wide">
+      <div class="sheet-head">
+        <div><h2>三核差异化：硬测试场 · 转化通道 · 流通门户</h2><p>唯一锚点互不重叠，构成"测试→转化→流通"的 AI 产业链闭环（叙事与 key_areas.geojson design_role 属性一一对应）</p></div>
+        <span class="tag">differentiation</span>
+      </div>
+      <div class="core-grid">
+        <div class="core-card" style="border-top:5px solid #2b7fff"><div class="core-head"><span class="core-name">众智园</span><span class="core-role" style="background:#2b7fff;color:#fff">硬测试场</span></div><p class="core-sub">AI 自主创新加速区</p><svg viewBox="0 0 620 430" role="img" aria-label="众智园差异化定位图" style="width:100%;height:auto;background:#fbfcfe;border:1px solid #d6dce4;border-radius:10px"><path d="M -47.4,1397.29 -47.4,-130.54" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -17.77,1416.63 -17.77,-149.88" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -103.68,1304.46 78.5,1304.46" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -99.24,540.54 59.25,540.54" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -84.43,4.83 78.5,4.83" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -34.07,1377.95 -34.07,-91.86" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 54.8,1377.95 54.8,-53.18" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -96.27,1377.95 -96.27,88.96" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 75.54,1368.28 75.54,589.86 M 75.54,411.45 75.54,-14.5" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -81.46,4.83 78.5,4.83" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -81.46,540.54 59.25,540.54" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -96.27,1348.94 96.27,1348.94" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -34.07,1252.25 -34.07,-140.21" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 44.43,1252.25 44.43,-24.17" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -103.68,807.43 -59.25,807.43" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 75.54,807.43 75.54,178.89" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -47.4,1304.46 -47.4,-130.54" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 14.81,1406.96 14.81,178.89" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -17.77,1352.81 -17.77,540.54" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -84.43,91.86 81.46,91.86" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -96.27,643.05 66.65,643.05" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -7.41,1503.66 -59.25,1503.66 -59.25,1252.25 -7.41,1252.25 -7.41,1503.66 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -59.25,1252.25 -59.25,362.62 -7.41,362.62 -7.41,1252.25 -59.25,1252.25 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -59.25,362.62 -59.25,-188.56 -7.41,-188.56 -7.41,362.62 -59.25,362.62 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -22.22,53.18 14.81,53.18 14.81,-4.83 -22.22,-4.83 -22.22,53.18 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -66.65,-120.87 -37.03,-120.87 -37.03,-169.22 -66.65,-169.22 -66.65,-120.87 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -51.84,575.36 -22.22,575.36 -22.22,527.01 -51.84,527.01 -51.84,575.36 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 29.62,614.04 59.25,614.04 59.25,575.36 29.62,575.36 29.62,614.04 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 0.0,1406.96 29.62,1406.96 29.62,1377.95 0.0,1377.95 0.0,1406.96 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 59.25,1329.61 88.87,1329.61 88.87,1281.26 59.25,1281.26 59.25,1329.61 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -103.68,362.62 -88.87,362.62 -88.87,304.6 -103.68,304.6 -103.68,362.62 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 59.25,362.62 69.61,362.62 69.61,304.6 59.25,304.6 59.25,362.62 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 77.59,362.62 71.09,517.34 88.87,807.43 66.65,807.43 66.65,362.62 77.59,362.62 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -17.77,1414.7 -17.77,1352.81 32.59,1352.81 32.59,1414.7 -17.77,1414.7 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -47.4,1314.13 -47.4,1238.71 -11.85,1238.71 -11.85,1314.13 -47.4,1314.13 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -47.4,579.22 -47.4,503.8 -11.85,503.8 -11.85,579.22 -47.4,579.22 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -47.4,57.05 -47.4,-18.37 -11.85,-18.37 -11.85,57.05 -47.4,57.05 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -29.62,33.84 0.0,33.84 0.0,-4.83 -29.62,-4.83 -29.62,33.84 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 37.03,-43.51 59.25,-43.51 59.25,-72.52 37.03,-72.52 37.03,-43.51 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -14.81,614.04 14.81,614.04 14.81,575.36 -14.81,575.36 -14.81,614.04 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -59.25,517.34 -29.62,517.34 -29.62,478.66 -59.25,478.66 -59.25,517.34 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -7.41,1348.94 29.62,1348.94 29.62,1310.27 -7.41,1310.27 -7.41,1348.94 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 59.25,1377.95 88.87,1377.95 88.87,1339.28 59.25,1339.28 59.25,1377.95 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -51.84,942.81 -22.22,942.81 -22.22,894.46 -51.84,894.46 -51.84,942.81 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 37.03,1174.89 66.65,1174.89 66.65,1136.21 37.03,1136.21 37.03,1174.89 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 66.65,246.58 81.46,246.58 81.46,207.9 66.65,207.9 66.65,246.58 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 7.41,-4.83 7.41,-82.19 34.07,-82.19 34.07,-4.83 7.41,-4.83 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -4.44,-82.19 -4.44,-149.88 22.22,-149.88 22.22,-82.19 -4.44,-82.19 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 34.07,14.5 34.07,-43.51 51.84,-43.51 51.84,14.5 34.07,14.5 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 4.44,604.37 4.44,546.35 31.1,546.35 31.1,604.37 4.44,604.37 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 7.41,540.54 7.41,482.53 34.07,482.53 34.07,540.54 7.41,540.54 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 22.22,633.38 22.22,585.03 51.84,585.03 51.84,633.38 22.22,633.38 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 14.81,1391.49 14.81,1319.94 51.84,1319.94 51.84,1391.49 14.81,1391.49 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 54.8,1377.95 54.8,1319.94 81.46,1319.94 81.46,1377.95 54.8,1377.95 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 14.81,1232.91 14.81,1174.89 39.99,1174.89 39.99,1232.91 14.81,1232.91 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -84.43,256.25 -84.43,323.94 -106.45,323.94 -103.11,256.25 -84.43,256.25 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 51.84,1097.53 51.84,1039.51 74.06,1039.51 74.06,1097.53 51.84,1097.53 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 66.65,1372.15 66.65,1319.94 84.43,1319.94 84.43,1372.15 66.65,1372.15 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 39.99,-24.17 69.61,-24.17 69.61,-66.72 39.99,-66.72 39.99,-24.17 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -29.62,-101.53 0.0,-101.53 0.0,-140.21 -29.62,-140.21 -29.62,-101.53 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 14.81,-140.21 37.03,-140.21 37.03,-169.22 14.81,-169.22 14.81,-140.21 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -22.22,-4.83 0.0,-4.83 0.0,-33.84 -22.22,-33.84 -22.22,-4.83 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 51.84,-82.19 74.06,-82.19 74.06,-111.2 51.84,-111.2 51.84,-82.19 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -51.84,-43.51 -29.62,-43.51 -29.62,-72.52 -51.84,-72.52 -51.84,-43.51 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 37.03,594.7 59.25,594.7 59.25,565.69 37.03,565.69 37.03,594.7 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -7.41,623.71 14.81,623.71 14.81,594.7 -7.41,594.7 -7.41,623.71 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -37.03,575.36 -14.81,575.36 -14.81,546.35 -37.03,546.35 -37.03,575.36 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 44.43,623.71 66.65,623.71 66.65,594.7 44.43,594.7 44.43,623.71 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 78.5,1368.28 99.24,1368.28 99.24,1339.28 78.5,1339.28 78.5,1368.28 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -14.81,1387.62 7.41,1387.62 7.41,1358.61 -14.81,1358.61 -14.81,1387.62 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 29.62,1368.28 51.84,1368.28 51.84,1339.28 29.62,1339.28 29.62,1368.28 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 74.06,1232.91 96.27,1232.91 96.27,1203.9 74.06,1203.9 74.06,1232.91 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 48.88,1136.21 71.09,1136.21 71.09,1107.2 48.88,1107.2 48.88,1136.21 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -74.06,285.26 -51.84,285.26 -51.84,256.25 -74.06,256.25 -74.06,285.26 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -44.43,1271.59 -22.22,1271.59 -22.22,1242.58 -44.43,1242.58 -44.43,1271.59 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 59.25,362.62 69.61,362.62 69.61,333.61 59.25,333.61 59.25,362.62 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 14.81,498.0 34.07,498.0 34.07,468.99 14.81,468.99 14.81,498.0 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -66.65,478.66 -44.43,478.66 -44.43,449.65 -66.65,449.65 -66.65,478.66 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -81.46,178.89 81.46,178.89 81.46,-178.89 -81.46,-178.89 -81.46,178.89 Z" fill="#2b7fff" fill-opacity="0.14" stroke="#2b7fff" stroke-width="4"/><g font-family="Microsoft YaHei, sans-serif"><text x="140.0" y="-60.0" font-size="26" font-weight="700" fill="#2b7fff">众智园 · 硬测试场</text><text x="140.0" y="-26.0" font-size="17" fill="#334155">一廊两带一谷</text><text x="140.0" y="0.0" font-size="15" fill="#64748b">锚点：模型评测、端侧算力验证、标准工作坊与治理推演</text></g></svg><ul class="core-list"><li><strong>唯一锚点</strong>：模型评测、端侧算力验证、标准工作坊与治理推演</li><li><strong>空间结构</strong>：一廊两带一谷</li><li><strong>主导场景卡</strong>：SC-02 / SC-06 / SC-11 / SC-12</li><li><strong>主导分期</strong>：一期 2026–2028</li></ul></div><div class="core-card" style="border-top:5px solid #e8833a"><div class="core-head"><span class="core-name">AI 原点社区</span><span class="core-role" style="background:#e8833a;color:#fff">转化通道</span></div><p class="core-sub">北京 AI 原点社区</p><svg viewBox="0 0 620 430" role="img" aria-label="AI 原点社区差异化定位图" style="width:100%;height:auto;background:#fbfcfe;border:1px solid #d6dce4;border-radius:10px"><path d="M -54.94,1434.26 -54.94,-1140.89" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -4.99,1466.85 -4.99,-1173.48" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -149.85,1277.79 157.34,1277.79" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -142.36,-9.78 124.87,-9.78" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -117.38,-912.71 157.34,-912.71" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -32.47,1401.66 -32.47,-1075.69" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 117.38,1401.66 117.38,-1010.5" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -137.36,1401.66 -137.36,-770.91" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 152.35,1385.36 152.35,73.34 M 152.35,-227.36 152.35,-945.31" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -112.39,-912.71 157.34,-912.71" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -112.39,-9.78 124.87,-9.78" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -137.36,1352.77 187.31,1352.77" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -32.47,1189.78 -32.47,-1157.19" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 99.9,1189.78 99.9,-961.6" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -149.85,440.06 -74.92,440.06" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 152.35,440.06 152.35,-619.34" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -54.94,1277.79 -54.94,-1140.89" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 49.95,1450.56 49.95,-619.34" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -4.99,1359.29 -4.99,-9.78" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -117.38,-766.02 162.34,-766.02" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -137.36,162.98 137.36,162.98" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 12.49,1613.54 -74.92,1613.54 -74.92,1189.78 12.49,1189.78 12.49,1613.54 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -74.92,1189.78 -74.92,-309.67 12.49,-309.67 12.49,1189.78 -74.92,1189.78 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -74.92,-309.67 -74.92,-1238.68 12.49,-1238.68 12.49,-309.67 -74.92,-309.67 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -12.49,-831.22 49.95,-831.22 49.95,-929.01 -12.49,-929.01 -12.49,-831.22 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -87.41,-1124.59 -37.46,-1124.59 -37.46,-1206.08 -87.41,-1206.08 -87.41,-1124.59 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -62.44,48.9 -12.49,48.9 -12.49,-32.6 -62.44,-32.6 -62.44,48.9 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 74.92,114.09 124.87,114.09 124.87,48.9 74.92,48.9 74.92,114.09 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 24.97,1450.56 74.92,1450.56 74.92,1401.66 24.97,1401.66 24.97,1450.56 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 124.87,1320.17 174.82,1320.17 174.82,1238.68 124.87,1238.68 124.87,1320.17 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -149.85,-309.67 -124.87,-309.67 -124.87,-407.46 -149.85,-407.46 -149.85,-309.67 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 124.87,-309.67 142.36,-309.67 142.36,-407.46 124.87,-407.46 124.87,-309.67 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 155.8,-309.67 144.85,-48.9 174.82,440.06 137.36,440.06 137.36,-309.67 155.8,-309.67 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -4.99,1463.6 -4.99,1359.29 79.92,1359.29 79.92,1463.6 -4.99,1463.6 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -54.94,1294.09 -54.94,1166.96 4.99,1166.96 4.99,1294.09 -54.94,1294.09 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -54.94,55.41 -54.94,-71.71 4.99,-71.71 4.99,55.41 -54.94,55.41 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -54.94,-824.7 -54.94,-951.83 4.99,-951.83 4.99,-824.7 -54.94,-824.7 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -24.97,-863.81 24.97,-863.81 24.97,-929.01 -24.97,-929.01 -24.97,-863.81 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 87.41,-994.2 124.87,-994.2 124.87,-1043.1 87.41,-1043.1 87.41,-994.2 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 0.0,114.09 49.95,114.09 49.95,48.9 0.0,48.9 0.0,114.09 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -74.92,-48.9 -24.97,-48.9 -24.97,-114.09 -74.92,-114.09 -74.92,-48.9 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 12.49,1352.77 74.92,1352.77 74.92,1287.57 12.49,1287.57 12.49,1352.77 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 124.87,1401.66 174.82,1401.66 174.82,1336.47 124.87,1336.47 124.87,1401.66 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -62.44,668.23 -12.49,668.23 -12.49,586.74 -62.44,586.74 -62.44,668.23 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 87.41,1059.4 137.36,1059.4 137.36,994.2 87.41,994.2 87.41,1059.4 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 137.36,-505.25 162.34,-505.25 162.34,-570.44 137.36,-570.44 137.36,-505.25 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 37.46,-929.01 37.46,-1059.4 82.42,-1059.4 82.42,-929.01 37.46,-929.01 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 17.48,-1059.4 17.48,-1173.48 62.44,-1173.48 62.44,-1059.4 17.48,-1059.4 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 82.42,-896.41 82.42,-994.2 112.39,-994.2 112.39,-896.41 82.42,-896.41 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 32.47,97.79 32.47,0.0 77.42,0.0 77.42,97.79 32.47,97.79 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 37.46,-9.78 37.46,-107.57 82.42,-107.57 82.42,-9.78 37.46,-9.78 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 62.44,146.69 62.44,65.19 112.39,65.19 112.39,146.69 62.44,146.69 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 49.95,1424.48 49.95,1303.87 112.39,1303.87 112.39,1424.48 49.95,1424.48 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 117.38,1401.66 117.38,1303.87 162.34,1303.87 162.34,1401.66 117.38,1401.66 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 49.95,1157.19 49.95,1059.4 92.41,1059.4 92.41,1157.19 49.95,1157.19 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -117.38,-488.95 -117.38,-374.86 -154.52,-374.86 -148.88,-488.95 -117.38,-488.95 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 112.39,929.01 112.39,831.22 149.85,831.22 149.85,929.01 112.39,929.01 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 137.36,1391.88 137.36,1303.87 167.33,1303.87 167.33,1391.88 137.36,1391.88 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 92.41,-961.6 142.36,-961.6 142.36,-1033.32 92.41,-1033.32 92.41,-961.6 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -24.97,-1091.99 24.97,-1091.99 24.97,-1157.19 -24.97,-1157.19 -24.97,-1091.99 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 49.95,-1157.19 87.41,-1157.19 87.41,-1206.08 49.95,-1206.08 49.95,-1157.19 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -12.49,-929.01 24.97,-929.01 24.97,-977.9 -12.49,-977.9 -12.49,-929.01 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 112.39,-1059.4 149.85,-1059.4 149.85,-1108.29 112.39,-1108.29 112.39,-1059.4 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -62.44,-994.2 -24.97,-994.2 -24.97,-1043.1 -62.44,-1043.1 -62.44,-994.2 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 87.41,81.49 124.87,81.49 124.87,32.6 87.41,32.6 87.41,81.49 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 12.49,130.39 49.95,130.39 49.95,81.49 12.49,81.49 12.49,130.39 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -37.46,48.9 0.0,48.9 0.0,0.0 -37.46,0.0 -37.46,48.9 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 99.9,130.39 137.36,130.39 137.36,81.49 99.9,81.49 99.9,130.39 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 157.34,1385.36 192.31,1385.36 192.31,1336.47 157.34,1336.47 157.34,1385.36 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 0.0,1417.96 37.46,1417.96 37.46,1369.06 0.0,1369.06 0.0,1417.96 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 74.92,1385.36 112.39,1385.36 112.39,1336.47 74.92,1336.47 74.92,1385.36 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 149.85,1157.19 187.31,1157.19 187.31,1108.29 149.85,1108.29 149.85,1157.19 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 107.39,994.2 144.85,994.2 144.85,945.31 107.39,945.31 107.39,994.2 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -99.9,-440.06 -62.44,-440.06 -62.44,-488.95 -99.9,-488.95 -99.9,-440.06 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -49.95,1222.38 -12.49,1222.38 -12.49,1173.48 -49.95,1173.48 -49.95,1222.38 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 124.87,-309.67 142.36,-309.67 142.36,-358.56 124.87,-358.56 124.87,-309.67 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 49.95,-81.49 82.42,-81.49 82.42,-130.39 49.95,-130.39 49.95,-81.49 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -87.41,-114.09 -49.95,-114.09 -49.95,-162.98 -87.41,-162.98 -87.41,-114.09 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -137.36,162.98 137.36,162.98 137.36,-162.98 -137.36,-162.98 -137.36,162.98 Z" fill="#e8833a" fill-opacity="0.14" stroke="#e8833a" stroke-width="4"/><g font-family="Microsoft YaHei, sans-serif"><text x="140.0" y="-60.0" font-size="26" font-weight="700" fill="#e8833a">AI 原点社区 · 转化通道</text><text x="140.0" y="-26.0" font-size="17" fill="#334155">街区缝合、发布轴带、社区服务环</text><text x="140.0" y="0.0" font-size="15" fill="#64748b">锚点：高校师生与开源开发者的日常转化通道，不做总部门户</text></g></svg><ul class="core-list"><li><strong>唯一锚点</strong>：高校师生与开源开发者的日常转化通道，不做总部门户</li><li><strong>空间结构</strong>：街区缝合、发布轴带、社区服务环</li><li><strong>主导场景卡</strong>：SC-01 / SC-04 / SC-07 / SC-09</li><li><strong>主导分期</strong>：二期 2028–2030</li></ul></div><div class="core-card" style="border-top:5px solid #7a5af8"><div class="core-head"><span class="core-name">大钟寺</span><span class="core-role" style="background:#7a5af8;color:#fff">流通门户</span></div><p class="core-sub">AI 产业聚集区</p><svg viewBox="0 0 620 430" role="img" aria-label="大钟寺差异化定位图" style="width:100%;height:auto;background:#fbfcfe;border:1px solid #d6dce4;border-radius:10px"><path d="M -120.34,118.71 -120.34,-3756.51" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -45.13,167.76 -45.13,-3805.56" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -263.24,-116.75 199.31,-116.75" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -251.96,-2054.36 150.43,-2054.36" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -214.36,-3413.14 199.31,-3413.14" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -86.49,69.66 -86.49,-3658.4" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 139.14,69.66 139.14,-3560.3" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -244.44,69.66 -244.44,-3199.75" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 191.79,45.13 191.79,-1929.27 M 191.79,-2381.79 191.79,-3462.19" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -206.83,-3413.14 199.31,-3413.14" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -206.83,-2054.36 150.43,-2054.36" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -244.44,-3.92 244.44,-3.92" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -86.49,-249.19 -86.49,-3781.04" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 112.82,-249.19 112.82,-3486.72" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -263.24,-1377.42 -150.43,-1377.42" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 191.79,-1377.42 191.79,-2971.65" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -120.34,-116.75 -120.34,-3756.51" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M 37.61,143.24 37.61,-2971.65" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -45.13,5.89 -45.13,-2054.36" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -214.36,-3192.4 206.83,-3192.4" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -244.44,-1794.37 169.23,-1794.37" fill="none" stroke="#94a3b8" stroke-width="2.5" opacity="0.75"/><path d="M -18.8,388.5 -150.43,388.5 -150.43,-249.19 -18.8,-249.19 -18.8,388.5 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -150.43,-249.19 -150.43,-2505.65 -18.8,-2505.65 -18.8,-249.19 -150.43,-249.19 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -150.43,-2505.65 -150.43,-3903.67 -18.8,-3903.67 -18.8,-2505.65 -150.43,-2505.65 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -56.41,-3290.5 37.61,-3290.5 37.61,-3437.66 -56.41,-3437.66 -56.41,-3290.5 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -169.23,-3731.98 -94.02,-3731.98 -94.02,-3854.62 -169.23,-3854.62 -169.23,-3731.98 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -131.62,-1966.06 -56.41,-1966.06 -56.41,-2088.69 -131.62,-2088.69 -131.62,-1966.06 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 75.21,-1867.95 150.43,-1867.95 150.43,-1966.06 75.21,-1966.06 75.21,-1867.95 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 0.0,143.24 75.21,143.24 75.21,69.66 0.0,69.66 0.0,143.24 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 150.43,-52.98 225.64,-52.98 225.64,-175.61 150.43,-175.61 150.43,-52.98 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M -263.24,-2505.65 -225.64,-2505.65 -225.64,-2652.81 -263.24,-2652.81 -263.24,-2505.65 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 150.43,-2505.65 176.75,-2505.65 176.75,-2652.81 150.43,-2652.81 150.43,-2505.65 Z" fill="#86efac" stroke="#4ade80" stroke-width="1" opacity="0.85"/><path d="M 197.0,-2505.65 180.51,-2113.22 225.64,-1377.42 169.23,-1377.42 169.23,-2505.65 197.0,-2505.65 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -45.13,162.86 -45.13,5.89 82.73,5.89 82.73,162.86 -45.13,162.86 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -120.34,-92.22 -120.34,-283.53 -30.09,-283.53 -30.09,-92.22 -120.34,-92.22 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -120.34,-1956.25 -120.34,-2147.56 -30.09,-2147.56 -30.09,-1956.25 -120.34,-1956.25 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -120.34,-3280.69 -120.34,-3472.0 -30.09,-3472.0 -30.09,-3280.69 -120.34,-3280.69 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -75.21,-3339.56 0.0,-3339.56 0.0,-3437.66 -75.21,-3437.66 -75.21,-3339.56 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 94.02,-3535.77 150.43,-3535.77 150.43,-3609.35 94.02,-3609.35 94.02,-3535.77 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -37.61,-1867.95 37.61,-1867.95 37.61,-1966.06 -37.61,-1966.06 -37.61,-1867.95 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -150.43,-2113.22 -75.21,-2113.22 -75.21,-2211.33 -150.43,-2211.33 -150.43,-2113.22 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -18.8,-3.92 75.21,-3.92 75.21,-102.03 -18.8,-102.03 -18.8,-3.92 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 150.43,69.66 225.64,69.66 225.64,-28.45 150.43,-28.45 150.43,69.66 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M -131.62,-1034.05 -56.41,-1034.05 -56.41,-1156.68 -131.62,-1156.68 -131.62,-1034.05 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 94.02,-445.4 169.23,-445.4 169.23,-543.51 94.02,-543.51 94.02,-445.4 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 169.23,-2799.97 206.83,-2799.97 206.83,-2898.07 169.23,-2898.07 169.23,-2799.97 Z" fill="#fde68a" stroke="#f59e0b" stroke-width="1" opacity="0.85"/><path d="M 18.8,-3437.66 18.8,-3633.88 86.49,-3633.88 86.49,-3437.66 18.8,-3437.66 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -11.28,-3633.88 -11.28,-3805.56 56.41,-3805.56 56.41,-3633.88 -11.28,-3633.88 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 86.49,-3388.61 86.49,-3535.77 131.62,-3535.77 131.62,-3388.61 86.49,-3388.61 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 11.28,-1892.48 11.28,-2039.64 78.97,-2039.64 78.97,-1892.48 11.28,-1892.48 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 18.8,-2054.36 18.8,-2201.52 86.49,-2201.52 86.49,-2054.36 18.8,-2054.36 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 56.41,-1818.9 56.41,-1941.53 131.62,-1941.53 131.62,-1818.9 56.41,-1818.9 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 37.61,103.99 37.61,-77.5 131.62,-77.5 131.62,103.99 37.61,103.99 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 139.14,69.66 139.14,-77.5 206.83,-77.5 206.83,69.66 139.14,69.66 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 37.61,-298.24 37.61,-445.4 101.54,-445.4 101.54,-298.24 37.61,-298.24 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -214.36,-2775.44 -214.36,-2603.75 -270.28,-2603.75 -261.79,-2775.44 -214.36,-2775.44 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 131.62,-641.62 131.62,-788.78 188.03,-788.78 188.03,-641.62 131.62,-641.62 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 169.23,54.94 169.23,-77.5 214.36,-77.5 214.36,54.94 169.23,54.94 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 101.54,-3486.72 176.75,-3486.72 176.75,-3594.63 101.54,-3594.63 101.54,-3486.72 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -75.21,-3682.93 0.0,-3682.93 0.0,-3781.04 -75.21,-3781.04 -75.21,-3682.93 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 37.61,-3781.04 94.02,-3781.04 94.02,-3854.62 37.61,-3854.62 37.61,-3781.04 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -56.41,-3437.66 0.0,-3437.66 0.0,-3511.24 -56.41,-3511.24 -56.41,-3437.66 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 131.62,-3633.88 188.03,-3633.88 188.03,-3707.46 131.62,-3707.46 131.62,-3633.88 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -131.62,-3535.77 -75.21,-3535.77 -75.21,-3609.35 -131.62,-3609.35 -131.62,-3535.77 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 94.02,-1917.01 150.43,-1917.01 150.43,-1990.59 94.02,-1990.59 94.02,-1917.01 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -18.8,-1843.43 37.61,-1843.43 37.61,-1917.01 -18.8,-1917.01 -18.8,-1843.43 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -94.02,-1966.06 -37.61,-1966.06 -37.61,-2039.64 -94.02,-2039.64 -94.02,-1966.06 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 112.82,-1843.43 169.23,-1843.43 169.23,-1917.01 112.82,-1917.01 112.82,-1843.43 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 199.31,45.13 251.96,45.13 251.96,-28.45 199.31,-28.45 199.31,45.13 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -37.61,94.18 18.8,94.18 18.8,20.6 -37.61,20.6 -37.61,94.18 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 75.21,45.13 131.62,45.13 131.62,-28.45 75.21,-28.45 75.21,45.13 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 188.03,-298.24 244.44,-298.24 244.44,-371.82 188.03,-371.82 188.03,-298.24 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 124.1,-543.51 180.51,-543.51 180.51,-617.09 124.1,-617.09 124.1,-543.51 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -188.03,-2701.86 -131.62,-2701.86 -131.62,-2775.44 -188.03,-2775.44 -188.03,-2701.86 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -112.82,-200.14 -56.41,-200.14 -56.41,-273.72 -112.82,-273.72 -112.82,-200.14 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 150.43,-2505.65 176.75,-2505.65 176.75,-2579.23 150.43,-2579.23 150.43,-2505.65 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M 37.61,-2162.27 86.49,-2162.27 86.49,-2235.85 37.61,-2235.85 37.61,-2162.27 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -169.23,-2211.33 -112.82,-2211.33 -112.82,-2284.91 -169.23,-2284.91 -169.23,-2211.33 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="1"/><path d="M -244.44,143.24 244.44,143.24 244.44,-143.24 -244.44,-143.24 -244.44,143.24 Z" fill="#7a5af8" fill-opacity="0.14" stroke="#7a5af8" stroke-width="4"/><g font-family="Microsoft YaHei, sans-serif"><text x="140.0" y="-60.0" font-size="26" font-weight="700" fill="#7a5af8">大钟寺 · 流通门户</text><text x="140.0" y="-26.0" font-size="17" fill="#334155">站城一体、四象限连通、文化商业复合</text><text x="140.0" y="0.0" font-size="15" fill="#64748b">锚点：要素流通与品牌展示，不做研发测试</text></g></svg><ul class="core-list"><li><strong>唯一锚点</strong>：要素流通与品牌展示，不做研发测试</li><li><strong>空间结构</strong>：站城一体、四象限连通、文化商业复合</li><li><strong>主导场景卡</strong>：SC-05 / SC-08 / SC-10</li><li><strong>主导分期</strong>：一期 2026–2028</li></ul></div>
+      </div>
+    </div>
+
+    <div class="sheet wide">
+      <div class="sheet-head">
+        <div><h2>分期实施：三核差异化能力的兑现顺序</h2><p>三期已裁剪至提交边界、互不重叠，面积之和 = 提交边界面积（11,412,860 m²）；每期承担一个差异化主题，"先测试、再转化、后开放"</p></div>
+        <span class="tag">phasing</span>
+      </div>
+      <div class="phase-row"><div class="phase-meta"><span class="phase-badge" style="background:#ef4444">一期</span><span class="phase-time">2026–2028</span></div><div class="phase-bar-wrap"><div class="phase-bar" style="width:19.9%;background:#ef4444"></div><span class="phase-pct">19.9% · 2,270,832 m²</span></div><div class="phase-body"><strong>双门户试点</strong>：众智园 + 大钟寺站城门户<br>核心项目：众智园全栈测试与治理客厅、大钟寺站城一体化公共界面、安全治理沙盒试点<br><span class="muted">触发条件：重点区控规条件初步明确、轨道站点改造方案进入深化</span></div></div><div class="phase-row"><div class="phase-meta"><span class="phase-badge" style="background:#f59e0b">二期</span><span class="phase-time">2028–2030</span></div><div class="phase-bar-wrap"><div class="phase-bar" style="width:21.5%;background:#f59e0b"></div><span class="phase-pct">21.5% · 2,449,533 m²</span></div><div class="phase-body"><strong>转化轴成型</strong>：原点社区 + 中关村服务翼慢行网<br>核心项目：原点社区成果转化街、服务翼慢行轴、京张绿廊中段缝合<br><span class="muted">触发条件：一期运营数据验证、慢行断点交通评估完成</span></div></div><div class="phase-row"><div class="phase-meta"><span class="phase-badge" style="background:#22c55e">三期</span><span class="phase-time">2030+</span></div><div class="phase-bar-wrap"><div class="phase-bar" style="width:58.6%;background:#22c55e"></div><span class="phase-pct">58.6% · 6,692,494 m²</span></div><div class="phase-body"><strong>全域织补开放</strong>：小月河场景翼 + 全域 AI 场景节点<br>核心项目：小月河场景赋能翼、全域端侧算力节点、全球 AI 活动周路线<br><span class="muted">触发条件：场景开放机制建立、两翼微循环基本贯通</span></div></div>
     </div>
 
     <div class="sheet">
@@ -260,19 +178,9 @@ body {
       <ul class="list">
         <li><strong>统筹研究范围</strong>：约 43.6 km²，AI 产业生态与三区两翼协同</li>
         <li><strong>总体设计范围</strong>：约 11.4 km²，城市更新与控规深度城市设计</li>
-        <li><strong>重点区域范围</strong>：约 368.4 公顷，三处重点片区详细设计</li>
+        <li><strong>重点区域范围</strong>：约 369 公顷（3,692,893 m²），三处重点片区详细设计</li>
       </ul>
       <p class="warn">三层范围均基于 provisional boundary，替换官方 polygon 后需重算。</p>
-    </div>
-
-    <div class="sheet">
-      <div class="sheet-head"><div><h2>重点区域</h2><p>三处重点片区定位与空间动作</p></div><span class="tag">key areas</span></div>
-      <table class="table">
-        <tr><th>片区</th><th>定位</th><th>核心动作</th></tr>
-        <tr><td>众智园</td><td>全栈自主创新与安全治理客厅</td><td>一廊两带一谷</td></tr>
-        <tr><td>AI原点社区</td><td>近校成果转化与开源人才社区</td><td>街区缝合与发布轴带</td></tr>
-        <tr><td>大钟寺</td><td>智能原生消费与国际交往客厅</td><td>站城一体与四象限连通</td></tr>
-      </table>
     </div>
 
     <div class="sheet">
@@ -290,8 +198,8 @@ body {
     <div class="sheet">
       <div class="sheet-head"><div><h2>交通慢行</h2><p>轨道站城一体 · 绿廊慢行贯通</p></div><span class="tag">mobility</span></div>
       <ul class="list">
-        <li>南北主轴两线 + 东西联络三线</li>
-        <li>京张智脉慢行绿道 + 小月河场景赋能翼绿道</li>
+        <li>南北主轴两线 + 东西联络三线 + v1.4 加密微循环</li>
+        <li>道路总长 95,524 m，其中慢行绿道 39,206 m</li>
         <li>轨道接驳：五道口、清华东路西口、大钟寺站</li>
       </ul>
     </div>
@@ -300,7 +208,8 @@ body {
       <div class="sheet-head"><div><h2>蓝绿公共空间</h2><p>京张智脉绿廊与公共空间节点</p></div><span class="tag">blue-green</span></div>
       <ul class="list">
         <li>绿廊：南北贯通 + 众智园滨河绿廊</li>
-        <li>节点：站前广场、发布广场、测试展示广场</li>
+        <li>绿地面积 3,232,839 m²（28.3%）</li>
+        <li>公共空间 861,890 m²（7.6%）</li>
         <li>朝圣地标：原点碑、智脉步道、发布塔、AI 时代钟</li>
       </ul>
     </div>
@@ -308,6 +217,7 @@ body {
     <div class="sheet">
       <div class="sheet-head"><div><h2>建筑</h2><p>更新对象按保留 / 改造 / 新建 / 留白表达</p></div><span class="tag">buildings</span></div>
       <ul class="list">
+        <li>32 个建筑要素，基底 1,066,517 m²</li>
         <li>AI 研发、孵化器、全栈测试实验室</li>
         <li>成果转化街、发布厅、人才公寓</li>
         <li>智能消费综合体、文化展示馆、接驳中心</li>
@@ -315,11 +225,11 @@ body {
     </div>
 
     <div class="sheet">
-      <div class="sheet-head"><div><h2>更新项目</h2><p>近期 / 中期 / 远期实施分期</p></div><span class="tag">renewal</span></div>
+      <div class="sheet-head"><div><h2>更新项目</h2><p>按"先测试、再转化、后开放"分期落地</p></div><span class="tag">renewal</span></div>
       <ul class="list">
-        <li>近期：主轴先通与三核先导</li>
-        <li>中期：绿廊缝合与两翼微循环</li>
-        <li>远期：全域更新与长期运营体系</li>
+        <li><strong>一期 2026–2028</strong>：众智园全栈测试与治理客厅、大钟寺站城一体化公共界面、安全治理沙盒试点</li>
+        <li><strong>二期 2028–2030</strong>：原点社区成果转化街、服务翼慢行轴、京张绿廊中段缝合</li>
+        <li><strong>三期 2030+</strong>：小月河场景赋能翼、全域端侧算力节点、全球 AI 活动周路线</li>
       </ul>
     </div>
 
@@ -342,14 +252,16 @@ body {
     </div>
 
     <div class="sheet">
-      <div class="sheet-head"><div><h2>核心指标</h2><p>可从提交几何或矩阵复算</p></div><span class="tag">metrics</span></div>
+      <div class="sheet-head"><div><h2>核心指标</h2><p>可从提交几何复算，与 metrics.json 同步</p></div><span class="tag">metrics</span></div>
       <div class="metric-grid">
-        <div class="metric-card"><div class="label">三处重点区</div><div class="value">约 369 公顷</div></div>
-        <div class="metric-card"><div class="label">绿地面积</div><div class="value">约 314 公顷</div></div>
-        <div class="metric-card"><div class="label">公共空间面积</div><div class="value">约 81 公顷</div></div>
-        <div class="metric-card"><div class="label">道路总长</div><div class="value">约 93 km</div></div>
-        <div class="metric-card"><div class="label">慢行绿道</div><div class="value">约 31 km</div></div>
-        <div class="metric-card"><div class="label">近期启动区</div><div class="value">约 306 公顷</div></div>
+        <div class="metric-card"><div class="label">三处重点区</div><div class="value">3,692,893 m²</div></div>
+        <div class="metric-card"><div class="label">绿地面积</div><div class="value">3,232,839 m²</div></div>
+        <div class="metric-card"><div class="label">公共空间面积</div><div class="value">861,890 m²</div></div>
+        <div class="metric-card"><div class="label">道路总长</div><div class="value">95,524 m</div></div>
+        <div class="metric-card"><div class="label">慢行绿道</div><div class="value">39,206 m</div></div>
+        <div class="metric-card"><div class="label">近期启动区</div><div class="value">2,270,832 m²</div></div>
+        <div class="metric-card"><div class="label">中期</div><div class="value">2,449,533 m²</div></div>
+        <div class="metric-card"><div class="label">远期</div><div class="value">6,692,494 m²</div></div>
       </div>
       <p class="warn">容积率、建筑高度等控规指标为 unknown，待官方附件确认。</p>
     </div>
