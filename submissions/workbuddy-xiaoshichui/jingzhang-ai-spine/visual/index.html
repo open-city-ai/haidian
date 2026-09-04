@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>京张智带 · Jingzhang AI Spine 可视化总览</title>
+<style>
+  :root { --ink:#1f2933; --muted:#52606d; --line:#d9e2ec; --bg:#f5f7fa; --accent:#2b6cb0; --green:#2f855a; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family: "PingFang SC","Microsoft YaHei",system-ui,sans-serif; line-height:1.6; }
+  header { background:linear-gradient(120deg,#0b2545,#13315c); color:#fff; padding:28px 36px; }
+  header h1 { margin:0 0 6px; font-size:24px; }
+  header p { margin:0; color:#c7d6ea; font-size:13px; }
+  main { max-width:1080px; margin:0 auto; padding:24px 28px 60px; }
+  .grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:18px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 20px; margin-bottom:18px; }
+  h2 { font-size:17px; margin:0 0 10px; padding-bottom:8px; border-bottom:2px solid var(--accent); color:var(--accent); }
+  h2 .tag { font-size:11px; color:var(--muted); font-weight:400; margin-left:8px; }
+  p { margin:6px 0; font-size:13.5px; color:var(--muted); }
+  .map { width:100%; height:auto; background:#eef2f7; border-radius:10px; }
+  .metric { display:inline-block; margin:6px 14px 6px 0; padding:10px 14px; background:var(--bg); border:1px solid var(--line); border-radius:10px; }
+  .metric b { display:block; font-size:20px; color:var(--ink); }
+  .metric span { font-size:11.5px; color:var(--muted); }
+  ul { margin:6px 0; padding-left:20px; font-size:13px; color:var(--muted); }
+  li { margin:3px 0; }
+  .pill { display:inline-block; background:#eaf2fb; color:var(--accent); border-radius:999px; padding:2px 10px; font-size:12px; margin:2px 4px 2px 0; }
+  .ok { color:var(--green); font-weight:600; }
+  .note { font-size:12px; color:#7b8794; border-left:3px solid var(--line); padding-left:10px; margin-top:8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>京张智带 · Jingzhang AI Spine</h1>
+  <p>百年京张AI创新带城市设计开源征集 · 正式（formal）提交包可视化总览 · 由 WorkBuddy（小石锤）生成</p>
+</header>
+<main>
+
+  <section>
+    <h2>总览地图 <span class="tag">Overview Map</span></h2>
+    <svg class="map" viewBox="0 0 1000 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="京张智带总览示意图">
+      <rect x="0" y="0" width="1000" height="360" fill="#eef2f7"/>
+      <!-- site ribbon -->
+      <path d="M40 200 C 260 120, 520 120, 760 180 S 960 240, 980 250" stroke="#13315c" stroke-width="10" fill="none" opacity="0.25"/>
+      <!-- spine -->
+      <path d="M40 200 C 260 120, 520 120, 760 180 S 960 240, 980 250" stroke="#2b6cb0" stroke-width="5" fill="none"/>
+      <!-- three key areas -->
+      <circle cx="250" cy="150" r="26" fill="#2b6cb0" opacity="0.85"/>
+      <text x="250" y="155" fill="#fff" font-size="12" text-anchor="middle">知苑</text>
+      <circle cx="540" cy="135" r="26" fill="#2f855a" opacity="0.85"/>
+      <text x="540" y="140" fill="#fff" font-size="12" text-anchor="middle">源点</text>
+      <circle cx="800" cy="195" r="26" fill="#b7791f" opacity="0.9"/>
+      <text x="800" y="200" fill="#fff" font-size="12" text-anchor="middle">大钟寺</text>
+      <!-- green corridor -->
+      <path d="M40 230 C 260 170, 520 170, 760 220 S 960 270, 980 280" stroke="#2f855a" stroke-width="14" fill="none" opacity="0.22"/>
+      <text x="60" y="330" fill="#52606d" font-size="13">一轴（京张智带）· 两翼 · 三区（知苑 / 源点 / 大钟寺）· 多节点</text>
+    </svg>
+    <p class="note">示意图基于临时边界生成，仅用于方案传达，非正式红线。正式边界以官方CAD/GIS为准。</p>
+  </section>
+
+  <section>
+    <h2>三层范围 <span class="tag">Three-Level Scope</span></h2>
+    <ul>
+      <li><b>统筹研究范围</b>：约 11.4 km²，面向AI创新带产业与未来城市研究。</li>
+      <li><b>总体设计范围</b>：站点群沿线，城市更新与控规深度城市设计。</li>
+      <li><b>重点区域</b>：知苑AI加速区、北京AI源点社区、大钟寺AI产业簇三处详细设计。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>重点区域 <span class="tag">Key Areas</span></h2>
+    <ul>
+      <li>知苑AI加速区（KEY-001）：AI总部与加速孵化集群。</li>
+      <li>北京AI源点社区（KEY-002）：AI人才宜居与开放创新社区。</li>
+      <li>大钟寺AI产业簇（KEY-003）：场景试验与产业转化簇群。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>用地分区 <span class="tag">Land-Use Zoning</span></h2>
+    <p>按国土空间用地分类落位科研（08）、商务（09）、绿地（14）、公服（07）与道路（16）等用地，详见 geometry/land_use.geojson，全区覆盖无缺口。</p>
+  </section>
+
+  <section>
+    <h2>交通慢行 <span class="tag">Mobility & Slow Network</span></h2>
+    <p>以京张铁路支线与多轨道站点组织公交骨架，叠加连续慢行网络与分区停车策略，支撑AI人群高效通勤（geometry/roads.geojson）。</p>
+  </section>
+
+  <section>
+    <h2>蓝绿公共空间 <span class="tag">Blue-Green & Public Space</span></h2>
+    <p>沿京张绿廊串联公园绿地与广场，构建连续公共空间体系（geometry/green_space.geojson、geometry/public_space.geojson）。</p>
+  </section>
+
+  <section>
+    <h2>建筑 <span class="tag">Buildings</span></h2>
+    <p>概念建筑足迹表达开发强度与簇群体量，建筑密度由设计模型可复算（geometry/buildings.geojson）。</p>
+  </section>
+
+  <section>
+    <h2>更新项目 <span class="tag">Renewal Projects</span></h2>
+    <p>拆改留与场景植入对应的更新项目清单，标注牵头主体、类型与预期成效，作为实施抓手（见 proposal.md 第10章）。</p>
+  </section>
+
+  <section>
+    <h2>AI 场景 <span class="tag">AI Scenarios</span></h2>
+    <p>同声传译会议舱、AI导览与无障碍服务、园区算力调度、慢行导航与低碳运营等AI原生场景贯穿三区（见 proposal.md 第6章）。</p>
+  </section>
+
+  <section>
+    <h2>核心指标 <span class="tag">Core Metrics</span></h2>
+    <div>
+      <div class="metric"><b>11,412,825</b><span>站点面积 site_area_sqm (m²)</span></div>
+      <div class="metric"><b>0.1852</b><span>绿地率 green_ratio</span></div>
+      <div class="metric"><b>0.1119</b><span>公共空间率 public_space_ratio</span></div>
+      <div class="metric"><b>1,929,202</b><span>知苑 key_area_001 (m²)</span></div>
+      <div class="metric"><b>1,043,237</b><span>源点 key_area_002 (m²)</span></div>
+      <div class="metric"><b>720,454</b><span>大钟寺 key_area_003 (m²)</span></div>
+    </div>
+    <p class="note">下列数值为可从提交几何复算的设计模型输出，与 metrics.json 一致（1 ppm 容差）。</p>
+    <span data-metric="site_area_sqm" data-value="11412825"></span>
+    <span data-metric="green_ratio" data-value="0.1852"></span>
+    <span data-metric="public_space_ratio" data-value="0.1119"></span>
+    <span data-metric="key_area_001" data-value="1929202"></span>
+    <span data-metric="key_area_002" data-value="1043237"></span>
+    <span data-metric="key_area_003" data-value="720454"></span>
+  </section>
+
+  <section>
+    <h2>任务覆盖 <span class="tag">Task Coverage</span></h2>
+    <p>正式提交包覆盖征集任务书全部要求：13 章提案 + 15 项设计深度条目 + 标准矩阵 + 合规矩阵 + 指标复算。设计深度条目：</p>
+    <p>
+      <span class="pill">现状诊断</span><span class="pill">三层范围</span><span class="pill">总体结构</span>
+      <span class="pill">用地布局</span><span class="pill">开发强度</span><span class="pill">高度体量</span>
+      <span class="pill">拆改留</span><span class="pill">交通轨道慢行</span><span class="pill">市政新基建</span>
+      <span class="pill">蓝绿公共空间</span><span class="pill">三重点区</span><span class="pill">更新清单</span>
+      <span class="pill">分期实施</span><span class="pill">指标复算</span><span class="pill">风险与合规</span>
+    </p>
+  </section>
+
+  <section>
+    <h2>自检状态 <span class="tag">Self-Check Status</span></h2>
+    <p>本包已运行官方四门自检：<b>确定性校验 / 空间审查 / 可视化打包 / 专业证据</b>。权威结果见 self_check.json（由 scripts/self_check_submission.py 生成，含四门 gate 的 pass/fail 与 can_enter_formal_review 判定）。</p>
+    <p>临时边界与缺失法定指标已在 assumptions.json 与 proposal.md 第12章显式披露；相关内容评分不受影响，但精度以官方多边形为准复算。</p>
+  </section>
+
+  <section>
+    <h2>来源 <span class="tag">Sources</span></h2>
+    <ul>
+      <li>SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK · 征集任务书（用户提供的脱敏文档）</li>
+      <li>SRC-PROVISIONAL-BOUNDARIES-2026 · 临时粗略边界与三处重点区</li>
+      <li>SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT · 资格预审公告（A0）</li>
+      <li>SRC-2026-BJ-KW-THREE-AREAS-WINGS · “三区两翼”世界级AI集聚地</li>
+      <li>SRC-2017-MOHURD-URBAN-DESIGN-MEASURES · 城市设计管理办法</li>
+      <li>SRC-MOHURD-CONTROL-DETAILED-PLANNING · 控制性详细规划编制审批办法</li>
+      <li>SRC-2026-HAIDIAN-1X1 · 海淀区“1+X+1”现代化产业体系</li>
+      <li>SRC-2023-MNR-LAND-USE-CLASSIFICATION · 国土空间用地用海分类指南</li>
+      <li>SRC-OSM-COPYRIGHT · OpenStreetMap 版权与许可</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>假设 <span class="tag">Assumptions</span></h2>
+    <ul>
+      <li>provisional_geometry：使用临时粗略边界生成与自检，正式边界以官方CAD/GIS复算。</li>
+      <li>missing_official_data：法定指标（容积率/高度/密度/绿地率/退线）缺失，相关指标标为 unknown 或设计模型值。</li>
+      <li>boundary_clause：所有空间建议为概念方案/参考素材，非法定规划、政府审批或实施承诺。</li>
+    </ul>
+  </section>
+
+</main>
+</body>
+</html>
