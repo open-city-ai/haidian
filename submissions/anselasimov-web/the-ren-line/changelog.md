@@ -4,6 +4,26 @@
 
 > 本文件记录方案包的版本演进、每次迭代响应了什么反馈、以及仍然开放的问题。全部空间内容始终为概念建议,不构成审定结论。
 
+## v1.9 - 2026-08-23
+
+**引用纹理修正版:响应内部引用质量审计,收窄5处论证偏弱段落+2处引用越界**
+
+**动机**:响应内部引用质量审计(`review/CITATION-AUDIT-20260822.md`)对 `proposal.md`(v1.7正文,121处`[source:]`标签、86个引用事件)的逐点分级——审计结论是全篇83.7%已是论证式、0孤儿源,标签密度与真正的"ren-axis"高分对手(Abreto包,92分)基本持平,不存在系统性问题;真正需要动手的是5类共约14个引用事件(4处装饰式+10处偏弱支撑式中最集中的几处)与另外发现的2处引用越界(`SRC-M13-SPLIT`/`SRC-PREQUAL-2026`的具体细节被源文件未涵盖的措辞覆盖)。本版不改概念、不改数值、不改任何几何/图纸/指标,只做正文引用措辞的收紧与一处结构性改写(参考资料结尾章),全部改写只使用包内既有 `sources.json` 条目,**零新增source_id**。
+
+- **agent.2全球案例·案例2/3/4/5/7零来源问题**:五案例(肯德尔广场、Station F、one-north、Cornell Tech、柏叶UDCK)数字全篇无`sources.json`对应条目,是审计发现的唯一成片证据缺口。本版**不做新调研**(参照`review/REN-AXIS-LESSONS-20260820.md`案例B的纪律,新增资料获取需求另行立项),仅在案例列表前加一句诚实的证据链披露,并给案例1(King's Cross)段落自身补一次行内 `[source:SRC-KINGSCROSS-ULI]`(该来源已注册、已在别处5处正确复用)。
+- **参考资料结尾章重写**:仿 `review/REN-AXIS-LESSONS-20260820.md`案例E的三层证据认识论叙事,复用本包"设计依据与资料清单"章已定义的formal任务依据/临时粗略边界/背景论证三级框架,把原来的纯文件路径清单改写为"每层能证明什么、不能证明什么"的说明;结构化文件清单本身逐字保留。
+- **两处引用越界收窄**:①"轨道与站城一体化"段(原L289)——`SRC-M13-SPLIT`只支撑"13号线拆分工程(13A/13B)在建",不支撑"清华东路站转正""与15号线换乘"两个具体细节(经GET核实源报道未出现相关字样),已改为把这两个细节标注为"本方案的推断,尚待专项确认";同段`SRC-PREQUAL-2026`只支撑"四象限步行连通"任务,不支撑"站内连通"这一本方案自拟的概念解法,已收窄措辞、拆分两句。②同一处越界在全文另外2处(众智园/原点社区详设章、轨道覆盖率段)重复出现,一并收窄,确保`SRC-M13-SPLIT`全文4次出现口径一致。
+- **公共空间包容性验收段标签漂移修正**:`SRC-HD-CENSUS7`(七普人口数据)原挂在"验收人不是设计方,而是五类画像的代表与街道议事会"这句制度设计表述上,与该来源登记用途(学院路街道人口规模)无证据关系,已删除该处误挂标签;该来源在人才画像段的正确用法保留不动。
+- **智能线三层架构段引用拉伸修正**:`SRC-AIPLUS-1081`原覆盖"锚点数据按目录制公开,不做人脸识别常态部署"整句,但源文件(京发改〔2024〕1081号)登记范围只到"空间计算先行先试",不含人脸识别相关内容;已拆分两句,标签只保留在源文件确实支撑的半句,"不做人脸识别"改为显式标注为本方案自设的治理约束。
+- **背景论证表与公共服务设施段收窄**:`SRC-STATE-AIPLUS`(国务院意见)与`SRC-HD-STATS-2025`(区级人口/GDP统计)两处均属"总纲性引用未落地到具体决策"的偏弱支撑链,仿`REN-AXIS-LESSONS`案例A三段式("引用来源→说清能证明什么/不能证明什么→据此收窄措辞"),分别收窄为"不直接推导本方案具体设计取值"(前者)与"不直接推导三类设施各自的类型/数量/布点"(后者)。
+- **三矩阵陈旧数字同步**:compliance/design_depth/standard三份矩阵中26处旧建筑体量口径(243栋/279,251㎡/3,886,869㎡/FAR1.0525/密度7.56%及BF-ID区间)同步为buildings.geojson与metrics.json现行值(248栋/285,551.4㎡/3,953,480㎡/1.0706/7.73%);三重点区分组为非均匀变化(众智园110不变/原点75→81/大钟寺58→57),BF-ID区间随实值重排。
+- **validation_claim诚信修正**:`manifest.json` validation_claim由脚手架默认值(data_confidence:"high"、known_blockers:[])修正为如实声明——data_confidence改为mixed_provisional_and_conceptual,known_blockers登记4条外部数据缺口(对应assumptions.json A-BOUNDARY/A-KEYAREA/A-CONTROLS/A-DATA-001),附中英说明注;这与本方案在社区评审中对他人包提出的同类要求(#3725先例)保持一致。
+- **英文展示层修复**:`visual/index.en.html` Assumptions板块5条假设由中文残留替换为与proposal.en.md一致的规范英译;`proposal.en.md` Cornell Tech案例删除一处无来源支撑的月份词(December,中文母本无此词)。
+- **frontmatter**:`proposal.md`/`proposal.en.md` 的 `iteration` 字段由 `v1.7`(v1.8未触及正文,该字段此前正确地未随v1.8推进)更新为 `v1.9`;详见 `contrib/V19-prep/frontmatter-patch.md` 的版本号判定逻辑。
+- **manifest刷新**:`proposal.md`/`proposal.en.md`(正文改动)、`report/proposal.html`/`report/proposal.en.html`(随正文用当前main的`scripts/render_proposal_html.py`重渲)、`self_check.json`(重跑校验)、`changelog.md`(本条目)共6个文件sha256按`scripts/refresh_submission_manifest.py`统一刷新;`manifest.generated_at`同步更新为本次实际执行时间戳。`visual/index.en.html`因Assumptions板块英译修复,sha256一并刷新;`visual/index.html`(中文页)不受影响。三份矩阵文件与`manifest.json`(validation_claim)的sha256同步刷新。`schema_version`保持`0.1.0`不变。
+- **双语契约**:全部改写同步给出对应英文改写(见`contrib/V19-prep/modified-*.en.md`),证据标签序列zh/en改动位置逐位对齐;`bilingual_contract_version`保持`"1"`不变。
+- 自检:待应用后以当前main校验脚本重跑`validate_local_submission`与`self_check_submission`,预期四门PASS(本次改写不涉及schema、geometry、metrics,不改变既有4条legacy advisory的判定路径)。
+
 ## v1.8 - 2026-08-19
 
 **展示层同步与元数据修正版**
