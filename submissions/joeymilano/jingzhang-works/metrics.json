@@ -245,6 +245,90 @@
         "A-OPERATIONS-001"
       ]
     },
+    "quote_ready_cost_line_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "quote_card",
+      "source_files": [
+        "visual/assets/works_bay_shift_book.json"
+      ],
+      "formula": "count(quote_cards.cards where reference_quantity, acceptance, quote_must_include, and excluded_until_authorized are present)",
+      "confidence": "high_for_participant_authored_reference_objects",
+      "assumptions": [
+        "A-DELIVERY-001",
+        "A-OPERATIONS-001"
+      ],
+      "claim_boundary": "Quote objects are defined for comparison; no supplier has quoted or accepted them."
+    },
+    "vendor_quote_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "quotation",
+      "source_files": [
+        "visual/assets/works_bay_shift_book.json"
+      ],
+      "formula": "declared vendor_quote_count",
+      "confidence": "high_for_registered_submission_files",
+      "assumptions": [],
+      "claim_boundary": "Zero registered supplier quotations; this is not a market-price or budget result."
+    },
+    "reference_shift_public_hour_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "hour",
+      "source_files": [
+        "visual/assets/works_bay_shift_book.json"
+      ],
+      "formula": "reference_shift.public_open_minutes / 60",
+      "confidence": "high_for_reference_design_only",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "claim_boundary": "A reference opening window, not an authorized date or operating schedule."
+    },
+    "reference_shift_functional_hour_count": {
+      "status": "known",
+      "value": 21.5,
+      "unit": "functional_role_hour",
+      "source_files": [
+        "visual/assets/works_bay_shift_book.json"
+      ],
+      "formula": "sum(reference_shift.functional_role_minutes) / 60",
+      "confidence": "high_for_participant_authored_workload_model",
+      "assumptions": [
+        "A-DELIVERY-001",
+        "A-OPERATIONS-001"
+      ],
+      "claim_boundary": "Functional coverage for quote comparison, not headcount, roster, wage, legal working time, budget, or an executed shift."
+    },
+    "shift_checkpoint_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "checkpoint",
+      "source_files": [
+        "visual/assets/works_bay_shift_book.json"
+      ],
+      "formula": "count(seven_checkpoints)",
+      "confidence": "high_for_reference_design_only",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "claim_boundary": "Unexecuted reference checkpoints; no site, date, or named operator is confirmed."
+    },
+    "shift_response_boundary_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "event_deadline",
+      "source_files": [
+        "visual/assets/works_bay_shift_book.json"
+      ],
+      "formula": "count(response_boundaries)",
+      "confidence": "high_for_reference_design_only",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "claim_boundary": "Design deadlines awaiting authorization, rehearsal, and field verification."
+    },
     "stop_drill_category_count": {
       "status": "known",
       "value": 5,
@@ -257,6 +341,20 @@
       "assumptions": [
         "A-DELIVERY-001"
       ]
+    },
+    "stop_drill_fault_card_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/day_one_operations_drill.json"
+      ],
+      "formula": "count(fault_cards); network outage and critical-information error share the information-and-network category",
+      "confidence": "high",
+      "assumptions": [
+        "A-DELIVERY-001"
+      ],
+      "claim_boundary": "Unexecuted drill cards; no real site or rostered team has signed or performed them."
     },
   "priced_startup_cost_line_count": {
       "status": "unknown",
@@ -363,9 +461,23 @@
     "assumptions": [],
     "claim_boundary": "Proposed operating states; no venue or operator is confirmed."
   },
-  "bilingual_audited_pair_count": {
+  "generated_concept_image_count": {
     "status": "known",
-    "value": 14,
+    "value": 2,
+    "unit": "image",
+    "source_files": [
+      "visual/assets/generated_media_ledger.json",
+      "assets/figures/works-bay-assisted-open.jpg",
+      "assets/figures/works-bay-manual-mode.jpg"
+    ],
+    "formula": "count(generated_media_ledger.assets)",
+    "confidence": "high_for_registered_files_only",
+    "assumptions": [],
+    "claim_boundary": "Participant-directed concept illustrations only; never field, site, construction, approval, opening, endorsement, or performance evidence."
+  },
+    "bilingual_audited_pair_count": {
+      "status": "known",
+      "value": 16,
     "unit": "artifact_pair",
     "source_files": [
       "visual/assets/bilingual_equivalence_audit.json"
@@ -400,6 +512,33 @@
     "confidence": "high_for_blank_template_only",
     "assumptions": [],
     "claim_boundary": "Fields in a blank paper-result template; no real receipt has been issued."
+  },
+  "first_shift_gate_receipt_required_count": {
+    "status": "known",
+    "value": 7,
+    "unit": "gate_receipt",
+    "source_files": [
+      "visual/assets/first_authorized_shift_packet.json"
+    ],
+    "formula": "count(gates)",
+    "confidence": "high_for_participant_authored_printable_mechanism",
+    "assumptions": [
+      "A-DELIVERY-001",
+      "A-OPERATIONS-001"
+    ],
+    "claim_boundary": "Seven required blank templates, not seven authorizations or executed acceptances."
+  },
+  "first_shift_gate_receipt_signed_count": {
+    "status": "known",
+    "value": 0,
+    "unit": "signed_gate_receipt",
+    "source_files": [
+      "visual/assets/first_authorized_shift_packet.json"
+    ],
+    "formula": "current_gate_register.gate_receipts_signed",
+    "confidence": "high_for_registered_submission_files",
+    "assumptions": [],
+    "claim_boundary": "No gate receipt has been signed; the first public shift is not released."
   }
 }
 }

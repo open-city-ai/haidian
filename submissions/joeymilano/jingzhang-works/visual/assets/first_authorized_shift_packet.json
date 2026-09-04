@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.10.0",
+  "mechanism_id": "WB-OPENING-GATE-WALLET-001",
+  "name_zh": "好用服务间首班开门闸盒",
+  "name_en": "Works Bay First Authorized Shift Gate Wallet",
+  "status": "ready_to_print_not_authorized_not_signed_not_run",
+  "purpose_zh": "把首班开放前必须取得的授权、复核和失效条件装进一个现场纸质闸盒。没有对应回执，相关服务保持关闭；数字界面不能自行放行。",
+  "purpose_en": "Put every authorization, counter-check, and expiry condition required before the first public shift into one physical gate wallet. Without the corresponding receipt, the affected service stays closed; the digital interface cannot release itself.",
+  "physical_form": {
+    "container": "one orange A5 gate wallet kept at the public counter",
+    "contents": "seven gate receipts, one public state strip, one close-and-carry sheet",
+    "public_state_strip": [
+      "manual_open",
+      "assisted_open",
+      "degraded_open",
+      "closed_recovery"
+    ],
+    "release_method": "the duty lead sets the public state only after checking that each required paper receipt carries both functional signatures and is still valid",
+    "digital_boundary": "the AI or interface may display the signed state but cannot create, sign, waive, or extend a gate receipt"
+  },
+  "two_key_rule": {
+    "first_key": "the accountable functional owner signs for the underlying fact or resource",
+    "second_key": "a different functional role replays or counter-checks the evidence",
+    "conflict_rule": "one person may not sign both keys for the same gate",
+    "missing_key_action": "keep the affected service closed and show the current manual or closed state"
+  },
+  "gates": [
+    {
+      "id": "G01",
+      "name_zh": "场地与时段",
+      "name_en": "Site and opening window",
+      "first_key_role": "site_controller",
+      "second_key_role": "duty_lead",
+      "receipt_must_show": [
+        "authorized room or bounded trial area",
+        "public opening and hard closing time",
+        "access, restoration, and hand-back conditions"
+      ],
+      "expires_when": "the authorized shift closes or the site condition changes",
+      "if_missing_keep_closed": "all public service and installation"
+    },
+    {
+      "id": "G02",
+      "name_zh": "通行与生命安全",
+      "name_en": "Access and life safety",
+      "first_key_role": "safety_owner",
+      "second_key_role": "accessibility_replayer",
+      "receipt_must_show": [
+        "ordinary, no-app, accessible, and emergency paths walked",
+        "clear route and temporary equipment positions",
+        "stop and evacuation actions physically reachable"
+      ],
+      "expires_when": "a route, barrier, counter, crowd condition, or emergency provision changes",
+      "if_missing_keep_closed": "the affected room, route, and assisted service"
+    },
+    {
+      "id": "G03",
+      "name_zh": "纸质同任务",
+      "name_en": "Same task on paper",
+      "first_key_role": "service_owner",
+      "second_key_role": "paper_service_operator",
+      "receipt_must_show": [
+        "one complete task finished without an app",
+        "dated public source and expiry printed on the result",
+        "issue id and human contact handed to the replayer"
+      ],
+      "expires_when": "the form, source, task steps, contact, or language version changes",
+      "if_missing_keep_closed": "AI assistance; the service may open only as a verified manual route"
+    },
+    {
+      "id": "G04",
+      "name_zh": "信息、数据与退出",
+      "name_en": "Information, data, and exit",
+      "first_key_role": "information_and_data_owner",
+      "second_key_role": "service_owner",
+      "receipt_must_show": [
+        "dated source list and critical bilingual facts",
+        "minimum fields, retention limit, and deletion action",
+        "dependency disconnect, public-record export, and interface removal path"
+      ],
+      "expires_when": "a source, purpose, data field, retention rule, model, or supplier changes",
+      "if_missing_keep_closed": "AI assistance and any affected data collection"
+    },
+    {
+      "id": "G05",
+      "name_zh": "当班接手",
+      "name_en": "Shift takeover",
+      "first_key_role": "operations_owner",
+      "second_key_role": "named_substitute",
+      "receipt_must_show": [
+        "named duty lead and present takeover staff",
+        "break, substitution, and uncovered-shift rule",
+        "paper task and physical stop demonstrated by the substitute"
+      ],
+      "expires_when": "the shift closes or a named person leaves without an accepted substitute",
+      "if_missing_keep_closed": "all assisted service; manual service also closes if no qualified person accepts it"
+    },
+    {
+      "id": "G06",
+      "name_zh": "询价与下单",
+      "name_en": "Quote and purchase",
+      "first_key_role": "buyer_or_authorized_budget_owner",
+      "second_key_role": "acceptance_owner",
+      "receipt_must_show": [
+        "three comparable quotations or the recorded public-framework exception",
+        "quantity, acceptance action, recurring cost, removal, and restoration",
+        "named buyer, budget authority, and purchase route"
+      ],
+      "expires_when": "scope, quantity, quote validity, funding authority, or acceptance owner changes",
+      "if_missing_keep_closed": "ordering, supplier commitment, and any cost claim"
+    },
+    {
+      "id": "G07",
+      "name_zh": "开门、关场与下班",
+      "name_en": "Open, close, and carry forward",
+      "first_key_role": "duty_lead",
+      "second_key_role": "independent_shift_replayer",
+      "receipt_must_show": [
+        "opening state and every live gate receipt",
+        "one announced fault card with no unsuspecting visitor",
+        "closing reconciliation, deletion result, hand-back, and next-state decision"
+      ],
+      "expires_when": "the shift closes; nothing carries forward without a new dated release",
+      "if_missing_keep_closed": "the next public shift"
+    }
+  ],
+  "receipt_fields": [
+    "gate_id",
+    "site_and_shift_id",
+    "evidence_id_or_physical_location",
+    "first_key_name_role_signature_time",
+    "second_key_name_role_signature_time",
+    "valid_until_or_change_trigger",
+    "released_state",
+    "failed_gate_and_closed_service"
+  ],
+  "current_gate_register": {
+    "site_and_shift_id": null,
+    "gate_receipts_signed": 0,
+    "gate_receipt_required_count": 7,
+    "released_state": "not_released",
+    "named_people": [],
+    "venue_authorization": null,
+    "access_and_safety_acceptance": null,
+    "same_task_paper_replay": null,
+    "data_and_exit_acceptance": null,
+    "shift_roster": null,
+    "comparable_quotations": [],
+    "public_framework_exception": null,
+    "purchase_authority": null,
+    "opening_record": null,
+    "closing_record": null,
+    "field_result": null
+  },
+  "print_and_use_order": [
+    "print the seven blank receipts and the four-state public strip",
+    "write one site-and-shift id across every receipt",
+    "collect G01 through G06 before any public opening",
+    "let the duty lead and independent replayer set G07 and the visible state",
+    "put failed or expired receipts in the issue sleeve; never overwrite them",
+    "at close, reconcile every receipt and issue; print a new set for the next shift"
+  ],
+  "score_dimensions_supported": [
+    "implementation_feasibility",
+    "risk_compliance",
+    "public_interest",
+    "expression_completeness"
+  ],
+  "originality_boundary": "This gate wallet is rebuilt from JING-ZHANG WORKS' own four operating states, complete paper task, seven shift checkpoints, six quote cards, and stop rules. It does not reuse a peer name, text, field combination, schema, graphic, asset, procurement band, or staffing formula.",
+  "claim_boundary_zh": "闸盒已经写到可打印和签字的深度，但当前七张回执均未签。它不证明场地授权、专业验收、人员到岗、三家报价、采购许可、公共开放、故障演练或现场效果。",
+  "claim_boundary_en": "The wallet is specified to printable and signable depth, but none of its seven receipts is signed. It proves no site authorization, professional acceptance, staff attendance, three-quote comparison, purchase permission, public opening, fault drill, or field performance."
+}

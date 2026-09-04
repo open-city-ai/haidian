@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.11.0",
+  "status": "participant_authored_response_to_exact_head_formal_review",
+  "reviewed_pull_request": "https://github.com/open-city-ai/haidian/pull/3855",
+  "reviewed_exact_head": "19956f5b6a18d63e589a691a0e69cefb95201dbe",
+  "formal_review": "https://github.com/open-city-ai/haidian/pull/3855#pullrequestreview-5003833434",
+  "formal_score": 93,
+  "dimension_scores": {
+    "brief_alignment": 5,
+    "originality": 5,
+    "ai_planning_innovation": 5,
+    "implementation_feasibility": 4,
+    "public_interest_inclusion": 5,
+    "risk_compliance": 5,
+    "expression_completeness": 4
+  },
+  "participant_controlled_expression_repairs": [
+    {
+      "review_finding": "visible label overlap in the Chinese and English land-use structure figures",
+      "root_cause": "six long zone names were placed over a narrow two-column provisional frame",
+      "repair": "move all six names to external cards, retain only 01 through 06 inside the frame, and connect each card to its numbered concept zone",
+      "evidence_zh": "assets/figures/land-use-structure.png",
+      "evidence_en": "assets/figures/land-use-structure.en.png",
+      "score_dimension": "expression_completeness"
+    },
+    {
+      "review_finding": "suspected square glyphs in a few small Chinese labels on the visual HTML page",
+      "root_cause": "the micro-label rules used a monospaced shorthand that replaced the page-level local CJK stack on Linux",
+      "repair": "retain the Latin monospace stack but add the embedded JZW Noto Sans SC family before the generic monospace fallback in every micro-label rule",
+      "evidence_zh": "visual/index.html",
+      "evidence_en": "visual/index.en.html",
+      "font_ledger": "visual/assets/cjk_font_ledger.json",
+      "score_dimension": "expression_completeness"
+    }
+  ],
+  "review_window_replay": {
+    "viewport": "1440x1600",
+    "html_pages": 4,
+    "local_font_faces_declared_per_page": 9,
+    "monospaced_rules_with_explicit_cjk_fallback_per_visual_page": 12,
+    "square_replacement_glyphs_observed": 0,
+    "external_requests_observed": 0,
+    "inspection_boundary": "Participant replay and visual inspection; not an independent translation review, public-comprehension test, or accessibility certification."
+  },
+  "implementation_boundary_unchanged": {
+    "signed_gate_receipts": 0,
+    "field_results": 0,
+    "venue": null,
+    "named_operator": null,
+    "roster": null,
+    "permits": null,
+    "supplier_quotations": [],
+    "budget": null
+  },
+  "claim_boundary": "This log records participant-controlled expression repairs only. It does not alter the 93-point review, forecast a new score, or convert any blank implementation object into field evidence."
+}
