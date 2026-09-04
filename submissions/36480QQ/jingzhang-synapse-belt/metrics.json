@@ -1,0 +1,192 @@
+{
+  "schema_version": "0.2.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "coordinate_system": "EPSG:4548 (CGCS2000 / 3-degree GK CM 117E)",
+  "boundary_status": "provisional (SRC-PROVISIONAL-BOUNDARIES-2026); not official redline",
+  "metrics": {
+    "total_site_area": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(SITE-001) EPSG:4548",
+      "confidence": "low",
+      "assumptions": "provisional boundary; official polygon missing",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "key_area_zhongzhiyuan": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-001) EPSG:4548",
+      "confidence": "low",
+      "assumptions": "provisional boundary",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "key_area_ai_origin": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-002) EPSG:4548",
+      "confidence": "low",
+      "assumptions": "provisional boundary",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "key_area_dazhongsi": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-003) EPSG:4548",
+      "confidence": "low",
+      "assumptions": "provisional boundary",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "green_space_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_area/site_area",
+      "confidence": "low",
+      "assumptions": "provisional green layer",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "public_space_area": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(area public_space)",
+      "confidence": "low",
+      "assumptions": "provisional",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "land_use_composition": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum by land_use_code",
+      "confidence": "low",
+      "assumptions": "conceptual partition",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "building_footprint_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT)",
+      "confidence": "low",
+      "assumptions": "provisional",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "road_centerline_length": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length) EPSG:4548",
+      "confidence": "low",
+      "assumptions": "provisional",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "scenario_node_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count scenario cards (agent.3)",
+      "confidence": "medium",
+      "assumptions": "narrative-derived",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "ai_landmark_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count landmarks (agent.4)",
+      "confidence": "medium",
+      "assumptions": "narrative-derived",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "persona_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count personas (agent.3)",
+      "confidence": "medium",
+      "assumptions": "narrative-derived",
+      "reason": "provisional boundary (official_boundary=false); awaiting official redline/precise data"
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(SITE-001) EPSG:4548",
+      "confidence": "low",
+      "assumptions": "provisional boundary"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.3574,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_area/site_area",
+      "confidence": "low",
+      "assumptions": "provisional green layer"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0084,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area/site_area",
+      "confidence": "low",
+      "assumptions": "provisional"
+    }
+  },
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  }
+}
