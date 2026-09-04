@@ -21,7 +21,7 @@ scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "ai-traffic-walka
 
 **独有机制**：电力碱基对四项校准（能效底线 PUE ≤1.25 / 绿电优先 ≥80% / 韧性自愈 ≤5min / 可退出 人工通道100%），12 张场景卡全部映射空间节点 [metric:ai_scenario_card_count]；JZ-05 光储充驿站最小试点以随包脚本 `visual/assets/run_jz05_pilot.js --check` 可复现桌面预演（十段执行链、七道 Gate、六项验收条件，证据 JSON 见 `visual/assets/jz05-pilot-evidence.json`）[metric:jz05_acceptance_criterion_count]。
 
-**关键数字**：57 个无缝隙用地单元、14 栋示意建筑、15 条道路、6 张概念渲染图、13 个更新项目、24+ 项可复算指标 [metric:land_use_unit_count] [metric:road_length_m]。
+**关键数字**：57 个无缝隙用地单元、14 栋示意建筑、22 条道路、6 张概念渲染图、8 个更新项目、24+ 项可复算指标 [metric:land_use_unit_count] [metric:road_count] [metric:road_length_m]。
 
 **边界声明**：全部空间成果基于公开与清权资料生成；官方红线/控规/试点数据未发布前，面积类指标为 provisional 复算、管控指标为 unknown、试点候选值为候选口径；本方案为概念建议，不构成审定结论 [depth:risk_missing_data]。
 
@@ -275,6 +275,16 @@ Logo 概念方向：双螺旋 × 京张钢轨枕木 × 电力碱基对——两�
 ![图R5 大钟寺 · 智能原生综合体](assets/figures/render-dazhongsi.png)
 
 ![图R6 光储充能源驿站（电力碱基对节点）](assets/figures/render-energy-station.png)
+
+## 结构证据图件（评审点图）
+
+以下三张为评审点配图，分别回应公共利益与包容性（公众接受度）、实施可行性（分期风险与决策门）、任务响应与范围组织（范围框架）；品牌家族标志方向见 `assets/brand/`（正形/反白/组合/规范页）。全部为概念建议，不构成工程可行性或实施承诺。
+
+![图10 公众接受度：民生痛点锚点 · 空间响应 · 弱势群体保障](assets/figures/public-acceptance.png)
+
+![图11 分期实施风险与决策门（三期 × 风险 × Gate）](assets/figures/phasing-risk.png)
+
+![图12 范围框架：三尺度 → 三系统（43.6 / 11.4 / 368.4）](assets/figures/scope-framework.png)
 
 ## 指标体系、面积复算与合规矩阵
 
