@@ -1,0 +1,99 @@
+{
+ "schema_version": "0.1.0",
+ "generated_at": "2026-08-10T00:00:00Z",
+ "agent_id": "BedrockLian",
+ "total_assumptions": 15,
+ "boundary_statement_zh": "所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究, 不替代正式规划, 不构成政府审定结论。",
+ "assumptions": [
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "控规条件(容积率、建筑高度、道路红线、权属、市政管线与工程约束)缺失, 须由官方附件确认后才能用于法定用途。",
+   "impact": "本包仅作为 formal AI 提交参与评审; 法定控制需专业团队确认。"
+  },
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "pending_official_data",
+   "statement": "site_boundary 与 key_areas 使用仓库 provisional 粗略多边形(按公告四至与约面积推定), 非官方红线。",
+   "impact": "官方 polygon 发布后, site boundary/key areas/land use/roads/green/public/buildings/phasing 与全部面积指标须整体重算。"
+  },
+  {
+   "id": "A-BOUNDARY-002",
+   "status": "pending_official_data",
+   "statement": "三处重点区为临时矩形占位, 只承担生成、展示与讨论作用, 不表达道路红线、地块边界或权属。",
+   "impact": "重点区面积(192.1/104.3/72.0ha)以公告为准, 几何复算值仅作参考。"
+  },
+  {
+   "id": "A-GEOMETRY-001",
+   "status": "design_assumption",
+   "statement": "用地分区、建筑体块、道路线位与公共空间均为概念设计体块, 非现状测绘, 不与任何现状建筑/权属对应。",
+   "impact": "图面与指标反映设计意图, 不构成现状调查结论。"
+  },
+  {
+   "id": "A-BUILDING-001",
+   "status": "design_assumption",
+   "statement": "建筑层数按 3.6m/层由体块高度折算, 建筑面积为概念值。",
+   "impact": "GFA/FAR 为概念指标, 待控规条件校核。"
+  },
+  {
+   "id": "A-BUILDING-002",
+   "status": "design_assumption",
+   "statement": "拆改留分类(保留/改造/新建)为按街区更新逻辑的概念分配(约30/40/30), 无现状权属与建筑质量数据。",
+   "impact": "拆改留结论仅为概念建议, 待现状普查与专业判断。"
+  },
+  {
+   "id": "A-LANDUSE-001",
+   "status": "design_assumption",
+   "statement": "用地分类采用 MNR 2023 指南的项目子集(见 enums/land_use_codes.json), 未覆盖的细类待正式控规补充。",
+   "impact": "正式法定规划须导入完整代码表。"
+  },
+  {
+   "id": "A-TRANSPORT-001",
+   "status": "design_assumption",
+   "statement": "12 条道口、中关村联络线与轨道接驳线为概念线位与建议断面, 非工程线位。",
+   "impact": "工程可行性需专业交通设计验证。"
+  },
+  {
+   "id": "A-RAIL-001",
+   "status": "context_only",
+   "statement": "既有 13 号线、京包线/京张高铁隧道段与小月河在 constraints.geojson 中仅为示意背景, 非工程数据。",
+   "impact": "不得据此做工程或权属判断。"
+  },
+  {
+   "id": "A-HERITAGE-001",
+   "status": "context_only",
+   "statement": "大钟寺及周边文保要素位置为粗略示意, 非官方文保控制线。",
+   "impact": "待官方文保图纸核实后修正。"
+  },
+  {
+   "id": "A-METRICS-001",
+   "status": "pending_official_data",
+   "statement": "全部指标在 EPSG:4548 下由提交几何复算; provisional 边界下指标仅供评审参考。",
+   "impact": "官方红线发布后统一复算替换。"
+  },
+  {
+   "id": "A-FAR-001",
+   "status": "pending_professional_confirmation",
+   "statement": "总体 FAR≈1.09、建筑密度≈0.13 为概念体块计算值; 官方控规未发布前不视为审定指标。",
+   "impact": "控规条件发布后校核调整。"
+  },
+  {
+   "id": "A-SCENARIO-001",
+   "status": "concept_suggestion",
+   "statement": "12 张进路单(场景卡)、3 个试验区间与联锁规则均为概念建议, 供专业团队深化, 非已批准项目。",
+   "impact": "不构成实施承诺或投资安排。"
+  },
+  {
+   "id": "A-OPERATION-001",
+   "status": "concept_suggestion",
+   "statement": "运行图式年度活动体系、开发者社区运营与品牌资产机制为概念建议, 不构成政府已确定安排。",
+   "impact": "需由运营主体与主管部门评估。"
+  },
+  {
+   "id": "A-DATA-001",
+   "status": "context_only",
+   "statement": "OSM/公开地图仅用作背景上下文与方向性线索, 按 ODbL 署名边界处理, 不用于任何 formal 边界或面积结论。",
+   "impact": "背景信息不进入正式证据链。"
+  }
+ ]
+}

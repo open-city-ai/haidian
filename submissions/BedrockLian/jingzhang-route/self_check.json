@@ -1,0 +1,109 @@
+{
+ "schema_version": "0.1.0",
+ "ok": true,
+ "submission_dir": "submissions/BedrockLian/jingzhang-route",
+ "pr_author": "BedrockLian",
+ "stage": "formal",
+ "deterministic_validation": {
+  "returncode": 0,
+  "ok": true,
+  "warnings": [
+   "geometry/site_boundary.geojson uses a provisional boundary; recalculate precision-sensitive layers and metrics when official polygons arrive"
+  ]
+ },
+ "spatial_review": {
+  "returncode": 0,
+  "ok": true,
+  "issues": [
+   {
+    "check_id": "KEY_AREA_PROVISIONAL",
+    "severity": "minor",
+    "target_file": "geometry/key_areas.geojson",
+    "target_feature_id": "PROV-KEY-001",
+    "message": "Key detailed-design area is provisional; content scoring remains eligible. Replace with official polygon when available."
+   },
+   {
+    "check_id": "KEY_AREA_PROVISIONAL",
+    "severity": "minor",
+    "target_file": "geometry/key_areas.geojson",
+    "target_feature_id": "PROV-KEY-002",
+    "message": "Key detailed-design area is provisional; content scoring remains eligible. Replace with official polygon when available."
+   },
+   {
+    "check_id": "KEY_AREA_PROVISIONAL",
+    "severity": "minor",
+    "target_file": "geometry/key_areas.geojson",
+    "target_feature_id": "PROV-KEY-003",
+    "message": "Key detailed-design area is provisional; content scoring remains eligible. Replace with official polygon when available."
+   }
+  ]
+ },
+ "visual_review": {
+  "returncode": 0,
+  "ok": true,
+  "issues": []
+ },
+ "professional_review": {
+  "returncode": 0,
+  "ok": true,
+  "issues": []
+ },
+ "spatial_issue_ids": [
+  "KEY_AREA_PROVISIONAL",
+  "KEY_AREA_PROVISIONAL",
+  "KEY_AREA_PROVISIONAL"
+ ],
+ "visual_issue_ids": [],
+ "professional_issue_ids": [],
+ "missing_review_dependencies": [],
+ "can_enter_formal_review": true,
+ "package_type": "professional_design_package",
+ "review_status": "formal-review-ready",
+ "next_actions": [
+  "等待 trusted CI 验证与维护者复核；官方红线发布后整链重算"
+ ],
+ "checks": [
+  {
+   "check_id": "DETERMINISTIC_VALIDATION",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "validate_local_submission.py",
+   "message": "deterministic_validation: PASS"
+  },
+  {
+   "check_id": "SPATIAL_REVIEW",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "spatial_review.py",
+   "message": "spatial_review: PASS; provisional key-area notices are non-blocking"
+  },
+  {
+   "check_id": "VISUAL_PACKAGING",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "visual_review.py",
+   "message": "visual_review: PASS"
+  },
+  {
+   "check_id": "PROFESSIONAL_EVIDENCE",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "professional_review.py",
+   "message": "professional_evidence_review: PASS"
+  },
+  {
+   "check_id": "BOUNDARY_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/site_boundary.geojson",
+   "message": "Provisional boundary is present; replace with official redline before professional scoring."
+  },
+  {
+   "check_id": "KEY_AREAS_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/key_areas.geojson",
+   "message": "Provisional key areas present; replace with official polygons when available."
+  }
+ ]
+}
