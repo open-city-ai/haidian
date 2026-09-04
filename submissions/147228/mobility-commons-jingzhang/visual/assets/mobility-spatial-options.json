@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "MOBILITY-SPATIAL-OPTIONS-01",
+  "package": "mobility-commons-jingzhang",
+  "decision": "HOLD",
+  "design_only": true,
+  "boundary": {
+    "official_boundary": false,
+    "geometry_role": "provisional_constraint",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "operational_status": "not_authorized_not_run",
+    "performance_results": null,
+    "public_rank_claim": false
+  },
+  "comparison_scope": {
+    "purpose": "Compare reversible system arrangements before any site, route, capacity or operating decision.",
+    "selection_rule": [
+      "hard gates before efficiency or convenience",
+      "ordinary public and accessible routes remain visible",
+      "protect the slowest or most exposed group rather than the average",
+      "prefer a reversible ground-first handoff with a named receiver",
+      "return to HOLD when local evidence, consent or responsibility is missing"
+    ],
+    "key_area_ids": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+    "numeric_dimensions": null,
+    "scale_chain": [
+      {"id": "SCALE-5000", "scale": "1:5000", "review": "corridor mode and public-route choice", "construction_claim": false},
+      {"id": "SCALE-2000", "scale": "1:2000", "review": "three key-area connections and external boundary", "construction_claim": false},
+      {"id": "SCALE-500", "scale": "1:500", "review": "station, curb, community and enterprise interface relationships", "construction_claim": false},
+      {"id": "SCALE-100", "scale": "1:100", "review": "ordinary route, staffed node and protected conflict zone", "construction_claim": false},
+      {"id": "SCALE-50", "scale": "1:50", "review": "handoff, appeal, pause and withdrawal detail", "construction_claim": false}
+    ]
+  },
+  "alternatives": [
+    {
+      "id": "S0-UNMANAGED-PEAK",
+      "label_zh": "S0 无协同高峰",
+      "label_en": "S0 Unmanaged peak",
+      "status": "REJECT",
+      "mode_stack": ["private_car", "on_demand_feeder", "uncoordinated_loading"],
+      "spatial_moves": ["let demand compete for the same curb", "treat public crossings as residual space", "no staffed takeover node"],
+      "key_area_ids": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "ordinary_route_first": false,
+      "human_equivalent": false,
+      "reversible": false,
+      "air_first": false,
+      "hard_gate_results": [
+        {"id": "G1", "result": "fail", "reason": "ordinary public and accessible route is not protected"},
+        {"id": "G2", "result": "fail", "reason": "no receiver or maintenance owner"},
+        {"id": "G3", "result": "fail", "reason": "no dated readback denominator"},
+        {"id": "G4", "result": "fail", "reason": "no safe human takeover"},
+        {"id": "G5", "result": "fail", "reason": "protected-group harm cannot be isolated"}
+      ],
+      "evidence_required": ["official_geometry", "curb_ownership", "public_route_observation", "accessible_route_observation", "loading_conflict_log"],
+      "stop_if": ["public_route_displaced", "fire_or_access_route_conflict", "no_receiver", "complaint_unclosed"],
+      "return_to": "HOLD-P0-INVENTORY",
+      "decision_basis": "Reject because the system externalizes peak conflict to public space before a safe ordinary route exists."
+    },
+    {
+      "id": "S1-GROUND-FIRST",
+      "label_zh": "S1 地面优先多方式协同",
+      "label_en": "S1 Ground-first multimodal",
+      "status": "ADVANCE_TO_DESIGN_REVIEW",
+      "mode_stack": ["rail", "bus", "walking_accessibility", "bicycle", "managed_curb", "conditional_feeder"],
+      "spatial_moves": ["protect a continuous public route", "place a staffed handoff at each key area", "use time-windowed curb states with a visible withdrawal path"],
+      "key_area_ids": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "ordinary_route_first": true,
+      "human_equivalent": true,
+      "reversible": true,
+      "air_first": false,
+      "hard_gate_results": [
+        {"id": "G1", "result": "pass_pending_field_review", "reason": "public, accessible and staffed routes are required before any feeder"},
+        {"id": "G2", "result": "pass_pending_named_owner", "reason": "each node requires a receiving and maintenance role"},
+        {"id": "G3", "result": "pass_pending_dated_observation", "reason": "each state change has a group boundary and public receipt"},
+        {"id": "G4", "result": "pass_pending_rehearsal", "reason": "outage, weather and missed-transfer paths return to ground service"},
+        {"id": "G5", "result": "pass_pending_equity_readback", "reason": "care, accessibility, night and ordinary users are separately read back"}
+      ],
+      "evidence_required": ["official_geometry", "grouped_demand_register", "accessible_route_walkthrough", "curb_state_receipt", "named_handoff_owner", "independent_safety_review"],
+      "stop_if": ["ordinary_route_not_continuous", "protected_group_worsens", "receiver_or_maintenance_role_missing", "privacy_or_consent_boundary_unknown", "complaint_cannot_close"],
+      "return_to": "HOLD-P0-INVENTORY",
+      "decision_basis": "Advance only to professional design review because it preserves the public baseline, keeps the feeder reversible and makes the failure path spatially visible."
+    },
+    {
+      "id": "S2-AIR-FIRST",
+      "label_zh": "S2 空中优先接驳",
+      "label_en": "S2 Air-first feeder",
+      "status": "REVISE",
+      "mode_stack": ["conditional_air", "ground_transfer", "managed_curb"],
+      "spatial_moves": ["reserve a ground-to-air transfer interface", "keep a protected evacuation and accessible route", "treat weather cancellation as the default design case"],
+      "key_area_ids": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "ordinary_route_first": false,
+      "human_equivalent": true,
+      "reversible": true,
+      "air_first": true,
+      "hard_gate_results": [
+        {"id": "G1", "result": "revise", "reason": "air-first logic risks making ground service residual"},
+        {"id": "G2", "result": "pending", "reason": "operator, insurance and emergency receiver are unknown"},
+        {"id": "G3", "result": "pending", "reason": "weather, noise and transfer evidence are unavailable"},
+        {"id": "G4", "result": "pending", "reason": "cancellation must return to ordinary ground service"},
+        {"id": "G5", "result": "pending", "reason": "accessibility and privacy effects need independent review"}
+      ],
+      "evidence_required": ["airspace_and_route_permission", "ground_transfer_observation", "weather_cancel_rehearsal", "noise_and_emergency_review", "insurance_and_operator_assignment"],
+      "stop_if": ["no_ground_equivalent", "weather_window_closes", "emergency_or_insurance_role_missing", "noise_or_accessibility_review_unresolved"],
+      "return_to": "S1-GROUND-FIRST",
+      "decision_basis": "Revise into a conditional add-on; do not let a speculative air layer displace the ground public baseline."
+    },
+    {
+      "id": "S3-WEATHER-GROUND-FALLBACK",
+      "label_zh": "S3 极端天气地面回退",
+      "label_en": "S3 Extreme-weather ground fallback",
+      "status": "REVISE",
+      "mode_stack": ["rail", "bus", "staffed_ground_route", "protected_curb", "no_air_service"],
+      "spatial_moves": ["mark a dry and accessible fallback loop", "move the curb to human-only or emergency states", "publish a paper and telephone withdrawal notice"],
+      "key_area_ids": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "ordinary_route_first": true,
+      "human_equivalent": true,
+      "reversible": true,
+      "air_first": false,
+      "hard_gate_results": [
+        {"id": "G1", "result": "pass_pending_route_audit", "reason": "ground public and staffed routes remain the baseline"},
+        {"id": "G2", "result": "pending", "reason": "weather-shift receiver and maintenance roster are unknown"},
+        {"id": "G3", "result": "pending", "reason": "no local weather or route-observation series is supplied"},
+        {"id": "G4", "result": "pass_pending_rehearsal", "reason": "the design returns to rail, bus, human and paper routes"},
+        {"id": "G5", "result": "pending", "reason": "care, wheelchair and night return must be separately read back"}
+      ],
+      "evidence_required": ["dated weather trigger", "dry-route walkthrough", "staffing and maintenance roster", "paper_telephone notice", "complaint_and_recovery_receipt"],
+      "stop_if": ["fallback_route_not_accessible", "no staffed receiver", "ponding_or_safety_hazard", "withdrawal_notice_missing"],
+      "return_to": "S1-GROUND-FIRST",
+      "decision_basis": "Revise as the default resilience layer around S1, not as a separate operating promise or weather-performance claim."
+    }
+  ],
+  "rights_contract": [
+    {"id": "R1", "label_zh": "普通通行", "label_en": "Ordinary access", "minimum": "public route remains visible and usable without an AI account", "failure_action": "freeze feeder and return to public or staffed route"},
+    {"id": "R2", "label_zh": "无障碍与照护", "label_en": "Accessibility and care", "minimum": "a comparable accessible route and caregiver pause remain available", "failure_action": "stop the affected option and record a human alternative"},
+    {"id": "R3", "label_zh": "轨道/公交保护", "label_en": "Rail and bus protection", "minimum": "feeder, loading and event demand cannot displace public interchange", "failure_action": "remove feeder demand and keep the public crossing"},
+    {"id": "R4", "label_zh": "申诉与暂停", "label_en": "Appeal and pause", "minimum": "a person can appeal, cancel, pause and receive a dated status", "failure_action": "hold the state and return to the last safe receipt"},
+    {"id": "R5", "label_zh": "隐私与退出", "label_en": "Privacy and exit", "minimum": "grouped demand only; no continuous personal trace is required for basic service", "failure_action": "delete the proposed booking and keep the offline route"}
+  ],
+  "review_readout": {
+    "selected_concept": "S1-GROUND-FIRST",
+    "selected_status": "ADVANCE_TO_DESIGN_REVIEW",
+    "selection_reason": ["protects ordinary service first", "covers all three key areas", "keeps conditional air and weather logic subordinate to ground fallback", "makes five rights and five scales reviewable"],
+    "next_review_inputs": ["official boundary and right-of-way", "dated route and curb observations", "grouped demand and consent record", "named receiving and maintenance roles", "independent accessibility, fire, privacy and transport review"],
+    "publication_boundary": "This readout is a conceptual comparison, not a construction, permit, capacity, performance, ranking or implementation decision."
+  },
+  "field_claims": []
+}

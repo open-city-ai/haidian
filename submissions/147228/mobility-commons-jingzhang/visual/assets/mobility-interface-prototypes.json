@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "MOBILITY-INTERFACE-PROTOTYPES-01",
+  "package": "mobility-commons-jingzhang",
+  "decision": "HOLD",
+  "design_only": true,
+  "boundary": {
+    "official_boundary": false,
+    "geometry_role": "provisional_constraint",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "operational_status": "not_authorized_not_run",
+    "performance_results": null,
+    "public_rank_claim": false
+  },
+  "scale_contract": {
+    "conceptual_site_scale": "1:500",
+    "interface_detail_scale": "1:50",
+    "scale_status": "design_reference_only",
+    "numeric_dimensions": null,
+    "dimension_rule": "Do not infer construction dimensions until official geometry, survey, fire, accessibility, utilities, ownership and professional review are available."
+  },
+  "prototypes": [
+    {
+      "id": "P-ZHONGZHIYUAN-FORECOURT",
+      "key_area": "zhongzhiyuan_ai_acceleration_area",
+      "name_zh": "众智园：到岗—装卸前厅",
+      "name_en": "Zhongzhiyuan: Arrival and Loading Forecourt",
+      "spatial_role": "enterprise_arrival_and_loading_interface",
+      "ordinary_service_first": ["public_transport", "walk_in", "staffed_wayfinding", "paper_register"],
+      "ai_role": "grouped_time_window_conflict_explanation_only",
+      "components": ["public_route", "staffed_receipt_desk", "curb_window", "loading_hold", "fire_access_keep_clear"],
+      "owner": "named enterprise_or_site_operator_to_be_confirmed",
+      "evidence_required": ["dated_route_observation", "protected_access_window", "loading_responsibility", "complaint_closeout"],
+      "stop_if": ["no_public_equivalent", "fire_or_access_route_conflict", "receiver_missing", "complaint_unclosed"]
+    },
+    {
+      "id": "P-AIORIGIN-CARELOOP",
+      "key_area": "beijing_ai_origin_community",
+      "name_zh": "AI 原点：照护—人工连续环",
+      "name_en": "AI Origin: Care and Human-Continuity Loop",
+      "spatial_role": "resident_daily_access_and_accessibility_interface",
+      "ordinary_service_first": ["walk_in", "telephone", "paper_route", "public_transport", "staffed_service"],
+      "ai_role": "group_service_windows_and_prepare_fallback_options_only",
+      "components": ["continuous_accessible_route", "human_service_desk", "weather_pause", "caregiver_waiting", "appeal_return_point"],
+      "owner": "named community_or_public_service_operator_to_be_confirmed",
+      "evidence_required": ["grouped_route_walkthrough", "accessible_equivalent", "staffed_window", "appeal_readback"],
+      "stop_if": ["app_required_for_basic_access", "accessible_route_break", "care_receiver_missing", "privacy_boundary_unclear"]
+    },
+    {
+      "id": "P-DAZHONGSI-TRANSFERPORCH",
+      "key_area": "dazhongsi_ai_industry_cluster",
+      "name_zh": "大钟寺：轨道—路缘换乘廊",
+      "name_en": "Dazhongsi: Rail-to-Curb Transfer Porch",
+      "spatial_role": "rail_transfer_public_space_and_event_curb_interface",
+      "ordinary_service_first": ["rail", "bus", "public_crossing", "staffed_wayfinding", "bicycle_parking"],
+      "ai_role": "explain_transfer_conflicts_and_offer_reversible_separation_only",
+      "components": ["rail_arrival", "public_crossing", "bike_transfer", "staffed_information", "event_curb_pause"],
+      "owner": "named transport_and_public_space_operator_to_be_confirmed",
+      "evidence_required": ["dated_headway_observation", "crossing_window", "curb_clearance", "event_day_rehearsal"],
+      "stop_if": ["public_route_displaced", "fire_or_access_route_blocked", "headway_unknown", "event_curb_unmanaged"]
+    }
+  ],
+  "shared_review_gates": [
+    {"id": "G1", "label": "ordinary_route", "pass": "A non-AI public or staffed equivalent is visible before any AI option."},
+    {"id": "G2", "label": "spatial_owner", "pass": "Every interface has a named receiving and maintenance role before any trial."},
+    {"id": "G3", "label": "evidence_window", "pass": "Each observation has a date, group boundary, field and public readback artifact."},
+    {"id": "G4", "label": "stop_and_return", "pass": "Every failure returns to a public route or staffed service and freezes expansion."}
+  ],
+  "field_claims": []
+}

@@ -2,6 +2,7 @@
   "schema_version": "mobility-responsibility-transfer-v1",
   "contract_id": "MOB-RESPONSIBILITY-TRANSFER-01",
   "status": "conceptual_contract_not_authorized",
+  "review_role": "supplemental_contract_audit_not_a_four_gate_self_check",
   "review_surface": {
     "first_path": "Dazhongsi interchange -> accessible ground route -> AI Origin Community service desk",
     "field_status": "HOLD",
@@ -14,6 +15,7 @@
       "id": "MRT-01",
       "interface": "accessible route and curb space",
       "recipient_role": "transport and accessibility review role",
+      "coverage_group_ids": ["resident", "carer_or_child", "wheelchair_or_assistive_device_user", "night_shift_worker", "visitor"],
       "non_ai_equivalent": "posted route, staffed wayfinding and public transport",
       "denominator": ["audited route segments", "usable crossing windows", "available staffed fallback windows"],
       "evidence_required": ["dated route walk audit", "crossing and gradient record", "fallback handover record"],
@@ -24,6 +26,7 @@
       "id": "MRT-02",
       "interface": "rail and bus transfer capacity",
       "recipient_role": "rail and bus operations role",
+      "coverage_group_ids": ["enterprise_employee", "resident", "carer_or_child", "night_shift_worker", "visitor"],
       "non_ai_equivalent": "published timetable, platform information and staffed transfer desk",
       "denominator": ["dated headway record", "station or stop capacity record", "transfer observation windows"],
       "evidence_required": ["operator confirmation", "manual count", "delay and missed-connection log"],
@@ -34,6 +37,7 @@
       "id": "MRT-03",
       "interface": "enterprise curb and loading window",
       "recipient_role": "enterprise mobility coordinator role",
+      "coverage_group_ids": ["enterprise_employee", "logistics_or_maintenance_worker", "emergency_responder"],
       "non_ai_equivalent": "paper booking register and on-site marshal",
       "denominator": ["available curb minutes", "clearing staff minutes", "fire and accessible route minutes protected"],
       "evidence_required": ["window register", "clearing record", "fire and accessibility check"],
@@ -44,6 +48,7 @@
       "id": "MRT-04",
       "interface": "resident daily service access",
       "recipient_role": "community liaison and resident/carer observation roles",
+      "coverage_group_ids": ["resident", "carer_or_child", "wheelchair_or_assistive_device_user", "night_shift_worker", "visitor"],
       "non_ai_equivalent": "walk-in, telephone and paper service",
       "denominator": ["observed service attempts by group", "available human service windows", "accessible alternatives"],
       "evidence_required": ["grouped completion log", "refusal and detour log", "anonymous complaint record"],
@@ -54,6 +59,7 @@
       "id": "MRT-05",
       "interface": "maintenance and removable equipment",
       "recipient_role": "field maintenance role",
+      "coverage_group_ids": ["logistics_or_maintenance_worker", "emergency_responder", "wheelchair_or_assistive_device_user"],
       "non_ai_equivalent": "manual inspection, repair ticket and removable sign or barrier",
       "denominator": ["inspection hours", "repair capacity", "equipment inventory"],
       "evidence_required": ["asset register", "inspection time", "repair or removal receipt"],
@@ -64,6 +70,7 @@
       "id": "MRT-06",
       "interface": "data, privacy and complaint handling",
       "recipient_role": "data stewardship and independent privacy review roles",
+      "coverage_group_ids": ["enterprise_employee", "resident", "carer_or_child", "wheelchair_or_assistive_device_user", "night_shift_worker", "visitor", "logistics_or_maintenance_worker", "emergency_responder"],
       "non_ai_equivalent": "aggregate paper register with a public complaint channel",
       "denominator": ["grouped records", "retention window", "complaint cases with closure owner"],
       "evidence_required": ["purpose and retention record", "access log", "closure or deletion record"],
@@ -74,6 +81,7 @@
       "id": "MRT-07",
       "interface": "public review and equity burden",
       "recipient_role": "independent safety, accessibility, privacy and equity review roles",
+      "coverage_group_ids": ["enterprise_employee", "resident", "carer_or_child", "wheelchair_or_assistive_device_user", "night_shift_worker", "visitor", "logistics_or_maintenance_worker", "emergency_responder"],
       "non_ai_equivalent": "public notice, staffed observation and group-specific manual review",
       "denominator": ["observed groups", "valid comparison windows", "negative or refused cases"],
       "evidence_required": ["group split", "negative-case register", "review decision with version"],
@@ -109,6 +117,11 @@
     "real_authorization": 0,
     "field_baseline": "unknown",
     "next_action": "collect dated local denominators before any P1 acceptance"
+  },
+  "coverage_contract": {
+    "mapping_rule": "Every declared coverage group must appear in at least one resource unit; each mapping must be a non-empty known group ID.",
+    "negative_fixture_policy": "Duplicate, empty, unknown and unmapped group mutations must fail the supplemental runner.",
+    "field_claims": "This mapping is a design audit surface only; it contains no real users, observations, authorization or operating result."
   },
   "boundary": "This contract makes resource burden and refusal visible. It does not prove staffing, capacity, accessibility performance, public acceptance, safety, funding, permission or operation."
 }

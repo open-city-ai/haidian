@@ -13,9 +13,9 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_provisional_site_boundary)",
-      "confidence": "high",
+      "confidence": "low",
       "assumptions": [
-        "Working area only; not an official scoring area."
+        "Working area derived from the submitted provisional boundary; not an official scoring area and subject to full-package recalculation."
       ]
     },
     "building_footprint_area_sqm": {
@@ -107,7 +107,7 @@
       "source_files": [
         "geometry/roads.geojson"
       ],
-      "formula": "sum(projected_length(all ROAD_CENTERLINE features, EPSG:4548)",
+      "formula": "sum(projected_length(ROAD_CENTERLINE features excluding network_role=p0_audit_sequence_not_a_verified_route, EPSG:4548))",
       "confidence": "medium",
       "assumptions": [
         "Conceptual network; requires right-of-way and field verification."
@@ -233,7 +233,8 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "No human-counted curb conflict sample or incident taxonomy is available.",
-      "pilot_target_min": 5,
+      "pilot_target_max": 5,
+      "pilot_target_comparator": "less_than_or_equal",
       "pilot_target_scale": "events per 100 events"
     },
     "mobility_service_complaint_closure_hours": {
@@ -249,7 +250,8 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "No mobility-specific complaint log, owner or service-level agreement is available.",
-      "pilot_target_min": 24,
+      "pilot_target_max": 24,
+      "pilot_target_comparator": "less_than_or_equal",
       "pilot_target_scale": "hours"
     },
     "workplace_ev_charge_supply_gap_ratio": {
@@ -289,6 +291,62 @@
       "formula": "count(reversible enterprise-resident scenario cards)",
       "confidence": "high",
       "assumptions": []
+    },
+    "planned_curb_observation_window_count": {
+      "status": "known",
+      "value": 48,
+      "unit": "planned_count",
+      "source_files": [
+        "visual/assets/mobility-public-baseline-contract.json",
+        "proposal.md"
+      ],
+      "formula": "3 key areas x 2 dayparts x 2 day types x 4 baseline weeks",
+      "confidence": "high",
+      "assumptions": [
+        "Design coverage quantity only; authorization, recruitment and completed field observations remain zero."
+      ]
+    },
+    "planned_ordinary_route_attempt_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "planned_count",
+      "source_files": [
+        "visual/assets/mobility-public-baseline-contract.json",
+        "proposal.md"
+      ],
+      "formula": "3 key areas x 4 journey tasks x 2 dayparts",
+      "confidence": "high",
+      "assumptions": [
+        "Design coverage quantity only; authorization, recruitment and completed field observations remain zero."
+      ]
+    },
+    "planned_accessibility_walkthrough_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "planned_count",
+      "source_files": [
+        "visual/assets/mobility-public-baseline-contract.json",
+        "proposal.md"
+      ],
+      "formula": "3 key areas x 2 dayparts x 2 affected-user perspectives",
+      "confidence": "high",
+      "assumptions": [
+        "Design coverage quantity only; affected-user participation cannot be replaced by proxy testing and completed field observations remain zero."
+      ]
+    },
+    "planned_blackout_handoff_drill_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "planned_count",
+      "source_files": [
+        "visual/assets/mobility-public-baseline-contract.json",
+        "proposal.md"
+      ],
+      "formula": "4 trigger families x 2 dayparts",
+      "confidence": "high",
+      "assumptions": [
+        "Design coverage quantity only; no drill, receiver or operating authorization is claimed."
+      ]
     }
   },
   "external_commute_od_baseline": {
