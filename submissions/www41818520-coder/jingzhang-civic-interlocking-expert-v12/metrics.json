@@ -1,0 +1,809 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "The submitted boundary is a provisional rough constraint calibrated to the announced approximately 11.4 square kilometres; it is not an official redline."
+      ],
+      "reason": "Known only as a reproducible submission-layer calculation; it must be recalculated when the organiser publishes precise official polygons."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "The footprint is an agent-generated design-proposal layer, not an existing-building survey or approved building scale."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "The ratio is calculated from submission design layers clipped by a provisional rough boundary and is not an existing or approved planning index."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "The ratio is calculated from submission design layers clipped by a provisional rough boundary and is not a statutory public-space control."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "official_coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_text_value",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "official_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_text_value",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "official_key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_text_value",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "protocol_step_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/civic-intelligence-task-protocol.json"
+      ],
+      "formula": "count(protocol.states)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "implementation_gate_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-contracts.json"
+      ],
+      "formula": "count(gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "first_issue_contract_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/implementation-contracts.json"
+      ],
+      "formula": "count(first_issue_contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "public_right_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/public-rights-matrix.json"
+      ],
+      "formula": "count(rights)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_lens_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/public-rights-matrix.json"
+      ],
+      "formula": "count(persona_lenses)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "rights_acceptance_count": {
+      "status": "known",
+      "value": 42,
+      "unit": "checks",
+      "source_files": [
+        "visual/assets/public-rights-matrix.json"
+      ],
+      "formula": "7 rights * 6 persona lenses",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(S01:S12)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_hard_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario-contracts.json"
+      ],
+      "formula": "count(sector_contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "regional_collaboration_input_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(named regional inputs)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "city_interface_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(conceptual east-west interfaces)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-INTERFACE-001"
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(Tsinghua Garden Question Gate, AI Origin Open-source Switch, Zhongzhiyuan Trust Garden, Dazhongsi City Echo Station)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(P01:P08)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "first_100_days_work_package_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/first-100-days.json"
+      ],
+      "formula": "count(work_packages)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "raci_workstream_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/first-100-days.json"
+      ],
+      "formula": "count(raci)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "prototype_length_m": {
+      "status": "known",
+      "value": 3,
+      "unit": "m",
+      "source_files": [
+        "assets/figures/information-platform-section.png"
+      ],
+      "formula": "conceptual reversible test-bay length",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROTOTYPE-001"
+      ]
+    },
+    "ordinary_route_clear_width_m": {
+      "status": "known",
+      "value": 1.8,
+      "unit": "m",
+      "source_files": [
+        "assets/figures/information-platform-section.png"
+      ],
+      "formula": "participant-proposed minimum clear width pending accessibility design",
+      "confidence": "medium",
+      "assumptions": [
+        "A-ACCESS-001"
+      ]
+    },
+    "resource_band_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/first-100-days.json"
+      ],
+      "formula": "count(L1,L2,L3 resource bands)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_operation_cycle_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(January through December public programme entries in proposal.md)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "provisional_key_area_recalculation_trigger_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "assumptions.json"
+      ],
+      "formula": "count(key areas requiring official-polygon recalculation)",
+      "confidence": "high",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    },
+    "agent_handover_contract_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(agent.1 through agent.6 explicit handover contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "innovation_chain_stage_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(question, clearance, prototype, verification, city sample, adoption, archive)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ecosystem_support_element_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(land, space, industry, funding, talent, compute, data, scenario)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_profile_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(eight design-lens persona rows)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PERSONA-001"
+      ]
+    },
+    "public_space_component_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(C01:C08 component contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "culture_route_stop_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(measure, build, switch, open, verify, archive)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "bilingual_sign_level_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(L0 ordinary, L1 history, L2 task, L3 risk, L4 version)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "operation_conversion_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(G0:G5 conversion gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "tabletop_case_count": {
+      "status": "known",
+      "value": 84,
+      "unit": "cases",
+      "source_files": [
+        "visual/assets/tabletop-rehearsal.json"
+      ],
+      "formula": "12 scenarios * 7 branches",
+      "confidence": "high",
+      "assumptions": [
+        "A-TABLETOP-001"
+      ]
+    },
+    "tabletop_negative_branch_count": {
+      "status": "known",
+      "value": 72,
+      "unit": "cases",
+      "source_files": [
+        "visual/assets/tabletop-rehearsal.json"
+      ],
+      "formula": "12 scenarios * 6 negative branches",
+      "confidence": "high",
+      "assumptions": [
+        "A-TABLETOP-001"
+      ]
+    },
+    "local_public_source_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "count(V9 local public evidence records)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "amap_named_anchor_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "anchors",
+      "source_files": [
+        "visual/assets/amap_three_anchor_access_snapshot_2026-08-21.json"
+      ],
+      "formula": "count(time-stamped named-anchor coordinate records)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provider coordinates are planning anchors and require field verification."
+      ]
+    },
+    "amap_poi_snapshot_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "category snapshots",
+      "source_files": [
+        "visual/assets/amap_three_anchor_access_snapshot_2026-08-21.json"
+      ],
+      "formula": "3 anchors * 5 one-kilometre provider-index categories",
+      "confidence": "medium",
+      "assumptions": [
+        "Results may overlap and do not measure demand, quality or service capacity."
+      ]
+    },
+    "amap_walking_route_check_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "routes",
+      "source_files": [
+        "visual/assets/amap_three_anchor_access_snapshot_2026-08-21.json"
+      ],
+      "formula": "count(pairwise walking-route responses among three anchors)",
+      "confidence": "medium",
+      "assumptions": [
+        "Routes are provider estimates, not accessibility certification or final alignment."
+      ]
+    },
+    "regional_interface_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(proposed university, park, service-wing, scenario-wing and adoption/archive interfaces)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "prototype_spatial_zone_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/key-areas.png"
+      ],
+      "formula": "count(Z1:Z5 zones in the one-to-one off-station prototype)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "same_task_equivalence_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "scenarios",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(S01:S12 scenarios with a specified human or low-technology equivalent)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "implementation_project_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "projects",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson",
+        "assets/figures/key-areas.png"
+      ],
+      "formula": "count(P01:P08 corridor projects + P09:P11 three-anchor first-issue contracts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "first_100_days_action_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "actions",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/first-100-days.json"
+      ],
+      "formula": "count(evidence lock, listening, baseline, prototype, tabletop, outage drill, recovery drill, decision)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_public_ledger_field_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "fields",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(fixed annual public-ledger disclosure fields)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "interlocking_design_root_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "roots",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(R1:R4 independent design roots)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_eligible_root_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "roots",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(roots passing all four spatial hard gates)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_spatial_topology_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "topologies",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(T1:T3 distinct plan topologies)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_lock_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "locks",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(L1:L5 physical-public release locks)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_trial_count": {
+      "status": "known",
+      "value": 48,
+      "unit": "trials",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "12 scenarios * 4 fixtures",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_shadow_release_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "trials",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(normal-fixture shadow releases)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_hold_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "trials",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(ambiguous + authority-breach holds)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_human_handover_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "trials",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(power-outage human handovers)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_injected_breach_caught_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "trials",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(ambiguous + authority-breach fixtures caught)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "interlocking_route_card_field_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "fields",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "count(required public route-card fields)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "prototype_minimum_clear_width_m": {
+      "status": "known",
+      "value": 2.2,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "min(T1:T3 ordinary_clear_width_m)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "prototype_turning_circle_m": {
+      "status": "known",
+      "value": 1.5,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "min(T1:T3 turning_circle_m)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "prototype_summer_shade_proxy_min": {
+      "status": "known",
+      "value": 0.6667,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "min(T1:T3 summer shaded route / route)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "prototype_winter_unshadowed_proxy_min": {
+      "status": "known",
+      "value": 0.752,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "min(T1:T3 winter unshadowed route / route)",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "selected_root_ordinary_route_continuity": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "R4 connected_m / route_m",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "selected_root_human_owner_visibility": {
+      "status": "known",
+      "value": 0.9167,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "R4 visible_decisions / decision_segments",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "selected_root_reversible_agent_area_ratio": {
+      "status": "known",
+      "value": 0.9097,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "R4 demountable_sqm / agent_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    },
+    "selected_root_flow_conflict_ratio": {
+      "status": "known",
+      "value": 0.1667,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/civic-interlocking-reproducibility.json"
+      ],
+      "formula": "R4 conflicts / 12 normalized crossings",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-authored normalized prototype or synthetic trial; field and professional verification required."
+      ]
+    }
+  }
+}

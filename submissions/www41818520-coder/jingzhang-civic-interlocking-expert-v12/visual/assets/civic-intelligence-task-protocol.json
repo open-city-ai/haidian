@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.2.0",
+  "id": "CIVIC-INTELLIGENCE-LOOP",
+  "title_zh": "京张城市智能体六步闭合协议",
+  "title_en": "Jing-Zhang Civic Intelligence six-step closed-loop protocol",
+  "status": "conceptual_handoff_for_professional_review",
+  "authority_boundary": "Conceptual operating and spatial handoff only; not a statutory plan, engineering design, procurement decision, safety case or government commitment.",
+  "ordinary_route_rule": "Every AI-assisted interface keeps a staffed, paper, phone or static-wayfinding equivalent. No public service waits for a model, account, network or power supply.",
+  "stages": [
+    {"id":"sense","label_zh":"感知 SENSE","label_en":"Sense","spatial_carriers":["低干预环境校准带","无障碍公众复验环","众智园"],"ai_role":"聚合脱敏问题与空间使用信号，不采集可识别个人数据","human_role":"人工解释席与社区代表分流公共问题","ordinary_equivalent":"纸面意见箱、电话热线、步行登记台","evidence_output":"含来源、责任主体、地点与响应请求的问题收据","stop_condition":"来源、责任主体、同意或隐私边界不清时挂起"},
+    {"id":"ask","label_zh":"提问 ASK","label_en":"Ask","spatial_carriers":["信息月台问题墙","开源发布厅","社区纸面入口"],"ai_role":"聚类重复提问并标出证据缺口，不替代公共诉求表达","human_role":"人工值守与公共利益分流","ordinary_equivalent":"纸面表单、电话、窗口咨询","evidence_output":"含来源、责任方、地点与响应请求的提问回执","stop_condition":"缺责任方、同意或隐私边界时挂起"},
+    {"id":"plan","label_zh":"规划 PLAN","label_en":"Plan","spatial_carriers":["北京 AI 原点旗舰信息月台","开源工具工作台","城市小样本试验场"],"ai_role":"生成可解释草案与资源建议，不替代规划、采购或裁决","human_role":"专业复核、人工接管与责任签字","ordinary_equivalent":"人工讨论与纸面方案稿","evidence_output":"含边界、权限、数据缺口的方案草案与假设登记","stop_condition":"负责人、暂停状态或人工替代未公开时挂起"},
+    {"id":"act","label_zh":"行动 ACT","label_en":"Act","spatial_carriers":["三处重点区 3 米样机","限时试验窗","信息檐带状态显示"],"ai_role":"仅在有人值守、限时、低速、有急停的窗口内提供辅助","human_role":"观察员、运营方、无障碍负责人与现场管家","ordinary_equivalent":"静态导视、纸面地图与人工服务","evidence_output":"含输入、事件、近失与恢复时间的窗口记录","stop_condition":"急停、公共路径、无障碍、安全或数据登记不合格时立即停止"},
+    {"id":"verify","label_zh":"校准 VERIFY","label_en":"Verify","spatial_carriers":["公众复验环","争议复核厅","公共状态板"],"ai_role":"提供可溯源建议和替代方案比较，不作法定或专业裁决","human_role":"两名独立复核者与公众纠错路径","ordinary_equivalent":"专业对话、纸面决定说明、人工申诉","evidence_output":"含证据、不确定性、异议与下一步的决定说明","stop_condition":"证据不可复现、出现群体伤害或专业异议时挂起"},
+    {"id":"learn","label_zh":"记忆 LEARN","label_en":"Learn","spatial_carriers":["大钟寺城市回声交换站","开源成果廊","贡献荣誉墙"],"ai_role":"归档脱敏结果并支持检索，不把记忆冒充现场绩效","human_role":"成果廊维护、归档签字与删除裁决","ordinary_equivalent":"纸质档案与公开年度报告","evidence_output":"含版本、来源、限制、删除与维护责任的归档记录","stop_condition":"归档不完整或隐私未清时冻结并恢复普通服务"}
+  ],
+  "key_area_mapping": [
+    {"key_area":"PROV-KEY-001","name_zh":"众智园·公众验证花园","abilities":["sense","verify"]},
+    {"key_area":"PROV-KEY-002","name_zh":"北京 AI 原点·城市工务共同体","abilities":["plan","act"]},
+    {"key_area":"PROV-KEY-003","name_zh":"大钟寺·城市回声交换站","abilities":["learn"]}
+  ],
+  "rollback_rule": "任一阶段证据不足、安全条件不满足或人工接管触发时，回退到上一个已通过阶段或普通公共服务；失败不产生现场绩效。",
+  "gate_mapping": {
+    "G0":{"window":"0-3 月","scope":"测绘、权属、管线、文保、需求与数据审计","stages":["sense","ask"]},
+    "G1":{"window":"3-6 月","scope":"3 米样机与断电、声光、无障碍、人工替代测试","stages":["plan","act"]},
+    "G2":{"window":"6-18 月","scope":"三重点区节点试点并公开工单","stages":["act","verify"]},
+    "G3":{"window":"按年度","scope":"按公共价值、安全与维护能力决定续期、限制、迁移或退出","stages":["verify","learn"]}
+  },
+  "project_mapping": {
+    "P01 公共基线连续化":["sense","ask"],"P02 三座任务月台":["plan","act"],"P03 九道城市接口":["sense","ask"],"P04 信息檐带系统":["sense","act","verify"],"P05 铁路文化公共记忆":["learn"],"P06 十二类 AI+ 场景":["plan","act","verify"],"P07 年度开放验证季":["sense","ask","plan","act","verify","learn"],"P08 数据与退出制度":["sense","verify","learn"]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "status": "synthetic_rules_test_not_field_evidence",
+  "scope": "Twelve conceptual scenarios crossed with one acceptable baseline and six negative branches.",
+  "scenarios": ["S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10", "S11", "S12"],
+  "branches": [
+    {"id": "baseline_valid", "expected": "continue_to_human_review"},
+    {"id": "owner_absent", "expected": "stop"},
+    {"id": "data_ceiling_exceeded", "expected": "stop"},
+    {"id": "ordinary_route_failed", "expected": "stop"},
+    {"id": "cannot_pause", "expected": "stop"},
+    {"id": "appeal_backlog", "expected": "stop"},
+    {"id": "recovery_incomplete", "expected": "stop"}
+  ],
+  "expected_case_count": 84,
+  "expected_negative_count": 72,
+  "receipt_fields": ["scenario_id", "branch_id", "decision", "reason", "human_owner", "recovery_action", "retest_date"],
+  "limitation": "Passing proves only that the submitted decision rules close over the stated synthetic branches. It does not prove safety, effectiveness, legal compliance, public consent, site permission or approval."
+}

@@ -1,0 +1,120 @@
+{
+  "design_roots": [
+    {
+      "id": "R1",
+      "name": "Central Signal Tower",
+      "zh": "中心信号塔",
+      "connected_m": 98,
+      "route_m": 120,
+      "visible_decisions": 6,
+      "decision_segments": 11,
+      "demountable_sqm": 112,
+      "agent_sqm": 180,
+      "shaded_m": 49,
+      "conflicts": 9,
+      "metrics": {
+        "ordinary_route_continuity": 0.8167,
+        "human_owner_visibility": 0.5455,
+        "reversible_agent_area_ratio": 0.6222,
+        "summer_shade_proxy": 0.4083,
+        "flow_conflict_ratio": 0.75
+      },
+      "gates": {
+        "continuous_ordinary_route": false,
+        "visible_named_human": false,
+        "reversible_agent_area": false,
+        "limited_flow_conflict": false
+      },
+      "eligible": false
+    },
+    {
+      "id": "R2",
+      "name": "Distributed Smart Kiosks",
+      "zh": "分布式智能亭",
+      "connected_m": 112,
+      "route_m": 120,
+      "visible_decisions": 5,
+      "decision_segments": 11,
+      "demountable_sqm": 142,
+      "agent_sqm": 160,
+      "shaded_m": 62,
+      "conflicts": 6,
+      "metrics": {
+        "ordinary_route_continuity": 0.9333,
+        "human_owner_visibility": 0.4545,
+        "reversible_agent_area_ratio": 0.8875,
+        "summer_shade_proxy": 0.5167,
+        "flow_conflict_ratio": 0.5
+      },
+      "gates": {
+        "continuous_ordinary_route": false,
+        "visible_named_human": false,
+        "reversible_agent_area": true,
+        "limited_flow_conflict": false
+      },
+      "eligible": false
+    },
+    {
+      "id": "R3",
+      "name": "App-first Seamless Route",
+      "zh": "应用优先无感路线",
+      "connected_m": 84,
+      "route_m": 120,
+      "visible_decisions": 2,
+      "decision_segments": 11,
+      "demountable_sqm": 133,
+      "agent_sqm": 140,
+      "shaded_m": 45,
+      "conflicts": 10,
+      "metrics": {
+        "ordinary_route_continuity": 0.7,
+        "human_owner_visibility": 0.1818,
+        "reversible_agent_area_ratio": 0.95,
+        "summer_shade_proxy": 0.375,
+        "flow_conflict_ratio": 0.8333
+      },
+      "gates": {
+        "continuous_ordinary_route": false,
+        "visible_named_human": false,
+        "reversible_agent_area": true,
+        "limited_flow_conflict": false
+      },
+      "eligible": false
+    },
+    {
+      "id": "R4",
+      "name": "Civic Interlocking Yards",
+      "zh": "市民联锁场",
+      "connected_m": 120,
+      "route_m": 120,
+      "visible_decisions": 11,
+      "decision_segments": 12,
+      "demountable_sqm": 141,
+      "agent_sqm": 155,
+      "shaded_m": 82,
+      "conflicts": 2,
+      "metrics": {
+        "ordinary_route_continuity": 1.0,
+        "human_owner_visibility": 0.9167,
+        "reversible_agent_area_ratio": 0.9097,
+        "summer_shade_proxy": 0.6833,
+        "flow_conflict_ratio": 0.1667
+      },
+      "gates": {
+        "continuous_ordinary_route": true,
+        "visible_named_human": true,
+        "reversible_agent_area": true,
+        "limited_flow_conflict": true
+      },
+      "eligible": true
+    }
+  ],
+  "selected_root": "R4",
+  "formulas": {
+    "ordinary_route_continuity": "connected_m / route_m",
+    "human_owner_visibility": "visible_decisions / decision_segments",
+    "reversible_agent_area_ratio": "demountable_sqm / agent_sqm",
+    "summer_shade_proxy": "shaded_m / route_m",
+    "flow_conflict_ratio": "conflicts / 12"
+  }
+}
