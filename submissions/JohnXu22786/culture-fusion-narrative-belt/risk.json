@@ -1,0 +1,24 @@
+{
+  "schema_version": "0.1.0",
+  "version": 1,
+  "risks": [
+    {"risk_id":"R-BOUNDARY","title_zh":"临时边界与指标精度","category":"data_gap","severity":"high","description_zh":"正式边界、绿线蓝线、权属、现状设施与公共空间数据未取得；当前几何只能支持概念表达和可复算模型值。","mitigation_zh":"所有几何标注 provisional；正式资料到位时重算面积、比例和图件，并保留版本差异。"},
+    {"risk_id":"R-HERITAGE","title_zh":"史料与遗产诠释准确性","category":"heritage_data","severity":"high","description_zh":"京张历史与工业遗产线索尚待专业史料团队、文保与现场资料复核，AI候选叙事可能产生错引或过度简化。","mitigation_zh":"源档案记录出处和版本；历史顾问人工校读，来源不完整的内容退回研究，不进入公开展陈。"},
+    {"risk_id":"R-RIGHTS","title_zh":"字体、案例与生成内容权利","category":"rights","severity":"high","description_zh":"案例名称、公开页面、字体、地图底图、公众投稿和生成输出的再使用边界不同，来源可查不等于取得发布权。","mitigation_zh":"按资产类型逐项登记权利人、许可、用途和限制；未清权内容仅作内部参考，争议时下架。"},
+    {"risk_id":"R-TRANSIT","title_zh":"慢行、轨道与节事安全协调","category":"public_safety","severity":"high","description_zh":"叙事带与城市道路、轨道及公共活动的关系尚未完成现场和专项核验，容量、疏散、接驳与管线不能由概念图推断。","mitigation_zh":"先做步行、骑行、轮椅、推车连续性和安全审查；节事采用分时、人工引导和应急预案，冲突时缩小为静态导视。"},
+    {"risk_id":"R-PRIVACY","title_zh":"互动反馈与访客数据边界","category":"data_boundary","severity":"high","description_zh":"场景反馈若记录过细可能形成身份、精确轨迹或敏感推断风险。","mitigation_zh":"只保留自愿提交的最小字段和阈值内匿名聚合；不采集身份证、人脸、精确轨迹，关键决策人工复核并设删除期限。"},
+    {"risk_id":"R-ACCESS","title_zh":"无障碍与数字排斥","category":"equity_inclusion","severity":"high","description_zh":"仅提供二维码或屏幕会排除老年人、残障人士、照护者及低数字/无设备访客。","mitigation_zh":"入口纸本、实体导视、触觉/声音/大字替代、人工讲解和离线反馈并行；由社区与无障碍顾问验收。"},
+    {"risk_id":"R-TECH","title_zh":"AI内容与运维成熟度","category":"technology","severity":"medium","description_zh":"多语检索、导览、公众策展和开发者测试的准确性、成本与持续运维尚未验证。","mitigation_zh":"AI只生成候选；小规模沙盒测试，人工编辑可拒绝、改写、暂停或删除；无稳定值守时退回纸本/人工服务。"},
+    {"risk_id":"R-ACCEPTANCE","title_zh":"文化口径、参与与区域协同","category":"public_acceptance","severity":"medium","description_zh":"三源叙事、五地接口和活动安排可能被误读为既有合作、官方命名或单一口径。","mitigation_zh":"使用来源卡、轮换议事、申诉与更正记录；所有合作、奖项、命名和区域接口保持条件性、待核和可退出。"}
+  ],
+  "dimensions": [
+    {"id":"data_privacy","label":"数据隐私","score":2,"note":"只用匿名聚合和最小必要字段，不识别个体，不留精确轨迹；发布前人工复核。","mitigation":"设字段白名单、保留期限、删除和停用流程。","human_review":"由提交作者逐项人工核对来源、字段和停用条件。"},
+    {"id":"implementation_complexity","label":"实施复杂度","score":3,"note":"三节点、三项测试和五地接口需要空间、文化、运营、无障碍与安全协同，当前无权属和现状基线。","mitigation":"采用可逆小试、RACI、依赖条件和继续/暂停/退出决策卡。","human_review":"由提交作者逐项人工核对依赖、责任和验收字段。"},
+    {"id":"public_acceptance","label":"公众接受度","score":3,"note":"三源诠释、AI介入和区域协同可能引发口径、商业化或过度科技化疑虑。","mitigation":"来源与版本公开、公众议事轮换、反骚扰规则、申诉更正和可逆撤展。","human_review":"由提交作者逐项人工核对争议触发与人工响应。"},
+    {"id":"operations_cost","label":"运维成本","score":3,"note":"人工编辑、无障碍服务、纸本补给、设备停用和年度复盘都需要稳定责任与预算，当前未作金额承诺。","mitigation":"先低风险桌面演练和小范围试点；无稳定值守则关闭AI展项并保留人工/纸本路径。","human_review":"由提交作者逐项人工核对责任人、频率与退出条件。"},
+    {"id":"policy_uncertainty","label":"政策不确定性","score":3,"note":"规划、文保、轨道、绿蓝线、消防、数据和活动审批边界未公开完整。","mitigation":"只列校核清单，不给法定强度或许可结论；正式资料和专项意见触发整体复核。","human_review":"由提交作者逐项人工核对待核事项，不替代主管部门判断。"},
+    {"id":"spatial_dispute","label":"空间争议","score":3,"note":"三处节点是概念映射，不是已确认位置、用地或运营场所。","mitigation":"以接口关系、依赖和验收字段表达；真实场地条件不满足时改用静态、纸本或线上替代。","human_review":"由提交作者逐项人工核对概念/正式边界标识。"},
+    {"id":"technology_maturity","label":"技术成熟度","score":3,"note":"AI候选、检索、多语和匿名反馈的效果与成本尚未通过现场试点验证。","mitigation":"公开测试集、人工评审、版本回滚、一键停用和无设备替代并行。","human_review":"由提交作者逐项人工核对测试目标、数据边界和退出。"},
+    {"id":"equity_inclusion","label":"公平与包容性","score":2,"note":"老年、残障、照护者、低数字和无设备访客有独立服务约束，但真实路线和服务班次仍待核验。","mitigation":"纸本、触觉、声音、大字、人工服务、可见停留点和申诉渠道并行；社区代表轮换参与。","human_review":"由提交作者逐项人工核对路线、信息、感官和 staff fallback。"}
+  ]
+}
