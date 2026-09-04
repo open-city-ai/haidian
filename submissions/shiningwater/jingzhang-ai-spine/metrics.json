@@ -1,0 +1,402 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2753205.329,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.241238,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 406297.652,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0356,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1464925.741,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive.",
+        "Conceptual footprints inside design parcels; not a construction-scale conclusion."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.128358,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "total_floor_area_sqm_conceptual": {
+      "status": "known",
+      "value": 10438976.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint_area * floors_conceptual)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual floor counts by land-use code; design quantity only, not a statutory control value."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and the official site boundary are not present in the public site package; pending official data."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control(parcel)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls are not present in the public site package; pending official data."
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 579995.207,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='1207'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive.",
+        "Existing-condition layers (roads, rail, water) derive from OpenStreetMap (ODbL, (c) OpenStreetMap contributors, retrieved 2026-08-23 via Overpass API); used for context and design alignment only, never for formal boundary or area claims."
+      ]
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.05082,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "design_road_network_length_m": {
+      "status": "known",
+      "value": 22412.9,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(design_road_centerlines, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive.",
+        "Existing-condition layers (roads, rail, water) derive from OpenStreetMap (ODbL, (c) OpenStreetMap contributors, retrieved 2026-08-23 via Overpass API); used for context and design alignment only, never for formal boundary or area claims."
+      ]
+    },
+    "existing_major_road_length_m": {
+      "status": "known",
+      "value": 45073.3,
+      "unit": "m",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "sum(line_length(OSM existing major roads within site, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "Existing-condition layers (roads, rail, water) derive from OpenStreetMap (ODbL, (c) OpenStreetMap contributors, retrieved 2026-08-23 via Overpass API); used for context and design alignment only, never for formal boundary or area claims."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_detailed_design_area_sqm_announced": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(announced key area values from the official pre-announcement)",
+      "confidence": "high",
+      "assumptions": [
+        "Officially announced text value; provisional polygons only approximate it."
+      ]
+    },
+    "phasing_phase1_area_sqm": {
+      "status": "known",
+      "value": 3837440.478,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-001, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "phasing_phase2_area_sqm": {
+      "status": "known",
+      "value": 3951866.021,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-002, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "phasing_phase3_area_sqm": {
+      "status": "known",
+      "value": 3623518.887,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-003, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "rail_station_count_in_site": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(OSM railway/subway stations inside site boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Existing-condition layers (roads, rail, water) derive from OpenStreetMap (ODbL, (c) OpenStreetMap contributors, retrieved 2026-08-23 via Overpass API); used for context and design alignment only, never for formal boundary or area claims."
+      ]
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 2654172.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0701'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 2977.126,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0702'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 1869589.242,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0802'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 1174783.934,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0804'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_0901_sqm": {
+      "status": "known",
+      "value": 1201488.178,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0901'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_0902_sqm": {
+      "status": "known",
+      "value": 1132509.766,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='0902'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_1207_sqm": {
+      "status": "known",
+      "value": 579995.207,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='1207'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1794304.81,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='1401'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 958900.519,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='1402'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    },
+    "land_use_area_1403_sqm": {
+      "status": "known",
+      "value": 43869.275,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where land_use_code='1403'))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from the repository provisional rough boundary (PROV-SITE-001, geometry_role=provisional_constraint); interim design-model value, not suitable for official redline or precise area claims; must be recalculated when official polygons arrive."
+      ]
+    }
+  }
+}
