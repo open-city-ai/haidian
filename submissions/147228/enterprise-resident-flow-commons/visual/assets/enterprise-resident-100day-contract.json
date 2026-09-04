@@ -1,0 +1,153 @@
+{
+  "schema_version": "enterprise-resident-100day-contract-v1",
+  "contract_id": "ERF-100DAY-DELIVERY-001",
+  "package": "enterprise-resident-flow-commons",
+  "claim_level": "local_synthetic_tabletop",
+  "decision": "HOLD",
+  "boundary": {
+    "official_boundary": false,
+    "geometry_role": "provisional_constraint",
+    "authorization": 0,
+    "field_observations": 0,
+    "local_baseline": "unknown",
+    "result_status": "not_run",
+    "performance_results": null,
+    "operational_status": "not_authorized_not_run",
+    "public_rank_claim": false,
+    "numeric_dimensions": null
+  },
+  "state_sequence": ["BASE", "PILOT", "BLACKOUT", "CLOSEOUT"],
+  "states": [
+    {
+      "id": "BASE",
+      "meaning": "rail_bus_and_human_service_remain_available_without_ai_or_booking",
+      "enterprise_action": "submit_grouped_need_only",
+      "resident_return": "ordinary_accessible_and_human_route",
+      "release_condition": "public_route_and_named_receiver_are_visible"
+    },
+    {
+      "id": "PILOT",
+      "meaning": "one_bounded_reversible_service_window_is_rehearsed",
+      "enterprise_action": "accept_window_with_shared_maintenance_and_complaint_duty",
+      "resident_return": "same_or_better_public_route_with_human_takeover",
+      "release_condition": "dated_route_audit_owner_and_fallback_receipt_exist"
+    },
+    {
+      "id": "BLACKOUT",
+      "meaning": "digital_or_feeder_layer_stops_while_public_service_continues",
+      "enterprise_action": "stop_booking_and_clear_the_curb",
+      "resident_return": "rail_bus_walk_and_staffed_service_first",
+      "release_condition": "trigger_logged_and_human_route_read_back"
+    },
+    {
+      "id": "CLOSEOUT",
+      "meaning": "window_is_closed_and_only_cleared_learning_is_retained",
+      "enterprise_action": "publish_disposition_and_maintenance_debt",
+      "resident_return": "ordinary_public_asset_and_appeal_route",
+      "release_condition": "complaint_disposition_and_public_receipt_exist"
+    }
+  ],
+  "spatial_nodes": [
+    {
+      "id": "NODE-ZHONGZHIYUAN-FORECOURT",
+      "area": "zhongzhiyuan",
+      "prototype_ref": "enterprise_resident_river_forecourt",
+      "enterprise_request": "arrival_and_loading_window",
+      "resident_return": "continuous_walking_access_and_staffed_wayfinding",
+      "stop_if": ["curb_conflict_unresolved", "human_receiver_missing"]
+    },
+    {
+      "id": "NODE-AIORIGIN-CARE-LOOP",
+      "area": "ai_origin_community",
+      "prototype_ref": "enterprise_resident_care_loop",
+      "enterprise_request": "care_shift_and_daily_service_window",
+      "resident_return": "care_access_paper_phone_and_human_route",
+      "stop_if": ["care_route_displaced", "appeal_unowned"]
+    },
+    {
+      "id": "NODE-DAZHONGSI-TRANSFER-HALL",
+      "area": "dazhongsi_ai_industry_cluster",
+      "prototype_ref": "enterprise_resident_four_quadrant_hall",
+      "enterprise_request": "rail_to_curb_transfer_window",
+      "resident_return": "public_crossing_transit_backbone_and_event_reset",
+      "stop_if": ["transit_backbone_weakened", "return_to_normal_unproven"]
+    }
+  ],
+  "delivery_windows": [
+    {
+      "id": "D00-07",
+      "state": "BASE",
+      "owner_role": "joint_public_service_and_enterprise_desk_to_be_confirmed",
+      "enterprise_deliverable": "grouped_need_register_without_booking",
+      "resident_deliverable": "ordinary_accessible_and_human_route_card",
+      "evidence_required": ["route_audit_scope", "receiver_roster", "complaint_entry", "public_status_notice"],
+      "acceptance_checks": ["no_personal_trace", "no_digital_precondition", "public_route_visible"],
+      "stop_if": ["owner_missing", "route_unknown", "booking_requested_before_audit"],
+      "public_receipt": "BASE readiness card"
+    },
+    {
+      "id": "D08-30",
+      "state": "PILOT",
+      "owner_role": "accessibility_and_transfer_lead_to_be_confirmed",
+      "enterprise_deliverable": "one_bounded_arrival_or_loading_window",
+      "resident_deliverable": "same_window_public_route_and_human_takeover",
+      "evidence_required": ["dated_segment_walk", "maintenance_owner", "fallback_receipt", "grouped_request_log"],
+      "acceptance_checks": ["slowest_group_not_worsened", "rail_bus_backbone_visible", "receiver_accepts_handoff"],
+      "stop_if": ["accessibility_gap", "handoff_rejected", "capacity_denominator_unlocked"],
+      "public_receipt": "PILOT window card"
+    },
+    {
+      "id": "D31-60",
+      "state": "PILOT",
+      "owner_role": "curb_and_public_transport_operator_to_be_confirmed",
+      "enterprise_deliverable": "rehearsed_transfer_with_clearance_and_repair_window",
+      "resident_deliverable": "paper_phone_and_staffed_alternative_during_conflict",
+      "evidence_required": ["curb_clearance_record", "weather_or_outage_replay", "repair_sla_draft", "appeal_readback"],
+      "acceptance_checks": ["blackout_trigger_replayed", "ordinary_service_continues", "complaint_pause_available"],
+      "stop_if": ["curb_not_cleared", "fallback_unstaffed", "complaint_unowned"],
+      "public_receipt": "transfer and repair card"
+    },
+    {
+      "id": "D61-90",
+      "state": "BLACKOUT",
+      "owner_role": "incident_and_maintenance_receiver_to_be_confirmed",
+      "enterprise_deliverable": "stop_booking_clear_assets_and_publish_reason",
+      "resident_deliverable": "rail_bus_walk_and_human_return_route",
+      "evidence_required": ["trigger_record", "human_route_readback", "asset_closeout", "affected_group_notice"],
+      "acceptance_checks": ["digital_layer_stopped", "public_route_open", "no_unresolved_safety_conflict"],
+      "stop_if": ["blackout_not_visible", "public_route_closed", "asset_left_in_place"],
+      "public_receipt": "BLACKOUT return card"
+    },
+    {
+      "id": "D91-100",
+      "state": "CLOSEOUT",
+      "owner_role": "independent_reviewer_and_public_receipt_owner_to_be_confirmed",
+      "enterprise_deliverable": "publish_continue_repair_or_withdraw_disposition",
+      "resident_deliverable": "ordinary_asset_appeal_route_and_reasoned_reply",
+      "evidence_required": ["complaint_disposition", "maintenance_debt", "grouped_outcome_summary", "public_closeout_receipt"],
+      "acceptance_checks": ["cleared_learning_only", "decision_explainable", "withdrawal_possible"],
+      "stop_if": ["complaint_open", "decision_unexplainable", "uncleared_trace_retained"],
+      "public_receipt": "CLOSEOUT decision card"
+    }
+  ],
+  "shared_review_gates": [
+    {"id": "G1", "label": "BASE_FIRST", "rule": "ordinary public service is visible before an enterprise window or AI assist"},
+    {"id": "G2", "label": "RECIPROCITY", "rule": "every enterprise request has a named resident return and maintenance owner"},
+    {"id": "G3", "label": "TRANSIT_BACKBONE", "rule": "rail, bus, walking and accessibility routes remain in the acceptance denominator"},
+    {"id": "G4", "label": "BLACKOUT_RETURN", "rule": "the digital or feeder layer can stop while human and public transport continue"},
+    {"id": "G5", "label": "PUBLIC_CLOSEOUT", "rule": "complaints, repair debt, withdrawal and cleared learning are publicly readable"}
+  ],
+  "negative_fixtures": [
+    "missing_resident_return",
+    "booking_before_route_audit",
+    "unaccepted_handoff",
+    "blackout_without_public_route",
+    "closeout_with_uncleared_trace"
+  ],
+  "positive_controls": [
+    "base_public_route",
+    "pilot_with_human_takeover",
+    "closeout_with_cleared_receipt"
+  ],
+  "field_claims": []
+}

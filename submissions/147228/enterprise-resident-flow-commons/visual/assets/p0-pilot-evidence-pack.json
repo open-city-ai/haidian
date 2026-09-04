@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "title_zh": "AI 原点照护环最小 P0 证据包",
+  "title_en": "AI Origin Care Loop Minimum P0 Evidence Pack",
+  "status": "template_ready_field_work_not_run",
+  "decision": "HOLD",
+  "claim_level": "participant_controlled_field_protocol_no_results",
+  "selected_node": {
+    "id": "A2",
+    "name_zh": "AI 原点社区照护环",
+    "name_en": "AI Origin Community Care Loop",
+    "selection_reason_zh": "优先验证居民日常与人工等价入口；不依赖 PROV-KEY-003 的大钟寺站点锚点，也不需要先放行企业车辆扩容。",
+    "selection_reason_en": "Prioritises daily resident access and a human-equivalent entry; it does not depend on the unresolved Dazhongsi anchor or require enterprise-vehicle expansion.",
+    "spatial_scope_zh": "一条普通步行链、一条无障碍替代链、一个人工服务台候选和一个轨道/公交交接点；正式范围由现场专业走查确认。",
+    "spatial_scope_en": "One ordinary walking chain, one accessible alternative, one candidate human desk and one rail/bus handoff; field professionals confirm the final scope."
+  },
+  "time_windows": [
+    {"id": "T1", "zh": "工作日早高峰", "en": "weekday AM peak", "design_window": "07:00-09:00"},
+    {"id": "T2", "zh": "社区日常服务", "en": "community daytime service", "design_window": "10:00-12:00"},
+    {"id": "T3", "zh": "晚高峰与照护返程", "en": "PM peak and care return", "design_window": "17:00-20:00"},
+    {"id": "T4", "zh": "夜间人工回退", "en": "night human fallback", "design_window": "20:00-22:00"}
+  ],
+  "evidence_streams": [
+    {"id": "E1", "zh": "分组流量与请求", "en": "grouped flow and request", "template": "15-minute directional counts by mode and service-purpose group; no device ID or continuous trace", "minimum_design_target": "two comparable weekdays plus one stress or event window before calibration", "release_rule": "date, weather, counter role and missing interval recorded", "current_records": 0},
+    {"id": "E2", "zh": "逐段无障碍走查", "en": "segment accessibility walk", "template": "segment ID, width/gradient/crossing/obstruction, alternate route, affected-group observation and photo-rights state", "minimum_design_target": "ordinary and accessible chains both walked in day and night windows with invited user review", "release_rule": "a broken segment stays UNKNOWN and blocks P1", "current_records": 0},
+    {"id": "E3", "zh": "路缘与公共路线责任", "en": "curb and public-route responsibility", "template": "owner role, receiver role, service window, clearance action, fire/access route and restoration receipt", "minimum_design_target": "every proposed enterprise window has one accepted receiver and one public-route restoration check", "release_rule": "unaccepted responsibility means no booking", "current_records": 0},
+    {"id": "E4", "zh": "人工与公共交通回退", "en": "human and public-transport fallback", "template": "staffed/phone/paper entry, rail/bus alternative, handoff time, missed-connection response and no-device route", "minimum_design_target": "one end-to-end rehearsal per time window including outage and severe weather", "release_rule": "no available takeover means service stays stopped", "current_records": 0},
+    {"id": "E5", "zh": "数据最小化与保留", "en": "data minimisation and retention", "template": "purpose, grouped fields, collection owner, access role, retention, deletion receipt and public algorithm note", "minimum_design_target": "all fields have a purpose and expiry before collection", "release_rule": "unnecessary personal or persistent identifier blocks collection", "current_records": 0},
+    {"id": "E6", "zh": "参与式阈值签收", "en": "participatory threshold sign-off", "template": "resident, carer, disabled-user and night-worker review of group denominator, forced detour, rejection, waiting and appeal pause", "minimum_design_target": "each named affected group can disagree, request correction and see the response", "release_rule": "a hidden decline or unresolved objection blocks expansion", "current_records": 0},
+    {"id": "E7", "zh": "公开状态与结案", "en": "public status and closeout", "template": "current state, owner role, ordinary alternative, incident/appeal count, repair debt, next review and withdrawal receipt", "minimum_design_target": "one readable board plus paper/phone correction route", "release_rule": "unresolved repair debt or inaccessible status keeps BLACKOUT", "current_records": 0}
+  ],
+  "raci": [
+    {"role": "site_and_data_steward", "responsible_for": ["scope version", "grouped count register", "retention/deletion receipt"], "confirmation": "unassigned"},
+    {"role": "transport_and_accessibility_reviewer", "responsible_for": ["segment walk", "crossing and fallback review", "hard-gate decision"], "confirmation": "unassigned"},
+    {"role": "resident_carer_disabled_user_panel", "responsible_for": ["threshold co-definition", "forced-detour and rejection review", "appeal pause"], "confirmation": "unassigned"},
+    {"role": "human_service_and_transit_handoff", "responsible_for": ["staffed/phone/paper route", "rail/bus handoff", "outage and night fallback"], "confirmation": "unassigned"},
+    {"role": "independent_closeout_reviewer", "responsible_for": ["replay", "incident/correction audit", "continue-repair-retire recommendation"], "confirmation": "unassigned"}
+  ],
+  "calibration_contract": {
+    "inputs": ["grouped OD and mode", "15-minute counts", "headway and missed connection", "segment accessibility state", "curb occupancy and clearance", "complaint and human handoff"],
+    "replacement_rule": "Every synthetic input is replaced only by a dated, scoped and versioned field record; missing cells remain unknown and never become zero.",
+    "invalid_model_conditions": ["sample window not comparable", "group denominator missing", "route or station version changed", "more than one unrecorded interval", "observed mode or queue falls outside declared model objects", "affected group reports an unmodeled barrier"],
+    "field_runs": 0,
+    "calibrated_parameters": 0,
+    "performance_results": null
+  },
+  "release_gates": [
+    {"id": "G1", "name": "scope_and_rights", "state": "HOLD", "reason": "field scope and material/image rights not confirmed"},
+    {"id": "G2", "name": "dated_grouped_baseline", "state": "HOLD", "reason": "zero field records"},
+    {"id": "G3", "name": "accessible_and_human_fallback", "state": "HOLD", "reason": "zero day/night walk or takeover receipts"},
+    {"id": "G4", "name": "responsibility_and_resources", "state": "HOLD", "reason": "all RACI confirmations unassigned"},
+    {"id": "G5", "name": "participatory_review_and_closeout", "state": "HOLD", "reason": "zero affected-group sign-offs or public closeouts"}
+  ],
+  "negative_fixtures": [
+    {"id": "N1", "condition": "enterprise request exists but resident return is missing", "expected": "BLOCK"},
+    {"id": "N2", "condition": "average improves while one affected group declines", "expected": "BLOCK"},
+    {"id": "N3", "condition": "accessible segment is unknown or night fallback has no receiver", "expected": "BLOCK"},
+    {"id": "N4", "condition": "field row lacks date, scope, denominator or deletion owner", "expected": "BLOCK"},
+    {"id": "N5", "condition": "repair debt or appeal remains unresolved at closeout", "expected": "BLACKOUT"}
+  ],
+  "current_readout": {
+    "templates_ready": 7,
+    "field_records": 0,
+    "confirmed_roles": 0,
+    "affected_group_signoffs": 0,
+    "release_gates_passed": 0,
+    "decision": "HOLD",
+    "operational_status": "not_authorized_not_run"
+  }
+}

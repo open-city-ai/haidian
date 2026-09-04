@@ -1,5 +1,24 @@
 # 方案迭代记录
 
+## v2.5 - 2026-08-23
+
+- 把任务书六项要求拆成六个独立成果：补齐双语命名与 `F↔C` 标志、三大定位、五大功能、三区两翼、六个公开机制案例、八要素生态回路、三处责任地标、文化叙事和四季运营循环。
+- 新增 AI 原点社区照护环最小 P0 证据包，明确四个复核时窗、七套现场模板、五道放行门和校准失效规则；现场记录、责任签收、分组签收、校准参数和放行结果仍全部为 0 / `HOLD`。
+- 重做中英文服务时窗—几何分母台账和证据看板，删除无可追溯分母的 27% 需求构成，改为直接读取 `metrics.json` 的 41 项声明指标、23 项 `known`、18 项 `unknown`，并把包内就绪与现场绩效分开。
+- 增加可复算的双语图板生成器和在线审阅索引；全球案例只转译公开机制，不声称合作、投资、同级授权或本地成效。
+
+## v2.4 - 2026-08-21
+
+- 新增一次空间裁决，对企业优先共享路缘、三处独立窗口和企业—居民互惠节点链做 REJECT、REVISE、ADVANCE_TO_DESIGN_REVIEW 三态比较。
+- 新增 1:5000、1:2000、1:500、1:200、1:50 五级设计尺度，以及普通通行、无障碍通行、轨道公交、申诉暂停、隐私退出五项居民权利矩阵。
+- 增加中英双语空间裁决图、正负例和 fail-closed runner；保持 HOLD、0 授权、0 现场观察、`not_run` 结果和空现场声称。
+
+## v2.3 - 2026-08-21
+
+- 新增企业—居民首 100 天交付合同，将三处空间原型接到 `BASE`、`PILOT`、`BLACKOUT`、`CLOSEOUT` 四个状态和五个时间窗。
+- 明确企业分组需求、居民回程、人工接管、轨道公交骨干、申诉暂停、维修债务和清权结案的共同闸门；企业请求不单独换取公共路权。
+- 增加中英双语交付图板、机器可读合同、3 个正例和 5 个负例；保持 HOLD、0 授权、0 现场观察、`unknown` baseline、`not_run` 结果和空现场声称。
+
 ## v2.2 - 2026-08-21
 
 - Rebuilt the bilingual `key-areas` figure as three distinct spatial prototypes: the Zhongzhiyuan River Forecourt, AI Origin Care Loop and Dazhongsi Four-Quadrant Hall. Each now carries a concept plan, indicative section, enterprise request, resident return, stop condition and evidence request.
