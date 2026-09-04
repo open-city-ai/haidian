@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以'百年闭环·AI原点'为总概念，把1909年自主铁路的工程精神转译为AI时代的城市原点：方案以'未来社会判断'（AI对劳动力、社会结构与社会环境的改造）为社会学底座，以双情景纪律与双总图回应极化风险，以营造法式把判断落成生成规则；一条遗产慢行主轴缝合三区两翼，一套'百年驿站'公共空间体系承载AI场景与荣誉展示，全部指标在EPSG:4548下从提交几何复算。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
 scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "robot-delivery-low-speed", "ai-health-service-navigation"]
-iteration: "v1.2"
+iteration: "v1.3"
 ---
 
 # 百年闭环·AI原点：京张源点城市设计方案
@@ -59,6 +59,18 @@ iteration: "v1.2"
 本方案建立在四层资料之上。第一层是官方公开文件：北京市规划和自然资源委员会海淀分局的资格预审公告给出了三层范围、三处重点区域和面积口径（43.6/11.4 平方公里与 368.4 公顷），是本方案唯一的法定事实基础 [source:OFFICIAL-ANNOUNCEMENT]。第二层是仓库场地包与智能体任务书，提供枚举、区间、schemas 与六项智能体任务 [source:SITE-PACKAGE] [source:AGENT-TASKBOOK]。第三层是公开资料登记表，用于区分可用等级：本方案只把 official_public 与 user_provided_cleared 资料用于正式主张，背景资料只作背景 [source:SOURCE-REGISTRY]。第四层是公开文献中的全球 AI 创新生态案例，仅作范式参考，不作统计事实 [source:GLOBAL-CASES]。
 
 必须如实声明的资料缺口：官方精确边界 polygon 尚未发布，本方案使用仓库临时粗略边界（provisional rough），全部面积为低置信度临时复算值，待正式数据补齐后重算 [data:geometry/site_boundary.geojson#SITE-001]。容积率、建筑高度、建筑密度、退线等法定控制条件同样待正式数据补齐，在指标体系中保持 unknown 并说明原因 [source:PLANNING-LIMITS]。现状建筑、权属、市政承载与工程条件未获得清权资料，相关结论一律写作待确认事项。
+
+**数据缺口 → 复算动作审计表。** 全部数据缺口与其复算机制逐条收敛如下（同口径登记于 assumptions.json 各条目 recalc_trigger 字段，官方数据发布即触发对应复算）：
+
+| 缺失官方文件 | 当前状态 | 受影响指标 | 官方数据发布后的复算动作 |
+|---|---|---|---|
+| 精确边界 polygon | 仓库 provisional 粗略边界 | site_area_sqm、green_ratio、public_space_ratio、全部分区与分期面积 | 替换几何后全量重算（A-BOUNDARY-001） |
+| 容积率控制 | unknown（保持空值并注明原因） | floor_area_ratio、total_floor_area_sqm | 按法定 FAR 复核概念量；三档敏感性情景已预登记（A-FLOOR-001） |
+| 高度控制 | unknown（G1 意向分级） | building_height_m | 按法定高度校核 G1 高度带与塔楼分级，随包机器校验器复核（脚本全文见 report/narrative.md 附录A；A-HEIGHT-001） |
+| 密度与退线 | unknown | building_density、贴线率 | 按地块复核密度与 G4 界面法则贴线率（A-DENSITY-001） |
+| 道路红线 | 12m 平均断面概念估算 | road_area_sqm、road_area_ratio | 按红线复算道路面积并校核慢行断面（A-REDLINE-001） |
+| 权属 | 未获得清权资料 | 拆改留结论、更新项目清单 P01–P10、分期图层 | 权属调查后更新拆改留分类与分期（A-OWNERSHIP-001） |
+| 市政承载 | 未获得清权资料 | 市政融合建议、T-02 并网方案 | 专项承载评估后校核设施布局（A-MUNICIPAL-001） |
 
 ![总体结构总览：一脊三区两翼多节点](assets/figures/site-overview.png)
 
@@ -129,6 +141,8 @@ iteration: "v1.2"
 
 拆改留分类逻辑：保留类=遗产要素、高校、优质现状建筑；改造类=低效产业用房与老旧商业（众智园、大钟寺为主）；拆除候选=与主轴和结构冲突的零星临建（须权属调查确认）；新建类=两增长极与原点社区人才公寓。高度与体量意向遵循"面状谦逊、点状高耸"：街坊 18–24 米为主，三区各一处标志物，具体高度待航空、文保、景观视廊等约束确认 [depth:height_massing_character] [depth:retain_renovate_demolish]。所有容积率、建筑密度、退线指标保持待正式数据补齐状态，本方案不作任何法定口径承诺 [source:PLANNING-LIMITS]。
 
+**容积率与高度敏感性情景（概念测算、非法定控制指标）。** 控规条件未知不等于留白：对方案做三档 FAR 敏感性测算——FAR=1.5/2.0/2.5 时，总建筑量分别约 1712/2283/2853 万平方米（为概念量 1264 万平方米的 1.35/1.81/2.26 倍）；本方案概念体量相当于隐含 FAR≈1.11，处于最低档之下，说明空间供给不依赖高强度开发。绿地比例 29.6% 与公共空间比例 7.0% 由提交几何控制，对 FAR 变化不敏感——空间骨架在任意一档控规下成立，变化的只是容量。高度同理：G1 高度带（18/24/50 米）与塔楼分级（60/80/100 米）为意向值，法定高度发布后按 controls 复核并由随包机器校验器校验（脚本见 report/narrative.md 附录A）。三档情景数值已登记于 metrics.json 的 floor_area_ratio.sensitivity_scenarios [metric:floor_area_ratio]。
+
 ## 营造法式：判断落地的生成规则
 
 未来构想不是被"建成"的，而是在一套法式下被"养大"的。本方案把落地纪律写成可执行的生成规则——提交的终点不是图纸而是规则，图纸只是规则的实例 [source:DESIGN-RESEARCH-PACK]。
@@ -140,6 +154,8 @@ iteration: "v1.2"
 **居住与照护应答（社会判断的建筑形式）。** 居住应答收入波动：建议 1.5 钥匙单元不低于 50%、面积 45–90 平方米，过渡性住房 20% 由社区基金持有。照护作为基础设施而非配套：每个院落细胞东南角地面层设托育与日间照料 400–800 平方米、服务半径不超过 150 米——再生产劳动（照护、育儿、做饭）必须在空间显形，这是双情景纪律在居住层的直接落地，比例与服务半径均为概念建议值 [source:LIT-FUTURE-SOCIETY] [source:DESIGN-RESEARCH-PACK]。
 
 **五步落地路径。** ①普查定遗存（段落遗存清单与权属图谱）→ ②图则定规则（类型配比、高度、贴线、最小可建单元、治理条款、三态标注）→ ③生成定形态（生成器按图则批量生成体量并机器校验）→ ④分期定先后（驿站与绿廊首期——便宜、快、聚人；院落细胞二期；塔楼视共识三期，每期独立成立）→ ⑤运营定反馈：验收指标实测——站点院落工作日/周末人流比 0.8–1.2、非消费停留覆盖不低于 60%、照护服务半径不超过 150 米、1.5 钥匙单元不低于 50%——不达标项回到第②步改图则。图则是活的，指标是它的编辑器 [depth:phasing_implementation]。
+
+**机器可校验证明（规则即交付物的坐实）。** 随包提供最小可用校验器（脚本全文见 report/narrative.md 附录A，Python 编写，仅读取包内文件、无外部请求）：在 EPSG:4548 下读取提交的 617 个建筑体量，对 G1 结构法则中可机器化的条款逐条校验——檐口基准带/过渡带高度上限（按楼层×3.0 米折算对照距绿廊分带）、塔楼占地比 ≤25%、塔楼面宽 ≤40 米——并输出逐条报告 visual/assets/fashi_validation_report.json（当前校验结果 overall=pass，617 个体量 0 违规）；G2–G5 中依赖图则参数的条款如实标注 not_machine_checkable，作为图则深化的校验接口预留。校验未通过项即图则修订项——规则即交付物，校验器即证明。
 
 ## AI 治理机制：全生命周期备案、数据三分类与人工复核
 
@@ -177,6 +193,8 @@ iteration: "v1.2"
 
 分期复算面积：近期约 1.86 平方公里、中期约 5.80 平方公里、远期约 3.74 平方公里（临时边界口径）[data:geometry/phasing.geojson#PH-001] [depth:phasing_implementation]。更新项目清单（概念建议）：P01 遗产公园中段首开段与驿站 05–08；P02 原点社区人才公寓与社区服务综合体；P03 荣誉墙广场与展示廊；P04 大钟寺智能原生商业改造示范；P05 主轴南段慢行贯通；P06 众智园研发街坊一期；P07 开源市集广场；P08 测试验证场景三段；P09 小月河蓝绿楔修复；P10 导视与品牌系统。每个项目的实施主体、投融资与政策接口均待专业团队深化，公众参与机制建议贯穿各期 [source:AGENT-TASKBOOK]。
 
+**防绅士化与包容性量化目标（概念建议值）。** 把"不被挤出"从原则落成三条可监测线：①保障性/可负担住房占比下限 ≥30%（概念下限，权属台账年度核对）；②在地居民就业转化率 ≥40%（概念目标，社区就业台账与技能再培训记录年度统计并公开）；③防挤出触发线——周边居住租金年涨幅超过全市均值 1.5 倍即触发，触发后按预案上调保障比例与社区基金反哺力度。三条线已正式登记 metrics.json（含 baseline / target / measurement_method），与社区基金 ≥50% 反哺机制联动；数值均为概念建议，待专项研究与主管部门确认 [metric:affordable_housing_ratio_floor] [metric:original_resident_employment_conversion_ratio] [metric:anti_displacement_trigger_index]。
+
 **长期运营（任务 agent.6）。** 建议"一赛一节一墙一廊"的年度活动体系：全球 AI 城市黑客松（赛）、京张源点开发者节（节）、荣誉墙年度铭刻（墙）、展示廊常设展（廊）；品牌 IP 与传播视觉与 Logo 系统同源；开发者社区以"贡献—铭刻—转化"闭环运营：代码与创意贡献进入荣誉体系，优秀项目对接场景测试与孵化空间；国际传播以双语叙事与开放数据年报为骨架。所有活动安排均为概念建议，不构成政府确定安排或资金承诺 [source:AGENT-TASKBOOK] [depth:renewal_project_list]。
 
 **城市即试验场（经济发动机）。** 分配端之外必须回答"钱从哪来"：廊道是海淀 AI 产业最缺的真实城市测试环境。建议设分级测试位产品——L1 廊道段（机器人配送与人机共行）、L2 院落单元（适老化交互与照护机器人）、L3 全廊道（夜间无人机物流），按"测试时段×空间等级×数据规格"收费，社区基金为收费主体，不低于 50% 收益反哺驿站、照护簇与荣誉体系运营，让"承认经济"获得现金流。测试准入由社区委员会与数据信托双签，居住界面不开放 L2 以上测试，每年公开测试与收益报告。这是海淀区位红利的直接变现，也是场景卡从概念到运营的转正机制（SCN-05 人机共行测试段可转正为 L1 固定段）；全部为概念建议，不构成收费许可 [source:DESIGN-RESEARCH-PACK] [source:AGENT-TASKBOOK]。
@@ -190,6 +208,10 @@ iteration: "v1.2"
 **数字原型：干预前后步行仿真（循证闭环）。** AI 主导的设计竞赛中"原型=仿真"：本方案以节点 B（五道口—六道口段）为样区，对比现状 OSM 步行路网（1035 条边）与干预网络（增加绿廊脊柱与 5 条穿越通道）的 60 组随机 OD 最短路径。结果（仿真值，非实测）：沿线步行 OD 绕行系数从 1.44 降至 1.23、缩短 15.1%——绿廊把"不可步行的铁轨"变成步行高速；横向穿越 OD 仅缩短 1.7%——五道口—六道口段横向渗透本已较好，穿越通道的价值主战场在穿越间距约 2.07 公里的北/南段。仿真直接修正了均质化设计假设：图则按段落差异化配置穿越密度。所有仿真指标与实测指标的换算关系待真实数据校准，不作为工程结论 [source:DESIGN-RESEARCH-PACK] [depth:metrics_recalculation]。
 
 ![数字原型仿真：干预前后步行OD绕行系数对比（节点B样区，仿真值）](assets/figures/digital-prototype-sim.png)
+
+**可复现性。** 仿真方法与参数全部公开：边数据来源为 OpenStreetMap 步行路网（osmnx 抓取，2026-07），现状网络 1035 条边；干预网络在其上叠加绿廊脊柱与 5 条穿越通道；OD 采样为样区内随机点 60 组（随机种子 20260717，numpy RandomState）；路径为 Dijkstra 最短路径，绕行系数=网络距离/欧氏距离。参数与聚合结果登记于 visual/assets/digital_prototype_simulation.json，复算脚本全文见 report/narrative.md 附录A（仅读取包内文件），一致性校验输出见 visual/assets/digital_prototype_check.json（校验通过，统计量可复算、图可重出）；逐条 OD 原始表由团队留存可按需提供。仿真值为概念验证，不作为工程结论。
+
+![基线—干预对比：沿线OD缩短15.1%，横向OD缩短1.7%（仿真值）](assets/figures/digital-prototype-ab.png)
 
 ![核心指标复算与证据链](assets/figures/metrics-evidence.png)
 

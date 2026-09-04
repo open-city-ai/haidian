@@ -1,0 +1,28 @@
+{
+  "schema_version": "0.1.0",
+  "title_zh": "数字原型步行仿真：参数与聚合结果",
+  "description_zh": "数字原型步行仿真的参数与聚合结果（仿真值，非实测）。聚合均值保留 4 位小数，正文显示为四舍五入值（1.44/1.23、15.1%、1.7%）。逐条 OD 原始表（含 OSM 抓取缓存）由团队留存，可按需提供。",
+  "script": "digital_prototype.py（脚本全文见 report/narrative.md 附录A；仅读取包内文件，无外部请求）",
+  "parameters": {
+    "sample_area_zh": "节点 B（五道口—六道口段）",
+    "sample_area_en": "Node B (Wudaokou-Liudaokou segment)",
+    "network_source": "OpenStreetMap walking network via osmnx, fetched 2026-07",
+    "existing_network_edges": 1035,
+    "intervention_additions": "绿廊脊柱 + 5 条穿越通道",
+    "od_pairs": 60,
+    "random_seed": 20260717,
+    "sampling": "numpy RandomState(seed) 样区内均匀随机点配对",
+    "path_algorithm": "Dijkstra shortest path",
+    "detour_definition": "网络距离 / 欧氏距离"
+  },
+  "aggregate": {
+    "along_corridor_detour_before": 1.4425,
+    "along_corridor_detour_after": 1.225,
+    "along_corridor_reduction_declared": 0.1507799,
+    "cross_corridor_detour_before": 1.3087,
+    "cross_corridor_detour_after": 1.2864,
+    "cross_corridor_reduction_declared": 0.0170398,
+    "crossing_spacing_note_zh": "五道口—六道口段横向渗透本已较好；穿越通道价值主战场在穿越间距约 2.07 公里的北/南段"
+  },
+  "consistency_check_output": "visual/assets/digital_prototype_check.json"
+}

@@ -1,30 +1,65 @@
 {
- "schema_version": "0.1.0",
- "assumptions": [
-  {
-   "id": "A-CONTROLS-001",
-   "status": "pending_professional_confirmation",
-   "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
-   "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
-  },
-  {
-   "id": "A-BOUNDARY-001",
-   "status": "pending_official_data",
-   "statement": "总体设计范围与三处重点区域均使用仓库临时粗略几何（provisional_rough）；官方精确边界未发布。",
-   "impact": "全部面积指标为低置信度临时复算值；官方边界发布后须重算 site_area、green_ratio、public_space_ratio 及全部分区面积。",
-   "recalc_trigger": "official SITE_BOUNDARY / KEY_AREA polygons published"
-  },
-  {
-   "id": "A-FLOOR-001",
-   "status": "pending_official_data",
-   "statement": "概念建筑体量按平均6层估算总建筑量，仅为设计量级参考。",
-   "impact": "total_floor_area_sqm 为概念设计量，不等于法定开发强度；容积率/高度/密度控制值保持 unknown。"
-  },
-  {
-   "id": "A-ROAD-001",
-   "status": "concept_assumption",
-   "statement": "慢行网络面积按12m平均断面估算。",
-   "impact": "road_area_sqm 为概念口径，道路红线以官方为准。"
-  }
- ]
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "总体设计范围与三处重点区域均使用仓库临时粗略几何（provisional_rough）；官方精确边界未发布。",
+      "impact": "全部面积指标为低置信度临时复算值；官方边界发布后须重算 site_area、green_ratio、public_space_ratio 及全部分区面积。",
+      "recalc_trigger": "official SITE_BOUNDARY / KEY_AREA polygons published"
+    },
+    {
+      "id": "A-FLOOR-001",
+      "status": "pending_official_data",
+      "statement": "概念建筑体量按平均6层估算总建筑量，仅为设计量级参考。",
+      "impact": "total_floor_area_sqm 为概念设计量，不等于法定开发强度；容积率/高度/密度控制值保持 unknown。"
+    },
+    {
+      "id": "A-ROAD-001",
+      "status": "concept_assumption",
+      "statement": "慢行网络面积按12m平均断面估算。",
+      "impact": "road_area_sqm 为概念口径，道路红线以官方为准。"
+    },
+    {
+      "id": "A-HEIGHT-001",
+      "status": "pending_official_data",
+      "statement": "建筑高度法定控制条件未发布；方案以营造法式 G1 高度带（18/24/50 米）与塔楼 60/80/100 米分级意向表达。",
+      "impact": "building_height_m 保持 unknown；高度相关设计均为概念意向，非法定控制。",
+      "recalc_trigger": "official height controls published → 按 controls 复核 G1 高度带与塔楼分级，由随包机器校验器复核（脚本见 report/narrative.md 附录A）"
+    },
+    {
+      "id": "A-DENSITY-001",
+      "status": "pending_official_data",
+      "statement": "建筑密度与退线法定控制条件未发布。",
+      "impact": "building_density 为概念体量复算值；贴线率按 G4 界面法则意向控制。",
+      "recalc_trigger": "official density/setback controls published → 按地块复核 building_density 与贴线率"
+    },
+    {
+      "id": "A-REDLINE-001",
+      "status": "pending_official_data",
+      "statement": "道路红线未发布；慢行网络按 12m 平均断面概念估算。",
+      "impact": "road_area_sqm 与 road_area_ratio 为概念口径。",
+      "recalc_trigger": "official road redlines published → 按红线复算 road_area_sqm、road_area_ratio 并校核慢行断面"
+    },
+    {
+      "id": "A-OWNERSHIP-001",
+      "status": "pending_professional_confirmation",
+      "statement": "现状建筑权属未获得清权资料。",
+      "impact": "拆改留结论、更新项目清单与分期均为概念建议。",
+      "recalc_trigger": "权属调查完成 → 更新拆改留分类、项目清单 P01–P10 与分期图层"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "status": "pending_professional_confirmation",
+      "statement": "市政承载与工程条件未获得清权资料。",
+      "impact": "市政融合建议（端侧算力、分布式能源、雨洪入地）为意向，设施布局待专项校核。",
+      "recalc_trigger": "市政专项承载评估完成 → 校核并调整设施布局与测试场景 T-02 并网方案"
+    }
+  ]
 }

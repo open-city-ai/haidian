@@ -79,8 +79,9 @@ footer{padding:24px 6vw;font-size:12px;color:#777}
 <button data-fig="dual-scenario-masterplans">Twin master plans</button>
 <button data-fig="digital-prototype-sim">Digital prototype</button>
 <button data-fig="metrics-evidence">Metrics evidence</button>
+<button data-fig="digital-prototype-ab">Baseline vs intervention</button>
 </div>
-<figure><img id="figimg" src="../assets/figures/site-overview.png" alt="proposal drawings"><figcaption id="figcap">Fig.1 Overall structure: one spine, three areas, two wings, many nodes (overview map with the three scope levels 43.6/11.4 km² and 368.4 ha)</figcaption></figure>
+<figure><img id="figimg" src="../assets/figures/site-overview.en.png" alt="proposal drawings"><figcaption id="figcap">Fig.1 Overall structure: one spine, three areas, two wings, many nodes (overview map with the three scope levels 43.6/11.4 km² and 368.4 ha)</figcaption></figure>
 </section>
 
 <section><h2>AI governance | Filing · three-tier data · human review</h2>
@@ -152,14 +153,15 @@ var figs={
 "jingzhang-loop":"Fig.5 The Jing-Zhang Ring: slow chord + rail arc loop, fast/slow dual systems",
 "dual-scenario-masterplans":"Fig.6 Twin master plans: same form, two destinies (A warning / B formal)",
 "digital-prototype-sim":"Fig.7 Digital prototype: walking OD detour factor 1.44 to 1.23 (simulated values)",
-"metrics-evidence":"Fig.8 Core metrics recalculation and evidence chain"
+"metrics-evidence":"Fig.8 Core metrics recalculation and evidence chain",
+"digital-prototype-ab":"Fig.9 Baseline vs intervention: along-corridor −15.1%, cross-corridor −1.7% (simulated, script-reproducible)"
 };
 var tabs=document.querySelectorAll("#figtabs button");
 var img=document.getElementById("figimg"),cap=document.getElementById("figcap");
 tabs.forEach(function(b){b.addEventListener("click",function(){
 tabs.forEach(function(x){x.className=""});b.className="on";
 var k=b.getAttribute("data-fig");
-img.src="../assets/figures/"+k+".png";cap.textContent=figs[k];});});
+img.src="../assets/figures/"+k+".en.png";cap.textContent=figs[k];});});
 var s=document.getElementById("cmpslider");
 if(s){s.addEventListener("input",function(){
 document.querySelector(".cmp .b").style.clipPath="inset(0 0 0 "+s.value+"%)";});}
