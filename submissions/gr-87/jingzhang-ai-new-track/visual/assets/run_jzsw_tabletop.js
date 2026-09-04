@@ -99,9 +99,9 @@ function main() {
   console.log('通过：' + passed + '/' + results.length);
   console.log('------------------------------------------------------------');
 
-  // 可证伪性对照：五大 fail-open 反例 → 触发规则
-  const guardIds = ['N1', 'N2', 'N3', 'N4', 'N5'];
-  console.log('可证伪性对照（防 fail-open）：');
+  // 可证伪性对照：核心 fail-open 守卫反例 → 触发规则
+  const guardIds = ['N1', 'N2', 'N3', 'N4', 'N5', 'N13', 'N14', 'N15', 'N16'];
+  console.log('可证伪性对照（防 fail-open 守卫反例）：');
   results.filter(function (r) { return guardIds.indexOf(r.tc.id) !== -1; }).forEach(function (r) {
     console.log('  反例 ' + r.tc.id + ' → ' + r.tc.expected_rule + '：' + r.tc.expected_reason);
   });

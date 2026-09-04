@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * check_switchback.js — JZ-SWITCHBACK-001「人字回退」四态回退核验器
+ * check_switchback.js — JZ-SWITCHBACK-001「人字回退」四态回退核验器 (v0.6)
  *
  * 机制来源：仿京张铁路青龙桥『人』字形线路（双机车折返爬坡）。
  * 「京张·新轨」AI 公共服务遇障碍时，须像人字线机车一样折返回人工轨道
@@ -9,9 +9,9 @@
  * 零依赖：仅使用 Node.js 内置模块（fs/path），不引用任何第三方包。
  *
  * 四态：
- *   normal   正常运行（三轨证据完整 + 6步公共服务链全链验证）
- *   degraded 降级人工（人工接管运行；证据有缺口或障碍未清除时折返至此）
- *   paused   暂停（障碍高 / 人工接管不可用 / 死磕上限，等待人工重新规划）
+ *   normal   正常运行（三轨证据完整 + 6步公共服务链全链验证 + 四方主体联合签收）
+ *   degraded 降级人工（人工接管运行；证据有缺口、夜间降噪或障碍未清除时折返至此）
+ *   paused   暂停（障碍高 / 致命 / 人工不可用 / 死磕上限 / 跨区未授权 / 主体分歧，等待人工处置）
  *   retired  退场（三轨证据全缺，终态不可复活）
  *
  * 三轨证据：history_track(历史轨) / track_track(轨道轨) / data_track(数据轨)
@@ -46,6 +46,9 @@ const RULES = {
   R9: 'retired 为终态，任何事件不得复活',
   R10: '降级运行许可：人工接管可用且障碍未达致命/死磕上限时，允许折返 degraded 态运行',
   R11: '死磕上限：已尝试次数>=3 且障碍未清除，必须折返回 paused，交由人工重新规划',
+  R12: '跨行政辖区（海淀/昌平/朝阳）未获两地联合授权：必须折返 paused 态，禁止擅自跨界扩展',
+  R13: '四方复核主体（规划师/居民/运营/审计）存在分歧（stakeholder_unanimous=false）：恢复请求一律驳回，维持 paused 态',
+  R14: '夜间低噪时段（22:00-07:00）噪声超标：必须折返降级/暂停低速运行',
 };
 
 /** 将输入值收敛为 [min,max] 内的整数；非法值回退到 fallback */
@@ -73,6 +76,9 @@ function normalize(event) {
     chain_steps_verified: clampInt(ev.chain_steps_verified, 0, 6, 0),
     test_section: typeof ev.test_section === 'string' ? ev.test_section : 'JZ-SW1',
     service: typeof ev.service === 'string' ? ev.service : 'jz-ai-00',
+    cross_jurisdiction_unauthorized: !!ev.cross_jurisdiction_unauthorized,
+    stakeholder_unanimous: ev.stakeholder_unanimous !== false,
+    night_quiet_violation: !!ev.night_quiet_violation,
   };
 }
 
@@ -97,6 +103,9 @@ function makeResult(verdict, ruleId, targetState, reason, extra) {
 
 /** 冷启动评估（current_state 为 none 或未知） */
 function evaluateStart(ev, ctx, R) {
+  if (ev.cross_jurisdiction_unauthorized) {
+    return R('paused', 'R12', '跨行政辖区未获两地联合授权（cross_jurisdiction_unauthorized=true），禁止启动，折返暂停');
+  }
   if (!ctx.evidenceComplete) {
     const v = ev.human_takeover_available ? 'degraded' : 'paused';
     return R(v, 'R1', '证据缺口（缺[' + describeGap(ctx.missingTracks, ctx.chainComplete) + ']），不可进入 normal，折返' + v);
@@ -104,6 +113,9 @@ function evaluateStart(ev, ctx, R) {
   if (ctx.critical) return R('paused', 'R6', '致命障碍（>=3），禁止启动，折返暂停');
   if (ctx.exhausted) return R('paused', 'R11', '启动即达死磕上限（已尝试 ' + ev.attempts + ' 次），折返暂停');
   if (ctx.highNoHuman) return R('paused', 'R2', '障碍>=高且人工接管不可用，折返暂停');
+  if (ev.night_quiet_violation) {
+    return R(ev.human_takeover_available ? 'degraded' : 'paused', 'R14', '夜间低噪时段超标，折返' + (ev.human_takeover_available ? '降级' : '暂停'));
+  }
   if (ctx.hasObstacle) return R('degraded', 'R10', '遇障但人工接管可用，折返降级人工运行');
   return R('normal', 'R1', '三轨证据完整、链验证齐全、无障碍，允许进入 normal');
 }
@@ -146,6 +158,11 @@ function check(event) {
     return R('retired', 'R5', '三轨证据全缺' + hideNote + '：证据完整性崩塌，服务必须退场');
   }
 
+  // 跨辖区未授权运行拦截（R12）
+  if (ev.cross_jurisdiction_unauthorized) {
+    return R('paused', 'R12', '跨行政辖区未获两地联合授权（cross_jurisdiction_unauthorized=true），强制折返暂停');
+  }
+
   // 冷启动：current_state 为 none 或未知状态
   if (ev.current_state === 'none' || STATES.indexOf(ev.current_state) === -1) {
     return evaluateStart(ev, {
@@ -169,6 +186,9 @@ function check(event) {
       if (critical) return R('paused', 'R6', '致命障碍（>=3），必须折返暂停，不硬扛');
       if (exhausted) return R('paused', 'R11', '已尝试 ' + ev.attempts + ' 次未果，达到死磕上限，折返暂停');
       if (highNoHuman) return R('paused', 'R2', '障碍>=高且人工接管不可用，必须折返暂停');
+      if (ev.night_quiet_violation) {
+        return R(ev.human_takeover_available ? 'degraded' : 'paused', 'R14', '夜间低噪时段超标，折返' + (ev.human_takeover_available ? '降级' : '暂停'));
+      }
       if (hasObstacle) return R('degraded', 'R10', '遇障但人工接管可用，折返降级人工运行');
       return R('normal', 'R1', '三轨证据完整、链验证齐全、无障碍，维持 normal');
     }
@@ -176,11 +196,15 @@ function check(event) {
       if (critical) return R('paused', 'R6', '致命障碍（>=3），降级态也必须折返暂停');
       if (exhausted) return R('paused', 'R11', '降级态已尝试 3 次未果，达到死磕上限，折返暂停');
       if (highNoHuman) return R('paused', 'R2', '人工接管不可用且障碍>=高，折返暂停');
+      if (ev.night_quiet_violation) return R('degraded', 'R14', '夜间低噪时段超标，维持降级低速运行');
       if (!evidenceComplete) return R('degraded', 'R1', '证据缺口，维持降级态，不得恢复 normal');
       if (hasObstacle) return R('degraded', 'R8', '障碍未清除，不得恢复 normal，维持降级折返运行');
       return R('normal', 'R8', '障碍清除且证据完整，允许恢复 normal');
     }
     case 'paused': {
+      if (!ev.stakeholder_unanimous) {
+        return R('paused', 'R13', '四方复核主体（规划师/居民/运营/审计）存在分歧（stakeholder_unanimous=false），恢复请求驳回，维持暂停');
+      }
       if (partialFix) return R('paused', 'R4', '只修最差一项（fix_scope=single_item/partial），禁止跳过整段重测，恢复请求驳回');
       if (critical) return R('paused', 'R6', '致命障碍持续，维持暂停');
       if (exhausted) return R('paused', 'R11', '死磕上限已达，维持暂停，交由人工重新规划');
@@ -188,7 +212,7 @@ function check(event) {
       if (hasObstacle && ev.human_takeover_available) return R('degraded', 'R10', '人工接管可用且障碍未达致命，折返降级运行');
       if (hasObstacle) return R('paused', 'R2', '障碍未清除，维持暂停');
       if (ev.consecutive_normal_periods >= 2) {
-        return R('normal', 'R3', '连续 ' + ev.consecutive_normal_periods + ' 期合格，达到恢复条件，恢复 normal');
+        return R('normal', 'R3', '连续 ' + ev.consecutive_normal_periods + ' 期合格且四方主体全票一致，达到恢复条件，恢复 normal');
       }
       return R('paused', 'R3', '仅 ' + ev.consecutive_normal_periods + ' 期合格，须连续两期才可恢复（恢复缓慢不对称设计）');
     }

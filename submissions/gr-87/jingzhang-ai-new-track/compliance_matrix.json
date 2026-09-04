@@ -42,7 +42,14 @@
         "OFFICIAL-ANNOUNCEMENT",
         "AGENT-TASKBOOK",
         "BOUNDARY-SOURCE",
-        "KEY-AREA-SOURCE"
+        "KEY-AREA-SOURCE",
+        "DATA-SRC-CASE-STANFORD-RESEARCH-PARK",
+        "DATA-SRC-CASE-PANGYO-TECHNO-VALLEY",
+        "DATA-SRC-CASE-ONE-NORTH-SINGAPORE",
+        "DATA-SRC-CASE-KINGS-CROSS-REGENERATION",
+        "DATA-SRC-CASE-AMSTERDAM-SMART-CITY",
+        "DATA-SRC-CASE-SHIBUYA-TOD",
+        "DATA-SRC-CASE-KENDALL-SQUARE-MIT"
       ],
       "assumption_ids": [
         "A-CONTROLS-001"
@@ -52,7 +59,8 @@
         "KEY_AREAS_TRUST",
         "LAND_USE_TOPOLOGY",
         "VISUAL_STATIC"
-      ]
+      ],
+      "acceptance_zh": "缺少 5-8 个全球AI创新生态案例或案例未逐行绑定公开来源及不可直接迁移边界的判定为未完成。"
     },
     {
       "requirement_id": "1.3.2",
@@ -1002,7 +1010,14 @@
         "OFFICIAL-ANNOUNCEMENT",
         "AGENT-TASKBOOK",
         "BOUNDARY-SOURCE",
-        "KEY-AREA-SOURCE"
+        "KEY-AREA-SOURCE",
+        "DATA-SRC-CASE-STANFORD-RESEARCH-PARK",
+        "DATA-SRC-CASE-PANGYO-TECHNO-VALLEY",
+        "DATA-SRC-CASE-ONE-NORTH-SINGAPORE",
+        "DATA-SRC-CASE-KINGS-CROSS-REGENERATION",
+        "DATA-SRC-CASE-AMSTERDAM-SMART-CITY",
+        "DATA-SRC-CASE-SHIBUYA-TOD",
+        "DATA-SRC-CASE-KENDALL-SQUARE-MIT"
       ],
       "assumption_ids": [
         "A-CONTROLS-001"
@@ -1016,7 +1031,7 @@
       "mechanism_refs": [
         "JZ-SWITCHBACK-001"
       ],
-      "acceptance_zh": "缺少 5-8 个案例或案例未标注不可直接迁移的判定为未完成。",
+      "acceptance_zh": "缺少 5-8 个全球AI创新生态案例或案例未逐行绑定公开来源及不可直接迁移边界的判定为未完成。",
       "evidence_limit_zh": "案例比较不构成企业合作或投资主张。",
       "v0.4_note_zh": "NT-6 服务契约六步（定标/计时/接管/告知/复核/退场）缺一不可转入 normal 态；机制可执行制品见 mechanism_register.executable_artifacts。"
     },
@@ -1134,9 +1149,10 @@
       "mechanism_refs": [
         "JZ-SWITCHBACK-001"
       ],
-      "acceptance_zh": "朝圣地标不足 3 个或未绑定折返试验段的判定为未完成。",
+      "acceptance_zh": "朝圣地标不足 3 个或未建立 8 维公共空间组件库（组件类型/空间落位/服务对象/场景/人工等价/无障碍/维护/暂停撤除）的判定为未完成。",
       "evidence_limit_zh": "地标概念不证明已批准建设。",
-      "v0.4_note_zh": "NT-6 服务契约六步（定标/计时/接管/告知/复核/退场）缺一不可转入 normal 态；机制可执行制品见 mechanism_register.executable_artifacts。"
+      "v0.4_note_zh": "NT-6 服务契约六步（定标/计时/接管/告知/复核/退场）缺一不可转入 normal 态；机制可执行制品见 mechanism_register.executable_artifacts。",
+      "v0.6_note_zh": "v0.6 补充标准化公共空间组件库（C-INF-01 至 C-INF-06），形成 8 维可落地、可管养、可回退矩阵。"
     },
     {
       "requirement_id": "agent.5",
@@ -1252,17 +1268,18 @@
       "mechanism_refs": [
         "JZ-SWITCHBACK-001"
       ],
-      "acceptance_zh": "活动体系缺少叫停/退出/人字折返路径或写成确定安排的判定为未完成。",
+      "acceptance_zh": "活动体系缺少 6 维可验收运营矩阵（责任角色/频次/前置/退出/成本类别）或写成确定承诺的判定为未完成。",
       "evidence_limit_zh": "运营机制不构成已确定政府安排或资金承诺。",
-      "v0.4_note_zh": "NT-6 服务契约六步（定标/计时/接管/告知/复核/退场）缺一不可转入 normal 态；机制可执行制品见 mechanism_register.executable_artifacts。"
+      "v0.4_note_zh": "NT-6 服务契约六步（定标/计时/接管/告知/复核/退场）缺一不可转入 normal 态；机制可执行制品见 mechanism_register.executable_artifacts。",
+      "v0.6_note_zh": "v0.6 升级为 6 维可验收运营矩阵（OP-01 至 OP-06：年度活动/开发者社区/场景开放/地标运营/国际传播/招引转化），杜绝虚构主体与资金承诺。"
     }
   ],
   "mechanism_register": {
-    "version": "v0.5",
+    "version": "v0.6",
     "mechanism_id": "JZ-SWITCHBACK-001",
     "mechanism_name_zh": "人字回退（Switchback Fallback）",
     "mechanism_name_en": "Switchback Fallback",
-    "version_note_zh": "v0.5：switchback_states 四态 normal/degraded/paused/retired 不变；NT-6 服务契约六步不变；可执行制品改只读复演（不改写包内文件）；三处折返试验段以 geometry/key_areas.geojson 的 mechanism_window_id/switchback_window_id 属性空间落位；法条条号核校（生成式AI办法第15条、无障碍环境建设法第39条、国办发〔2020〕45号政策文件）。",
+    "version_note_zh": "v0.6：四态状态机升级至 24 组用例桌面演练（8接受/16拒绝，零 fail-open，只读复演）；NT-6 复核步强化四方主体（规划师/居民/运营/审计）联合签收机制；引入 24h 四时段空间-AI协同基线；三处折返试验段落位图层；交付 18 条勘误台账 (errata.json) 与全量清权台账 (rights_ledger.json)。",
     "heritage_binding_zh": "京张铁路1905-1909年建成、詹天佑任总工程师、中国自主设计修建第一条干线铁路、青龙桥'人'字形线路双机车折返爬坡（公开史料常识，仅作命名与叙事锚点，不等同于已认证历史结论）。AI 服务遇障碍时如人字线机车折返回人工轨道。",
     "service_chain_steps": [
       "choose",
@@ -1310,8 +1327,8 @@
         "name_zh": "复核",
         "name_en": "Review",
         "jingzhang_naming_zh": "折返复测",
-        "requirement_zh": "申诉限时回应 + 独立复盘",
-        "timeout_action_zh": "逾期即暂停"
+        "requirement_zh": "申诉限时回应 + 四方主体（规划师/居民/运营/审计）联合签收复盘",
+        "timeout_action_zh": "逾期或分歧即暂停"
       },
       {
         "step": "sunset",
@@ -1337,7 +1354,7 @@
       {
         "path": "visual/assets/run_jzsw_tabletop.js",
         "kind": "tabletop_drill_script",
-        "role_zh": "桌面演练（18 用例：6 接受 12 拒绝，零 fail-open；只读复演）",
+        "role_zh": "桌面演练（24 用例：8 接受 16 拒绝，零 fail-open；只读复演）",
         "run": "node visual/assets/run_jzsw_tabletop.js"
       },
       {
@@ -1355,6 +1372,16 @@
         "path": "visual/assets/field-census-evidence.json",
         "kind": "evidence",
         "role_zh": "同场测量证据：human_fallback 17.1% / 退出阈值 55.3% / 法条引用 49.9%"
+      },
+      {
+        "path": "visual/assets/errata.json",
+        "kind": "errata_ledger",
+        "role_zh": "方案演进与设计勘误台账（18 条历史纠偏与边界备忘）"
+      },
+      {
+        "path": "visual/assets/rights_ledger.json",
+        "kind": "rights_ledger",
+        "role_zh": "资产版权与授权清权台账（40+ 提交文件 100% 清权合规）"
       }
     ],
     "switchback_states": [

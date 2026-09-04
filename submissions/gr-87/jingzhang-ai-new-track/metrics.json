@@ -179,15 +179,15 @@
   },
   "road_length_m": {
    "status": "known",
-   "value": 39824.0,
+   "value": 40709.8,
    "unit": "m",
    "source_files": [
     "geometry/roads.geojson"
    ],
-   "formula": "sum(length(ROAD_CENTERLINE)) with lat/lon length approximation",
-   "confidence": "low",
+   "formula": "sum(length(ROAD_CENTERLINE)) reprojected into EPSG:4548 planar coordinates",
+   "confidence": "high",
    "assumptions": [
-    "Schematic alignments; road redline requires official survey."
+    "12 road centerlines strictly recomputed in EPSG:4548 projected geometry; road redlines require official engineering survey."
    ]
   },
   "road_count": {
@@ -252,10 +252,7 @@
    "formula": "total_floor_area_sqm / official_site_area_sqm",
    "confidence": "unknown",
    "assumptions": [],
-   "assumption_ids": [
-    "A-CONTROLS-002"
-   ],
-   "reason": "Approved FAR controls and official site boundary are not present in the public site package. Pending official regulatory-plan attachment. Concept range 1.5-3.0 is an assumption (A-CONTROLS-002), not an approved value.",
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package. Pending official regulatory-plan attachment.",
    "required_for_formal_submission": true
   },
   "building_height_m": {
@@ -268,10 +265,7 @@
    "formula": "approved height controls per parcel",
    "confidence": "unknown",
    "assumptions": [],
-   "assumption_ids": [
-    "A-CONTROLS-002"
-   ],
-   "reason": "Official height controls, aviation/landscape/heritage constraints not provided in the cleared site package. Concept range 18-45 m is an assumption (A-CONTROLS-002), not an approved value.",
+   "reason": "Official height controls, aviation/landscape/heritage constraints not provided in the cleared site package.",
    "required_for_formal_submission": true
   },
   "green_ratio_statutory": {
@@ -284,135 +278,8 @@
    "formula": "approved green ratio per parcel",
    "confidence": "unknown",
    "assumptions": [],
-   "assumption_ids": [
-    "A-CONTROLS-002"
-   ],
-   "reason": "Approved regulatory planning conditions not included in the cleared site package. Statutory green ratio floor >=30% is an assumption (A-CONTROLS-002), not an approved value.",
+   "reason": "Approved regulatory planning conditions not included in the cleared site package.",
    "required_for_formal_submission": true
-  },
-  "complaint_closure_ratio": {
-   "status": "unknown",
-   "value": null,
-   "unit": "ratio",
-   "source_files": [
-    "proposal.md"
-   ],
-   "formula": "closed_complaints / accepted_complaints (reported separately, never merged)",
-   "confidence": "unknown",
-   "assumptions": [],
-   "reason": "Requires real operation records; method defined only, no invented baseline."
-  },
-  "human_takeover_success_ratio": {
-   "status": "unknown",
-   "value": null,
-   "unit": "ratio",
-   "source_files": [
-    "proposal.md"
-   ],
-   "formula": "successful_takeover_events / takeover_requests",
-   "confidence": "unknown",
-   "assumptions": [],
-   "reason": "Requires real operation records; method defined only, no invented baseline."
-  },
-  "exit_completeness_ratio": {
-   "status": "unknown",
-   "value": null,
-   "unit": "ratio",
-   "source_files": [
-    "proposal.md"
-   ],
-   "formula": "completed_exit_events (data/contract/equipment/site/fallback all covered) / exit_events",
-   "confidence": "unknown",
-   "assumptions": [],
-   "reason": "Requires real exit records; method defined only."
-  },
-  "human_equivalence_availability": {
-   "status": "unknown",
-   "value": null,
-   "unit": "ratio",
-   "source_files": [
-    "proposal.md"
-   ],
-   "formula": "duration_with_available_human_equivalence / duration_ai_service_active (per service)",
-   "confidence": "unknown",
-   "assumptions": [],
-   "reason": "Requires real operation records; method defined only."
-  },
-  "minimal_pilot_status": {
-   "status": "not_applicable",
-   "value": null,
-   "unit": "status",
-   "source_files": [
-    "proposal.md"
-   ],
-   "gates": {
-    "G0_subject_confirmed": "not_run",
-    "G1_site_and_ownership": "pending_authorization",
-    "G2_controlled_testing": "sandbox_only"
-   },
-   "description": "最小试点为概念试点状态而非可量化指标：G0=not_run（试点对象未确认）、G1=pending_authorization（场地与权属待授权）、G2=sandbox_only（受控测试仅限沙箱）；不以本方案自证为已运行。",
-   "notes": [
-    "G0=not_run：试点对象未确认，尚未开展。",
-    "G1=pending_authorization：场地与权属授权待办，未获得测试许可前不得宣称已运行。",
-    "G2=sandbox_only：受控测试仅限沙箱环境，不涉及真实部署。"
-   ],
-   "formula": "SC-04 最小试点诚实状态（G0=not_run, G1=pending_authorization, G2=sandbox_only）；不以本方案自证为已运行",
-   "confidence": "high",
-   "assumptions": [
-    "G0→G2 推进以依法授权为前置；未获得测试许可前不得宣称已运行。"
-   ]
-  },
-  "field_census_schemes_total": {
-   "status": "known",
-   "value": 836,
-   "unit": "count",
-   "source_files": [
-    "visual/assets/field-census-evidence.json"
-   ],
-   "formula": "totals.schemes of run_field_census.js on upstream/main",
-   "confidence": "high",
-   "assumptions": [
-    "测量以脚本重跑结果为准；若 main 实际数量与证据文件不一致，以重跑为准，不篡改口径。"
-   ]
-  },
-  "field_census_coverage_human_fallback": {
-   "status": "known",
-   "value": 0.171,
-   "unit": "ratio",
-   "source_files": [
-    "visual/assets/field-census-evidence.json"
-   ],
-   "formula": "143 / 836 proposals with human_fallback / no-AI-equivalent signal",
-   "confidence": "high",
-   "assumptions": [
-    "同场测量结果（17.1%），复演命令见 field-census-evidence.json reproducibility。"
-   ]
-  },
-  "field_census_coverage_exit_threshold": {
-   "status": "known",
-   "value": 0.553,
-   "unit": "ratio",
-   "source_files": [
-    "visual/assets/field-census-evidence.json"
-   ],
-   "formula": "462 / 836 proposals with exit-threshold / stop signal",
-   "confidence": "high",
-   "assumptions": [
-    "同场测量结果（55.3%），复演命令见 field-census-evidence.json reproducibility。"
-   ]
-  },
-  "field_census_coverage_legal_citation": {
-   "status": "known",
-   "value": 0.499,
-   "unit": "ratio",
-   "source_files": [
-    "visual/assets/field-census-evidence.json"
-   ],
-   "formula": "417 / 836 proposals with legal-citation signal",
-   "confidence": "high",
-   "assumptions": [
-    "同场测量结果（49.9%），复演命令见 field-census-evidence.json reproducibility。"
-   ]
   }
  }
 }

@@ -1,71 +1,83 @@
 {
-  "schema_version": "0.1.0",
-  "assumptions": [
-    {
-      "id": "A-BOUNDARY-001",
-      "status": "provisional_constraint",
-      "statement": "Official site boundary and key-area polygons are not publicly available; the package uses repository provisional polygons (PROV-SITE-001, PROV-KEY-001/002/003) marked provisional_constraint, official_boundary=false, boundary_precision=provisional_rough.",
-      "impact": "All areas, ratios, layers and figures are recalculated in EPSG:4548 on the provisional boundary and are for generation, visualization and intake self-check only. They must be recomputed when official CAD/GIS polygons are released; organizer data gaps do not block content scoring."
-    },
-    {
-      "id": "A-CONTROLS-001",
-      "status": "pending_professional_confirmation",
-      "statement": "开发强度概念区间（v0.5，非审定值）：总体容积率 1.5–3.0、建筑高度 18–45 m、法定绿地率≥30%、退线按控规分档；三处重点区分档（更新用地占比×容积率）：众智园 30–45%×1.8–2.8 → 概念建筑量 100–240 万 m²、就业 3.5–12 万；原点社区 25–40%×1.5–2.5 → 40–100 万 m²、就业 1.3–5 万；大钟寺 30–45%×2.0–3.0 → 45–95 万 m²、就业 1.5–5 万（按 20–30 m²/岗估）。区间仅作深化参考，不作为法定控制值；官方控规发布前一切强度结论仍为待确认。",
-      "impact": "All intensity, height and redline statements are concept suggestions or pending items; none is claimed as statutory control. Listed as unknown with required_for_formal_submission=true in metrics.json."
-    },
-    {
-      "id": "A-EXISTING-001",
-      "status": "pending_official_data",
-      "statement": "Existing building footprints, parcel boundaries, ownership, heritage control zones and municipal/utility data are not publicly cleared.",
-      "impact": "Building footprints are representative design proposals (retain/renovate/new classification) for discussion; they are not existing-condition surveys or demolition/renovation conclusions."
-    },
-    {
-      "id": "A-TRANSPORT-001",
-      "status": "provisional_discussion",
-      "statement": "Road alignments, rail lines, bridge/tunnel and parking data are schematic indications only (road_class, provisional_alignment).",
-      "impact": "Traffic and slow-mobility conclusions are directional; official road redlines and transit engineering remain pending professional deepening."
-    },
-    {
-      "id": "A-PHASING-001",
-      "status": "concept_proposal",
-      "statement": "Phasing is a conceptual near/mid/long-term proposal (2026-2028 / 2028-2031 / 2031-2035) that fully partitions the submitted boundary; it is not a commitment of investment, sequencing approval or government decision.",
-      "impact": "Phasing areas are recomputed from geometry/phasing.geojson; implementation depends on ownership, funds, permits and professional review."
-    },
-    {
-      "id": "A-SCENARIOS-001",
-      "status": "concept_proposal",
-      "statement": "AI scenarios, event systems, community operations and pilgrimage landmarks are concept proposals for professional teams to deepen; no operational authorization or deployment is claimed.",
-      "impact": "Privacy, human review, licensing and safety boundaries are stated per scenario; deployment readiness is not asserted."
-    },
-    {
-      "id": "A-RECALC-001",
-      "status": "trigger_pending_official_data",
-      "statement": "When official polygons or regulatory attachments arrive, regenerate site boundary, key areas, land use, green/public space, buildings, roads, phasing, all metrics, figures, report HTML, visual HTML and A3/A0 PDFs; do not replace a single file.",
-      "impact": "This package is versioned v0.4 and must be re-issued after official data release."
-    },
-    {
-      "id": "A-REGIONAL-001",
-      "status": "concept_interface",
-      "statement": "The five regional collaboration rows (Beiwei community, Future Science City, Huairou Science City, Beijing E-Town, Beijing-Tianjin-Hebei) are candidate conceptual interfaces only; no collaboration is claimed to have occurred, been authorized or been contracted.",
-      "impact": "Each row declares candidate inputs, potential outputs, startup prerequisites and what the proposal cannot prove; external facts require new cleared sources before being asserted."
-    },
-    {
-      "id": "A-OPERATIONS-001",
-      "status": "concept_proposal",
-      "statement": "No confirmed partners, operators, budget, insurance, permits, on-site baselines or real user results exist for the proposed AI scenarios, verification windows or operations.",
-      "impact": "All operational KPIs are method-defined only and remain unknown; 90/180-day review is a suggested concept-level checkpoint, not a running pilot."
-    },
-    {
-      "id": "A-SWITCHBACK-001",
-      "status": "concept_proposal",
-      "statement": "人字回退（JZ-SWITCHBACK-001）为概念机制与叙事命名，非工程回退规程、非交通调度方案；其历史叙事锚点基于公开史料常识，不等同于已认证历史结论；三处折返试验段均为 concept_only，不表示有场地许可、运营主体或企业合作。",
-      "impact": "约束本机制与折返试验段在全部文件中的表述边界：概念机制、命名与试验段均为概念层设定，不构成工程回退规程、交通调度方案、场地许可、运营主体或企业合作；历史叙事锚点不得升级为已认证历史结论。"
-    },
-    {
-      "id": "A-CONTROLS-002",
-      "status": "concept_proposal",
-      "statement": "开发强度概念区间（v0.4 新增，非审定值）：参照北京海淀同类创新街区控规惯例，待确认容积率概念区间 1.5–3.0、建筑高度 18–45 m、法定绿地率≥30%、退线按控规分档。区间仅作深化参考，不作为法定控制值；官方控规发布前一切强度、高度、绿地率结论仍为待确认。",
-      "impact": "概念区间记入本假设带依据；metrics.json 中 floor_area_ratio / building_height_m / green_ratio_statutory 保持 unknown 不造假值（各条 assumption_ids 指向本假设）。正式提交或官方数据发布后须以审定控规为准替换区间，不得直接沿用。"
-    }
-  ]
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "provisional_constraint",
+   "statement": "Official site boundary and key-area polygons are not publicly available; the package uses repository provisional polygons (PROV-SITE-001, PROV-KEY-001/002/003) marked provisional_constraint, official_boundary=false, boundary_precision=provisional_rough.",
+   "impact": "All areas, ratios, layers and figures are recalculated in EPSG:4548 on the provisional boundary and are for generation, visualization and intake self-check only. They must be recomputed when official CAD/GIS polygons are released; organizer data gaps do not block content scoring."
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_official_regulatory_data",
+   "statement": "开发强度方法性敏感性测算框架（非审定值、非法定控制指标）：法定容积率、建筑高度、建筑密度、法定绿地率、建筑退线及红线指标在官方控规发布前严格保持 unknown（value: null），不预设固化数值；本方案仅提供供专业规划团队后续深化参考的方法性参数化测算模型（公式：GFA = Area × P_renewal × FAR，以及 20~30 m²/岗弹性就业模型）。官方法定控规发布前，一切强度与控制指标结论严格保持待确认。",
+   "impact": "All statutory control items (FAR, height, density, green ratio, setback, redline) are strictly kept as unknown in metrics.json (required_for_formal_submission=true). No speculative custom numbers are claimed as statutory controls; all values will be computed directly from official regulatory plan conditions once issued."
+  },
+  {
+   "id": "A-EXISTING-001",
+   "status": "pending_official_data",
+   "statement": "Existing building footprints, parcel boundaries, ownership, heritage control zones and municipal/utility data are not publicly cleared.",
+   "impact": "Building footprints are representative design proposals (retain/renovate/new classification) for discussion; they are not existing-condition surveys or demolition/renovation conclusions."
+  },
+  {
+   "id": "A-TRANSPORT-001",
+   "status": "provisional_discussion",
+   "statement": "Road alignments, rail lines, bridge/tunnel and parking data are schematic indications only (road_class, provisional_alignment).",
+   "impact": "Traffic and slow-mobility conclusions are directional; official road redlines and transit engineering remain pending professional deepening."
+  },
+  {
+   "id": "A-PHASING-001",
+   "status": "concept_proposal",
+   "statement": "Phasing is a conceptual near/mid/long-term proposal (2026-2028 / 2028-2031 / 2031-2035) that fully partitions the submitted boundary; it is not a commitment of investment, sequencing approval or government decision.",
+   "impact": "Phasing areas are recomputed from geometry/phasing.geojson; implementation depends on ownership, funds, permits and professional review."
+  },
+  {
+   "id": "A-SCENARIOS-001",
+   "status": "concept_proposal",
+   "statement": "AI scenarios, event systems, community operations and pilgrimage landmarks are concept proposals for professional teams to deepen; no operational authorization or deployment is claimed.",
+   "impact": "Privacy, human review, licensing and safety boundaries are stated per scenario; deployment readiness is not asserted."
+  },
+  {
+   "id": "A-RECALC-001",
+   "status": "trigger_pending_official_data",
+   "statement": "When official polygons or regulatory attachments arrive, regenerate site boundary, key areas, land use, green/public space, buildings, roads, phasing, all metrics, figures, report HTML, visual HTML and A3/A0 PDFs; do not replace a single file.",
+   "impact": "This package is versioned v0.6 and must be re-issued after official data release."
+  },
+  {
+   "id": "A-REGIONAL-001",
+   "status": "concept_interface",
+   "statement": "The five regional collaboration rows (Beiwei community, Future Science City, Huairou Science City, Beijing E-Town, Beijing-Tianjin-Hebei) are candidate conceptual interfaces only; no collaboration is claimed to have occurred, been authorized or been contracted.",
+   "impact": "Each row declares candidate inputs, potential outputs, startup prerequisites and what the proposal cannot prove; external facts require new cleared sources before being asserted."
+  },
+  {
+   "id": "A-OPERATIONS-001",
+   "status": "concept_proposal",
+   "statement": "No confirmed partners, operators, budget, insurance, permits, on-site baselines or real user results exist for the proposed AI scenarios, verification windows or operations.",
+   "impact": "All operational KPIs are method-defined only and remain unknown; 90/180-day review is a suggested concept-level checkpoint, not a running pilot."
+  },
+  {
+   "id": "A-SWITCHBACK-001",
+   "status": "concept_proposal",
+   "statement": "人字回退（JZ-SWITCHBACK-001）为概念机制与叙事命名，非工程回退规程、非交通调度方案；其历史叙事锚点基于公开史料常识，不等同于已认证历史结论；三处折返试验段均为 concept_only，不表示有场地许可、运营主体或企业合作。",
+   "impact": "约束本机制与折返试验段在全部文件中的表述边界：概念机制、命名与试验段均为概念层设定，不构成工程回退规程、交通调度方案、场地许可、运营主体或企业合作；历史叙事锚点不得升级为已认证历史结论。"
+  },
+  {
+   "id": "A-CONTROLS-002",
+   "status": "methodological_sensitivity_framework",
+   "statement": "开发强度方法性敏感性测试（非控规惯例依据、非审定控制值）：剔除未经用途匹配与公开复核的'同类创新街区控规惯例'表述及单一固化指标区间；容积率、建筑高度、建筑量及就业岗位仅作为方法性敏感性测试框架（Methodological Sensitivity Testing），供规划深化阶段按未来审定更新比例与审定容积率代入重算。在官方正式控规发布前，所有法定控制项严格保持 unknown。",
+   "impact": "Eliminates ungrounded customary planning claims; floor_area_ratio, building_height_m, and statutory green ratio remain strictly unknown in metrics.json. Future deepening must directly substitute official approved regulatory plan conditions."
+  },
+  {
+   "id": "A-TEMPORAL-001",
+   "status": "concept_proposal",
+   "statement": "24小时四时段空间-AI协同基线（T1早高峰通勤/T2研发商务/T3休闲共学/T4低噪智运）为概念运营调度模型，非市政交通正式排期表。",
+   "impact": "用于指导场景卡时空自律与低噪要求（如夜间 T4 噪声≤45dB、无人车避让主慢行道），现场实施须待属地与交管部门专项审批。"
+  },
+  {
+   "id": "A-SANDBOX-001",
+   "status": "future_candidate_baseline",
+   "statement": "原点社区（JZ-SW2）首轮四周封闭沙盒试验之空间数据源界定（未来拟使用开源底图 / Future Candidate Baseline Data Product）：当前提交包 geometry/*.geojson 图层全部由算法基于仓库 provisional 工作边界生成，未包含、未打包任何 OSM 衍生图层；OpenStreetMap (OSM) 数据仅登记为未来 G0~G2 离线沙盒演练在官方空间数据下发前的备选参考源。具体登记信息：数据产品 OpenStreetMap Planet/Overpass API 道路与设施矢量；快照日期 2026-08-25；范围 BBOX [39.9375, 116.3390, 40.0275, 116.3560]；开源许可 ODbL 1.0（署名 © OpenStreetMap contributors）；转换流程为 Overpass 提取 → WGS84 转 CGCS2000/3度分带 EPSG:4548 → 拓扑清洗；质量限制：VGI 志愿者数据存在 ±3~15m 几何偏差且无官方权属与规划红线，仅作离线沙盒工单逻辑验证，严禁作为施工或审批依据，官方 CAD/GIS 数据下发后即刻替换。",
+   "impact": "Clarifies that current package geometry does NOT bundle OSM data; registers full ODbL 1.0 attribution, snapshot timestamp, EPSG:4548 transform steps, and VGI quality limitation disclaimers for future sandbox test simulations."
+  }
+ ]
 }
