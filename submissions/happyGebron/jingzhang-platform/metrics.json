@@ -1,0 +1,168 @@
+{
+ "schema_version": "0.1.0",
+ "recompute": {
+  "script": "tools/recompute_metrics.py",
+  "script_version": "0.2.0",
+  "crs_source": "EPSG:4326",
+  "crs_projected": "EPSG:4548",
+  "generated_at": "2026-08-12T12:24:29Z"
+ },
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1528718.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "union_area(green_space_polygons) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Green polygons are derived from the provisional boundary partition."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 266790.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "union_area(public_space_polygons) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Public-space polygons are derived from the provisional boundary partition."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.133947,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.023376,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
+  },
+  "key_area_total_area_sqm": {
+   "status": "known",
+   "value": 3692893.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_areas)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary from the site package; recalculate when the official polygon is published."
+   ]
+  },
+  "land_use_block_count": {
+   "status": "known",
+   "value": 14,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(land_use_features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1248218.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual massing footprints for design discussion only."
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 314,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(building_footprints)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 23849.4,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(road_centerlines)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phasing_area_sqm": {
+   "status": "known",
+   "value": 11412842.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "union_area(phasing_polygons) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Phasing polygons partition the provisional boundary."
+   ]
+  }
+ }
+}
