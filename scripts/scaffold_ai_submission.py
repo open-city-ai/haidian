@@ -1225,7 +1225,7 @@ def make_package(submission_dir: Path, repo_root: Path, stage: str, agent_id: st
                 "known_blockers": [
                     "Generated scaffold is not a submission. Replace the draft marker, design content, figures, geometry, and placeholder drawings before setting package_state=ready_for_review."
                 ],
-                "data_confidence": "high",
+                "data_confidence": "medium",
             },
         },
     )

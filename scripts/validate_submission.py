@@ -2077,6 +2077,47 @@ def validate_readiness_claim(
         )
 
 
+def has_provisional_boundary(repo_root: Path, proposal_dir: str) -> bool:
+    """Return whether the package's site or key-area geometry is provisional."""
+    for relative_path in ("geometry/site_boundary.geojson", "geometry/key_areas.geojson"):
+        path = repo_root / proposal_dir / relative_path
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+            continue
+        features = data.get("features") if isinstance(data, dict) else None
+        if not isinstance(features, list):
+            continue
+        for feature in features:
+            properties = feature.get("properties") if isinstance(feature, dict) else None
+            if not isinstance(properties, dict):
+                continue
+            if properties.get("official_boundary") is False:
+                return True
+            if properties.get("geometry_role") == "provisional_constraint":
+                return True
+    return False
+
+
+def validate_data_confidence_claim(
+    report: ValidationReport,
+    repo_root: Path,
+    proposal_dir: str,
+    manifest: dict | None,
+) -> None:
+    """Prevent a ready package from calling provisional boundaries high confidence."""
+    if not isinstance(manifest, dict) or manifest.get("package_state") != "ready_for_review":
+        return
+    claim = manifest.get("validation_claim")
+    if not isinstance(claim, dict) or claim.get("data_confidence") != "high":
+        return
+    if has_provisional_boundary(repo_root, proposal_dir):
+        report.add_error(
+            f"{proposal_dir}/manifest.json: validation_claim.data_confidence=high is incompatible "
+            "with provisional site/key-area boundaries; use medium, low, or unknown"
+        )
+
+
 def validate_compliance_matrix_file(
     report: ValidationReport,
     path: Path,
@@ -2799,6 +2840,7 @@ def validate_ai_package_dir(
     strict_simulation = strict_bilingual or (
         isinstance(manifest, dict) and manifest.get("package_state") == "ready_for_review"
     )
+    validate_data_confidence_claim(report, repo_root, proposal_dir, manifest)
 
     for name in ["agent.json", "assumptions.json", "sources.json"]:
         path = base / name

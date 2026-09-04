@@ -2537,6 +2537,59 @@ class SubmissionWorkflowTests(unittest.TestCase):
 
             self.assertTrue(report.ok, report.errors)
 
+    def test_ready_high_data_confidence_rejects_provisional_boundaries(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            for relative_path in ["geometry/site_boundary.geojson", "geometry/key_areas.geojson"]:
+                path = root / base / relative_path
+                data = json.loads(path.read_text(encoding="utf-8"))
+                for feature in data["features"]:
+                    feature["properties"]["official_boundary"] = False
+                    feature["properties"]["geometry_role"] = "provisional_constraint"
+                    feature["properties"]["source_type"] = "agent_inferred_from_public_data"
+                    feature["properties"]["confidence"] = "medium"
+                path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["package_state"] = "ready_for_review"
+            manifest["validation_claim"]["data_confidence"] = "high"
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("data_confidence=high is incompatible", "\n".join(report.errors))
+
+            manifest["validation_claim"]["data_confidence"] = "medium"
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
+    def test_legacy_null_generated_at_remains_compatible(self) -> None:
+        """Confidence validation must not impose an unrelated timestamp migration."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["generated_at"] = None
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
     def test_spatial_json_coordinates_fail_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
