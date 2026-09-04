@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>信环京张 · 离线可视化</title>
+<style>
+body{font-family:Inter,"Microsoft YaHei",sans-serif;margin:0;background:#f8fafc;color:#172033}
+header{padding:22px 28px;background:#0f172a;color:white}h1{margin:0;font-size:1.35rem}p{margin:.3rem 0 0;color:#cbd5e1}
+main{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;padding:18px}
+#map{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:12px}
+aside{background:white;border:1px solid #e2e8f0;border-radius:14px;padding:18px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.85rem;color:#475569}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px}
+</style>
+</head>
+<body><header><h1>信环京张 · The Signal Loop</h1><p>临时边界方向性示意 · 不作官方红线</p></header><main><div id="map"></div><aside><h2>结构</h2><p>一环三芯两翼</p><ul><li>遗产公共环</li><li>众智园芯</li><li>AI原点芯</li><li>大钟寺芯</li></ul><div class="legend"><span><span class="dot" style="background:#93c5fd"></span>公共环</span><span><span class="dot" style="background:#86efac"></span>重点区</span></div></aside></main><script>const DATA={"site":[[116.3407,39.939],[116.3553,39.939],[116.3553,39.965],[116.3533,39.99],[116.3553,40.0265],[116.3427,40.0265],[116.3417,40.006],[116.3397,39.975],[116.3407,39.939]],"keys":[{"id":"KEY-001","ring":[[116.343,40.0075],[116.354,40.0075],[116.354,40.026],[116.343,40.026],[116.343,40.0075]],"name":"众智园AI自主创新加速区"},{"id":"KEY-002","ring":[[116.342,39.9835],[116.353,39.9835],[116.353,39.9935],[116.342,39.9935],[116.342,39.9835]],"name":"北京AI原点社区"},{"id":"KEY-003","ring":[[116.342,39.944],[116.355,39.944],[116.355,39.94984],[116.342,39.94984],[116.342,39.944]],"name":"大钟寺AI产业聚集区"}],"green":[[116.346,39.945],[116.3475,39.945],[116.3475,40.025],[116.346,40.025],[116.346,39.945]],"public":[[116.348,39.984],[116.3515,39.984],[116.3515,39.9925],[116.348,39.9925],[116.348,39.984]]};const S=document.querySelector('#map');const W=1000,H=1250,P=70;const xs=DATA.site.map(p=>p[0]),ys=DATA.site.map(p=>p[1]);const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);const sc=Math.min((W-2*P)/(x1-x0),(H-2*P)/(y1-y0));const px=p=>[P+(p[0]-x0)*sc,H-P-(p[1]-y0)*sc];const pts=r=>r.map(p=>px(p).join(',')).join(' ');let svg=`<svg viewBox='0 0 ${W} ${H}' style='width:100%;height:auto'><polygon points='${pts(DATA.site)}' fill='#eff6ff' stroke='#1d4ed8' stroke-width='4'/><polygon points='${pts(DATA.green)}' fill='#bbf7d0' stroke='#16a34a' stroke-width='2'/><polygon points='${pts(DATA.public)}' fill='#fde68a' stroke='#d97706' stroke-width='2'/>`;for(const k of DATA.keys){svg+=`<polygon points='${pts(k.ring)}' fill='#a7f3d0' fill-opacity='.7' stroke='#059669' stroke-width='3'/><text x='${px(k.ring[0])[0]+8}' y='${px(k.ring[0])[1]-8}' font-size='18' fill='#065f46'>${k.name}</text>`;}svg+='</svg>';S.innerHTML=svg;</script></body></html>

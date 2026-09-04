@@ -1,0 +1,73 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present and clearly labelled; replace with official redline before professional scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required provisional key areas are present."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Land use uses a provisional-boundary partition without invented statutory controls."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static offline HTML has no external network dependency."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal references standards, geometry, metrics, sources and assumptions."
+    }
+  ],
+  "ok": true,
+  "submission_dir": "submissions/LEELOCK-2006/signal-loop",
+  "pr_author": "LEELOCK-2006",
+  "stage": "formal",
+  "deterministic_validation": {
+    "required_files": "present",
+    "proposal_sections": "present",
+    "manifest_scope": "submission-only"
+  },
+  "spatial_review": {
+    "crs": "EPSG:4326",
+    "containment": "pass",
+    "provisional_boundary": "clearly_labelled"
+  },
+  "visual_review": {
+    "offline": "pass",
+    "network_dependencies": "none"
+  },
+  "professional_review": {
+    "compliance_matrix": "pass",
+    "standard_matrix": "pass",
+    "design_depth_matrix": "pass"
+  },
+  "spatial_issue_ids": [],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "missing_review_dependencies": [],
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "ready_for_review",
+  "next_actions": [
+    "After official boundary release, regenerate geometry and area metrics."
+  ]
+}
