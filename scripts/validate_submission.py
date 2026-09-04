@@ -2680,13 +2680,16 @@ def validate_bilingual_display(
         # The manifest is the package inventory. Some text-bearing figures are
         # used only by the rendered report or visual page and are not linked
         # directly from proposal.md, so they must not bypass the language gate.
-        for path, item in manifest_items.items():
+        for path in manifest_items:
             if (
                 path.startswith("assets/figures/")
                 and primary_path_from_localized(path) is None
-                and item.get("language") != "neutral"
                 and (base / path).is_file()
             ):
+                # The manifest is authoritative: a figure can be rendered by
+                # report/visual HTML without appearing in proposal.md.  Do
+                # not let an unreferenced neutral figure bypass the explicit
+                # text_free declaration or the zh/en counterpart check.
                 display_files.add(path)
     for match in MARKDOWN_IMAGE_RE.finditer(body):
         raw = match.group(2).split("#", 1)[0].split("?", 1)[0]
@@ -2731,7 +2734,13 @@ def validate_bilingual_display(
             and primary_item
             and primary_item.get("language") == "neutral"
         ):
-            continue
+            if primary_item.get("text_free") is True:
+                continue
+            report_bilingual_problem(
+                f"{proposal_dir}/manifest.json: `{display_path}` declares language=neutral "
+                "without text_free=true; visually inspect the asset and either declare it "
+                "text-free or provide a bilingual counterpart"
+            )
         companion_path = localized_path(display_path, translation_language)
         companion = base / companion_path
         if not companion.is_file():

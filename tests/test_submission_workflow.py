@@ -2881,6 +2881,9 @@ class SubmissionWorkflowTests(unittest.TestCase):
                     "translation_of": primary_rel,
                     "sha256": hashlib.sha256(companion.read_bytes()).hexdigest(),
                 })
+            by_path["assets/figures/site-overview.png"].update(
+                {"language": "neutral", "text_free": True}
+            )
             manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             changed.extend(f"{base}/{path}" for path in companion_paths)
             report = validate_submission(root, "alice", changed)
@@ -3319,6 +3322,139 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
             self.assertIn("proposal.en.md", "\n".join(report.warnings))
+
+    def test_v2_neutral_figure_requires_explicit_text_free_declaration(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal_path = root / base / "proposal.md"
+            proposal_path.write_text(
+                proposal_path.read_text(encoding="utf-8").replace(
+                    'language: "zh"',
+                    'language: "zh"\nproposal_format_version: "2"\n'
+                    'bilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
+                    1,
+                ),
+                encoding="utf-8",
+            )
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            figure = next(
+                item for item in manifest["files"]
+                if item["path"] == "assets/figures/site-overview.png"
+            )
+            figure["language"] = "neutral"
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("site-overview.png` declares language=neutral without text_free=true", errors)
+            self.assertIn("site-overview.en.png", errors)
+
+    def test_v2_explicit_text_free_neutral_figure_can_skip_counterpart(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            primary = root / base / "proposal.md"
+            readable = re.sub(
+                r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+                "",
+                primary.read_text(encoding="utf-8"),
+            )
+            readable_explanation = re.sub(
+                r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+                "",
+                FORMAL_PARAGRAPH,
+            )
+            for heading in REQUIRED_SECTIONS:
+                readable = readable.replace(
+                    f"## {heading}\n",
+                    f"## {heading}\n\n本节关键判断依据 [source:SITE-PACKAGE]。{readable_explanation}\n",
+                    1,
+                )
+            primary.write_text(readable, encoding="utf-8")
+            self.add_bilingual_v2_display(root, base, changed)
+            companion_rel = "assets/figures/site-overview.en.png"
+            (root / base / companion_rel).unlink()
+            changed.remove(f"{base}/{companion_rel}")
+
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"] = [
+                item for item in manifest["files"] if item.get("path") != companion_rel
+            ]
+            primary = next(
+                item for item in manifest["files"]
+                if item["path"] == "assets/figures/site-overview.png"
+            )
+            primary.update({"language": "neutral", "text_free": True})
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+            self.assertNotIn("site-overview.en.png", "\n".join(report.warnings))
+
+    def test_v2_unreferenced_neutral_manifest_figure_is_not_exempt(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            primary = root / base / "proposal.md"
+            readable = re.sub(
+                r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+                "",
+                primary.read_text(encoding="utf-8"),
+            )
+            readable_explanation = re.sub(
+                r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+                "",
+                FORMAL_PARAGRAPH,
+            )
+            for heading in REQUIRED_SECTIONS:
+                readable = readable.replace(
+                    f"## {heading}\n",
+                    f"## {heading}\n\n本节关键判断依据 [source:SITE-PACKAGE]。{readable_explanation}\n",
+                    1,
+                )
+            primary.write_text(readable, encoding="utf-8")
+            self.add_bilingual_v2_display(root, base, changed)
+
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            extra_rel = "assets/figures/unreferenced-map.png"
+            extra = root / base / extra_rel
+            extra.write_bytes(b"PNG text-bearing figure")
+            manifest["files"].append({
+                "path": extra_rel,
+                "role": "proposal_figure",
+                "required": True,
+                "language": "neutral",
+                "sha256": hashlib.sha256(extra.read_bytes()).hexdigest(),
+            })
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            changed.append(f"{base}/{extra_rel}")
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "unreferenced-map.png` declares language=neutral without text_free=true",
+                "\n".join(report.errors),
+            )
 
     def test_localized_visual_html_receives_static_safety_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

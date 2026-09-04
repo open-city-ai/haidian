@@ -90,4 +90,4 @@
 
 ## 双语文件命名
 
-无后缀文件始终是主语言版本；另一语言在扩展名前加入 `.zh` 或 `.en`。例如中文主稿使用 `proposal.md`，英文译稿使用 `proposal.en.md`；对应阅读版为 `report/proposal.html` 和 `report/proposal.en.html`。A3/A0、可视化 HTML 和含文字图件使用同一规则。纯语言无关资产可由两版共用，并在 manifest 中标记 `language: "neutral"`。
+无后缀文件始终是主语言版本；另一语言在扩展名前加入 `.zh` 或 `.en`。例如中文主稿使用 `proposal.md`，英文译稿使用 `proposal.en.md`；对应阅读版为 `report/proposal.html` 和 `report/proposal.en.html`。A3/A0、可视化 HTML 和含文字图件使用同一规则。纯语言无关资产可由两版共用，并在 manifest 中标记 `language: "neutral"` 与 `text_free: true`；含有任何人类可读文字的图件不能仅靠 `neutral` 声明跳过配对检查。
