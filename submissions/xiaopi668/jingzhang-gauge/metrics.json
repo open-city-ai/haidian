@@ -1,0 +1,188 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.39,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1514450.62,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space features)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 147976.58,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space features)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 237503.47,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building footprints)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.132697,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.012966,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_area features)",
+   "confidence": "high",
+   "assumptions": [
+    "Three provisional key-area polygons provided by the repository site package."
+   ]
+  },
+  "gauge_gate_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "count(SCENARIO_NODE features of node_type=gauge_gate/depot_buffer)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual facility count proposed by this design package."
+   ]
+  },
+  "ai_service_zone_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "count(AI_SERVICE_ZONE features)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual zone count proposed by this design package."
+   ]
+  },
+  "land_use_partition_features": {
+   "status": "known",
+   "value": 13,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(land_use features); partition covers site with zero gap and zero overlap in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "conceptual_gross_floor_area_sqm": {
+   "status": "known",
+   "value": 1232670.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint_area x floors_concept); conceptual massing only",
+   "confidence": "low",
+   "assumptions": [
+    "Conceptual design volume derived from assumed storey counts; NOT a statutory floor-area control value.",
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "phasing_package_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(PHASE features); each phase is an independently pausable project package",
+   "confidence": "medium",
+   "assumptions": [
+    "Calculated from repository provisional rough boundary geometry; not suitable for official area claims. Recalculate once official polygons arrive."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "total_floor_area / site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "待正式控制性详细规划条件补齐：公告与场地包均未提供容积率控制值，本包仅给出概念体量（conceptual_gross_floor_area_sqm），不作为法定控制值；正式控规条件到位后复算。"
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [],
+   "formula": "official height control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "待正式控规高度限制、航空限高与文物高度影响评估补齐；本包建筑层数仅为概念建议。"
+  }
+ }
+}
