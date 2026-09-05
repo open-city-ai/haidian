@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Using the Jing-Zhang railway heritage public realm as the spine, the proposal organizes the three hubs and two wings into a verifiable, human-takeover-ready and reversible urban AI proving belt; every scenario delivers a spatial carrier, an ordinary-service path, a measurement method and a public receipt."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.16"
+iteration: "v1.20"
 ---
 
 # Jing-Zhang Intelli-Rail: Centennial Jing-Zhang AI Innovation Belt Urban Design
@@ -106,6 +106,17 @@ The three areas share booking, Civic Data Placards, risk classification, appeals
 
 Six core personas test space and governance: open-source developers, start-up teams, researchers, enterprises and international visitors, surrounding residents, and city operators. Residents, older people, disabled people, caregivers and users with low digital access receive direct feedback channels capable of vetoing high-risk expansion in public-scenario tests. [source:AGENT-TASKBOOK]
 
+Personas do more than describe users: they test whether an end-to-end journey still works when AI is off. The following are non-identifying roles, not recruited individuals:
+
+| User journey | Public benefit to be delivered | Ordinary-path and accessibility floor | Evidence that can veto expansion |
+| --- | --- | --- | --- |
+| Surrounding resident: pass through–rest–report | Continuous movement, quiet everyday use, visible issue closure | No-account passage, on-site notice, human/telephone feedback | Persistent event occupation of basic movement, or repeated unresolved complaints |
+| Wheelchair/low-vision user: plan–arrive–request help | Continuous accessibility and predictable takeover | Paper map, tactile/high-contrast signs, human assistance | A new inaccessible point or failed assistance chain during a drill |
+| Older person/caregiver: enquire–stay–leave safely | Seating, shade, toilets and low digital threshold | Offline counter, legible signs, no biometric identification | Failed consent/minor protection or reduced ordinary service |
+| Start-up/open-source team: submit–rights review–test–release | Low-barrier space, transparent rules and reviewable failure | Human submission, rights reviewer, isolated test environment | Unclear ownership, sensitive-business leakage or opaque ranking |
+| International visitor: arrive–understand–participate–leave | Bilingual, non-exclusive city service | Bilingual physical signs, human reception, ordinary payment/booking | Language-related safety risk or exclusive event displacement of public space |
+| City operator: detect–take over–repair–publish receipt | Clear alert boundary, emergency-stop authority and maintainable equipment | Human patrol, paper work order, physical device disconnection | Failed takeover, persistent false positives or unclear maintenance responsibility |
+
 All twelve scenarios use one “verification contract”: **measured object, ordinary path, human takeover, comparison method, stage gate, stop condition**. Missing any one item blocks entry. Prototype stage tests usability and risk boundaries only; pilot stage compares baseline/control and records takeover; expansion stage is the first point at which cross-site replication is discussed. [data:geometry/public_space.geojson#PUBLIC-001]
 
 | Scenario | Measurement and comparison | Human takeover / ordinary path | Stage gate and stop condition |
@@ -122,6 +133,27 @@ All twelve scenarios use one “verification contract”: **measured object, ord
 | S10 Data Compliance Salon | Explanation correction and appeal completion; human legal explanation as baseline | Legal and safety dual review; human consultation remains | Raw personal-data trading or misleading conclusion → stop |
 | S11 Jing-Zhang Memory Route | Node use, correction, consent withdrawal; paper fact cards in parallel | Historians review; device-free route remains | Disputed history unmarked or withdrawal not executed → content off |
 | S12 Global AI Week Route | Event circulation, complaints and post-event restoration; compare publicness before/after | Joint operations council on site; ordinary city movement remains | Basic movement, noise or safety boundary exceeded → reduce event footprint |
+
+### Public Data Contracts for All Twelve Scenarios
+
+The table turns the Civic Data Placard into proposed per-scenario pilot caps. These retention periods are **proposed ceilings** for legal, professional and affected-user review before any real pilot; they are not present data-processing authorization, and this submission contains no real personal data. If incident response, lawful retention or rights withdrawal conflicts with a proposed cap, the future lawfully confirmed rule governs and the difference must be disclosed on the placard.
+
+| Scenario | Necessary data and sensitivity | Minimization and proposed retention ceiling | Access, human review, appeal/stop |
+| --- | --- | --- | --- |
+| S01 | Work hash, licence and release record; IP/business-sensitive | Do not collect unauthorized originals; retain no rejected content, review authorized/correction logs after max 90 days | Least-privilege rights reviewer; author withdrawal/appeal; unclear rights block release |
+| S02 | Test prompts, version, red-team findings and takeover log; potentially security-sensitive | Use synthetic/de-identified samples; raw test record max 30 days, aggregate finding max 365 days | Isolated safety-team access and Professional Committee review; overreach or isolation failure triggers emergency stop |
+| S03 | Same-task energy, latency, temperature and device state; no personal data needed | Prohibit collection of user content/identity; raw per-task telemetry max 30 days, aggregate max 365 days | Role-based operations/audit access; method can be challenged; no verifiable benefit means no expansion |
+| S04 | Surface/break image, location and time; faces/plates may appear incidentally | Blur faces/plates at edge and keep defect clips only; raw images max 24 hours, defect records max 90 days | Transport professional field review; public correction route; persistent false positives/new risk switch service off |
+| S05 | Single-trip route, location, request for help and accessibility preference; precise location/health-related preference may be sensitive | On-device by default, no cross-trip profile; delete location at session end, help ticket max 30 days | User opt-in and immediate human switch; accessibility co-test review; drift/inaccessibility pauses service |
+| S06 | Temperature/humidity, ponding, noise and activity count; no identity needed | Environmental data and anonymous count only; raw sensing max 30 days, seasonal aggregate max 365 days | Engineering/ecology review; publish sampling method; flood/ecology deterioration rolls back intervention |
+| S07 | Service question, contact channel and referral result; business-sensitive | No contract/source-code originals; unsuccessful enquiry max 30 days, authorized case max 180 days | Authorized adviser signs; enterprise can use human/delete path; leakage or persistent misinformation stops service |
+| S08 | Single service need, booking and appeal; life-service preferences may be sensitive | No hidden ranking/cross-service profile; delete recommendation context at session end, ticket max 30 days | Street/service staff take over; offline appeal; profile sale or reduced offline channel stops service |
+| S09 | Device trial, opt-out and voluntary feedback; age band may be sensitive | No-account trial by default and no biometrics; delete interaction at session end, feedback max 30 days | Shop staff/consumer representative review; failed guardian/consent or opt-out removes installation |
+| S10 | De-identified question, explanation, correction and appeal; legal/business material may be sensitive | Do not accept raw personal data or full case material; de-identified Q&A max 30 days | Legal and safety dual review; human consultation/appeal; misleading conclusion or raw-data trading stops service |
+| S11 | Licensed heritage identifier, node use, correction and withdrawal; copyright/oral-history rights | No people tracking; anonymous count max 30 days, licence/correction record max 365 days | Historian and rights reviewer; paper route remains; unexecuted withdrawal takes content offline |
+| S12 | Anonymous footfall, noise, safety incident and complaint; incident record may be sensitive | No face recognition; aggregate footfall only, incident/complaint ticket max 30 days | Joint on-site human management; public appeal; movement/noise/safety breach reduces or cancels event |
+
+Every Civic Data Placard must publish the accountable operating role, data category, sensitivity, purpose, collection boundary, proposed retention ceiling, access roles, human review, appeal route, emergency stop, and latest deletion/takeover-drill result. One missing field blocks G2. Applicable-law and impact assessments are also required before a real pilot.
 
 The three industrial testbeds correspond to three evidence types: T1 trustworthy mobility records takeover and failure; T2 inclusive services compare digital and non-digital equivalence; T3 low-carbon compute verifies benefit through same-task energy comparison. Every test publishes success, failure, bias and stop records, and failed tests remain in the annual audit. [depth:ai_scenarios_testbeds]
 
@@ -167,6 +199,18 @@ Implementation uses four release gates. If any gate is not passed, the phase rem
 | G3 Evidence Gate | Baseline, comparison, takeover/complaint record, same-task energy/resource record, public-benefit statement | Independent Audit + Joint Council | Hold scale, reduce, or exit; “a pilot is running” does not substitute for outcome evidence |
 
 Together the four gates establish the order: data permits a trial, ordinary service provides the floor, safety and inclusion make takeover possible, and sufficient evidence is required before expansion. [depth:phasing_implementation]
+
+### Implementation Work Packages, Participants, and Evidence Delivery
+
+All participants below are suggested accountable roles, not contracted organizations. A phase never advances on time alone; every work package must pass through its dependencies, public deliverables, and metrics together.
+
+| Work package and phase | Suggested lead / participants | Verifiable deliverable | Metric and release gate | Critical dependency |
+| --- | --- | --- | --- | --- |
+| WP0 Evidence base (days 0–100) | Planning/heritage/transport/data-governance professionals; Community Observatory | Formal-data gap register, break register, scenario placard template, S02 red-team record | Every gap has an owner and replacement trigger; G0 | Official boundary and ownership/heritage/engineering data; absent data limits work to tabletop/reversible prototypes |
+| WP1 Ordinary-service spine (months 0–18) | Park/street operations, accessibility co-test group, scenario operator | Ordinary-service-path map, AI-off-day record, accessibility co-test route, shared human-counter prototype | B01/B02/B03 baseline established and takeover chain works; G1–G2 | Field survey plus transport safety, fire and event-management review |
+| WP2 Reversible three-hub pilots (months 0–18) | Suggested operator per scenario, Professional Committee, rights reviewer | One removable VERIFY/TRANSFER/USE node each, twelve Civic Data Placards, comparison/complaint/deletion logs | All high-risk issues closed; B04/B05 auditable; G2–G3 | Data-impact review, procurement/authorization, network/energy/maintenance conditions |
+| WP3 Reuse and stitching (months 18–48) | Planning, architecture, structure, transport, municipal and heritage professionals plus future lawfully confirmed parties | Adaptive-reuse proposal, transverse-stitching studies, blue-green/stormwater review, phased public-benefit report | No reduction in ordinary service; engineering metrics supplied by formal studies; repeat G0–G3 | Regulatory plan, ownership, structural/fire, transport, municipal, flood and funding procedures |
+| WP4 Networked operations (after month 48) | Joint Council, Professional Committee, Community Observatory, Independent Audit | Annual problem list, failure archive, public-value audit, expand/reduce/exit decision | Replicate only scenarios passing comparison and independent audit; annual G3 review | Continuous prior evidence, working appeals, lawfully confirmed budget/procurement/cooperation |
 
 The start-up “six things in one hundred days” remains: spine-break register, first Origin transfer-street prototype, shared-service counter, accessible co-test route, first S02 red-team day, and first Civic Data Placard specification. Months 0–18 focus on measurement and reversible trials; 18–48 months enter adaptive reuse and transport renewal; only after 48 months does the proposal discuss networked governance and projects requiring stronger formal conditions.
 
