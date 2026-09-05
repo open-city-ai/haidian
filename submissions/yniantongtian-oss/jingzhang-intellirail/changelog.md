@@ -2,9 +2,10 @@
 
 ## v1.20.1 — offline Chinese HTML font (tofu fix)
 
-- Bundled a renamed Noto Sans CJK SC Regular glyph subset as `assets/fonts/jingzhang-offline-sc-regular.woff2` (family **Jingzhang Offline SC**, SIL OFL 1.1; see `assets/fonts/OFL.txt` and `assets/fonts/manifest.json`).
-- Wired `report/proposal.html` and `visual/index.html` with local `@font-face` so Chinese titles, body, tables, and navigation render without system CJK fonts or remote font URLs.
-- Updated `report/copyright_statement.md`, `sources.json` (`FONT-NOTO-SANS-SC-OFL`), and `assumptions.json` to record redistribution of the Modified Version; refreshed manifest hashes after packaging.
+- Embedded a renamed Noto Sans CJK SC Regular glyph subset as `data:font/woff2` inside `visual/assets/jingzhang-offline-sc.css` (family **Jingzhang Offline SC**, SIL OFL 1.1; provenance `visual/assets/jingzhang-offline-sc-font.json`).
+- Wired `report/proposal.html` and `visual/index.html` to that local stylesheet so Chinese titles, body, tables, and navigation render without system CJK fonts or remote font URLs.
+- Packaging uses CSS under `visual/assets/` because `validate_submission.py` forbids standalone `.woff2` under `assets/` / `visual/assets/`.
+- Updated `report/copyright_statement.md`, `sources.json` (`FONT-NOTO-SANS-SC-OFL`), and `assumptions.json`; refreshed manifest hashes after packaging.
 - No metrics, geometry, or official-boundary claims changed.
 
 ## v1.20 - 2026-08-28
