@@ -1,0 +1,128 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "submission_id": "guozi4555/ai-resonance-belt",
+  "metrics": [
+    {
+      "metric_id": "site_area",
+      "name_zh": "总体设计范围面积",
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(PROV-SITE-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": ["基于临时粗略边界PROV-SITE-001在EPSG:4548投影下计算", "官方精确polygon发布后须重新计算"]
+    },
+    {
+      "metric_id": "zhongzhiyuan_area",
+      "name_zh": "众智园面积",
+      "status": "known",
+      "value": 1929202,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": ["临时矩形边界占位", "官方172.1 ha约束", "精确面积待官方polygon"]
+    },
+    {
+      "metric_id": "origin_community_area",
+      "name_zh": "AI原点社区面积",
+      "status": "known",
+      "value": 1043237,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": ["临时矩形边界占位", "官方104.3 ha约束"]
+    },
+    {
+      "metric_id": "dazhongsi_area",
+      "name_zh": "大钟寺面积",
+      "status": "known",
+      "value": 720454,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": ["临时矩形边界占位", "官方72.0 ha约束"]
+    },
+    {
+      "metric_id": "park_area",
+      "name_zh": "京张遗址公园面积",
+      "status": "known",
+      "value": 700000,
+      "unit": "sqm",
+      "source_files": ["public news (Aug 2026)"],
+      "formula": "publicly reported ~70 ha",
+      "confidence": "high",
+      "assumptions": ["基于2026年8月公开报道的全线开放面积", "约为70公顷"]
+    },
+    {
+      "metric_id": "green_space_ratio",
+      "name_zh": "绿地与公共空间比例",
+      "status": "unknown",
+      "value": null,
+      "unit": "percent",
+      "source_files": [],
+      "formula": "待官方polygon和控规数据",
+      "confidence": "none",
+      "assumptions": ["概念方向约20%", "精确值待控规条件确认"],
+      "reason": "控规数据未获得",
+      "required_for_formal_submission": true
+    },
+    {
+      "metric_id": "rd_space_ratio",
+      "name_zh": "科研/产业空间比例",
+      "status": "unknown",
+      "value": null,
+      "unit": "percent",
+      "source_files": [],
+      "formula": "待控规条件",
+      "confidence": "none",
+      "assumptions": ["概念方向约35%"],
+      "required_for_formal_submission": true
+    },
+    {
+      "metric_id": "scenario_cards_count",
+      "name_zh": "AI场景卡片数",
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "metric_id": "personas_count",
+      "name_zh": "用户画像数",
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "metric_id": "landmarks_count",
+      "name_zh": "AI朝圣地标数",
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "confidence": "high",
+      "assumptions": []
+    },
+    {
+      "metric_id": "global_cases_count",
+      "name_zh": "全球AI创新生态案例数",
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": ["sources.json"],
+      "confidence": "high",
+      "assumptions": []
+    }
+  ]
+}
