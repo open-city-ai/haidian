@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present; labelled official_boundary=false and geometry_role=provisional_constraint. Replace with official redline before professional scoring; data gap does not block content scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional; labelled provisional_constraint. Replace with official polygons before professional scoring."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Four land-use polygons cover the provisional boundary without gaps or overlaps; shared edges use identical coordinates."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization generated without external CDN, remote map tiles, external scripts, external fonts, iframes, API calls or tracking."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions; bilingual counterpart proposal.en.md is provided."
+    },
+    {
+      "check_id": "BILINGUAL_CONTRACT",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md,proposal.en.md",
+      "message": "bilingual_contract_version=1 declared; primary Markdown, language translation, manifest hash and counterpart files are aligned."
+    },
+    {
+      "check_id": "METRICS_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "site_area_sqm, building_footprint_area_sqm, green_ratio, public_space_ratio and land-use ratios recomputed from geometry/*.geojson in EPSG:4548; floor_area_ratio and building_height_max_m remain pending official control."
+    },
+    {
+      "check_id": "FIGURE_QUALITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "assets/figures/*.png",
+      "message": "Five figures regenerated with technical-schematic style; site boundary shown as provisional constraint; main narrative focuses on design intent."
+    }
+  ]
+}

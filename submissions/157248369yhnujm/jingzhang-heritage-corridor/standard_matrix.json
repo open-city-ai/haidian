@@ -1,0 +1,159 @@
+{
+  "schema_version": "0.1.0",
+  "title_zh": "专业标准响应矩阵 / Professional Standard Response",
+  "package_provenance_zh": "本矩阵由 Cursor IDE 中的 claude-fable-5 模型按 urban-design-ai-submission 技能生成。",
+  "standards": [
+    {
+      "standard_id": "PROJECT-OFFICIAL-ANNOUNCEMENT",
+      "title_zh": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "requirement_zh": "公告 1.3、1.4、1.5 对三层范围、设计任务、成果深度、交付物格式提出主控要求。",
+      "professional_dimension": "规划统筹",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": ["设计依据与资料清单", "三层范围工作框架", "统筹研究范围产业与未来城市研究", "总体设计范围城市更新与控规深度城市设计", "重点区域详细设计", "指标体系、面积复算与合规矩阵"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "building_footprint_area_sqm",
+        "green_ratio",
+        "public_space_ratio",
+        "key_area_count"
+      ],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "PROVISIONAL-BOUNDARIES"],
+      "assumption_ids": ["A-CONTROLS-001", "A-PROVISIONAL-BOUNDARY-002"],
+      "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "METRICS_RECALCULATION"],
+      "evidence_summary_zh": "公告 1.3 / 1.4 / 1.5 的所有任务在 proposal.md 与 proposal.en.md 中通过章节 + GeoJSON + 矩阵 + 指标 + 自我披露 共同证明。provisional 边界仅作 intake 使用。"
+    },
+    {
+      "standard_id": "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+      "title_zh": "面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录",
+      "requirement_zh": "十条共创原则、三大定位、五大功能、六项智能体任务、统一评审维度与统一边界条款。",
+      "professional_dimension": "AI共创与运营",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": ["设计依据与资料清单", "统筹研究范围产业与未来城市研究", "AI 创新生态、人才画像与 AI+ 场景", "更新项目清单、实施政策与分期计划"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/spatial.json",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson",
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "metric_refs": [
+        "scenario_card_count",
+        "scenario_test_validation_count",
+        "user_persona_count",
+        "ai_pilgrimage_landmark_count",
+        "key_area_count"
+      ],
+      "source_ids": ["AGENT-TASKBOOK", "OFFICIAL-ANNOUNCEMENT"],
+      "assumption_ids": ["A-AI-TESTING-005", "A-BRAND-006", "A-PROVISIONAL-AREA-007"],
+      "self_check_ids": ["PROFESSIONAL_EVIDENCE", "BILINGUAL_CONTRACT"],
+      "evidence_summary_zh": "agent.1 至 agent.6 的全部六项任务在 proposal.md / proposal.en.md 与 spatial.json 中可读；10 张 AI 场景卡、3 张产业测试验证场景、5 类用户画像、3 个 AI 朝圣地标候选均落地。"
+    },
+    {
+      "standard_id": "MOHURD-URBAN-DESIGN-MEASURES",
+      "title_zh": "城市设计管理办法",
+      "requirement_zh": "城市设计应落实规划、指导建筑设计、塑造特色风貌，并统筹平面和立体空间、公共空间、建筑高度体量风格色彩等控制要求。",
+      "professional_dimension": "城市设计",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": ["蓝绿空间、公共空间与城市风貌", "更新项目清单、实施政策与分期计划", "总体设计范围城市更新与控规深度城市设计"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "metric_refs": [
+        "green_ratio",
+        "public_space_ratio",
+        "land_use_1401_ratio",
+        "land_use_0702_ratio"
+      ],
+      "source_ids": ["MOHURD-URBAN-DESIGN-MEASURES", "OFFICIAL-ANNOUNCEMENT"],
+      "assumption_ids": ["A-CONTROLS-001", "A-HERITAGE-003"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "蓝绿空间、公共空间、风貌控制三条要求通过 public_space / green_space / land_use / constraints 等图层与指标复算体现；高度控制保持 unknown 并写入 assumptions.json。"
+    },
+    {
+      "standard_id": "MOHURD-CONTROL-DETAILED-PLANNING",
+      "title_zh": "城市、镇控制性详细规划编制审批办法",
+      "requirement_zh": "控规是规划许可和实施管理依据，formal 方案涉及用地、开发强度、道路、市政和实施管理时必须区分已知控制条件、设计建议和待确认事项。",
+      "professional_dimension": "控规实施",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": ["总体设计范围城市更新与控规深度城市设计", "用地、建筑规模与拆改留方案", "风险、版权与合规说明"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": [
+        "building_footprint_area_sqm",
+        "land_use_0802_ratio",
+        "land_use_05_ratio"
+      ],
+      "source_ids": ["MOHURD-CONTROL-DETAILED-PLANNING", "MNR-LAND-USE-CLASSIFICATION"],
+      "assumption_ids": ["A-CONTROLS-001", "A-RAIL-TRANSIT-004"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "METRICS_RECALCULATION"],
+      "evidence_summary_zh": "所有控规深度结论明确分类为「已知控制 / 设计建议 / 待确认」三类；FAR、building_height_max_m 标记为 unknown 并说明复算前置条件。"
+    },
+    {
+      "standard_id": "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+      "title_zh": "国土空间调查、规划、用途管制用地用海分类指南",
+      "requirement_zh": "用地分类和指标表达应采用统一的国土空间用地用海分类逻辑，不得用自造分类替代可校验用地代码。",
+      "professional_dimension": "用地分类",
+      "mandatory": true,
+      "review_status": "addressed",
+      "proposal_sections": ["用地、建筑规模与拆改留方案", "总体设计范围城市更新与控规深度城市设计", "指标体系、面积复算与合规矩阵"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": [
+        "land_use_0802_ratio",
+        "land_use_1401_ratio",
+        "land_use_05_ratio",
+        "land_use_0702_ratio"
+      ],
+      "source_ids": ["MNR-LAND-USE-CLASSIFICATION", "OFFICIAL-ANNOUNCEMENT"],
+      "assumption_ids": ["A-CONTROLS-001"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "METRICS_RECALCULATION"],
+      "evidence_summary_zh": "land_use.geojson 的 4 个 polygon 全部使用 0802 / 1401 / 05 / 0702 等官方 land_use_code；分类覆盖与面积已在 metrics.json 中按土地分类口径复算。"
+    },
+    {
+      "standard_id": "MOHURD-ARCH-DESIGN-DEPTH-2016",
+      "title_zh": "建筑工程设计文件编制深度规定（2016 年版）",
+      "requirement_zh": "建筑专业深度参考；尚未取得官方文件前不作为 formal 权威依据。",
+      "professional_dimension": "建筑深度",
+      "mandatory": false,
+      "review_status": "data_gap",
+      "proposal_sections": ["用地、建筑规模与拆改留方案"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf"],
+      "geometry_refs": ["geometry/buildings.geojson"],
+      "metric_refs": ["building_footprint_area_sqm"],
+      "source_ids": ["MOHURD-ARCH-DESIGN-DEPTH-2016"],
+      "assumption_ids": ["A-CONTROLS-001"],
+      "self_check_ids": ["PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "建筑深度标准在仓库中标记为 needs_official_file，本投稿包仅引用 local_reference_path；建筑方案保留为概念建议，待官方深度标准发布后重审。"
+    }
+  ]
+}
