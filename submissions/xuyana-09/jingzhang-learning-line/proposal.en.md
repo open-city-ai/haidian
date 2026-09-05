@@ -82,6 +82,22 @@ The quantified response comprises six international AI-ecosystem cases, 12 scena
 
 The regional ecosystem follows six linked functions: knowledge origination, trustworthy validation, open-source collaboration, enterprise translation, public application, and international communication. Universities and institutes originate knowledge; Zhongzhiyuan hosts technology, safety, and green-computing validation; AI Origin supports open-source work, incubation, and releases; Dazhongsi hosts public-facing urban applications and commercial validation; the Jing-Zhang civic spine provides continuous display, exchange, and public learning; and the annual Global Mutual-Learning Week is the international window. Spatial value is measured not by maximum office floor area, but by walkable connections, shared resources, and public visibility across the chain. [source:AGENT-TASKBOOK]
 
+#### Regional Collaboration Matrix | From corridor narrative to a research network
+
+Five external interfaces are added: Beiwei Community, Future Science City, Huairou Science City, Yizhuang, and Beijing-Tianjin-Hebei. They are not confirmed administrative, transport, industrial, or data partnerships; they are research hypotheses for community feedback, science-city exchange, science-culture co-learning, applied scenario testing, and talent mobility. Each link is marked **research interface · pending coordination** and enters formal planning only after institution lists, data-sharing, transport, ecology/culture links, and operating agreements are verified.[data:assumptions.json#A-REGIONAL-001] [depth:three_level_scope_framework]
+
+![Regional collaboration matrix and research interfaces](assets/figures/regional-collaboration.en.png)
+
+| Node | Research interface | Verification gate | Planning status |
+| --- | --- | --- | --- |
+| Beiwei Community | Community-life feedback and co-learning | Resident organizations, services, walking links | Research hypothesis, pending coordination |
+| Future Science City | Knowledge exchange and validation | Institution, project, data, talent evidence | Research hypothesis, pending coordination |
+| Huairou Science City | Science-culture and public co-learning | Events, ecology education, cultural resources | Research hypothesis, pending coordination |
+| Yizhuang | Applied innovation and scenario exchange | Enterprise, industry-chain, pilot-scenario list | Research hypothesis, pending coordination |
+| Beijing-Tianjin-Hebei | Regional learning and talent mobility | Transport, talent, governance agreements | Research hypothesis, pending coordination |
+
+The matrix is a traceable work package rather than a larger claimed boundary: who coordinates, what is shared, how it is reviewed, and when it can exit. Until verified, no external link is a policy, investment, statutory-boundary, or engineering claim.
+
 Six international cases provide mechanisms rather than forms to copy. Stanford HAI demonstrates interdisciplinary research with public-policy education; Mila shows that industry partnerships need rigorous experimental protocols; Vector and AI Singapore connect talent training to real projects; AI Verify introduces structured testing and assurance before deployment; and Testbed Helsinki begins urban experimentation with real needs and publicly reports lessons. [source:CASE-STANFORD-HAI] [source:CASE-MILA] [source:CASE-VECTOR] [source:CASE-AI-SINGAPORE] [source:CASE-AI-VERIFY] [source:CASE-HELSINKI]
 
 These lessons become four spatial prototypes: a shared laboratory foyer for research, an open-source workshop and demonstration street for translation, an urban trial ground for public use, and a Human Review and appeal desk for governance. They are distributed across eight program segments and 12 conceptual carriers, not concentrated in one iconic building. [data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001] [metric:land_use_zone_count] [metric:building_carrier_count]

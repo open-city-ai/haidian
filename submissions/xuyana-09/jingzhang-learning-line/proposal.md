@@ -83,6 +83,22 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 区域创新生态采用“知识策源—可信验证—开源协作—企业转化—公共应用—国际传播”六环模型。高校和科研机构承担知识策源；众智园承接技术、安全与绿色算力验证；AI原点承接开源协作、孵化和成果发布；大钟寺承接面向公众的城市应用与商业验证；京张主脊提供连续展示、交流和公共学习场所；年度全球互教周形成对外传播窗口。空间价值不以办公面积最大化衡量，而以环节之间的步行可达、资源共享和公共可见度衡量。[source:AGENT-TASKBOOK]
 
+#### 区域协同矩阵｜从走廊叙事到研究网络
+
+新增北纬社区、未来科学城、怀柔科学城、经开区和京津冀五个外部协同接口。它们不是已确认的行政、交通、产业或数据合作关系，而是围绕社区反馈、科学城知识交换、科学文化共学、应用场景互测与人才流动提出的研究假设。每条关系均标注 **research interface · pending coordination**，只有机构清单、数据共享、交通衔接、生态文化联系和运营协议完成核验后，才可进入正式规划或实施论证。[data:assumptions.json#A-REGIONAL-001] [depth:three_level_scope_framework]
+
+![区域协同矩阵与研究接口](assets/figures/regional-collaboration.png)
+
+| 协同节点 | 研究接口角色 | 下一道核验门槛 | 规划边界 |
+| --- | --- | --- | --- |
+| 北纬社区 | 社区生活反馈与共学 | 居民组织、服务与步行联系清单 | 研究假设，待协商 |
+| 未来科学城 | 知识交换与验证 | 机构、项目、数据与人才证据 | 研究假设，待协商 |
+| 怀柔科学城 | 科学文化与公众共学 | 活动、生态教育和文化资源 | 研究假设，待协商 |
+| 经开区 | 应用创新与场景互测 | 企业、产业链与示范场景 | 研究假设，待协商 |
+| 京津冀 | 区域学习与人才流动 | 交通、人才和治理协议 | 研究假设，待协商 |
+
+矩阵把区域协同变成可追踪的工作包：谁来协同、共享什么、如何审查、何时退出。核验前不得用于政策、投资、法定边界或工程承诺。
+
 六个国际案例提供机制参照而非形态复制：Stanford HAI说明跨学科研究与公共政策教育可以同场。[source:CASE-STANFORD-HAI] Mila说明产业合作需要严格实验协议。[source:CASE-MILA] Vector与AI Singapore说明人才培养应连接真实项目。[source:CASE-VECTOR] [source:CASE-AI-SINGAPORE] AI Verify说明应用前需要结构化测试和保证机制。[source:CASE-AI-VERIFY] Testbed Helsinki说明城市试验应从真实需求出发并公开复盘。[source:CASE-HELSINKI]
 
 案例转译为四类空间原型：面向研发的“共享实验前厅”、面向转化的“开源工坊与演示街”、面向公众的“城市试用场”、面向治理的“人工复核与申诉台”。空间落位由概念用地与功能载体图层共同表达。[data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001] 它们分布在八个功能段和十二个概念功能载体中，而不是集中到一栋标志性建筑。[metric:land_use_zone_count] [metric:building_carrier_count]
