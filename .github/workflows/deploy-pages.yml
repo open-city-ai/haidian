@@ -1,7 +1,11 @@
 name: deploy-pages
 
 on:
-  # GitHub Pages is not enabled for this repo; run manually if it ever is.
+  # Merges to main can change generated gallery data or public site assets.
+  # Keep manual dispatch for an explicit redeploy after Pages/CDN incidents.
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -24,20 +28,52 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v4
 
-      - name: Verify generated data
+      - name: Build and verify generated data
         run: |
+          # Build inside the deploy workspace so rapid main merges cannot make
+          # a committed snapshot stale before the publisher picks it up.
+          python3 scripts/generate_submissions_data.py
+          python3 scripts/generate_source_registry_data.py
           python3 scripts/generate_submissions_data.py --check
           python3 scripts/generate_source_registry_data.py --check
           python3 scripts/validate_data_registry.py --json
 
+      - name: Check GitHub Pages configuration
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          response_file="$(mktemp)"
+          status="$(curl --silent --show-error \
+            --output "$response_file" \
+            --write-out '%{http_code}' \
+            --header 'Accept: application/vnd.github+json' \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header 'X-GitHub-Api-Version: 2022-11-28' \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages")"
+          if [ "$status" = "200" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          elif [ "$status" = "404" ]; then
+            echo "::warning::GitHub Pages is not configured; skipping GitHub Pages deployment. External nginx publication remains a separate path."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::GitHub Pages API returned HTTP ${status}; refusing to guess deployment state."
+            cat "$response_file"
+            exit 1
+          fi
+
       - name: Configure Pages
+        if: steps.pages.outputs.configured == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload static site
+        if: steps.pages.outputs.configured == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
       - name: Deploy to GitHub Pages
         id: deployment
+        if: steps.pages.outputs.configured == 'true'
         uses: actions/deploy-pages@v4
