@@ -1,0 +1,350 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary) EPSG:4548",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional boundary from repository; official polygon pending."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1395629.482,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.122286,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 240886.924,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.021107,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1033836.208,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "low",
+   "assumptions": [
+    "Concept building footprints generated from concept land-use partition; not statutory."
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.090585,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "Concept only."
+   ]
+  },
+  "total_floor_area_concept_sqm": {
+   "status": "known",
+   "value": 12406034.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "building_footprint_area_sqm * 12 (conceptual average storeys)",
+   "confidence": "low",
+   "assumptions": [
+    "Conceptual estimate only; not a statutory control."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area / official_site_area",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official boundary not in public site package; 待正式数据补齐."
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "approved height controls",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official height controls pending; 待正式数据补齐."
+  },
+  "green_ratio_control": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "approved regulatory green ratio",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official regulatory green ratio pending; 待正式数据补齐."
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 15747.534,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(linestring_length(roads))",
+   "confidence": "medium",
+   "assumptions": [
+    "Concept road network only."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "zhongzhiyuan_ai_acceleration_area_sqm": {
+   "status": "known",
+   "value": 1929201.877,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area) EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional key-area polygon; announced 192.1 ha."
+   ]
+  },
+  "beijing_ai_origin_community_sqm": {
+   "status": "known",
+   "value": 1043236.909,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area) EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional key-area polygon; announced 104.3 ha."
+   ]
+  },
+  "dazhongsi_ai_industry_cluster_sqm": {
+   "status": "known",
+   "value": 720454.219,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area) EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional key-area polygon; announced 72.0 ha."
+   ]
+  },
+  "phase1_area_sqm": {
+   "status": "known",
+   "value": 5011204.258,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(phase=phase1))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase2_area_sqm": {
+   "status": "known",
+   "value": 6276617.011,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(phase=phase2))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase3_area_sqm": {
+   "status": "known",
+   "value": 125003.695,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(phase=phase3))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_05_area_sqm": {
+   "status": "known",
+   "value": 3433246.86,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_code=05))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_07_area_sqm": {
+   "status": "known",
+   "value": 1462490.249,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_code=07))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_0804_area_sqm": {
+   "status": "known",
+   "value": 700999.097,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_code=0804))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_14_area_sqm": {
+   "status": "known",
+   "value": 1395629.482,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_code=14))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_0803_area_sqm": {
+   "status": "known",
+   "value": 338800.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_code=0803))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_0802_area_sqm": {
+   "status": "known",
+   "value": 2871494.804,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_code=0802))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_0702_area_sqm": {
+   "status": "known",
+   "value": 1210000.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_code=0702))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "overall_design_area_announced_sqm": {
+   "status": "known",
+   "value": 11400000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official announcement value",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "coordinated_research_area_announced_sqm": {
+   "status": "known",
+   "value": 43600000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official announcement value",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_detailed_design_area_announced_sqm": {
+   "status": "known",
+   "value": 3684000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official announcement value",
+   "confidence": "high",
+   "assumptions": []
+  }
+ }
+}

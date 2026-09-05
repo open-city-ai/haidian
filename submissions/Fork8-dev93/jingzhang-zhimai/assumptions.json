@@ -1,0 +1,115 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "title_zh": "总体设计范围与重点区域使用 provisional 边界",
+   "statement_zh": "场地几何来自仓库 provisional_boundaries.geojson（EPSG:4326 交换、EPSG:4548 面积校核），精度为 provisional_rough，不可作为 official redline、审批依据或精确面积复算依据；official 边界发布后须重算全部面积与指标。",
+   "impact_zh": "面积类指标均来自 provisional 几何；正式评分前须以官方 polygon 复算。",
+   "recalc_triggers": [
+    "official SITE_BOUNDARY polygon 发布",
+    "官方重点区 polygon 发布"
+   ],
+   "source_ids": [
+    "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+   ],
+   "status": "provisional"
+  },
+  {
+   "id": "A-CONTROLS-002",
+   "title_zh": "控规法定指标待正式条件补齐",
+   "statement_zh": "容积率、建筑高度、建筑密度、绿地率、退线等法定控制指标在公开资料中缺失，统一标记为 status=unknown（待正式数据补齐）；本方案中出现的体量、层数等均为概念建议或低置信度设计量，不等于法定控制值。",
+   "impact_zh": "所有强度类表述均写作'概念建议'，不得视为审定指标。",
+   "recalc_triggers": [
+    "官方控规条件或资格预审附件发布"
+   ],
+   "source_ids": [
+    "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING"
+   ],
+   "status": "data_gap"
+  },
+  {
+   "id": "A-BUILDINGS-003",
+   "title_zh": "建筑基底为概念生成",
+   "statement_zh": "建筑基底由概念用地分区按约12层平均体量生成（低置信度），仅用于表达空间组织与体量关系，不代表现状建筑或法定建设规模。",
+   "impact_zh": "建筑规模指标（total_floor_area_concept_sqm、building_density）仅作概念参考。",
+   "recalc_triggers": [
+    "现状建筑普查数据",
+    "官方开发规模附件"
+   ],
+   "source_ids": [
+    "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+   ],
+   "status": "concept_only"
+  },
+  {
+   "id": "A-SCENARIO-004",
+   "title_zh": "AI场景与运营机制为概念设计",
+   "statement_zh": "全部AI场景卡、朝圣地标、活动体系与运营机制均为开放共创概念建议，不替代正式规划，不构成政府审定结论或已确定实施安排。",
+   "impact_zh": "任何活动、招商、政策、资金表述均为深化方向。",
+   "recalc_triggers": [
+    "官方任务书或实施计划更新"
+   ],
+   "source_ids": [
+    "DATA-SRC-AGENT-TASKBOOK-20260518"
+   ],
+   "status": "concept_only"
+  },
+  {
+   "id": "A-PARK-OFFSET-005",
+   "title_zh": "概念绿带与OSM实测公园位置存在偏差",
+   "statement_zh": "OSM/Nominatim 实测（2026-08-11）京张铁路遗址公园已建段位于仓库 provisional 总体设计边界西侧（lon≈116.332-116.335），与本方案'智脉绿带'概念中线存在约1-1.5km东西偏差；Issue #846 独立复算最近距离412.5m。本方案绿带为概念设定，以京张遗址公园与场地中轴协同组织，官方 polygon 发布后须重校。",
+   "impact_zh": "绿带、创新带、生活带三带结构为概念表达；现状点位（高校、站点）为背景参照。",
+   "recalc_triggers": [
+    "official SITE_BOUNDARY polygon 发布",
+    "京张铁路遗址公园官方红线发布"
+   ],
+   "source_ids": [
+    "SRC-OSM-NOMINATIM-20260811",
+    "SRC-ISSUE-846-OSM-PARK-COMPARE"
+   ],
+   "status": "provisional"
+  },
+  {
+   "id": "A-CONTROLS-006",
+   "title_zh": "HD00-1601 街区控规审批推进中",
+   "statement_zh": "据海淀区2026年政府工作报告（经 Issue #1774 索引转述）：京张铁路遗址公园沿线（人工智能创新街区重点地区）HD00-1601 等街区控规2025年通过技术审查、2026年目标'获批实施'；草案于2024-12公示、2025-02发布采信通告，成果文本截至2026-08-11未公开。控规获批后容积率/高度等法定指标可正式复算。",
+   "impact_zh": "'待正式数据补齐'可表述为'控规审批推进中（2026年目标获批实施），获批后即重算'。",
+   "recalc_triggers": [
+    "HD00-1601 控规批复文件公开发布"
+   ],
+   "source_ids": [
+    "SRC-ISSUE-1774-DATA-SOURCE-INDEX"
+   ],
+   "status": "data_gap"
+  },
+  {
+   "id": "A-REGIONAL-007",
+   "title_zh": "区域协同接口待主体确认",
+   "statement_zh": "v0.2 提出的区域协同五接口（海淀研发—经开制造—怀柔基础—未来科学城能源—张家口绿电算力）为概念建议，接口要素（输入/公共回报/数据边界/退出条件）标注'待主体确认'，不构成已确定合作安排。",
+   "impact_zh": "区域协同叙事仅作深化方向。",
+   "recalc_triggers": [
+    "官方或主体确认的协同文件"
+   ],
+   "source_ids": [
+    "SRC-WIKI-BJ-AI-ECOSYSTEM",
+    "SRC-WIKI-LINE13-QINGHE"
+   ],
+   "status": "concept_only"
+  },
+  {
+   "id": "A-GOVERNANCE-008",
+   "title_zh": "治理机制采用社区公共协议并署名",
+   "statement_zh": "v0.2 场景治理机制参照 Issue #1119 折返协议 Switchback Protocol v1.0（CC-BY-4.0，作者 chucky1102）五组件结构，按协议授权署名采用；叠加北京2025年首个算法登记中心政策底座（背景参考）。时限为设计目标值，非政府承诺。",
+   "impact_zh": "治理机制可横向比较、可复审；引用须署名。",
+   "recalc_triggers": [
+    "协议版本更新"
+   ],
+   "source_ids": [
+    "SRC-ISSUE-1119-SWITCHBACK-PROTOCOL",
+    "SRC-WIKI-BJ-AI-ECOSYSTEM"
+   ],
+   "status": "concept_only"
+  }
+ ]
+}
