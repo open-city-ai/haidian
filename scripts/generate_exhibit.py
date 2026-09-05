@@ -38,7 +38,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import stat
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -55,6 +58,66 @@ SPATIAL_IMAGE_CANDIDATES = (
     "assets/figures/land-use-structure.png",
     "assets/figures/site-overview.png",
 )
+
+
+def generation_inputs(repo_root: Path, submission_dir: Path) -> list[tuple[str, Path]]:
+    manifest_path = submission_dir / "manifest.json"
+    inputs = [
+        ("proposal", submission_dir / "proposal.md"),
+        ("self-check", submission_dir / "self_check.json"),
+        ("manifest", manifest_path),
+        ("publication registry", repo_root / "gallery-publication.json"),
+        ("exhibit schema", repo_root / "schema" / "exhibit.schema.json"),
+    ]
+    figures = submission_dir / "assets" / "figures"
+    inputs.extend(("proposal figure", path) for path in sorted(figures.glob("*.png")))
+    if manifest_path.is_file():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            manifest = None
+        files = manifest.get("files") if isinstance(manifest, dict) else None
+        if isinstance(files, list):
+            inputs.extend(
+                ("reviewed package artifact", submission_dir / item["path"])
+                for item in files
+                if isinstance(item, dict) and isinstance(item.get("path"), str)
+            )
+    found: list[tuple[str, Path]] = []
+    seen: set[Path] = set()
+    for label, path in inputs:
+        resolved = path.resolve()
+        if path.exists() and resolved not in seen:
+            found.append((label, path))
+            seen.add(resolved)
+    return found
+
+
+def atomic_write_text(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        output_mode = stat.S_IMODE(path.stat().st_mode)
+    except OSError:
+        output_mode = 0o644
+    fd, temp_name = tempfile.mkstemp(
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+    )
+    temp_path = Path(temp_name)
+    try:
+        os.chmod(temp_path, output_mode)
+        handle = os.fdopen(fd, "w", encoding="utf-8")
+        fd = -1
+        with handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_path, path)
+    finally:
+        if fd >= 0:
+            os.close(fd)
+        temp_path.unlink(missing_ok=True)
 
 
 def pick_image(submission_dir: Path, candidates: tuple[str, ...]) -> str | None:
@@ -187,6 +250,21 @@ def main() -> int:
     if not submission_dir.is_absolute():
         submission_dir = repo_root / submission_dir
     output = Path(args.output) if args.output else submission_dir / "exhibit.json"
+    output_lexical = Path(os.path.abspath(output))
+    output_resolved = output.resolve()
+    for label, input_path in generation_inputs(repo_root, submission_dir):
+        if output_resolved == input_path.resolve() or (
+            output.exists() and output.samefile(input_path)
+        ):
+            parser.error(f"output must not overwrite the {label} input: {input_path}")
+    submissions_root = (repo_root / "submissions").resolve()
+    default_output = Path(os.path.abspath(submission_dir / "exhibit.json"))
+    if output_lexical != default_output and any(
+        candidate.is_relative_to(submissions_root)
+        for candidate in (output_lexical, output_resolved)
+    ):
+        action = "overwrite an existing file" if output.exists() else "write a new file"
+        parser.error(f"output must not {action} inside submissions/: {output}")
 
     exhibit = build_exhibit(repo_root, submission_dir)
     validate_against_schema(repo_root, exhibit)
@@ -202,8 +280,7 @@ def main() -> int:
         print(f"{output}: up to date")
         return 0
 
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(rendered, encoding="utf-8")
+    atomic_write_text(output, rendered)
     print(str(output))
     return 0
 
