@@ -6,7 +6,7 @@
 
 - Agent 名称：Aplaybox AI Urbanist
 - Agent 模型族：GLM (Z.ai)
-- 模型详情：GLM-5.2 主 agent + Python（shapely/pyproj/matplotlib/reportlab/fonttools）+ z-ai-web-dev-sdk 工具
+- 模型详情：GLM-5.3-Flash 主 agent（v2.29 起更新声明，此前各轮为 GLM-5.2 同族迭代）+ Python（shapely/pyproj/matplotlib/reportlab/fonttools）+ z-ai-web-dev-sdk 工具（含 TTS）+ ffmpeg（媒体合成）
 - 生成日期：2026-08-15
 - GitHub 仓库：https://github.com/aplaybox/haidian
 - 提交 slug：jingzhang-ai-artery
@@ -68,6 +68,18 @@ PDF 嵌入字体子集为 Noto Serif SC（OFL 1.1），符合 OFL 嵌入条款�
 | `assets/media/visual_identity.md` | agent 原创 | COMMUNITY-DISPLAY-ONLY | 视觉识别手册 | 概念草案 |
 | `assets/media/public_space_components.md` | agent 原创 | COMMUNITY-DISPLAY-ONLY | 公共空间构件说明 | 概念草案 |
 | `assets/media/bilingual_review_checklist.md` | agent 原创 | COMMUNITY-DISPLAY-ONLY | 双语复核清单 | 流程文件 |
+
+### 2.3 多模态导览媒体（v2.29 新增，全部为完全合成媒体）
+
+| 资产 | 来源 | 许可证 | 用途 | 生成工具 |
+| --- | --- | --- | --- | --- |
+| `audio-guide.m4a` / `audio-guide-en.m4a` | 导览词为 agent 原创；语音由 Z.ai TTS 服务合成（音色 xiaochen / jam） | COMMUNITY-DISPLAY-ONLY | 双语音频导览（可选无障碍增强） | z-ai-web-dev-sdk TTS + ffmpeg（AAC 72 kbps 转码，变速不变调 atempo） |
+| `guided-tour.mp4` / `guided-tour-en.mp4` | 画面帧全部来自本包 `assets/figures/` 自产图件（v2.31/v2.32 起与当轮修复版图件一致）+ PIL 绘制标题/结束卡（Noto Serif SC Bold，OFL 1.1）；解说为 Z.ai TTS 合成 | COMMUNITY-DISPLAY-ONLY | 双语概念导览视频（76.5 s / 86 s，1280×720） | ffmpeg（预缩放帧 concat + libx264 CRF28 + aac） |
+| `guided-tour.vtt` / `guided-tour-en.vtt` | 解说逐字文稿时间轴化 | COMMUNITY-DISPLAY-ONLY | WebVTT 字幕（与视频同步） | agent 生成 |
+| `guided-tour-poster.png` / `.en.png` | agent 用 PIL + Noto Serif SC Bold（OFL 1.1）绘制 | COMMUNITY-DISPLAY-ONLY | 视频海报（含 concept 标注） | PIL |
+| `audio-guide.md` / `audio-guide-en.md` / `guided-tour.md` / `guided-tour-en.md` | agent 原创（逐字文稿 + 生成方法 + 权利边界） | COMMUNITY-DISPLAY-ONLY | 媒体文稿与权利说明 | agent 生成 |
+
+**合成声明**：上述音频/视频为完全合成媒体——无真人录音、不模拟真实人物、无背景音乐、无实拍镜头、无地图瓦片、无第三方版权素材；内容为概念演示，不构成建成实景、效果承诺或官方导览；视频不自动播放，字幕与逐字文稿齐全。
 
 ### 3. 几何与地图数据（Geometry & Spatial Data）
 
@@ -141,7 +153,8 @@ PDF 嵌入字体子集为 Noto Serif SC（OFL 1.1），符合 OFL 嵌入条款�
 7. **HTML 字体嵌入**：`scripts/embed_fonts_in_html.py` 使用 fonttools 子集化 NotoSerifSC，base64 嵌入 HTML @font-face，确保 CI 环境 headless Chromium 能正确渲染中文。
 8. **可视化页**：`scripts/generate_visual_html.py` 生成离线静态 `visual/index.html` 与 `visual/index.en.html`，含 `data-metric` / `data-value` 属性以供机器可读。
 9. **结构化 JSON**：`scripts/generate_json_files.py` 生成 agent.json / sources.json / assumptions.json / compliance_matrix.json / standard_matrix.json / design_depth_matrix.json。
-10. **自检**：仓库自带 `scripts/self_check_submission.py --mark-self-checked --json` 运行 4 门自检并写入 self_check.json。
+10. **多模态媒体（v2.29，v2.31/v2.32 视频随修复版图件重生成）**：导览词由 agent 撰写，Z.ai TTS（音色 xiaochen / jam）合成 WAV 母带；ffmpeg 变速不变调（atempo）与 AAC 转码产出 `audio-guide*.m4a`；视频由 ffmpeg 将本包图件帧（预缩放 1280×720、concat、libx264 CRF28）与解说轨合成为 `guided-tour*.mp4`，WebVTT 字幕由分段解说时长生成；标题/结束卡与海报由 PIL + Noto Serif SC Bold（OFL 1.1）绘制。
+11. **自检**：仓库自带 `scripts/self_check_submission.py --mark-self-checked --json` 运行 4 门自检并写入 self_check.json。
 
 ## 排除条款
 
@@ -187,6 +200,6 @@ PDF 嵌入字体子集为 Noto Serif SC（OFL 1.1），符合 OFL 嵌入条款�
 
 任何超出 COMMUNITY-DISPLAY-ONLY 范围的复用，须先经维护者书面授权并在 `manifest.json` 中升级 license 字段。本方案不在正文与 manifest 中作出超出 COMMUNITY-DISPLAY-ONLY 的复用承诺。
 
-## 版本同步说明（v2.21）
+## 版本同步说明（v2.29）
 
-本台账已与当前包清单全量同步：`assets/figures/` 25 个图件、`assets/media/` 7 个媒体/品牌文件、`drawings/` 4 份 PDF 全部逐项登记来源、许可证与用途；OSM z15 背景瓦片的署名与 background_only 口径、Logo 三锁定版的草案状态一并如实更新。后续新增或替换资产时，本台账与 `manifest.json` 同步修订。
+本台账已与当前包清单全量同步：`assets/figures/` 25 个图件、`assets/media/` 19 个媒体/品牌文件（v2.29 新增音频 2、视频 2、字幕 2、海报 2、文稿 4，既有 7 个不变）、`drawings/` 4 份 PDF、`visual/assets/` 2 个 JSON（评委阅读导航与一致性核对存档）、`report/` 品牌区分度矩阵中英双版全部逐项登记来源、许可证与用途；OSM z15 背景瓦片的署名与 background_only 口径、Logo 三锁定版的草案状态一并如实更新。后续新增或替换资产时，本台账与 `manifest.json` 同步修订。

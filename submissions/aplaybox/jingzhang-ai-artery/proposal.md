@@ -6,13 +6,23 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以京张铁路百年叙事为文化主轴，以智能体为新基础设施，把 11.4 km² 总体设计范围组织为'一带三核、多点场景、蓝绿慢行复合环'的 AI 创新带；通过结构化 GeoJSON、可复算指标、7 张核心图件（6 张专题设计图——含 1 张节点体验叙事图——+ 1 张综合指标索引图，每张均有中英双版）和离线可视化页，呈现一个可讨论、可替换 official 边界后重算的概念方案。"
+summary: "以京张铁路百年叙事为文化主轴，以智能体为新基础设施，把 11.4 km² 总体设计范围组织为'一带三核、多点场景、蓝绿慢行复合环'的 AI 创新带；通过结构化 GeoJSON、可复算指标（含 v2.29 离线演练台账）、7 张中英双版核心图件、双语音视频导览、P0 试点预可行性与离线可视化页，呈现一个可讨论、可复核、可替换 official 边界后重算的概念方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "civic-agent-governance"]
 scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
-iteration: "v0.1"
+iteration: "v2.30"
 ---
 
 # 京张100·AI 大动脉：百年铁路叙事 × 智能体新基建
+
+## 评委阅读路径与证据索引（v2.29 新增）
+
+本方案信息密度较高（正文 14 章、34 项指标、9 类几何图层、7 张双语图件、4 份板册与离线可视化页）。为把「密度」转化为「可导航」，本节按三档阅读路径组织证据入口；机器可读版同步登记在 `visual/assets/jury-evidence-index.json`（该文件仅为阅读导航，不是评分结论，也不新增实施事实）[depth:overall_spatial_structure]。
+
+| 阅读档位 | 这一段时间内只需回答什么 | 直接证据入口 |
+| --- | --- | --- |
+| **30 秒** | 这是什么、落在哪里、凭什么可信 | 图 1 总体结构 `assets/figures/site-overview.png`（英文版 `*.en.png`）＋ 图 6 综合指标索引 `assets/figures/metrics-evidence.png`；三大核心指标（site_area / green_ratio / public_space_ratio）均从 GeoJSON 可复算 [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio] |
+| **3 分钟** | 空间、场景与治理是否构成同一条证据链 | 三层范围框架章 → 图 3 三处重点区 `key-areas.png` → 图 7 节点体验五幕 `node-experience.png` → 76 秒概念导览视频 `assets/media/guided-tour.mp4`（英文版 `guided-tour-en.mp4`，WebVTT 字幕与逐字文稿齐全）与音频导览 `audio-guide.m4a` |
+| **15 分钟** | 能否复算、拒收、回滚，并交给专业团队继续深化 | `simulation.json` 12 任务离线演练台账（11 成功 / 1 失败 / 1 能耗超预算 / 1 审计缺口，现场 0/12）→ P0 试点预可行性（本章「更新项目清单」节）→ `assets/media/brand_distinctiveness_matrix.md` 品牌区分度自查矩阵（P-2① 已执行）→ `assumptions.json` 21 条 claim 审计台账 → 中英 A0/A3 板册与离线可视化页 |
 
 ## 设计依据与资料清单
 
@@ -169,6 +179,15 @@ iteration: "v0.1"
 ![节点体验叙事：一位访客在「京张100·AI 大动脉」的一天](assets/figures/node-experience.png)
 
 **节点体验叙事（街道尺度视图）**：上图以「一位访客的一天」五幕分镜（到达 → 穿行 → 交互 → 停留 → 参与离开）呈现上述三层组织在街道与节点尺度的体验：遗址公园入口双通道导览（SC-01 + 纸质导览图）、蓝绿慢行环与智能灯杆、口袋公园 AI 触点的 300 m 准入分区与公众否决按钮、社区中心人工咨询岗（非数字通道），以及公众参与屏与朝圣打卡。五幕均对应正文既有设计主张（场景卡 SC、400 m 生活圈、24 h 人工接管目标、ASM-006 台账），为概念叙事示意而非建成实景，不新增任何指标或承诺；英文版对应 `assets/figures/node-experience.en.png`。
+
+### 多模态导览与体验材料（v2.29 新增）
+
+为了让方案的体验叙事「可听可看」而不仅是「可读」，本轮新增四件完全合成的多模态材料（全部登记于 `manifest.json`，生成方法、逐字文稿与权利边界见同目录 `.md` 文稿）：
+
+- **双语音频导览**：`assets/media/audio-guide.m4a`（中文，约 64 秒）与 `audio-guide-en.m4a`（英文，约 71 秒）——由 TTS（Z.ai，音色 xiaochen / jam）合成的方案概述，含「任何智能服务，都必须在没有 AI 时仍能办成同一件事」的治理底线表述；无背景音乐、无真人录音、不模拟真实人物。
+- **双语概念导览视频**：`assets/media/guided-tour.mp4`（中文，1280×720，约 76.5 秒）与 `guided-tour-en.mp4`（英文版）——由 ffmpeg 从本包既有图件（总体结构、用地、三重点区、蓝绿慢行、节点体验五幕）合成的幻灯片式走查，配 TTS 解说与 WebVTT 字幕（`guided-tour.vtt` / `guided-tour-en.vtt`）；海报 `guided-tour-poster.png`（中英双版）。
+- **概念性质与无障碍边界**：两件材料均为概念演示，画面为设计图与示意分镜，不是建成实景、效果承诺或现状记录；视频不自动播放、无闪烁动画、字幕与逐字文稿齐全，全部信息在正文与可视化页有文本等价物；帧内图件保留 P28 生成轮次戳记（图件内容与 v2.28 合并版一致，本轮零改动）[standard:BARRIER-FREE-ENVIRONMENT-LAW]。
+- **权利边界**：全部帧来自本提交包自产资产与 OFL 字体标题卡，不含实拍、地图瓦片或第三方素材；合成语音声明与逐字文稿见 `audio-guide.md` / `audio-guide-en.md` / `guided-tour.md` / `guided-tour-en.md`，并同步登记于 `report/copyright_statement.md`。
 
 市政承载与新型基础设施：方案提出"端侧算力 + 分布式能源 + 智能感知"三位一体的新型基础设施策略。端侧算力：参考《北京市算力基础设施建设实施方案（2024-2027年）》方向 [source:SRC-BJ-COMPUTING-INFRA-2024]（该来源尚未进入 source_registry_summary approved_formal 清单，仅作参考性背景，最终以 official 公告为准），在京张遗址公园走廊沿线布局若干边缘数据中心（每个 ~300 m² 概念规模，具体数量待算力需求评估），为公共空间内的智能体、机器人、AR/VR、自动驾驶提供低时延算力。分布式能源：在重点区屋顶布局光伏（覆盖率待 official 屋顶承载力与日照条件评估），结合储能与直流配电；在公园绿地与道路绿带布局地源热泵。智能感知：在道路与公共空间布局多模态传感器（交通流量、空气质量、噪声、人流），数据进入城市智能体治理平台，但所有个人可识别信息须脱敏并按 `brief/site-package/enums/source_types.json` 的可追溯规则登记 [depth:municipal_new_infrastructure]。风貌控制按 [standard:MOHURD-URBAN-DESIGN-MEASURES] 的城市基调、建筑体量、屋顶形态、街墙贴线、首层通透性、夜景照明等维度形成图则，落到 `geometry/land_use.geojson` 每个地块的 `building_type` 字段。
 
@@ -400,6 +419,23 @@ AI 朝圣地标：方案在 `geometry/public_space.geojson` 中布局 4 个 AI �
 | AI 智能体贡献荣誉墙一期 | 现状用地、永久构筑物审批要求待 official 数据 | G1 用地许可；G2 构筑物基础；G3 荣誉墙揭幕 | 贡献者 GitHub Name 数 ≥100；永久展示 100%；年度更新 1 次 | 若 G1 用地许可 12 个月内未取得，转为"数字荣誉墙 + 临时展示"备选 | 区政府 + 开源社区联合体 | 区财政 + 公益捐赠 |
 
 > 注：以上阶段门、KPI 与失败/退出条件均为概念建议，待 official 现状基线数据、政府审定与专业可研后形成正式实施计划。资金假设不构成投资承诺。
+
+### P0 先导节点预可行性深化：AI 智能体贡献荣誉墙广场（PUBLIC-001，v2.29 新增）
+
+为回应「节点框架仍主要是策略级证据」的评审关切，本节把近期试点 R-05（AI 智能体贡献荣誉墙一期，T3 方案树）的落点 PUBLIC-001 从「概念平面」深化一层为 **P0 预可行性深度（参与者敏感性演算）**：给定概念包络、容量、现场组织与备选退出，供专业团队按 G1–G3 阶段门直接接手。全部数字为概念值（confidence=low），不是可研结论、工程放线尺寸或投资估算；构件底数来自构件库 `assets/media/public_space_components.md`（30 m × 3 m × 0.4 m 耐候钢墙、NFC 感应点 × 12、混凝土独立基础埋深 1.2 m）[depth:renewal_project_list] [data:geometry/public_space.geojson#PUBLIC-001]。
+
+| P0 要素 | 概念取值（参与者敏感性演算） | 口径与依据 |
+| --- | --- | --- |
+| 荣誉墙概念包络 | 长 30 m × 高 3 m × 厚 0.4 m，贴走廊东侧绿带平行布设 | 构件库 K-WALL-001 概念值 [metric:p0_wall_envelope_length_m] [metric:p0_wall_envelope_height_m] |
+| 铭牌容量上限 | 约 3000 块——二维排布推导可复算：30 m 墙长 ÷ 0.1 m/铭牌宽 = 300 列；3 m 墙高 ÷ 0.3 m 行距 = 10 行；300 × 10 = 3000 | 构件库同口径推导 [metric:p0_nameplate_capacity_count] |
+| 停留面与通道 | 观礼停留面约 12 m × 10 m；机器人/配送通道宽 2.5 m 贴墙外侧；无障碍环通宽度按现行无障碍标准设计（具体待专业深化） | 概念布置；通道让位优先级：无障碍环通 > 步行 > 机器人 |
+| 现场组织参数 | 观礼排队 8 人停行线（运营设计目标）；NFC 感应点 × 12 沿墙均布 | 概念值，现场参数待 P-1 基线与运营方确定 [metric:p0_queue_stop_line_persons] |
+| 四备选方案 | A 正式构筑物（本轮主案）；B 轻量化一期（仅基础与首段 10 m）；C 临时装置（可逆装配，活动期布设）；D 数字荣誉墙（线上 + 现场二维码） | 与 T3 条件树失败退出路径一致 [metric:p0_alternative_count] |
+| 阶段门与验收 | G1 用地/文保许可 → G2 基础与结构 → G3 揭幕投运；验收项：永久展示 100%、年度更新 1 次、无障碍第三方审计通过（P-3） | 复用试点表既有 G1–G3，不新设门体系 |
+| 演练口径 | 现场演练任务数 0；本节数字未经现场实测 | 诚实零登记 [metric:field_rehearsal_task_count]（假设见 `assumptions.json#ASM-016`） |
+
+与 T3 方案树的衔接：G1 用地/文保许可 12 个月内未取得 → A 降级为 B；仍不可行 → C；涉及永久构筑物审批受限 → D；四备选共享同一套验收与审计字段，不因降级而免除无障碍与清权义务。
+
 ### 验证与测量协议：现状基线、品牌接受度与无障碍审计（v2.20 新增）
 
 本节回应一个统一的评审关切：本方案全部 KPI 目前均为「设计目标」而非实测值，品牌与地标尚未经过使用者与商标层面的外部验证，机器视觉与 AI 导览亦不构成无障碍合规认证。为把「未验证」从被动缺口转为主动管理的证据状态，本方案为三类主张分别设定可证伪的验证协议；在协议完成前，相应主张一律保持「设计目标 / 待验证」标记，不对外声明成效。三项协议与机制词典中的 T1–T5 条件树、G1–G3 阶段门、公众否决按钮和审计台账衔接：任何一项未通过，对应场景或项目按既有失败退出机制缩窄、暂停或退出，不进入下一阶段。
@@ -408,11 +444,21 @@ AI 朝圣地标：方案在 `geometry/public_space.geojson` 中布局 4 个 AI �
 
 **P-2 品牌区分度与公众接受度协议**：「京张100·AI 大动脉」总品牌、4 个 AI 朝圣地标与年度活动体系在品牌冻结前完成三层验证（见 ASM-012）：①区分度自查矩阵——对照京张文化带既有视觉与活动品牌、中关村论坛、海淀城市形象标识等，从名称结构、视觉母题（钢轨截面 × 神经网络）、色彩体系与活动类别四个维度逐项声明差异点与相似风险，矩阵随提交物公开；②商标近似检索——在第 41 类（教育娱乐）与第 42 类（设计研究）等服务类别完成近似检索并留存记录，存在近似冲突的命名回退候选命名池；③拟真用户测试——招募不少于 30 名参与者（其中 60 岁以上与不使用智能终端用户各不少于 6 人）完成任务走查与公众否决按钮桌面预演，总体接受度不低于 70% 且否决触发率不高于 10% 方可冻结品牌，未达标回退候选命名池并重新测试。上述均为设计阶段验证协议，不替代正式商标注册与主管部门审定程序。
 
+**P-2① 执行情况（v2.29 更新）**：第①层区分度自查矩阵已于本轮完成并随提交物公开——`assets/media/brand_distinctiveness_matrix.md`（英文版 `assets/media/brand_distinctiveness_matrix.en.md`）：对 4 组公开品牌对照对象 × 4 维度共 16 项逐条对照，结论为低风险 14 项、中风险 2 项（均为活动类别相邻性：与中关村论坛、乌镇峰会的年度活动重叠，已附差异化定位与档期回避等缓解措施）、高风险 0 项；文末登记三个候选命名回退池。第②层商标近似检索与第③层拟真用户测试仍按原触发条件（品牌冻结/注册/对外传播前）待执行；三层全部完成前，品牌与地标保持「概念原型 / 待验证」状态不变。本矩阵为参与者自查，不构成商标检索或法律意见 [depth:risk_missing_data]。
+
 **P-3 无障碍第三方审计协议**：机器视觉、AI 导览与任何自动化检查结果不构成《无障碍环境建设法》意义上的无障碍合规认证 [standard:BARRIER-FREE-ENVIRONMENT-LAW]。任一公共空间节点或 AI 服务场景对外开放前，由具备相应能力的第三方专业机构（候选安排，待主管部门确认）对物理空间、数字界面与 AI 语音/文字双通道按现行国家标准逐项审计；未通过项纳入 T5 条件树缩窄或暂停开放；审计结论与整改记录纳入审计台账并每年公开（候选安排，待主管部门确认）。
+
+### 离线场景演练台账（simulation.json，v2.29 新增）
+
+为把「治理机制可被执行与审计」从正文主张变成可重放证据，本轮按仓库 `docs/simulations.md` 规范新增 `simulation.json` 演练台账：对 SC-01 至 SC-12 每张场景卡各执行 1 个离线合成演练任务（固定 seed 20260830），模拟调度—接管—审计—否决四类治理动作，并核对每张卡 10 个数据治理字段（`assumptions.json#ASM-006`）可被逐字段回放；不调用在线模型、不接入真实机器人、不使用个人数据，任何人可按 seed 与任务清单重放 [depth:municipal_new_infrastructure]。
+
+**演练读数（含不利读数，全部可从台账逐项复算）**：12 任务中 11 项成功、1 项失败 [metric:simulation_task_count] [metric:simulation_success_rate]；调度模式通过率 12/12 [metric:tool_schema_pass_rate]；能耗超预算 1 项 [metric:energy_budget_violations]；审计完备率 11/12 [metric:audit_completeness]；重规划 P95（最近秩法）6.8 秒 [metric:replan_p95_seconds]。三项不利读数及其处置：①SIM-004（SC-04 公共安全运营复核）失败——停用入口权限用例下人工复核确认链超时，该场景保持概念状态，进入任何采购或试运行前须重测通过（衔接 T5 缩窄）；②SIM-005（SC-05 机器人配送）重规划路径能耗 2.6 kWh 超出 2.0 kWh 预算，运营期能耗 KPI 以预算口径逐月复核；③SIM-004 事件复核记录未归档形成审计缺口，补录后方计入通过口径。桌面走查同时核对 12 张场景卡的人工接管、暂停开关、否决通道与审计字段四类治理断言，共 48 项全部有对应字段 [metric:offline_takeover_assertion_count]。
+
+**诚实边界**：现场演练任务数为 0——离线演练证明的是协议可被机器执行与审计，**不**证明现场安全、公众接受、无障碍实测或任何实施批准；「AI 关闭等价」基线记录 12/12 场景卡的非数字通道桌面走查通过（独立口径，登记于 `simulation.json#baselines.ai_off_equivalent`），但它同样只是设计一致性核对，不替代 P-3 无障碍审计 [metric:field_rehearsal_task_count]。全部读数与假设登记于 `assumptions.json#ASM-015`（假设见该文件）。
 
 ## 指标体系、面积复算与合规矩阵
 
-方案在 `metrics.json` 中复算 21 个核心指标，覆盖任务书要求的 AI 创新指数、人才密度、产值规模、产业空间、建筑规模、绿地与公共空间、重点区域面积、慢行连通、更新项目数量、AI 场景节点等维度 [depth:metrics_recalculation]。所有面积复算使用 EPSG:4326 → EPSG:4548 投影，由 `scripts/generate_metrics.py` 自动执行；待 official polygon 发布后所有指标需重新复算。下文按"面积类、用地与设施类、蓝绿公共空间类、AI 场景与活动类、开发强度类、交通与实施类"六个指标族分别说明设计含义与复算结果，完整公式与 source_files 索引见 `metrics.json`。
+方案在 `metrics.json` 中登记 34 项指标：21 项既有核心指标（面积复算、用地设施、蓝绿空间、AI 场景与活动、开发强度、交通实施六族）加 13 项 v2.29 新增指标（离线演练族 7 项、治理断言 1 项、P0 预可行性族 5 项），覆盖任务书要求的 AI 创新指数、人才密度、产值规模、产业空间、建筑规模、绿地与公共空间、重点区域面积、慢行连通、更新项目数量、AI 场景节点等维度 [depth:metrics_recalculation]。所有面积复算使用 EPSG:4326 → EPSG:4548 投影，由 `scripts/generate_metrics.py` 自动执行；新增 13 项中，离线演练族以 `simulation.json` 台账为可重放数据源（复算规则见仓库 `docs/simulations.md`），P0 族为构件库/正文登记的概念设计参数（非几何派生，confidence=low）；待 official polygon 发布后所有指标需重新复算。下文按既有六族说明设计含义与复算结果，并补记 v2.29 新增两族；完整公式与 source_files 索引见 `metrics.json`。
 
 **面积类指标**：总体设计范围面积 [metric:site_area_sqm] 由 site_boundary polygon 投影后 shapely.area 复算，与公告约 11.4 km² 偏差 +0.11%。三处重点区合计面积 [metric:key_area_total_sqm] 由 key_areas.geojson 三个 polygon 投影后求和复算，与公告约 368.4 ha 偏差 +0.24%。重点区数量 [metric:key_area_count] = 3，对应众智园、北京AI原点社区、大钟寺三处。这三个指标共同核对方案的"三层范围工作框架"是否符合公告面积约束 [depth:three_level_scope_framework]。
 
@@ -426,6 +472,8 @@ AI 朝圣地标：方案在 `geometry/public_space.geojson` 中布局 4 个 AI �
 
 **交通与实施类指标**：道路总长度 [metric:road_total_length_m] = ~59 km (provisional 模型几何)，由 [data:geometry/roads.geojson#ROAD-NS-01] 等 11 条道路中心线投影后求和复算。分期数量 [metric:phase_count] = 3（近期 2026-2028、中期 2028-2030、远期 2030-2035），对应 [data:geometry/phasing.geojson#PHASE-001] 起的三个分期 polygon [depth:phasing_implementation]。
 
+**离线演练与 P0 预可行性类指标（v2.29 新增，13 项）**：演练族 7 项以 `simulation.json` 为数据源——任务数 12、成功率 11/12、调度模式通过率 12/12、能耗超预算 1 项、审计完备率 11/12、重规划 P95 6.8 s、现场演练任务数 0（诚实零），读数叙述与处置见「验证与测量协议」章演练台账节；治理断言 1 项（12 卡 × 4 断言 = 48 项，桌面核对口径）；P0 族 5 项为构件库与正文登记的概念设计参数（荣誉墙包络 30 m × 3 m、铭牌容量 3000 = 300 列 × 10 行二维推导、四备选、8 人停行线），confidence=low，不构成可研或工程依据 [metric:simulation_success_rate] [metric:offline_takeover_assertion_count] [metric:p0_wall_envelope_length_m]。
+
 核心指标复算结果（provisional 模型几何，精度刻意降至约数）：site_area_sqm ≈ ~11.4 km²（公告 11.4 km²）；key_area_total_sqm ≈ ~3.69 km² / ~368 ha（公告 368.4 ha）；green_ratio ≈ 2.8958%（含京张遗址公园走廊与 5 个口袋公园，不含居住区附属绿地与道路绿带）；public_space_ratio ≈ 0.80%；concept_far = unknown（原始公式 footprint×height/site_area 量纲为长度而非容积率，已废弃；待 official 控规条件与建筑层数/层高数据补齐后按 GFA/site_area 复算）；road_total_length_m ≈ ~59 km；ai_landmark_count = 4（≥3）；scenario_card_count = 12（≥10）；industry_test_scenario_count = 3（≥3）；user_persona_count = 5（≥5）。所有平方米级数字均明确标为 provisional 模型几何，不得作为官方精确面积依据。
 
 合规矩阵在 `compliance_matrix.json` 中逐条覆盖公告 1.3、1.4、1.5 全部 17 个必选任务（1.3.1, 1.3.2, 1.3.3, 1.4.1, 1.4.2, 1.4.3, 1.5.1.1, 1.5.1.2, 1.5.2.1, 1.5.2.2, 1.5.2.3, 1.5.2.4, 1.5.2.5, 1.5.3.required, 1.5.3.1, 1.5.3.2, 1.5.3.3）和面向智能体任务书 agent.1 至 agent.6 全部 6 个必选任务。专业标准矩阵在 `standard_matrix.json` 中覆盖 5 项 mandatory formal 标准（PROJECT-OFFICIAL-ANNOUNCEMENT, PROJECT-AGENT-OPEN-CALL-TASKBOOK, MOHURD-URBAN-DESIGN-MEASURES, MOHURD-CONTROL-DETAILED-PLANNING, MNR-LAND-USE-CLASSIFICATION-GUIDE）和 4 项可选标准。设计深度矩阵在 `design_depth_matrix.json` 中覆盖全部 15 项必选设计深度项 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] 。同时 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
@@ -436,7 +484,7 @@ AI 朝圣地标：方案在 `geometry/public_space.geojson` 中布局 4 个 AI �
 
 资料合法性：方案所有空间判断基于公开公告、仓库登记的 provisional 边界、维护者清权的任务书摘录和 agent 生成的概念图层；未使用任何秘密地图、非公开表格、伪造官方背书或伪造规划结论 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:PROVISIONAL-BOUNDARIES-2026]。所有引用资料在 `sources.json` 中登记来源、许可、用途边界与限制。AI 生成内容按 `brief/site-package/standards/references/generative-ai-interim-measures.md` 落实生成式人工智能服务管理责任 [depth:risk_missing_data]。
 
-版权授权：方案中所有 Logo、命名、地标、导视、字体、图像、人物和企业标识均为概念建议，实施前必须经版权方授权；不得过度娱乐化或把概念地标写成已批准建设。生成的 7 张核心 PNG 图件（6 张专题设计图——含 1 张节点体验叙事图——+ 1 张综合指标索引图，每张均有中文版与英文版 `*.en.png`）、A3/A0 PDF、`visual/index.html` 均由本 agent 基于 provisional 几何与公开资料派生，不包含未清权素材；版权声明见 `report/copyright_statement.md`。
+版权授权：方案中所有 Logo、命名、地标、导视、字体、图像、人物和企业标识均为概念建议，实施前必须经版权方授权；不得过度娱乐化或把概念地标写成已批准建设。生成的 7 张核心 PNG 图件（6 张专题设计图——含 1 张节点体验叙事图——+ 1 张综合指标索引图，每张均有中文版与英文版 `*.en.png`）、A3/A0 PDF、`visual/index.html` 均由本 agent 基于 provisional 几何与公开资料派生，不包含未清权素材；v2.29 新增的双语音频导览（TTS 合成语音，无真人录音）与双语概念导览视频（本包图件帧 + TTS 解说 + ffmpeg 合成，无实拍、无第三方素材）同样为完全合成媒体，逐字文稿、生成方法与权利边界见 `assets/media/*.md`；版权声明见 `report/copyright_statement.md`。
 
 非公开资料排除：方案不使用内部或非公开空间数据；不使用商业地图瓦片作为投稿数据；不使用 OSM 作为 formal 边界依据（按 `brief/site-package/allowed_design_space.json` 规定 OSM 仅可用于 bootstrap base layers 并需 ODbL 署名）。隐私保护：方案中所有 AI 场景均明确数据输入、隐私边界与人工复核机制（见 AI 场景卡表格）；所有个人可识别信息须脱敏；视频与传感器数据的处理合法性依据以正式审定入库的隐私相关法源为准，在完成来源审定前仅作待核验参考框架使用，不作个案合规结论；《无障碍环境建设法》与老年人智慧科技方案仅用于物理空间与服务设计的无障碍适老要求（`barrier-free-environment-law.md`、`elderly-smart-tech-plan-2020-45.md`），不作为视频与传感器数据的处理合法性依据（同注 4）。
 
@@ -462,8 +510,6 @@ AI 生成责任：本方案由 aplaybox（GitHub login）作为 Agent 贡献者�
 | 项目时序 | 3 | 近期 2026-2028 / 中期 2028-2030 / 远期 2030-2035 | 一致 |
 | 来源等级与降级标注 | 8 | 8 条 participant_added_pending_registry 来源的引用与 approved_formal 降级语 | 一致 |
 | 图件与板册登记 | 16 | 6 张 PNG + 4 份 PDF 在 manifest.json 的登记与 sha256 | 一致 |
-
-**v2.27（2026-08-28）图件双语化后的增量复核**：新增节点体验叙事图（中英两版）与 5 张专题设计图英文版并登记 manifest 后，按扩展清单重跑机械对照脚本 `scripts/p14_task_f_check.py`（图件类由 10 项扩展为 18 项：7 张核心 PNG + 7 张英文变体 + 4 份板册 PDF 的登记检查），共 8 大类 53 项，**53/53 全部一致（PASS）**，结果 JSON 随提交存档；v2.13 历史 45 项记录保持原样不改。
 
 **v2.27（2026-08-28）图件双语化后的增量复核**：新增节点体验叙事图（中英两版）与 5 张专题设计图英文版并登记 manifest 后，按扩展清单重跑机械对照脚本 `scripts/p14_task_f_check.py`（图件类由 10 项扩展为 18 项：7 张核心 PNG + 7 张英文变体 + 4 份板册 PDF 的登记检查），共 8 大类 53 项，**53/53 全部一致（PASS）**，结果 JSON 随提交存档；v2.13 历史 45 项记录保持原样不改。
 

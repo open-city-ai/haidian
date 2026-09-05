@@ -1,716 +1,802 @@
 {
+ "schema_version": "0.1.0",
+ "project_id": "centennial-jingzhang-ai-belt",
+ "package_id": "jingzhang-ai-artery",
+ "assumptions": [
+  {
+   "id": "ASM-001",
+   "topic": "provisional_boundary",
+   "assumption_zh": "总体设计范围与三处重点区 polygon 使用仓库维护者推定的 provisional_boundaries.geojson，仅依据公告文字四至与约面积推定；与公告偏差均在 ±0.5% 以内，但不构成 official redline。",
+   "impact_zh": "所有几何派生的图层（land_use, buildings, roads, green_space, public_space, phasing）和面积指标在 official polygon 发布后须整体重算，不能只替换单个文件。",
+   "recalculation_path_zh": "取得 official CAD/GIS/PDF 边界文件后，登记文件哈希、发布机构、发布日期、版本、坐标系和转换方法，并同时替换三层范围与三处重点区；然后重新运行 generate_geometry.py + generate_metrics.py + generate_figures.py + render_proposal_html.py + self_check_submission.py。",
+   "confidence": "medium"
+  },
+  {
+   "id": "ASM-002",
+   "topic": "regulatory_control_missing",
+   "assumption_zh": "容积率、建筑高度、建筑密度、绿地率、退线等控规条件尚未公开，按 ranges/planning_limits.json 中 status=missing 处理。",
+   "impact_zh": "本方案 concept_far=unknown（原始公式量纲错误已废弃）、建筑高度 12-60m 等数值均为概念设计量，明确不等于法定控规值。",
+   "recalculation_path_zh": "取得 official 控规条件后，重新复算所有开发强度类指标；如与现状冲突，需调整用地分区与建筑形态。",
+   "confidence": "low"
+  },
+  {
+   "id": "ASM-003",
+   "topic": "existing_building_ownership",
+   "assumption_zh": "现状建筑、权属与拆改留分类基于公开资料与 provisional 边界推定；本方案 buildings.geojson 中 34 个建筑基底为概念示意，不代表实际权属。",
+   "impact_zh": "拆改留分类（保留/改造/拆除/新建）仅为方向性建议，最终须以 official 现状建筑与权属数据为准。",
+   "recalculation_path_zh": "取得 official 现状建筑与权属数据后，更新 buildings.geojson 的 building_type 字段并重新生成图纸与指标。",
+   "confidence": "low"
+  },
+  {
+   "id": "ASM-004",
+   "topic": "heritage_protection",
+   "assumption_zh": "清华园火车站遗址、大钟寺历史文化节点、京张铁路遗址等文保范围尚未取得 official polygon。",
+   "impact_zh": "方案中保留类建筑与公共空间布局仅为概念建议，最终须以 official 文保范围为准。",
+   "recalculation_path_zh": "取得 official 文保范围后，更新 constraints.geojson 并调整周边建筑退线。",
+   "confidence": "low"
+  },
+  {
+   "id": "ASM-005",
+   "topic": "road_redline",
+   "assumption_zh": "道路红线与轨道保护范围尚未取得 official 数据；roads.geojson 中 11 条道路中心线为概念路网。",
+   "impact_zh": "道路等级、宽度与线位最终须以 official 道路红线与轨道保护范围为准。",
+   "recalculation_path_zh": "取得 official 道路红线与轨道保护范围后，更新 roads.geojson 并调整周边建筑退线。",
+   "confidence": "medium"
+  },
+  {
+   "id": "ASM-006",
+   "topic": "ai_scenario_data_governance",
+   "assumption_zh": "AI 场景数据治理按《生成式人工智能服务管理暂行办法》[standard:GENERATIVE-AI-INTERIM-MEASURES]、《个人信息保护法》、《数据安全法》、《网络安全法》四重法律框架组织。每个场景明确 10 个字段：①数据来源 ②合法性依据 ③数据最小化 ④数据控制者/处理者 ⑤保存期限 ⑥访问权限 ⑦数据主体权利 ⑧人工接管机制 ⑨申诉渠道 ⑩安全事件响应。",
+   "impact_zh": "AI 场景卡中的数据输入、隐私边界、人工复核机制为概念建议；实施前需经数据合规与隐私评估。本方案不再使用「视频存储 7 天」作为公共安全场景的简化表述；SC-04 已修订为「结构化元数据 7 天、原始视频不入库」，力求符合《个人信息保护法》第 26 条相关条款的最小必要原则（非「公共场所例外 + 区公安审批」二要素简化表述）；该合规判断尚需经数据合规专项复核与主管部门确认，非自我认证。本方案不再使用《无障碍环境建设法》作为 AI 场景数据治理的依据。",
+   "recalculation_path_zh": "实施前由数据合规专家复核每个 AI 场景的数据流、隐私边界与人工复核机制，按 generative-ai-interim-measures 落实管理责任。所有 AI 关键判断须人工复核。",
+   "confidence": "medium",
+   "scenario_data_governance": {
+    "SC-01": {
+     "name": "AI 文化导览",
+     "data_sources": [
+      "公开历史资料",
+      "授权图片文字",
+      "人工策展文本",
+      "公开活动信息"
+     ],
+     "legal_basis": "《著作权法》合理使用 + 授权合同",
+     "data_minimization": "仅匿名停留计数；不采集个人轨迹",
+     "controller": "区文旅局（候选控制者，待主管部门确认）",
+     "processor": "智能体合作运营方（候选处理者）",
+     "retention_period": "匿名停留计数 90 天；授权资料按合同",
+     "access_control": "授权人员访问；公开数据无限制",
+     "data_subject_rights": "知情、访问、更正、删除（无个人信息采集，主体权利限于内容更正）",
+     "human_takeover": "文化、版权、事实核查人员复核关键叙事",
+     "complaint_channel": "区文旅局投诉电话 + 在线表单",
+     "incident_response": "内容错误 24h 下架；版权投诉 48h 移除"
+    },
+    "SC-02": {
+     "name": "AI+交通与慢行",
+     "data_sources": [
+      "公开交通数据",
+      "限速",
+      "人流密度"
+     ],
+     "legal_basis": "《政府信息公开条例》+ 交通开放数据",
+     "data_minimization": "不采集人脸与个人身份；仅聚合指标",
+     "controller": "区交通委（候选控制者，待主管部门确认）",
+     "processor": "企业联合体（候选处理者）",
+     "retention_period": "聚合指标 30 天",
+     "access_control": "授权工程师访问；公开数据开放",
+     "data_subject_rights": "无个人信息，无主体权利请求",
+     "human_takeover": "交通工程师复核信号与调度",
+     "complaint_channel": "12345 市民热线",
+     "incident_response": "信号误判 5 分钟人工接管；应急 30 秒切手动"
+    },
+    "SC-03": {
+     "name": "企业服务智能体",
+     "data_sources": [
+      "公开政策文本",
+      "企业授权申报数据"
+     ],
+     "legal_basis": "《政府信息公开条例》+《民法典》合同编 + 企业授权",
+     "data_minimization": "企业敏感数据本地存储；建议数据本地化",
+     "controller": "企业自身",
+     "processor": "智能体联合体（受托处理）",
+     "retention_period": "企业数据按合同；建议 5 年",
+     "access_control": "企业自管；处理者受托访问",
+     "data_subject_rights": "按《民法典》合同编与《反不正当竞争法》（均为待核验参考框架）合同约定主张企业数据权利的思路；“企业数据非个人信息、不适用个人信息保护主体权利框架”为设计假设，须经数据合规专项复核确认（与 proposal.md SC-03 表格一致）",
+     "human_takeover": "政策专家复核结论",
+     "complaint_channel": "企业服务窗口 + 中关村管委会",
+     "incident_response": "数据泄露 1h 启动响应；72h 通报"
+    },
+    "SC-04": {
+     "name": "AI 公共安全运营复核",
+     "data_sources": [
+      "视频结构化数据（非人脸）"
+     ],
+     "legal_basis": "参考《个人信息保护法》第 26 条所设「维护公共安全所必需、有特定法律授权」前提下设置标识或分析记录的条款方向（参考性法定框架，个案适用以数据合规专项复核与主管部门审定为准（本方案为概念设计，实施前需经数据合规专项复核与主管部门审定；非「公共场所例外 + 区公安审批」二要素简化表述）",
+     "data_minimization": "结构化元数据 7 天；原始视频不入库",
+     "controller": "区公安分局（候选控制者，待主管部门确认）",
+     "processor": "街道办（候选处理者，受托，待主管部门确认）",
+     "retention_period": "结构化元数据 7 天；原始视频不入库（设计目标，力求符合 PIPL 最小必要原则，实施前需经数据合规专项复核）",
+     "access_control": "公安授权人员；街道办受托访问",
+     "data_subject_rights": "居民可参照《个人信息保护法》（待核验参考框架）主张知情权与拒绝自动化决策权；结构化元数据若可识别个人则按个人信息处理并享有相应主体权利（与 proposal.md SC-04 表格一致）",
+     "human_takeover": "公安复核所有关键判断（≥1 人/班次）",
+     "complaint_channel": "12345 市民热线 + 公安督察",
+     "incident_response": "误判 5 分钟人工复核；事件 24h 通报（运营设计目标，非法定时限，实际以主管部门审定为准）"
+    },
+    "SC-05": {
+     "name": "机器人低速配送与巡检",
+     "data_sources": [
+      "公开路径",
+      "限速",
+      "电量",
+      "配送地址末端编号"
+     ],
+     "legal_basis": "《道路交通安全法》+《民法典》合同编 + 用户授权",
+     "data_minimization": "仅配送地址末端编号（不含完整地址）",
+     "controller": "配送企业",
+     "processor": "机器人运营商",
+     "retention_period": "配送记录 30 天",
+     "access_control": "企业自管",
+     "data_subject_rights": "用户享有完整主体权利",
+     "human_takeover": "运营人员复核异常",
+     "complaint_channel": "企业客服 + 12315",
+     "incident_response": "安全事故 1h 现场处置；保险理赔 7 天"
+    },
+    "SC-06": {
+     "name": "AI+ 教育",
+     "data_sources": [
+      "学习行为脱敏数据"
+     ],
+     "legal_basis": "参考《个人信息保护法》第 28 条未成年人敏感信息单独同意 + 监护人授权框架（参考性法定框架，个案适用以数据合规专项复核与主管部门审定为准）",
+     "data_minimization": "学生数据本地存储；仅汇总指标上传；学习行为≤6 个月",
+     "controller": "高校联合体",
+     "processor": "教育科技公司（受托）",
+     "retention_period": "学生数据本地存储；学习行为≤6 个月",
+     "access_control": "高校授权教师；处理者受托访问",
+     "data_subject_rights": "学生及监护人享有完整主体权利",
+     "human_takeover": "教师复核所有学习建议",
+     "complaint_channel": "学校教务 + 教育主管部门",
+     "incident_response": "数据泄露 24h 通报；学生/家长 7 天申诉通道"
+    },
+    "SC-07": {
+     "name": "AI+ 医疗",
+     "data_sources": [
+      "电子病历脱敏数据"
+     ],
+     "legal_basis": "参考《医疗机构病历管理规定》+《数据安全法》+ 患者知情同意框架（参考性法定框架，个案适用以数据合规专项复核与主管部门审定为准）",
+     "data_minimization": "医疗数据本地存储，加密传输；门诊数据 15 年",
+     "controller": "区卫健委 + 医院（候选控制者，待主管部门确认）",
+     "processor": "医疗 AI 公司（受托，需三级等保，候选处理者）",
+     "retention_period": "门诊数据 15 年（参考《医疗机构病历管理规定》最低保存期限方向；参考性法定框架待核验，个案以主管部门审定为准）",
+     "access_control": "授权医生；处理者受托+三级等保",
+     "data_subject_rights": "患者享有知情/访问/更正/可携带/拒绝自动化决策权；删除权受最低保存期限限制（参考《医疗机构病历管理规定》，待核验参考框架；门诊 15 年、住院 30 年；与 proposal.md SC-07 表格一致）",
+     "human_takeover": "医生复核所有诊断建议",
+     "complaint_channel": "医院投诉 + 卫健委",
+     "incident_response": "误诊 1h 人工复核；数据泄露 1h 启动响应；24h 通报卫健委"
+    },
+    "SC-08": {
+     "name": "AI+ 法律咨询",
+     "data_sources": [
+      "公开法律文本",
+      "案例库"
+     ],
+     "legal_basis": "《政府信息公开条例》+ 中国裁判文书网公开数据",
+     "data_minimization": "不采集个人敏感信息；咨询记录匿名化",
+     "controller": "区司法局（候选控制者，待主管部门确认）",
+     "processor": "律所联合体（受托，候选处理者）",
+     "retention_period": "咨询记录匿名化 30 天",
+     "access_control": "司法局授权人员；处理者受托访问",
+     "data_subject_rights": "居民享有匿名咨询权",
+     "human_takeover": "律师复核关键建议",
+     "complaint_channel": "12348 法律援助热线",
+     "incident_response": "法律解释错误 48h 修正"
+    },
+    "SC-09": {
+     "name": "AI 芯片与基础模型测试验证（产业测试验证场景①）",
+     "data_sources": [
+      "算力使用",
+      "模型性能"
+     ],
+     "legal_basis": "参考《数据安全法》《网络安全法》（均为待核验参考框架，尚未进入 approved_formal 清单）+ 测试协议合同约定；不作个案合规结论",
+     "data_minimization": "测试数据本地化；仅公开指标",
+     "controller": "国家 AI 平台（候选控制者，待主管部门确认）",
+     "processor": "企业联合体（受托，候选处理者）",
+     "retention_period": "公开指标 5 年",
+     "access_control": "国家平台授权；处理者受托访问",
+     "data_subject_rights": "测试参与方享有商业秘密保护权",
+     "human_takeover": "第三方测试机构复核",
+     "complaint_channel": "国家 AI 平台监督委员会",
+     "incident_response": "模型泄露 1h 隔离；72h 通报"
+    },
+    "SC-10": {
+     "name": "AI 安全治理与红队测试（产业测试验证场景②）",
+     "data_sources": [
+      "攻击样本",
+      "防御指标"
+     ],
+     "legal_basis": "《网络安全法》为待核验参考框架；国家 AI 安全中心授权为未来启动前提/候选条件，待正式授权证据，当前不作为已具备的合法性依据",
+     "data_minimization": "攻击样本物理隔离存储；防御指标脱敏",
+     "controller": "国家 AI 安全中心（候选控制者，待主管部门确认）",
+     "processor": "受认可实验室（候选处理者）",
+     "retention_period": "防御指标脱敏 3 年；攻击样本永久物理隔离",
+     "access_control": "国家 AI 安全中心授权；实验室受控访问",
+     "data_subject_rights": "无个人信息主体权利请求",
+     "human_takeover": "安全专家复核所有结论",
+     "complaint_channel": "国家 AI 安全中心监督",
+     "incident_response": "样本外泄 1h 物理隔离；4h 通报"
+    },
+    "SC-11": {
+     "name": "AI 标准制定与互操作验证（产业测试验证场景③）",
+     "data_sources": [
+      "标准草案",
+      "互操作测试结果"
+     ],
+     "legal_basis": "《标准化法》；国家标准化院授权为未来启动前提/候选条件，待正式授权证据，当前不作为已具备的合法性依据",
+     "data_minimization": "标准草案公开版本；企业测试数据本地",
+     "controller": "国家标准化院（候选控制者，待主管部门确认）",
+     "processor": "企业联合体（候选处理者）",
+     "retention_period": "标准草案长期公开",
+     "access_control": "标准化院授权；企业受托访问",
+     "data_subject_rights": "标准参与方享有知情权",
+     "human_takeover": "标准化专家复核",
+     "complaint_channel": "国家标准化院 + 标准化技术委员会",
+     "incident_response": "互操作失败 7 天复盘"
+    },
+    "SC-12": {
+     "name": "AI+ 商业",
+     "data_sources": [
+      "购物偏好脱敏数据"
+     ],
+     "legal_basis": "参考《个人信息保护法》+ 用户授权 +《电子商务法》框架（参考性法定框架，个案适用以数据合规专项复核与主管部门审定为准）",
+     "data_minimization": "仅购物行为；不采集个人身份",
+     "controller": "大钟寺企业联合体",
+     "processor": "品牌方（受托）",
+     "retention_period": "购物行为数据 90 天；偏好画像 1 年（运营设计目标，非法定保存期限）",
+     "access_control": "企业自管；处理者受托访问",
+     "data_subject_rights": "消费者享有完整主体权利 + 拒绝自动化推荐权",
+     "human_takeover": "商业专家复核推荐策略",
+     "complaint_channel": "12315 消费者投诉",
+     "incident_response": "推荐偏见 7 天复盘；数据泄露 1h 响应"
+    }
+   }
+  },
+  {
+   "id": "ASM-007",
+   "topic": "concept_far",
+   "assumption_zh": "概念容积率 = unknown。原始公式「建筑基底面积 × 平均建筑高度 ÷ site_area」量纲为长度而非容积率，已废弃；待 official 控规条件与建筑层数/层高数据补齐后按 GFA/site_area 复算（GFA = Σ(footprint × floor_count)）。",
+   "impact_zh": "明确不等于法定容积率；待 official 控规条件补齐后须按 status=missing 的所有控规指标重算。",
+   "recalculation_path_zh": "取得 official 控规条件后，按 ranges/planning_limits.json 中所有 missing 指标重算并更新 metrics.json。",
+   "confidence": "low"
+  },
+  {
+   "id": "ASM-008",
+   "topic": "funding_and_policy",
+   "assumption_zh": "投资规模、政策安排、运营主体、活动品牌等均为概念建议；不得表述为已确定政府安排或投资承诺。",
+   "impact_zh": "所有更新项目清单、实施政策、分期计划与运营机制均为深化方向，最终须以 official 政府审定为准。",
+   "recalculation_path_zh": "实施前由海淀区政府、企业联合体与专业团队共同审定实施计划、政策与运营机制。",
+   "confidence": "low"
+  },
+  {
+   "id": "ASM-009",
+   "topic": "beijing_ai_plus_action_plan",
+   "assumption_zh": "方案参考《北京市推动\"人工智能+\"行动计划（2024-2025年）》[source:SRC-BJ-AI-PLUS-ACTION-2024]与《中关村科学城加快建设具有全球影响力人工智能产业高地的若干措施》[source:SRC-ZGC-AI-INDUSTRY-2025]作为 AI 场景与产业政策的参考性背景（参与者新增登记来源，未进入 approved_formal，待核验，最终以 official 公告为准）。",
+   "impact_zh": "AI 场景卡的政策框架参考北京市及中关村科学城的现行政策方向，但不构成对已授权政策的法定引用；审定时须以 official 文本为准。",
+   "recalculation_path_zh": "实施前核验两份政策文件的 official 版本与后续修订；在本期不作为政策依据或法定依据使用，仅作背景参考。",
+   "confidence": "medium"
+  },
+  {
+   "id": "ASM-010",
+   "topic": "beijing_urban_renewal_regulation",
+   "assumption_zh": "拆改留参考《北京市城市更新条例》[source:SRC-BJ-URBAN-RENEWAL-REGULATION]（2023年3月1日施行）作为参考性法定框架（参与者新增登记来源，未进入 approved_formal，待核验，最终以 official 公告与文本为准）。",
+   "impact_zh": "拆改留分类可参考上述条例的法定框架方向，但本方案不将其作为已确认的法定依据使用；审定时须以 official 文本为准。",
+   "recalculation_path_zh": "取得 official 现状建筑与权属数据后，按条例 official 文本逐栋落实拆改留分类；在本期仅作背景参考，不作法定依据。",
+   "confidence": "medium"
+  },
+  {
+   "id": "ASM-011",
+   "topic": "jingzhang_park_phase2_open",
+   "assumption_zh": "京张铁路遗址公园二期参考 2026 年 8 月向公众开放的状态 [source:SRC-JZ-PARK-PHASE2-OPEN-2026]（参与者新增登记来源，未进入 approved_formal，待核验，最终以 official 公园红线与园林部门 official 图纸为准）；方案走廊空间参考该开放状态。",
+   "impact_zh": "走廊空间参考已开放的公共空间状态作为设计基础，但不作为已确认建成事实使用；审定时须以 official 公园红线与开放范围为准。",
+   "recalculation_path_zh": "取得 official 公园红线后调整走廊边界；二期各标段开放范围以园林部门 official 图纸为准；在本期仅作背景参考，不作已建成事实。",
+   "confidence": "medium"
+  },
+  {
+   "id": "ASM-012",
+   "topic": "brand_acceptance_validation",
+   "assumption_zh": "「京张100·AI 大动脉」总品牌、4 个 AI 朝圣地标与年度活动品牌的区分度（对照矩阵零高风险项）、商标可注册性（第 41/42 类近似检索通过）与公众接受度（n≥30 拟真测试接受度 ≥70%、否决触发率 ≤10%）均为设计阶段可证伪假设；P-2 三层验证中第①层（区分度自查矩阵，16 项对照、0 高风险、2 中风险已附缓解）已于 v2.29 执行并随提交物公开（assets/media/brand_distinctiveness_matrix.md 中英双版），第②层（商标近似检索）与第③层（拟真用户测试）仍待其触发条件成立；全部三层完成前，品牌与地标保持「概念原型 / 待验证」状态。",
+   "impact_zh": "第①层完成不改变品牌「待验证」总状态；对外材料不得声明品牌已获公众接受或具备注册条件；第②/③层任一未达标即回退候选命名池（见区分度矩阵文末回退池），不影响与品牌无关的空间与场景结论。",
+   "recalculation_path_zh": "第②层近似检索与第③层拟真测试完成后，逐项复核本假设与 assets/media/brand_distinctiveness_matrix.md 的对照结论；阈值如调整须同步修订正文、本文件与 changelog。",
+   "confidence": "medium"
+  },
+  {
+   "id": "ASM-013",
+   "topic": "kpi_baseline_window",
+   "assumption_zh": "「任一试点项目实施前 90 日完成现状基线测量；基线未取得前 KPI 一律保持设计目标；偏差超 30% 触发 T5 缩窄复核」为运营设计假设（P-1 协议）；90 日窗口与 30% 阈值为概念建议值，非实测结论。",
+   "impact_zh": "该假设把全部 KPI 的「可声明状态」与基线测量绑定，防止未测先宣称改善；窗口与阈值须在首个试点启动前与运营候选主体、专业团队确认后方可执行。",
+   "recalculation_path_zh": "基线测量完成后，按实测值翻转对应 KPI 状态并复算偏差；窗口或阈值变更须同步修订正文、metrics.json 口径说明与 changelog。",
+   "confidence": "medium"
+  },
+  {
+   "id": "ASM-014",
+   "topic": "data_processing_role_verification_schedule",
+   "assumption_zh": "「全部场景卡的控制者/处理者为候选标注，须按正文『数据处理角色触发核验表』在对应触发点完成书面确认并登记台账；未完成确认的场景保持 T5 缩窄或延后启动」为治理排程假设；确认主体、文书形式与完成时点均为概念建议，最终以主管部门要求为准。",
+   "impact_zh": "该假设把「数据处理角色需核验」从被动状态转为已排程的触发动作，防止概念阶段的候选角色被误读为既定任命，也防止未确认角色的场景提前进入采购或对外开放。",
+   "recalculation_path_zh": "任一触发点完成核验后，更新 ASM-006 对应场景字段与本表状态；主管部门如要求不同角色划分，以审定结论为准并同步修订正文与 changelog。",
+   "confidence": "medium"
+  },
+  {
+   "id": "ASM-015",
+   "topic": "offline_simulation_ledger_scope",
+   "assumption_zh": "simulation.json 的 12 个离线合成演练任务（固定 seed 20260830）证明治理协议可被机器执行与审计：11/12 成功、1 项失败（SC-04 停用入口权限用例人工复核确认链超时）、1 项能耗超预算（SC-05 重规划 2.6 kWh > 2.0 kWh）、1 项审计缺口（SIM-004 复核记录未归档）；现场演练任务数为 0，离线演练不证明现场安全、公众接受、无障碍实测或任何实施批准。",
+   "impact_zh": "失败与缺口读数如实保留并驱动处置：SC-04 在任何采购/试运行前须重测通过并保持 T5 缩窄；SC-05 能耗 KPI 以预算口径逐月复核；SIM-004 审计补录后方计入通过口径。评审与公众可按 seed 与任务清单重放全部读数。",
+   "recalculation_path_zh": "重放方法：按 simulation.json 的 tasks 清单逐任务核对 outcome/dispatch_schema_valid/audit_complete/能耗字段，聚合值须与 metrics.json 中以 simulation.json 为来源的同名指标一致；演练任务集扩充或口径调整时同步更新台账、指标与正文叙述。",
+   "confidence": "high"
+  },
+  {
+   "id": "ASM-016",
+   "topic": "p0_pre_feasibility_status",
+   "assumption_zh": "PUBLIC-001（AI 智能体贡献荣誉墙广场）的 P0 预可行性深化（概念包络 30 m × 3 m × 0.4 m、铭牌容量上限约 3000、NFC 感应点 12 处、基础埋深 1.2 m、观礼排队 8 人停行线、四备选 A-D）全部为参与者敏感性演算与桌面走查（desk check），不是可行性研究报告、工程勘察或投资估算；现场演练任务数为 0。",
+   "impact_zh": "P0 数字不得被引用为工程或投资依据；任一备选启动前须按 T3 条件树完成用地/文保/管线前置资料与 G1 阶段门；排队停行线等现场管理参数待 P-1 基线与专业运营方确定。",
+   "recalculation_path_zh": "official 控规条件、现状建筑与权属数据补齐后，按 G1-G3 阶段门逐门复核包络与备选取舍；构件尺寸调整时同步更新构件库、metrics.json 的 p0_* 指标与正文。",
+   "confidence": "low"
+  }
+ ],
+ "evidence_ledger": {
   "schema_version": "0.1.0",
   "project_id": "centennial-jingzhang-ai-belt",
   "package_id": "jingzhang-ai-artery",
-  "assumptions": [
-    {
-      "id": "ASM-001",
-      "topic": "provisional_boundary",
-      "assumption_zh": "总体设计范围与三处重点区 polygon 使用仓库维护者推定的 provisional_boundaries.geojson，仅依据公告文字四至与约面积推定；与公告偏差均在 ±0.5% 以内，但不构成 official redline。",
-      "impact_zh": "所有几何派生的图层（land_use, buildings, roads, green_space, public_space, phasing）和面积指标在 official polygon 发布后须整体重算，不能只替换单个文件。",
-      "recalculation_path_zh": "取得 official CAD/GIS/PDF 边界文件后，登记文件哈希、发布机构、发布日期、版本、坐标系和转换方法，并同时替换三层范围与三处重点区；然后重新运行 generate_geometry.py + generate_metrics.py + generate_figures.py + render_proposal_html.py + self_check_submission.py。",
-      "confidence": "medium"
-    },
-    {
-      "id": "ASM-002",
-      "topic": "regulatory_control_missing",
-      "assumption_zh": "容积率、建筑高度、建筑密度、绿地率、退线等控规条件尚未公开，按 ranges/planning_limits.json 中 status=missing 处理。",
-      "impact_zh": "本方案 concept_far=unknown（原始公式量纲错误已废弃）、建筑高度 12-60m 等数值均为概念设计量，明确不等于法定控规值。",
-      "recalculation_path_zh": "取得 official 控规条件后，重新复算所有开发强度类指标；如与现状冲突，需调整用地分区与建筑形态。",
-      "confidence": "low"
-    },
-    {
-      "id": "ASM-003",
-      "topic": "existing_building_ownership",
-      "assumption_zh": "现状建筑、权属与拆改留分类基于公开资料与 provisional 边界推定；本方案 buildings.geojson 中 34 个建筑基底为概念示意，不代表实际权属。",
-      "impact_zh": "拆改留分类（保留/改造/拆除/新建）仅为方向性建议，最终须以 official 现状建筑与权属数据为准。",
-      "recalculation_path_zh": "取得 official 现状建筑与权属数据后，更新 buildings.geojson 的 building_type 字段并重新生成图纸与指标。",
-      "confidence": "low"
-    },
-    {
-      "id": "ASM-004",
-      "topic": "heritage_protection",
-      "assumption_zh": "清华园火车站遗址、大钟寺历史文化节点、京张铁路遗址等文保范围尚未取得 official polygon。",
-      "impact_zh": "方案中保留类建筑与公共空间布局仅为概念建议，最终须以 official 文保范围为准。",
-      "recalculation_path_zh": "取得 official 文保范围后，更新 constraints.geojson 并调整周边建筑退线。",
-      "confidence": "low"
-    },
-    {
-      "id": "ASM-005",
-      "topic": "road_redline",
-      "assumption_zh": "道路红线与轨道保护范围尚未取得 official 数据；roads.geojson 中 11 条道路中心线为概念路网。",
-      "impact_zh": "道路等级、宽度与线位最终须以 official 道路红线与轨道保护范围为准。",
-      "recalculation_path_zh": "取得 official 道路红线与轨道保护范围后，更新 roads.geojson 并调整周边建筑退线。",
-      "confidence": "medium"
-    },
-    {
-      "id": "ASM-006",
-      "topic": "ai_scenario_data_governance",
-      "assumption_zh": "AI 场景数据治理按《生成式人工智能服务管理暂行办法》[standard:GENERATIVE-AI-INTERIM-MEASURES]、《个人信息保护法》、《数据安全法》、《网络安全法》四重法律框架组织。每个场景明确 10 个字段：①数据来源 ②合法性依据 ③数据最小化 ④数据控制者/处理者 ⑤保存期限 ⑥访问权限 ⑦数据主体权利 ⑧人工接管机制 ⑨申诉渠道 ⑩安全事件响应。",
-      "impact_zh": "AI 场景卡中的数据输入、隐私边界、人工复核机制为概念建议；实施前需经数据合规与隐私评估。本方案不再使用「视频存储 7 天」作为公共安全场景的简化表述；SC-04 已修订为「结构化元数据 7 天、原始视频不入库」，力求符合《个人信息保护法》第 26 条相关条款的最小必要原则（非「公共场所例外 + 区公安审批」二要素简化表述）；该合规判断尚需经数据合规专项复核与主管部门确认，非自我认证。本方案不再使用《无障碍环境建设法》作为 AI 场景数据治理的依据。",
-      "recalculation_path_zh": "实施前由数据合规专家复核每个 AI 场景的数据流、隐私边界与人工复核机制，按 generative-ai-interim-measures 落实管理责任。所有 AI 关键判断须人工复核。",
-      "confidence": "medium",
-      "scenario_data_governance": {
-        "SC-01": {
-          "name": "AI 文化导览",
-          "data_sources": [
-            "公开历史资料",
-            "授权图片文字",
-            "人工策展文本",
-            "公开活动信息"
-          ],
-          "legal_basis": "《著作权法》合理使用 + 授权合同",
-          "data_minimization": "仅匿名停留计数；不采集个人轨迹",
-          "controller": "区文旅局（候选控制者，待主管部门确认）",
-          "processor": "智能体合作运营方（候选处理者）",
-          "retention_period": "匿名停留计数 90 天；授权资料按合同",
-          "access_control": "授权人员访问；公开数据无限制",
-          "data_subject_rights": "知情、访问、更正、删除（无个人信息采集，主体权利限于内容更正）",
-          "human_takeover": "文化、版权、事实核查人员复核关键叙事",
-          "complaint_channel": "区文旅局投诉电话 + 在线表单",
-          "incident_response": "内容错误 24h 下架；版权投诉 48h 移除"
-        },
-        "SC-02": {
-          "name": "AI+交通与慢行",
-          "data_sources": [
-            "公开交通数据",
-            "限速",
-            "人流密度"
-          ],
-          "legal_basis": "《政府信息公开条例》+ 交通开放数据",
-          "data_minimization": "不采集人脸与个人身份；仅聚合指标",
-          "controller": "区交通委（候选控制者，待主管部门确认）",
-          "processor": "企业联合体（候选处理者）",
-          "retention_period": "聚合指标 30 天",
-          "access_control": "授权工程师访问；公开数据开放",
-          "data_subject_rights": "无个人信息，无主体权利请求",
-          "human_takeover": "交通工程师复核信号与调度",
-          "complaint_channel": "12345 市民热线",
-          "incident_response": "信号误判 5 分钟人工接管；应急 30 秒切手动"
-        },
-        "SC-03": {
-          "name": "企业服务智能体",
-          "data_sources": [
-            "公开政策文本",
-            "企业授权申报数据"
-          ],
-          "legal_basis": "《政府信息公开条例》+《民法典》合同编 + 企业授权",
-          "data_minimization": "企业敏感数据本地存储；建议数据本地化",
-          "controller": "企业自身",
-          "processor": "智能体联合体（受托处理）",
-          "retention_period": "企业数据按合同；建议 5 年",
-          "access_control": "企业自管；处理者受托访问",
-          "data_subject_rights": "按《民法典》合同编与《反不正当竞争法》（均为待核验参考框架）合同约定主张企业数据权利的思路；“企业数据非个人信息、不适用个人信息保护主体权利框架”为设计假设，须经数据合规专项复核确认（与 proposal.md SC-03 表格一致）",
-          "human_takeover": "政策专家复核结论",
-          "complaint_channel": "企业服务窗口 + 中关村管委会",
-          "incident_response": "数据泄露 1h 启动响应；72h 通报"
-        },
-        "SC-04": {
-          "name": "AI 公共安全运营复核",
-          "data_sources": [
-            "视频结构化数据（非人脸）"
-          ],
-          "legal_basis": "参考《个人信息保护法》第 26 条所设「维护公共安全所必需、有特定法律授权」前提下设置标识或分析记录的条款方向（参考性法定框架，个案适用以数据合规专项复核与主管部门审定为准（本方案为概念设计，实施前需经数据合规专项复核与主管部门审定；非「公共场所例外 + 区公安审批」二要素简化表述）",
-          "data_minimization": "结构化元数据 7 天；原始视频不入库",
-          "controller": "区公安分局（候选控制者，待主管部门确认）",
-          "processor": "街道办（候选处理者，受托，待主管部门确认）",
-          "retention_period": "结构化元数据 7 天；原始视频不入库（设计目标，力求符合 PIPL 最小必要原则，实施前需经数据合规专项复核）",
-          "access_control": "公安授权人员；街道办受托访问",
-          "data_subject_rights": "居民可参照《个人信息保护法》（待核验参考框架）主张知情权与拒绝自动化决策权；结构化元数据若可识别个人则按个人信息处理并享有相应主体权利（与 proposal.md SC-04 表格一致）",
-          "human_takeover": "公安复核所有关键判断（≥1 人/班次）",
-          "complaint_channel": "12345 市民热线 + 公安督察",
-          "incident_response": "误判 5 分钟人工复核；事件 24h 通报（运营设计目标，非法定时限，实际以主管部门审定为准）"
-        },
-        "SC-05": {
-          "name": "机器人低速配送与巡检",
-          "data_sources": [
-            "公开路径",
-            "限速",
-            "电量",
-            "配送地址末端编号"
-          ],
-          "legal_basis": "《道路交通安全法》+《民法典》合同编 + 用户授权",
-          "data_minimization": "仅配送地址末端编号（不含完整地址）",
-          "controller": "配送企业",
-          "processor": "机器人运营商",
-          "retention_period": "配送记录 30 天",
-          "access_control": "企业自管",
-          "data_subject_rights": "用户享有完整主体权利",
-          "human_takeover": "运营人员复核异常",
-          "complaint_channel": "企业客服 + 12315",
-          "incident_response": "安全事故 1h 现场处置；保险理赔 7 天"
-        },
-        "SC-06": {
-          "name": "AI+ 教育",
-          "data_sources": [
-            "学习行为脱敏数据"
-          ],
-          "legal_basis": "参考《个人信息保护法》第 28 条未成年人敏感信息单独同意 + 监护人授权框架（参考性法定框架，个案适用以数据合规专项复核与主管部门审定为准）",
-          "data_minimization": "学生数据本地存储；仅汇总指标上传；学习行为≤6 个月",
-          "controller": "高校联合体",
-          "processor": "教育科技公司（受托）",
-          "retention_period": "学生数据本地存储；学习行为≤6 个月",
-          "access_control": "高校授权教师；处理者受托访问",
-          "data_subject_rights": "学生及监护人享有完整主体权利",
-          "human_takeover": "教师复核所有学习建议",
-          "complaint_channel": "学校教务 + 教育主管部门",
-          "incident_response": "数据泄露 24h 通报；学生/家长 7 天申诉通道"
-        },
-        "SC-07": {
-          "name": "AI+ 医疗",
-          "data_sources": [
-            "电子病历脱敏数据"
-          ],
-          "legal_basis": "参考《医疗机构病历管理规定》+《数据安全法》+ 患者知情同意框架（参考性法定框架，个案适用以数据合规专项复核与主管部门审定为准）",
-          "data_minimization": "医疗数据本地存储，加密传输；门诊数据 15 年",
-          "controller": "区卫健委 + 医院（候选控制者，待主管部门确认）",
-          "processor": "医疗 AI 公司（受托，需三级等保，候选处理者）",
-          "retention_period": "门诊数据 15 年（参考《医疗机构病历管理规定》最低保存期限方向；参考性法定框架待核验，个案以主管部门审定为准）",
-          "access_control": "授权医生；处理者受托+三级等保",
-          "data_subject_rights": "患者享有知情/访问/更正/可携带/拒绝自动化决策权；删除权受最低保存期限限制（参考《医疗机构病历管理规定》，待核验参考框架；门诊 15 年、住院 30 年；与 proposal.md SC-07 表格一致）",
-          "human_takeover": "医生复核所有诊断建议",
-          "complaint_channel": "医院投诉 + 卫健委",
-          "incident_response": "误诊 1h 人工复核；数据泄露 1h 启动响应；24h 通报卫健委"
-        },
-        "SC-08": {
-          "name": "AI+ 法律咨询",
-          "data_sources": [
-            "公开法律文本",
-            "案例库"
-          ],
-          "legal_basis": "《政府信息公开条例》+ 中国裁判文书网公开数据",
-          "data_minimization": "不采集个人敏感信息；咨询记录匿名化",
-          "controller": "区司法局（候选控制者，待主管部门确认）",
-          "processor": "律所联合体（受托，候选处理者）",
-          "retention_period": "咨询记录匿名化 30 天",
-          "access_control": "司法局授权人员；处理者受托访问",
-          "data_subject_rights": "居民享有匿名咨询权",
-          "human_takeover": "律师复核关键建议",
-          "complaint_channel": "12348 法律援助热线",
-          "incident_response": "法律解释错误 48h 修正"
-        },
-        "SC-09": {
-          "name": "AI 芯片与基础模型测试验证（产业测试验证场景①）",
-          "data_sources": [
-            "算力使用",
-            "模型性能"
-          ],
-          "legal_basis": "参考《数据安全法》《网络安全法》（均为待核验参考框架，尚未进入 approved_formal 清单）+ 测试协议合同约定；不作个案合规结论",
-          "data_minimization": "测试数据本地化；仅公开指标",
-          "controller": "国家 AI 平台（候选控制者，待主管部门确认）",
-          "processor": "企业联合体（受托，候选处理者）",
-          "retention_period": "公开指标 5 年",
-          "access_control": "国家平台授权；处理者受托访问",
-          "data_subject_rights": "测试参与方享有商业秘密保护权",
-          "human_takeover": "第三方测试机构复核",
-          "complaint_channel": "国家 AI 平台监督委员会",
-          "incident_response": "模型泄露 1h 隔离；72h 通报"
-        },
-        "SC-10": {
-          "name": "AI 安全治理与红队测试（产业测试验证场景②）",
-          "data_sources": [
-            "攻击样本",
-            "防御指标"
-          ],
-          "legal_basis": "《网络安全法》为待核验参考框架；国家 AI 安全中心授权为未来启动前提/候选条件，待正式授权证据，当前不作为已具备的合法性依据",
-          "data_minimization": "攻击样本物理隔离存储；防御指标脱敏",
-          "controller": "国家 AI 安全中心（候选控制者，待主管部门确认）",
-          "processor": "受认可实验室（候选处理者）",
-          "retention_period": "防御指标脱敏 3 年；攻击样本永久物理隔离",
-          "access_control": "国家 AI 安全中心授权；实验室受控访问",
-          "data_subject_rights": "无个人信息主体权利请求",
-          "human_takeover": "安全专家复核所有结论",
-          "complaint_channel": "国家 AI 安全中心监督",
-          "incident_response": "样本外泄 1h 物理隔离；4h 通报"
-        },
-        "SC-11": {
-          "name": "AI 标准制定与互操作验证（产业测试验证场景③）",
-          "data_sources": [
-            "标准草案",
-            "互操作测试结果"
-          ],
-          "legal_basis": "《标准化法》；国家标准化院授权为未来启动前提/候选条件，待正式授权证据，当前不作为已具备的合法性依据",
-          "data_minimization": "标准草案公开版本；企业测试数据本地",
-          "controller": "国家标准化院（候选控制者，待主管部门确认）",
-          "processor": "企业联合体（候选处理者）",
-          "retention_period": "标准草案长期公开",
-          "access_control": "标准化院授权；企业受托访问",
-          "data_subject_rights": "标准参与方享有知情权",
-          "human_takeover": "标准化专家复核",
-          "complaint_channel": "国家标准化院 + 标准化技术委员会",
-          "incident_response": "互操作失败 7 天复盘"
-        },
-        "SC-12": {
-          "name": "AI+ 商业",
-          "data_sources": [
-            "购物偏好脱敏数据"
-          ],
-          "legal_basis": "参考《个人信息保护法》+ 用户授权 +《电子商务法》框架（参考性法定框架，个案适用以数据合规专项复核与主管部门审定为准）",
-          "data_minimization": "仅购物行为；不采集个人身份",
-          "controller": "大钟寺企业联合体",
-          "processor": "品牌方（受托）",
-          "retention_period": "购物行为数据 90 天；偏好画像 1 年（运营设计目标，非法定保存期限）",
-          "access_control": "企业自管；处理者受托访问",
-          "data_subject_rights": "消费者享有完整主体权利 + 拒绝自动化推荐权",
-          "human_takeover": "商业专家复核推荐策略",
-          "complaint_channel": "12315 消费者投诉",
-          "incident_response": "推荐偏见 7 天复盘；数据泄露 1h 响应"
-        }
-      }
-    },
-    {
-      "id": "ASM-007",
-      "topic": "concept_far",
-      "assumption_zh": "概念容积率 = unknown。原始公式「建筑基底面积 × 平均建筑高度 ÷ site_area」量纲为长度而非容积率，已废弃；待 official 控规条件与建筑层数/层高数据补齐后按 GFA/site_area 复算（GFA = Σ(footprint × floor_count)）。",
-      "impact_zh": "明确不等于法定容积率；待 official 控规条件补齐后须按 status=missing 的所有控规指标重算。",
-      "recalculation_path_zh": "取得 official 控规条件后，按 ranges/planning_limits.json 中所有 missing 指标重算并更新 metrics.json。",
-      "confidence": "low"
-    },
-    {
-      "id": "ASM-008",
-      "topic": "funding_and_policy",
-      "assumption_zh": "投资规模、政策安排、运营主体、活动品牌等均为概念建议；不得表述为已确定政府安排或投资承诺。",
-      "impact_zh": "所有更新项目清单、实施政策、分期计划与运营机制均为深化方向，最终须以 official 政府审定为准。",
-      "recalculation_path_zh": "实施前由海淀区政府、企业联合体与专业团队共同审定实施计划、政策与运营机制。",
-      "confidence": "low"
-    },
-    {
-      "id": "ASM-009",
-      "topic": "beijing_ai_plus_action_plan",
-      "assumption_zh": "方案参考《北京市推动\"人工智能+\"行动计划（2024-2025年）》[source:SRC-BJ-AI-PLUS-ACTION-2024]与《中关村科学城加快建设具有全球影响力人工智能产业高地的若干措施》[source:SRC-ZGC-AI-INDUSTRY-2025]作为 AI 场景与产业政策的参考性背景（参与者新增登记来源，未进入 approved_formal，待核验，最终以 official 公告为准）。",
-      "impact_zh": "AI 场景卡的政策框架参考北京市及中关村科学城的现行政策方向，但不构成对已授权政策的法定引用；审定时须以 official 文本为准。",
-      "recalculation_path_zh": "实施前核验两份政策文件的 official 版本与后续修订；在本期不作为政策依据或法定依据使用，仅作背景参考。",
-      "confidence": "medium"
-    },
-    {
-      "id": "ASM-010",
-      "topic": "beijing_urban_renewal_regulation",
-      "assumption_zh": "拆改留参考《北京市城市更新条例》[source:SRC-BJ-URBAN-RENEWAL-REGULATION]（2023年3月1日施行）作为参考性法定框架（参与者新增登记来源，未进入 approved_formal，待核验，最终以 official 公告与文本为准）。",
-      "impact_zh": "拆改留分类可参考上述条例的法定框架方向，但本方案不将其作为已确认的法定依据使用；审定时须以 official 文本为准。",
-      "recalculation_path_zh": "取得 official 现状建筑与权属数据后，按条例 official 文本逐栋落实拆改留分类；在本期仅作背景参考，不作法定依据。",
-      "confidence": "medium"
-    },
-    {
-      "id": "ASM-011",
-      "topic": "jingzhang_park_phase2_open",
-      "assumption_zh": "京张铁路遗址公园二期参考 2026 年 8 月向公众开放的状态 [source:SRC-JZ-PARK-PHASE2-OPEN-2026]（参与者新增登记来源，未进入 approved_formal，待核验，最终以 official 公园红线与园林部门 official 图纸为准）；方案走廊空间参考该开放状态。",
-      "impact_zh": "走廊空间参考已开放的公共空间状态作为设计基础，但不作为已确认建成事实使用；审定时须以 official 公园红线与开放范围为准。",
-      "recalculation_path_zh": "取得 official 公园红线后调整走廊边界；二期各标段开放范围以园林部门 official 图纸为准；在本期仅作背景参考，不作已建成事实。",
-      "confidence": "medium"
-    },
-    {
-      "id": "ASM-012",
-      "topic": "brand_acceptance_validation",
-      "assumption_zh": "「京张100·AI 大动脉」总品牌、4 个 AI 朝圣地标与年度活动品牌的区分度（对照矩阵零高风险项）、商标可注册性（第 41/42 类近似检索通过）与公众接受度（n≥30 拟真测试接受度 ≥70%、否决触发率 ≤10%）均为设计阶段可证伪假设；在 P-2 协议完成前，品牌与地标保持「概念原型 / 待验证」状态。",
-      "impact_zh": "在 P-2 协议完成前，对外材料不得声明品牌已获公众接受或具备注册条件；任一层验证未达标即回退候选命名池，不影响与品牌无关的空间与场景结论。",
-      "recalculation_path_zh": "按 P-2 协议产出区分度矩阵、近似检索记录与拟真测试报告后逐项复核；阈值如调整须同步修订正文、本文件与 changelog。",
-      "confidence": "medium"
-    },
-    {
-      "id": "ASM-013",
-      "topic": "kpi_baseline_window",
-      "assumption_zh": "「任一试点项目实施前 90 日完成现状基线测量；基线未取得前 KPI 一律保持设计目标；偏差超 30% 触发 T5 缩窄复核」为运营设计假设（P-1 协议）；90 日窗口与 30% 阈值为概念建议值，非实测结论。",
-      "impact_zh": "该假设把全部 KPI 的「可声明状态」与基线测量绑定，防止未测先宣称改善；窗口与阈值须在首个试点启动前与运营候选主体、专业团队确认后方可执行。",
-      "recalculation_path_zh": "基线测量完成后，按实测值翻转对应 KPI 状态并复算偏差；窗口或阈值变更须同步修订正文、metrics.json 口径说明与 changelog。",
-      "confidence": "medium"
-    },
-    {
-      "id": "ASM-014",
-      "topic": "data_processing_role_verification_schedule",
-      "assumption_zh": "「全部场景卡的控制者/处理者为候选标注，须按正文『数据处理角色触发核验表』在对应触发点完成书面确认并登记台账；未完成确认的场景保持 T5 缩窄或延后启动」为治理排程假设；确认主体、文书形式与完成时点均为概念建议，最终以主管部门要求为准。",
-      "impact_zh": "该假设把「数据处理角色需核验」从被动状态转为已排程的触发动作，防止概念阶段的候选角色被误读为既定任命，也防止未确认角色的场景提前进入采购或对外开放。",
-      "recalculation_path_zh": "任一触发点完成核验后，更新 ASM-006 对应场景字段与本表状态；主管部门如要求不同角色划分，以审定结论为准并同步修订正文与 changelog。",
-      "confidence": "medium"
-    }
-  ],
-  "evidence_ledger": {
-    "schema_version": "0.1.0",
-    "project_id": "centennial-jingzhang-ai-belt",
-    "package_id": "jingzhang-ai-artery",
-    "description_zh": "本台账把 proposal.md 中每条正文证据声明映射到 source_id、geometry feature、metric、assumption 与 self_check ID，可机器复核。评审可关闭正文，只读取本文件与对应 JSON，独立完成最小化信任复核。",
-    "verification_method_zh": "对每条 claim 提取 5 个字段：source_ids（来源）、geometry_refs（几何要素）、metric_refs（指标）、assumption_ids（假设）、self_check_ids（自检项）。任一字段为空表示该 claim 无对应结构化证据，需在 review 时人工判断是否补足。",
-    "claims": [
-      {
-        "claim_id": "C-001",
-        "proposal_section": "设计依据与资料清单",
-        "claim_zh": "本 formal 方案以公告为第一依据",
-        "source_ids": [
-          "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT",
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK",
-          "SRC-PROVISIONAL-BOUNDARIES-2026"
-        ],
-        "geometry_refs": [],
-        "metric_refs": [],
-        "assumption_ids": [
-          "ASM-001"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "PROFESSIONAL_EVIDENCE"
-        ]
-      },
-      {
-        "claim_id": "C-002",
-        "proposal_section": "三层范围工作框架",
-        "claim_zh": "三层范围（43.6 / 11.4 / 368.4）由 provisional polygon 复算",
-        "source_ids": [
-          "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
-        ],
-        "geometry_refs": [
-          "geometry/site_boundary.geojson#SITE-001",
-          "geometry/key_areas.geojson#PROV-KEY-001",
-          "geometry/key_areas.geojson#PROV-KEY-002",
-          "geometry/key_areas.geojson#PROV-KEY-003"
-        ],
-        "metric_refs": [
-          "coordinated_research_area_sqm",
-          "site_area_sqm",
-          "key_area_total_sqm",
-          "key_area_count"
-        ],
-        "assumption_ids": [
-          "ASM-001"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "SPATIAL_REVIEW"
-        ]
-      },
-      {
-        "claim_id": "C-003",
-        "proposal_section": "统筹研究范围产业与未来城市研究",
-        "claim_zh": "总体概念「京张100·AI 大动脉」回应百年京张文化叙事",
-        "source_ids": [
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
-        ],
-        "geometry_refs": [],
-        "metric_refs": [
-          "global_ai_ecosystem_cases_count"
-        ],
-        "assumption_ids": [],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION"
-        ]
-      },
-      {
-        "claim_id": "C-004",
-        "proposal_section": "统筹研究范围产业与未来城市研究",
-        "claim_zh": "Logo 草案已生成（钢轨横截面 × 神经网络拓扑）",
-        "source_ids": [],
-        "geometry_refs": [
-          "assets/media/logo.svg",
-          "assets/media/logo-horizontal.svg",
-          "assets/media/logo-mono.svg"
-        ],
-        "metric_refs": [],
-        "assumption_ids": [],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION"
-        ]
-      },
-      {
-        "claim_id": "C-005",
-        "proposal_section": "区域协同与京津冀 AI 创新共同体",
-        "claim_zh": "方案建立与未来科学城、怀柔科学城、北京经开区、京津冀的协同机制",
-        "source_ids": [
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
-        ],
-        "geometry_refs": [],
-        "metric_refs": [],
-        "assumption_ids": [
-          "ASM-008"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION"
-        ]
-      },
-      {
-        "claim_id": "C-006",
-        "proposal_section": "用地、建筑规模与拆改留方案",
-        "claim_zh": "12 个用地多边形按 MNR 用地用海分类指南编码",
-        "source_ids": [
-          "SRC-2023-MNR-LAND-USE-CLASSIFICATION"
-        ],
-        "geometry_refs": [
-          "geometry/land_use.geojson#LU-001"
-        ],
-        "metric_refs": [
-          "land_use_polygon_count"
-        ],
-        "assumption_ids": [
-          "ASM-001"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "SPATIAL_REVIEW"
-        ]
-      },
-      {
-        "claim_id": "C-007",
-        "proposal_section": "用地、建筑规模与拆改留方案",
-        "claim_zh": "概念容积率因原始公式量纲错误已标为 unknown",
-        "source_ids": [],
-        "geometry_refs": [
-          "geometry/buildings.geojson#BLDG-001"
-        ],
-        "metric_refs": [
-          "concept_far",
-          "building_footprint_area_sqm",
-          "building_gfa_sqm"
-        ],
-        "assumption_ids": [
-          "ASM-002",
-          "ASM-007"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION"
-        ]
-      },
-      {
-        "claim_id": "C-008",
-        "proposal_section": "重点区域详细设计",
-        "claim_zh": "三处重点区分别提出定位、空间结构、建筑更新、交通慢行、公共空间、AI 场景、实施风险",
-        "source_ids": [
-          "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT",
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
-        ],
-        "geometry_refs": [
-          "geometry/key_areas.geojson#PROV-KEY-001",
-          "geometry/key_areas.geojson#PROV-KEY-002",
-          "geometry/key_areas.geojson#PROV-KEY-003"
-        ],
-        "metric_refs": [
-          "key_area_total_sqm"
-        ],
-        "assumption_ids": [
-          "ASM-001",
-          "ASM-004"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "SPATIAL_REVIEW"
-        ]
-      },
-      {
-        "claim_id": "C-009",
-        "proposal_section": "AI 创新生态、人才画像与 AI+ 场景",
-        "claim_zh": "12 张 AI 场景卡按 PIPL/数据安全法/网络安全法三重法律框架组织",
-        "source_ids": [
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
-        ],
-        "geometry_refs": [
-          "geometry/public_space.geojson#PUBLIC-001",
-          "geometry/public_space.geojson#PUBLIC-003",
-          "geometry/public_space.geojson#PUBLIC-005",
-          "geometry/public_space.geojson#PUBLIC-004"
-        ],
-        "metric_refs": [
-          "scenario_card_count",
-          "user_persona_count",
-          "industry_test_scenario_count",
-          "ai_landmark_count",
-          "ai_pilgrimage_landmark_count"
-        ],
-        "assumption_ids": [
-          "ASM-006"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "PROFESSIONAL_EVIDENCE"
-        ]
-      },
-      {
-        "claim_id": "C-010",
-        "proposal_section": "交通、轨道、市政与公共服务设施",
-        "claim_zh": "11 条道路中心线 + 4 轨道 TOD + 端侧算力 + 分布式能源 + 智能感知",
-        "source_ids": [
-          "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
-        ],
-        "geometry_refs": [
-          "geometry/roads.geojson#ROAD-NS-01",
-          "geometry/roads.geojson#ROAD-EW-01",
-          "geometry/roads.geojson#ROAD-GW-01",
-          "geometry/roads.geojson#ROAD-RING-01"
-        ],
-        "metric_refs": [
-          "road_total_length_m"
-        ],
-        "assumption_ids": [
-          "ASM-005"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "SPATIAL_REVIEW"
-        ]
-      },
-      {
-        "claim_id": "C-011",
-        "proposal_section": "蓝绿空间、公共空间与城市风貌",
-        "claim_zh": "京张遗址公园走廊 + 5 个口袋公园 + 4 个 AI 朝圣地标",
-        "source_ids": [
-          "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
-        ],
-        "geometry_refs": [
-          "geometry/green_space.geojson#GREEN-001",
-          "geometry/green_space.geojson#GREEN-002",
-          "geometry/public_space.geojson#PUBLIC-001"
-        ],
-        "metric_refs": [
-          "green_ratio",
-          "public_space_ratio",
-          "ai_landmark_count"
-        ],
-        "assumption_ids": [
-          "ASM-001"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "SPATIAL_REVIEW"
-        ]
-      },
-      {
-        "claim_id": "C-012",
-        "proposal_section": "更新项目清单、实施政策与分期计划",
-        "claim_zh": "近期/中期/远期三期 17 个更新项目清单",
-        "source_ids": [
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
-        ],
-        "geometry_refs": [
-          "geometry/phasing.geojson#PHASE-001",
-          "geometry/phasing.geojson#PHASE-002",
-          "geometry/phasing.geojson#PHASE-003"
-        ],
-        "metric_refs": [
-          "phase_count"
-        ],
-        "assumption_ids": [
-          "ASM-008"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION"
-        ]
-      },
-      {
-        "claim_id": "C-013",
-        "proposal_section": "试点项目阶段门、KPI 与失败退出条件",
-        "claim_zh": "5 个近期试点项目按 6 字段管理（现状基线/阶段门/KPI/失败退出/运营责任/资金假设）",
-        "source_ids": [
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
-        ],
-        "geometry_refs": [
-          "geometry/phasing.geojson#PHASE-001"
-        ],
-        "metric_refs": [
-          "phase_count"
-        ],
-        "assumption_ids": [
-          "ASM-008"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION"
-        ]
-      },
-      {
-        "claim_id": "C-014",
-        "proposal_section": "指标体系、面积复算与合规矩阵",
-        "claim_zh": "21 个核心指标由 EPSG:4326 → EPSG:4548 投影后 shapely.area 复算",
-        "source_ids": [
-          "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
-        ],
-        "geometry_refs": [
-          "geometry/site_boundary.geojson#SITE-001",
-          "geometry/key_areas.geojson#PROV-KEY-001"
-        ],
-        "metric_refs": [
-          "site_area_sqm",
-          "key_area_total_sqm",
-          "green_ratio",
-          "public_space_ratio",
-          "concept_far",
-          "ai_landmark_count",
-          "scenario_card_count",
-          "user_persona_count",
-          "industry_test_scenario_count",
-          "global_ai_ecosystem_cases_count",
-          "ai_pilgrimage_landmark_count",
-          "building_footprint_area_sqm",
-          "building_count",
-          "road_total_length_m",
-          "phase_count",
-          "green_space_area_sqm",
-          "public_space_area_sqm",
-          "land_use_polygon_count",
-          "key_area_count"
-        ],
-        "assumption_ids": [
-          "ASM-001",
-          "ASM-002",
-          "ASM-007"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "SPATIAL_REVIEW"
-        ]
-      },
-      {
-        "claim_id": "C-015",
-        "proposal_section": "指标体系、面积复算与合规矩阵",
-        "claim_zh": "合规矩阵覆盖公告 1.3-1.5 全部 17 项 + agent.1-6 全部 6 项",
-        "source_ids": [
-          "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT",
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
-        ],
-        "geometry_refs": [],
-        "metric_refs": [],
-        "assumption_ids": [],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "PROFESSIONAL_EVIDENCE"
-        ]
-      },
-      {
-        "claim_id": "C-016",
-        "proposal_section": "风险、版权与合规说明",
-        "claim_zh": "7 类数据缺口已登记在 assumptions.json",
-        "source_ids": [
-          "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
-        ],
-        "geometry_refs": [
-          "geometry/constraints.geojson"
-        ],
-        "metric_refs": [
-          "concept_far",
-          "building_gfa_sqm"
-        ],
-        "assumption_ids": [
-          "ASM-001",
-          "ASM-002",
-          "ASM-003",
-          "ASM-004",
-          "ASM-005",
-          "ASM-006",
-          "ASM-007",
-          "ASM-008"
-        ],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION",
-          "PROFESSIONAL_EVIDENCE"
-        ]
-      },
-      {
-        "claim_id": "C-017",
-        "proposal_section": "中英双语人工等价复核清单",
-        "claim_zh": "9 个复核维度 × 159 个证据标记 × 22 个术语对照",
-        "source_ids": [],
-        "geometry_refs": [
-          "assets/media/bilingual_review_checklist.md"
-        ],
-        "metric_refs": [],
-        "assumption_ids": [],
-        "self_check_ids": [
-          "DETERMINISTIC_VALIDATION"
-        ]
-      }
+  "description_zh": "本台账把 proposal.md 中每条正文证据声明映射到 source_id、geometry feature、metric、assumption 与 self_check ID，可机器复核。评审可关闭正文，只读取本文件与对应 JSON，独立完成最小化信任复核。",
+  "verification_method_zh": "对每条 claim 提取 5 个字段：source_ids（来源）、geometry_refs（几何要素）、metric_refs（指标）、assumption_ids（假设）、self_check_ids（自检项）。任一字段为空表示该 claim 无对应结构化证据，需在 review 时人工判断是否补足。",
+  "claims": [
+   {
+    "claim_id": "C-001",
+    "proposal_section": "设计依据与资料清单",
+    "claim_zh": "本 formal 方案以公告为第一依据",
+    "source_ids": [
+     "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT",
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK",
+     "SRC-PROVISIONAL-BOUNDARIES-2026"
+    ],
+    "geometry_refs": [],
+    "metric_refs": [],
+    "assumption_ids": [
+     "ASM-001"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "PROFESSIONAL_EVIDENCE"
     ]
-  }
+   },
+   {
+    "claim_id": "C-002",
+    "proposal_section": "三层范围工作框架",
+    "claim_zh": "三层范围（43.6 / 11.4 / 368.4）由 provisional polygon 复算",
+    "source_ids": [
+     "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
+    ],
+    "geometry_refs": [
+     "geometry/site_boundary.geojson#SITE-001",
+     "geometry/key_areas.geojson#PROV-KEY-001",
+     "geometry/key_areas.geojson#PROV-KEY-002",
+     "geometry/key_areas.geojson#PROV-KEY-003"
+    ],
+    "metric_refs": [
+     "coordinated_research_area_sqm",
+     "site_area_sqm",
+     "key_area_total_sqm",
+     "key_area_count"
+    ],
+    "assumption_ids": [
+     "ASM-001"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "SPATIAL_REVIEW"
+    ]
+   },
+   {
+    "claim_id": "C-003",
+    "proposal_section": "统筹研究范围产业与未来城市研究",
+    "claim_zh": "总体概念「京张100·AI 大动脉」回应百年京张文化叙事",
+    "source_ids": [
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+    ],
+    "geometry_refs": [],
+    "metric_refs": [
+     "global_ai_ecosystem_cases_count"
+    ],
+    "assumption_ids": [],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-004",
+    "proposal_section": "统筹研究范围产业与未来城市研究",
+    "claim_zh": "Logo 草案已生成（钢轨横截面 × 神经网络拓扑）",
+    "source_ids": [],
+    "geometry_refs": [
+     "assets/media/logo.svg",
+     "assets/media/logo-horizontal.svg",
+     "assets/media/logo-mono.svg"
+    ],
+    "metric_refs": [],
+    "assumption_ids": [],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-005",
+    "proposal_section": "区域协同与京津冀 AI 创新共同体",
+    "claim_zh": "方案建立与未来科学城、怀柔科学城、北京经开区、京津冀的协同机制",
+    "source_ids": [
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+    ],
+    "geometry_refs": [],
+    "metric_refs": [],
+    "assumption_ids": [
+     "ASM-008"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-006",
+    "proposal_section": "用地、建筑规模与拆改留方案",
+    "claim_zh": "12 个用地多边形按 MNR 用地用海分类指南编码",
+    "source_ids": [
+     "SRC-2023-MNR-LAND-USE-CLASSIFICATION"
+    ],
+    "geometry_refs": [
+     "geometry/land_use.geojson#LU-001"
+    ],
+    "metric_refs": [
+     "land_use_polygon_count"
+    ],
+    "assumption_ids": [
+     "ASM-001"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "SPATIAL_REVIEW"
+    ]
+   },
+   {
+    "claim_id": "C-007",
+    "proposal_section": "用地、建筑规模与拆改留方案",
+    "claim_zh": "概念容积率因原始公式量纲错误已标为 unknown",
+    "source_ids": [],
+    "geometry_refs": [
+     "geometry/buildings.geojson#BLDG-001"
+    ],
+    "metric_refs": [
+     "concept_far",
+     "building_footprint_area_sqm",
+     "building_gfa_sqm"
+    ],
+    "assumption_ids": [
+     "ASM-002",
+     "ASM-007"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-008",
+    "proposal_section": "重点区域详细设计",
+    "claim_zh": "三处重点区分别提出定位、空间结构、建筑更新、交通慢行、公共空间、AI 场景、实施风险",
+    "source_ids": [
+     "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT",
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+    ],
+    "geometry_refs": [
+     "geometry/key_areas.geojson#PROV-KEY-001",
+     "geometry/key_areas.geojson#PROV-KEY-002",
+     "geometry/key_areas.geojson#PROV-KEY-003"
+    ],
+    "metric_refs": [
+     "key_area_total_sqm"
+    ],
+    "assumption_ids": [
+     "ASM-001",
+     "ASM-004"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "SPATIAL_REVIEW"
+    ]
+   },
+   {
+    "claim_id": "C-009",
+    "proposal_section": "AI 创新生态、人才画像与 AI+ 场景",
+    "claim_zh": "12 张 AI 场景卡按 PIPL/数据安全法/网络安全法三重法律框架组织",
+    "source_ids": [
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+    ],
+    "geometry_refs": [
+     "geometry/public_space.geojson#PUBLIC-001",
+     "geometry/public_space.geojson#PUBLIC-003",
+     "geometry/public_space.geojson#PUBLIC-005",
+     "geometry/public_space.geojson#PUBLIC-004"
+    ],
+    "metric_refs": [
+     "scenario_card_count",
+     "user_persona_count",
+     "industry_test_scenario_count",
+     "ai_landmark_count",
+     "ai_pilgrimage_landmark_count"
+    ],
+    "assumption_ids": [
+     "ASM-006"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "PROFESSIONAL_EVIDENCE"
+    ]
+   },
+   {
+    "claim_id": "C-010",
+    "proposal_section": "交通、轨道、市政与公共服务设施",
+    "claim_zh": "11 条道路中心线 + 4 轨道 TOD + 端侧算力 + 分布式能源 + 智能感知",
+    "source_ids": [
+     "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
+    ],
+    "geometry_refs": [
+     "geometry/roads.geojson#ROAD-NS-01",
+     "geometry/roads.geojson#ROAD-EW-01",
+     "geometry/roads.geojson#ROAD-GW-01",
+     "geometry/roads.geojson#ROAD-RING-01"
+    ],
+    "metric_refs": [
+     "road_total_length_m"
+    ],
+    "assumption_ids": [
+     "ASM-005"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "SPATIAL_REVIEW"
+    ]
+   },
+   {
+    "claim_id": "C-011",
+    "proposal_section": "蓝绿空间、公共空间与城市风貌",
+    "claim_zh": "京张遗址公园走廊 + 5 个口袋公园 + 4 个 AI 朝圣地标",
+    "source_ids": [
+     "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
+    ],
+    "geometry_refs": [
+     "geometry/green_space.geojson#GREEN-001",
+     "geometry/green_space.geojson#GREEN-002",
+     "geometry/public_space.geojson#PUBLIC-001"
+    ],
+    "metric_refs": [
+     "green_ratio",
+     "public_space_ratio",
+     "ai_landmark_count"
+    ],
+    "assumption_ids": [
+     "ASM-001"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "SPATIAL_REVIEW"
+    ]
+   },
+   {
+    "claim_id": "C-012",
+    "proposal_section": "更新项目清单、实施政策与分期计划",
+    "claim_zh": "近期/中期/远期三期 17 个更新项目清单",
+    "source_ids": [
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+    ],
+    "geometry_refs": [
+     "geometry/phasing.geojson#PHASE-001",
+     "geometry/phasing.geojson#PHASE-002",
+     "geometry/phasing.geojson#PHASE-003"
+    ],
+    "metric_refs": [
+     "phase_count"
+    ],
+    "assumption_ids": [
+     "ASM-008"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-013",
+    "proposal_section": "试点项目阶段门、KPI 与失败退出条件",
+    "claim_zh": "5 个近期试点项目按 6 字段管理（现状基线/阶段门/KPI/失败退出/运营责任/资金假设）",
+    "source_ids": [
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+    ],
+    "geometry_refs": [
+     "geometry/phasing.geojson#PHASE-001"
+    ],
+    "metric_refs": [
+     "phase_count"
+    ],
+    "assumption_ids": [
+     "ASM-008"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-014",
+    "proposal_section": "指标体系、面积复算与合规矩阵",
+    "claim_zh": "21 个核心指标由 EPSG:4326 → EPSG:4548 投影后 shapely.area 复算",
+    "source_ids": [
+     "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT"
+    ],
+    "geometry_refs": [
+     "geometry/site_boundary.geojson#SITE-001",
+     "geometry/key_areas.geojson#PROV-KEY-001"
+    ],
+    "metric_refs": [
+     "site_area_sqm",
+     "key_area_total_sqm",
+     "green_ratio",
+     "public_space_ratio",
+     "concept_far",
+     "ai_landmark_count",
+     "scenario_card_count",
+     "user_persona_count",
+     "industry_test_scenario_count",
+     "global_ai_ecosystem_cases_count",
+     "ai_pilgrimage_landmark_count",
+     "building_footprint_area_sqm",
+     "building_count",
+     "road_total_length_m",
+     "phase_count",
+     "green_space_area_sqm",
+     "public_space_area_sqm",
+     "land_use_polygon_count",
+     "key_area_count"
+    ],
+    "assumption_ids": [
+     "ASM-001",
+     "ASM-002",
+     "ASM-007"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "SPATIAL_REVIEW"
+    ]
+   },
+   {
+    "claim_id": "C-015",
+    "proposal_section": "指标体系、面积复算与合规矩阵",
+    "claim_zh": "合规矩阵覆盖公告 1.3-1.5 全部 17 项 + agent.1-6 全部 6 项",
+    "source_ids": [
+     "SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT",
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+    ],
+    "geometry_refs": [],
+    "metric_refs": [],
+    "assumption_ids": [],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "PROFESSIONAL_EVIDENCE"
+    ]
+   },
+   {
+    "claim_id": "C-016",
+    "proposal_section": "风险、版权与合规说明",
+    "claim_zh": "7 类数据缺口已登记在 assumptions.json",
+    "source_ids": [
+     "SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK"
+    ],
+    "geometry_refs": [
+     "geometry/constraints.geojson"
+    ],
+    "metric_refs": [
+     "concept_far",
+     "building_gfa_sqm"
+    ],
+    "assumption_ids": [
+     "ASM-001",
+     "ASM-002",
+     "ASM-003",
+     "ASM-004",
+     "ASM-005",
+     "ASM-006",
+     "ASM-007",
+     "ASM-008"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION",
+     "PROFESSIONAL_EVIDENCE"
+    ]
+   },
+   {
+    "claim_id": "C-017",
+    "proposal_section": "中英双语人工等价复核清单",
+    "claim_zh": "9 个复核维度 × 159 个证据标记 × 22 个术语对照",
+    "source_ids": [],
+    "geometry_refs": [
+     "assets/media/bilingual_review_checklist.md"
+    ],
+    "metric_refs": [],
+    "assumption_ids": [],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-018",
+    "proposal_section": "离线场景演练台账（simulation.json）",
+    "claim_zh": "12 个离线合成演练任务可重放：11 成功 / 1 失败 / 1 能耗超预算 / 1 审计缺口，现场任务 0",
+    "source_ids": [],
+    "geometry_refs": [],
+    "metric_refs": [
+     "simulation_task_count",
+     "simulation_success_rate",
+     "tool_schema_pass_rate",
+     "energy_budget_violations",
+     "audit_completeness",
+     "replan_p95_seconds",
+     "field_rehearsal_task_count"
+    ],
+    "assumption_ids": [
+     "ASM-015"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-019",
+    "proposal_section": "P0 先导节点预可行性深化（PUBLIC-001）",
+    "claim_zh": "荣誉墙概念包络 30×3×0.4 m、铭牌上限约 3000、四备选与 8 人停行线均为参与者敏感性演算",
+    "source_ids": [],
+    "geometry_refs": [
+     "geometry/public_space.geojson#PUBLIC-001"
+    ],
+    "metric_refs": [
+     "p0_wall_envelope_length_m",
+     "p0_wall_envelope_height_m",
+     "p0_nameplate_capacity_count",
+     "p0_alternative_count",
+     "p0_queue_stop_line_persons"
+    ],
+    "assumption_ids": [
+     "ASM-016"
+    ],
+    "self_check_ids": [
+     "DETERMINISTIC_VALIDATION"
+    ]
+   },
+   {
+    "claim_id": "C-020",
+    "proposal_section": "多模态导览与体验材料（v2.29）",
+    "claim_zh": "双语音频与视频导览为完全合成媒体：图件帧均来自本提交包资产、TTS 语音、无第三方素材、不自动播放",
+    "source_ids": [],
+    "geometry_refs": [],
+    "metric_refs": [],
+    "assumption_ids": [],
+    "self_check_ids": [
+     "VISUAL_PACKAGING"
+    ]
+   },
+   {
+    "claim_id": "C-021",
+    "proposal_section": "验证与测量协议 P-2",
+    "claim_zh": "P-2 第①层品牌区分度自查矩阵已于 v2.29 执行并公开（16 项对照、0 高风险、2 中风险附缓解），第②③层仍待触发",
+    "source_ids": [],
+    "geometry_refs": [],
+    "metric_refs": [],
+    "assumption_ids": [
+     "ASM-012"
+    ],
+    "self_check_ids": [
+     "PROFESSIONAL_EVIDENCE"
+    ]
+   }
+  ]
+ }
 }
