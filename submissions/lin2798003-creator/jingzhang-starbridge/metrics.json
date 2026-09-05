@@ -1,0 +1,361 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm",
+    "ratio": "ratio",
+    "count": "count"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "visual/index.html",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": null,
+      "confidence": "medium",
+      "assumptions": [
+        "总体设计范围 stated as 11.4 km² (proposal section 7.2 and visual/index.html 三层范围); provisional until the official redline is confirmed."
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "visual/index.html"
+      ],
+      "formula": null,
+      "confidence": "medium",
+      "assumptions": [
+        "统筹研究范围 stated as 43.6 km² (visual/index.html 三层范围 card); provisional pending official scope confirmation."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "zhongzhiyuan_area_sqm + origin_community_area_sqm + dazhongsi_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Sum of the three announced key detailed design areas: 众智园 192.1 ha + 原点社区 104.3 ha + 大钟寺 72.0 ha (proposal sections 2.3-2.5)."
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": null,
+      "confidence": "medium",
+      "assumptions": [
+        "约192.1公顷 stated in proposal section 2.3 for 众智·进化园 (PROV-KEY-001); provisional."
+      ]
+    },
+    "origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": null,
+      "confidence": "medium",
+      "assumptions": [
+        "约104.3公顷 stated in proposal section 2.4 for 原点·共生坊 (PROV-KEY-002); provisional."
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": null,
+      "confidence": "medium",
+      "assumptions": [
+        "约72.0公顷 stated in proposal section 2.5 for 星桥·对话港 (PROV-KEY-003, 大钟寺片区); provisional."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/key_areas.geojson",
+        "visual/index.html"
+      ],
+      "formula": "count(features in geometry/key_areas.geojson)",
+      "confidence": "high",
+      "assumptions": [
+        "Three required key detailed design areas per official announcement 1.5.3: 众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区."
+      ]
+    },
+    "land_use_types_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land use types listed in proposal section 8.1)",
+      "confidence": "high",
+      "assumptions": [
+        "Six MNR-coded land use types in section 8.1: 0802 科研设计用地, 09 商业服务业用地, 07 居住用地, 14 绿地与开敞空间, 12 道路与交通设施, 08 公共管理与公共服务; percentage shares are conceptual pending official controls."
+      ]
+    },
+    "green_space_ratio_concept": {
+      "status": "known",
+      "value": 0.22,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/green_space.geojson"
+      ],
+      "formula": null,
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual green/open-space share of 22% (land use code 14, proposal section 8.1); pending official planning controls and geometry recalculation."
+      ]
+    },
+    "public_space_ratio_concept": {
+      "status": "known",
+      "value": 0.15,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": null,
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public space ratio of 0.15 per design intent; pending official planning controls and geometry recalculation."
+      ]
+    },
+    "ai_service_circle_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(15-minute AI service circles planned in proposal section 7.2)",
+      "confidence": "high",
+      "assumptions": [
+        "9 AI service circles within the overall design area (11.4 km²), each at ~1.2 km walk radius (proposal section 7.2)."
+      ]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "visual/index.html"
+      ],
+      "formula": "count(scenario cards SC-01..SC-10 in proposal section 3.2)",
+      "confidence": "high",
+      "assumptions": [
+        "Ten AI scenario cards SC-01 to SC-10 (proposal section 3.2); each follows the service-object/space/data/privacy/human-review/operator framework."
+      ]
+    },
+    "ai_health_station_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "1 × ai_service_circle_count (one AI health station per service circle)",
+      "confidence": "high",
+      "assumptions": [
+        "One AI health station (20-50 m²) per service circle, 9 total (proposal section 7.2)."
+      ]
+    },
+    "ai_education_pod_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "1 × ai_service_circle_count (one AI education pod per service circle)",
+      "confidence": "high",
+      "assumptions": [
+        "One AI education pod (30-60 m²) per service circle, 9 total (proposal section 7.2)."
+      ]
+    },
+    "ai_legal_corner_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "1 × ai_service_circle_count (one AI legal corner per service circle)",
+      "confidence": "high",
+      "assumptions": [
+        "One AI legal corner (10-20 m²) per service circle, 9 total (proposal section 7.2)."
+      ]
+    },
+    "robot_delivery_locker_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "2 × ai_service_circle_count (two robot delivery lockers per service circle)",
+      "confidence": "high",
+      "assumptions": [
+        "Two robot delivery lockers per service circle, 18 total (proposal section 7.2)."
+      ]
+    },
+    "ai_concierge_terminal_count": {
+      "status": "known",
+      "value": 27,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "3 × ai_service_circle_count (three AI concierge terminals per service circle)",
+      "confidence": "high",
+      "assumptions": [
+        "Three AI concierge (AI服务生) voice-interactive terminals per service circle, 27 total (proposal section 7.2); plus terminals along the heritage park every 500 m (proposal section 4.1)."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(landmarks listed in proposal section 4.3)",
+      "confidence": "high",
+      "assumptions": [
+        "Three AI pilgrimage landmarks: 星桥天线塔、双螺旋步道、人字形记忆广场 (proposal section 4.3)."
+      ]
+    },
+    "phasing_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phases in proposal section 9.1)",
+      "confidence": "high",
+      "assumptions": [
+        "Three phases: 星桥·启航 (1-2y), 星桥·织网 (3-5y), 星桥·共鸣 (5-10y) (proposal section 9.1)."
+      ]
+    },
+    "global_case_study_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(case studies listed in proposal section 2.1)",
+      "confidence": "high",
+      "assumptions": [
+        "Eight global AI/tech ecosystem cases compared and transcended (proposal section 2.1): Stanford Research Park, Kendall Square, 深圳南山, King's Cross, one-north, 涩谷Stream Hall, Silicon Allee, Digital Media City."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(personas listed in proposal section 3.1)",
+      "confidence": "high",
+      "assumptions": [
+        "Five user personas (proposal section 3.1): 开源开发者、AI初创团队、周边老年居民、国际访客、高校师生."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(test scenarios listed in proposal section 3.3)",
+      "confidence": "high",
+      "assumptions": [
+        "Three AI industry test & validation scenarios (proposal section 3.3): 自动驾驶接驳环线、低空无人机配送走廊、城市智能体沙盒推演."
+      ]
+    },
+    "transit_station_integration_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(stations listed in proposal section 6.3)",
+      "confidence": "high",
+      "assumptions": [
+        "Three transit stations with integrated design (proposal section 6.3): 五道口站「创新者门户」、清华东路西口「校-园缝合器」、大钟寺站「星际接口」."
+      ]
+    },
+    "proposed_track_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md"
+      ],
+      "formula": "count(transit track/rail integration nodes addressed under 1.5.2.3 交通轨道市政配套设施)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three proposed transit track/rail alignment integration nodes are addressed via the station integration proposals (proposal section 6.3); official planned line count pending confirmation."
+      ]
+    }
+  }
+}

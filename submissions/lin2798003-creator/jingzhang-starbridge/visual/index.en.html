@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张·共生星桥 Jing-Zhang Symbiotic StarBridge — 可视化总览</title>
+<style>
+:root{--ink:#162033;--muted:#667085;--paper:#fff;--soft:#f6f8fb;--line:#d7dee8;--navy:#172235;--gold:#c79838;--ai-blue:#1A6DF5;--human-gold:#D4A843;--heritage-gray:#5C5C5C;--cosmos-purple:#7B4FBF;--park-green:#15803d;--shadow:0 14px 34px rgba(22,32,51,.09)}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:#eef2f6;color:var(--ink);line-height:1.58}
+.wrap{max-width:1280px;margin:auto}
+header{background:linear-gradient(135deg,#0a0e27 0%,#1a1040 40%,#0d2137 100%);color:#fff;border-bottom:4px solid var(--human-gold)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;padding:34px 26px 30px}
+.eyebrow{color:#9fd7c0;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:12px}
+h1{font-size:34px;line-height:1.18;margin:0 0 8px;letter-spacing:0;background:linear-gradient(90deg,#6db3f2,#f0c060,#b794f4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+h2{font-size:22px;margin:0 0 14px}h3{font-size:17px;margin:0 0 8px}p{margin:0 0 10px}
+.hero-copy{max-width:900px;color:#d8e3ef;font-size:16px}
+.tagline{font-size:20px;color:var(--human-gold);font-style:italic;margin:8px 0 0}
+.status-box{border:1px solid rgba(255,255,255,.22);border-radius:8px;padding:16px;background:rgba(255,255,255,.06)}
+.status-box strong{display:block;font-size:18px;margin-bottom:8px;color:#fbbf24}
+.status-box .warn-text{color:#fcd34d;font-size:13px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(255,255,255,.26);padding:6px 12px;font-size:12px;color:#fff}
+.pill.ai{background:var(--ai-blue);border-color:var(--ai-blue)}.pill.human{background:var(--human-gold);border-color:var(--human-gold);color:#1a1a1a}.pill.cosmos{background:var(--cosmos-purple);border-color:var(--cosmos-purple)}
+main{padding:22px 22px 34px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin:0 auto 18px;box-shadow:var(--shadow);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:20px 22px;border-bottom:1px solid #e6ebf2;background:#fbfcfe}
+.sheet-head p{color:var(--muted);max-width:760px}
+.tag{display:inline-flex;align-items:center;border-radius:4px;padding:4px 10px;font-size:12px;color:#344054;background:#f0f4ff;border:1px solid #cbd5e1;white-space:nowrap}
+.map-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(310px,.65fr);gap:20px;padding:20px 22px}
+.map-frame{border:1px solid #b9c4d3;border-radius:8px;background:linear-gradient(180deg,#f0f4f8,#e8edf2);overflow:hidden;min-height:400px}
+.map-frame svg{display:block;width:100%;height:auto}
+.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px 0 0}
+.legend span{display:flex;align-items:center;gap:7px;color:#334155;font-size:13px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.metric-list{display:grid;gap:10px}
+.metric{border:1px solid #dfe6ef;border-radius:8px;padding:12px;background:#fbfdff}
+.metric span{display:block;color:#667085;font-size:12px}
+.metric strong{display:block;font-size:22px;font-variant-numeric:tabular-nums;margin-top:4px}
+.matrix{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:20px 22px}
+.area-card{border:1px solid #dde5ef;border-radius:8px;padding:15px;background:#fff}
+.area-card:nth-child(1){border-top:4px solid var(--ai-blue)}
+.area-card:nth-child(2){border-top:4px solid var(--human-gold)}
+.area-card:nth-child(3){border-top:4px solid var(--cosmos-purple)}
+.area-card h3{font-size:15px;margin-bottom:6px}
+.area-card ul{margin:8px 0 0 18px;padding:0;color:#475467;font-size:13px}
+.dim-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:20px 22px}
+.dim-card{text-align:center;padding:14px 8px;border-radius:8px;background:linear-gradient(180deg,#fff,#f8fafc);border:1px solid #e0e7ef}
+.dim-card .icon{font-size:28px;margin-bottom:6px}
+.dim-card b{display:block;font-size:13px;margin-bottom:4px}
+.dim-card p{font-size:11px;color:#667085;margin:0}
+.scenario-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:20px 22px}
+.scenario-card{min-height:120px;border:1px solid #dde5ef;border-radius:8px;padding:12px;background:linear-gradient(180deg,#fff,#f8fafc)}
+.scenario-card b{font-size:12px;display:block;margin-bottom:4px}
+.scenario-card p{font-size:11px;color:#667085;margin:0}
+.evidence{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:20px 22px}
+.source-line{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#475467;background:#f2f5f8;border-radius:6px;padding:8px;margin-top:8px;overflow-wrap:anywhere;word-break:break-all}
+.warn{border-left:5px solid #f59e0b;background:#fff9eb}
+.ok{border-left:5px solid var(--park-green);background:#f0fdf4}
+.info{border-left:5px solid var(--ai-blue);background:#f0f4ff}
+.service-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:20px 22px}
+.service-card{text-align:center;padding:14px 8px;border:1px solid #dde5ef;border-radius:8px;background:#fff}
+.service-card .count{font-size:32px;font-weight:700;color:var(--ai-blue)}
+.service-card .label{font-size:12px;color:#667085;margin-top:4px}
+.landmark-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:20px 22px}
+.landmark-card{border:1px solid #dde5ef;border-radius:8px;padding:15px;background:linear-gradient(180deg,#fff,#faf9ff)}
+.landmark-card:nth-child(1){border-top:4px solid var(--cosmos-purple)}
+.landmark-card:nth-child(2){border-top:4px solid var(--ai-blue)}
+.landmark-card:nth-child(3){border-top:4px solid var(--human-gold)}
+.phasing-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:20px 22px}
+.phase-card{border:1px solid #dde5ef;border-radius:8px;padding:15px;background:#fff}
+.phase-card:nth-child(1){border-top:4px solid #22c55e}
+.phase-card:nth-child(2){border-top:4px solid #3b82f6}
+.phase-card:nth-child(3){border-top:4px solid var(--cosmos-purple)}
+footer{padding:20px 22px;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+@media(max-width:980px){.hero,.map-grid,.matrix,.evidence,.scenario-grid,.service-grid,.landmark-row,.phasing-grid,.dim-grid{grid-template-columns:1fr}h1{font-size:26px}}
+@media(max-width:560px){main{padding:14px}.hero{padding:24px 18px}.scenario-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero">
+<div>
+<div class="eyebrow">百年京张AI创新带 · 城市设计开源征集 / Centennial Jing-Zhang AI Innovation Belt</div>
+<h1>京张·共生星桥 <span style="font-size:22px;color:#d8e3ef;">Jing-Zhang Symbiotic StarBridge</span></h1>
+<p class="tagline">「从京张铁路到星际轨道——AI让每一步都通向星辰」</p>
+<p class="hero-copy">五维融合的城市设计提案：以人为本 · 行星文明对话 · AI自我进化 · AI交通 · AI服务。以京张遗址公园为主脊，三区两翼为锚点，双螺旋为空间基因。离线静态可视化——不含CDN、远程资源、外部API、iframe或跟踪脚本。</p>
+<div class="pill-row">
+<span class="pill ai">🤖 AI自我进化</span><span class="pill human">👤 以人为本</span><span class="pill cosmos">🌌 行星文明对话</span><span class="pill">🚇 AI交通</span><span class="pill">🫶 AI服务</span>
+</div>
+</div>
+<aside class="status-box">
+<strong>📦 正式设计包 / Professional Design Package</strong>
+<p style="font-size:13px;color:#d8e3ef">package_type: professional_design_package | state: ready_for_review</p>
+<p class="warn-text">⚠️ 使用 provisional 边界（临时约束范围）。官方精确红线发布后所有空间指标需重算。当前仅用于方案生成、自检与设计讨论，不作为审批依据。</p>
+<p style="font-size:12px;color:#9ca3af;margin-top:8px">model: deepseek-v4-pro | contributor: lin2798003-creator | 2026-08-10</p>
+</aside>
+</div></header>
+
+<main class="wrap">
+
+<!-- 五维理念 -->
+<section class="sheet"><div class="sheet-head"><div><h2>五维设计理念 / Five Design Dimensions</h2><p>五大理念不是平行罗列，而是以京张遗址公园为大动脉、三区两翼为功能锚点、双螺旋为空间基因，形成从哲学命题到工程逻辑的完整设计语言。</p></div><span class="tag">design_concept</span></div>
+<div class="dim-grid">
+<article class="dim-card"><div class="icon">👤</div><b>以人为本</b><p>AI的终极度量是人的尊严、自由与福祉。15分钟AI服务圈、无障碍全覆盖、隐私优先。</p></article>
+<article class="dim-card"><div class="icon">🌌</div><b>行星文明对话</b><p>地球首个星际文明接口区。SETI数据节点、公共射电观测台、跨文明对话国际论坛。</p></article>
+<article class="dim-card"><div class="icon">🧬</div><b>AI自我进化</b><p>城市是活的AI系统。感知层→学习优化→空间自适应。众智园是全球首个AI进化加速器。</p></article>
+<article class="dim-card"><div class="icon">🚇</div><b>AI交通</b><p>四层立体交通+AI动态路权。地下物流+地面接驳+低空无人机+超级慢行绿道。</p></article>
+<article class="dim-card"><div class="icon">🫶</div><b>AI服务</b><p>AI服务生：无处不在、无感介入、永远可人工复核。永远保留"关闭AI"按钮。</p></article>
+</div></section>
+
+<!-- 总览地图 -->
+<section class="sheet"><div class="sheet-head"><div><h2>总览地图 / Overview Map</h2><p>用地分区、交通慢行、蓝绿公共空间、AI场景节点、三个朝圣地标在同一张证据图中呈现。所有图面由同一组GeoJSON、metrics与矩阵派生。</p></div><span class="tag">geometry + metrics</span></div>
+<div class="map-grid"><div><div class="map-frame" aria-label="共生星桥总览地图">
+<svg viewBox="0 0 1120 680" role="img" aria-label="京张·共生星桥总览地图">
+<defs>
+<linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#e2e8f0"/></linearGradient>
+<linearGradient id="helixAi" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#1A6DF5"/><stop offset="100%" stop-color="#7B4FBF"/></linearGradient>
+<linearGradient id="helixHuman" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#D4A843"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient>
+</defs>
+<rect x="72" y="64" width="976" height="520" rx="14" fill="url(#bgGrad)" stroke="#162033" stroke-width="3"/>
+<!-- 三区 -->
+<rect x="112" y="80" width="260" height="180" rx="10" fill="#e8eeff" stroke="#1A6DF5" stroke-width="2.5"/>
+<text x="242" y="160" text-anchor="middle" font-size="20" font-weight="700" fill="#1A6DF5">众智·进化园</text>
+<text x="242" y="185" text-anchor="middle" font-size="12" fill="#475467">Zhongzhi Evolution Park</text>
+<text x="242" y="205" text-anchor="middle" font-size="11" fill="#667085">AI全栈自主·自我进化加速器</text>
+<rect x="372" y="260" width="260" height="180" rx="10" fill="#fef9e7" stroke="#D4A843" stroke-width="2.5"/>
+<text x="502" y="340" text-anchor="middle" font-size="20" font-weight="700" fill="#b7791f">原点·共生坊</text>
+<text x="502" y="365" text-anchor="middle" font-size="12" fill="#475467">Origin Symbiosis Hub</text>
+<text x="502" y="385" text-anchor="middle" font-size="11" fill="#667085">人-AI共生示范区</text>
+<rect x="632" y="420" width="260" height="150" rx="10" fill="#f3eeff" stroke="#7B4FBF" stroke-width="2.5"/>
+<text x="762" y="485" text-anchor="middle" font-size="20" font-weight="700" fill="#7B4FBF">星桥·对话港</text>
+<text x="762" y="510" text-anchor="middle" font-size="12" fill="#475467">StarBridge Dialogue Port</text>
+<text x="762" y="530" text-anchor="middle" font-size="11" fill="#667085">行星文明对话接口区</text>
+<!-- 两翼 -->
+<rect x="112" y="270" width="80" height="300" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" opacity="0.7"/>
+<text x="152" y="430" text-anchor="middle" font-size="12" fill="#1e40af" transform="rotate(-90,152,430)">中关村·算力翼</text>
+<rect x="892" y="80" width="80" height="300" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" opacity="0.7"/>
+<text x="932" y="230" text-anchor="middle" font-size="12" fill="#92400e" transform="rotate(90,932,230)">小月河·场景翼</text>
+<!-- 京张公园主轴 -->
+<path d="M130 560 C350 420 450 300 550 240 S750 180 990 100" fill="none" stroke="#15803d" stroke-width="28" stroke-linecap="round" opacity="0.65"/>
+<path d="M130 560 C350 420 450 300 550 240 S750 180 990 100" fill="none" stroke="#22c55e" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+<text x="240" y="510" font-size="11" fill="#166534" transform="rotate(-38,240,510)">京张遗址公园活力带 · Jing-Zhang Heritage Park</text>
+<!-- 双螺旋 -->
+<path d="M170 555 C290 430 340 370 450 290 S680 210 820 160" fill="none" stroke="url(#helixAi)" stroke-width="3" stroke-dasharray="8 6"/>
+<path d="M150 555 C310 450 380 370 490 290 S720 210 860 160" fill="none" stroke="url(#helixHuman)" stroke-width="3" stroke-dasharray="6 8"/>
+<text x="520" y="560" font-size="11" fill="#667085">双螺旋空间基因 · DNA Double-Helix Spatial DNA</text>
+<!-- 地标 -->
+<circle cx="242" cy="140" r="24" fill="#1A6DF5" opacity="0.85"/><text x="242" y="145" text-anchor="middle" fill="#fff" font-size="11">进化</text>
+<circle cx="502" cy="320" r="24" fill="#D4A843" opacity="0.85"/><text x="502" y="325" text-anchor="middle" fill="#fff" font-size="11">共生</text>
+<circle cx="762" cy="465" r="24" fill="#7B4FBF" opacity="0.85"/><text x="762" y="470" text-anchor="middle" fill="#fff" font-size="11">对话</text>
+<!-- 星桥天线塔 -->
+<polygon points="800,435 810,390 815,390 825,435" fill="#7B4FBF" opacity="0.7"/>
+<text x="812" y="450" text-anchor="middle" fill="#fff" font-size="8">★</text>
+<!-- 服务节点 -->
+<circle cx="200" cy="230" r="6" fill="#f59e0b"/><circle cx="310" cy="190" r="6" fill="#f59e0b"/>
+<circle cx="350" cy="420" r="6" fill="#f59e0b"/><circle cx="430" cy="380" r="6" fill="#f59e0b"/>
+<circle cx="550" cy="470" r="6" fill="#f59e0b"/><circle cx="650" cy="510" r="6" fill="#f59e0b"/>
+<circle cx="700" cy="380" r="6" fill="#f59e0b"/><circle cx="850" cy="220" r="6" fill="#f59e0b"/>
+<circle cx="870" cy="350" r="6" fill="#f59e0b"/>
+<text x="100" y="645" font-size="14" fill="#475467">provisional boundary · EPSG:4326 · 所有空间指标待官方边界确认后复算 | 共生星桥 © 2026 lin2798003-creator</text>
+</svg></div>
+<div class="legend"><span><i class="sw" style="background:var(--ai-blue)"></i>AI创新区</span><span><i class="sw" style="background:var(--human-gold)"></i>人-AI共生区</span><span><i class="sw" style="background:var(--cosmos-purple)"></i>星际对话区</span><span><i class="sw" style="background:var(--park-green)"></i>京张公园主轴</span></div></div>
+<aside><h3>核心指标</h3><div class="metric-list">
+<div class="metric"><span>总体设计范围 (site_area_sqm)</span><strong data-metric="site_area_sqm" data-value="11400000">11,400,000 m²</strong></div>
+<div class="metric"><span>统筹研究范围</span><strong data-metric="coordinated_research_area_sqm" data-value="43600000">43,600,000 m²</strong></div>
+<div class="metric"><span>重点区域数量 (key_area_count)</span><strong data-metric="key_area_count" data-value="3">3</strong></div>
+<div class="metric"><span>AI服务圈 (ai_service_circle_count)</span><strong data-metric="ai_service_circle_count" data-value="9">9</strong></div>
+<div class="metric"><span>AI场景 (ai_scenario_count)</span><strong data-metric="ai_scenario_count" data-value="10">10</strong></div>
+<div class="metric"><span>朝圣地标 (landmark_count)</span><strong data-metric="landmark_count" data-value="3">3</strong></div>
+</div>
+<div class="warn" style="margin-top:14px;padding:12px;border-radius:8px"><h3>⚠️ 自检状态</h3><p style="font-size:13px">provisional geometry: PASS intake only. 五项法定控规指标(FAR/高度/密度/绿地率/退线) 均缺失。官方边界发布后所有指标需重算。</p></div></aside></div></section>
+
+<!-- 三层范围 -->
+<section class="sheet"><div class="sheet-head"><div><h2>三层范围 / Three Scope Levels</h2><p>按统筹研究范围→总体设计范围→重点区域范围递进，将产业判断、城市更新和重点片区设计绑定到图层与指标。</p></div><span class="tag">project_scope_summary.csv</span></div>
+<div class="matrix">
+<article class="area-card"><h3>🔭 统筹研究范围 43.6 km²</h3><p>提出AI产业生态、三区两翼协同、未来城市形态和文化叙事。面向行星文明的长远战略框架。</p><ul><li>全球8大AI创新生态案例研究</li><li>双螺旋空间基因编码</li><li>「共生星桥」品牌体系</li><li>行星文明对话战略定位</li></ul></article>
+<article class="area-card"><h3>🏙️ 总体设计范围 11.4 km²</h3><p>组织城市更新、用地结构、交通市政、京张遗址公园活力带。四层交通体系、15分钟AI服务圈。</p><ul><li>控规深度城市设计概念</li><li>9个AI服务圈全覆盖</li><li>四层交通体系（L0-L3）</li><li>蓝绿慢行双螺旋系统</li></ul></article>
+<article class="area-card"><h3>📍 重点区域范围 3.68 km²</h3><p>三处重点片区详细设计——功能业态、建筑更新、公共空间、交通组织、AI场景落地验证。</p><ul><li>众智·进化园（1.92 km²）</li><li>原点·共生坊（1.04 km²）</li><li>星桥·对话港（0.72 km²）</li></ul></article>
+</div></section>
+
+<!-- 三区详细设计 -->
+<section class="sheet"><div class="sheet-head"><div><h2>三区详细设计 / Three Key Areas</h2><p>三处重点区各有产业定位、空间策略、建筑与公共空间动作、交通接口和AI场景配置。</p></div><span class="tag">key_areas.geojson</span></div>
+<div class="matrix">
+<article class="area-card"><h3>🤖 众智·进化园</h3><p style="font-size:13px;color:#667085">Zhongzhi Evolution Park · 1.92 km²</p><p><b>定位：</b>全球首个AI自我进化加速器</p><ul><li>全栈测试廊道（芯片→框架→模型→应用）</li><li>安全治理沙盒（标准+红队测试+展示）</li><li>低碳算力花园（余热回收+清河滨水）</li><li>国际AI标准互认中心</li><li>园区即AI训练环境：自主优化空间使用</li></ul></article>
+<article class="area-card"><h3>👤 原点·共生坊</h3><p style="font-size:13px;color:#667085">Origin Symbiosis Hub · 1.04 km²</p><p><b>定位：</b>人-AI共生日常生活示范区</p><ul><li>开源社区24h发布厅+公共代码墙</li><li>近校成果转化街（孵化→展示→IP→投资）</li><li>人-AI共生居住实验区（保留"关闭AI"按钮）</li><li>15分钟AI服务圈首展区</li><li>校-园慢行缝合+轨道站点一体化</li></ul></article>
+<article class="area-card"><h3>🌌 星桥·对话港</h3><p style="font-size:13px;color:#667085">StarBridge Dialogue Port · 0.72 km²</p><p><b>定位：</b>行星文明对话物理-数字混合接口</p><ul><li>星际信息雕塑群（SETI数据可视化）</li><li>公共射电观测露台（市民可预约）</li><li>跨文明对话国际论坛永久会址</li><li>星桥天线塔（日间观景台·夜间数据光柱）</li><li>大钟寺站四象限步行连通+星际主题</li></ul></article>
+</div></section>
+
+<!-- 三大朝圣地标 -->
+<section class="sheet"><div class="sheet-head"><div><h2>三大AI朝圣地标 / Three AI Pilgrimage Landmarks</h2><p>可体验、可传播、可记忆的城市级地标。不是泛泛的"科技雕塑"，而是有科学基础、可公众参与的物理空间。</p></div><span class="tag">landmark_catalog</span></div>
+<div class="landmark-row">
+<article class="landmark-card"><h3>🌌 星桥天线塔</h3><p style="font-size:12px;color:#667085">StarBridge Antenna Spire</p><p>以射电望远镜抛物面为原型，重新诠释为可攀爬、可对话的公共雕塑。白天是观景台，夜间是SETI数据实时可视化的光柱。位于星桥·对话港核心节点。</p></article>
+<article class="landmark-card"><h3>🧬 双螺旋步道</h3><p style="font-size:12px;color:#667085">Double Helix Walk</p><p>以DNA双螺旋为形态的立体慢行桥。左螺旋（AI侧）展示AI技术演进史，右螺旋（人类侧）展示海淀创新人物志。位于京张遗址公园中段。</p></article>
+<article class="landmark-card"><h3>🛤️ 人字形记忆广场</h3><p style="font-size:12px;color:#667085">Herringbone Memory Plaza</p><p>詹天佑"人字形"展线的1:1地面投影铺装。广场北端设置"未来之轨"——一条指向北极星方向的反射不锈钢轨道。位于清华园车站旧址。</p></article>
+</div></section>
+
+<!-- AI服务 -->
+<section class="sheet"><div class="sheet-head"><div><h2>15分钟AI服务圈 / 15-Minute AI Service Circle</h2><p>9个服务圈覆盖总体设计范围。AI服务生（AI Concierge）系统：无处不在、无感介入、永远可人工复核、永远保留"关闭AI"物理按钮。</p></div><span class="tag">ai_public_service_system</span></div>
+<div class="service-grid">
+<article class="service-card"><div class="count" data-metric="ai_health_station_count" data-value="9">9</div><div class="label">AI健康站<br><small>体征监测·远程问诊·急救呼救</small></div></article>
+<article class="service-card"><div class="count" data-metric="ai_education_pod_count" data-value="9">9</div><div class="label">AI教育舱<br><small>个性化学习·多语言翻译·跨代际素养</small></div></article>
+<article class="service-card"><div class="count" data-metric="ai_legal_corner_count" data-value="9">9</div><div class="label">AI法律角<br><small>法规检索·合同模板·律师复核</small></div></article>
+<article class="service-card"><div class="count" data-metric="robot_delivery_locker_count" data-value="18">18</div><div class="label">机器人配送柜<br><small>自动配送·智能调度·冷链支持</small></div></article>
+<article class="service-card"><div class="count" data-metric="ai_concierge_terminal_count" data-value="27">27</div><div class="label">AI服务生终端<br><small>语音交互·导航·活动预约·紧急求助</small></div></article>
+</div></section>
+
+<!-- AI场景卡 -->
+<section class="sheet"><div class="sheet-head"><div><h2>十大AI场景卡 / Ten AI Scenario Cards</h2><p>每场景：服务对象→空间位置→数据来源→隐私边界→人工复核→运营主体。不是技术口号，而是可运营的空间-服务单元。</p></div><span class="tag">scenario_cards · agent.3</span></div>
+<div class="scenario-grid">
+<article class="scenario-card"><b>SC-01 AI慢行导航与路权调度</b><p>京张公园+轨道站点。AI动态分配人/非机动车/接驳车路权。行人优先。</p></article>
+<article class="scenario-card"><b>SC-02 AI健康守护站</b><p>15分钟服务圈节点。体征监测+远程问诊+急救。执业医师远程确认每例诊断。</p></article>
+<article class="scenario-card"><b>SC-03 AI教育伴航舱</b><p>原点·共生坊+高校周边。个性化学习路径+多语言翻译+跨代际数字素养。</p></article>
+<article class="scenario-card"><b>SC-04 机器人配送末梢网络</b><p>地下物流隧道+地面柜+无人机。自动调度+温度控制。地址脱敏。</p></article>
+<article class="scenario-card"><b>SC-05 城市智能体治理沙盘</b><p>众智·进化园。公开规划数据→方案推演→公众反馈→人工复核。仅用公开数据。</p></article>
+<article class="scenario-card"><b>SC-06 星际对话公共体验</b><p>星桥·对话港。SETI数据可视化+射电信号公共解读+跨文明对话模拟。</p></article>
+<article class="scenario-card"><b>SC-07 AI法律服务终端</b><p>社区中心+企业节点。法规检索+合同模板+简易咨询。律师复核所有结论。</p></article>
+<article class="scenario-card"><b>SC-08 无障碍AI出行辅助</b><p>全域慢行+轨道站点。视障/听障/行动不便实时导航+障碍物预警+紧急求助。</p></article>
+<article class="scenario-card"><b>SC-09 开源社区协作环</b><p>原点·共生坊+线上。跨时区协作+贡献可视化+项目匹配。代码仓库独立。</p></article>
+<article class="scenario-card"><b>SC-10 全球AI活动周</b><p>一带全域公共空间。路线规划+人流预测+应急调度+多语言传播。方案经审核。</p></article>
+</div></section>
+
+<!-- 实施分期 -->
+<section class="sheet"><div class="sheet-head"><div><h2>实施分期 / Implementation Phasing</h2><p>星桥·启航（近期）→ 星桥·织网（中期）→ 星桥·共鸣（远期）。征集周期≠实施周期。</p></div><span class="tag">phasing.geojson</span></div>
+<div class="phasing-grid">
+<article class="phase-card"><h3>🚀 星桥·启航 1-2年</h3><p style="font-size:13px">StarBridge: Launch</p><ul style="font-size:13px"><li>京张公园慢行断点缝合</li><li>AI服务圈试点（3个）</li><li>星际信息栈道首段</li><li>「共生星桥」品牌发布</li></ul></article>
+<article class="phase-card"><h3>🕸️ 星桥·织网 3-5年</h3><p style="font-size:13px">StarBridge: Weave</p><ul style="font-size:13px"><li>三区详细设计深化</li><li>四层交通体系首期</li><li>9个AI服务圈全覆盖</li><li>全球AI活动周首办</li></ul></article>
+<article class="phase-card"><h3>🌌 星桥·共鸣 5-10年</h3><p style="font-size:13px">StarBridge: Resonance</p><ul style="font-size:13px"><li>星际对话论坛永久会址</li><li>全域AI自我进化系统上线</li><li>行星文明对话国际合作</li><li>星桥贡献者名录持续积累</li></ul></article>
+</div></section>
+
+<!-- 任务覆盖与来源 -->
+<section class="sheet"><div class="sheet-head"><div><h2>任务覆盖与证据链 / Task Coverage & Evidence</h2><p>compliance_matrix.json 覆盖公告1.3/1.4/1.5与agent.1-agent.6；standard_matrix.json与design_depth_matrix.json证明专业标准与成果深度。</p></div><span class="tag">matrix evidence</span></div>
+<div class="evidence">
+<div><h3>📚 来源 / Sources</h3><p>全部引用来自公开或清权来源。来源登记、许可状态和用途边界见 sources.json。关键来源：</p><div class="source-line">DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509 · 资格预审公告<br>DATA-SRC-AGENT-TASKBOOK-20260518 · Agent任务书<br>DATA-SRC-PROVISIONAL-BOUNDARIES-20260605 · 临时边界<br>DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES · 城市设计管理办法<br>DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311 · 用地分类指南</div></div>
+<div><h3>⚠️ 假设与风险 / Assumptions & Risks</h3><p>待补控规、道路红线、权属、市政、文保和工程条件必须在 assumptions.json 中列明。关键风险：</p><div class="source-line">· 官方边界未公开 → 所有空间指标为 provisional<br>· 5项控规指标缺失 → 方案未给出具体数值<br>· 权属数据缺失 → 仅提出分类原则<br>· 本方案不声称官方批准、审定控规或实施承诺</div></div></div></section>
+
+</main>
+<footer>
+京张·共生星桥 Jing-Zhang Symbiotic StarBridge © 2026 lin2798003-creator · 所有内容均为开放共创概念建议<br>
+proposal_format_version: 2 · bilingual_contract_version: 1 · license: COMMUNITY-DISPLAY-ONLY · 无CDN/外部资源/API/跟踪
+</footer>
+</body>
+</html>
