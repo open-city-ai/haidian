@@ -1923,6 +1923,20 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
                 report.add_error(
                     f"{proposal_dir}/manifest.json: required file `{required}` must be listed in files"
                 )
+        if package_type == "professional_design_package":
+            changed_prefix = proposal_dir.rstrip("/") + "/"
+            for changed_path in report.changed_files:
+                if not changed_path.startswith(changed_prefix):
+                    continue
+                rel_path = relative_to_proposal(changed_path, proposal_dir)
+                if rel_path == "FEEDBACK.md" or rel_path in listed_paths:
+                    continue
+                if not (repo_root / changed_path).is_file():
+                    continue
+                report.add_error(
+                    f"{proposal_dir}/manifest.json: changed package file `{rel_path}` "
+                    "must be listed in files with its sha256"
+                )
         validate_media_manifest_entries(report, repo_root, proposal_dir, files, listed_paths)
         cover_image = data.get("cover_image")
         if cover_image not in (None, ""):
