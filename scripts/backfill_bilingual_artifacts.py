@@ -589,6 +589,7 @@ def backfill_manifests(dirs: list[Path]) -> int:
             continue
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         items = manifest.setdefault("files", [])
+        original_items = json.dumps(items, ensure_ascii=False, sort_keys=True)
         by_path = {
             str(item.get("path")): item
             for item in items
@@ -611,9 +612,20 @@ def backfill_manifests(dirs: list[Path]) -> int:
                 continue
             primary_item = by_path.get(primary)
             if primary_item is None:
+                role = (
+                    "rendered_proposal_html"
+                    if primary == "report/proposal.html"
+                    else "visualization"
+                    if primary == "visual/index.html"
+                    else "drawing"
+                    if primary.startswith("drawings/")
+                    else "proposal_figure"
+                    if primary.startswith("assets/figures/")
+                    else "narrative"
+                )
                 primary_item = {
                     "path": primary,
-                    "role": "narrative" if primary.endswith((".md", ".html")) else "figure",
+                    "role": role,
                     "required": primary in {"proposal.md", "report/proposal.html", "visual/index.html"},
                 }
                 items.append(primary_item)
@@ -639,6 +651,10 @@ def backfill_manifests(dirs: list[Path]) -> int:
             rel = item.get("path")
             if rel and rel != "manifest.json" and (directory / rel).is_file():
                 item["sha256"] = sha256(directory / rel)
+        if json.dumps(items, ensure_ascii=False, sort_keys=True) != original_items:
+            validation_claim = manifest.get("validation_claim")
+            if isinstance(validation_claim, dict):
+                validation_claim["self_checked"] = False
         manifest_path.write_text(
             json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
         )
