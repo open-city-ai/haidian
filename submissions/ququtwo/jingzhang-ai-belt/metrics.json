@@ -1,0 +1,238 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Trusted official boundary is present in the site package."
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/agent_taskbook.json",
+        "OFFICIAL-ANNOUNCEMENT"
+      ],
+      "formula": "announced_coordinated_research_scope_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Coordinated research area of approximately 43.6 sq km is derived from the official announcement text.",
+        "Exact polygon boundary for coordinated research scope is not provided in the site package."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Current footprint represents AI R&D demonstration building only; additional buildings are proposed within land use zones but not yet digitized as separate footprints."
+      ]
+    },
+    "land_use_0802_ai_r_and_d_sqm": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Land use code 0802 maps to AI research and development land.",
+        "Zone boundaries are agent-generated design proposals, not official regulatory parcels."
+      ]
+    },
+    "land_use_1401_park_green_space_sqm": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "Land use code 1401 maps to park green space and open space.",
+        "Zone boundaries are agent-generated design proposals."
+      ]
+    },
+    "land_use_05_industry_commercial_sqm": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "Land use code 05 maps to industrial service and commercial service land.",
+        "Zone boundaries are agent-generated design proposals."
+      ]
+    },
+    "land_use_0702_community_service_sqm": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(LU-004)",
+      "confidence": "medium",
+      "assumptions": [
+        "Land use code 0702 maps to community service and supporting land.",
+        "Zone boundaries are agent-generated design proposals."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "polygon_area(GREEN-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Continuous park greenway along former Jing-Zhang railway corridor."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "polygon_area(PUBLIC-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Public activity interface zone along greenway corridor."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.158,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "estimated_road_network_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Road centerline geometry is provided as LineString, not road surface polygons.",
+        "Road area ratio estimated at 15.8% based on typical Beijing urban mixed-use district road coverage standards (GB 50220, CJJ 37).",
+        "Exact road redlines and cross-sections must be confirmed from official attachments."
+      ]
+    },
+    "floor_area_ratio_estimated": {
+      "status": "known",
+      "value": 0.35,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "estimated_total_floor_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "FAR of 2.8 is estimated for the overall design scope based on comparable Beijing AI innovation district planning parameters.",
+        "AI R&D zone may reach FAR 3.0-3.5; park/green zones contribute 0; community zones typical FAR 2.0-2.5.",
+        "Official FAR controls must be confirmed from statutory planning documents before professional scoring."
+      ]
+    },
+    "key_area_1_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; announced area ~192.1 hectares."
+      ]
+    },
+    "key_area_2_ai_origin_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; announced area ~104.3 hectares."
+      ]
+    },
+    "key_area_3_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; announced area ~72.0 hectares."
+      ]
+    }
+  }
+}
