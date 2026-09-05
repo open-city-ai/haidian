@@ -15,6 +15,31 @@
 | --- | --- | --- | --- | --- | --- |
 | `brief-public-brief` | 百年京张 AI 创新带公开任务书草案 | brief | `brief/public-brief.md` | public-draft | 正式发布前仍需维护者确认不含涉密、内部或未审定信息。 |
 | `brief-public-boundary` | 公开任务书资料边界说明 | boundary | `brief/README.md` | public-draft | 用于约束资料使用边界，不替代正式公开性审查。 |
+| `heritage-batch11-notice-2025` | 北京市人民政府关于公布第十一批文物保护单位保护范围及建设控制地带的通知（京政发〔2025〕3号） | policy | `https://www.beijing.gov.cn/zhengce/zfwj/202501/t20250114_3989104.html` | external-public | 只有名单无四至；图纸“另行印发”未公开，不得声称掌握。 |
+| `heritage-control-zone-rules` | 北京市文物保护单位保护范围及建设控制地带管理规定 | policy | `https://www.beijing.gov.cn/zhengce/zhengcefagui/202009/t20200922_2080070.html` | external-public | 只有分类含义无坐标；Ⅰ/Ⅲ/Ⅴ类与一/三/五类的对应属推定，须写入 assumptions。 |
+| `heritage-batch11-scope-index` | 北京市文物局“第十一批划定文保单位的保护范围及建控地带”栏目 | culture | `https://wwj.beijing.gov.cn/bjww/362771/362782/743928533/index.html` | external-public | 滚动更新列表页，条目 URL 可能变动；四至须引具体详情页。 |
+| `heritage-qinghuayuan-station` | 清华园车站旧址 保护范围及建设控制地带（第十一批） | culture | `https://wwj.beijing.gov.cn/bjww/362771/362782/743928533/743928745/index.html` | external-public | 文字四至可转译为 provisional 几何；不得标 official_constraint 或当作官方矢量。 |
+| `heritage-pingsui-xizhimen-station` | 平绥西直门车站旧址 保护范围及建设控制地带（第十一批） | culture | `https://wwj.beijing.gov.cn/bjww/362771/362782/743928533/743928716/index.html` | external-public | 6 个保护范围子区须多要素表达；2004 年京政发〔2004〕18 号版本已被本批重划。 |
+| `heritage-enyousi-enmusi-gates` | 恩佑寺山门、恩慕寺山门 保护范围及建设控制地带（第十一批） | culture | `https://wwj.beijing.gov.cn/bjww/362771/362782/743928533/743928725/index.html` | external-public | 所含“74定122”道路红线表述只约束本处一段，不得外推为红线图层。 |
+
+## 外部公开来源条目的字段承载约定
+
+`sources/public-sources.json` 的字段集合由 `schema/source.schema.json` 固定（`additionalProperties: false`），没有独立的 accessed date、允许用途、禁止用途和版本替代关系字段。为避免新增字段带来 schema 与校验脚本的连带改动，外部公开来源（`public_status: external-public`）的这四项信息按下列约定写入现有字段：
+
+| 需要记录的信息 | 承载字段 | 写法 |
+| --- | --- | --- |
+| accessed date（访问日期） | `citation` | 以“访问日期：YYYY-MM-DD。”结尾 |
+| 允许用途 | `usage_note` | 以“允许用途：”开头 |
+| 禁止用途 | `risk_note` | 以“禁止用途：”开头 |
+| 版本替代关系 | `risk_note` | 以“版本替代关系：”起句，写明被替代件的文号与替代范围 |
+
+对文保四至类条目另有三条固定口径：
+
+- 由文字四至推导的任何几何只能标 `provisional_constraint` / `agent_inferred_from_public_data`，不得标 `official_constraint`；
+- 要素 `properties` 中须原样保留四至原文、条目 URL、访问日期与推导方法，使第三方可独立复核；
+- 官方矢量或“另行印发”的图纸公布后，据此派生的几何须整体替换并复算，不得局部修补。
+
+登记本身不构成公开性审查结论，也不授权把推定几何标注为官方约束。
 
 ## 机器可读文件
 
