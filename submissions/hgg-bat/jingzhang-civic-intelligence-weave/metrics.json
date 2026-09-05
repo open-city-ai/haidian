@@ -1,0 +1,135 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(provisional_SITE_001_in_EPSG_4548)",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-001"],
+      "usage_limit": "Intake geometry check only; not an official or approval area."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "polygon_area(conceptual_reversible_depot_prototype)",
+      "confidence": "low",
+      "assumptions": ["A-BUILDING-001"],
+      "usage_limit": "Diagrammatic prototype area; not a real building survey or development scale."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "concept_green_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-001", "A-CONTROLS-001"],
+      "usage_limit": "Diagram ratio only; not an existing or planned statutory green ratio."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "concept_public_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-001", "A-CONTROLS-001"],
+      "usage_limit": "Diagram ratio only; not an existing or approved public-space ratio."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": ["A-CONTROLS-001"],
+      "reason": "Official site boundary, approved controls, and surveyed floor area are not available."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson", "brief/site-package/agent_taskbook.json"],
+      "formula": "count(required_key_area_roles)",
+      "confidence": "high",
+      "assumptions": ["A-BOUNDARY-001"],
+      "usage_limit": "The required count is authoritative; the submitted polygon locations remain provisional."
+    },
+    "concept_station_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(design_station_modules)",
+      "confidence": "high",
+      "assumptions": ["A-SERVICE-001"],
+      "usage_limit": "Design configuration, not an existing-facility or committed-build count."
+    },
+    "service_depot_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["proposal.md", "geometry/key_areas.geojson"],
+      "formula": "one_concept_depot_per_required_key_area",
+      "confidence": "high",
+      "assumptions": ["A-BUILDING-001", "A-OPERATIONS-001"]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(S01_through_S12)",
+      "confidence": "high",
+      "assumptions": ["A-AI-001"]
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(S09_through_S12)",
+      "confidence": "high",
+      "assumptions": ["A-AI-001"]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(distinct_primary_persona_groups)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "human_or_offline_fallback_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["proposal.md"],
+      "formula": "scenario_cards_with_fallback / all_scenario_cards",
+      "confidence": "high",
+      "assumptions": ["A-AI-001"],
+      "usage_limit": "Design requirement to be audited during operation."
+    },
+    "verified_five_minute_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "population_or_entrances_reaching_open_service_via_accessible_network_within_5_minutes / eligible_total",
+      "confidence": "unknown",
+      "assumptions": ["A-SERVICE-001", "A-NETWORK-001"],
+      "reason": "A verified service inventory, official pedestrian network, opening hours, and accessibility impedance are missing."
+    }
+  }
+}
