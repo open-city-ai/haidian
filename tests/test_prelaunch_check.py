@@ -91,6 +91,9 @@ class PrelaunchCheckTests(unittest.TestCase):
         self.assertIn("python3 scripts/github_pr_validation.py", workflow)
         self.assertIn("pip install", workflow)
         self.assertIn("requirements-review.txt", workflow)
+        self.assertIn("filter: blob:none", workflow)
+        self.assertIn("sparse-checkout-cone-mode: false", workflow)
+        self.assertNotIn("/submissions/", workflow)
 
     def test_pr_template_and_gallery_keep_review_results_out_of_public_index(self) -> None:
         template = (ROOT / ".github" / "PULL_REQUEST_TEMPLATE.md").read_text(encoding="utf-8")

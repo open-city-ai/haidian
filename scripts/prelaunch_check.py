@@ -252,6 +252,23 @@ def check_workflow_trusted_base(repo_root: Path, checks: list[dict[str, Any]]) -
         failures.append("workflow must run the deterministic PR validator")
     if "pip install" not in text or "requirements-review.txt" not in text:
         failures.append("workflow must install requirements-review.txt before trusted review gates")
+    if "filter: blob:none" not in text or "sparse-checkout-cone-mode: false" not in text:
+        failures.append("workflow must use a blobless sparse trusted checkout")
+    for required_path in (
+        "/.github/",
+        "/brief/",
+        "/requirements-review.txt",
+        "/scenarios/",
+        "/scripts/",
+        "/tracks.json",
+    ):
+        if required_path not in text:
+            failures.append(f"workflow sparse checkout must include {required_path}")
+    checkout_scope = text.split("Checkout current trusted default branch", 1)[-1].split(
+        "Install trusted review dependencies", 1
+    )[0]
+    if "/submissions/" in checkout_scope:
+        failures.append("workflow trusted checkout must not materialize submissions")
     add_check(
         checks,
         "workflow_uses_trusted_base",

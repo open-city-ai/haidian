@@ -7,6 +7,28 @@ WORKFLOW = REPO_ROOT / ".github" / "workflows" / "submission-validation.yml"
 
 
 class SubmissionValidationConcurrencyTests(unittest.TestCase):
+    def test_trusted_checkout_excludes_unrelated_submission_media(self) -> None:
+        workflow = WORKFLOW.read_text(encoding="utf-8")
+        checkout_scope = workflow.split(
+            "- name: Checkout current trusted default branch", 1
+        )[1].split("- name: Install trusted review dependencies", 1)[0]
+
+        self.assertIn("ref: ${{ github.event.repository.default_branch }}", checkout_scope)
+        self.assertIn("filter: blob:none", checkout_scope)
+        self.assertIn("sparse-checkout-cone-mode: false", checkout_scope)
+        for required_path in (
+            "/.github/",
+            "/brief/",
+            "/requirements-review.txt",
+            "/scenarios/",
+            "/scripts/",
+            "/tracks.json",
+        ):
+            self.assertIn(required_path, checkout_scope)
+
+        self.assertNotIn("/submissions/", checkout_scope)
+        self.assertNotIn("github.event.pull_request.head.sha", checkout_scope)
+
     def test_superseded_heads_cancel_without_parallelizing_api_hydration(self) -> None:
         workflow = WORKFLOW.read_text(encoding="utf-8")
         workflow_scope, jobs_scope = workflow.split("\njobs:\n", 1)
