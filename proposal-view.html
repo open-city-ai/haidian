@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>方案正文 — 百年京张 AI 创新带</title>
+<title>方案现场 — 百年京张 AI 创新带</title>
 <link rel="shortcut icon" href="/favicon.ico?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=3">
 <style>
@@ -15,7 +15,7 @@
   --mono:"SFMono-Regular",Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
-html{background:var(--bg);scroll-behavior:smooth}
+html{background:var(--bg);scroll-behavior:smooth;overflow-anchor:none}
 body{margin:0;background:var(--bg);color:#eef1f5;font-family:var(--sans);-webkit-font-smoothing:antialiased}
 body.drawer-open{overflow:hidden}
 a{color:inherit;text-decoration:none}
@@ -38,7 +38,7 @@ button{font:inherit;color:inherit}
 .action.primary{border-color:#ffc46b80;background:#ffc46b12;color:var(--accent)}
 .progress{position:fixed;z-index:100;top:63px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--blue))}
 .workspace-nav{
-  position:relative;z-index:30;display:grid;grid-template-columns:190px repeat(3,minmax(0,1fr));
+  position:relative;z-index:30;display:grid;grid-template-columns:170px repeat(4,minmax(0,1fr));
   max-width:1580px;margin:18px auto 0;padding:0 24px
 }
 .workspace-label{
@@ -53,16 +53,27 @@ button{font:inherit;color:inherit}
   color:#eef1f5;text-align:left;cursor:pointer;transition:.18s
 }
 .workspace-step:hover,.workspace-step:focus-visible{position:relative;z-index:2;border-color:#ffc46b75;background:#0d1118;outline:0}
-.workspace-step.active{box-shadow:inset 0 -3px var(--accent)}
-.workspace-step.evidence{box-shadow:inset 0 -3px var(--blue)}
+.workspace-step.active{box-shadow:inset 0 -3px var(--accent);background:#10141b}
+.workspace-step.visual.active{box-shadow:inset 0 -3px var(--blue);background:#0b1420}
 .workspace-index{display:grid;place-items:center;width:32px;height:32px;border:1px solid #ffffff24;color:#98a1ad;font:10px var(--mono)}
 .workspace-step.active .workspace-index{border-color:#ffc46b70;color:var(--accent)}
-.workspace-step.evidence .workspace-index{border-color:#65b7ff66;color:var(--blue)}
+.workspace-step.visual.active .workspace-index{border-color:#65b7ff66;color:var(--blue)}
 .workspace-copy{display:grid;gap:4px;min-width:0}
 .workspace-copy strong{font-size:14px;font-weight:600;line-height:1.35}
 .workspace-copy small{color:#89929e;font-size:11px;line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .workspace-action{color:var(--accent);font:11px var(--mono);white-space:nowrap}
-.workspace-step.evidence .workspace-action{color:var(--blue)}
+.workspace-step.visual .workspace-action{color:var(--blue)}
+.experience-stage{max-width:1580px;margin:14px auto 0;padding:0 24px}
+.experience-shell{position:relative;min-height:clamp(540px,72vh,880px);border:1px solid #65b7ff4d;background:#05080d;overflow:hidden;box-shadow:0 28px 90px #0007}
+.experience-head{position:absolute;z-index:4;left:18px;right:18px;top:18px;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:17px 18px;border:1px solid #ffffff1c;background:#070a0ed9;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);pointer-events:none}
+.experience-head{transition:opacity .22s,transform .22s}.experience-head.compact{opacity:.24;transform:translateY(-7px)}.experience-shell:hover .experience-head.compact,.experience-shell:focus-within .experience-head.compact{opacity:1;transform:none}
+.experience-title{min-width:0}.experience-kicker{color:var(--blue);font:9px var(--mono);letter-spacing:.16em;text-transform:uppercase}.experience-title h1{margin:7px 0 0;font-size:clamp(22px,2.4vw,36px);font-weight:560;letter-spacing:-.025em}.experience-title p{max-width:720px;margin:8px 0 0;color:#a9b2bd;font-size:12px;line-height:1.65}
+.experience-status{display:flex;align-items:center;gap:8px;flex-shrink:0;margin-top:3px;padding:9px 11px;border:1px solid #65b7ff42;background:#65b7ff0c;color:#b8d9f4;font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}.experience-status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
+.experience-frame-wrap{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#10243a 0,#060a10 48%,#030507 100%)}
+.experience-frame{display:block;width:100%;height:100%;border:0;background:#05070a}
+.experience-loading,.experience-empty{position:absolute;inset:0;display:grid;place-items:center;padding:140px 24px 44px;text-align:center}
+.experience-loading span,.experience-empty span{max-width:620px;color:#7e8995;font:11px/1.8 var(--mono);letter-spacing:.1em}.experience-empty strong{display:block;margin-bottom:10px;color:#d7dde5;font:22px var(--sans);letter-spacing:0}
+.experience-empty[hidden],.experience-loading[hidden],.experience-frame[hidden]{display:none}
 .package-scrim{position:fixed;z-index:70;inset:64px 0 0;background:#020305c7;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
 .package-scrim[hidden]{display:none}
 .package-drawer{
@@ -87,7 +98,7 @@ button{font:inherit;color:inherit}
 .artifact-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
 .artifact-open{color:#8a949f;font:10px var(--mono)}
 .artifact-empty{padding:9px;color:#606975;font-size:10px}
-.shell{display:grid;grid-template-columns:minmax(0,1fr) 420px;max-width:1580px;margin:0 auto}
+.shell{display:grid;grid-template-columns:minmax(0,1fr) 420px;max-width:1580px;margin:22px auto 0}
 .report-wrap{min-width:0;padding:28px 28px 90px}
 .report{
   max-width:980px;min-height:75vh;margin:0 auto;padding:52px 64px 80px;background:var(--paper);
@@ -215,7 +226,7 @@ button{font:inherit;color:inherit}
 .error{max-width:680px;margin:80px auto;padding:28px;border:1px solid #e08b7855;background:#e08b780b;color:#d4a093}
 .mobile-toggle{display:none}
 @media(max-width:1050px){
-  .workspace-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.workspace-label{display:none}.workspace-step:first-of-type{border-left:1px solid var(--line)}
+  .workspace-nav{grid-template-columns:repeat(4,minmax(0,1fr))}.workspace-label{display:none}.workspace-step:first-of-type{border-left:1px solid var(--line)}
   .shell{grid-template-columns:minmax(0,1fr) 350px}
   .report{padding-left:42px;padding-right:42px}.report-explorer{margin-left:-42px;margin-right:-42px}
   .artifact-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.artifact-group:nth-child(2){border-right:0}.artifact-group:nth-child(-n+2){border-bottom:1px solid var(--line)}
@@ -223,6 +234,7 @@ button{font:inherit;color:inherit}
 @media(max-width:820px){
   .topbar{padding:9px 14px}.top-title{display:none}.action.secondary{display:none}
   .workspace-nav{display:flex;overflow:auto;margin-top:12px;padding:0 12px}.workspace-step{flex:0 0 238px;min-height:74px}.workspace-step+.workspace-step{border-left:0}
+  .experience-stage{padding:0 12px}.experience-shell{min-height:calc(100svh - 166px)}.experience-head{left:10px;right:10px;top:10px;padding:13px 14px}.experience-title p{display:none}.experience-status{display:none}
   .package-drawer{inset:72px 10px 10px}.drawer-head{position:static;flex-direction:column;padding:18px}.drawer-actions{justify-content:flex-start}.artifact-groups{grid-template-columns:1fr}.artifact-group{border-right:0;border-bottom:1px solid var(--line)}.artifact-group:last-child{border-bottom:0}
   .shell{display:block}.report-wrap{padding:20px 12px 90px}.report{padding:34px 20px 60px}
   .report-explorer{margin:-34px -20px 30px}.report-explorer-head{align-items:flex-start;flex-direction:column}.report-explorer-head span{text-align:left}
@@ -243,7 +255,7 @@ button{font:inherit;color:inherit}
   .mobile-toggle{display:inline-flex}.panel-head{padding-top:18px}.detail{max-height:35%}
 }
 @media print{
-  body{background:#fff}.topbar,.workspace-nav,.package-scrim,.package-drawer,.panel,.progress{display:none}.shell{display:block}.report-wrap{padding:0}.report{box-shadow:none;max-width:none}
+  body{background:#fff}.topbar,.workspace-nav,.experience-stage,.package-scrim,.package-drawer,.panel,.progress{display:none}.shell{display:block}.report-wrap{padding:0}.report{box-shadow:none;max-width:none}
 }
 </style>
 <link rel="stylesheet" href="proposal-artifact-viewer.css?v=3">
@@ -255,26 +267,42 @@ button{font:inherit;color:inherit}
   <a class="back" href="submissions.html">← 返回方案展示</a>
   <div class="top-title" id="topTitle">正在载入方案</div>
   <div class="top-actions">
-    <button class="action mobile-toggle" id="evidenceToggle" type="button" aria-expanded="false" aria-controls="panel">核对证据 <span id="mobileCount">0</span></button>
-    <a class="action primary" id="visualLink" href="#">打开交互可视化 ↗</a>
+    <button class="action mobile-toggle" id="evidenceToggle" type="button" aria-expanded="false" aria-controls="panel">证据溯源 <span id="mobileCount">0</span></button>
+    <a class="action primary" id="visualLink" href="#">全屏体验 ↗</a>
   </div>
 </header>
-<nav class="workspace-nav" aria-label="方案工作台">
-  <div class="workspace-label"><span>Proposal workspace</span><strong>方案工作台</strong></div>
-  <a class="workspace-step active" href="#report" aria-current="page">
-    <span class="workspace-index">01</span><span class="workspace-copy"><strong>阅读方案</strong><small>浏览完整正文与图表</small></span><span class="workspace-action">当前</span>
+<nav class="workspace-nav" aria-label="方案现场导航">
+  <div class="workspace-label"><span>Proposal experience</span><strong>方案现场</strong></div>
+  <a class="workspace-step visual active" id="experienceEntry" href="#experience" aria-current="page">
+    <span class="workspace-index">01</span><span class="workspace-copy"><strong>互动体验</strong><small>直接进入 Agent 构建的可交互方案</small></span><span class="workspace-action">正在体验</span>
+  </a>
+  <a class="workspace-step" id="reportEntry" href="#report">
+    <span class="workspace-index">02</span><span class="workspace-copy"><strong>方案导读</strong><small>理解核心概念、空间策略与实施路径</small></span><span class="workspace-action">阅读 →</span>
   </a>
   <button class="workspace-step" id="packageToggle" type="button" aria-expanded="false" aria-controls="packageDrawer">
-    <span class="workspace-index">02</span><span class="workspace-copy"><strong>浏览方案资料</strong><small><span id="packageCount">—</span> 个文件 · <span id="packageBreakdown">正在读取资料</span></small></span><span class="workspace-action">打开 ↗</span>
+    <span class="workspace-index">03</span><span class="workspace-copy"><strong>成果资料</strong><small><span id="packageCount">—</span> 个文件 · <span id="packageBreakdown">正在读取资料</span></small></span><span class="workspace-action">浏览 ↗</span>
   </button>
-  <button class="workspace-step evidence" id="evidenceEntry" type="button">
-    <span class="workspace-index">03</span><span class="workspace-copy"><strong>核对方案证据</strong><small><span id="evidenceEntryCount">—</span> 条结构化证据，可与正文互相定位</small></span><span class="workspace-action">开始 →</span>
+  <button class="workspace-step" id="evidenceEntry" type="button">
+    <span class="workspace-index">04</span><span class="workspace-copy"><strong>证据溯源</strong><small><span id="evidenceEntryCount">—</span> 条依据，可与正文互相定位</small></span><span class="workspace-action">核对 →</span>
   </button>
 </nav>
+<section class="experience-stage" id="experience" aria-labelledby="experienceTitle">
+  <div class="experience-shell">
+    <div class="experience-head" id="experienceHead">
+      <div class="experience-title"><div class="experience-kicker">01 · Interactive proposal</div><h1 id="experienceTitle">进入方案现场</h1><p>先操作、观察和感受这份方案，再按需阅读导读、浏览成果文件或追溯结构化依据</p></div>
+      <div class="experience-status" id="experienceStatus">正在准备交互环境</div>
+    </div>
+    <div class="experience-frame-wrap">
+      <div class="experience-loading" id="experienceLoading"><span>LOADING INTERACTIVE PROPOSAL</span></div>
+      <iframe class="experience-frame" id="experienceFrame" hidden sandbox="allow-scripts allow-forms allow-modals allow-popups allow-pointer-lock" referrerpolicy="no-referrer" title="方案交互可视化"></iframe>
+      <div class="experience-empty" id="experienceEmpty" hidden><span><strong>本方案暂未提供交互页面</strong>仍可继续查看方案导读、图纸、空间数据与结构化依据</span></div>
+    </div>
+  </div>
+</section>
 <div class="package-scrim" id="packageScrim" hidden></div>
 <section class="package-drawer" id="packageDrawer" hidden role="dialog" aria-modal="true" aria-labelledby="packageDrawerTitle" aria-label="完整方案文件清单">
   <div class="drawer-head">
-    <div><div class="eyebrow">Proposal library · all files</div><h2 id="packageDrawerTitle">方案资料库</h2><div class="drawer-note">图纸、空间图层、结构化数据和正文说明都在这里。选择任意文件，即可在站内查看完整渲染；关闭资料库后仍回到原来的阅读位置。</div></div>
+    <div><div class="eyebrow">Proposal outcomes · all files</div><h2 id="packageDrawerTitle">成果资料库</h2><div class="drawer-note">图纸、空间图层、结构化数据和正文说明都在这里。选择任意文件，即可在站内查看完整渲染；关闭资料库后仍回到原来的位置。</div></div>
     <div class="drawer-actions"><a class="action secondary" id="sourceLink" href="#">正文源文件 ↗</a><a class="action secondary" id="a3Link" href="#">A3 图册 ↗</a><button class="drawer-close" id="packageClose" type="button">关闭资料库 ×</button></div>
   </div>
   <div class="artifact-groups" id="artifactGroups"></div>
@@ -298,9 +326,9 @@ button{font:inherit;color:inherit}
   <aside class="panel" id="panel">
     <div class="panel-inner">
       <div class="panel-head">
-        <div class="panel-head-row"><div class="eyebrow">03 · Evidence review</div></div>
-        <div class="panel-title"><h2>核对方案证据</h2><span class="coverage" id="coverage">0 / 0</span></div>
-        <div class="coverage-note">选择分类或证据记录查看详情。正文中的“依据”与“多条依据”均可点击，并会在这里显示对应资料。</div>
+        <div class="panel-head-row"><div class="eyebrow">04 · Evidence trace</div></div>
+        <div class="panel-title"><h2>证据溯源</h2><span class="coverage" id="coverage">0 / 0</span></div>
+        <div class="coverage-note">从结论回到来源、指标、空间要素与专业依据。正文中的“依据”与“多条依据”均可点击，并会在这里显示对应资料。</div>
       </div>
       <div class="filters" id="filters"></div>
       <div class="detail" id="detail"><div class="detail-placeholder">选择正文中的证据编号，查看结构化资料</div></div>
@@ -334,7 +362,7 @@ const ARTIFACT_META={
   narrative:{zh:'正文与说明',icon:'DOC'}
 };
 const EVIDENCE_KINDS=Object.keys(KIND_META).join('|');
-const state={refs:[],filter:'all',selected:null,packagePath:'',data:new Map(),artifacts:[],artifactViewer:null};
+const state={refs:[],filter:'all',selected:null,packagePath:'',data:new Map(),artifacts:[],artifactViewer:null,workspace:'experience',workspaceBeforeOverlay:'experience'};
 const $=selector=>document.querySelector(selector);
 const escapeHTML=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const asArray=value=>Array.isArray(value)?value:[];
@@ -395,6 +423,27 @@ function renderArtifacts(){
   const interactiveCount=state.artifacts.filter(item=>item.path==='visual/index.html').length;
   $('#packageCount').textContent=state.artifacts.length;
   $('#packageBreakdown').textContent=`${imageCount} 图像 · ${videoCount} 视频 · ${audioCount} 音频 · ${pdfCount} PDF · ${geoCount} 图层 · ${dataCount} 数据 · ${interactiveCount} 交互`;
+}
+function setWorkspaceActive(mode){
+  state.workspace=mode;
+  const entries={experience:'#experienceEntry',report:'#reportEntry',package:'#packageToggle',evidence:'#evidenceEntry'};
+  Object.entries(entries).forEach(([key,selector])=>{
+    const entry=$(selector);const active=key===mode;
+    entry?.classList.toggle('active',active);
+    if(active)entry?.setAttribute('aria-current','page');else entry?.removeAttribute('aria-current');
+  });
+}
+function mountInteractiveExperience(artifactPaths){
+  const frame=$('#experienceFrame');const loading=$('#experienceLoading');const empty=$('#experienceEmpty');const status=$('#experienceStatus');const head=$('#experienceHead');
+  if(!artifactPaths.has('visual/index.html')){
+    loading.hidden=true;frame.hidden=true;empty.hidden=false;status.textContent='暂无交互页面';
+    $('#visualLink').hidden=true;
+    return;
+  }
+  const url=packageUrl('visual/index.html');
+  empty.hidden=true;frame.hidden=false;frame.src=url;
+  frame.addEventListener('load',()=>{loading.hidden=true;status.textContent='交互体验已载入';setTimeout(()=>head.classList.add('compact'),1200)},{once:true});
+  const link=$('#visualLink');link.href=url;link.target='_blank';link.rel='noopener';link.hidden=false;
 }
 function mediaReference(value){return safePackageFile(value||'')}
 function mediaMime(path){const extension=String(path).toLowerCase().split('.').pop();return ({mp4:'video/mp4',webm:'video/webm',mp3:'audio/mpeg',m4a:'audio/mp4',ogg:'audio/ogg'})[extension]||''}
@@ -1001,13 +1050,14 @@ async function load(){
   const maps=buildMaps({sources,metrics,standards,depth,assumptions,selfCheck});
   attachEvidence(imported,maps);
   const title=parsed.querySelector('.hero h1,h1')?.textContent?.trim()||path.split('/').pop();
-  document.title=`${title} — 方案正文`;
+  document.title=`${title} — 方案现场`;
   $('#topTitle').textContent=title;
   const artifactPaths=new Set(state.artifacts.map(item=>item.path));
-  [['sourceLink','proposal.md'],['a3Link','drawings/a3-booklet.pdf'],['visualLink','visual/index.html']].forEach(([id,path])=>{
+  [['sourceLink','proposal.md'],['a3Link','drawings/a3-booklet.pdf']].forEach(([id,path])=>{
     const link=$(`#${id}`);link.href=packageUrl(path);link.target='_blank';link.rel='noopener';link.hidden=!artifactPaths.has(path);
     if(!link.hidden)link.addEventListener('click',event=>{event.preventDefault();state.artifactViewer?.open(path)});
   });
+  mountInteractiveExperience(artifactPaths);
   $('#report').innerHTML=renderStatus(state.refs)+renderMultimodalShowcase(manifest)+imported.innerHTML;
   bindEvidenceButtons($('#report'));
   document.querySelectorAll('.status-cell').forEach(button=>button.addEventListener('click',()=>activateFilter(button.dataset.filter)));
@@ -1016,6 +1066,7 @@ async function load(){
   $('#evidenceEntryCount').textContent=state.refs.length;
   renderFilters();renderList();
   if(state.refs.length)selectRef(state.refs.find(ref=>ref.resolved)?.key||state.refs[0].key);
+  if(!location.hash)requestAnimationFrame(()=>scrollTo({top:0,left:0,behavior:'auto'}));
 }
 function togglePackage(force){
   const drawer=$('#packageDrawer');
@@ -1024,13 +1075,21 @@ function togglePackage(force){
   $('#packageScrim').hidden=!open;
   document.body.classList.toggle('drawer-open',open);
   $('#packageToggle').setAttribute('aria-expanded',String(open));
-  $('#packageToggle').classList.toggle('active',open);
-  if(open)$('#packageClose').focus();
+  if(open){state.workspaceBeforeOverlay=state.workspace;setWorkspaceActive('package');$('#packageClose').focus()}
+  else setWorkspaceActive(state.workspaceBeforeOverlay||'experience');
 }
+$('#experienceEntry').addEventListener('click',()=>setWorkspaceActive('experience'));
+$('#reportEntry').addEventListener('click',()=>setWorkspaceActive('report'));
 $('#packageToggle').addEventListener('click',()=>togglePackage());
 $('#packageClose').addEventListener('click',()=>{togglePackage(false);$('#packageToggle').focus()});
 $('#packageScrim').addEventListener('click',()=>{togglePackage(false);$('#packageToggle').focus()});
-$('#evidenceEntry').addEventListener('click',()=>activateFilter('all'));
+$('#evidenceEntry').addEventListener('click',()=>{
+  setWorkspaceActive('evidence');
+  activateFilter('all');
+  $('#panel').classList.add('open');
+  $('#evidenceToggle').setAttribute('aria-expanded','true');
+  $('#panel').scrollIntoView({behavior:'smooth',block:'start'});
+});
 $('#evidenceToggle').addEventListener('click',()=>{
   const open=$('#panel').classList.toggle('open');
   $('#evidenceToggle').setAttribute('aria-expanded',String(open));
