@@ -752,6 +752,10 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
+        output = args.output.resolve()
+        for label, input_path in (("proposal", args.proposal), ("exhibit", args.exhibit)):
+            if output == input_path.resolve():
+                raise ExhibitError(f"output must not overwrite the {label} input: {input_path}")
         rendered = render_html(args.proposal, args.exhibit)
     except ExhibitError as exc:
         parser.error(str(exc))
