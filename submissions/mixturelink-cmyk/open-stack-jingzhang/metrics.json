@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "The public repository provisional boundary is a rough design envelope, not an official redline."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 32640.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(conceptual_building_footprints), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Prototype footprints require cadastral, heritage and structural surveys."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.138049,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(green_space)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual blue-green design layer only; not a statutory green-space rate."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.010778,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(public_space)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Stack windows are conceptual public-space extents."
+      ]
+    },
+    "stack_walk_length_m": {
+      "status": "known",
+      "value": 9716.061,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-STACK-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Alignment is conceptual and must be reconciled with road, rail and ownership data."
+      ]
+    },
+    "stack_window_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(WINDOW-* public spaces)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional key-area features)",
+      "confidence": "high",
+      "assumptions": [
+        "Locations are provisional; the count follows the official announcement."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, parcel boundaries and an official site redline are not present in the public package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved height-control surface or aviation, heritage and view-corridor dataset is available."
+    },
+    "demolition_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "surveyed_demolition_footprint",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified building condition, tenure or heritage inventory is available; no demolition is claimed."
+    }
+  }
+}
