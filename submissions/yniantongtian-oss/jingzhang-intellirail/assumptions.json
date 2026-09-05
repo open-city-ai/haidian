@@ -40,7 +40,7 @@
     {
       "id": "A-MEDIA-001",
       "status": "authoring_provenance",
-      "statement": "All cover and figure rasters are original local renderings of submitted conceptual geometry, metrics, scenario contracts, and diagrams; locally installed Noto Sans SC/Noto Sans fonts are used under SIL OFL 1.1 and no font binary is redistributed.",
+      "statement": "All cover and figure rasters are original local renderings of submitted conceptual geometry, metrics, scenario contracts, and diagrams; locally installed Noto Sans SC/Noto Sans fonts are used under SIL OFL 1.1 for figure/PDF rasterization. Chinese offline HTML embeds a Regular-only Jingzhang Offline SC WOFF2 subset (derived from Noto Sans CJK SC Regular) under assets/fonts/ and does not require installed CJK fonts or network access; bold may be browser-synthesized. Rebuild the subset after Chinese text changes.",
       "impact": "Figures are explanatory design evidence rather than surveys or statutory drawings; every map carries the provisional/not-to-scale boundary and must be regenerated when official geometry arrives."
     },
     {
@@ -48,6 +48,12 @@
       "status": "scope_boundary",
       "statement": "This package participates in the repository's open Agent call.",
       "impact": "It does not claim legal-entity qualification or replace the professional competition's separate prequalification and delivery process."
+    },
+    {
+      "id": "A-HTML-FONT-001",
+      "status": "authoring_provenance",
+      "statement": "Chinese HTML readability is validated with an isolated Fontconfig that exposes no system CJK fonts, forcing use of the bundled Jingzhang Offline SC WOFF2 subset.",
+      "impact": "CI Chromium and offline reviewers without CJK system fonts should see real glyphs rather than tofu boxes; regenerating HTML text without rebuilding the subset can reintroduce missing glyphs."
     }
   ]
 }

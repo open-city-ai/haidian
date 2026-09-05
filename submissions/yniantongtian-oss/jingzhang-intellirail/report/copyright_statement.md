@@ -10,11 +10,11 @@ The spatial base uses the repository's public provisional geometry under brief/s
 
 ## Figures, fonts, and external material
 
-All ten required Chinese/English figures and the optional cover are original local renderings of submitted GeoJSON, metrics, scenario contracts, and diagrams. No third-party photographs, logos, maps, or case-study images are embedded. Locally installed Noto Sans SC and Noto Sans fonts are used to rasterize figures and subset/embed PDF text under the official SIL Open Font License 1.1 recorded as `FONT-NOTO-SANS-SC-OFL` in `sources.json`; no font binary is redistributed in this package. Offline HTML uses system fallbacks and bundles no font file. International cases are discussed through source citations only.
+All ten required Chinese/English figures and the optional cover are original local renderings of submitted GeoJSON, metrics, scenario contracts, and diagrams. No third-party photographs, logos, maps, or case-study images are embedded. Locally installed Noto Sans SC / Noto Sans CJK fonts are used to rasterize figures and subset/embed PDF text under the SIL Open Font License 1.1 recorded as `FONT-NOTO-SANS-SC-OFL` in `sources.json`. Offline Chinese HTML (`report/proposal.html`, `visual/index.html`) embeds a Modified Version: a local WOFF2 glyph subset derived from Noto Sans CJK SC Regular (TTC face index 2), renamed to family **Jingzhang Offline SC**, at `assets/fonts/jingzhang-offline-sc-regular.woff2`. The matching SIL OFL 1.1 notice is `assets/fonts/OFL.txt`; build provenance is `assets/fonts/manifest.json`. No remote fonts are fetched. International cases are discussed through source citations only.
 
 ## Offline and privacy boundary
 
-The visual and rendered reports load no remote scripts, map tiles, fonts, APIs, iframes, forms, or tracking. Public deliverables contain only final design material and required provenance; process records and personal identifiers are not included.
+The visual and rendered reports load no remote scripts, map tiles, remote fonts, APIs, iframes, forms, or tracking; Chinese HTML uses only the local OFL subset under `assets/fonts/`. Public deliverables contain only final design material and required provenance; process records and personal identifiers are not included.
 
 ## Licence
 

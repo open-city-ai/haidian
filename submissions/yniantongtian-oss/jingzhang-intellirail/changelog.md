@@ -1,5 +1,12 @@
 # 方案迭代记录 / Jing-Zhang Intelli-Rail Changelog
 
+## v1.20.1 — offline Chinese HTML font (tofu fix)
+
+- Bundled a renamed Noto Sans CJK SC Regular glyph subset as `assets/fonts/jingzhang-offline-sc-regular.woff2` (family **Jingzhang Offline SC**, SIL OFL 1.1; see `assets/fonts/OFL.txt` and `assets/fonts/manifest.json`).
+- Wired `report/proposal.html` and `visual/index.html` with local `@font-face` so Chinese titles, body, tables, and navigation render without system CJK fonts or remote font URLs.
+- Updated `report/copyright_statement.md`, `sources.json` (`FONT-NOTO-SANS-SC-OFL`), and `assumptions.json` to record redistribution of the Modified Version; refreshed manifest hashes after packaging.
+- No metrics, geometry, or official-boundary claims changed.
+
 ## v1.20 - 2026-08-28
 
 - 将六类人物画像改造成可验证的端到端旅程，并为十二个场景逐项补齐必要数据、敏感性、最小化、拟议留存上限、访问角色、人工复核、申诉与急停；这些期限明确为真实试点前待法务、专业团队和受影响使用者复核的建议上限，而非当前数据授权。
