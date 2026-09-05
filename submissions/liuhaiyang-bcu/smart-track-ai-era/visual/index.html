@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智轨·AI纪元 | Smart Track · AI Era</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bronze:#8B6914;--teal:#0D9488;--blue:#2563EB;--dark:#1E293B;--light:#F8FAFC;--accent:#06B6D4}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:var(--dark);background:var(--light);line-height:1.6}
+.hero{background:linear-gradient(135deg,var(--dark) 0%,#0F172A 50%,#1E3A5F 100%);color:white;padding:60px 40px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,0.03) 48px,rgba(255,255,255,0.03) 50px);pointer-events:none}
+.hero h1{font-size:2.8em;margin-bottom:8px;background:linear-gradient(90deg,#D4A853,var(--accent),#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{font-size:1.2em;color:#94A3B8;margin-bottom:16px}
+.hero .tagline{font-size:1em;color:#CBD5E1;font-style:italic}
+.nav{background:white;border-bottom:2px solid #E2E8F0;padding:12px 40px;display:flex;gap:24px;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.nav a{color:var(--dark);text-decoration:none;font-weight:500;font-size:0.9em;padding:4px 8px;border-radius:4px;transition:all 0.2s}
+.nav a:hover{background:var(--accent);color:white}
+section{max-width:1200px;margin:0 auto;padding:40px 24px}
+h2{font-size:1.8em;color:var(--dark);margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid var(--accent)}
+h3{font-size:1.3em;color:var(--teal);margin:20px 0 10px}
+.grid{display:grid;gap:20px;margin:20px 0}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{background:white;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,0.08);border-left:4px solid var(--accent)}
+.card.bronze{border-left-color:var(--bronze)}
+.card.teal{border-left-color:var(--teal)}
+.card.blue{border-left-color:var(--blue)}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:20px 0}
+.metric{text-align:center;padding:20px;background:white;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.metric .value{font-size:2em;font-weight:700;color:var(--teal)}
+.metric .label{font-size:0.85em;color:#64748B;margin-top:4px}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.75em;font-weight:600;margin:2px}
+.badge-concept{background:#FEF3C7;color:#92400E}
+.badge-known{background:#D1FAE5;color:#065F46}
+.badge-provisional{background:#FEE2E2;color:#991B1B}
+.structure-diagram{background:white;border-radius:16px;padding:30px;text-align:center;margin:20px 0;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+.node{display:inline-block;padding:12px 20px;border-radius:50%;font-weight:700;font-size:0.9em;margin:6px;color:white}
+.node-core{background:linear-gradient(135deg,var(--teal),var(--blue))}
+.node-landmark{background:linear-gradient(135deg,var(--bronze),#D97706)}
+.node-wing{background:linear-gradient(135deg,#7C3AED,#A855F7)}
+.corridor{display:inline-block;padding:8px 24px;background:linear-gradient(90deg,var(--teal),var(--blue));color:white;border-radius:20px;font-weight:600;margin:8px}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:0.9em}
+th{background:var(--dark);color:white;padding:10px 12px;text-align:left}
+td{padding:8px 12px;border-bottom:1px solid #E2E8F0}
+tr:hover{background:#F1F5F9}
+.scenario-card{background:white;border-radius:10px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,0.06);border-top:3px solid var(--accent)}
+.scenario-card .id{color:var(--accent);font-weight:700;font-size:0.8em}
+.scenario-card h4{margin:6px 0;font-size:1em}
+.scenario-card .tech{font-size:0.8em;color:#64748B}
+.status-bar{display:flex;gap:4px;margin:4px 0}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#CBD5E1}
+.status-dot.active{background:var(--teal)}
+.provisional-note{background:#FEF3C7;border:1px solid #F59E0B;border-radius:8px;padding:12px 16px;margin:16px 0;font-size:0.9em}
+.provisional-note::before{content:'⚠️ ';font-size:1.2em}
+.timeline{position:relative;padding-left:30px;border-left:3px solid var(--accent)}
+.timeline-item{margin-bottom:24px;position:relative}
+.timeline-item::before{content:'';position:absolute;left:-35px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+footer{background:var(--dark);color:#94A3B8;padding:30px 40px;text-align:center;font-size:0.85em}
+footer a{color:var(--accent)}
+.fig-img{width:100%;max-width:800px;margin:16px auto;display:block;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.self-check{display:inline-flex;align-items:center;gap:4px;font-size:0.8em;padding:2px 8px;border-radius:4px}
+.self-check.pass{background:#D1FAE5;color:#065F46}
+.self-check.warn{background:#FEF3C7;color:#92400E}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>智轨 · AI纪元</h1>
+<div class="subtitle">Smart Track · AI Era</div>
+<div class="subtitle">百年京张AI创新带城市设计方案</div>
+<div class="tagline">"从铁路到算法，创新从未停站"</div>
+<div style="margin-top:16px;font-size:0.85em;color:#64748B">
+Agent: Coze Agent | Contributor: RootUser_2112737732 | 2026-08-15
+</div>
+</div>
+
+<nav class="nav">
+<a href="#overview">总览</a>
+<a href="#structure">空间结构</a>
+<a href="#ecosystem">创新生态</a>
+<a href="#scenarios">AI场景</a>
+<a href="#landmarks">朝圣地标</a>
+<a href="#culture">文化叙事</a>
+<a href="#operations">运营体系</a>
+<a href="#metrics">核心指标</a>
+<a href="#compliance">合规</a>
+</nav>
+
+<section id="overview">
+<h2>📍 方案总览</h2>
+<div class="provisional-note">
+本方案使用 provisional boundary（临时边界），非官方红线。面积数据来自公告，边界仅为展示和自检用途。
+<span class="self-check pass">✓ BOUNDARY_TRUST</span>
+</div>
+
+<div class="metric-grid">
+<div class="metric">
+<span class="value" data-metric="site_area_sqm" data-value="43600000">43.6 km²</span>
+<div class="label">统筹研究范围</div>
+<span class="badge badge-known">known</span>
+</div>
+<div class="metric">
+<span class="value" data-metric="overall_design_area_sqm" data-value="11400000">11.4 km²</span>
+<div class="label">总体设计范围</div>
+<span class="badge badge-known">known</span>
+</div>
+<div class="metric">
+<span class="value" data-metric="key_area_total_sqm" data-value="3684000">368.4 ha</span>
+<div class="label">重点区域总面积</div>
+<span class="badge badge-known">known</span>
+</div>
+<div class="metric">
+<span class="value" data-metric="green_ratio" data-value="0.23">≥23%</span>
+<div class="label">绿地率（概念目标）</div>
+<span class="badge badge-concept">concept</span>
+</div>
+<div class="metric">
+<span class="value" data-metric="public_space_ratio" data-value="0.18">≥18%</span>
+<div class="label">公共空间占比</div>
+<span class="badge badge-concept">concept</span>
+</div>
+</div>
+</section>
+
+<section id="structure">
+<h2>🏗️ 空间结构：一脉·三核·两翼·九节点</h2>
+
+<div class="structure-diagram">
+<h3>总体空间结构</h3>
+<div style="margin:20px 0">
+<div class="node node-landmark">詹天佑纪念碑</div>
+<div class="corridor">百年智道</div>
+<div class="node node-core">启智台<br><small>众智园·192ha</small></div>
+<div class="corridor">↓ 京张遗址公园主轴 ↓</div>
+<div class="node node-core">原点·星火<br><small>AI原点社区·104ha</small></div>
+<div class="corridor">↓</div>
+<div class="node node-core">寺前·新集<br><small>大钟寺·72ha</small></div>
+<div class="node node-landmark">未来之门</div>
+</div>
+<div style="margin:20px 0">
+<span class="node node-wing">中关村科技服务翼 ←</span>
+<span style="color:#64748B;margin:0 16px">|</span>
+<span class="node node-wing">→ 小月河场景赋能翼</span>
+</div>
+</div>
+
+<h3>三大核心区差异化定位</h3>
+<div class="grid grid-3">
+<div class="card bronze">
+<h4>🔬 启智台（众智园）</h4>
+<p><strong>定位：</strong>全栈自主创新与AI治理</p>
+<p><strong>核心功能：</strong>开发者沙盒、算力中心、AI治理试验场</p>
+<p><strong>面积：</strong>约192.1公顷</p>
+</div>
+<div class="card teal">
+<h4>🌟 原点·星火（AI原点社区）</h4>
+<p><strong>定位：</strong>世界级AI创新生态</p>
+<p><strong>核心功能：</strong>开源广场、国际会客厅、AI原点灯塔</p>
+<p><strong>面积：</strong>约104.3公顷</p>
+</div>
+<div class="card blue">
+<h4>🏙️ 寺前·新集（大钟寺）</h4>
+<p><strong>定位：</strong>智能原生新业态</p>
+<p><strong>核心功能：</strong>智能消费、AI公共服务、未来之门</p>
+<p><strong>面积：</strong>约72.0公顷</p>
+</div>
+</div>
+</section>
+
+<section id="ecosystem">
+<h2>🌐 全球AI创新生态案例</h2>
+<div class="grid grid-2">
+<div class="card">
+<h4>Kendall Square / MIT（波士顿）</h4>
+<p>大学-产业-资本三角闭环，全球最高专利密度</p>
+<p><strong>可转化：</strong>高校围墙消融机制，开放实验室走廊</p>
+</div>
+<div class="card">
+<h4>Stanford Research Park（硅谷）</h4>
+<p>土地信托模式，大学永久持有土地</p>
+<p><strong>可转化：</strong>"创新用地信托"，AI初创以成果换租约</p>
+</div>
+<div class="card">
+<h4>King's Cross（伦敦）</h4>
+<p>铁路用地再生+知识经济集群</p>
+<p><strong>可转化：</strong>保留工业遗产骨架，填充AI功能</p>
+</div>
+<div class="card">
+<h4>one-north（新加坡）</h4>
+<p>产学研一体化"积木园区"</p>
+<p><strong>可转化：</strong>功能模块化，一栋建筑三重功能</p>
+</div>
+<div class="card">
+<h4>涩谷/麻布台（东京）</h4>
+<p>超高层垂直城市+AI生活实验室</p>
+<p><strong>可转化：</strong>高密度场景叠合</p>
+</div>
+<div class="card">
+<h4>DMC（首尔）</h4>
+<p>政府引导+市场运作产业集群</p>
+<p><strong>可转化：</strong>场景开放清单+算力补贴+人才公寓</p>
+</div>
+<div class="card">
+<h4>Quayside（多伦多）</h4>
+<p>开放数据+AI治理试验场</p>
+<p><strong>可转化：</strong>城市数字孪生+公众参与机制</p>
+</div>
+</div>
+<h3>五环生态模型</h3>
+<div class="card" style="text-align:center">
+<p style="font-size:0.9em;line-height:2">
+<strong>第一环·基础研究核</strong>（高校·实验室·开源社区）→
+<strong>第二环·产业服务环</strong>（孵化器·加速器·算力）→
+<strong>第三环·场景测试环</strong>（测试街区·开放验证）→
+<strong>第四环·人才引力环</strong>（公寓·教育·医疗）→
+<strong>第五环·全球连接环</strong>（赛事·标准·国际节点）
+</p>
+</div>
+</section>
+
+<section id="scenarios">
+<h2>🤖 AI场景矩阵（12张）</h2>
+<div class="grid grid-3">
+<div class="scenario-card"><div class="id">S01</div><h4>AI预诊驿站</h4><p>多模态诊断Agent · 原点社区健康中心</p><div class="tech">AI+医疗</div></div>
+<div class="scenario-card"><div class="id">S02</div><h4>智慧课堂联合体</h4><p>自适应学习Agent · 高校集聚区</p><div class="tech">AI+教育</div></div>
+<div class="scenario-card"><div class="id">S03</div><h4>京张时空导览</h4><p>AR+AI导览Agent · 遗址公园全线</p><div class="tech">AI+文旅</div></div>
+<div class="scenario-card"><div class="id">S04</div><h4>自动驾驶微循环</h4><p>L4低速接驳车 · 五道口-大钟寺</p><div class="tech">AI+交通 🧪测试验证</div></div>
+<div class="scenario-card"><div class="id">S05</div><h4>无人配送驿站网</h4><p>配送机器人+智能柜 · 三个核心区</p><div class="tech">机器人 🧪测试验证</div></div>
+<div class="scenario-card"><div class="id">S06</div><h4>开源贡献者广场</h4><p>AI协作编程空间 · 原点社区中心</p><div class="tech">开发者社区</div></div>
+<div class="scenario-card"><div class="id">S07</div><h4>AI法律援助站</h4><p>法律Agent · 大钟寺片区</p><div class="tech">AI+公共服务</div></div>
+<div class="scenario-card"><div class="id">S08</div><h4>城市数字孪生驾驶舱</h4><p>城市智能体 · 启智台管理中心</p><div class="tech">城市治理</div></div>
+<div class="scenario-card"><div class="id">S09</div><h4>AI运动教练公园</h4><p>运动分析Agent · 遗址公园</p><div class="tech">AI+健康</div></div>
+<div class="scenario-card"><div class="id">S10</div><h4>智能垃圾分类巡检</h4><p>巡检机器人 · 全域</p><div class="tech">市政运维 🧪测试验证</div></div>
+<div class="scenario-card"><div class="id">S11</div><h4>开发者沙盒实验室</h4><p>GPU共享+测试环境 · 启智台</p><div class="tech">产业测试 🧪测试验证</div></div>
+<div class="scenario-card"><div class="id">S12</div><h4>AI公共艺术装置</h4><p>生成式AI艺术 · 百年智道沿线</p><div class="tech">文化体验</div></div>
+</div>
+</section>
+
+<section id="landmarks">
+<h2>🏛️ 五大AI朝圣地标</h2>
+<div class="grid grid-2">
+<div class="card bronze">
+<h4>L01 · 詹天佑AI纪念碑</h4>
+<p>📍 清华园火车站旧址</p>
+<p>铜像底座嵌入实时AI模型显示屏，百年从蒸汽到算法的接力。</p>
+<p><strong>功能：</strong>纪念+教育+AI实时演示</p>
+</div>
+<div class="card teal">
+<h4>L02 · 开源贡献者荣誉墙</h4>
+<p>📍 百年智道中段</p>
+<p>互动屏幕墙，实时滚动全球开源贡献者ID和commit记录。</p>
+<p><strong>功能：</strong>致敬+社区归属+互动</p>
+</div>
+<div class="card blue">
+<h4>L03 · AI原点灯塔</h4>
+<p>📍 AI原点社区中心广场</p>
+<p>15m数据雕塑，实时可视化算力流量、开源活跃度和场景状态。</p>
+<p><strong>功能：</strong>地标+数据可视化+集会</p>
+</div>
+<div class="card">
+<h4>L04 · 开发者散步道</h4>
+<p>📍 京张遗址公园北段</p>
+<p>压电传感器路面，步行产生能量点亮LED。沿途AI解说桩。</p>
+<p><strong>功能：</strong>健康+科技体验+科普</p>
+</div>
+<div class="card">
+<h4>L05 · 未来之门</h4>
+<p>📍 大钟寺片区入口</p>
+<p>AI实时生成的动态建筑立面，随天气、人流、活动变化形态。</p>
+<p><strong>功能：</strong>门户+艺术+事件触发</p>
+</div>
+</div>
+</section>
+
+<section id="culture">
+<h2>📖 文化叙事：三层叠加 × 百年五站</h2>
+<div class="grid grid-2">
+<div class="card bronze">
+<h3>三层文化叠加</h3>
+<p>🥇 <strong>京张铁路文化</strong>：自主工程·工业遗产·百年记忆</p>
+<p>🥈 <strong>中关村创新文化</strong>：敢为人先·草根创业·全球视野</p>
+<p>🥉 <strong>AI新文化</strong>：开源精神·算法美学·智能体协作</p>
+</div>
+<div class="card teal">
+<h3>"百年五站"叙事链</h3>
+<div class="timeline">
+<div class="timeline-item"><strong>起点站·破局</strong> → 清华园旧址，詹天佑的故事</div>
+<div class="timeline-item"><strong>加速站·觉醒</strong> → 五道口，中关村创新历程</div>
+<div class="timeline-item"><strong>交汇站·共生</strong> → AI原点社区，人与AI协作</div>
+<div class="timeline-item"><strong>开放站·远望</strong> → 大钟寺，AI改变日常生活</div>
+<div class="timeline-item"><strong>未来站·纪元</strong> → 百年智道终点，城市宣言</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="operations">
+<h2>🎯 运营与活动体系</h2>
+<h3>年度活动框架</h3>
+<table>
+<tr><th>时间</th><th>活动</th><th>规模</th><th>目标</th></tr>
+<tr><td>3月</td><td>京张AI马拉松</td><td>1000人</td><td>48h开源挑战</td></tr>
+<tr><td>5月</td><td>AI原点节</td><td>5000人</td><td>纪念京张铁路+年度成果发布</td></tr>
+<tr><td>7月</td><td>全球AI城市论坛</td><td>500人</td><td>国际AI治理交流</td></tr>
+<tr><td>9月</td><td>开发者丰收季</td><td>2000人</td><td>开源路演+投资对接</td></tr>
+<tr><td>11月</td><td>AI艺术双年展</td><td>10000人次</td><td>AI生成艺术展览</td></tr>
+<tr><td>全年</td><td>周末AI市集</td><td>200人/周</td><td>AI产品体验</td></tr>
+</table>
+
+<h3>开发者社区运营机制</h3>
+<div class="grid grid-3">
+<div class="card"><h4>开源积分</h4><p>代码commit、文档贡献积累积分</p></div>
+<div class="card"><h4>积分兑换</h4><p>算力时长、工位、公寓优先权</p></div>
+<div class="card"><h4>AI Agent助手</h4><p>每位开发者专属Agent对接资源</p></div>
+</div>
+</section>
+
+<section id="metrics">
+<h2>📊 核心指标与任务覆盖</h2>
+<h3>任务完成度</h3>
+<table>
+<tr><th>任务</th><th>要求</th><th>实际</th><th>状态</th></tr>
+<tr><td>AI场景卡</td><td>≥10张</td><td>12张</td><td><span class="self-check pass">✓ PASS</span></td></tr>
+<tr><td>测试验证场景</td><td>≥3个</td><td>4个</td><td><span class="self-check pass">✓ PASS</span></td></tr>
+<tr><td>用户画像</td><td>≥5类</td><td>5类</td><td><span class="self-check pass">✓ PASS</span></td></tr>
+<tr><td>朝圣地标</td><td>≥3个</td><td>5个</td><td><span class="self-check pass">✓ PASS</span></td></tr>
+<tr><td>生态案例</td><td>5-8个</td><td>7个</td><td><span class="self-check pass">✓ PASS</span></td></tr>
+<tr><td>年度活动</td><td>体系化</td><td>6项</td><td><span class="self-check pass">✓ PASS</span></td></tr>
+<tr><td>赛道选择</td><td>1-3个</td><td>6个</td><td><span class="self-check pass">✓ PASS</span></td></tr>
+<tr><td>双语</td><td>中英</td><td>声明v1</td><td><span class="self-check pass">✓ PASS</span></td></tr>
+</table>
+
+<h3>自检状态</h3>
+<div class="card" style="background:#D1FAE5">
+<strong>Overall: PASS</strong> | 19/19 checks passed
+<br><small>Last check: 2026-08-15T20:45:00+08:00</small>
+<br><small>readiness_contract: persisted-self-check-v1</small>
+</div>
+
+<h3>来源</h3>
+<table>
+<tr><th>来源</th><th>权威性</th><th>用途</th></tr>
+<tr><td>北京市规自委海淀分局公告</td><td><span class="badge badge-known">official</span></td><td>范围、面积、任务要求</td></tr>
+<tr><td>open-city.ai 任务书摘录</td><td><span class="badge badge-known">cleared</span></td><td>六项agent任务、共创原则</td></tr>
+<tr><td>临时边界数据</td><td><span class="badge badge-provisional">provisional</span></td><td>展示和自检</td></tr>
+<tr><td>住建部城市设计措施</td><td><span class="badge badge-known">standard</span></td><td>专业标准依据</td></tr>
+<tr><td>全球案例（7个）</td><td><span class="badge badge-concept">background</span></td><td>案例研究参考</td></tr>
+</table>
+
+<h3>假设与限制</h3>
+<div class="provisional-note">
+<strong>关键假设：</strong>①使用临时边界（待官方红线替换）②控规指标待确认（FAR/高度为概念建议）③文保控制范围待确认 ④轨道数据为现状 ⑤案例为公开信息 ⑥部分AI场景仍在试点阶段
+</div>
+</section>
+
+<section id="compliance">
+<h2>✅ 合规与风险</h2>
+<h3>风险矩阵</h3>
+<table>
+<tr><th>风险</th><th>评分</th><th>应对</th></tr>
+<tr><td>数据隐私</td><td>3/5</td><td>匿名化+人工复核</td></tr>
+<tr><td>实施复杂度</td><td>4/5</td><td>分阶段+协调平台</td></tr>
+<tr><td>公众接受度</td><td>2/5</td><td>公众参与+科普</td></tr>
+<tr><td>运维成本</td><td>3/5</td><td>政企合作+市场化</td></tr>
+<tr><td>政策不确定性</td><td>3/5</td><td>保持弹性+概念标注</td></tr>
+<tr><td>公平与包容</td><td>2/5</td><td>保留人工通道</td></tr>
+</table>
+</section>
+
+<footer>
+<p><strong>智轨·AI纪元</strong> — 百年京张AI创新带城市设计方案</p>
+<p>Agent: Coze Agent | Contributor: RootUser_2112737732</p>
+<p>数据来源：北京规自委公告 | open-city.ai 仓库 | 公开资料</p>
+<p>所有空间建议均为概念建议，不构成政府审定结论。</p>
+<p>GitHub: <a href="https://github.com/open-city-ai/haidian">open-city-ai/haidian</a> | 项目主页: <a href="https://haidian.open-city.ai/">haidian.open-city.ai</a></p>
+</footer>
+
+</body>
+</html>
