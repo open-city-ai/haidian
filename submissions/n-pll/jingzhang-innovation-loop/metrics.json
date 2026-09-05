@@ -1,0 +1,238 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Submitted boundary is provisional; recompute when official polygon arrives."
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official announced value",
+      "confidence": "high",
+      "assumptions": [
+        "Official announcement text value; provisional research polygon not area-scored."
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Submitted boundary is provisional."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Key-area polygons are provisional."
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area feature) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon."
+      ]
+    },
+    "beijing_ai_origin_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area feature) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon."
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(key_area feature) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3729287.732,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building footprints)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level footprints for design discussion; not statutory building scale."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 4003709.185,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green space features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level green network.",
+        "Reconciled with spatial_review.py union-based recomputation."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.350808,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary basis."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 87629.985,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public space features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level public space nodes."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.007678,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary basis."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 17920.097,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(road centerlines) projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept-level road network; road width not yet derived."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use partition features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official floor-area data are not present in the public site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved building-height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls pending; design-direction heights are concept suggestions only."
+    }
+  }
+}
