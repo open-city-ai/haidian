@@ -1,0 +1,199 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(PROV-SITE-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": ["Boundary is provisional_constraint, not an official redline; value must be fully recalculated when official polygons are released."]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 88628.915,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "sum(area(BLDG-001..006, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": ["Six footprints are conceptual retrofit units, not surveyed existing buildings or confirmed construction scale."]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.315058,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson","geometry/site_boundary.geojson"],
+      "formula": "area(union(green_space), EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["Green geometry is a conceptual design layer and does not represent an approved green-line or existing park boundary."]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.014959,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson","geometry/site_boundary.geojson"],
+      "formula": "area(union(public_space), EPSG:4548) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["Counts only six concept-design timetable nodes/spaces, not all existing or proposed public space."]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": ["Count is official task information; the submitted geometries remain provisional."]
+    },
+    "time_spine_length_m": {
+      "status": "known",
+      "value": 9216.69,
+      "unit": "m",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "length(ROAD-001, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": ["ROAD-001 is a concept-design connection line, not an existing road centerline or engineering alignment."]
+    },
+    "t0_constant_rights_corridor_length_m": {
+      "status": "known",
+      "value": 12327.509,
+      "unit": "m",
+      "source_files": ["geometry/constraints.geojson"],
+      "formula": "sum(length(CONST-001..004, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": ["T0 corridors are design-protocol constraints, not statutory road/fire-control lines."]
+    },
+    "reversible_public_space_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(PUBLIC_SPACE where reversible_use=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["visual/assets/scenarios.json"],
+      "formula": "count(scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["visual/assets/scenarios.json"],
+      "formula": "count(scenarios where category=test_validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "time_layer_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["visual/assets/timeslot_contract.json"],
+      "formula": "count(T0,T1,T2,T3)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "human_override_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/scenarios.json","visual/assets/timeslot_contract.json"],
+      "formula": "scenarios_with_named_human_review_field / all_scenarios",
+      "confidence": "high",
+      "assumptions": ["Measures design-contract coverage, not observed operational compliance."]
+    },
+    "non_ai_fallback_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["visual/assets/scenarios.json"],
+      "formula": "scenarios_with_non_ai_fallback / all_scenarios",
+      "confidence": "high",
+      "assumptions": ["Measures proposal completeness, not field performance."]
+    },
+    "validator_negative_case_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["visual/assets/timeslot_contract.json"],
+      "formula": "count(validator_examples where expected=REJECT)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "temporal_model_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["visual/assets/temporal_network.json"],
+      "formula": "count(model nodes)",
+      "confidence": "high",
+      "assumptions": ["Conceptual design nodes; not surveyed facilities."]
+    },
+    "temporal_model_state_count": {
+      "status": "known",
+      "value": 1152,
+      "unit": "count",
+      "source_files": ["visual/assets/temporal_network.json"],
+      "formula": "12 nodes × 96 fifteen-minute slices",
+      "confidence": "high",
+      "assumptions": ["Proof-of-method model state count."]
+    },
+    "peak_conflict_reduction_ratio": {
+      "status": "known",
+      "value": 0.7,
+      "unit": "ratio",
+      "source_files": ["visual/assets/temporal_network_results.json"],
+      "formula": "1 - 3 peak conflict-hours / 10 peak conflict-hours",
+      "confidence": "low",
+      "assumptions": ["Scenario-based design experiment only; explicit demand and schedule assumptions, not field performance."]
+    },
+    "peak_flexible_space_availability_gain_pp": {
+      "status": "known",
+      "value": 25.9259,
+      "unit": "percentage_points",
+      "source_files": ["visual/assets/temporal_network_results.json"],
+      "formula": "88.8889% - 62.9630%",
+      "confidence": "low",
+      "assumptions": ["Scenario-based design experiment only."]
+    },
+    "temporal_reachability_gain_ratio": {
+      "status": "known",
+      "value": 0.05691,
+      "unit": "ratio",
+      "source_files": ["visual/assets/temporal_network_results.json"],
+      "formula": "3.912037 / 3.701389 - 1",
+      "confidence": "low",
+      "assumptions": ["30-minute peak temporal reachability within conceptual key-area graphs; not observed accessibility."]
+    },
+    "machine_service_hours_preserved": {
+      "status": "known",
+      "value": 10.0,
+      "unit": "hours_per_day",
+      "source_files": ["visual/assets/temporal_network_results.json"],
+      "formula": "machine_service_hours_baseline == machine_service_hours_time_rights == 10",
+      "confidence": "high",
+      "assumptions": ["Equal service-hour constraint within the proof-of-method experiment."]
+    }
+  }
+}

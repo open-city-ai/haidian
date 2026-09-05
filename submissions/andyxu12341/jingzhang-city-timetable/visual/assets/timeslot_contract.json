@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1.0",
+  "contract_version": "0.2",
+  "proposal_id": "jingzhang-city-timetable",
+  "title_zh": "京张运行图 TimeSlot Contract",
+  "title_en": "Jing-Zhang City Timetable TimeSlot Contract",
+  "status": "design_protocol",
+  "authority_note_zh": "本协议是开放城市设计提案中的运行机制，不是道路交通法规、政府许可、自动驾驶运营许可或工程控制条件。官方红线和法定控制缺失时，所有空间落位均为 provisional。",
+  "core_rule": "T0 constant rights override every scheduled or AI-generated request. T3 event operations require named human confirmation. Every machine operation must have stop, rollback, logging and a non-AI fallback path.",
+  "priority_order": [
+    {"priority": 0, "id": "P0", "name_zh": "生命安全与恒定权利", "includes": ["emergency_access", "accessible_route", "essential_walking", "non_digital_essential_service"]},
+    {"priority": 1, "id": "P1", "name_zh": "日常公共节律", "includes": ["commute_peak", "school_arrival_dismissal", "routine_park_mobility", "resident_access"]},
+    {"priority": 2, "id": "P2", "name_zh": "预约公共与城市服务", "includes": ["community_class", "public_culture", "maintenance", "managed_delivery"]},
+    {"priority": 3, "id": "P3", "name_zh": "测试、商业与事件活动", "includes": ["robotics_test", "low_speed_shuttle_test", "demo_event", "temporary_exhibition"]}
+  ],
+  "time_layers": [
+    {"id": "T0", "name_zh": "恒定权利层", "name_en": "Constant Rights", "schedulable": false, "human_confirmation": false, "examples": ["无障碍连续通行", "应急通道", "基础步行", "必要非数字服务路径"]},
+    {"id": "T1", "name_zh": "日常固定层", "name_en": "Routine Rhythm", "schedulable": true, "human_confirmation": false, "examples": ["通勤高峰", "上下学", "日常商业", "公园慢行"]},
+    {"id": "T2", "name_zh": "弹性预约层", "name_en": "Flexible Reservation", "schedulable": true, "human_confirmation": "role_based", "examples": ["机器人配送", "低速接驳", "临时展陈", "青年活动", "社区课程"]},
+    {"id": "T3", "name_zh": "事件确认层", "name_en": "Human-confirmed Event", "schedulable": true, "human_confirmation": true, "examples": ["AI大会", "特殊测试周", "高客流活动", "大型路演"]}
+  ],
+  "required_fields": [
+    "contract_id", "space_unit", "time_window", "allowed_actors", "priority", "time_layer", "accessibility_protection", "human_owner", "stop_triggers", "rollback_action", "logging", "non_ai_fallback", "validation_method"
+  ],
+  "governance": {
+    "ai_role": ["forecast_conflict", "suggest_schedule", "generate_alternatives", "flag_anomalies"],
+    "ai_cannot": ["override_T0", "approve_statutory_control", "issue_AV_operating_permission", "remove_human_accountability"],
+    "human_roles": ["public_space_operator", "mobility_safety_officer", "event_responsible_person", "community_duty_manager"],
+    "public_transparency": ["current_state", "next_switch_time", "responsible_role", "reason_for_change", "non_ai_route", "incident_or_override_log"]
+  },
+  "conflict_rules": [
+    {"rule_id": "CR-01", "if": "requested_priority > active_priority", "decision": "REJECT_OR_RESCHEDULE", "reason": "Lower-priority use cannot displace an active higher-priority right."},
+    {"rule_id": "CR-02", "if": "T0_accessibility_route_is_blocked", "decision": "REJECT", "reason": "Accessible continuity is a constant right."},
+    {"rule_id": "CR-03", "if": "T3_request_has_no_named_human_owner", "decision": "REJECT", "reason": "Event layer requires explicit human accountability."},
+    {"rule_id": "CR-04", "if": "robotics_or_AV_request_has_no_stop_or_rollback_condition", "decision": "REJECT", "reason": "Embodied-AI operation must fail safely."},
+    {"rule_id": "CR-05", "if": "non_ai_fallback_is_missing_for_public_service", "decision": "REJECT", "reason": "Essential public access cannot depend on an app or AI service."},
+    {"rule_id": "CR-06", "if": "all_hard_constraints_pass", "decision": "PASS_TO_HUMAN_OR_OPERATOR", "reason": "AI may recommend but cannot replace the required responsible role."}
+  ],
+  "validator_examples": [
+    {"case_id": "VAL-PASS-01", "request": "Robot delivery 05:30–06:30 in a managed service zone while T0 accessible route remains open", "expected": "PASS_TO_OPERATOR", "reason": "Off-peak T2 request preserves P0 rights and includes stop/rollback."},
+    {"case_id": "VAL-FAIL-01", "request": "Robot delivery crosses the only accessible route during commuter peak", "expected": "REJECT", "reason": "Conflicts with T0/P0 accessibility."},
+    {"case_id": "VAL-PASS-02", "request": "Youth Demo Night 19:00–22:00 in reversible plaza with quiet-zone boundary, resident access and non-digital route", "expected": "PASS_TO_HUMAN_CONFIRMATION", "reason": "T3 event defines responsible person and hard constraints."},
+    {"case_id": "VAL-FAIL-02", "request": "Temporary event blocks emergency access for 20 minutes", "expected": "REJECT", "reason": "Emergency access is T0/P0 and cannot be scheduled away."},
+    {"case_id": "VAL-PASS-03", "request": "Low-speed shuttle test in a controlled test window after safety-officer confirmation", "expected": "PASS_TO_OPERATOR", "reason": "T2 controlled test has named owner and downgrade triggers."},
+    {"case_id": "VAL-FAIL-03", "request": "Autonomous shuttle requests public operation without safety assessment evidence", "expected": "REJECT", "reason": "Design test is not an operating permission; missing prerequisite evidence."},
+    {"case_id": "VAL-PASS-04", "request": "AI cultural guide operates with equivalent printed/signage route", "expected": "PASS", "reason": "Public service retains non-AI fallback."},
+    {"case_id": "VAL-FAIL-04", "request": "Public navigation requires face recognition and mandatory app login", "expected": "REJECT", "reason": "Violates privacy-minimisation and equivalent-access rule."}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "model_id": "TIME-RIGHTS-PROOF-001",
+  "status": "scenario_based_proof_of_method",
+  "time_resolution_minutes": 15,
+  "node_count": 12,
+  "time_state_count": 1152,
+  "local_accessibility_budget_minutes": 30,
+  "walking_speed_m_per_min": 75,
+  "nodes": [
+    {"id":"ZZ_B1","lon":116.34608,"lat":40.01675,"key_area":"zhongzhiyuan","type":"retrofit","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"ZZ_B2","lon":116.35048,"lat":40.01786,"key_area":"zhongzhiyuan","type":"retrofit","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"ZZ_HALL","lon":116.348,"lat":40.016,"key_area":"zhongzhiyuan","type":"pilgrimage","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"ZZ_TEST","lon":116.351,"lat":40.02,"key_area":"zhongzhiyuan","type":"flex","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"OR_B3","lon":116.34508,"lat":39.9885,"key_area":"origin","type":"retrofit","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"OR_B4","lon":116.34948,"lat":39.9891,"key_area":"origin","type":"retrofit","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"OR_EXCHANGE","lon":116.3475,"lat":39.9885,"key_area":"origin","type":"pilgrimage","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"OR_DEMO","lon":116.35,"lat":39.9905,"key_area":"origin","type":"flex","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"DZ_B5","lon":116.34564,"lat":39.94692,"key_area":"dazhongsi","type":"retrofit","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"DZ_B6","lon":116.35084,"lat":39.94727,"key_area":"dazhongsi","type":"retrofit","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"DZ_DEPART","lon":116.3474,"lat":39.947,"key_area":"dazhongsi","type":"pilgrimage","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"},
+    {"id":"DZ_LIFE","lon":116.3505,"lat":39.946,"key_area":"dazhongsi","type":"flex","source":"concept-design centroids derived from geometry/public_space.geojson and geometry/buildings.geojson"}
+  ],
+  "baseline_windows":{"ZZ_TEST":[[8,10],[17,19]],"OR_DEMO":[[8,10],[17,18]],"DZ_LIFE":[[8,11]]},
+  "time_rights_windows":{"ZZ_TEST":[[10,12],[14,16]],"OR_DEMO":[[12,15]],"DZ_LIFE":[[5,8]]},
+  "human_demand_weights":{"00:00-05:00":0.1,"05:00-07:00":0.3,"07:00-09:00":1.0,"09:00-12:00":0.8,"12:00-17:00":0.7,"17:00-21:00":1.0,"21:00-24:00":0.6},
+  "rules":{"T0_pass_through":"always_available","machine_active_destination_capacity":"treated_as_unavailable_for_public-opportunity reachability in proof test","machine_service_hours_total":"held_constant_between baseline and Time Rights schedules"},
+  "limitations":["Conceptual geometry; not official site or key-area polygons.","Schedule and demand weights are explicit design assumptions, not observed counts.","Results demonstrate internal mechanism behavior only and must not be reported as field performance.","Replace assumptions with observed pedestrian/robot/event schedules and official geometry in later research."]
+}
