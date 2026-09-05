@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0.0",
+  "package_id": "jingzhang-open-loop",
+  "title": {
+    "zh": "京张开源环实施链",
+    "en": "Jingzhang Open Loop Implementation Chain"
+  },
+  "evidence_boundary": {
+    "geometry_status": "provisional",
+    "decision_status": "concept_for_review",
+    "authoritative_files": [
+      "geometry/site_boundary.geojson",
+      "geometry/key_areas.geojson",
+      "geometry/phasing.geojson",
+      "metrics.json",
+      "assumptions.json"
+    ],
+    "not_claimed": [
+      "statutory_redline",
+      "planning_approval",
+      "ownership_confirmation",
+      "engineering_feasibility",
+      "funding_commitment"
+    ],
+    "recalculation_trigger": "official_geometry_or_control_update"
+  },
+  "spatial_motif": {
+    "formula": "one_axis_one_loop_three_anchors_six_catalysts",
+    "axis": {
+      "id": "AXIS-JZ-01",
+      "zh": "京张遗址公园公共创新轴",
+      "en": "Jingzhang Heritage Park Civic Innovation Axis",
+      "role": "continuous_public_ground"
+    },
+    "loop": {
+      "id": "LOOP-JZ-01",
+      "zh": "开源服务环",
+      "en": "Open-source Service Loop",
+      "role": "operational_network_not_new_road_redline",
+      "reference": "geometry/roads.geojson#ROAD-001"
+    },
+    "anchors": [
+      {"id": "PROV-KEY-001", "code": "ZZY", "zh": "众智园验证区", "en": "Zhongzhiyuan Validation Zone"},
+      {"id": "PROV-KEY-002", "code": "ORG", "zh": "北京AI原点转化区", "en": "Beijing AI Origin Transfer Zone"},
+      {"id": "PROV-KEY-003", "code": "DZS", "zh": "大钟寺发布交往区", "en": "Dazhongsi Launch and Exchange Zone"}
+    ],
+    "catalysts": ["JZ-01", "JZ-02", "JZ-03", "JZ-04", "JZ-05", "JZ-06"]
+  },
+  "gates": [
+    {
+      "id": "G0",
+      "stage": "admission",
+      "zh": "议题准入",
+      "en": "Issue admission",
+      "required_inputs": ["public_need_statement", "named_maintainer", "spatial_host", "public_interest_note", "exit_condition"],
+      "decision_owner": "multi_stakeholder_council",
+      "pass_output": "ISSUE-CARD",
+      "fail_action": "do_not_enter_public_scene"
+    },
+    {
+      "id": "G1",
+      "stage": "validation",
+      "zone": "ZZY",
+      "zh": "安全与工程验证",
+      "en": "Safety and engineering validation",
+      "required_inputs": ["ISSUE-CARD", "test_protocol", "data_inventory", "shutdown_plan"],
+      "decision_owner": "technical_maintainer_and_site_safety_owner",
+      "pass_output": "VALIDATION-PACK",
+      "fail_action": "isolate_fix_retest_or_close"
+    },
+    {
+      "id": "G2",
+      "stage": "transfer",
+      "zone": "ORG",
+      "zh": "许可、采购与社区适配",
+      "en": "Licence, procurement and community adaptation",
+      "required_inputs": ["VALIDATION-PACK", "licence_check", "pilot_procurement_evidence", "community_objection_log", "staffed_fallback"],
+      "decision_owner": "service_owner_and_community_liaison",
+      "pass_output": "ADOPTION-PACK",
+      "fail_action": "revise_scope_or_stop_pilot"
+    },
+    {
+      "id": "G3",
+      "stage": "public_release",
+      "zone": "DZS",
+      "zh": "公开发布与采用评审",
+      "en": "Public release and adoption review",
+      "required_inputs": ["ADOPTION-PACK", "bilingual_summary", "accessibility_check", "consent_and_deletion_notice", "exit_plan"],
+      "decision_owner": "operator_and_public_interest_reviewer",
+      "pass_output": "RELEASE-RECORD",
+      "fail_action": "return_to_G2_or_withdraw"
+    },
+    {
+      "id": "G4",
+      "stage": "feedback",
+      "zh": "反馈回写与年度复盘",
+      "en": "Feedback return and annual review",
+      "required_inputs": ["RELEASE-RECORD", "issue_log", "human_takeover_log", "incident_summary", "maintenance_capacity_review"],
+      "decision_owner": "topic_maintainer_and_multi_stakeholder_council",
+      "pass_output": "CONTINUE_ADJUST_OR_EXIT",
+      "fail_action": "suspend_service_and_preserve_human_channel"
+    }
+  ],
+  "handoffs": [
+    {"from": "G1", "to": "G2", "required_artifacts": ["safety_retest", "licence_inventory"]},
+    {"from": "G2", "to": "G3", "required_artifacts": ["public_interest_note", "bilingual_summary", "accessibility_check", "exit_plan"]},
+    {"from": "G3", "to": "G4", "required_artifacts": ["feedback_ticket", "correction_status", "adoption_or_withdrawal_record"]}
+  ],
+  "phases": [
+    {
+      "id": "P1",
+      "years": "0-2",
+      "commitment_level": "reversible_pilot",
+      "projects": ["JZ-01", "JZ-02", "JZ-03", "JZ-04", "JZ-05", "JZ-06"],
+      "gate": "continue_adjust_exit"
+    },
+    {
+      "id": "P2",
+      "years": "3-5",
+      "commitment_level": "adaptive_reuse_after_checks",
+      "preconditions": ["ownership", "fire_safety", "accessibility", "utility_capacity", "operating_review"],
+      "gate": "continue_adjust_exit"
+    },
+    {
+      "id": "P3",
+      "years": "5+",
+      "commitment_level": "structural_work_only_after_approval",
+      "preconditions": ["statutory_plan", "official_redlines", "engineering_studies", "funding_and_operations"],
+      "fallback": "ground_level_wayfinding_signal_timing_timed_shuttle_and_operational_stitching"
+    }
+  ],
+  "review_metrics": [
+    {"id": "issue_closure_rate", "status": "future_operational_metric", "owner": "topic_maintainer"},
+    {"id": "human_takeover_rate", "status": "future_operational_metric", "owner": "service_owner"},
+    {"id": "protected_public_hours", "status": "future_operational_metric", "owner": "site_operator"},
+    {"id": "resident_objection_resolution", "status": "future_operational_metric", "owner": "community_liaison"}
+  ]
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>京张开源环｜离线评审驾驶舱</title>
+<style>
+:root{--ink:#10211d;--deep:#123c34;--green:#20c77a;--lime:#baf24b;--orange:#ff7448;--paper:#f4f0e7;--line:#cad6cf;--muted:#62716c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Arial,"PingFang SC",sans-serif}
+a{color:inherit}.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+aside{position:sticky;top:0;height:100vh;padding:28px 22px;background:var(--deep);color:#fff;overflow:auto}
+.brand{font-size:13px;letter-spacing:.18em;color:var(--lime)}.brand strong{display:block;margin:8px 0 24px;font-size:28px;line-height:1.08;letter-spacing:-.04em;color:#fff}
+nav{display:grid;gap:7px}nav a{padding:9px 12px;border:1px solid #ffffff24;border-radius:7px;text-decoration:none}nav a:hover{border-color:var(--lime);color:var(--lime)}
+.legend{margin-top:28px;padding-top:18px;border-top:1px solid #ffffff35;font-size:12px;color:#d9e7e1}.dot{display:inline-block;width:9px;height:9px;margin-right:7px;border-radius:50%}
+main{max-width:1500px;padding:28px 34px 60px}.hero{position:relative;overflow:hidden;padding:40px;border-radius:18px;background:var(--ink);color:#fff}
+.hero:after{content:"";position:absolute;right:-70px;top:-130px;width:360px;height:360px;border:28px solid var(--lime);border-left-color:transparent;border-radius:50%;opacity:.75}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}h1{max-width:780px;margin:8px 0;font-size:clamp(38px,6vw,78px);line-height:.95;letter-spacing:-.055em}
+.hero p{max-width:760px;color:#dbe8e2}.status{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.pill{padding:7px 10px;border:1px solid #ffffff45;border-radius:999px;font-size:12px}
+section{margin-top:24px;padding:24px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 8px 24px #17362d0b}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}h2{margin:0;font-size:27px;letter-spacing:-.035em}.section-head p{max-width:680px;margin:0;color:var(--muted)}
+.metrics,.trinity,.audit-grid{display:grid;gap:12px}.metrics{grid-template-columns:repeat(3,1fr)}.metric{padding:18px;border-top:4px solid var(--green);background:#eef6f0}.metric strong{display:block;font-size:24px}.metric span,.small{font-size:12px;color:var(--muted)}
+.motif{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.formula{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:22px;background:var(--deep);color:#fff;border-radius:12px}.formula b{padding:12px;background:#ffffff12;border:1px solid #ffffff33;border-radius:8px}.formula i{color:var(--lime);font-style:normal;font-size:22px}
+.motif-copy{padding:20px;border-left:5px solid var(--orange);background:#fff5ef}.motif-copy strong{color:#b83b15}
+.trinity{grid-template-columns:repeat(3,1fr)}.zone{position:relative;padding:20px;border:1px solid var(--line);border-radius:10px}.zone:before{content:attr(data-code);position:absolute;right:14px;top:10px;font-weight:bold;color:#d8e2dc;font-size:32px}.zone h3{margin:0 0 10px}.zone .task{font-weight:bold;color:#08704f}.zone ul{padding-left:18px;margin-bottom:0}
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.gate{padding:15px;border-top:5px solid var(--green);background:#edf5ef;min-height:205px}.gate:nth-child(4){border-color:var(--orange)}.gate:last-child{border-color:var(--lime);background:var(--deep);color:#fff}.gate b{display:block;font-size:22px}.gate em{display:block;margin:5px 0 13px;font-style:normal;font-weight:bold}.gate p{font-size:13px}
+.handoff{margin-top:12px;padding:12px;border:1px dashed var(--orange);color:#8f3518;background:#fff7f2}
+figure{margin:0}figure img{display:block;width:100%;border:1px solid var(--line);border-radius:8px}figcaption{padding:8px 2px;color:var(--muted);font-size:12px}
+.image-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wide{grid-column:1/-1}
+.audit-grid{grid-template-columns:1fr 1fr}.audit-card{padding:18px;background:#f2f6f3}.audit-card h3{margin-top:0}.ok{color:#08704f;font-weight:bold}.warn{color:#a5441e;font-weight:bold}code{padding:2px 5px;background:#e8eeea;border-radius:4px}
+footer{padding:26px 34px;background:var(--ink);color:#d7e3de;font-size:13px}
+@media(max-width:1000px){.shell{display:block}aside{position:relative;height:auto}nav{grid-template-columns:repeat(2,1fr)}.chain{grid-template-columns:1fr 1fr}.motif{grid-template-columns:1fr}}
+@media(max-width:700px){main{padding:16px}.hero{padding:26px}.metrics,.trinity,.audit-grid,.image-grid,.chain{grid-template-columns:1fr}.wide{grid-column:auto}.section-head{display:block}nav{grid-template-columns:1fr}}
+@media print{aside{display:none}.shell{display:block}main{max-width:none;padding:0}.hero,section{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside>
+  <div class="brand">REVIEW COCKPIT<strong>京张<br>开源环</strong></div>
+  <nav aria-label="评审导航">
+    <a href="#decision">01 决策摘要</a><a href="#motif">02 空间母题</a><a href="#zones">03 三重点区</a>
+    <a href="#chain">04 实施链</a><a href="#atlas">05 图件证据</a><a href="#audit">06 审计边界</a>
+  </nav>
+  <div class="legend">
+    <p><span class="dot" style="background:var(--green)"></span>可复算 / 可追踪</p>
+    <p><span class="dot" style="background:var(--orange)"></span>需人工决策</p>
+    <p><span class="dot" style="background:#fff"></span>临时 / 待确认</p>
+    <p>本页不加载远程字体、脚本、地图或接口。</p>
+  </div>
+</aside>
+<main>
+  <header class="hero" id="decision">
+    <div class="eyebrow">离线评审驾驶舱 · formal review packet</div>
+    <h1>一条空间环<br>一条责任链</h1>
+    <p>以遗址公园为公共轴，以众智园验证、AI原点转化、大钟寺发布为三处贡献脉冲，让每个AI城市议题都有准入、验证、采用、发布、回写和退出证据。</p>
+    <div class="status"><span class="pill">临时几何</span><span class="pill">概念评审</span><span class="pill">机器可读实施链</span><span class="pill">中英对等</span><span class="pill">全离线</span></div>
+  </header>
+
+  <section>
+    <div class="section-head"><h2>当前可复算值</h2><p>来自 <code>metrics.json</code> 与提交 GeoJSON；不等于审定控规指标，正式边界到位后须重算。</p></div>
+    <div class="metrics">
+      <div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><strong>11,412,825.386 m²</strong><span>site_area_sqm · 临时边界</span></div>
+      <div class="metric" data-metric="green_ratio" data-value="0.123423"><strong>12.3423%</strong><span>green_ratio · 设计绿地图层</span></div>
+      <div class="metric" data-metric="public_space_ratio" data-value="0.073281"><strong>7.3281%</strong><span>public_space_ratio · 设计公共空间图层</span></div>
+    </div>
+  </section>
+
+  <section id="motif">
+    <div class="section-head"><h2>空间母题</h2><p>未闭合环允许进入、纠错与退出；铁路双线叠合南北遗产连续性和东西知识缝线；贡献脉冲让反馈可见。</p></div>
+    <div class="motif">
+      <div class="formula"><b>一轴</b><i>+</i><b>一环</b><i>+</i><b>三核</b><i>+</i><b>六触媒</b></div>
+      <div class="motif-copy"><strong>审阅判断</strong><br>母题是空间与运营组织法，不是新增道路红线、法定用地分类或结构工程授权。环可由可逆设施和运营连接先行成立。</div>
+    </div>
+  </section>
+
+  <section id="zones">
+    <div class="section-head"><h2>三处重点区域：一题三站</h2><p>同一议题依次通过安全/工程验证、许可/采购/社区适配、公开发布/国际转译，再把反馈回写。</p></div>
+    <div class="trinity">
+      <article class="zone" data-code="ZZY"><h3>众智园</h3><div class="task">验证区 · VALIDATE</div><ul><li>隔离测试庭与生态缓冲</li><li>人工安全台与关停方案</li><li>输出 VALIDATION-PACK</li></ul></article>
+      <article class="zone" data-code="ORG"><h3>AI原点</h3><div class="task">转化区 · ADAPT</div><ul><li>许可、法务与采购证据</li><li>社区异议与人工兜底</li><li>输出 ADOPTION-PACK</li></ul></article>
+      <article class="zone" data-code="DZS"><h3>大钟寺</h3><div class="task">发布区 · RELEASE</div><ul><li>双语到达与无障碍体验</li><li>告知、拒绝、删除和退出</li><li>输出 RELEASE-RECORD</li></ul></article>
+    </div>
+    <p class="handoff">三处范围均为 provisional。路线、空间、组件、责任与数据ID仅用于方案追踪，不是地址、地籍、审批或资产编码。</p>
+  </section>
+
+  <section id="chain">
+    <div class="section-head"><h2>五门实施链</h2><p>机器可读主版本：<code>assets/implementation-chain.json</code>。每道门都给出输入、责任、输出与失败动作。</p></div>
+    <div class="chain">
+      <article class="gate"><b>G0</b><em>议题准入</em><p>需求、维护者、空间载体、公共利益、退出条件。</p><small>缺项：不进入公共场景</small></article>
+      <article class="gate"><b>G1</b><em>众智园验证</em><p>隔离测试、安全复测、数据清单、负荷与关停。</p><small>失败：修复、复测或关闭</small></article>
+      <article class="gate"><b>G2</b><em>原点转化</em><p>许可、采购、社区异议与人工兜底。</p><small>失败：缩小范围或停试</small></article>
+      <article class="gate"><b>G3</b><em>大钟寺发布</em><p>双语、无障碍、知情选择、删除与退出。</p><small>失败：退回 G2 修订</small></article>
+      <article class="gate"><b>G4</b><em>反馈回写</em><p>问题、接管、事故和维护能力年度复盘。</p><small>决定：继续 / 调整 / 退出</small></article>
+    </div>
+  </section>
+
+  <section id="atlas">
+    <div class="section-head"><h2>图件证据台</h2><p>图件帮助评审理解；几何、指标和矩阵仍是复算与合规主证据。</p></div>
+    <div class="image-grid">
+      <figure class="wide"><img src="../assets/figures/site-overview.png" alt="总体范围、三层范围与证据边界"><figcaption>01 总览地图 · 三层范围 · 临时边界</figcaption></figure>
+      <figure><img src="../assets/figures/land-use-structure.png" alt="用地、空间结构与建筑策略"><figcaption>02 用地分区 · 建筑 · 空间母题</figcaption></figure>
+      <figure><img src="../assets/figures/key-areas.png" alt="三处重点区域与更新项目"><figcaption>03 三重点区 · 更新项目 · 交接接口</figcaption></figure>
+      <figure><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行、蓝绿公共空间与AI场景节点"><figcaption>04 交通慢行 · 蓝绿公共空间 · AI 场景节点</figcaption></figure>
+      <figure><img src="../assets/figures/metrics-evidence.png" alt="指标、来源、任务覆盖与复算流程"><figcaption>05 核心指标 · 任务覆盖 · 证据链</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="audit">
+    <div class="section-head"><h2>审计与事实边界</h2><p>快速判断“可相信什么、仍缺什么、变化后重跑什么”。</p></div>
+    <div class="audit-grid">
+      <article class="audit-card"><h3 class="ok">已结构化</h3><p>三处重点区、五道决策门、交接材料、责任角色、分期前置条件、失败回退均见 <code>implementation-chain.json</code>。</p></article>
+      <article class="audit-card"><h3 class="warn">仍待确认</h3><p>正式边界、控规、权属、道路红线、市政管线、防洪、消防、文保、交通容量与资金承诺。</p></article>
+      <article class="audit-card"><h3>自检状态</h3><p>四类 Gate 结果由 <code>self_check.json</code> 持久化；本驾驶舱不自行声称审批或工程可行。</p></article>
+      <article class="audit-card"><h3>变更触发</h3><p>正式资料替换后重跑：几何 → 指标 → 实施链接口 → 五图 → HTML/PDF → 自检。</p></article>
+    </div>
+    <p class="small">来源与假设：<code>sources.json</code>、<code>assumptions.json</code>；任务覆盖：<code>compliance_matrix.json</code>；设计深度：<code>design_depth_matrix.json</code>。</p>
+  </section>
+</main>
+</div>
+<footer>临时几何与概念ID不是审批、红线、地址或工程指令；正式法定文件与主管部门版本优先。页面全部资源为提交包内本地文件。</footer>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jingzhang Open Loop | Offline Review Cockpit</title>
+<style>
+:root{--ink:#10211d;--deep:#123c34;--green:#20c77a;--lime:#baf24b;--orange:#ff7448;--paper:#f4f0e7;--line:#cad6cf;--muted:#62716c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Arial,sans-serif}
+a{color:inherit}.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
+aside{position:sticky;top:0;height:100vh;padding:28px 22px;background:var(--deep);color:#fff;overflow:auto}
+.brand{font-size:13px;letter-spacing:.18em;color:var(--lime)}.brand strong{display:block;margin:8px 0 24px;font-size:28px;line-height:1.08;letter-spacing:-.04em;color:#fff}
+nav{display:grid;gap:7px}nav a{padding:9px 12px;border:1px solid #ffffff24;border-radius:7px;text-decoration:none}nav a:hover{border-color:var(--lime);color:var(--lime)}
+.legend{margin-top:28px;padding-top:18px;border-top:1px solid #ffffff35;font-size:12px;color:#d9e7e1}.dot{display:inline-block;width:9px;height:9px;margin-right:7px;border-radius:50%}
+main{max-width:1500px;padding:28px 34px 60px}.hero{position:relative;overflow:hidden;padding:40px;border-radius:18px;background:var(--ink);color:#fff}
+.hero:after{content:"";position:absolute;right:-70px;top:-130px;width:360px;height:360px;border:28px solid var(--lime);border-left-color:transparent;border-radius:50%;opacity:.75}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime)}h1{max-width:780px;margin:8px 0;font-size:clamp(38px,6vw,78px);line-height:.95;letter-spacing:-.055em}
+.hero p{max-width:760px;color:#dbe8e2}.status{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.pill{padding:7px 10px;border:1px solid #ffffff45;border-radius:999px;font-size:12px}
+section{margin-top:24px;padding:24px;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 8px 24px #17362d0b}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}h2{margin:0;font-size:27px;letter-spacing:-.035em}.section-head p{max-width:680px;margin:0;color:var(--muted)}
+.metrics,.trinity,.audit-grid{display:grid;gap:12px}.metrics{grid-template-columns:repeat(3,1fr)}.metric{padding:18px;border-top:4px solid var(--green);background:#eef6f0}.metric strong{display:block;font-size:24px}.metric span,.small{font-size:12px;color:var(--muted)}
+.motif{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.formula{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:22px;background:var(--deep);color:#fff;border-radius:12px}.formula b{padding:12px;background:#ffffff12;border:1px solid #ffffff33;border-radius:8px}.formula i{color:var(--lime);font-style:normal;font-size:22px}
+.motif-copy{padding:20px;border-left:5px solid var(--orange);background:#fff5ef}.motif-copy strong{color:#b83b15}
+.trinity{grid-template-columns:repeat(3,1fr)}.zone{position:relative;padding:20px;border:1px solid var(--line);border-radius:10px}.zone:before{content:attr(data-code);position:absolute;right:14px;top:10px;font-weight:bold;color:#d8e2dc;font-size:32px}.zone h3{margin:0 0 10px}.zone .task{font-weight:bold;color:#08704f}.zone ul{padding-left:18px;margin-bottom:0}
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.gate{padding:15px;border-top:5px solid var(--green);background:#edf5ef;min-height:205px}.gate:nth-child(4){border-color:var(--orange)}.gate:last-child{border-color:var(--lime);background:var(--deep);color:#fff}.gate b{display:block;font-size:22px}.gate em{display:block;margin:5px 0 13px;font-style:normal;font-weight:bold}.gate p{font-size:13px}
+.handoff{margin-top:12px;padding:12px;border:1px dashed var(--orange);color:#8f3518;background:#fff7f2}
+figure{margin:0}figure img{display:block;width:100%;border:1px solid var(--line);border-radius:8px}figcaption{padding:8px 2px;color:var(--muted);font-size:12px}
+.image-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wide{grid-column:1/-1}
+.audit-grid{grid-template-columns:1fr 1fr}.audit-card{padding:18px;background:#f2f6f3}.audit-card h3{margin-top:0}.ok{color:#08704f;font-weight:bold}.warn{color:#a5441e;font-weight:bold}code{padding:2px 5px;background:#e8eeea;border-radius:4px}
+footer{padding:26px 34px;background:var(--ink);color:#d7e3de;font-size:13px}
+@media(max-width:1000px){.shell{display:block}aside{position:relative;height:auto}nav{grid-template-columns:repeat(2,1fr)}.chain{grid-template-columns:1fr 1fr}.motif{grid-template-columns:1fr}}
+@media(max-width:700px){main{padding:16px}.hero{padding:26px}.metrics,.trinity,.audit-grid,.image-grid,.chain{grid-template-columns:1fr}.wide{grid-column:auto}.section-head{display:block}nav{grid-template-columns:1fr}}
+@media print{aside{display:none}.shell{display:block}main{max-width:none;padding:0}.hero,section{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside>
+  <div class="brand">REVIEW COCKPIT<strong>JINGZHANG<br>OPEN LOOP</strong></div>
+  <nav aria-label="Review navigation">
+    <a href="#decision">01 Decision brief</a><a href="#motif">02 Spatial motif</a><a href="#zones">03 Three key areas</a>
+    <a href="#chain">04 Implementation chain</a><a href="#atlas">05 Evidence atlas</a><a href="#audit">06 Audit boundary</a>
+  </nav>
+  <div class="legend">
+    <p><span class="dot" style="background:var(--green)"></span>Reproducible / traceable</p>
+    <p><span class="dot" style="background:var(--orange)"></span>Human decision required</p>
+    <p><span class="dot" style="background:#fff"></span>Provisional / pending</p>
+    <p>No remote fonts, scripts, maps or APIs are loaded.</p>
+  </div>
+</aside>
+<main>
+  <header class="hero" id="decision">
+    <div class="eyebrow">Offline review cockpit · formal review packet</div>
+    <h1>One spatial loop.<br>One chain of care.</h1>
+    <p>The heritage park is public ground; Zhongzhiyuan validates, AI Origin adapts and Dazhongsi releases. Every civic-AI issue must leave evidence for admission, validation, adoption, release, feedback and exit.</p>
+    <div class="status"><span class="pill">Provisional geometry</span><span class="pill">Concept review</span><span class="pill">Machine-readable chain</span><span class="pill">Bilingual parity</span><span class="pill">Fully offline</span></div>
+  </header>
+
+  <section>
+    <div class="section-head"><h2>Reproducible now</h2><p>From <code>metrics.json</code> and submitted GeoJSON. These are not approved planning controls and must be recalculated when official geometry arrives.</p></div>
+    <div class="metrics">
+      <div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><strong>11,412,825.386 m²</strong><span>site_area_sqm · provisional boundary</span></div>
+      <div class="metric" data-metric="green_ratio" data-value="0.123423"><strong>12.3423%</strong><span>green_ratio · design green layer</span></div>
+      <div class="metric" data-metric="public_space_ratio" data-value="0.073281"><strong>7.3281%</strong><span>public_space_ratio · design public-space layer</span></div>
+    </div>
+  </section>
+
+  <section id="motif">
+    <div class="section-head"><h2>Spatial motif</h2><p>The open ring permits entry, correction and exit; the railway pair overlays north–south heritage with east–west knowledge stitches; contribution pulses make feedback visible.</p></div>
+    <div class="motif">
+      <div class="formula"><b>1 axis</b><i>+</i><b>1 loop</b><i>+</i><b>3 anchors</b><i>+</i><b>6 catalysts</b></div>
+      <div class="motif-copy"><strong>Review judgement</strong><br>The motif organizes space and operations. It is not a new road redline, statutory land-use class or authorization for structural work. Reversible installations and operating links can establish the loop first.</div>
+    </div>
+  </section>
+
+  <section id="zones">
+    <div class="section-head"><h2>Three key areas: one issue, three stations</h2><p>An issue moves through safety/engineering, licence/procurement/community adaptation and public release/international interpretation before feedback returns.</p></div>
+    <div class="trinity">
+      <article class="zone" data-code="ZZY"><h3>Zhongzhiyuan</h3><div class="task">VALIDATION ZONE</div><ul><li>Isolatable testing and ecological buffer</li><li>Staffed safety desk and shutdown plan</li><li>Output: VALIDATION-PACK</li></ul></article>
+      <article class="zone" data-code="ORG"><h3>AI Origin</h3><div class="task">TRANSFER ZONE</div><ul><li>Licence, legal and procurement evidence</li><li>Objections and staffed fallback</li><li>Output: ADOPTION-PACK</li></ul></article>
+      <article class="zone" data-code="DZS"><h3>Dazhongsi</h3><div class="task">RELEASE ZONE</div><ul><li>Bilingual arrival and accessible trials</li><li>Notice, refusal, deletion and exit</li><li>Output: RELEASE-RECORD</li></ul></article>
+    </div>
+    <p class="handoff">All three extents are provisional. Route, space, component, owner and data IDs support proposal tracking only; they are not addresses, cadastral references, approvals or asset codes.</p>
+  </section>
+
+  <section id="chain">
+    <div class="section-head"><h2>Five-gate implementation chain</h2><p>Machine-readable master: <code>assets/implementation-chain.json</code>. Every gate declares inputs, responsibility, output and failure action.</p></div>
+    <div class="chain">
+      <article class="gate"><b>G0</b><em>Issue admission</em><p>Need, maintainer, spatial host, public interest and exit condition.</p><small>Missing: no public deployment</small></article>
+      <article class="gate"><b>G1</b><em>ZZY validation</em><p>Isolation, retest, data inventory, load and shutdown.</p><small>Fail: fix, retest or close</small></article>
+      <article class="gate"><b>G2</b><em>Origin transfer</em><p>Licence, procurement, objections and staffed fallback.</p><small>Fail: narrow or stop</small></article>
+      <article class="gate"><b>G3</b><em>Dazhongsi release</em><p>Bilingual, accessible, informed choice, deletion and exit.</p><small>Fail: return to G2</small></article>
+      <article class="gate"><b>G4</b><em>Feedback return</em><p>Issues, takeover, incidents and maintenance reviewed annually.</p><small>Decide: continue / adjust / exit</small></article>
+    </div>
+  </section>
+
+  <section id="atlas">
+    <div class="section-head"><h2>Evidence atlas</h2><p>Figures support human review; geometry, metrics and matrices remain the primary evidence for recalculation and compliance.</p></div>
+    <div class="image-grid">
+      <figure class="wide"><img src="../assets/figures/site-overview.en.png" alt="Overall site, three scales and evidence boundary"><figcaption>01 Overview · three scales · provisional boundary</figcaption></figure>
+      <figure><img src="../assets/figures/land-use-structure.en.png" alt="Land use, spatial structure and building strategy"><figcaption>02 Land use · buildings · spatial motif</figcaption></figure>
+      <figure><img src="../assets/figures/key-areas.en.png" alt="Three key areas and renewal projects"><figcaption>03 Key areas · renewal projects · handovers</figcaption></figure>
+      <figure><img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility, blue-green public space and AI nodes"><figcaption>04 Mobility · blue-green public space · AI nodes</figcaption></figure>
+      <figure><img src="../assets/figures/metrics-evidence.en.png" alt="Metrics, sources, requirement coverage and recalculation"><figcaption>05 Core metrics · coverage · evidence chain</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="audit">
+    <div class="section-head"><h2>Audit and evidence boundary</h2><p>A fast read of what is supportable, what remains missing and what must rerun after change.</p></div>
+    <div class="audit-grid">
+      <article class="audit-card"><h3 class="ok">Structured</h3><p>Three areas, five gates, handover artifacts, accountable roles, phase preconditions and failure fallbacks are recorded in <code>implementation-chain.json</code>.</p></article>
+      <article class="audit-card"><h3 class="warn">Still pending</h3><p>Official boundary, controls, title, road redlines, utilities, flood, fire, heritage, transport capacity and funding commitments.</p></article>
+      <article class="audit-card"><h3>Self-check status</h3><p>The four gates are persisted in <code>self_check.json</code>. This cockpit makes no independent approval or engineering-feasibility claim.</p></article>
+      <article class="audit-card"><h3>Change trigger</h3><p>After official data replacement rerun: geometry → metrics → implementation interfaces → five figures → HTML/PDF → self-check.</p></article>
+    </div>
+    <p class="small">Sources and assumptions: <code>sources.json</code>, <code>assumptions.json</code>; requirement coverage: <code>compliance_matrix.json</code>; design depth: <code>design_depth_matrix.json</code>.</p>
+  </section>
+</main>
+</div>
+<footer>Provisional geometry and concept IDs are not approvals, redlines, addresses or engineering instructions. Official instruments and competent-authority versions prevail. Every page asset is local to the submission package.</footer>
+</body>
+</html>
