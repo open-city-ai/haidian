@@ -1,0 +1,252 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary), EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "公告口径「总体设计范围」临时粗略边界（provisional，official_boundary=false），面积与公告约11.4平方公里约束一致；非控规16.7平方公里法定范围，官方边界发布后须重算。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)), EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "示意性设计占位几何（agent_generated_design）计算值，用于演示复算流程；非现状实测、非方案承诺指标。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时边界与示意性绿地图层的演示性复算值；京张遗址公园实际绿量以官方公园方案与实测为准。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时边界与示意性公共空间图层的演示性复算值；非实测，官方数据发布后须重算。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "value": 0.0272,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm = 310807.184 / 11412825.386",
+      "confidence": "low",
+      "assumptions": [
+        "提交总体设计范围内的建筑基底占地比例；不等于控规容积率。基于示意性占位几何，非实测。"
+      ]
+    },
+    "statutory_floor_area_intensity": {
+      "status": "known",
+      "value": 14632,
+      "unit": "sqm_per_ha",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "24080000 sqm (控规总建筑规模上限，待复核) / 1645.6 ha (控规城乡建设用地) = 14632 sqm/ha（即 1.463 万㎡/公顷）",
+      "confidence": "medium",
+      "assumptions": [
+        "总量上限基线推导值（控规文本第7/13条，参与方提交·待来源登记复核），非方案承诺值；方案任何情景不得突破。单位：㎡/公顷；等值表达 14632 ㎡/ha = 1.463 万㎡/ha（无量纲平均容积率口径另行列出时约为 1.463）。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "total_floor_area_ceiling_sqm": {
+      "status": "known",
+      "value": 24080000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "控规第7/13条：规划范围总建筑规模上限",
+      "confidence": "medium",
+      "assumptions": [
+        "总量上限（source: REGULATORY-PLAN-HD00-1601，参与方提交·待来源登记复核）；非本方案新建规模。正式登记通过前按参与方待核文本引用。"
+      ]
+    },
+    "floor_area_scenario_allocation": {
+      "status": "known",
+      "value": 21080000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "方案情景总量控制值 2108万㎡ ≤ 2408万㎡（控规公开文本总量上限，参与方提交·待来源登记复核），余量约300万㎡为弹性缓冲；不给定分区精确分摊值，分区容量按定性优先序与指示性区间表达，待官方图则几何发布后校准；四分区互斥、无重复计量",
+      "confidence": "low",
+      "value_type": "scenario_illustrative_not_commitment",
+      "assumptions": [
+        "方案情景总量（非承诺值、非地块控制值）：仅论证方案情景在控规公开文本总量上限（参与方提交·待来源登记复核）内的可行性，不构成任何地块级指标、审批或投资承诺。",
+        "四分区按主导功能互斥切分 16.7 km² 控规范围（九街区）：五道口中心（含其范围内遗址公园路段容量）、大钟寺中心（含其范围内遗址公园路段容量）、遗址公园沿线更新带（两心以外）、其余街区存量更新（两心与一带以外）；任一容量只计入一个分区。",
+        "分区面积不单独给定（待官方图则主导功能分区几何），分摊以各分区主导功能定位×对应强度五级分区（第14条）×6类基准高度（第16条）为约束逻辑，非由分区面积×固定容积率推出。",
+        "口径边界：2108万㎡ 为方案情景总量控制值，非四分区精确分摊之和；分区容量以定性优先序与指示性占比区间表达，不作硬编码求和验证；分区强度上限以官方图则为准，现阶段为待校准情景。",
+        "触发重算：官方控规图则主导功能分区几何、强度分区或总量口径发布/修订时，四分区数值与几何全部重算并写入 metrics.json 变更记录。"
+      ],
+      "allocation_priority": [
+        {"zone": "五道口中心（原点社区）", "priority": 1, "indicative_share_range": [0.15, 0.25], "logic": "折叠中枢：近校成果转化+人才社区，叠加轨道站点高强度复合；含其范围内遗址公园路段容量；精确容量待官方图则校准"},
+        {"zone": "大钟寺中心", "priority": 1, "indicative_share_range": [0.15, 0.25], "logic": "流通接口：站城一体化+数据资产交易载体；含其范围内遗址公园路段容量；精确容量待官方图则校准"},
+        {"zone": "遗址公园沿线更新带（两心以外）", "priority": 2, "indicative_share_range": [0.20, 0.30], "logic": "遗址公园本体及两侧紧邻更新带的低矮科创交往空间；与两心不重叠；精确容量待官方图则校准"},
+        {"zone": "其余街区存量更新（两心与一带以外）", "priority": 3, "indicative_share_range": [0.30, 0.45], "logic": "以存量改造为主，拆旧建新严格控制；精确容量待官方图则校准"}
+      ]
+    },
+    "population_baseline": {
+      "status": "known",
+      "value": 364000,
+      "unit": "person",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "控规文本第7条：规划常住人口共计约36.4万人",
+      "confidence": "medium",
+      "assumptions": [
+        "虚拟居民模拟分人群基数（source: REGULATORY-PLAN-HD00-1601，参与方提交·待来源登记复核；正式登记通过前按参与方待核文本引用）。"
+      ]
+    },
+    "employment_baseline": {
+      "status": "known",
+      "value": 397000,
+      "unit": "job",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "控规文本第7条：规划就业岗位共计约39.7万个",
+      "confidence": "medium",
+      "assumptions": [
+        "产业与设施承载模拟基数（source: REGULATORY-PLAN-HD00-1601，参与方提交·待来源登记复核；正式登记通过前按参与方待核文本引用）。"
+      ]
+    },
+    "fold_nodes_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE and node_type=fold_node)",
+      "confidence": "high",
+      "assumptions": [
+        "7 个时空折叠点全部锚定控规第26条文保清单与第9条空间结构、第21—23条二级重点地区；坐标按文保实体位置示意校准。"
+      ]
+    },
+    "data_nodes_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE and node_type=data_node)",
+      "confidence": "high",
+      "assumptions": [
+        "1+3+N 架构：城市级 1 + 片区级 3 + 街道级 8。"
+      ]
+    },
+    "ar_mr_experience_points": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(fold_node features where ar_mr_experience=true)",
+      "confidence": "high",
+      "assumptions": [
+        "文保单位仅 AR/MR 体验叠加，physical_intervention=none。"
+      ]
+    },
+    "adaptive_public_space_ratio": {
+      "status": "known",
+      "value": 0.3,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "adaptive_public_space_area / public_space_area_sqm（设计目标）",
+      "confidence": "low",
+      "value_type": "design_target_not_measured",
+      "assumptions": [
+        "设计目标值（非实测结果）：可自适应调节的公共空间占比 30%。",
+        "验证方法：试点段建成后实测可调设施面积占比；运营期按季度统计并持续校准。",
+        "验证时点：P2 试点段建成投用后首次实测，此前不得作为已达成绩效引用。"
+      ]
+    },
+    "data_covenant_coverage_ratio": {
+      "status": "known",
+      "value": 0.6,
+      "unit": "ratio",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "公共数据授权三级清单（L1/L2/L3）已登记场景覆盖率（设计目标）",
+      "confidence": "low",
+      "value_type": "design_target_not_measured",
+      "assumptions": [
+        "设计目标值（非实测结果）：京张数据契约三级清单覆盖 60% 场景（依据：控规公开文本第 82 条，参与方提交·待来源登记复核）。",
+        "验证方法：数据契约平台上线后按季度统计已登记 L1/L2/L3 授权场景数 ÷ 全部运营场景数。",
+        "验证时点：学北园数据沙盒试点投运后首次统计，此前不得作为已达成绩效引用。"
+      ]
+    },
+    "algorithm_contribution_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "指数 = 模型调用频次 × 场景权重 × 效果评估分（运营期计算）",
+      "confidence": "unknown",
+      "value_type": "operational_metric_not_measured",
+      "assumptions": [
+        "运营期指标（非设计目标值、亦非实测值）：京张数据契约上线后按季度校准发布。",
+        "验证方法：平台日志聚合调用次数、场景权重与效果评估三类聚合值，季度评审委员会人工核定（见治理表人工复核点）。",
+        "方案阶段仅定义计算方法与合规要件（含30%小团队保留配额、公平校正与申诉机制），不产生任何指数数值。"
+      ],
+      "reason": "指数依赖平台实际运行数据，方案阶段仅定义计算方法与合规要件。"
+    }
+  }
+}
