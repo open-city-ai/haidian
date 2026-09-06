@@ -4,6 +4,7 @@ import json
 import re
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -29,6 +30,42 @@ class SourceRegistryFrontendTests(unittest.TestCase):
             check=False,
         )
         self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+
+    def test_invalid_registry_does_not_replace_generated_data(self) -> None:
+        invalid_registries = {
+            "missing": None,
+            "malformed": "{broken\n",
+            "empty_sources": '{"sources": []}\n',
+        }
+        for label, registry_text in invalid_registries.items():
+            with self.subTest(label=label), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                output = root / "source-registry-data.js"
+                original = b"existing generated data\n"
+                output.write_bytes(original)
+                if registry_text is not None:
+                    registry_path = root / "data" / "source_registry.json"
+                    registry_path.parent.mkdir(parents=True)
+                    registry_path.write_text(registry_text, encoding="utf-8")
+
+                completed = subprocess.run(
+                    [
+                        sys.executable,
+                        str(ROOT / "scripts" / "generate_source_registry_data.py"),
+                        "--repo-root",
+                        str(root),
+                        "--out",
+                        str(output),
+                    ],
+                    cwd=ROOT,
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+
+                self.assertNotEqual(completed.returncode, 0)
+                self.assertEqual(output.read_bytes(), original)
+                self.assertIn("source registry", completed.stderr)
 
     def test_source_registry_frontend_data_shape(self) -> None:
         data = self.load_data()
