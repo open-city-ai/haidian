@@ -1,0 +1,194 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "area(transform(SITE-001, EPSG:4326 -> EPSG:4548))",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-PROVISIONAL-001", "A-OFFICIAL-RECALC-001"]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.160,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "area(union(transform(conceptual_building_footprints, EPSG:4548)))",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-PROVISIONAL-001", "A-CONTROLS-001"]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.835,
+      "unit": "sqm",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "area(union(transform(green_space, EPSG:4548)))",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-PROVISIONAL-001"]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-PROVISIONAL-001", "This is a concept-layer ratio, not a statutory green-ratio control."]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.637,
+      "unit": "sqm",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "area(union(transform(public_space, EPSG:4548)))",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-PROVISIONAL-001"]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-PROVISIONAL-001"]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 22865.281,
+      "unit": "m",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "sum(length(transform(road_centerlines, EPSG:4548)))",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-PROVISIONAL-001", "Conceptual alignment only; not an official road redline."]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "approved_total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": ["A-CONTROLS-001"],
+      "reason": "Approved FAR controls, official boundary, and confirmed floor area are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": ["A-CONTROLS-001"],
+      "reason": "No approved height, aviation, heritage-view, or skyline control file is available."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "approved_building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": ["A-CONTROLS-001"],
+      "reason": "Conceptual footprints do not establish an approved building-density control."
+    },
+    "statutory_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "approved_statutory_green_ratio",
+      "confidence": "unknown",
+      "assumptions": ["A-CONTROLS-001"],
+      "reason": "No approved site-specific statutory green-ratio control is available."
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_building_and_safety_setback",
+      "confidence": "unknown",
+      "assumptions": ["A-CONTROLS-001"],
+      "reason": "Road redlines, fire access, utilities, ownership, and other setback controls are unavailable."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(PROV-KEY-001, PROV-KEY-002, PROV-KEY-003)",
+      "confidence": "high",
+      "assumptions": ["A-BOUNDARY-PROVISIONAL-001"]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["visual/assets/civic-supply-contract.json"],
+      "formula": "count(scenarios)",
+      "confidence": "high",
+      "assumptions": ["A-CONCEPTUAL-SERVICE-001"]
+    },
+    "industry_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["visual/assets/civic-supply-contract.json"],
+      "formula": "count(scenarios where industry_test=true)",
+      "confidence": "high",
+      "assumptions": ["A-CONCEPTUAL-SERVICE-001"]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": ["visual/assets/civic-supply-contract.json"],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": ["A-CONCEPTUAL-SERVICE-001"]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["visual/assets/civic-supply-contract.json"],
+      "formula": "count(landmarks)",
+      "confidence": "high",
+      "assumptions": ["A-CONCEPTUAL-SERVICE-001"]
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["sources.json"],
+      "formula": "count(sources where id starts with CASE-)",
+      "confidence": "high",
+      "assumptions": ["Cases are background precedents, not local feasibility proof."]
+    },
+    "supply_station_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["visual/assets/civic-supply-contract.json"],
+      "formula": "count(supply_stations)",
+      "confidence": "high",
+      "assumptions": ["A-CONCEPTUAL-SERVICE-001"]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["visual/assets/civic-supply-contract.json", "geometry/phasing.geojson"],
+      "formula": "count(conceptual implementation phases)",
+      "confidence": "medium",
+      "assumptions": ["A-CONCEPTUAL-SERVICE-001", "Spatial phase geometry will be refreshed with the final design layers."]
+    }
+  }
+}

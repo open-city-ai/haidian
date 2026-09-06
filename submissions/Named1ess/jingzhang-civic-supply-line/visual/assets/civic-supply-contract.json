@@ -1,0 +1,299 @@
+{
+  "schema_version": "0.1.0",
+  "contract_id": "JZCSL-CIVIC-SUPPLY-CONTRACT-001",
+  "title_zh": "京张补给线公共服务契约",
+  "title_en": "Jing-Zhang Civic Supply Line Service Contract",
+  "status": "conceptual_reference_for_professional_deepening",
+  "authority_boundary_zh": "本契约是概念建议，不是已批准规划、服务承诺、工程结论、采购安排或运营许可。所有试点须经责任主体、专业团队和公众程序另行确认。",
+  "authority_boundary_en": "This contract is a conceptual reference, not an approved plan, service guarantee, engineering conclusion, procurement arrangement, or operating permit. Every pilot requires separate confirmation by accountable bodies, professional teams, and public process.",
+  "service_promise": {
+    "zh": "无 App、断网、停电、极端天气或夜间条件下，仍以有人值守或清晰的低技术路径提供基础食物、可饮用水、短时休息、公共服务转介和安全归途协助。",
+    "en": "Without an app, network connectivity, grid power, in extreme weather, or at night, a staffed or clearly legible low-tech route still offers basic food, potable water, short rest, public-service referral, and safe-journey assistance.",
+    "non_exclusion_rules": [
+      "no_smartphone_required",
+      "no_biometric_identity_required",
+      "no_ai_decision_required_for_basic_help",
+      "human_help_channel_visible",
+      "accessible_walk_up_route_required",
+      "service_refusal_requires_human_review"
+    ]
+  },
+  "ai_off_baseline": {
+    "title_zh": "AI-OFF 人工基线",
+    "title_en": "AI-OFF Human Baseline",
+    "entry_modes_zh": ["现场步入", "大字和图形导视", "纸质服务卡", "人工询问"],
+    "entry_modes_en": ["walk-up", "large-print and pictogram wayfinding", "paper service card", "human enquiry"],
+    "minimum_bundle_zh": ["基础食物或转介", "可饮用水", "可坐可停的短时休息", "公共服务人工转介", "安全归途信息与必要协助"],
+    "minimum_bundle_en": ["basic food or referral", "potable water", "seated short rest", "human public-service referral", "safe-journey information and necessary assistance"],
+    "manual_kit_zh": ["纸质库存与温度记录", "机械钥匙和封签", "纸质地图与班次表", "手电和反光标识", "人工排队号牌", "事件记录表"],
+    "manual_kit_en": ["paper stock and temperature log", "mechanical keys and seals", "paper map and duty roster", "torches and reflective signs", "manual queue tokens", "incident log"],
+    "handover_rule_zh": "AI 或自动化退出后，由当班负责人接管；未确认食品安全、无障碍通道和归途路径前，不得恢复自动模式。",
+    "handover_rule_en": "When AI or automation exits, the duty lead takes control; automated mode cannot resume until food safety, accessible access, and the journey-home route are confirmed."
+  },
+  "supply_stations": [
+    {
+      "id": "SUPPLY-01-ZZY-COLDCHAIN",
+      "name_zh": "众智园验证补给站",
+      "name_en": "Zhongzhiyuan Validation Supply Point",
+      "area_id": "zhongzhiyuan_ai_acceleration_area",
+      "core_services_zh": ["受控冷链验证", "基础食品封存与人工放行", "饮水", "短时休息"],
+      "core_services_en": ["controlled cold-chain validation", "food quarantine and human release", "water", "short rest"]
+    },
+    {
+      "id": "SUPPLY-02-ZZY-ENERGY",
+      "name_zh": "众智园召回接管站",
+      "name_en": "Zhongzhiyuan Recall and Takeover Point",
+      "area_id": "zhongzhiyuan_ai_acceleration_area",
+      "core_services_zh": ["能源失效测试", "低速配送人工接管", "批次隔离与召回", "应急照明与安全停机"],
+      "core_services_en": ["energy-failure testing", "human takeover of low-speed delivery", "batch quarantine and recall", "emergency lighting and safe shutdown"]
+    },
+    {
+      "id": "SUPPLY-03-ORIGIN-KITCHEN",
+      "name_zh": "原点共厨照护站",
+      "name_en": "Origin Community Kitchen and Care Point",
+      "area_id": "beijing_ai_origin_community",
+      "core_services_zh": ["社区共厨", "照护餐", "过敏原人工确认", "饮水与休息"],
+      "core_services_en": ["community kitchen", "care meals", "human allergen confirmation", "water and rest"]
+    },
+    {
+      "id": "SUPPLY-04-ORIGIN-YOUTH",
+      "name_zh": "原点公共转介站",
+      "name_en": "Origin Public Referral Point",
+      "area_id": "beijing_ai_origin_community",
+      "core_services_zh": ["青年公共服务驻留", "人工转介", "纸质信息", "夜间同伴护送登记"],
+      "core_services_en": ["youth public-service residency", "human referral", "paper information", "night buddy-walk registration"]
+    },
+    {
+      "id": "SUPPLY-05-DZS-NIGHT",
+      "name_zh": "大钟寺夜间补给站",
+      "name_en": "Dazhongsi Night Supply Point",
+      "area_id": "dazhongsi_ai_industry_cluster",
+      "core_services_zh": ["夜间热食", "小商户协作取货", "饮水", "等候休息"],
+      "core_services_en": ["night hot food", "small-merchant cooperative pickup", "water", "waiting and rest"]
+    },
+    {
+      "id": "SUPPLY-06-DZS-SAFE-RETURN",
+      "name_zh": "大钟寺安全归途站",
+      "name_en": "Dazhongsi Safe-Way-Home Point",
+      "area_id": "dazhongsi_ai_industry_cluster",
+      "core_services_zh": ["人工归途咨询", "照明与反光用品", "可信联系人联络", "无障碍等候"],
+      "core_services_en": ["human journey-home advice", "lighting and reflective aids", "trusted-contact assistance", "accessible waiting"]
+    }
+  ],
+  "personas": [
+    {"id": "P1", "name_zh": "不使用智能手机或不熟悉数字服务的老年人", "name_en": "Older person who does not use a smartphone or digital service", "needs_zh": ["现场人员", "电话与纸票", "清晰标价", "可坐等候"], "needs_en": ["on-site staff", "telephone and paper ticket", "clear prices", "seated waiting"]},
+    {"id": "P2", "name_zh": "夜班工作者与晚归通勤者", "name_en": "Night worker and late commuter", "needs_zh": ["夜间补给", "公开价格", "有人节点", "离线归途图"], "needs_en": ["night supply", "visible prices", "staffed node", "offline route map"]},
+    {"id": "P3", "name_zh": "照护者与照护餐使用者", "name_en": "Caregiver and care-meal user", "needs_zh": ["人工确认", "批次标签", "电话复核", "召回"], "needs_en": ["human confirmation", "batch label", "phone verification", "recall"]},
+    {"id": "P4", "name_zh": "青年学生、毕业生与短期服务驻留者", "name_en": "Student, graduate, or short-term youth service resident", "needs_zh": ["公开班次", "人工协调", "退出自由", "申诉渠道"], "needs_en": ["published shifts", "human coordination", "free exit", "appeal channel"]},
+    {"id": "P5", "name_zh": "沿线小商户与个体经营者", "name_en": "Corridor small merchant or sole trader", "needs_zh": ["可导出记录", "纸面流程", "明确授权", "非排他接口"], "needs_en": ["exportable records", "paper process", "explicit authorization", "non-exclusive interface"]},
+    {"id": "P6", "name_zh": "冷链、配送、保洁和维护人员", "name_en": "Cold-chain, delivery, cleaning, or maintenance worker", "needs_zh": ["具名班组", "停机权", "培训", "事故记录"], "needs_en": ["named crew", "stop authority", "training", "incident record"]},
+    {"id": "P7", "name_zh": "行动不便者、携幼者与临时断联访客", "name_en": "Person with limited mobility, caregiver with child, or temporarily disconnected visitor", "needs_zh": ["无障碍人工入口", "连续座位", "触觉与文字导视", "免定位服务"], "needs_en": ["accessible human entry", "continuous seating", "tactile and text wayfinding", "service without location tracking"]}
+  ],
+  "scenarios": [
+    {
+      "id": "TVS-01",
+      "title_zh": "受控冷链异常验证",
+      "title_en": "Controlled Cold-Chain Anomaly Test",
+      "industry_test": true,
+      "primary_station_ids": ["SUPPLY-01-ZZY-COLDCHAIN"],
+      "trigger_zh": "温度记录冲突、设备断电或封签异常。",
+      "trigger_en": "Temperature-record conflict, equipment outage, or seal anomaly.",
+      "ai_on_zh": "异常提示和批次追踪仅供当班食品安全负责人复核。",
+      "ai_on_en": "Alerts and batch tracing support, but do not replace, duty food-safety review.",
+      "ai_off_zh": "纸质温度表、物理隔离区和人工放行；无法确认即停止发放并转介替代食品。",
+      "ai_off_en": "Paper temperature log, physical quarantine, and human release; if safety is uncertain, stop distribution and refer to alternative food."
+    },
+    {
+      "id": "TVS-02",
+      "title_zh": "低速配送人工接管验证",
+      "title_en": "Low-Speed Delivery Human-Takeover Test",
+      "industry_test": true,
+      "primary_station_ids": ["SUPPLY-02-ZZY-ENERGY"],
+      "trigger_zh": "人流拥挤、无障碍通道受阻、定位漂移或通信中断。",
+      "trigger_en": "Crowding, blocked accessible route, positioning drift, or communications loss.",
+      "ai_on_zh": "低速设备仅在隔离、可观察、可人工急停的测试段运行。",
+      "ai_on_en": "Low-speed equipment operates only in segregated, observable test segments with a human emergency stop.",
+      "ai_off_zh": "立即靠边停机、人工搬运、纸质交接，不让基本补给依赖机器人。",
+      "ai_off_en": "Pull over and stop, use human carriage and paper handover; basic supply never depends on the robot."
+    },
+    {
+      "id": "TVS-03",
+      "title_zh": "小商户接口互操作压力测试",
+      "title_en": "Small-Merchant Interface Interoperability Stress Test",
+      "industry_test": true,
+      "primary_station_ids": ["SUPPLY-05-DZS-NIGHT"],
+      "trigger_zh": "库存、订单、价格或接口记录冲突，或出现未经授权的数据调用。",
+      "trigger_en": "Stock, order, price, or interface records conflict, or an unauthorised data call occurs.",
+      "ai_on_zh": "预测与异常提示必须可解释，价格与订单最终由商户人工确认。",
+      "ai_on_en": "Forecasts and anomaly alerts must be explainable; merchants confirm prices and orders.",
+      "ai_off_zh": "回滚接口，使用纸单、电话、现场价签和人工定价；越权或异常无法解释即暂停。",
+      "ai_off_en": "Roll back the interface and use paper orders, telephone, posted prices, and human pricing; pause when overreach or anomalies remain unexplained."
+    },
+    {
+      "id": "S-04",
+      "title_zh": "社区共厨需求汇总",
+      "title_en": "Community-Kitchen Demand Aggregation",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-03-ORIGIN-KITCHEN"],
+      "trigger_zh": "居民自愿提交份数、时段与饮食标签。",
+      "trigger_en": "Residents voluntarily submit meal count, time, and dietary labels.",
+      "ai_on_zh": "备餐量建议不推断疾病，菜单与适配由人工确认。",
+      "ai_on_en": "Preparation forecasts do not infer illness; people confirm menu and suitability.",
+      "ai_off_zh": "现场或电话登记、纸票与人工清点接管排产。",
+      "ai_off_en": "Walk-up or phone registration, paper tickets, and human counting take over production planning."
+    },
+    {
+      "id": "S-05",
+      "title_zh": "照护餐核对与送达",
+      "title_en": "Care-Meal Verification and Delivery",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-03-ORIGIN-KITCHEN"],
+      "trigger_zh": "照护对象、饮食禁忌、批次或交接信息需要核对。",
+      "trigger_en": "Recipient, dietary restriction, batch, or handover information needs verification.",
+      "ai_on_zh": "路线建议不决定资格、禁忌或照护优先级，具名人员最终复核。",
+      "ai_on_en": "Routing does not decide eligibility, restrictions, or care priority; a named person performs final review.",
+      "ai_off_zh": "电话复核、纸质批次标签和人工签收；错送、过敏风险或失联即停止分配并召回。",
+      "ai_off_en": "Phone verification, paper batch labels, and human receipt; misdelivery, allergy risk, or lost contact stops assignment and triggers recall."
+    },
+    {
+      "id": "S-06",
+      "title_zh": "公共服务信息转介",
+      "title_en": "Public-Service Information Referral",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-04-ORIGIN-YOUTH"],
+      "trigger_zh": "居民查询公开办事信息，或数字界面不可用。",
+      "trigger_en": "A resident asks for public-service information or cannot use the digital interface.",
+      "ai_on_zh": "只检索公开信息，来源与答复须由工作人员复述确认，不自动作资格决定。",
+      "ai_on_en": "Only public information is retrieved; staff restate and confirm source and answer, and no eligibility decision is automated.",
+      "ai_off_zh": "图形卡、大字清单、纸质地址和人工柜台；来源过期或冲突即转人工。",
+      "ai_off_en": "Pictogram cards, large-print list, paper address, and human desk; outdated or conflicting sources go to a person."
+    },
+    {
+      "id": "S-07",
+      "title_zh": "青年服务驻留排班",
+      "title_en": "Youth Service Residency Scheduling",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-04-ORIGIN-YOUTH"],
+      "trigger_zh": "服务点需要匹配自愿参与者的技能与可服务时段。",
+      "trigger_en": "A service point needs to match volunteers' skills and available shifts.",
+      "ai_on_zh": "匹配仅作建议，不推断敏感属性；协调员确认班次与退出。",
+      "ai_on_en": "Matching is advisory and infers no sensitive trait; a coordinator confirms shift and exit.",
+      "ai_off_zh": "纸质值班表、双人交接、明确升级电话和可退出班次。",
+      "ai_off_en": "Paper roster, two-person handover, explicit escalation contact, and an opt-out duty shift."
+    },
+    {
+      "id": "S-08",
+      "title_zh": "夜间基本商品价格守望",
+      "title_en": "Night Essential-Goods Price Watch",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-05-DZS-NIGHT"],
+      "trigger_zh": "夜间缺货、价格波动或电子价签无法核验。",
+      "trigger_en": "Night shortage, price volatility, or an unverifiable electronic label occurs.",
+      "ai_on_zh": "AI 只提示异常，不构建个人消费画像，任何改价由人工留痕确认。",
+      "ai_on_en": "AI only flags anomalies and builds no personal purchase profile; every price change is confirmed and logged by a person.",
+      "ai_off_zh": "采用现场公示人工价与人工结算；异常无法解释即暂停商户接口。",
+      "ai_off_en": "Use a posted human price and human checkout; pause the merchant interface when an anomaly cannot be explained."
+    },
+    {
+      "id": "S-09",
+      "title_zh": "安全回家路线建议",
+      "title_en": "Safe-Way-Home Route Advice",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-06-DZS-SAFE-RETURN"],
+      "trigger_zh": "末班后、路线中断、积水、施工、照明故障或使用者感到不安全。",
+      "trigger_en": "After last service, a route disruption, flooding, works, lighting failure, or a user's safety concern occurs.",
+      "ai_on_zh": "位置可拒绝提交，会话后停止使用；候选路线显示不确定性且不作风险画像。",
+      "ai_on_en": "Location may be withheld and use ends with the session; candidate routes show uncertainty and perform no risk profiling.",
+      "ai_off_zh": "纸质路线、反光导视、人工问路和可信联系人联络；信息不确定即撤下算法建议。",
+      "ai_off_en": "Paper route, reflective markers, human directions, and trusted-contact help; uncertain information removes the algorithmic advice."
+    },
+    {
+      "id": "S-10",
+      "title_zh": "高温降温与饮水补给",
+      "title_en": "Heat Relief and Drinking-Water Supply",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-02-ZZY-ENERGY", "SUPPLY-03-ORIGIN-KITCHEN", "SUPPLY-05-DZS-NIGHT"],
+      "trigger_zh": "高温预警、步行者不适或交通延误。",
+      "trigger_en": "Heat alert, pedestrian distress, or transport delay.",
+      "ai_on_zh": "环境与库存提示不作医疗诊断，严重症状立即人工升级。",
+      "ai_on_en": "Environmental and stock prompts are not medical diagnosis; serious symptoms are escalated by a person immediately.",
+      "ai_off_zh": "可饮用水、遮阴座位、纸质急救提示和人工求助；水质或设备不明即启用替代点。",
+      "ai_off_en": "Potable water, shaded seat, paper first-aid prompt, and human help; uncertain water quality or equipment activates an alternate point."
+    },
+    {
+      "id": "S-11",
+      "title_zh": "强降雨补给迁移",
+      "title_en": "Heavy-Rain Supply Relocation",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-02-ZZY-ENERGY", "SUPPLY-04-ORIGIN-YOUTH", "SUPPLY-06-DZS-SAFE-RETURN"],
+      "trigger_zh": "暴雨、积水或公共交通大面积中断。",
+      "trigger_en": "Heavy rain, flooding, or widespread public-transport disruption.",
+      "ai_on_zh": "预测只作提示；封闭、迁移和救援服从有权责任主体与现场判断。",
+      "ai_on_en": "Forecasts are advisory; closure, relocation, and rescue follow authorised bodies and on-site judgement.",
+      "ai_off_zh": "人工广播、纸质危险区标记、饮水休息、物资迁移和安全转介；现场封控优先。",
+      "ai_off_en": "Human announcements, paper hazard marking, water and rest, supply relocation, and safe referral; on-site closure prevails."
+    },
+    {
+      "id": "S-12",
+      "title_zh": "全线 AI-OFF 连续服务演练",
+      "title_en": "Corridor-Wide AI-OFF Service-Continuity Drill",
+      "industry_test": false,
+      "primary_station_ids": ["SUPPLY-01-ZZY-COLDCHAIN", "SUPPLY-02-ZZY-ENERGY", "SUPPLY-03-ORIGIN-KITCHEN", "SUPPLY-04-ORIGIN-YOUTH", "SUPPLY-05-DZS-NIGHT", "SUPPLY-06-DZS-SAFE-RETURN"],
+      "trigger_zh": "全线关闭模型、网络与自动调度，检验基本服务连续性。",
+      "trigger_en": "Models, networks, and automated dispatch are shut corridor-wide to test basic-service continuity.",
+      "ai_on_zh": "AI 只监测切换状态，不替代具名人工指挥。",
+      "ai_on_en": "AI only monitors transition status and never replaces named human command.",
+      "ai_off_zh": "人工指挥、纸质库存与价格、现场发放、离线地图和人工归途协助；水、餐、座位、归途任一失守即暂停扩展。",
+      "ai_off_en": "Human command, paper stock and prices, walk-up distribution, offline maps, and human journey help; losing water, food, a seat, or a safe way home pauses expansion."
+    }
+  ],
+  "landmarks": [
+    {"id": "LANDMARK-01-SUPPLY-ZERO", "name_zh": "补给零公里", "name_en": "Supply Zero Kilometre", "station_id": "SUPPLY-03-ORIGIN-KITCHEN", "meaning_zh": "以共享长桌、离线地图和服务状态牌记录社区服务者、维护者与公开改进。", "meaning_en": "A shared table, offline map, and service board recognise community workers, maintainers, and public improvements."},
+    {"id": "LANDMARK-02-RESPONSIBILITY-SIGNAL", "name_zh": "责任信号塔", "name_en": "Responsibility Signal Tower", "station_id": "SUPPLY-01-ZZY-COLDCHAIN", "meaning_zh": "以低矮状态节点显示试点负责人、运行、暂停、召回和最近复盘，不展示个人数据。", "meaning_en": "A low status marker shows the pilot owner, running, pause, recall, and latest review without personal data."},
+    {"id": "LANDMARK-03-NIGHT-HOME-CORRIDOR", "name_zh": "夜归灯廊", "name_en": "Night-Home Light Corridor", "station_id": "SUPPLY-06-DZS-SAFE-RETURN", "meaning_zh": "以低眩光照明、反光导视、可达等候和人工咨询标识安全归途。", "meaning_en": "Low-glare lighting, reflective wayfinding, accessible waiting, and human advice mark the safer journey home."},
+    {"id": "LANDMARK-04-XIAOYUE-RESILIENCE", "name_zh": "小月河韧性驿", "name_en": "Xiaoyue River Resilience Waystation", "station_id": null, "area_role": "xiaoyue_scenario_enablement_wing", "meaning_zh": "以遮荫停留、人工补给和雨洪状态提示展示生态维护、应急保障与现场巡检。", "meaning_en": "Shade, staffed supply, and stormwater-status cues recognise ecological maintenance, emergency support, and field inspection."}
+  ],
+  "phases": [
+    {"id": "PHASE-001", "name_zh": "授权准备", "name_en": "Authorization Preparation", "scope_zh": "核实边界、权责、许可、保险与人工基线；任一关键授权缺失即不进入公众测试。", "scope_en": "Verify boundary, accountability, permits, insurance, and the human baseline; no public test begins while a key authorization is missing."},
+    {"id": "PHASE-002", "name_zh": "受控验证", "name_en": "Controlled Validation", "scope_zh": "在众智园验证冷链、低速配送、人工接管和召回；AI-OFF 或召回演练失败即停止。", "scope_en": "Validate cold chain, low-speed delivery, human takeover, and recall at Zhongzhiyuan; stop when an AI-OFF or recall drill fails."},
+    {"id": "PHASE-003", "name_zh": "联动扩展与退出", "name_en": "Linked Expansion and Exit", "scope_zh": "经公众反馈和专业复核后连接共厨、转介、夜间补给、商户与安全归途；不达公共底线即回退或退出。", "scope_en": "After public feedback and professional review, link kitchen, referral, night supply, merchants, and safe return; fall back or exit when the civic baseline is missed."}
+  ],
+  "raci": {
+    "roles": [
+      {"id": "ROLE-PUBLIC-LEAD", "name_zh": "公共服务责任主体", "name_en": "Public-service accountable body"},
+      {"id": "ROLE-DUTY-LEAD", "name_zh": "站点当班负责人", "name_en": "Station duty lead"},
+      {"id": "ROLE-PROFESSIONAL", "name_zh": "规划、无障碍、食品与安全专业团队", "name_en": "Planning, accessibility, food, and safety professionals"},
+      {"id": "ROLE-COMMUNITY", "name_zh": "社区组织与使用者代表", "name_en": "Community organisations and user representatives"},
+      {"id": "ROLE-MERCHANT", "name_zh": "参与小商户与供应方", "name_en": "Participating small merchants and suppliers"},
+      {"id": "ROLE-TECH", "name_zh": "技术运维方", "name_en": "Technology operator"}
+    ],
+    "assignments": [
+      {"activity_zh": "服务范围、准入与公共利益边界", "activity_en": "Service scope, admission, and public-interest boundary", "R": ["ROLE-DUTY-LEAD"], "A": ["ROLE-PUBLIC-LEAD"], "C": ["ROLE-PROFESSIONAL", "ROLE-COMMUNITY"], "I": ["ROLE-MERCHANT", "ROLE-TECH"]},
+      {"activity_zh": "食品与饮水安全放行", "activity_en": "Food and water safety release", "R": ["ROLE-DUTY-LEAD", "ROLE-MERCHANT"], "A": ["ROLE-PUBLIC-LEAD"], "C": ["ROLE-PROFESSIONAL"], "I": ["ROLE-COMMUNITY", "ROLE-TECH"]},
+      {"activity_zh": "AI-OFF 切换、急停与现场事件指挥", "activity_en": "AI-OFF switch, emergency stop, and on-site incident command", "R": ["ROLE-DUTY-LEAD"], "A": ["ROLE-PUBLIC-LEAD"], "C": ["ROLE-PROFESSIONAL", "ROLE-TECH"], "I": ["ROLE-COMMUNITY", "ROLE-MERCHANT"]},
+      {"activity_zh": "模型、传感器、日志与数据最小化", "activity_en": "Models, sensors, logs, and data minimisation", "R": ["ROLE-TECH"], "A": ["ROLE-PUBLIC-LEAD"], "C": ["ROLE-PROFESSIONAL", "ROLE-COMMUNITY"], "I": ["ROLE-DUTY-LEAD", "ROLE-MERCHANT"]},
+      {"activity_zh": "公众反馈、申诉与恢复批准", "activity_en": "Public feedback, appeal, and recovery approval", "R": ["ROLE-DUTY-LEAD"], "A": ["ROLE-PUBLIC-LEAD"], "C": ["ROLE-COMMUNITY", "ROLE-PROFESSIONAL"], "I": ["ROLE-MERCHANT", "ROLE-TECH"]}
+    ]
+  },
+  "tabletop_exercises": {
+    "positive": [
+      {"id": "TT-POS-01", "title_zh": "暴雨断网夜间连续服务", "title_en": "Night Service Continuity during Storm and Network Outage", "pass_zh": "六站均能切换纸质台账，至少保留饮水、休息、人工转介和归途信息，且没有人因无 App 被拒。", "pass_en": "All six stations switch to paper logs, retain water, rest, human referral, and journey information, and refuse nobody for lacking an app."},
+      {"id": "TT-POS-02", "title_zh": "冷链异常及时隔离", "title_en": "Timely Isolation of Cold-Chain Anomaly", "pass_zh": "异常批次在发放前物理隔离，人工负责人记录决定并提供替代食品转介。", "pass_en": "The affected batch is physically isolated before distribution, the accountable person records the decision, and alternative-food referral is offered."}
+    ],
+    "negative": [
+      {"id": "TT-NEG-01", "title_zh": "自动配送占用无障碍通道", "title_en": "Automated Delivery Blocks an Accessible Route", "expected_response_zh": "立即急停并人工移除设备；保留事件证据，复核路线后才可小范围恢复。", "expected_response_en": "Emergency-stop and remove the device manually; preserve incident evidence and allow only limited restart after route review."},
+      {"id": "TT-NEG-02", "title_zh": "算法排队持续不利于无账号者", "title_en": "Queue Algorithm Repeatedly Disadvantages People without Accounts", "expected_response_zh": "停用算法排序，改用人工号牌；审计规则与结果，完成人工和公众复核前不得恢复。", "expected_response_en": "Disable algorithmic ordering and use manual tokens; audit rules and outcomes, with no restart before human and public review."},
+      {"id": "TT-NEG-03", "title_zh": "温度传感器与纸质记录冲突", "title_en": "Temperature Sensor Conflicts with Paper Log", "expected_response_zh": "按最不利情形隔离批次，不让模型自动裁决；由食品安全责任人核验或召回。", "expected_response_en": "Quarantine the batch under the safer assumption; the model cannot decide, and the food-safety lead verifies or recalls it."}
+    ]
+  },
+  "stop_recall_recovery": {
+    "stop_triggers_zh": ["人员受伤或近失事件", "无障碍或疏散通道受阻", "食品温度或饮水安全无法确认", "通信中断且无法人工接管", "隐私或身份数据超范围采集", "算法歧视或申诉无法处理", "极端天气超过站点安全容量"],
+    "stop_triggers_en": ["injury or near miss", "blocked accessible or evacuation route", "unverifiable food temperature or water safety", "communications loss without human takeover", "out-of-scope identity or privacy collection", "algorithmic discrimination or unavailable appeal", "severe weather beyond safe station capacity"],
+    "recall_steps_zh": ["急停并切换 AI-OFF", "隔离设备、食品批次或错误记录", "保障当事人基本补给与安全转介", "通知当班和公共服务责任主体", "保全最小必要证据并登记影响范围", "必要时跨站停止同类服务"],
+    "recall_steps_en": ["emergency-stop and switch to AI-OFF", "isolate equipment, food batch, or erroneous record", "protect basic supply and safe referral for affected people", "notify duty and public-service accountable leads", "preserve minimum necessary evidence and log scope", "stop the same service across stations when needed"],
+    "recovery_gates_zh": ["人员和通道安全复核通过", "食品饮水由有责人员放行", "离线与在线记录完成双人核对", "无障碍与隐私影响已修复", "负向桌演重测通过", "责任主体书面批准分级恢复", "事件原因、影响和纠正措施向相关使用者可解释"],
+    "recovery_gates_en": ["people and routes pass safety review", "food and water released by an accountable person", "offline and online logs reconciled by two people", "accessibility and privacy impacts remedied", "negative exercise rerun passes", "accountable body approves staged recovery in writing", "cause, impact, and remedy are explainable to affected users"],
+    "default_rule_zh": "任何恢复条件不满足，服务留在人工基线；基本帮助不得因自动化停用而同时消失。",
+    "default_rule_en": "If any recovery gate is unmet, service remains on the human baseline; basic help cannot disappear merely because automation is disabled."
+  }
+}

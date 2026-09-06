@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-PROVISIONAL-001",
+      "status": "active_provisional_limit",
+      "statement": "SITE-001 and PROV-KEY-001/002/003 reproduce the repository-maintained provisional rough polygons; they are not official redlines, cadastral parcels, road redlines, or approval boundaries.",
+      "statement_zh": "SITE-001 与 PROV-KEY-001/002/003 复用仓库维护的临时粗略多边形，不是官方红线、权属地块、道路红线或审批边界。",
+      "impact": "All derived locations and spatial indicators are concept-stage values with low locational confidence and are unsuitable for statutory or precise-area claims.",
+      "resolution_trigger": "Obtain cleared official CAD/GIS polygons with version, CRS, provenance, and conversion records."
+    },
+    {
+      "id": "A-ISSUE-846-LOCATION-001",
+      "status": "open_public_data_question",
+      "statement": "GitHub Issue #846 reports that the provisional overall-design polygon does not intersect the OSM-mapped built Jing-Zhang Railway Heritage Park and has a reproducible nearest distance of about 412.5 m in EPSG:4548.",
+      "statement_zh": "GitHub Issue #846 报告：临时总体设计范围与 OSM 所绘已建京张铁路遗址公园不相交，在 EPSG:4548 下最近距离约 412.5 米。",
+      "impact": "The discrepancy is disclosed but not adjudicated: OSM is incomplete background data and the repository polygon is provisional, so neither path establishes the official location.",
+      "resolution_trigger": "Official polygon publication supersedes this comparison and triggers complete regeneration."
+    },
+    {
+      "id": "A-ISSUE-1029-LOCATION-001",
+      "status": "open_public_data_question",
+      "statement": "GitHub Issue #1029 reports that the provisional PROV-KEY-003 centroid is about 2.26 km from Dazhongsi Station and that named station anchors fall outside the provisional site polygon.",
+      "statement_zh": "GitHub Issue #1029 报告：临时 PROV-KEY-003 质心距大钟寺站约 2.26 千米，公告点名的若干轨道锚点也位于临时总体范围之外。",
+      "impact": "The Dazhongsi label is treated as a programme brief, not proof that the provisional polygon is correctly geolocated; station-integration moves remain conceptual until official geometry is available.",
+      "resolution_trigger": "Maintainer clarification or cleared official site/key-area geometry."
+    },
+    {
+      "id": "A-OSM-BACKGROUND-001",
+      "status": "usage_boundary",
+      "statement": "OpenStreetMap is used only as an attributed background cross-check reported through public Issues; no OSM feature is promoted into the submitted boundary, parcel, statutory-control, or design-metric basis.",
+      "statement_zh": "OpenStreetMap 仅作为有署名的背景交叉核对，并通过公开 Issue 披露；没有 OSM 要素被升级为投稿边界、地块、法定控制或设计指标依据。",
+      "impact": "OSM observations cannot resolve official location, ownership, redlines, or engineering feasibility."
+    },
+    {
+      "id": "A-OFFICIAL-RECALC-001",
+      "status": "mandatory_recalculation_trigger",
+      "statement": "Arrival of official SITE_BOUNDARY or KEY_AREA polygons invalidates the current derived geometry and spatial metrics.",
+      "statement_zh": "正式 SITE_BOUNDARY 或 KEY_AREA 多边形到达后，当前派生几何与空间指标全部失效。",
+      "impact": "Replace site/key-area constraints; regenerate land use, buildings, roads, green/public space and phasing; recompute in EPSG:4548; refresh figures, HTML, PDFs, matrices, self-checks, and manifest hashes.",
+      "affected_files": [
+        "geometry/*.geojson",
+        "metrics.json",
+        "assets/figures/*.png",
+        "visual/index*.html",
+        "drawings/*.pdf",
+        "manifest.json"
+      ]
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Approved FAR, building height, building density, statutory green ratio, setbacks, road redlines, ownership, utilities, fire safety, heritage controls, and engineering constraints are not present in the cleared public package.",
+      "statement_zh": "公开清权资料包尚无经批准的容积率、建筑高度、建筑密度、法定绿地率、退线、道路红线、权属、市政、消防、文保和工程约束。",
+      "impact": "These values remain unknown; conceptual footprints and service locations are not demolition, construction-scale, feasibility, investment, or approval conclusions."
+    },
+    {
+      "id": "A-CONCEPTUAL-SERVICE-001",
+      "status": "conceptual_design_boundary",
+      "statement": "The Civic Supply Line is a reference service-and-space contract for professional teams and operators to deepen; it does not guarantee service, funding, procurement, tenancy, or implementation.",
+      "statement_zh": "“京张补给线”是供专业团队与运营团队深化的服务—空间参考契约，不保证服务、资金、采购、入驻或实施。",
+      "impact": "Every scenario requires accountable human governance, site survey, safety review, accessibility review, and legal/professional confirmation before a pilot."
+    }
+  ]
+}
