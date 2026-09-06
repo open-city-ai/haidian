@@ -1,0 +1,176 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "category": "regulatory",
+      "statement": "详细管控条件、道路红线、产权归属、市政设施和工程约束条件须从官方附件确认后方可作为法定依据使用。",
+      "impact": "本数据包仅能以提交的官方边界和设计图层进行正式AI submission评审；法定管控条件仍需专业确认。",
+      "related_requirement_ids": [
+        "1.3.1",
+        "1.3.2",
+        "1.3.3",
+        "1.4.1",
+        "1.4.2",
+        "1.4.3",
+        "1.5.1.1",
+        "1.5.1.2",
+        "1.5.2.1",
+        "1.5.2.2",
+        "1.5.2.3",
+        "1.5.2.4",
+        "1.5.2.5",
+        "1.5.3.required",
+        "1.5.3.1",
+        "1.5.3.2",
+        "1.5.3.3",
+        "agent.1",
+        "agent.2",
+        "agent.3",
+        "agent.4",
+        "agent.5",
+        "agent.6"
+      ],
+      "mitigation": "在风险章节明确标注，控规深度设计中区分已知条件、设计建议和待确认事项。"
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional",
+      "category": "geometry",
+      "statement": "场地边界和重点片区边界基于公开数据和官方信息综合推断，非官方正式发布版本。",
+      "impact": "边界可能与官方最终发布版本存在偏差，影响面积计算和指标复算精度。",
+      "related_requirement_ids": [
+        "1.4.1",
+        "1.4.3",
+        "1.5.3.required",
+        "1.5.3.1",
+        "1.5.3.2",
+        "1.5.3.3"
+      ],
+      "mitigation": "待官方边界发布后立即更新所有GeoJSON图层和指标复算。当前版本标注为'暂定'。"
+    },
+    {
+      "id": "A-DATA-001",
+      "status": "pending_professional_confirmation",
+      "category": "data_gap",
+      "statement": "多项数据缺失：产权归属信息、地下市政管线、建筑结构详细信息、现状人口就业数据、官方控规条件。",
+      "impact": "影响开发强度估算、市政配套论证、人口规模预测的精确性。",
+      "related_requirement_ids": [
+        "1.3.1",
+        "1.3.2",
+        "1.3.3",
+        "1.5.2.1",
+        "1.5.2.2",
+        "1.5.2.3",
+        "1.5.2.4",
+        "1.5.2.5",
+        "agent.1",
+        "agent.2",
+        "agent.3",
+        "agent.4",
+        "agent.5",
+        "agent.6"
+      ],
+      "mitigation": "在假设清单中标注数据缺口，方案设计采用保守估算策略，明确哪些内容需要后续确认。"
+    },
+    {
+      "id": "A-OFFICIAL-001",
+      "status": "pending_professional_confirmation",
+      "category": "regulatory",
+      "statement": "官方控规条件（用地性质、容积率、建筑高度、绿地率等）尚未正式发布。",
+      "impact": "指标体系中的容积率、建筑高度等关键指标为方案阶段估算值，可能与官方要求有差异。",
+      "related_requirement_ids": [
+        "1.4.2",
+        "1.5.2.1",
+        "1.5.2.2",
+        "1.5.2.5",
+        "1.5.3.required"
+      ],
+      "mitigation": "所有估算指标标注为'方案阶段估算'，待官方控规发布后更新为正式指标。"
+    },
+    {
+      "id": "A-INNOVATION-001",
+      "status": "derived_from_benchmark",
+      "category": "metric",
+      "statement": "创新指数（innovation_index）基于中关村科技园海淀园区基准校准，采用R&D集群度（40%）、人才密度（30%）、公共空间率（20%）、场景节点密度（10%）加权计算。",
+      "impact": "创新指数为推导指标，依赖外部基准和假设权重，需专业确认其适用性。",
+      "related_requirement_ids": [
+        "1.3.1",
+        "1.3.2",
+        "1.3.3",
+        "1.5.1.1",
+        "agent.2",
+        "agent.3",
+        "agent.6"
+      ],
+      "mitigation": "在指标公式中明确标注权重和基准来源，建议评审专家审核权重合理性。"
+    },
+    {
+      "id": "A-TALENT-001",
+      "status": "derived_from_benchmark",
+      "category": "metric",
+      "statement": "人才密度估算基于中关村海淀园区300-350人/公顷基准，假设60%人才在AI相关企业就业。",
+      "impact": "人才密度为估算值，受产业政策、租金水平、交通可达性等多因素影响。",
+      "related_requirement_ids": [
+        "1.3.3",
+        "1.5.3.2",
+        "agent.5",
+        "agent.6"
+      ],
+      "mitigation": "提供基准区间（250-400人/公顷），标注为低置信度指标，建议后续补充调研数据。"
+    },
+    {
+      "id": "A-CLASSIFICATION-001",
+      "status": "verified_with_standard",
+      "category": "classification",
+      "statement": "所有用地分类编码遵循 GB 50137-2011《城市用地分类与规划建设用地标准》。",
+      "impact": "用地编码合规，但具体地块分类需与官方控规对比验证。",
+      "related_requirement_ids": [
+        "1.4.2",
+        "1.5.2.1"
+      ],
+      "mitigation": "在标准矩阵中引用 GB 50137-2011，标注各用地类型编码，建议与控规条件交叉验证。"
+    },
+    {
+      "id": "A-URBAN-FORM-001",
+      "status": "design_assumption",
+      "category": "design",
+      "statement": "城市空间结构采用'一带三核、多点场景、蓝绿慢行复合环'模式，基于京张遗址文化带和中关村创新集群的空间逻辑推导。",
+      "impact": "空间结构为方案阶段设计假设，需通过专家评审和公众参与验证。",
+      "related_requirement_ids": [
+        "1.3.2",
+        "1.5.1.2",
+        "1.5.2.5",
+        "agent.4"
+      ],
+      "mitigation": "在图纸中明确标注结构逻辑和推导依据，建议召开专家研讨会验证。"
+    },
+    {
+      "id": "A-CULTURE-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "category": "heritage",
+      "statement": "京张铁路遗址保护范围和利用方式基于北京市文物局公布名单，具体保护要求待文物部门确认。",
+      "impact": "影响京张遗址公园活力带的设计范围和开发强度。",
+      "related_requirement_ids": [
+        "1.5.2.4",
+        "1.5.2.5",
+        "agent.5"
+      ],
+      "mitigation": "在设计中预留保护缓冲区，具体开发强度和利用方式待文物部门确认后调整。"
+    },
+    {
+      "id": "A-WALKABILITY-001",
+      "status": "derived_from_geometry",
+      "category": "metric",
+      "statement": "慢行连通度基于现有和规划道路几何计算，排除了人车未分离的道路段。",
+      "impact": "实际慢行连通度可能因未来道路建设而提高；当前值为方案阶段估算。",
+      "related_requirement_ids": [
+        "1.5.2.3",
+        "agent.3",
+        "agent.4"
+      ],
+      "mitigation": "标注计算方法和排除规则，建议在交通专项评估中复核。"
+    }
+  ]
+}

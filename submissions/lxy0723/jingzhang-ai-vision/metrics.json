@@ -1,0 +1,203 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Site boundary is provisional (PROV-SITE-001), derived from public data and announcement description.",
+        "Area values are calculated from provisional geometry only; NOT official redline area.",
+        "Must be recalculated when official boundary polygon is supplied by organizer."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 302609.169,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are derived from provisional survey data; official as-built footprints may differ."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3410364.516,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(green_space_polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space includes parkland, green corridors, and ecological buffers."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 346166.621,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(public_space_polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "Public spaces include plazas, streets, and open activity areas."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.298819,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space classification follows CJJ/T 85-2017 urban green space classification standard."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.030331,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space includes streets, plazas, parks, and open-access buildings per GB 50187-2011."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package. Provisional FAR will be calculated after detailed design freeze."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Three key areas identified: 众智园AI自主创新加速区, 北京AI原点社区, 大钟寺AI产业聚集区."
+      ]
+    },
+    "innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index_0_to_1",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "weighted_sum(R&D_cluster_ratio*0.4, talent_density_normalized*0.3, public_space_ratio*0.2, 场景节点数/10*0.1)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Innovation index is a composite indicator normalized to [0,1]; weights reflect relative contribution of R&D clustering, talent concentration, and spatial quality.",
+        "Baseline calibrated against Beijing Zhongguancun comparable areas (provisional estimate).",
+        "No official baseline data available; figure requires professional validation before use in planning decisions."
+      ],
+      "reason": "AI innovation index requires official baseline data; composite weights and baseline are provisional estimates - value cannot be presented without official calibration"
+    },
+    "talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "persons_per_hectare",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "estimated_ai_talent_population / site_area_ha",
+      "confidence": "unknown",
+      "assumptions": [
+        "Estimated based on nearby Zhongguancun talent density benchmarks (约300-350人/公顷).",
+        "Assumes 60% of talent will be employed in AI-related enterprises within the site.",
+        "Official demographic and employment data not yet available; figure requires professional confirmation."
+      ],
+      "reason": "Talent density requires census and registration data"
+    },
+    "慢行连通度": {
+      "status": "known",
+      "value": 0.684,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "walkable_connected_path_length_m / total_site_perimeter_m",
+      "confidence": "medium",
+      "assumptions": [
+        "Walkable paths include sidewalks, pedestrian streets, and green corridors.",
+        "Target value aligned with Beijing municipal walkability standards (≥0.6 for central urban areas).",
+        "Excludes roads with vehicle priority where pedestrian separation is incomplete."
+      ]
+    },
+    "场景节点数": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "geometry/public_space.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(designated_experience_nodes across_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Scene nodes include AI experience centers, innovation laboratories, cultural exhibition spaces, and public activity hubs.",
+        "Distributed as 8 nodes per key area on average; final count subject to detailed design refinement.",
+        "Minimum 3 nodes per key area required for compliance with design brief."
+      ]
+    },
+    "walkability": {
+      "status": "known",
+      "value": 0.684,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "walkable_connected_path_length_m / total_site_perimeter_m",
+      "confidence": "medium",
+      "assumptions": [
+        "Walkability metric aligns with 慢行连通度 calculation.",
+        "Includes sidewalks, pedestrian streets, and green corridors."
+      ]
+    }
+  }
+}
