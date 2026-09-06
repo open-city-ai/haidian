@@ -4,10 +4,10 @@ author_github: "Curacao914"
 language: "zh"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
- summary: "以时空交汇为母题：人从众三章（1909人的自立/1980s一代人的行进/2026一座城的汇聚）、修远/行稳/和合三门、钢木光材料递进；人才是海淀最美的风景，走过的人就是风景。"
+ summary: "以时空交汇为母题：人从众三章（1909人的自立/1980s一代人的行进/2026一座城的汇聚）、修远/行稳/和合三门、钢木光材料递进；人才是海淀最美的风景，走过的人就是风景。v0.3 新增专业设计评估、量化标准复核与作品化表达。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.2"
+iteration: "v0.3"
 ---
 
 # 开源公里标带 OPEN KMARKS——百年京张AI创新带城市设计开源方案
@@ -63,6 +63,16 @@ v0.2 把命名体系升级为“人从众”三章：第一章「人」（1909�
 用地结构以“产业混合、生活就近、蓝绿成网”为原则，把科研、教育、商业、居住、文化、医疗、绿地、广场、道路与留白用地组织为可复核的完整分区 [data:geometry/land_use.geojson#LU-002] [metric:research_area_sqm] [metric:education_area_sqm] [metric:residential_area_sqm] [metric:commercial_area_sqm] [metric:cultural_area_sqm]。更新对象分为四类：保留并活化（高校建筑、文保与重要公共建筑周边）、功能改造（低效办公与沿街首层）、预留重建（潜力地块的复合开发方向，仅为概念建议）、新建补充（公里标广场、开源发布厅、测试场等公共与产业节点）。涉及容积率、建筑高度、建筑密度、退线与道路红线的判断均属待补控规条件，本方案不给出伪精确控制值 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:development_intensity_controls] [depth:height_massing_character]。
 
 建筑总规模与拆改留方案在 [data:geometry/buildings.geojson#BLDG-001] 中表达为概念更新单元：AI 研发、实验室、孵化器、办公、混合功能、教育、人才公寓、社区服务、文化展示等类型分别对应不同的功能组织与改造方向 [metric:building_footprint_area_sqm] [metric:building_density_ratio]。任何地块权属、投资测算与开发时序均不构成本方案结论；缺少现状建筑轮廓、高度、建成年代与保留状态数据，已在 [depth:existing_conditions_diagnosis] 与风险章节中列为待补资料。
+
+## 专业评估、量化复核与作品化表达
+
+v0.3 在既有证据链之上增加一层“专业设计评估”：依据 Gehl 12 项公共空间质量准则 [standard:GEHL-12-QUALITY-CRITERIA]、Bentley 响应式环境 7 品质 [standard:BENTLEY-RESPONSIVE-ENVIRONMENTS]、PPS 场所营造 4 品质 [standard:PPS-PLACEMAKING]、TfL Healthy Streets 10 项街道健康指标 [standard:TFL-HEALTHY-STREETS]、NACTO 街道设计导则 [standard:NACTO-STREET-DESIGN]、WHO/UN-Habitat 绿地与公共空间建议 [standard:WHO-URBAN-GREEN-SPACE] 与 ICOMOS 遗产敏感性原则 [standard:ICOMOS-HERITAGE-SENSITIVITY]，形成六维综合评分与量化标准复核，完整评估见 `report/narrative.md` [depth:professional_evaluation_scorecard] [depth:quantitative_benchmark_check]。
+
+六维综合评分（Composite Scorecard，概念自评）：连接与可达 4/5、活力与混合 3/5、公共空间 4/5、舒适与安全 4/5、特征与文脉 5/5、可持续与韧性 3/5，合计 23/30（约 115/150，Good）[depth:professional_evaluation_scorecard]。特征与文脉为最强项：“人从众”三章、三门字形链（亻→彳→人部件）与钢木光材料语法同京张人字线、中关村创新史和“人才是海淀最美的风景”一体联动 [source:SRC-ERA-1909-ZHANG-QUOTE] [source:SRC-ERA-1988-ZGC-FIRST-ZONE] [source:SRC-ERA-2026-BJ-AI-POLICY] [source:SRC-ERA-HAIDIAN-TALENT-SLOGAN]；活力与混合、可持续与韧性受控规、权属与工程资料缺失限制，需官方资料发布后复核 [depth:professional_evaluation_scorecard] [depth:risk_missing_data]。
+
+量化复核新增 K 主脊绿道长度约 8.95 公里 [metric:kmark_spine_length_m]，与慢行网络 12.6 公里 [metric:slow_network_length_m] 一起纳入休憩间隔、座椅供给、照明、树冠与人行净空等概念标准 [depth:quantitative_benchmark_check]。K 主脊典型断面按“遗产段（约 12 m，慢行共享）与城市段（约 20 m，完整慢行街道）”提出概念建议：城市段步行净空 ≥2.4 m、骑行 2.0 m + 0.6 m 缓冲、中央绿带兼作雨水花园与轨道记忆展示 [depth:street_cross_section_spec] [standard:NACTO-STREET-DESIGN]。三门广场按 Sitte 比例 1:1–1:2、最小净尺寸 ≥15 m、座椅 1 延米/3 m²、照明 20–50 lux、树冠 30–40% 提出公共空间标准 [depth:public_space_component_spec] [standard:GEHL-12-QUALITY-CRITERIA] [standard:PPS-PLACEMAKING] [standard:WHO-URBAN-GREEN-SPACE]。
+
+实施层面按“催化剂项目 → 分期 → 年度运营 → 包容评估”组织 [depth:regeneration_delivery_framework] [standard:ICOMOS-HERITAGE-SENSITIVITY]：P1 以原点开源发布厅、骑行环与 K 主脊断点缝合为催化剂项目 [depth:renewal_project_list] [depth:phasing_implementation]；“一标四季”运营体系每年开展公共生活观察与场景复盘；人才公寓、免费公共区与公共参与进入运营闭环，租金与人口指标设防偏移观察 [depth:regeneration_delivery_framework] [standard:PPS-PLACEMAKING]。所有断面、广场参数与评分均为概念建议，正式专业评审须在官方资料发布后整包重算 [depth:metrics_recalculation] [depth:risk_missing_data]。
 
 ## 重点区域详细设计
 
@@ -156,7 +166,7 @@ v0.2 把荣誉体系升级为“时空之门”系统：修远门（大钟寺）
 
 ## 指标体系、面积复算与合规矩阵
 
-指标体系分为三类：空间复算指标、待补管控指标与运营绩效指标。空间复算指标全部由提交几何在 EPSG:4548 下重算：总体设计范围面积约 1141.3 公顷 [metric:site_area_sqm]，重点区域合计约 369.3 公顷 [metric:key_area_total_area_sqm]，绿地 161.8 公顷、公共空间 22.6 公顷、建筑基底 73.7 公顷、慢行网络 12.6 公里；场景节点 12 个 [metric:scenario_node_count]、公里标 10 个 [metric:kmark_node_count]、AI 服务区 3 个 [metric:ai_service_zone_count]。v0.2 新增时空系统指标：三座门 [metric:gate_count]、三个三章区 [metric:chapter_zone_count]、三个材料阶段 [metric:material_stage_count]，三章面积分别为第一章 72.0 公顷 [metric:chapter_1909_area_sqm]、第二章 104.3 公顷 [metric:chapter_1980s_area_sqm]、第三章 192.9 公顷 [metric:chapter_2026_area_sqm]。待补管控指标包括容积率、建筑高度与建筑密度（官方口径），因官方控规条件未入库，全部登记为 unknown 并说明前置条件 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:metrics_recalculation] [depth:development_intensity_controls]。运营绩效指标（AI 创新指数、人才密度、活动参与度等）需在后续运营中校准，不写入本提交的已知指标。
+指标体系分为三类：空间复算指标、待补管控指标与运营绩效指标。空间复算指标全部由提交几何在 EPSG:4548 下重算：总体设计范围面积约 1141.3 公顷 [metric:site_area_sqm]，重点区域合计约 369.3 公顷 [metric:key_area_total_area_sqm]，绿地 161.8 公顷、公共空间 22.6 公顷、建筑基底 73.7 公顷、慢行网络 12.6 公里 [metric:slow_network_length_m]、K 主脊绿道约 8.95 公里 [metric:kmark_spine_length_m]；场景节点 12 个 [metric:scenario_node_count]、公里标 10 个 [metric:kmark_node_count]、AI 服务区 3 个 [metric:ai_service_zone_count]。v0.2 新增时空系统指标：三座门 [metric:gate_count]、三个三章区 [metric:chapter_zone_count]、三个材料阶段 [metric:material_stage_count]，三章面积分别为第一章 72.0 公顷 [metric:chapter_1909_area_sqm]、第二章 104.3 公顷 [metric:chapter_1980s_area_sqm]、第三章 192.9 公顷 [metric:chapter_2026_area_sqm]。v0.3 新增专业评估类指标与概念标准（座椅、照明、树冠、断面等），见 `report/narrative.md` [depth:professional_evaluation_scorecard] [depth:quantitative_benchmark_check]。待补管控指标包括容积率、建筑高度与建筑密度（官方口径），因官方控规条件未入库，全部登记为 unknown 并说明前置条件 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:metrics_recalculation] [depth:development_intensity_controls]。运营绩效指标（AI 创新指数、人才密度、活动参与度等）需在后续运营中校准，不写入本提交的已知指标。
 
 合规矩阵覆盖公告 1.3、1.4、1.5 全部 17 项任务与 agent.1—agent.6 六项任务；标准矩阵覆盖 5 项必答标准；成果深度矩阵覆盖 15 项 formal 深度项 [depth:metrics_recalculation]。指标表与正文通过 [metric:green_ratio]、[metric:public_space_ratio]、[metric:building_density_ratio] 等标签一一对应，所有数字均可在 [data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/green_space.geojson#GREEN-001]、[data:geometry/public_space.geojson#PUBLIC-001]、[data:geometry/buildings.geojson#BLDG-001]、[data:geometry/roads.geojson#ROAD-SPINE-01] 与 [data:geometry/constraints.geojson#SCN-01] 中复算。
 
@@ -164,7 +174,7 @@ v0.2 把荣誉体系升级为“时空之门”系统：修远门（大钟寺）
 
 ## 风险、版权与合规说明
 
-本方案的全部空间结论均为开放共创概念建议，不替代正式规划，不构成政府审定结论 [source:AGENT-TASKBOOK]。主要风险与缺资料包括：官方 polygon 缺失（provisional 边界仅用于展示与自检）、控规条件缺失、道路红线与轨道站点边界缺失、现状建筑与权属缺失、市政与文保控制缺失；三门与三章区的定位同样受 provisional 边界限制，需在官方红线发布后重新核位；对应风险、缓解与人工复核路径见 `risk.json` 与 [depth:risk_missing_data]。资料合法性由 [source:SOURCE-REGISTRY] 与 [source:PROCESSED-FACT-PACK] 保障：案例来源均为可公开核验的官方网站 [source:SRC-CASE-STANFORD-RPK] [source:SRC-CASE-KENDALL-SQUARE] [source:SRC-CASE-JTC-ONE-NORTH] [source:SRC-CASE-KINGSCROSS-KQ] [source:SRC-CASE-ZPARK] [source:SRC-CASE-ZHEJIANG-LAB]；时代锚点同样为可查证公开来源 [source:SRC-ERA-1909-ZHANG-QUOTE] [source:SRC-ERA-1988-ZGC-FIRST-ZONE] [source:SRC-ERA-2026-BJ-AI-POLICY] [source:SRC-ERA-HAIDIAN-TALENT-SLOGAN]，不包含非公开数据、个人隐私或未清权图像；版权声明见 `report/copyright_statement.md` [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
+本方案的全部空间结论均为开放共创概念建议，不替代正式规划，不构成政府审定结论 [source:AGENT-TASKBOOK]。主要风险与缺资料包括：官方 polygon 缺失（provisional 边界仅用于展示与自检）、控规条件缺失、道路红线与轨道站点边界缺失、现状建筑与权属缺失、市政与文保控制缺失；三门与三章区的定位同样受 provisional 边界限制，需在官方红线发布后重新核位；专业评估评分与断面/广场参数同样依赖上述资料，官方资料发布后需整包复核 [depth:professional_evaluation_scorecard] [depth:street_cross_section_spec] [depth:public_space_component_spec]；对应风险、缓解与人工复核路径见 `risk.json` 与 [depth:risk_missing_data]。资料合法性由 [source:SOURCE-REGISTRY] 与 [source:PROCESSED-FACT-PACK] 保障：案例来源均为可公开核验的官方网站 [source:SRC-CASE-STANFORD-RPK] [source:SRC-CASE-KENDALL-SQUARE] [source:SRC-CASE-JTC-ONE-NORTH] [source:SRC-CASE-KINGSCROSS-KQ] [source:SRC-CASE-ZPARK] [source:SRC-CASE-ZHEJIANG-LAB]；时代锚点同样为可查证公开来源 [source:SRC-ERA-1909-ZHANG-QUOTE] [source:SRC-ERA-1988-ZGC-FIRST-ZONE] [source:SRC-ERA-2026-BJ-AI-POLICY] [source:SRC-ERA-HAIDIAN-TALENT-SLOGAN]，专业评估依据 Gehl、Bentley、PPS、TfL、NACTO、WHO/UN-Habitat 与 ICOMOS 公开文献 [source:SRC-STD-GEHL-CITIES-FOR-PEOPLE] [source:SRC-STD-BENTLEY-RESPONSIVE-ENVIRONMENTS] [source:SRC-STD-PPS-PLACEMAKING] [source:SRC-STD-TFL-HEALTHY-STREETS] [source:SRC-STD-NACTO-STREET-DESIGN] [source:SRC-STD-WHO-URBAN-GREEN-SPACE] [source:SRC-STD-ICOMOS-HERITAGE]，不包含非公开数据、个人隐私或未清权图像；版权声明见 `report/copyright_statement.md` [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
 
 本方案由 AI 智能体生成并承担生成责任：所有图件、几何、指标与 HTML 均由同一组数据派生，A3/A0 图纸仅为表达层；方案未获得官方批准、未承诺实施、未给出法定控规结论。正式深化必须由具备城乡规划或建筑设计资质的专业团队完成，并在官方资料发布后整包重算 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [source:OFFICIAL-ANNOUNCEMENT]。
 
