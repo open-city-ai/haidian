@@ -99,6 +99,7 @@ OFFICIAL_KEY_AREA_AREAS = {
     "beijing_ai_origin_community": 1043000.0,
     "dazhongsi_ai_industry_cluster": 720000.0,
 }
+AREA_GEOMETRY_TYPES = {"Polygon", "MultiPolygon"}
 
 
 @dataclass
@@ -189,10 +190,42 @@ def load_feature_geometries(
     validate_schema(report, repo_root, path, "geojson_feature.schema.json")
     data = load_json(path)
     features = data.get("features", []) if isinstance(data, dict) else []
+    if not isinstance(features, list):
+        report.add(
+            SpatialIssue(
+                "GEOMETRY_COLLECTION",
+                "major",
+                str(path),
+                "FeatureCollection features must be an array.",
+            )
+        )
+        return []
     items: list[tuple[str, Any, dict]] = []
     for index, feature in enumerate(features):
+        if not isinstance(feature, dict):
+            report.add(
+                SpatialIssue(
+                    "GEOMETRY_FEATURE",
+                    "major",
+                    str(path),
+                    "FeatureCollection items must be objects.",
+                    f"feature-{index}",
+                )
+            )
+            continue
         feature_id = str(feature.get("id") or f"feature-{index}")
         props = feature.get("properties") or {}
+        if not isinstance(props, dict):
+            report.add(
+                SpatialIssue(
+                    "GEOMETRY_PROPERTIES",
+                    "major",
+                    str(path),
+                    "Feature properties must be an object.",
+                    feature_id,
+                )
+            )
+            props = {}
         try:
             geom = project_geometry(shape(feature["geometry"]), transformer)
         except Exception as exc:  # noqa: BLE001 - report invalid contributor data
@@ -203,6 +236,19 @@ def load_feature_geometries(
                     str(path),
                     f"Cannot parse geometry: {exc}",
                     feature_id,
+                )
+            )
+            continue
+        if geom.geom_type not in AREA_GEOMETRY_TYPES:
+            report.add(
+                SpatialIssue(
+                    "GEOMETRY_TYPE",
+                    "major",
+                    str(path),
+                    "Formal area layers require Polygon or MultiPolygon geometry.",
+                    feature_id,
+                    expected="Polygon or MultiPolygon",
+                    actual=geom.geom_type,
                 )
             )
             continue
@@ -538,13 +584,13 @@ def review_submission(submission_dir: Path, repo_root: Path, stage: str) -> Spat
         report, repo_root, submission_dir, "site_boundary.geojson", transformer
     )
     site = union_geometries(site_items)
-    if site is None or site.is_empty:
+    if site is None or site.is_empty or float(site.area) <= 0:
         report.add(
             SpatialIssue(
                 "SITE_BOUNDARY_EMPTY",
                 "blocking",
                 "geometry/site_boundary.geojson",
-                "Site boundary is empty.",
+                "Site boundary is empty or has no area.",
             )
         )
         return report
