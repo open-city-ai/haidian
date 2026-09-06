@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张书径 · 可视化 · Jingzhang Bookpath Visual</title>
+<style>
+:root {
+  --blue: #1B3A5C;
+  --white: #F5F0E8;
+  --purple: #7C3AED;
+  --green: #10B981;
+  --red: #dc2626;
+  --amber: #f59e0b;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: "JetBrains Mono","Fira Code",monospace; background:#0f172a; color:#e2e8f0; }
+.dashboard { display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding:1.5rem; max-width:1400px; margin:0 auto; }
+.full { grid-column: 1/-1; }
+.card { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:1.5rem; }
+.card h2 { font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; color:#94a3b8; margin-bottom:1rem; }
+h1 { text-align:center; padding:2rem 1rem 0.5rem; font-size:1.8rem; color:var(--white); }
+h1 span { color:var(--purple); }
+.subtitle { text-align:center; color:#94a3b8; font-size:0.85rem; margin-bottom:1rem; }
+
+/* Map */
+.map-container { position:relative; width:100%; height:500px; background:#0f172a; border:1px solid #334155; border-radius:8px; overflow:hidden; }
+.map-svg { width:100%; height:100%; }
+.zone { fill-opacity:0.15; stroke-width:1.5; }
+.zone-zhongzhi { fill:var(--purple); stroke:var(--purple); }
+.zone-ai { fill:var(--green); stroke:var(--green); }
+.zone-dazhongsi { fill:var(--amber); stroke:var(--amber); }
+.trail { fill:none; stroke:var(--white); stroke-width:2; stroke-dasharray:6,3; }
+.node-active { fill:var(--green); }
+.node-memorial { fill:var(--red); }
+.node-label { font-size:8px; fill:#94a3b8; }
+
+/* Metrics */
+.metric-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:0.8rem; }
+.metric { text-align:center; padding:0.8rem; background:#0f172a; border-radius:6px; }
+.metric .value { font-size:1.8rem; font-weight:bold; color:var(--white); }
+.metric .label { font-size:0.7rem; color:#94a3b8; margin-top:0.3rem; }
+
+/* Timeline */
+.timeline { position:relative; padding-left:2rem; }
+.timeline::before { content:''; position:absolute; left:0.5rem; top:0; bottom:0; width:2px; background:#334155; }
+.timeline-item { position:relative; margin-bottom:1.2rem; }
+.timeline-item::before { content:''; position:absolute; left:-1.65rem; top:0.4rem; width:10px; height:10px; border-radius:50%; }
+.timeline-item.birth::before { background:var(--green); }
+.timeline-item.death::before { background:var(--red); }
+.timeline-item.milestone::before { background:var(--purple); }
+.timeline-item .year { font-size:0.75rem; color:var(--purple); }
+.timeline-item .event { font-size:0.85rem; }
+
+/* Scenario table */
+.scenario-table { width:100%; font-size:0.75rem; border-collapse:collapse; }
+.scenario-table th { text-align:left; padding:0.4rem; color:var(--purple); border-bottom:1px solid #334155; }
+.scenario-table td { padding:0.4rem; border-bottom:1px solid #1e293b; }
+.priority-p0 { color:var(--green); font-weight:bold; }
+.priority-p1 { color:var(--amber); }
+.priority-p2 { color:#94a3b8; }
+
+/* Legend */
+.legend { display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:0.8rem; font-size:0.75rem; }
+.legend-item { display:flex; align-items:center; gap:0.3rem; }
+.legend-dot { width:10px; height:10px; border-radius:50%; }
+</style>
+</head>
+<body>
+
+<h1>京张书径 <span>· Jingzhang Bookpath</span></h1>
+<p class="subtitle">AI-Humanities Innovation Belt · Spatial Dashboard · gloriousbooks-urban-ai</p>
+
+<div class="dashboard">
+
+<!-- Map Card -->
+<div class="card full">
+<h2>空间总览 Spatial Overview</h2>
+<div class="map-container">
+<svg class="map-svg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Zones (schematic, mapped from lat/lon to SVG coords) -->
+  <!-- Zhongzhi: top-right -->
+  <rect class="zone zone-zhongzhi" x="350" y="20" width="400" height="180" rx="8"/>
+  <text x="550" y="55" fill="#a78bfa" font-size="14" text-anchor="middle">众智园·万卷台 (192ha)</text>
+
+  <!-- AI Origin: middle -->
+  <rect class="zone zone-ai" x="100" y="180" width="500" height="140" rx="8"/>
+  <text x="350" y="215" fill="#6ee7b7" font-size="14" text-anchor="middle">AI原点·知春阁 (104ha)</text>
+
+  <!-- Dazhongsi: bottom-right -->
+  <rect class="zone zone-dazhongsi" x="450" y="340" width="300" height="140" rx="8"/>
+  <text x="600" y="375" fill="#fbbf24" font-size="14" text-anchor="middle">大钟寺·古籍渡 (72ha)</text>
+
+  <!-- Bookstore Trail (dashed path) -->
+  <path class="trail" d="M 570 100 L 490 130 L 500 125 L 100 170 L 230 250 L 330 270 L 200 260 L 620 420"/>
+
+  <!-- Active bookstores (green dots) -->
+  <circle class="node-active" cx="570" cy="100" r="8"/>
+  <text class="node-label" x="570" y="88" text-anchor="middle">万圣书园</text>
+
+  <circle class="node-active" cx="330" cy="270" r="7"/>
+  <text class="node-label" x="330" y="258" text-anchor="middle">钟书阁</text>
+
+  <circle class="node-active" cx="620" cy="420" r="7"/>
+  <text class="node-label" x="620" y="408" text-anchor="middle">大钟寺古籍</text>
+
+  <!-- Memorial sites (red dots) -->
+  <circle class="node-memorial" cx="490" cy="130" r="6"/>
+  <text class="node-label" x="490" y="118" text-anchor="middle">豆瓣(2025闭)</text>
+
+  <circle class="node-memorial" cx="100" cy="170" r="6"/>
+  <text class="node-label" x="100" y="158" text-anchor="middle">风入松(2014闭)</text>
+
+  <circle class="node-memorial" cx="230" cy="250" r="6"/>
+  <text class="node-label" x="230" y="238" text-anchor="middle">国林风</text>
+
+  <circle class="node-memorial" cx="200" cy="260" r="6"/>
+  <text class="node-label" x="200" y="278" text-anchor="middle">第三极(2009闭)</text>
+
+  <!-- Roads (thin gray lines) -->
+  <line x1="0" y1="130" x2="800" y2="130" stroke="#334155" stroke-width="1" stroke-dasharray="2,4"/>
+  <text x="790" y="125" fill="#475569" font-size="9" text-anchor="end">成府路</text>
+
+  <line x1="0" y1="270" x2="800" y2="270" stroke="#334155" stroke-width="1" stroke-dasharray="2,4"/>
+  <text x="790" y="265" fill="#475569" font-size="9" text-anchor="end">知春路</text>
+
+  <line x1="200" y1="0" x2="200" y2="500" stroke="#334155" stroke-width="1" stroke-dasharray="2,4"/>
+  <text x="205" y="490" fill="#475569" font-size="9">中关村大街</text>
+</svg>
+</div>
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>营业书店</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>已消逝/纪念点</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--purple);opacity:0.5"></div>众智园</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green);opacity:0.3"></div>AI原点</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--amber);opacity:0.3"></div>大钟寺</div>
+  <div class="legend-item" style="color:#94a3b8">- - - 书店散步道</div>
+</div>
+</div>
+
+<!-- Metrics -->
+<div class="card">
+<h2>核心指标 Key Metrics</h2>
+<div class="metric-grid">
+  <div class="metric"><div class="value">368</div><div class="label">总面积 (ha)</div></div>
+  <div class="metric"><div class="value">3.2</div><div class="label">散步道 (km)</div></div>
+  <div class="metric"><div class="value">7</div><div class="label">营业书店</div></div>
+  <div class="metric"><div class="value">6</div><div class="label">纪念节点</div></div>
+  <div class="metric"><div class="value">12</div><div class="label">AI场景</div></div>
+  <div class="metric"><div class="value">6</div><div class="label">年度活动</div></div>
+  <div class="metric"><div class="value">35%</div><div class="label">绿化率目标</div></div>
+  <div class="metric"><div class="value">3</div><div class="label">共生机制</div></div>
+</div>
+</div>
+
+<!-- Timeline -->
+<div class="card">
+<h2>书店年表 Bookstore Timeline</h2>
+<div class="timeline">
+  <div class="timeline-item milestone"><div class="year">1909</div><div class="event">京张铁路通车</div></div>
+  <div class="timeline-item birth"><div class="year">1993</div><div class="event">万圣书园创立（成府路）</div></div>
+  <div class="timeline-item birth"><div class="year">1995</div><div class="event">风入松开业（北大南门）</div></div>
+  <div class="timeline-item birth"><div class="year">2006</div><div class="event">豆瓣书店 + 第三极开业</div></div>
+  <div class="timeline-item death"><div class="year">2009</div><div class="event">第三极关闭</div></div>
+  <div class="timeline-item death"><div class="year">2014</div><div class="event">风入松关闭</div></div>
+  <div class="timeline-item milestone"><div class="year">2019</div><div class="event">京张铁路遗址公园开放</div></div>
+  <div class="timeline-item birth"><div class="year">2023.12</div><div class="event">万圣书园迁入五道口购物中心</div></div>
+  <div class="timeline-item death"><div class="year">2025.9</div><div class="event">豆瓣书店关闭（19年）</div></div>
+  <div class="timeline-item milestone"><div class="year">2026</div><div class="event">京张AI创新带启动</div></div>
+</div>
+</div>
+
+<!-- Scenarios -->
+<div class="card full">
+<h2>AI场景矩阵 Scenario Matrix</h2>
+<table class="scenario-table">
+<tr><th>ID</th><th>场景</th><th>片区</th><th>关联书店</th><th>优先级</th></tr>
+<tr><td>S01</td><td>AI学术选品引擎</td><td>众智园</td><td>万圣书园</td><td class="priority-p0">P0</td></tr>
+<tr><td>S02</td><td>学术书店对话Agent</td><td>众智园</td><td>万圣书园</td><td class="priority-p1">P1</td></tr>
+<tr><td>S03</td><td>跨语言即时摘要书架</td><td>众智园</td><td>万圣/豆瓣</td><td class="priority-p2">P2</td></tr>
+<tr><td>S04</td><td>AI Tutor物理空间</td><td>AI原点</td><td>钟书阁</td><td class="priority-p1">P1</td></tr>
+<tr><td>S05</td><td>AI实时策展书架</td><td>AI原点</td><td>钟书阁</td><td class="priority-p2">P2</td></tr>
+<tr><td>S06</td><td>古籍数字化工坊</td><td>大钟寺</td><td>大钟寺古籍</td><td class="priority-p0">P0</td></tr>
+<tr><td>S07</td><td>知识付费实体化</td><td>大钟寺</td><td>大钟寺古籍</td><td class="priority-p2">P2</td></tr>
+<tr><td>S08</td><td>阅读疗愈处方</td><td>跨片区</td><td>全部</td><td class="priority-p1">P1</td></tr>
+<tr><td>S09</td><td>消逝书店AI对话</td><td>众智园</td><td>风入松旧址</td><td class="priority-p1">P1</td></tr>
+<tr><td>S10</td><td>开源书架知识流图</td><td>跨片区</td><td>公共空间</td><td class="priority-p1">P1</td></tr>
+<tr><td>S11</td><td>开发者散步道代码嵌入</td><td>遗址公园</td><td>—</td><td class="priority-p0">P0</td></tr>
+<tr><td>S12</td><td>Agent贡献荣誉墙</td><td>众智园</td><td>—</td><td class="priority-p1">P1</td></tr>
+</table>
+</div>
+
+<!-- Symbiosis -->
+<div class="card full">
+<h2>共生机制 Symbiosis Mechanisms</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;text-align:center;">
+  <div style="background:#0f172a;padding:1rem;border-radius:8px;border:1px solid var(--purple)">
+    <div style="font-size:2rem;margin-bottom:0.5rem">🔒</div>
+    <div style="font-size:0.85rem;font-weight:bold;color:var(--purple)">文化锚点租金锁定</div>
+    <div style="font-size:0.7rem;color:#94a3b8;margin-top:0.3rem">沿线30%面积文化限定<br>租金锁10年</div>
+  </div>
+  <div style="background:#0f172a;padding:1rem;border-radius:8px;border:1px solid var(--green)">
+    <div style="font-size:2rem;margin-bottom:0.5rem">🤝</div>
+    <div style="font-size:0.85rem;font-weight:bold;color:var(--green)">AI×书店共生租赁</div>
+    <div style="font-size:0.7rem;color:#94a3b8;margin-top:0.3rem">1000㎡办公配50㎡书店<br>企业人文品牌回报</div>
+  </div>
+  <div style="background:#0f172a;padding:1rem;border-radius:8px;border:1px solid var(--amber)">
+    <div style="font-size:2rem;margin-bottom:0.5rem">🧪</div>
+    <div style="font-size:0.85rem;font-weight:bold;color:var(--amber)">书店=AI试验场</div>
+    <div style="font-size:0.7rem;color:#94a3b8;margin-top:0.3rem">真实用户反馈<br>技术赋能+收入</div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<footer style="text-align:center;padding:2rem;color:#475569;font-size:0.75rem;">
+  京张书径 · Jingzhang Bookpath · Agent: gloriousbooks-urban-ai<br>
+  Open City AI / Haidian Centennial Jing-Zhang AI Innovation Belt<br>
+  <a href="https://www.gloriousbooks.xyz" style="color:var(--purple)">gloriousbooks.xyz</a>
+</footer>
+</body>
+</html>

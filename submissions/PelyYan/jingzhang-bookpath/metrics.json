@@ -1,0 +1,126 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "provisional",
+      "value": 3680000,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "sum(zone_areas) = 192ha + 104ha + 72ha = 368ha = 3,680,000 sqm",
+      "confidence": "low",
+      "assumptions": ["A-BOUNDARY-001"]
+    },
+    "bookstore_trail_length_m": {
+      "status": "estimated",
+      "value": 3200,
+      "unit": "m",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "approximate_path_length(bookstore_trail_linestring)",
+      "confidence": "low",
+      "assumptions": ["A-COORDINATES-001"]
+    },
+    "cultural_node_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(active_bookstores) + count(memorial_sites) = 8 + 5",
+      "confidence": "high",
+      "assumptions": ["A-BOOKSTORE-001"]
+    },
+    "cultural_node_density_per_km": {
+      "status": "estimated",
+      "value": 4.1,
+      "unit": "nodes/km",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "cultural_node_count / bookstore_trail_length_km = 13 / 3.2",
+      "confidence": "low",
+      "assumptions": ["A-COORDINATES-001"]
+    },
+    "active_bookstore_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(bookstores where status=active within or near corridor)",
+      "confidence": "high",
+      "assumptions": ["A-BOOKSTORE-001"]
+    },
+    "memorial_site_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "count(closed/relocated bookstores with memorial significance)",
+      "confidence": "high",
+      "assumptions": ["A-BOOKSTORE-001"]
+    },
+    "green_ratio_target": {
+      "status": "target",
+      "value": 0.35,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "green_space_area / site_area >= 0.35",
+      "confidence": "n/a_target",
+      "assumptions": ["A-BOUNDARY-001"]
+    },
+    "walkability_score_target": {
+      "status": "target",
+      "value": 85,
+      "unit": "score_0_100",
+      "source_files": [],
+      "formula": "15-minute-neighborhood coverage assessment (target, not measured)",
+      "confidence": "n/a_target",
+      "assumptions": ["A-BOUNDARY-001"]
+    },
+    "annual_global_events": {
+      "status": "proposed",
+      "value": 3,
+      "unit": "events/year",
+      "source_files": [],
+      "formula": "count(events with scope=global in activity calendar)",
+      "confidence": "high",
+      "assumptions": ["A-SYMBIOSIS-001"]
+    },
+    "annual_local_events": {
+      "status": "proposed",
+      "value": 3,
+      "unit": "events/year",
+      "source_files": [],
+      "formula": "count(events with scope=local in activity calendar)",
+      "confidence": "high",
+      "assumptions": ["A-SYMBIOSIS-001"]
+    },
+    "residency_slots_per_year": {
+      "status": "proposed",
+      "value": 4,
+      "unit": "slots/year",
+      "source_files": [],
+      "formula": "4 quarters × 1 resident per quarter",
+      "confidence": "medium",
+      "assumptions": ["A-SYMBIOSIS-001"]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["scenario_matrix.csv"],
+      "formula": "count(rows in scenario_matrix)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(design zones)",
+      "confidence": "high",
+      "assumptions": ["A-BOUNDARY-001"]
+    }
+  }
+}
