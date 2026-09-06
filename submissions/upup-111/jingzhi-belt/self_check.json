@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "使用 provisional rough 边界并完整披露精度限制；official redline 取得后须重算全部图层与指标。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区为 provisional 矩形占位，非官方红线；内容评分仍可进入。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区由 SITE_BOUNDARY 网格化派生，无缝隙、无重叠、共享边坐标一致。"
+    },
+    {
+      "check_id": "METRICS_RECALC",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "全部已知指标由 geometry 在 EPSG:4548 下复算并与 spatial_review 一致。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "静态离线 HTML，无远程资源、脚本、iframe、表单或 API 调用。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文覆盖 13 个必答章节、23 条任务、5 项强制标准与 15 项设计深度证据链。"
+    },
+    {
+      "check_id": "PDF_NONEMPTY",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/",
+      "message": "A3 文册与 A0 展板 PDF 均为多页非空文件，内容与 metrics/geometry 一致。"
+    },
+    {
+      "check_id": "PRIVACY_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "场景设计不采集个人隐私数据，所有 AI 判断保留人工复核与公开参与路径。"
+    }
+  ]
+}
