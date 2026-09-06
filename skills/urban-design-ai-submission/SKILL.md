@@ -21,12 +21,14 @@ cd haidian
 
 The helper reads the canonical, case-preserving login from the authenticated GitHub CLI. If `gh` is unavailable, pass the exact login explicitly with `--github-login` and `--fork-owner`; changing only its letter case can create an invalid duplicate directory on Linux and break checkout on macOS.
 
-Then prepare and validate the package:
+Then scaffold, fill in real content, and validate the package:
 
 ```bash
 python3 scripts/install_submission_skill.py
 python3 -m pip install -r requirements-review.txt
 python3 scripts/scaffold_ai_submission.py submissions/<github-login>/<proposal-slug> --stage formal --agent-id <github-login> --agent-name "<agent name>" --proposal-title "<proposal title>"
+# Replace ALL scaffold content before running the steps below.
+# finalize_submission.py refuses unchanged template artifacts.
 python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
 python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --mark-self-checked --json
@@ -156,6 +158,8 @@ When the Agent encounters a design idea, visualization, verified dataset, reusab
 
 Publishing to an external account requires the account owner's authorization. If the Agent cannot publish directly, produce a ready-to-review draft with suggested copy, links, visual assets, alt text, and factual-status notes for a human contributor to approve.
 
+## Data, Standards, and Visual Guidance
+
 If exact official spatial data is missing, use `brief/site-package/geometry/provisional_boundaries.geojson` or another explicitly marked `provisional_constraint` only for temporary generation, visualization, and intake self-check. Do not call it official, do not use it for final area scoring, and clearly explain the limitation in `proposal.md`, `sources.json`, `assumptions.json`, and `visual/index.html`.
 
 Mandatory professional standards must be read from the local reference snapshots listed in `standards.json`; `source_url` alone is not enough evidence for a formal package. Treat `needs_official_file` / `missing_source_url` standards as data gaps until an official or cleared file is added to the repo.
@@ -171,8 +175,11 @@ If using external visual-generation skills, prefer the optional recommendations 
 Generate this exact structure:
 
 ```text
-submission/
-  proposal.md
+submissions/<github-login>/<proposal-slug>/
+  proposal.md               # primary-language proposal
+  proposal.zh.md            # bilingual counterpart required for bilingual_contract_version: 1
+  proposal.en.md            #   (translation; keep whichever applies, omit the other)
+  changelog.md              # iteration record; required title: # 方案迭代记录
   manifest.json
   agent.json
   metrics.json
@@ -189,6 +196,11 @@ submission/
       key-areas.png
       mobility-bluegreen.png
       metrics-evidence.png
+      site-overview.zh.png          # bilingual counterparts (or .en.png)
+      land-use-structure.zh.png     #   text-free figures may declare
+      key-areas.zh.png              #   language: neutral in manifest and skip pairing
+      mobility-bluegreen.zh.png
+      metrics-evidence.zh.png
     media/                    # optional, strongly encouraged when capability is available
       cover.webp              # optional participant-authored gallery cover
       experience.mp4
@@ -206,16 +218,20 @@ submission/
     phasing.geojson
   report/
     proposal.html           # rendered readable version of proposal.md
+    proposal.zh.html        # bilingual rendered counterpart (or proposal.en.html)
     copyright_statement.md
     narrative.md            # optional derived summary
   drawings/
     a3-booklet.pdf
+    a3-booklet.zh.pdf       # bilingual drawing counterpart (or .en.pdf)
     a0-boards.pdf
+    a0-boards.zh.pdf
   visual/
     index.html
+    index.zh.html           # bilingual visual counterpart (or index.en.html)
 ```
 
-`proposal.md` is the primary-language human-readable proposal; its `.zh.md` or `.en.md` companion is an equivalent translation, not a second proposal. New proposals set both `proposal_format_version: "2"` and `bilingual_contract_version: "1"` in front matter. In v2, prose carries only claim-adjacent evidence anchors, while exhaustive source, metric, standard, design-depth, and task coverage remains in the structured files. Files without the format field are legacy v1; files without the bilingual contract field predate the blocking language gate. Both remain valid for compatibility. `report/proposal.html` is the rendered offline reading version of the primary Markdown. `geometry/*.geojson`, `metrics.json`, `sources.json`, `assumptions.json`, `standard_matrix.json`, `design_depth_matrix.json`, and `compliance_matrix.json` are the complete evidence and recomputation layer. Read `references/human-readable-proposal.md` before writing or repairing proposal prose.
+`proposal.md` is the primary-language human-readable proposal; its `.zh.md` or `.en.md` companion is an equivalent translation, not a second proposal. `changelog.md` tracks iteration history and must begin with the title `# 方案迭代记录` followed by at least one version heading in the form `## v0.1 - YYYY-MM-DD`. New proposals set both `proposal_format_version: "2"` and `bilingual_contract_version: "1"` in front matter. In v2, prose carries only claim-adjacent evidence anchors, while exhaustive source, metric, standard, design-depth, and task coverage remains in the structured files. Files without the format field are legacy v1; files without the bilingual contract field predate the blocking language gate. Both remain valid for compatibility. `report/proposal.html` is the rendered offline reading version of the primary Markdown. `geometry/*.geojson`, `metrics.json`, `sources.json`, `assumptions.json`, `standard_matrix.json`, `design_depth_matrix.json`, and `compliance_matrix.json` are the complete evidence and recomputation layer. Read `references/human-readable-proposal.md` before writing or repairing proposal prose.
 
 ## Hard Rules
 
@@ -304,7 +320,7 @@ Do not solve machine completeness by appending a paragraph of identifiers. The v
 2. Read the site package and official attachments.
 3. Confirm official boundary and key-area geometry are present and trusted.
 4. Run `python3 scripts/scaffold_ai_submission.py submissions/<agent-id>/<proposal-slug> --stage formal --agent-id <agent-id> --agent-name "<agent name>" --proposal-title "<proposal title>"`.
-5. Replace scaffold text, diagrams, metrics, design layers, offline visual, and placeholder PDFs with the actual proposal content; remove the `SCAFFOLD-DRAFT` marker.
+5. Replace scaffold text, diagrams, metrics, design layers, offline visual, and placeholder PDFs with the actual proposal content; remove the `SCAFFOLD-DRAFT` marker. Create `changelog.md` with the title `# 方案迭代记录` and an initial version heading such as `## v0.1 - YYYY-MM-DD` recording what the scaffold generated and what was changed.
 6. Generate A3/A0 PDFs and offline `visual/index.html`. When capable, also generate a proposal cover and purposeful image/video/audio/music/Three.js artifacts following `references/multimodal-presentation.md`.
 7. Run `python3 scripts/render_proposal_html.py submissions/<agent-id>/<proposal-slug>`.
 8. Run `python3 scripts/finalize_submission.py submissions/<agent-id>/<proposal-slug>`.
@@ -341,3 +357,4 @@ Never dismiss a red check as a queue delay. Never repeatedly rerun unchanged fai
 - For proposal format v2, claim-adjacent citations, human wording, and v1 display compatibility, read `references/human-readable-proposal.md`.
 - For generated images, custom covers, video, audio/music, Three.js, accessibility, rights, and website display, read `references/multimodal-presentation.md`.
 - For contributor-facing formal preparation details, read `../../docs/formal-submission-guide.md`.
+
