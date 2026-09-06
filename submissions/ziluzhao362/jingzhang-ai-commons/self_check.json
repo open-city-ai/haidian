@@ -1,0 +1,96 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "unknown",
+      "severity": "minor",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时边界已明确披露；等待组织方正式红线后复算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "unknown",
+      "severity": "minor",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区均为临时研究范围，公告约面积与 polygon 复算值分开记录。"
+    },
+    {
+      "check_id": "OFFICIAL_CONTROLS",
+      "result": "unknown",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "容积率、限高、密度、退界、停车和市政容量保持未知，没有虚构控制值。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "概念用地以同一临时边界切分，设计为全覆盖且互不重叠。"
+    },
+    {
+      "check_id": "GEOMETRY_VALIDITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "全部图层使用 EPSG:4326 输出，并以 EPSG:4548 完成面积与长度复算。"
+    },
+    {
+      "check_id": "METRICS_RECALC",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "已知空间指标均可由提交 GeoJSON 重算；未知控制保持 null 并解释原因。"
+    },
+    {
+      "check_id": "SOURCE_TRACEABILITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "仓库来源、官方来源、OSM 提取和六个案例均记录用途与不可用范围。"
+    },
+    {
+      "check_id": "PRIVACY_DATA",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "没有使用个人轨迹、骑手或网约车个体数据；场景采用数据最小化和人工复核。"
+    },
+    {
+      "check_id": "SECURITY_NO_ACTIVE_CONTENT",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "report/proposal.html and visual/index.html",
+      "message": "离线 HTML 无脚本、iframe、表单、远程资源、网络请求或分析追踪。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html",
+      "message": "可视化是静态离线页面，指标值与 metrics.json 一致。"
+    },
+    {
+      "check_id": "PDF_RENDERING",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/",
+      "message": "A3 册 8 页与 A0 展板 2 页已全部渲染检查；中文字体嵌入、裁切与可读性通过。"
+    },
+    {
+      "check_id": "LICENSE_ATTRIBUTION",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "原创方案采用 CC BY-SA 4.0；OSM 按 ODbL 署名且不改变上游许可。"
+    },
+    {
+      "check_id": "BUILDING_DEPTH",
+      "result": "unknown",
+      "severity": "major",
+      "target": "geometry/buildings.geojson",
+      "message": "概念原型可支持城市设计讨论，建筑专业深度需现状测绘与正式控制后补齐。"
+    }
+  ]
+}
