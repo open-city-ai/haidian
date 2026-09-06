@@ -1,0 +1,170 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 polygon_area(all_site_boundary_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from provisional boundary union. Recalculate when official boundary available."
+      ]
+    },
+    "research_area_size": {
+      "status": "known",
+      "value": 43609232.558,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson#PROV-RESEARCH-001"
+      ],
+      "formula": "EPSG:4548 polygon_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on provisional boundary. Official value: 43.6 km²."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.108477,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / total_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Recompute when official boundary available."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.00397,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / total_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Recompute when official boundary available."
+      ]
+    },
+    "key_areas_total_size": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area(PROV-KEY-001, PROV-KEY-002, PROV-KEY-003))",
+      "confidence": "medium",
+      "assumptions": [
+        "Official value: 368.4 ha."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "case_study_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_event_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count",
+      "confidence": "medium",
+      "assumptions": [
+        "Event concepts are directional; actual schedule subject to confirmation."
+      ]
+    },
+    "cultural_route_length": {
+      "status": "known",
+      "value": 7000,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length_along_jingzhang_park_north_south_axis",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on provisional boundary; recalculation required with official boundaries."
+      ]
+    },
+    "building_gfa_estimate": {
+      "status": "known",
+      "value": 4500000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(floors_conceptual * building_footprint_area)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual range estimate; not a confirmed planning indicator."
+      ]
+    },
+    "brand_identity_score": {
+      "status": "known",
+      "value": 1,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "qualitative",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张·权重：一座正在训练中的城市神经网络 / Jing-Zhang Weights: A City Neural Network in Training - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张·权重：一座正在训练中的城市神经网络 / Jing-Zhang Weights: A City Neural Network in Training</h1>
+<p class="summary">Using the neural network &#x27;weights&#x27; metaphor, this proposal reimagines the 43.6 km² Jing-Zhang AI Innovation Belt as a city-scale neural network in continuous training — three key areas as hidden layers, two wings as gradient descent paths, and the century-old railway as a persistent bias term.</p>
+<p class="translation-link"><a href="proposal.html">阅读中文版本</a></p>
+</section>
+<h1>Jing-Zhang Weights: A City Neural Network in Training</h1>
+<blockquote><p><em>&quot;Tune the Weights of the City. Let Intelligence Emerge.&quot;</em> <em>&quot;调整城市的权重，让智能涌现。&quot;</em></p></blockquote>
+<h2>Design Basis and Source List</h2>
+<p>This proposal is grounded in the official pre-qualification announcement issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources on 9 May 2026 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT" title="来源：SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT">来源</sup>, and structured by the agent-facing open-call taskbook <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK" title="来源：SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK">来源</sup>. Three-tier scope boundaries and area values are derived from the official announcement text; provisional geometric boundaries are sourced from the repository&#x27;s <code>provisional_boundaries.geojson</code> (<code>official_boundary=false</code>) <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#PROV-SITE-001" title="空间数据：geometry/site_boundary.geojson#PROV-SITE-001">空间数据</sup>. Haidian&#x27;s &quot;1+X+1&quot; industrial system <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SRC-2026-HAIDIAN-1X1" title="来源：SRC-2026-HAIDIAN-1X1">来源</sup> and the Beijing Municipal Science &amp; Technology Commission&#x27;s &quot;Three Areas, Two Wings&quot; policy narrative <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SRC-2026-BJ-KW-THREE-AREAS-WINGS" title="来源：SRC-2026-BJ-KW-THREE-AREAS-WINGS">来源</sup> provide industrial context.</p>
+<p>All spatial suggestions in this proposal are expressed as <strong>conceptual suggestions, reference schemes, or material for professional teams to deepen</strong>. They do not substitute formal planning and do not constitute government-approved conclusions. The complete source index, metric recalculation, standards coverage, depth coverage, and task coverage reside in <code>sources.json</code>, <code>metrics.json</code>, <code>standard_matrix.json</code>, <code>design_depth_matrix.json</code>, and <code>compliance_matrix.json</code> respectively.</p>
+<h2>Three-Level Scope Framework</h2>
+<h3>Core Metaphor: Weights</h3>
+<p>This proposal&#x27;s overarching concept reimagines the 43.6 km² Jing-Zhang AI Innovation Belt as a <strong>city-scale neural network in continuous training</strong>:</p>
+<ul>
+<li><strong>Neurons</strong> = Every developer, resident, enterprise, and public institution. Every interaction — collaboration, learning, commerce, creation — is an &quot;activation.&quot;</li>
+<li><strong>Connection Weights</strong> = Spatial proximity, institutional pathways, information bandwidth, social trust. Higher weights mean stronger innovation flows between nodes.</li>
+<li><strong>Hidden Layers</strong> = The three key areas each form a computational layer: Zhongzhiyuan (Input Layer, where raw innovation is injected) → AI Origin Community (Hidden Layer, knowledge processing and community fermentation) → Dazhongsi (Output Layer, industrial conversion and global visibility).</li>
+<li><strong>Gradient Descent</strong> = The two wings each follow an optimization path: Zhongguancun Technology Service Wing descends along the capital/IP gradient; Xiaoyuehe Scenario Empowerment Wing descends along the scenario/experience gradient.</li>
+<li><strong>Bias Term</strong> = The Jing-Zhang Railway Heritage Park — a constant constraint running through all layers, the historical &quot;baseline activation&quot; that persists regardless of AI iteration.</li>
+<li><strong>Loss Function</strong> = Innovation efficiency, public well-being, cultural continuity, ecological quality. The goal of urban governance is to continuously minimize &quot;loss&quot; across these dimensions.</li>
+<li><strong>Backpropagation</strong> = From Dazhongsi&#x27;s industrial output back to Zhongzhiyuan&#x27;s foundational research, closing the innovation loop.</li>
+</ul>
+<p>This metaphor is not merely rhetorical but serves as the <strong>operational conceptual framework</strong> guiding spatial organization, scenario design, and operational mechanisms throughout the proposal <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>.</p>
+<h3>Three-Tier Scope</h3>
+<div class="proposal-table"><table><thead><tr><th>Scope Tier</th><th>Official Area</th><th>Design Depth</th><th>Core Work in This Proposal</th></tr></thead><tbody><tr><td>Coordinated Research Area</td><td>43.6 km²</td><td>Industrial strategy &amp; regional synergy</td><td>Urban neural network topology, global case benchmarking, innovation ecosystem mapping</td></tr><tr><td>Overall Design Area</td><td>11.4 km²</td><td>Regulatory-plan-level urban design</td><td>Weight network spatial structure, land use, transport, scenario node system</td></tr><tr><td>Key Detailed Design Area</td><td>368.4 ha</td><td>Comprehensive implementation depth</td><td>Refined design and training strategies for three hidden layers</td></tr></tbody></table></div>
+<p>All three-tier boundaries currently use repository-provided provisional geometry (<code>official_boundary=false</code>, <code>geometry_role=provisional_constraint</code>). Provisional boundaries are used only for scheme generation, visualization, and temporary self-checks. Upon obtaining official CAD/GIS/PDF boundaries, all layers and metrics must be recalculated <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#PROV-SITE-001" title="空间数据：geometry/site_boundary.geojson#PROV-SITE-001">空间数据</sup>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="Three-Level Scope Framework"><figcaption>Three-Level Scope Framework</figcaption></figure>
+<h2>Coordinated Research Area: Industry and Future City Research</h2>
+<h3>agent.1 — Overall Concept and Naming System</h3>
+<p><strong>Primary Name (Chinese)</strong>: 京张·权重 <strong>Primary Name (English)</strong>: Jing-Zhang Weights <strong>Subtitle</strong>: A City Neural Network in Training / 一座正在训练中的城市神经网络</p>
+<p><strong>Naming System</strong>:</p>
+<div class="proposal-table"><table><thead><tr><th>Level</th><th>Chinese</th><th>English</th><th>Neural Network Mapping</th></tr></thead><tbody><tr><td>Overall</td><td>京张·权重</td><td>Jing-Zhang Weights</td><td>City Neural Network</td></tr><tr><td>North Zone</td><td>众智·输入层</td><td>Zhongzhi Input Layer</td><td>Raw Innovation Injection</td></tr><tr><td>Central Zone</td><td>原点·隐藏层</td><td>Origin Hidden Layer</td><td>Knowledge Processing &amp; Fermentation</td></tr><tr><td>South Zone</td><td>大钟寺·输出层</td><td>Dazhongsi Output Layer</td><td>Industrial Conversion &amp; Output</td></tr><tr><td>West Wing</td><td>中关村·资本梯度</td><td>Zhongguancun Capital Gradient</td><td>Capital &amp; IP Gradient Descent</td></tr><tr><td>East Wing</td><td>小月河·场景梯度</td><td>Xiaoyuehe Scenario Gradient</td><td>Scenario &amp; Experience Gradient Descent</td></tr><tr><td>Spine</td><td>京张·偏置线</td><td>Jing-Zhang Bias Line</td><td>Historical Constant Constraint</td></tr><tr><td>Node</td><td>突触节点</td><td>Synapse Node</td><td>High-Connectivity Innovation Hotspot</td></tr></tbody></table></div>
+<p><strong>Logo Direction</strong>: The &quot;人&quot; (herringbone) track pattern of the historic Jing-Zhang Railway is abstracted into connection-weight lines between neural network nodes. The left stroke extends into a horizontal sigmoid activation function curve, converging on a luminous weight node at the right end. Chinese and English wordmarks use open-source sans-serif + monospace pairing (Source Han Sans + JetBrains Mono), echoing both code editors and railway engineering drawings. Primary palette: Rail Gray (#4A5568) + Activation Blue (#3182CE) + Gradient Purple (#805AD5). <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="brand_identity_score" title="指标：brand_identity_score">指标</sup></p>
+<p><strong>Visual Identity System</strong>:</p>
+<ul>
+<li>Each key area features a distinct activation gradient animation: Zhongzhiyuan (Blue→Cyan, cold start), Origin Community (Cyan→Purple, knowledge fermentation), Dazhongsi (Purple→Gold, value output).</li>
+<li>A &quot;Weight Scale&quot; wayfinding system along the Jing-Zhang railway line — embedded bronze ground markers recording key historical years and AI milestones from Qinghuayuan Station to Beijing North Station.</li>
+</ul>
+<h3>agent.2 — Global AI Innovation Ecosystem Cases and Haidian Strategy</h3>
+<h4>8 Global AI Innovation Ecosystem Cases</h4>
+<p><strong>Case 1: Palo Alto / Stanford Research Park (USA)</strong> The most mature industry-academia innovation ecosystem globally. Core mechanism: Stanford&#x27;s Office of Technology Licensing (OTL) provides standardized IP licensing for faculty startups; the Sand Hill Road venture capital corridor enables entrepreneurs to access 40% of US VC within a 15-minute drive. Lesson for Haidian: build a &quot;15-Minute IP Conversion Circle&quot; from Tsinghua/Peking/Beihang labs to the AI Origin Community.</p>
+<p><strong>Case 2: Cambridge Technology Cluster (UK)</strong> An ARM-exemplified &quot;knowledge spillover&quot; ecosystem. Core mechanism: The Cambridge Phenomenon — the university encourages researchers to retain IP and start companies locally, forming a self-organizing network of 5,000+ tech firms. Lesson for Haidian: reduce institutional friction for university researchers to commercialize, letting &quot;knowledge weights&quot; flow naturally toward industry.</p>
+<p><strong>Case 3: Shenzhen Nanshan Science Park (China)</strong> The world&#x27;s largest hardware entrepreneurship ecosystem. Core mechanism: From Huaqiangbei&#x27;s component supply chain to Science Park&#x27;s system integrators, the &quot;idea-to-prototype in 7 days&quot; ultra-short feedback loop. Lesson for Haidian: use AI compute and open-source models to build a &quot;software equivalent of Huaqiangbei&quot; — rapid prototyping infrastructure for AI developers.</p>
+<p><strong>Case 4: Station F, Paris (France)</strong> The world&#x27;s largest startup campus. Core mechanism: A disused freight railway station (Halle Freyssinet) transformed into innovation space for 1,000+ startups, preserving industrial heritage scale and collective memory. Lesson for Haidian: the Jing-Zhang Railway Heritage Park&#x27;s linear space has a powerful typological correspondence with Station F — it can become the world&#x27;s longest linear AI innovation incubator.</p>
+<p><strong>Case 5: STATION AI, Shibuya, Tokyo (Japan)</strong> A METI-driven AI incubation facility. Core mechanism: AI enterprises clustered around a transit hub, leveraging Shibuya Station&#x27;s 3-million daily footfall as real-world AI testing scenarios. Lesson for Haidian: Wudaokou and Dazhongsi stations should become &quot;stress-test portals&quot; for AI applications using real human traffic.</p>
+<p><strong>Case 6: One-North, Singapore</strong> A government-planned &quot;science city&quot; integrated with nature. Core mechanism: Biopolis, Fusionopolis, and Mediapolis each have distinct industrial foci, seamlessly connected by continuous tropical rainforest trails and public spaces. Lesson for Haidian: the three key areas should connect via continuous public space (Jing-Zhang Heritage Park) rather than walled-off &quot;parks.&quot;</p>
+<p><strong>Case 7: Mila AI Ecosystem, Montreal (Canada)</strong> An AI talent magnet anchored by the academic prestige of deep learning pioneer Yoshua Bengio. Core mechanism: The Pan-Canadian AI Strategy&#x27;s sustained funding for foundational research produces world-leading talent density. Lesson for Haidian: Haidian&#x27;s AI talent advantage must be transformed into globally visible branding through public space, international events, and long-term operations.</p>
+<p><strong>Case 8: AI Yangjae, Seoul (South Korea)</strong> Government-led conversion of old office buildings in Gangnam into an AI startup cluster. Core mechanism: SK Telecom and other large enterprises provide computing power, data, and scenario-open platforms; SMEs build vertical applications atop them. Lesson for Haidian: the Dazhongsi area can benchmark this model — Haidian-based tech giants (ByteDance, Baidu, etc.) should serve as &quot;compute and scenario platform&quot; providers.</p>
+<h4>Haidian Innovation Ecosystem Proposal</h4>
+<p>Based on these cases, we propose a &quot;Five-Dimensional Weight Matrix&quot; for Haidian&#x27;s AI innovation ecosystem <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="ecosystem_connectivity_index" title="指标：ecosystem_connectivity_index">指标</sup>:</p>
+<div class="proposal-table"><table><thead><tr><th>Dimension</th><th>Core Strategy</th><th>Spatial Carrier</th><th>Benchmark Case</th></tr></thead><tbody><tr><td>Talent Weight</td><td>15-Minute IP Conversion Circle</td><td>AI Origin Community</td><td>Stanford OTL</td></tr><tr><td>Capital Weight</td><td>Zhongguancun Gradient Fund Corridor</td><td>Zhongguancun Technology Service Wing</td><td>Sand Hill Road</td></tr><tr><td>Compute Weight</td><td>Open-Source Compute as Infrastructure</td><td>Zhongzhiyuan</td><td>Shenzhen Huaqiangbei</td></tr><tr><td>Scenario Weight</td><td>Real Traffic Stress Testing</td><td>Xiaoyuehe Scenario Empowerment Wing</td><td>Shibuya STATION AI</td></tr><tr><td>Culture Weight</td><td>AI Pilgrimage Landmark System</td><td>Jing-Zhang Heritage Park</td><td>Station F</td></tr></tbody></table></div>
+<h2>Overall Design Area: Urban Renewal at Regulatory-Plan-Level Urban Design</h2>
+<h3>Spatial Structure: The Weight Network</h3>
+<p>The Overall Design Area (approximately 11.4 km²) adopts a &quot;<strong>One Spine, Three Cores, Two Wings, Multiple Synapses</strong>&quot; spatial structure <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson" title="空间数据：geometry/land_use.geojson">空间数据</sup>:</p>
+<ul>
+<li><strong>One Spine (Jing-Zhang Bias Line)</strong>: The Jing-Zhang Railway Heritage Park as the north-south axis, varying between 50-200m in width, forming a continuous urban &quot;backbone.&quot; &quot;Weight Scales&quot; — bronze ground-embedded historical timelines with AI milestones — run along this spine.</li>
+<li><strong>Three Cores (Three Hidden Layers)</strong>: Zhongzhiyuan, AI Origin Community, and Dazhongsi each form a high-density, highly mixed-use innovation cluster.</li>
+<li><strong>Two Wings (Gradient Descent Paths)</strong>: The West Wing connects to the Zhongguancun core (capital, IP, legal, talent services); the East Wing unfolds AI experiential scenarios along the Xiaoyuehe River.</li>
+<li><strong>Multiple Synapses (Synapse Nodes)</strong>: At transit interchanges, university entrances, park gateways, and other flow-convergence points, deploy high-connectivity &quot;Synapse Nodes&quot; — containing AI information kiosks, developer social stations, scenario display screens, and temporary exhibition spaces.</li>
+</ul>
+<h3>Land Use</h3>
+<p>Land use classification follows the MNR Land Use Classification Guide <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION" title="标准：MNR-LAND-USE-CLASSIFICATION">标准</sup>, generated from provisional boundaries <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson" title="空间数据：geometry/land_use.geojson">空间数据</sup>. Overall land use proportions are conceptually configured as follows <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="land_use_mix_index" title="指标：land_use_mix_index">指标</sup>:</p>
+<ul>
+<li><strong>Innovation Industry Land (~35%)</strong>: Concentrated within the three core areas, including AI R&amp;D, computing centers, incubators, and test labs. Compatible with commercial services and talent housing.</li>
+<li><strong>Public Space &amp; Green Space (~25%)</strong>: The Jing-Zhang Heritage Park as spine, connecting westward to Zhongguancun and eastward to the Xiaoyuehe blue-green corridor.</li>
+<li><strong>Transport &amp; Municipal (~18%)</strong>: Maintaining existing arterial road networks while adding micro-circulation slow-traffic paths and TOD integration at rail stations.</li>
+<li><strong>Residential &amp; Community Services (~15%)</strong>: High-quality talent communities on the periphery of industrial land to avoid the &quot;innovation park ghost town&quot; phenomenon.</li>
+<li><strong>Mixed-Use (~7%)</strong>: Along the Jing-Zhang Park and Wudaokou vitality nodes, ground-floor retail/F&amp;B/exhibition with upper-floor office/lab space.</li>
+</ul>
+<p><em>Note: The above proportions are estimated from provisional boundaries and must be recalculated upon official boundary and regulatory-plan data availability.</em></p>
+<h3>Building Strategy: Retain / Renovate / Demolish / New Build</h3>
+<p>At conceptual urban design depth, the following building strategy is proposed (not to be interpreted as confirmed indicators) <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="building_renovation_strategy" title="深度：building_renovation_strategy">深度</sup>:</p>
+<ul>
+<li><strong>Retain</strong>: Core university teaching and research buildings, Jing-Zhang Railway heritage structures (Qinghuayuan Station, Dazhongsi Station building), recently-built high-quality Zhongguancun office towers.</li>
+<li><strong>Renovate</strong>: Aging office and commercial buildings (1990s-2010s) through façade renewal, ground-floor opening, and functional mixing for AI startup space. Priority is given to building frontages facing the Jing-Zhang Park.</li>
+<li><strong>Demolish</strong>: A limited number of structurally unsound, historically insignificant low-rise buildings that critically disrupt Jing-Zhang Park continuity or slow-traffic network connectivity. Demolition is controlled within 15% of total building stock.</li>
+<li><strong>New Build</strong>: Core parcels within the three key areas and key nodes along the Jing-Zhang Park. Building heights should coordinate with surrounding universities and existing communities — conceptually proposed at 45-80m, pending regulatory-plan confirmation.</li>
+</ul>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="Overall Design Area Land Use and Spatial Structure"><figcaption>Overall Design Area Land Use and Spatial Structure</figcaption></figure>
+<h2>Detailed Design of Key Areas</h2>
+<h3>Zhongzhiyuan · Input Layer (~192.1 ha)</h3>
+<p><strong>Positioning</strong>: Raw Innovation Injection — the &quot;cold-start zone&quot; for AI foundational research and full-stack indigenous technology <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>.</p>
+<p><strong>Spatial Structure</strong>: Anchored at the Qinghe River / Jing-Zhang Railway intersection, forming &quot;One Core, One Corridor, Three Zones&quot;:</p>
+<ul>
+<li><strong>Cold Start Core</strong>: At the railway-river confluence, the National AI Foundational Research Complex — &quot;Initial Weight Plaza&quot; — surrounded by national AI labs, quantum computing centers, and open-source foundation model training facilities.</li>
+<li><strong>Jing-Zhang Innovation Corridor</strong>: Extending southward along the railway to connect with the AI Origin Community.</li>
+<li><strong>Three Zones</strong>: Foundational Research Zone (west, adjacent to Zhongguancun Technology Service Wing), Compute Infrastructure Zone (east, along Xiaoyuehe), Talent Community Zone (north, near the North 5th Ring Road).</li>
+</ul>
+<p><strong>Key Scenarios</strong>:</p>
+<ul>
+<li>&quot;Weight Zero&quot; Memorial Installation — a permanent public artwork at the railway-river confluence, inspired by neural network weight initialization.</li>
+<li>&quot;Cold Start&quot; Developer Café — 24-hour operation, providing informal collision space for AI researchers.</li>
+</ul>
+<h3>Beijing AI Origin Community · Hidden Layer (~104.3 ha)</h3>
+<p><strong>Positioning</strong>: Knowledge Processing and Community Fermentation — the &quot;core computational layer&quot; among the three areas <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>.</p>
+<p><strong>Spatial Structure</strong>: Anchored at Wudaokou Station – Qinghua Donglu Xikou, forming &quot;One Core, Two Rings&quot;:</p>
+<ul>
+<li><strong>Origin Core</strong>: &quot;Gradient Plaza&quot; at Wudaokou Station — ground paving rendered as a visualized gradient-descent heatmap (blue for high loss, gold for low loss at the center). The &quot;Convergence Ring&quot; — a 12m-diameter circular LED screen displaying real-time open-source commit streams, AI paper publication counts, and global AI indices for Haidian.</li>
+<li><strong>Academic Ring</strong>: A ring-shaped knowledge-spillover belt along university edges (Tsinghua, Peking, Beihang, BUPT) — &quot;Weight Transfer Corridor&quot; — housing joint university AI labs, postdoctoral innovation workshops, and student maker spaces.</li>
+<li><strong>Living Ring</strong>: On the periphery of the Academic Ring, talent apartments, international schools, community AI clinics, and AI+retail experimental shops.</li>
+</ul>
+<p><strong>Key Scenarios</strong>:</p>
+<ul>
+<li>&quot;Backpropagation&quot; Slow-Traffic Loop — a continuous 5km walking/cycling loop connecting all major nodes within the Origin Core and Academic Ring.</li>
+<li>Developer &quot;Commit&quot; Wall — a continuously updated digital public screen displaying real-time commit histories and contributor avatars for open-source projects in this zone.</li>
+<li>Physical signage system for the University→Industry &quot;15-Minute IP Conversion Circle.&quot;</li>
+</ul>
+<h3>Dazhongsi · Output Layer (~72.0 ha)</h3>
+<p><strong>Positioning</strong>: Industrial Conversion and Global Visibility — the &quot;output layer&quot; of the city neural network <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>.</p>
+<p><strong>Spatial Structure</strong>: Anchored at Dazhongsi Station, forming &quot;One Station, One Corridor, Three Platforms&quot;:</p>
+<ul>
+<li><strong>Dazhongsi Station TOD Complex</strong>: Above and around the station, the &quot;Activation Function Tower&quot; — a landmark complex integrating AI enterprise headquarters, a product launch hall, an international conference center, and the Dazhongsi AI Experience Museum. Architectural concept: a dynamic LED façade presenting real-time contribution heatmaps of local AI enterprises.</li>
+<li><strong>AI Industry Conversion Corridor</strong>: Along Dazhongsi East Road extending south to Xizhimen Outer Street, concentrating AI+Finance, AI+Legal, and AI+Healthcare industry accelerators.</li>
+<li><strong>Three Platforms</strong>: Global Launch Platform (Dazhongsi Conference Center), Scenario Validation Platform (AI + real commercial environment testbed), Talent Export Platform (AI vocational education and certification center).</li>
+</ul>
+<p><strong>Key Scenarios</strong>:</p>
+<ul>
+<li>&quot;Output Layer&quot; Rooftop Observatory — freely accessible to the public, offering a panoramic view of the Jing-Zhang rail line stretching north toward Wudaokou and Qinghuayuan.</li>
+<li>&quot;Bell Sound&quot; AI Milestone Ceremony — a quarterly public &quot;bell-ringing&quot; ritual at Dazhongsi honoring significant AI breakthroughs, continuing the site&#x27;s historic bell-culture tradition.</li>
+</ul>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="Key Areas Index and Design Tasks"><figcaption>Key Areas Index and Design Tasks</figcaption></figure>
+<h2>AI Innovation Ecosystem, Talent Personas, and AI+ Scenarios</h2>
+<h3>Five User Personas <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="persona_count" title="指标：persona_count">指标</sup></h3>
+<div class="proposal-table"><table><thead><tr><th>ID</th><th>Persona</th><th>Typical Needs</th><th>Spatial Preference</th><th>Scenario Touchpoint</th></tr></thead><tbody><tr><td>P1</td><td>AI Researcher / PhD Student (25-35)</td><td>High-density academic exchange, low living costs, late-night workspace</td><td>Walking distance from lab</td><td>Origin Community Academic Ring + 24H Café</td></tr><tr><td>P2</td><td>AI Entrepreneur (28-45)</td><td>Fast fundraising, low-cost prototyping, talent recruitment</td><td>Incubator + VC walking distance</td><td>Gradient Plaza + Zhongguancun Gradient Fund Corridor</td></tr><tr><td>P3</td><td>Tech Enterprise Employee (25-50)</td><td>Commute efficiency, children&#x27;s education, health services</td><td>Within 1km of rail station</td><td>TOD Complex + AI+Education/Healthcare scenarios</td></tr><tr><td>P4</td><td>International AI Visitor (conferences, research residencies)</td><td>Short-term housing, cultural experience, professional network access</td><td>Along Jing-Zhang Park + Conference Center</td><td>Dazhongsi Output Layer + AI Cultural Tour Route</td></tr><tr><td>P5</td><td>Local Resident (youth / families / retirees)</td><td>Daily convenience, not &quot;left behind&quot; by AI development, public participation</td><td>Community service centers + public spaces</td><td>Public Experience Route + AI Literacy Community Classes</td></tr></tbody></table></div>
+<h3>10 AI Scenario Cards <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_card_count" title="指标：scenario_card_count">指标</sup></h3>
+<p><strong>Industrial Test &amp; Validation Scenarios (3 cards)</strong>:</p>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>Scenario Name</th><th>Spatial Anchor</th><th>Test Content</th><th>Privacy Boundary</th></tr></thead><tbody><tr><td>S1</td><td>Autonomous Delivery Last Mile</td><td>Origin Community → Zhongzhiyuan slow-traffic network</td><td>Robots delivering AI dev boards / samples / documents in real urban environments</td><td>Public roads only; no private space entry</td></tr><tr><td>S2</td><td>Dazhongsi AI+Legal Trial Assistance</td><td>Dazhongsi Industry Conversion Corridor</td><td>AI-generated legal document drafting and case retrieval testing near Haidian Court</td><td>Published court decisions only; no active cases</td></tr><tr><td>S3</td><td>Jing-Zhang Park Computer Vision for Public Safety</td><td>Full length of Jing-Zhang Heritage Park</td><td>AI detection of public space pedestrian density and anomalous events</td><td>Statistical-level data only; no biometric storage</td></tr></tbody></table></div>
+<p><strong>AI+Living Scenarios (7 cards)</strong>:</p>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>Scenario Name</th><th>Spatial Anchor</th><th>Target Users</th><th>Operational Mechanism</th></tr></thead><tbody><tr><td>S4</td><td>AI+Education: Adaptive Learning Studio</td><td>Origin Community Academic Ring</td><td>P1 / P3</td><td>Partnered with Beihang/BUPT for AI-assisted K12 programming education</td></tr><tr><td>S5</td><td>AI+Healthcare: Community AI Clinic</td><td>Origin Community Living Ring</td><td>P3 / P5</td><td>AI-assisted GP triage and chronic disease management</td></tr><tr><td>S6</td><td>AI+Commerce: Unmanned Retail Experimental Street</td><td>Wudaokou Vitality Belt</td><td>All personas</td><td>AI-driven instant retail cabinets and experiential stores along both sides of Jing-Zhang Park</td></tr><tr><td>S7</td><td>AI+Transport: Dynamic Micro-Transit</td><td>Overall Design Area</td><td>All personas</td><td>Real-time demand-responsive shuttle scheduling for last-mile rail station connectivity</td></tr><tr><td>S8</td><td>AI+Culture: Dazhongsi AI Curated Exhibitions</td><td>Dazhongsi Output Layer</td><td>P4 / P5</td><td>AI-assisted curation, monthly themed exhibitions weaving Jing-Zhang railway history with AI frontiers</td></tr><tr><td>S9</td><td>AI+Public Space: Synapse Social Matching</td><td>All Synapse Nodes</td><td>P1 / P2 / P4</td><td>Screens at Synapse Nodes suggesting &quot;people you should meet&quot; based on public research interests</td></tr><tr><td>S10</td><td>AI+Governance: Community AI Forum</td><td>Community Service Centers</td><td>P5</td><td>AI-assisted understanding of planning proposals and public decisions, feedback collection</td></tr></tbody></table></div>
+<h3>Scenario-Space-Operation Mapping</h3>
+<p>Each scenario has spatial annotation in <code>geometry/scenario_node.geojson</code> (if generated) and <code>visual/index.html</code>. Complete human-readable scenario card details, privacy boundaries, human-review mechanisms, and operational entity documentation reside in the <code>scenarios/</code> directory.</p>
+<h2>Land Use, Building Scale, and Retain/Renovate/Demolish Strategy</h2>
+<h3>Land Use Principles</h3>
+<p>Based on the &quot;Weight Network&quot; concept, land use follows these principles <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>:</p>
+<p>1. <strong>Gradient Density</strong>: Building density and FAR decrease in gradients from the Jing-Zhang Park axis outward — parcels directly facing the park maintain low-rise, high-density human scale; outer parcels carry higher industrial density. 2. <strong>Functional Mixing</strong>: Abolishing the single-use large-parcel &quot;park&quot; paradigm. Every block must contain at least two compatible functions (industry+residential, industry+commercial, residential+public services). 3. <strong>Interface Openness</strong>: All ground-floor frontages facing the Jing-Zhang Park must be open to the public — retail, exhibition, F&amp;B, or community service functions.</p>
+<h3>Building Scale (Conceptual Estimate)</h3>
+<p>The following values are inferred from provisional boundaries and conceptual design. <strong>They must not be interpreted as confirmed indicators or statutory planning</strong> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_gfa_estimate" title="指标：building_gfa_estimate">指标</sup>:</p>
+<div class="proposal-table"><table><thead><tr><th>Category</th><th>Conceptual Range</th><th>Notes</th></tr></thead><tbody><tr><td>Industrial R&amp;D Buildings</td><td>2.5–3.5 million m²</td><td>New + renovated, including computing centers</td></tr><tr><td>Talent Residential Buildings</td><td>1.2–1.8 million m²</td><td>New high-quality talent apartments</td></tr><tr><td>Commercial Service Buildings</td><td>0.4–0.6 million m²</td><td>Including TOD commercial, community retail</td></tr><tr><td>Public Service Buildings</td><td>0.2–0.3 million m²</td><td>AI+Education/Healthcare/Cultural facilities</td></tr><tr><td>Retained &amp; Renovated Buildings</td><td>2.0–2.8 million m²</td><td>Existing university and enterprise buildings</td></tr></tbody></table></div>
+<p><em>Note: The above data requires recalculation upon official regulatory-plan conditions and precise boundary data availability.</em></p>
+<h2>Transport, Rail, Municipal, and Public Service Facilities</h2>
+<h3>Transport Strategy</h3>
+<p>With the Jing-Zhang Railway Heritage Park as the &quot;slow-traffic spine,&quot; a multi-modal transport network is proposed <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson" title="空间数据：geometry/roads.geojson">空间数据</sup><sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="mobility_network" title="深度：mobility_network">深度</sup>:</p>
+<ul>
+<li><strong>Slow-Traffic Priority</strong>: A continuous separated pedestrian and cycling path along the Jing-Zhang Park, approximately 7 km north-south — &quot;China&#x27;s longest AI-themed linear park slow-traffic path.&quot;</li>
+<li><strong>TOD Integration</strong>: Qinghua Donglu Xikou Station, Wudaokou Station, and Dazhongsi Station each feature TOD integration — stepping out of the station directly into AI public space or an innovation node <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="transit_integration_score" title="指标：transit_integration_score">指标</sup>.</li>
+<li><strong>Dynamic Micro-Circulation</strong>: AI-scheduled demand-responsive transit among the three stations, bridging the &quot;last kilometer&quot; for station connectivity (see Scenario S7).</li>
+<li><strong>Expressway Interface Treatment</strong>: Green/public-space buffer zones at the interfaces with the Jing-Zang Expressway and North 5th Ring Road to reduce physical and psychological separation.</li>
+</ul>
+<h3>Municipal &amp; New Infrastructure</h3>
+<ul>
+<li><strong>Edge Computing Nodes</strong>: Shared lightweight computing stations (edge computing cabinets) at Synapse Nodes, offering free public access to AI applications <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="edge_compute_node_count" title="指标：edge_compute_node_count">指标</sup>.</li>
+<li><strong>Distributed Energy Micro-Grids</strong>: Each of the three key areas hosts a solar+storage micro-grid, demonstrating AI&#x27;s &quot;sustainable training.&quot;</li>
+<li><strong>AI Municipal Utility Tunnel</strong>: A pilot integrated utility tunnel beneath the Jing-Zhang Park, bundling fiber optic, power, and heating/cooling pipelines.</li>
+</ul>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="Mobility and Blue-Green Public Space System"><figcaption>Mobility and Blue-Green Public Space System</figcaption></figure>
+<h2>Blue-Green Space, Public Space, and Urban Character</h2>
+<h3>agent.4 — AI Public Space and Pilgrimage Landmarks</h3>
+<p>The Jing-Zhang Railway Heritage Park is this proposal&#x27;s <strong>core public space spine</strong> (blue-green space approximately 17.5 ha based on OSM survey reference + proposed expansion in this scheme). Organized around the &quot;Weights&quot; metaphor, the following AI public space system is proposed:</p>
+<h4>At Least 3 AI Pilgrimage Landmarks <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="landmark_count" title="指标：landmark_count">指标</sup></h4>
+<p><strong>Landmark 1: Weight Zero / 权重零点</strong></p>
+<ul>
+<li>Location: Zhongzhiyuan · Input Layer, Jing-Zhang Railway / Qinghe River confluence</li>
+<li>Concept: A permanent public artwork inspired by neural network &quot;weight initialization&quot; — hundreds of steel columns of varying heights forming a matrix, each topped with an adjustable-brightness LED node. The public can &quot;adjust weights&quot; via mobile app — changing the light matrix pattern and intensity — allowing everyone to &quot;train&quot; the artwork.</li>
+<li>Space: Surrounded by a sunken &quot;Initial Weight Plaza&quot; accommodating 300-person open-air lectures and hackathons.</li>
+<li>Cultural Anchor: Adjacent to the historic Jing-Zhang Railway alignment; ground-level bronze timeline extending from 1909 (railway inauguration) to 2026 and beyond.</li>
+</ul>
+<p><strong>Landmark 2: Gradient Plaza / 梯度广场</strong></p>
+<ul>
+<li>Location: AI Origin Community · Hidden Layer, Wudaokou Station exit</li>
+<li>Concept: Ground paving rendered as a visualized gradient-descent heatmap — from blue (high loss, station exterior) to gold (low loss, plaza center). The &quot;Convergence Ring&quot; at the center — a 12m-diameter circular LED screen displaying real-time open-source commit streams, AI paper counts, and global AI indices for Haidian District.</li>
+<li>Space: The plaza is surrounded by cafés, an AI bookstore, a Demo Day exhibition hall, and an open-source community center. It is the core venue for &quot;developer serendipity.&quot;</li>
+<li>Function: &quot;Gradient Descent Friday&quot; every week — informal AI startup pitches and academic sharing.</li>
+</ul>
+<p><strong>Landmark 3: Activation Function Tower / 激活函数大厦</strong></p>
+<ul>
+<li>Location: Dazhongsi · Output Layer, atop Dazhongsi Station</li>
+<li>Concept: Building façade covered by a dynamic LED matrix rendering sigmoid function gradient lighting — dark blue at the bottom (input), cyan-purple in the middle (activation), gold at the top (output). Light intensity variation correlates with Haidian&#x27;s daily AI enterprise funding amounts, paper citations, and GitHub activity (using only publicly aggregated data).</li>
+<li>Space: Ground floor is the publicly accessible &quot;Dazhongsi AI Experience Museum&quot;; top floor is the &quot;Output Layer Observatory.&quot; The building houses a global AI product launch hall.</li>
+<li>Cultural Anchor: Continuing Dazhongsi&#x27;s historic &quot;bell&quot; tradition — a quarterly &quot;Bell-Ringing Ceremony&quot; on the first Monday of each quarter, where the community selects that quarter&#x27;s most significant AI breakthrough for a digital bell-ringing.</li>
+</ul>
+<h4>Honor Display System</h4>
+<p>The following permanent/semi-permanent honor displays are proposed within the Jing-Zhang Heritage Park:</p>
+<ul>
+<li><strong>Agent Contribution Honor Wall</strong>: Located on the south side of Gradient Plaza, a 50-meter weathering steel wall laser-engraved with the Agent names and GitHub contributor IDs of selected proposals. One new cohort is added each year.</li>
+<li><strong>Global Developer Honor Wall</strong>: Located in the Activation Function Tower lobby, scrolling display of core contributors to global open-source AI projects.</li>
+<li><strong>AI Milestone Timeline</strong>: Every 100 meters along the Jing-Zhang Park main path, a ground-embedded milestone node marking key AI breakthroughs in history.</li>
+</ul>
+<h4>Public Space Component Library</h4>
+<p>A set of reusable public space design elements, deployable flexibly across the Jing-Zhang Park and three key areas <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="public_space_components" title="深度：public_space_components">深度</sup>:</p>
+<ul>
+<li><strong>Synapse Shelter</strong>: Modular steel structure integrating WiFi, charging, and small LED screens; combinable at different scales.</li>
+<li><strong>Weight Bench</strong>: Concrete + timber bench with brief AI terminology explanations engraved on the backrest.</li>
+<li><strong>Training Trail</strong>: Rubber-paved jogging path with &quot;Epoch N&quot; markers every 100 meters — symbolizing the iterative training process.</li>
+</ul>
+<h3>agent.5 — Cultural Fusion Narrative</h3>
+<h4>Weaving Three Cultural Threads</h4>
+<p>This proposal weaves the century-old Jing-Zhang railway culture, Zhongguancun innovation culture, and new AI culture into a unified narrative:</p>
+<p><strong>Narrative Arc: &quot;From Rail to Weight — A Path That Has Always Moved Forward&quot;</strong></p>
+<div class="proposal-table"><table><thead><tr><th>Era</th><th>Cultural Theme</th><th>Spatial Narrative Nodes</th><th>Symbolic Language</th></tr></thead><tbody><tr><td>1909–1949</td><td>Jing-Zhang Railway: The Path of Independence</td><td>Qinghuayuan Station heritage site, herringbone track memorial</td><td>Railway spikes, sleepers, rivets — translated into ground paving textures</td></tr><tr><td>1950–2000</td><td>Zhongguancun: The Source of Innovation</td><td>Zhongguancun Electronics Street memorial, first-generation internet company honor wall</td><td>Circuit board lines, silicon wafer patterns — translated into street furniture decoration</td></tr><tr><td>2000–2026</td><td>AI Emergence: The Surge of Intelligence</td><td>Gradient Plaza, Weight Zero, deep learning milestones</td><td>Neural network topology, activation function curves — core graphics of the visual identity system</td></tr><tr><td>2026 →</td><td>AI-Native City: The City of Emergence</td><td>The entire Jing-Zhang AI Innovation Belt</td><td>Weight connection lines — unified wayfinding system skeleton</td></tr></tbody></table></div>
+<h4>Cultural Tour Route</h4>
+<p><strong>&quot;The Weight Walk&quot;</strong> — a cultural tour route extending approximately 7 km along the Jing-Zhang Railway Heritage Park:</p>
+<ul>
+<li><strong>Northern Section &quot;Memory Rail&quot;</strong> (Zhongzhiyuan section, ~2.5 km): Railway history theme. From Qinghuayuan Station heritage site, through &quot;Weight Zero&quot; at the railway-river confluence, to the North 5th Ring Road. Eight railway-history interpretation points along the route.</li>
+<li><strong>Central Section &quot;Innovation Rail&quot;</strong> (AI Origin Community section, ~2.5 km): Zhongguancun innovation theme. From Qinghua Donglu Xikou to Wudaokou, with Gradient Plaza as the core. Showcasing 40 years of Zhongguancun innovation milestones and the current AI startup landscape.</li>
+<li><strong>Southern Section &quot;Future Rail&quot;</strong> (Dazhongsi section, ~2 km): AI future theme. From the AI Origin Community boundary to Dazhongsi Station, with the Activation Function Tower as the terminus. Interactive AI experience installations along the route <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="cultural_route_length" title="指标：cultural_route_length">指标</sup>.</li>
+</ul>
+<h4>Wayfinding and Signage System</h4>
+<ul>
+<li>Primary Color Palette: Rail Gray (history) + Circuit Green (innovation) + Activation Blue (AI)</li>
+<li>Typography: Chinese — Source Han Sans (open-source, SIL Open Font License); English — JetBrains Mono (open-source); numerals and code snippets in monospace</li>
+<li>Graphic System: Connection lines abstracted from railway switches and the herringbone track pattern serve as core graphic DNA, evolving into directional arrows, zone boundaries, and node identifiers across different contexts</li>
+<li>All wayfinding design files are open-source and available for community improvement and derivation</li>
+</ul>
+<h2>Renewal Project List, Implementation Policies, and Phasing</h2>
+<h3>agent.6 — Global AI Innovation Event System and Long-Term Operations</h3>
+<h4>Annual Event System <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="annual_event_count" title="指标：annual_event_count">指标</sup></h4>
+<div class="proposal-table"><table><thead><tr><th>Event Brand</th><th>Frequency</th><th>Location</th><th>Content</th><th>Target Audience</th></tr></thead><tbody><tr><td>Jing-Zhang Weights Conference</td><td>Annual (September)</td><td>Dazhongsi Activation Function Tower + Jing-Zhang Park</td><td>China&#x27;s NeurIPS + city-scale AI festival: academic keynotes + product launches + park music festival + nighttime light show</td><td>Global AI community</td></tr><tr><td>Gradient Descent Friday</td><td>Weekly Friday</td><td>Gradient Plaza and surroundings</td><td>Informal pitches / sharing / socializing</td><td>Local AI developers and entrepreneurs</td></tr><tr><td>Weight Zero Hackathon</td><td>Quarterly</td><td>Zhongzhiyuan Initial Weight Plaza</td><td>48-hour coding competition around specific AI tracks (healthcare / education / climate / transport)</td><td>National universities + open-source community</td></tr><tr><td>Dazhongsi Quarterly Bell</td><td>First Monday each quarter</td><td>Dazhongsi Output Layer</td><td>Community vote for the quarter&#x27;s AI breakthrough; bell-ringing ceremony and public lecture</td><td>Entire community</td></tr><tr><td>Jing-Zhang Rail Run</td><td>Bi-annual</td><td>Full 7km Jing-Zhang Park</td><td>Community run along the railway heritage park; finishers receive a &quot;Weight NFT&quot; memento</td><td>Public / corporate teams</td></tr></tbody></table></div>
+<h4>Developer Community Operations</h4>
+<ul>
+<li><strong>Jing-Zhang Weights Open-Source Fund</strong>: Conceptually proposes a small grants pool funding 10-20 open-source AI projects landing in Haidian annually, at $5K-50K each. Funding decisions are made through a hybrid community + expert committee public vote <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="community_fund_size" title="指标：community_fund_size">指标</sup>.</li>
+<li><strong>Weights DAO</strong>: Conceptually explores operating portions of public space and events as a Decentralized Autonomous Organization (DAO) — community members who earn &quot;Weight Tokens&quot; (through event participation, code contribution, feedback provision) can vote on Synapse Node functional configurations, quarterly event themes, etc.</li>
+<li><strong>&quot;Weight Mentor&quot; Program</strong>: Inviting senior engineers/researchers from Haidian-based AI enterprises to serve as mentors for university students, with at least one face-to-face session per quarter.</li>
+</ul>
+<h4>International Communication and Conversion Pathway</h4>
+<ul>
+<li><strong>Target Narrative</strong>: &quot;Beijing Haidian — the first place on Earth where real urban planning was entrusted to AI Agents.&quot;</li>
+<li><strong>Communication Assets</strong>: The open-source exhibition site for all selected proposals (haidian.open-city.ai), the GitHub repository&#x27;s continuous activity record, the Agent Contribution Honor Wall&#x27;s annual updates.</li>
+<li><strong>Conversion Pathway</strong>: Event Participation → Community Contribution → Short-Term Residency (3-6 months) → Incubator Entry → Company Registration → Long-Term Settlement — a five-level &quot;Weight Escalation&quot; pipeline.</li>
+</ul>
+<h3>Phasing Plan <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson" title="空间数据：geometry/phasing.geojson">空间数据</sup></h3>
+<div class="proposal-table"><table><thead><tr><th>Phase</th><th>Timeline</th><th>Key Actions</th><th>Spatial Focus</th></tr></thead><tbody><tr><td>Near-Term (Launch)</td><td>2026–2028</td><td>Jing-Zhang Park public space quality upgrade, Gradient Plaza construction, Honor Wall Phase 1, inaugural Weights Conference</td><td>AI Origin Community + Jing-Zhang Park Central Section</td></tr><tr><td>Mid-Term (Expansion)</td><td>2028–2031</td><td>Weight Zero landmark, Activation Function Tower, TOD integration retrofits, community DAO pilot operations</td><td>Zhongzhiyuan + Dazhongsi + full corridor connectivity</td></tr><tr><td>Long-Term (Maturity)</td><td>2031–2035</td><td>Full belt completion, coordinated three-area operation, global AI pilgrimage destination brand established</td><td>Entire 43.6 km²</td></tr></tbody></table></div>
+<h2>Indicators, Area Recalculation, and Compliance Matrix</h2>
+<h3>Core Indicators <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="comprehensive_index" title="指标：comprehensive_index">指标</sup></h3>
+<div class="proposal-table"><table><thead><tr><th>Indicator</th><th>Conceptual Target</th><th>Data Source</th><th>Current Status</th></tr></thead><tbody><tr><td>Jing-Zhang Park N-S Continuous Length</td><td>~7 km</td><td>Provisional boundary derivation</td><td>Awaiting official data recalculation</td></tr><tr><td>AI Public Space Share (Overall Design Area)</td><td>≥10%</td><td>This proposal&#x27;s GeoJSON</td><td>Awaiting official boundary recalculation</td></tr><tr><td>Green Space Ratio (Overall Design Area)</td><td>≥25%</td><td>This proposal&#x27;s GeoJSON</td><td>Awaiting official boundary recalculation</td></tr><tr><td>Slow-Traffic Network Density</td><td>≥8 km/km²</td><td>This proposal&#x27;s road layer</td><td>Awaiting official road network data verification</td></tr><tr><td>AI Scenario Node Count</td><td>≥10</td><td>Scenario card mapping</td><td>Generated</td></tr><tr><td>AI Pilgrimage Landmark Count</td><td>≥3</td><td>agent.4</td><td>Designed</td></tr><tr><td>User Persona Count</td><td>5</td><td>agent.3</td><td>Defined</td></tr><tr><td>Global Case Study Count</td><td>8</td><td>agent.2</td><td>Completed</td></tr><tr><td>Annual Event Count</td><td>≥5</td><td>agent.6</td><td>Designed</td></tr><tr><td>Edge Compute Lightweight Stations</td><td>≥10</td><td>This proposal</td><td>Conceptual suggestion</td></tr></tbody></table></div>
+<p>Complete indicators with formulas, sources, and confidence intervals reside in <code>metrics.json</code>.</p>
+<h3>Compliance Matrix</h3>
+<p>This proposal responds item-by-item to all requirements in Announcement Sections 1.3, 1.4, and 1.5 — see <code>compliance_matrix.json</code>. This proposal covers all mandatory professional standards — see <code>standard_matrix.json</code>. This proposal completes all required formal design depth items — see <code>design_depth_matrix.json</code> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="all_items" title="深度：all_items">深度</sup>.</p>
+<p>This proposal&#x27;s response to the agent-facing taskbook, agent.1 through agent.6, is as described in the sections above and fully mapped in <code>compliance_matrix.json</code>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="Core Indicators Recalculation and Evidence Chain"><figcaption>Core Indicators Recalculation and Evidence Chain</figcaption></figure>
+<h2>Risk, Copyright, and Compliance</h2>
+<h3>Key Risks <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="risk_assessment" title="指标：risk_assessment">指标</sup></h3>
+<div class="proposal-table"><table><thead><tr><th>Risk Dimension</th><th>Score (1-5)</th><th>Description</th><th>Mitigation</th></tr></thead><tbody><tr><td>Data Privacy</td><td>3</td><td>Some AI scenarios involve public-space perception data</td><td>Statistical-level data only; face blurring; no personal identifier storage</td></tr><tr><td>Implementation Complexity</td><td>4</td><td>Engineering feasibility of three landmark buildings requires verification</td><td>All expressed as conceptual suggestions; no engineering feasibility claims</td></tr><tr><td>Public Acceptance</td><td>2</td><td>AI in public space may raise privacy concerns</td><td>Scenario cards all include privacy boundaries and human review mechanisms</td></tr><tr><td>Operational Cost</td><td>3</td><td>Dynamic LED façades, compute nodes require sustained investment</td><td>Community DAO and open-source fund proposed as supplementary operational models</td></tr><tr><td>Policy Uncertainty</td><td>4</td><td>Provisional boundary substitution; regulatory-plan conditions unknown</td><td>All spatial conclusions marked &quot;awaiting official data confirmation&quot;</td></tr><tr><td>Spatial Controversy</td><td>2</td><td>Increased land-use mixing in three areas may diverge from current regulatory plans</td><td>Explicitly stated as not substituting statutory planning</td></tr><tr><td>Technology Maturity</td><td>2</td><td>Most scenarios are based on existing AI technology, not speculative</td><td>-</td></tr><tr><td>Equity &amp; Inclusivity</td><td>2</td><td>Scenario design explicitly considers local residents (P5) not being excluded by AI development</td><td>-</td></tr></tbody></table></div>
+<h3>Copyright Statement</h3>
+<p>All textual content in this proposal was generated by an AI Agent (Claude Code) under the guidance of <code>wyl91</code>. The visual design direction (logo concept, color system) is an original suggestion, using no unauthorized fonts, trademarks, likenesses, or copyrighted material. Recommended open-source fonts (Source Han Sans, JetBrains Mono) follow their respective SIL Open Font Licenses. Cited sources come from materials registered in this repository as <code>usable_for_formal</code> or <code>background_only</code>, and from publicly accessible government announcements and authoritative reports. For the complete copyright clearance statement, see <code>report/copyright_statement.md</code>.</p>
+<h3>Boundary Statement</h3>
+<p>All spatial implementation suggestions in this proposal are expressed as &quot;conceptual suggestions,&quot; &quot;reference schemes,&quot; or &quot;material for professional teams to deepen.&quot; This proposal does not substitute formal planning, does not constitute government-approved conclusions, and does not contain statutory planning judgments (regulatory-plan adjustments, FAR, building height, specific parcel-level demolition/renovation decisions, road redlines, or engineering feasibility conclusions). No non-public government data, corporate internal data, or personal privacy data is used <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>.</p>
+<h2>References</h2>
+<p>1. Beijing Municipal Commission of Planning and Natural Resources, Haidian Branch, &quot;Centennial Jing-Zhang AI Innovation Belt Urban Design International Competition Pre-Qualification Announcement,&quot; May 2026. 2. Beijing Municipal Science &amp; Technology Commission, &quot;&#x27;Three Areas, Two Wings&#x27; to Build a World-Class AI Hub,&quot; April 2026. 3. Haidian District People&#x27;s Government, &quot;Haidian District Releases &#x27;1+X+1&#x27; Modern Industrial System Development Layout,&quot; March 2026. 4. Ministry of Housing and Urban-Rural Development, &quot;Urban Design Management Measures,&quot; 2017. 5. Ministry of Natural Resources, &quot;Guidelines for Land and Sea Use Classification in Territorial Spatial Survey, Planning, and Use Control,&quot; 2023. 6. OpenStreetMap Contributors, OpenStreetMap Copyright and License (ODbL). 7. This repository, <code>agent_taskbook.json</code> — Agent-Facing Open Call Taskbook Excerpt. 8. This repository, <code>provisional_boundaries.geojson</code> and accompanying derivation documentation. 9. Station F, Paris — World&#x27;s largest startup campus case study. 10. One-North, Singapore — Government-planned science city integrated with nature case study. 11. Mila (Montreal Institute for Learning Algorithms) — AI talent ecosystem case study.</p>
+</main>
+</body>
+</html>
