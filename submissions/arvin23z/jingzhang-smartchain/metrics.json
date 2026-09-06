@@ -1,0 +1,157 @@
+{
+  "schema_version": "0.1.0",
+  "area_calculation_crs": "EPSG:4548",
+  "metrics": {
+    "total_planning_area_sqm": {
+      "value": 11400000,
+      "status": "provisional_declared",
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "公告声明面积（代理未独立复算）",
+      "confidence": "medium",
+      "assumptions": "基于公告文字描述，official GIS polygon 缺失"
+    },
+    "key_areas_total_sqm": {
+      "value": 3684000,
+      "status": "provisional_declared",
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "sum(zhongzhiyuan + origin_community + dazhongsi)",
+      "confidence": "medium",
+      "assumptions": "基于公告面积值；provisional polygon 用于可视化"
+    },
+    "zhongzhiyuan_area_sqm": {
+      "value": 1921000,
+      "status": "provisional_declared",
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#KEY-001"],
+      "confidence": "medium",
+      "assumptions": "公告面积值"
+    },
+    "origin_community_area_sqm": {
+      "value": 1043000,
+      "status": "provisional_declared",
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#KEY-002"],
+      "confidence": "medium",
+      "assumptions": "公告面积值"
+    },
+    "dazhongsi_area_sqm": {
+      "value": 720000,
+      "status": "provisional_declared",
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson#KEY-003"],
+      "confidence": "medium",
+      "assumptions": "公告面积值"
+    },
+    "green_space_ratio_pct": {
+      "value": 14.0,
+      "status": "agent_calculated",
+      "unit": "%",
+      "source_files": ["geometry/green_space.geojson", "geometry/land_use.geojson"],
+      "formula": "green_space_area / total_planning_area * 100",
+      "confidence": "low",
+      "assumptions": "基于概念用地布局，非实测绿地率"
+    },
+    "public_space_ratio_pct": {
+      "value": 18.5,
+      "status": "agent_calculated",
+      "unit": "%",
+      "source_files": ["geometry/public_space.geojson", "geometry/land_use.geojson"],
+      "formula": "(green + public_plaza + corridor) / total_area * 100",
+      "confidence": "low",
+      "assumptions": "公共空间面积包含公园绿地和广场，非实测数据"
+    },
+    "research_land_ratio_pct": {
+      "value": 25.0,
+      "status": "agent_calculated",
+      "unit": "%",
+      "source_files": ["geometry/land_use.geojson#LU-001"],
+      "confidence": "low",
+      "assumptions": "概念用地分类，待控规确认"
+    },
+    "commercial_land_ratio_pct": {
+      "value": 16.0,
+      "status": "agent_calculated",
+      "unit": "%",
+      "source_files": ["geometry/land_use.geojson#LU-002", "geometry/land_use.geojson#LU-008"],
+      "confidence": "low",
+      "assumptions": "含混合商业和新型产业用地"
+    },
+    "ai_scenario_nodes": {
+      "value": 10,
+      "status": "agent_designed",
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "10 scenario cards as required",
+      "confidence": "medium",
+      "assumptions": "符合 agent taskbook agent.3 要求"
+    },
+    "ai_landmarks": {
+      "value": 3,
+      "status": "agent_designed",
+      "unit": "count",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "开发者散步道 + AI开源广场 + 百年京张AI纪念碑",
+      "confidence": "medium",
+      "assumptions": "符合 agent taskbook agent.4 不少于3个要求"
+    },
+    "user_personas": {
+      "value": 5,
+      "status": "agent_designed",
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "confidence": "medium",
+      "assumptions": "符合 agent taskbook agent.3 不少于5类要求"
+    },
+    "global_ai_cases": {
+      "value": 7,
+      "status": "agent_designed",
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "confidence": "medium",
+      "assumptions": "符合 agent taskbook agent.2 5-8个案例要求"
+    },
+    "industrial_test_scenarios": {
+      "value": 3,
+      "status": "agent_designed",
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "confidence": "medium",
+      "assumptions": "符合 agent taskbook agent.3 不少于3个测试验证场景要求"
+    },
+    "road_network_density": {
+      "value": 8.0,
+      "status": "agent_calculated",
+      "unit": "%",
+      "source_files": ["geometry/roads.geojson", "geometry/land_use.geojson"],
+      "confidence": "low",
+      "assumptions": "基于概念道路布局，待交通专业复核"
+    },
+    "building_retention_ratio": {
+      "value": 68.3,
+      "status": "agent_calculated",
+      "unit": "%",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "(retain_area / total_building_area) * 100",
+      "confidence": "low",
+      "assumptions": "基于年代和功能推测，非建筑普查数据"
+    },
+    "building_renovation_ratio": {
+      "value": 17.6,
+      "status": "agent_calculated",
+      "unit": "%",
+      "source_files": ["geometry/buildings.geojson"],
+      "confidence": "low",
+      "assumptions": "概念方向，待实地评估"
+    },
+    "building_new_ratio": {
+      "value": 14.1,
+      "status": "agent_calculated",
+      "unit": "%",
+      "source_files": ["geometry/buildings.geojson"],
+      "confidence": "low",
+      "assumptions": "概念方向，待控规确认"
+    }
+  }
+}

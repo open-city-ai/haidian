@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张·智链 | Jing-Zhang SmartChain — AI创新带城市设计方案</title>
+<style>
+  :root {
+    --bg: #fafaf9;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #555;
+    --border: #e5e5e5;
+    --red: #C41E3A;
+    --blue: #0052D9;
+    --green: #00A870;
+    --purple: #7B2D8E;
+    --rail: #8B4513;
+    --max-w: 1024px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(255,255,255,0.02) 8px, rgba(255,255,255,0.02) 9px);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: 2.4em;
+    font-weight: 800;
+    margin-bottom: 8px;
+    position: relative;
+    letter-spacing: 0.05em;
+  }
+  .hero h1 .accent { color: var(--purple); }
+  .hero .subtitle {
+    font-size: 1.1em;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 24px;
+  }
+  .hero .meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 0.85em;
+    color: rgba(255,255,255,0.5);
+  }
+  .hero .rail-line {
+    width: 80%;
+    max-width: 600px;
+    height: 2px;
+    margin: 32px auto 0;
+    background: linear-gradient(90deg, var(--red), var(--purple), var(--blue));
+    position: relative;
+  }
+  .hero .rail-line::before, .hero .rail-line::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .hero .rail-line::before { left: 0; background: var(--red); }
+  .hero .rail-line::after { right: 0; background: var(--blue); }
+  .hero .rail-stations {
+    width: 80%;
+    max-width: 600px;
+    margin: 8px auto 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7em;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 32px 24px; }
+  .section { margin-bottom: 48px; }
+  .section h2 {
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section h2 .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-red { background: var(--red); }
+  .dot-blue { background: var(--blue); }
+  .dot-green { background: var(--green); }
+  .dot-purple { background: var(--purple); }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .metric-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .metric-card .value {
+    font-size: 2em;
+    font-weight: 800;
+    color: var(--blue);
+    line-height: 1.2;
+  }
+  .metric-card .value.red { color: var(--red); }
+  .metric-card .value.purple { color: var(--purple); }
+  .metric-card .value.green { color: var(--green); }
+  .metric-card .label {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .card h3 {
+    font-size: 1.1em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    font-weight: 600;
+  }
+  .tag-red { background: #fce4e4; color: var(--red); }
+  .tag-blue { background: #e0ecff; color: var(--blue); }
+  .tag-green { background: #e0f5ec; color: var(--green); }
+  .tag-purple { background: #f0e0f5; color: var(--purple); }
+
+  .timeline {
+    display: flex;
+    gap: 0;
+    margin: 24px 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 30px; left: 0; right: 0;
+    height: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding-top: 40px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 24px; left: 50%;
+    transform: translateX(-50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--blue);
+    border: 3px solid var(--bg);
+  }
+  .timeline-item h4 { font-size: 0.9em; margin-bottom: 8px; }
+  .timeline-item p { font-size: 0.8em; color: var(--text-secondary); }
+
+  .progress-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: #e5e5e5;
+    margin: 8px 0;
+    overflow: hidden;
+  }
+  .progress-bar .fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s;
+  }
+  .fill-red { background: var(--red); }
+  .fill-blue { background: var(--blue); }
+  .fill-green { background: var(--green); }
+  .fill-purple { background: var(--purple); }
+
+  .warning-box {
+    background: #fff8e1;
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 0.85em;
+    margin: 16px 0;
+  }
+  .warning-box strong { color: #f57f17; }
+
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  footer .disclaimer {
+    max-width: 700px;
+    margin: 16px auto 0;
+    font-size: 0.8em;
+    color: #999;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.6em; }
+    .metric-grid { grid-template-columns: 1fr 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; gap: 24px; }
+    .timeline::before { display: none; }
+    .timeline-item { padding-top: 0; }
+    .timeline-item::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>京张<span class="accent">·</span>智链</h1>
+  <div class="subtitle">Jing-Zhang SmartChain — 百年京张AI创新带城市设计方案</div>
+  <div class="rail-line"></div>
+  <div class="rail-stations">
+    <span>众智园 AI加速区</span>
+    <span>AI原点社区</span>
+    <span>大钟寺 AI产业区</span>
+  </div>
+  <div class="meta">
+    <span>作者：arvin23z</span>
+    <span>Agent：WorkBuddy</span>
+    <span>2026年8月</span>
+    <span>v0.1</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 核心指标 -->
+  <div class="section">
+    <h2><span class="dot dot-blue"></span>核心指标</h2>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="value red">43.6<span style="font-size:0.5em">km²</span></div>
+        <div class="label">统筹研究范围</div>
+      </div>
+      <div class="metric-card">
+        <div class="value blue">11.4<span style="font-size:0.5em">km²</span></div>
+        <div class="label">总体设计范围</div>
+      </div>
+      <div class="metric-card">
+        <div class="value purple">368<span style="font-size:0.5em">ha</span></div>
+        <div class="label">重点区域</div>
+      </div>
+      <div class="metric-card">
+        <div class="value green">14<span style="font-size:0.5em">%</span></div>
+        <div class="label">绿地比例（概念）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三区两翼 -->
+  <div class="section">
+    <h2><span class="dot dot-red"></span>三区两翼 · 空间结构</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="tag tag-purple">北·智核</span> 众智园AI自主创新加速区</h3>
+        <p>约192 ha — 承载AI全栈自主创新和AI治理全球话语权。「中国AI的贝尔实验室」，一心一环两组团。</p>
+        <div class="progress-bar"><div class="fill fill-purple" style="width:52%"></div></div>
+        <div style="font-size:0.75em;color:var(--text-secondary);margin-top:4px">192.1 ha / 368.4 ha（52%）</div>
+      </div>
+      <div class="card">
+        <h3><span class="tag tag-blue">中·智汇</span> 北京AI原点社区</h3>
+        <p>约104 ha — 承载世界级AI创新生态。「全球开发者的第二故乡」，一园一街一社区。</p>
+        <div class="progress-bar"><div class="fill fill-blue" style="width:28%"></div></div>
+        <div style="font-size:0.75em;color:var(--text-secondary);margin-top:4px">104.3 ha / 368.4 ha（28%）</div>
+      </div>
+      <div class="card">
+        <h3><span class="tag tag-green">南·智境</span> 大钟寺AI产业集聚区</h3>
+        <p>约72 ha — 承载智能原生新业态。「AI原生的城市客厅」，一站一街一群。</p>
+        <div class="progress-bar"><div class="fill fill-green" style="width:20%"></div></div>
+        <div style="font-size:0.75em;color:var(--text-secondary);margin-top:4px">72.0 ha / 368.4 ha（20%）</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;display:flex;gap:16px;flex-wrap:wrap">
+      <div class="card" style="flex:1;min-width:250px">
+        <h3><span class="tag tag-blue">西翼</span> 中关村科技服务翼</h3>
+        <p>要素全球化配置、中关村IP与资本赋能，向西对接中关村核心区。</p>
+      </div>
+      <div class="card" style="flex:1;min-width:250px">
+        <h3><span class="tag tag-green">东翼</span> 小月河场景赋能翼</h3>
+        <p>AI场景赋能与智能化AI活力城市，提供真实城市场景测试环境。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI场景卡 -->
+  <div class="section">
+    <h2><span class="dot dot-purple"></span>10张AI场景卡</h2>
+    <div class="card-grid">
+      <div class="card"><h3>🏥 AI+医疗</h3><p>社区AI健康驿站 — 辅助问诊、慢病管理</p><span class="tag tag-purple">原点社区</span></div>
+      <div class="card"><h3>📚 AI+教育</h3><p>智慧校园AI助教 — 个性化学习路径</p><span class="tag tag-blue">北航/北邮</span></div>
+      <div class="card"><h3>🚲 AI+交通</h3><p>京张AI慢行廊道 — L4低速接驳</p><span class="tag tag-green">京张公园</span></div>
+      <div class="card"><h3>🛍️ AI+商业</h3><p>大钟寺智能零售实验场</p><span class="tag tag-green">大钟寺</span></div>
+      <div class="card"><h3>🌳 AI+公共空间</h3><p>开发者散步道 — 贡献者铭牌</p><span class="tag tag-blue">原点社区</span></div>
+      <div class="card"><h3>🏛️ AI+公共服务</h3><p>智能政务助手 — AI政策匹配</p><span class="tag tag-red">众智园</span></div>
+      <div class="card"><h3>🎨 AI+文化</h3><p>京张AI数字博物馆 — AR历史重现</p><span class="tag tag-red">京张公园北段</span></div>
+      <div class="card"><h3>🌿 AI+环保</h3><p>智慧蓝绿监测 — 生物多样性</p><span class="tag tag-green">小月河</span></div>
+      <div class="card"><h3>⚡ AI+能源</h3><p>分布式智能微电网</p><span class="tag tag-purple">众智园</span></div>
+      <div class="card"><h3>🛡️ AI+安全</h3><p>城市智能体治理平台（概念）</p><span class="tag tag-red">众智园治理中心</span></div>
+    </div>
+  </div>
+
+  <!-- 三个朝圣地标 -->
+  <div class="section">
+    <h2><span class="dot dot-green"></span>三个AI朝圣地标</h2>
+    <div class="card-grid">
+      <div class="card" style="border-left:4px solid var(--blue)">
+        <h3>1. 开发者散步道</h3>
+        <p>沿旧铁路轨道400m线性空间，两侧"贡献者铭牌"记录历次开源征集贡献者。地面LED光带实时展示全球开源热力图。</p>
+        <span class="tag tag-blue">原点社区·京张公园中段</span>
+      </div>
+      <div class="card" style="border-left:4px solid var(--purple)">
+        <h3>2. AI开源广场</h3>
+        <p>圆形阶梯广场，中央LED屏幕展示全球AI开源动态。黑客松/开源发布/技术演讲。可容纳500人。</p>
+        <span class="tag tag-purple">原点社区·核心</span>
+      </div>
+      <div class="card" style="border-left:4px solid var(--red)">
+        <h3>3. 百年京张·AI纪念碑</h3>
+        <p>两条锈蚀钢轨从地面升起交汇成∞（无穷符号）。基座铭刻詹天佑名言和AI先驱贡献者姓名。</p>
+        <span class="tag tag-red">众智园·北端起点</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三段文化叙事 -->
+  <div class="section">
+    <h2><span class="dot dot-red"></span>百年京张 → 中关村创新 → AI新文化</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>1909</h4>
+        <p>京张铁路建成<br>詹天佑自主设计<br>中国人第一条干线铁路</p>
+      </div>
+      <div class="timeline-item">
+        <h4>1988</h4>
+        <p>中关村电子一条街<br>中国科技产业崛起<br>从世界工厂到创新高地</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2026 →</h4>
+        <p>AI新文化<br>人机共生的城市实验<br>京张·智链 开源征集</p>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--text-secondary);margin-top:16px;font-size:0.9em;">
+      三段叙事的交汇点：<strong>AI原点社区</strong> — 100年前京张铁路经过的地方，40年前中关村精神萌芽的地方，今天AI新文化的起点。
+    </p>
+  </div>
+
+  <!-- 分期 -->
+  <div class="section">
+    <h2><span class="dot dot-blue"></span>实施分期</h2>
+    <div class="card-grid">
+      <div class="card" style="border-top:4px solid var(--green)">
+        <h3>近期 2026-2028</h3>
+        <p style="font-size:0.85em">品牌启动与轻量试点</p>
+        <ul style="margin-top:8px;font-size:0.8em;color:var(--text-secondary);padding-left:20px">
+          <li>一带品牌发布</li>
+          <li>开发者散步道一期</li>
+          <li>首批5个AI场景试点</li>
+          <li>全球开发者社区启动</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:4px solid var(--blue)">
+        <h3>中期 2028-2031</h3>
+        <p style="font-size:0.85em">空间深化与生态构建</p>
+        <ul style="margin-top:8px;font-size:0.8em;color:var(--text-secondary);padding-left:20px">
+          <li>众智园AI研发中心建设</li>
+          <li>原点社区人才公寓</li>
+          <li>大钟寺商业街改造</li>
+          <li>京张AI慢行廊道贯通</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:4px solid var(--purple)">
+        <h3>远期 2031-2035</h3>
+        <p style="font-size:0.85em">全球AI创新目的地</p>
+        <ul style="margin-top:8px;font-size:0.8em;color:var(--text-secondary);padding-left:20px">
+          <li>一带全面建成</li>
+          <li>全球AI创新峰会永久会址</li>
+          <li>开发者社区100万+</li>
+          <li>AI治理"海淀共识"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 合规检查 -->
+  <div class="section">
+    <h2><span class="dot dot-green"></span>合规自检 · 全部 PASS</h2>
+    <div class="card">
+      <table style="width:100%;font-size:0.85em;border-collapse:collapse">
+        <tr><td style="padding:8px;border-bottom:1px solid var(--border)">确定性验证</td><td style="padding:8px;border-bottom:1px solid var(--border);text-align:right;color:var(--green);font-weight:700">✅ PASS</td></tr>
+        <tr><td style="padding:8px;border-bottom:1px solid var(--border)">空间审查</td><td style="padding:8px;border-bottom:1px solid var(--border);text-align:right;color:var(--green);font-weight:700">✅ PASS</td></tr>
+        <tr><td style="padding:8px;border-bottom:1px solid var(--border)">视觉打包检查</td><td style="padding:8px;border-bottom:1px solid var(--border);text-align:right;color:var(--green);font-weight:700">✅ PASS</td></tr>
+        <tr><td style="padding:8px;">专业证据审查</td><td style="padding:8px;text-align:right;color:var(--green);font-weight:700">✅ PASS</td></tr>
+      </table>
+    </div>
+    <div class="warning-box" style="margin-top:16px">
+      <strong>🟡 Provisional Boundary 声明</strong><br>
+      当前缺少 official GIS/CAD polygon。所有空间图层基于临时粗略边界生成，仅用于 AI agent 生成、展示和临时自检。获得 official polygon 后，所有图层、面积、比例和指标需全部重算。
+    </div>
+  </div>
+
+  <!-- 7个全球案例 -->
+  <div class="section">
+    <h2><span class="dot dot-blue"></span>全球AI创新生态对标 · 7个案例</h2>
+    <div class="card-grid">
+      <div class="card"><strong>MIT Kendall Square</strong> <span>波士顿</span><br><small>大学-产业-社区"步行创新区"</small></div>
+      <div class="card"><strong>Station F</strong> <span>巴黎</span><br><small>旧火车站 → 全球最大创业园</small></div>
+      <div class="card"><strong>King's Cross</strong> <span>伦敦</span><br><small>铁路用地+知识区+公共空间</small></div>
+      <div class="card"><strong>深圳南山</strong> <span>深圳</span><br><small>从世界工厂到中国硅谷</small></div>
+      <div class="card"><strong>涩谷STREAM</strong> <span>东京</span><br><small>暗渠再生+科技商业混合</small></div>
+      <div class="card"><strong>One-North</strong> <span>新加坡</span><br><small>科学城→科学社区转型</small></div>
+      <div class="card"><strong>Silicon Allee</strong> <span>柏林</span><br><small>低成本文化活力+渐进更新</small></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>京张·智链 | Jing-Zhang SmartChain</p>
+  <p>Contributor: arvin23z · Agent: WorkBuddy · 2026-08-07 · v0.1</p>
+  <p class="disclaimer">
+    ⚠️ 本展示页为离线静态 HTML。所有空间落地建议均为"概念建议""参考方案"或"可供专业团队深化研究"。不替代正式规划，不构成政府审定结论。Provisional boundary 仅用于 AI agent 生成和临时自检。License: COMMUNITY-DISPLAY-ONLY
+  </p>
+</footer>
+
+</body>
+</html>
