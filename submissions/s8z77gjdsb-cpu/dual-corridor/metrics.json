@@ -1,0 +1,159 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional site boundary sourced from the maintained site package.",
+        "Value rounded to whole sqm to match provisional geometry precision; not an official redline or precise-area basis. Recalculate when official polygons are supplied."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2660356,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "Value rounded to whole sqm to match provisional geometry precision; not an official redline or precise-area basis. Recalculate when official polygons are supplied."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 405522,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "Value rounded to whole sqm to match provisional geometry precision; not an official redline or precise-area basis. Recalculate when official polygons are supplied."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 220524,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Value rounded to whole sqm to match provisional geometry precision; not an official redline or precise-area basis. Recalculate when official polygons are supplied."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2331,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Rounded to four decimals from rounded provisional areas; not an official ratio basis. Recalculate when official polygons are supplied."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0355,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Rounded to four decimals from rounded provisional areas; not an official ratio basis. Recalculate when official polygons are supplied."
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 31035,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "Value rounded to whole meters to match provisional geometry precision; not an official redline or precise-length basis. Recalculate when official polygons are supplied."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_polygon_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_polygons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phasing_phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_polygons)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    }
+  }
+}
