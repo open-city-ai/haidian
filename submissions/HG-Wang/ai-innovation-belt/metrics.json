@@ -1,0 +1,272 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 12116773.05,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area_epsg4548(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Boundary is provisional; replace official polygon after release.",
+        "Area in EPSG:4548: 12116773.05 sqm."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_areas_total_sqm": {
+      "status": "known",
+      "value": 3692893.01,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "sum(polygon_area(zhongzhiyuan)) + sum(polygon_area(ai_origin_community)) + sum(polygon_area(dazhongsi))",
+      "confidence": "medium",
+      "assumptions": [
+        "Individual key area polygons are provisional; replace official polygons after release."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space computed from provisional geometry."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1341555.96,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area_building_footprint_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from geometry in EPSG:4548"
+      ]
+    },
+    "ai_service_zone_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(zhongzhiyuan_ai_acceleration_area + beijing_ai_origin_community + dazhongsi_ai_industry_cluster)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson",
+        "geometry/constraints.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(ai_scenario_cards)",
+      "confidence": "high",
+      "assumptions": [
+        "12 scenario cards include 4 industry test scenarios and 8 public/city service scenarios."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/key_areas.geojson",
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(industry_validation_scenario_cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Industry test scenarios are: 02 Security Governance Sandbox, 03 Edge Computing Station, 08 Data Element Living Room, 11 Smart Parking Guidance."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": [
+        "Personas are: open source contributor, startup team, enterprise visitor, local resident, university student/faculty, international innovator."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(ai_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "Landmarks are: Heritage Tower, Open Source Honor Wall, AI Governance Outlook."
+      ]
+    },
+    "phasing_phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(unique_phase_periods)",
+      "confidence": "high",
+      "assumptions": [
+        "Phases are: 2026-2030 (near-term), 2031-2035 (mid-term), 2036-2040 (long-term)."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprint_features)",
+      "confidence": "high",
+      "assumptions": [
+        "18 buildings include: 5 in Zhongzhiyuan, 3 western commercial, 5 in AI Origin Community, 5 in Dazhongsi."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "building_height_m_max": {
+      "status": "known",
+      "value": 160,
+      "unit": "m",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "max(height_m of all building footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Building heights are design proposals, not statutory controls."
+      ]
+    },
+    "green_ratio_current": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Current provisional geometry green space ratio is ~0.12.",
+        "Design target is 0.25 pending official green space survey."
+      ]
+    },
+    "public_space_ratio_current": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Current provisional geometry public space ratio is ~0.07.",
+        "Design target is 0.08 pending official public space inventory."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1360028.98,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area_green_space_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from geometry in EPSG:4548"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area_public_space_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Computed from geometry in EPSG:4548"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.112243,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space computed from provisional geometry."
+      ]
+    }
+  }
+}
