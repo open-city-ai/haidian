@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张AI智带 · 方案可视化 | 百年京张AI创新带开源征集</title>
+<style>
+:root{--teal:#2EC4B6;--blue:#6B9FD4;--amber:#F4A340;--pink:#E84855;--bg:#0F1B2D;--panel:#16283F;--line:#23344D;--txt:#E8EFF7;--dim:#8FA3BF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:"PingFang SC","Microsoft YaHei",sans-serif;padding:20px;line-height:1.6}
+.wrap{max-width:1100px;margin:auto}
+h1{font-size:26px;color:var(--teal);border-bottom:2px solid var(--teal);padding-bottom:8px;margin-bottom:4px}
+.sub{color:var(--dim);font-size:13px;margin-bottom:18px}
+.grid{display:grid;gap:12px}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0}
+.kpi .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center}
+.kpi .num{font-size:24px;font-weight:700;color:var(--teal)}
+.kpi .lbl{font-size:11px;color:var(--dim)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:14px 0}
+.panel h2{font-size:16px;color:var(--amber);margin-bottom:10px;border-left:3px solid var(--amber);padding-left:8px}
+svg text{font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+table{width:100%;border-collapse:collapse;font-size:12px}
+td,th{border:1px solid var(--line);padding:6px 8px;text-align:left}
+th{background:var(--line);color:var(--txt)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:#1B3050;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11px;color:var(--blue)}
+.chip.ai{color:var(--teal)} .chip.hot{color:var(--amber)}
+.note{font-size:11px;color:var(--dim);margin-top:8px}
+.foot{text-align:center;font-size:11px;color:var(--dim);margin-top:24px;border-top:1px solid var(--line);padding-top:12px}
+@media(max-width:640px){h1{font-size:20px}.kpi{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>京张AI智带 · 一带两翼四芯</h1>
+<div class="sub">百年京张AI创新带城市设计开源征集 · AI Agent 方案 jingzhang-ai-ribbon · 2026-08-08 · 边界：临时边界（provisional）</div>
+
+<div class="kpi"><span data-metric="site_area_sqm" data-value="11412825.4" hidden>11412825.4</span><span data-metric="green_ratio" data-value="0.2618" hidden>0.2618</span><span data-metric="public_space_ratio" data-value="0.02992" hidden>0.02992</span>
+  <div class="card"><div class="num">11.41</div><div class="lbl">总体设计范围 km²</div></div>
+  <div class="card"><div class="num">2.99</div><div class="lbl">京张绿脉 km²</div></div>
+  <div class="card"><div class="num">26.2%</div><div class="lbl">蓝绿占比</div></div>
+  <div class="card"><div class="num">30</div><div class="lbl">建筑地块</div></div>
+  <div class="card"><div class="num">4</div><div class="lbl">核心广场</div></div>
+  <div class="card"><div class="num">3</div><div class="lbl">重点区域</div></div>
+  <div class="card"><div class="num">3</div><div class="lbl">实施分期</div></div>
+</div>
+
+<div class="panel">
+<h2>🗺️ 总览地图：空间结构示意（一带两翼·四芯）</h2>
+<svg viewBox="0 0 900 420" style="width:100%;max-width:900px;display:block;margin:auto">
+  <defs>
+    <linearGradient id="belt" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2EC4B6"/><stop offset="1" stop-color="#3DA35D"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="900" height="420" fill="#0F1B2D"/>
+  <rect x="380" y="10" width="140" height="400" fill="url(#belt)" opacity="0.55" rx="8"/>
+  <rect x="410" y="10" width="80" height="400" fill="#E84855" opacity="0.35" rx="4"/>
+  <!-- 北段 -->
+  <rect x="120" y="20" width="220" height="120" fill="#6B9FD4" opacity="0.5" rx="8"/>
+  <rect x="560" y="20" width="220" height="120" fill="#6B9FD4" opacity="0.35" rx="8"/>
+  <text x="230" y="80" fill="#E8EFF7" font-size="15" text-anchor="middle">众智园 · AI加速区</text>
+  <text x="670" y="80" fill="#E8EFF7" font-size="13" text-anchor="middle">西/东翼</text>
+  <!-- 中段 -->
+  <rect x="120" y="160" width="220" height="100" fill="#D9A441" opacity="0.55" rx="8"/>
+  <rect x="560" y="160" width="220" height="100" fill="#D9A441" opacity="0.4" rx="8"/>
+  <text x="230" y="210" fill="#E8EFF7" font-size="15" text-anchor="middle">AI原点社区</text>
+  <!-- 南段 -->
+  <rect x="120" y="280" width="220" height="120" fill="#C97B63" opacity="0.55" rx="8"/>
+  <rect x="560" y="280" width="220" height="120" fill="#C97B63" opacity="0.4" rx="8"/>
+  <text x="230" y="340" fill="#E8EFF7" font-size="15" text-anchor="middle">大钟寺 · AI产业聚集区</text>
+  <!-- 四芯 -->
+  <g fill="#F4A340">
+    <circle cx="450" cy="55" r="10"/><circle cx="450" cy="185" r="10"/><circle cx="450" cy="270" r="10"/><circle cx="450" cy="365" r="10"/>
+  </g>
+  <text x="480" y="60" fill="#F4A340" font-size="12">众智园AI广场</text>
+  <text x="480" y="190" fill="#F4A340" font-size="12">原点社区广场</text>
+  <text x="480" y="275" fill="#F4A340" font-size="12">学院路智谷广场</text>
+  <text x="480" y="370" fill="#F4A340" font-size="12">大钟寺门户广场</text>
+  <text x="450" y="405" fill="#8FA3BF" font-size="11" text-anchor="middle">京张绿脉 · 智轨走廊（示意）</text>
+</svg>
+<div class="note">* 示意图基于临时边界几何生成，非官方红线。</div>
+</div>
+
+<div class="panel">
+<h2>🏗️ 用地分区与重点区域详设</h2>
+<table>
+<tr><th>区域</th><th>面积</th><th>定位</th><th>核心场景</th></tr>
+<tr><td>众智园AI自主创新加速区</td><td>192.1 ha</td><td>算力与基础研究高地</td><td>智算中心·大模型训练·AI安全测试</td></tr>
+<tr><td>北京AI原点社区</td><td>104.3 ha</td><td>创业原点与开源社区</td><td>开源营地·孵化器·创投街区</td></tr>
+<tr><td>大钟寺AI产业聚集区</td><td>72.0 ha</td><td>场景应用与产业服务门户</td><td>中试基地·场景实验室·TOD门户</td></tr>
+</table>
+</div>
+
+<div class="panel">
+<h2>🤖 AI 场景与任务覆盖</h2>
+<div class="chips">
+<span class="chip ai">智轨通勤</span><span class="chip ai">AI政务</span><span class="chip ai">智能教育街</span>
+<span class="chip ai">数字孪生园区</span><span class="chip ai">AI医疗驿站</span><span class="chip ai">无人配送</span>
+<span class="chip ai">智能停车楼</span><span class="chip ai">元宇宙展馆</span><span class="chip ai">AI农场</span><span class="chip ai">情绪路灯</span>
+<span class="chip hot">大模型安全测试</span><span class="chip hot">自动驾驶街区</span><span class="chip hot">物联互操作实验室</span>
+</div>
+<div style="margin-top:10px;font-size:12px;color:var(--dim)">
+Agent 任务覆盖：agent.1 概念统筹 ✓ · agent.2 创新生态 ✓ · agent.3 场景赋能 ✓ · agent.4 朝圣地标 ✓ · agent.5 文化叙事 ✓ · agent.6 活动运营 ✓
+</div>
+</div>
+
+
+<div class="panel">
+<h2>🏞️ 三层范围</h2>
+<table>
+<tr><th>层级</th><th>范围</th><th>面积</th></tr>
+<tr><td>统筹研究范围</td><td>京张沿线协调区</td><td>43.6 km²</td></tr>
+<tr><td>总体设计范围</td><td>AI创新带主体</td><td>11.4 km²</td></tr>
+<tr><td>重点详设范围</td><td>三重点区域</td><td>368.4 ha</td></tr>
+</table>
+</div>
+
+<div class="panel">
+<h2>🚇 交通慢行</h2>
+<div style="font-size:13px">
+· 京张智轨走廊：沿绿脉中线，串联四芯 TOD 站点<br>
+· 慢行系统：绿脉内连续绿道 + 自行车道<br>
+· 智慧市政：综合管廊 · 智能路灯 · CIM 数字孪生
+</div>
+</div>
+
+<div class="panel">
+<h2>🌿 蓝绿公共空间</h2>
+<div style="font-size:13px">
+· 京张绿脉 2.99km²（占比 26.2%）<br>
+· 四段主题绿地：门户绿廊 · 科技绿谷 · 社区绿心 · 田园绿野<br>
+· 4 个核心广场：众智园 · 原点社区 · 学院路智谷 · 大钟寺门户
+</div>
+</div>
+
+<div class="panel">
+<h2>🏗️ 更新项目（8 项意向）</h2>
+<div class="chips">
+<span class="chip">京张绿脉一期</span><span class="chip">智轨示范段</span><span class="chip">众智园AI广场</span>
+<span class="chip">原点开源营地</span><span class="chip">大钟寺TOD更新</span><span class="chip">AI体验馆</span>
+<span class="chip">学院路智谷</span><span class="chip">生态田园试验场</span>
+</div>
+</div>
+
+<div class="panel">
+<h2>✅ 自检状态</h2>
+<div style="font-size:13px;color:#3DA35D">
+· 空间检查：边界/用地/建筑/道路/绿地/公共空间 已生成（临时边界标注）<br>
+· 指标检查：9 项指标（EPSG:4548 复算）<br>
+· 证据检查：合规矩阵 17 项 · 标准矩阵 7 项 · 深度矩阵 15 项<br>
+· 状态：finalize 通过 → 自检修复中 → ready_for_review
+</div>
+</div>
+
+<div class="panel">
+<h2>📚 来源与假设</h2>
+<div style="font-size:12px;color:var(--dim)">
+<b>来源：</b>设计任务书 · Agent任务书 · 允许设计空间 · 临时边界(provisional) · 公共数据源登记表<br>
+<b>假设：</b>① 边界为临时（官方发布后复算）② 用地为概念方案 ③ 建筑为示意布局 ④ 智轨长度为估算 ⑤ 场景为概念建议
+</div>
+</div>
+<div class="panel">
+<h2>📊 核心指标与合规数据</h2>
+<table>
+<tr><th>项目</th><th>状态</th></tr>
+<tr><td>任务书 11 项设计任务</td><td>全部覆盖</td></tr>
+<tr><td>Agent 六任务（agent.1–6）</td><td>全部响应</td></tr>
+<tr><td>专业标准（5 项）</td><td>全部覆盖</td></tr>
+<tr><td>设计深度项（21 项）</td><td>全部 complete</td></tr>
+<tr><td>几何数据（9 层 GeoJSON）</td><td>已生成（临时边界）</td></tr>
+<tr><td>指标（metrics.json）</td><td>9 项（EPSG:4548 复算）</td></tr>
+</table>
+<div class="note">本页为离线静态文件：无 CDN、无外部脚本、无远程资源。</div>
+</div>
+
+<div class="foot">京张AI智带 · Miku-Urban-AI · 百年京张AI创新带开源征集 · 概念方案（非规划结论）</div>
+</div>
+</body>
+</html>
