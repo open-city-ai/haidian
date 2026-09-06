@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "title": "京张·休耕脊线离线痕迹演练台账",
+  "summary": "用固定 seed 的离线合成任务说明欲望线、低速机器人和文化导览在失败、超预算和审计缺口时的读数。不是现场实测，也不是效果承诺。",
+  "status": "validated_offline_synthetic",
+  "method": "固定 seed 的离线合成轨迹；不调用在线模型，不接入真实机器人，不使用个人数据。",
+  "seed": 20260831,
+  "replan_p95_method": "nearest-rank percentile over tasks[].replan_seconds",
+  "task_count": 8,
+  "tasks": [
+    {
+      "task_id": "SIM-001",
+      "scenario_id": "ai-traffic-walkability",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 0.8,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-002",
+      "scenario_id": "ai-traffic-walkability",
+      "outcome": "replanned_success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 1.3,
+      "replan_seconds": 4.2
+    },
+    {
+      "task_id": "SIM-003",
+      "scenario_id": "robot-delivery-low-speed",
+      "outcome": "replanned_success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.5,
+      "energy_used_kwh": 1.9,
+      "replan_seconds": 7.1
+    },
+    {
+      "task_id": "SIM-004",
+      "scenario_id": "robot-delivery-low-speed",
+      "outcome": "failure",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 2.2,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-005",
+      "scenario_id": "public-safety-operations-review",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 1.5,
+      "energy_used_kwh": 0.6,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-006",
+      "scenario_id": "ai-cultural-guide",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": false,
+      "energy_budget_kwh": 1.5,
+      "energy_used_kwh": 0.5,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-007",
+      "scenario_id": "enterprise-service-copilot",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 2.0,
+      "energy_used_kwh": 1.1,
+      "replan_seconds": 0.0
+    },
+    {
+      "task_id": "SIM-008",
+      "scenario_id": "ai-health-service-navigation",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true,
+      "energy_budget_kwh": 1.5,
+      "energy_used_kwh": 0.7,
+      "replan_seconds": 0.0
+    }
+  ],
+  "baselines": {
+    "urban_llm_harness": {
+      "status": "validated_offline_synthetic",
+      "claim_scope": "离线合成演练读数，非现场实测",
+      "replayable": true,
+      "success_rate": 0.875,
+      "tool_schema_pass_rate": 1.0,
+      "energy_budget_violations": 1,
+      "audit_completeness": 0.875,
+      "replan_p95_seconds": 7.1,
+      "high_risk_intercept_rate": null,
+      "high_risk_metric_note": "not_applicable: 本任务清单未包含高风险拦截用例"
+    },
+    "ai_off_equivalent": {
+      "status": "validated_offline_synthetic",
+      "claim_scope": "AI 关闭后的人工兜底等价基准",
+      "replayable": true,
+      "success_rate": 0.75,
+      "note": "与 urban_llm_harness 是不同的评测口径。"
+    }
+  }
+}
