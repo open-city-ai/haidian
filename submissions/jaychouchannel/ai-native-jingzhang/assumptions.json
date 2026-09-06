@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "ASSUMPTION-BOUNDARY-PROVISIONAL",
+      "description_zh": "使用临时边界作为空间约束，非官方精确边界",
+      "impact": "所有面积计算和空间布局均为概念建议",
+      "mitigation": "获取官方CAD/GIS边界后替换",
+      "related_metrics": ["total_site_area", "research_area"]
+    },
+    {
+      "assumption_id": "ASSUMPTION-AI-NATIVE-DESIGN",
+      "description_zh": "AI原生设计假设：区域内AI基础设施、自动驾驶、机器人等场景将在2030年前达到商用成熟度",
+      "impact": "场景卡设计基于技术成熟度预测",
+      "mitigation": "标注技术成熟度等级，提供替代方案",
+      "related_metrics": ["ai_scenario_coverage"]
+    },
+    {
+      "assumption_id": "ASSUMPTION-SPATIAL-STRUCTURE",
+      "description_zh": "三区两翼空间结构假设基于公告文字描述推导",
+      "impact": "空间分区边界为概念性",
+      "mitigation": "以官方规划文件为准",
+      "related_metrics": ["total_site_area"]
+    },
+    {
+      "assumption_id": "ASSUMPTION-LAND-USE-CODES",
+      "description_zh": "用地分类采用国土空间用地用海分类指南标准代码",
+      "impact": "分类逻辑统一但具体地块归属为概念建议",
+      "mitigation": "实施前需核实现状用地性质",
+      "related_metrics": ["research_area", "commercial_area", "residential_area"]
+    },
+    {
+      "assumption_id": "ASSUMPTION-REGULATORY-PLANNING",
+      "description_zh": "容积率和开发强度为概念建议，非法定控规指标",
+      "impact": "实际开发需依据法定控规",
+      "mitigation": "标注为概念建议，实施前需编制控规",
+      "related_metrics": ["building_far_average"]
+    },
+    {
+      "assumption_id": "ASSUMPTION-PUBLIC-SPACE",
+      "description_zh": "公共空间设计基于京张遗址公园现有条件和AI场景植入",
+      "impact": "公园改造方案为概念性",
+      "mitigation": "需结合公园管理方意见深化",
+      "related_metrics": ["green_space_area", "public_space_per_capita"]
+    },
+    {
+      "assumption_id": "ASSUMPTION-TRANSIT-ORIENTED",
+      "description_zh": "TOD比例基于公交站点800m服务范围估算",
+      "impact": "实际可达性需交通模型验证",
+      "mitigation": "实施前需编制交通专项规划",
+      "related_metrics": ["transit_oriented_development_ratio"]
+    },
+    {
+      "assumption_id": "ASSUMPTION-LONG-TERM-OPERATION",
+      "description_zh": "长期运营假设政府、企业、社区三方共建",
+      "impact": "运营模式需政策支持",
+      "mitigation": "需编制运营方案和政策建议",
+      "related_metrics": ["ai_scenario_coverage"]
+    }
+  ]
+}
