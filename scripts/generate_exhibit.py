@@ -43,7 +43,7 @@ from pathlib import Path
 from typing import Any
 
 from validate_submission import parse_front_matter, parse_track_metadata
-from generate_submissions_data import load_publication_registry
+from generate_submissions_data import has_official_geometry, load_publication_registry
 
 
 COVER_CANDIDATES = (
@@ -64,26 +64,6 @@ def pick_image(submission_dir: Path, candidates: tuple[str, ...]) -> str | None:
     for path in sorted((submission_dir / "assets" / "figures").glob("*.png")):
         return path.relative_to(submission_dir).as_posix()
     return None
-
-
-def boundary_readiness(submission_dir: Path) -> bool:
-    """Return True when the package is on official (not provisional) geometry."""
-    self_check = submission_dir / "self_check.json"
-    if not self_check.exists():
-        return False
-    try:
-        data = json.loads(self_check.read_text(encoding="utf-8"))
-    except (UnicodeDecodeError, json.JSONDecodeError):
-        return False
-    checks = data.get("checks") if isinstance(data, dict) else None
-    if not isinstance(checks, list):
-        return False
-    relevant = {"BOUNDARY_TRUST", "KEY_AREAS_TRUST"}
-    seen: dict[str, str] = {}
-    for item in checks:
-        if isinstance(item, dict) and item.get("check_id") in relevant:
-            seen[str(item["check_id"])] = str(item.get("severity", ""))
-    return bool(seen) and all(severity == "info" for severity in seen.values())
 
 
 def build_exhibit(repo_root: Path, submission_dir: Path) -> dict[str, Any]:
@@ -112,7 +92,7 @@ def build_exhibit(repo_root: Path, submission_dir: Path) -> dict[str, Any]:
     publication = load_publication_registry(repo_root).get(rel)
     if not publication or publication.get("published") is not True:
         raise SystemExit(f"{rel}: submission is not approved for public display in gallery-publication.json")
-    official = boundary_readiness(submission_dir)
+    official = has_official_geometry(submission_dir)
     readiness = "官方边界就绪" if official else "临时边界，保留精度警示并待正式数据发布后复算；不阻断内容评分"
 
     return {
