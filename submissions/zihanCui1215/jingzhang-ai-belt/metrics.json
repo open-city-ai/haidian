@@ -1,0 +1,213 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "metrics": [
+    {
+      "id": "total_site_area_sqm",
+      "status": "provisional",
+      "value": 11412825.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 projected area of provisional SITE_BOUNDARY polygon",
+      "confidence": "medium",
+      "assumptions": "Provisional rough boundary; announced 11,400,000 sqm; recalculable with official boundary"
+    },
+    {
+      "id": "coordinated_research_area_sqm",
+      "status": "provisional",
+      "value": 43609232,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/geometry/provisional_boundaries.geojson"
+      ],
+      "formula": "EPSG:4548 projected area of provisional research boundary",
+      "confidence": "medium",
+      "assumptions": "Provisional; announced 43,600,000 sqm"
+    },
+    {
+      "id": "key_area_total_sqm",
+      "status": "provisional",
+      "value": 3692893,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "Sum of 3 key area polygons in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": "Provisional; announced 3,684,000 sqm"
+    },
+    {
+      "id": "zhongzhiyuan_area_sqm",
+      "status": "provisional",
+      "value": 1929202,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#ZHONGZHIYUAN-AI-ACCELERATION-AREA"
+      ],
+      "formula": "EPSG:4548 area of key area polygon",
+      "confidence": "medium",
+      "assumptions": "Provisional; announced 1,921,000 sqm"
+    },
+    {
+      "id": "beijing_ai_origin_area_sqm",
+      "status": "provisional",
+      "value": 1043237,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#BEIJING-AI-ORIGIN-COMMUNITY"
+      ],
+      "formula": "EPSG:4548 area of key area polygon",
+      "confidence": "medium",
+      "assumptions": "Provisional; announced 1,043,000 sqm"
+    },
+    {
+      "id": "dazhongsi_area_sqm",
+      "status": "provisional",
+      "value": 720454,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#DAZHONGSI-AI-INDUSTRY-CLUSTER"
+      ],
+      "formula": "EPSG:4548 area of key area polygon",
+      "confidence": "medium",
+      "assumptions": "Provisional; announced 720,000 sqm"
+    },
+    {
+      "id": "total_land_use_area_sqm",
+      "status": "provisional",
+      "value": 11412842.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "Sum of all land use parcel areas",
+      "confidence": "medium",
+      "assumptions": "Covers full provisional boundary without gaps"
+    },
+    {
+      "id": "total_green_area_sqm",
+      "status": "provisional",
+      "value": 4979497.25,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "Sum of all green space polygon areas",
+      "confidence": "low",
+      "assumptions": "Concept design; high ratio due to railway park allocation"
+    },
+    {
+      "id": "green_ratio",
+      "status": "provisional",
+      "value": 0.4363,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_green_area / total_site_area",
+      "confidence": "low",
+      "assumptions": "Concept reference; not statutory green ratio"
+    },
+    {
+      "id": "total_building_footprint_sqm",
+      "status": "provisional",
+      "value": 788228.37,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Sum of all building footprint areas",
+      "confidence": "low",
+      "assumptions": "Concept building layout within key areas"
+    },
+    {
+      "id": "total_estimated_gfa_sqm",
+      "status": "provisional",
+      "value": 10226089.35,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Sum of footprint_area * estimated_height / 3.5",
+      "confidence": "low",
+      "assumptions": "Estimated GFA based on assumed floor height 3.5m"
+    },
+    {
+      "id": "estimated_far",
+      "status": "provisional",
+      "value": 0.896,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_gfa / total_site_area",
+      "confidence": "low",
+      "assumptions": "Concept reference; official FAR from regulatory plan needed"
+    },
+    {
+      "id": "building_density",
+      "status": "provisional",
+      "value": 0.0691,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_footprint / total_site_area",
+      "confidence": "low",
+      "assumptions": "Concept reference"
+    },
+    {
+      "id": "building_count",
+      "status": "provisional",
+      "value": 55,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Count of building features",
+      "confidence": "low",
+      "assumptions": "Concept generation"
+    },
+    {
+      "id": "road_count",
+      "status": "provisional",
+      "value": 16,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "Count of road centerline features",
+      "confidence": "low",
+      "assumptions": "Concept generation"
+    },
+    {
+      "id": "land_use_parcel_count",
+      "status": "provisional",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "Count of land use parcels",
+      "confidence": "low",
+      "assumptions": "Concept generation"
+    },
+    {
+      "id": "total_public_space_sqm",
+      "status": "provisional",
+      "value": 303505.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Sum of all public space polygon areas",
+      "confidence": "low",
+      "assumptions": "Concept design"
+    }
+  ]
+}
