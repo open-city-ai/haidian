@@ -362,9 +362,22 @@ const T = {
     'f1':'← Back to Home','f2':'Public Brief','f3':'Submissions','f4':'View on GitHub','f.note':'Advisory only · Not required CI',
   }
 };
-let lang = localStorage.getItem('lang') || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+function normalizeLanguage(value) {
+  if (value === 'zh' || value === 'en') return value;
+  return String(navigator.language || '').startsWith('zh') ? 'zh' : 'en';
+}
+function storedLanguage() {
+  try { return normalizeLanguage(localStorage.getItem('lang')); }
+  catch { return normalizeLanguage(); }
+}
+function rememberLanguage(value) {
+  try { localStorage.setItem('lang', value); }
+  catch {}
+}
+let lang = storedLanguage();
 function applyLang(l) {
-  lang = l; localStorage.setItem('lang', l);
+  l = normalizeLanguage(l);
+  lang = l; rememberLanguage(l);
   document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
   document.title = T[l]['page.title'];
   document.getElementById('langToggle').textContent = T[l]['lang.toggle'];

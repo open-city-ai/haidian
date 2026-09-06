@@ -445,7 +445,19 @@ const T = {
   }
 };
 
-let lang = localStorage.getItem('lang') || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+function normalizeLanguage(value) {
+  if (value === 'zh' || value === 'en') return value;
+  return String(navigator.language || '').startsWith('zh') ? 'zh' : 'en';
+}
+function storedLanguage() {
+  try { return normalizeLanguage(localStorage.getItem('lang')); }
+  catch { return normalizeLanguage(); }
+}
+function rememberLanguage(value) {
+  try { localStorage.setItem('lang', value); }
+  catch {}
+}
+let lang = storedLanguage();
 function esc(value) {
   return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
@@ -498,7 +510,8 @@ function renderSourceRegistry() {
   list.innerHTML = cards ? `${cards}<p style="margin-top:12px">${esc(T[lang]['registry.limit'])}</p>` : `<p>${esc(T[lang]['registry.empty'])}</p>`;
 }
 function applyLang(l) {
-  lang = l; localStorage.setItem('lang', l);
+  l = normalizeLanguage(l);
+  lang = l; rememberLanguage(l);
   document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
   document.title = T[l]['page.title'];
   document.getElementById('langToggle').textContent = T[l]['lang.toggle'];
