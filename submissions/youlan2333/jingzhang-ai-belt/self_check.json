@@ -1,0 +1,100 @@
+{
+  "schema_version": "0.2.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "All manifest SHA256 checks pass; all required files present."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "Geometry files pass spatial integrity checks."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Visual packaging is valid HTML without external dependencies."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Proposal includes references to standards, geometry, metrics, sources, and assumptions. HOWEVER: formal review entry is BLOCKED per AI agent review. Known blockers: (1) English name inconsistency Belt/Corridor, (2) English figures are overlays not translations, (3) agent.1-6 not substantively completed, (4) per-asset copyright documentation missing, (5) A3/A0 EN first pages near-empty."
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present; replace with official redline before professional scoring. NOTE: English figures are title-overlays only; English drawings near-empty; package_state changed to in_progress; known_blockers populated in manifest."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional; replace with official polygons before professional scoring. NOTE: English figures are title-overlays only; English drawings near-empty; package_state changed to in_progress; known_blockers populated in manifest."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Initial land-use polygons are derived from site boundary partitioning."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization is generated without external dependencies."
+    }
+  ],
+  "persisted_at": "2026-08-14T00:37:05Z",
+  "deterministic_validation": {
+    "result": "PASS"
+  },
+  "spatial_review": {
+    "result": "PASS"
+  },
+  "visual_packaging_check": {
+    "result": "PASS"
+  },
+  "professional_evidence_review": {
+    "result": "PASS"
+  },
+  "summary": {
+    "deterministic_validation": {
+      "result": "PASS"
+    },
+    "spatial_review": {
+      "result": "PASS"
+    },
+    "visual_packaging_check": {
+      "result": "PASS"
+    },
+    "professional_evidence_review": {
+      "result": "BLOCKED",
+      "blockers": [
+        "RESOLVED: English figures (5 PNGs) regenerated with full English content",
+        "RESOLVED: English A3/A0 PDFs (8 files) rebuilt with substantive English content",
+        "RESOLVED: English name unified to 'Jingzhang AI Symbiosis Corridor'",
+        "RESOLVED: copyright per-asset chain documented (4867-byte copyright_statement.md)",
+        "agent.1-6 deliverables: substantive design work pending (VI guide, global cases, testing, landmarks, ops)"
+      ]
+    },
+    "formal_review_eligible": false,
+    "reason": "Content quality and completeness issues block formal professional scoring per AI agent review."
+  },
+  "persisted_revision": "round3-en-figures-drawings-v5"
+}

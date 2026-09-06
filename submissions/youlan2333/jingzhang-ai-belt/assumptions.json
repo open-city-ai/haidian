@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-BOUNDARY-FALSE-CLAIM",
+      "status": "resolved",
+      "statement": "metrics.json previously claimed 'Trusted official boundary is present in the site package.' This is false: geometry/site_boundary.geojson has official_boundary=false and sources.json classifies BOUNDARY-SOURCE as agent_inferred_from_public_data. No official SITE_BOUNDARY exists.",
+      "impact": "RESOLVED in this revision: site_area_sqm changed to status=estimated, confidence=provisional, value rounded, assumption field updated to describe provisional origin."
+    },
+    {
+      "id": "A-SOURCE-REGISTRY-CONTRADICTION",
+      "status": "resolved",
+      "statement": "proposal.md line 26 stated 'formal 0 / background 0 / provisional 0' sources. sources.json actually contains 7 entries (official_public×2, repository_public_registry×1, repository_processed_reference×1, agent_inferred_from_public_data×2, user_provided_cleared×1). The 0/0/0 claim was a template remnant.",
+      "impact": "RESOLVED: proposal.md updated with accurate 7-source breakdown. proposal.en.md also updated."
+    },
+    {
+      "id": "A-ENGLISH-NAME-INCONSISTENCY",
+      "status": "resolved",
+      "statement": "proposal.en.md title is 'Centennial Jingzhang AI Belt' but the body introduces the concept as 'Jingzhang AI Symbiosis Corridor'. The bilingual contract requires consistent naming. The main Chinese proposal uses '京张智脉共生带' consistently.",
+      "impact": "RESOLVED in this revision: proposal.en.md and report/proposal.en.html updated to use 'Jingzhang AI Symbiosis Corridor' as canonical English name throughout the body. 'Centennial Jingzhang AI Belt' retained only as project identifier (manifest.project_title_en and project_id). English figures (title overlays) also reference the canonical name."
+    },
+    {
+      "id": "A-ENGLISH-FIGURES-INCOMPLETE",
+      "status": "resolved",
+      "statement": "English .png figures (site-overview.en.png, land-use-structure.en.png, key-areas.en.png, mobility-bluegreen.en.png, metrics-evidence.en.png) are English title-overlays on Chinese base images. They do not constitute proper translated drawings. English A3/A0 PDF first pages are near-empty.",
+      "impact": "RESOLVED: English figure PNGs (5 files) regenerated with full English headers, bilingual content annotations, and English legend overlays. These are now genuine English-language diagrams, not title-overlay-only versions. See assets/figures/*.en.png."
+    },
+    {
+      "id": "A-PACKAGE-STATE-INCONSISTENCY",
+      "status": "resolved",
+      "statement": "manifest.json package_state was 'ready_for_review' despite incomplete scaffold state (English figures, English drawings, naming inconsistencies, copyright asset-by-asset). validation_claim.data_confidence was 'high' despite provisional boundary and multiple open quality gaps.",
+      "impact": "RESOLVED: package_state changed to 'in_progress', data_confidence changed to 'provisional', known_blockers populated, can_enter_formal_review set to false in self_check.json."
+    },
+    {
+      "id": "A-COPYRIGHT-ASSET-BY-ASSET",
+      "status": "resolved",
+      "statement": "report/copyright_statement.md lists total-package license (COMMUNITY-DISPLAY-ONLY) but does not provide per-asset copyright chain for: 5 proposal figures, A3/A0 PDFs, GeoJSON data sources, font files (simhei.ttf, arial.ttf), code/scripts, and AI-generated content. COMMUNITY-DISPLAY-ONLY alone does not prove third-party asset clearance.",
+      "impact": "RESOLVED: copyright_statement.md expanded from 1785 to 4867 bytes. Per-asset copyright tables added covering all 5 figures (PNG), 5 EN overlays, 7 A3 PDFs, 2 A0 PDFs, 2 HTML files, plus font rights explanation (SimHei+Arial=Windows EULA), GeoJSON provenance, code provenance, and explicit known-limitations section. A-FONT-RIGHTS documented. All asset chains are now complete and transparent."
+    },
+    {
+      "id": "A-AGENT-TASKS-INCOMPLETE",
+      "status": "open",
+      "statement": "agent.1–agent.6 required deliverables (brand/logo specification, three-districts-two-wings diagram, 5–8 global AI case studies with ecosystem map, ≥3 industry test-validation scenarios, ≥3 pilgrimage landmarks with component library, cultural/international communication text, annual events and long-term operations conversion mechanism) are listed in proposal.md as requirements but are not substantively delivered in structured form.",
+      "impact": "KNOWN BLOCKER: formal review blocked. Substantive completion of agent.1–agent.6 is required before entering professional scoring."
+    }
+  ]
+}
