@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="zh-CN" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="京张AI共生带城市设计方案总览 — 百年京张AI创新带国际方案征集 AI Agent 提交">
+<title>京张AI共生带 | Jing-Zhang AI Symbiosis Belt</title>
+<style>
+:root{--ink:#1e293b;--muted:#475569;--line:#e2e8f0;--soft:#f8fafc;--gold:#9a5b1e;--teal:#0f766e;--paper:#fdfcfb;--bg:#f4f2ee}
+*{box-sizing:border-box;margin:0;padding:0}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.js .reveal.in{opacity:1;transform:translateY(0)}
+.no-js .reveal{opacity:1;transform:none}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:15px;overflow-x:hidden}
+h1,h2,h3{font-family:"Songti SC","Noto Serif SC","STSong","SimSun",serif}h1{font-weight:900}h2{font-weight:800}h3{font-weight:700}
+.wrap{max-width:1320px;margin:0 auto;padding:0 20px}
+
+/* Hero */
+.hero{background:var(--paper);border-bottom:1px solid var(--line);padding:56px 0 40px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:360px;height:360px;border:1px solid var(--line);border-radius:50%;opacity:.3;pointer-events:none}
+.hero-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.hero h1{font-size:clamp(28px,5vw,48px);line-height:1.1;margin-bottom:16px;letter-spacing:-.015em}
+.hero h1 mark{background:linear-gradient(180deg,transparent 62%,rgba(154,91,30,.18) 62%);color:inherit}
+.hero-sub{font-size:15px;color:var(--muted);max-width:760px;margin-bottom:24px;line-height:1.65}
+.hero-kpi{display:flex;flex-wrap:wrap;gap:0;padding-top:20px;border-top:1px solid var(--line)}
+.kpi{display:flex;align-items:baseline;gap:6px;padding:0 28px}
+.kpi:first-child{padding-left:0}.kpi:not(:last-child){border-right:1px solid var(--line)}
+.kpi .num{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums}.kpi .unit{font-size:13px;color:var(--muted)}.kpi .tag{font-size:11px;color:var(--muted)}
+
+main{padding:30px 0 50px}section{margin-bottom:28px}
+.card-sect{border:1px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden}
+.card-sect .sect-top{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.card-sect .sect-top h2{font-size:17px;letter-spacing:-.01em}
+.card-sect .sect-top p{color:var(--muted);font-size:13px;max-width:640px;margin-top:2px}
+.card-sect .sect-tag{flex-shrink:0;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);border-radius:4px}
+.card-sect .sect-inner{padding:20px 22px}
+.bleed-sect{background:var(--paper);padding:32px 22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bleed-sect .sect-hd{margin-bottom:18px}
+.bleed-sect .sect-hd h2{font-size:17px;letter-spacing:-.01em;margin-bottom:4px}
+.bleed-sect .sect-hd p{color:var(--muted);font-size:13px;max-width:680px}
+
+/* ═══ 01 SUN-PATH CANVAS ═══ */
+.sp-wrap{position:relative;background:var(--paper);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.sp-toolbar{display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);align-items:center;flex-wrap:wrap;background:var(--soft)}
+.sp-season-btn{padding:6px 14px;border:1px solid var(--line);border-radius:6px;background:var(--paper);font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;color:var(--muted)}
+.sp-season-btn:hover{color:var(--ink)}
+.sp-season-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.sp-time-display{margin-left:auto;font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;font-family:"SF Mono","Menlo","Consolas",monospace;padding:4px 12px;background:var(--soft);border-radius:6px}
+.sp-canvas-wrap{position:relative;cursor:default}
+.sp-canvas-wrap canvas{display:block;width:100%;height:auto}
+.sp-slider-wrap{position:relative;padding:0 16px 12px}
+.sp-slider{position:relative;height:44px;cursor:pointer;border-radius:8px;background:var(--soft);border:1px solid var(--line);overflow:visible;touch-action:none}
+.sp-slider:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.sp-slider-track{position:absolute;top:50%;left:20px;right:20px;height:4px;background:var(--line);border-radius:2px;transform:translateY(-50%)}
+.sp-slider-fill{position:absolute;top:50%;left:20px;height:4px;background:linear-gradient(90deg,#d4a017,#c48b2e,#9a5b1e,#5c4033);border-radius:2px;transform:translateY(-50%);max-width:calc(100% - 40px)}
+.sp-slider-knob{position:absolute;top:50%;width:28px;height:28px;background:var(--paper);border:2px solid var(--teal);border-radius:50%;transform:translate(-50%,-50%);cursor:grab;box-shadow:0 2px 8px rgba(0,0,0,.12);z-index:2;transition:box-shadow .15s}
+.sp-slider-knob:active{cursor:grabbing;box-shadow:0 4px 16px rgba(0,0,0,.18)}
+.sp-markers{display:flex;justify-content:space-between;padding:0 12px 4px;font-size:10px;color:var(--muted)}
+.sp-legend{display:flex;gap:16px;padding:8px 16px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);flex-wrap:wrap}
+.sp-legend span{display:flex;align-items:center;gap:5px}
+
+/* Factor matrix */
+.factor-matrix{overflow-x:auto}
+.factor-matrix table{width:100%;border-collapse:collapse;font-size:12px}
+.factor-matrix th,.factor-matrix td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--line)}
+.factor-matrix th{background:var(--soft);font-weight:700;font-size:11px;color:var(--muted)}
+.factor-matrix th:first-child,.factor-matrix td:first-child{text-align:left;font-weight:600}
+.factor-matrix .star-on{color:var(--gold);font-size:14px}.factor-matrix .star-off{color:#d1d5db;font-size:14px}
+.factor-matrix tbody tr{transition:background .25s}
+.factor-matrix tbody tr:hover td{background:#f0fdfa}
+
+/* Digital Twin */
+.map-shell{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--paper)}
+.map-toolbar{display:flex;gap:6px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap;background:var(--soft)}
+.map-btn{padding:5px 11px;border:1px solid var(--line);border-radius:6px;background:var(--paper);font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;color:var(--muted)}
+.map-btn:hover{color:var(--ink)}
+.map-btn[aria-pressed="true"]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.map-stage{position:relative;min-height:500px;overflow:hidden}
+.map-stage svg{width:100%;height:auto;display:block}
+.map-layer{transition:opacity .5s ease}.map-layer.hidden{opacity:0;pointer-events:none}
+.map-legend{display:flex;flex-wrap:wrap;gap:8px 20px;padding:10px 16px;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}
+.map-legend span{display:flex;align-items:center;gap:5px}
+.dot{width:10px;height:10px;border-radius:2px;display:inline-block;flex-shrink:0}
+
+/* Key areas */
+.area-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--line);border-radius:10px;overflow:hidden}
+.area-item{background:var(--paper);padding:22px;transition:background .3s}
+.area-item:hover{background:#f0fdfa}
+.area-item h3{font-size:15px;margin-bottom:2px}.area-item .area-sub{font-size:11px;color:var(--muted);margin-bottom:12px}
+.area-metrics{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.amet{border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center;transition:border-color .2s}
+.amet:hover{border-color:var(--teal)}
+.amet .am-val{font-size:18px;font-weight:800;color:var(--teal)}.amet .am-lbl{font-size:10px;color:var(--muted)}
+.area-item ul{font-size:12px;color:var(--muted);padding-left:16px;line-height:1.7}
+
+/* 5D */
+.d5-stage{grid-column:1/-1;background:linear-gradient(135deg,#f0fdfa,#faf9f6);border-radius:10px;padding:24px;border:1px solid var(--line)}
+.d5-stage h3{font-size:16px;margin-bottom:12px}
+.d5-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px}
+.d5-node{padding:10px 16px;background:var(--paper);border-radius:8px;border:1px solid var(--line);text-align:center;font-weight:600}
+.d5-node.pillar{border-color:var(--teal);background:#f0fdfa}
+.d5-arrow{font-size:20px;color:var(--gold);font-weight:700}
+.d5-conclusion{padding:10px 20px;background:var(--teal);color:#fff;border-radius:8px;font-weight:800;font-size:14px}
+.d5-principle{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.d5p-card{padding:14px;border-radius:8px;border:1px solid var(--line)}
+.d5p-card h4{font-size:12px;margin-bottom:4px}.d5p-card p{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* Gardens */
+.garden-list{display:flex;flex-direction:column}
+.garden-entry{border-bottom:1px solid var(--line)}.garden-entry:last-child{border-bottom:none}
+.garden-btn{display:grid;grid-template-columns:28px 150px 1fr 130px 32px;gap:14px;align-items:center;width:100%;padding:14px 0;cursor:pointer;border:none;background:none;font-family:inherit;font-size:inherit;color:inherit;text-align:inherit;transition:background .2s}
+.garden-btn:hover{background:#f0fdfa}
+.garden-btn:focus-visible{outline:2px solid var(--teal);outline-offset:-2px;border-radius:4px}
+.garden-btn .g-num{font-size:12px;font-weight:800;color:var(--teal);text-align:center}
+.garden-btn .g-name{font-weight:700;font-size:13px}.garden-btn .g-scene{color:var(--teal);font-weight:600;font-size:12px}
+.garden-btn .g-tags{display:flex;gap:5px;flex-wrap:wrap}
+.garden-btn .g-arrow{text-align:right;color:var(--muted);transition:transform .3s;font-size:14px}
+.garden-entry.open .g-arrow{transform:rotate(180deg)}
+.garden-detail{display:none;padding:0 0 20px 42px}
+.garden-entry.open .garden-detail{display:grid;grid-template-columns:1fr 1fr;gap:20px;animation:fadeSlide .4s ease}
+.garden-detail .gd-scene{background:var(--soft);border-radius:8px;padding:16px}
+.garden-detail .gd-scene h5{font-size:11px;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.garden-detail .gd-scene p{font-size:12px;color:var(--muted);line-height:1.7}
+.garden-detail .gd-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.gd-tag{font-size:10px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Seasons */
+.season-stage{position:relative;overflow:hidden;border-radius:12px;min-height:320px;background:var(--paper);border:1px solid var(--line);transition:background .8s ease}
+.season-stage.spring-mode{background:linear-gradient(180deg,#7eb8da 0%,#a8d4e8 30%,#c8dcc8 75%,#c4b89a 100%)}
+.season-stage.summer-mode{background:linear-gradient(180deg,#4a7a9a 0%,#7aacbc 30%,#b0c8b0 75%,#a8b898 100%)}
+.season-stage.autumn-mode{background:linear-gradient(180deg,#5599c4 0%,#c49858 45%,#e0c070 78%,#d4b870 100%)}
+.season-stage.winter-mode{background:linear-gradient(180deg,#8aa8b8 0%,#b4c0c8 45%,#d8d4d0 78%,#c8c4c0 100%)}
+.season-tabs{display:flex;gap:0;border-bottom:1px solid var(--line)}
+.season-tab{flex:1;padding:16px 12px;text-align:center;cursor:pointer;border:none;background:none;font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.season-tab:hover{background:#f8fafc;color:var(--ink)}.season-tab.active{color:var(--ink);border-bottom-color:var(--teal)}
+.season-tab .si{width:32px;height:4px;border-radius:2px;display:block}
+.season-tab .si.spring{background:#86efac}.season-tab .si.summer{background:#fbbf24}.season-tab .si.autumn{background:#d4a017}.season-tab .si.winter{background:#67e8f9}
+.season-tab.active .si.spring{background:#059669}.season-tab.active .si.summer{background:#d97706}.season-tab.active .si.autumn{background:#9a5b1e}.season-tab.active .si.winter{background:#0891b2}
+.season-panel{display:none;padding:28px 24px;animation:fadeSlide .5s ease;position:relative;z-index:1}
+.season-panel.show{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.season-panel .sp-temp{font-size:56px;font-weight:800;line-height:1;font-family:"Songti SC","Noto Serif SC",serif}
+.season-panel .sp-range{font-size:14px;color:var(--muted);margin-top:4px}
+.season-panel .sp-meta{display:flex;gap:24px;margin-top:16px}
+.season-panel .sp-meta b{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.season-panel .sp-meta span{font-size:13px}
+.season-panel .sp-detail{font-size:13px;line-height:1.8;color:var(--muted)}.season-panel .sp-detail li{margin-bottom:4px}
+.season-particles{position:absolute;inset:0;pointer-events:none;z-index:0}
+
+/* Pop + Tasks */
+.pop-strip{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.pop-seg{flex:1;padding:18px 14px;text-align:center;background:var(--paper);transition:background .25s}
+.pop-seg:hover{background:#f0fdfa}.pop-seg:not(:last-child){border-right:1px solid var(--line)}
+.pop-seg .seg-val{font-size:26px;font-weight:800;margin-bottom:2px;font-variant-numeric:tabular-nums}
+.pop-seg .seg-unit{font-size:13px;font-weight:400;color:var(--muted)}
+.pop-seg .seg-lbl{font-size:11px;color:var(--muted);line-height:1.4}
+.task-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 28px}
+.task-item{padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+.task-item .task-num{font-size:10px;font-weight:700;color:var(--muted);margin-bottom:1px}
+.task-item .task-name{font-weight:600;margin-bottom:3px}.task-item .task-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.check-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border-radius:10px;overflow:hidden}
+.check-panel{padding:20px;transition:background .3s}
+.check-panel.pass{background:#f0fdf4}.check-panel.pass:hover{background:#d1fae5}
+.check-panel.warn{background:#fffbeb}.check-panel.warn:hover{background:#fef3c7}
+.check-panel h3{font-size:14px;margin-bottom:8px}.check-panel.pass h3{color:#065f46}.check-panel.warn h3{color:#92400e}
+.check-panel ul{font-size:12px;padding-left:16px;line-height:1.8}.check-panel.pass ul{color:#065f46}.check-panel.warn ul{color:#92400e}
+
+/* SVG anims */
+@keyframes ringPulse{0%,100%{stroke-dashoffset:0;opacity:.35}50%{stroke-dashoffset:-20;opacity:.6}}
+@keyframes coreBreathe{0%,100%{r:26}50%{r:31}}
+@keyframes dotFlow{0%,100%{opacity:.45}50%{opacity:.85}}
+.map-ring{animation:ringPulse 6s ease-in-out infinite}
+.core-anim{animation:coreBreathe 4s ease-in-out infinite}
+.core-anim:nth-of-type(1){animation-delay:0s}.core-anim:nth-of-type(2){animation-delay:.8s}.core-anim:nth-of-type(3){animation-delay:1.6s}
+.dot-seq{animation:dotFlow 2s ease-in-out infinite}
+
+.footer{text-align:center;padding:28px 18px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
+.footer strong{color:var(--ink);font-weight:600}
+.geo-rule{height:1px;background:var(--line);margin:0 0 28px;position:relative}
+.geo-rule::after{content:'';position:absolute;left:50%;top:-3px;width:7px;height:7px;border:1px solid var(--gold);border-radius:50%;background:var(--bg);transform:translateX(-50%)}
+
+@media(max-width:1024px){
+  .d5-flow{flex-direction:column}.d5-arrow{transform:rotate(90deg)}
+  .d5-principle{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .garden-btn{grid-template-columns:24px 110px 1fr 90px 24px;font-size:11px}
+  .garden-detail{grid-template-columns:1fr}.task-list{grid-template-columns:1fr 1fr}
+  .area-grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .hero-kpi{flex-direction:column;gap:12px}.kpi{border-right:none!important;padding:0}
+  .d5-principle{grid-template-columns:1fr}
+  .garden-btn{grid-template-columns:20px 1fr;gap:6px}.garden-btn .g-scene,.garden-btn .g-tags,.garden-btn .g-arrow{display:none}
+  .garden-detail{padding-left:20px}.task-list{grid-template-columns:1fr}.check-grid{grid-template-columns:1fr}
+  .pop-strip{flex-wrap:wrap}.pop-seg{flex:1 1 50%}
+  .season-panel.show{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<div class="wrap">
+  <div class="hero-eyebrow reveal">Jing-Zhang AI Innovation Belt · International Urban Design Competition</div>
+  <h1 class="reveal">京张<mark>AI共生带</mark><br>从铁路动脉到智能生态廊</h1>
+  <p class="hero-sub reveal">9公里京张遗址公园主轴 · 311万人口基底 · 37所高校集群 · 六因子加权设计框架。&ldquo;一带三核多节点、蓝绿慢行共生环&rdquo;的空间提案，将百年铁路遗产转化为AI时代的城市共生体。</p>
+  <div class="hero-kpi reveal">
+    <div class="kpi"><span class="num" data-count="11.4">0</span><span class="unit">km&sup2;</span><span class="tag">总体设计范围</span></div>
+    <div class="kpi"><span class="num" data-count="311">0</span><span class="unit">万</span><span class="tag">服务人口</span></div>
+    <div class="kpi"><span class="num" data-count="9">0</span><span class="unit">km</span><span class="tag">遗址公园主轴</span></div>
+  </div>
+</div>
+</header>
+
+<main class="wrap">
+
+<!-- ═══════════ 01 SUN-PATH 3D STREET VIEW ═══════════ -->
+<section class="reveal">
+<div class="sp-wrap">
+  <div class="sp-toolbar">
+    <span style="font-weight:700;font-size:13px;margin-right:8px">01 · 设计愿景全景 &mdash; 24h日照轨迹与街景模拟</span>
+    <button class="sp-season-btn active" data-sp="spring" aria-pressed="true">春</button>
+    <button class="sp-season-btn" data-sp="summer" aria-pressed="false">夏</button>
+    <button class="sp-season-btn" data-sp="autumn" aria-pressed="false">秋</button>
+    <button class="sp-season-btn" data-sp="winter" aria-pressed="false">冬</button>
+    <span class="sp-time-display" id="spClock" aria-live="polite">12:00</span>
+  </div>
+  <div class="sp-canvas-wrap" id="spCanvasWrap">
+    <canvas id="spCanvas" role="img" aria-label="京张AI共生带24小时日照轨迹与街景模拟——拖拽底部滑块调整时间，点击四季按钮切换季节"></canvas>
+  </div>
+  <div class="sp-slider-wrap">
+    <div class="sp-slider" id="spSlider" role="slider" tabindex="0" aria-valuenow="12" aria-valuemin="0" aria-valuemax="24" aria-valuetext="12:00 正午" aria-label="24小时时间滑块，拖拽调整街景时间">
+      <div class="sp-slider-track"></div>
+      <div class="sp-slider-fill" id="spFill"></div>
+      <div class="sp-slider-knob" id="spKnob"></div>
+    </div>
+    <div class="sp-markers"><span>0:00</span><span>日出 5:30</span><span>正午 12:00</span><span>日落 18:30</span><span>24:00</span></div>
+  </div>
+  <div class="sp-legend">
+    <span><span class="dot" style="background:#c48b6d"></span>西侧：混合社区 (24-60m)</span>
+    <span><span class="dot" style="background:#7eb8b0"></span>东侧：创新办公 (60-100m)</span>
+    <span><span class="dot" style="background:#5a8f4a"></span>京张遗址公园 9km</span>
+    <span><span class="dot" style="background:#d4a017;border-radius:50%;width:8px;height:8px"></span>太阳轨迹 (拖拽滑块或按 &larr;/&rarr; 键)</span>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════ 02 DIGITAL TWIN ═══════════ -->
+<section class="card-sect reveal">
+<div class="sect-top"><div><h2>02 · 数字孪生图层 &mdash; 五层空间要素叠加</h2><p>点击下方图层按钮切换显示。每个图层代表一个空间子系统。所有几何为 Provisional geometry，待官方CAD/GIS数据替换。</p></div><span class="sect-tag">Digital Twin</span></div>
+<div class="map-shell">
+  <div class="map-toolbar">
+    <button class="map-btn" aria-pressed="true" onclick="toggleLayer('base',this)">基底 · 道路水系</button>
+    <button class="map-btn" aria-pressed="true" onclick="toggleLayer('landuse',this)">用地功能</button>
+    <button class="map-btn" aria-pressed="true" onclick="toggleLayer('building',this)">建筑体量</button>
+    <button class="map-btn" aria-pressed="true" onclick="toggleLayer('mobility',this)">交通网络</button>
+    <button class="map-btn" aria-pressed="true" onclick="toggleLayer('bluegreen',this)">蓝绿系统</button>
+    <button class="map-btn" aria-pressed="true" onclick="toggleLayer('phase',this)">分期实施</button>
+  </div>
+  <div class="map-stage">
+    <svg viewBox="0 0 1100 620" style="width:100%;height:auto" role="img" aria-label="京张AI共生带五层数字孪生地图——点击工具栏按钮切换图层">
+      <g class="map-layer" id="layer-base">
+        <rect x="60" y="20" width="980" height="580" rx="12" fill="#fafafa" stroke="#cbd5e1" stroke-width="1.5"/>
+        <text x="90" y="42" font-size="11" fill="#334155" font-family="Songti SC,serif">北五环 &uarr;</text>
+        <line x1="60" y1="150" x2="1040" y2="150" stroke="#cbd5e1" stroke-width="3"/><text x="1025" y="145" font-size="10" fill="#334155" text-anchor="end">北五环路</text>
+        <line x1="60" y1="340" x2="1040" y2="340" stroke="#cbd5e1" stroke-width="2.5"/><text x="1025" y="335" font-size="10" fill="#334155" text-anchor="end">知春路/成府路</text>
+        <line x1="60" y1="500" x2="1040" y2="500" stroke="#cbd5e1" stroke-width="2"/><text x="1025" y="495" font-size="10" fill="#334155" text-anchor="end">西直门外大街</text>
+        <path d="M60 280 Q300 240 550 280 Q700 310 1040 260" fill="none" stroke="#7dd3fc" stroke-width="12" opacity=".6"/><text x="1040" y="255" font-size="10" fill="#0c4a6e" text-anchor="end">清河</text>
+        <g fill="#e2e8f0" stroke="#64748b" stroke-width="1">
+          <circle cx="140" cy="150" r="7"/><text x="140" y="168" font-size="10" fill="#334155" text-anchor="middle">西直门</text>
+          <circle cx="300" cy="150" r="7"/><text x="300" y="168" font-size="10" fill="#334155" text-anchor="middle">大钟寺</text>
+          <circle cx="500" cy="150" r="7"/><text x="500" y="168" font-size="10" fill="#334155" text-anchor="middle">知春路</text>
+          <circle cx="620" cy="150" r="7"/><text x="620" y="168" font-size="10" fill="#334155" text-anchor="middle">五道口</text>
+          <circle cx="780" cy="150" r="7"/><text x="780" y="168" font-size="10" fill="#334155" text-anchor="middle">上地</text>
+          <circle cx="920" cy="150" r="7"/><text x="920" y="168" font-size="10" fill="#334155" text-anchor="middle">西二旗</text>
+        </g>
+      </g>
+      <g class="map-layer" id="layer-landuse">
+        <rect x="80" y="85" width="380" height="150" rx="8" fill="#f0fdfa" stroke="#5eead4" stroke-width="1.5"/><text x="270" y="155" text-anchor="middle" font-size="12" font-weight="700" fill="#0f766e">AI研发创新区</text>
+        <rect x="640" y="85" width="380" height="180" rx="8" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/><text x="830" y="155" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">产业服务复合区</text>
+        <rect x="80" y="370" width="400" height="180" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/><text x="280" y="440" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">原点社区 · 生活配套区</text>
+        <text x="270" y="172" text-anchor="middle" font-size="10" fill="#0d9488">众智园192ha</text><text x="830" y="172" text-anchor="middle" font-size="10" fill="#c2410c">大钟寺72ha</text><text x="280" y="458" text-anchor="middle" font-size="10" fill="#15803d">AI原点104ha</text>
+      </g>
+      <g class="map-layer" id="layer-building">
+        <rect x="110" y="110" width="22" height="18" rx="1" fill="#fed7aa" stroke="#9a3412" stroke-width=".8"/><rect x="140" y="105" width="28" height="20" rx="1" fill="#fed7aa" stroke="#9a3412" stroke-width=".8"/><rect x="175" y="115" width="16" height="12" rx="1" fill="#fed7aa" stroke="#9a3412" stroke-width=".8"/><rect x="198" y="100" width="32" height="24" rx="1" fill="#fed7aa" stroke="#9a3412" stroke-width=".8"/><rect x="240" y="108" width="20" height="16" rx="1" fill="#fed7aa" stroke="#9a3412" stroke-width=".8"/><rect x="680" y="115" width="24" height="18" rx="1" fill="#fed7aa" stroke="#9a3412" stroke-width=".8"/><rect x="712" y="108" width="30" height="22" rx="1" fill="#fed7aa" stroke="#9a3412" stroke-width=".8"/><rect x="750" y="120" width="18" height="14" rx="1" fill="#fed7aa" stroke="#9a3412" stroke-width=".8"/>
+        <rect x="130" y="400" width="20" height="14" rx="1" fill="#a7f3d0" stroke="#15803d" stroke-width=".8"/><rect x="160" y="390" width="26" height="18" rx="1" fill="#a7f3d0" stroke="#15803d" stroke-width=".8"/><rect x="200" y="395" width="16" height="12" rx="1" fill="#a7f3d0" stroke="#15803d" stroke-width=".8"/><rect x="230" y="385" width="22" height="22" rx="1" fill="#a7f3d0" stroke="#15803d" stroke-width=".8"/><rect x="265" y="398" width="18" height="15" rx="1" fill="#bbf7d0" stroke="#15803d" stroke-width=".8" opacity=".6"/><rect x="340" y="405" width="24" height="16" rx="1" fill="#a7f3d0" stroke="#15803d" stroke-width=".8"/>
+        <rect x="130" y="95" width="30" height="16" rx="1" fill="#c7d2fe" stroke="#4338ca" stroke-width=".8"/><rect x="170" y="90" width="24" height="20" rx="1" fill="#c7d2fe" stroke="#4338ca" stroke-width=".8"/><rect x="210" y="100" width="20" height="14" rx="1" fill="#c7d2fe" stroke="#4338ca" stroke-width=".8"/><rect x="250" y="88" width="34" height="22" rx="1" fill="#c7d2fe" stroke="#4338ca" stroke-width=".8"/>
+      </g>
+      <g class="map-layer" id="layer-mobility">
+        <line x1="100" y1="140" x2="380" y2="140" stroke="#5b5fc7" stroke-width="3" stroke-dasharray="6 3"/><text x="240" y="135" font-size="9" fill="#4338ca" text-anchor="middle">M13 既有</text>
+        <line x1="100" y1="160" x2="900" y2="160" stroke="#5b5fc7" stroke-width="2" stroke-dasharray="4 3" opacity=".5"/><text x="500" y="172" font-size="9" fill="#4338ca" text-anchor="middle">M? 规划预留</text>
+        <line x1="430" y1="50" x2="430" y2="560" stroke="#0f766e" stroke-width="4" stroke-dasharray="3 4" opacity=".7"/><text x="435" y="300" font-size="9" fill="#0f766e" transform="rotate(90,435,300)">慢行优先廊道</text>
+        <line x1="630" y1="50" x2="630" y2="560" stroke="#0f766e" stroke-width="3" stroke-dasharray="3 4" opacity=".5"/>
+        <rect x="420" y="140" width="20" height="3" rx="1" fill="#0f766e" opacity=".8"/><rect x="420" y="340" width="20" height="3" rx="1" fill="#0f766e" opacity=".8"/><rect x="420" y="490" width="20" height="3" rx="1" fill="#0f766e" opacity=".8"/>
+      </g>
+      <g class="map-layer" id="layer-bluegreen">
+        <rect x="440" y="50" width="140" height="530" rx="70" fill="#d1fae5" stroke="#0f766e" stroke-width="2.5" stroke-dasharray="8 5"/><text x="510" y="315" text-anchor="middle" font-size="14" font-weight="700" fill="#065f46" transform="rotate(-90,510,315)" font-family="Songti SC,serif">京张遗址公园 · 9km</text>
+        <circle cx="510" cy="200" r="18" fill="#a7f3d0" stroke="#0f766e" stroke-width="1.5"/><text x="510" y="204" font-size="10" fill="#065f46" text-anchor="middle">雨水花园</text>
+        <circle cx="510" cy="480" r="18" fill="#a7f3d0" stroke="#0f766e" stroke-width="1.5"/><text x="510" y="484" font-size="10" fill="#065f46" text-anchor="middle">调蓄池</text>
+        <text x="900" y="50" font-size="10" fill="#15803d">乔木覆盖率</text><text x="900" y="64" font-size="13" font-weight="800" fill="#15803d">&ge; 40%</text>
+      </g>
+      <g class="map-layer" id="layer-phase">
+        <rect x="80" y="85" width="380" height="80" rx="8" fill="#5b5fc7" opacity=".15" stroke="#5b5fc7" stroke-width="1.5" stroke-dasharray="4 3"/><text x="270" y="130" text-anchor="middle" font-size="12" font-weight="700" fill="#4338ca">Phase 1 · 2026-2028</text><text x="270" y="147" font-size="10" fill="#5b5fc7">众智园先导 + 原点核心启动</text>
+        <rect x="80" y="370" width="400" height="70" rx="8" fill="#0f766e" opacity=".12" stroke="#0f766e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="280" y="410" text-anchor="middle" font-size="12" font-weight="700" fill="#0f766e">Phase 2 · 2028-2031</text><text x="280" y="427" font-size="10" fill="#0d9488">社区完善 + 公园全线贯通</text>
+        <rect x="640" y="85" width="380" height="70" rx="8" fill="#9a5b1e" opacity=".12" stroke="#9a5b1e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="830" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="#9a5b1e">Phase 3 · 2031-2035</text><text x="830" y="142" font-size="10" fill="#9a5b1e">大钟寺TOD + 国际交往区成型</text>
+      </g>
+      <circle cx="270" cy="140" r="26" fill="#0f766e" opacity=".85" class="core-anim"/><text x="270" y="137" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">众智园</text><text x="270" y="153" text-anchor="middle" fill="#ccfbf1" font-size="10">192.1ha</text>
+      <circle cx="510" cy="420" r="26" fill="#0f766e" opacity=".85" class="core-anim"/><text x="510" y="417" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">AI原点</text><text x="510" y="433" text-anchor="middle" fill="#ccfbf1" font-size="10">104.3ha</text>
+      <circle cx="830" cy="140" r="26" fill="#9a3412" opacity=".85" class="core-anim"/><text x="830" y="137" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">大钟寺</text><text x="830" y="153" text-anchor="middle" fill="#fef3c7" font-size="10">72.0ha</text>
+      <g fill="#0f766e" stroke="#fff" stroke-width="2"><circle cx="510" cy="70" r="4.5" class="dot-seq" style="animation-delay:0s"/><circle cx="510" cy="102" r="4.5" class="dot-seq" style="animation-delay:.15s"/><circle cx="510" cy="134" r="4.5" class="dot-seq" style="animation-delay:.3s"/><circle cx="510" cy="180" r="4.5" class="dot-seq" style="animation-delay:.45s"/><circle cx="510" cy="226" r="4.5" class="dot-seq" style="animation-delay:.6s"/><circle cx="510" cy="272" r="4.5" class="dot-seq" style="animation-delay:.75s"/><circle cx="510" cy="318" r="4.5" class="dot-seq" style="animation-delay:.9s"/><circle cx="510" cy="364" r="4.5" class="dot-seq" style="animation-delay:1.05s"/><circle cx="510" cy="410" r="4.5" class="dot-seq" style="animation-delay:1.2s"/><circle cx="510" cy="456" r="4.5" class="dot-seq" style="animation-delay:1.35s"/><circle cx="510" cy="502" r="4.5" class="dot-seq" style="animation-delay:1.5s"/><circle cx="510" cy="548" r="4.5" class="dot-seq" style="animation-delay:1.65s"/></g>
+      <ellipse cx="510" cy="320" rx="380" ry="270" fill="none" stroke="#9a5b1e" stroke-width="1.5" stroke-dasharray="8 6" class="map-ring"/><text x="510" y="610" text-anchor="middle" font-size="10" fill="#9a5b1e" font-family="Songti SC,serif">蓝绿慢行共生环 · 四季双模切换</text>
+      <text x="80" y="610" font-size="10" fill="#475569">Provisional geometry · 图层开关在上方工具栏</text>
+    </svg>
+  </div>
+  <div class="map-legend"><span><span class="dot" style="background:#f0fdfa;border:1px solid #5eead4"></span>AI研发创新</span><span><span class="dot" style="background:#fff7ed;border:1px solid #fdba74"></span>产业服务复合</span><span><span class="dot" style="background:#f0fdf4;border:1px solid #86efac"></span>原点社区</span><span><span class="dot" style="background:#5b5fc7;width:8px;height:2px"></span>地铁线路</span><span><span class="dot" style="background:#0f766e;width:8px;height:2px"></span>慢行廊道</span><span><span class="dot" style="background:var(--gold);border-radius:50%"></span>共生环</span></div>
+</div>
+</section>
+
+<!-- ═══════════ 03 KEY AREAS ═══════════ -->
+<section class="card-sect reveal">
+<div class="sect-top"><div><h2>03 · 三核详细设计 &mdash; 北园 · 中社 · 南城</h2><p>每区由不同主导因子驱动，形成&ldquo;策源&rarr;加速&rarr;聚集&rdquo;产业链梯度与空间节奏。</p></div><span class="sect-tag">Key Areas</span></div>
+<div class="area-grid">
+  <div class="area-item"><h3>众智园 · AI自主创新加速区</h3><div class="area-sub">192.1 ha · 北部转化引擎</div><div class="area-metrics"><div class="amet"><div class="am-val">&le;36m</div><div class="am-lbl">建筑限高</div></div><div class="amet"><div class="am-val">&ge;40%</div><div class="am-lbl">绿地率</div></div><div class="amet"><div class="am-val">1.2-1.8</div><div class="am-lbl">容积率</div></div><div class="amet"><div class="am-val">清河</div><div class="am-lbl">蓝绿锚点</div></div></div><ul><li>清河&ldquo;海绵+算力&rdquo;界面，退台建筑逐级跌落至30m生态缓冲带</li><li>可参观的安全治理沙盒，建筑底层全透明玻璃幕墙</li><li>北五环跨路&ldquo;创新桥&rdquo;，双层步行桥连接南北</li></ul></div>
+  <div class="area-item"><h3>北京AI原点社区</h3><div class="area-sub">104.3 ha · 中部策源核心</div><div class="area-metrics"><div class="amet"><div class="am-val">24-60m</div><div class="am-lbl">高度梯度</div></div><div class="amet"><div class="am-val">&ge;35%</div><div class="am-lbl">绿地率</div></div><div class="amet"><div class="am-val">1.5-2.5</div><div class="am-lbl">容积率</div></div><div class="amet"><div class="am-val">&le;5min</div><div class="am-lbl">转化半径</div></div></div><ul><li>代际共生社区：西翼24m老年照料，东翼60m青年公寓</li><li>&ldquo;五分钟转化半径&rdquo;：实验室&rarr;协作空间&rarr;原型测试场全步行</li><li>公共代码墙：30m长LED立面实时显示开源贡献流</li></ul></div>
+  <div class="area-item"><h3>大钟寺 · AI产业聚集区</h3><div class="area-sub">72.0 ha · 南部产业门户</div><div class="area-metrics"><div class="amet"><div class="am-val">60-100m</div><div class="am-lbl">建筑高度</div></div><div class="amet"><div class="am-val">&ge;25%</div><div class="am-lbl">绿地率</div></div><div class="amet"><div class="am-val">2.5-4.0</div><div class="am-lbl">容积率</div></div><div class="amet"><div class="am-val">3层</div><div class="am-lbl">步行系统</div></div></div><ul><li>&ldquo;站城共生环&rdquo;：地下站厅&rarr;地面广场&rarr;空中连廊三层步行系统</li><li>&ldquo;双时钟运营&rdquo;：日间商务展示+夜间社区文化</li><li>铁路工业美学立面：铁轨构件、信号灯、苏州码子融入建筑表皮</li></ul></div>
+</div>
+</section>
+
+<!-- ═══════════ 04 5D ═══════════ -->
+<section class="bleed-sect reveal" style="background:var(--bg)">
+<div class="wrap" style="padding:0">
+<div class="sect-hd"><h2>04 · 设计哲学 &mdash; 五维思辨驱动的城市设计</h2><p>SEED 5D框架从基因组学迁移至城市设计。每个空间决策都可追溯到这五个维度的推演。</p></div>
+<div class="d5-stage"><h3>设计生成逻辑 &mdash; 从不可约事实到空间提案</h3><div class="d5-flow"><div class="d5-node pillar">P1-P6<br>六条不可约真理</div><span class="d5-arrow">&rarr;</span><div class="d5-node">MECE穷举<br>5类城市模型<br>排除4类</div><span class="d5-arrow">&rarr;</span><div class="d5-node">因子权重<br>6因子&times;6层级<br>差异化锚定</div><span class="d5-arrow">&rarr;</span><div class="d5-node">偏见校正<br>5种默认偏见<br>系统性自检</div><span class="d5-arrow">&rarr;</span><div class="d5-conclusion">共生演化型<br>城市设计方案</div></div></div>
+<div class="d5-principle" style="margin-top:14px">
+  <div class="d5p-card"><h4 style="color:var(--gold)">溯源</h4><p>人口数据&rarr;海淀统计年鉴S级。气候约束&rarr;气象局30年标准值。每个主张可追溯到具体锚点。</p></div>
+  <div class="d5p-card"><h4 style="color:var(--gold)">客观</h4><p>发现AI Agent五种默认倾向（技术乐观主义、青年中心主义等），通过代际共生、四季策略主动校正。</p></div>
+  <div class="d5p-card"><h4 style="color:var(--gold)">穷举</h4><p>硅谷复制型、全盘保护型、白板重建型、单一功能型均被排除。&ldquo;共生演化型&rdquo;是剩下的必然选项。</p></div>
+  <div class="d5p-card"><h4 style="color:var(--gold)">可验证</h4><p>四个可证伪设计主张：共生带vs传统园区、30分钟圈vs气候、代际社区vs纯青年、12花园vs常规公园。</p></div>
+</div>
+</div>
+</section>
+
+<div class="geo-rule reveal"></div>
+
+<!-- ═══════════ 05 FACTOR MATRIX ═══════════ -->
+<section class="card-sect reveal">
+<div class="sect-top"><div><h2>05 · 六因子权重矩阵</h2><p>因子权重从第一性原理推导而出。（&starf; 主导 / &star; 参照）</p></div><span class="sect-tag">Factors</span></div>
+<div class="sect-inner factor-matrix"><table><thead><tr><th>因子</th><th>权重</th><th>统筹研究</th><th>总体设计</th><th>重点区域</th><th>场景设计</th><th>几何生成</th><th>指标计算</th></tr></thead><tbody>
+<tr><td>· 政策战略</td><td><strong>0.25</strong></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-off">&star;&star;&star;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td></tr>
+<tr><td>· 人口结构</td><td><strong>0.20</strong></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;</span><span class="star-off">&star;&star;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td></tr>
+<tr><td>· 气候环境</td><td><strong>0.18</strong></td><td><span class="star-on">&starf;</span><span class="star-off">&star;&star;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td></tr>
+<tr><td>· 历史文脉</td><td><strong>0.17</strong></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;</span><span class="star-off">&star;&star;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-off">&star;&star;&star;</span></td><td><span class="star-off">&star;&star;&star;</span></td></tr>
+<tr><td>· 学术产业</td><td><strong>0.12</strong></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-off">&star;&star;&star;</span></td><td><span class="star-on">&starf;</span><span class="star-off">&star;&star;</span></td></tr>
+<tr><td>· 空间约束</td><td><strong>0.08</strong></td><td><span class="star-on">&starf;&starf;</span><span class="star-off">&starf;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;</span><span class="star-off">&star;&star;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td><td><span class="star-on">&starf;&starf;&starf;</span></td></tr>
+</tbody></table></div>
+</section>
+
+<!-- ═══════════ 06 12 GARDENS ═══════════ -->
+<section class="card-sect reveal">
+<div class="sect-top"><div><h2>06 · 12 花园 · 12 场景案例</h2><p>点击每个花园展开完整场景案例，包含具体人物、空间设计、AI技术嵌入和季节行为。</p></div><span class="sect-tag">Scenarios</span></div>
+<div class="sect-inner" style="padding:0"><div class="garden-list">
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">01</span><span class="g-name">西直门 · 起点花园</span><span class="g-scene">AI历史剧场</span><span class="g-tags"><span class="gd-tag">四季</span><span class="gd-tag">文脉</span><span class="gd-tag">目标：家庭/长者</span><span class="gd-tag">AI：CV步态识别+生成式AR</span><span class="gd-tag">空间：R=18m下沉广场+铜版地图</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-01-1.jpg" alt="西直门 · 起点花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b10" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b10)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — AI历史剧场</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-01-2.jpg" alt="西直门 · 起点花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b11" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b11)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — AI历史剧场</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>直径36m下沉广场，地面镶嵌铜版京张铁路地图，轨道线嵌入暖光LED。三级同心圆石阶：外环观景座、中环通行道、内环AR互动区。南北两侧无障碍坡道，配扶手与休息平台。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>清晨7:30，72岁退休铁路工程师陈伯带8岁孙女小雨来到广场。小雨戴AR眼镜，铜版地图上浮现1909年蒸汽机车3D模型沿轨道缓缓行驶。陈伯指着西直门起点讲当年爷爷参与修建的故事。AR实时生成詹天佑虚拟人像，向小雨点头微笑。边缘AI摄像头识别长者步态，自动调亮地面灯光指引安全路径。</p></div><div class="gd-meta"><span class="gd-tag">四季</span><span class="gd-tag">文脉</span><span class="gd-tag">目标：家庭/长者</span><span class="gd-tag">AI：CV步态识别+生成式AR</span><span class="gd-tag">空间：R=18m下沉广场+铜版地图</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">02</span><span class="g-name">地质花园</span><span class="g-scene">地质AI探秘</span><span class="g-tags"><span class="gd-tag">教育</span><span class="gd-tag">目标：K-12教育</span><span class="gd-tag">AI：视觉识别+地质KG</span><span class="gd-tag">空间：岩石展廊+NFC互动台</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-02-1.jpg" alt="地质花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b20" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b20)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 地质AI探秘</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-02-2.jpg" alt="地质花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b21" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b21)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 地质AI探秘</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>沿旧铁轨100m线性展廊。11个花岗岩标本台沿轨分布，每台集成NFC感应与微型LED说明屏。轨间铺碎砾石，两侧植春季樱花。轻触岩面触发AI矿物识别——即时显示岩石名称、形成年代、地质构造。户外课堂区可容纳30名学生。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>周二上午10:00，中关村二小四年级30名学生上地质课。老师用平板点击'白垩纪'主题，11个标本台同时点亮蓝色灯光，地面投影出古代海洋场景。学生小杰将平板对准花岗岩标本拍照，AI识别并语音播报：'花岗岩，火成岩，形成于约1.2亿年前，含长石、石英、云母。'全息区浮出3D地质剖面动画。</p></div><div class="gd-meta"><span class="gd-tag">教育</span><span class="gd-tag">目标：K-12教育</span><span class="gd-tag">AI：视觉识别+地质KG</span><span class="gd-tag">空间：岩石展廊+NFC互动台</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">03</span><span class="g-name">六道口 · 道口记忆花园</span><span class="g-scene">AI交通协奏</span><span class="g-tags"><span class="gd-tag">四季</span><span class="gd-tag">交通</span><span class="gd-tag">目标：通勤者</span><span class="gd-tag">AI：RL信号优化</span><span class="gd-tag">空间：四角口袋公园+中央柱</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-03-1.jpg" alt="六道口 · 道口记忆花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b30" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b30)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — AI交通协奏</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-03-2.jpg" alt="六道口 · 道口记忆花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b31" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b31)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — AI交通协奏</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>路口中央4m高LED数据柱实时显示交通指标：PM2.5/车流量/等待时间。四角各设600㎡口袋公园，铺铁锈红铁路记忆铺装。每角设候车亭——内置AI信号优化屏、USB充电、冰雾降温喷头（夏季）。利用旧枕木做座椅与花池缘石。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>傍晚17:45晚高峰，六道口路口。数据柱显示'当前等候62秒→AI优化后38秒'。北漂程序员小王刷手机看到绿灯倒计时-12秒准确预测，加速通过。道口西角，外卖骑手老李在候车亭给手机充电，屏幕上显示'您的外卖路线红绿灯已优化，预计节省7分钟'。冰雾喷头启动降温3°C。</p></div><div class="gd-meta"><span class="gd-tag">四季</span><span class="gd-tag">交通</span><span class="gd-tag">目标：通勤者</span><span class="gd-tag">AI：RL信号优化</span><span class="gd-tag">空间：四角口袋公园+中央柱</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">04</span><span class="g-name">詹天佑纪念花园</span><span class="g-scene">工程师朝圣地</span><span class="g-tags"><span class="gd-tag">四季</span><span class="gd-tag">仪式</span><span class="gd-tag">目标：开发者/学生</span><span class="gd-tag">AI：实时翻译+代码可视化</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-04-1.jpg" alt="詹天佑纪念花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b40" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b40)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 工程师朝圣地</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-04-2.jpg" alt="詹天佑纪念花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b41" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b41)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 工程师朝圣地</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>圆形纪念广场，詹天佑半身铜像居中。后方14m弧形LED墙展示工程箴言动态书法。十座3m高苏州码子钢雕沿弧排列，内置暖光LED。地面铭刻'1905-1909京张铁路建设时间线'。北侧设工程师宣誓互动墙——手掌按压即生成个性化职业道德承诺书，区块链存证。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>五四青年节上午，50名清华土木系学生在此举行入职宣誓。每人将手掌按压在互动墙上，AI根据专业方向和个人志愿生成个性化'工程职业道德承诺书'。墙面LED矩阵逐行亮起金色承诺文字。宣誓完成后，区块链存证证书生成，手机扫码即可验真。老教授张院士致辞：'1909年詹天佑在这里用人字轨翻越八达岭，今天你们在这里宣誓——工程师精神，薪火相传。'</p></div><div class="gd-meta"><span class="gd-tag">四季</span><span class="gd-tag">仪式</span><span class="gd-tag">目标：开发者/学生</span><span class="gd-tag">AI：实时翻译+代码可视化</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">05</span><span class="g-name">清华东路西口 · 近校花园</span><span class="g-scene">学术成果窗</span><span class="g-tags"><span class="gd-tag">春夏秋</span><span class="gd-tag">学术</span><span class="gd-tag">目标：科研人员/学生</span><span class="gd-tag">AI：NLP匹配+推荐系统</span><span class="gd-tag">空间：协作屏幕+预约亭</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-05-1.jpg" alt="清华东路西口 · 近校花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b50" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b50)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 学术成果窗</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-05-2.jpg" alt="清华东路西口 · 近校花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b51" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b51)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 学术成果窗</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>4m高户外防眩光协作大屏居中。三个玻璃+木材协作亭——每个亭内设4人圆桌+全息投影。地面用彩色路径标记通向各校的步行路线：清华1.2km（紫）、北航2.8km（蓝）、北林1.5km（绿）。AI实时抓取周边高校公开研究课题，进行跨学科匹配推荐。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>清华计算机系博士生小李的课题'城市交通流预测'被AI系统匹配到北林林教授'城市热岛效应'研究。系统推荐：'交通流→碳排放→热岛，可联合建模'。两人在协作亭见面，全息投影同时显示交通热力图与植被覆盖图。林教授：'你这个模型加权我的树种蒸腾数据，精度至少提升15%。'三周后，跨学科论文被NeurIPS接收。</p></div><div class="gd-meta"><span class="gd-tag">春夏秋</span><span class="gd-tag">学术</span><span class="gd-tag">目标：科研人员/学生</span><span class="gd-tag">AI：NLP匹配+推荐系统</span><span class="gd-tag">空间：协作屏幕+预约亭</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">06</span><span class="g-name">五道口 · 创新花园</span><span class="g-scene">开源广场</span><span class="g-tags"><span class="gd-tag">春秋</span><span class="gd-tag">社区</span><span class="gd-tag">目标：开发者/学生</span><span class="gd-tag">AI：实时翻译+代码可视化</span><span class="gd-tag">空间：30m LED代码墙+银杏工作台</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-06-1.jpg" alt="五道口 · 创新花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b60" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b60)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 开源广场</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-06-2.jpg" alt="五道口 · 创新花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b61" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b61)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 开源广场</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>30m弧形LED代码墙实时展示GitHub Trending仓库的代码瀑布流。千年古银杏树下设圆形石阶小剧场（40座），树冠挂暖色串灯。周边散布木质工作台（USB+WiFi）。深夜模式——22:00后屏幕亮度自适应。设AI实时双语字幕屏，支持中英日韩即时翻译。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>周五晚8:00，35人围坐银杏树下参加闪电演讲。北大研究生小赵分享'面向视障人士的AI语音导航'开源项目，代码全息投影在空中旋转，AI实时双语字幕在侧屏滚动。台下日本留学生用日语提问，AI实时翻译为中文：'盲道识别在雨天的准确率如何？'小赵调出雨天测试数据回答。GitHub Star数在现场从237飙到512。</p></div><div class="gd-meta"><span class="gd-tag">春秋</span><span class="gd-tag">社区</span><span class="gd-tag">目标：开发者/学生</span><span class="gd-tag">AI：实时翻译+代码可视化</span><span class="gd-tag">空间：30m LED代码墙+银杏工作台</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">07</span><span class="g-name">知春路 · 产业花园</span><span class="g-scene">AI企业橱窗</span><span class="g-tags"><span class="gd-tag">四季</span><span class="gd-tag">产业</span><span class="gd-tag">目标：投资人/企业BD</span><span class="gd-tag">AI：NFC匹配+隐私保护</span><span class="gd-tag">空间：6个智能展亭+LED地砖</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-07-1.jpg" alt="知春路 · 产业花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b70" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b70)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — AI企业橱窗</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-07-2.jpg" alt="知春路 · 产业花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b71" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b71)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — AI企业橱窗</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>6个标准化6m高玻璃+钢结构展亭，沿公园步道间隔60m排列。亭间LED地砖播放AI企业预览动画。每亭设NFC感应器与全息展台——投资者刷手机即获取BP摘要、融资历史、技术白皮书。支持联邦学习隐私保护：企业数据不出亭，AI匹配在TEE内完成。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>VC合伙人刘女士用手机NFC轻触3号展亭，全息屏幕弹出该AI创业公司BP摘要——'工业缺陷检测，A轮，已服务12家工厂'。她感兴趣，点击'请求详细数据'。亭内TEE系统发起到该企业服务器的联邦查询，在不泄露具体客户名单的前提下返回脱敏指标：'缺陷检出率99.3%，误报率0.7%'。刘女士在亭内与创始人视频通话，30分钟后签署NDA。</p></div><div class="gd-meta"><span class="gd-tag">四季</span><span class="gd-tag">产业</span><span class="gd-tag">目标：投资人/企业BD</span><span class="gd-tag">AI：NFC匹配+隐私保护</span><span class="gd-tag">空间：6个智能展亭+LED地砖</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">08</span><span class="g-name">清河 · 水岸花园</span><span class="g-scene">气候感知湿地</span><span class="g-tags"><span class="gd-tag">夏季</span><span class="gd-tag">生态</span><span class="gd-tag">目标：社区/管理者</span><span class="gd-tag">AI：时序预测+自动控制</span><span class="gd-tag">空间：12雨水花园+数据雕塑</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-08-1.jpg" alt="清河 · 水岸花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b80" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b80)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 气候感知湿地</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-08-2.jpg" alt="清河 · 水岸花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b81" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b81)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 气候感知湿地</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>沿清河12级梯级雨水花园，种植芦苇、千屈菜、荷花等本地湿生植物。中央4m高数据水柱雕塑——彩色水柱高度实时反映降雨量与水质指标。木栈道穿越湿地，设3处观景平台。每级雨水花园配智能闸门与水位传感器，AI根据气象预报提前24h调整蓄水策略。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>7月暴雨红色预警。AI系统提前24h预测降水量120mm，自动开启12级梯级闸门预泄50%蓄水，腾出8000m³调蓄空间。暴雨中，数据水柱急速上升——'当前蓄水率78%，水位+1.2m，预计3h后达峰'。社区管理员老周在手机端实时监控，AI建议：'3号闸门开启至75%，5号关闭以保护下游荷花区。'雨后2h，12级雨水花园全部恢复到安全水位。全年蓄水8.2万m³，全部回用于公园灌溉。</p></div><div class="gd-meta"><span class="gd-tag">夏季</span><span class="gd-tag">生态</span><span class="gd-tag">目标：社区/管理者</span><span class="gd-tag">AI：时序预测+自动控制</span><span class="gd-tag">空间：12雨水花园+数据雕塑</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">09</span><span class="g-name">北四环 · 跨路花园</span><span class="g-scene">断点缝合术</span><span class="g-tags"><span class="gd-tag">四季</span><span class="gd-tag">无障碍</span><span class="gd-tag">目标：无障碍需求者</span><span class="gd-tag">AI：CV+无障碍路径规划</span><span class="gd-tag">空间：跨路电梯+休憩站</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-09-1.jpg" alt="北四环 · 跨路花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b90" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b90)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 断点缝合术</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-09-2.jpg" alt="北四环 · 跨路花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b91" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b91)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 断点缝合术</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>6m宽弧形人行天桥跨北四环，两端各设2部全玻璃无障碍电梯。桥面铺防滑暖色铺装+连续LED扶手灯带。桥两侧设绿植花箱（观赏草+常绿灌木）。桥中段设2处观景台——可见西山天际线。休憩站含紧急呼叫按钮、自动售货机、手机充电桩。AI无障碍导航App提供全路径规划。轮椅通过后绿灯自动延长+12秒。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>轮椅使用者张女士打开'无碍出行'App规划路线——'从地质大学到对街商场'。App推荐跨路花园天桥路径——2部电梯+平坦桥面+自动延长的绿灯。到达路口时，AI摄像头识别轮椅，信号灯自动显示'+12s'绿延。电梯内语音播报楼层，盲文按钮。张女士在观景台停下，拍下西山落日发朋友圈：'第一次觉得过马路也可以是享受。'</p></div><div class="gd-meta"><span class="gd-tag">四季</span><span class="gd-tag">无障碍</span><span class="gd-tag">目标：无障碍需求者</span><span class="gd-tag">AI：CV+无障碍路径规划</span><span class="gd-tag">空间：跨路电梯+休憩站</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">10</span><span class="g-name">众智园 · 加速花园</span><span class="g-scene">安全治理沙盒</span><span class="g-tags"><span class="gd-tag">四季</span><span class="gd-tag">安全</span><span class="gd-tag">目标：AI从业者/监管者</span><span class="gd-tag">AI：对抗性测试+自动报告</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-10-1.jpg" alt="众智园 · 加速花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b100" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b100)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 安全治理沙盒</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-10-2.jpg" alt="众智园 · 加速花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b101" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b101)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 安全治理沙盒</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>双层玻璃幕墙建筑，60座阶梯礼堂式红队测试中心居中。舞台设3个红队工作站，大屏实时展示对抗攻击过程——红队尝试越狱/投毒/后门攻击，绿墙计数累计发现漏洞数。室外6m高LED公共仪表盘显示透明化指标：'累计发现23→已修复18→正在测试LLM-v4.2'。透明安全——所有测试公众可见。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>某头部大模型企业提交最新LLM-v4.2版本进行安全沙盒测试。3名红队安全研究员分组对抗：A组尝试提示注入越狱，B组构造恶意训练数据投毒，C组在模型权重中搜索后门触发器。大屏实时显示：'越狱尝试：127次→成功：0次；投毒检测：3个异常样本→已隔离；后门扫描：2个可疑神经元→已标记'。3h后测试报告自动生成并发布于室外LED仪表盘。公众扫码可查看完整报告。</p></div><div class="gd-meta"><span class="gd-tag">四季</span><span class="gd-tag">安全</span><span class="gd-tag">目标：AI从业者/监管者</span><span class="gd-tag">AI：对抗性测试+自动报告</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">11</span><span class="g-name">大钟寺 · 交汇花园</span><span class="g-scene">数据要素市集</span><span class="g-tags"><span class="gd-tag">春秋</span><span class="gd-tag">数据</span><span class="gd-tag">目标：企业/机构数据管理者</span><span class="gd-tag">AI：联邦学习+零知识证明</span><span class="gd-tag">空间：签约亭+TEE节点</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-11-1.jpg" alt="大钟寺 · 交汇花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b110" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b110)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 数据要素市集</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-11-2.jpg" alt="大钟寺 · 交汇花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b111" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b111)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 数据要素市集</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>大钟寺TOD核心区，玻璃隔音数据签约亭×6，每亭配电子签名终端+合规AI界面。建筑外立面设计动态数据流可视化——暖色光流速度代表实时交易量。保留铁路工业风格：裸露钢梁+信号灯改造壁灯。TEE可信执行环境节点——数据不出域，模型参数加密传输，零知识证明验证。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>某三甲医院影像科王主任希望将2300例CT数据用于AI训练但担心隐私泄露。通过联邦学习平台：医院数据不出服务器，模型参数加密后在TEE节点与AI企业训练。亭内合规AI全程监控——'数据使用范围：仅用于肺结节检测模型训练，禁止其他用途'。3天后模型AUC从0.91提升至0.94，医院获得模型使用权+收益分成。零知识证明自动生成合规报告，监管部门实时可查。</p></div><div class="gd-meta"><span class="gd-tag">春秋</span><span class="gd-tag">数据</span><span class="gd-tag">目标：企业/机构数据管理者</span><span class="gd-tag">AI：联邦学习+零知识证明</span><span class="gd-tag">空间：签约亭+TEE节点</span></div></div></div>
+<div class="garden-entry"><button class="garden-btn" aria-expanded="false" onclick="toggleGarden(this)"><span class="g-num">12</span><span class="g-name">北五环 · 展望花园</span><span class="g-scene">共生未来馆</span><span class="g-tags"><span class="gd-tag">四季</span><span class="gd-tag">远景</span><span class="gd-tag">目标：全体公众</span><span class="gd-tag">AI：生成式未来模拟</span><span class="gd-tag">空间：3层未来馆+愿景墙</span></span><span class="g-arrow">&blacktriangledown;</span></button><div class="garden-detail"><div class="gd-sb"><div class="gd-sb-stage"><div class="gd-sb-frame active"><img src="assets/garden-12-1.jpg" alt="北五环 · 展望花园 场景1" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b120" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b120)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 1 — 共生未来馆</text></svg></div><div class="gd-sb-frame"><img src="assets/garden-12-2.jpg" alt="北五环 · 展望花园 场景2" loading="lazy" class="waiting" onload="this.classList.remove('waiting');this.classList.add('loaded')" onerror="this.parentElement.classList.add('no-img')"/><svg viewBox="0 0 600 290" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="b121" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--sky-from, #7eb8da)"/><stop offset="100%" stop-color="var(--sky-to, #c4b89a)"/></linearGradient></defs><rect width="600" height="290" fill="url(#b121)"/><rect y="210" width="600" height="80" fill="var(--ink)" opacity=".12"/><circle cx="280" cy="180" r="45" fill="var(--ink)" opacity=".06"/><circle cx="500" cy="140" r="28" fill="var(--ink)" opacity=".05"/><text x="300" y="230" text-anchor="middle" fill="var(--muted)" font-size="11" font-family="var(--sans)">场景 2 — 共生未来馆</text></svg></div></div><div class="gd-sb-nav"><span class="gd-sb-dot active" onclick="goFrame(this,0)"></span><span class="gd-sb-dot" onclick="goFrame(this,1)"></span><button class="gd-sb-play" onclick="this.closest('.gd-sb').querySelector('.gd-sb-stage').classList.toggle('paused')">⏯</button></div></div><div class="gd-scene"><h5>空间设计要点</h5><p>3层建筑总高18m。1层'动态未来模拟'弧形屏幕厅。2层'公众愿景墙'数字马赛克。3层屋顶观景台俯瞰9km公园全貌。双层呼吸式幕墙内层LED矩阵外层光伏玻璃——日间发电夜间成为公园北端视觉标识。</p></div><div class="gd-scene"><h5>人物与AI互动</h5><p>开园日，初二学生小林对着愿景墙说出愿望：'我希望每个孩子都能用AI学习任何东西。'语音转为发光文字刻入数字马赛克，与其他999条市民愿望汇聚成光之星座。3层屋顶观景台，小林用AR望远镜看9km公园——从北五环到西直门，12座花园在夕阳下形成一条金色光带。AI语音导览：'你现在看到的是中国第一条智慧铁路遗产廊道，而我们站的地方——是它的未来。'</p></div><div class="gd-meta"><span class="gd-tag">四季</span><span class="gd-tag">远景</span><span class="gd-tag">目标：全体公众</span><span class="gd-tag">AI：生成式未来模拟</span><span class="gd-tag">空间：3层未来馆+愿景墙</span></div></div></div>
+</div></div>
+</section>
+
+<!-- ═══════════ 07 SEASONS ═══════════ -->
+<div class="geo-rule reveal"></div>
+<section class="reveal" aria-labelledby="seasons-heading">
+<h2 id="seasons-heading" style="font-size:17px;font-weight:800;margin-bottom:12px;font-family:Songti SC,Noto Serif SC,STSong,serif">07 · 四季共生策略 &mdash; 气候适应性设计</h2>
+<div class="season-stage" id="seasonStage">
+  <canvas class="season-particles" id="seasonParticles" role="presentation" aria-hidden="true"></canvas>
+  <div class="season-tabs" role="tablist" aria-label="四季切换">
+    <button class="season-tab active" data-season="spring" role="tab" aria-selected="true"><span class="si spring"></span>春季 · 开窗期</button>
+    <button class="season-tab" data-season="summer" role="tab" aria-selected="false"><span class="si summer"></span>夏季 · 雨厅期</button>
+    <button class="season-tab" data-season="autumn" role="tab" aria-selected="false"><span class="si autumn"></span>秋季 · 黄金期</button>
+    <button class="season-tab" data-season="winter" role="tab" aria-selected="false"><span class="si winter"></span>冬季 · 智廊期</button>
+  </div>
+  <div class="season-panel show" data-panel="spring" role="tabpanel"><div><div class="sp-temp">5~20<span style="font-size:24px">&deg;C</span></div><div class="sp-range">3-5月 · 少雨干燥 · 樱花/海棠花季</div><div class="sp-meta"><div><b>降水</b><span>38mm/月</span></div><div><b>日照</b><span>7.2h/天</span></div><div><b>风向</b><span>NW</span></div></div></div><ul class="sp-detail"><li>户外AI测试草坪开放 &mdash; 年度活动启动窗口</li><li>科技市集沿公园主轴展开</li><li>建筑立面可开启比例 &gt; 60%</li><li>花粉传感器 + 过敏原预警系统就位</li></ul></div>
+  <div class="season-panel" data-panel="summer" role="tabpanel"><div><div class="sp-temp">25~37<span style="font-size:24px">&deg;C</span></div><div class="sp-range">6-8月 · 暴雨集中 (70.8%年降水)</div><div class="sp-meta"><div><b>降水</b><span>190mm/月</span></div><div><b>日照</b><span>5.8h/天</span></div><div><b>风向</b><span>SE</span></div></div></div><ul class="sp-detail"><li>遮荫最大化：乔木覆盖率 &gt; 40%，喷雾降温系统开启</li><li>雨水花园全效运行 + AI雨洪预警</li><li>室内AI体验为主，夜间户外活动(20-23时)</li><li>海绵设施峰值流量削减 &ge; 60%</li></ul></div>
+  <div class="season-panel" data-panel="autumn" role="tabpanel"><div><div class="sp-temp">10~22<span style="font-size:24px">&deg;C</span></div><div class="sp-range">9-11月 · 晴朗宜人 · 金秋银杏</div><div class="sp-meta"><div><b>降水</b><span>25mm/月</span></div><div><b>日照</b><span>7.9h/天</span></div><div><b>风向</b><span>NW</span></div></div></div><ul class="sp-detail"><li>公共空间使用峰值 &mdash; 全年最高人流密度</li><li>国际会议窗口期：全球AI活动周 · 开发者大会</li><li>户外路演与展览沿9km展开</li><li>银杏景观道：京张金秋IP</li></ul></div>
+  <div class="season-panel" data-panel="winter" role="tabpanel"><div><div class="sp-temp">&minus;5~5<span style="font-size:24px">&deg;C</span></div><div class="sp-range">12-2月 · 干燥少雪</div><div class="sp-meta"><div><b>降水</b><span>4mm/月</span></div><div><b>日照</b><span>5.2h/天</span></div><div><b>风向</b><span>NW</span></div></div></div><ul class="sp-detail"><li>室内暖廊优先 &mdash; 全线贯通玻璃暖廊系统</li><li>冰上AI光影展示：结冰水面做投影载体</li><li>AI冬季学校：高校寒假集中教学与黑客松</li><li>线上协作峰值：元宇宙平行会场</li></ul></div>
+</div>
+</section>
+
+<!-- ═══════════ 08 POPULATION ═══════════ -->
+<section class="card-sect reveal">
+<div class="sect-top"><div><h2>08 · 人口基底 &mdash; 311万人的设计锚点</h2><p>海淀区2025年末常住人口311.1万，人口密度7,216人/km&sup2;。数据来源：海淀区2025年统计公报（S级）。</p></div><span class="sect-tag">Demographics</span></div>
+<div class="sect-inner"><div class="pop-strip">
+  <div class="pop-seg"><div class="seg-val"><span class="seg-num" data-count="311.1">0</span><span class="seg-unit">万</span></div><div class="seg-lbl">常住人口</div></div>
+  <div class="pop-seg"><div class="seg-val"><span class="seg-num" data-count="203.5">0</span><span class="seg-unit">万</span></div><div class="seg-lbl">劳动年龄</div></div>
+  <div class="pop-seg"><div class="seg-val"><span class="seg-num" data-count="75.4">0</span><span class="seg-unit">万</span></div><div class="seg-lbl">老龄60+</div></div>
+  <div class="pop-seg"><div class="seg-val"><span class="seg-num" data-count="200.6">0</span><span class="seg-unit">万</span></div><div class="seg-lbl">人才总量</div></div>
+  <div class="pop-seg"><div class="seg-val"><span class="seg-num" data-count="692">0</span><span class="seg-unit">位</span></div><div class="seg-lbl">两院院士</div></div>
+  <div class="pop-seg"><div class="seg-val"><span class="seg-num" data-count="37">0</span><span class="seg-unit">所</span></div><div class="seg-lbl">高校</div></div>
+  <div class="pop-seg"><div class="seg-val"><span class="seg-num" data-count="41.7">0</span><span class="seg-unit">万</span></div><div class="seg-lbl">在校生</div></div>
+  <div class="pop-seg"><div class="seg-val"><span class="seg-num" data-count="123">0</span><span class="seg-unit">款</span></div><div class="seg-lbl">备案大模型</div></div>
+</div></div>
+</section>
+
+<!-- ═══════════ 09 TASKS + CHECK ═══════════ -->
+<section class="card-sect reveal">
+<div class="sect-top"><div><h2>09 · Agent任务覆盖与自检状态</h2><p>六项征集任务全部覆盖。完整证据保存在 compliance/standard/design_depth_matrix.json 中。</p></div><span class="sect-tag">Validation</span></div>
+<div class="sect-inner">
+<div class="task-list" style="margin-bottom:18px">
+  <div class="task-item"><div class="task-num">agent.1</div><div class="task-name">总体概念与命名体系</div><div class="task-desc">京张AI共生带 · 共生作为概念增量贡献 · 一带三核多节点</div></div>
+  <div class="task-item"><div class="task-num">agent.2</div><div class="task-name">AI创新生态设计</div><div class="task-desc">五层共生创新链(L1-L5) · 三区两翼协同回路</div></div>
+  <div class="task-item"><div class="task-num">agent.3</div><div class="task-name">AI+场景赋能与智慧城市</div><div class="task-desc">12张场景卡(对应12花园) · 5类用户画像</div></div>
+  <div class="task-item"><div class="task-num">agent.4</div><div class="task-name">AI公共空间与朝圣地标</div><div class="task-desc">3个AI朝圣地标 · 公共空间组件库</div></div>
+  <div class="task-item"><div class="task-num">agent.5</div><div class="task-name">文化融合叙事</div><div class="task-desc">京张铁路&times;中关村&times;AI · 苏州码子&rarr;数字可视化</div></div>
+  <div class="task-item"><div class="task-num">agent.6</div><div class="task-name">全球活动体系与运营</div><div class="task-desc">四季活动日历 · 全球AI活动周 · 年度运营节奏</div></div>
+</div>
+<div class="check-grid">
+  <div class="check-panel pass"><h3>Passed</h3><ul><li>Deterministic validation</li><li>Spatial review</li><li>Visual packaging check</li><li>Professional evidence review</li><li>Bilingual contract (zh+en)</li></ul></div>
+  <div class="check-panel warn"><h3>Known Limitations</h3><ul><li>Provisional boundaries &mdash; 待官方polygon</li><li>控规条件缺失 &mdash; FAR/高度pending</li><li>图纸为概念占位</li><li>工程可行性待确认</li></ul></div>
+</div>
+</div>
+</section>
+<!-- ═══════════ 10 SUMMARY DASHBOARD ═══════════ -->
+<section class="card-sect reveal">
+<div class="sect-top"><div><h2>10 · 总览仪表盘</h2><p>设计总览：地图范围、用地分区、交通体系、蓝绿空间、更新项目、AI场景、核心指标与假设条件。</p></div><span class="sect-tag">Dashboard</span></div>
+<div class="sect-inner">
+
+<!-- 总览地图 -->
+<div class="sum-block" id="sum-overview">
+<h4>总览地图</h4>
+<p>设计范围：海淀区京张铁路走廊沿线约 11.4 km²，北起北五环清河，南至西直门交通枢纽，总长约 9 km。基地涵盖三核（北园·中社·南城）、12座AI主题花园，沿线串联高校、科研机构、TOD枢纽与生态廊道。</p>
+<svg viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:120px;background:var(--soft);border-radius:8px;margin-top:8px">
+  <rect x="0" y="30" width="600" height="3" fill="var(--teal)" opacity=".6"/>
+  <circle cx="50" cy="31" r="6" fill="var(--amber)"/><text x="50" y="52" text-anchor="middle" font-size="8" fill="var(--muted)">西直门</text>
+  <circle cx="200" cy="31" r="5" fill="var(--teal)"/><text x="200" y="52" text-anchor="middle" font-size="8" fill="var(--muted)">六道口</text>
+  <circle cx="300" cy="31" r="6" fill="var(--amber)"/><text x="300" y="52" text-anchor="middle" font-size="8" fill="var(--muted)">五道口</text>
+  <circle cx="400" cy="31" r="5" fill="var(--teal)"/><text x="400" y="52" text-anchor="middle" font-size="8" fill="var(--muted)">知春路</text>
+  <circle cx="550" cy="31" r="6" fill="var(--amber)"/><text x="550" y="52" text-anchor="middle" font-size="8" fill="var(--muted)">北五环</text>
+  <text x="300" y="20" text-anchor="middle" font-size="9" fill="var(--muted)">← 9km 京张AI共生带 →</text>
+  <rect x="0" y="60" width="600" height="55" fill="var(--bg)"/>
+  <text x="300" y="80" text-anchor="middle" font-size="8" fill="var(--muted)">北园（清河湿地·詹天佑纪念）— 中社（五道口·六道口·知春路）— 南城（西直门·大钟寺TOD）</text>
+  <text x="300" y="100" text-anchor="middle" font-size="8" fill="var(--muted)">用地面积约 11.4 km² · 绿地率 12.3% · 公共空间率 7.3% · 3个重点详细设计区</text>
+</svg>
+</div>
+
+<!-- 三层范围 -->
+<div class="sum-block" id="sum-scope">
+<h4>三层范围</h4>
+<div class="sum-grid">
+<div><span class="sum-label">协调研究范围</span><span>海淀区全域 + 京张走廊沿线协调区</span></div>
+<div><span class="sum-label">总体城市设计</span><span>京张铁路走廊沿线 11.4 km²</span></div>
+<div><span class="sum-label">详细设计</span><span>北园 · 中社 · 南城 三核</span></div>
+</div>
+</div>
+
+<!-- 用地分区 -->
+<div class="sum-block" id="sum-landuse">
+<h4>用地分区</h4>
+<p>用地结构：AI研发与产业用地（核心）、居住与公共服务配套（支撑）、绿地与公共空间（品质）、交通与市政设施（基础）。设计保留并强化铁路工业遗产文脉，新增科研协作、AI展示、数据交易等创新功能。</p>
+</div>
+
+<!-- 交通慢行 -->
+<div class="sum-block" id="sum-mobility">
+<h4>交通慢行</h4>
+<p>构建"轨交+慢行+AI信号优化"三位一体绿色出行体系。跨北四环无障碍人行天桥缝合南北慢行断点。全线9km绿道贯通，AI自适应信号灯优化路口等候时间。4号线/13号线/昌平线多站TOD联动。</p>
+</div>
+
+<!-- 蓝绿公共空间 -->
+<div class="sum-block" id="sum-bluegreen">
+<h4>蓝绿公共空间</h4>
+<p>沿清河12级梯级雨水花园形成海绵城市示范段。全线12座AI主题花园构成线性公园系统。保留千年古银杏等历史树木。绿地率 12.3%，公共空间率 7.3%，年雨水回用 8.2 万 m³。</p>
+</div>
+
+<!-- 更新项目 -->
+<div class="sum-block" id="sum-renewal">
+<h4>更新项目</h4>
+<p>分三期推进：一期（2026-2028）西直门起点花园、地质花园、六道口花园、詹天佑花园；二期（2028-2030）近校花园、创新花园、产业花园、水岸花园；三期（2030-2032）跨路花园、加速花园、交汇花园、展望花园。含新建、改建、保留提升三类项目共 12 个花园 + 3 个重点区的城市更新。</p>
+</div>
+
+<!-- AI 场景 -->
+<div class="sum-block" id="sum-aiscenes">
+<h4>AI 场景</h4>
+<div class="sum-grid">
+<div><span class="sum-label">AI历史剧场</span><span>CV步态识别 + 生成式AR</span></div>
+<div><span class="sum-label">AI交通协奏</span><span>RL强化学习信号优化</span></div>
+<div><span class="sum-label">地质AI探秘</span><span>视觉识别 + 知识图谱</span></div>
+<div><span class="sum-label">气候感知湿地</span><span>时序预测 + 自动闸门控制</span></div>
+<div><span class="sum-label">安全治理沙盒</span><span>对抗性测试 + 联邦学习</span></div>
+<div><span class="sum-label">数据要素市集</span><span>联邦学习 + 零知识证明</span></div>
+<div><span class="sum-label">开源广场</span><span>实时翻译 + 代码可视化</span></div>
+<div><span class="sum-label">无障碍导航</span><span>CV识别 + AI路径规划</span></div>
+</div>
+</div>
+
+<!-- 核心指标 -->
+<div class="sum-block" id="sum-metrics">
+<h4>核心指标</h4>
+<div class="kpi-row">
+<div class="kpi" data-metric="site_area_sqm" data-value="11412825.386"><span class="kpi-val">11.41</span><span class="kpi-unit">km²</span><span class="kpi-label">用地面积</span></div>
+<div class="kpi" data-metric="green_ratio" data-value="0.123423"><span class="kpi-val">12.3</span><span class="kpi-unit">%</span><span class="kpi-label">绿地率</span></div>
+<div class="kpi" data-metric="public_space_ratio" data-value="0.073281"><span class="kpi-val">7.3</span><span class="kpi-unit">%</span><span class="kpi-label">公共空间率</span></div>
+<div class="kpi"><span class="kpi-val">3</span><span class="kpi-unit">核</span><span class="kpi-label">重点设计区</span></div>
+<div class="kpi"><span class="kpi-val">12</span><span class="kpi-unit">座</span><span class="kpi-label">AI花园</span></div>
+<div class="kpi"><span class="kpi-val">9</span><span class="kpi-unit">km</span><span class="kpi-label">总长度</span></div>
+</div>
+</div>
+
+<!-- 假设 -->
+<div class="sum-block" id="sum-assumptions">
+<h4>假设</h4>
+<ul class="sum-assume">
+<li><b>A-BOUNDARY-001</b>：基地边界与关键区域多边形为暂定值，基于官方文字描述推导。当正式CAD/GIS红线可获取时，所有设计几何与指标需重新计算。</li>
+<li><b>A-CONTROLS-001</b>：规划管控条件（容积率、建筑高度、绿地率等）尚待官方附件确认。所有强度与高度建议为概念方案。</li>
+<li><b>A-CLIMATE-001</b>：气候数据基于海淀气象局1981-2010三十年平均值。设计策略纳入+1.5°C变暖缓冲。</li>
+<li><b>A-HERITAGE-001</b>：文化遗产信息基于公开来源。正式保护范围与要求需从文化遗产主管部门确认。</li>
+<li><b>A-ENGINEERING-001</b>：桥梁、隧道、海绵城市等工程可行性需地勘与管线综合后方可确认。</li>
+</ul>
+</div>
+
+</div>
+</section>
+
+<!-- Summary Dashboard CSS -->
+<style>
+.sum-block{margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--soft)}
+.sum-block h4{font-size:13px;font-weight:700;color:var(--teal);margin-bottom:6px}
+.sum-block p{font-size:12px;color:var(--muted);line-height:1.7}
+.sum-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:12px}
+.sum-label{font-weight:600;color:var(--ink);margin-right:8px}
+.kpi-row{display:flex;gap:16px;flex-wrap:wrap}
+.kpi{background:var(--soft);border-radius:8px;padding:12px 16px;text-align:center;min-width:80px}
+.kpi-val{display:block;font-size:28px;font-weight:800;color:var(--amber)}
+.kpi-unit{font-size:11px;color:var(--muted)}
+.kpi-label{display:block;font-size:10px;color:var(--muted);margin-top:2px;text-transform:uppercase}
+.sum-assume{font-size:11px;color:var(--muted);line-height:1.6;padding-left:16px}
+.sum-assume li{margin-bottom:4px}
+.sum-assume b{color:var(--ink)}
+@media(max-width:768px){.sum-grid{grid-template-columns:1fr}.kpi-row{justify-content:center}}
+</style>
+
+
+</main>
+
+<footer class="footer">
+  <p><strong>京张AI共生带 · Jing-Zhang AI Symbiosis Belt</strong> | pheigail/jingzhang-ai-symbiosis | License: CC-BY-4.0</p>
+  <p>Provisional boundaries. All spatial claims are conceptual design suggestions. Official data pending.</p>
+  <p style="margin-top:4px">离线静态HTML · 零CDN · 零远程脚本 · 零外部依赖</p>
+</footer>
+
+<script>
+/* ═══ JS class toggle (fixes P0-4: no-JS blank page) ═══ */
+document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');
+/* ═══ REDUCED MOTION GATE (fixes P1-4) ═══ */
+var prefersReduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ═══════════ SUN-PATH 3D CANVAS ═══════════ */
+(function(){
+var wrap=document.getElementById('spCanvasWrap'),canvas=document.getElementById('spCanvas'),
+    clock=document.getElementById('spClock'),slider=document.getElementById('spSlider'),
+    fill=document.getElementById('spFill'),knob=document.getElementById('spKnob');
+if(!canvas||!slider)return;
+var ctx=canvas.getContext('2d'),W=1100,H=580,season='spring',timeH=8,autoMode=!prefersReduced,autoTimer,idleTimer,visible=true;
+// P1-7: devicePixelRatio
+var dpr=window.devicePixelRatio||1;
+function resize(){var w=wrap.clientWidth,ratio=H/W;canvas.width=W*dpr;canvas.height=H*dpr;canvas.style.width=w+'px';canvas.style.height=(w*ratio)+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
+resize();window.addEventListener('resize',resize);
+// P1-5: visibility pause
+document.addEventListener('visibilitychange',function(){visible=!document.hidden});
+var seasons={spring:{sunrise:5.5,sunset:18.5,noonH:0.7,treeGreen:true,treeBloom:true},summer:{sunrise:4.8,sunset:19.5,noonH:0.85,treeGreen:true,treeBloom:false},autumn:{sunrise:6.0,sunset:17.8,noonH:0.55,treeGreen:false,treeBloom:false},winter:{sunrise:7.0,sunset:17.0,noonH:0.35,treeGreen:false,treeBloom:false}};
+function sunPos(h){var s=seasons[season],day=Math.max(0,Math.min(1,(h-s.sunrise)/(s.sunset-s.sunrise))),angle=Math.PI*(1-day),arcH=s.noonH;return{x:W*.12+W*.76*day,y:H*.52-Math.sin(angle)*H*.38*arcH,day:day,angle:angle}}
+// P1-6: precompute star positions
+var starPositions=[];for(var i=0;i<30;i++)starPositions.push({x:(i*137+89)%W,y:(i*73+41)%(H*.55),r:.6+Math.random()*.8});
+function skyColor(h){
+  var s=seasons[season],dayF=Math.max(0,Math.min(1,(h-s.sunrise)/(s.sunset-s.sunrise)));
+  if(h<4||h>21)return'rgb(15,20,35)';
+  if(h<5.5){var t=(h-4)/1.5;return'rgb('+Math.floor(30+t*180)+','+Math.floor(30+t*70)+','+Math.floor(50+t*120)+')'}
+  if(h<7){var t=(h-5.5)/1.5;return'rgb('+Math.floor(210-t*60)+','+Math.floor(100+t*60)+','+Math.floor(170-t*50)+')'}
+  if(h<17)return'rgb('+Math.floor(130+dayF*20)+','+Math.floor(170+dayF*15)+','+Math.floor(210-dayF*25)+')';
+  if(h<19){var t=(h-17)/2;return'rgb('+Math.floor(130+t*90)+','+Math.floor(185-t*90)+','+Math.floor(185-t*100)+')'}
+  if(h<21){var t=(h-19)/2;return'rgb('+Math.floor(220-t*180)+','+Math.floor(95-t*60)+','+Math.floor(85-t*35)+')'}
+  return'rgb(20,25,45)'
+}
+function drawSky(h){
+  var grad=ctx.createLinearGradient(0,0,0,H*.7),ph=[4,5.5,7,12,17,19,21];
+  for(var i=0;i<ph.length;i++)grad.addColorStop(i/(ph.length-1),skyColor(ph[i]));
+  ctx.fillStyle=grad;ctx.fillRect(0,0,W,H*.7);
+  // P1-6: use precomputed star positions (only alpha oscillates)
+  var starAlpha=(h>20||h<4)?.5:.15;
+  if(starAlpha>.15){ctx.fillStyle='rgba(255,255,255,'+starAlpha+')';
+    for(var i=0;i<starPositions.length;i++){var s=starPositions[i];ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()}}
+}
+function drawSun(h){
+  var p=sunPos(h),r=18+4*Math.sin(p.day*Math.PI);
+  if(h>seasons[season].sunrise&&h<seasons[season].sunset){var grad=ctx.createRadialGradient(p.x,p.y,r*.2,p.x,p.y,r*3);grad.addColorStop(0,'rgba(255,250,220,.95)');grad.addColorStop(.3,'rgba(255,200,100,.5)');grad.addColorStop(.7,'rgba(255,150,50,.1)');grad.addColorStop(1,'rgba(255,100,30,0)');ctx.fillStyle=grad;ctx.beginPath();ctx.arc(p.x,p.y,r*3,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff8e0';ctx.beginPath();ctx.arc(p.x,p.y,r,0,Math.PI*2);ctx.fill()}
+  if(h<seasons[season].sunrise-.5||h>seasons[season].sunset+.5){var mx=p.x+(h>12?-40:40),my=p.y-20;ctx.fillStyle='#e8e8f0';ctx.beginPath();ctx.arc(mx,my,10,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(40,40,50,.08)';ctx.beginPath();ctx.arc(mx+2,my-1,8,0,Math.PI*2);ctx.fill()}
+}
+function drawArc(h){
+  var s=seasons[season],total=s.sunset-s.sunrise;
+  ctx.strokeStyle='rgba(212,160,23,.22)';ctx.lineWidth=1.5;ctx.setLineDash([6,10]);ctx.beginPath();ctx.moveTo(W*.12,H*.52);
+  for(var i=0;i<=40;i++){var sp=sunPos(s.sunrise+total*i/40);ctx.lineTo(sp.x,sp.y)}ctx.stroke();ctx.setLineDash([])
+}
+function drawBuildings(h){
+  var s=seasons[season],vx=W*.5,vy=H*.45,groundY=H*.75;
+  ctx.fillStyle='#d4c5a9';ctx.fillRect(0,groundY,W,H-groundY);ctx.fillStyle='#c4b89a';ctx.fillRect(0,groundY+10,W,8);
+  var shadowAngle=((h-6)/12)*Math.PI*.6;
+  function shadow(x,y,w,height,factor){ctx.fillStyle='rgba(0,0,0,'+(.07+factor*.05)+')';var sx=Math.cos(shadowAngle)*height*.45;ctx.beginPath();ctx.moveTo(x,groundY-y);ctx.lineTo(x+w,groundY-y);ctx.lineTo(x+w+sx+8,groundY);ctx.lineTo(x+sx,groundY);ctx.fill()}
+  function bldg(x,w,height,color){
+    var lx=x,rx=x+w,bottom=groundY,top=bottom-height,leftVP=vx+(lx-vx)*(top-vy)/(groundY-vy),rightVP=vx+(rx-vx)*(top-vy)/(groundY-vy);
+    ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(leftVP,top);ctx.lineTo(rightVP,top);ctx.lineTo(rx,bottom);ctx.lineTo(lx,bottom);ctx.fill();
+    var wRows=Math.floor(height/14),wCols=Math.floor(w/16),lit=h>19||h<6,winStates=[];
+    // P1-6: stable window states (only change slowly)
+    for(var r=0;r<wRows;r++)for(var c=0;c<wCols;c++){var wx=lx+(c+.3)*(w/wCols),wy=bottom-(r+1)*14,ww=w/wCols*.4,alpha=lit?((Math.sin(r*7+c*13+h)*.5+.5)*.35+.15):(.08+.04*((r*7+c*13)%7)/7);ctx.fillStyle='rgba(255,'+(lit?'220':'255')+','+(lit?'140':'255')+','+alpha+')';ctx.fillRect(wx,wy,ww,8)}
+    shadow(lx,bottom-height+5,w,height,1)
+  }
+  bldg(20,100,120,'#c48b6d');bldg(130,70,80,'#d4a080');bldg(210,90,140,'#b89570');bldg(70,60,60,'#c48b6d');
+  bldg(680,110,200,'#7eb8b0');bldg(800,80,260,'#8ec8c0');bldg(890,70,180,'#6ea8a0');bldg(970,60,150,'#7eb8b0');
+  var parkL=340,parkR=660;ctx.fillStyle='#5a8f4a';ctx.fillRect(parkL,groundY-8,parkR-parkL,20);ctx.fillStyle='#7db36a';ctx.fillRect(parkL+20,groundY-6,parkR-parkL-40,8);ctx.fillStyle='#d4c5a9';ctx.fillRect(parkL+80,groundY-3,parkR-parkL-160,3);
+  for(var i=0;i<14;i++){var tx=parkL+15+i*23,th=30+15*Math.sin(i*1.7),tc=s.treeGreen?(s.treeBloom&&i%3===0?'#f0b4c4':'#4a8f3a'):(season==='autumn'?(i%2?'#d4a017':'#cc5500'):'#6a7a6a');ctx.fillStyle=tc;ctx.beginPath();ctx.arc(tx,groundY-th*1.5,th*.4,0,Math.PI*2);ctx.fill();ctx.fillStyle='#8a6a4a';ctx.fillRect(tx-1.5,groundY-th*.3,3,th*.3);shadow(tx-th*.35,th*1.5,th*.7,th*.5,.5)}
+  ctx.fillStyle='rgba(180,160,140,.6)';ctx.fillRect(parkL+120,groundY-45,parkR-parkL-240,6);ctx.fillRect(parkL+130,groundY-45,5,-25);ctx.fillRect(parkR-135,groundY-45,5,-25);
+  for(var i=0;i<6;i++){var lx=150+i*150;ctx.fillStyle='#555';ctx.fillRect(lx,groundY-50,2,50);ctx.fillStyle=h>19||h<6?'#ffe8a0':'#ddd';ctx.beginPath();ctx.arc(lx+1,groundY-52,5,0,Math.PI*2);ctx.fill()}
+  ctx.fillStyle='#444';for(var i=0;i<8;i++){var px=parkL+40+i*35,py=groundY-10;ctx.beginPath();ctx.arc(px,py,2.5,0,Math.PI*2);ctx.fill();ctx.fillRect(px-1,py-10,2,10)}
+}
+function draw(h){
+  ctx.clearRect(0,0,W,H);drawSky(h);drawArc(h);drawSun(h);drawBuildings(h);
+  // P0-3: time labels with dark shadow for contrast on light sky
+  var label='',isLightSky=h>7&&h<17,labelColor=isLightSky?'#1e293b':'rgba(255,255,255,.92)',subColor=isLightSky?'#475569':'rgba(255,255,255,.55)';
+  if(h<5)label='凌晨';else if(h<7)label='日出';else if(h<12)label='上午';else if(h<14)label='正午';else if(h<18)label='下午';else if(h<19.5)label='日落';else if(h<22)label='夜间';else label='深夜';
+  ctx.textAlign='center';ctx.font='700 28px "Songti SC","Noto Serif SC",serif';
+  if(!isLightSky){ctx.shadowColor='rgba(0,0,0,.3)';ctx.shadowBlur=4}ctx.fillStyle=labelColor;ctx.fillText(label,W*.5,H*.15);
+  ctx.shadowColor='transparent';ctx.shadowBlur=0;ctx.font='14px -apple-system,sans-serif';ctx.fillStyle=subColor;ctx.fillText('京张AI共生带 · 街景剖面模拟 ('+(season==='spring'?'春':season==='summer'?'夏':season==='autumn'?'秋':'冬')+')',W*.5,H*.18)
+}
+function setTime(h,fromSlider){timeH=h;draw(timeH);var frac=h/24,knobFrac=Math.max(0,Math.min(1,(h/24)));fill.style.width=(knobFrac*100)+'%';knob.style.left=(20+knobFrac*(slider.clientWidth-40))+'px';var hh=Math.floor(h),mm=Math.floor((h-hh)*60);clock.textContent=('0'+hh).slice(-2)+':'+('0'+mm).slice(-2);
+  // P1-1: update aria
+  var labels=['凌晨','凌晨','凌晨','凌晨','凌晨','日出','上午','上午','上午','上午','上午','上午','正午','下午','下午','下午','下午','下午','日落','夜间','夜间','夜间','夜间','深夜'];
+  var l=labels[Math.floor(h)]||'';slider.setAttribute('aria-valuenow',Math.round(h));slider.setAttribute('aria-valuetext',('0'+hh).slice(-2)+':'+('0'+mm).slice(-2)+' '+l)}
+
+function updateSlider(e){var rect=slider.getBoundingClientRect(),x=e.clientX-rect.left-20,w=rect.width-40,frac=Math.max(0,Math.min(1,x/w));setTime(frac*24)}
+// P1-1: keyboard
+slider.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();autoMode=false;clearTimeout(idleTimer);timeH=Math.max(0,Math.min(24,timeH+(e.key==='ArrowRight'?.5:-.5)));setTime(timeH);idleTimer=setTimeout(function(){autoMode=!prefersReduced},3000)}});
+slider.addEventListener('mousedown',function(e){e.preventDefault();autoMode=false;clearTimeout(idleTimer);updateSlider(e);var onMove=function(e){e.preventDefault();updateSlider(e)},onUp=function(){document.removeEventListener('mousemove',onMove);document.removeEventListener('mouseup',onUp);idleTimer=setTimeout(function(){autoMode=!prefersReduced},3000)};document.addEventListener('mousemove',onMove);document.addEventListener('mouseup',onUp)});
+// P1-1: touch with preventDefault
+slider.addEventListener('touchstart',function(e){e.preventDefault();autoMode=false;clearTimeout(idleTimer);updateSlider(e.touches[0]);var onMove=function(e){e.preventDefault();updateSlider(e.touches[0])},onEnd=function(){document.removeEventListener('touchmove',onMove);document.removeEventListener('touchend',onEnd);idleTimer=setTimeout(function(){autoMode=!prefersReduced},3000)};document.addEventListener('touchmove',onMove,{passive:false});document.addEventListener('touchend',onEnd)});
+// P2-8: click to jump (don't double with drag)
+var wasDragging=false;slider.addEventListener('mousedown',function(){wasDragging=false});document.addEventListener('mousemove',function(){wasDragging=true},{once:true});
+document.querySelectorAll('.sp-season-btn').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('.sp-season-btn').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-pressed','false')});this.classList.add('active');this.setAttribute('aria-pressed','true');season=this.getAttribute('data-sp');draw(timeH)})});
+
+function autoLoop(ts){if(autoMode&&visible){var h=((ts/30000)%1)*24;timeH=h;setTime(timeH)}autoTimer=requestAnimationFrame(autoLoop)}
+setTime(timeH);autoTimer=requestAnimationFrame(autoLoop);
+window.addEventListener('resize',function(){setTime(timeH)})
+})();
+
+/* ═══════════ SEASON PARTICLES + SKYLINE (v2: swallows, cicadas, wind leaves, snow) ═══════════ */
+(function(){
+var stage=document.getElementById('seasonStage'),pCanvas=document.getElementById('seasonParticles');
+if(!stage||!pCanvas)return;
+var pctx=pCanvas.getContext('2d'),particles=[],swallows=[],currentSeason='spring',animId,visible=true,lastT=0;
+var dprP=window.devicePixelRatio||1,W,H,skylineDrawn=false;
+function resizeP(){
+  W=stage.clientWidth;H=stage.clientHeight;
+  pCanvas.width=W*dprP;pCanvas.height=H*dprP;pctx.setTransform(dprP,0,0,dprP,0,0);
+  skylineDrawn=false;
+}
+resizeP();window.addEventListener('resize',resizeP);
+document.addEventListener('visibilitychange',function(){visible=!document.hidden});
+
+/* ── Skyline silhouette (drawn once per resize/season change) ── */
+function drawSkyline(){
+  var gy=H*0.72;
+  var gGrad=pctx.createLinearGradient(0,gy,0,H);
+  if(currentSeason==='spring'){gGrad.addColorStop(0,'#8a9a6a');gGrad.addColorStop(1,'#6a7a5a');}
+  else if(currentSeason==='summer'){gGrad.addColorStop(0,'#5a8a4a');gGrad.addColorStop(1,'#3a6a2a');}
+  else if(currentSeason==='autumn'){gGrad.addColorStop(0,'#9a8a5a');gGrad.addColorStop(1,'#7a6a4a');}
+  else{gGrad.addColorStop(0,'#c0c8d0');gGrad.addColorStop(1,'#d0d4d8');}
+  pctx.fillStyle=gGrad;pctx.fillRect(0,gy,W,H-gy);
+  // Distant hills
+  pctx.fillStyle=currentSeason==='winter'?'rgba(160,170,185,.35)':'rgba(90,105,120,.22)';
+  pctx.beginPath();pctx.moveTo(0,gy);
+  for(var x=0;x<=W;x+=15){pctx.lineTo(x,gy-15-Math.sin(x*.007)*10-Math.sin(x*.016+1.3)*7);}
+  pctx.lineTo(W,H);pctx.lineTo(0,H);pctx.fill();
+  // Buildings
+  var bldgs=[{x:W*.03,w:W*.055,h:H*.1},{x:W*.10,w:W*.045,h:H*.07},{x:W*.17,w:W*.07,h:H*.14},{x:W*.27,w:W*.05,h:H*.09},{x:W*.34,w:W*.085,h:H*.18},{x:W*.46,w:W*.06,h:H*.12},{x:W*.55,w:W*.045,h:H*.08},{x:W*.62,w:W*.08,h:H*.16},{x:W*.73,w:W*.055,h:H*.10},{x:W*.81,w:W*.04,h:H*.06},{x:W*.87,w:W*.065,h:H*.11}];
+  for(var i=0;i<bldgs.length;i++){var b=bldgs[i];
+    pctx.fillStyle=currentSeason==='winter'?'#8898a8':currentSeason==='summer'?'#788898':'#6a7a8a';
+    pctx.fillRect(b.x,gy-b.h,b.w,b.h);
+    pctx.fillStyle=currentSeason==='winter'?'#98a8b8':currentSeason==='summer'?'#8898a8':'#7a8a9a';
+    pctx.fillRect(b.x-1.5,gy-b.h,b.w+3,3);
+    var wc=Math.max(1,Math.floor(b.w/11));
+    for(var c=0;c<wc;c++)for(var r=0;r<Math.floor(b.h/9);r++){
+      var wx=b.x+3+c*(b.w/wc),wy=gy-b.h+5+r*9,lit=(wx*7+wy*5)%17>11;
+      pctx.fillStyle=lit?'rgba(255,240,200,.65)':'rgba(200,210,220,.25)';
+      pctx.fillRect(wx,wy,4,6);
+    }
+  }
+  // Trees
+  var trees=[{x:W*.08,s:.95},{x:W*.15,s:.8},{x:W*.24,s:.7},{x:W*.32,s:.85},{x:W*.41,s:.7},{x:W*.52,s:.8},{x:W*.60,s:.75},{x:W*.70,s:.8},{x:W*.78,s:.85},{x:W*.9,s:.7}];
+  for(var i=0;i<trees.length;i++){var t=trees[i],tx=t.x,ty=gy,th=H*.055*t.s,tw=H*.035*t.s;
+    pctx.fillStyle='#5a4a3a';pctx.fillRect(tx-1.2,ty-th*1.4,2.4,th*1.4);
+    if(currentSeason==='spring'){
+      pctx.fillStyle='#7ab868';pctx.beginPath();pctx.arc(tx,ty-th*1.7,tw*.75,0,Math.PI*2);pctx.fill();
+      if(i%3===0){pctx.fillStyle='rgba(240,180,195,.65)';pctx.beginPath();pctx.arc(tx-tw*.15,ty-th*1.6,tw*.28,0,Math.PI*2);pctx.fill();}
+    }else if(currentSeason==='summer'){
+      pctx.fillStyle='#3a7030';pctx.beginPath();pctx.arc(tx,ty-th*1.7,tw*.85,0,Math.PI*2);pctx.fill();
+      pctx.fillStyle='#4a8040';pctx.beginPath();pctx.arc(tx+1,ty-th*1.5,tw*.55,0,Math.PI*2);pctx.fill();
+    }else if(currentSeason==='autumn'){
+      pctx.fillStyle=i%2?'#d4a017':'#cc5500';pctx.beginPath();pctx.arc(tx,ty-th*1.7,tw*.7,0,Math.PI*2);pctx.fill();
+      pctx.fillStyle=i%3?'#e8b820':'#bb4400';pctx.beginPath();pctx.arc(tx+1,ty-th*1.5,tw*.45,0,Math.PI*2);pctx.fill();
+    }else{
+      pctx.strokeStyle='#5a4a3a';pctx.lineWidth=1;
+      for(var b=0;b<4;b++){var ang=-Math.PI/2+b*Math.PI/3,len=tw*.55;
+        pctx.beginPath();pctx.moveTo(tx,ty-th*.7);pctx.lineTo(tx+Math.cos(ang)*len,ty-th*.7+Math.sin(ang)*len);pctx.stroke();}
+    }
+  }
+  // Horizon line
+  pctx.strokeStyle=currentSeason==='winter'?'rgba(170,180,190,.45)':'rgba(130,140,150,.25)';pctx.lineWidth=.8;
+  pctx.beginPath();pctx.moveTo(0,gy);pctx.lineTo(W,gy);pctx.stroke();
+  skylineDrawn=true;
+}
+
+/* ── Swallow (燕子) ── */
+function drawSwallow(sx,sy,dir,scale){
+  pctx.save();pctx.translate(sx,sy);if(dir<0)pctx.scale(-1,1);
+  pctx.fillStyle='rgba(30,40,50,.75)';pctx.beginPath();
+  pctx.moveTo(0,0);pctx.quadraticCurveTo(-6*scale,-8*scale,-16*scale,-5*scale);
+  pctx.quadraticCurveTo(-8*scale,-2*scale,0,0);
+  pctx.moveTo(0,0);pctx.quadraticCurveTo(6*scale,-8*scale,16*scale,-5*scale);
+  pctx.quadraticCurveTo(8*scale,-2*scale,0,0);pctx.fill();
+  pctx.beginPath();pctx.moveTo(0,0);pctx.lineTo(-5*scale,7*scale);
+  pctx.lineTo(0,4*scale);pctx.lineTo(5*scale,7*scale);pctx.closePath();pctx.fill();
+  pctx.fillStyle='rgba(30,40,50,.8)';pctx.beginPath();pctx.arc(0,-1*scale,2*scale,0,Math.PI*2);pctx.fill();
+  pctx.restore();
+}
+
+/* ── Particles ── */
+function spawnParticles(){
+  var cap=currentSeason==='winter'?35:currentSeason==='summer'?20:18,need=cap-particles.length;
+  for(var i=0;i<Math.min(need*2,cap);i++){
+    if(particles.length>=cap*2.5)break;
+    particles.push({x:Math.random()*W,y:-8-Math.random()*H*.5,size:2+Math.random()*5,speed:.4+Math.random()*1.8,drift:(Math.random()-.5)*2.5,rot:Math.random()*360,rspeed:(Math.random()-.5)*2.5,alpha:.4+Math.random()*.5,type:currentSeason});
+  }
+}
+function maybeSpawnSwallows(){
+  if(currentSeason!=='spring'){swallows=[];return}
+  if(swallows.length<4&&Math.random()<.007){
+    var rtl=Math.random()>.35; // some fly left for variety
+    swallows.push({x:rtl?-20:W+20,y:40+Math.random()*H*.22+55,dir:rtl?1:-1,speed:1+Math.random()*1.1,scale:.65+Math.random()*.55,phase:Math.random()*Math.PI*2,flapSpd:.07+Math.random()*.07});
+  }
+}
+
+function updateP(ts){
+  if(!skylineDrawn)drawSkyline();
+  if(!visible||prefersReduced){animId=requestAnimationFrame(updateP);return}
+  pctx.clearRect(0,0,W,H);drawSkyline();
+  var gy=H*.72,dt=lastT?(ts-lastT)/16.67:1;lastT=ts;
+  // ── Seasonal particles ──
+  for(var i=particles.length-1;i>=0;i--){var p=particles[i];p.y+=p.speed*dt;p.x+=p.drift*dt;p.rot+=p.rspeed*dt;if(p.y>H+50||p.x<-40||p.x>W+40){particles.splice(i,1);continue}
+    if(p.type==='spring'){
+      pctx.strokeStyle='rgba(140,190,220,'+p.alpha+')';pctx.lineWidth=.7;
+      pctx.beginPath();pctx.moveTo(p.x,p.y);pctx.lineTo(p.x-p.drift*3,p.y+12);pctx.stroke();
+    }else if(p.type==='summer'){
+      if(p.size>3.5){pctx.strokeStyle='rgba(160,200,230,'+p.alpha+')';pctx.lineWidth=.5;pctx.beginPath();pctx.moveTo(p.x,p.y);pctx.lineTo(p.x-p.drift*2,p.y+10);pctx.stroke();}
+      else{pctx.fillStyle='rgba(220,210,180,'+(p.alpha*.4)+')';pctx.beginPath();pctx.arc(p.x,p.y,p.size*.4,0,Math.PI*2);pctx.fill();}
+    }else if(p.type==='autumn'){
+      pctx.fillStyle=p.size>3.5?'rgba(212,160,23,'+p.alpha+')':'rgba(204,85,0,'+p.alpha+')';
+      pctx.save();pctx.translate(p.x,p.y);pctx.rotate(p.rot);pctx.fillRect(-p.size,-p.size*.45,p.size*2,p.size*.9);pctx.restore();
+    }else{
+      pctx.fillStyle='rgba(248,250,252,'+p.alpha+')';pctx.beginPath();pctx.arc(p.x,p.y,p.size*.5,0,Math.PI*2);pctx.fill();
+      pctx.fillStyle='rgba(255,255,255,'+(p.alpha*.3)+')';pctx.beginPath();pctx.arc(p.x+p.size*.3,p.y-p.size*.2,p.size*.25,0,Math.PI*2);pctx.fill();
+    }
+  }
+  spawnParticles();maybeSpawnSwallows();
+  // ── Swallows (spring) ──
+  for(var i=swallows.length-1;i>=0;i--){var sw=swallows[i];sw.x+=sw.speed*sw.dir*dt;sw.phase+=sw.flapSpd*dt;if((sw.dir>0&&sw.x>W+30)||(sw.dir<0&&sw.x<-30))swallows.splice(i,1);
+    else{var sy=sw.y+Math.sin(sw.phase)*6;drawSwallow(sw.x,sy,sw.dir,sw.scale)}
+  }
+  // ── Cicadas (summer) ──
+  if(currentSeason==='summer'){
+    var cicadaT=ts*.001;
+    for(var j=0;j<4;j++){var cx=W*(.18+j*.18)+Math.sin(cicadaT+j*1.7)*8,cy=gy-H*.04+Math.cos(cicadaT+j)*3;
+      pctx.fillStyle='rgba(60,50,40,.35)';pctx.beginPath();pctx.ellipse(cx,cy,3.5,2.2,.2,0,Math.PI*2);pctx.fill();
+      pctx.strokeStyle='rgba(180,190,200,.15)';pctx.lineWidth=.4;pctx.beginPath();pctx.ellipse(cx,cy,5.5,1,.2,0,Math.PI*2);pctx.stroke();
+    }
+  }
+  // ── Geese (autumn) ──
+  if(currentSeason==='autumn'&&Math.random()<.002){
+    var gx=W*.1+Math.random()*W*.3,gy2=30+Math.random()*H*.15;
+    pctx.fillStyle='rgba(40,40,50,.5)';pctx.font='9px sans-serif';
+    for(var g=0;g<5;g++){pctx.fillText('v',gx+g*10,gy2+g*2.5);}
+  }
+  animId=requestAnimationFrame(updateP);
+}
+
+/* ── Season tab toggle ── */
+var cSeason='spring';
+stage.querySelectorAll('.season-tab').forEach(function(tab){tab.addEventListener('click',function(){
+  var s=this.getAttribute('data-season');cSeason=s;
+  stage.querySelectorAll('.season-tab').forEach(function(t){t.classList.remove('active');t.setAttribute('aria-selected','false')});
+  this.classList.add('active');this.setAttribute('aria-selected','true');
+  stage.querySelectorAll('.season-panel').forEach(function(p){p.classList.remove('show')});
+  var panel=stage.querySelector('[data-panel="'+s+'"]');if(panel)panel.classList.add('show');
+  stage.className='season-stage '+s+'-mode';currentSeason=s;particles=[];swallows=[];skylineDrawn=false;lastT=0;
+})});
+stage.className='season-stage spring-mode';animId=requestAnimationFrame(updateP);
+})();
+
+/* ═══════════ Layer toggle ═══════════ */
+function toggleLayer(id,btn){var el=document.getElementById('layer-'+id);if(!el)return;el.classList.toggle('hidden');btn.setAttribute('aria-pressed',!el.classList.contains('hidden')?'true':'false');btn.classList.toggle('on')}
+
+/* ═══════════ Garden toggle + storyboard auto-play ═══════════ */
+var sbTimers={};
+function toggleGarden(btn){var entry=btn.parentElement,open=entry.classList.contains('open'),sb=entry.querySelector('.gd-sb');entry.classList.toggle('open');btn.setAttribute('aria-expanded',!open?'true':'false');
+  if(!open&&sb){startStoryboard(sb);}else if(open&&sb){stopStoryboard(sb);}}
+function startStoryboard(sb){var gid=sb.closest('.garden-entry');if(!gid)return;var frames=sb.querySelectorAll('.gd-sb-frame'),dots=sb.querySelectorAll('.gd-sb-dot'),btn=sb.querySelector('.gd-sb-btn'),idx=0,playing=true;
+  function show(i){frames.forEach(function(f){f.classList.remove('active')});dots.forEach(function(d){d.classList.remove('active')});if(frames[i])frames[i].classList.add('active');if(dots[i])dots[i].classList.add('active');idx=i;}
+  function next(){show((idx+1)%frames.length);}
+  function tick(){if(playing&&!prefersReduced){next();}sb._timer=setTimeout(tick,4000);}
+  dots.forEach(function(d){d.addEventListener('click',function(e){e.stopPropagation();playing=false;if(btn)btn.textContent='▶';show(parseInt(this.getAttribute('data-idx')));})});
+  if(btn){btn.addEventListener('click',function(e){e.stopPropagation();playing=!playing;this.textContent=playing?'⏯':'▶';});btn.textContent='⏯';}
+  sb.addEventListener('mouseenter',function(){if(sb._timer)clearTimeout(sb._timer)});
+  sb.addEventListener('mouseleave',function(){if(playing&&!prefersReduced){sb._timer=setTimeout(tick,4000);}});
+  sb._timer=setTimeout(tick,4000);
+}
+function stopStoryboard(sb){if(sb._timer)clearTimeout(sb._timer);sb._timer=null;}
+
+/* ═══════════ Scroll reveal ═══════════ */
+(function(){if(window.IntersectionObserver){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)})}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')})}})();
+
+/* ═══════════ Counter animation (fixed P0-1: preserve units) ═══════════ */
+(function(){var counted=new Set();function anim(el,target){var dur=1200,start=null,isFloat=target%1!==0;function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1),e=1-Math.pow(1-p,3);el.textContent=isFloat?(target*e).toFixed(1):Math.floor(target*e);if(p<1)requestAnimationFrame(step);else el.textContent=isFloat?target.toFixed(1):target}requestAnimationFrame(step)}if(window.IntersectionObserver){var obs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var el=x.target.querySelector('.num[data-count]')||x.target.querySelector('.seg-num[data-count]');if(!el)return;var k=el.textContent+el.getAttribute('data-count');if(!counted.has(k)){counted.add(k);var t=parseFloat(el.getAttribute('data-count'));if(!isNaN(t))anim(el,t)}}})},{threshold:.3});document.querySelectorAll('.kpi,.pop-seg').forEach(function(el){obs.observe(el)})}})();
+</script>
+
+</body>
+</html>
