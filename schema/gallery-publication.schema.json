@@ -25,6 +25,30 @@
           "selection_reason_en": {"type": "string", "minLength": 5},
           "selected_at": {"type": "string", "format": "date"}
         },
+        "allOf": [
+          {
+            "if": {"properties": {"published": {"const": true}}, "required": ["published"]},
+            "then": {
+              "properties": {
+                "review_status": {"const": "approved_for_publication"},
+                "rights_reviewed": {"const": true}
+              }
+            }
+          },
+          {
+            "if": {"properties": {"featured": {"const": true}}, "required": ["featured"]},
+            "then": {
+              "properties": {
+                "published": {"const": true},
+                "quality_tier": {"const": "featured"}
+              }
+            }
+          },
+          {
+            "if": {"properties": {"quality_tier": {"const": "featured"}}, "required": ["quality_tier"]},
+            "then": {"properties": {"featured": {"const": true}}}
+          }
+        ],
         "additionalProperties": false
       }
     }
