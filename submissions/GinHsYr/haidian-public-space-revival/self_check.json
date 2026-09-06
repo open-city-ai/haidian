@@ -1,0 +1,101 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时粗略边界已明确标注 provisional_constraint；不能作为 official redline 或精确面积依据。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三个重点区保留公告顺序和粗略面积，明确不是站点/道路锚定边界。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地单元由同一 site polygon 网格切分，覆盖完整且不重叠。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "GEOMETRY_INSIDE_SITE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/buildings.geojson; geometry/green_space.geojson; geometry/public_space.geojson",
+      "message": "设计图层裁剪在临时 site 内。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "METRICS_RECALCULATED",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "面积和比例按 EPSG:4548 重算；结果仅为 provisional intake 指标。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "BILINGUAL_PARITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md; proposal.en.md; report; visual; assets; drawings",
+      "message": "中英文版本使用对齐章节、指标、证据引用和对应图件；提交前做本地文件配对检查。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "离线页面只引用本地图片和内联样式，无远程脚本、地图瓦片、表单或跟踪。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "DRAWINGS_NONEMPTY",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/a3-booklet.pdf; drawings/a0-boards.pdf",
+      "message": "中英文图册和展板均由多页本地生成图板组成。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md; matrices; sources.json",
+      "message": "公告任务、专业标准、设计深度和场景任务均有结构化证据链。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "FIELD_BASELINE_PENDING",
+      "result": "unknown",
+      "severity": "info",
+      "target": "assumptions.json",
+      "message": "居民、无障碍、热雨、设施和运维基线待现场与公众参与采集；任何扩展试行前需满足 no-go 门禁。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "OFFICIAL_POLYGONS_PENDING",
+      "result": "unknown",
+      "severity": "info",
+      "target": "assumptions.json",
+      "message": "取得官方三层和重点区 polygon 后需重算全部派生图层和指标。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    },
+    {
+      "check_id": "PUSH_PREFLIGHT",
+      "result": "unknown",
+      "severity": "info",
+      "target": "participant_preflight.py",
+      "message": "上传权限和远程 PR 状态需在最终提交前由登录账户确认。",
+      "suggested_fix": "在对应资料、现场基线或官方附件到位后复核并重新运行全套检查。"
+    }
+  ]
+}
