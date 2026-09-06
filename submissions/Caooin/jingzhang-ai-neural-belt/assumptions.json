@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "A-BOUNDARY-001",
+      "category": "boundary",
+      "description_zh": "当前使用基于公告文字描述估算的临时边界，非官方精确测量polygon",
+      "description_en": "Current boundaries are provisional estimates based on public text description, not official surveyed polygons",
+      "impact": "所有面积计算、空间分析均为近似值，待官方边界发布后需重算",
+      "resolution_plan": "官方GeoJSON边界发布后重新生成所有几何图层和指标",
+      "severity": "medium"
+    },
+    {
+      "assumption_id": "A-CONTROLS-001",
+      "category": "planning_controls",
+      "description_zh": "缺少官方控规条件：容积率、建筑高度、建筑密度、退线、道路红线等",
+      "description_en": "Missing official planning controls: FAR, building heights, setbacks, road red lines",
+      "impact": "不给出具体管控指标数值，所有建筑规模和强度建议为概念性",
+      "resolution_plan": "控规条件发布后补充管控指标",
+      "severity": "high"
+    },
+    {
+      "assumption_id": "A-BUILDINGS-001",
+      "category": "existing_conditions",
+      "description_zh": "缺少现状建筑测绘数据、权属数据、质量评定数据",
+      "description_en": "Missing existing building survey, ownership, and quality assessment data",
+      "impact": "拆改留方案仅为原则性建议，不给出具体拆留建议",
+      "resolution_plan": "获取现状建筑数据后更新建筑图层和更新策略",
+      "severity": "high"
+    },
+    {
+      "assumption_id": "A-INFRA-001",
+      "category": "infrastructure",
+      "description_zh": "缺少市政管线、交通流量、防洪、文保、地质等工程数据",
+      "description_en": "Missing municipal utilities, traffic, flood control, heritage preservation, and geotechnical data",
+      "impact": "市政和交通方案为系统性概念建议，不给出工程实施细节",
+      "resolution_plan": "工程专项深化阶段补充",
+      "severity": "medium"
+    },
+    {
+      "assumption_id": "A-IMPLEMENT-001",
+      "category": "implementation",
+      "description_zh": "运营主体、资金来源、实施时序均为概念建议，无政府承诺",
+      "description_en": "Operating entities, funding sources, and phasing are conceptual suggestions with no government commitment",
+      "impact": "商业模式和分期为建议性框架",
+      "resolution_plan": "实施阶段由相关方协商确定",
+      "severity": "medium"
+    }
+  ],
+  "missing_data_checklist": [
+    "official_site_boundary_polygon",
+    "official_key_area_polygons",
+    "existing_buildings_survey",
+    "detailed_control_planning_controls",
+    "road_red_lines",
+    "municipal_utility_networks",
+    "heritage_preservation_zones",
+    "property_ownership_data",
+    "current_traffic_flow_data",
+    "demographic_and_resident_data"
+  ]
+}

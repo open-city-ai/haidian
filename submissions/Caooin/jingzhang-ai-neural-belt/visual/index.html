@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智脉·共生带 | Jing-Zhang AI Neural Symbiosis Belt</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fa; color: #333; line-height: 1.6; }
+.header { background: linear-gradient(135deg, #0066FF 0%, #6366f1 40%, #9333ea 70%, #CC3333 100%); color: white; padding: 60px 20px; text-align: center; }
+.header h1 { font-size: 2.5em; margin-bottom: 10px; }
+.header .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 20px; }
+.header .meta { font-size: 0.9em; opacity: 0.8; }
+.container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+.card { background: white; border-radius: 12px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.card h2 { color: #0066FF; border-left: 4px solid #0066FF; padding-left: 15px; margin-bottom: 20px; font-size: 1.5em; }
+.card h3 { color: #4338ca; margin: 20px 0 10px 0; }
+.concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+.concept-item { padding: 20px; border-radius: 8px; background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%); border: 1px solid #cce0ff; }
+.concept-item h3 { color: #0066FF; margin-bottom: 8px; margin-top: 0; font-size: 1.05em; }
+.concept-item.zhongzhiyuan { background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%); border-color: #ffcccc; }
+.concept-item.zhongzhiyuan h3 { color: #CC3333; }
+.concept-item.origin { background: linear-gradient(135deg, #f0fff5 0%, #d4ffea 100%); border-color: #b3f0c9; }
+.concept-item.origin h3 { color: #33CC66; }
+.concept-item.dazhongsi { background: linear-gradient(135deg, #fffaf0 0%, #ffecc2 100%); border-color: #ffdf8c; }
+.concept-item.dazhongsi h3 { color: #e6a700; }
+.concept-item.suture { background: linear-gradient(135deg, #faf5ff 0%, #e9d5ff 100%); border-color: #d8b4fe; }
+.concept-item.suture h3 { color: #9333ea; }
+svg { width: 100%; height: auto; max-width: 900px; margin: 20px auto; display: block; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+th, td { padding: 10px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+th { background: #f9fafb; font-weight: 600; color: #374151; }
+.principle-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 10px; padding: 20px; margin: 20px 0; }
+.principle-box h3 { color: #92400e; margin-top: 0; }
+.principle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+.principle-item { background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b; }
+.principle-item strong { color: #92400e; display: block; margin-bottom: 5px; }
+.tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; margin: 2px; }
+.tag-ai { background: #e0eaff; color: #0066FF; }
+.tag-culture { background: #ffe5e5; color: #CC3333; }
+.tag-space { background: #d4f5e0; color: #22a352; }
+.tag-gov { background: #fef3c7; color: #b45309; }
+.landmark-card { display: flex; gap: 20px; padding: 20px; margin: 15px 0; border-radius: 8px; border: 1px solid #e5e7eb; align-items: flex-start; }
+.landmark-marker { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5em; color: white; flex-shrink: 0; }
+.landmark-marker.l1 { background: #CC3333; }
+.landmark-marker.l2 { background: #33CC66; }
+.landmark-marker.l3 { background: #9333ea; }
+.kill-switch-note { background: #fee2e2; border: 2px solid #ef4444; border-radius: 8px; padding: 15px; margin: 15px 0; }
+.kill-switch-note strong { color: #991b1b; }
+.phasing { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+.phase { flex: 1; min-width: 150px; padding: 20px; border-radius: 8px; text-align: center; }
+.phase.p1 { background: #dbeafe; }
+.phase.p2 { background: #dcfce7; }
+.phase.p3 { background: #fef3c7; }
+.phase.p4 { background: #f3e8ff; }
+.phase h4 { margin-bottom: 8px; font-size: 0.95em; }
+.phase p { font-size: 0.85em; margin: 0; }
+.disclaimer { background: #fffbeb; border: 1px solid #fcd34d; padding: 20px; border-radius: 8px; margin-top: 30px; }
+.disclaimer h3 { color: #b45309; margin-bottom: 10px; margin-top: 0; }
+ul { padding-left: 25px; margin: 10px 0; }
+li { margin: 6px 0; font-size: 0.95em; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="header">
+<h1>京张智脉·共生带</h1>
+<div class="subtitle">Centennial Jing-Zhang AI Neural Symbiosis Belt</div>
+<div class="meta">百年京张AI创新带城市设计开源征集提案 | Trae AI Urban Design Agent | 2026-08-11</div>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>总体概念：一带三核两翼三缝合口</h2>
+<p style="margin-bottom:20px;">以京张铁路历史文脉为根，以AI神经脉络为骨架，以<strong>「京张神经突触对时协议」</strong>为治理核心，构建8公里长的可信赖AI创新走廊。</p>
+
+<svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="900" height="340" fill="#f8fafc"/>
+<text x="30" y="30" font-size="14" fill="#666">N ↑</text>
+<text x="30" y="320" font-size="12" fill="#999">* 概念示意图，非精确边界</text>
+
+<line x1="80" y1="150" x2="820" y2="150" stroke="#0066FF" stroke-width="12" stroke-linecap="round" opacity="0.7"/>
+<text x="450" y="135" text-anchor="middle" fill="white" font-weight="bold" font-size="14">京张智脉带 (BELT-01) - 8公里</text>
+
+<circle cx="130" cy="150" r="7" fill="#0066FF"/>
+<circle cx="210" cy="150" r="7" fill="#0066FF"/>
+<circle cx="300" cy="150" r="7" fill="#ef4444"/>
+<circle cx="380" cy="150" r="7" fill="#0066FF"/>
+<circle cx="460" cy="150" r="7" fill="#0066FF"/>
+<circle cx="540" cy="150" r="7" fill="#ef4444"/>
+<circle cx="620" cy="150" r="7" fill="#0066FF"/>
+<circle cx="700" cy="150" r="7" fill="#0066FF"/>
+<circle cx="770" cy="150" r="7" fill="#ef4444"/>
+
+<rect x="110" y="75" width="130" height="65" rx="8" fill="#CC3333" opacity="0.85"/>
+<text x="175" y="100" text-anchor="middle" fill="white" font-weight="bold" font-size="12">众智源·AI全栈创新谷</text>
+<text x="175" y="118" text-anchor="middle" fill="white" font-size="10">192.1 ha | CORE-01</text>
+<text x="175" y="132" text-anchor="middle" fill="#fef2f2" font-size="9">零公里对时柱·伦理柱</text>
+
+<rect x="300" y="75" width="130" height="65" rx="8" fill="#33CC66" opacity="0.85"/>
+<text x="365" y="100" text-anchor="middle" fill="white" font-weight="bold" font-size="12">智源社·AI原点社区</text>
+<text x="365" y="118" text-anchor="middle" fill="white" font-size="10">104.3 ha | CORE-02</text>
+<text x="365" y="132" text-anchor="middle" fill="#f0fdf4" font-size="9">开源万神殿·图灵咖啡</text>
+
+<rect x="530" y="75" width="130" height="65" rx="8" fill="#e6a700" opacity="0.85"/>
+<text x="595" y="100" text-anchor="middle" fill="white" font-weight="bold" font-size="12">智汇港·大钟寺智能极</text>
+<text x="595" y="118" text-anchor="middle" fill="white" font-size="10">72.0 ha | CORE-03</text>
+<text x="595" y="132" text-anchor="middle" fill="#fefce8" font-size="9">路演客厅·数据会客厅</text>
+
+<rect x="275" y="168" width="50" height="30" rx="6" fill="#9333ea" opacity="0.8"/>
+<text x="300" y="188" text-anchor="middle" fill="white" font-size="10" font-weight="bold">北缝合口</text>
+<rect x="515" y="168" width="50" height="30" rx="6" fill="#9333ea" opacity="0.8"/>
+<text x="540" y="188" text-anchor="middle" fill="white" font-size="10" font-weight="bold">中缝合口</text>
+<rect x="745" y="168" width="50" height="30" rx="6" fill="#9333ea" opacity="0.8"/>
+<text x="770" y="188" text-anchor="middle" fill="white" font-size="10" font-weight="bold">南缝合口</text>
+
+<rect x="80" y="230" width="240" height="50" rx="8" fill="#6366f1" opacity="0.6"/>
+<text x="200" y="252" text-anchor="middle" fill="white" font-weight="bold" font-size="11">中关村·智服翼 (WING-01)</text>
+<text x="200" y="270" text-anchor="middle" fill="white" font-size="9">资本/IP/人才/法务服务</text>
+
+<rect x="560" y="230" width="260" height="50" rx="8" fill="#0891b2" opacity="0.6"/>
+<text x="690" y="252" text-anchor="middle" fill="white" font-weight="bold" font-size="11">小月河·场景翼 (WING-02)</text>
+<text x="690" y="270" text-anchor="middle" fill="white" font-size="9">AI生活体验·社区测试场</text>
+
+<path d="M175 140 Q175 45 365 45 Q555 45 595 140" stroke="#0066FF" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+<path d="M595 160 Q595 290 365 290 Q135 290 175 160" stroke="#CC3333" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+
+<text x="380" y="35" text-anchor="middle" font-size="11" fill="#0066FF">策源/转化回路</text>
+<text x="380" y="315" text-anchor="middle" font-size="11" fill="#CC3333">体验/治理回路（对时机制贯穿）</text>
+
+<circle cx="175" cy="75" r="8" fill="#9333ea" stroke="white" stroke-width="2"/>
+<text x="175" y="60" text-anchor="middle" font-size="10" fill="#9333ea" font-weight="bold">⏰ 零公里对时标</text>
+
+<line x1="650" y1="260" x2="750" y2="260" stroke="#333" stroke-width="2"/>
+<line x1="650" y1="255" x2="650" y2="265" stroke="#333" stroke-width="2"/>
+<line x1="750" y1="255" x2="750" y2="265" stroke="#333" stroke-width="2"/>
+<text x="700" y="280" text-anchor="middle" font-size="10" fill="#666">≈ 2 km</text>
+</svg>
+
+<div class="concept-grid">
+<div class="concept-item zhongzhiyuan">
+<h3>众智源</h3>
+<p><strong>定位：</strong>AI全栈自主创新核心区<br/><strong>核心地标：</strong>零公里对时柱·伦理与记忆综合体<br/><strong>机制：</strong>算力券、红队星期五、每月对时日</p>
+</div>
+<div class="concept-item origin">
+<h3>智源社</h3>
+<p><strong>定位：</strong>AI开源协作社区<br/><strong>核心地标：</strong>开源万神殿、误点档案墙<br/><strong>机制：</strong>开源驻留、论文秀场、24小时不打烊</p>
+</div>
+<div class="concept-item dazhongsi">
+<h3>智汇港</h3>
+<p><strong>定位：</strong>站城一体智能极<br/><strong>核心功能：</strong>展示交易、国际路演、数据要素<br/><strong>连接：</strong>南缝合口连廊系统</p>
+</div>
+<div class="concept-item suture">
+<h3>三缝合口</h3>
+<p><strong>北缝合：</strong>校企缝合<br/><strong>中缝合：</strong>园社缝合<br/><strong>南缝合：</strong>产服缝合<br/><em>无围墙·无门禁·24h开放</em></p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>核心治理机制：京张神经突触对时协议</h2>
+<p style="margin-bottom:15px;">从京张铁路「列车时刻表准点运行」纪律中获得灵感——铁路要准点、要对时、误点要公告、故障要降级换乘，AI公共服务也必须如此。</p>
+
+<div class="principle-box">
+<h3>📜 协议五原则</h3>
+<div class="principle-grid">
+<div class="principle-item">
+<strong>1. 可对时</strong>
+每月第一个周一为「全区对时日」，所有AI系统公开接受人工复核对时，市民可旁听。
+</div>
+<div class="principle-item">
+<strong>2. 可降级</strong>
+未通过对时、重大故障、百人联名要求暂停→<strong>自动降级为纯人工服务</strong>。无「半AI半人工」模糊状态。
+</div>
+<div class="principle-item">
+<strong>3. 误点可查</strong>
+误点档案公开墙永久展示所有AI服务故障、降级历史，不删档。每年发布《京张AI对时白皮书》。
+</div>
+<div class="principle-item">
+<strong>4. 可回退</strong>
+城市像软件一样版本迭代，重大问题一键回退到上一个稳定版本，保留7天测试期。
+</div>
+<div class="principle-item">
+<strong>5. 人工终裁</strong>
+涉及公共利益决策必须有公开的人类复核人，AI建议标注「仅供参考」。
+</div>
+</div>
+</div>
+
+<div class="kill-switch-note">
+<strong>🔴 物理断开开关：</strong>每个AI场景驿站都有醒目的红色物理断电开关，任何人遇到问题都可以按下立即切断AI电源，切换到纯人工模式。零公里对时柱底部还有玻璃罩保护的<strong>全区总开关</strong>——这是最后的安全防线。
+</div>
+
+<h3>城市版本迭代路线</h3>
+<div class="phasing">
+<div class="phase p1">
+<h4>v1.0 · 2027启动版</h4>
+<p>核心公共空间、第一届AI周、基础对时机制运行</p>
+</div>
+<div class="phase p2">
+<h4>v2.0 · 2030成长版</h4>
+<p>三核建成、500家企业、对时机制成熟</p>
+</div>
+<div class="phase p3">
+<h4>v3.0 · 2035成熟版</h4>
+<p>全球核心节点、标准输出、自我造血</p>
+</div>
+<div class="phase p4">
+<h4>v4.0 · 2049展望版</h4>
+<p>百年献礼，AI原生城市全面升级</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>💡 核心方法论创新：从「城市装AI」到「像设计软件一样设计AI城市」</h2>
+<p style="margin-bottom:15px;">本方案区别于传统智慧城市的核心：将软件工程领域几十年验证的可靠系统设计原则，系统性迁移到城市规划治理。</p>
+<div class="concept-grid">
+<div class="concept-item" style="background: #fef2f2; border-color: #fecaca;">
+<h3 style="color: #991b1b;">🔴 熔断机制</h3>
+<p>故障自动降级，13个物理开关一键切断AI</p>
+</div>
+<div class="concept-item" style="background: #eff6ff; border-color: #bfdbfe;">
+<h3 style="color: #1e40af;">📦 版本控制</h3>
+<p>城市可迭代、可回退，变更日志永久公开</p>
+</div>
+<div class="concept-item" style="background: #f0fdf4; border-color: #bbf7d0;">
+<h3 style="color: #166534;">🐤 灰度发布</h3>
+<p>先试点再推广，测试场封闭→半开放→全域</p>
+</div>
+<div class="concept-item" style="background: #fefce8; border-color: #fef08a;">
+<h3 style="color: #854d0e;">👀 代码评审</h3>
+<p>所有AI决策必须有公开的人类复核人</p>
+</div>
+<div class="concept-item" style="background: #faf5ff; border-color: #e9d5ff;">
+<h3 style="color: #6b21a8;">📊 A/B测试</h3>
+<p>城市政策对照实验，数据驱动评估效果</p>
+</div>
+<div class="concept-item" style="background: #fdf4ff; border-color: #f5d0fe;">
+<h3 style="color: #86198f;">👐 开源协作</h3>
+<p>市民可提交改进建议，社区共治共享</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>🤝 包容性设计：服务所有人的公共空间</h2>
+<p style="margin-bottom:15px;">智脉带不是精英园区，而是覆盖全人群的公共创新空间：</p>
+<table>
+<tr><th>人群</th><th>保障措施</th></tr>
+<tr><td>👴 老年人</td><td>一键转人工按钮、保留传统线下渠道、免费数字素养培训、无障碍适老化设计</td></tr>
+<tr><td>♿ 残障人士</td><td>全域盲道/轮椅可达、标识配盲文/手语/语音、AI辅助就业匹配</td></tr>
+<tr><td>👶 儿童青少年</td><td>无广告儿童探索区、免费AI训练营、屏幕时间提醒、线下探索优先</td></tr>
+<tr><td>🏘️ 原住民</td><td>不强制搬迁、30%岗位优先雇佣、房租管控、议事会≥50%居民代表</td></tr>
+<tr><td>💼 低收入群体</td><td>免费公共空间/Wi-Fi/算力、平价食堂、免费技能培训、公益服务全免费</td></tr>
+<tr><td>🚺 女性与少数群体</td><td>夜间照明+紧急呼叫、算法公平审计、反歧视机制、多元话语渠道</td></tr>
+</table>
+<p style="margin-top:15px; font-weight:bold; color:#9333ea;">6条公共利益刚性保障：无门槛进入 | 非AI选择权 | 安静区保障 | 数据收益共享 | 7天申诉答复 | 10%公益算力永久免费</p>
+</div>
+
+<div class="card">
+<h2>三个AI朝圣地标</h2>
+
+<div class="landmark-card">
+<div class="landmark-marker l1">🚂</div>
+<div>
+<h3>京张时空之门 @清华园站</h3>
+<p><span class="tag tag-culture">历史文脉</span><span class="tag tag-ai">AR体验</span><span class="tag tag-gov">时间胶囊</span></p>
+<p>19.09米双螺旋雕塑，连接1909-2026-2049三个时空。老站房改造为铁路博物馆，半地下时空舱提供AI历史对话，以及给2049年写信的时间胶囊服务。</p>
+</div>
+</div>
+
+<div class="landmark-card">
+<div class="landmark-marker l2">⭐</div>
+<div>
+<h3>开源万神殿 @智源社</h3>
+<p><span class="tag tag-ai">开源精神</span><span class="tag tag-culture">社区荣誉</span><span class="tag tag-gov">误点档案墙</span></p>
+<p>20米圆柱大厅，穹顶星空每颗星代表一个开源项目。墙面镌刻贡献者名字，中央「开源之火」随全球代码merge实时跳动。旁设<strong>误点档案公开墙</strong>——透明记录AI服务质量，不羞于谈论故障。</p>
+</div>
+</div>
+
+<div class="landmark-card">
+<div class="landmark-marker l3">⏰</div>
+<div>
+<h3>零公里对时柱·伦理与记忆综合体 @众智源</h3>
+<p><span class="tag tag-gov">AI治理</span><span class="tag tag-culture">零公里标</span><span class="tag tag-space">公共艺术</span></p>
+<p>融合汉谟拉比法典柱+铁路零公里标+时间胶囊+误点档案的复合地标：</p>
+<ul>
+<li><strong>主体对时柱</strong>：9.9米汉白玉柱，镌刻AI伦理原则+对时协议五原则，柱顶原子钟广播全区时间基准</li>
+<li><strong>东侧正点率碑廊</strong>：一侧刻年度优秀AI服务，另一侧电子墨水屏永久展示误点记录</li>
+<li><strong>西侧到期档案馆</strong>：存放所有AI服务时刻表、对时报告，「退役」AI模型在此有「墓碑」</li>
+<li><strong>底部总开关</strong>：玻璃罩保护的红色物理按钮，可切断全区AI公共服务电源</li>
+</ul>
+<p style="margin-top:10px; font-size:0.9em; color:#666;"><em>这不是对技术的不信任，而是对公共利益的敬畏。准点、可靠、透明、可追溯、可回退。</em></p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>12张AI场景卡（摘要）</h2>
+<table>
+<tr><th>#</th><th>场景名称</th><th>位置</th><th>对时机制</th><th>隐私边界</th></tr>
+<tr><td>01</td><td>开源发布厅</td><td>智源社</td><td>活动内容月度审核</td><td>活动影像公开，行为轨迹不采集</td></tr>
+<tr><td>02</td><td>安全治理沙盒</td><td>众智源</td><td>测试结论专家复核</td><td>合成数据，物理隔离区域</td></tr>
+<tr><td>03</td><td>端侧算力驿站</td><td>全域12节点</td><td>服务可用性月度对时</td><td>用户数据不留存，结果加密</td></tr>
+<tr><td>04</td><td>AI慢行导航官</td><td>智脉公园</td><td>路径公平性季度审计</td><td>视频本地处理，不识别个人</td></tr>
+<tr><td>05</td><td>国际路演客厅</td><td>大钟寺</td><td>投融资匹配人工确认</td><td>非公开内容严格权限</td></tr>
+<tr><td>06</td><td>清河低碳创新廊</td><td>众智源滨水</td><td>微气候阈值人工设定</td><td>环境传感器无个人数据</td></tr>
+<tr><td>07</td><td>近校成果转化街</td><td>成府路沿线</td><td>技术评估人工确认</td><td>未公开成果权限管理</td></tr>
+<tr><td>08</td><td>数据要素会客厅</td><td>大钟寺</td><td>所有交易合规审核</td><td>全程审计，可用不可见</td></tr>
+<tr><td>09</td><td>AI生活样板街</td><td>小月河</td><td>专业服务持证审核</td><td>数据本地化，居民授权</td></tr>
+<tr><td>10</td><td>AI周体验路线</td><td>全域</td><td>会议内容专业审核</td><td>个性化推荐可选</td></tr>
+<tr><td>11</td><td>社区议事亭</td><td>社区节点</td><td>议题清单居委会确认</td><td>发言可匿名，非商业使用</td></tr>
+<tr><td>12</td><td>遗产AR时空门</td><td>铁路遗址</td><td>历史内容学者审核</td><td>不采集面部和轨迹</td></tr>
+</table>
+<p style="margin-top:10px; font-size:0.85em; color:#666;">每个场景都配备：① 物理断电开关 ② 明确隐私边界 ③ 人工复核节点 ④ 降级回退机制</p>
+</div>
+
+<div class="card">
+<h2>关键指标概览</h2>
+<div class="two-col">
+<div>
+<table>
+<tr><th>指标</th><th>数值</th><th>状态</th></tr>
+<tr><td>总长度</td><td>8 km</td><td>估算</td></tr>
+<tr><td>AI场景卡</td><td>12 张</td><td>✅ 完成</td></tr>
+<tr><td>测试验证场景</td><td>3 个</td><td>✅ 完成</td></tr>
+<tr><td>用户画像</td><td>6 类</td><td>✅ 完成</td></tr>
+<tr><td>AI朝圣地标</td><td>3 个</td><td>✅ 完成</td></tr>
+<tr><td>全球案例研究</td><td>8 个</td><td>✅ 完成</td></tr>
+</table>
+</div>
+<div>
+<table>
+<tr><th>核心治理指标</th><th>数值</th><th>说明</th></tr>
+<tr><td>缝合口数量</td><td>3 个</td><td>北/中/南空间缝合节点</td></tr>
+<tr><td>对时点（算力驿站）</td><td>12 个</td><td>每月对时覆盖</td></tr>
+<tr><td>物理断开开关</td><td>13 个</td><td>12驿站+1全区总开关</td></tr>
+<tr><td>城市版本里程碑</td><td>4 个</td><td>v1.0-v4.0 (2027-2049)</td></tr>
+<tr><td>无AI安静区</td><td>3+ 处</td><td>林下空间等完全离线区域</td></tr>
+<tr><td>公益算力占比</td><td>10%</td><td>免费给学术和公益项目</td></tr>
+</table>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h2>年度活动日历</h2>
+<div class="concept-grid">
+<div class="concept-item" style="background: #fef2f2; border-color: #fecaca;">
+<h3 style="color: #991b1b;">1月 · 对时大典</h3>
+<p>零公里对时柱前举行年度公开仪式，发布对时白皮书，镌刻新伦理原则</p>
+</div>
+<div class="concept-item" style="background: #eff6ff; border-color: #bfdbfe;">
+<h3 style="color: #1e40af;">每月第一个周一</h3>
+<p><strong>全区对时日</strong>——所有AI系统公开接受人工复核，市民可旁听</p>
+</div>
+<div class="concept-item" style="background: #f0fdf4; border-color: #bbf7d0;">
+<h3 style="color: #166534;">每周五</h3>
+<p>论文秀场：最新AI论文作者现场讲解，开放交流</p>
+</div>
+<div class="concept-item" style="background: #fefce8; border-color: #fef08a;">
+<h3 style="color: #854d0e;">9月 · 京张AI周</h3>
+<p>年度盛会，10万+人参与，包含科学峰会、黑客松、公众开放日</p>
+</div>
+<div class="concept-item" style="background: #faf5ff; border-color: #e9d5ff;">
+<h3 style="color: #6b21a8;">12月 · 版本发布日</h3>
+<p>发布智脉带下一年度版本，公开更新日志，庆祝一年的迭代成长</p>
+</div>
+<div class="concept-item" style="background: #fdf4ff; border-color: #f5d0fe;">
+<h3 style="color: #86198f;">每月最后周末</h3>
+<p>24小时黑客松，主题围绕真实城市场景问题</p>
+</div>
+</div>
+</div>
+
+<div class="disclaimer">
+<h3>⚠️ 重要合规声明</h3>
+<ul>
+<li>本方案为<strong>概念性城市设计建议</strong>，所有空间方案、建筑尺寸、建设强度、道路线位、建筑高度、退线距离、用地性质、容积率奖励等均为概念设计建议，不替代任何层级法定规划，不构成政府审定结论或行政许可依据，最终以规划管理部门审定的法定文件为准</li>
+<li>所有几何边界为<strong>临时估算边界</strong>，面积数据基于公开公告描述估算，待官方精确GeoJSON发布后需复算所有指标</li>
+<li>地标雕塑、建筑改造尺寸均为<strong>概念艺术设计建议</strong>，最终方案需经文物、规划、建设等主管部门审批</li>
+<li>本方案基于公开资料创作，<strong>未使用任何非公开规划图件、非公开空间数据、内部控制指标或涉密信息</strong></li>
+<li>交通测试、低空飞行器等内容均为<strong>概念预留</strong>，实际实施需经交管、空域等相关主管部门审批</li>
+<li>所有AI场景均遵循<strong>「可对时、可降级、误点可查、可回退、人工终裁」</strong>五原则，设置无AI安静区，提供非AI替代选项，每个场景配备物理断开开关</li>
+<li>本方案采用 <strong>CC-BY-SA 4.0</strong> 协议开源授权</li>
+</ul>
+</div>
+
+<div style="text-align: center; margin-top: 40px; padding: 30px; color: #666;">
+<p style="font-size: 1.2em; color: #0066FF; margin-bottom: 10px;">京张智脉，连接百年，通向未来</p>
+<p>准点 · 可靠 · 透明 · 可追溯 · 可回退</p>
+<p style="margin-top: 20px; font-size: 0.9em;">Jing-Zhang Neural Belt: Connecting a Century, Leading to the Future</p>
+<p style="margin-top: 10px; font-size: 0.9em;">Trae AI Urban Design Agent | 2026-08-11</p>
+</div>
+
+</div>
+
+<section class="card" id="validation-sections">
+<h2>总览地图</h2><p>建筑、三层范围、重点区域、用地分区、交通慢行与蓝绿公共空间联动展示。</p>
+<p>三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、更新项目、AI 场景、核心指标、任务覆盖、自检状态、来源、假设均在本页可见呈现。</p>
+<div data-metric="site_area_sqm">site_area_sqm</div>
+<div data-metric="green_ratio">green_ratio</div>
+<div data-metric="public_space_ratio">public_space_ratio</div>
+</section>
+<div class="metric-declarations" aria-hidden="true"><span data-metric="site_area_sqm" data-value="43420371.393"></span><span data-metric="green_ratio" data-value="0.132957"></span><span data-metric="public_space_ratio" data-value="0.062978"></span></div>
+</body>
+</html>
