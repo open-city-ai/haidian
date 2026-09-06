@@ -144,6 +144,19 @@ def inside_repo(path: Path, repo_root: Path) -> bool:
         return False
 
 
+def validate_output_dir(repo_root: Path, out_dir: Path) -> None:
+    """Keep maintainer-only review artifacts out of participant packages."""
+    try:
+        relative = out_dir.resolve().relative_to(repo_root.resolve())
+    except ValueError:
+        return
+    if relative.parts and relative.parts[0] == "submissions":
+        raise ReviewPacketError(
+            "review packet output must not be inside submissions/; "
+            "use .maintainer-review/ or an external directory"
+        )
+
+
 def discover_submission_dirs(repo_root: Path) -> list[Path]:
     submissions_root = repo_root / "submissions"
     return sorted(path.parent for path in submissions_root.glob("*/*/proposal.md"))
@@ -965,6 +978,7 @@ def export_review_packet(
     include_pdf: bool = False,
     pdf_engine: str = "auto",
 ) -> dict[str, str]:
+    validate_output_dir(repo_root, out_dir)
     packets = [load_submission_packet(repo_root, path) for path in submission_dirs]
     out_dir.mkdir(parents=True, exist_ok=True)
     markdown_path = out_dir / "review-packet.md"
