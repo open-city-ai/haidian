@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jing-Zhang AI Belt · Offline Visual Dashboard</title>
+<style>
+  :root {
+    --ink:#2B3135; --paper:#FAF7F2; --sand:#F0E9DE; --rust:#B5472E;
+    --rust-lt:#E8C9BC; --teal:#1B9AAA; --teal-dk:#0E6E7B;
+    --green:#7A9E7E; --amber:#D9A441; --grey:#8A857D;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"Microsoft YaHei", "Arial", sans-serif; color:var(--ink);
+          background:var(--paper); line-height:1.6; }
+  .wrap { max-width:1180px; margin:0 auto; padding:48px 36px 80px; }
+  .hero { background:linear-gradient(135deg, var(--rust) 0%, var(--rust-lt) 100%);
+           color:white; padding:48px 40px; border-radius:14px; margin-bottom:36px;
+           box-shadow:0 8px 30px rgba(181,71,46,0.15); }
+  .hero h1 { font-size:34px; margin:0 0 8px; font-weight:800; letter-spacing:1px; }
+  .hero .sub { font-size:14px; opacity:0.92; }
+  .hero .quote { font-size:24px; font-style:italic; margin:24px 0 6px;
+                  color:#FFEEDD; font-weight:500; }
+  .hero .hero-sub { font-size:14px; opacity:0.95; }
+  h2 { font-size:22px; color:var(--ink); border-left:5px solid var(--rust);
+        padding-left:14px; margin:48px 0 20px; font-weight:700; }
+  h2 small { font-weight:400; color:var(--grey); font-size:14px; margin-left:8px; }
+  .concept { background:white; border:1px solid var(--sand); border-radius:10px;
+              padding:24px 28px; margin-bottom:8px; }
+  .concept p { margin:0; font-size:15.5px; color:var(--ink); }
+  .figs { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0 8px; }
+  .fig { background:white; border:1px solid var(--sand); border-radius:10px;
+          overflow:hidden; }
+  .fig img { display:block; width:100%; height:auto; border-bottom:1px solid var(--sand); }
+  .fig-cap { padding:12px 16px; font-size:13px; color:var(--ink);
+              font-weight:600; }
+  .fig-cap small { display:block; color:var(--grey); font-weight:400; font-size:11px;
+                    margin-top:4px; }
+  .map-box { background:white; border:1px solid var(--sand); border-radius:10px;
+              padding:22px 26px; margin:14px 0 8px; }
+  .map-box p { margin:0 0 12px; font-size:14.5px; color:var(--ink); }
+  .lu-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .lu-cell { background:var(--sand); border-left:4px solid var(--teal); border-radius:6px;
+              padding:10px 14px; font-size:13px; }
+  .lu-cell strong { display:block; color:var(--ink); font-size:13.5px; }
+  .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:16px 0 8px; }
+  .metric { background:white; border:1px solid var(--sand); border-radius:10px;
+             padding:18px 14px; text-align:center; }
+  .metric-value { font-size:24px; font-weight:800; color:var(--rust);
+                   line-height:1.0; }
+  .metric-unit { font-size:11px; color:var(--grey); font-weight:400; margin-left:3px; }
+  .metric-label { font-size:12.5px; font-weight:600; color:var(--ink); margin-top:6px; }
+  .metric-src { font-size:10.5px; color:var(--grey); margin-top:3px;
+                 font-family:"Consolas","Courier New",monospace; word-break:break-all; }
+  .evid { display:flex; align-items:center; gap:8px; margin:18px 0 8px;
+           flex-wrap:wrap; }
+  .evid-step { background:var(--sand); border:1px solid var(--grey); color:var(--ink);
+                border-radius:6px; padding:10px 18px; font-size:13px; font-weight:600; }
+  .evid-arrow { color:var(--rust); font-weight:800; font-size:18px; }
+  .evid-note { font-size:12px; color:var(--grey); margin:6px 0 0;
+                font-style:italic; }
+  .state, .src, .assump { background:white; border:1px solid var(--sand); border-radius:10px;
+              padding:18px 22px; font-size:14px; color:var(--ink); margin-top:8px; }
+  .state { border-left:5px solid var(--green); }
+  .src { border-left:5px solid var(--teal); }
+  .assump { border-left:5px solid var(--amber); }
+  .state p, .src p, .assump p { margin:0; }
+  table { width:100%; border-collapse:collapse; background:white; border:1px solid var(--sand);
+           border-radius:10px; overflow:hidden; margin-top:8px; }
+  th,td { padding:12px 16px; text-align:left; font-size:13.5px;
+           border-bottom:1px solid var(--sand); }
+  th { background:var(--sand); font-weight:700; color:var(--ink); font-size:12px;
+        letter-spacing:0.5px; text-transform:uppercase; }
+  tr:last-child td { border-bottom:none; }
+  .tid { font-family:"Consolas","Courier New",monospace; color:var(--teal-dk);
+          font-weight:700; font-size:12px; }
+  .risk { background:#FFF6F2; border:1px solid var(--rust-lt); border-left:5px solid var(--rust);
+           border-radius:8px; padding:18px 22px; font-size:13.5px; color:var(--ink); }
+  .footer { margin-top:60px; padding-top:24px; border-top:1px solid var(--sand);
+             text-align:center; color:var(--grey); font-size:12px; }
+  @media (max-width:820px) {
+    .figs, .metrics, .lu-grid { grid-template-columns:1fr 1fr; }
+    .wrap { padding:24px 18px 60px; }
+    .hero h1 { font-size:24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Jing-Zhang AI Belt · Offline Visual Dashboard</h1>
+    <div class="sub">京张智脉 · Offline Visual Dashboard</div>
+    <div class="quote">"From Iron Rails to Intelligent Pulse"</div>
+    <div class="hero-sub">A century-old railway translated into an AI innovation belt. Provisional boundary only; to be recalculated when official data is released.</div>
+  </div>
+
+  <h2>1 · Concept: Jing-Zhang AI Belt (The Intelligent Pulse of Jing-Zhang)</h2>
+  <div class="concept"><p>Using the century-old Jing-Zhang Railway as the spiritual prototype, the proposal translates rails into innovation chains, stations into innovation nodes, sleepers into factor supports. The naming system runs on the railway motif: three cores — Engine Yard, Origin Depot, Junction; two wings — Dispatch Wing, Test Wing; overlaid by the blue-green-slow compound loop, forming the Belt-Cores-Wings spatial frame.</p></div>
+
+  <h2>2 · Figures</h2>
+  <div class="figs">
+    <div class="fig"><img src="../assets/figures/site-overview.en.png" alt="site-overview"><div class="fig-cap">Fig. 1 · Site Overview: Belt-Cores-Wings frame<small>JINGZHANG AI BELT · Submitted by fufu3939 (QinWu) · Provisional boundary only</small></div></div>
+    <div class="fig"><img src="../assets/figures/land-use-structure.en.png" alt="land-use-structure"><div class="fig-cap">Fig. 2 · Three-level scope and the Ren innovation chain</div></div>
+    <div class="fig"><img src="../assets/figures/key-areas.en.png" alt="key-areas"><div class="fig-cap">Fig. 3 · Three key areas under the station motif</div></div>
+    <div class="fig"><img src="../assets/figures/mobility-bluegreen.en.png" alt="mobility-bluegreen"><div class="fig-cap">Fig. 4 · Mobility, slow network and blue-green system</div></div>
+  </div>
+  <div class="figs" style="grid-template-columns:1fr;">
+    <div class="fig"><img src="../assets/figures/metrics-evidence.en.png" alt="metrics-evidence"><div class="fig-cap">Fig. 5 · Core metric recalculation and evidence chain</div></div>
+  </div>
+
+  <h2>3 · Overview map (Total scope)</h2>
+  <div class="map-box"><p>Overall design area 11.41 km²; key areas 368.4 ha distributed along the Heritage Park in three cores + two wings.</p>
+    <div class="lu-grid">
+      <div class="lu-cell"><strong>LU-001</strong>北部蓝绿与遗址</div>
+      <div class="lu-cell"><strong>LU-002</strong>中北研发创新 · 引擎站</div>
+      <div class="lu-cell"><strong>LU-003</strong>中部公共与人才 · 原点站</div>
+      <div class="lu-cell"><strong>LU-004</strong>中南居住配套</div>
+      <div class="lu-cell"><strong>LU-005</strong>南部商业与产业 · 交汇站</div>
+      <div class="lu-cell"><strong>LU-006</strong>南端扩展与公共</div>
+    </div>
+  </div>
+
+  <h2>4 · Land use partition</h2>
+  <div class="concept"><p>Six non-overlapping strips that fully cover the boundary, from north to south: blue-green & heritage, R&D (Engine Yard), public & talent (Origin Depot), residential (Junction fringe), commerce & industry (Junction), south extension.</p></div>
+
+  <h2>5 · Buildings</h2>
+  <div class="concept"><p>Building scheme grades retain / renovate / update / new-build. Control metrics (FAR / height / density / setback) await official regulatory planning, currently marked pending official data.</p></div>
+
+  <h2>Renewal Project List</h2>
+  <table>
+    <thead><tr><th>ID</th><th>Project</th><th>Type</th></tr></thead>
+    <tbody>
+      <tr><td>JZ-01</td><td>Heritage Park slow-network break stitching</td><td>Public space / transport</td></tr>
+      <tr><td>JZ-02</td><td>Engine Yard Qinghe innovation frontage</td><td>Blue-green / industry</td></tr>
+      <tr><td>JZ-03</td><td>Origin Depot transformation street</td><td>Renewal / service</td></tr>
+      <tr><td>JZ-04</td><td>Junction four-quadrant connectivity</td><td>Station / slow</td></tr>
+      <tr><td>JZ-05</td><td>AI public service & edge-compute node</td><td>New infra / public service</td></tr>
+      <tr><td>JZ-06</td><td>Global AI Activity Week public route</td><td>Operation / brand</td></tr>
+      <tr><td>JZ-07</td><td>Origin Stele at Qinghua-yuan Station</td><td>Culture / landmark</td></tr>
+      <tr><td>JZ-08</td><td>Open-source showcase gallery</td><td>Culture / showcase</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6 · Key metrics and evidence</h2>
+  <div class="metrics">
+    <div class="metric" data-metric="site_area_sqm" data-value="11412825.39">
+      <div class="metric-value">11.41<span class="metric-unit">km²</span></div>
+      <div class="metric-label">Overall design area (site_area_sqm)</div>
+      <div class="metric-src">geometry/site_boundary.geojson</div>
+    </div>
+    <div class="metric" data-metric="green_ratio" data-value="0.123423">
+      <div class="metric-value">12.3<span class="metric-unit">%</span></div>
+      <div class="metric-label">Green ratio (green_ratio)</div>
+      <div class="metric-src">geometry/green_space.geojson</div>
+    </div>
+    <div class="metric" data-metric="public_space_ratio" data-value="0.073281">
+      <div class="metric-value">7.3<span class="metric-unit">%</span></div>
+      <div class="metric-label">Public-space ratio (public_space_ratio)</div>
+      <div class="metric-src">geometry/public_space.geojson</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">368.4<span class="metric-unit">ha</span></div>
+      <div class="metric-label">Key areas total</div>
+      <div class="metric-src">geometry/key_areas.geojson</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">3</div>
+      <div class="metric-label">AI pilgrimage landmarks (three cores)</div>
+      <div class="metric-src">proposal.md § landmarks</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">10<span class="metric-unit">cards</span></div>
+      <div class="metric-label">AI scenario cards</div>
+      <div class="metric-src">proposal.md § scenarios</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">3</div>
+      <div class="metric-label">Test & validation scenes</div>
+      <div class="metric-src">proposal.md § test scenes</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">5</div>
+      <div class="metric-label">User personas</div>
+      <div class="metric-src">proposal.md § personas</div>
+    </div>
+  </div>
+
+  <h2>7 · Self-check state</h2>
+  <div class="state"><p>The package passes finalize + self_check: deterministic / spatial / visual / professional evidence reviews. Organiser-side data gaps (official polygon, regulatory controls, municipal data) are recorded in assumptions.</p></div>
+
+  <h2>8 · Sources</h2>
+  <div class="src"><p>Primary sources: Pre-qualification Announcement of the Centennial Jing-Zhang AI Innovation Belt Urban Design International Open Call (Beijing Municipal Bureau of Planning and Natural Resources, Haidian Branch); MOHURD Urban Design Measures & Control-Detailed-Planning Procedure; MNR Land-Use Classification Guide; provisional rough boundaries (brief/site-package/geometry/provisional_boundaries.geojson).</p></div>
+
+  <h2>9 · Assumptions</h2>
+  <div class="assump"><p>(A-BOUNDARY-001) overall design area and three key areas use provisional polygon; (A-CONTROLS-001) FAR / height / density / setback await official regulatory planning; (A-DATA-001) road / rail / municipal / heritage / public-service data gaps are listed as pre-conditions for formal deepening.</p></div>
+
+  <h2>10 · Evidence chain</h2>
+  <div class="evid"><div class="evid-step">GeoJSON layers</div><div class="evid-arrow">›</div><div class="evid-step">EPSG:4548 calc</div><div class="evid-arrow">›</div><div class="evid-step">metrics.json</div><div class="evid-arrow">›</div><div class="evid-step">self-check</div><div class="evid-arrow">›</div><div class="evid-step">compliance matrix</div></div>
+  <p class="evid-note">Control metrics (FAR/height/density/setback) await official regulatory planning; performance metrics are design targets, not approvals.</p>
+
+  <h2>11 · Task coverage</h2>
+  <table>
+    <thead><tr><th>ID</th><th>Task</th><th>Evidence</th></tr></thead>
+    <tbody><tr><td class="tid">agent.1</td><td>Belt-level concept and function frame</td><td>Figs 1, 2, 3</td></tr><tr><td class="tid">agent.2</td><td>Full-stack indigenous innovation and ecosystem</td><td>proposal § ecosystem</td></tr><tr><td class="tid">agent.3</td><td>AI+ scenario paradigm and vital city</td><td>10 cards / 3 scenes / 5 personas</td></tr><tr><td class="tid">agent.4</td><td>AI public space and pilgrimage landmarks</td><td>3 landmarks + component library</td></tr><tr><td class="tid">agent.5</td><td>Cultural narrative</td><td>Ren narrative + international comms</td></tr><tr><td class="tid">agent.6</td><td>Global activity system and long-term operation</td><td>Global AI Week / dev community</td></tr></tbody>
+  </table>
+
+  <h2>12 · Risk, copyright, boundary</h2>
+  <div class="risk">This package is an open co-creation concept suggestion. It does not replace formal planning and does not constitute government approval. A provisional boundary is in use; the full geometry, metrics, figures and HTML must be recalculated after the official polygon is released. All imagery and icons are original concept directions; no unauthorised fonts, trademarks or person images are embedded. Final landing requires a professional brand team and full rights clearance.</div>
+
+  <div class="footer">JINGZHANG AI BELT · Submitted by fufu3939 (QinWu) · Provisional boundary only</div>
+</div>
+</body>
+</html>
