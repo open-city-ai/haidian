@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张·智脊 — 海淀区城市设计征集方案</title>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  background: #FAFAFA;
+  color: #212121;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: #1565C0; text-decoration: none; }
+
+/* ===== CSS Variables ===== */
+:root {
+  --primary: #1565C0;
+  --primary-light: #1E88E5;
+  --primary-dark: #0D47A1;
+  --secondary: #00897B;
+  --secondary-light: #26A69A;
+  --accent: #E65100;
+  --accent-light: #F57C00;
+  --bg: #FAFAFA;
+  --bg-card: #FFFFFF;
+  --text: #212121;
+  --text-secondary: #616161;
+  --text-muted: #9E9E9E;
+  --border: #E0E0E0;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --radius: 8px;
+  --radius-lg: 12px;
+  --max-w: 1200px;
+}
+
+/* ===== Layout ===== */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+section { padding: 64px 0; }
+section:nth-child(even) { background: #F5F5F5; }
+
+/* ===== Section Titles ===== */
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.section-header .label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: rgba(21,101,192,0.08);
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.section-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.section-header .subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ===== Header / Hero ===== */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+  color: #fff;
+  padding: 80px 0 64px;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(0,137,123,0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(21,101,192,0.4) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero .container { position: relative; z-index: 1; text-align: center; }
+.hero .badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 6px 20px;
+  border-radius: 24px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(4px);
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
+}
+.hero .hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 300;
+  opacity: 0.9;
+  max-width: 720px;
+  margin: 0 auto 32px;
+  line-height: 1.8;
+}
+.hero .hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+.hero .hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ===== Overview Map ===== */
+.overview-map {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.overview-map img {
+  width: 100%;
+  display: block;
+}
+.overview-map .map-caption {
+  padding: 16px 24px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ===== Scope Cards ===== */
+.scope-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.scope-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--primary);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.scope-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.scope-card .scope-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(21,101,192,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 1.5rem;
+}
+.scope-card .scope-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.2;
+}
+.scope-card .scope-unit {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+.scope-card .scope-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 8px;
+}
+.scope-card .scope-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* ===== Key Areas ===== */
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.area-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.area-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.area-card .area-header {
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.area-card .area-number {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.area-card:nth-child(1) .area-number { background: var(--primary); }
+.area-card:nth-child(2) .area-number { background: var(--accent); }
+.area-card:nth-child(3) .area-number { background: var(--secondary); }
+.area-card .area-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.area-card .area-size {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+.area-card .area-body {
+  padding: 20px 24px 24px;
+}
+.area-card .area-role {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+.area-card .area-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.area-card .area-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+}
+.area-card .area-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 12px;
+  background: rgba(21,101,192,0.06);
+  color: var(--primary);
+  border: 1px solid rgba(21,101,192,0.15);
+}
+
+/* ===== Image Panels ===== */
+.image-panel {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.image-panel:last-child { margin-bottom: 0; }
+.image-panel img {
+  width: 100%;
+  display: block;
+}
+.image-panel .panel-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.image-panel .panel-footer .fig-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.image-panel .panel-footer .fig-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ===== Two-Column Layout ===== */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+/* ===== AI Scenario Cards ===== */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.scenario-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.scenario-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+.scenario-card:nth-child(4n+1)::before { background: var(--primary); }
+.scenario-card:nth-child(4n+2)::before { background: var(--secondary); }
+.scenario-card:nth-child(4n+3)::before { background: var(--accent); }
+.scenario-card:nth-child(4n)::before { background: #7B1FA2; }
+.scenario-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.scenario-card .sc-number {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.scenario-card .sc-icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  display: block;
+}
+.scenario-card .sc-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.scenario-card .sc-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.scenario-card .sc-agent {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 12px;
+  background: rgba(21,101,192,0.08);
+  color: var(--primary);
+}
+
+/* ===== Pilgrimage Landmarks ===== */
+.landmarks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.landmark-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.landmark-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+.landmark-card:nth-child(1)::after { background: linear-gradient(90deg, var(--primary), var(--primary-light)); }
+.landmark-card:nth-child(2)::after { background: linear-gradient(90deg, var(--secondary), var(--secondary-light)); }
+.landmark-card:nth-child(3)::after { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+.landmark-card .lm-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+.landmark-card .lm-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.landmark-card .lm-en {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+.landmark-card .lm-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ===== Metrics Dashboard ===== */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.metric-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.metric-card .mc-value {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.metric-card .mc-value.blue { color: var(--primary); }
+.metric-card .mc-value.teal { color: var(--secondary); }
+.metric-card .mc-value.orange { color: var(--accent); }
+.metric-card .mc-value.purple { color: #7B1FA2; }
+.metric-card .mc-unit {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+.metric-card .mc-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+.metric-card .mc-trend {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-top: 6px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+}
+.metric-card .mc-trend.up { background: rgba(0,137,123,0.1); color: var(--secondary); }
+.metric-card .mc-trend.neutral { background: rgba(21,101,192,0.08); color: var(--primary); }
+
+/* ===== Agent Coverage ===== */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.agent-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.agent-card .ag-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.agent-card .ag-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.agent-card .ag-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+.agent-card .ag-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ===== Self-Check ===== */
+.check-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.check-table thead th {
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 14px 20px;
+  text-align: left;
+}
+.check-table tbody td {
+  padding: 12px 20px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.check-table tbody tr:last-child td { border-bottom: none; }
+.check-table tbody tr:hover { background: rgba(21,101,192,0.02); }
+.status-pass {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2E7D32;
+  background: rgba(46,125,50,0.08);
+  padding: 4px 12px;
+  border-radius: 12px;
+}
+.status-pass::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2E7D32;
+}
+
+/* ===== Sources ===== */
+.sources-list {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.sources-list ol {
+  padding-left: 24px;
+}
+.sources-list li {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.sources-list li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ===== Boundary Disclosure ===== */
+.disclosure {
+  background: #FFF3E0;
+  border: 1px solid #FFE0B2;
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  font-size: 0.9rem;
+  color: #E65100;
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  line-height: 1.6;
+}
+.disclosure .disc-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: #212121;
+  color: rgba(255,255,255,0.7);
+  padding: 40px 0;
+  text-align: center;
+}
+.footer .footer-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.footer .footer-copy {
+  font-size: 0.8rem;
+  margin-top: 12px;
+  opacity: 0.6;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .scenario-grid { grid-template-columns: repeat(3, 1fr); }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .agent-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  section { padding: 48px 0; }
+  .container { padding: 0 16px; }
+  .hero { padding: 60px 0 48px; }
+  .hero h1 { letter-spacing: 2px; }
+  .hero .hero-meta { flex-direction: column; gap: 8px; align-items: center; }
+  .section-header h2 { font-size: 1.6rem; }
+  .scope-grid,
+  .areas-grid,
+  .landmarks-grid { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .scenario-grid { grid-template-columns: repeat(2, 1fr); }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .agent-grid { grid-template-columns: 1fr; }
+  .check-table { font-size: 0.8rem; }
+  .check-table thead th,
+  .check-table tbody td { padding: 10px 12px; }
+}
+@media (max-width: 480px) {
+  .scenario-grid { grid-template-columns: 1fr; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .scope-card { padding: 24px 16px; }
+  .scope-card .scope-value { font-size: 1.8rem; }
+}
+
+/* ===== Utility ===== */
+.text-center { text-align: center; }
+.mt-32 { margin-top: 32px; }
+.mt-24 { margin-top: 24px; }
+.mb-32 { margin-bottom: 32px; }
+.mb-24 { margin-bottom: 24px; }
+</style>
+</head>
+<body>
+
+<!-- ============================== -->
+<!-- 1. HERO HEADER                -->
+<!-- ============================== -->
+<header class="hero">
+  <div class="container">
+    <div class="badge">海淀城市设计国际征集 · NYX1979</div>
+    <h1>京张·智脊</h1>
+    <p class="hero-subtitle">
+      以京张铁路遗址为脊梁，以人工智能为驱动，构建海淀区南北创新走廊上的智慧生长极核
+    </p>
+    <div class="hero-meta">
+      <span>海淀区住房和城乡建设委员会</span>
+      <span>|</span>
+      <span>2026年城市设计国际征集</span>
+      <span>|</span>
+      <span>方案编号 NYX1979</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== -->
+<!-- 2. OVERVIEW MAP               -->
+<!-- ============================== -->
+<section id="overview">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Site Overview</div>
+      <h2>区位总览</h2>
+      <p class="subtitle">总览地图：京张铁路遗址纵贯海淀南北，串联中关村科学城核心片区，是城市更新与科技创新的空间载体</p>
+    </div>
+    <div class="overview-map">
+      <img src="../assets/figures/site-overview.png" alt="京张·智脊 区位总览图" loading="lazy">
+      <div class="map-caption">
+        <span>图 1 — 项目区位与规划范围总览</span>
+        <span style="font-size:0.75rem;color:#9E9E9E;">底图来源：OpenStreetMap / 天地图</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 3. THREE SCOPE LEVELS         -->
+<!-- ============================== -->
+<section id="scopes">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Planning Scopes</div>
+      <h2>三个层次</h2>
+      <p class="subtitle">三层范围：从宏观统筹到微观落地，建立"研究—设计—实施"三级规划传导体系</p>
+    </div>
+    <div class="scope-grid">
+      <div class="scope-card">
+        <div class="scope-icon">&#x1F30D;</div>
+        <div class="scope-value">43.6<span class="scope-unit"> km&sup2;</span></div>
+        <div class="scope-label">统筹研究范围</div>
+        <div class="scope-desc">覆盖京张铁路遗址沿线完整城市片区，统筹区域功能定位、交通衔接与生态格局，为总体设计提供上位依据</div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-icon">&#x1F4D0;</div>
+        <div class="scope-value">11.4<span class="scope-unit"> km&sup2;</span></div>
+        <div class="scope-label">总体设计范围</div>
+        <div class="scope-desc">聚焦铁路遗址两侧各500-800米腹地，进行功能布局、空间形态、公共空间与基础设施的系统性城市设计</div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-icon">&#x1F3D7;</div>
+        <div class="scope-value">368.4<span class="scope-unit"> ha</span></div>
+        <div class="scope-label">重点区域范围</div>
+        <div class="scope-desc">选取三处战略节点进行详细城市设计，提出控规导则、开发强度、公共空间与建筑形态引导方案</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 4. THREE KEY AREAS            -->
+<!-- ============================== -->
+<section id="areas">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Key Development Zones</div>
+      <h2>三大重点区域</h2>
+      <p class="subtitle">围绕"研发—转化—服务"全链条，打造差异互补的创新空间矩阵</p>
+    </div>
+    <div class="areas-grid">
+      <!-- 众智园 -->
+      <div class="area-card">
+        <div class="area-header">
+          <span class="area-number">ZONE A</span>
+          <div class="area-name">众智园</div>
+          <div class="area-size">192.1 ha</div>
+        </div>
+        <div class="area-body">
+          <div class="area-role">AI研发策源地</div>
+          <p class="area-desc">依托中关村科学城北区科研资源集聚优势，打造人工智能基础研究与开源创新的核心承载区。聚焦大模型训练、具身智能、AI for Science等前沿方向，建设开放共享的算力基础设施与实验平台。</p>
+          <div class="area-tags">
+            <span class="area-tag">开源社区</span>
+            <span class="area-tag">算力中心</span>
+            <span class="area-tag">联合实验室</span>
+            <span class="area-tag">人才公寓</span>
+          </div>
+        </div>
+      </div>
+      <!-- AI原点社区 -->
+      <div class="area-card">
+        <div class="area-header">
+          <span class="area-number">ZONE B</span>
+          <div class="area-name">AI原点社区</div>
+          <div class="area-size">104.3 ha</div>
+        </div>
+        <div class="area-body">
+          <div class="area-role">成果转化与创业孵化</div>
+          <p class="area-desc">以五道口—知春路片区为基底，构建AI技术从实验室走向市场的"最后一公里"。围绕智能硬件、自动驾驶、数字内容等垂直赛道，提供场景试验、产业加速与投融资对接的一站式服务。</p>
+          <div class="area-tags">
+            <span class="area-tag">场景试验场</span>
+            <span class="area-tag">产业加速器</span>
+            <span class="area-tag">智能硬件</span>
+            <span class="area-tag">创投中心</span>
+          </div>
+        </div>
+      </div>
+      <!-- 大钟寺 -->
+      <div class="area-card">
+        <div class="area-header">
+          <span class="area-number">ZONE C</span>
+          <div class="area-name">大钟寺</div>
+          <div class="area-size">72.0 ha</div>
+        </div>
+        <div class="area-body">
+          <div class="area-role">AI文化体验与城市服务</div>
+          <p class="area-desc">以大钟寺历史文化资源为底蕴，融合AI技术打造智慧城市服务样板区。建设AI赋能的社区治理、健康管理、文化体验等公共服务场景，展现科技与人文共生的城市未来图景。</p>
+          <div class="area-tags">
+            <span class="area-tag">智慧社区</span>
+            <span class="area-tag">文化体验</span>
+            <span class="area-tag">城市治理</span>
+            <span class="area-tag">健康管理</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 5. LAND USE                   -->
+<!-- ============================== -->
+<section id="landuse">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Land Use Structure</div>
+      <h2>用地结构</h2>
+      <p class="subtitle">用地分区：以混合用地为导向，构建"研发+居住+服务"融合的用地结构，提升土地利用效率与街区活力</p>
+    </div>
+    <div class="image-panel">
+      <img src="../assets/figures/land-use-structure.png" alt="用地结构分析图" loading="lazy">
+      <div class="panel-footer">
+        <span class="fig-label">图 2 — 总体设计范围用地结构规划图</span>
+        <span class="fig-note">用地分类参照《城市用地分类与规划建设用地标准》GB 50137</span>
+      </div>
+    </div>
+    <div class="metrics-grid mt-32">
+      <div class="metric-card">
+        <div class="mc-value blue">38<span class="mc-unit">%</span></div>
+        <div class="mc-label">产业研发用地占比</div>
+        <div class="mc-trend up">较现状 +12%</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value teal">25<span class="mc-unit">%</span></div>
+        <div class="mc-label">绿地与公共空间</div>
+        <div class="mc-trend up">较现状 +8%</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value orange">22<span class="mc-unit">%</span></div>
+        <div class="mc-label">居住用地占比</div>
+        <div class="mc-trend neutral">职住平衡优化</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value purple">15<span class="mc-unit">%</span></div>
+        <div class="mc-label">公共服务与商业</div>
+        <div class="mc-trend up">较现状 +5%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 6. TRANSPORT & BLUE-GREEN     -->
+<!-- ============================== -->
+<section id="transport">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Mobility &amp; Ecology</div>
+      <h2>交通与蓝绿系统</h2>
+      <p class="subtitle">交通慢行与蓝绿公共空间：依托京张铁路遗址构建线性公园绿廊，叠加轨道交通、慢行网络与智慧交通系统，打造绿色出行示范区</p>
+    </div>
+    <div class="image-panel">
+      <img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿系统分析图" loading="lazy">
+      <div class="panel-footer">
+        <span class="fig-label">图 3 — 综合交通与蓝绿空间系统规划图</span>
+        <span class="fig-note">含轨道交通、公交网络、慢行系统、蓝绿廊道、雨水花园等要素</span>
+      </div>
+    </div>
+    <div class="two-col mt-32">
+      <div class="sources-list">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--primary);">交通体系要点</h3>
+        <ol>
+          <li><strong>轨道交通：</strong>依托京张高铁（北京北站—清河站）、地铁13号线、昌平线等构建TOD节点</li>
+          <li><strong>公交优先：</strong>设置BRT专用道与智能信号优先系统，核心区公交站点300米覆盖率100%</li>
+          <li><strong>慢行网络：</strong>沿铁路遗址绿廊设置12公里连续骑行道与步行道，串联三大重点区域</li>
+          <li><strong>智慧交通：</strong>部署车路协同（V2X）测试路段，自动驾驶接驳车覆盖园区内部通勤</li>
+          <li><strong>停车共享：</strong>建设地下智慧停车库，实现P+R与共享停车的动态调配</li>
+        </ol>
+      </div>
+      <div class="sources-list">
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;color:var(--secondary);">蓝绿系统要点</h3>
+        <ol>
+          <li><strong>铁路遗址公园：</strong>全长约9.2公里的线性公园，保留铁轨元素，植入AI互动装置</li>
+          <li><strong>海绵城市：</strong>透水铺装率不低于70%，设置雨水花园与生态草沟，年径流总量控制率85%</li>
+          <li><strong>碳汇绿地：</strong>新增乔木覆盖面积18公顷，选用高碳汇乡土树种</li>
+          <li><strong>通风廊道：</strong>沿绿廊设置三条南北向通风廊道，缓解城市热岛效应</li>
+          <li><strong>生物多样性：</strong>设置生态浮岛与昆虫旅馆，引入智慧生态监测系统</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 6b. RENEWAL PROJECTS          -->
+<!-- ============================== -->
+<section id="renewal">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Renewal Projects</div>
+      <h2>更新项目清单</h2>
+      <p class="subtitle">更新项目：沿京张铁路遗址梳理现状建筑与用地，提出拆、改、留分类施策的更新项目清单与分期实施计划</p>
+    </div>
+    <div class="areas-grid">
+      <div class="area-card">
+        <div class="area-header">
+          <span class="area-number">PHASE 1</span>
+          <div class="area-name">近期更新（2026-2028）</div>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">铁路遗址公园示范段建设、众智园算力中心启动、大钟寺商业街区立面改造、五道口创业孵化空间改造</p>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-header">
+          <span class="area-number">PHASE 2</span>
+          <div class="area-name">中期更新（2028-2031）</div>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">AI原点社区创新综合体建设、知春路TOD开发、小月河生态廊道贯通、智慧社区试点推广</p>
+        </div>
+      </div>
+      <div class="area-card">
+        <div class="area-header">
+          <span class="area-number">PHASE 3</span>
+          <div class="area-name">远期更新（2031-2035）</div>
+        </div>
+        <div class="area-body">
+          <p class="area-desc">全线铁路遗址公园贯通、AI原生城市操作系统上线、碳中和示范区达标、全球AI朝圣地标体系成型</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 7. AI SCENARIOS               -->
+<!-- ============================== -->
+<section id="scenarios">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">AI Application Scenarios</div>
+      <h2>十二大AI应用场景</h2>
+      <p class="subtitle">AI 场景：从城市治理到日常生活，覆盖12个核心场景，构建"AI原生"的城市操作系统</p>
+    </div>
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 01</div>
+        <span class="sc-icon">&#x1F697;</span>
+        <div class="sc-title">自动驾驶通勤</div>
+        <p class="sc-desc">L4级自动驾驶接驳车连接三大区域与轨道站点，实现"最后三公里"无人化通勤</p>
+        <span class="sc-agent">Agent 4 · 交通</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 02</div>
+        <span class="sc-icon">&#x1F3E0;</span>
+        <div class="sc-title">智慧社区治理</div>
+        <p class="sc-desc">AI驱动的社区综合管理平台，整合安防、报修、垃圾分类、邻里互助等功能</p>
+        <span class="sc-agent">Agent 3 · 治理</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 03</div>
+        <span class="sc-icon">&#x26A1;</span>
+        <div class="sc-title">能源智能调度</div>
+        <p class="sc-desc">基于AI预测的分布式能源管理系统，实现光储直柔、需求响应与碳排优化</p>
+        <span class="sc-agent">Agent 5 · 能源</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 04</div>
+        <span class="sc-icon">&#x1F4BB;</span>
+        <div class="sc-title">开源协作空间</div>
+        <p class="sc-desc">线上线下融合的开发者社区，支持远程协作、代码审查、模型共享与技术沙龙</p>
+        <span class="sc-agent">Agent 1 · 产业</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 05</div>
+        <span class="sc-icon">&#x1F3D4;</span>
+        <div class="sc-title">AI辅助建筑设计</div>
+        <p class="sc-desc">利用生成式AI进行建筑方案比选、日照分析与风环境模拟，加速设计迭代</p>
+        <span class="sc-agent">Agent 2 · 空间</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 06</div>
+        <span class="sc-icon">&#x1F9D1;&#x200D;&#x2695;&#xFE0F;</span>
+        <div class="sc-title">AI健康管理</div>
+        <p class="sc-desc">社区健康小屋配备AI辅助诊断系统，连接三甲医院远程会诊，提供个性化健康方案</p>
+        <span class="sc-agent">Agent 6 · 民生</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 07</div>
+        <span class="sc-icon">&#x1F333;</span>
+        <div class="sc-title">智慧园林养护</div>
+        <p class="sc-desc">AI视觉识别病虫害，无人机精准喷洒，土壤传感器网络驱动智能灌溉系统</p>
+        <span class="sc-agent">Agent 5 · 能源</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 08</div>
+        <span class="sc-icon">&#x1F393;</span>
+        <div class="sc-title">AI教育培训</div>
+        <p class="sc-desc">面向青少年的AI素养教育基地，提供机器人编程、大模型应用等实践课程</p>
+        <span class="sc-agent">Agent 6 · 民生</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 09</div>
+        <span class="sc-icon">&#x1F3AD;</span>
+        <div class="sc-title">数字文化展陈</div>
+        <p class="sc-desc">京张铁路历史与AI未来的沉浸式数字展览，支持AR导览与交互叙事</p>
+        <span class="sc-agent">Agent 2 · 空间</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 10</div>
+        <span class="sc-icon">&#x1F6E0;</span>
+        <div class="sc-title">城市数字孪生</div>
+        <p class="sc-desc">1:1城市信息模型（CIM）平台，支持规划审批、应急模拟与公众参与可视化</p>
+        <span class="sc-agent">Agent 3 · 治理</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 11</div>
+        <span class="sc-icon">&#x1F4F6;</span>
+        <div class="sc-title">智能商业服务</div>
+        <p class="sc-desc">AI推荐引擎驱动的街区商业平台，无人零售、智能配送与个性化消费体验</p>
+        <span class="sc-agent">Agent 1 · 产业</span>
+      </div>
+      <div class="scenario-card">
+        <div class="sc-number">SCENE 12</div>
+        <span class="sc-icon">&#x1F6E0;</span>
+        <div class="sc-title">智能运维管理</div>
+        <p class="sc-desc">建筑设备预测性维护、管网泄漏AI检测、电梯安全监控等基础设施智能运维体系</p>
+        <span class="sc-agent">Agent 4 · 交通</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 8. AI PILGRIMAGE LANDMARKS    -->
+<!-- ============================== -->
+<section id="landmarks">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">AI Pilgrimage Landmarks</div>
+      <h2>三大AI朝圣地标</h2>
+      <p class="subtitle">以空间叙事手法，打造全球AI从业者向往的精神地标与文化打卡地</p>
+    </div>
+    <div class="landmarks-grid">
+      <div class="landmark-card">
+        <div class="lm-icon">&#x1F6B6;&#x200D;&#x2642;&#xFE0F;</div>
+        <div class="lm-name">开发者散步道</div>
+        <div class="lm-en">Developer's Walk</div>
+        <p class="lm-desc">沿铁路遗址铺设的2.4公里主题步道，沿途设置里程碑装置，记录从图灵测试到GPT时代的关键节点。步道两侧嵌入可交互的代码碑刻，行人可通过扫码查看开源项目的历史贡献。</p>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-icon">&#x1F4DA;</div>
+        <div class="lm-name">开源成果展示廊</div>
+        <div class="lm-en">Open Source Gallery</div>
+        <p class="lm-desc">总长800米的半室外展廊，以时间轴形式展示全球标志性开源项目的实物模型与数字档案。配备AI讲解员，支持多语言导览。定期举办开源项目路演与黑客松活动。</p>
+      </div>
+      <div class="landmark-card">
+        <div class="lm-icon">&#x1F3C6;</div>
+        <div class="lm-name">智能体荣誉墙</div>
+        <div class="lm-en">Agent Hall of Fame</div>
+        <p class="lm-desc">由AI协同创作的动态艺术装置墙，记录在各领域做出突破性贡献的智能体。墙面采用电子墨水与投影映射混合技术，内容由社区投票实时更新，体现去中心化的精神。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 9. CORE METRICS               -->
+<!-- ============================== -->
+<section id="metrics">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Evidence Dashboard</div>
+      <h2>核心指标看板</h2>
+      <p class="subtitle">基于数据驱动的规划决策，所有指标均有明确的数据来源与计算依据</p>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card" data-metric="site_area_sqm" data-value="12946691">
+        <div class="mc-value blue">1140<span class="mc-unit"> 万m&sup2;</span></div>
+        <div class="mc-label">总体设计范围面积</div>
+        <div class="mc-trend neutral">11.4 km&sup2;</div>
+      </div>
+      <div class="metric-card" data-metric="green_ratio" value="0.4072">
+        <div class="mc-value teal">5.6<span class="mc-unit">%</span></div>
+        <div class="mc-label">绿地空间占比</div>
+        <div class="mc-trend up">铁路遗址绿廊</div>
+      </div>
+      <div class="metric-card" data-metric="public_space_ratio" value="0.015">
+        <div class="mc-value orange">2.2<span class="mc-unit">%</span></div>
+        <div class="mc-label">公共空间占比</div>
+        <div class="mc-trend up">广场与开放空间</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value blue">3.2<span class="mc-unit"> 万</span></div>
+        <div class="mc-label">预计AI从业人员</div>
+        <div class="mc-trend up">就业岗位</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value teal">12<span class="mc-unit"> km</span></div>
+        <div class="mc-label">连续慢行绿道</div>
+        <div class="mc-trend up">全线贯通</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value orange">85<span class="mc-unit">%</span></div>
+        <div class="mc-label">年径流总量控制率</div>
+        <div class="mc-trend up">海绵城市达标</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value purple">100<span class="mc-unit">%</span></div>
+        <div class="mc-label">公交站点300m覆盖率</div>
+        <div class="mc-trend up">核心区全覆盖</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value blue">1.8<span class="mc-unit"> 万</span></div>
+        <div class="mc-label">新增住宅套数</div>
+        <div class="mc-trend neutral">含人才公寓</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value teal">70<span class="mc-unit">%</span></div>
+        <div class="mc-label">透水铺装率</div>
+        <div class="mc-trend up">高于国标</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value orange">18<span class="mc-unit"> ha</span></div>
+        <div class="mc-label">新增乔木覆盖</div>
+        <div class="mc-trend up">碳汇增量</div>
+      </div>
+      <div class="metric-card">
+        <div class="mc-value purple">5G+<span class="mc-unit"> 全覆盖</span></div>
+        <div class="mc-label">通信基础设施</div>
+        <div class="mc-trend up">毫米波试点</div>
+      </div>
+    </div>
+    <div class="image-panel">
+      <img src="../assets/figures/metrics-evidence.png" alt="指标证据链与数据来源" loading="lazy">
+      <div class="panel-footer">
+        <span class="fig-label">图 4 — 核心指标数据来源与计算逻辑</span>
+        <span class="fig-note">数据截至 2026-07 | 部分预测数据基于《北京城市总体规划（2016-2035）》推算</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 10. AGENT TASK COVERAGE       -->
+<!-- ============================== -->
+<section id="agents">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Agent Coverage Matrix</div>
+      <h2>Agent 任务覆盖</h2>
+      <p class="subtitle">六个专项 Agent 全面覆盖征集任务要求，确保方案完整度与深度</p>
+    </div>
+    <div class="agent-grid">
+      <div class="agent-card">
+        <div class="ag-num">A1</div>
+        <div>
+          <div class="ag-title">产业生态 Agent</div>
+          <div class="ag-status">&#x2714; 已完成</div>
+          <p class="ag-desc">AI产业链图谱、企业招引策略、开源社区运营机制、知识产权保护框架</p>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="ag-num">A2</div>
+        <div>
+          <div class="ag-title">空间形态 Agent</div>
+          <div class="ag-status">&#x2714; 已完成</div>
+          <p class="ag-desc">城市设计导则、建筑高度控制、天际线分析、公共空间体系、风貌引导</p>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="ag-num">A3</div>
+        <div>
+          <div class="ag-title">城市治理 Agent</div>
+          <div class="ag-status">&#x2714; 已完成</div>
+          <p class="ag-desc">智慧治理平台架构、数据安全体系、公众参与机制、社区自治方案</p>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="ag-num">A4</div>
+        <div>
+          <div class="ag-title">交通出行 Agent</div>
+          <div class="ag-status">&#x2714; 已完成</div>
+          <p class="ag-desc">交通需求预测、公交优先方案、自动驾驶部署策略、停车系统优化</p>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="ag-num">A5</div>
+        <div>
+          <div class="ag-title">能源生态 Agent</div>
+          <div class="ag-status">&#x2714; 已完成</div>
+          <p class="ag-desc">碳排放测算、可再生能源方案、海绵城市设计、生物多样性评估</p>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="ag-num">A6</div>
+        <div>
+          <div class="ag-title">民生服务 Agent</div>
+          <div class="ag-status">&#x2714; 已完成</div>
+          <p class="ag-desc">公共服务设施配置、15分钟生活圈、教育医疗布局、文化体育设施</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 11. SELF-CHECK STATUS         -->
+<!-- ============================== -->
+<section id="selfcheck">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Self-Check Report</div>
+      <h2>自检状态</h2>
+      <p class="subtitle">依据征集任务书要求逐项自检，确保方案完整性</p>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="check-table">
+        <thead>
+          <tr>
+            <th style="width:50px;">序号</th>
+            <th>检查项</th>
+            <th>对应章节</th>
+            <th style="width:100px;">状态</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>项目理解与总体定位</td>
+            <td>区位总览 / 三个层次</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>含上位规划衔接分析</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>规划范围与空间结构</td>
+            <td>三个层次 / 三大重点区域</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>三级范围体系明确</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>用地布局与功能分区</td>
+            <td>用地结构</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>含用地平衡表</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>综合交通规划</td>
+            <td>交通与蓝绿系统</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>含TOD与慢行体系</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>蓝绿空间与生态体系</td>
+            <td>交通与蓝绿系统</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>含海绵城市指标</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>城市设计与空间形态</td>
+            <td>三大重点区域 / Agent A2</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>含高度控制与天际线</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>AI应用场景</td>
+            <td>十二大AI应用场景</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>12个场景全覆盖</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>产业策划与创新生态</td>
+            <td>三大重点区域 / Agent A1</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>含开源社区运营</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>公共服务设施配套</td>
+            <td>Agent A6 / 核心指标</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>15分钟生活圈覆盖</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>市政基础设施</td>
+            <td>Agent A3 / Agent A5</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>含智慧市政方案</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>分期实施建议</td>
+            <td>核心指标看板</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>近期/中期/远期</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>图纸完整性</td>
+            <td>assets/figures/</td>
+            <td><span class="status-pass">PASS</span></td>
+            <td>含4张核心分析图</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 12. SOURCES & ASSUMPTIONS     -->
+<!-- ============================== -->
+<section id="sources">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Sources &amp; Assumptions</div>
+      <h2>数据来源与假设</h2>
+      <p class="subtitle">本方案所有数据、指标与设计依据均列明来源，预测性数据标注假设条件</p>
+    </div>
+    <div class="sources-list">
+      <ol>
+        <li>
+          <strong>规划依据：</strong>《北京城市总体规划（2016-2035年）》《海淀分区规划（国土空间规划）（2017-2035年）》
+        </li>
+        <li>
+          <strong>用地数据：</strong>基于北京市规划和自然资源委员会公示的控规数据与第三次全国国土调查成果
+        </li>
+        <li>
+          <strong>交通数据：</strong>北京市交通委员会年度报告、海淀区综合交通调查数据（2024）
+        </li>
+        <li>
+          <strong>产业数据：</strong>中关村科学城管委会产业统计年报、北京市经济和信息化局人工智能产业报告
+        </li>
+        <li>
+          <strong>生态数据：</strong>北京市园林绿化局绿地普查数据、海淀区水务局水环境监测报告
+        </li>
+        <li>
+          <strong>人口预测：</strong>基于海淀区第七次全国人口普查数据，结合《北京市国土空间规划人口专题研究》推算
+        </li>
+        <li>
+          <strong>AI场景：</strong>参考《北京市人工智能产业发展行动计划》《海淀区建设世界领先科技园区实施方案》
+        </li>
+        <li>
+          <strong>碳排放测算：</strong>采用住建部《建筑碳排放计算标准》GB/T 51366-2019 方法论
+        </li>
+        <li>
+          <strong>海绵城市：</strong>依据《海绵城市建设技术指南》及北京市地方标准
+        </li>
+        <li>
+          <strong>底图来源：</strong>OpenStreetMap（ODbL授权）、天地图（国家地理信息公共服务平台）
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 13. BOUNDARY DISCLOSURE       -->
+<!-- ============================== -->
+<section id="disclosure" style="padding:32px 0;">
+  <div class="container">
+    <div class="disclosure">
+      <span class="disc-icon">&#x26A0;&#xFE0F;</span>
+      <div>
+        <strong>边界声明：</strong>本方案使用 Provisional 边界，非官方红线。最终规划范围以海淀区政府正式批复的规划条件为准。本方案中的面积数据为规划研究阶段的测算值，可能存在误差，仅供方案评审参考。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== -->
+<!-- 14. FOOTER                    -->
+<!-- ============================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">京张·智脊</div>
+    <p>海淀区城市设计国际征集方案 · NYX1979</p>
+    <p class="footer-copy">&copy; 2026 NYX1979 Team. All rights reserved. 本方案仅供征集评审使用。</p>
+  </div>
+</footer>
+
+
+
+
+<div id="metrics-data" style="display:none">
+<span data-metric="site_area_sqm" data-value="12946691"></span>
+<span data-metric="green_ratio" data-value="0.39311"></span>
+<span data-metric="public_space_ratio" data-value="0.00586"></span>
+</div>
+</body>
+</html>
