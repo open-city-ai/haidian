@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张微站：AI城市的日常接口</title>
+<style>
+* { box-sizing: border-box; }
+body { margin: 0; background: #f7f8f6; color: #1f272d; font-family: Arial, "Microsoft YaHei", sans-serif; letter-spacing: 0; }
+header { background: #17324d; color: #fff; padding: 28px max(24px, 5vw); border-bottom: 6px solid #007f78; }
+header p { max-width: 900px; color: #d6e4ea; margin: 8px 0 0; }
+main { max-width: 1240px; margin: auto; padding: 32px 24px 56px; }
+h1 { font-size: clamp(30px, 4vw, 52px); margin: 0; }
+h2 { font-size: 24px; margin: 42px 0 16px; border-left: 6px solid #e45b4f; padding-left: 12px; }
+.map { width: 100%; height: auto; border: 1px solid #cad5d2; display: block; }
+.warning { border-left: 5px solid #e45b4f; background: #fff; padding: 14px 18px; margin: 18px 0; color: #8b302b; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+article { background: #fff; border-top: 4px solid #007f78; padding: 18px; min-height: 130px; }
+article h3 { font-size: 18px; margin: 0 0 10px; color: #17324d; }
+article p { margin: 0; line-height: 1.6; color: #56636b; }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.metric { background: #17324d; color: #fff; padding: 18px; min-height: 110px; }
+.metric b { display: block; font-size: 28px; color: #e2aa27; }
+.metric span { display: block; margin-top: 8px; color: #d6e4ea; }
+.strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.strip div { background: #e5ece9; padding: 16px; border-bottom: 3px solid #3e6b8d; }
+footer { margin-top: 40px; border-top: 1px solid #cad5d2; padding-top: 20px; color: #66727a; font-size: 14px; }
+code { background: #e8efed; color: #245b8f; padding: 0.1em 0.35em; border-radius: 3px; }
+@media (max-width: 760px) {
+  .grid, .metrics, .strip { grid-template-columns: 1fr; }
+  main { padding: 20px 14px 40px; }
+  h2 { margin-top: 32px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>京张微站：AI城市的日常接口</h1>
+  <p>一条脊线 · 三个场域 · 两翼协同 · 十二微站 · 四条缝合门</p>
+</header>
+<main>
+  <div class="warning">边界为 provisional rough，仅用于方案评审与复算，不是 official redline、审批依据或精确面积。</div>
+
+  <h2>总览地图</h2>
+  <img class="map" src="../assets/figures/site-overview.png" alt="京张微站总览图">
+
+  <h2>核心指标</h2>
+  <section class="metrics">
+    <div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><b>11,412,825</b><span>平方米（临时边界面积）</span></div>
+    <div class="metric" data-metric="green_ratio" data-value="0.284688"><b>28.47%</b><span>概念绿地比率</span></div>
+    <div class="metric" data-metric="public_space_ratio" data-value="0.021609"><b>2.16%</b><span>概念公共空间比率</span></div>
+    <div class="metric" data-metric="micro_station_count" data-value="12"><b>12</b><span>微站数量</span></div>
+  </section>
+
+  <h2>任务覆盖</h2>
+  <section class="grid">
+    <article><h3>三层范围</h3><p>43.6 km² 研究视野 · 约 11.4 km² 临时总体设计范围 · 3 个临时重点区域</p></article>
+    <article><h3>重点区域</h3><p>众智园研发验证场 · 北京 AI 原点社区技术转译场 · 大钟寺 AI 产业集群服务采用场</p></article>
+    <article><h3>用地分区</h3><p>0802 科研 · 05 商业服务 · 1401 公园绿地 · 0702 社区服务；仅为概念拓扑</p></article>
+    <article><h3>交通慢行</h3><p>1 条南北慢行脊 · 4 条东西缝合门 · 2 条局部环线；道路红线待核</p></article>
+    <article><h3>蓝绿公共空间</h3><p>文化叙事脊 · 降温连接带 · 12 个口袋绿地 · 雨水花园边缘</p></article>
+    <article><h3>建筑</h3><p>12 个可拆卸微站体量；保留、改造、适应性新建均为待核选项</p></article>
+    <article><h3>更新项目</h3><p>8 个责任项目卡 · 3 期闸门式交付 · 退出资金与维护归还机制</p></article>
+    <article><h3>AI 场景</h3><p>12 张场景卡 · 4 项产业测试 · 6 类人才画像 · 人工复核 · 无 AI 备用流程</p></article>
+  </section>
+
+  <h2>自检状态</h2>
+  <section class="strip">
+    <div>几何：已披露为 provisional</div>
+    <div>指标：按 EPSG:4548 可复算</div>
+    <div>双语：中文主文 / 英文对照</div>
+  </section>
+
+  <h2>来源</h2>
+  <p>官方公告、清权任务书、住建部与自然资源部标准快照、临时几何依据及 7 个机制案例页面。详见 <code>sources.json</code>。</p>
+
+  <h2>假设</h2>
+  <p>边界、重点区范围、法定控制、权属、道路红线、建筑基线、遗产清单和市政设施均作为明确假设或数据缺口记录。详见 <code>assumptions.json</code>。</p>
+
+  <footer>离线静态展示 · 不加载远程媒体、脚本、表单或遥测 · 生成于 2026-08-09</footer>
+</main>
+</body>
+</html>
