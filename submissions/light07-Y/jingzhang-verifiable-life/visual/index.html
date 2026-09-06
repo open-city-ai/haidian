@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="京张可验证生活线 · Jingzhang Verifiable Life Line — 离线视觉总览页：信号图板风，三站状态屏、Proofline 六件套与 14 个内容段。">
+<title>京张可验证生活线 · Jingzhang Verifiable Life Line — 视觉总览（离线）</title>
+<style>
+:root{
+  --navy:#1A2B4A;          /* 深蓝底 */
+  --navy-2:#22345C;        /* 面板 */
+  --navy-3:#2C3F6B;        /* 面板描边 */
+  --navy-deep:#101C33;     /* 最深 */
+  --ink:#0F1B33;
+  --green:#2E9E5B;         /* 信号绿 · 试运行 */
+  --yellow:#F2A93B;        /* 信号黄 · 限速 */
+  --red:#D64545;           /* 信号红 · 停运 */
+  --text:#E8EEF7;
+  --muted:#9FB0C8;
+  --line:rgba(232,238,247,.16);
+  --mono:"SF Mono","Cascadia Mono",Consolas,"Noto Sans Mono",ui-monospace,monospace;
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--navy);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.7;
+  font-size:15px;
+}
+/* 虚线轨道装饰 */
+.track{
+  height:3px;
+  background:repeating-linear-gradient(90deg, rgba(242,169,59,.5) 0 16px, rgba(242,169,59,.08) 16px 34px);
+  border:0;
+}
+.track.thin{height:2px;margin:18px 0}
+/* 页头 */
+header{
+  background:linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero{max-width:1180px;margin:0 auto;padding:38px 26px 26px}
+.hero-top{display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+.signal-pole{
+  display:inline-flex;flex-direction:column;gap:7px;
+  background:var(--navy-2);border:1px solid var(--navy-3);
+  border-radius:10px;padding:10px 9px;flex:0 0 auto;
+}
+.lamp{display:inline-block;width:16px;height:16px;border-radius:50%;background:#33486E}
+.lamp.g{background:var(--green);box-shadow:0 0 10px 2px rgba(46,158,91,.6)}
+.lamp.y{background:var(--yellow);box-shadow:0 0 10px 2px rgba(242,169,59,.6)}
+.lamp.r{background:var(--red);box-shadow:0 0 10px 2px rgba(214,69,69,.6)}
+.lamp.dim{background:#33486E;box-shadow:none}
+.hero h1{font-size:36px;line-height:1.2;margin:0 0 6px;letter-spacing:.02em}
+.hero .title-en{font-size:15px;color:var(--muted);letter-spacing:.14em;margin:0 0 14px}
+.slogan{
+  font-size:18px;color:#CFE0F5;margin:14px 0 0;
+  border-left:4px solid var(--green);padding-left:14px;max-width:860px;
+}
+.slogan small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pill{
+  display:inline-block;border:1px solid var(--navy-3);border-radius:999px;
+  padding:5px 12px;font-size:12.5px;color:var(--text);background:rgba(255,255,255,.05);
+}
+.pill.status{color:#7FE0A8;border-color:rgba(46,158,91,.55)}
+nav.rail{
+  max-width:1180px;margin:0 auto;padding:0 26px 20px;
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+nav.rail a{
+  color:var(--muted);text-decoration:none;font-size:12.5px;
+  border:1px solid var(--line);border-radius:6px;padding:4px 10px;
+}
+nav.rail a:hover{color:var(--text);border-color:var(--yellow)}
+/* 主内容 */
+main{max-width:1180px;margin:0 auto;padding:8px 26px 60px}
+.sheet{
+  background:var(--navy-2);
+  border:1px solid var(--navy-3);border-radius:12px;
+  margin:26px 0;overflow:hidden;
+  box-shadow:0 10px 30px rgba(8,16,33,.35);
+}
+.sheet-head{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 22px;border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+}
+.milestone{
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  color:var(--yellow);border:1px dashed rgba(242,169,59,.55);
+  border-radius:6px;padding:3px 8px;white-space:nowrap;flex:0 0 auto;
+}
+.sheet-head h2{font-size:21px;margin:0;letter-spacing:.03em}
+.sheet-head h2 .en{font-size:13px;color:var(--muted);font-weight:400;letter-spacing:.1em;margin-left:8px}
+.sheet-head .tag{
+  margin-left:auto;font-size:11.5px;color:var(--muted);
+  border:1px solid var(--line);border-radius:5px;padding:3px 9px;white-space:nowrap;
+}
+.sheet-body{padding:20px 22px 24px}
+.sheet-body p{margin:0 0 12px;max-width:1020px}
+.sheet-body p.muted{color:var(--muted);font-size:13.5px}
+/* 表格 */
+table.board{border-collapse:collapse;width:100%;margin:14px 0 18px;font-size:14px}
+table.board th,table.board td{
+  border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;line-height:1.6;
+}
+table.board th{background:rgba(255,255,255,.07);color:#DCE7F5;font-weight:600;white-space:nowrap}
+table.board td code{font-family:var(--mono);color:#8FD3FF;font-size:13px}
+.small-note{color:var(--muted);font-size:13px;margin:6px 0 0}
+/* 数字 */
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:#8FD3FF}
+/* 总览 */
+.grid-2{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px}
+.figure{
+  border:1px solid var(--navy-3);border-radius:10px;overflow:hidden;background:var(--navy-deep);
+  margin:6px 0 16px;
+}
+.figure img{display:block;width:100%;height:auto}
+.figure figcaption{
+  padding:9px 14px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+}
+.figure .prov{color:#FFD28A}
+.concept-card{
+  border:1px dashed rgba(242,169,59,.5);border-radius:10px;padding:14px 16px;margin:10px 0;
+  background:rgba(242,169,59,.05);
+}
+.concept-card b{color:var(--yellow)}
+/* 状态屏 */
+.status-screen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:18px 0 8px}
+.station-card{
+  border:1px solid var(--navy-3);border-radius:12px;padding:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+  transition:border-color .2s ease;
+}
+.station-card h3{font-size:16.5px;margin:0 0 4px}
+.station-card .station-sub{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.station-card .station-note{color:var(--text);font-size:13px;margin:10px 0 12px;min-height:2.7em}
+.status-line{display:flex;align-items:center;gap:10px;margin:6px 0 2px}
+.lamp.big{width:22px;height:22px}
+.status-label{font-size:17px;letter-spacing:.06em}
+.status-en{color:var(--muted);font-size:12px}
+.station-card[data-status="green"]{border-color:rgba(46,158,91,.65)}
+.station-card[data-status="green"] .lamp.big{background:var(--green);box-shadow:0 0 20px 6px rgba(46,158,91,.55)}
+.station-card[data-status="green"] .status-label{color:#7FE0A8}
+.station-card[data-status="yellow"]{border-color:rgba(242,169,59,.7)}
+.station-card[data-status="yellow"] .lamp.big{background:var(--yellow);box-shadow:0 0 20px 6px rgba(242,169,59,.5)}
+.station-card[data-status="yellow"] .status-label{color:#FFD28A}
+.station-card[data-status="red"]{border-color:rgba(214,69,69,.75)}
+.station-card[data-status="red"] .lamp.big{background:var(--red);box-shadow:0 0 20px 6px rgba(214,69,69,.55)}
+.station-card[data-status="red"] .status-label{color:#FF9A9A}
+.status-switch{display:flex;gap:8px;margin-top:6px}
+.status-btn{
+  border:1px solid var(--navy-3);background:rgba(255,255,255,.05);color:var(--text);
+  border-radius:7px;padding:6px 12px;font-size:13px;font-family:var(--sans);
+  cursor:pointer;transition:all .15s ease;
+}
+.status-btn:hover{border-color:var(--muted)}
+.station-card[data-status="green"] .status-btn[data-s="green"]{background:var(--green);border-color:var(--green);color:var(--navy-deep);font-weight:700}
+.station-card[data-status="yellow"] .status-btn[data-s="yellow"]{background:var(--yellow);border-color:var(--yellow);color:var(--navy-deep);font-weight:700}
+.station-card[data-status="red"] .status-btn[data-s="red"]{background:var(--red);border-color:var(--red);color:#FFF;font-weight:700}
+.interactive-note{color:var(--muted);font-size:12.5px;margin:10px 0 0}
+/* Proofline 六件套 */
+.six-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.six-card{
+  border:1px solid var(--navy-3);border-radius:10px;padding:13px 15px;background:rgba(255,255,255,.03);
+}
+.six-card h4{margin:0 0 6px;font-size:15px;color:#CFE0F5}
+.six-card h4 b{color:var(--yellow);font-weight:700}
+.six-card p{margin:0;font-size:13px;color:var(--muted)}
+/* 指标 */
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metric{
+  border:1px solid var(--navy-3);border-radius:10px;padding:13px 15px;background:rgba(255,255,255,.03);
+}
+.metric .m-id{font-family:var(--mono);font-size:12px;color:var(--muted);display:block;margin-bottom:5px}
+.metric .m-val{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:22px;color:#8FD3FF;display:block;line-height:1.25;
+}
+.metric .m-note{font-size:12px;color:var(--muted);margin-top:6px;display:block}
+.metric.unknown{opacity:.85}
+.metric .unknown-val{
+  font-family:var(--mono);font-size:19px;color:#9FB0C8;display:block;line-height:1.25;
+}
+.metric .unknown-val em{color:#C8D4E4;font-style:normal}
+.metric .m-reason{font-size:12px;color:var(--muted);margin-top:6px;display:block;line-height:1.55}
+/* 列表 */
+ul.dash{list-style:none;margin:10px 0 0;padding:0}
+ul.dash li{position:relative;padding-left:20px;margin:7px 0;max-width:1000px}
+ul.dash li::before{
+  content:"";position:absolute;left:2px;top:10px;width:10px;height:2px;
+  background:var(--yellow);border-radius:2px;
+}
+ol.numbered{margin:10px 0 0;padding-left:22px}
+ol.numbered li{margin:7px 0}
+/* 状态徽章 */
+.badge{
+  display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.05em;
+  border-radius:5px;padding:2px 9px;
+}
+.badge.pass{color:#7FE0A8;border:1px solid rgba(46,158,91,.6);background:rgba(46,158,91,.12)}
+.badge.info{color:#FFD28A;border:1px solid rgba(242,169,59,.55);background:rgba(242,169,59,.1)}
+.check-row{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px dashed rgba(232,238,247,.12)}
+.check-row:last-child{border-bottom:0}
+.check-row .check-id{font-family:var(--mono);font-size:13px;color:#8FD3FF;min-width:150px}
+.check-row .check-msg{font-size:13.5px;color:var(--muted);margin:0}
+/* 来源 / 假设 */
+.src-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.src-item{
+  border:1px solid var(--navy-3);border-radius:8px;padding:10px 13px;background:rgba(255,255,255,.02);
+}
+.src-item .src-id{font-family:var(--mono);font-size:12.5px;color:#8FD3FF;display:block}
+.src-item .src-type{font-size:11px;color:var(--yellow);letter-spacing:.05em;display:block;margin:2px 0 5px}
+.src-item .src-use{font-size:12.5px;color:var(--muted);margin:0;line-height:1.55}
+.assume-row{padding:9px 0;border-bottom:1px dashed rgba(232,238,247,.12)}
+.assume-row:last-child{border-bottom:0}
+.assume-row .a-id{font-family:var(--mono);font-size:12.5px;color:#FFD28A}
+.assume-row p{margin:2px 0 0;font-size:13.5px;color:var(--text)}
+/* 页脚 */
+footer{background:var(--navy-deep);border-top:1px solid var(--line);margin-top:10px}
+.foot-inner{max-width:1180px;margin:0 auto;padding:26px 26px 34px}
+.foot-inner p{margin:0 0 10px;font-size:13.5px;color:var(--muted);max-width:1000px}
+.foot-inner .foot-slogan{color:#CFE0F5;font-size:14px;border-top:1px dashed rgba(242,169,59,.4);padding-top:14px;margin-top:4px}
+.foot-inner b{color:var(--text);font-weight:600}
+@media (max-width:980px){
+  .status-screen,.six-grid,.metric-grid,.src-list,.grid-2{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:28px}
+}
+@media (max-width:640px){
+  .status-screen,.six-grid,.metric-grid,.src-list,.grid-2{grid-template-columns:1fr}
+  main{padding:6px 14px 44px}
+  .hero{padding:28px 16px 20px}
+  nav.rail{padding:0 16px 16px}
+  .sheet-head{flex-wrap:wrap}
+  .sheet-head .tag{margin-left:0}
+  .check-row{flex-direction:column;gap:4px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hero">
+    <div class="hero-top">
+      <span class="signal-pole" aria-hidden="true"><i class="lamp g"></i><i class="lamp y"></i><i class="lamp r"></i></span>
+      <div>
+        <h1>京张可验证生活线</h1>
+        <p class="title-en">JINGZHANG VERIFIABLE LIFE LINE · 视觉总览 VISUAL OVERVIEW</p>
+      </div>
+    </div>
+    <p class="slogan">让每一次 AI 承诺都被看见、质询、暂停与复盘
+      <small>Every AI promise on the line can be seen, questioned, stopped, and reviewed. —— 这条线不是"建好即交付"的工程线，而是一条永远处于试运行状态的公共线。</small>
+    </p>
+    <div class="pill-row">
+      <span class="pill status">三站状态屏 Status Screen</span>
+      <span class="pill">Proofline 六件套</span>
+      <span class="pill">三层范围 Three Scopes</span>
+      <span class="pill">AI 场景 12 卡</span>
+      <span class="pill">核心指标 13 known</span>
+      <span class="pill">unknown 不渲染数字</span>
+    </div>
+  </div>
+  <div class="track"></div>
+  <nav class="rail" aria-label="章节导航">
+    <a href="#sec-overview">总览地图</a>
+    <a href="#sec-status">状态屏</a>
+    <a href="#sec-scope">三层范围</a>
+    <a href="#sec-areas">重点区域</a>
+    <a href="#sec-landuse">用地分区</a>
+    <a href="#sec-traffic">交通慢行</a>
+    <a href="#sec-bluegreen">蓝绿公共空间</a>
+    <a href="#sec-buildings">建筑</a>
+    <a href="#sec-renewal">更新项目</a>
+    <a href="#sec-scenarios">AI 场景</a>
+    <a href="#sec-metrics">核心指标</a>
+    <a href="#sec-tasks">任务覆盖</a>
+    <a href="#sec-selfcheck">自检状态</a>
+    <a href="#sec-sources">来源</a>
+    <a href="#sec-assumptions">假设</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ 1 总览地图 ============ -->
+<section class="sheet" id="sec-overview">
+  <div class="sheet-head">
+    <span class="milestone">M01</span>
+    <h2>总览地图<span class="en">Site Overview</span></h2>
+    <span class="tag">site-overview.png · geometry + metrics</span>
+  </div>
+  <div class="sheet-body">
+    <p><b>概念一句话</b>：以"验证"为公共基础设施，把 AI 承诺翻译成人可验证的事实——一条永远处于试运行的生活线。
+      <b>差异化声明</b>：同属"验证"主题的方案做验证基础设施的机构化表达；本方案做<b>验证的日常生活化</b>——买菜、通勤、就医、遛弯时随手可得的凭证体验。</p>
+    <p class="muted">总体空间结构"一脊三站、沿线设站、闭环复验"：一脊=京张遗址公园带主脊（proofline 主廊道）；三站=三个重点片区各承载一种验证站职能；沿线设站=AI 服务以"站"形态沿线布置，公众可进站质询、离站退出；闭环复验=每项服务 12 个月强制复验（检修制度），试运行永不结束。四节点：信号楼（验证指挥中心）、里程碑廊（验证事件+智能体荣誉墙）、扳道站（公众切换 AI/人工）、站台广场（状态大屏+活动集散）。</p>
+    <figure class="figure">
+      <img src="../assets/figures/site-overview.png" alt="总览地图：线+三站+四节点概念图" onerror="this.style.display='none'">
+      <figcaption><span>图 1 总览地图（概念示意，provisional 边界以虚线约束表示）</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+    <p class="small-note">图示为装饰性概念示意；权威面积、指标与合规主张以 geometry/*.geojson、metrics.json、矩阵与自检结果为准。</p>
+  </div>
+</section>
+
+<!-- ============ 状态屏（核心交互组件） ============ -->
+<section class="sheet" id="sec-status">
+  <div class="sheet-head">
+    <span class="milestone">一屏</span>
+    <h2>状态屏<span class="en">Public Status Screen</span></h2>
+    <span class="tag">绿=试运行 / 黄=限速 / 红=停运</span>
+  </div>
+  <div class="sheet-body">
+    <p>三站各自的服务状态，用信号三色在公共状态屏上永远公开可见。点击卡片内按钮可切换状态（纯 CSS/JS 实现）。默认状态：试运行。</p>
+    <div class="status-screen" id="status-screen">
+      <article class="station-card" data-status="green">
+        <h3>众智园站 · 安全验证站</h3>
+        <p class="station-sub">众智园AI自主创新加速区 · 编组站/试验线</p>
+        <div class="status-line"><span class="lamp big" aria-hidden="true"></span><b class="status-label">试运行</b><span class="status-en">Trial-running</span></div>
+        <p class="station-note">TVS-01/02/03 产业测试验证落点：试验线状态屏、测试工程师值守、试验急停闸、测试报告回执。</p>
+        <div class="status-switch">
+          <button type="button" class="status-btn" data-s="green" data-label="试运行">试运行</button>
+          <button type="button" class="status-btn" data-s="yellow" data-label="限速">限速</button>
+          <button type="button" class="status-btn" data-s="red" data-label="停运">停运</button>
+        </div>
+      </article>
+      <article class="station-card" data-status="green">
+        <h3>原点社区站 · 解释翻译站</h3>
+        <p class="station-sub">北京AI原点社区 · 信号楼/质询台</p>
+        <div class="status-line"><span class="lamp big" aria-hidden="true"></span><b class="status-label">试运行</b><span class="status-en">Trial-running</span></div>
+        <p class="station-note">LSC-01 公众 AI 导览、LSC-05 公共 AI 事实核验：解释屏、公众质询台、可切换人工讲解。</p>
+        <div class="status-switch">
+          <button type="button" class="status-btn" data-s="green" data-label="试运行">试运行</button>
+          <button type="button" class="status-btn" data-s="yellow" data-label="限速">限速</button>
+          <button type="button" class="status-btn" data-s="red" data-label="停运">停运</button>
+        </div>
+      </article>
+      <article class="station-card" data-status="green">
+        <h3>大钟寺站 · 日常服务验证站</h3>
+        <p class="station-sub">大钟寺AI产业聚集区 · 客运站/站台广场</p>
+        <div class="status-line"><span class="lamp big" aria-hidden="true"></span><b class="status-label">试运行</b><span class="status-en">Trial-running</span></div>
+        <p class="station-note">LSC-03 夜间配送与安静空间协调：站台广场状态大屏、活动集散、日常服务回执。</p>
+        <div class="status-switch">
+          <button type="button" class="status-btn" data-s="green" data-label="试运行">试运行</button>
+          <button type="button" class="status-btn" data-s="yellow" data-label="限速">限速</button>
+          <button type="button" class="status-btn" data-s="red" data-label="停运">停运</button>
+        </div>
+      </article>
+    </div>
+    <p class="interactive-note">以上状态为概念交互示例（默认试运行），不代表实时运行状态；真实状态由协议运营数据决定。</p>
+
+    <div class="track thin"></div>
+    <h3 style="font-size:17px;margin:6px 0 2px">Proofline 验证协议六件套</h3>
+    <p class="muted">每一次 AI 服务上线都要通过六件套的完整协议链：一证一屏一哨一闸一票一会。</p>
+    <div class="six-grid">
+      <div class="six-card"><h4><b>一证</b> Certificate</h4><p>服务登记 + 验证基线：服务上线前完成公开登记，验证基线公开展示。</p></div>
+      <div class="six-card"><h4><b>一屏</b> Status Screen</h4><p>绿黄红公共状态屏：服务状态永远可见，任何人都能看懂。</p></div>
+      <div class="six-card"><h4><b>一哨</b> Watchkeeper</h4><p>人类值班员：人工值守、抽检与解释，机器不独自决策。</p></div>
+      <div class="six-card"><h4><b>一闸</b> Stop Switch</h4><p>停止开关，公众可触发：任何违规即可暂停服务。</p></div>
+      <div class="six-card"><h4><b>一票</b> Service Receipt</h4><p>服务回执凭证：每项服务给出可留存、可申诉的结果凭证。</p></div>
+      <div class="six-card"><h4><b>一会</b> Review Session</h4><p>公开复盘会：月度复盘 + 12 个月强制复验 + 年度验证节（9月）。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 三层范围 ============ -->
+<section class="sheet" id="sec-scope">
+  <div class="sheet-head">
+    <span class="milestone">M02</span>
+    <h2>三层范围<span class="en">Three-Level Scope</span></h2>
+    <span class="tag">43.6 / 11.4 km² · 368.4 ha</span>
+  </div>
+  <div class="sheet-body">
+    <p>方案按公告确定的三个层次组织工作：三层不是互相割裂的图纸集合——统筹研究决定"验证"作为治理方法的产业与生态价值，总体设计把方法落实到空间结构与设施承载，重点区域把协议落地为可体验、可复核、可运营的站点场景。</p>
+    <table class="board">
+      <thead><tr><th>层级</th><th>官方范围</th><th>本方案的承载</th><th>数据落点</th></tr></thead>
+      <tbody>
+        <tr><td><b>统筹研究范围</b></td><td>43.6 km²，北至北五环路、东至京藏高速、南至西直门外大街、西至万泉河路</td><td>验证协议作为城市治理方法的创新链与生态框架（第三、四章）</td><td><code>site_boundary.geojson#SITE-001</code>、compliance_matrix.json</td></tr>
+        <tr><td><b>总体设计范围</b></td><td>11.4 km²，京张遗址公园周边 1–2 公里城市地区与产业区</td><td>"一条线 + 三个验证站 + 四个节点"的总体空间结构（第四至九章）</td><td><code>land_use.geojson#LU-001</code>、<code>roads.geojson#ROAD-001</code></td></tr>
+        <tr><td><b>重点区域范围</b></td><td>368.4 公顷，三处详细设计地区</td><td>三站 = 安全验证站 / 解释翻译站 / 日常服务验证站（第五章）</td><td><code>key_areas.geojson#PROV-KEY-001/002/003</code></td></tr>
+      </tbody>
+    </table>
+    <p class="small-note">全部几何派生面积与比例由 metrics.json 复算（EPSG:4548 投影）并标注 provisional 限制；任何无法从结构化数据复算的数量不得写入正式结论。</p>
+  </div>
+</section>
+
+<!-- ============ 3 重点区域 ============ -->
+<section class="sheet" id="sec-areas">
+  <div class="sheet-head">
+    <span class="milestone">M03</span>
+    <h2>重点区域<span class="en">Key Areas</span></h2>
+    <span class="tag">三站 = 三验证站 · 四地标</span>
+  </div>
+  <div class="sheet-body">
+    <p>三处重点区域是本方案的"三个验证站"——把公告要求的详细设计任务与验证协议三站分工合而为一。</p>
+    <table class="board">
+      <thead><tr><th>重点片区</th><th>验证站职能</th><th>设计定位</th><th>空间动作</th><th>AI 场景与协议落点</th></tr></thead>
+      <tbody>
+        <tr><td><b>众智园AI自主创新加速区</b></td><td>安全验证站（编组站/试验线）</td><td>花园型全栈自主创新街区</td><td>强化清河界面、产业展示、低碳创新交往与对外交通组织；以绿色空间承载开放测试场与标准治理展示</td><td>TVS-01/02/03、试验线状态屏、测试工程师值班</td></tr>
+        <tr><td><b>北京AI原点社区</b></td><td>解释翻译站（信号楼）</td><td>近校型成果转化与人才社区</td><td>校区园区街区慢行缝合；补足成果发布、人才服务、居住生活与开源协作空间；设信号楼与公众质询台</td><td>LSC-01 导览、LSC-05 事实核验、质询广场、解释回执</td></tr>
+        <tr><td><b>大钟寺AI产业聚集区</b></td><td>日常服务验证站（客运站）</td><td>城市型智能经济与国际交往街区</td><td>大钟寺站一体化、四象限步行连通、商业服务与重点企业公共环境更新；设站台广场与日常服务状态屏</td><td>LSC-03 夜间配送协调、站台广场活动调度、日常服务回执</td></tr>
+      </tbody>
+    </table>
+    <p><b>四个 AI 朝圣地标（回应 agent.4）</b>：① 信号楼（原点社区站内，验证指挥中心，透明可参观）；② 里程碑廊（沿线中段，验证事件记录与智能体贡献者荣誉墙）；③ 扳道站（互动公共空间，公众亲手切换 AI/人工服务模式）；④ 站台广场（大钟寺站，公共状态大屏 + 验证节主场地）。</p>
+    <figure class="figure">
+      <img src="../assets/figures/key-areas.png" alt="重点区域：三站验证分工示意图" onerror="this.style.display='none'">
+      <figcaption><span>图 2 重点区域三站验证分工（概念示意）</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 4 用地分区 ============ -->
+<section class="sheet" id="sec-landuse">
+  <div class="sheet-head">
+    <span class="milestone">M04</span>
+    <h2>用地分区<span class="en">Land Use</span></h2>
+    <span class="tag">MNR-LAND-USE-CLASSIFICATION-GUIDE 代码语义</span>
+  </div>
+  <div class="sheet-body">
+    <p>概念用地布局覆盖总体设计边界、无重叠，用地代码遵循《国土空间调查、规划、用途管制用地用海分类指南（2023）》语义。</p>
+    <table class="board">
+      <thead><tr><th>用地类别</th><th>代码</th><th>概念布局</th></tr></thead>
+      <tbody>
+        <tr><td>科研用地</td><td><code>0802</code></td><td>众智园、原点社区核心</td></tr>
+        <tr><td>教育科研配套</td><td><code>0804</code></td><td>原点社区近校缝合带</td></tr>
+        <tr><td>文化用地</td><td><code>0803</code></td><td>三站文化展示节点、里程碑廊</td></tr>
+        <tr><td>商业服务业用地</td><td><code>05</code></td><td>大钟寺商圈、站点周边</td></tr>
+        <tr><td>居住与社区服务</td><td><code>0701/0702</code></td><td>原点社区人才居住、沿线社区</td></tr>
+        <tr><td>绿地与开敞空间</td><td><code>1401/1402</code></td><td>遗址带绿廊、防护绿地</td></tr>
+        <tr><td>广场用地</td><td><code>1403</code></td><td>三站站前广场与节点</td></tr>
+        <tr><td>道路用地</td><td><code>1207</code></td><td>道路微循环</td></tr>
+        <tr><td>留白用地</td><td><code>16</code></td><td>待验证用途的预留空间（呼应"永远试运行"）</td></tr>
+      </tbody>
+    </table>
+    <figure class="figure">
+      <img src="../assets/figures/land-use-structure.png" alt="概念用地结构图" onerror="this.style.display='none'">
+      <figcaption><span>图 3 概念用地结构（概念建议，待官方边界与规划条件确认后重算）</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 5 交通慢行 ============ -->
+<section class="sheet" id="sec-traffic">
+  <div class="sheet-head">
+    <span class="milestone">M05</span>
+    <h2>交通慢行<span class="en">Mobility &amp; Slow Traffic</span></h2>
+    <span class="tag">proofline 主廊道</span>
+  </div>
+  <div class="sheet-body">
+    <p>交通组织围绕<b>验证线主廊道</b>展开：遗址带主廊道承载步行与骑行（road_class=绿道/步行），三站间以慢行接驳串联（虚拟里程 <span class="num">9505.52 m</span>，proofline_route_length_m）；轨道站点（大钟寺站等）一体化接驳与四象限步行连通列入重点区动作；道路微循环与地块出入道路为概念建议，不涉及道路线形工程方案。</p>
+    <p>LSC-06 可解释拥堵管理落点小月河场景赋能翼：信号联动时向公众显示"为什么这么调度"，调度依据与回执进复盘会。市政与新型基础设施（端侧算力点、分布式能源、低干扰传感）作为概念原型，不给出工程可行性结论；公共服务设施（社区服务、无障碍、养老适老）布局遵循无障碍法第 39 条边界。</p>
+    <figure class="figure">
+      <img src="../assets/figures/mobility-bluegreen.png" alt="慢行与蓝绿连续性示意图" onerror="this.style.display='none'">
+      <figcaption><span>图 4 慢行 + 蓝绿连续性（概念示意）</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 6 蓝绿公共空间 ============ -->
+<section class="sheet" id="sec-bluegreen">
+  <div class="sheet-head">
+    <span class="milestone">M06</span>
+    <h2>蓝绿公共空间<span class="en">Blue-Green &amp; Public Space</span></h2>
+    <span class="tag">遗址公园带主轴</span>
+  </div>
+  <div class="sheet-body">
+    <p>蓝绿体系以<b>遗址公园带为主轴</b>（绿廊 + 防护绿地 + 站内公园），概念绿地率 <span class="num">0.078915</span>（green_ratio，provisional 复算）；公共空间系统由三站站前广场、四节点与社区公共空间构成，概念公共空间占比 <span class="num">0.00953</span>（public_space_ratio）。</p>
+    <p>城市风貌控制以"信号语言"为导视系统方向：三色信号作为公共服务状态色进入导视体系，里程碑为空间记忆符号，运行图式为信息排版语言。三幕文化叙事"信号（1905-1909 詹天佑人字形与安全规则）→ 扳道（1949-2009 中关村方向切换）→ 验证（今，AI 时代新信号体系）"，落点于<b>从设计铁路的人，到设计规则的人</b>。</p>
+  </div>
+</section>
+
+<!-- ============ 7 建筑 ============ -->
+<section class="sheet" id="sec-buildings">
+  <div class="sheet-head">
+    <span class="milestone">M07</span>
+    <h2>建筑<span class="en">Buildings</span></h2>
+    <span class="tag">约 150 个概念体量 · 13 类</span>
+  </div>
+  <div class="sheet-body">
+    <p>建筑规模以约 <b>150 个概念建筑体量</b>表达：众智园约 55、原点社区约 50、大钟寺约 40、沿线少量；概念建筑基底总面积 <span class="num">339482.799 ㎡</span>（building_footprint_area_sqm），概念建筑密度 <span class="num">0.029745</span>（building_density）。类型覆盖 enums/building_types.json 全部 13 类：AI 研发、实验室、孵化器、办公、混合功能、教育科研配套、居住、人才公寓、社区服务、商业、文化展示、交通接驳、现状保留。</p>
+    <p class="muted">建筑高度与容积率为概念示意值，不构成法定控制；拆改留按"保留遗产与现状锚点、更新低效空间、留白待验证"三原则作概念分类，不指定具体地块。</p>
+  </div>
+</section>
+
+<!-- ============ 8 更新项目 ============ -->
+<section class="sheet" id="sec-renewal">
+  <div class="sheet-head">
+    <span class="milestone">M08</span>
+    <h2>更新项目<span class="en">Renewal Projects</span></h2>
+    <span class="tag">10 项概念项目 · 三期实施</span>
+  </div>
+  <div class="sheet-body">
+    <p>概念更新项目清单（10 项，全部"概念建议"，每项标注验证协议关联与实施依赖）：</p>
+    <ol class="numbered">
+      <li>众智园试验线及测试场公共化改造；</li>
+      <li>信号楼（原点社区解释枢纽）；</li>
+      <li>里程碑廊及沿线里程碑带；</li>
+      <li>扳道站互动公共空间；</li>
+      <li>大钟寺站台广场与状态屏系统；</li>
+      <li>遗址带慢行主廊道织补；</li>
+      <li>三站纸质服务入口与回执亭；</li>
+      <li>小月河可解释拥堵管理场景带；</li>
+      <li>社区 AI 服务驿站（含人工值班席）；</li>
+      <li>验证节活动场地与运行图发布厅。</li>
+    </ol>
+    <p><b>分期实施（回应 agent.6 落地路径）</b>：</p>
+    <table class="board">
+      <thead><tr><th>分期</th><th>范围</th><th>内容</th><th>验证状态</th></tr></thead>
+      <tbody>
+        <tr><td><b>一期 · 验证启动</b>（PHASE-001）</td><td>三重点区及站点周边</td><td>三站建成验证职能、TVS-01/02/03 上线、信号楼与站台广场投用</td><td>首批服务进入"一证"登记，试运行</td></tr>
+        <tr><td><b>二期 · 全带织补</b>（PHASE-002）</td><td>遗址带全线</td><td>主廊道慢行织补、里程碑带、扳道站、社区驿站铺开</td><td>全带服务纳入 12 个月强制复验</td></tr>
+        <tr><td><b>三期 · 两翼协同</b>（PHASE-003）</td><td>中关村科技服务翼、小月河场景赋能翼</td><td>要素配置联动、可解释拥堵落地、验证节国际专场</td><td>协议成为带际治理产品，输出国际传播</td></tr>
+      </tbody>
+    </table>
+    <p class="small-note">政策建议（概念）：AI 服务上线"一证"登记建议、场景开放"公开申请→沙盒测试→人工复核→公开展示"四步流程、验证结果与回执公开披露机制、开发者社区运营——全部为可深化研究方向，不构成政府承诺。</p>
+  </div>
+</section>
+
+<!-- ============ 9 AI 场景 ============ -->
+<section class="sheet" id="sec-scenarios">
+  <div class="sheet-head">
+    <span class="milestone">M09</span>
+    <h2>AI 场景<span class="en">AI Scenario Cards</span></h2>
+    <span class="tag">12 卡：3 TVS + 9 LSC</span>
+  </div>
+  <div class="sheet-body">
+    <p>每张场景卡遵循同一<b>协议卡字段</b>：空间落位｜运营者（责任角色）｜基线来源与当前状态｜观察对象/样本边界/时间窗｜成功阈值｜停止阈值｜独立停机复核角色（人类）｜等价人工服务｜数据留存/删除凭证/复核周期｜申诉入口/扩容前复盘条件｜协议链映射（一证一屏一哨一闸一票一会）。</p>
+    <div class="concept-card"><p style="margin:0"><b>基线诚实声明</b>：基线、阈值均为设计建议目标值，非已取得现场数据，现场基线待落地后采集（unknown 表达，A-NO-FIELD-BASELINE-001）；本方案不把概念目标值伪装成已实现数值。</p></div>
+
+    <h3 style="font-size:16px;margin:16px 0 4px">产业测试验证场景 ×3（众智园站，TVS-01~03）</h3>
+    <table class="board">
+      <thead><tr><th>场景</th><th>成功阈值（目标）</th><th>停止阈值（硬性）</th><th>人工复核</th><th>恢复路径</th><th>协议链</th></tr></thead>
+      <tbody>
+        <tr><td><b>TVS-01</b> 自动驾驶接驳验证线</td><td>准点率 ≥95%</td><td>任何一次人车接触事故即停</td><td>每趟车配备安全员</td><td>整改后重走"一证"流程</td><td>一证登记→试验线状态屏→测试工程师值守→试验急停闸→测试报告回执→试验复盘会</td></tr>
+        <tr><td><b>TVS-02</b> 公共大模型服务验证（政务/城市问答）</td><td>事实核验通过率 ≥98%</td><td>连续 3 次错误事实或 1 次高危错误</td><td>值班员抽检 + 公众质询台</td><td>版本回滚后复验</td><td>一证+解释屏+值班哨+停用闸+解释回执+月度复盘</td></tr>
+        <tr><td><b>TVS-03</b> 机器人配送与低空物流验证</td><td>配送时效达成率 ≥95%</td><td>行人安全事件</td><td>骑手交接确认</td><td>临时转人工配送</td><td>一证+时段窗状态屏+调度哨+急停闸+交接回执+复盘</td></tr>
+      </tbody>
+    </table>
+    <p class="small-note">TVS-02 内容合规与数据边界遵循《生成式人工智能服务管理暂行办法》；不虚构"法定 N 天删除"承诺，以"删除凭证 + 复核周期"的运营设计回应。</p>
+
+    <h3 style="font-size:16px;margin:18px 0 4px">日常场景 ×9（LSC-01~09，停止阈值与人工复核为协议设计框架，目标值待现场基线采集）</h3>
+    <table class="board">
+      <thead><tr><th>场景卡</th><th>空间落位</th><th>停止阈值（设计目标）</th><th>人工复核（兜底）</th></tr></thead>
+      <tbody>
+        <tr><td><b>LSC-01</b> 公众AI导览</td><td>解释站（原点社区）</td><td>持续误导性解释即转人工</td><td>可切换人工讲解</td></tr>
+        <tr><td><b>LSC-02</b> 无障碍可切换路线</td><td>沿线（法定列举服务场所）</td><td>引导超出无障碍法第 39 条法定列举范围即停用</td><td>人工窗口与语音辅助</td></tr>
+        <tr><td><b>LSC-03</b> 夜间配送与安静空间协调</td><td>大钟寺站</td><td>静音时段违规配送即停</td><td>骑手人工配送兜底</td></tr>
+        <tr><td><b>LSC-04</b> 纸质服务入口</td><td>沿线社区（王奶奶等）</td><td>纸质回执遗漏即停</td><td>人工代办员全程</td></tr>
+        <tr><td><b>LSC-05</b> 公共AI事实核验</td><td>解释站质询台</td><td>核验结论无来源依据即停</td><td>核验台值班员复核</td></tr>
+        <tr><td><b>LSC-06</b> 可解释拥堵管理</td><td>小月河场景赋能翼</td><td>调度解释与实际信号不符即停</td><td>调度员/交警确认</td></tr>
+        <tr><td><b>LSC-07</b> 热舒适告警</td><td>公共空间</td><td>极端天气告警无对应处置即停</td><td>应急值守员人工响应</td></tr>
+        <tr><td><b>LSC-08</b> 社区服务资源匹配</td><td>社区驿站</td><td>推荐资源未经社工确认即停</td><td>人类社工复核</td></tr>
+        <tr><td><b>LSC-09</b> 数据删除与退出回执</td><td>沿线（退出即凭证）</td><td>删除回执凭证缺失即停</td><td>人工受理窗口</td></tr>
+      </tbody>
+    </table>
+    <p class="small-note">12 张场景卡清单、阈值表与空间落位与 proposal.md 第六章全量一致（scenario_card_count=12、industrial_tvs_count=3）。</p>
+  </div>
+</section>
+
+<!-- ============ 10 核心指标 ============ -->
+<section class="sheet" id="sec-metrics">
+  <div class="sheet-head">
+    <span class="milestone">M10</span>
+    <h2>核心指标<span class="en">Core Metrics</span></h2>
+    <span class="tag">13 known + 6 unknown · 与 metrics.json 逐位一致</span>
+  </div>
+  <div class="sheet-body">
+    <p>指标分两类：<b>可复算指标（known）</b>——全部可由提交包几何与结构化数据复算，几何派生指标置信度 medium、标注 provisional 限制；<b>待官方数据确认指标（unknown）</b>——诚实标注 reason，本页一律显示"unknown / pending"文本，不渲染为数字。</p>
+    <div class="metric-grid">
+      <div class="metric"><span class="m-id">site_area_sqm · 场地面积</span><span class="m-val" data-metric="site_area_sqm" data-value="11412825.386">11412825.386</span><span class="m-note">㎡ · EPSG:4548 复算 · provisional（medium）</span></div>
+      <div class="metric"><span class="m-id">green_ratio · 概念绿地率</span><span class="m-val" data-metric="green_ratio" data-value="0.078915">0.078915</span><span class="m-note">green_space / site_area · provisional 复算</span></div>
+      <div class="metric"><span class="m-id">public_space_ratio · 公共空间占比</span><span class="m-val" data-metric="public_space_ratio" data-value="0.00953">0.00953</span><span class="m-note">public_space / site_area · provisional 复算</span></div>
+      <div class="metric"><span class="m-id">building_density · 建筑密度</span><span class="m-val" data-metric="building_density" data-value="0.029745">0.029745</span><span class="m-note">footprint / site_area · provisional 复算</span></div>
+      <div class="metric"><span class="m-id">building_footprint_area_sqm · 建筑基底面积</span><span class="m-val" data-metric="building_footprint_area_sqm" data-value="339482.799">339482.799</span><span class="m-note">㎡ · ~150 概念体量 · provisional（medium）</span></div>
+      <div class="metric"><span class="m-id">road_centerline_length_m · 道路中心线长度</span><span class="m-val" data-metric="road_centerline_length_m" data-value="24159.343">24159.343</span><span class="m-note">m · sum(centerline_length) · provisional（medium）</span></div>
+      <div class="metric"><span class="m-id">proofline_route_length_m · 验证线虚拟里程</span><span class="m-val" data-metric="proofline_route_length_m" data-value="9505.52">9505.52</span><span class="m-note">m · 三站间慢行廊道长度复算 · provisional（medium）</span></div>
+      <div class="metric"><span class="m-id">key_area_count · 重点区域数</span><span class="m-val" data-metric="key_area_count" data-value="3">3</span><span class="m-note">三重点片区（provisional 多边形）</span></div>
+      <div class="metric"><span class="m-id">verification_station_count · 验证站数</span><span class="m-val" data-metric="verification_station_count" data-value="3">3</span><span class="m-note">众智园/原点社区/大钟寺（high）</span></div>
+      <div class="metric"><span class="m-id">scenario_card_count · 场景卡数</span><span class="m-val" data-metric="scenario_card_count" data-value="12">12</span><span class="m-note">TVS-01~03 + LSC-01~09（high）</span></div>
+      <div class="metric"><span class="m-id">industrial_tvs_count · 产业测试验证数</span><span class="m-val" data-metric="industrial_tvs_count" data-value="3">3</span><span class="m-note">TVS-01~03，众智园站（high）</span></div>
+      <div class="metric"><span class="m-id">user_persona_count · 用户画像数</span><span class="m-val" data-metric="user_persona_count" data-value="6">6</span><span class="m-note">P01~P06 审查席位（high）</span></div>
+      <div class="metric"><span class="m-id">landmark_count · AI 朝圣地标数</span><span class="m-val" data-metric="landmark_count" data-value="4">4</span><span class="m-note">信号楼/里程碑廊/扳道站/站台广场（high）</span></div>
+    </div>
+
+    <h3 style="font-size:16px;margin:22px 0 4px">待官方数据确认指标（unknown / pending，不渲染为数字）</h3>
+    <div class="metric-grid">
+      <div class="metric unknown"><span class="m-id">floor_area_ratio · 容积率</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">官方控规指标未发布，待正式规划条件（A-CONTROLS-001）</span></div>
+      <div class="metric unknown"><span class="m-id">building_height_max_m · 最大建筑高度</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">官方控规高度控制缺失，概念体量高度为示意值，不构成法定控制（A-CONTROLS-001）</span></div>
+      <div class="metric unknown"><span class="m-id">planned_green_ratio · 规划绿地率</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">官方规划绿地率缺失，与概念复算 green_ratio 不可混同</span></div>
+      <div class="metric unknown"><span class="m-id">stop_response_target_min · 停闸响应时间目标</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">协议运营设计目标值，非实测；现场基线待落地采集（A-NO-FIELD-BASELINE-001）</span></div>
+      <div class="metric unknown"><span class="m-id">fact_check_pass_rate_target · 事实核验通过率目标</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">TVS-02 ≥98% 为设计目标值，非已实现指标（A-PROTOCOL-TARGETS-001）</span></div>
+      <div class="metric unknown"><span class="m-id">shuttle_punctuality_target · 接驳准点率目标</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">TVS-01 ≥95% 为设计目标值，非已实现指标（A-PROTOCOL-TARGETS-001）</span></div>
+    </div>
+    <figure class="figure">
+      <img src="../assets/figures/metrics-evidence.png" alt="指标卡与证据链示意图" onerror="this.style.display='none'">
+      <figcaption><span>图 5 指标卡与证据链（几何派生指标 → metrics.json → 本页）</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+    <p class="small-note">复算方法：面积与长度在 EPSG:4548（CGCS2000 3 度带 CM117E）下计算，输出 EPSG:4326；provisional 边界复算值与公告数值并存、不互相替代。</p>
+  </div>
+</section>
+
+<!-- ============ 11 任务覆盖 ============ -->
+<section class="sheet" id="sec-tasks">
+  <div class="sheet-head">
+    <span class="milestone">M11</span>
+    <h2>任务覆盖<span class="en">Task Coverage</span></h2>
+    <span class="tag">公告 1.3/1.4/1.5 + agent.1–6</span>
+  </div>
+  <div class="sheet-body">
+    <p>compliance_matrix.json 覆盖公告 1.3/1.4/1.5 与 agent.1–agent.6 全部 23 条必答项（23 条 × 8 字段零空缺）；standard_matrix.json 覆盖 5 个强制标准（addressed）与 1 个资料缺口（data_gap）；design_depth_matrix.json 覆盖 15 项深度要求。对应章节回应清单：</p>
+    <table class="board">
+      <thead><tr><th>任务</th><th>要求</th><th>回应章节 / 交付物</th></tr></thead>
+      <tbody>
+        <tr><td><b>公告 1.3</b></td><td>AI 全栈自主创新体系、创新生态与人才结构、高品质场景</td><td>第三、六、七章</td></tr>
+        <tr><td><b>公告 1.4</b></td><td>三层范围（统筹研究/总体设计/重点区域）</td><td>第二至五章</td></tr>
+        <tr><td><b>公告 1.5</b></td><td>指标体系、面积复算与合规矩阵</td><td>第十一章 + 本页核心指标</td></tr>
+        <tr><td><b>agent.1</b></td><td>命名体系与视觉识别（主名称、口号、Logo 方向、五大功能、三区两翼）</td><td>第三章 3.1</td></tr>
+        <tr><td><b>agent.2</b></td><td>全球 AI 创新生态案例与全栈自主创新生态研究</td><td>第三章 3.2 / 3.3</td></tr>
+        <tr><td><b>agent.3</b></td><td>人才画像（6 类审查席位）与 AI 场景卡（12 张）</td><td>第六章 6.1 / 6.2</td></tr>
+        <tr><td><b>agent.4</b></td><td>重点区域详细设计（三站验证站 + 四个 AI 朝圣地标）</td><td>第五章</td></tr>
+        <tr><td><b>agent.5</b></td><td>导视/标识/符号系统与国际传播叙事</td><td>第九章（信号语言 + 三幕叙事）</td></tr>
+        <tr><td><b>agent.6</b></td><td>落地路径：更新项目清单、实施政策与分期计划</td><td>第十章（10 项 + PHASE-001/002/003）</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 12 自检状态 ============ -->
+<section class="sheet" id="sec-selfcheck">
+  <div class="sheet-head">
+    <span class="milestone">M12</span>
+    <h2>自检状态<span class="en">Self-Check Status</span></h2>
+    <span class="tag">self_check.json · 5 项全 PASS</span>
+  </div>
+  <div class="sheet-body">
+    <p>提交包自检记录（self_check.json，schema v0.1.0）：</p>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">BOUNDARY_TRUST</span><p class="check-msg">Provisional boundary is present; replace with official redline before professional scoring.（major）</p></div>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">KEY_AREAS_TRUST</span><p class="check-msg">Three required key areas are provisional; replace with official polygons before professional scoring.（major）</p></div>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">LAND_USE_TOPOLOGY</span><p class="check-msg">Initial land-use polygons are derived from site boundary partitioning.（major）</p></div>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">VISUAL_STATIC</span><p class="check-msg">Static HTML visualization is generated without external dependencies.（info）</p></div>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">PROFESSIONAL_EVIDENCE</span><p class="check-msg">Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions.（major）</p></div>
+  </div>
+</section>
+
+<!-- ============ 13 来源 ============ -->
+<section class="sheet" id="sec-sources">
+  <div class="sheet-head">
+    <span class="milestone">M13</span>
+    <h2>来源<span class="en">Sources</span></h2>
+    <span class="tag">sources.json · 12 条（全部中央注册表 ID）</span>
+  </div>
+  <div class="sheet-body">
+    <p>来源清单与 sources.json 一致（12 条；URL 记录于 sources.json，本页离线展示不输出链接）：</p>
+    <div class="src-list">
+      <div class="src-item"><span class="src-id">SITE-PACKAGE</span><span class="src-type">official_public</span><p class="src-use">brief/site-package/：Project brief, enums, allowed design space, ranges, and schemas.</p></div>
+      <div class="src-item"><span class="src-id">SOURCE-REGISTRY</span><span class="src-type">repository_public_registry</span><p class="src-use">data/source_registry.json：来源可用性登记（正式可用 / background-only / provisional-only / needs-review）。</p></div>
+      <div class="src-item"><span class="src-id">PROCESSED-FACT-PACK</span><span class="src-type">repository_processed_reference</span><p class="src-use">data/processed/agent_fact_pack.md：智能体导航层（范围、必答任务、来源边界、缺口清单）。</p></div>
+      <div class="src-item"><span class="src-id">BOUNDARY-SOURCE</span><span class="src-type">agent_inferred_from_public_data</span><p class="src-use">临时粗略边界几何源（provisional）。</p></div>
+      <div class="src-item"><span class="src-id">KEY-AREA-SOURCE</span><span class="src-type">agent_inferred_from_public_data</span><p class="src-use">三处重点区域边界源（provisional）。</p></div>
+      <div class="src-item"><span class="src-id">OFFICIAL-ANNOUNCEMENT</span><span class="src-type">official_public</span><p class="src-use">资格预审公告：任务、范围层级、重点区域、语言与交付要求。</p></div>
+      <div class="src-item"><span class="src-id">AGENT-TASKBOOK</span><span class="src-type">user_provided_cleared</span><p class="src-use">agent_taskbook.json：十条共创原则、六个必答任务、场景/品牌/运营要求与边界条款。</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES</span><span class="src-type">official_public</span><p class="src-use">《城市设计管理办法》（住建部令第 35 号）：目的范围、公共空间与风貌控制参考；不用于审批。</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING</span><span class="src-type">official_public</span><p class="src-use">《城市、镇控制性详细规划编制审批办法》：控规深度语言与实施管理边界；禁止虚构 FAR/高度/红线等法定结论。</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311</span><span class="src-type">official_public</span><p class="src-use">《国土空间调查、规划、用途管制用地用海分类指南（2023）》：用地代码语义依据。</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-GENERATIVE-AI-INTERIM-MEASURES</span><span class="src-type">official_public</span><p class="src-use">《生成式人工智能服务管理暂行办法》：TVS-02 内容合规边界、第 14/15 条删除与申诉边界。</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-BARRIER-FREE-ENVIRONMENT-LAW</span><span class="src-type">official_public</span><p class="src-use">《无障碍环境建设法》第 39 条：LSC-02 人工作业服务仅限法定列举场所。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 假设 ============ -->
+<section class="sheet" id="sec-assumptions">
+  <div class="sheet-head">
+    <span class="milestone">M14</span>
+    <h2>假设<span class="en">Assumptions</span></h2>
+    <span class="tag">assumptions.json · 10 条全 active</span>
+  </div>
+  <div class="sheet-body">
+    <p>关键假设清单（与 assumptions.json 一致，10 条，每条一句话、可被合规矩阵引用）：</p>
+    <div class="assume-row"><span class="a-id">A-CONTROLS-001</span><p>官方控规指标（FAR/高度/密度/绿地率/退线）缺失，相关指标标 unknown，待正式规划条件。</p></div>
+    <div class="assume-row"><span class="a-id">A-BOUNDARY-001</span><p>site/key-area 几何为 provisional，置信度 medium，official 数据发布后全包重算。</p></div>
+    <div class="assume-row"><span class="a-id">A-AREA-MISMATCH-001</span><p>provisional 复算面积与公告数值存在差异，两者不可互相替代。</p></div>
+    <div class="assume-row"><span class="a-id">A-NO-SITE-VISIT-001</span><p>未踏勘，现状判断基于公告、任务书与公开资料。</p></div>
+    <div class="assume-row"><span class="a-id">A-NO-FIELD-BASELINE-001</span><p>场景基线/阈值均为设计建议目标值，现场基线待落地采集（unknown 表达）。</p></div>
+    <div class="assume-row"><span class="a-id">A-CONCEPT-ONLY-001</span><p>全部空间/活动/政策建议为概念建议，不构成政府审定或实施承诺。</p></div>
+    <div class="assume-row"><span class="a-id">A-PERSONA-SAMPLE-001</span><p>用户画像为典型角色合成样本，用于设计校验而非实测数据。</p></div>
+    <div class="assume-row"><span class="a-id">A-LANDUSE-CONCEPT-001</span><p>用地与建筑体量为概念建议，待官方边界与规划条件确认后重算。</p></div>
+    <div class="assume-row"><span class="a-id">A-PROTOCOL-TARGETS-001</span><p>验证协议目标值（响应时间/通过率等）为运营设计目标，非已实现指标。</p></div>
+    <div class="assume-row"><span class="a-id">A-PRIVACY-MIN-001</span><p>场景数据遵循数据最小化，不采集个人可识别行为画像，删除凭证设计参照生成式 AI 管理办法第 14/15 条边界。</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="track"></div>
+  <div class="foot-inner">
+    <p><b>Provisional 声明</b>：本页全部内容为概念建议、参考方案，不构成政府审定结论；site/key-area 几何为 provisional（confidence=medium），official 数据发布后全包重算；unknown 指标为待官方数据确认，本页不渲染为数字（data-metric/data-value 仅用于 known 指标，与 metrics.json 逐位一致）。</p>
+    <p class="foot-slogan">概念建议 · 供专业团队深化研究 — Concept suggestions for professional teams to deepen.</p>
+    <p><b>生成工具披露</b>：本页由智能体生成（agent_id=light07-Y，model=deepseek-v4-flash[1m]），手写离线 HTML（内嵌 CSS/JS）；交付物字体 Noto Sans SC（OFL 许可）；页面完全离线自包含——不加载任何远程资源，不发起任何网络请求，无外部脚本与字体，图片仅引用本地相对路径（../assets/figures/，装饰性引用，缺失时自动隐藏）。</p>
+  </div>
+</footer>
+
+<script>
+/* 状态屏交互：三站服务状态切换（绿=试运行 / 黄=限速 / 红=停运），纯本地脚本 */
+(function () {
+  var cards = document.querySelectorAll(".station-card");
+  for (var i = 0; i < cards.length; i++) {
+    (function (card) {
+      var buttons = card.querySelectorAll(".status-btn");
+      for (var j = 0; j < buttons.length; j++) {
+        (function (btn) {
+          btn.addEventListener("click", function () {
+            var s = btn.getAttribute("data-s");
+            card.setAttribute("data-status", s);
+            var label = card.querySelector(".status-label");
+            if (label) { label.textContent = btn.getAttribute("data-label"); }
+          });
+        })(buttons[j]);
+      }
+    })(cards[i]);
+  }
+})();
+</script>
+</body>
+</html>

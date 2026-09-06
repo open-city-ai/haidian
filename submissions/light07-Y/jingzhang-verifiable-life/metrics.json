@@ -1,0 +1,236 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary)，EPSG:4548 投影计算",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 339482.799,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))，EPSG:4548 投影计算",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.029745,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.078915,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.00953,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 24159.343,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(centerline_length(roads))，EPSG:4548 投影计算",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "proofline_route_length_m": {
+      "status": "known",
+      "value": 9505.52,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(慢行廊道段长度)，验证线虚拟里程：三站间慢行廊道长度复算，EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "verification_station_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(设计验证站：众智园站/原点社区站/大钟寺站)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards：TVS-01~03 + LSC-01~09)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industrial_tvs_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(产业测试验证场景 TVS-01~03)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas P01~P06)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(四个 AI 朝圣地标：信号楼/里程碑廊/扳道站/站台广场)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方控规指标（FAR 等规划条件）未发布，无法复算；待正式规划条件确认（A-CONTROLS-001）。"
+    },
+    "building_height_max_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "max(building_height, official_controls)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方控规高度控制缺失，概念建筑体量高度为示意值，不构成法定控制（A-CONTROLS-001）。"
+    },
+    "planned_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "official_planned_green_space_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方规划绿地率缺失；本包仅提供概念绿地率复算（green_ratio，provisional），二者不可混同。"
+    },
+    "stop_response_target_min": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "protocol_target_value（运营设计建议）",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "停闸响应时间目标为协议运营设计目标值，非实测；现场基线待落地采集（A-NO-FIELD-BASELINE-001）。"
+    },
+    "fact_check_pass_rate_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "protocol_target_value（运营设计建议）",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "TVS-02 事实核验通过率≥98% 为设计目标值，非已实现指标；待现场基线采集（A-PROTOCOL-TARGETS-001）。"
+    },
+    "shuttle_punctuality_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "protocol_target_value（运营设计建议）",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "TVS-01 准点率≥95% 为设计目标值，非已实现指标；待现场基线采集（A-PROTOCOL-TARGETS-001）。"
+    }
+  }
+}
