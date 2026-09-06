@@ -1,0 +1,115 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional intake boundary; replace with official polygon and recalculate before formal planning use."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 546475.664,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Agent-proposed retain/renovate candidate footprints; existing-building survey is pending."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.113723,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Agent-proposed blue-green public-realm polygons within provisional boundary."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.03898,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Agent-proposed civic public-space nodes within provisional boundary."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "Official FAR controls and total floor-area records are not present in the public site package."
+      ],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "component_families": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(everyday_innovation_maintenance_component_families)",
+      "confidence": "medium",
+      "assumptions": [
+        "Component families are conceptual design categories, not an approved procurement catalogue."
+      ]
+    },
+    "component_trial_nodes": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_component_trial_nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "Nodes are agent-proposed public-space prototypes and require site, accessibility and safety review."
+      ]
+    }
+  }
+}
