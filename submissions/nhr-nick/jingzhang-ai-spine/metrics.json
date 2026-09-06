@@ -1,0 +1,181 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional rough boundary; area must be recalculated after official boundary release."
+      ],
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "Current value based on provisional rough boundary. Must recalculate using EPSG:4548 projection after official boundary is published."
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2280000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "Green space polygons are design proposals, not official designations."
+      ],
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "Must recalculate after official boundary release."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary; ratio is indicative only."
+      ],
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "Must recalculate after official boundary release."
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1710000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "Public space polygons are design proposals."
+      ],
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "Must recalculate after official boundary release."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.15,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary; ratio is indicative only."
+      ],
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "Must recalculate after official boundary release."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package.",
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "FAR cannot be validated without official planning controls."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [],
+      "boundary_recalculation_required": false
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-001, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary; area must be recalculated."
+      ],
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "Must recalculate after official boundary release."
+    },
+    "key_area_origin_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-002, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary; area must be recalculated."
+      ],
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "Must recalculate after official boundary release."
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(KEY-003, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional boundary; area must be recalculated."
+      ],
+      "boundary_recalculation_required": true,
+      "boundary_recalculation_note": "Must recalculate after official boundary release."
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "announced_value(43.6_km2)",
+      "confidence": "high",
+      "assumptions": [
+        "Value from official announcement."
+      ],
+      "boundary_recalculation_required": false
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(AI_scenario_cards)",
+      "confidence": "high",
+      "assumptions": [],
+      "boundary_recalculation_required": false
+    }
+  }
+}
