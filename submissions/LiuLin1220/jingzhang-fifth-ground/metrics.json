@@ -1,0 +1,779 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(project_EPSG4548(SITE-001))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(land_use) intersect site) / area(site)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_overlap_area_sqm": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(pairwise polygon interior overlap)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 91500.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(concept transfer and fallback pavilion footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.008017296,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept building footprint area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1330620.549,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(concept ground green spaces))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.116589933,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept green-space union area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 286142.792,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(concept transfer and fallback public spaces))",
+      "confidence": "medium",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.025072038,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept public-space union area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 176435.392,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(union(3m conceptual buffer around submitted ground centerlines))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.015459396,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept road buffer area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "ground_heritage_mainline_length_m": {
+      "status": "known",
+      "value": 9683.47,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(project_EPSG4548(ROAD-GROUND-HERITAGE-MAINLINE))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept alignment only; not the surveyed Heritage Park route."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "phasing_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(phases)) / area(site)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "vertical_transfer_court_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(facility_role == vertical_transfer_court)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "roof_prototype_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "simulation.json"
+      ],
+      "formula": "count(analysis-helper roof prototype records)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "qualification_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(gate_definitions)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "roof_gate_record_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "roof_prototype_count * qualification_gate_count",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "roof_eligibility_passed_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "simulation.json",
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(prototypes where every real-evidence gate passes)",
+      "confidence": "high",
+      "assumptions": [
+        "Zero means no prototype has passed the submitted evidence gate; it does not mean the physical roofs are proven ineligible."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "ground_fallback_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "simulation.json"
+      ],
+      "formula": "count(equal ground fallback spaces)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "ground_fallback_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson",
+        "simulation.json"
+      ],
+      "formula": "count(roof prototypes with one declared equal ground fallback) / roof_prototype_count",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "continuous_skybridge_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "simulation.json"
+      ],
+      "formula": "count(ROAD_CENTERLINE features with roof-level inter-building continuity)",
+      "confidence": "high",
+      "assumptions": [
+        "The proposal intentionally draws no continuous aerial bridge."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "design_scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered scenario cards 01 through 12)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona rows)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "spatial.json"
+      ],
+      "formula": "count(public knowledge landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "design_project_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "spatial.json"
+      ],
+      "formula": "count(P-00 through P-09 concept projects)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 2917692.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(project_EPSG4548(features where land_use_code == '0702')))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 1382540.832,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(project_EPSG4548(features where land_use_code == '0802')))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 3561459.525,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(project_EPSG4548(features where land_use_code == '0803')))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_09_sqm": {
+      "status": "known",
+      "value": 1996552.287,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(project_EPSG4548(features where land_use_code == '09')))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1554579.917,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(project_EPSG4548(features where land_use_code == '1401')))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 3465133.902,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(project_EPSG4548(PHASE order 1))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3801720.759,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(project_EPSG4548(PHASE order 2))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 4145970.725,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(project_EPSG4548(PHASE order 3))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims.",
+        "Conceptual design-model result only; no real building, approval, title, operator, or field performance is represented."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "zhongzhiyuan_key_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(project_EPSG4548(PROV-KEY-001))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "ai_origin_key_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(project_EPSG4548(PROV-KEY-002))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "dazhongsi_key_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(project_EPSG4548(PROV-KEY-003))",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated from repository provisional rough geometry; not suitable for official area or statutory claims."
+      ],
+      "metric_kind": "conceptual_derived"
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(verified real building floor area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No verified real building inventory, storey count, or measured floor area is available.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "verified total floor area / official site area",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "Official floor-area controls and verified existing/new floor areas are unavailable.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved building-height control",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "Official height controls and real building heights are unavailable.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "real_roof_candidate_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(real roofs entered into qualification)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No cleared real-building or roof inventory is included.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "confirmed_eligible_roof_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "sum(area of real roofs passing all five gates)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No real roof has entered or passed the five-gate process.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "structural_spare_load_kpa": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "qualified appraisal of verified existing structure",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No structural survey, appraisal, loading history, or strengthening design is included.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "verified_fire_egress_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(qualified and approved egress routes for each real roof use)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No real use classification, fire strategy, egress survey, or professional review is included.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "verified_accessible_roof_route_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(continuous accessible routes verified for real roof activities)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No real vertical transportation, route survey, facility audit, or user test is included.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "verified_roof_drainage_system_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(real roof systems passing membrane, drainage, overflow, and maintenance review)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No real roof substrate, membrane, drainage, overflow, or maintenance record is included.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "verified_title_consent_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(real roofs with verified title/use consent)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No title, lease, co-owner consent, or use authorization is included.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "named_roof_operator_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "simulation.json"
+      ],
+      "formula": "count(real roof prototypes with a named accountable operator)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No operating entity, liability allocation, insurance, funding, or emergency duty is confirmed.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "implementation_cost_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "professional quantity takeoff and verified unit rates",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No real scope, building, engineering design, quantity takeoff, procurement strategy, or operator budget is available.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "road_capacity_vph": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "verified transport model using surveyed demand and official network",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No traffic survey, official road redline, or transport model is included.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    },
+    "parking_supply_spaces": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "approved parking standard applied to confirmed program",
+      "confidence": "unknown",
+      "assumptions": [
+        "Keep unknown until official data and qualified professional evidence are supplied."
+      ],
+      "reason": "No approved parking standard, current supply, or confirmed program scale is included.",
+      "required_for_formal_submission": true,
+      "metric_kind": "design_target"
+    }
+  }
+}
