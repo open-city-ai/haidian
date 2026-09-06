@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "active",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation.",
+      "assumption_id": "A-CONTROLS-001",
+      "title_zh": "临时边界与缺失控规条件",
+      "description_zh": "方案使用provisional_boundaries.geojson作为临时边界，official_boundary=false。容积率、建筑高度、建筑密度、退线和道路红线均为unknown，待官方控规或任务书附件发布后复算。",
+      "recalculation_trigger": "官方精确边界和控规条件发布后，site_boundary、key_areas、land_use、buildings、roads、green_space、public_space、phasing和全部metrics须重新复算。"
+    },
+    {
+      "assumption_id": "A-BOUNDARY-001",
+      "title_zh": "临时边界精度",
+      "description_zh": "provisional boundary精度为provisional_rough，不得作为official redline、审批依据或精确面积复算依据。组织方数据缺口不阻断内容评分。",
+      "recalculation_trigger": "官方polygon补齐后替换全部provisional geometry。",
+      "status": "active"
+    },
+    {
+      "assumption_id": "A-HERITAGE-001",
+      "title_zh": "文保范围待确认",
+      "description_zh": "清华园火车站旧址文保范围为概念建议，实际文保范围以官方公布为准。",
+      "recalculation_trigger": "官方文保范围发布后更新constraints图层。",
+      "status": "active"
+    },
+    {
+      "assumption_id": "A-BLUELINE-001",
+      "title_zh": "清河蓝线待确认",
+      "description_zh": "清河蓝线约束为概念建议，实际蓝线以水利部门正式划定为准。",
+      "recalculation_trigger": "官方蓝线发布后更新constraints图层。",
+      "status": "active"
+    },
+    {
+      "assumption_id": "A-DATA-001",
+      "title_zh": "数据来源边界",
+      "description_zh": "方案数据来自官方公告、agent_taskbook、provisional_boundaries和source_registry。不得使用非公开规划图件、非公开空间数据或未授权资料。",
+      "recalculation_trigger": "新公开资料发布后更新sources.json。",
+      "status": "active"
+    }
+  ]
+}
