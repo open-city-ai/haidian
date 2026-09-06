@@ -46,11 +46,18 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import stat
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
-from source_registry_utils import load_source_registry, summarize_source_registry
+from source_registry_utils import (
+    DEFAULT_SOURCE_REGISTRY_PATH,
+    load_source_registry,
+    summarize_source_registry,
+)
 
 
 DEFAULT_OUTPUT = "source-registry-data.js"
@@ -80,6 +87,30 @@ def render_js(data: dict[str, Any]) -> str:
     )
 
 
+def write_text_atomically(path: Path, content: str) -> None:
+    mode = stat.S_IMODE(path.stat().st_mode) if path.exists() else 0o644
+    temporary: str | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            dir=path.parent,
+            prefix=f".{path.name}-",
+            suffix=".tmp",
+            delete=False,
+            mode="w",
+            encoding="utf-8",
+        ) as handle:
+            temporary = handle.name
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary, mode)
+        os.replace(temporary, path)
+    except BaseException:
+        if temporary:
+            Path(temporary).unlink(missing_ok=True)
+        raise
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=__doc__,
@@ -106,6 +137,15 @@ def main() -> int:
     out_path = Path(args.out)
     if not out_path.is_absolute():
         out_path = repo_root / out_path
+    registry_path = repo_root / DEFAULT_SOURCE_REGISTRY_PATH
+    resolved_out = out_path.resolve()
+    aliases_registry = resolved_out == registry_path.resolve() or (
+        out_path.exists()
+        and registry_path.exists()
+        and out_path.samefile(registry_path)
+    )
+    if aliases_registry or resolved_out.parts[-2:] == Path(DEFAULT_SOURCE_REGISTRY_PATH).parts:
+        parser.error(f"output must not overwrite a source registry input: {resolved_out}")
     content = render_js(build_frontend_data(repo_root))
     if args.check:
         if not out_path.exists():
@@ -116,7 +156,7 @@ def main() -> int:
             print(f"{out_path}: generated data is stale; run scripts/generate_source_registry_data.py", file=sys.stderr)
             return 1
         return 0
-    out_path.write_text(content, encoding="utf-8")
+    write_text_atomically(out_path, content)
     print(out_path.relative_to(repo_root) if out_path.is_relative_to(repo_root) else out_path)
     return 0
 
