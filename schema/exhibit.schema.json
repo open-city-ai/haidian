@@ -34,7 +34,7 @@
         },
         "cover": {
           "type": "string",
-          "pattern": "^assets/.+\\.(png|jpg|jpeg|webp|gif)$"
+          "pattern": "^assets[\\\\/](?!\\.\\.(?:[\\\\/]|$))(?!.*[\\\\/]\\.\\.(?:[\\\\/]|$)).+\\.(png|jpg|jpeg|webp|gif)$"
         },
         "tags": {
           "type": "array",
@@ -97,7 +97,7 @@
         },
         "image": {
           "type": "string",
-          "pattern": "^assets/.+\\.(png|jpg|jpeg|webp|gif)$"
+          "pattern": "^assets[\\\\/](?!\\.\\.(?:[\\\\/]|$))(?!.*[\\\\/]\\.\\.(?:[\\\\/]|$)).+\\.(png|jpg|jpeg|webp|gif)$"
         },
         "caption": {
           "type": "string",
@@ -150,11 +150,13 @@
         },
         "detail": {
           "type": "string",
-          "maxLength": 120
+          "maxLength": 120,
+          "pattern": "^(?![\\\\/])(?!.*:[\\\\/][\\\\/])(?!\\.\\.(?:[\\\\/]|$))(?!.*[\\\\/]\\.\\.(?:[\\\\/]|$)).*$"
         },
         "showcase": {
           "type": "string",
-          "maxLength": 160
+          "maxLength": 160,
+          "pattern": "^(?![\\\\/])(?!.*:[\\\\/][\\\\/])(?!\\.\\.(?:[\\\\/]|$))(?!.*[\\\\/]\\.\\.(?:[\\\\/]|$)).*$"
         }
       },
       "additionalProperties": false
