@@ -716,13 +716,22 @@
       ],
       "metrics": [
         "dazhongsi_key_area_sqm",
-        "integrity_station_count"
+        "integrity_station_count",
+        "p04_service_zone_count",
+        "p04_named_role_slot_count",
+        "p04_decision_gate_count",
+        "p04_negative_case_count",
+        "p04_field_observation_record_count",
+        "p04_confirmed_operator_record_count",
+        "p04_written_venue_authorization_record_count",
+        "p04_comparable_independent_quote_record_count"
       ],
       "drawings": [
         "drawings/a0-boards.pdf"
       ],
       "visual_sections": [
         "三种角色，不是三个复制品",
+        "P04 一区一主责槽位的可逆召回服务柜台",
         "一条可见的生命周期",
         "十二个有边界的场景"
       ],
@@ -734,16 +743,20 @@
       "assumption_ids": [
         "A-SPATIAL-002",
         "A-MOBILITY-001",
-        "A-SECURITY-001"
+        "A-SECURITY-001",
+        "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "SPATIAL_REVIEW"
       ],
       "machine_evidence": [
         "spatial.json",
-        "simulation.json"
+        "simulation.json",
+        "metrics.json",
+        "risk.json",
+        "assumptions.json"
       ],
-      "evidence_summary_zh": "大钟寺节点以召回交换站、连续服务广场、修复花园和分流演练界面组成恢复单元。"
+      "evidence_summary_zh": "大钟寺 P04 以一区一主责槽位的五区可逆柜台细化恢复单元：八个未指派槽位逐区绑定资源、主责、验收和退出，D0/D30/D60/D90 与六个负例明确判停；该表述不是工程比例，现场、主体、场地授权和可比报价记录均保持包内真实零基线。"
     },
     {
       "requirement_id": "agent.1",
@@ -846,7 +859,9 @@
         "design_scenario_card_count",
         "scenario_count",
         "simulation_task_count",
-        "tool_schema_pass_rate"
+        "tool_schema_pass_rate",
+        "p04_decision_gate_count",
+        "p04_negative_case_count"
       ],
       "drawings": [
         "drawings/a3-booklet.pdf"
@@ -862,7 +877,8 @@
       ],
       "assumption_ids": [
         "A-SYNTHETIC-001",
-        "A-PRIVACY-001"
+        "A-PRIVACY-001",
+        "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "PROFESSIONAL_EVIDENCE"
@@ -871,7 +887,7 @@
         "simulation.json",
         "risk.json"
       ],
-      "evidence_summary_zh": "十二张服务设计场景卡按共用能力归并为六个合成演练场景节点和十二项审计任务；三种计数互不替代，且均不含真实漏洞。"
+      "evidence_summary_zh": "十二张服务设计场景卡按共用能力归并为六个合成演练场景节点和十二项审计任务；P04 另以四道证据门和六个负例约束任何现场转化，三种计数互不替代且不含真实漏洞。"
     },
     {
       "requirement_id": "agent.4",
@@ -889,13 +905,16 @@
       "metrics": [
         "public_space_area_sqm",
         "green_space_area_sqm",
-        "integrity_station_count"
+        "integrity_station_count",
+        "p04_service_zone_count",
+        "p04_named_role_slot_count"
       ],
       "drawings": [
         "drawings/a0-boards.pdf"
       ],
       "visual_sections": [
         "公共 / 受控界面",
+        "P04 一区一主责槽位的可逆召回服务柜台",
         "六个概念建筑锚点",
         "任务覆盖"
       ],
@@ -904,7 +923,8 @@
       ],
       "assumption_ids": [
         "A-PRIVACY-001",
-        "A-BUILDING-001"
+        "A-BUILDING-001",
+        "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "VISUAL_PACKAGING"
@@ -912,7 +932,7 @@
       "machine_evidence": [
         "spatial.json"
       ],
-      "evidence_summary_zh": "五处公共界面与蓝绿慢行系统让技术治理成为可到达、可询问、可退出的城市体验。"
+      "evidence_summary_zh": "五处公共界面与蓝绿慢行系统让技术治理成为可到达、可询问、可退出的城市体验；P04 五区分别落实告知、人工连续服务、影响映射、受控修复和退出复原。"
     },
     {
       "requirement_id": "agent.5",
@@ -968,13 +988,19 @@
       "metrics": [
         "phasing_coverage_ratio",
         "simulation_task_count",
-        "audit_completeness"
+        "audit_completeness",
+        "p04_decision_gate_count",
+        "p04_negative_case_count",
+        "p04_confirmed_operator_record_count",
+        "p04_written_venue_authorization_record_count",
+        "p04_comparable_independent_quote_record_count"
       ],
       "drawings": [
         "drawings/a3-booklet.pdf"
       ],
       "visual_sections": [
         "十项更新与运营项目",
+        "P04 一区一主责槽位的可逆召回服务柜台",
         "任务覆盖",
         "假设与停止条件"
       ],
@@ -988,7 +1014,8 @@
       "assumption_ids": [
         "A-IMPLEMENTATION-001",
         "A-LEGAL-001",
-        "A-METRIC-001"
+        "A-METRIC-001",
+        "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "SPATIAL_REVIEW",
@@ -999,7 +1026,7 @@
         "simulation.json",
         "risk.json"
       ],
-      "evidence_summary_zh": "三阶段分区、明确运营角色、12项审计任务和风险矩阵共同支持长期年度演练与复盘。"
+      "evidence_summary_zh": "三阶段分区、12项审计任务与风险矩阵保留长期运营框架；P04 八槽位目前未指派，主体/场地授权/可比报价记录为零，只有通过 D0/D30/D60/D90 才可讨论下一轮有界试验。"
     }
   ]
 }

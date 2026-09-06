@@ -350,7 +350,9 @@
       ],
     "metric_refs": [
       "energy_budget_violations",
-      "audit_completeness"
+      "audit_completeness",
+      "p04_service_zone_count",
+      "p04_named_role_slot_count"
       ],
     "source_ids": [
       "SITE-PACKAGE",
@@ -359,12 +361,13 @@
     "assumption_ids": [
       "A-MUNICIPAL-001",
       "A-CONTROLS-001",
-      "A-SYNTHETIC-001"
+      "A-SYNTHETIC-001",
+      "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "PROFESSIONAL_EVIDENCE"
       ],
-      "evidence_summary_zh": "签名发布、状态看板、人工柜台、离线清单和回拨队列组成数字与人工并行的概念基础设施。",
+      "evidence_summary_zh": "P04 五区把状态牌、纸面分诊、同层人工柜台、离线台账、隔离复测和撤场归档逐区绑定八个角色槽位；它们是概念基础设施需求，不是已部署能力。",
     "machine_evidence": [
       "risk.json",
       "metrics.json",
@@ -438,7 +441,9 @@
         "zhongzhiyuan_key_area_sqm",
         "ai_origin_key_area_sqm",
         "dazhongsi_key_area_sqm",
-        "integrity_station_count"
+        "integrity_station_count",
+        "p04_service_zone_count",
+        "p04_named_role_slot_count"
       ],
     "source_ids": [
       "OFFICIAL-ANNOUNCEMENT",
@@ -447,12 +452,13 @@
       ],
       "assumption_ids": [
         "A-SPATIAL-002",
-        "A-BUILDING-001"
+        "A-BUILDING-001",
+        "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "SPATIAL_REVIEW"
       ],
-      "evidence_summary_zh": "三个临时KEY_AREA分别锚定可信发布、公共追溯和召回交换完整单元，同时保留临时边界警示。",
+      "evidence_summary_zh": "三个临时 KEY_AREA 分别锚定发布、追溯和召回单元；大钟寺 P04 在不修改临时几何的前提下，以一区一主责槽位的五区服务合同补齐资源、责任、验收和退出；该合同不表示足尺平面或工程比例。",
       "machine_evidence": [
         "spatial.json"
       ]
@@ -481,7 +487,9 @@
       "design_project_count",
       "building_footprint_area_sqm",
       "simulation_task_count",
-      "phasing_coverage_ratio"
+      "phasing_coverage_ratio",
+      "p04_service_zone_count",
+      "p04_named_role_slot_count"
       ],
     "source_ids": [
       "OFFICIAL-ANNOUNCEMENT",
@@ -492,13 +500,14 @@
       "A-BUILDING-001",
       "A-IMPLEMENTATION-001",
       "A-SPATIAL-001",
-      "A-SYNTHETIC-001"
+      "A-SYNTHETIC-001",
+      "A-P04-BASELINE-001"
       ],
     "self_check_ids": [
       "SPATIAL_REVIEW",
       "PROFESSIONAL_EVIDENCE"
     ],
-    "evidence_summary_zh": "正文列出十项人类可读更新与运营项目；design_project_count=6只统计其中六个建筑锚点，廊道、跨站编辑室、数字演练包与年度运营分别由道路、simulation和分期证据承接。",
+    "evidence_summary_zh": "正文列出十项更新与运营项目；P04 是五区、八槽位的可逆服务合同而非第五类几何，继续由既有 P-03 空间锚点、包内零基线和退出条件承接。",
     "machine_evidence": [
       "spatial.json",
       "metrics.json",
@@ -533,7 +542,13 @@
         "repair_retest_pass_rate",
         "maintainer_effort_budget_attainment_rate",
         "accessible_task_completion_rate",
-        "post_exit_timely_data_deletion_rate"
+        "post_exit_timely_data_deletion_rate",
+        "p04_decision_gate_count",
+        "p04_negative_case_count",
+        "p04_field_observation_record_count",
+        "p04_confirmed_operator_record_count",
+        "p04_written_venue_authorization_record_count",
+        "p04_comparable_independent_quote_record_count"
       ],
       "source_ids": [
         "AGENT-TASKBOOK",
@@ -541,13 +556,14 @@
       ],
       "assumption_ids": [
         "A-IMPLEMENTATION-001",
-        "A-METRIC-001"
+        "A-METRIC-001",
+        "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "SPATIAL_REVIEW",
         "PROFESSIONAL_EVIDENCE"
       ],
-      "evidence_summary_zh": "三个互不重叠阶段完整覆盖临时SITE；90天公共试点另以八项保持UNKNOWN的现场结果、预冻结测量协议和GO/REVISE/STOP门约束，未宣称已有现场成效。",
+      "evidence_summary_zh": "三个阶段完整覆盖临时 SITE；P04 另以 D0/D30/D60/D90、六个负例和四项包内零基线约束 90 天合同，未宣称已授权、已进场、已有报价或已有现场成效。",
       "machine_evidence": [
         "metrics.json",
         "spatial.json"
@@ -589,7 +605,15 @@
         "design_project_count",
         "integrity_station_count",
         "simulation_task_count",
-        "audit_completeness"
+        "audit_completeness",
+        "p04_service_zone_count",
+        "p04_named_role_slot_count",
+        "p04_decision_gate_count",
+        "p04_negative_case_count",
+        "p04_field_observation_record_count",
+        "p04_confirmed_operator_record_count",
+        "p04_written_venue_authorization_record_count",
+        "p04_comparable_independent_quote_record_count"
       ],
     "source_ids": [
       "BOUNDARY-SOURCE",
@@ -598,12 +622,13 @@
       ],
       "assumption_ids": [
         "A-METRIC-001",
-        "A-SYNTHETIC-001"
+        "A-SYNTHETIC-001",
+        "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "SPATIAL_REVIEW"
       ],
-      "evidence_summary_zh": "面积、比例、廊道长度、项目与站点数量均从GeoJSON或simulation任务逐项计算，公式、来源、置信度和假设齐全。",
+      "evidence_summary_zh": "面积与演练指标继续由 GeoJSON/simulation 复算；P04 的五区、八槽位、四门、六负例来自结构化合同，四个零值只计算投稿包内合格记录。",
       "machine_evidence": [
         "metrics.json",
         "simulation.json"
@@ -634,7 +659,11 @@
       "height_limit_m",
       "road_capacity_vph",
       "parking_supply_spaces",
-      "simulation_success_rate"
+      "simulation_success_rate",
+      "p04_field_observation_record_count",
+      "p04_confirmed_operator_record_count",
+      "p04_written_venue_authorization_record_count",
+      "p04_comparable_independent_quote_record_count"
       ],
     "source_ids": [
       "SITE-PACKAGE",
@@ -658,13 +687,14 @@
       "A-SECURITY-001",
       "A-LEGAL-001",
       "A-LICENSE-001",
-      "A-PRIVACY-001"
+      "A-PRIVACY-001",
+      "A-P04-BASELINE-001"
       ],
       "self_check_ids": [
         "SPATIAL_REVIEW",
         "PROFESSIONAL_EVIDENCE"
       ],
-      "evidence_summary_zh": "risk.json覆盖八类风险；高分项提供专业或公众复核路径，法定控制与真实运营证据缺口继续显式保留。",
+      "evidence_summary_zh": "risk.json 保留八类风险；P04 明示现场、主体、场地授权和可比报价记录均为零，六个负例与两报价条件防止缺证据的概念越级为真实运营或采购。",
     "machine_evidence": [
       "risk.json",
       "metrics.json",
