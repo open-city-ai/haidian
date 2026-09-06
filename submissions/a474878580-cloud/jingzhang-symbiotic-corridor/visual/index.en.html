@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingzhang Symbiotic Corridor · Visual Overview</title>
+<style>
+:root{--bg:#f8fafc;--card:#fff;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;--accent:#2563eb;--ok:#16a34a;}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+header{border-bottom:2px solid var(--line);padding-bottom:16px;margin-bottom:24px}
+header h1{margin:0;font-size:1.9rem;letter-spacing:-0.02em}
+header p{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.card h2{margin:0 0 12px;font-size:1.25rem;color:var(--accent)}
+.card h3{margin:16px 0 8px;font-size:1.05rem;color:var(--ink)}
+.card img{max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block;margin:12px 0}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.metric{background:#f1f5f9;border:1px solid var(--line);border-radius:8px;padding:14px}
+.metric .num{font-size:1.6rem;font-weight:700;color:var(--accent)}
+.metric .lab{font-size:0.85rem;color:var(--muted)}
+.warn{color:#b45309;font-size:0.85rem;background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;padding:10px;margin:10px 0}
+.small{font-size:0.82rem;color:var(--muted)}
+ul,ol{margin:8px 0;padding-left:22px}
+li{margin:4px 0}
+.status-ok{color:var(--ok);font-weight:600}
+footer{border-top:1px solid var(--line);padding-top:14px;margin-top:24px;color:var(--muted);font-size:0.8rem}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>Jingzhang Symbiotic Corridor · Centennial Jingzhang AI Innovation Belt Visual Overview</h1>
+  <p>Regulatory-plan-depth concept urban design | Author a474878580-cloud | Iteration v0.1</p>
+</header>
+
+<section class="card">
+  <h2>Core Metrics</h2>
+  <div class="metrics">
+    <div class="metric">
+      <div class="num"><span data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</span></div>
+      <div class="lab">Overall design area</div>
+    </div>
+    <div class="metric">
+      <div class="num"><span data-metric="green_ratio" data-value="0.578946">57.9%</span></div>
+      <div class="lab">Green ratio (green / site area)</div>
+    </div>
+    <div class="metric">
+      <div class="num"><span data-metric="public_space_ratio" data-value="0.040842">4.08%</span></div>
+      <div class="lab">Public-space ratio (public / site area)</div>
+    </div>
+  </div>
+  <p class="small">Values recalculated from geometry/*.geojson and consistent with metrics.json.</p>
+  <div class="warn">Boundary status: overall and key-area boundaries shown here are provisional_constraint, not official redlines.</div>
+</section>
+
+<section class="card">
+  <h2>Site Overview Map</h2>
+  <p>The overall design area is about 11.4 km², stringing three key areas from north to south: Zhongzhiyuan AI Self-Reliant Acceleration Zone, Beijing AI Origin Community, and Dazhongsi AI Industry Cluster.</p>
+  <img src="../assets/figures/site-overview.png" alt="Site overview: overall design area and three key areas">
+  <p class="small">Source: geometry/site_boundary.geojson + geometry/key_areas.geojson (PROV-SITE-001, PROV-KEY-001..003, provisional)</p>
+</section>
+
+<section class="card">
+  <h2>Three-Level Scope Framework</h2>
+  <p>Coordinated research area ~43.6 km², overall design area ~11.4 km², key detailed-design area ~368.4 ha, progressively implementing industry strategy, regulatory-plan urban design, and detailed key-area design.</p>
+  <h3>Land Use Zoning</h3>
+  <p>The overall boundary is seamlessly partitioned on a 4×3 grid into research (0802), commercial service (05), park green (1401), community facilities (0702), and public-administration/service mixed (08).</p>
+  <img src="../assets/figures/land-use-structure.png" alt="Land use structure: three-level scope and land-use zoning">
+  <p class="small">Source: geometry/land_use.geojson (agent_generated_design)</p>
+</section>
+
+<section class="card">
+  <h2>Key Areas</h2>
+  <p>Zhongzhiyuan carries AI full-stack self-reliant innovation and governance discourse; AI Origin Community carries world-class AI ecosystem and talent living; Dazhongsi carries intelligent-native new formats. Boundaries are provisional; building form and renewal strategies are directional.</p>
+  <img src="../assets/figures/key-areas.png" alt="Key areas: Zhongzhiyuan, AI Origin Community, Dazhongsi">
+  <p class="small">Source: geometry/key_areas.geojson</p>
+</section>
+
+<section class="card">
+  <h2>Mobility & Slow Traffic</h2>
+  <h3>Blue-Green Public Space</h3>
+  <p>The Jingzhang heritage-park vibrant belt is the central blue-green skeleton, with Qinghe and Xiaoyue rivers as blue-green veins and continuous walkways and cycle paths. Road length is about <span data-metric="road_length_m" data-value="21537.744">21.5 km</span>, serving as a conceptual slow-traffic and bus-feeder skeleton.</p>
+  <img src="../assets/figures/mobility-bluegreen.png" alt="Mobility and blue-green public space composite system">
+  <p class="small">Source: geometry/roads.geojson, geometry/green_space.geojson, geometry/public_space.geojson</p>
+</section>
+
+<section class="card">
+  <h2>Buildings</h2>
+  <h3>Renewal Projects</h3>
+  <p>Building footprint about 435,007 m² is a conceptual massing placeholder; total floor area, FAR, height, and renewal lists await official regulatory and ownership data. Renewal targets existing inefficient plants, railway-heritage ancillary facilities, and older communities, classified into retain, renovate, demolish, and build-new. Six renewal categories are phased near-, mid-, and long-term.</p>
+  <p class="small">Source: geometry/buildings.geojson, geometry/phasing.geojson</p>
+</section>
+
+<section class="card">
+  <h2>AI Scenarios</h2>
+  <p>Twelve scenario cards are mapped to five personas: researchers/ engineers, startup founders, international talent/visitors, local residents, and urban governors. S1–S3 are industry test/validation scenarios (public compute reservation, autonomous shuttle, AI-assisted clinic). All scenarios follow data minimization and human review.</p>
+  <ul>
+    <li>S1 Public compute reservation & carbon dashboard</li>
+    <li>S2 Autonomous shuttle loop test</li>
+    <li>S3 AI-assisted community clinic</li>
+    <li>S4–S12 Education, legal, living, developer market, heritage AR, urban inspection, guide, crowd, low-carbon mobility</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Metrics Evidence</h2>
+  <img src="../assets/figures/metrics-evidence.png" alt="Metrics evidence and recalculation chain">
+  <p class="small">Source: metrics.json, geometry/*.geojson. Green ratio 57.9%, public-space ratio 4.1%, roads 21.5 km, key areas 369.3 ha.</p>
+</section>
+
+<section class="card">
+  <h2>Task Coverage</h2>
+  <p>The compliance matrix covers announcement clauses 1.3–1.5 and agent tasks 1–6: overall concept & functional coordination; AI full-stack self-reliance & world-class ecosystem; AI+ scenario empowerment; AI public space & landmark; cultural narrative; global events & long-term operation.</p>
+  <p class="small">See compliance_matrix.json, standard_matrix.json, design_depth_matrix.json.</p>
+</section>
+
+<section class="card">
+  <h2>Self-Check Status</h2>
+  <p class="status-ok">This package has undergone spatial review; geometry is seamless, metrics are recalculable, visual and report pages are offline and static.</p>
+  <ul>
+    <li>Deterministic validation: pending self_check run</li>
+    <li>Spatial review: PASS</li>
+    <li>Visual packaging check: pending self_check run</li>
+    <li>Professional evidence review: pending self_check run</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Sources</h2>
+  <ol>
+    <li>Centennial Jingzhang AI Innovation Belt international open-call pre-qualification announcement (official public)</li>
+    <li>Agent-oriented open-call taskbook (user-provided cleared extract)</li>
+    <li>Urban design administration measures / regulatory detailed-planning provisions / land-sea use classification guide</li>
+    <li>Haidian three-zones-two-wings and key-area notes (public package)</li>
+    <li>Public research on global AI innovation ecosystems</li>
+  </ol>
+  <p class="small">Full sources, metrics, standards, and depth matrices are in sources.json, metrics.json, standard_matrix.json, design_depth_matrix.json.</p>
+</section>
+
+<section class="card">
+  <h2>Assumptions</h2>
+  <ul>
+    <li>Overall and key-area boundaries use provisional_boundaries.geojson; derived layers must be recalculated when the precise redline arrives.</li>
+    <li>Building footprint and land-use zoning are conceptual; total floor area, FAR, height, and renewal lists await official regulatory/ownership data.</li>
+    <li>All AI scenarios are test/validation/concept proposals and do not constitute approved operation.</li>
+  </ul>
+  <p class="small">See assumptions.json.</p>
+</section>
+
+<footer>
+  <p>© 2026 a474878580-cloud / WorkBuddy AI Agent · Submission package: submissions/a474878580-cloud/jingzhang-symbiotic-corridor</p>
+  <p>Disclaimer: All spatial recommendations on this page are conceptual proposals, not substitutes for formal planning or government-approved conclusions.</p>
+</footer>
+</div>
+</body>
+</html>
