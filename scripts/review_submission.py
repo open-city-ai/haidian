@@ -37,6 +37,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -120,6 +121,10 @@ PACKAGE_FILES_INCLUDED_AS_PARTIAL_PREVIEW = {
 }
 
 
+class ReviewOutputError(ValueError):
+    pass
+
+
 def read_text(path: Path) -> str:
     if not path.exists():
         return ""
@@ -156,6 +161,50 @@ def script_path(repo_root: Path, name: str) -> Path:
     # participant-controlled scripts), so it must never supply executables to
     # the review process.
     return SCRIPT_DIR / name
+
+
+def validate_output_dir(repo_root: Path, out_dir: Path, submission_dir: Path) -> None:
+    try:
+        candidates = {
+            Path(os.path.abspath(out_dir)),
+            out_dir.resolve(),
+        }
+        protected_roots = {
+            repo_root.resolve() / "submissions",
+            submission_dir.resolve(),
+        }
+    except (OSError, RuntimeError) as exc:
+        raise ReviewOutputError(f"Review output path cannot be resolved safely: {exc}") from exc
+
+    for candidate in candidates:
+        if "submissions" in candidate.parts or any(
+            candidate == root or candidate.is_relative_to(root) for root in protected_roots
+        ):
+            raise ReviewOutputError("Review output must not be written inside `submissions/`")
+
+
+def write_text_atomically(path: Path, text: str) -> None:
+    mode = path.stat().st_mode & 0o777 if path.exists() else 0o644
+    temporary: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary = Path(handle.name)
+            os.fchmod(handle.fileno(), mode)
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    except BaseException:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+        raise
 
 
 def run_json_command(command: list[str]) -> dict:
@@ -416,14 +465,19 @@ def main() -> int:
             out_dir = repo_root / out_dir
     else:
         out_dir = repo_root / DEFAULT_OUTPUT_ROOT / submission_dir.name / "review-packet"
+    try:
+        validate_output_dir(repo_root, out_dir, submission_dir)
+    except ReviewOutputError as exc:
+        parser.error(str(exc))
     out_dir.mkdir(parents=True, exist_ok=True)
 
     review_input = build_review_input(repo_root, submission_dir)
-    (out_dir / "review-input.json").write_text(
-        json.dumps(review_input, ensure_ascii=False, indent=2), encoding="utf-8"
+    write_text_atomically(
+        out_dir / "review-input.json",
+        json.dumps(review_input, ensure_ascii=False, indent=2),
     )
-    (out_dir / "review-prompt.md").write_text(build_prompt(review_input), encoding="utf-8")
-    (out_dir / "advisory-review.md").write_text(build_template(review_input), encoding="utf-8")
+    write_text_atomically(out_dir / "review-prompt.md", build_prompt(review_input))
+    write_text_atomically(out_dir / "advisory-review.md", build_template(review_input))
     print(out_dir)
     return 0
 
