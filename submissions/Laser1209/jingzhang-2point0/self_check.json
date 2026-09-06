@@ -1,0 +1,89 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "SC-MANIFEST",
+      "result": "pass",
+      "severity": "major",
+      "target": "manifest.json",
+      "message": "包类型为professional_design_package，package_state为ready_for_review，files清单完整覆盖必需交付文件。"
+    },
+    {
+      "check_id": "SC-PARADIGM",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "proposal/GeoJSON/图件/JSON全部统一为藤脉串核（Vine-Core）范式，无A形双脊残留。"
+    },
+    {
+      "check_id": "SC-BOUNDARY-TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "provisional边界存在，source_type为agent_inferred_from_public_data；官方红线发布前仅作临时边界，面积须重算。"
+    },
+    {
+      "check_id": "SC-KEY-AREAS",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三大重点区域（众智园M3、AI原点社区M2、大钟寺M1）为provisional多边形，与公告重点片区对应。"
+    },
+    {
+      "check_id": "SC-GEOJSON-TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "9个GeoJSON图层均含唯一id、合法properties、闭合几何，所有坐标位于有效经纬度范围。"
+    },
+    {
+      "check_id": "SC-SPATIAL-CONTAINMENT",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/",
+      "message": "所有设计图层几何裁剪至SITE边界内，无越界顶点。"
+    },
+    {
+      "check_id": "SC-METRICS",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "24项指标覆盖面积、建筑、路网、蓝绿、场景、分期等，全部标注status/confidence；FAR与预测值标记为unknown并附原因。"
+    },
+    {
+      "check_id": "SC-SCENARIO-MIN",
+      "result": "pass",
+      "severity": "minor",
+      "target": "proposal.md",
+      "message": "AI场景卡12张（>=10）、测试验证场景4个（>=3）、用户画像5类（>=5）、朝圣地标3处（>=3）。"
+    },
+    {
+      "check_id": "SC-CASES",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md",
+      "message": "全球案例8个，满足5-8个区间。"
+    },
+    {
+      "check_id": "SC-RISK-COMPLIANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "proposal包含风险、版权与合规说明；无越权声明（控规指标、审定结论、政府承诺均标注为概念建议）。"
+    },
+    {
+      "check_id": "SC-OFFLINE-VISUAL",
+      "result": "pass",
+      "severity": "minor",
+      "target": "visual/index.html",
+      "message": "visual/index.html为离线自足静态页面，无外部依赖。"
+    },
+    {
+      "check_id": "SC-COPYRIGHT",
+      "result": "pass",
+      "severity": "minor",
+      "target": "report/copyright_statement.md",
+      "message": "report/copyright_statement.md存在并声明版权与数据来源边界。"
+    }
+  ]
+}

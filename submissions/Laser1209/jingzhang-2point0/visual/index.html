@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张2.0：从铁轨到数轨 — 藤脉串核城市设计提案</title>
+<style>
+:root{
+  --bg:#0a0e1a;
+  --bg2:#0d1321;
+  --card:rgba(255,255,255,0.03);
+  --card-hover:rgba(255,255,255,0.06);
+  --border:rgba(255,255,255,0.08);
+  --border-top:rgba(255,255,255,0.18);
+  --text:#e8ecf4;
+  --text2:#94a3b8;
+  --text3:#64748b;
+  --vine:#22c55e;
+  --cyan:#06b6d4;
+  --amber:#f59e0b;
+  --coral:#ef4444;
+  --m1:#E8A87C;
+  --m2:#F4D03F;
+  --m3:#D35400;
+  --m4:#85C1E9;
+  --radius:16px;
+  --max-w:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 0%,rgba(34,197,94,0.06),transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 100%,rgba(6,182,212,0.05),transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%,rgba(245,158,11,0.02),transparent 70%);
+  pointer-events:none;
+  z-index:0;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  opacity:0.025;
+  pointer-events:none;
+  z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{max-width:var(--max-w);margin:0 auto;padding:0 24px;position:relative;z-index:2}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,14,26,0.72);
+  backdrop-filter:blur(20px) saturate(1.6);
+  -webkit-backdrop-filter:blur(20px) saturate(1.6);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:var(--max-w);margin:0 auto;
+  display:flex;align-items:center;gap:4px;
+  padding:10px 24px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-brand{
+  font-weight:700;font-size:13px;letter-spacing:0.5px;
+  color:var(--vine);white-space:nowrap;
+  padding:6px 14px 6px 0;
+  border-right:1px solid var(--border);
+  margin-right:8px;
+  flex-shrink:0;
+}
+.nav-inner a{
+  color:var(--text2);text-decoration:none;
+  font-size:12.5px;padding:6px 12px;border-radius:8px;
+  white-space:nowrap;transition:all .25s;
+  flex-shrink:0;
+}
+.nav-inner a:hover{color:var(--text);background:rgba(255,255,255,0.06)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:100px 24px 80px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 30%,rgba(34,197,94,0.10),transparent 65%),
+    radial-gradient(ellipse 50% 50% at 30% 80%,rgba(6,182,212,0.08),transparent 60%),
+    radial-gradient(ellipse 40% 40% at 75% 70%,rgba(245,158,11,0.05),transparent 60%),
+    linear-gradient(180deg,#0a0e1a 0%,#0d1321 50%,#0a0e1a 100%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 40%,#000 30%,transparent 80%);
+}
+.hero-content{position:relative;z-index:3;text-align:center;max-width:900px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--cyan);
+  padding:8px 20px;border-radius:100px;
+  background:rgba(6,182,212,0.08);
+  border:1px solid rgba(6,182,212,0.2);
+  margin-bottom:32px;
+  animation:fadeUp .8s ease both;
+}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.hero h1{
+  font-size:clamp(42px,7vw,82px);
+  font-weight:800;
+  letter-spacing:-2px;
+  line-height:1.05;
+  margin-bottom:8px;
+  background:linear-gradient(135deg,#1e3a5f 0%,#06b6d4 35%,#22c55e 55%,#e8ecf4 85%,#fff 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:fadeUp .9s ease .1s both;
+}
+.hero-sub{
+  font-size:clamp(16px,2.2vw,22px);
+  color:var(--text2);
+  font-weight:300;
+  letter-spacing:4px;
+  margin-bottom:16px;
+  animation:fadeUp .9s ease .2s both;
+}
+.hero-en{
+  font-size:13px;color:var(--text3);
+  letter-spacing:6px;text-transform:uppercase;
+  margin-bottom:48px;
+  animation:fadeUp .9s ease .3s both;
+}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;max-width:760px;margin:0 auto 48px;
+  animation:fadeUp .9s ease .4s both;
+}
+.stat-badge{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-top:1px solid var(--border-top);
+  border-radius:14px;
+  padding:20px 16px;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.05),0 8px 32px rgba(0,0,0,0.3);
+  transition:transform .3s,border-color .3s;
+}
+.stat-badge:hover{transform:translateY(-3px);border-color:rgba(34,197,94,0.3)}
+.stat-val{
+  font-size:clamp(22px,3vw,30px);
+  font-weight:700;
+  background:linear-gradient(135deg,var(--vine),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  line-height:1.2;
+}
+.stat-label{font-size:12px;color:var(--text2);margin-top:6px;letter-spacing:0.5px}
+.hero-meta{
+  font-size:13px;color:var(--text3);
+  animation:fadeUp .9s ease .5s both;
+}
+.hero-meta span{margin:0 12px}
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  color:var(--text3);font-size:11px;letter-spacing:2px;
+  animation:bounce 2.5s infinite;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* SECTIONS */
+section{padding:90px 0;position:relative;z-index:2}
+.section-num{
+  font-size:12px;letter-spacing:3px;
+  color:var(--vine);font-weight:600;
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-num::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(34,197,94,0.3),transparent)}
+.section-title{
+  font-size:clamp(28px,4vw,42px);
+  font-weight:700;letter-spacing:-1px;
+  margin-bottom:16px;line-height:1.2;
+}
+.section-desc{
+  font-size:16px;color:var(--text2);
+  max-width:720px;margin-bottom:48px;
+}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* CARDS */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-top:1px solid var(--border-top);
+  border-radius:var(--radius);
+  padding:28px;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.05),0 8px 32px rgba(0,0,0,0.25);
+  transition:transform .3s,border-color .3s,background .3s;
+}
+.card:hover{background:var(--card-hover);border-color:rgba(255,255,255,0.12)}
+.card h3{font-size:18px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.card h3 .icon{
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+/* PULL QUOTE */
+.pull-quote{
+  border-left:3px solid var(--vine);
+  padding:20px 28px;
+  margin:32px 0;
+  background:linear-gradient(90deg,rgba(34,197,94,0.06),transparent);
+  border-radius:0 12px 12px 0;
+  font-size:18px;
+  font-style:italic;
+  color:var(--text);
+  line-height:1.8;
+}
+.pull-quote cite{display:block;margin-top:12px;font-size:13px;color:var(--text3);font-style:normal}
+
+/* DETAILS */
+details{
+  margin-top:20px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  transition:border-color .3s;
+}
+details[open]{border-color:rgba(34,197,94,0.25)}
+summary{
+  padding:16px 20px;
+  cursor:pointer;
+  font-size:14px;font-weight:600;
+  color:var(--text);
+  list-style:none;
+  display:flex;align-items:center;gap:10px;
+  user-select:none;
+  transition:background .2s;
+}
+summary:hover{background:rgba(255,255,255,0.03)}
+summary::-webkit-details-marker{display:none}
+summary::before{
+  content:"";
+  width:0;height:0;
+  border-left:6px solid var(--vine);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+  transition:transform .3s;
+  flex-shrink:0;
+}
+details[open] summary::before{transform:rotate(90deg)}
+.details-body{
+  padding:0 20px 20px;
+  font-size:14px;color:var(--text2);
+  line-height:1.8;
+}
+.details-body p{margin-bottom:12px}
+.details-body .cite{
+  font-size:12px;color:var(--text3);
+  padding-top:12px;border-top:1px solid var(--border);
+  margin-top:12px;
+}
+.details-body ul{padding-left:20px;margin:8px 0}
+.details-body li{margin-bottom:6px}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:20px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{
+  background:rgba(255,255,255,0.05);
+  text-align:left;padding:12px 16px;
+  font-weight:600;color:var(--text);
+  white-space:nowrap;
+  border-bottom:1px solid var(--border);
+}
+td{
+  padding:11px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  color:var(--text2);
+}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,0.02)}
+td strong{color:var(--text)}
+
+/* FIGURES */
+figure{margin:32px 0}
+figure img{
+  width:100%;border-radius:12px;
+  border:1px solid var(--border);
+  display:block;
+}
+figcaption{
+  font-size:12.5px;color:var(--text3);
+  text-align:center;margin-top:12px;
+  letter-spacing:0.3px;
+}
+
+/* SVG CHARTS */
+.chart-wrap{
+  background:rgba(0,0,0,0.2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  margin:24px 0;
+}
+.chart-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+.chart-sub{font-size:12px;color:var(--text3);margin-bottom:16px}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:inherit}
+
+/* TAGS */
+.tag{
+  display:inline-block;
+  font-size:11px;padding:3px 10px;
+  border-radius:100px;
+  letter-spacing:0.5px;
+  font-weight:500;
+}
+.tag-vine{background:rgba(34,197,94,0.12);color:var(--vine);border:1px solid rgba(34,197,94,0.25)}
+.tag-cyan{background:rgba(6,182,212,0.12);color:var(--cyan);border:1px solid rgba(6,182,212,0.25)}
+.tag-amber{background:rgba(245,158,11,0.12);color:var(--amber);border:1px solid rgba(245,158,11,0.25)}
+.tag-coral{background:rgba(239,68,68,0.12);color:var(--coral);border:1px solid rgba(239,68,68,0.25)}
+
+/* CORE CARDS */
+.core-card{position:relative;overflow:hidden}
+.core-card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+}
+.m1::before{background:linear-gradient(90deg,var(--m1),transparent)}
+.m2::before{background:linear-gradient(90deg,var(--m2),transparent)}
+.m3::before{background:linear-gradient(90deg,var(--m3),transparent)}
+.m4::before{background:linear-gradient(90deg,var(--m4),transparent)}
+.core-dot{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;color:#0a0e1a;
+  flex-shrink:0;
+}
+
+/* LANDMARK CARDS */
+.landmark-card{position:relative;padding-top:36px}
+.landmark-badge{
+  position:absolute;top:16px;right:16px;
+  font-size:11px;padding:4px 10px;border-radius:100px;
+  background:rgba(6,182,212,0.1);color:var(--cyan);
+  border:1px solid rgba(6,182,212,0.2);
+}
+.landmark-card h3{font-size:17px;margin-bottom:6px}
+.landmark-card .l-sub{font-size:12px;color:var(--text3);margin-bottom:14px;letter-spacing:1px}
+.landmark-card .l-desc{font-size:13.5px;color:var(--text2);line-height:1.7}
+.landmark-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;margin:16px 0;
+  padding:12px;background:rgba(0,0,0,0.2);border-radius:8px;
+}
+.ls-val{font-size:15px;font-weight:600;color:var(--vine)}
+.ls-lbl{font-size:10.5px;color:var(--text3);margin-top:2px}
+
+/* FILE TREE */
+.file-tree{
+  font-family:"SF Mono","Consolas","Microsoft YaHei",monospace;
+  font-size:13px;line-height:2;
+  background:rgba(0,0,0,0.25);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px 24px;
+  overflow-x:auto;
+}
+.file-tree .dir{color:var(--cyan)}
+.file-tree .file{color:var(--text2)}
+.file-tree .desc{color:var(--text3);font-size:11.5px;margin-left:12px}
+
+/* TIMELINE */
+.phase-table th:first-child{color:var(--cyan)}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:48px 0 36px;
+  text-align:center;
+  position:relative;z-index:2;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,0.3));
+}
+footer p{font-size:13px;color:var(--text3);margin-bottom:8px}
+footer .aigc{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;color:var(--text3);
+  padding:6px 14px;border-radius:100px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  margin:8px 4px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  section{padding:60px 0}
+}
+@media(max-width:600px){
+  .wrap{padding:0 16px}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:10px}
+  .stat-badge{padding:14px 10px}
+  .card{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+<div class="nav-inner">
+  <div class="nav-brand">京张2.0</div>
+  <a href="#s1">宣言</a>
+  <a href="#s2">场地</a>
+  <a href="#s3">理念</a>
+  <a href="#s4">结构</a>
+  <a href="#s5">TOD</a>
+  <a href="#s6">交通</a>
+  <a href="#s7">生态</a>
+  <a href="#s8">地标</a>
+  <a href="#s9">活力</a>
+  <a href="#s10">断面</a>
+  <a href="#s11">时序</a>
+  <a href="#s12">理论</a>
+  <a href="#s13">合规</a>
+  <a href="#s14">案例</a>
+  <a href="#s15">数据</a>
+</div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span>URBAN DESIGN PROPOSAL · v3.0</div>
+    <h1>从铁轨到数轨</h1>
+    <div class="hero-sub">藤脉串核</div>
+    <div class="hero-en">Vine-Core Paradigm · From Railway Heritage to AI Innovation Symbiosis</div>
+    <div class="hero-stats">
+      <div class="stat-badge">
+        <div class="stat-val">1140<span style="font-size:16px">ha</span></div>
+        <div class="stat-label">场地面积</div>
+      </div>
+      <div class="stat-badge">
+        <div class="stat-val">9.8<span style="font-size:16px">km</span></div>
+        <div class="stat-label">藤脉长度</div>
+      </div>
+      <div class="stat-badge">
+        <div class="stat-val">900<span style="font-size:16px">万m²</span></div>
+        <div class="stat-label">总建面</div>
+      </div>
+      <div class="stat-badge">
+        <div class="stat-val">4<span style="font-size:16px">核</span></div>
+        <div class="stat-label">TOD核心</div>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <span>2026-08-08</span>·<span>Laser1209 × Marvis</span>·<span>北京·京张铁路遗址公园</span>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL ↓</div>
+</header>
+
+<!-- ============ S1 设计宣言 ============ -->
+<section id="s1">
+<div class="wrap fade-in">
+  <div class="section-num">S1 / DESIGN MANIFESTO</div>
+  <h2 class="section-title">设计宣言</h2>
+  <p class="section-desc">一条铁路，见证百年中国工业自强；一条藤脉，串起数字文明的创新节点。我们不做铁路的旁观者，而做遗产的转译者。</p>
+
+  <div class="pull-quote">
+    "京张铁路是中国人自行设计建造的第一条铁路——詹天佑1909年的'人'字形铁路，是一个民族在技术封锁中自主创新的丰碑。百年之后，当AI成为新的基础设施，我们以'藤脉串核'回应同一种精神：'藤脉'者，三脉合一——生态藤蔓（蓝绿廊道）、历史文脉（百年遗产）、城市动脉（轨交与慢行）；'核'者，沿脉分布的四个TOD创新核心。不是模仿，不是追随，而是在遗产的脊梁上，生长出属于这个时代的创新生态。"
+    <cite>—— 藤脉串核范式宣言</cite>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(34,197,94,0.12);color:var(--vine)">❶</span>从铁轨到数轨</h3>
+      <p style="color:var(--text2);font-size:14px;line-height:1.8">铁轨运输的是煤炭与人流，数轨传输的是算力与智能。同一条南北轴线，从工业文明的动脉，蜕变为数字文明的脊柱。保留铁轨不是怀旧，而是让历史层积成为创新的基底。</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(6,182,212,0.12);color:var(--cyan)">❷</span>从A形双脊到藤脉串核</h3>
+      <p style="color:var(--text2);font-size:14px;line-height:1.8">旧范式"A形双脊"试图用双轴并行覆盖狭长场地，导致结构冗余、生态断裂。新范式回归带形城市本质：单藤脉脊柱串起四个TOD核心节点，三绿楔指间渗透，疏密有致、张弛有度。</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>范式批判：为什么放弃"A形双脊"？</summary>
+    <div class="details-body">
+      <p>A形双脊结构存在三重结构性矛盾：</p>
+      <ul>
+        <li><strong>空间逻辑矛盾</strong>：场地为南北长9.8km、东西宽仅1.1km的狭长带，双脊并行导致东西向冗余，与场地形态错配。</li>
+        <li><strong>生态连续性断裂</strong>：双脊之间的横向腰轴切割了南北向生态迁徙通道，与藤脉作为生态廊道的定位冲突。</li>
+        <li><strong>TOD对齐失效</strong>：双脊未严格遵循轨交站点圈层化，300/600/1000m密度法则无法落实。</li>
+      </ul>
+      <p>藤脉串核范式以哥本哈根手指规划（Finger Plan, 1947/1992）为结构性参照，将单根"手指"（藤脉）作为生态-遗产-交通复合脊柱，四个"核心节点"沿手指分布，三绿楔从指间渗透。这不仅是形式选择，更是对场地狭长形态的诚实回应。</p>
+      <p class="cite">参考文献：Calthorpe, P. (1993). <em>The Next American Metropolis</em>. Princeton Architectural Press; Danish Enterprise and Construction Authority (2007). <em>The Finger Plan for Greater Copenhagen</em>.</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<!-- ============ S2 场地识别 ============ -->
+<section id="s2" style="background:linear-gradient(180deg,transparent,rgba(34,197,94,0.02),transparent)">
+<div class="wrap fade-in">
+  <div class="section-num">S2 / SITE RECOGNITION</div>
+  <h2 class="section-title">场地识别</h2>
+  <p class="section-desc">1140ha狭长带形场地，南北纵贯9.8km，被高校群、科技园区与成熟社区环绕。优势与约束并存，识别是设计的前提。</p>
+
+  <div class="grid-2" style="margin-bottom:32px">
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(34,197,94,0.12);color:var(--vine)">✓</span>场地优势</h3>
+      <ul style="list-style:none;padding:0;font-size:14px;color:var(--text2);line-height:2">
+        <li>▸ 清华、北大、北航、中科院等顶级科研机构环绕</li>
+        <li>▸ 地铁13号线四站纵贯，TOD骨架天然成型</li>
+        <li>▸ 京张铁路百年遗产，文化层积深厚</li>
+        <li>▸ 北五环、京藏高速等区域交通便捷</li>
+        <li>▸ 清河、小月河水系提供生态基底</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(239,68,68,0.12);color:var(--coral)">!</span>约束条件</h3>
+      <ul style="list-style:none;padding:0;font-size:14px;color:var(--text2);line-height:2">
+        <li>▸ 13号线高架割裂东西两侧城市肌理</li>
+        <li>▸ 场地宽度仅1.1km，横向拓展空间有限</li>
+        <li>▸ 清华园站等遗产建筑需保护分级</li>
+        <li>▸ 航空限高待确认（地标高度敏感）</li>
+        <li>▸ 周边建成区密集，更新协调难度大</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RADAR CHART -->
+  <div class="chart-wrap">
+    <div class="chart-title">场地六维评估雷达图</div>
+    <div class="chart-sub">交通可达性 · 生态本底 · 遗产价值 · 产业基础 · 教育资源 · 约束强度（10分制）</div>
+    <svg viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="radarFill" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#22c55e" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.08"/>
+        </radialGradient>
+      </defs>
+      <g transform="translate(240,210)">
+        <!-- grid polygons -->
+        <polygon points="0,-150 129.9,-75 129.9,75 0,150 -129.9,75 -129.9,-75" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <polygon points="0,-112.5 97.4,-56.25 97.4,56.25 0,112.5 -97.4,56.25 -97.4,-56.25" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <polygon points="0,-75 64.95,-37.5 64.95,37.5 0,75 -64.95,37.5 -64.95,-37.5" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+        <polygon points="0,-37.5 32.5,-18.75 32.5,18.75 0,37.5 -32.5,18.75 -32.5,-18.75" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        <!-- axes -->
+        <line x1="0" y1="0" x2="0" y2="-150" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <line x1="0" y1="0" x2="129.9" y2="-75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <line x1="0" y1="0" x2="129.9" y2="75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0" y2="150" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-129.9" y2="75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-129.9" y2="-75" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <!-- data polygon: 交通9, 生态7, 遗产8, 产业8, 教育10, 约束6 -->
+        <!-- axis order: top=交通, upperRight=生态, lowerRight=遗产, bottom=产业, lowerLeft=教育, upperLeft=约束 -->
+        <!-- scale factor 15 -->
+        <polygon points="0,-135 116.9,-67.5 97.4,56.25 0,120 -129.9,75 -77.9,-45" fill="url(#radarFill)" stroke="#22c55e" stroke-width="2" stroke-linejoin="round"/>
+        <!-- data points -->
+        <circle cx="0" cy="-135" r="4" fill="#22c55e"/>
+        <circle cx="116.9" cy="-67.5" r="4" fill="#22c55e"/>
+        <circle cx="97.4" cy="56.25" r="4" fill="#22c55e"/>
+        <circle cx="0" cy="120" r="4" fill="#22c55e"/>
+        <circle cx="-129.9" cy="75" r="4" fill="#22c55e"/>
+        <circle cx="-77.9" cy="-45" r="4" fill="#22c55e"/>
+        <!-- labels -->
+        <text x="0" y="-165" text-anchor="middle" fill="#e8ecf4" font-size="13" font-weight="600">交通 9</text>
+        <text x="150" y="-80" text-anchor="start" fill="#e8ecf4" font-size="13" font-weight="600">生态 7</text>
+        <text x="150" y="85" text-anchor="start" fill="#e8ecf4" font-size="13" font-weight="600">遗产 8</text>
+        <text x="0" y="175" text-anchor="middle" fill="#e8ecf4" font-size="13" font-weight="600">产业 8</text>
+        <text x="-150" y="85" text-anchor="end" fill="#22c55e" font-size="13" font-weight="700">教育 10</text>
+        <text x="-150" y="-80" text-anchor="end" fill="#e8ecf4" font-size="13" font-weight="600">约束 6</text>
+      </g>
+    </svg>
+  </div>
+
+  <figure>
+    <img src="../assets/figures/01-vine-core-structure.png" alt="藤脉串核空间结构图" loading="lazy">
+    <figcaption>图01 · 藤脉串核空间结构总览 — 单藤脉脊柱、四核心节点、三绿楔渗透</figcaption>
+  </figure>
+</div>
+</section>
+
+<!-- ============ S3 核心理念 ============ -->
+<section id="s3">
+<div class="wrap fade-in">
+  <div class="section-num">S3 / CORE PARADIGM</div>
+  <h2 class="section-title">核心理念：藤脉串核</h2>
+  <p class="section-desc">
+    <strong style="color:var(--vine)">藤脉（Vine Spine）</strong>——三脉合一的复合脊柱：
+    <span style="color:#22c55e">生态藤蔓</span>（蓝绿生态廊道、生物迁徙通道）、
+    <span style="color:#f59e0b">历史文脉</span>（京张铁路百年遗产、1909人字铁路精神传承）、
+    <span style="color:#06b6d4">城市动脉</span>（轨交13号线、9.8km慢行系统）；
+    <strong style="color:var(--amber)">核（Core）</strong>——沿脉分布的四个TOD创新核心节点，严格遵循300/600/1000m密度圈层法则；
+    <strong>绿楔（Wedge）</strong>——从东西两侧渗透，保持生态连续性，疏密有致、张弛有度。
+  </p>
+
+  <!-- VINE-CORE SCHEMATIC SVG -->
+  <div class="chart-wrap">
+    <div class="chart-title">藤脉串核结构示意图</div>
+    <div class="chart-sub">绿色藤脉纵贯南北，四个核心节点大小反映建筑面积规模</div>
+    <svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="vineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#166534"/>
+          <stop offset="50%" stop-color="#22c55e"/>
+          <stop offset="100%" stop-color="#166534"/>
+        </linearGradient>
+        <filter id="coreGlow">
+          <feGaussianBlur stdDeviation="6" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- direction labels -->
+      <text x="450" y="30" text-anchor="middle" fill="#64748b" font-size="12" letter-spacing="2">北 ↑ 清河</text>
+      <text x="450" y="265" text-anchor="middle" fill="#64748b" font-size="12" letter-spacing="2">南 ↓ 西直门外大街</text>
+      <!-- vine line -->
+      <path d="M 450 60 Q 440 120 450 140 Q 460 160 450 180 Q 440 200 450 220" stroke="url(#vineGrad)" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <!-- vine leaves -->
+      <ellipse cx="430" cy="100" rx="18" ry="8" fill="#22c55e" opacity="0.3" transform="rotate(-30 430 100)"/>
+      <ellipse cx="470" cy="160" rx="18" ry="8" fill="#22c55e" opacity="0.3" transform="rotate(30 470 160)"/>
+      <ellipse cx="428" cy="200" rx="16" ry="7" fill="#22c55e" opacity="0.3" transform="rotate(-25 428 200)"/>
+      <!-- M4 (top, smallest) 160万 -->
+      <circle cx="450" cy="75" r="28" fill="#85C1E9" opacity="0.85" filter="url(#coreGlow)"/>
+      <text x="450" y="73" text-anchor="middle" fill="#0a0e1a" font-size="13" font-weight="700">M4</text>
+      <text x="450" y="88" text-anchor="middle" fill="#0a0e1a" font-size="9" font-weight="600">160万m²</text>
+      <text x="500" y="72" fill="#85C1E9" font-size="12" font-weight="600">清河子核</text>
+      <text x="500" y="88" fill="#64748b" font-size="10">产业转化·生态缓冲</text>
+      <!-- M3 (largest) 280万 -->
+      <circle cx="450" cy="140" r="42" fill="#D35400" opacity="0.85" filter="url(#coreGlow)"/>
+      <text x="450" y="138" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">M3</text>
+      <text x="450" y="156" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">280万m²</text>
+      <text x="510" y="137" fill="#D35400" font-size="13" font-weight="700">清华园主核 ★</text>
+      <text x="510" y="153" fill="#64748b" font-size="10">源头创新心脏</text>
+      <!-- M2 240万 -->
+      <circle cx="450" cy="195" r="36" fill="#F4D03F" opacity="0.85" filter="url(#coreGlow)"/>
+      <text x="450" y="193" text-anchor="middle" fill="#0a0e1a" font-size="14" font-weight="700">M2</text>
+      <text x="450" y="209" text-anchor="middle" fill="#0a0e1a" font-size="9.5" font-weight="600">240万m²</text>
+      <text x="505" y="192" fill="#F4D03F" font-size="12" font-weight="600">五道口碰撞核</text>
+      <text x="505" y="208" fill="#64748b" font-size="10">高校-产业接口</text>
+      <!-- M1 220万 -->
+      <circle cx="450" cy="235" r="32" fill="#E8A87C" opacity="0.85" filter="url(#coreGlow)"/>
+      <text x="450" y="233" text-anchor="middle" fill="#0a0e1a" font-size="13" font-weight="700">M1</text>
+      <text x="450" y="248" text-anchor="middle" fill="#0a0e1a" font-size="9" font-weight="600">220万m²</text>
+      <text x="500" y="232" fill="#E8A87C" font-size="12" font-weight="600">大钟寺门户核</text>
+      <text x="500" y="248" fill="#64748b" font-size="10">AI展窗·门户</text>
+      <!-- wedges -->
+      <text x="100" y="110" fill="#22c55e" font-size="11" opacity="0.7">绿楔3 缓冲型</text>
+      <text x="100" y="170" fill="#22c55e" font-size="11" opacity="0.7">绿楔2 过滤型</text>
+      <text x="100" y="220" fill="#22c55e" font-size="11" opacity="0.7">绿楔1 渗透型</text>
+      <line x1="180" y1="108" x2="380" y2="108" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+      <line x1="180" y1="168" x2="380" y2="168" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+      <line x1="180" y1="218" x2="380" y2="218" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <div class="grid-4" style="margin-top:32px">
+    <div class="card core-card m1">
+      <h3><span class="core-dot" style="background:var(--m1)">M1</span>大钟寺门户</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">面向中心城区的AI展窗。企业总部、国际论坛、AI消费体验。以回响之钟·AI编钟塔为文化锚点。</p>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="tag tag-amber">220万m²</span>
+        <span class="tag tag-coral">75m地标</span>
+      </div>
+    </div>
+    <div class="card core-card m2">
+      <h3><span class="core-dot" style="background:var(--m2)">M2</span>五道口碰撞</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">高校群与产业群的碰撞接口。创新创业孵化、高校技术转移、青年创业社区。以火花塔为地标。</p>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="tag tag-amber">240万m²</span>
+        <span class="tag tag-coral">125m地标</span>
+      </div>
+    </div>
+    <div class="card core-card m3">
+      <h3><span class="core-dot" style="background:var(--m3);color:#fff">M3</span>清华园主核</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">源头创新心脏。基础研究、国家实验室前厅、算力中枢。以算力方碑（150m）为核心地标。</p>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="tag tag-amber">280万m²</span>
+        <span class="tag tag-coral">150m地标</span>
+      </div>
+    </div>
+    <div class="card core-card m4">
+      <h3><span class="core-dot" style="background:var(--m4)">M4</span>清河子核</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">产业化呼吸空间。产业转化、开源社区、生态缓冲。以开源讨论舱群为特色地标。</p>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="tag tag-amber">160万m²</span>
+        <span class="tag tag-cyan">生态融合</span>
+      </div>
+    </div>
+  </div>
+
+  <details>
+    <summary>新旧范式对比表：A形双脊 vs 藤脉串核</summary>
+    <div class="details-body">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>维度</th><th>A形双脊（旧）</th><th>藤脉串核（新）</th></tr></thead>
+          <tbody>
+            <tr><td><strong>空间逻辑</strong></td><td>双脊并行+腰轴连接</td><td>单藤脉串多核，结构更清晰</td></tr>
+            <tr><td><strong>生态渗透</strong></td><td>五条横向廊道</td><td>三个绿楔差异化渗透</td></tr>
+            <tr><td><strong>TOD对齐</strong></td><td>未严格圈层化</td><td>300/600/1000m三圈严格递减</td></tr>
+            <tr><td><strong>遗产处理</strong></td><td>L-Spine线性公园</td><td>藤脉四层叠加（遗产+生态+轨交+慢行）</td></tr>
+            <tr><td><strong>国际对标</strong></td><td>湖北A型骨架</td><td>Finger Plan + Singapore Rail Corridor + King's Cross</td></tr>
+            <tr><td><strong>天际线节奏</strong></td><td>均质化</td><td>M1(75)→M2(125)→M3(150)→M4(24)m 梯度变化</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="cite">参考：Soria y Mata, A. (1882). <em>La Ciudad Lineal</em>; Calthorpe (1993); 新加坡URA (2020). <em>Rail Corridor Enhancement Plan</em>.</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<!-- ============ S4 空间结构 ============ -->
+<section id="s4" style="background:linear-gradient(180deg,transparent,rgba(6,182,212,0.02),transparent)">
+<div class="wrap fade-in">
+  <div class="section-num">S4 / SPATIAL STRUCTURE</div>
+  <h2 class="section-title">空间结构与规模</h2>
+  <p class="section-desc">四核总建筑面积900万m²，M3清华园主核规模最大（280万m²），承担源头创新核心功能。</p>
+
+  <!-- HORIZONTAL BAR CHART -->
+  <div class="chart-wrap">
+    <div class="chart-title">四核建筑面积对比（万m²）</div>
+    <div class="chart-sub">M3清华园主核规模最大，占总量31%</div>
+    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- y axis labels -->
+      <text x="110" y="50" text-anchor="end" fill="#E8A87C" font-size="13" font-weight="600">M1 大钟寺</text>
+      <text x="110" y="110" text-anchor="end" fill="#F4D03F" font-size="13" font-weight="600">M2 五道口</text>
+      <text x="110" y="170" text-anchor="end" fill="#D35400" font-size="13" font-weight="700">M3 清华园 ★</text>
+      <text x="110" y="230" text-anchor="end" fill="#85C1E9" font-size="13" font-weight="600">M4 清河</text>
+      <!-- grid lines -->
+      <line x1="130" y1="20" x2="130" y2="250" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <line x1="290" y1="20" x2="290" y2="250" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="450" y1="20" x2="450" y2="250" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="610" y1="20" x2="610" y2="250" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="770" y1="20" x2="770" y2="250" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <!-- x axis labels (scale: max=280, width=640px, so 1 unit = 2.286px; use 50,100,150,200,250,300) -->
+      <text x="130" y="270" text-anchor="middle" fill="#64748b" font-size="11">0</text>
+      <text x="290" y="270" text-anchor="middle" fill="#64748b" font-size="11">100</text>
+      <text x="450" y="270" text-anchor="middle" fill="#64748b" font-size="11">200</text>
+      <text x="610" y="270" text-anchor="middle" fill="#64748b" font-size="11">300</text>
+      <text x="770" y="270" text-anchor="middle" fill="#64748b" font-size="11">万m²</text>
+      <!-- bars: scale 640/300 = 2.133 px per unit -->
+      <!-- M1: 220 -> 469.3 px -->
+      <rect x="130" y="32" width="469" height="32" rx="4" fill="#E8A87C" opacity="0.85"/>
+      <text x="609" y="53" fill="#fff" font-size="13" font-weight="700">220</text>
+      <!-- M2: 240 -> 512 px -->
+      <rect x="130" y="92" width="512" height="32" rx="4" fill="#F4D03F" opacity="0.85"/>
+      <text x="652" y="113" fill="#0a0e1a" font-size="13" font-weight="700">240</text>
+      <!-- M3: 280 -> 597.3 px -->
+      <rect x="130" y="152" width="597" height="32" rx="4" fill="#D35400" opacity="0.9"/>
+      <text x="737" y="173" fill="#fff" font-size="13" font-weight="700">280</text>
+      <!-- M4: 160 -> 341.3 px -->
+      <rect x="130" y="212" width="341" height="32" rx="4" fill="#85C1E9" opacity="0.85"/>
+      <text x="481" y="233" fill="#0a0e1a" font-size="13" font-weight="700">160</text>
+    </svg>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>要素</th><th>定位</th><th>规模</th><th>核心功能</th></tr></thead>
+      <tbody>
+        <tr><td><strong>藤脉 Vine Spine</strong></td><td>生态文化交通脊柱</td><td>9.8km / 117ha</td><td>遗产廊道、生态脊柱、13号线、慢行三道一绿</td></tr>
+        <tr><td><strong>M1 大钟寺</strong></td><td>南门展示门户</td><td>3.14km² / 220万m²</td><td>AI展窗、企业总部、国际论坛</td></tr>
+        <tr><td><strong>M2 五道口</strong></td><td>交换节点</td><td>3.14km² / 240万m²</td><td>高校-产业接口、孵化加速</td></tr>
+        <tr><td><strong>M3 清华园</strong></td><td>源头创新心脏</td><td>3.14km² / 280万m²</td><td>基础研究、算力中枢</td></tr>
+        <tr><td><strong>M4 清河</strong></td><td>产业化呼吸空间</td><td>2.01km² / 160万m²</td><td>产业转化、开源社区</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details>
+    <summary>核心节点间距与步行可达性分析</summary>
+    <div class="details-body">
+      <p>四核沿藤脉南北分布，间距控制在1.5-2.5km之间，步行15-25分钟、自行车5-8分钟可达，确保藤脉慢行系统串联各节点：</p>
+      <ul>
+        <li>M1大钟寺 → M2五道口：约2.0km（绿楔1渗透型）</li>
+        <li>M2五道口 → M3清华园：约1.8km（绿楔2过滤型）</li>
+        <li>M3清华园 → M4清河：约2.2km（绿楔3缓冲型）</li>
+      </ul>
+      <p>核间距设计参考哥本哈根手指规划中Ballerup-Glostrup等车站城镇间距（约2-3km），但因京张场地尺度更小，间距适度缩短以增强步行连通性。</p>
+      <p class="cite">参考：Danish Enterprise Authority (2007). <em>Finger Plan</em>; Gehl, J. (2010). <em>Cities for People</em>. Island Press.</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<!-- ============ S5 TOD圈层密度 ============ -->
+<section id="s5">
+<div class="wrap fade-in">
+  <div class="section-num">S5 / TOD DENSITY</div>
+  <h2 class="section-title">TOD圈层密度法则</h2>
+  <p class="section-desc">严格遵循Calthorpe（1993）TOD节点-场所模型，以轨交站点为圆心划定300/600/1000m三圈层，容积率随距离指数衰减。</p>
+
+  <div class="grid-2" style="align-items:center">
+    <!-- CONCENTRIC CIRCLES -->
+    <div class="chart-wrap">
+      <div class="chart-title">TOD三圈层模型</div>
+      <div class="chart-sub">以站点为圆心，FAR由内向外递减</div>
+      <svg viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ef4444" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#ef4444" stop-opacity="0.05"/>
+          </radialGradient>
+        </defs>
+        <g transform="translate(200,190)">
+          <!-- outer 1000m -->
+          <circle cx="0" cy="0" r="160" fill="rgba(6,182,212,0.05)" stroke="rgba(6,182,212,0.3)" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <!-- inner 600m -->
+          <circle cx="0" cy="0" r="100" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+          <!-- core 300m -->
+          <circle cx="0" cy="0" r="50" fill="url(#coreGrad)" stroke="#ef4444" stroke-width="2"/>
+          <!-- station center -->
+          <circle cx="0" cy="0" r="6" fill="#fff"/>
+          <circle cx="0" cy="0" r="3" fill="#ef4444"/>
+          <!-- labels -->
+          <text x="0" y="-55" text-anchor="middle" fill="#ef4444" font-size="12" font-weight="700">核心区 0-300m</text>
+          <text x="0" y="-40" text-anchor="middle" fill="#fca5a5" font-size="11">FAR 4.0-6.0</text>
+          <text x="0" y="5" text-anchor="middle" fill="#fff" font-size="10">80-150m</text>
+          <text x="0" y="-105" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="600">内环 300-600m</text>
+          <text x="0" y="-90" text-anchor="middle" fill="#fcd34d" font-size="10.5">FAR 2.5-4.0 · 35-80m</text>
+          <text x="0" y="-165" text-anchor="middle" fill="#06b6d4" font-size="12" font-weight="600">外环 600-1000m</text>
+          <text x="0" y="-150" text-anchor="middle" fill="#67e8f9" font-size="10.5">FAR 1.0-1.5 · 24-60m</text>
+          <!-- ring annotations -->
+          <line x1="50" y1="0" x2="100" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <line x1="100" y1="0" x2="160" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="165" y="4" fill="#64748b" font-size="10">1000m / 15min步行</text>
+        </g>
+      </svg>
+    </div>
+
+    <div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>圈层</th><th>半径</th><th>FAR</th><th>高度</th><th>步行</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:#ef4444">核心区</strong></td><td>0-300m</td><td>4.0-6.0</td><td>80-150m</td><td>5min</td></tr>
+            <tr><td><strong style="color:#f59e0b">内环</strong></td><td>300-600m</td><td>2.5-4.0</td><td>35-80m</td><td>10min</td></tr>
+            <tr><td><strong style="color:#06b6d4">外环</strong></td><td>600-1000m</td><td>1.0-1.5</td><td>24-60m</td><td>15min</td></tr>
+            <tr><td><strong style="color:#22c55e">绿楔</strong></td><td>核间</td><td>0.3-0.8</td><td>9-24m</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h3 style="font-size:15px"><span class="icon" style="background:rgba(6,182,212,0.12);color:var(--cyan);font-size:14px">ƒ</span>密度衰减公式</h3>
+        <p style="font-family:'SF Mono',monospace;font-size:15px;color:var(--cyan);text-align:center;padding:12px 0;background:rgba(0,0,0,0.3);border-radius:8px;margin-top:8px">
+          FAR(d) = FAR<tspan baseline-shift="sub" font-size="11">core</tspan> · e<tspan baseline-shift="super" font-size="11">−d/λ</tspan>
+        </p>
+        <p style="font-size:12px;color:var(--text3);margin-top:8px">d为距站点距离（m），λ≈400m为衰减常数（参考库里蒂巴BRT-TOD法则）</p>
+      </div>
+    </div>
+  </div>
+
+  <figure>
+    <img src="../assets/figures/02-tod-land-use.png" alt="TOD土地利用规划图" loading="lazy">
+    <figcaption>图02 · TOD圈层土地利用规划 — 核心区站城一体，内环研发混合，外环居住配套</figcaption>
+  </figure>
+  <figure>
+    <img src="../assets/figures/03-core-detail-tsinghua.png" alt="清华园主核详细设计" loading="lazy">
+    <figcaption>图03 · M3清华园主核详细城市设计 — 算力方碑为核心，放射状科研院落布局</figcaption>
+  </figure>
+
+  <details>
+    <summary>密度测算方法论：如何确定900万m²总建面？</summary>
+    <div class="details-body">
+      <p>总建筑面积采用"圈层面积×平均容积率"自下而上测算：</p>
+      <ul>
+        <li><strong>核心区</strong>（300m半径）：单核面积≈0.28km²，FAR均值5.0 → 单核建面≈140万m²，四核合计约560万m²（M4按比例缩减）</li>
+        <li><strong>内环</strong>（300-600m环带）：单核面积≈0.85km²，FAR均值3.2 → 单核建面≈272万m²</li>
+        <li><strong>外环</strong>（600-1000m环带）：单核面积≈2.01km²，FAR均值1.2 → 单核建面≈241万m²</li>
+      </ul>
+      <p>考虑到四核半径差异（M4为800m外环）、道路与绿地扣除、以及绿楔区域低强度开发，综合修正后总建面约900万m²。此为概念性指标，最终以控规为准。</p>
+      <p>密度分布参考库里蒂巴BRT轴线实测数据：轴线沿线FAR可达6.0，距站500m外降至2.0以下，1km外趋近1.0（Cervero & Kang, 2011）。</p>
+      <p class="cite">参考文献：Cervero, R. & Kang, C.D. (2011). "Bus rapid transit impacts on land uses and land values in Seoul, Korea." <em>Transport Policy</em> 18(1); Calthorpe (1993); 库里蒂巴市政府 (1975). <em>Plano Diretor</em>.</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<!-- ============ S6 交通骨架 ============ -->
+<section id="s6" style="background:linear-gradient(180deg,transparent,rgba(245,158,11,0.02),transparent)">
+<div class="wrap fade-in">
+  <div class="section-num">S6 / TRANSPORTATION</div>
+  <h2 class="section-title">交通骨架</h2>
+  <p class="section-desc">道路网密度9.5km/km²，轨道800m覆盖率85%，500m公交覆盖率100%。藤脉慢行系统9.8km贯通，构建"轨道+慢行+公交"绿色出行体系。</p>
+
+  <div class="grid-2" style="align-items:center">
+    <!-- ROAD HIERARCHY SVG -->
+    <div class="chart-wrap">
+      <div class="chart-title">道路分级体系</div>
+      <div class="chart-sub">从快速路到绿道，五级道路系统</div>
+      <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(20,20)">
+          <!-- 快速路 60px -->
+          <rect x="0" y="0" width="360" height="50" rx="6" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.2)"/>
+          <rect x="10" y="20" width="340" height="10" rx="2" fill="#ef4444" opacity="0.6"/>
+          <text x="20" y="14" fill="#ef4444" font-size="12" font-weight="700">快速路</text>
+          <text x="350" y="46" text-anchor="end" fill="#64748b" font-size="10">55-60m · 80km/h</text>
+          <!-- 主干路 40px -->
+          <rect x="0" y="60" width="360" height="42" rx="6" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.2)"/>
+          <rect x="10" y="76" width="340" height="8" rx="2" fill="#f59e0b" opacity="0.6"/>
+          <text x="20" y="73" fill="#f59e0b" font-size="12" font-weight="700">主干路</text>
+          <text x="350" y="98" text-anchor="end" fill="#64748b" font-size="10">45-50m · 60km/h</text>
+          <!-- 次干路 28px -->
+          <rect x="0" y="112" width="360" height="36" rx="6" fill="rgba(6,182,212,0.08)" stroke="rgba(6,182,212,0.2)"/>
+          <rect x="10" y="125" width="340" height="6" rx="2" fill="#06b6d4" opacity="0.6"/>
+          <text x="20" y="124" fill="#06b6d4" font-size="12" font-weight="700">次干路</text>
+          <text x="350" y="144" text-anchor="end" fill="#64748b" font-size="10">30-35m · 40km/h</text>
+          <!-- 支路 18px -->
+          <rect x="0" y="158" width="360" height="30" rx="6" fill="rgba(100,116,139,0.08)" stroke="rgba(100,116,139,0.2)"/>
+          <rect x="10" y="169" width="340" height="4" rx="2" fill="#94a3b8" opacity="0.5"/>
+          <text x="20" y="168" fill="#94a3b8" font-size="12" font-weight="700">支路</text>
+          <text x="350" y="184" text-anchor="end" fill="#64748b" font-size="10">20m · 30km/h</text>
+          <!-- 绿道 10px -->
+          <rect x="0" y="198" width="360" height="26" rx="6" fill="rgba(34,197,94,0.08)" stroke="rgba(34,197,94,0.2)"/>
+          <line x1="10" y1="211" x2="350" y2="211" stroke="#22c55e" stroke-width="3" stroke-dasharray="8,4" opacity="0.7"/>
+          <text x="20" y="209" fill="#22c55e" font-size="12" font-weight="700">绿道（藤脉慢行主轴）</text>
+          <text x="350" y="222" text-anchor="end" fill="#64748b" font-size="10">10-15m · &lt;15km/h</text>
+          <!-- 轨道 -->
+          <rect x="0" y="234" width="360" height="30" rx="6" fill="rgba(168,85,247,0.08)" stroke="rgba(168,85,247,0.2)"/>
+          <line x1="10" y1="246" x2="350" y2="246" stroke="#a855f7" stroke-width="2" opacity="0.6"/>
+          <line x1="10" y1="252" x2="350" y2="252" stroke="#a855f7" stroke-width="2" opacity="0.6"/>
+          <text x="20" y="246" fill="#a855f7" font-size="12" font-weight="700">轨道13号线</text>
+          <text x="350" y="260" text-anchor="end" fill="#64748b" font-size="10">大钟寺→五道口→清华园→清河</text>
+        </g>
+      </svg>
+    </div>
+
+    <div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>系统</th><th>线路/站点</th><th>服务水平</th></tr></thead>
+          <tbody>
+            <tr><td><strong>地铁13号线</strong></td><td>大钟寺、五道口、清华园、清河</td><td>高峰2min</td></tr>
+            <tr><td><strong>BRT/智轨</strong></td><td>学院路专用道</td><td>高峰≤5min</td></tr>
+            <tr><td><strong>社区微公交</strong></td><td>电动无人小巴循环</td><td>最后一公里</td></tr>
+            <tr><td><strong>慢行系统</strong></td><td>藤脉9.8km+绿楔连接</td><td>步行+自行车</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid-2" style="margin-top:16px;gap:12px">
+        <div class="card" style="padding:16px;text-align:center">
+          <div style="font-size:24px;font-weight:700;color:var(--vine)">85%</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">轨道800m覆盖率</div>
+        </div>
+        <div class="card" style="padding:16px;text-align:center">
+          <div style="font-size:24px;font-weight:700;color:var(--cyan)">100%</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">500m公交覆盖率</div>
+        </div>
+        <div class="card" style="padding:16px;text-align:center">
+          <div style="font-size:24px;font-weight:700;color:var(--amber)">9.5</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">路网密度 km/km²</div>
+        </div>
+        <div class="card" style="padding:16px;text-align:center">
+          <div style="font-size:24px;font-weight:700;color:var(--coral)">≥60%</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">公交分担率目标</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <figure>
+    <img src="../assets/figures/04-road-green-network.png" alt="道路与绿网规划图" loading="lazy">
+    <figcaption>图04 · 道路骨架与蓝绿网络 — 轨道、主干路、次干路与藤脉慢行系统叠加</figcaption>
+  </figure>
+</div>
+</section>
+
+<!-- ============ S7 蓝绿生态 ============ -->
+<section id="s7">
+<div class="wrap fade-in">
+  <div class="section-num">S7 / BLUE-GREEN ECOLOGY</div>
+  <h2 class="section-title">蓝绿生态系统</h2>
+  <p class="section-desc">"一脉一带两河三楔"结构，蓝绿空间总计约350ha，占场地面积31%。借鉴哥本哈根手指规划的指间绿楔理念。</p>
+
+  <div class="grid-2" style="align-items:center">
+    <!-- DONUT CHART -->
+    <div class="chart-wrap">
+      <div class="chart-title">蓝绿空间构成（ha / 占比）</div>
+      <div class="chart-sub">总计350ha，占场地30.7%</div>
+      <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(200,160)">
+          <!-- donut segments using stroke-dasharray on circles -->
+          <!-- circumference = 2*pi*r = 2*3.14159*110 = 691.15 -->
+          <!-- 藤蔓 117/350 = 33.4% -> 231.1 -->
+          <circle cx="0" cy="0" r="110" fill="none" stroke="#22c55e" stroke-width="40"
+            stroke-dasharray="231.1 691.15" stroke-dashoffset="0" transform="rotate(-90)"/>
+          <!-- 清河廊道 45/350 = 12.9% -> 89.0 -->
+          <circle cx="0" cy="0" r="110" fill="none" stroke="#06b6d4" stroke-width="40"
+            stroke-dasharray="89.0 691.15" stroke-dashoffset="-231.1" transform="rotate(-90)"/>
+          <!-- 小月河 30/350 = 8.6% -> 59.3 -->
+          <circle cx="0" cy="0" r="110" fill="none" stroke="#85C1E9" stroke-width="40"
+            stroke-dasharray="59.3 691.15" stroke-dashoffset="-320.1" transform="rotate(-90)"/>
+          <!-- 三绿楔 120/350 = 34.3% -> 237.0 -->
+          <circle cx="0" cy="0" r="110" fill="none" stroke="#16a34a" stroke-width="40"
+            stroke-dasharray="237.0 691.15" stroke-dashoffset="-379.4" transform="rotate(-90)"/>
+          <!-- 社区绿地 38/350 = 10.9% -> 75.1 -->
+          <circle cx="0" cy="0" r="110" fill="none" stroke="#84cc16" stroke-width="40"
+            stroke-dasharray="75.1 691.15" stroke-dashoffset="-616.4" transform="rotate(-90)"/>
+          <!-- center -->
+          <circle cx="0" cy="0" r="65" fill="#0a0e1a"/>
+          <text x="0" y="-8" text-anchor="middle" fill="#e8ecf4" font-size="28" font-weight="700">350</text>
+          <text x="0" y="14" text-anchor="middle" fill="#64748b" font-size="12">公顷 · 31%</text>
+        </g>
+        <!-- legend -->
+        <g transform="translate(30,300)">
+          <rect x="0" y="0" width="10" height="10" rx="2" fill="#22c55e"/>
+          <text x="16" y="9" fill="#94a3b8" font-size="11">藤脉 117ha (33%)</text>
+          <rect x="140" y="0" width="10" height="10" rx="2" fill="#06b6d4"/>
+          <text x="156" y="9" fill="#94a3b8" font-size="11">清河 45ha (13%)</text>
+          <rect x="270" y="0" width="10" height="10" rx="2" fill="#85C1E9"/>
+          <text x="286" y="9" fill="#94a3b8" font-size="11">小月河 30ha</text>
+        </g>
+        <g transform="translate(30,320)">
+          <rect x="0" y="0" width="10" height="10" rx="2" fill="#16a34a"/>
+          <text x="16" y="9" fill="#94a3b8" font-size="11">三绿楔 120ha (34%)</text>
+          <rect x="140" y="0" width="10" height="10" rx="2" fill="#84cc16"/>
+          <text x="156" y="9" fill="#94a3b8" font-size="11">社区绿地 38ha (11%)</text>
+        </g>
+      </svg>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <h3><span class="icon" style="background:rgba(34,197,94,0.12);color:var(--vine)">①</span>绿楔1 · 渗透型</h3>
+        <p style="font-size:13px;color:var(--text2)">M1-M2之间：社区农场2ha、户外运动带、口袋公园群（每200m一处），透水铺装率≥60%。</p>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <h3><span class="icon" style="background:rgba(6,182,212,0.12);color:var(--cyan)">②</span>绿楔2 · 过滤型</h3>
+        <p style="font-size:13px;color:var(--text2)">M2-M3之间：雨水花园群处理面源污染、学术草坪、临时策展空间、三层降噪植被带。</p>
+      </div>
+      <div class="card">
+        <h3><span class="icon" style="background:rgba(133,193,233,0.15);color:var(--m4)">③</span>绿楔3 · 缓冲型</h3>
+        <p style="font-size:13px;color:var(--text2)">M3-M4之间：原生植被恢复、清河南岸生态工法修复、昆虫旅馆与鸟巢塔、AI传感器全覆盖。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-4" style="margin-top:24px">
+    <div class="card" style="padding:18px;text-align:center">
+      <div style="font-size:22px;font-weight:700;color:var(--vine)">≥80%</div>
+      <div style="font-size:11.5px;color:var(--text3);margin-top:4px">年径流总量控制率</div>
+    </div>
+    <div class="card" style="padding:18px;text-align:center">
+      <div style="font-size:22px;font-weight:700;color:var(--cyan)">≥40%</div>
+      <div style="font-size:11.5px;color:var(--text3);margin-top:4px">绿色屋顶覆盖率</div>
+    </div>
+    <div class="card" style="padding:18px;text-align:center">
+      <div style="font-size:22px;font-weight:700;color:var(--amber)">≥20处</div>
+      <div style="font-size:11.5px;color:var(--text3);margin-top:4px">雨水花园</div>
+    </div>
+    <div class="card" style="padding:18px;text-align:center">
+      <div style="font-size:22px;font-weight:700;color:var(--coral)">≥70%</div>
+      <div style="font-size:11.5px;color:var(--text3);margin-top:4px">乡土植物占比</div>
+    </div>
+  </div>
+
+  <details>
+    <summary>理论延伸：哥本哈根手指规划的绿楔启示</summary>
+    <div class="details-body">
+      <p>1947年，哥本哈根都市规划提出"Finger Plan"：城市沿五条铁路走廊（手指）向外发展，指间保留绿色楔形绿地。1992年规划修订叠加TOD原则，要求车站周围1000m内集中80%的新开发。</p>
+      <p>本方案借鉴其核心结构，但做了尺度转译：</p>
+      <ul>
+        <li><strong>单手指</strong>：京张场地尺度仅11km，无需多手指，单藤脉脊柱足够</li>
+        <li><strong>短核距</strong>：哥本哈根车站城镇间距3-5km，本方案缩短至1.5-2.2km以支持步行</li>
+        <li><strong>差异化绿楔</strong>：三个绿楔分别承担渗透、过滤、缓冲功能，非均质绿地</li>
+        <li><strong>藤脉低干预+核心节点高强度</strong>：参考新加坡KTM廊道"light touch"策略，但在TOD节点处集中开发</li>
+      </ul>
+      <p class="cite">参考文献：Danish Enterprise and Construction Authority (2007). <em>The Finger Plan: A Strategy for the Development of the Greater Copenhagen Area</em>; Knowles, R.D. (2012). "Transit-oriented development in Copenhagen." <em>Journal of Transport Geography</em> 25.</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<!-- ============ S8 标志建筑 ============ -->
+<section id="s8" style="background:linear-gradient(180deg,transparent,rgba(168,85,247,0.02),transparent)">
+<div class="wrap fade-in">
+  <div class="section-num">S8 / LANDMARKS</div>
+  <h2 class="section-title">标志建筑</h2>
+  <p class="section-desc">五座标志性建筑构成空间锚点：三座朝圣地标（算力方碑、火花塔、回响之钟）+ 清华园站遗产中枢 + 开源讨论舱群。</p>
+
+  <div class="grid-2" style="gap:20px">
+    <!-- 算力方碑 -->
+    <div class="card landmark-card">
+      <span class="landmark-badge">M3 · 150m</span>
+      <h3>算力方碑</h3>
+      <div class="l-sub">COMPUTING STELE</div>
+      <p class="l-desc">以"方碑"为意象——古代石碑承载文明记忆，算力方碑承载数字文明的算力基石。四棱台造型，底部36m×36m，顶部收分至18m×18m。双层参数化穿孔铝板表皮，入夜LED灯光呈现流动数据可视化。</p>
+      <div class="landmark-stats">
+        <div><div class="ls-val">30F</div><div class="ls-lbl">层数</div></div>
+        <div><div class="ls-val">6万m²</div><div class="ls-lbl">面积</div></div>
+        <div><div class="ls-val">B3液冷</div><div class="ls-lbl">机房</div></div>
+      </div>
+      <details>
+        <summary>设计详情与功能分布</summary>
+        <div class="details-body">
+          <p><strong>B3-B1</strong>：液冷机房、电力保障（地下30m）</p>
+          <p><strong>1F-3F</strong>：算力展示大厅，巨型LED穹顶实时显示集群算力</p>
+          <p><strong>4F-15F</strong>：液冷服务器集群</p>
+          <p><strong>16F-25F</strong>：AI训练与推理专用楼层</p>
+          <p><strong>26F-29F</strong>：AI观测台（会议室、VIP接待）</p>
+          <p><strong>30F</strong>：360°观景平台，俯瞰京张全带</p>
+          <p class="cite">文化意义：数字时代的"石碑"——铭刻AI时代的算力基石，与京张铁路"自主创新"精神跨时代呼应。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 火花塔 -->
+    <div class="card landmark-card">
+      <span class="landmark-badge">M2 · 125m</span>
+      <h3>火花塔</h3>
+      <div class="l-sub">SPARK TOWER</div>
+      <p class="l-desc">以"火花"为意象——灵感闪现的瞬间。塔身螺旋上升扭曲形态，象征创新从火花到燎原的过程。螺旋外遮阳百叶表面嵌入光伏薄膜，贡献约15%塔楼用电。</p>
+      <div class="landmark-stats">
+        <div><div class="ls-val">25F</div><div class="ls-lbl">层数</div></div>
+        <div><div class="ls-val">3.75万m²</div><div class="ls-lbl">面积</div></div>
+        <div><div class="ls-val">15%</div><div class="ls-lbl">光伏自供</div></div>
+      </div>
+      <details>
+        <summary>设计详情与功能分布</summary>
+        <div class="details-body">
+          <p><strong>1F-4F</strong>：火花大厅（通高中庭），创业者咖啡馆、路演角</p>
+          <p><strong>5F-10F</strong>：垂直孵化器（每层4-8个独立单元，30-100m²/间）</p>
+          <p><strong>11F-15F</strong>：加速器（成长型企业）</p>
+          <p><strong>16F-20F</strong>：联合办公（灵活+固定工位）</p>
+          <p><strong>21F-24F</strong>：风险投资中心</p>
+          <p><strong>25F</strong>：火花观景台+屋顶花园</p>
+          <p class="cite">文化意义：五道口"宇宙中心"的青春与碰撞精神——每一个创业火花都可能燎原。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 回响之钟 -->
+    <div class="card landmark-card">
+      <span class="landmark-badge">M1 · 75m</span>
+      <h3>回响之钟·AI编钟塔</h3>
+      <div class="l-sub">ECHO BELL TOWER</div>
+      <p class="l-desc">以大钟寺钟声文化为原点，将古代编钟的共振腔体原理与AI音乐生成结合。建筑形态取自传统钟亭歇山顶，以曲面玻璃与钛合金重新演绎。每日正午演奏AI生成的"日课曲目"。</p>
+      <div class="landmark-stats">
+        <div><div class="ls-val">15F</div><div class="ls-lbl">层数</div></div>
+        <div><div class="ls-val">3万m²</div><div class="ls-lbl">面积</div></div>
+        <div><div class="ls-val">每日12:00</div><div class="ls-lbl">日课演奏</div></div>
+      </div>
+      <details>
+        <summary>设计详情与声学设计</summary>
+        <div class="details-body">
+          <p><strong>B1-1F</strong>：AI编钟互动展厅——参观者哼唱/说话，AI实时转化为编钟曲谱播放</p>
+          <p><strong>2F-5F</strong>：AI音乐实验室、声音艺术驻留中心</p>
+          <p><strong>6F-8F</strong>：编钟声学共振腔（中庭贯穿6-15层）</p>
+          <p><strong>9F-12F</strong>：全球AI治理研究中心</p>
+          <p><strong>13F-14F</strong>：空中钟亭（下午茶、小型演出）</p>
+          <p><strong>15F</strong>：钟塔观景台，每日整点演奏</p>
+          <p>声学设计：塔身内部中庭模拟编钟"合瓦形"截面，CFD优化声波传播路径。AI分析当日全球AI新闻热词，映射为编钟音阶，形成"AI声音日报"。</p>
+          <p class="cite">文化意义：古钟（1733年永乐大钟）与AI算法的跨时空对话。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 清华园站中枢 -->
+    <div class="card landmark-card">
+      <span class="landmark-badge">M3 · 遗产改造</span>
+      <h3>清华园站AI创新中枢</h3>
+      <div class="l-sub">TSINGHUA STATION HUB</div>
+      <p class="l-desc">在保留京张铁路清华园站历史站房基础上，向上叠加现代钢结构扩展体量，形成"历史外壳+当代内核"的新旧对话。一级保护外墙、月台、雨棚框架原样保留。</p>
+      <div class="landmark-stats">
+        <div><div class="ls-val">8F</div><div class="ls-lbl">层数</div></div>
+        <div><div class="ls-val">1.2万m²</div><div class="ls-lbl">面积</div></div>
+        <div><div class="ls-val">三级保护</div><div class="ls-lbl">分级体系</div></div>
+      </div>
+      <details>
+        <summary>保护分级与功能分布</summary>
+        <div class="details-body">
+          <p><strong>一级保护</strong>：原始站房外墙、月台、雨棚框架原样保留</p>
+          <p><strong>二级保护</strong>：轨道、枕木、信号灯原位保留，允许功能置换</p>
+          <p><strong>三级保护</strong>：周边环境可更新，需与历史风貌协调</p>
+          <p><strong>1F</strong>：京张铁路历史展厅（保留售票窗口、时刻表、站名牌）</p>
+          <p><strong>2F-4F</strong>：AI开放创新空间——共享工位、会议室、原型工坊</p>
+          <p><strong>5F-6F</strong>：高校AI联合实验室</p>
+          <p><strong>7F-8F</strong>：站台空中花园——保留月台雨棚钢结构，种植攀缘植物</p>
+          <p class="cite">参考案例：伦敦国王十字Central Saint Martins遗产改造、巴黎Station F货运大楼再利用。</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- 开源讨论舱 -->
+  <div class="card landmark-card" style="margin-top:20px;max-width:600px">
+    <span class="landmark-badge">M4 · 藤脉</span>
+    <h3>开源讨论舱群</h3>
+    <div class="l-sub">OPEN-SOURCE DISCUSSION PODS</div>
+    <p class="l-desc">藤脉第四段设置5组半地下圆形镜面不锈钢舱体，直径8m，每舱容纳10-15人。以AI先驱命名：图灵舱、香农舱、麦卡锡舱、辛顿舱、李飞飞舱。采用区块链Token预订系统，讨论结束后Token自动销毁，确保私密性与稀缺性。</p>
+    <details>
+      <summary>设计理念与运营机制</summary>
+      <div class="details-body">
+        <p>舱体半埋入藤脉绿坡，镜面不锈钢表皮反射周边植被，实现视觉消隐。内部配备环形讨论桌、AI会议记录系统、实时翻译、知识图谱生成。</p>
+        <p>运营机制：开源社区成员可通过贡献代码或学术成果获得预订Token；Token在讨论结束后自动销毁（burn），不可转让，防止投机囤积。</p>
+        <p class="cite">参考：巴黎Station F创业生态系统；维基百科开源协作模式；区块链通证经济模型。</p>
+      </div>
+    </details>
+  </div>
+</div>
+</section>
+
+<!-- ============ S9 城市活力 ============ -->
+<section id="s9">
+<div class="wrap fade-in">
+  <div class="section-num">S9 / URBAN VITALITY</div>
+  <h2 class="section-title">城市活力对比</h2>
+  <p class="section-desc">基于KDE（核密度估计）方法模拟城市活力分布，藤脉串核范式在四个维度上显著优于A形双脊旧范式。</p>
+
+  <!-- GROUPED BAR CHART -->
+  <div class="chart-wrap">
+    <div class="chart-title">范式活力对比：A形双脊 vs 藤脉串核</div>
+    <div class="chart-sub">四维指标标准化评分（0-10分，基于KDE活力热区模拟）</div>
+    <svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="barOld" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#64748b" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#475569" stop-opacity="0.4"/>
+        </linearGradient>
+        <linearGradient id="barNew" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#22c55e" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.5"/>
+        </linearGradient>
+      </defs>
+      <!-- chart area: x 120-760, y 40-280, height 240 for value 10 -->
+      <!-- grid -->
+      <line x1="120" y1="280" x2="760" y2="280" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <line x1="120" y1="220" x2="760" y2="220" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="120" y1="160" x2="760" y2="160" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="120" y1="100" x2="760" y2="100" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="120" y1="40" x2="760" y2="40" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+      <!-- y labels -->
+      <text x="110" y="284" text-anchor="end" fill="#64748b" font-size="11">0</text>
+      <text x="110" y="224" text-anchor="end" fill="#64748b" font-size="11">2.5</text>
+      <text x="110" y="164" text-anchor="end" fill="#64748b" font-size="11">5</text>
+      <text x="110" y="104" text-anchor="end" fill="#64748b" font-size="11">7.5</text>
+      <text x="110" y="44" text-anchor="end" fill="#64748b" font-size="11">10</text>
+      <!-- groups: 4 metrics, each group at x centers: 220, 380, 540, 700, bar width 50, gap 10 -->
+      <!-- Metric 1: 活力集中度 old=5.5 new=9.0 -->
+      <rect x="185" y="148" width="50" height="132" rx="4" fill="url(#barOld)"/>
+      <rect x="245" y="64" width="50" height="216" rx="4" fill="url(#barNew)"/>
+      <text x="210" y="140" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">5.5</text>
+      <text x="270" y="56" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="700">9.0</text>
+      <text x="240" y="305" text-anchor="middle" fill="#e8ecf4" font-size="12" font-weight="600">活力集中度</text>
+      <!-- Metric 2: 功能混合度 old=5.0 new=8.5 -->
+      <rect x="345" y="160" width="50" height="120" rx="4" fill="url(#barOld)"/>
+      <rect x="405" y="76" width="50" height="204" rx="4" fill="url(#barNew)"/>
+      <text x="370" y="152" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">5.0</text>
+      <text x="430" y="68" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="700">8.5</text>
+      <text x="400" y="305" text-anchor="middle" fill="#e8ecf4" font-size="12" font-weight="600">功能混合度</text>
+      <!-- Metric 3: 步行可达性 old=6.0 new=9.2 -->
+      <rect x="505" y="136" width="50" height="144" rx="4" fill="url(#barOld)"/>
+      <rect x="565" y="59.2" width="50" height="220.8" rx="4" fill="url(#barNew)"/>
+      <text x="530" y="128" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">6.0</text>
+      <text x="590" y="51" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="700">9.2</text>
+      <text x="560" y="305" text-anchor="middle" fill="#e8ecf4" font-size="12" font-weight="600">步行可达性</text>
+      <!-- Metric 4: 7×24活力 old=4.5 new=8.8 -->
+      <rect x="665" y="172" width="50" height="108" rx="4" fill="url(#barOld)"/>
+      <rect x="725" y="68.8" width="50" height="211.2" rx="4" fill="url(#barNew)"/>
+      <text x="690" y="164" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">4.5</text>
+      <text x="750" y="60" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="700">8.8</text>
+      <text x="720" y="305" text-anchor="middle" fill="#e8ecf4" font-size="12" font-weight="600">7×24活力</text>
+      <!-- legend -->
+      <rect x="300" y="330" width="12" height="12" rx="2" fill="#64748b"/>
+      <text x="320" y="340" fill="#94a3b8" font-size="12">A形双脊（旧）</text>
+      <rect x="460" y="330" width="12" height="12" rx="2" fill="#22c55e"/>
+      <text x="480" y="340" fill="#22c55e" font-size="12">藤脉串核（新）</text>
+    </svg>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(34,197,94,0.12);color:var(--vine)">KDE</span>活力热区方法论</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.8">采用核密度估计（Kernel Density Estimation）方法，以96栋建筑的功能、面积、高度为权重，以500m步行距离为带宽，模拟全日活力时空分布。职住比2:1确保7×24小时活力，避免单一功能区潮汐空洞。</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(245,158,11,0.12);color:var(--amber)">↗</span>提升机制</h3>
+      <ul style="list-style:none;padding:0;font-size:13px;color:var(--text2);line-height:2">
+        <li>▸ TOD圈层聚集 → 活力集中度+64%</li>
+        <li>▸ 科研+商业+居住混合 → 混合度+70%</li>
+        <li>▸ 藤脉慢行9.8km贯通 → 可达性+53%</li>
+        <li>▸ 24h Hackathon+人才公寓 → 全天候+96%</li>
+      </ul>
+    </div>
+  </div>
+
+  <figure>
+    <img src="../assets/figures/06-vitality-heatmap-v2.png" alt="城市活力热力图对比" loading="lazy">
+    <figcaption>图06 · 城市活力KDE热力图 — 藤脉串核范式（右）vs A形双脊范式（左）</figcaption>
+  </figure>
+</div>
+</section>
+
+<!-- ============ S10 断面示意 ============ -->
+<section id="s10" style="background:linear-gradient(180deg,transparent,rgba(34,197,94,0.02),transparent)">
+<div class="wrap fade-in">
+  <div class="section-num">S10 / CROSS SECTION</div>
+  <h2 class="section-title">断面示意</h2>
+  <p class="section-desc">从藤脉到核心节点的典型生态-城市断面，展示遗产、生态、轨交、慢行四层叠加与TOD圈层高度渐变。</p>
+
+  <figure>
+    <img src="../assets/figures/07-cross-section.png" alt="京张2.0生态城市断面图" loading="lazy">
+    <figcaption>图07 · 典型断面示意 — 藤脉（遗产+生态+轨交+慢行）→ 绿楔 → TOD外环 → 内环 → 核心区高度梯度</figcaption>
+  </figure>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3 style="font-size:15px"><span class="icon" style="background:rgba(34,197,94,0.12);color:var(--vine)">🌿</span>藤脉段</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">宽约119m，四层叠加：遗产层（铁轨/站房）、生态层（乡土植被）、轨交层（13号线）、慢行层（三道一绿）。建筑高度≤12m，FAR&lt;0.5。</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px"><span class="icon" style="background:rgba(6,182,212,0.12);color:var(--cyan)">🏢</span>TOD过渡</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">绿楔缓冲后，外环居住（24-60m，FAR 1.0-1.5）→ 内环研发（35-80m，FAR 2.5-4.0）→ 核心区地标（80-150m，FAR 4.0-6.0）。</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:15px"><span class="icon" style="background:rgba(245,158,11,0.12);color:var(--amber)">💧</span>生态断面</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">清河段恢复自然河岸线，去除硬质护岸；生物滞留带5km；慢行道透水铺装100%；年径流控制率≥80%。</p>
+    </div>
+  </div>
+
+  <details>
+    <summary>生态断面的学术解释：从"灰色基础设施"到"绿色海绵"</summary>
+    <div class="details-body">
+      <p>传统铁路断面以排水为核心目标——雨水通过边沟、管道快速排入市政管网，导致面源污染直排入河、峰值流量增大、地下水补给不足。</p>
+      <p>本方案藤脉断面采用"海绵城市"理念转译：</p>
+      <ul>
+        <li><strong>慢行道透水铺装</strong>：雨水原位下渗，减少地表径流</li>
+        <li><strong>生物滞留带</strong>：5km长种植池过滤面源污染（悬浮物去除率≥80%）</li>
+        <li><strong>绿色屋顶</strong>：藤脉沿线建筑屋顶覆盖率≥40%，滞留雨水</li>
+        <li><strong>雨水花园</strong>：≥20处集中滞留设施，调蓄峰值流量</li>
+        <li><strong>生态护岸</strong>：清河段生态工法替代硬质护岸，恢复水陆交错带</li>
+      </ul>
+      <p>综合措施实现年径流总量控制率≥80%，对应设计降雨量约27mm（北京地区）。</p>
+      <p class="cite">参考文献：住房和城乡建设部 (2014). <em>海绵城市建设技术指南</em>; Fletcher, T.D. et al. (2015). "SUDS, LID, BMPs, WSUD and more – The evolution and application of terminology surrounding urban drainage." <em>Urban Water Journal</em> 12(7).</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<!-- ============ S11 开发时序 ============ -->
+<section id="s11">
+<div class="wrap fade-in">
+  <div class="section-num">S11 / PHASING</div>
+  <h2 class="section-title">开发时序（2026-2038）</h2>
+  <p class="section-desc">四期12年，基础设施先行、公共空间先导、地标锚定。总投资约1200亿元。</p>
+
+  <!-- TIMELINE SVG -->
+  <div class="chart-wrap">
+    <div class="chart-title">四期开发时间轴</div>
+    <div class="chart-sub">从奠基到远景，2038年全面建成运营</div>
+    <svg viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- main line -->
+      <line x1="60" y1="100" x2="800" y2="100" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+      <!-- phase blocks: total width 740px for 12 years (2026-2038) -->
+      <!-- PH1: 2026-2028 = 2yr = 123.3px -->
+      <rect x="60" y="80" width="123" height="40" rx="6" fill="rgba(34,197,94,0.15)" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="121.5" y="95" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="700">PH-01 奠基期</text>
+      <text x="121.5" y="112" text-anchor="middle" fill="#94a3b8" font-size="10">2026-2028 · 250亿</text>
+      <!-- PH2: 2028-2031 = 3yr = 185px -->
+      <rect x="183" y="80" width="185" height="40" rx="6" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" stroke-width="1.5"/>
+      <text x="275.5" y="95" text-anchor="middle" fill="#06b6d4" font-size="12" font-weight="700">PH-02 发展期</text>
+      <text x="275.5" y="112" text-anchor="middle" fill="#94a3b8" font-size="10">2028-2031 · 420亿</text>
+      <!-- PH3: 2031-2034 = 3yr = 185px -->
+      <rect x="368" y="80" width="185" height="40" rx="6" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="460.5" y="95" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="700">PH-03 成熟期</text>
+      <text x="460.5" y="112" text-anchor="middle" fill="#94a3b8" font-size="10">2031-2034 · 330亿</text>
+      <!-- PH4: 2034-2038 = 4yr = 246.7px -->
+      <rect x="553" y="80" width="247" height="40" rx="6" fill="rgba(168,85,247,0.15)" stroke="#a855f7" stroke-width="1.5"/>
+      <text x="676.5" y="95" text-anchor="middle" fill="#a855f7" font-size="12" font-weight="700">PH-04 远景期</text>
+      <text x="676.5" y="112" text-anchor="middle" fill="#94a3b8" font-size="10">2034-2038 · 200亿</text>
+      <!-- year markers -->
+      <text x="60" y="145" text-anchor="middle" fill="#64748b" font-size="11">2026</text>
+      <text x="183" y="145" text-anchor="middle" fill="#64748b" font-size="11">2028</text>
+      <text x="368" y="145" text-anchor="middle" fill="#64748b" font-size="11">2031</text>
+      <text x="553" y="145" text-anchor="middle" fill="#64748b" font-size="11">2034</text>
+      <text x="800" y="145" text-anchor="middle" fill="#64748b" font-size="11">2038</text>
+      <!-- dots -->
+      <circle cx="60" cy="100" r="5" fill="#22c55e"/>
+      <circle cx="183" cy="100" r="5" fill="#06b6d4"/>
+      <circle cx="368" cy="100" r="5" fill="#f59e0b"/>
+      <circle cx="553" cy="100" r="5" fill="#a855f7"/>
+      <circle cx="800" cy="100" r="5" fill="#a855f7"/>
+      <!-- content below -->
+      <text x="121.5" y="170" text-anchor="middle" fill="#94a3b8" font-size="10">藤脉贯通·M2先导</text>
+      <text x="275.5" y="170" text-anchor="middle" fill="#94a3b8" font-size="10">M3地标·M1门户</text>
+      <text x="460.5" y="170" text-anchor="middle" fill="#94a3b8" font-size="10">M4产业化·绿楔修复</text>
+      <text x="676.5" y="170" text-anchor="middle" fill="#94a3b8" font-size="10">加密·激活·自演化</text>
+    </svg>
+  </div>
+
+  <div class="tbl-wrap phase-table">
+    <table>
+      <thead><tr><th>期次</th><th>年份</th><th>主题</th><th>核心内容</th><th>投资</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PH-01</strong></td><td>2026-2028</td><td>奠基期</td><td>藤脉9.8km绿道贯通、M2五道口先导、M3启动区</td><td>250亿元</td></tr>
+        <tr><td><strong>PH-02</strong></td><td>2028-2031</td><td>发展期</td><td>M3算力方碑建成、M1门户开放、藤脉四段叙事完形</td><td>420亿元</td></tr>
+        <tr><td><strong>PH-03</strong></td><td>2031-2034</td><td>成熟期</td><td>M4清河子核产业化、三绿楔生态修复、TOD网络成熟</td><td>330亿元</td></tr>
+        <tr><td><strong>PH-04</strong></td><td>2034-2038</td><td>远景期</td><td>圈内加密、微核心激活、全面运营、自我演化</td><td>200亿元</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <img src="../assets/figures/05-phasing-plan.png" alt="分期开发规划图" loading="lazy">
+    <figcaption>图05 · 四期开发时序空间分布 — 从南到北、从核心到外围逐步推进</figcaption>
+  </figure>
+</div>
+</section>
+
+<!-- ============ S12 理论体系 ============ -->
+<section id="s12" style="background:linear-gradient(180deg,transparent,rgba(6,182,212,0.02),transparent)">
+<div class="wrap fade-in">
+  <div class="section-num">S12 / THEORETICAL FRAMEWORK</div>
+  <h2 class="section-title">理论体系</h2>
+  <p class="section-desc">七大理论基石支撑藤脉串核范式，从1882年带形城市到当代新加坡铁路廊道，跨越140年城市规划智慧。</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(34,197,94,0.12);color:var(--vine)">①</span>遗产廊道理论</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">US NPS 1980s / ICOMOS 2008。藤脉作为线性遗产廊道，保护京张铁路历史层积，而非冻结式保存。</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(6,182,212,0.12);color:var(--cyan)">②</span>哥本哈根手指规划</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">1947/1992 TOD overlay。藤脉=手指，核心节点=沿线节点，绿楔=指间绿地。结构直接参照。</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(245,158,11,0.12);color:var(--amber)">③</span>库里蒂巴BRT-TOD</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">1970s。沿公交轴线密度圈层递减法则，FAR(d)=FAR_core·e^(-d/λ)，λ≈400m。</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(239,68,68,0.12);color:var(--coral)">④</span>TOD节点-场所模型</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">Calthorpe 1993。300/600/1000m三圈层划分，节点价值与场所品质平衡。</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(168,85,247,0.12);color:#a855f7">⑤</span>带形城市理论</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">Soria y Mata 1882。以交通干线为脊柱的纵向发展，最适合狭长带形场地。</p>
+    </div>
+    <div class="card">
+      <h3><span class="icon" style="background:rgba(133,193,233,0.15);color:var(--m4)">⑥</span>新加坡KTM廊道策略</h3>
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">URA 2010s。低干预生态韧性，遗产+生态+社区复合。藤脉段借鉴，核心节点高强度开发。</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3><span class="icon" style="background:rgba(255,255,255,0.06);color:var(--text)">⑦</span>伦敦国王十字更新 + 京张二期"融拆退补"</h3>
+    <p style="font-size:13px;color:var(--text2);line-height:1.7">King's Cross Central（27ha）展示了工业遗产适应性再利用、公共空间先导、TOD无缝衔接与混合功能的成功范式。京张二期"融拆退补"策略（2026.8）提供在地实施框架：融遗产入生活、拆割裂障碍、退界释放空间、补生态服务。</p>
+  </div>
+
+  <details>
+    <summary>学术参考文献完整列表</summary>
+    <div class="details-body">
+      <ul>
+        <li>Calthorpe, P. (1993). <em>The Next American Metropolis: Ecology, Community, and the American Dream</em>. Princeton Architectural Press.</li>
+        <li>Soria y Mata, A. (1882). <em>La Ciudad Lineal</em>. Madrid.</li>
+        <li>Danish Enterprise and Construction Authority (2007). <em>The Finger Plan: A Strategy for the Development of the Greater Copenhagen Area</em>.</li>
+        <li>Cervero, R. & Kang, C.D. (2011). "Bus rapid transit impacts on land uses and land values in Seoul, Korea." <em>Transport Policy</em> 18(1): 102-116.</li>
+        <li>Knowles, R.D. (2012). "Transit-oriented development in Copenhagen." <em>Journal of Transport Geography</em> 25: 28-39.</li>
+        <li>Gehl, J. (2010). <em>Cities for People</em>. Island Press.</li>
+        <li>Singapore URA (2020). <em>Rail Corridor Enhancement Plan</em>.</li>
+        <li>ICOMOS (2008). <em>The ICOMOS Charter on Cultural Routes</em>. Quebec.</li>
+        <li>US National Park Service (1984). <em>Heritage Corridors: A Selected Bibliography</em>.</li>
+        <li>Fletcher, T.D. et al. (2015). "SUDS, LID, BMPs, WSUD and more." <em>Urban Water Journal</em> 12(7): 525-542.</li>
+      </ul>
+    </div>
+  </details>
+</div>
+</section>
+
+<!-- ============ S13 合规矩阵 ============ -->
+<section id="s13">
+<div class="wrap fade-in">
+  <div class="section-num">S13 / COMPLIANCE MATRIX</div>
+  <h2 class="section-title">合规矩阵</h2>
+  <p class="section-desc">覆盖公告1.3/1.4/1.5的13项设计任务和Agent任务书6项专项任务，19项全部覆盖，覆盖率100%。</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>编号</th><th>任务描述</th><th>响应章节</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ANN-1.3-1</strong></td><td>统筹研究范围：全球AI产业格局、战略定位、区域协同</td><td>第三章理论、附录D案例</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.3-2</strong></td><td>三区两翼空间协同逻辑</td><td>第一章结构、第九章绿楔</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.4-1</strong></td><td>总体设计范围：用地布局策略</td><td>第二章TOD、第十五章用地</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.4-2</strong></td><td>京张遗址公园活力带策略</td><td>第四章藤脉设计</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.4-3</strong></td><td>交通组织与慢行体系</td><td>第十三章道路与交通</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.4-4</strong></td><td>蓝绿空间与公共空间</td><td>第九/十四章、附录E</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.5-1</strong></td><td>众智园详细设计（M3清华园主核）</td><td>第七章M3详解</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.5-2</strong></td><td>北京AI原点社区（M2五道口）</td><td>第六章M2详解</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.5-3</strong></td><td>大钟寺详细设计（M1门户核）</td><td>第五章M1详解</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.5-4</strong></td><td>建筑规模与拆改留方案</td><td>第十至十二章</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.5-5</strong></td><td>公共服务设施配置</td><td>第十三章、附录E</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.5-6</strong></td><td>更新项目清单与分期计划</td><td>第十五章分期</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>ANN-1.5-7</strong></td><td>3处朝圣地标</td><td>第十一章地标</td><td><span class="tag tag-vine">✓ 已覆盖</span></td></tr>
+        <tr><td><strong>AGENT-1~6</strong></td><td>六大Agent任务（案例/场景/画像/地标/组件/运营）</td><td>附录A-F</td><td><span class="tag tag-cyan">✓ 全部覆盖</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ============ S14 参考案例 ============ -->
+<section id="s14" style="background:linear-gradient(180deg,transparent,rgba(245,158,11,0.02),transparent)">
+<div class="wrap fade-in">
+  <div class="section-num">S14 / GLOBAL CASE STUDIES</div>
+  <h2 class="section-title">参考案例</h2>
+  <p class="section-desc">全球8个标杆案例，从哥本哈根手指规划到纽约高线公园，为藤脉串核范式提供国际参照。</p>
+
+  <div class="grid-4" style="gap:16px">
+    <div class="card" style="padding:20px">
+      <span class="tag tag-vine" style="margin-bottom:10px;display:inline-block">结构参照</span>
+      <h3 style="font-size:15px;margin-bottom:6px">哥本哈根手指规划</h3>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">COPENHAGEN · 1947/1992</div>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7">5条铁路手指+指间绿楔，车站1000m内集中80%开发。藤脉串核直接借鉴其结构。</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <span class="tag tag-cyan" style="margin-bottom:10px;display:inline-block">生态参照</span>
+      <h3 style="font-size:15px;margin-bottom:6px">新加坡KTM廊道</h3>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">SINGAPORE · 2010s</div>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7">24km旧铁路"低干预"改造，遗产+生态+社区复合。藤脉段四层叠加策略参考。</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <span class="tag tag-amber" style="margin-bottom:10px;display:inline-block">更新参照</span>
+      <h3 style="font-size:15px;margin-bottom:6px">伦敦国王十字</h3>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">LONDON · 2000s</div>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7">27ha旧铁路货场改造，Google总部+CSM艺术学院，公共空间先导策略。</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <span class="tag tag-coral" style="margin-bottom:10px;display:inline-block">密度参照</span>
+      <h3 style="font-size:15px;margin-bottom:6px">库里蒂巴BRT-TOD</h3>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">CURITIBA · 1970s</div>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7">沿BRT轴线密度指数衰减，公交分担率>70%。TOD圈层FAR法则来源。</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <span class="tag tag-vine" style="margin-bottom:10px;display:inline-block">上盖参照</span>
+      <h3 style="font-size:15px;margin-bottom:6px">巴黎左岸</h3>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">PARIS · 1990s-</div>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7">130ha工业用地更新，铁路上盖开发+密特朗图书馆锚点，15000居民+30000就业。</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <span class="tag tag-cyan" style="margin-bottom:10px;display:inline-block">孵化参照</span>
+      <h3 style="font-size:15px;margin-bottom:6px">Station F</h3>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">PARIS · 2017</div>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7">34000m²世界最大孵化器，旧铁路货运大楼改造，1000+初创企业。M2火花塔运营参考。</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <span class="tag tag-amber" style="margin-bottom:10px;display:inline-block">站城参照</span>
+      <h3 style="font-size:15px;margin-bottom:6px">东京涩谷站城</h3>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">TOKYO · 2010s</div>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7">日客流330万，垂直城市+多层步行网络+涩谷川恢复。核心区站城一体参考。</p>
+    </div>
+    <div class="card" style="padding:20px">
+      <span class="tag tag-coral" style="margin-bottom:10px;display:inline-block">高架参照</span>
+      <h3 style="font-size:15px;margin-bottom:6px">纽约高线公园</h3>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">NEW YORK · 2009-</div>
+      <p style="font-size:12.5px;color:var(--text2);line-height:1.7">2.3km废弃高架铁路改造为线性公园，带动周边40个新项目。遗产活化经济效应参照。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ S15 数据图层 ============ -->
+<section id="s15">
+<div class="wrap fade-in">
+  <div class="section-num">S15 / DATA LAYERS</div>
+  <h2 class="section-title">数据图层</h2>
+  <p class="section-desc">9个GeoJSON图层、7张规划图件、完整数据目录，确保方案可验证、可复现、可审计。</p>
+
+  <div class="grid-3" style="gap:16px;margin-bottom:28px">
+    <div class="card" style="padding:18px">
+      <div style="font-size:24px;font-weight:700;color:var(--vine)">9</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px">GeoJSON空间图层</div>
+    </div>
+    <div class="card" style="padding:18px">
+      <div style="font-size:24px;font-weight:700;color:var(--cyan)">7</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px">规划图件（PNG）</div>
+    </div>
+    <div class="card" style="padding:18px">
+      <div style="font-size:24px;font-weight:700;color:var(--amber)">96</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px">概念建筑单体</div>
+    </div>
+  </div>
+
+  <div class="file-tree">
+<span class="dir">jingzhang-2point0/</span>
+├── <span class="dir">geometry/</span>
+│   ├── <span class="file">site_boundary.geojson</span>  <span class="desc"># 场地边界 ~1140ha</span>
+│   ├── <span class="file">key_areas.geojson</span>      <span class="desc"># 藤脉+四核结构轮廓（5要素）</span>
+│   ├── <span class="file">land_use.geojson</span>        <span class="desc"># TOD圈层用地（29块，含FAR）</span>
+│   ├── <span class="file">buildings.geojson</span>      <span class="desc"># 96栋建筑单体（类型/层数/高度）</span>
+│   ├── <span class="file">roads.geojson</span>          <span class="desc"># 道路网络（29条，5个等级）</span>
+│   ├── <span class="file">green_space.geojson</span>    <span class="desc"># 蓝绿空间（11处）</span>
+│   ├── <span class="file">public_space.geojson</span>   <span class="desc"># 公共空间与遗产节点（14处）</span>
+│   ├── <span class="file">constraints.geojson</span>    <span class="desc"># 约束条件（高架/噪声/遗产/蓝线）</span>
+│   ├── <span class="file">phasing.geojson</span>        <span class="desc"># 四期开发时序（4个多边形）</span>
+│   ├── <span class="file">layer_catalog.json</span>    <span class="desc"># 图层元数据目录</span>
+│   └── <span class="file">core_stats.json</span>      <span class="desc"># 四核统计数据</span>
+├── <span class="dir">assets/figures/</span>
+│   ├── <span class="file">01-vine-core-structure.png</span>
+│   ├── <span class="file">02-tod-land-use.png</span>
+│   ├── <span class="file">03-core-detail-tsinghua.png</span>
+│   ├── <span class="file">04-road-green-network.png</span>
+│   ├── <span class="file">05-phasing-plan.png</span>
+│   ├── <span class="file">06-vitality-heatmap-v2.png</span>
+│   └── <span class="file">07-cross-section.png</span>
+├── <span class="dir">scripts/</span>
+│   ├── <span class="file">build_geometry.py</span>     <span class="desc"># GeoJSON生成脚本</span>
+│   ├── <span class="file">make_figures.py</span>       <span class="desc"># 图件渲染脚本</span>
+│   └── <span class="file">validate.py</span>           <span class="desc"># 数据一致性校验</span>
+├── <span class="file">proposal.md</span>               <span class="desc"># 完整提案文档</span>
+├── <span class="file">metrics.json</span>              <span class="desc"># 量化指标体系</span>
+├── <span class="file">compliance_matrix.json</span>    <span class="desc"># 合规矩阵</span>
+└── <span class="file">manifest.json</span>             <span class="desc"># 项目清单</span>
+  </div>
+
+  <details>
+    <summary>数据坐标系与投影说明</summary>
+    <div class="details-body">
+      <p>所有GeoJSON数据采用CRS84坐标系（urn:ogc:def:crs:OGC:1.3:CRS84），即WGS84经纬度。面积统计在EPSG:4548（CGCS2000 / 3-degree Gauss-Kruger CM 117E）投影下复算，确保面积精度。</p>
+      <p>场地边界面积复算值为1140.6ha，与公告11.40km²一致。所有边界均为provisional（暂定）状态，最终以官方勘界为准。</p>
+      <p>建筑单体（96栋）为概念性点位数据，包含building_type、floors、height_m、tod_ring、distance_to_station_m等属性，可用于KDE活力模拟和视线分析。</p>
+      <p class="cite">数据可通过GitHub获取：https://github.com/Laser1209 · 许可证：CC BY-NC-SA 4.0</p>
+    </div>
+  </details>
+</div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+<div class="wrap">
+  <p style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px">京张2.0：从铁轨到数轨 — 藤脉串核城市设计提案</p>
+  <p>Vine-Core Paradigm · From Railway Heritage to AI Innovation Symbiosis</p>
+  <p style="margin-top:16px">
+    <span class="aigc">🤖 AIGC辅助生成 · Label: 1</span>
+    <span class="aigc">📄 CC BY-NC-SA 4.0</span>
+    <span class="aigc">📅 2026-08-08</span>
+  </p>
+  <p style="margin-top:20px;font-size:11.5px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.8">
+    本方案基于provisional边界生成，所有面积与比例均为概念建议，控规条件缺失处标记为"待确认"。<br>
+    提交者：Laser1209 · Agent：Marvis (马维斯) · 文化叙事与AI场景策划<br>
+    © 2026 京张2.0项目组 · 本作品采用知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议进行许可
+  </p>
+</div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.fade-in');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(el){io.observe(el)});
+  } else {
+    els.forEach(function(el){el.classList.add('visible')});
+  }
+
+  var navLinks=document.querySelectorAll('.nav-inner a');
+  var sections=[];
+  navLinks.forEach(function(a){
+    var id=a.getAttribute('href').slice(1);
+    var s=document.getElementById(id);
+    if(s) sections.push({el:s,link:a});
+  });
+  var spy=function(){
+    var scrollY=window.scrollY||window.pageYOffset;
+    var current=null;
+    sections.forEach(function(s){
+      if(s.el.offsetTop-120<=scrollY) current=s;
+    });
+    navLinks.forEach(function(a){a.style.background='';a.style.color=''});
+    if(current){
+      current.link.style.background='rgba(34,197,94,0.12)';
+      current.link.style.color='#22c55e';
+    }
+  };
+  window.addEventListener('scroll',spy,{passive:true});
+  spy();
+})();
+</script>
+
+</body>
+</html>
