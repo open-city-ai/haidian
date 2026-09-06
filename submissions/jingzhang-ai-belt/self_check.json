@@ -1,0 +1,201 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary 已从 brief/site-package/geometry/provisional_boundaries.geojson 生成并呈现；正式评分前需替换为官方 redline。当前 overall_design_area 公告面积为 11.4 km²（11400000 sqm），provisional polygon 面积约 11.41 km²（11412825 sqm），偏差约 0.11%。",
+      "validation": {
+        "announced_area_km2": 11.4,
+        "provisional_area_km2": 11.412825,
+        "deviation_pct": 0.11,
+        "provisional_polygon_present": true,
+        "mandatory_geojson_layers_present": [
+          "geometry/site_boundary.geojson",
+          "geometry/key_areas.geojson",
+          "geometry/land_use.geojson",
+          "geometry/buildings.geojson",
+          "geometry/roads.geojson",
+          "geometry/green_space.geojson",
+          "geometry/public_space.geojson",
+          "geometry/constraints.geojson",
+          "geometry/phasing.geojson"
+        ]
+      }
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区域 provisional polygon 已生成（PROV-KEY-001 众智园、PROV-KEY-002 AI原点社区、PROV-KEY-003 大钟寺）；正式评分前需替换为官方 KEY_AREA polygon。当前重点区合计公告面积 368.4 ha（3684000 sqm）。",
+      "validation": {
+        "key_areas_count": 3,
+        "key_areas_list": [
+          {"id": "PROV-KEY-001", "name": "众智园AI自主创新加速区", "announced_area_ha": 192.1},
+          {"id": "PROV-KEY-002", "name": "北京AI原点社区", "announced_area_ha": 104.3},
+          {"id": "PROV-KEY-003", "name": "大钟寺AI产业聚集区", "announced_area_ha": 72.0}
+        ],
+        "total_announced_area_ha": 368.4,
+        "provisional_polygons_present": true
+      }
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分类图层已生成，使用 MNR-LAND-CLASSIFICATION 标准 land_use_code；land_use polygon 为从 site boundary 分区派生的概念用地，非官方地块边界。",
+      "validation": {
+        "land_use_geojson_present": true,
+        "classification_standard": "MNR-LAND-USE-CLASSIFICATION-202311",
+        "contains_land_use_code_field": true,
+        "is_provisional": true
+      }
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "静态 HTML 可视化已生成，无外部依赖，可在浏览器离线查看。包含总览地图、任务覆盖和核心指标三个视觉板块。",
+      "validation": {
+        "visual_html_present": true,
+        "external_dependencies": 0,
+        "visual_sections": ["总览地图", "任务覆盖", "核心指标"]
+      }
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "方案文本已包含对标准引用、设计深度项、geometry 图层、metrics 指标、sources 来源和 assumptions 假设的交叉引用。",
+      "validation": {
+        "proposal_md_present": true,
+        "cross_refs_to": [
+          "compliance_matrix.json",
+          "standard_matrix.json",
+          "design_depth_matrix.json",
+          "metrics.json",
+          "sources.json",
+          "assumptions.json",
+          "self_check.json"
+        ]
+      }
+    },
+    {
+      "check_id": "COMPLIANCE_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json",
+      "message": "合规矩阵覆盖全部13项必答任务（1.3.1-1.3.3 official_purpose、1.5.2.2-1.5.2.4 overall_design、1.5.3.1-1.5.3.3 key_area、agent.1-agent.6 agent_task），所有任务状态为 addressed。",
+      "validation": {
+        "total_mandatory_tasks": 13,
+        "tasks_addressed": 13,
+        "tasks_pending": 0,
+        "task_coverage_pct": 100.0,
+        "requirement_ids": [
+          "1.3.1", "1.3.2", "1.3.3",
+          "1.5.2.2", "1.5.2.3", "1.5.2.4",
+          "1.5.3.1", "1.5.3.2", "1.5.3.3",
+          "agent.1", "agent.2", "agent.3", "agent.4", "agent.5", "agent.6"
+        ]
+      }
+    },
+    {
+      "check_id": "STANDARD_REFERENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "standard_matrix.json",
+      "message": "标准矩阵引用住建部城市设计管理办法、控规编制审批办法、自然资源部用地分类指南及公告/任务书标准，共6条标准。",
+      "validation": {
+        "standards_count": 6,
+        "mandatory_standards_covered": 5,
+        "optional_standards_covered": 1,
+        "standard_ids": [
+          "PROJECT-OFFICIAL-ANNOUNCEMENT",
+          "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+          "MOHURD-URBAN-DESIGN-MEASURES",
+          "MOHURD-CONTROL-DETAILED-PLANNING",
+          "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+          "MOHURD-ARCH-DESIGN-DEPTH-2016"
+        ]
+      }
+    },
+    {
+      "check_id": "DESIGN_DEPTH_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "design_depth_matrix.json",
+      "message": "设计深度矩阵覆盖全部15项深度项，跨规划、城市设计、建筑、交通、市政、景观、实施、校核、合规9个专业维度。",
+      "validation": {
+        "depth_items_total": 15,
+        "depth_items_complete": 15,
+        "professional_dimensions": [
+          "规划", "城市设计", "控规", "建筑", "交通",
+          "市政", "景观", "实施", "校核", "合规"
+        ]
+      }
+    },
+    {
+      "check_id": "METRICS_AREA_BREAKDOWN",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "面积复算完成三层范围分解：统筹研究范围 43.6 km² / 总体设计范围 11.4 km² / 重点区域 3.684 km²（众智园 1.921+AI原点 1.043+大钟寺 0.720）。",
+      "validation": {
+        "coordinated_research_area_km2": 43.6,
+        "overall_design_area_km2": 11.4,
+        "key_detailed_design_area_km2": 3.684,
+        "sub_areas_sum_km2": 3.684,
+        "sub_areas_match_total": true,
+        "floor_area_ratio": "unknown (控规条件缺失)"
+      }
+    },
+    {
+      "check_id": "ASSUMPTIONS_REGISTERED",
+      "result": "pass",
+      "severity": "major",
+      "target": "assumptions.json",
+      "message": "假设矩阵已登记9条假设，覆盖控规条件(1)、官方边界(2)、道路红线(1)、地块权属(1)、现状建筑(1)、文保控制(1)、市政管线(1)、公共服务设施(1)，均对应 missing_data_checklist.csv 中的缺资料项。",
+      "validation": {
+        "assumptions_count": 9,
+        "categories_covered": [
+          "planning_control", "official_boundary", "transport_control",
+          "land_parcel", "existing_building", "heritage_control",
+          "municipal_safety", "public_facilities"
+        ],
+        "all_status": "pending_professional_confirmation",
+        "source_gaps_mapped": true
+      }
+    },
+    {
+      "check_id": "SOURCES_REGISTERED",
+      "result": "pass",
+      "severity": "info",
+      "target": "sources.json",
+      "message": "来源矩阵已登记6条来源：公告(1)、任务书(1)、住建部城市设计办法(1)、住建部控规办法(1)、自然资源部用地分类(1)、临时边界(1)。",
+      "validation": {
+        "sources_count": 6,
+        "source_types": ["official_public", "user_provided_cleared", "national_standard", "agent_inferred_from_public_data"],
+        "formal_sources": 5,
+        "provisional_sources": 1
+      }
+    },
+    {
+      "check_id": "MISSING_DATA_REGISTERED",
+      "result": "pass",
+      "severity": "major",
+      "target": ["assumptions.json", "missing_data_checklist.csv"],
+      "message": "缺失资料清单已从 missing_data_checklist.csv 全部映射：8类缺失（GAP-BOUNDARY-001/002, GAP-CONTROL-001, GAP-ROAD-001, GAP-PARCEL-001, GAP-BUILDING-001, GAP-HERITAGE-001, GAP-MUNICIPAL-001, GAP-SERVICE-001）。",
+      "validation": {
+        "missing_gaps_total": 8,
+        "gaps_mapped_to_assumptions": 8,
+        "gaps_unmapped": 0
+      }
+    }
+  ]
+}

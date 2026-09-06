@@ -1,0 +1,209 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm",
+    "area_display": "km²"
+  },
+  "area_breakdown": {
+    "coordinated_research_area": {
+      "label_zh": "统筹研究范围",
+      "area_sqm": 43600000,
+      "area_km2": 43.6,
+      "status": "announced",
+      "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "boundary_text": "北至北五环路；东至京藏高速；南至西直门外大街；西至万泉河路",
+      "provisional_feature_id": "PROV-RESEARCH-001",
+      "confidence": "high"
+    },
+    "overall_design_area": {
+      "label_zh": "总体设计范围",
+      "area_sqm": 11400000,
+      "area_km2": 11.4,
+      "status": "announced",
+      "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "boundary_text": "北至北五环路；东至学院路、西土城路等；南至西直门外大街；西至大钟寺东路、荷清路等",
+      "provisional_feature_id": "PROV-SITE-001",
+      "confidence": "high"
+    },
+    "key_detailed_design_area": {
+      "label_zh": "重点区域范围（三区合计）",
+      "area_sqm": 3684000,
+      "area_km2": 3.684,
+      "area_ha": 368.4,
+      "status": "announced",
+      "source": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "provisional_feature_id": "PROV-KEY-SCOPE-001",
+      "confidence": "high",
+      "sub_areas": {
+        "zhongzhiyuan_ai_acceleration_area": {
+          "label_zh": "众智园AI自主创新加速区",
+          "area_sqm": 1921000,
+          "area_ha": 192.1,
+          "provisional_feature_id": "PROV-KEY-001"
+        },
+        "beijing_ai_origin_community": {
+          "label_zh": "北京AI原点社区",
+          "area_sqm": 1043000,
+          "area_ha": 104.3,
+          "provisional_feature_id": "PROV-KEY-002"
+        },
+        "dazhongsi_ai_industry_cluster": {
+          "label_zh": "大钟寺AI产业聚集区",
+          "area_sqm": 720000,
+          "area_ha": 72.0,
+          "provisional_feature_id": "PROV-KEY-003"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "data/processed/project_scope_summary.csv"
+      ],
+      "formula": "announced_area (43.6 km² × 10⁶)",
+      "confidence": "high",
+      "assumptions": [
+        "公告面积为官方数据，provisional polygon 仅供 intake 生成"
+      ]
+    },
+    "overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "data/processed/project_scope_summary.csv"
+      ],
+      "formula": "announced_area (11.4 km² × 10⁶)",
+      "confidence": "high",
+      "assumptions": [
+        "公告面积为官方数据，provisional polygon 仅供 intake 生成"
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "data/processed/project_scope_summary.csv"
+      ],
+      "formula": "announced_area (368.4 ha × 10⁴)",
+      "confidence": "high",
+      "assumptions": [
+        "公告面积为官方数据，provisional polygon 仅供 intake 生成"
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "data/processed/project_scope_summary.csv"
+      ],
+      "formula": "announced_area (192.1 ha × 10⁴)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "beijing_ai_origin_area_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "data/processed/project_scope_summary.csv"
+      ],
+      "formula": "announced_area (104.3 ha × 10⁴)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "data/processed/project_scope_summary.csv"
+      ],
+      "formula": "announced_area (72.0 ha × 10⁴)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary_provisional)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary derived from public data; replace with official redline for formal scoring"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "现状建筑轮廓来自公开数据，非官方测绘底数"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1234,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "绿地 polygon 为概念设计图层，非官方绿地边界"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0733,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "公共空间 polygon 为概念设计图层，非官方边界"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "控规容积率条件未在公开 site package 中提供"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(三处重点详细设计区域)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}
