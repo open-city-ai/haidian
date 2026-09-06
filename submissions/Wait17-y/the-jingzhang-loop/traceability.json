@@ -1,0 +1,295 @@
+{
+  "schema_version": "0.1.0",
+  "chains": [
+    {
+      "source": {
+        "source_id": "SRC-OSM-2026",
+        "type": "osm_data",
+        "finding": "低层建筑占比64% (1-3F, 有标签样本)"
+      },
+      "strategy": {
+        "module": "D3.3 策略2",
+        "spatial_response": "弹性R&D空间集群：模块化单元(50/150/500/1500 m²)，可按月灵活扩展或收缩",
+        "strategy_id": "D3-S2"
+      },
+      "metric": {
+        "type": "innovation_capacity",
+        "metric_id": "METRIC-FLEX-01",
+        "value": "Phase 1: 概念建议承载50-100家AI初创的弹性空间条件"
+      },
+      "design_decision": {
+        "decision_id": "DD-ELASTIC-001",
+        "description": "原点社区西侧概念建议约10 ha弹性R&D区，'空间即服务'模式——企业按使用面积和时间付费"
+      },
+      "finding": {
+        "module": "B2 空间约束",
+        "finding_id": "B2-C03",
+        "diagnosis": "建筑存量服务于1980-2000年代机构办公需求，无法承载AI创新的高弹性、跨时区空间需求"
+      },
+      "drawing": {
+        "layer": "land_use.geojson",
+        "drawing_ref": "03_key_areas_detail.png"
+      },
+      "chain_id": "TRACE-001",
+      "scenario": "E1.3 AI创业团队弹性入驻场景"
+    },
+    {
+      "source": {
+        "source_id": "SRC-CAMPUS-WALL-ANALYSIS",
+        "type": "agent_derived",
+        "finding": "9座围墙校园造成~11 km²创新用地物理封闭"
+      },
+      "strategy": {
+        "module": "D2.3 Boundary Interface Model",
+        "spatial_response": "三层模型：Institutional Core(保持)→Shared Innovation Interface(半开放转化)→Public Innovation Edge(城市侧响应)",
+        "strategy_id": "D2-BIM"
+      },
+      "metric": {
+        "type": "innovation_capacity",
+        "metric_id": "METRIC-OPEN-01",
+        "value": "临街面底层开放界面比例 >60% (概念建议目标)"
+      },
+      "design_decision": {
+        "decision_id": "DD-BIM-001",
+        "description": "创新橱窗：校园东侧临遗址公园约1-2 km临街界面，底层功能调整+玻璃立面改造"
+      },
+      "finding": {
+        "module": "B2 空间约束",
+        "finding_id": "B2-C02",
+        "diagnosis": "围墙效应：知识交流依赖个人关系网，跨校合作是低频偶然事件而非系统默认"
+      },
+      "drawing": {
+        "layer": "buildings.geojson + public_space.geojson",
+        "drawing_ref": "03_key_areas_detail.png"
+      },
+      "chain_id": "TRACE-002",
+      "scenario": "E1.1 跨校AI研究者协作场景"
+    },
+    {
+      "source": {
+        "source_id": "SRC-GLOBAL-BENCHMARK",
+        "type": "public_composite",
+        "finding": "海淀空间质量3 vs Kendall 7/Station F 8/Shibuya 9——落后4-6点"
+      },
+      "strategy": {
+        "module": "D3.3 策略1",
+        "spatial_response": "碰撞枢纽：国际会议中心(2000人级)+黑客松永久会址+VC驻场+大会广场——步行3分钟范围内",
+        "strategy_id": "D3-S1"
+      },
+      "metric": {
+        "type": "innovation_capacity",
+        "metric_id": "METRIC-INTL-01",
+        "value": "Phase 2: 具NeurIPS级别国际会议常设会址空间条件"
+      },
+      "design_decision": {
+        "decision_id": "DD-HUB-001",
+        "description": "原点社区碰撞枢纽核心区概念建议约8 ha，四个子功能垂直混合"
+      },
+      "finding": {
+        "module": "B1 全球对标",
+        "finding_id": "B1-SPATIAL-GAP",
+        "diagnosis": "全球顶尖AI创新发生在全球平庸的城市空间中"
+      },
+      "drawing": {
+        "layer": "key_areas.geojson + buildings.geojson",
+        "drawing_ref": "03_key_areas_detail.png"
+      },
+      "chain_id": "TRACE-003",
+      "scenario": "E1.5 国际AI会议场景"
+    },
+    {
+      "source": {
+        "source_id": "SRC-OFFICIAL-ANNOUNCEMENT-2026",
+        "type": "official_public",
+        "finding": "大钟寺72.0 ha——三区中唯一邻近密集居住区和商业区的片区"
+      },
+      "strategy": {
+        "module": "D4.3 策略1+3",
+        "spatial_response": "城市沙盒Tier 1/2/3 + AI产品首发馆'场地即服务'",
+        "strategy_id": "D4-S1+S3"
+      },
+      "metric": {
+        "type": "innovation_capacity",
+        "metric_id": "METRIC-TEST-01",
+        "value": "Phase 2: 城市沙盒3个Tier + 概念建议年测试50产品"
+      },
+      "design_decision": {
+        "decision_id": "DD-DZS-001",
+        "description": "大钟寺中部概念建议约8 ha城市沙盒测试区 + 商圈核心4,000-8,000 m²首发馆"
+      },
+      "finding": {
+        "module": "B5 创新生命周期缺口",
+        "finding_id": "B5-GAP3+GAP4",
+        "diagnosis": "缺口③城市沙盒缺失 + 缺口④产品发布目的地缺失"
+      },
+      "drawing": {
+        "layer": "land_use.geojson + constraints.geojson",
+        "drawing_ref": "03_key_areas_detail.png"
+      },
+      "chain_id": "TRACE-004",
+      "scenario": "E1.4 市民体验AI产品场景"
+    },
+    {
+      "source": {
+        "source_id": "SRC-AGENT-TASKBOOK-2026",
+        "type": "user_provided_cleared",
+        "finding": "共创章程Charter.3: 智能体成果是开放共创建议，不替代专业规划"
+      },
+      "strategy": {
+        "module": "全局约束",
+        "spatial_response": "所有空间措施表述为'概念建议''概念基准''参考方案'；所有面积和规模为情景参考基准",
+        "strategy_id": "CONSTRAINT-ALL"
+      },
+      "metric": {
+        "type": "constraint_compliance",
+        "metric_id": "METRIC-FRAMEWORK",
+        "value": "所有指标为Innovation Capacity，非Planning Requirement"
+      },
+      "design_decision": {
+        "decision_id": "DD-DISCLAIMER-001",
+        "description": "Pre-Disclaimer 8项声明 + 全文中>100处'概念建议'"
+      },
+      "finding": {
+        "module": "A6 规划约束",
+        "finding_id": "A6-PLANNING-GAP",
+        "diagnosis": "控规条件全部5项缺失"
+      },
+      "drawing": {
+        "layer": "N/A (约束层)",
+        "drawing_ref": "06_design_logic_diagram.png"
+      },
+      "chain_id": "TRACE-005",
+      "scenario": "全阶段约束合规"
+    },
+    {
+      "source": {
+        "source_id": "SRC-OSM-2026",
+        "type": "osm_data",
+        "finding": "京张遗址公园线性空间沿总体设计范围中轴线延伸，全长约8.7 km"
+      },
+      "strategy": {
+        "module": "D1.1-D1.4",
+        "spatial_response": "一轴(开发者走廊)·三区(三个创新密度节点)·五节点(五个空间锚点)",
+        "strategy_id": "D1-SPATIAL-STRUCTURE"
+      },
+      "metric": {
+        "type": "innovation_capacity",
+        "metric_id": "METRIC-CONNECT-01",
+        "value": "Phase 1: 两区之间步行/骑行<20min; Phase 2: 三区轨道+骑行<30min"
+      },
+      "design_decision": {
+        "decision_id": "DD-AXIS-001",
+        "description": "开发者走廊：东西缝合(10个交叉口)+南北贯通(连续步行/骑行)+可编程公共空间"
+      },
+      "finding": {
+        "module": "A3 场地认知",
+        "finding_id": "A3-SITE",
+        "diagnosis": "京张遗址公园是串联三区的天然线性脊轴"
+      },
+      "drawing": {
+        "layer": "site_boundary.geojson + key_areas.geojson + roads.geojson",
+        "drawing_ref": "01_site_overview.png + 02_land_use_structure.png"
+      },
+      "chain_id": "TRACE-006",
+      "scenario": "E1.2 开发者走廊日常使用场景"
+    },
+    {
+      "source": {
+        "source_id": "SRC-GLOBAL-BENCHMARK",
+        "type": "public_composite",
+        "finding": "海淀国际影响仅5/10——缺少承载全球AI交流的物理基础设施"
+      },
+      "strategy": {
+        "module": "D3.3 策略3+4",
+        "spatial_response": "24h Zone (Global AI Collaboration Infrastructure) + 开发者弹性驻地4层级",
+        "strategy_id": "D3-S3+S4"
+      },
+      "metric": {
+        "type": "innovation_capacity",
+        "metric_id": "METRIC-INTL-02",
+        "value": "Phase 1: 1场国际AI会议/年; Phase 2: 具常设会址条件"
+      },
+      "design_decision": {
+        "decision_id": "DD-24H-001",
+        "description": "24h Zone不是所有空间全天开放——仅深夜共享工位、咖啡、便利店、药房、开源方舟为24h"
+      },
+      "finding": {
+        "module": "B5 缺口6",
+        "finding_id": "B5-GAP6",
+        "diagnosis": "国际交流基础设施缺失：海淀缺少中型学术会场和配套国际访客驻地"
+      },
+      "drawing": {
+        "layer": "public_space.geojson",
+        "drawing_ref": "04_mobility_bluegreen.png"
+      },
+      "chain_id": "TRACE-007",
+      "scenario": "E3.1 24h Zone跨时区协作场景"
+    },
+    {
+      "source": {
+        "source_id": "SRC-AGENT-TASKBOOK-2026",
+        "type": "user_provided_cleared",
+        "finding": "共创章程Charter.10: 城市治理以人的尊严与公共福祉为基础"
+      },
+      "strategy": {
+        "module": "D4.3 Citizen AI Participation Model",
+        "spatial_response": "四层参与模型：接触(图灵市集)→体验(首发馆)→反馈(测试员中心)→共创(需求工作坊)",
+        "strategy_id": "D4-CAP"
+      },
+      "metric": {
+        "type": "innovation_capacity",
+        "metric_id": "METRIC-CITIZEN-01",
+        "value": "市民是创新参与者，非测试对象。伦理委员会含市民代表2名"
+      },
+      "design_decision": {
+        "decision_id": "DD-CITIZEN-001",
+        "description": "市民测试员中心：面对面知情同意+报酬权+数据控制权+退出权+伦理委员会"
+      },
+      "finding": {
+        "module": "B3 用户行为模型",
+        "finding_id": "B3-USER-CITIZEN",
+        "diagnosis": "市民作为AI最终用户在研发过程中完全缺位"
+      },
+      "drawing": {
+        "layer": "public_space.geojson",
+        "drawing_ref": "03_key_areas_detail.png"
+      },
+      "chain_id": "TRACE-008",
+      "scenario": "E1.6 市民参与AI测试场景"
+    },
+    {
+      "source": {
+        "source_id": "SRC-MOHURD-UD-MEASURES",
+        "type": "official_public",
+        "finding": "城市设计应提出实施策略和时序安排"
+      },
+      "strategy": {
+        "module": "D1.10 Implementation Loop",
+        "spatial_response": "Phase 1 Connection(1-5年)→Phase 2 Capability(5-12年)→Phase 3 Global Network(12-20年)",
+        "strategy_id": "D1.10-IMPL"
+      },
+      "metric": {
+        "type": "innovation_capacity",
+        "metric_id": "METRIC-PHASE-01",
+        "value": "Phase 1: 概念建议承载50-100家AI初创; Phase 2: 300+; Phase 3: 全球节点级"
+      },
+      "design_decision": {
+        "decision_id": "DD-PHASING-001",
+        "description": "三阶段各有明确空间行动/能力门槛/里程碑。Phase 1以低成本可逆措施为主"
+      },
+      "finding": {
+        "module": "B6 战略必要性",
+        "finding_id": "B6-NECESSITY",
+        "diagnosis": "Baseline vs Intervention反事实：不干预则6缺口持续存在"
+      },
+      "drawing": {
+        "layer": "phasing.geojson",
+        "drawing_ref": "05_metrics_evidence.png"
+      },
+      "chain_id": "TRACE-009",
+      "scenario": "E4 实施路径场景"
+    }
+  ],
+  "description_zh": "全链追溯矩阵：从原始来源到最终图纸的完整推导链。每条链记录 Source → Finding → Strategy → Design Decision → Drawing → Metric 的完整路径。",
+  "project_id": "centennial-jingzhang-ai-belt"
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "description": "OSM建筑数据中仅902/7575栋有层数标签。'低层建筑占比64% (1-3F)'基于有标签样本推算，未标签样本的层数分布未知。",
+      "source": "OSM Overpass API (2026-05提取)",
+      "type": "boundary",
+      "confidence": "high",
+      "impact": "如果无标签样本存在系统性偏差（如高层建筑更可能被标注），则低层占比的估计可能偏高。影响原点社区弹性R&D区的规模基准和建筑存量错配分析的精度。",
+      "mitigation": "在proposal.md Ch2.4和Ch17.1中标注OSM数据局限性；全文使用'概念基准'而非'精确数据'表述；弹性R&D区规模给出区间(10-15万m²)而非确定值。"
+    },
+    {
+      "id": "ASM-002",
+      "description": "全球AI节点六维比较矩阵的评分为基于公开资料的综合主观判断。不同节点间数据来源口径不一（有的来自政府报告、有的来自行业分析、有的来自新闻报道）。",
+      "source": "公开资料综合（详见sources.json）",
+      "type": "boundary",
+      "confidence": "high",
+      "impact": "评分在节点间的绝对可比性有限。海淀'空间质量3 vs Kendall 7'的差距方向可信，但差距幅度(4点)的精确度不足。",
+      "mitigation": "在proposal.md Ch3.1和Ch17.2中使用'相对比较'而非'精确评分'表述；标注'评分为基于公开资料的综合主观判断'。"
+    },
+    {
+      "id": "ASM-003",
+      "description": "控规条件全部5项缺失(FAR/高度/密度/绿地率/退线)。方案中所有面积和规模在不引用控规数字的前提下提出概念方向。Phase 2的多数空间行动依赖后续控规条件明确。",
+      "source": "planning_limits.json (all values: 'missing')",
+      "type": "metric",
+      "confidence": "medium",
+      "impact": "如果控规条件最终与方案的概念方向存在重大冲突（如规划FAR远低于方案的概念基准），Phase 2的多数空间策略需要重大调整。Phase 2时间窗口(5-12年)为此提供了缓冲。",
+      "mitigation": "全文所有面积/规模标注'概念建议''概念基准''情景参考'；Pre-Disclaimer明确声明控规全部缺失；Implementation Loop Phase 2标注'关键依赖：控规条件明确'。"
+    },
+    {
+      "id": "ASM-004",
+      "description": "市民参与的可持续性假设：假设存在足够数量的市民愿意持续参与AI测试和反馈活动，且图灵市集和测试员中心的面对面信任机制能够克服市民对AI的根本性不信任。",
+      "source": "E1.6 张阿姨场景叙事",
+      "type": "design",
+      "confidence": "low",
+      "impact": "如果市民参与率远低于预期，Public Feedback Flow将断裂——市民反馈无法到达研究端，Citizen AI Participation Model的Layer 3-4将空心化。",
+      "mitigation": "E1.6 Friction 2明确标注'市民对AI的根本性不信任'和'代表性偏差'；Gate 4运营可行性标注CONDITIONAL；市民测试员中心设置伦理委员会和社区outreach机制。"
+    },
+    {
+      "id": "ASM-005",
+      "description": "BID联合运营体的资金模型假设：假设存在混合收入模型（空间租赁+活动收入+公共资金+企业赞助）能够支撑BID的长期运营。具体财务模型未在方案中验证。",
+      "source": "D1.10 Implementation Loop; E1.7 运营依赖链",
+      "type": "scenario",
+      "confidence": "medium",
+      "impact": "BID是12/16空间策略的运营依赖主体。如果BID的资金模型不成立，京张AI创新带的核心运营支撑将瘫痪。这是整个方案中影响面最广的单一假设。",
+      "mitigation": "Gate 4 G4.5.4明确标注'BID资金模型不成立'为致命风险；Gate 3 G3.5标注Phase 2依赖条件；E6.2运营依赖矩阵中BID标注为'关键依赖'。"
+    },
+    {
+      "id": "ASM-006",
+      "description": "Provisional boundary为矩形bbox。三区边界基于官方公告面积反推的矩形替代范围，非实际规划边界。方案中所有空间定位基于这些矩形概念范围。",
+      "source": "provisional_boundaries.geojson; 官方公告(A0)",
+      "type": "operation",
+      "confidence": "low",
+      "impact": "如果正式规划边界与矩形bbox存在重大偏移，三区内部的详细空间策略的精确位置可能需要调整。但三区之间的宏观空间关系（北-中-南线性廊道）对边界偏移具有鲁棒性。",
+      "mitigation": "所有GeoJSON metadata中boundary_type='provisional_bbox'；全文标注'概念研究范围'。"
+    }
+  ],
+  "project_id": "centennial-jingzhang-ai-belt"
+}
