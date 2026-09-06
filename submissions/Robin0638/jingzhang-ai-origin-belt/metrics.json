@@ -1,0 +1,164 @@
+{
+ "schema_version": "0.2.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area_EPSG4548(SITE-001)",
+   "confidence": "medium",
+   "assumptions": [
+    "临时粗略替代边界,与公告声明11.4km2偏差以内;待官方边界补齐后重算"
+   ]
+  },
+  "coordinated_research_area_sqm": {
+   "status": "known",
+   "value": 43609232.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area_EPSG4548(SITE-002)",
+   "confidence": "medium",
+   "assumptions": [
+    "临时粗略替代边界"
+   ]
+  },
+  "key_detailed_design_area_sqm": {
+   "status": "known",
+   "value": 3692893.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area_EPSG4548(KEY-*))",
+   "confidence": "medium",
+   "assumptions": [
+    "三处重点区临时范围之和;公告值3.684km2"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.2128,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(green_space_area)/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念绿地方案量,非法定绿地率控制值"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0229,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(public_space_area)/site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "概念公共空间方案量"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 184631.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(building_footprint_area)",
+   "confidence": "low",
+   "assumptions": [
+    "概念体量;非开发规模结论"
+   ]
+  },
+  "concept_gfa_sqm": {
+   "status": "known",
+   "value": 1679337.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint*concept_floors_max)",
+   "confidence": "low",
+   "assumptions": [
+    "概念设计量;非法定建筑规模"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "gfa/parcel_area",
+   "confidence": "unknown",
+   "reason": "官方控规条件缺失(planning_limits.status=missing);待正式控规条件发布后按 gfa/parcel_area 复算,当前不提供推测值",
+   "assumptions": [
+    "官方控规条件缺失(planning_limits.status=missing);待正式条件补齐后复算"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "slow_corridor_length_m": {
+   "status": "known",
+   "value": 37070.0,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(greenway+cycleway+pedestrian))",
+   "confidence": "medium",
+   "assumptions": [
+    "概念慢行网络"
+   ]
+  },
+  "ai_public_node_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(PUBLIC_SPACE features)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_polygon_count": {
+   "status": "known",
+   "value": 21,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(LAND_USE features)",
+   "confidence": "high",
+   "assumptions": [
+    "分区无缝无重叠已通过拓扑校验"
+   ]
+  }
+ }
+}
