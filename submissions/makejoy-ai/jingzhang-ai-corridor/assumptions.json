@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_geometry",
+      "statement": "site_boundary.geojson uses the provisional rough boundary (about 10 m coordinate resolution); it is not an official redline or precise-area basis. All areas in metrics.json are rounded to whole sqm to match this precision.",
+      "impact": "Reported areas (site 11,412,825 sqm, key areas 3,692,893 sqm, etc.) are design-support values only; official polygons must replace them and all dependent metrics must be recalculated before any statutory use.",
+      "recalc_path": "Replace geometry/site_boundary.geojson with the official polygon, rerun tools/regenerate_geometry.py and the render scripts; refresh manifest hashes and self-check."
+    },
+    {
+      "id": "A-FAR-001",
+      "status": "unknown_metric",
+      "statement": "floor_area_ratio is unknown: approved FAR controls and official site boundary are not present in the public site package (brief/site-package/ranges/planning_limits.json provides no approved value).",
+      "impact": "No FAR value is claimed in the proposal; the text and compliance matrix list it as a pending condition rather than a design conclusion.",
+      "recalc_path": "When approved planning conditions are released, set total_floor_area_sqm from the design and compute FAR = total_floor_area_sqm / official_site_area_sqm, then mark status=known with the official source."
+    },
+    {
+      "id": "A-DENSITY-001",
+      "status": "unknown_metric",
+      "statement": "building_density is unknown: official regulatory planning conditions are not present; the current building footprint is a design proposal, not an approved density.",
+      "impact": "building_footprint_area_sqm (567,581 sqm (current design proposal after the reworked geometry)) is reported as a design-proposal value; density is left unknown pending official conditions.",
+      "recalc_path": "When official conditions exist, compute building_density = building_footprint_area_sqm / official_site_area_sqm and mark status=known with the official source."
+    },
+    {
+      "id": "A-CONSTRAINTS-001",
+      "status": "empty_layer",
+      "statement": "constraints.geojson is an intentionally sparse placeholder: official road redlines, utility lines, heritage protection, fire and municipal conditions are not provided by the organizer. The layer contains a single provisional boundary polygon (id=CONSTRAINTS) for visualization only.",
+      "impact": "All conclusions that depend on constraints (setbacks, height caps, heritage buffers, utility corridors) are downgraded to pending confirmation and must not be treated as approved.",
+      "recalc_path": "When official constraint layers are published, replace geometry/constraints.geojson and re-run spatial review; update assumptions and body references to the new feature ids."
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "status": "provisional_boundary",
+      "statement": "The three key-area polygons (PROV-KEY-001/002/003) are provisional, derived from announcement text and the temporary boundary; they are not official key-area redlines. key_area_area_sqm (3,692,893 sqm = 369.3 ha) is therefore a provisional figure.",
+      "impact": "Key-area area and all key-area-level statistics are for design discussion and AI review only; they must be recalculated when official key-area polygons are supplied.",
+      "recalc_path": "Replace geometry/key_areas.geojson with official polygons, rerun regenerate_geometry.py, figures, PDFs, and self-check."
+    },
+    {
+      "id": "A-ROAD-001",
+      "status": "design_proposal",
+      "statement": "road_area_sqm (1,251,569 sqm) is estimated as a 24 m buffer around agent-drawn densified centerlines clipped to the boundary. It is a design-support estimate with low confidence, not an official road-area figure.",
+      "impact": "Road-area ratio and transport-layer statistics are provisional; official road redlines are required before statutory use.",
+      "recalc_path": "Replace geometry/roads.geojson with official centerlines/redlines, recalculate road_area_sqm from the official geometry, and refresh metrics and self-check."
+    }
+  ]
+}
