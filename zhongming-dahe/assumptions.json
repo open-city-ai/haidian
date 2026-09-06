@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "title": "临时边界替代",
+      "description": "使用 provisional_boundaries.geojson 中的临时粗略边界作为设计基础",
+      "trigger_for_recalculation": "官方精确边界发布后，所有面积指标和几何文件需重算",
+      "severity": "high"
+    },
+    {
+      "id": "ASM-002",
+      "title": "控规条件缺失",
+      "description": "容积率、建筑高度、建筑密度、绿地率、退线等控规指标均为概念建议值",
+      "trigger_for_recalculation": "官方控规条件发布后，需重新校核所有建筑规模和指标",
+      "severity": "high"
+    },
+    {
+      "id": "ASM-003",
+      "title": "现状建筑数据缺失",
+      "description": "未获取现状建筑轮廓、高度、用途、建成年代等数据，拆改留方案为概念建议",
+      "trigger_for_recalculation": "现状建筑调查数据发布后，需更新建筑更新策略",
+      "severity": "medium"
+    },
+    {
+      "id": "ASM-004",
+      "title": "土地权属未确认",
+      "description": "地块边界和权属状态未知，用地布局为概念方案",
+      "trigger_for_recalculation": "权属数据发布后需校核用地兼容性",
+      "severity": "medium"
+    },
+    {
+      "id": "ASM-005",
+      "title": "交通数据为概念估算",
+      "description": "道路断面、客流、停车供给等数据为概念估算，非实测",
+      "trigger_for_recalculation": "交通基础数据发布后需重新校核交通方案",
+      "severity": "medium"
+    },
+    {
+      "id": "ASM-006",
+      "title": "市政设施容量待确认",
+      "description": "管线、排水、电力、燃气等市政设施容量未知",
+      "trigger_for_recalculation": "市政基础数据发布后需校核设施承载能力",
+      "severity": "low"
+    }
+  ]
+}
