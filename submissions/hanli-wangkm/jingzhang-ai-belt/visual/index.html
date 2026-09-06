@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张智脊 · 离线可视化 · Jingzhang AI Spine offline visual</title>
+<style>
+:root {{ --ink:#172033; --muted:#667085; --line:#d7dee8; --accent:#245b8f; --green:#3f8f5f; --bg:#f4f7fa; --paper:#ffffff; }}
+* {{ box-sizing:border-box; }}
+body {{ margin:0; font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif; color:var(--ink); background:var(--bg); line-height:1.65; }}
+header {{ background:#10233c; color:#fff; padding:28px 32px; }}
+header h1 {{ margin:0 0 6px; font-size:26px; }}
+header p {{ margin:0; color:#b8c6d8; font-size:14px; }}
+main {{ max-width:1200px; margin:0 auto; padding:24px 20px 60px; }}
+section {{ background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:20px 24px; margin:18px 0; }}
+section h2 {{ margin:0 0 4px; font-size:20px; color:var(--accent); }}
+section h2 .en {{ display:block; font-size:12px; color:var(--muted); font-weight:400; }}
+.grid {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:12px; margin-top:12px; }}
+.card {{ border:1px solid var(--line); border-radius:8px; padding:12px 14px; background:#f8fafc; }}
+.card-label {{ font-size:13px; color:var(--muted); }}
+.card-value {{ font-size:22px; font-weight:700; color:var(--accent); margin:6px 0 2px; }}
+.card-note {{ font-size:11px; color:var(--muted); }}
+.card.unknown .card-value {{ color:#98a2b3; }}
+.en {{ display:none; }}
+body[data-lang="en"] .zh {{ display:none; }}
+body[data-lang="en"] .en {{ display:inline; }}
+table {{ border-collapse:collapse; width:100%; font-size:13px; margin-top:10px; }}
+th,td {{ border:1px solid var(--line); padding:6px 9px; text-align:left; vertical-align:top; }}
+th {{ background:#eef2f7; }}
+.svgwrap {{ border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#f8fafc; }}
+.svgwrap svg {{ display:block; width:100%; height:auto; }}
+.mapgrid {{ display:grid; grid-template-columns:minmax(300px,420px) 1fr; gap:18px; align-items:start; }}
+.legend li {{ margin:4px 0; font-size:13px; }}
+.sw {{ display:inline-block; width:14px; height:14px; border-radius:3px; margin-right:6px; vertical-align:-2px; }}
+.pill {{ display:inline-block; background:#eef2f7; border:1px solid var(--line); border-radius:999px; padding:2px 10px; font-size:12px; margin:2px 4px 2px 0; }}
+.note {{ color:var(--muted); font-size:13px; }}
+.langbtn {{ background:#245b8f; color:#fff; border:none; border-radius:6px; padding:6px 14px; cursor:pointer; font-size:13px; }}
+@media (max-width:860px) {{ .mapgrid {{ grid-template-columns:1fr; }} }}
+</style>
+</head>
+<body data-lang="zh">
+<header>
+<h1 class="zh">京张智脊：百年京张AI创新带 · 离线可视化</h1>
+<h1 class="en">Jingzhang AI Spine: Centennial Jingzhang AI Innovation Belt · Offline Visual</h1>
+<p><span class="zh">总览地图为临时边界上的概念方案，非官方红线；本页完全离线，无远程资源。</span>
+<span class="en">The overview map is a concept proposal on provisional boundaries, not official red lines; this page is fully offline.</span>
+<button class="langbtn" onclick="document.body.dataset.lang = document.body.dataset.lang==='zh'?'en':'zh';">中文 / English</button></p>
+</header>
+<main>
+
+<section id="overview">
+<h2><span class="zh">总览地图与三层范围</span><span class="en">Overview map and three-level scopes</span></h2>
+<p class="note"><span class="zh">统筹研究范围约43.6 km² → 总体设计范围（下图） → 三处重点区域约368.4公顷。三层范围逐级落实。</span>
+<span class="en">Coordinated research area approx. 43.6 km² → overall design area (map below) → three key areas approx. 368.4 ha. The three levels cascade.</span></p>
+<div class="mapgrid">
+<div class="svgwrap">
+<svg viewBox="0 0 760 900" role="img" aria-label="plan">
+<rect x="0" y="0" width="760" height="900" fill="#f4f7fa"/>
+<polygon points="49.58477846180652,768.4457142857316 73.69230769281504,882.0 49.58477846180652,768.4457142857316" fill="#a8cfa0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="463.538461538563,882.0 361.43589743594816,768.4457142857316 463.538461538563,882.0" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,768.4457142857316 73.69230769281504,882.0 361.43589743594816,768.4457142857316" fill="#e8a33d" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="742.0,768.4457142857316 463.538461538563,882.0 742.0,768.4457142857316" fill="#e8a33d" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="42.81658512874331,716.6057142856937 742.0,721.0491428571295 42.81658512874331,716.6057142856937" fill="#b0b8c4" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="27.02419589751029,595.6457142856755 73.69230769281504,716.6053094399809 27.02419589751029,595.6457142856755" fill="#a8cfa0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="49.58477846180652,768.4457142857316 73.69230769281504,721.0491428571295 49.58477846180652,768.4457142857316" fill="#a8cfa0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="463.538461538563,716.6033938286043 361.43589743594816,595.6457142856755 463.538461538563,716.6033938286043" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,768.4457142857316 463.538461538563,721.0491428571295 361.43589743594816,768.4457142857316" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,716.6033148343121 73.69230769281504,595.6457142856755 361.43589743594816,716.6033148343121" fill="#c9a227" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="73.69230769281504,768.4457142857316 361.43589743594816,721.0491428571295 73.69230769281504,768.4457142857316" fill="#c9a227" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="742.0,721.0491428571295 463.538461538563,768.4457142857316 742.0,721.0491428571295" fill="#e8a33d" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="730.861538461305,595.6457142856755 742.0,716.6057142856937 463.538461538563,595.6457142856755" fill="#e8a33d" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="20.57836820543431,546.274285714291 714.1538461535924,551.2114285714574 20.57836820543431,546.274285714291" fill="#b0b8c4" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="18.0,526.5257142856951 73.69230769281504,442.5942857142853 20.57836820543431,546.274285714291" fill="#a8cfa0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="27.02419589751029,595.6457142856755 73.69230769281504,551.2114285714574 27.02419589751029,595.6457142856755" fill="#a8cfa0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="463.538461538563,546.2721034971429 361.43589743594816,442.5942857142853 463.538461538563,546.2721034971429" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,595.6457142856755 463.538461538563,551.2114285714574 361.43589743594816,595.6457142856755" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,546.271915885734 73.69230769281504,442.5942857142853 361.43589743594816,546.271915885734" fill="#c9a227" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="73.69230769281504,595.6457142856755 361.43589743594816,551.2114285714574 73.69230769281504,595.6457142856755" fill="#c9a227" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="714.1538461535924,551.2114285714574 463.538461538563,595.6457142856755 714.1538461535924,551.2114285714574" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="673.3128205128104,442.5942857142853 463.538461538563,546.2721034971429 673.3128205128104,442.5942857142853" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="43.45078128246537,442.5942857142853 73.69230769281504,343.85142857144615 43.45078128246537,442.5942857142853" fill="#a8cfa0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,442.5942857142853 463.538461538563,343.85142857144615 361.43589743594816,442.5942857142853" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,442.5942857142853 73.69230769281504,343.85142857144615 361.43589743594816,442.5942857142853" fill="#c9a227" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="658.0800925642626,343.85142857144615 673.3128205128104,442.5942857142853 463.538461538563,343.85142857144615" fill="#5b7fc7" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="86.56739461587136,300.4045714285493 668.2521997435002,304.3542857142544 86.56739461587136,300.4045714285493" fill="#b0b8c4" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="73.69230769281504,342.8639999999848 73.39286871808307,343.85142857144615" fill="#a8cfa0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="463.538461538563,300.4030409142422 361.43589743594816,225.36000000001127 463.538461538563,300.4030409142422" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,343.85142857144615 463.538461538563,304.3542857142544 361.43589743594816,343.85142857144615" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="109.32341076942822,225.36000000001127 361.43589743594816,300.4029026743009 109.32341076942822,225.36000000001127" fill="#c9a227" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="73.69230769281504,343.85142857144615 85.36973153845332,304.3542857142544 361.43589743594816,343.85142857144615" fill="#c9a227" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="668.2521997435002,304.3542857142544 463.538461538563,343.85142857144615 668.2521997435002,304.3542857142544" fill="#e8a33d" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="688.5964141026352,225.36000000001127 463.538461538563,300.4030409142422 688.5964141026352,225.36000000001127" fill="#e8a33d" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="119.76298025655872,181.4194285713836 698.768521281873,185.8628571428194 119.76298025655872,181.4194285713836" fill="#b0b8c4" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,22.937142857096433 463.538461538563,181.4178190628545 361.43589743594816,22.937142857096433" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,225.36000000001127 463.538461538563,185.8628571428194 361.43589743594816,225.36000000001127" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="156.0988230771981,22.937142857096433 361.43589743594816,181.41780918853283 156.0988230771981,22.937142857096433" fill="#5b7fc7" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="109.32341076942822,225.36000000001127 118.74422871839036,185.8628571428194 361.43589743594816,225.36000000001127" fill="#5b7fc7" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="698.768521281873,185.8628571428194 463.538461538563,225.36000000001127 698.768521281873,185.8628571428194" fill="#dedede" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="740.728498205284,22.937142857096433 463.538461538563,181.4178190628545 740.728498205284,22.937142857096433" fill="#dedede" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,18.0 463.538461538563,22.937142857096433 361.43589743594816,18.0" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="157.2307692307185,18.0 361.43589743594816,22.937142857096433 157.2307692307185,18.0" fill="#7fbf7f" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="742.0,18.0 463.538461538563,22.937142857096433 742.0,18.0" fill="#c9a227" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="440.33333333333337,802.0182857142954 366.076923077126,812.8800000000197 440.33333333333337,802.0182857142954" fill="#e5d8a0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="449.615384615689,386.3108571428818 370.71794871830383,398.1599999999972 449.615384615689,386.3108571428818" fill="#e5d8a0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="454.2564102568669,109.83085714282004 370.71794871830383,121.68000000000563 454.2564102568669,109.83085714282004" fill="#e5d8a0" stroke="#ffffff" stroke-width="0.8"/>
+<polygon points="361.43589743594816,721.0491428571295 463.538461538563,768.4457142857316 361.43589743594816,882.0 361.43589743594816,721.0491428571295" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="361.43589743594816,551.2114285714574 463.538461538563,595.6457142856755 361.43589743594816,716.6033148343121 361.43589743594816,551.2114285714574" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="463.538461538563,546.2721034971429 361.43589743594816,442.5942857142853 361.43589743594816,304.3542857142544 463.538461538563,343.85142857144615 463.538461538563,546.2721034971429" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="361.43589743594816,300.4029026743009 361.43589743594816,185.8628571428194 463.538461538563,225.36000000001127 361.43589743594816,300.4029026743009" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="361.43589743594816,18.0 463.538461538563,22.937142857096433 361.43589743594816,181.41780918853283 361.43589743594816,18.0" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="64.41025641045934,882.0 43.39671333372566,721.0491428571295 73.69230769281504,768.4457142857316 64.41025641045934,882.0" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="42.81658512874331,716.6057142856937 21.222913846367753,551.2114285714574 73.69230769281504,595.6457142856755 42.81658512874331,716.6057142856937" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="20.57836820543431,546.274285714291 43.45078128246537,442.5942857142853 73.69230769281504,342.8639999999848 73.69230769281504,442.5942857142853 20.57836820543431,546.274285714291" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="147.94871794902235,427.7828571428559 203.64102564117783,437.6571428571188 147.94871794902235,427.7828571428559" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="222.20512820522967,55.52228571426906 147.94871794902235,67.37142857138451 148.62789243296845,55.52228571426906" fill="#3f8f5f" opacity="0.75"/>
+<polygon points="171.15384615425202,760.5462857143212 217.5641025647114,768.4457142857316 171.15384615425202,760.5462857143212" fill="#3f8f5f" opacity="0.75"/>
+<polyline points="43.10665954429589,718.8274285714115" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+<polyline points="36.56410256405183,548.7428571428742" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+<polyline points="85.96856906535963,302.37942857140183" fill="none" stroke="#667085" stroke-width="1.2" stroke-linecap="round"/>
+<polyline points="119.25359599768218,183.6411428571015" fill="none" stroke="#667085" stroke-width="2" stroke-linecap="round"/>
+<polyline points="208.2820512823557,872.1257142857371" fill="none" stroke="#667085" stroke-width="1.2" stroke-linecap="round"/>
+<polyline points="598.1282051281037,872.1257142857371" fill="none" stroke="#667085" stroke-width="1.2" stroke-linecap="round"/>
+<polyline points="412.48717948692587,872.1257142857371" fill="none" stroke="#3f8f5f" stroke-width="3" stroke-dasharray="6,5" stroke-linecap="round"/>
+<polyline points="45.84615384640752,739.8102857153164" fill="none" stroke="#3f8f5f" stroke-width="3" stroke-dasharray="6,5" stroke-linecap="round"/>
+<polyline points="412.48717948758537,827.691428571449" fill="none" stroke="#b05fa0" stroke-width="2.2" stroke-dasharray="2,4" stroke-linecap="round"/>
+<polygon points="171.15384615425202,205.61142857141533 681.6666666666666,22.937142857096433 171.15384615425202,205.61142857141533" fill="none" stroke="#245b8f" stroke-width="3"/>
+<polygon points="124.74358974379267,442.5942857142853 635.2564102562073,343.85142857144615 124.74358974379267,442.5942857142853" fill="none" stroke="#245b8f" stroke-width="3"/>
+<polygon points="124.74358974379267,832.6285714285453 728.076923077126,774.962742857124 124.74358974379267,832.6285714285453" fill="none" stroke="#245b8f" stroke-width="3"/>
+<polygon points="64.41025641045934,882.0 742.0,625.2685714285342 742.0,18.0 110.8205128209187,220.4228571428447 64.41025641045934,882.0" fill="none" stroke="#9aa7b8" stroke-width="2" stroke-dasharray="8,6"/>
+<text x="375" y="133" text-anchor="middle" font-size="15" font-weight="bold" fill="#172033">众智园</text>
+<text x="375" y="151" text-anchor="middle" font-size="10" fill="#667085">Zhongzhiyuan · PROV-KEY-001</text>
+<text x="329" y="403" text-anchor="middle" font-size="15" font-weight="bold" fill="#172033">AI原点社区</text>
+<text x="329" y="421" text-anchor="middle" font-size="10" fill="#667085">AI Origin · PROV-KEY-002</text>
+<text x="366" y="810" text-anchor="middle" font-size="15" font-weight="bold" fill="#172033">大钟寺</text>
+<text x="366" y="828" text-anchor="middle" font-size="10" fill="#667085">Dazhongsi · PROV-KEY-003</text>
+</svg>
+</div>
+<div>
+<p><strong class="zh">重点区域（三处）</strong><strong class="en">Key areas (3)</strong></p>
+<ul class="legend">
+<li><span class="sw" style="background:#3f8f5f"></span><span class="zh">中央绿脊与绿地（京张遗址公园方向）</span><span class="en">Central green spine and green space</span></li>
+<li><span class="sw" style="background:#7fbf7f"></span><span class="zh">公园绿地</span><span class="en">Park green</span></li>
+<li><span class="sw" style="background:#c9a227"></span><span class="zh">城镇住宅用地</span><span class="en">Residential</span></li>
+<li><span class="sw" style="background:#5b7fc7"></span><span class="zh">科研用地</span><span class="en">Research</span></li>
+<li><span class="sw" style="background:#e8a33d"></span><span class="zh">商业服务业用地</span><span class="en">Commercial</span></li>
+<li><span class="sw" style="background:#245b8f"></span><span class="zh">重点区边界（临时）</span><span class="en">Key area boundary (provisional)</span></li>
+<li><span class="sw" style="background:#9aa7b8"></span><span class="zh">总体边界（临时，非官方红线）</span><span class="en">Site boundary (provisional)</span></li>
+</ul>
+<p class="note"><span class="zh">用地分区、交通慢行、蓝绿公共空间、建筑基底均在下方分节展开。</span><span class="en">Land use, mobility, blue-green space, and buildings are expanded below.</span></p>
+</div>
+</div>
+</section>
+
+<section id="metrics">
+<h2><span class="zh">核心指标（复算自生成几何，EPSG:4548）</span><span class="en">Core metrics (recalculated from generated geometry, EPSG:4548)</span></h2>
+<p><span class="pill" data-metric="site_area_sqm" data-value="11412825.386">site_area_sqm</span><span class="pill" data-metric="green_ratio" data-value="0.184494">green_ratio</span><span class="pill" data-metric="public_space_ratio" data-value="0.004953">public_space_ratio</span></p>
+<div class="grid">
+<div class="card"><div class="card-label" data-lang-zh="总体设计范围面积" data-lang-en="Overall design area">总体设计范围面积<span class="en">Overall design area</span></div><div class="card-value" data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</div><div class="card-note">site_area_sqm · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="绿地面积" data-lang-en="Green space">绿地面积<span class="en">Green space</span></div><div class="card-value" data-metric="green_space_area_sqm" data-value="2105598.7">210.6 公顷</div><div class="card-note">green_space_area_sqm · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="绿地占比" data-lang-en="Green ratio">绿地占比<span class="en">Green ratio</span></div><div class="card-value" data-metric="green_ratio" data-value="0.184494">18.4%</div><div class="card-note">green_ratio · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="公共空间面积" data-lang-en="Public space">公共空间面积<span class="en">Public space</span></div><div class="card-value" data-metric="public_space_area_sqm" data-value="56526.2">5.65 公顷</div><div class="card-note">public_space_area_sqm · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="公共空间占比" data-lang-en="Public space ratio">公共空间占比<span class="en">Public space ratio</span></div><div class="card-value" data-metric="public_space_ratio" data-value="0.004953">0.50%</div><div class="card-note">public_space_ratio · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="建筑基底面积" data-lang-en="Building footprint">建筑基底面积<span class="en">Building footprint</span></div><div class="card-value" data-metric="building_footprint_area_sqm" data-value="293045.2">29.3 公顷</div><div class="card-note">building_footprint_area_sqm · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="道路中心线长度" data-lang-en="Road centerlines">道路中心线长度<span class="en">Road centerlines</span></div><div class="card-value" data-metric="road_centerline_length_m" data-value="37749.6">37.7 km</div><div class="card-note">road_centerline_length_m · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="慢行绿道长度" data-lang-en="Slow greenway">慢行绿道长度<span class="en">Slow greenway</span></div><div class="card-value" data-metric="slow_greenway_length_m" data-value="14124.1">14.1 km</div><div class="card-note">slow_greenway_length_m · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="AI 场景卡" data-lang-en="Scenario cards">AI 场景卡<span class="en">Scenario cards</span></div><div class="card-value" data-metric="scenario_card_count" data-value="12">12 张</div><div class="card-note">scenario_card_count · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="人才画像" data-lang-en="Personas">人才画像<span class="en">Personas</span></div><div class="card-value" data-metric="persona_count" data-value="5">5 类</div><div class="card-note">persona_count · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="朝圣地标" data-lang-en="AI landmarks">朝圣地标<span class="en">AI landmarks</span></div><div class="card-value" data-metric="ai_landmark_count" data-value="3">3 处</div><div class="card-note">ai_landmark_count · known · EPSG:4548</div></div>
+<div class="card"><div class="card-label" data-lang-zh="更新项目" data-lang-en="Renewal projects">更新项目<span class="en">Renewal projects</span></div><div class="card-value" data-metric="renewal_project_count" data-value="6">6 项</div><div class="card-note">renewal_project_count · known · EPSG:4548</div></div>
+</div>
+<table>
+<thead><tr><th><span class="zh">指标</span><span class="en">Metric</span></th><th>ID</th><th><span class="zh">值</span><span class="en">Value</span></th><th>status</th></tr></thead>
+<tbody><tr><td data-metric="site_area_sqm" data-value="11412825.386"><span class="zh">总体设计范围面积</span><span class="en">Overall design area</span></td><td>site_area_sqm</td><td>11.41 km²</td><td>known</td></tr>
+<tr><td data-metric="green_space_area_sqm" data-value="2105598.7"><span class="zh">绿地面积</span><span class="en">Green space</span></td><td>green_space_area_sqm</td><td>210.6 公顷</td><td>known</td></tr>
+<tr><td data-metric="green_ratio" data-value="0.184494"><span class="zh">绿地占比</span><span class="en">Green ratio</span></td><td>green_ratio</td><td>18.4%</td><td>known</td></tr>
+<tr><td data-metric="public_space_area_sqm" data-value="56526.2"><span class="zh">公共空间面积</span><span class="en">Public space</span></td><td>public_space_area_sqm</td><td>5.65 公顷</td><td>known</td></tr>
+<tr><td data-metric="public_space_ratio" data-value="0.004953"><span class="zh">公共空间占比</span><span class="en">Public space ratio</span></td><td>public_space_ratio</td><td>0.50%</td><td>known</td></tr>
+<tr><td data-metric="building_footprint_area_sqm" data-value="293045.2"><span class="zh">建筑基底面积</span><span class="en">Building footprint</span></td><td>building_footprint_area_sqm</td><td>29.3 公顷</td><td>known</td></tr>
+<tr><td data-metric="road_centerline_length_m" data-value="37749.6"><span class="zh">道路中心线长度</span><span class="en">Road centerlines</span></td><td>road_centerline_length_m</td><td>37.7 km</td><td>known</td></tr>
+<tr><td data-metric="slow_greenway_length_m" data-value="14124.1"><span class="zh">慢行绿道长度</span><span class="en">Slow greenway</span></td><td>slow_greenway_length_m</td><td>14.1 km</td><td>known</td></tr>
+<tr><td data-metric="scenario_card_count" data-value="12"><span class="zh">AI 场景卡</span><span class="en">Scenario cards</span></td><td>scenario_card_count</td><td>12 张</td><td>known</td></tr>
+<tr><td data-metric="persona_count" data-value="5"><span class="zh">人才画像</span><span class="en">Personas</span></td><td>persona_count</td><td>5 类</td><td>known</td></tr>
+<tr><td data-metric="ai_landmark_count" data-value="3"><span class="zh">朝圣地标</span><span class="en">AI landmarks</span></td><td>ai_landmark_count</td><td>3 处</td><td>known</td></tr>
+<tr><td data-metric="renewal_project_count" data-value="6"><span class="zh">更新项目</span><span class="en">Renewal projects</span></td><td>renewal_project_count</td><td>6 项</td><td>known</td></tr></tbody>
+</table>
+<p class="note"><span class="zh">容积率、高度、密度、退线为 unknown：官方条件缺失，不编造数值。</span><span class="en">FAR, height, density, setback remain unknown: official conditions missing, no invented values.</span></p>
+</section>
+
+<section id="tasks">
+<h2><span class="zh">任务覆盖（合规矩阵）</span><span class="en">Task coverage (compliance matrix)</span></h2>
+<table>
+<thead><tr><th>ID</th><th><span class="zh">要求</span><span class="en">Requirement</span></th><th><span class="zh">状态</span><span class="en">Status</span></th><th><span class="zh">证据</span><span class="en">Evidence</span></th></tr></thead>
+<tbody><tr><td>1.3.1</td><td>构建世界级AI创新生态体系</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.3.2</td><td>建设适配AI新质生产力的新型城市形态</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.3.3</td><td>打造全球AI创新人才向往的高品质城区</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.4.1</td><td>统筹研究范围</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.4.2</td><td>总体设计范围</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.4.3</td><td>重点区域范围</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.1.1</td><td>统筹研究范围：AI创新生态体系</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.1.2</td><td>统筹研究范围：适配人工智能的未来城市形态</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.2.1</td><td>总体设计范围：产业目标与功能布局</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.2.2</td><td>总体设计范围：城市更新总体框架</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.2.3</td><td>总体设计范围：交通轨道市政配套设施</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.2.4</td><td>总体设计范围：京张遗址公园活力带</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.2.5</td><td>总体设计范围：城市风貌</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.3.required</td><td>重点区域范围详细设计必选项</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.3.1</td><td>众智园AI自主创新加速区</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.3.2</td><td>北京AI原点社区</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>1.5.3.3</td><td>大钟寺AI产业聚集区</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>agent.1</td><td>一带总体概念与功能统筹方案设计</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>agent.2</td><td>AI全栈自主创新体系与世界级AI创新生态设计</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>agent.3</td><td>AI+场景赋能新范式与智能化AI活力城市设计</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>agent.4</td><td>AI公共空间、智能原生新业态与朝圣地标设计</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>agent.5</td><td>百年京张文化、中关村文化与AI新文化融合叙事设计</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+<tr><td>agent.6</td><td>一带全球AI创新活动体系与长期运营设计</td><td>必选</td><td>章节: 三层范围工作框架、统筹研究范围产业与未来城市研究 | 图层: site_boundary.geojson、key_areas.geojson</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="standards">
+<h2><span class="zh">标准矩阵与设计深度</span><span class="en">Standard matrix and design depth</span></h2>
+<table>
+<thead><tr><th><span class="zh">标准</span><span class="en">Standard</span></th><th><span class="zh">响应</span><span class="en">Response</span></th><th><span class="zh">状态</span><span class="en">Status</span></th></tr></thead>
+<tbody><tr><td>PROJECT-OFFICIAL-ANNOUNCEMENT</td><td>公告 1.3、1.4、1.5 对项目目的、三层范围、设计任务和成果深度提出主控要求。</td><td>addressed</td></tr>
+<tr><td>PROJECT-AGENT-OPEN-CALL-TASKBOOK</td><td>面向智能体任务书对十条共创原则、三大定位、五大功能、六项智能体任务、表达完整性和统一边界条款提出要求。</td><td>addressed</td></tr>
+<tr><td>MOHURD-URBAN-DESIGN-MEASURES</td><td>城市设计应落实规划、指导建筑设计、塑造城市特色风貌，并统筹平面和立体空间。</td><td>addressed</td></tr>
+<tr><td>MOHURD-CONTROL-DETAILED-PLANNING</td><td>控规深度相关结论必须区分已知控制条件、设计建议和待确认事项。</td><td>addressed</td></tr>
+<tr><td>MNR-LAND-USE-CLASSIFICATION-GUIDE</td><td>用地表达采用可校验用地分类和 land_use_code，不使用自造分类替代。</td><td>addressed</td></tr>
+<tr><td>MOHURD-ARCH-DESIGN-DEPTH-2016</td><td>建筑专业深度规定待取得官方文件后启用；当前仅作为缺资料清单和深化提醒。</td><td>data_gap</td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr><th><span class="zh">深度项</span><span class="en">Depth item</span></th><th><span class="zh">状态</span><span class="en">Status</span></th><th><span class="zh">证据</span><span class="en">Evidence</span></th></tr></thead>
+<tbody><tr><td>existing_conditions_diagnosis</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>three_level_scope_framework</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>overall_spatial_structure</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>land_use_layout</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>development_intensity_controls</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>height_massing_character</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>retain_renovate_demolish</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>traffic_rail_slow_parking</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>municipal_new_infrastructure</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>blue_green_public_space</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>three_key_area_detailed_design</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>renewal_project_list</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>phasing_implementation</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>metrics_recalculation</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+<tr><td>risk_missing_data</td><td>complete</td><td>本深度项由 proposal.md 的可读解释、图纸成果、结构化图层、指标复算和自检结果共同支撑。</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="selfcheck">
+<h2><span class="zh">自检状态</span><span class="en">Self-check status</span></h2>
+<p><span class="zh">提交前运行 self_check.json 记录的全量自检；更新项目与 AI 场景、蓝绿公共空间、交通慢行、建筑、用地分区、重点区域均已纳入机器层审校。</span>
+<span class="en">Full self-check recorded in self_check.json before submission; renewal projects, AI scenarios, blue-green space, mobility, buildings, land use, and key areas are all audited in machine layers.</span></p>
+<p class="note">self_check.json · visual_review · spatial_review · professional_review</p>
+</section>
+
+<section id="sources">
+<h2><span class="zh">来源</span><span class="en">Sources</span></h2>
+<table>
+<thead><tr><th>ID</th><th><span class="zh">类型</span><span class="en">Type</span></th><th><span class="zh">用途</span><span class="en">Usage</span></th></tr></thead>
+<tbody><tr><td>SITE-PACKAGE</td><td>official_public</td><td>Project brief, enums, allowed design space, ranges, and schemas.</td></tr>
+<tr><td>SOURCE-REGISTRY</td><td>repository_public_registry</td><td>Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.</td></tr>
+<tr><td>PROCESSED-FACT-PACK</td><td>repository_processed_reference</td><td>Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.</td></tr>
+<tr><td>BOUNDARY-SOURCE</td><td>agent_inferred_from_public_data</td><td>Submitted site boundary geometry source (provisional).</td></tr>
+<tr><td>KEY-AREA-SOURCE</td><td>agent_inferred_from_public_data</td><td>Three required detailed-design key area boundaries (provisional).</td></tr>
+<tr><td>OFFICIAL-ANNOUNCEMENT</td><td>official_public</td><td>Official announcement tasks, scope levels, key areas, language, and deliverable context.</td></tr>
+<tr><td>AGENT-TASKBOOK</td><td>user_provided_cleared</td><td>Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="assumptions">
+<h2><span class="zh">假设</span><span class="en">Assumptions</span></h2>
+<ul><li>A-CONTROLS-001：Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before stat</li>
+</ul>
+<p class="note"><span class="zh">本方案为 AI 生成概念建议（Qwen, qwen3.8-max），许可 COMMUNITY-DISPLAY-ONLY；临时边界替换后须重算全部图层与指标。</span>
+<span class="en">AI-generated concept proposal (Qwen, qwen3.8-max), license COMMUNITY-DISPLAY-ONLY; full recalculation required after provisional boundaries are replaced.</span></p>
+</section>
+
+</main>
+</body>
+</html>
