@@ -1,0 +1,209 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(projected_to_EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional rough boundary; not an official redline."
+      ]
+    },
+    "official_announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "11.4 square kilometres × 1,000,000",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 21959.391,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(projected_to_EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1068746.018,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(area(projected_to_EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.093644,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 10316.872,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(area(projected_to_EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.000904,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "proposed_slow_mobility_length_m": {
+      "status": "known",
+      "value": 13232.123,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(projected_to_EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features)",
+      "confidence": "low",
+      "assumptions": [
+        "Key-area polygons are provisional rough geometry."
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(LC scenario nodes)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(industry_validation=true)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(design landmarks)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(renewal project list)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official data",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR and official boundary are not available."
+    },
+    "building_height_limit_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending official data",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height and heritage-view controls are not available."
+    },
+    "energy_savings_percent": {
+      "status": "unknown",
+      "value": null,
+      "unit": "percent",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "pending official data",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No deployed baseline or measured operating data exists; four budgets are evaluation gates, not performance claims."
+    }
+  }
+}

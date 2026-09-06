@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>轻算京张：少算一点，城市更深 / LIGHT COMPUTE, DEEP CITY - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>轻算京张：少算一点，城市更深 / LIGHT COMPUTE, DEEP CITY</h1>
+<p class="summary">以更少数据采集、更少重复算力、更少常亮屏幕和更多共享、可维修设施，把百年京张组织为低负担、高可达、可人工接管的AI公共创新带；全部空间图为临时粗略边界下的概念设计。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>轻算京张：少算一点，城市更深 / LIGHT COMPUTE, DEEP CITY</h1>
+<h2>设计依据与资料清单</h2>
+<p>本次正式包为 <strong>REV 1.2</strong>。“轻算京张”首先是一套公共价值约束，其次才是技术形象。官方公告给出约 43.6 平方公里统筹研究范围、约 11.4 平方公里总体设计范围和约 368.4 公顷三处重点区域；本包用 <code>brief/site-package/</code> 的结构化任务书、枚举、标准和资料登记表把这些要求转成可审查成果 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。UNESCO 关于 AI 全生命周期环境影响、比例原则、监督和公众素养的要求，以及 IEA 对 AI 与能源关系的讨论，支持“先证明公共收益，再增加计算负担”的治理逻辑，但不构成规划控制条件 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="UNESCO-AI-ETHICS" title="来源：UNESCO-AI-ETHICS">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="IEA-ENERGY-AI-2025" title="来源：IEA-ENERGY-AI-2025">来源</sup>。</p>
+<p>当前没有正式总边界、三处重点区 polygon、控规指标、道路红线、地块权属、完整现状建筑、文保、市政和洪涝资料。因此 <code>geometry/site_boundary.geojson</code> 与 <code>geometry/key_areas.geojson</code> 明确标注 <code>provisional_constraint</code>、<code>official_boundary=false</code> 和 <code>boundary_precision=provisional_rough</code>；图中虚线不是法定红线，面积也不是测绘成果 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>。假设与影响逐条登记在 <code>assumptions.json</code>，正式数据到位后须整体重算。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="总体策略与临时边界"><figcaption>总体策略与临时边界</figcaption></figure>
+<h2>三层范围工作框架</h2>
+<p>统筹研究范围回答“海淀如何输出轻量、可信、可迁移的 AI 城市能力”；总体设计范围回答“遗址公园周边如何共享而非重复建设算力与服务”；三处重点区域回答“场景如何落到建筑、街道、公共空间和运营制度”。三层以“一条轻基础设施公共主脊、三座专业试验庭、两翼反馈网络、十二个低数据服务节点”联动，而不是把三幅图并列陈列 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup>。</p>
+<p>主脊沿百年京张文化意象组织连续步行、骑行、遮阴、雨水和静态导视；三座试验庭分别承担模型效率、公共学习、终端维修；两翼把高校/社区与企业/站点接入共同工具链和真实反馈。范围几何与数量可从同一组图层复核，正式边界替换后所有下游图、指标和 PDF 必须重新生成 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与用地结构"><figcaption>三层范围与用地结构</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>产业定位不是追求“更多算力地标”，而是建立可输出的轻量 AI 能力链：高校与研究机构提出压缩、边缘推理、安全与评测方法；共享工坊把方法变成小团队可调用的工具；三处试验庭用公共服务和产业场景验证；维护、培训和退役机制把结果沉淀为可复用的城市能力。五项功能为“轻量研发、共享试验、公共学习、产业采用、国际交流”，并以任务书的“三园两翼”形成研发—转化—反馈闭环 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OECD-AI-PRINCIPLES" title="来源：OECD-AI-PRINCIPLES">来源</sup>。</p>
+<p>六个国际案例只提取机制：Station F 的存量空间与项目运营结合、one-north 的研究企业生活混合、MaRS 的转化服务、London Knowledge Quarter 的联盟治理、Seoul DMC 的产业与公众体验、Cornell Tech 的开放校园与跨界合作。任何案例面积、投资或绩效数字均未移植到京张 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-STATION-F" title="来源：CASE-STATION-F">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-ONE-NORTH" title="来源：CASE-ONE-NORTH">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-CORNELL-TECH" title="来源：CASE-CORNELL-TECH">来源</sup>。品牌图形由两条铁路平行线、一个未填满的算力表盘和可拆卸“枕木”模块组成；编号系统 <code>LC-01—LC-12</code> 让场景、空间和运维台账一致。</p>
+<p>年度运营建议形成四个低负担事件：春季“小模型开源周”、夏季“无屏公共服务夜”、秋季“设备维修节”、冬季“城市 AI 账本发布”。它们是概念性运营建议，不是政府既定活动；每次活动都公开服务覆盖、人工接管、设备能耗与移除清单，以形成可复核的全球交流语言 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="ai_ecosystem_and_operations" title="深度：ai_ecosystem_and_operations">深度</sup>。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体结构是一条南北公共主脊加三条横向慢行/轨道接驳线。用地以科研 <code>0802</code>、公园绿地 <code>1401</code>、商业服务 <code>05</code>、社区服务 <code>0702</code> 四类概念分区完整覆盖临时总体边界；它们表达功能关系，不替代法定用地或开发权 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>。建设不是另起一座“AI 新城”，而是优先改造可用空间、插入小尺度共享设施、把重复机房和常亮大屏转成预约式边缘算力、可借用终端和普通公共空间。</p>
+<p>建筑层给出十二处概念性基底，其中“保留改造”和“新建嵌入”只是调查任务标签。容积率、建筑高度、退界、消防、文保视廊与结构安全均保持 unknown；没有正式控制条件前不发布精确建筑规模承诺 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup>。每一处设计动作都要通过数据预算、算力/能源预算、屏幕/传感器预算和维护预算四道门：先说明为什么需要 AI，再说明为什么不能用更简单办法。</p>
+<p>交通图层只表达绿色主廊、步行、骑行和站点接驳关系，不冒充官方道路中心线或红线。公共空间与绿地由同一几何计算面积，便于专业团队替换正式边界后复算 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>。</p>
+<h2>重点区域详细设计</h2>
+<p>众智园设置“效率试验庭”：模型压缩实验室、共享边缘工坊、能耗与延迟计量亭围合可进入的测试院落；重点不是展示最大模型，而是公开同一任务在规则、传统软件、小模型和大模型之间的收益/成本对照。三项产业验证中的“共享边缘模型基准”在此完成，只有当性能、能耗、隐私与维护综合优于非 AI 基线时才进入下一阶段 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="industry_validation_scenario_count" title="指标：industry_validation_scenario_count">指标</sup>。</p>
+<p>AI 原点设置“小模型图书馆”：把近校创新、开源协作、成果转化和人才服务组织成可预约的学习客厅、翻译室、静态资料墙与可借终端。首选小模型和本地运行，居民即使不登录、不提供个人数据、不会使用智能手机，也能通过工作人员和纸质路径获得等价服务 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<p>大钟寺设置“可维修 AI 市集”：维修柜台、终端互操作厅、低速物流接驳庭和设备再利用站共同验证从采购到退役的完整链条。“低速机器人物流沙盒”和“终端互操作与能耗试验”是另外两项产业验证；失败、投诉或无法维护的设备应被下线，而不是用更多传感器掩盖问题 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>。三处“朝圣地标”为算力计量亭、小模型图书馆、可维修终端厅，朝圣对象是可解释方法与公共制度，而非封闭品牌。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区设计"><figcaption>三处重点区设计</figcaption></figure>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>六类人物决定服务边界：隐私敏感居民需要匿名与人工窗口；视障通勤者需要可触摸/可听取导行；开发者需要可复现实验；初创团队需要共享测试而非自建机房；维护人员需要可拆换部件和清晰台账；国际访客需要多语但低注册门槛。任何人物都不是“被采集对象”，而是可以拒绝、纠错和要求人工接管的参与者 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="UNESCO-AI-ETHICS" title="来源：UNESCO-AI-ETHICS">来源</sup>。</p>
+<p>十二项概念场景为：LC-01 离线遗产讲解、LC-02 本地优先无障碍导行、LC-03 遮阴休憩提示、LC-04 就医服务导航（不诊断）、LC-05 公共法律事项导航（不替代专业意见）、LC-06 多语到访助手、LC-07 校企成果转化导航、LC-08 共享边缘模型基准、LC-09 低速机器人物流沙盒、LC-10 终端互操作与能耗试验、LC-11 公共空间维修分诊、LC-12 设备维修与再利用路由 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_count" title="指标：scenario_count">指标</sup>。LC-08—10 为产业验证场景；其余场景也必须与静态导视、普通检索、人工柜台或传统软件基线比较。</p>
+<p>每张场景卡固定写入：服务对象、公共问题、最小 AI 测试、最少数据、人工复核、非数字替代、设备维护人、停止条件和删除周期。这里没有宣称任何场景已经部署或节能；<code>energy_savings_percent</code> 保持 unknown，直到有独立基线和运行记录 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="energy_savings_percent" title="指标：energy_savings_percent">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="ai_scenarios_and_personas" title="深度：ai_scenarios_and_personas">深度</sup>。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>用地表达遵循国家用地分类子集，但所有分区都是临时边界下的设计建议。科研区优先共享试验与中小团队空间；公园绿地承担遗址叙事、慢行、雨水和静态导视；商业服务区承载维修、租借和企业服务；社区服务区保障日常生活、人才照护和人工窗口 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION" title="标准：MNR-LAND-USE-CLASSIFICATION">标准</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-002" title="空间数据：geometry/land_use.geojson#LU-002">空间数据</sup>。四类用地几何无重叠且完整覆盖提交边界，具体比例应在正式用地与产权调查后优化。</p>
+<p>十二处建筑基底以 <code>retain_renovate_demolish</code> 字段表达五处“改造优先”和七处“新建嵌入”假设。方案不主动标注拆除，因为缺少房屋安全、权属、租约和历史价值调查；任何拆除判断必须由专业团队复核并开展利益相关方协商 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-005" title="空间数据：geometry/buildings.geojson#BLDG-005">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。三个地标使用可逆构造、普通材料接口和部件清单，避免一次性大型屏幕与专有维护锁定。</p>
+<p>建筑体量采用“主脊低、庭院疏、节点可拆”的设计语法，但不写法定高度。每一处新增面积必须同时给出共享率、开放时段、运营主体和五年维护预算；若可通过改造或共享满足需求，新建不应进入下一阶段 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>道路系统优先修复站点—园区—社区之间的步行、骑行和无障碍断点。绿色主脊作为连续慢行与文化解释路径，三条横向联系分别服务南段骑行、中段步行、北段轨道接驳；线路只是概念关系，需与正式道路红线、站点接口、客流和消防条件校核 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-002" title="空间数据：geometry/roads.geojson#ROAD-002">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="proposed_slow_mobility_length_m" title="指标：proposed_slow_mobility_length_m">指标</sup>。</p>
+<p>市政策略是“共享、计量、可关闭”：预约式边缘算力柜优先利用既有机房余量；传感器只在明确维护责任和数据最小化后安装；离线缓存、静态标识和人工窗口确保停电、断网或模型下线时服务仍可用。排水、供电、通信、环卫、消防和地下空间只列接口任务，不给出无依据的容量或管线位置 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>。</p>
+<p>公共服务设施把数字入口嵌入普通图书馆、社区中心、维修站和站点服务台，而不是另设高门槛“AI 专用馆”。无障碍导行必须同时提供触觉、语音和人工协助；医疗与法律场景只做信息导航，不做诊断或执业判断。</p>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿系统将遗址公共主脊设计为“先有树荫和座椅，再有算法”的轻基础设施：连续遮阴、可渗铺装、雨水花园、可饮水点、安静休憩、无障碍过街和静态里程标是基础层；只有当环境提示能减少等待或提升安全时，才增加聚合式、短周期感知 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_space_area_sqm" title="指标：green_space_area_sqm">指标</sup>。</p>
+<p>十二个公共空间节点不是十二块电子屏。每个节点至少保留一个无电版本：纸质地图、可触摸模型、工作人员、普通路牌或预约电话；数字信息优先通过个人设备按需访问，公共界面使用电子墨水、低亮度或活动期间临时投放 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-012" title="空间数据：geometry/public_space.geojson#PUBLIC-012">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>。公共空间之间用统一 <code>LC</code> 编号和可拆标牌保持识别，材料色彩取自铁路钢、砖、植被与维修标记，而非复制任何企业品牌。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="慢行、蓝绿与低屏公共空间"><figcaption>慢行、蓝绿与低屏公共空间</figcaption></figure>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>八项更新项目为：R1 主脊遮阴与无障碍补链、R2 算力计量亭、R3 共享边缘工坊、R4 小模型图书馆、R5 无屏学习客厅、R6 可维修 AI 市集、R7 三项产业验证沙盒、R8 公共 AI 账本与年度运营。R1—R3 是第一阶段基础服务；R4—R7 在公开评估后进入第二阶段；R8 与跨区复制属于第三阶段 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="renewal_project_count" title="指标：renewal_project_count">指标</sup>。</p>
+<p>实施政策采用四预算台账和“日落条款”。项目立项前登记数据字段、计算位置、预计能耗、屏幕/传感器数量、备件与责任人；试运行后以公共收益、可达性、隐私、能耗和维护成本共同评估。无法证明优于非 AI 基线、连续投诉、没有维护人或关键供应商退出时，应降级到传统服务或拆除设备 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>。</p>
+<p>三阶段范围图只表示项目组织，不表示政府投资时序或法定开发安排。每一阶段都必须在官方边界、专业工程审查、文保审查、公众参与和资金机制确认后才能深化。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>所有几何统一为 EPSG:4326，面积和长度投影到 EPSG:4548 复算。<code>site_area_sqm</code> 是临时 polygon 的计算结果；官方公告约 11.4 平方公里单独保存为 <code>official_announced_overall_design_area_sqm</code>，两者不可互换 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="official_announced_overall_design_area_sqm" title="指标：official_announced_overall_design_area_sqm">指标</sup>。建筑基底、绿地、公共空间和慢行长度都从提交图层求和，避免在文案和图纸中各写一套数字。</p>
+<p>容积率、建筑高度和节能率保持 unknown；这不是缺项掩饰，而是防止把没有依据的数字伪装成设计结论。已知指标均记录 <code>status/value/unit/source_files/formula/confidence/assumptions</code>，专业团队可以替换正式边界后重跑 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_height_limit_m" title="指标：building_height_limit_m">指标</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<p><code>compliance_matrix.json</code> 对应公告 1.3—1.5 与 agent.1—agent.6；<code>standard_matrix.json</code> 区分官方标准与概念参考；<code>design_depth_matrix.json</code> 追踪总体结构、用地、交通、市政、风貌、重点区、场景、实施和风险。图、表、HTML 和 PDF 使用同源数据，避免“漂亮图”脱离可审计方案 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标与证据链"><figcaption>指标与证据链</figcaption></figure>
+<h2>风险、版权与合规说明</h2>
+<p>最大的空间风险是临时边界被误读为红线；最大的技术风险是 AI 服务扩张快于公共收益证据；最大的实施风险是专有设备、重复机房和无人维护的屏幕形成长期负担。方案以虚线边界、unknown 指标、非 AI 基线、人工接管、可维修部件和日落条款逐项回应 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>。</p>
+<p>本包不宣称法定审批、正式规划控制、政府投资、已部署服务、节能绩效或企业合作承诺。站点、道路、建筑和项目位置均须经过正式资料、专业团队和公众参与确认。图形与文本为本次方案原创组织，第三方案例只作机制研究；版权与展示许可见 <code>report/copyright_statement.md</code>。</p>
+<p><code>self_check.json</code>、哈希清单和验证日志只能证明文件结构与内部一致性，不替代规划、建筑、交通、市政、文保、数据保护和无障碍专业审查 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。</p>
+<h2>参考资料</h2>
+<p>正式依据包括官方公告、项目 site package、agent taskbook、住建部城市设计管理与控规相关文件、自然资源部用地分类指南；概念与治理参考包括 UNESCO AI 伦理建议、IEA《Energy and AI》和 OECD AI 原则。案例研究来自 Station F、JTC one-north、MaRS、Knowledge Quarter、Seoul DMC 和 Cornell Tech 官方页面 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-MARS" title="来源：CASE-MARS">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-KNOWLEDGE-QUARTER" title="来源：CASE-KNOWLEDGE-QUARTER">来源</sup>。</p>
+<p>完整 URL、访问日期、用途与限制保存在 <code>sources.json</code>。正式规划使用前必须补齐：官方总边界与重点区、控规指标、道路与轨道接口、地块权属与建筑调查、文保、市政消防洪涝和公共服务现状 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="KEY-AREA-SOURCE" title="来源：KEY-AREA-SOURCE">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup>。</p>
+</main>
+</body>
+</html>
