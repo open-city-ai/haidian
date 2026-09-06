@@ -1,0 +1,252 @@
+{
+  "schema_version": "0.2.0",
+  "proposal_name": "Jing-Zhang Open Innovation Commons",
+  "geometry_crs": "EPSG:4326",
+  "calculation_crs": "EPSG:4548",
+  "units": {
+    "length": "m",
+    "area": "sqm",
+    "ratio": "dimensionless"
+  },
+  "metrics": {
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 130266.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(concept footprints))",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept intervention footprints, not surveyed or approved building envelopes."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1847965.826,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green features))",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Agent-generated network within provisional site."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 203975.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public features))",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Agent-generated civic network."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.017872,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public union area / provisional site area",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Design comparison only; not statutory."
+      ]
+    },
+    "land_use_area_by_code_sqm": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area grouped by land_use_code",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Exact conceptual partition, not approved statutory land use."
+      ],
+      "breakdown": {
+        "1401": 2240773.933,
+        "0802": 3769782.019,
+        "05": 3367226.45,
+        "0702": 2035038.263
+      },
+      "reason": "This entry is a grouped breakdown, not a scalar metric; numeric values are preserved in breakdown."
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 18749.666,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(centerline length)",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "One north-south spine and eight east-west stitches."
+      ]
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(corridor polygons) or sum(length * supported width)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Centerlines have no supported widths, corridor polygons or official redlines."
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road area / site area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Road area is unknown because widths/polygons are intentionally not asserted."
+    },
+    "phasing_area_by_phase_sqm": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area of each exact phase geography",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept only, subject to formal controls and due diligence."
+      ],
+      "breakdown": {
+        "phase_1_0_2_years": 4254513.908,
+        "phase_2_2_5_years": 3641034.457,
+        "phase_3_beyond_5_years": 3517287.133
+      },
+      "reason": "This entry is a grouped breakdown, not a scalar metric; numeric values are preserved in breakdown."
+    },
+    "key_area_area_sqm_explicitly_provisional": {
+      "status": "not_applicable",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area of each provisional key-area polygon",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "All have official_boundary=false."
+      ],
+      "note": "Not official key-area redlines or parcel controls.",
+      "breakdown": {
+        "zhongzhiyuan_ai_acceleration_area": 1929201.877,
+        "beijing_ai_origin_community": 1043236.909,
+        "dazhongsi_ai_industry_cluster": 720454.219
+      },
+      "reason": "This entry is a grouped breakdown, not a scalar metric; numeric values are preserved in breakdown."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total floor area / official site area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No official boundary, approved floor-area schedule, storeys, heights or FAR control."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint * approved storeys/factor)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved storeys, heights, floor factors or total-floor-area controls."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "approved footprint / official site area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Concept footprint ratio is not statutory building density; official boundary and approved footprints are unavailable."
+    },
+    "statutory_controls": {
+      "status": "unknown",
+      "value": null,
+      "unit": "mixed",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "read applicable official geometries and numeric limits",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official control lines, heritage zones, road redlines, parcels, rail/water controls, FAR, height and density limits are unavailable; none are invented."
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(provisional_site_boundary)",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Repository polygon is retained with official_boundary=false.",
+        "Projected measurement is reproducible, but boundary accuracy is low because no official redline is available."
+      ],
+      "note": "Not an approval-grade site area; medium confidence overall and low confidence as a statutory boundary."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.16192,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green union area / provisional site area",
+      "calculation_crs": "EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Design comparison only; not statutory."
+      ]
+    }
+  }
+}
