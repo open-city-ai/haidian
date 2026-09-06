@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yanhuo Jingzhang · AI Daji — Visual Evidence Board</title>
+<style>
+:root{--brown:#8B5A2B;--red:#C0392B;--blue:#1F6FB2;--green:#3E8E5A;
+--ink:#2B2B2B;--paper:#FBF8F2;--card:#FFFFFF;--mut:#6f6656;--line:#E4DCCC;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Microsoft YaHei","PingFang SC","Segoe UI",Arial,sans-serif;
+background:var(--paper);color:var(--ink);line-height:1.65;font-size:15px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.hero{background:linear-gradient(135deg,#7A4A21,#8B5A2B 45%,#A9341F);
+color:#fff;padding:56px 0 40px}
+header.hero h1{font-size:2.2rem;letter-spacing:.04em}
+header.hero .en{opacity:.85;font-size:1rem;margin-top:6px}
+header.hero .tagline{margin-top:14px;font-size:1.05rem;max-width:46em}
+.banner{background:#FDF3E7;border:1px solid #E8C89A;color:#8a5a1a;
+padding:10px 0;font-size:.85rem}
+nav.toc{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav.toc .wrap{display:flex;flex-wrap:wrap;gap:4px 18px;padding-top:8px;padding-bottom:8px}
+nav.toc a{color:var(--brown);text-decoration:none;font-size:.85rem;white-space:nowrap}
+nav.toc a:hover{text-decoration:underline}
+section{padding:38px 0 10px}
+h2{font-size:1.45rem;color:var(--brown);border-left:6px solid var(--red);
+padding-left:12px;margin-bottom:6px}
+h2 .en{display:block;font-size:.8rem;color:var(--mut);font-weight:normal}
+h3{font-size:1.05rem;margin:18px 0 8px;color:var(--ink)}
+p.lede{max-width:52em;color:#4a4438}
+figure{margin:18px 0;border:1px solid var(--line);background:#fff;border-radius:8px;
+overflow:hidden;box-shadow:0 1px 4px rgba(90,70,40,.08)}
+figure img{width:100%;height:auto;display:block}
+figcaption{font-size:.8rem;color:var(--mut);padding:8px 14px;border-top:1px solid var(--line)}
+.grid{display:grid;gap:14px;margin-top:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;
+padding:14px 16px;box-shadow:0 1px 3px rgba(90,70,40,.06)}
+.card h4{font-size:.98rem;margin-bottom:4px}
+.card .sub{font-size:.76rem;color:var(--mut)}
+.card p{font-size:.86rem;margin-top:6px;color:#4a4438}
+.kpi{border-top:5px solid var(--brown)}
+.kpi .num{font-size:1.7rem;font-weight:700;color:var(--brown);display:block;margin:2px 0}
+.kpi.g{border-top-color:var(--green)} .kpi.g .num{color:var(--green)}
+.kpi.b{border-top-color:var(--blue)} .kpi.b .num{color:var(--blue)}
+.kpi.r{border-top-color:var(--red)} .kpi.r .num{color:var(--red)}
+.kpi .unit{font-size:.8rem;color:var(--mut)}
+.tag{display:inline-block;font-size:.7rem;border-radius:10px;padding:1px 9px;
+margin-left:6px;vertical-align:middle;color:#fff}
+.tag.test{background:var(--blue)} .tag.daily{background:var(--red)}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.85rem;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+th{background:#F3EDE2;color:var(--brown)}
+.swatch{display:inline-block;width:12px;height:12px;border-radius:2px;
+margin-right:6px;vertical-align:-1px}
+ul.tight{margin:8px 0 8px 1.2em;font-size:.9em;color:#4a4438}
+ul.tight li{margin-bottom:4px}
+.era{display:flex;gap:0;margin:18px 0;flex-wrap:wrap}
+.era div{flex:1;min-width:200px;padding:12px 16px;color:#fff}
+.era div:nth-child(1){background:#8B5A2B;border-radius:8px 0 0 8px}
+.era div:nth-child(2){background:#A9341F}
+.era div:nth-child(3){background:#C0392B;border-radius:0 8px 8px 0}
+.era b{display:block;font-size:1.05rem}
+.era span{font-size:.78rem;opacity:.9}
+footer{margin-top:44px;background:#3a3125;color:#cfc6b4;padding:26px 0;font-size:.8rem}
+footer a{color:#e8ddc8}
+.note{font-size:.78rem;color:var(--mut);margin-top:8px}
+@media(max-width:820px){.g3,.g4{grid-template-columns:repeat(2,1fr)}
+header.hero h1{font-size:1.6rem}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}
+nav.toc{position:static}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<h1>Yanhuo Jingzhang · AI Daji</h1>
+<div class="en">烟火京张·AI大集 — Everyday AI Fair along the Centennial Jingzhang Corridor</div>
+<p class="tagline">Bringing AI back to street level — serving vendors, seniors, students and neighbours. Rooted in Beijing's fair-going ("gan-ji") culture, AI Daji is the world's first everyday AI fair: AI is not an exhibit, but the abacus in a vendor's hand, a companion at a senior's side, a toy in a student's pocket.</p>
+</div></header>
+<div class="banner"><div class="wrap">⚠ Boundary statement: all spatial boundaries in this proposal are PROVISIONAL rough stand-ins (inferred from the official brief's textual extents and the ~11.4 km² size constraint), not official red lines. Concept geometry is agent-generated; every metric is recomputed from geometry/*.geojson in EPSG:4548 and is offered for professional further study only — no statutory planning conclusions.</div></div>
+<nav class="toc"><div class="wrap">
+<a href="#overview">Overview map</a><a href="#keys">Key areas</a><a href="#landuse">Land use</a>
+<a href="#mobility">Mobility</a><a href="#bluegreen">Blue-green public space</a><a href="#buildings">Buildings &amp; renewal</a>
+<a href="#scenarios">AI scenarios</a><a href="#metrics">Core metrics</a><a href="#tasks">Task coverage</a>
+<a href="#selfcheck">Self-check</a><a href="#sources">Sources &amp; assumptions</a>
+</div></nav>
+
+<section id="concept"><div class="wrap">
+<h2>Concept — From Counter Economy to AI Daji<span class="en">概念:从柜台经济到 AI 大集</span></h2>
+<p class="lede">Zhongguancun began not with office towers but with street counters on the 1980s "Electronics Street"; earlier still, the markets and temple fairs that grew around the stations of the 1909 Jingzhang Railway were the corridor's first economy. A century on, AI Daji returns the newest AI to the oldest place of trade and encounter — the fair.</p>
+<div class="era"><div><b>1909 Station fairs</b><span>Jingzhang Railway · markets by the stations</span></div>
+<div><b>1980s Electronics counters</b><span>Counter economy · the grass-roots origin of China's IT industry</span></div>
+<div><b>2026– AI Daji</b><span>AI returns to the fair: the most everyday, lowest-threshold AI experience</span></div></div>
+<p class="lede">Spatial structure: <b>one axis</b> (Heritage-Park "Everyday AI Corridor") · <b>three fairs</b> (Dazhongsi main venue / Origin youth maker fair / Zhongzhiyuan test-field) · <b>two wings</b> (Zhongguancun vendor-services wing / Xiaoyue River night-fair wing) · <b>many nodes</b> (12 AI scenario nodes).</p>
+</div></section>
+
+<section id="overview"><div class="wrap">
+<h2>Overview Map &amp; Three Scopes<span class="en">总览地图与三层范围</span></h2>
+<figure><img src="../assets/figures/site-overview.png" alt="Site overview" loading="lazy">
+<figcaption>Fig. 1 · Overall structure: one axis, three fairs, two wings, many nodes. Dashed line = provisional boundary, not an official red line.</figcaption></figure>
+<div class="grid g3">
+<div class="card"><h4>① Overall design area</h4><div class="sub">总体设计范围</div>
+<p><span data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</span>(11,412,825.386 sqm), a north–south strip paralleling the Jingzhang Railway / Line 13 corridor; provisional stand-in boundary.</p></div>
+<div class="card"><h4>② Key detailed areas ×3</h4><div class="sub">重点片区</div>
+<p>Zhongzhiyuan AI Acceleration Area (north, 192.9 ha) · Beijing AI Origin Community (central, 104.3 ha) · Dazhongsi AI Industry Cluster (south, 72.0 ha).</p></div>
+<div class="card"><h4>③ Scenario nodes ×12</h4><div class="sub">场景节点</div>
+<p><span data-metric="scenario_node_count" data-value="12">12</span> AI scenario nodes (S01–S12) sited as small public spaces along the green axis and the three fairs.</p></div>
+</div>
+</div></section>
+
+<section id="keys"><div class="wrap">
+<h2>Key Areas — Index &amp; Design Briefs<span class="en">重点区域</span></h2>
+<figure><img src="../assets/figures/key-areas.png" alt="Key areas" loading="lazy">
+<figcaption>Fig. 2 · Three fairs: Zhongzhiyuan test-field (north) / Origin maker fair (central) / Dazhongsi main venue (south).</figcaption></figure>
+<div class="grid g3"><div class="card"><h4>Zhongzhiyuan AI Acceleration Area<span class="sub"> · Vendor Tech Test-Field</span></h4><div class="sub">众智园AI自主创新加速区 · 摊主科技试验田</div><p>Vendor tech test-field: the S07 delivery-robot / S10 food-safety / S11 community-interpreting sandboxes plus the Full-stack Gallery. Recomputed area 192.9 ha.</p></div><div class="card"><h4>Beijing AI Origin Community (Wudaokou)<span class="sub"> · Youth Maker Fair</span></h4><div class="sub">北京AI原点社区(五道口) · 青春创客集</div><p>Youth maker fair: S05 student AI night fair, S08 multilingual translation stalls, S04 inter-generational literacy classes; Origin Maker Lighthouse. Recomputed area 104.3 ha.</p></div><div class="card"><h4>Dazhongsi AI Industry Cluster<span class="sub"> · AI Daji Main Venue</span></h4><div class="sub">大钟寺AI产业集聚区 · AI大集主场</div><p>AI Daji main venue: the Main Shed (permanent market hall + carnival ground) with the Centennial Stall Honour Wall; S01/S06/S12. Recomputed area 72.0 ha.</p></div></div>
+</div></section>
+
+<section id="landuse"><div class="wrap">
+<h2>Land-use Structure<span class="en">用地分区</span></h2>
+<figure><img src="../assets/figures/land-use-structure.png" alt="Land use" loading="lazy">
+<figcaption>Fig. 3 · 155 concept parcels coloured by land-use code; areas recomputed in EPSG:4548.</figcaption></figure>
+<table><tr><th>Code</th><th>Land-use type</th><th>Area (ha)</th><th>Share of site</th></tr><tr><td><span class="swatch" style="background:#E0655A"></span>05</td><td>Commercial services</td><td data-metric="land_use_05_area_sqm" data-value="967078.903">96.7</td><td>8.5%</td></tr><tr><td><span class="swatch" style="background:#F2D06B"></span>0701</td><td>Urban residential</td><td data-metric="land_use_0701_area_sqm" data-value="2320983.513">232.1</td><td>20.3%</td></tr><tr><td><span class="swatch" style="background:#9B7EBD"></span>0802</td><td>R&D / research</td><td data-metric="land_use_0802_area_sqm" data-value="2086935.084">208.7</td><td>18.3%</td></tr><tr><td><span class="swatch" style="background:#E8A0BF"></span>0803</td><td>Cultural</td><td data-metric="land_use_0803_area_sqm" data-value="201000.0">20.1</td><td>1.8%</td></tr><tr><td><span class="swatch" style="background:#F0A35E"></span>0804</td><td>Education</td><td data-metric="land_use_0804_area_sqm" data-value="546170.436">54.6</td><td>4.8%</td></tr><tr><td><span class="swatch" style="background:#7FB3D5"></span>0806</td><td>Healthcare</td><td data-metric="land_use_0806_area_sqm" data-value="278756.075">27.9</td><td>2.4%</td></tr><tr><td><span class="swatch" style="background:#C9C4BC"></span>1207</td><td>Roads</td><td data-metric="land_use_1207_area_sqm" data-value="1627770.735">162.8</td><td>14.3%</td></tr><tr><td><span class="swatch" style="background:#58B368"></span>1401</td><td>Park green</td><td data-metric="land_use_1401_area_sqm" data-value="1636418.702">163.6</td><td>14.3%</td></tr><tr><td><span class="swatch" style="background:#A9D6A0"></span>1402</td><td>Buffer green</td><td data-metric="land_use_1402_area_sqm" data-value="1090411.938">109.0</td><td>9.6%</td></tr><tr><td><span class="swatch" style="background:#E59866"></span>1403</td><td>Squares</td><td data-metric="land_use_1403_area_sqm" data-value="350900.0">35.1</td><td>3.1%</td></tr><tr><td><span class="swatch" style="background:#EFEDE6"></span>16</td><td>Reserve</td><td data-metric="land_use_16_area_sqm" data-value="306400.0">30.6</td><td>2.7%</td></tr></table>
+<p class="note">Codes follow the national land-use classification guideline; concept layout only, not a regulatory plan.</p>
+</div></section>
+
+<section id="mobility"><div class="wrap">
+<h2>Mobility &amp; Slow Traffic<span class="en">交通慢行</span></h2>
+<figure><img src="../assets/figures/mobility-bluegreen.png" alt="Mobility and blue-green network" loading="lazy">
+<figcaption>Fig. 4 · Road centerlines + slow-mobility greenway + blue-green network + scenario nodes.</figcaption></figure>
+<ul class="tight">
+<li>A primary walking+cycling greenway runs the full site, linking the three fairs and twelve nodes.</li>
+<li>15-minute living circles: every scenario node is embedded in public space serving daily needs.</li>
+<li>Timed pedestrianisation of side streets on fair days (concept suggestion); rail stations at Dazhongsi and Wudaokou.</li>
+<li>S07 low-speed robots run as a sandbox: fixed routes, fixed hours, on-board safety officer — not approved operations.</li>
+</ul>
+</div></section>
+
+<section id="bluegreen"><div class="wrap">
+<h2>Blue-Green Public Space<span class="en">蓝绿公共空间</span></h2>
+<div class="grid g3">
+<div class="card"><h4>Green system</h4><div class="sub">绿地系统</div>
+<p>Green area <span data-metric="green_space_area_sqm" data-value="2726830.64">272.7 ha</span>, green ratio <b>23.9%</b>; the heritage-park corridor's four segments double as heritage display and market-canopy space.</p></div>
+<div class="card"><h4>Public space</h4><div class="sub">公共空间</div>
+<p>Public space <span data-metric="public_space_area_sqm" data-value="426414.987">42.6 ha</span>(3.7% of site): 2 squares + 2 market halls + 12 scenario nodes.</p></div>
+<div class="card"><h4>Riverside night-fair wing</h4><div class="sub">小月河滨水夜集翼</div>
+<p>An eastern concept corridor hosting the summer night fair and student maker nights, looped into the slow-mobility greenway.</p></div>
+</div>
+</div></section>
+
+<section id="buildings"><div class="wrap">
+<h2>Buildings &amp; Renewal<span class="en">建筑与更新项目</span></h2>
+<div class="grid g3">
+<div class="card"><h4>Building footprints</h4><div class="sub">建筑基底</div>
+<p>136 concept buildings, footprint <span data-metric="building_footprint_area_sqm" data-value="1830714.386">183.1 ha</span>, density <b>16.0%</b>; types include R&amp;D, residential, retail, incubator and talent apartments.</p></div>
+<div class="card"><h4>Concept floor area</h4><div class="sub">概念规模</div>
+<p>Concept gross floor area <span data-metric="total_floor_area_sqm" data-value="18438877.444">1,844 ha</span>, concept FAR <b>1.62</b>(pending regulatory confirmation — not a conclusion).</p></div>
+<div class="card"><h4>Renewal strategy</h4><div class="sub">更新策略</div>
+<p>Micro-renewal first: keep the street-life fabric, insert market canopies, community stations and edge-computing kiosks; no statutory demolition/retention ratios are claimed.</p></div>
+</div>
+</div></section>
+
+<section id="scenarios"><div class="wrap">
+<h2>AI Scenario Nodes (S01–S12)<span class="en">AI 场景节点</span></h2>
+<p class="lede">Twelve scenario cards serve six groups — vendors, seniors, students, international residents, makers and community workers. S07/S10/S11 are industry test-and-verify sandboxes (limited time/space, human review, public test IDs). All scenarios follow data minimisation, anonymisation and human fallback; no facial recognition.</p>
+<div class="grid g4"><div class="card"><h4>S01 AI Vendor Copilot<span class="tag daily">Everyday service</span></h4><div class="sub">AI摊主助手</div><p>Spatial anchor: Main Shed &amp; all fairs</p></div>
+<div class="card"><h4>S02 Stall Dispatch &amp; Fair Navi<span class="tag daily">Everyday service</span></h4><div class="sub">摊位调度·赶集导航</div><p>Spatial anchor: All three fairs</p></div>
+<div class="card"><h4>S03 Senior Companion &amp; Anti-fraud<span class="tag daily">Everyday service</span></h4><div class="sub">银发陪伴·防骗守护</div><p>Spatial anchor: Greenway mid · Silver zone</p></div>
+<div class="card"><h4>S04 Inter-gen AI Literacy Class<span class="tag daily">Everyday service</span></h4><div class="sub">代际AI扫盲课堂</div><p>Spatial anchor: Community stations</p></div>
+<div class="card"><h4>S05 Student AI Maker Night Fair<span class="tag daily">Everyday service</span></h4><div class="sub">学生AI创客夜市</div><p>Spatial anchor: Origin Community</p></div>
+<div class="card"><h4>S06 Breakfast Heat &amp; Commute Pre-order<span class="tag daily">Everyday service</span></h4><div class="sub">早餐热力·通勤预订</div><p>Spatial anchor: Dazhongsi hub</p></div>
+<div class="card"><h4>S07 Low-speed Retail Robots (Test)<span class="tag test">Industry sandbox test</span></h4><div class="sub">无人零售/配送车(测试)</div><p>Spatial anchor: Zhongzhiyuan test-field</p></div>
+<div class="card"><h4>S08 Multilingual AI Translation<span class="tag daily">Everyday service</span></h4><div class="sub">多语种AI翻译摊位</div><p>Spatial anchor: Origin · Main Shed</p></div>
+<div class="card"><h4>S09 AI Re-use Flea Market<span class="tag daily">Everyday service</span></h4><div class="sub">AI旧物循环市集</div><p>Spatial anchor: Greenway weekend fair</p></div>
+<div class="card"><h4>S10 AI Food-safety Quick Test<span class="tag test">Industry sandbox test</span></h4><div class="sub">AI食安快检溯源(测试)</div><p>Spatial anchor: Zhongzhiyuan · Main Shed</p></div>
+<div class="card"><h4>S11 AI Interpreting Gov Terminal<span class="tag test">Industry sandbox test</span></h4><div class="sub">多语同传政务终端(测试)</div><p>Spatial anchor: Zhongzhiyuan stations</p></div>
+<div class="card"><h4>S12 AI Gig-work Station<span class="tag daily">Everyday service</span></h4><div class="sub">AI零工驿站</div><p>Spatial anchor: Dazhongsi · Origin</p></div></div>
+</div></section>
+
+<section id="metrics"><div class="wrap">
+<h2>Core Metrics<span class="en">核心指标</span></h2>
+<figure><img src="../assets/figures/metrics-evidence.png" alt="Metrics dashboard" loading="lazy">
+<figcaption>Fig. 5 · Metrics evidence dashboard; values match metrics.json exactly.</figcaption></figure>
+<div class="grid g3">
+<div class="card kpi "><h4>Site area</h4><div class="sub">总体设计范围</div><span class="num" data-metric="site_area_sqm" data-value="11412825.386">11.41</span><span class="unit">km²(provisional)</span></div>
+<div class="card kpi g"><h4>Green ratio</h4><div class="sub">绿地率</div><span class="num" data-metric="green_ratio" data-value="0.238927">23.89</span><span class="unit">%</span></div>
+<div class="card kpi r"><h4>Public space ratio</h4><div class="sub">公共空间占比</div><span class="num" data-metric="public_space_ratio" data-value="0.037363">3.74</span><span class="unit">%</span></div>
+<div class="card kpi b"><h4>Building density</h4><div class="sub">建筑基底密度</div><span class="num" data-metric="building_density" data-value="0.160409">16.04</span><span class="unit">%</span></div>
+<div class="card kpi "><h4>Road share</h4><div class="sub">道路占比</div><span class="num" data-metric="road_ratio" data-value="0.142626">14.26</span><span class="unit">%</span></div>
+<div class="card kpi b"><h4>Concept FAR</h4><div class="sub">概念容积率</div><span class="num" data-metric="floor_area_ratio" data-value="1.616">1.616</span><span class="unit">(pending reg. plan)</span></div>
+</div>
+<p class="note">All values are taken verbatim from metrics.json (recomputed in EPSG:4548); confidence medium (concept FAR low).</p>
+</div></section>
+
+<section id="tasks"><div class="wrap">
+<h2>Task Coverage (agent.1–agent.6)<span class="en">任务覆盖</span></h2>
+<div class="grid g2"><div class="card"><h4>agent.1 Overall corridor concept & function</h4><p>“From counter economy to AI Daji” narrative + one-axis/three-fairs/two-wings structure across the 11.41 km² provisional site.</p></div><div class="card"><h4>agent.2 Full-stack AI innovation ecosystem</h4><p>“The fair as test-field”: Zhongzhiyuan hosts the S07/S10/S11 sandboxes; Zhongguancun wing serves vendor finance/legal/supply-chain needs.</p></div><div class="card"><h4>agent.3 AI-empowered scenario paradigm</h4><p>12 scenario cards (S01–S12) for vendors, seniors, students, international residents, makers and social workers; data minimisation + human review.</p></div><div class="card"><h4>agent.4 AI public space & pilgrimage landmarks</h4><p>AI Daji Main Shed with the Centennial Stall Honour Wall, Origin Maker Lighthouse, Full-stack Gallery (3+1 landmarks).</p></div><div class="card"><h4>agent.5 Centennial Jingzhang × AI culture narrative</h4><p>Three eras layered: Jingzhang station fairs (1909) → Zhongguancun electronics counters (1980s) → AI Daji (2026–).</p></div><div class="card"><h4>agent.6 Global AI events & long-term operation</h4><p>Four-season fair calendar, Golden Abacus-Bead Award, open fair API, vendor digital cooperative, developer-in-residence scheme.</p></div></div>
+</div></section>
+
+<section id="phasing"><div class="wrap">
+<h2>Phasing &amp; Operation<span class="en">分期与运营</span></h2>
+<div class="grid g3">
+<div class="card"><h4>Phase 1 · Open 2026–2027</h4><p>Dazhongsi Main Shed + southern corridor + first 3 test scenarios; <span data-metric="phase_1_area_sqm" data-value="5509682.453">551 ha</span>.</p></div>
+<div class="card"><h4>Phase 2 · Connect 2027–2028</h4><p>Corridor completed + Origin maker fair + riverside night-fair wing; <span data-metric="phase_2_area_sqm" data-value="2376519.172">238 ha</span>.</p></div>
+<div class="card"><h4>Phase 3 · Flourish 2028–2030</h4><p>Zhongzhiyuan test-field expansion + site-wide operation; <span data-metric="phase_3_area_sqm" data-value="3526623.76">353 ha</span>.</p></div>
+</div>
+<p class="lede" style="margin-top:14px">Four-season fair calendar (concept): Spring Opening · Summer Night Fair · Autumn Global AI Daji Carnival (Golden Abacus-Bead Award) · Winter Silver-Hair Fair; plus an open fair API, a vendor digital cooperative, a developer-in-residence scheme and open sandbox applications.</p>
+</div></section>
+
+<section id="selfcheck"><div class="wrap">
+<h2>Self-check Status<span class="en">自检状态</span></h2>
+<p class="lede">Self-check 5/5 passed (self_check.json). Machine validation (visual_review / spatial_review) is authoritative via the repository scripts; this page is fully offline static HTML with no remote resources or scripts.</p>
+<table><tr><th>Result</th><th>Check</th><th>Target</th><th>Severity</th></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>BOUNDARY_TRUST</td><td>geometry/site_boundary.geojson</td><td>major</td></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>KEY_AREAS_TRUST</td><td>geometry/key_areas.geojson</td><td>major</td></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>LAND_USE_TOPOLOGY</td><td>geometry/land_use.geojson</td><td>major</td></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>VISUAL_STATIC</td><td>visual/index.html</td><td>info</td></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>PROFESSIONAL_EVIDENCE</td><td>proposal.md</td><td>major</td></tr></table>
+</div></section>
+
+<section id="sources"><div class="wrap">
+<h2>Sources &amp; Assumptions<span class="en">来源与假设</span></h2>
+<h3>Sources</h3>
+<ul class="tight"><li><b>SITE-PACKAGE</b> — </li>
+<li><b>SOURCE-REGISTRY</b> — </li>
+<li><b>PROCESSED-FACT-PACK</b> — </li>
+<li><b>BOUNDARY-SOURCE</b> — </li>
+<li><b>KEY-AREA-SOURCE</b> — </li>
+<li><b>OFFICIAL-ANNOUNCEMENT</b> — </li>
+<li><b>AGENT-TASKBOOK</b> — </li>
+<li>geometry/*.geojson — concept geometry layers (agent-generated, stored in EPSG:4326, recomputed in EPSG:4548)</li>
+<li>metrics.json — 30 recomputed metrics (the source of every figure on this page)</li></ul>
+<h3>Assumptions</h3>
+<ul class="tight"><li>{&#x27;id&#x27;: &#x27;A-CONTROLS-001&#x27;, &#x27;status&#x27;: &#x27;pending_professional_confirmation&#x27;, &#x27;statement&#x27;: &#x27;Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.&#x27;, &#x27;impact&#x27;: &#x27;The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation.&#x27;}</li></ul>
+<p class="note">Boundary statement: all spatial boundaries in this proposal are PROVISIONAL rough stand-ins (inferred from the official brief's textual extents and the ~11.4 km² size constraint), not official red lines. Concept geometry is agent-generated; every metric is recomputed from geometry/*.geojson in EPSG:4548 and is offered for professional further study only — no statutory planning conclusions.</p>
+</div></section>
+
+<footer><div class="wrap">
+Yanhuo Jingzhang · AI Daji 烟火京张·AI大集 — Centennial Jingzhang AI Innovation Belt open call · agent: Kimi Code<br>
+Fully offline static page. All boundaries are provisional rough stand-ins, not official red lines; content is a concept proposal for professional further study.
+</div></footer>
+</body>
+</html>

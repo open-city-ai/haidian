@@ -1,0 +1,428 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 下 site_boundary 图层 union 面积",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2726830.64,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "EPSG:4548 下 green_space 图层 union 面积",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.238927,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 426414.987,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "EPSG:4548 下 public_space 图层(广场+市集大厅+12 个场景节点)union 面积",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.037363,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1830714.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "EPSG:4548 下 buildings 图层 union 面积",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.160409,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 18438877.444,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Σ(建筑基底面积 × floors 概念层数)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据",
+        "floors 为概念层数,待控规确认,不作法定结论"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "value": 1.616,
+      "unit": "none",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm(概念容积率,无量纲,unit=none 表示非比值指标)",
+      "confidence": "low",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据",
+        "概念区间指标,待控规确认,不作法定结论"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 1627770.735,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=1207 地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.142626,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "public_space 图层中 node_type=scenario_node 的 feature 数量(S01–S12)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key_areas 图层 feature 数量",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 967078.903,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=05(商业服务业用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_0701_area_sqm": {
+      "status": "known",
+      "value": 2320983.513,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=0701(城镇住宅用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 2086935.084,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=0802(科研用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 201000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=0803(文化用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_0804_area_sqm": {
+      "status": "known",
+      "value": 546170.436,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=0804(教育用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_0806_area_sqm": {
+      "status": "known",
+      "value": 278756.075,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=0806(医疗卫生用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_1207_area_sqm": {
+      "status": "known",
+      "value": 1627770.735,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=1207(城镇村道路用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 1636418.702,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=1401(公园绿地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_1402_area_sqm": {
+      "status": "known",
+      "value": 1090411.938,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=1402(防护绿地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_1403_area_sqm": {
+      "status": "known",
+      "value": 350900.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=1403(广场用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "land_use_16_area_sqm": {
+      "status": "known",
+      "value": 306400.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use 图层中 land_use_code=16(留白用地)地块面积之和",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 5509682.453,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "phasing 图层中 phase_id=phase_1_open 的 polygon 面积(EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 2376519.172,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "phasing 图层中 phase_id=phase_2_connect 的 polygon 面积(EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3526623.76,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "phasing 图层中 phase_id=phase_3_flourish 的 polygon 面积(EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略临时边界(非官方红线);官方数据发布后需重算",
+        "概念方案几何由 agent 生成(agent_generated_design),仅供专业团队深化研究,不作法定规划依据"
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key_areas 图层 PROV-KEY-001 的 area_sqm_calculated(EPSG:4548 复算值)",
+      "confidence": "medium",
+      "assumptions": [
+        "重点片区边界为 provisional;公告面积约值见 announced_area_sqm,官方数据发布后需重算"
+      ]
+    },
+    "key_area_beijing_ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key_areas 图层 PROV-KEY-002 的 area_sqm_calculated(EPSG:4548 复算值)",
+      "confidence": "medium",
+      "assumptions": [
+        "重点片区边界为 provisional;公告面积约值见 announced_area_sqm,官方数据发布后需重算"
+      ]
+    },
+    "key_area_dazhongsi_ai_industry_cluster_area_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "key_areas 图层 PROV-KEY-003 的 area_sqm_calculated(EPSG:4548 复算值)",
+      "confidence": "medium",
+      "assumptions": [
+        "重点片区边界为 provisional;公告面积约值见 announced_area_sqm,官方数据发布后需重算"
+      ]
+    }
+  }
+}

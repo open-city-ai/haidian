@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>烟火京张·AI大集 — 可视化证据展板</title>
+<style>
+:root{--brown:#8B5A2B;--red:#C0392B;--blue:#1F6FB2;--green:#3E8E5A;
+--ink:#2B2B2B;--paper:#FBF8F2;--card:#FFFFFF;--mut:#6f6656;--line:#E4DCCC;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Microsoft YaHei","PingFang SC","Segoe UI",Arial,sans-serif;
+background:var(--paper);color:var(--ink);line-height:1.65;font-size:15px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.hero{background:linear-gradient(135deg,#7A4A21,#8B5A2B 45%,#A9341F);
+color:#fff;padding:56px 0 40px}
+header.hero h1{font-size:2.2rem;letter-spacing:.04em}
+header.hero .en{opacity:.85;font-size:1rem;margin-top:6px}
+header.hero .tagline{margin-top:14px;font-size:1.05rem;max-width:46em}
+.banner{background:#FDF3E7;border:1px solid #E8C89A;color:#8a5a1a;
+padding:10px 0;font-size:.85rem}
+nav.toc{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav.toc .wrap{display:flex;flex-wrap:wrap;gap:4px 18px;padding-top:8px;padding-bottom:8px}
+nav.toc a{color:var(--brown);text-decoration:none;font-size:.85rem;white-space:nowrap}
+nav.toc a:hover{text-decoration:underline}
+section{padding:38px 0 10px}
+h2{font-size:1.45rem;color:var(--brown);border-left:6px solid var(--red);
+padding-left:12px;margin-bottom:6px}
+h2 .en{display:block;font-size:.8rem;color:var(--mut);font-weight:normal}
+h3{font-size:1.05rem;margin:18px 0 8px;color:var(--ink)}
+p.lede{max-width:52em;color:#4a4438}
+figure{margin:18px 0;border:1px solid var(--line);background:#fff;border-radius:8px;
+overflow:hidden;box-shadow:0 1px 4px rgba(90,70,40,.08)}
+figure img{width:100%;height:auto;display:block}
+figcaption{font-size:.8rem;color:var(--mut);padding:8px 14px;border-top:1px solid var(--line)}
+.grid{display:grid;gap:14px;margin-top:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;
+padding:14px 16px;box-shadow:0 1px 3px rgba(90,70,40,.06)}
+.card h4{font-size:.98rem;margin-bottom:4px}
+.card .sub{font-size:.76rem;color:var(--mut)}
+.card p{font-size:.86rem;margin-top:6px;color:#4a4438}
+.kpi{border-top:5px solid var(--brown)}
+.kpi .num{font-size:1.7rem;font-weight:700;color:var(--brown);display:block;margin:2px 0}
+.kpi.g{border-top-color:var(--green)} .kpi.g .num{color:var(--green)}
+.kpi.b{border-top-color:var(--blue)} .kpi.b .num{color:var(--blue)}
+.kpi.r{border-top-color:var(--red)} .kpi.r .num{color:var(--red)}
+.kpi .unit{font-size:.8rem;color:var(--mut)}
+.tag{display:inline-block;font-size:.7rem;border-radius:10px;padding:1px 9px;
+margin-left:6px;vertical-align:middle;color:#fff}
+.tag.test{background:var(--blue)} .tag.daily{background:var(--red)}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.85rem;background:#fff}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left}
+th{background:#F3EDE2;color:var(--brown)}
+.swatch{display:inline-block;width:12px;height:12px;border-radius:2px;
+margin-right:6px;vertical-align:-1px}
+ul.tight{margin:8px 0 8px 1.2em;font-size:.9em;color:#4a4438}
+ul.tight li{margin-bottom:4px}
+.era{display:flex;gap:0;margin:18px 0;flex-wrap:wrap}
+.era div{flex:1;min-width:200px;padding:12px 16px;color:#fff}
+.era div:nth-child(1){background:#8B5A2B;border-radius:8px 0 0 8px}
+.era div:nth-child(2){background:#A9341F}
+.era div:nth-child(3){background:#C0392B;border-radius:0 8px 8px 0}
+.era b{display:block;font-size:1.05rem}
+.era span{font-size:.78rem;opacity:.9}
+footer{margin-top:44px;background:#3a3125;color:#cfc6b4;padding:26px 0;font-size:.8rem}
+footer a{color:#e8ddc8}
+.note{font-size:.78rem;color:var(--mut);margin-top:8px}
+@media(max-width:820px){.g3,.g4{grid-template-columns:repeat(2,1fr)}
+header.hero h1{font-size:1.6rem}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}
+nav.toc{position:static}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+<h1>烟火京张·AI大集</h1>
+<div class="en">Yanhuo Jingzhang · AI Daji — Everyday AI Fair along the Centennial Jingzhang Corridor</div>
+<p class="tagline">把 AI 拉回地面,服务小商小贩、老人、学生和街坊邻里的烟火气日常——以北京“赶集”文化为原型,打造全球首个“AI大集”:AI 不是展品,而是摊主手里的算盘、老人身边的伴儿、学生手里的玩具。</p>
+</div></header>
+<div class="banner"><div class="wrap">⚠ 边界声明:本方案全部空间边界为 provisional 临时粗略边界(依据征集公告文字四至与约 11.4 km² 规模约束推断),非官方红线,不作精确面积依据;概念几何由 agent 程序化生成(agent_generated_design),所有指标在 EPSG:4548 下由 geometry/*.geojson 复算,仅供专业团队深化研究,不构成法定规划结论。</div></div>
+<nav class="toc"><div class="wrap">
+<a href="#overview">总览地图</a><a href="#keys">重点区域</a><a href="#landuse">用地分区</a>
+<a href="#mobility">交通慢行</a><a href="#bluegreen">蓝绿公共空间</a><a href="#buildings">建筑与更新项目</a>
+<a href="#scenarios">AI 场景</a><a href="#metrics">核心指标</a><a href="#tasks">任务覆盖</a>
+<a href="#selfcheck">自检状态</a><a href="#sources">来源与假设</a>
+</div></nav>
+
+<section id="concept"><div class="wrap">
+<h2>概念叙事 · 从柜台经济到 AI 大集<span class="en">Concept — From Counter Economy to AI Daji</span></h2>
+<p class="lede">中关村的起点不是写字楼,而是 1980 年代“电子一条街”上摆摊的柜台;再往前,京张铁路(1909)沿线因车站而兴的集市、庙会,是这条走廊最早的经济形态。百年之后,我们让最新的人工智能回到最古老的交易与交往场所——集市。三个时代的“摊”叠在一起,构成本方案的文化叙事主轴。</p>
+<div class="era"><div><b>1909 京张车站大集</b><span>詹天佑·人字形铁路·因站兴集</span></div>
+<div><b>1980s 中关村电子柜台</b><span>柜台经济·中国信息产业的烟火气源头</span></div>
+<div><b>2026– AI 大集</b><span>AI 回到集市:最低门槛、最日常的 AI 体验</span></div></div>
+<p class="lede">总体空间结构:<b>一轴</b>(京张遗址公园“烟火AI走廊”)·<b>三集</b>(大钟寺主场/原点创客集/众智园试验田)·<b>两翼</b>(中关村摊主服务翼/小月河滨水夜集翼)·<b>多点</b>(12 个 AI 场景节点)。</p>
+</div></section>
+
+<section id="overview"><div class="wrap">
+<h2>总览地图与三层范围<span class="en">Overview Map &amp; Three Scopes</span></h2>
+<figure><img src="../assets/figures/site-overview.png" alt="总体结构概览 site overview" loading="lazy">
+<figcaption>图 1 · 总体结构概览:一轴三集两翼多点;边界为 provisional 临时粗略边界(虚线),非官方红线。Figure 1 · Site overview; dashed line = provisional boundary.</figcaption></figure>
+<div class="grid g3">
+<div class="card"><h4>① 总体设计范围</h4><div class="sub">Overall design area</div>
+<p><span data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</span>(11,412,825.386 sqm),南北向条带,与京张铁路/13 号线走廊平行;provisional 粗略替代边界。</p></div>
+<div class="card"><h4>② 重点片区 ×3</h4><div class="sub">Key detailed design areas</div>
+<p>众智园AI自主创新加速区(北,192.9 ha)· 北京AI原点社区(中,104.3 ha)· 大钟寺AI产业集聚区(南,72.0 ha),编号自北向南。</p></div>
+<div class="card"><h4>③ 场景节点 ×12</h4><div class="sub">Scenario nodes S01–S12</div>
+<p><span data-metric="scenario_node_count" data-value="12">12</span> 个 AI 场景节点以小型公共空间落位,串联于绿轴与三集之间。</p></div>
+</div>
+</div></section>
+
+<section id="keys"><div class="wrap">
+<h2>重点区域:三集索引与设计任务<span class="en">Key Areas — Index &amp; Design Briefs</span></h2>
+<figure><img src="../assets/figures/key-areas.png" alt="重点片区 key areas" loading="lazy">
+<figcaption>图 2 · 三集:众智园试验田(北)/ 原点创客集(中)/ 大钟寺主场(南)。Figure 2 · Three fairs, numbered north → south.</figcaption></figure>
+<div class="grid g3"><div class="card"><h4>众智园AI自主创新加速区<span class="sub"> · 摊主科技试验田</span></h4><div class="sub">Zhongzhiyuan AI Acceleration Area · Vendor Tech Test-Field</div><p>摊主科技试验田:S07 无人车 / S10 食安快检 / S11 多语同传三大测试验证场景;全栈自主之光展廊。复算面积 192.9 ha。</p></div><div class="card"><h4>北京AI原点社区(五道口)<span class="sub"> · 青春创客集</span></h4><div class="sub">Beijing AI Origin Community (Wudaokou) · Youth Maker Fair</div><p>青春创客集:S05 学生 AI 创客夜市、S08 多语种翻译摊位、S04 代际扫盲课堂;原点创客灯塔。复算面积 104.3 ha。</p></div><div class="card"><h4>大钟寺AI产业集聚区<span class="sub"> · AI大集主场</span></h4><div class="sub">Dazhongsi AI Industry Cluster · AI Daji Main Venue</div><p>AI大集主场:AI大集总棚(常设市集大厅+嘉年华主会场)+百年摊位荣誉墙;S01/S06/S12。复算面积 72.0 ha。</p></div></div>
+</div></section>
+
+<section id="landuse"><div class="wrap">
+<h2>用地分区结构<span class="en">Land-use Structure</span></h2>
+<figure><img src="../assets/figures/land-use-structure.png" alt="用地结构 land use" loading="lazy">
+<figcaption>图 3 · 155 个概念地块按用地代码着色;面积在 EPSG:4548 下复算。Figure 3 · 155 concept parcels coloured by land-use code.</figcaption></figure>
+<table><tr><th>代码</th><th>用地类型</th><th>面积(ha)</th><th>占总体设计范围</th></tr><tr><td><span class="swatch" style="background:#E0655A"></span>05</td><td>商业服务业用地</td><td data-metric="land_use_05_area_sqm" data-value="967078.903">96.7</td><td>8.5%</td></tr><tr><td><span class="swatch" style="background:#F2D06B"></span>0701</td><td>城镇住宅用地</td><td data-metric="land_use_0701_area_sqm" data-value="2320983.513">232.1</td><td>20.3%</td></tr><tr><td><span class="swatch" style="background:#9B7EBD"></span>0802</td><td>科研用地</td><td data-metric="land_use_0802_area_sqm" data-value="2086935.084">208.7</td><td>18.3%</td></tr><tr><td><span class="swatch" style="background:#E8A0BF"></span>0803</td><td>文化用地</td><td data-metric="land_use_0803_area_sqm" data-value="201000.0">20.1</td><td>1.8%</td></tr><tr><td><span class="swatch" style="background:#F0A35E"></span>0804</td><td>教育用地</td><td data-metric="land_use_0804_area_sqm" data-value="546170.436">54.6</td><td>4.8%</td></tr><tr><td><span class="swatch" style="background:#7FB3D5"></span>0806</td><td>医疗卫生用地</td><td data-metric="land_use_0806_area_sqm" data-value="278756.075">27.9</td><td>2.4%</td></tr><tr><td><span class="swatch" style="background:#C9C4BC"></span>1207</td><td>城镇村道路用地</td><td data-metric="land_use_1207_area_sqm" data-value="1627770.735">162.8</td><td>14.3%</td></tr><tr><td><span class="swatch" style="background:#58B368"></span>1401</td><td>公园绿地</td><td data-metric="land_use_1401_area_sqm" data-value="1636418.702">163.6</td><td>14.3%</td></tr><tr><td><span class="swatch" style="background:#A9D6A0"></span>1402</td><td>防护绿地</td><td data-metric="land_use_1402_area_sqm" data-value="1090411.938">109.0</td><td>9.6%</td></tr><tr><td><span class="swatch" style="background:#E59866"></span>1403</td><td>广场用地</td><td data-metric="land_use_1403_area_sqm" data-value="350900.0">35.1</td><td>3.1%</td></tr><tr><td><span class="swatch" style="background:#EFEDE6"></span>16</td><td>留白用地</td><td data-metric="land_use_16_area_sqm" data-value="306400.0">30.6</td><td>2.7%</td></tr></table>
+<p class="note">用地代码参照《国土空间调查、规划、用途管制用地用海分类指南》;概念布局,非控规结论。Codes follow the national land-use classification guideline; concept layout only.</p>
+</div></section>
+
+<section id="mobility"><div class="wrap">
+<h2>交通慢行<span class="en">Mobility &amp; Slow Traffic</span></h2>
+<figure><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿网络 mobility" loading="lazy">
+<figcaption>图 4 · 道路中心线 + 慢行绿道 + 蓝绿网络 + 场景节点。Figure 4 · Centerlines, greenway, blue-green network and nodes.</figcaption></figure>
+<ul class="tight">
+<li>慢行主绿道纵贯全范围,串联三集十二节点,步行+骑行复合。</li>
+<li>一刻钟便民生活圈:场景节点均嵌入公共空间,服务摊主、老人、学生高频日常。</li>
+<li>大集时段支路限时步行化(概念建议);轨道站点(大钟寺、五道口)接驳。</li>
+<li>S07 低速无人车:限定路线、限定时段、随车安全员的测试沙盒,非批准运营。</li>
+</ul>
+</div></section>
+
+<section id="bluegreen"><div class="wrap">
+<h2>蓝绿公共空间<span class="en">Blue-Green Public Space</span></h2>
+<div class="grid g3">
+<div class="card"><h4>绿地系统</h4><div class="sub">Green system</div>
+<p>绿地面积 <span data-metric="green_space_area_sqm" data-value="2726830.64">272.7 ha</span>,绿地率 <b>23.9%</b>;京张遗址公园走廊四段(南段大钟寺/银发乐园段/周末市集段/北段众智园)兼作遗产展示与市集棚架复合空间。</p></div>
+<div class="card"><h4>公共空间</h4><div class="sub">Public space</div>
+<p>公共空间面积 <span data-metric="public_space_area_sqm" data-value="426414.987">42.6 ha</span>(占比 3.7%):2 处广场 + 2 处市集大厅 + 12 个场景节点。</p></div>
+<div class="card"><h4>小月河滨水夜集翼</h4><div class="sub">Riverside night-fair wing</div>
+<p>东侧概念廊道,承接“夏·消夏夜集”与学生创客夜市,与慢行绿道成环。</p></div>
+</div>
+</div></section>
+
+<section id="buildings"><div class="wrap">
+<h2>建筑与更新项目<span class="en">Buildings &amp; Renewal</span></h2>
+<div class="grid g3">
+<div class="card"><h4>建筑基底</h4><div class="sub">Building footprints</div>
+<p>136 栋概念建筑,基底面积 <span data-metric="building_footprint_area_sqm" data-value="1830714.386">183.1 ha</span>,基底密度 <b>16.0%</b>;类型含科研、居住、商业、孵化、人才公寓等。</p></div>
+<div class="card"><h4>概念规模</h4><div class="sub">Concept floor area</div>
+<p>概念总建筑面积 <span data-metric="total_floor_area_sqm" data-value="18438877.444">1,844 ha</span>,概念容积率 <b>1.62</b>(待控规确认,非结论)。</p></div>
+<div class="card"><h4>更新策略</h4><div class="sub">Renewal strategy</div>
+<p>以微更新为主:保留街巷烟火气,植入市集棚架、社区驿站与端侧算力亭;拆改留比例不作法定结论,由后续专项深化。</p></div>
+</div>
+</div></section>
+
+<section id="scenarios"><div class="wrap">
+<h2>AI 场景节点(S01–S12)<span class="en">AI Scenario Nodes</span></h2>
+<p class="lede">12 张场景卡服务六类人群:摊主、老人、学生、留学生、创客、社区工作者;其中 S07/S10/S11 为产业测试验证场景(沙盒机制:限定时空、人工复核、公开编号)。所有场景遵循数据最小化、匿名化与人工兜底原则,不做人脸识别。</p>
+<div class="grid g4"><div class="card"><h4>S01 AI摊主助手<span class="tag daily">日常服务</span></h4><div class="sub">AI Vendor Copilot</div><p>空间锚点:大钟寺总棚及各集市</p></div>
+<div class="card"><h4>S02 摊位调度·赶集导航<span class="tag daily">日常服务</span></h4><div class="sub">Stall Dispatch &amp; Fair Navi</div><p>空间锚点:三集全部</p></div>
+<div class="card"><h4>S03 银发陪伴·防骗守护<span class="tag daily">日常服务</span></h4><div class="sub">Senior Companion &amp; Anti-fraud</div><p>空间锚点:绿廊中段·银发乐园</p></div>
+<div class="card"><h4>S04 代际AI扫盲课堂<span class="tag daily">日常服务</span></h4><div class="sub">Inter-gen AI Literacy Class</div><p>空间锚点:社区驿站网络</p></div>
+<div class="card"><h4>S05 学生AI创客夜市<span class="tag daily">日常服务</span></h4><div class="sub">Student AI Maker Night Fair</div><p>空间锚点:原点社区</p></div>
+<div class="card"><h4>S06 早餐热力·通勤预订<span class="tag daily">日常服务</span></h4><div class="sub">Breakfast Heat &amp; Commute Pre-order</div><p>空间锚点:大钟寺枢纽</p></div>
+<div class="card"><h4>S07 无人零售/配送车(测试)<span class="tag test">产业测试验证</span></h4><div class="sub">Low-speed Retail Robots (Test)</div><p>空间锚点:众智园试验田</p></div>
+<div class="card"><h4>S08 多语种AI翻译摊位<span class="tag daily">日常服务</span></h4><div class="sub">Multilingual AI Translation</div><p>空间锚点:原点社区·总棚</p></div>
+<div class="card"><h4>S09 AI旧物循环市集<span class="tag daily">日常服务</span></h4><div class="sub">AI Re-use Flea Market</div><p>空间锚点:绿廊周末集</p></div>
+<div class="card"><h4>S10 AI食安快检溯源(测试)<span class="tag test">产业测试验证</span></h4><div class="sub">AI Food-safety Quick Test</div><p>空间锚点:众智园·总棚</p></div>
+<div class="card"><h4>S11 多语同传政务终端(测试)<span class="tag test">产业测试验证</span></h4><div class="sub">AI Interpreting Gov Terminal</div><p>空间锚点:众智园社区驿站</p></div>
+<div class="card"><h4>S12 AI零工驿站<span class="tag daily">日常服务</span></h4><div class="sub">AI Gig-work Station</div><p>空间锚点:大钟寺·原点社区</p></div></div>
+</div></section>
+
+<section id="metrics"><div class="wrap">
+<h2>核心指标<span class="en">Core Metrics</span></h2>
+<figure><img src="../assets/figures/metrics-evidence.png" alt="核心指标仪表盘 metrics dashboard" loading="lazy">
+<figcaption>图 5 · 指标证据仪表盘,数值与 metrics.json 完全一致。Figure 5 · Metrics evidence dashboard; values match metrics.json exactly.</figcaption></figure>
+<div class="grid g3">
+<div class="card kpi "><h4>总体设计范围</h4><div class="sub">Site area</div><span class="num" data-metric="site_area_sqm" data-value="11412825.386">11.41</span><span class="unit">km²(provisional)</span></div>
+<div class="card kpi g"><h4>绿地率</h4><div class="sub">Green ratio</div><span class="num" data-metric="green_ratio" data-value="0.238927">23.89</span><span class="unit">%</span></div>
+<div class="card kpi r"><h4>公共空间占比</h4><div class="sub">Public space ratio</div><span class="num" data-metric="public_space_ratio" data-value="0.037363">3.74</span><span class="unit">%</span></div>
+<div class="card kpi b"><h4>建筑基底密度</h4><div class="sub">Building density</div><span class="num" data-metric="building_density" data-value="0.160409">16.04</span><span class="unit">%</span></div>
+<div class="card kpi "><h4>道路占比</h4><div class="sub">Road share</div><span class="num" data-metric="road_ratio" data-value="0.142626">14.26</span><span class="unit">%</span></div>
+<div class="card kpi b"><h4>概念容积率</h4><div class="sub">Concept FAR</div><span class="num" data-metric="floor_area_ratio" data-value="1.616">1.616</span><span class="unit">(待控规确认)</span></div>
+</div>
+<p class="note">全部数值直接取自 metrics.json(EPSG:4548 复算),置信度 medium(概念容积率 low)。All values are taken verbatim from metrics.json, recomputed in EPSG:4548.</p>
+</div></section>
+
+<section id="tasks"><div class="wrap">
+<h2>任务覆盖(agent.1–agent.6)<span class="en">Task Coverage</span></h2>
+<div class="grid g2"><div class="card"><h4>agent.1 一带总体概念与功能统筹</h4><p>“从柜台经济到 AI 大集”叙事 + “一轴三集两翼多点”空间结构,统筹 11.41 km² 总体设计范围。</p></div><div class="card"><h4>agent.2 AI全栈自主创新体系与创新生态</h4><p>“大集即测试场”:众智园试验田承接 S07/S10/S11 沙盒;中关村翼提供摊主金融/法务/供应链服务。</p></div><div class="card"><h4>agent.3 AI+场景赋能新范式</h4><p>12 张场景卡(S01–S12)覆盖摊主、老人、学生、留学生、创客、社工六类人群,数据最小化+人工复核。</p></div><div class="card"><h4>agent.4 AI公共空间与朝圣地标</h4><p>AI大集总棚·百年摊位荣誉墙、原点创客灯塔、全栈自主之光展廊(3+1 地标体系)。</p></div><div class="card"><h4>agent.5 百年京张文化与AI新文化融合叙事</h4><p>京张车站大集(1909)→ 中关村电子柜台(1980s)→ AI 大集(2026–)三时代叠合叙事。</p></div><div class="card"><h4>agent.6 全球AI创新活动体系与长期运营</h4><p>四季大集日历、金算珠奖、大集 API 开放平台、摊主数字合作社、开发者驻场计划。</p></div></div>
+</div></section>
+
+<section id="phasing"><div class="wrap">
+<h2>分期与运营<span class="en">Phasing &amp; Operation</span></h2>
+<div class="grid g3">
+<div class="card"><h4>一期·开集 2026–2027</h4><p>大钟寺总棚 + 走廊南段 + 首批 3 个测试场景;复算 <span data-metric="phase_1_area_sqm" data-value="5509682.453">551 ha</span>。</p></div>
+<div class="card"><h4>二期·连集 2027–2028</h4><p>走廊贯通 + 原点社区创客集 + 小月河夜集翼;复算 <span data-metric="phase_2_area_sqm" data-value="2376519.172">238 ha</span>。</p></div>
+<div class="card"><h4>三期·兴集 2028–2030</h4><p>众智园试验田扩展 + 全域运营体系;复算 <span data-metric="phase_3_area_sqm" data-value="3526623.76">353 ha</span>。</p></div>
+</div>
+<p class="lede" style="margin-top:14px">四季大集日历(概念建议):春·开集节 / 夏·消夏夜集 / 秋·全球AI大集嘉年华(金算珠奖)/ 冬·暖冬银发集;日常机制含大集 API 开放平台、摊主数字合作社、开发者驻场计划与场景公开测试申请制。</p>
+</div></section>
+
+<section id="selfcheck"><div class="wrap">
+<h2>自检状态<span class="en">Self-check Status</span></h2>
+<p class="lede">自检 5/5 项通过(self_check.json)。机器校验(visual_review / spatial_review)以仓库脚本结果为准;本页静态离线,无任何远程资源或脚本。</p>
+<table><tr><th>结果</th><th>检查项</th><th>对象</th><th>级别</th></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>BOUNDARY_TRUST</td><td>geometry/site_boundary.geojson</td><td>major</td></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>KEY_AREAS_TRUST</td><td>geometry/key_areas.geojson</td><td>major</td></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>LAND_USE_TOPOLOGY</td><td>geometry/land_use.geojson</td><td>major</td></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>VISUAL_STATIC</td><td>visual/index.html</td><td>info</td></tr><tr><td style="color:#3E8E5A;font-weight:700">✓</td><td>PROFESSIONAL_EVIDENCE</td><td>proposal.md</td><td>major</td></tr></table>
+</div></section>
+
+<section id="sources"><div class="wrap">
+<h2>来源与假设<span class="en">Sources &amp; Assumptions</span></h2>
+<h3>来源 Sources</h3>
+<ul class="tight"><li><b>SITE-PACKAGE</b> — </li>
+<li><b>SOURCE-REGISTRY</b> — </li>
+<li><b>PROCESSED-FACT-PACK</b> — </li>
+<li><b>BOUNDARY-SOURCE</b> — </li>
+<li><b>KEY-AREA-SOURCE</b> — </li>
+<li><b>OFFICIAL-ANNOUNCEMENT</b> — </li>
+<li><b>AGENT-TASKBOOK</b> — </li>
+<li>geometry/*.geojson — 概念几何图层(agent 程序化生成,EPSG:4326 存储,EPSG:4548 复算)</li>
+<li>metrics.json — 30 项复算指标(本页全部数值来源)</li></ul>
+<h3>假设 Assumptions</h3>
+<ul class="tight"><li>{&#x27;id&#x27;: &#x27;A-CONTROLS-001&#x27;, &#x27;status&#x27;: &#x27;pending_professional_confirmation&#x27;, &#x27;statement&#x27;: &#x27;Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.&#x27;, &#x27;impact&#x27;: &#x27;The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation.&#x27;}</li></ul>
+<p class="note">边界声明:本方案全部空间边界为 provisional 临时粗略边界(依据征集公告文字四至与约 11.4 km² 规模约束推断),非官方红线,不作精确面积依据;概念几何由 agent 程序化生成(agent_generated_design),所有指标在 EPSG:4548 下由 geometry/*.geojson 复算,仅供专业团队深化研究,不构成法定规划结论。</p>
+</div></section>
+
+<footer><div class="wrap">
+烟火京张·AI大集 Yanhuo Jingzhang · AI Daji — 百年京张AI创新带城市设计开源征集 · agent: Kimi Code<br>
+本页为完全离线静态页面;图中边界均为 provisional 临时粗略边界,非官方红线;内容为概念建议,供专业团队深化研究。
+</div></footer>
+</body>
+</html>
