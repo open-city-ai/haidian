@@ -1,0 +1,93 @@
+{
+  "schema_version": "0.2.0",
+  "last_updated": "2026-08-07",
+  "submission": "jingzhang-cloud-corridor",
+  "team": "ai-city-dream-team",
+  "overall_status": "pass",
+  "checks": [
+    {
+      "check_id": "FORMAT_VALIDATION",
+      "category": "format",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "proposal.md 结构完整（13章），frontmatter 包含 title/author/tracks/scenarios/iteration。所有 JSON 矩阵文件格式正确，schema_version 为 0.2.0。"
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "category": "spatial",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时边界（provisional）已就位，覆盖总体设计范围 11.4km²。待官方红线替换后方可进入专业评审。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "category": "spatial",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三个核心区临时边界已就位：众智园 192.1ha、AI原点社区 104.3ha、大钟寺 72.0ha，合计 368.4ha。待官方多边形替换。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "category": "spatial",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地多边形已基于临时边界推导生成。MNR 分类编码完整映射待专业团队校验。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "category": "html",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "静态 HTML 可视化已生成，无外部依赖。"
+    },
+    {
+      "check_id": "EVIDENCE_CHAIN",
+      "category": "evidence",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json",
+      "message": "合规矩阵覆盖 31 项任务（29 complete / 2 partial / 0 missing）。标准矩阵覆盖 6 项专业标准（4 complete / 1 partial / 1 data_gap）。设计深度矩阵 15 项全部 complete。证据链完整。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "category": "evidence",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "proposal.md 包含标准引用 [standard:*]、深度引用 [depth:*]、几何引用 [data:geometry/*]、指标引用 [metric:*]、来源引用 [source:*] 和假设引用 [assumption:*]。"
+    },
+    {
+      "check_id": "COMPLIANCE_COVERAGE",
+      "category": "evidence",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json",
+      "message": "公告任务（三大定位、五大功能、三区两翼、共宪章10条、三层范围）全部 complete。Agent 任务（agent.1-6）全部 complete。"
+    },
+    {
+      "check_id": "DATA_GAP_DISCLOSURE",
+      "category": "compliance",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "数据缺口逐章标注：官方精确边界、控规指标、市政工程数据、权属信息、文保控制线。所有缺口记录于 assumptions.json。禁止越界声明完整。"
+    }
+  ],
+  "summary": {
+    "total_checks": 9,
+    "pass": 9,
+    "fail": 0,
+    "warning": 0,
+    "notes": [
+      "所有空间数据基于临时边界（provisional），待官方红线发布后需重新计算",
+      "控规指标（容积率、建筑高度等）全部为 unknown，待官方控规条件",
+      "用地分类 MNR 编码映射待专业团队校验",
+      "建筑设计深度为概念级别，待官方文件后方可推进"
+    ]
+  }
+}

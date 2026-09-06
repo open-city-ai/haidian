@@ -1,0 +1,306 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_coordinated_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_text_area_from_announcement",
+      "confidence": "high",
+      "assumptions": [
+        "面积值来自资格预审公告官方文本，非GeoJSON复算"
+      ],
+      "note": "统筹研究范围面积43.6km²"
+    },
+    "site_area_overall_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_text_area_from_announcement",
+      "confidence": "high",
+      "assumptions": [
+        "面积值来自资格预审公告官方文本"
+      ],
+      "note": "总体设计范围面积11.4km²"
+    },
+    "site_area_overall_provisional_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "由provisional boundary GeoJSON复算，与官方文本值存在微小差异",
+        "provisional boundary不能作为精确面积依据"
+      ],
+      "note": "临时边界GeoJSON复算值，仅供自检参考"
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "sum_of_official_key_area_values",
+      "confidence": "high",
+      "assumptions": [
+        "三个核心区面积值来自公告官方文本"
+      ],
+      "note": "重点区域总面积368.4ha"
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "official_text_area(zhongzhiyuan)",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "众智园AI自主创新加速区 192.1ha"
+    },
+    "key_area_origin_community_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "official_text_area(ai_origin_community)",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "北京AI原点社区 104.3ha"
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "official_text_area(dazhongsi)",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "大钟寺AI产业聚集区 72.0ha"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "基于provisional boundary内建筑基底图层复算",
+        "建筑基底数据来源为OpenStreetMap等公开数据，可能存在遗漏"
+      ],
+      "note": "建筑基底面积为现状估算，非最终设计方案值"
+    },
+    "estimated_total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "total_floor_area = sum(building_footprint × estimated_floors)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少官方控规条件（容积率、建筑高度、层数限制），无法进行可靠的总建筑面积估算。概念建议值需待正式控规条件确认后计算。"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.198755,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "基于provisional boundary内绿地图层复算",
+        "绿地分类依据公开数据，可能与实际绿地口径存在差异"
+      ],
+      "note": "Recomputed from green_space.geojson / site_boundary.geojson"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.053606,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "基于provisional boundary内公共空间图层复算"
+      ],
+      "note": "Recomputed from public_space.geojson / site_boundary.geojson"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少官方控规容积率控制条件，无法计算。本方案不给出伪精确容积率数值。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "building_footprint_area / site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "建筑密度受官方控规约束，当前缺少控规条件。现状建筑密度可作为参考但不作为规划控制值。"
+    },
+    "green_ratio_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "target_green_area / site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "规划目标绿地率需依据官方控规和绿地系统规划确定，本方案不设定伪精确目标值。"
+    },
+    "building_height_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "N/A",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "建筑高度控制需由官方控规、文保和航空限高确定，当前缺失。"
+    },
+    "setback_line": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "N/A",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "建筑退线需由官方控规和道路红线确定，当前缺失。"
+    },
+    "road_redline": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "N/A",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "道路红线需由官方市政规划确定，当前缺失。"
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards_in_proposal)",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "本方案设计12张AI场景卡，满足≥10张要求"
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_test_scenarios)",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "3个产业测试验证场景，满足≥3个要求"
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "5类用户画像，满足≥5类要求"
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "3个AI朝圣地标概念，满足≥3个要求"
+    },
+    "naming_system_groups": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(naming_system_groups)",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "6组命名建议，满足≥5组要求"
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary"
+      ],
+      "note": "Recomputed from site_boundary.geojson (EPSG:4548)"
+    }
+  }
+}
