@@ -22,3 +22,10 @@
 - 补齐版权、字体、软件、网络与个人数据边界，离线页不使用 CDN、远程地图、外部字体、iframe、表单、API 或跟踪。
 - 完成最终哈希、自检与严格本地校验：确定性、空间、视觉包装、专业证据四道阻断门均为 `pass`；`package_state=ready_for_review`，`review_status=formal-review-ready`，`next_actions=[]`。
 - 唯一保留警示是组织方临时边界：不影响内容评分，但官方 polygon 到位后必须整包复算。仍未创建 Git 分支，未 commit、push 或创建 PR。
+
+## v0.3 - 2026-08-14
+
+### 自定义封面
+
+- 加入投稿者批准的系统概念封面 `assets/media/cover.png`，以中央人工接管/恢复节点串联众智园、AI 原点社区、大钟寺三个具有辨识度的地标意象。
+- 在 `manifest.json` 登记 `cover_image` 与 `media_poster` 元数据，并在版权声明中说明生成方式、素材来源与“非现状、非批准方案”的使用边界。
