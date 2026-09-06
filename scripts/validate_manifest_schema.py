@@ -15,6 +15,10 @@ from pathlib import Path
 from manifest_schema import legacy_role_findings, manifest_paths, schema_errors
 
 
+def reject_nonstandard_constant(value: str) -> None:
+    raise ValueError(f"invalid JSON constant: {value}")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default=".")
@@ -40,8 +44,11 @@ def main() -> int:
     for path in paths:
         manifest = None
         try:
-            manifest = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            manifest = json.loads(
+                path.read_text(encoding="utf-8"),
+                parse_constant=reject_nonstandard_constant,
+            )
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
             errors = [f"unable to read manifest: {exc}"]
         else:
             if not isinstance(manifest, dict):
