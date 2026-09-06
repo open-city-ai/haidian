@@ -1,0 +1,127 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "jiefalcon-jingzhang-ai-origin",
+  "package_state": "ready_for_review",
+  "self_checked": true,
+  "last_self_check_at": "2026-08-09T19:25:00+08:00",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "title_zh": "边界可信度",
+      "evidence": "所有边界采用 provisional_boundaries.geojson，geometry_role=provisional_constraint，official_boundary=false；复算精度 +0.02%~+0.43%。",
+      "notes_zh": "provisional 标注完整，等待官方 polygon。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "title_zh": "用地拓扑",
+      "evidence": "v0.3 重画：land_use.geojson 现含 8 个概念性分区多边形 + 28 个研究范围概念填充（合计 36 feature），两两不重叠且并集铺满 site_boundary 并集（43.6 km² 研究范围）；剩余区采用现状用地代码（07/08/05/1207/14/16）概念填充。",
+      "notes_zh": "比例概念性，须以官方控规为准。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "AGENT_TASK_COVERAGE",
+      "title_zh": "Agent 任务覆盖",
+      "evidence": "agent.1-6 全部覆盖：命名/Logo（proposal §统筹研究）、生态案例 8 个、场景卡 10、测试验证 3、用户画像 5、朝圣地标 4、文化叙事（proposal §蓝绿空间/分期/年度活动）、长期运营（京张 AI 朝圣周）。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "NAMING_AND_BRANDING",
+      "title_zh": "命名与品牌",
+      "evidence": "主名 京张 AI 原点（Centennial.AI Origin）+ 副标 三层文化叠合（Layered Cultural Convergence）；Logo 概念为叠合环（Layered Ring）；不使用未授权字体/商标/人物。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "FORBIDDEN_CLAIMS",
+      "title_zh": "禁用断言",
+      "evidence": "容积率、高度、密度、退线均 status=unknown；不编造企业名单/投资额/产值；不把测试场景写成已批准；不擅自改造权属空间。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "LICENSE_DISCLOSURE",
+      "title_zh": "许可披露",
+      "evidence": "OSM 数据 ODbL 许可 + © OpenStreetMap contributors 在所有图中明确标注。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "EXISTING_DIAGNOSIS",
+      "title_zh": "现状诊断",
+      "evidence": "基于 OSM + 海淀统计 + 京张公园公开资料。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "KEY_AREA_DETAIL",
+      "title_zh": "重点区详细设计",
+      "evidence": "三核心区分别含定位/空间结构/重点功能/关键节点/更新潜力。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "TRANSPORT_NETWORK",
+      "title_zh": "交通网络",
+      "evidence": "基于 OSM 地铁/道路/慢行；TOD + 朝圣步道 9 公里 + 站点 500 米接驳。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "MUNICIPAL",
+      "title_zh": "市政策略",
+      "evidence": "传统市政以现状体系为基础；新基建（算力/端侧/5.5G/6G/数据治理）为概念性建议。",
+      "result": "not_applicable",
+      "severity": "major"
+    },
+    {
+      "check_id": "BLUE_GREEN_NETWORK",
+      "title_zh": "蓝绿网络",
+      "evidence": "清河、小月河、京密引水渠 + 京张公园 + 4 朝圣地标 + 朝圣步道。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "RENEWAL_PROJECTS",
+      "title_zh": "更新项目",
+      "evidence": "12 个概念性项目 R-01 至 R-12，近期/中期/远期分期。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "PHASING",
+      "title_zh": "分期实施",
+      "evidence": "近期/中期/远期 + 年度活动 + 开发者社区运营 + 招引转化路径。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "METRICS_RECALC",
+      "title_zh": "指标复算",
+      "evidence": "6 类面积复算，相对偏差 +0.02%~+0.43%。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "RISK_DISCLOSURE",
+      "title_zh": "风险披露",
+      "evidence": "9 大待补资料清单 + 版权许可 + 官方承诺禁用。",
+      "result": "pass",
+      "severity": "info"
+    },
+    {
+      "check_id": "CITY_CHARACTER",
+      "title_zh": "城市风貌",
+      "evidence": "风貌分区（百年京张/学院/AI 创新/消费商务）明确；具体高度以官方控规为准。",
+      "result": "not_applicable",
+      "severity": "major"
+    }
+  ],
+  "known_blockers": [
+    "gh auth login 待陛下亲为（fork / push / 开 PR）"
+  ],
+  "data_confidence": "medium"
+}

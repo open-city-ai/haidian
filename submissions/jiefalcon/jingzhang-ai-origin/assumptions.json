@@ -1,0 +1,106 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "jiefalcon-jingzhang-ai-origin",
+  "assumptions": [
+    {
+      "assumption_id": "A-BOUNDARY-PROVISIONAL",
+      "category": "spatial_boundary",
+      "statement_zh": "本方案所有边界与三核心区均采用仓库提供的 provisional_boundaries.geojson 作为临时粗略边界，由维护者依据官方公告文字四至、位置线索和约面积推定。复算精度 +0.02%~+0.43%。",
+      "statement_en": "All boundaries in this proposal use the repository's provisional_boundaries.geojson as temporary rough polygons, derived from official announcement text boundaries, location cues and approximate areas. Recalculation precision +0.02% to +0.43%.",
+      "evidence": "brief/site-package/geometry/provisional_boundaries_basis.md",
+      "impact_if_invalid": "Geometry layers and metrics must be recalculated after official polygons become available.",
+      "confidence": "medium",
+      "replacement_trigger": "official redline released by Haidian Branch of Beijing Municipal Commission of Planning and Natural Resources"
+    },
+    {
+      "assumption_id": "A-CONTROLS-001",
+      "category": "planning_control",
+      "statement_zh": "本方案不给出容积率、建筑高度、建筑密度、绿地率、退线等建设强度指标，须以官方控规条件为最终依据。",
+      "statement_en": "This proposal does not commit FAR, building height, density, green ratio, or setback values. These must be confirmed by official regulatory planning.",
+      "evidence": "brief/site-package/ranges/planning_limits.json",
+      "impact_if_invalid": "Quantitative metrics require recalculation once official controls are released.",
+      "confidence": "high"
+    },
+    {
+      "assumption_id": "A-PARCEL-001",
+      "category": "land_parcel",
+      "statement_zh": "本方案不给出具体地块拆改留结论，所有改造建议须以官方权属和现状调查为准。",
+      "statement_en": "This proposal does not commit retain/renovate/demolish classifications at parcel level. All suggestions require confirmation through official ownership and existing-condition surveys.",
+      "evidence": "missing_data_checklist.csv#GAP-PARCEL-001",
+      "impact_if_invalid": "Renewal projects must be re-evaluated with parcel boundaries.",
+      "confidence": "high"
+    },
+    {
+      "assumption_id": "A-BUILDING-001",
+      "category": "existing_building",
+      "statement_zh": "本方案不编造建筑高度、层数或保留拆除状态；现状建筑信息以 OSM 公开数据为参考。",
+      "statement_en": "No fabricated building height, floor count, or retain/demolish status. OSM data is the only public reference for existing buildings.",
+      "evidence": "missing_data_checklist.csv#GAP-BUILDING-001",
+      "impact_if_invalid": "Building footprints and renewal scenarios require official existing-building survey.",
+      "confidence": "medium"
+    },
+    {
+      "assumption_id": "A-HERITAGE-001",
+      "category": "heritage_protection",
+      "statement_zh": "清华园车站旧址为北京市级文物保护单位，本方案不突破文保、绿地、蓝线或交通安全约束。建设控制地带内的所有方案建议须经文物主管部门批准。",
+      "statement_en": "Tsinghua Yuan Railway Station site is a Beijing municipal cultural heritage protection unit. This proposal respects heritage, green, blue-line, and traffic safety constraints. All suggestions within the construction control zone require approval from cultural heritage authorities.",
+      "evidence": "BJ-WENWU-TSINGHUA-YUAN",
+      "impact_if_invalid": "Designs near heritage boundary must be revised per heritage authority feedback.",
+      "confidence": "high"
+    },
+    {
+      "assumption_id": "A-MUNICIPAL-001",
+      "category": "municipal_infrastructure",
+      "statement_zh": "本方案不给出市政管线迁改或消防通道工程结论，所有市政建议须以官方市政专项为最终依据。",
+      "statement_en": "No municipal pipeline relocation or fire access engineering conclusions. All municipal suggestions require official municipal plans.",
+      "evidence": "missing_data_checklist.csv#GAP-MUNICIPAL-001",
+      "impact_if_invalid": "Municipal strategy requires recalculation after official data release.",
+      "confidence": "high"
+    },
+    {
+      "assumption_id": "A-OSM-LICENSE",
+      "category": "open_data_license",
+      "statement_zh": "本方案所有 OSM 派生数据遵循 ODbL 许可，并在图中和 sources.json 明确标注来源与日期。",
+      "statement_en": "All OSM-derived data follow ODbL license, with explicit source and date attribution in figures and sources.json.",
+      "evidence": "OSM-Overpass-2026-08-09",
+      "impact_if_invalid": "License compliance is high-confidence and unlikely to change.",
+      "confidence": "high"
+    },
+    {
+      "assumption_id": "A-LANDUSE-CONCEPT",
+      "category": "land_use_concept",
+      "statement_zh": "本方案用地比例为概念性空间结构示意，不替代控规；具体比例须以官方控规为最终依据。",
+      "statement_en": "Land use ratios are conceptual spatial structure sketches, not regulatory plan substitutes. Official regulatory controls govern final proportions.",
+      "evidence": "A-CONTROLS-001",
+      "impact_if_invalid": "Land use ratios require recalculation after official controls.",
+      "confidence": "high"
+    },
+    {
+      "assumption_id": "A-PILGRIMAGE-LENGTH",
+      "category": "scenario_specific",
+      "statement_zh": "开发者朝圣步道长度 9 公里基于京张铁路遗址公园一二期公开资料推算（实际长度以官方为准）。",
+      "statement_en": "The 9-km Developer Pilgrimage Trail length is estimated from publicly available Jingzhang Railway Heritage Park Phase I/II materials. Official length may vary.",
+      "evidence": "BJ-WLW-JINGZHANG-PARK",
+      "impact_if_invalid": "Public space metrics may require recalculation if official length differs.",
+      "confidence": "medium"
+    },
+    {
+      "assumption_id": "A-CULTURAL-LAYER-DATES",
+      "category": "narrative_specific",
+      "statement_zh": "三层文化叠合的时间锚点（1909 京张铁路 / 1980s 中关村 / 2020s AI 新文化）是叙事概念性时间标记，不代表具体年份。",
+      "statement_en": "The three cultural layers' time anchors (1909 Jingzhang Railway / 1980s Zhongguancun / 2020s AI new culture) are narrative concept markers, not exact dates.",
+      "evidence": "agent_taskbook.json narrative section",
+      "impact_if_invalid": "Narrative impact is minimal; cultural interpretation remains consistent.",
+      "confidence": "high"
+    },
+    {
+      "assumption_id": "A-AGENT-CLAIM",
+      "category": "ai_agent",
+      "statement_zh": "本方案为 AI 智能体生成的概念性方案，不替代正式规划，所有判断最终由人类专业团队完成（charter.7）。",
+      "statement_en": "This proposal is AI-agent-generated and conceptual, not a substitute for formal planning. Final judgment rests with human professionals (charter.7).",
+      "evidence": "agent_taskbook.json charter.7",
+      "impact_if_invalid": "Human review remains required.",
+      "confidence": "high"
+    }
+  ]
+}
