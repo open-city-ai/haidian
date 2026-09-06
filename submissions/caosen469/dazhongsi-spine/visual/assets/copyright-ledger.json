@@ -1,0 +1,329 @@
+{
+  "schema_version": "0.1.0",
+  "description": "R1 逐资产出处台账：记录提交包内每个资产的作者、生成方法、输入来源、第三方素材、归属、状态与许可边界。对应寻路决策 #5 原创性卫生 R1。",
+  "rights_holder": "caosen469",
+  "agent": {
+    "agent_id": "yancheng",
+    "agent_name": "砚城",
+    "model": "glm5.2",
+    "direction_session_model": "Claude"
+  },
+  "status_enum": [
+    "independently_designed",
+    "self_generated",
+    "third_party_derived",
+    "peer_attributed_structural_adaptation"
+  ],
+  "assets": [
+    {
+      "path": "proposal.md",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "text_generation_from_locked_thesis",
+      "source_inputs": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK", "SITE-PACKAGE", "SOURCE-REGISTRY", "BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "report/proposal.html",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "rendered_from_proposal_md",
+      "source_inputs": ["proposal.md", "assets/figures/*.png"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "report/narrative.md",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "structured_summary_from_package",
+      "source_inputs": ["proposal.md", "metrics.json", "compliance_matrix.json"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "report/copyright_statement.md",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "policy_compliance_statement",
+      "source_inputs": ["data/source_registry.json", "R1 ledger"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "visual/assets/copyright-ledger.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "provenance_ledger_generation",
+      "source_inputs": ["manifest.json", "sources.json"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "visual/index.html",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "static_html_generation",
+      "source_inputs": ["metrics.json", "geometry/*.geojson", "compliance_matrix.json"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "manifest.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "package_manifest_generation",
+      "source_inputs": ["package files sha256"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "agent.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "identity_declaration",
+      "source_inputs": [],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "metrics.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "area_recalculation_from_geometry",
+      "source_inputs": ["geometry/site_boundary.geojson", "geometry/green_space.geojson", "geometry/public_space.geojson", "geometry/buildings.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "assumptions.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "assumption_declaration",
+      "source_inputs": ["SITE-PACKAGE", "missing_data_checklist"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "sources.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "copied_from_source_registry_authority_fields",
+      "source_inputs": ["data/source_registry.json", "brief/site-package/sources.json"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "self_check.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "self_check_result_declaration",
+      "source_inputs": ["self_check_submission.py"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "compliance_matrix.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "task_coverage_matrix_generation",
+      "source_inputs": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "standard_matrix.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "standard_response_matrix_generation",
+      "source_inputs": ["brief/site-package/standards/standards.json"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "design_depth_matrix.json",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "design_depth_matrix_generation",
+      "source_inputs": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "assets/figures/site-overview.png",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "diagram_generation_from_package_data",
+      "source_inputs": ["metrics.json", "geometry/site_boundary.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "assets/figures/land-use-structure.png",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "diagram_generation_from_package_data",
+      "source_inputs": ["geometry/land_use.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "assets/figures/key-areas.png",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "diagram_generation_from_package_data",
+      "source_inputs": ["geometry/key_areas.geojson", "metrics.json"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "assets/figures/mobility-bluegreen.png",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "diagram_generation_from_package_data",
+      "source_inputs": ["geometry/roads.geojson", "geometry/green_space.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "assets/figures/metrics-evidence.png",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "diagram_generation_from_package_data",
+      "source_inputs": ["metrics.json"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "geometry/site_boundary.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "copied_from_provisional_boundaries",
+      "source_inputs": ["DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"],
+      "third_party_materials": ["provisional boundaries (organizer-provided)"],
+      "attribution": ["DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"],
+      "status": "third_party_derived",
+      "license_boundary": "CC-BY-4.0 (derived from organizer provisional data, non-redline)"
+    },
+    {
+      "path": "geometry/key_areas.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "copied_from_provisional_boundaries",
+      "source_inputs": ["DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"],
+      "third_party_materials": ["provisional key area polygons (organizer-provided)"],
+      "attribution": ["DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"],
+      "status": "third_party_derived",
+      "license_boundary": "CC-BY-4.0 (derived from organizer provisional data, non-redline)"
+    },
+    {
+      "path": "geometry/land_use.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "rule_based_partition_of_site_boundary",
+      "source_inputs": ["geometry/site_boundary.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "geometry/buildings.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "rule_based_design_proposal",
+      "source_inputs": ["geometry/site_boundary.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "geometry/roads.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "rule_based_design_proposal",
+      "source_inputs": ["geometry/site_boundary.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "geometry/green_space.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "rule_based_design_proposal",
+      "source_inputs": ["geometry/site_boundary.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "geometry/public_space.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "rule_based_design_proposal",
+      "source_inputs": ["geometry/site_boundary.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "geometry/constraints.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "empty_layer_placeholder_for_regulatory_gaps",
+      "source_inputs": [],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "self_generated",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "geometry/phasing.geojson",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "phasing_polygon_generation",
+      "source_inputs": ["geometry/site_boundary.geojson", "phase.schema.json (draft)"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "drawings/a3-booklet.pdf",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "drawing_generation",
+      "source_inputs": ["proposal.md", "assets/figures/*.png", "geometry/*.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    },
+    {
+      "path": "drawings/a0-boards.pdf",
+      "author": "caosen469 / yancheng (glm5.2)",
+      "generation_method": "drawing_generation",
+      "source_inputs": ["proposal.md", "assets/figures/*.png", "geometry/*.geojson"],
+      "third_party_materials": [],
+      "attribution": [],
+      "status": "independently_designed",
+      "license_boundary": "CC-BY-4.0"
+    }
+  ]
+}
