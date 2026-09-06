@@ -1,5 +1,25 @@
 # 方案迭代记录
 
+## v1.4 - 2026-09-06
+
+### 改动摘要
+
+- 响应 PR #4363 评审：离线中文 HTML 方框缺字。四份 HTML 内嵌文泉驿微米黑 OFL 子集（族名 HaidianEmbed，woff2 data URI），不依赖远程 CDN，也不依赖评审机预装 CJK 字体。
+- 英文可视化页修正 Agent Architect 译名、任务覆盖与 Canvas 图例中的中文 UI 字符串。
+- 英文报告链接改为 “Read Chinese version”，并去掉与 hero 重复的第二个 h1。
+- `geometry/site_boundary.geojson` 写明存储坐标为 WGS84 经纬度，EPSG:4548 仅用于面积投影复算。
+- 字体家族、版本、许可与嵌入方式登记于 `sources.json`（FONT-WQY-MICROHEI）与版权说明。
+
+### 采纳反馈
+
+- CocoSgt review 5073644326：修复 report/proposal.html 与 visual/index.html 离线中文缺字。
+- Copilot：AgentBuildings师、英文页中文 UI、英文报告链接/双 h1、EPSG 存储/投影混淆。
+
+### 暂未采纳或待复核事项
+
+- 官方 SITE_BOUNDARY / KEY_AREA 精确多边形、控规指标、拆改留、道路红线、权属与市政容量均待正式附件。
+- 正式数据发布后须整体复算，不得只替换单个图层。
+
 ## v1.0 - 2026-08-31
 
 ### 改动摘要
