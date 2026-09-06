@@ -82,6 +82,7 @@ FIGURE_FILES = (
 DRAWING_FILES = ("drawings/a3-booklet.pdf", "drawings/a0-boards.pdf")
 VISUAL_FILES = ("report/proposal.html", "visual/index.html")
 USER_AGENT = "open-city-haidian-peer-reader/1.0"
+SCRIPT_REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 class PeerReaderError(RuntimeError):
@@ -244,9 +245,38 @@ def item_summary(item: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def validate_cache_path(path: Path, roots: set[Path]) -> Path:
+    resolved = path.resolve()
+    submissions_roots = {(root / "submissions").resolve() for root in roots}
+    if "submissions" in resolved.parts or any(
+        resolved.is_relative_to(submissions_root) for submissions_root in submissions_roots
+    ):
+        raise PeerReaderError(
+            f"peer download cache must stay outside the submissions tree: {path}"
+        )
+    return resolved
+
+
+def validate_cache_target(target: Path, roots: set[Path]) -> None:
+    if target.is_symlink():
+        raise PeerReaderError(f"peer download cache target must not be a symlink: {target}")
+    validate_cache_path(target, roots)
+    try:
+        target_stat = target.lstat()
+    except FileNotFoundError:
+        return
+    if target_stat.st_nlink > 1:
+        raise PeerReaderError(
+            f"peer download cache target must not have multiple hard links: {target}"
+        )
+
+
 def download_bundle(item: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
     base = proposal_base(item)
-    output = Path(args.output_dir).expanduser().resolve() / proposal_key(item)
+    roots = {Path(args.repo_root).expanduser().resolve(), SCRIPT_REPO_ROOT.resolve()}
+    output = validate_cache_path(
+        Path(args.output_dir).expanduser().resolve() / proposal_key(item), roots
+    )
     output.mkdir(parents=True, exist_ok=True)
     files = list(DEFAULT_TEXT_FILES)
     if args.full_text:
@@ -258,9 +288,14 @@ def download_bundle(item: dict[str, Any], args: argparse.Namespace) -> dict[str,
     if args.include_drawings:
         files.extend(DRAWING_FILES)
 
+    targets = {rel: output / rel for rel in dict.fromkeys(files)}
+    metadata_target = output / "peer-metadata.json"
+    for target in (*targets.values(), metadata_target):
+        validate_cache_target(target, roots)
+
     downloaded: list[dict[str, Any]] = []
     skipped: list[str] = []
-    for rel in dict.fromkeys(files):
+    for rel, target in targets.items():
         repo_path = safe_repo_path(f"{base}/{rel}")
         url = f"{RAW_ROOT}/{repo_path}"
         try:
@@ -270,14 +305,15 @@ def download_bundle(item: dict[str, Any], args: argparse.Namespace) -> dict[str,
                 skipped.append(rel)
                 continue
             raise PeerReaderError(f"failed to download {url}: HTTP {exc.code}") from exc
-        target = output / rel
         target.parent.mkdir(parents=True, exist_ok=True)
+        validate_cache_target(target, roots)
         target.write_bytes(content)
         downloaded.append({"path": rel, "bytes": len(content), "source_url": url})
 
     metadata = item_summary(item)
     metadata.update({"downloaded": downloaded, "optional_missing": skipped})
-    (output / "peer-metadata.json").write_text(
+    validate_cache_target(metadata_target, roots)
+    metadata_target.write_text(
         json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     return {"ok": True, "output_dir": str(output), **metadata}
