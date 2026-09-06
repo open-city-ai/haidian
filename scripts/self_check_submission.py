@@ -213,6 +213,18 @@ def next_actions(report: dict[str, Any]) -> list[str]:
         if stderr:
             actions.append(f"Fix deterministic validation error: {stderr}")
 
+    # Mirror the deterministic handling above for the other three checks so a
+    # hard crash (non-zero exit with no parsed errors) is never silent.
+    for key in ("spatial_review", "visual_review", "professional_review"):
+        sub = report.get(key)
+        if isinstance(sub, dict) and not sub.get("ok"):
+            sub_stdout = sub.get("stdout")
+            sub_reported = bool(isinstance(sub_stdout, dict) and sub_stdout.get("errors"))
+            if not sub_reported:
+                stderr = str(sub.get("stderr") or "").strip()
+                if stderr:
+                    actions.append(f"Fix {key} error: {stderr}")
+
     spatial = report.get("spatial_review", {})
     spatial_stdout = spatial.get("stdout") if isinstance(spatial, dict) else {}
     if isinstance(spatial_stdout, dict):

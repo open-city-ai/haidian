@@ -128,6 +128,7 @@ class VisualMetricParser(HTMLParser):
         self.metrics: dict[str, float] = {}
         self.declarations: list[tuple[str, float]] = []
         self.nonfinite_metrics: set[str] = set()
+        self.unparseable_metrics: set[str] = set()
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attributes = {name.lower(): value for name, value in attrs}
@@ -139,6 +140,7 @@ class VisualMetricParser(HTMLParser):
         try:
             value = float(html.unescape(raw_value))
         except ValueError:
+            self.unparseable_metrics.add(name)
             return
         if not math.isfinite(value):
             self.nonfinite_metrics.add(name)
@@ -200,6 +202,13 @@ def review_visual(submission_dir: Path) -> VisualReport:
             "major",
             display_path,
             f"HTML metric `{name}` must use a finite numeric data-value.",
+        )
+    for name in sorted(parser.unparseable_metrics):
+        report.add(
+            "VISUAL_METRIC_VALUE_NOT_NUMERIC",
+            "major",
+            display_path,
+            f"HTML metric `{name}` has a non-numeric data-value; expected a plain number.",
         )
     for name, value in declarations:
         metric = metrics.get(name)
