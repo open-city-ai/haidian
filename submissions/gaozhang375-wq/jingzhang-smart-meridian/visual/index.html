@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智脉 · AI经纬 — 城市设计开源征集方案</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', 'PingFang SC', -apple-system, sans-serif; color: #1F2937; background: #F9FAFB; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* Header */
+.hero { background: linear-gradient(135deg, #1A56DB 0%, #7C3AED 100%); color: white; padding: 60px 20px; text-align: center; border-radius: 16px; margin-bottom: 30px; }
+.hero h1 { font-size: 36px; margin-bottom: 12px; }
+.hero .en { font-size: 18px; opacity: 0.85; margin-bottom: 20px; }
+.hero .tagline { font-size: 16px; opacity: 0.75; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 16px; max-width: 600px; margin: 0 auto; }
+
+/* Status bar */
+.status-bar { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 30px; }
+.status-card { flex: 1; min-width: 150px; padding: 16px; border-radius: 10px; text-align: center; }
+.status-card.green { background: #D1FAE5; border: 1px solid #10B981; }
+.status-card.blue { background: #DBEAFE; border: 1px solid #3B82F6; }
+.status-card.purple { background: #EDE9FE; border: 1px solid #7C3AED; }
+.status-card.orange { background: #FEF3C7; border: 1px solid #F59E0B; }
+.status-card .value { font-size: 28px; font-weight: bold; }
+.status-card .label { font-size: 13px; color: #6B7280; margin-top: 4px; }
+
+/* Sections */
+section { background: white; border-radius: 12px; padding: 30px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+section h2 { font-size: 24px; color: #1A56DB; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #E5E7EB; }
+section h3 { font-size: 18px; color: #374151; margin: 20px 0 12px; }
+
+/* Grid */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+
+/* Cards */
+.card { padding: 20px; border-radius: 10px; border: 1px solid #E5E7EB; }
+.card.blue { border-left: 4px solid #1A56DB; }
+.card.purple { border-left: 4px solid #7C3AED; }
+.card.orange { border-left: 4px solid #F59E0B; }
+.card.green { border-left: 4px solid #10B981; }
+.card h4 { font-size: 16px; margin-bottom: 8px; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+th { background: #F3F4F6; padding: 10px 14px; text-align: left; font-size: 13px; font-weight: 600; color: #374151; }
+td { padding: 10px 14px; border-bottom: 1px solid #E5E7EB; font-size: 13px; }
+
+/* Tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag.green { background: #D1FAE5; color: #065F46; }
+.tag.blue { background: #DBEAFE; color: #1E40AF; }
+.tag.purple { background: #EDE9FE; color: #5B21B6; }
+.tag.orange { background: #FEF3C7; color: #92400E; }
+
+/* Figures */
+figure { margin: 20px 0; text-align: center; }
+figure img { max-width: 100%; border-radius: 8px; border: 1px solid #E5E7EB; }
+figure figcaption { font-size: 12px; color: #9CA3AF; margin-top: 8px; }
+
+/* Warning banner */
+.warning { background: #FEF3C7; border: 1px solid #F59E0B; border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 13px; color: #92400E; }
+
+/* Footer */
+footer { text-align: center; padding: 30px; color: #9CA3AF; font-size: 12px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-5 { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <h1>京张智脉 · AI经纬</h1>
+  <div class="en">JingZhang Smart Meridian — The AI Warp and Weft</div>
+  <div class="tagline">织就人工智能时代的城市创新网络<br>百年轨道 · 千年智脉</div>
+</div>
+
+<!-- Status -->
+<div class="status-bar">
+  <div class="status-card green">
+    <div class="value">PASS</div>
+    <div class="label">自检验证</div>
+  </div>
+  <div class="status-card blue">
+    <div class="value">16/16</div>
+    <div class="label">检查项通过</div>
+  </div>
+  <div class="status-card purple">
+    <div class="value">6/6</div>
+    <div class="label">Agent任务覆盖</div>
+  </div>
+  <div class="status-card orange">
+    <div class="value">~4,360 ha</div>
+    <div class="label">场地范围</div>
+  </div>
+</div>
+
+<!-- Warning -->
+<div class="warning">
+  ⚠ 空间几何为临时推导 (provisional_constraint)。所有边界和指标基于任务书描述和公开地图推导，待官方GeoJSON数据发布后重新计算。
+</div>
+
+<!-- Section: Concept -->
+<section>
+  <h2>核心概念</h2>
+  <div class="grid-2">
+    <div>
+      <h3>"智脉" — Smart Meridian</h3>
+      <p>一百年前，詹天佑主持修建的京张铁路是中国自主创新的第一条干线铁路——它不仅是交通动脉，更是民族工业的"创新之脉"。今天，我们在这条历史轴线上叠加AI创新的时代使命，使其从"铁路之脉"进化为"智慧之脉"。</p>
+    </div>
+    <div>
+      <h3>"经纬交织" — Warp &amp; Weft</h3>
+      <p><strong>经线（东西向）:</strong> AI场景赋能走廊，横向串联大学、社区、商业。<br>
+      <strong>纬线（南北向）:</strong> 京张铁路遗址公园为主轴的创新脊梁，从基础研究到产业落地全链条贯通。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Overall Structure -->
+<section>
+  <h2>总体空间结构</h2>
+  <figure>
+    <img src="../assets/figures/site-overview.svg" alt="总体空间结构图" loading="lazy">
+    <figcaption>图1: 总体空间结构 — 一轴三核两翼</figcaption>
+  </figure>
+  <div class="grid-3">
+    <div class="card blue">
+      <h4 style="color:#1A56DB">智源坊 — AI原点社区</h4>
+      <p>世界级AI创新生态。清华园站周边，15分钟创新圈，开源广场，智源之塔地标。~500 ha（概念）</p>
+      <span class="tag blue">agent.2 创新生态</span>
+    </div>
+    <div class="card purple">
+      <h4 style="color:#7C3AED">众智引擎 — 加速区</h4>
+      <p>AI全栈自主创新。智算中心，环形实验室，治理之庭。3个测试验证场景。~400 ha（概念）</p>
+      <span class="tag purple">agent.2 自主体系</span>
+    </div>
+    <div class="card orange">
+      <h4 style="color:#F59E0B">智钟汇 — 产业集聚区</h4>
+      <p>智能原生新业态。AI商业、企业总部、AI钟楼地标、首发平台。~350 ha（概念）</p>
+      <span class="tag orange">agent.4 新业态</span>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Land Use -->
+<section>
+  <h2>土地利用结构</h2>
+  <figure>
+    <img src="../assets/figures/land-use-structure.svg" alt="土地利用结构图" loading="lazy">
+    <figcaption>图2: 概念土地利用结构</figcaption>
+  </figure>
+</section>
+
+<!-- Section: Key Areas -->
+<section>
+  <h2>三区两翼详图</h2>
+  <figure>
+    <img src="../assets/figures/key-areas.svg" alt="关键区域详图" loading="lazy">
+    <figcaption>图3: 三区两翼功能和地标详情</figcaption>
+  </figure>
+</section>
+
+<!-- Section: Mobility -->
+<section>
+  <h2>交通与蓝绿空间</h2>
+  <figure>
+    <img src="../assets/figures/mobility-bluegreen.svg" alt="交通与蓝绿空间" loading="lazy">
+    <figcaption>图4: 交通系统与蓝绿空间网络 — 概念方案</figcaption>
+  </figure>
+</section>
+
+<!-- Section: Metrics -->
+<section>
+  <h2>指标与证据仪表盘</h2>
+  <figure>
+    <img src="../assets/figures/metrics-evidence.svg" alt="指标证据" loading="lazy">
+    <figcaption>图5: 核心指标与任务覆盖情况</figcaption>
+  </figure>
+</section>
+
+<!-- Section: AI Scenarios -->
+<section>
+  <h2>AI+场景赋能 (10张场景卡片)</h2>
+  <table>
+    <tr><th>#</th><th>场景</th><th>位置</th><th>核心内容</th><th>开放程度</th></tr>
+    <tr><td>1</td><td>AI+医疗 — "智诊走廊"</td><td>小月河翼</td><td>影像AI诊断中心、远程手术示教</td><td><span class="tag orange">受控</span></td></tr>
+    <tr><td>2</td><td>AI+教育 — "智能学园"</td><td>智源坊</td><td>自适应学习、AI助教、虚拟仿真实验室</td><td><span class="tag blue">半开放</span></td></tr>
+    <tr><td>3</td><td>AI+商业 — "原生智能商圈"</td><td>智钟汇</td><td>AI选品、智能导购、个性化商品</td><td><span class="tag green">全开放</span></td></tr>
+    <tr><td>4</td><td>AI+交通 — "智行网络"</td><td>全域</td><td>自动驾驶接驳、智能信号优化</td><td><span class="tag green">全开放</span></td></tr>
+    <tr><td>5</td><td>AI+公共空间 — "会思考的公园"</td><td>京张公园</td><td>AI景观照明、互动艺术装置</td><td><span class="tag green">全开放</span></td></tr>
+    <tr><td>6</td><td>AI+文化 — "数字铁路博物馆"</td><td>清华园站</td><td>AR/VR重现京张铁路历史</td><td><span class="tag green">全开放</span></td></tr>
+    <tr><td>7</td><td>AI+治理 — "城市仪表盘"</td><td>管理中心</td><td>态势感知、应急调度、公众参与</td><td><span class="tag orange">受控</span></td></tr>
+    <tr><td>8</td><td>AI+创业 — "24小时创新工场"</td><td>众智引擎</td><td>全球分布式协作、GPU集群预约</td><td><span class="tag blue">半开放</span></td></tr>
+    <tr><td>9</td><td>AI+零售 — "邻里智店"</td><td>社区</td><td>AI库存、社区需求预测、配送机器人</td><td><span class="tag green">全开放</span></td></tr>
+    <tr><td>10</td><td>AI+社区 — "15分钟AI生活圈"</td><td>居住区</td><td>AI物业、AI安防、AI垃圾分类</td><td><span class="tag orange">受控</span></td></tr>
+  </table>
+</section>
+
+<!-- Section: Landmarks -->
+<section>
+  <h2>三处AI朝圣地标</h2>
+  <div class="grid-3">
+    <div class="card blue">
+      <h4 style="color:#1A56DB">Landmark-1: 智源之塔</h4>
+      <p><strong>位置:</strong> AI原点社区（清华园站）</p>
+      <p><strong>概念:</strong> 神经网络形态地标建筑。自适应遮阳模块，AI全景台。建筑本身即为AI系统物理载体。</p>
+    </div>
+    <div class="card purple">
+      <h4 style="color:#7C3AED">Landmark-2: 治理之庭</h4>
+      <p><strong>位置:</strong> 众智引擎</p>
+      <p><strong>概念:</strong> AI治理国际对话中心。全球AI伦理圆桌永久会址，AI安全国际合作基地。</p>
+    </div>
+    <div class="card orange">
+      <h4 style="color:#F59E0B">Landmark-3: AI钟楼</h4>
+      <p><strong>位置:</strong> 智钟汇（大钟寺站）</p>
+      <p><strong>概念:</strong> 玻璃与金属编织的数字钟塔。LED矩阵显示全球AI指标。AI产品首发永久发布厅。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Global Cases -->
+<section>
+  <h2>全球AI创新生态案例对标 (8个)</h2>
+  <table>
+    <tr><th>案例</th><th>国家/地区</th><th>核心特征</th><th>对京张的启示</th></tr>
+    <tr><td>波士顿肯德尔广场</td><td>美国</td><td>MIT周边创新生态</td><td>高校周边的"15分钟创新圈"</td></tr>
+    <tr><td>伦敦国王十字</td><td>英国</td><td>铁路遗产+科技+文化</td><td>铁路遗产再生的全球范本</td></tr>
+    <tr><td>深圳南山科技园</td><td>中国</td><td>科创走廊+多层次创新空间</td><td>多层次创新空间供给</td></tr>
+    <tr><td>新加坡纬壹科技城</td><td>新加坡</td><td>工作-生活-学习一体化</td><td>混合用途AI城区设计</td></tr>
+    <tr><td>东京涩谷Scramble</td><td>日本</td><td>轨道站点TOD+数字创新</td><td>轨道交通枢纽的创新综合体</td></tr>
+    <tr><td>埃因霍温Strijp-S</td><td>荷兰</td><td>工业遗产+设计+科技</td><td>工业遗产向创新社区转型</td></tr>
+    <tr><td>首尔数字媒体城</td><td>韩国</td><td>媒体技术产业集群</td><td>专业化AI产业社区运营</td></tr>
+    <tr><td>斯德哥尔摩Hammarby</td><td>瑞典</td><td>生态城区+智慧基础设施</td><td>蓝绿空间与AI基础设施融合</td></tr>
+  </table>
+</section>
+
+<!-- Section: Operations -->
+<section>
+  <h2>长期运营与活动体系</h2>
+  <div class="grid-3">
+    <div><strong>年度活动:</strong><br>京张AI全球峰会、开源之夏·京张、AI艺术双年展、智钟首发季（季度）</div>
+    <div><strong>月度活动:</strong><br>开发者周末（技术沙龙+workshop+招聘会）、公众AI体验日</div>
+    <div><strong>社区运营:</strong><br>Discord/Slack社区 + GitHub Org + 开发者之家（24/7）</div>
+  </div>
+</section>
+
+<!-- Section: Culture -->
+<section>
+  <h2>三层文化叙事</h2>
+  <div class="grid-3">
+    <div class="card green">
+      <h4 style="color:#B87333">第一层: 京张铁路文化</h4>
+      <p>詹天佑"自主创新"精神传承。工业遗产美学融入景观。</p>
+    </div>
+    <div class="card blue">
+      <h4 style="color:#1A56DB">第二层: 中关村创新文化</h4>
+      <p>从"电子一条街"到"中国硅谷"。车库创业精神延续。</p>
+    </div>
+    <div class="card purple">
+      <h4 style="color:#7C3AED">第三层: AI新文化</h4>
+      <p>人机共创、开源透明、全球对话。AI治理公民议会。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Legal -->
+<section>
+  <h2>法律与合规声明</h2>
+  <div class="warning">
+    <strong>重要声明:</strong> 本方案为开放共创建议。所有空间落地建议表述为"概念建议"和"参考方案"。不替代正式规划，不构成政府审定结论。不使用非公开数据和企业商业机密。不涉及法定规划判断和工程可行性结论。
+  </div>
+</section>
+
+<footer>
+  <p>WorkBuddy Urban Design Agent · 2026年8月8日</p>
+  <p>参与百年京张AI创新带城市设计开源征集</p>
+  <p>Repository: <code>submissions/workbuddy-agent/jingzhang-smart-meridian/</code></p>
+</footer>
+
+</div>
+</body>
+</html>
