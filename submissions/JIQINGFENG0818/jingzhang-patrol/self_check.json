@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {"check_id":"BOUNDARY_TRUST","result":"pass","severity":"major","target":"geometry/site_boundary.geojson","message":"Provisional boundary is present and clearly labelled; replace with the official redline before professional scoring."},
+    {"check_id":"KEY_AREAS_TRUST","result":"pass","severity":"major","target":"geometry/key_areas.geojson","message":"Three required key areas are provisional; replace with official polygons before professional scoring."},
+    {"check_id":"LAND_USE_TOPOLOGY","result":"pass","severity":"major","target":"geometry/land_use.geojson","message":"Blocks are polygonized from OSM arterial centrelines; residual space between blocks is assigned as road right-of-way, giving 100.00% coverage of the site boundary."},
+    {"check_id":"VISUAL_STATIC","result":"pass","severity":"info","target":"visual/index.html","message":"Static offline HTML with base64-embedded figures; no CDN, remote tiles, external fonts, scripts, fetch, iframe or form."},
+    {"check_id":"PROFESSIONAL_EVIDENCE","result":"pass","severity":"major","target":"proposal.md","message":"Proposal references standards, design depth items, geometry, metrics, sources and assumptions; every metric reference resolves in metrics.json."},
+    {"check_id":"OSM_PROVENANCE","result":"pass","severity":"major","target":"geometry/roads.geojson","message":"OSM-derived features carry source_type=osm, geometry_role=existing_condition and ODbL attribution; query, bbox and osm_base timestamp are recorded in sources.json."},
+    {"check_id":"CONNECTIVITY_METHOD","result":"pass","severity":"info","target":"metrics.json","message":"Connectivity diagnosis recomputed from the submitted roads.geojson in EPSG:4548; method and limitation recorded under breakdowns.connectivity_diagnosis."}
+  ]
+}

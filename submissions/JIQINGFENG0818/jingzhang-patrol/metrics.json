@@ -1,0 +1,304 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) @EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 583177.064,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space)) @EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据",
+        "源自 OpenStreetMap（ODbL 1.0，osm_base 2026-05-31）现状要素，众包数据完整性不保证"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.051098,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据",
+        "源自 OpenStreetMap（ODbL 1.0，osm_base 2026-05-31）现状要素，众包数据完整性不保证",
+        "仅统计 OSM 已录入的现状公园，未含未录入绿地与设计新增绿地"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 64255.259,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space)) @EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据",
+        "巡线所、充电停靠点与缝合口广场均为概念建议选址"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.00563,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 24336.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(buildings)) @EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据",
+        "建筑基底为巡线所设施的概念性体量示意"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.002132,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据",
+        "仅计入本方案新增的巡线所设施，未含现状建筑"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features)",
+      "confidence": "high",
+      "assumptions": [
+        "三处重点区由组织方 provisional 边界给定"
+      ]
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_areas)) @EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 316085.2,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(roads)) @EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "源自 OpenStreetMap（ODbL 1.0，osm_base 2026-05-31）现状要素，众包数据完整性不保证"
+      ]
+    },
+    "patrol_network_length_m": {
+      "status": "known",
+      "value": 208919.5,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(roads where patrol_role='patrol_network')) @EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "源自 OpenStreetMap（ODbL 1.0，osm_base 2026-05-31）现状要素，众包数据完整性不保证",
+        "可巡网络定义为 footway/path/cycleway/steps/pedestrian/living_street/residential/service/unclassified/track",
+        "可巡慢行网络长度，源自 OSM 现状要素裁入 provisional 边界后在 EPSG:4548 下计算"
+      ]
+    },
+    "arterial_length_m": {
+      "status": "known",
+      "value": 107037.6,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(roads where patrol_role='barrier_or_transfer')) @EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "源自 OpenStreetMap（ODbL 1.0，osm_base 2026-05-31）现状要素，众包数据完整性不保证"
+      ]
+    },
+    "heritage_rail_trace_length_m": {
+      "status": "known",
+      "value": 2633.6,
+      "unit": "m",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "sum(length(constraints where heritage_trace=true)) @EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "源自 OpenStreetMap（ODbL 1.0，osm_base 2026-05-31）现状要素，众包数据完整性不保证",
+        "OSM 中 railway=razed/disused 的线位，非文物保护范围界线",
+        "OSM 中 railway=razed/disused 的京包线遗迹线位长度"
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(land_use)) / site_area",
+      "confidence": "high",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据"
+      ]
+    },
+    "land_use_polygon_count": {
+      "status": "known",
+      "value": 60,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(features)",
+      "confidence": "high",
+      "assumptions": [
+        "街廓由 OSM 快速路/主干路/次干路中心线多边形化得到，非官方地块划分"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 586337.581,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(land_use where land_use_code='1207')) @EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据",
+        "为街廓之间的剩余空间，非官方道路红线",
+        "由 land_use 中 1207 城镇村道路用地多边形并集计算；非官方道路红线"
+      ]
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.051375,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 146016.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "building_footprint_area × 假设层数 6",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据",
+        "概念推算，非建筑规模结论；层数为假设值",
+        "概念推算 = 建筑基底 × 假设层数 6；非建筑规模结论"
+      ]
+    },
+    "conceptual_floor_area_ratio": {
+      "status": "known",
+      "value": 0.012794,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area / site_area",
+      "confidence": "low",
+      "assumptions": [
+        "基于 provisional_constraint 临时边界，非官方精确面积依据",
+        "概念推算容积率，与法定容积率无关；官方容积率在公开场地包中缺失，本方案保持 unknown 未代填",
+        "概念推算容积率，与法定容积率无关；官方控制指标在公开场地包中缺失，本方案保持 unknown 未代填"
+      ]
+    }
+  },
+  "projection_used": "EPSG:4548 (CGCS2000 / 3-degree Gauss-Kruger CM 117E)",
+  "official_controls_missing": [
+    "plot_ratio",
+    "building_height",
+    "building_density_control",
+    "green_ratio_control",
+    "setback"
+  ],
+  "breakdowns": {
+    "connectivity_diagnosis": {
+      "patrol_network_km": 208.9,
+      "components": 113,
+      "largest_component_km": 89.6,
+      "largest_component_pct": 42.9,
+      "with_arterial_km": 315.9,
+      "with_arterial_components": 38,
+      "with_arterial_largest_pct": 96.8,
+      "stitch_links": 6,
+      "stitch_total_m": 187,
+      "largest_after_km": 160.0,
+      "largest_after_pct": 76.6,
+      "leverage_m_per_m": 376,
+      "method": "节点按 1 m 网格吸附后求连通分量，EPSG:4548；贪心选取最大块与其余分量间的最短缺口",
+      "limitation": "基于 OSM 现有要素；缺口处是否已有未录入步道需现场核实"
+    }
+  }
+}

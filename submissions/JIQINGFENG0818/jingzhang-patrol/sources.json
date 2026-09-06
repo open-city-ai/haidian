@@ -1,0 +1,176 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "Public/cleared/provisional source usability registry."
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "Agent-readable navigation layer for scopes and required tasks."
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Submitted site boundary geometry source (provisional)."
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Three required detailed-design key area boundaries (provisional)."
+    },
+    {
+      "id": "PROJECT-OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "document": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "source_type": "official_public",
+      "usage": "项目目的、三层范围口径（43.6 km² / 11.4 km² / 368.4 ha）、三处重点区域、设计任务与成果深度要求。",
+      "limitations": "公告为文字四至描述，未附官方 polygon；本方案据此使用组织方 provisional 临时替代边界。"
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usage": "Official announcement tasks, scope levels, key areas and deliverable context."
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Agent-facing open-call principles and six required agent tasks."
+    },
+    {
+      "id": "NRA-CENTENNIAL-JINGZHANG",
+      "url": "https://www.nra.gov.cn/tlfc/tpsy/202204/t20220405_293018.shtml",
+      "publisher": "国家铁路局",
+      "retrieved": "2026-08-09",
+      "source_type": "official_public",
+      "usage": "京张铁路 1905–1909 建设、詹天佑主持、中国人自主勘测设计施工管理的第一条国有干线铁路、2013年5月南口至八达岭段列入第七批全国重点文物保护单位。",
+      "limitations": "仅引用页面明确写出的事实；不用于推断养护制度史。"
+    },
+    {
+      "id": "MOF-PROCUREMENT-DEMAND-2021",
+      "url": "https://fgw.sh.gov.cn/ys-zfcg-1.3.1.1-h5/20240325/93ff5fde68d54064868c799fae0e853a.html",
+      "publisher": "中华人民共和国财政部",
+      "document": "《政府采购需求管理办法》财库〔2021〕22号",
+      "retrieved": "2026-08-09",
+      "source_type": "official_public",
+      "usage": "第十条后续采购、第二十一条全生命周期成本、第二十三条长期运行项目成本补偿与风险分担、第二十四条履约验收方案。",
+      "limitations": "为国家层面制度依据；本项目具体采购安排须以实际招标文件为准。"
+    },
+    {
+      "id": "BJ-AV-REGULATION-2025",
+      "url": "https://www.beijing.gov.cn/zhengce/dfxfg/202501/t20250103_3980149.html",
+      "publisher": "北京市人民代表大会常务委员会",
+      "document": "《北京市自动驾驶汽车条例》",
+      "effective": "2025-04-01",
+      "retrieved": "2026-08-09",
+      "source_type": "official_public",
+      "usage": "第二条适用范围、第二十三条支持场景含治安巡逻等城市运行保障、第二十四条申请与区域道路确定、第三十七条安全员与平台监控、第四十五条终止道路应用试点。",
+      "limitations": "无人配送与低速运输未逐项列明，属该条其他应用场景范畴；本方案相关表述均为概念建议，须依第二十四条申请确认。"
+    },
+    {
+      "id": "OSM-OVERPASS-2026-05-31",
+      "url": "https://overpass-api.de/api/interpreter",
+      "publisher": "OpenStreetMap contributors",
+      "license": "ODbL 1.0",
+      "osm_base_timestamp": "2026-05-31T22:37:44Z",
+      "retrieved": "2026-08-09",
+      "query_bbox_swne": [
+        39.939,
+        116.3397,
+        40.0265,
+        116.3553
+      ],
+      "query": "[out:json][timeout:180];(way[\"highway\"](bbox);way[\"railway\"](bbox);way[\"leisure\"=\"park\"](bbox););out geom tags;",
+      "elements_returned": 2856,
+      "source_type": "osm",
+      "usage": "现状慢行网络、机动车干道、铁路与京包线遗迹线位、现状公园；用于连通性诊断、街廓多边形化与指标复算。",
+      "attribution": "© OpenStreetMap contributors, ODbL 1.0",
+      "limitations": "众包数据，完整性与现势性不保证；缺口处是否已有未录入步道需现场核实。按 allowed_design_space.data_policy.may_use_osm_for_bootstrap_base_layers 使用，不作为官方边界或法定依据，亦未登记进中央 source_registry。"
+    },
+    {
+      "id": "NETWORK-RAIL-INSIGHT",
+      "url": "https://www.networkrail.co.uk/industry-and-commercial/insight-using-ai-to-run-a-reliable-railway/",
+      "publisher": "Network Rail (UK)",
+      "document": "insight — using AI to run a reliable railway",
+      "retrieved": "2026-08-10",
+      "source_type": "official_public",
+      "usage": "C-01 案例：铁路基础设施从反应式维修转向预测性养护的官方说明；用于支撑「巡检数据回流资产健康画像」与「机器替代危险工位」两项主张。",
+      "limitations": "运营方自述材料，非独立第三方评估；其量化收益未在本方案中引用为可比指标。所引专利号 GB2620615（2024-10 授权）为该页面自述。"
+    },
+    {
+      "id": "HELSINKI-AI-REGISTER",
+      "url": "https://ai.hel.fi/en/ai-register/",
+      "publisher": "City of Helsinki",
+      "document": "City of Helsinki AI Register",
+      "retrieved": "2026-08-10",
+      "source_type": "official_public",
+      "usage": "C-02 案例：城市逐条公开在用 AI 系统的登记册字段与「已停用」状态标注；用于支撑 N-01 实体公开屏与装备册「退役与回滚」字段。",
+      "limitations": "登记条目数量与状态随时间变化，本方案引用的是检索日的页面口径，不作外推。"
+    },
+    {
+      "id": "AMSTERDAM-ALGORITHM-REGISTER",
+      "url": "https://algoritmeregister.amsterdam.nl/en/ai-register/",
+      "publisher": "City of Amsterdam",
+      "document": "Amsterdam Algorithm Register",
+      "retrieved": "2026-08-10",
+      "source_type": "official_public",
+      "usage": "C-03 案例：城市服务在用算法的公开说明，含公共报事分派用例；用于支撑 S-03 居民报修与工单流转中「分派规则对外可读」的主张。",
+      "limitations": "公开用例数量随时间变化，本方案引用检索日口径；停车执法的车位规模为该页面自述。"
+    },
+    {
+      "id": "SG-LAAP",
+      "url": "https://www.developer.tech.gov.sg/products/categories/sensor-platforms-and-internet-of-things/lamppost-as-a-platform/overview.html",
+      "publisher": "GovTech Singapore, Smart Nation Platform Solutions Office",
+      "document": "Lamppost-as-a-Platform (LaaP) Overview",
+      "retrieved": "2026-08-10",
+      "source_type": "official_public",
+      "usage": "C-04 案例：以路灯杆为共用传感底座的模块清单与选择理由；正向用于杆上载荷与充电停靠点的组织方式，反向用于论证装备册须写明运维责任与数据保留期限。",
+      "limitations": "该公开材料未披露共享设施的运维责任分工与完整隐私保障细节；本方案据此只引用其模块构成与「可靠电源」这一选择理由，不据以推断其运维制度。"
+    },
+    {
+      "id": "ARM-MILL19",
+      "url": "https://arminstitute.org/news/mill-19-opening/",
+      "publisher": "Advanced Robotics for Manufacturing (ARM) Institute",
+      "document": "ARM Opens Mill 19 at Hazelwood Green",
+      "retrieved": "2026-08-10",
+      "source_type": "institution_public",
+      "usage": "C-05 案例：遗产工业用地改造为机器人重装实训与共享测试场的空间配比（高跨与吊车、培训室、共享工位同栋组织）；用于支撑北巡线所优先改造既有厂房类建筑的主张。",
+      "limitations": "机构自述材料，非政府公告；面积、日期与基金会名单为该页面自述，本方案不据以推断投资额或产值。"
+    },
+    {
+      "id": "EU-AI-ACT-ART57",
+      "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-57",
+      "publisher": "European Commission, AI Act Service Desk",
+      "document": "Regulation (EU) 2024/1689, Article 57 — AI Regulatory Sandboxes",
+      "retrieved": "2026-08-10",
+      "source_type": "official_public",
+      "usage": "C-06 案例：国家级 AI 监管沙盒的设立义务、指导与监督、退出报告、行政罚款豁免条件与真实世界受监督测试条款；用于支撑小月河实测翼的「进入—指导—退出报告」制度外壳。",
+      "limitations": "欧盟法规，不在中国境内适用；本方案仅引用其制度结构作为参照，不作法律适用主张。"
+    },
+    {
+      "id": "BJ-AV-DEMO-ZONE",
+      "url": "https://kfqgw.beijing.gov.cn/zwgkkfq/ztzl/lqztkfq/cxal/jkq/202304/t20230412_3025685.html",
+      "publisher": "北京经济技术开发区管理委员会",
+      "document": "北京市高级别自动驾驶示范区建设模式改革创新实践案例（2023-04-12）",
+      "retrieved": "2026-08-10",
+      "source_type": "official_public",
+      "usage": "C-07 国内对照：四阶段迭代建设模式、该文口径的建成规模，以及市级领导小组＋示范区工作办公室＋市场化运营平台公司的组织形态；用于支撑本方案分期与长期运营机制。",
+      "limitations": "该文发布于 2023 年 4 月，示范区范围此后持续扩展；本方案只引用该文发布时点的官方数字，不作外推，也不据以推断当前规模。"
+    }
+  ]
+}
