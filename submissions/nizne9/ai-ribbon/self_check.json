@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Submitted boundary uses the repository-registered provisional constraint (official_boundary=false, geometry_role=provisional_constraint); it supports intake and content scoring but must be replaced with the official redline and all areas recomputed before professional scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas (Zhongzhiyuan, AI Origin Community, Dazhongsi) are present as provisional constraints; they are non-overlapping and inside the site boundary, but must be replaced with official polygons before professional scoring."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Land-use polygons form a planar partition of the site boundary (polygonize from shared cut lines), with no gaps or overlaps; areas recomputed in EPSG:4548."
+    },
+    {
+      "check_id": "METRICS_RECALC",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "All known metrics recompute from geometry in EPSG:4548; unknown regulatory controls (FAR, building height) are explicitly marked pending official conditions."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static offline HTML with inline SVG, no remote scripts/fonts/tiles/API calls; displayed values carry data-metric markers matching metrics.json."
+    },
+    {
+      "check_id": "BILINGUAL_PACKAGE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Primary zh proposal has a complete en counterpart; figures, report HTML, visual HTML and A3/A0 PDFs all have zh+en display pairs."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal cites standards, design-depth items, geometry, metrics, sources and assumptions; every required chapter carries at least one relevant evidence marker."
+    },
+    {
+      "check_id": "PROVISIONAL_LIMITATION",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/constraints.geojson",
+      "message": "All geometry is based on provisional rough boundaries; no area, redline, statutory or implementation claim is made from them."
+    }
+  ]
+}
