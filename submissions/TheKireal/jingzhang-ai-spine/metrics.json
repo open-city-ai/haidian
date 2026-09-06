@@ -1,0 +1,323 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "使用provisional边界，面积与官方公布11.4km²接近；待官方边界发布后重算"
+      ]
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official_announced_value",
+      "confidence": "high",
+      "assumptions": [
+        "来自资格预审公告官方面积值"
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "sum(three_key_areas_announced)",
+      "confidence": "high",
+      "assumptions": [
+        "三处重点区域面积之和，来自公告"
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "official_announced_value",
+      "confidence": "high",
+      "assumptions": [
+        "公告公布面积192.1公顷"
+      ]
+    },
+    "ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "official_announced_value",
+      "confidence": "high",
+      "assumptions": [
+        "公告公布面积104.3公顷"
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "official_announced_value",
+      "confidence": "high",
+      "assumptions": [
+        "公告公布面积72.0公顷"
+      ]
+    },
+    "ai_r_and_d_land_sqm": {
+      "status": "known",
+      "value": 2558041,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use where code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "含众智园、学院路产学研、清河加速三块研发用地"
+      ]
+    },
+    "commercial_service_land_sqm": {
+      "status": "known",
+      "value": 3812949,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use where code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "含五道口混合、大钟寺商业、中关村服务、大钟寺商务"
+      ]
+    },
+    "residential_land_sqm": {
+      "status": "known",
+      "value": 1722267,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use where code=0701)",
+      "confidence": "medium",
+      "assumptions": [
+        "AI人才居住与社区服务用地"
+      ]
+    },
+    "park_green_land_sqm": {
+      "status": "known",
+      "value": 3319664,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use where code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "中央脊线公园用地"
+      ]
+    },
+    "green_space_total_sqm": {
+      "status": "known",
+      "value": 6475121,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(all_green_space_polygons, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "含中央公园、清河绿带、小月河绿廊、口袋公园；与用地图层有重叠"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.438,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_total_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "含中央脊线公园和滨水绿带；待官方控规绿地率指标确认后调整"
+      ]
+    },
+    "public_space_total_sqm": {
+      "status": "known",
+      "value": 216582,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(public_space_polygons, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "含3个AI朝圣地标和6个沿线公共空间节点"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.066,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_total_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "不含中央公园内的开放空间；实际公共开放空间比例更高"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 68314,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(building_footprints, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性建筑基底，非实际建筑测量；待现状建筑测绘后更新"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value":0.006,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "概念方案密度，非控规指标；大量用地为公园和待更新区域"
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性建筑数量，仅用于空间示意"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "缺官方控规容积率条件，概念方案建议研发用地FAR 2.5-4.0，商业3.0-5.0，居住2.0-3.0"
+      ],
+      "reason": "官方控规条件未公开，FAR为概念建议值，待正式控规确认"
+    },
+    "ai_pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space where landmark_type=pilgrimage_site)",
+      "confidence": "high",
+      "assumptions": [
+        "AI原点广场、智脊之门、AI生活秀场"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": [
+        "15张AI场景卡：3研发+3验证+4生活+2文化+3人机共生（光城专属）"
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": [
+        "AI研究员、创业者、开发者、市民、全球人才"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phasing_phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phases)",
+      "confidence": "high",
+      "assumptions": [
+        "近期2026-2028、中期2029-2031、远期2032-2035"
+      ]
+    },
+    "ai_ecosystem_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(global_ai_ecosystem_cases)",
+      "confidence": "high",
+      "assumptions": [
+        "硅谷、中关村、肯德尔广场、伦敦国王十字、新加坡纬壹、首尔数字媒体城"
+      ]
+    }
+  }
+}

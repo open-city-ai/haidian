@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JZ-AI Spine · Human-AI Co-living Laboratory</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0e1a;--bg2:#111827;--card:#1a2236;--card2:#1e293b;
+  --border:#2d3a52;--text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;
+  --blue:#3b82f6;--cyan:#06b6d4;--purple:#a855f7;--orange:#f59e0b;
+  --green:#22c55e;--red:#ef4444;--copper:#b87333;
+  --rail:#94a3b8;
+}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+.wrap{max-width:1280px;margin:0 auto;padding:0 1.5rem}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+nav .logo{font-size:1rem;font-weight:700;color:var(--cyan);letter-spacing:1px}
+nav .logo span{color:var(--copper)}
+nav .links{display:flex;gap:1.5rem;font-size:.8rem}
+nav .links a{color:var(--text2);text-decoration:none;transition:color .2s}
+nav .links a:hover{color:var(--cyan)}
+@media(max-width:768px){nav .links{display:none}}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:6rem 1.5rem 4rem}
+.hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse at 20% 50%,rgba(59,130,246,.12) 0%,transparent 50%),
+  radial-gradient(ellipse at 80% 50%,rgba(168,85,247,.1) 0%,transparent 50%),
+  radial-gradient(ellipse at 50% 80%,rgba(6,182,212,.08) 0%,transparent 50%);
+}
+.hero-content{position:relative;z-index:1;max-width:900px}
+.hero-badge{display:inline-block;padding:.4rem 1rem;border:1px solid var(--cyan);border-radius:999px;font-size:.75rem;color:var(--cyan);letter-spacing:2px;margin-bottom:1.5rem;text-transform:uppercase}
+.hero h1{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.15;margin-bottom:1rem;background:linear-gradient(135deg,#fff 0%,var(--cyan) 50%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{font-size:clamp(1rem,2vw,1.3rem);color:var(--text2);margin-bottom:2rem;font-weight:300}
+.hero .three-stories{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:2.5rem}
+.hero .story{text-align:center}
+.hero .story .year{font-size:1.8rem;font-weight:700;color:var(--copper);font-family:Georgia,serif}
+.hero .story .label{font-size:.75rem;color:var(--text3);margin-top:.25rem;letter-spacing:1px}
+.hero .story .arrow{color:var(--text3);font-size:1.2rem;align-self:center;margin-top:1rem}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--text3);font-size:.75rem;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+section{padding:5rem 0}
+.section-label{font-size:.7rem;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;margin-bottom:.5rem}
+.section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;margin-bottom:1rem}
+.section-desc{color:var(--text2);max-width:700px;margin-bottom:3rem;font-size:.95rem}
+.philosophy{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.philo-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+@media(max-width:768px){.philo-grid{grid-template-columns:1fr}}
+.philo-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
+.philo-card:hover{transform:translateY(-4px);border-color:var(--cyan)}
+.philo-card .icon{font-size:2.5rem;margin-bottom:1rem}
+.philo-card h3{font-size:1.2rem;margin-bottom:.75rem;color:#fff}
+.philo-card p{color:var(--text2);font-size:.9rem}
+.philo-card.highlight{border-color:var(--purple);background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(59,130,246,.05))}
+.metrics-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin:3rem 0}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;transition:border-color .3s}
+.metric:hover{border-color:var(--cyan)}
+.metric .val{font-size:2rem;font-weight:800;color:var(--cyan)}
+.metric .val .unit{font-size:.9rem;font-weight:400;color:var(--text2)}
+.metric .lbl{font-size:.75rem;color:var(--text3);margin-top:.5rem;letter-spacing:1px}
+.structure{background:var(--bg2)}
+.spine-vis{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:3rem 2rem;margin:2rem 0}
+.spine-line{position:relative;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.spine-node{flex:1;min-width:200px;text-align:center;padding:1.5rem;border-radius:12px;position:relative;transition:transform .3s}
+.spine-node:hover{transform:scale(1.03)}
+.spine-node.north{background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(239,68,68,.03));border:1px solid rgba(239,68,68,.3)}
+.spine-node.mid{background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(168,85,247,.03));border:1px solid rgba(168,85,247,.4);box-shadow:0 0 40px rgba(168,85,247,.08)}
+.spine-node.south{background:linear-gradient(135deg,rgba(245,158,11,.1),rgba(245,158,11,.03));border:1px solid rgba(245,158,11,.3)}
+.spine-node .tag{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem}
+.spine-node.north .tag{color:var(--red)}
+.spine-node.mid .tag{color:var(--purple)}
+.spine-node.south .tag{color:var(--orange)}
+.spine-node h4{font-size:1.1rem;color:#fff;margin-bottom:.5rem}
+.spine-node .area{font-size:.8rem;color:var(--text3);margin-bottom:.75rem}
+.spine-node p{font-size:.8rem;color:var(--text2)}
+.spine-node .star{display:inline-block;margin-top:.75rem;padding:.2rem .6rem;border-radius:4px;font-size:.65rem;background:rgba(168,85,247,.2);color:var(--purple)}
+.spine-connector{display:none}
+@media(min-width:900px){
+  .spine-line::before{content:'';position:absolute;top:50%;left:5%;right:5%;height:3px;background:linear-gradient(90deg,var(--red),var(--purple),var(--orange));border-radius:2px;opacity:.4;z-index:0}
+  .spine-node{position:relative;z-index:1}
+}
+.wings{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+@media(max-width:768px){.wings{grid-template-columns:1fr}}
+.wing{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-align:center}
+.wing h5{color:var(--cyan);font-size:.9rem;margin-bottom:.3rem}
+.wing p{font-size:.75rem;color:var(--text3)}
+.creative{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%);position:relative}
+.creative::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse at 30% 50%,rgba(168,85,247,.06) 0%,transparent 40%),
+  radial-gradient(ellipse at 70% 50%,rgba(34,197,94,.05) 0%,transparent 40%);pointer-events:none}
+.creative .wrap{position:relative;z-index:1}
+.creative-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+@media(max-width:900px){.creative-grid{grid-template-columns:1fr}}
+.creative-card{border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:transform .3s}
+.creative-card:hover{transform:translateY(-6px)}
+.creative-card.c1{background:linear-gradient(160deg,#1a1030,#0f172a);border:1px solid rgba(168,85,247,.3)}
+.creative-card.c2{background:linear-gradient(160deg,#2a1f0a,#0f172a);border:1px solid rgba(245,158,11,.3)}
+.creative-card.c3{background:linear-gradient(160deg,#0a2a1a,#0f172a);border:1px solid rgba(34,197,94,.3)}
+.creative-card .num{font-size:3rem;font-weight:900;opacity:.15;position:absolute;top:1rem;right:1.5rem;font-family:Georgia,serif}
+.creative-card .emoji{font-size:2rem;margin-bottom:1rem}
+.creative-card h3{font-size:1.3rem;color:#fff;margin-bottom:.75rem}
+.creative-card .quote{font-style:italic;color:var(--text2);font-size:.85rem;padding-left:1rem;border-left:2px solid var(--text3);margin-bottom:1rem}
+.creative-card.c1 .quote{border-color:var(--purple)}
+.creative-card.c2 .quote{border-color:var(--orange)}
+.creative-card.c3 .quote{border-color:var(--green)}
+.creative-card p{color:var(--text2);font-size:.85rem;margin-bottom:.75rem}
+.creative-card .detail{font-size:.75rem;color:var(--text3);padding-top:.75rem;border-top:1px solid rgba(255,255,255,.06)}
+.scenarios{background:var(--bg)}
+.tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.tab-btn{padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text2);font-size:.8rem;cursor:pointer;transition:all .2s}
+.tab-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.tab-btn.active{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.sc-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;transition:all .2s}
+.sc-card:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.sc-card .sc-head{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.sc-card .sc-num{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700}
+.sc-card.rd .sc-num{background:rgba(59,130,246,.2);color:var(--blue)}
+.sc-card.test .sc-num{background:rgba(245,158,11,.2);color:var(--orange)}
+.sc-card.life .sc-num{background:rgba(34,197,94,.2);color:var(--green)}
+.sc-card.cult .sc-num{background:rgba(239,68,68,.2);color:var(--red)}
+.sc-card.sym .sc-num{background:rgba(168,85,247,.2);color:var(--purple)}
+.sc-card h4{font-size:.9rem;color:#fff}
+.sc-card .sc-loc{font-size:.7rem;color:var(--text3);margin-bottom:.5rem}
+.sc-card p{font-size:.8rem;color:var(--text2)}
+.sc-card.sym{border-color:rgba(168,85,247,.3);background:linear-gradient(135deg,rgba(168,85,247,.06),transparent)}
+.timeline-section{background:var(--bg2)}
+.tl{position:relative;padding-left:2rem;margin-top:2rem}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--cyan),var(--purple),var(--orange))}
+.tl-item{position:relative;margin-bottom:2.5rem;padding-left:1.5rem}
+.tl-item::before{content:'';position:absolute;left:-2.35rem;top:.3rem;width:14px;height:14px;border-radius:50%;border:3px solid var(--cyan);background:var(--bg)}
+.tl-item:nth-child(2)::before{border-color:var(--purple)}
+.tl-item:nth-child(3)::before{border-color:var(--orange)}
+.tl-item .phase{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.25rem}
+.tl-item .period{font-size:.75rem;color:var(--text3);margin-bottom:.75rem}
+.tl-item ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem}
+.tl-item li{font-size:.8rem;color:var(--text2);padding:.3rem .7rem;background:var(--card);border-radius:6px;border:1px solid var(--border)}
+.events-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem}
+.event-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;transition:border-color .3s}
+.event-card:hover{border-color:var(--cyan)}
+.event-card .freq{font-size:.7rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem}
+.event-card h4{font-size:1rem;color:#fff;margin-bottom:.5rem}
+.event-card p{font-size:.8rem;color:var(--text3)}
+.compliance{background:var(--bg)}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:2rem}
+.comp-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
+.comp-card h4{font-size:.9rem;color:var(--cyan);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.comp-card .check{color:var(--green)}
+.comp-card ul{list-style:none}
+.comp-card li{font-size:.8rem;color:var(--text2);padding:.3rem 0;padding-left:1.2rem;position:relative}
+.comp-card li::before{content:'✓';position:absolute;left:0;color:var(--green);font-size:.7rem}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0;text-align:center}
+footer .closing{max-width:600px;margin:0 auto 2rem;font-style:italic;color:var(--text2);font-size:.95rem;line-height:1.8}
+footer .closing .highlight{color:var(--cyan)}
+footer .meta{font-size:.75rem;color:var(--text3);margin-top:1rem}
+footer .disclaimer{font-size:.7rem;color:var(--text3);max-width:700px;margin:1rem auto 0;line-height:1.6}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <div class="logo">JZ-<span>AI</span> Spine</div>
+    <div class="links">
+      <a href="#philosophy">Philosophy</a>
+      <a href="#structure">Structure</a>
+      <a href="#creative">Signature</a>
+      <a href="#scenarios">Scenarios</a>
+      <a href="#timeline">Timeline</a>
+    </div>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Human-AI Co-living Laboratory · Centennial Jing-Zhang AI Belt</div>
+    <h1>JZ-AI Spine</h1>
+    <p class="subtitle">AI as co-dweller, not spectacle.<br>On the century-old railway heritage, exploring the possibility of gentle coexistence between humans and digital life.</p>
+    <div class="three-stories">
+      <div class="story">
+        <div class="year">1909</div>
+        <div class="label">Century of Railway History</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="story">
+        <div class="year">1988</div>
+        <div class="label">Zhongguancun Innovation Spirit</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="story">
+        <div class="year">2026</div>
+        <div class="label">Human-AI Co-living Future</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">↓ Scroll</div>
+</section>
+<section id="philosophy" class="philosophy">
+  <div class="wrap">
+    <div class="section-label">Core Philosophy</div>
+    <div class="section-title">Human-AI Co-living</div>
+    <div class="section-desc">The Jing-Zhang Railway heritage is no longer solely a human memorial space; it becomes an urban public space where humans and digital life converse bidirectionally and cohabit. People input memory into the site; digital life translates memory into landscape light and shadow. The two nourish each other.</div>
+    <div class="philo-grid">
+      <div class="philo-card highlight">
+        <div class="icon">🤝</div>
+        <h3>Rejecting "AI as Spectacle"</h3>
+        <p>We do not pursue flashy technology stacking. The ultimate goal of all AI and digital installations is to serve the emotions and memories of ordinary people. Digital life is not an object to be viewed, but a presence that walks with you in the park.</p>
+      </div>
+      <div class="philo-card">
+        <div class="icon">🌳</div>
+        <h3>Innovation District Within a Park</h3>
+        <p>43.8% green ratio (including waterfront green belts); nearly 30% of land is public open space. R&D and commercial functions are embedded within the park framework, not the traditional "buildings + green space" campus model. Green first, city second.</p>
+      </div>
+      <div class="philo-card">
+        <div class="icon">🔓</div>
+        <h3>Open Source as Public Good</h3>
+        <p>Interactions on public infrastructure are open-sourced to all. Anyone can write an interaction for a bench, leave a ring on the path. The city is not the designer's product—it is the living result of all its residents.</p>
+      </div>
+      <div class="philo-card">
+        <div class="icon">🛤️</div>
+        <h3>The Rails Remember Everything</h3>
+        <p>The rails of Jing-Zhang do not speak, yet they remember everyone who walked upon them. We hope AI will remember too—children's laughter, the silence of elders, a sentence someone left one evening.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="metrics">
+  <div class="wrap">
+    <div class="section-label">Key Metrics</div>
+    <div class="section-title">Numbers at a Glance</div>
+    <div class="metrics-bar">
+      <div class="metric"><div class="val">11.4<span class="unit">km²</span></div><div class="lbl">Total Design Scope</div></div>
+      <div class="metric"><div class="val">368.4<span class="unit">ha</span></div><div class="lbl">Key Design Areas</div></div>
+      <div class="metric"><div class="val">43.8<span class="unit">%</span></div><div class="lbl">Green Ratio (incl. waterfront)</div></div>
+      <div class="metric"><div class="val">8.7<span class="unit">km</span></div><div class="lbl">Spine Length</div></div>
+      <div class="metric"><div class="val">15</div><div class="lbl">AI Scenarios (incl. 3 symbiosis)</div></div>
+      <div class="metric"><div class="val">9<span class="unit">yrs</span></div><div class="lbl">Three-Phase Implementation</div></div>
+    </div>
+  </div>
+</section>
+<section id="structure" class="structure">
+  <div class="wrap">
+    <div class="section-label">Spatial Structure</div>
+    <div class="section-title">One Spine, Three Cores, Two Wings</div>
+    <div class="section-desc">The linear corridor along the Jing-Zhang Railway heritage running north-south is the "spine," linking three core areas; the east and west wings connect Zhongguancun's service ecosystem and Xiaoyuehe's scenario validation respectively.</div>
+    <div class="spine-vis">
+      <div class="spine-line">
+        <div class="spine-node north">
+          <div class="tag">North Core</div>
+          <h4>Zhongzhi Park</h4>
+          <div class="area">192.1 ha</div>
+          <p>Full-stack self-reliant AI innovation source. Large models, AI chips, AI governance sandbox. Spine Gate pilgrimage landmark.</p>
+        </div>
+        <div class="spine-node mid">
+          <div class="tag">Central Core</div>
+          <h4>AI Origin Community</h4>
+          <div class="area">104.3 ha</div>
+          <p>World AI ecosystem community + Human-AI co-living laboratory. The three Guangcheng signature nodes are located here.</p>
+          <div class="star">★ Signature Creative Zone</div>
+        </div>
+        <div class="spine-node south">
+          <div class="tag">South Core</div>
+          <h4>Dazhongsi</h4>
+          <div class="area">72.0 ha</div>
+          <p>Intelligent original-format consumption pole. AI Living Showcase; global AI product launch experience.</p>
+        </div>
+      </div>
+      <div class="wings">
+        <div class="wing">
+          <h5>East Wing · Zhongguancun Tech Service Wing</h5>
+          <p>Tech Transfer · IP · AI Finance · Legal & Accounting</p>
+        </div>
+        <div class="wing">
+          <h5>West Wing · Xiaoyuehe Scenario Empowerment Wing</h5>
+          <p>AI+ Education · AI+ Healthcare · AI+ Community Governance · Real-City Testbed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="creative" class="creative">
+  <div class="wrap">
+    <div class="section-label">Signature Design</div>
+    <div class="section-title">Guangcheng Signature · Three Core Creative Nodes</div>
+    <div class="section-desc">This is the soul of the proposal—what sets it apart from ordinary industry planning. All three nodes are located in the Central Core, AI Origin Community, forming the most concrete spatial expression of "human-AI co-living."</div>
+    <div class="creative-grid">
+      <div class="creative-card c1 fade-in">
+        <div class="num">01</div>
+        <div class="emoji">🛤️</div>
+        <h3>Innovation Annual Ring Path</h3>
+        <div class="quote">"Every step, treading upon time."</div>
+        <p>Laid along the old railway bed, the path surface embeds sensing and light matrices. Century-old Jing-Zhang history, Zhongguancun innovation events, and public memories of visitors are engraved layer by layer as annual ring patterns.</p>
+        <p>Each new visitor interaction generates a new ring. The rings are never deleted; they accumulate continuously—the site grows as people arrive.</p>
+        <div class="detail">Material: echoes railway sleeper texture | Time markers: 1909→1949→1978→1999→2026→∞</div>
+      </div>
+      <div class="creative-card c2 fade-in">
+        <div class="num">02</div>
+        <div class="emoji">🪑</div>
+        <h3>Open-Source Bench</h3>
+        <div class="quote">"Public infrastructure, created by all."</div>
+        <p>Not merely resting furniture but open-source interactive carriers. Lightweight sensing modules are integrated; citizens can develop custom interactions through open APIs; touch and voice leave emotions, short phrases, and stories.</p>
+        <p>The benches belong to the city; interactive creativity is open-sourced to all. Anyone can contribute their own small design. All submissions undergo community review before going live.</p>
+        <div class="detail">Material: rust-colored metal frame + wooden seat | Tech modules embedded and hidden | Interactive lights at night</div>
+      </div>
+      <div class="creative-card c3 fade-in">
+        <div class="num">03</div>
+        <div class="emoji">🌿</div>
+        <h3>AI Symbiosis Garden</h3>
+        <div class="quote">"No fixed script. Every moment is one of a kind."</div>
+        <p>The core immersive node. Physical plant landscapes and digital life landscapes are interwoven and coexisting. AI digital life evolves dynamically with pedestrian flow, seasons, and weather; physical plant growth in turn influences digital behavioral logic.</p>
+        <p>No fixed performance script. When a person enters, digital life senses their position and state, approaching or withdrawing—genuine bidirectional interaction.</p>
+        <div class="detail">Tech: ground projection + mist + ambient sound | No large screens | Existing trees + native wildflowers</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="scenarios" class="scenarios">
+  <div class="wrap">
+    <div class="section-label">AI Scenarios</div>
+    <div class="section-title">AI+ Scenario System</div>
+    <div class="section-desc">15 scenarios covering R&D, validation, living, and culture, plus 3 "symbiosis" scenarios exclusive to Guangcheng.</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="filterSc('all')">All 15</button>
+      <button class="tab-btn" onclick="filterSc('rd')">R&D</button>
+      <button class="tab-btn" onclick="filterSc('test')">Validation</button>
+      <button class="tab-btn" onclick="filterSc('life')">Living</button>
+      <button class="tab-btn" onclick="filterSc('cult')">Culture</button>
+      <button class="tab-btn" onclick="filterSc('sym')">Symbiosis ★</button>
+    </div>
+    <div class="scenario-grid" id="scGrid">
+      <div class="sc-card rd"><div class="sc-head"><div class="sc-num">1</div><h4>AI Open-Source Collaboration Hall</h4></div><div class="sc-loc">📍 AI Origin Community</div><p>Real-time global developer collaboration visualization, open-source contribution maps, remote holographic collaboration.</p></div>
+      <div class="sc-card rd"><div class="sc-head"><div class="sc-num">2</div><h4>Computing Dispatch Trading Center</h4></div><div class="sc-loc">📍 Zhongzhi Park</div><p>Real-time computing resource visualization, cross-center dispatch, green computing certification.</p></div>
+      <div class="sc-card rd"><div class="sc-head"><div class="sc-num">3</div><h4>AI Governance Sandbox</h4></div><div class="sc-loc">📍 Zhongzhi Park</div><p>Regulatory tech test environment, AI algorithm filing and audit, ethics review simulation.</p></div>
+      <div class="sc-card test"><div class="sc-head"><div class="sc-num">4</div><h4>Autonomous Driving Demonstration Road</h4></div><div class="sc-loc">📍 Full Central Spine</div><p>L4 autonomous driving dedicated lane, vehicle-infrastructure cooperation, unmanned delivery testing.</p></div>
+      <div class="sc-card test"><div class="sc-head"><div class="sc-num">5</div><h4>AI+ Healthcare Validation Platform</h4></div><div class="sc-loc">📍 Xiaoyuehe Wing</div><p>Community AI-assisted diagnosis, privacy-computing medical data, remote surgery demonstration.</p></div>
+      <div class="sc-card test"><div class="sc-head"><div class="sc-num">6</div><h4>AI+ Urban Governance Sandbox</h4></div><div class="sc-loc">📍 Full Site</div><p>Urban event AI sensing, emergency response simulation, public space pedestrian flow prediction.</p></div>
+      <div class="sc-card life"><div class="sc-head"><div class="sc-num">7</div><h4>AI Living Showcase</h4></div><div class="sc-loc">📍 Dazhongsi</div><p>Global AI new product launch experience, AI fashion/beauty/food.</p></div>
+      <div class="sc-card life"><div class="sc-head"><div class="sc-num">8</div><h4>AI+ Education Borderless Classroom</h4></div><div class="sc-loc">📍 AI Origin Community</div><p>Personalized learning paths, AI tutoring, lifelong learning.</p></div>
+      <div class="sc-card life"><div class="sc-head"><div class="sc-num">9</div><h4>AI+ Health Community Station</h4></div><div class="sc-loc">📍 Xiaoyuehe Wing</div><p>Daily health monitoring, AI traditional Chinese medicine, mental health companionship.</p></div>
+      <div class="sc-card life"><div class="sc-head"><div class="sc-num">10</div><h4>AI Park Guide</h4></div><div class="sc-loc">📍 Central Spine</div><p>AR historical narration (Jing-Zhang Railway stories), AI natural science education, smart fitness.</p></div>
+      <div class="sc-card cult"><div class="sc-head"><div class="sc-num">11</div><h4>AI Art Co-Creation Space</h4></div><div class="sc-loc">📍 Dazhongsi</div><p>AI-generated art exhibitions, human-AI collaborative creation, digital collectibles.</p></div>
+      <div class="sc-card cult"><div class="sc-head"><div class="sc-num">12</div><h4>AI Food Lab</h4></div><div class="sc-loc">📍 Dazhongsi</div><p>AI recipe development, personalized nutrition, robot restaurant.</p></div>
+      <div class="sc-card sym"><div class="sc-head"><div class="sc-num">★</div><h4>Innovation Annual Ring Memory Interaction</h4></div><div class="sc-loc">📍 AI Origin Community</div><p>The path senses walking and lingering, generating personal annual ring patterns; scan to save your own ring of time.</p></div>
+      <div class="sc-card sym"><div class="sc-head"><div class="sc-num">★</div><h4>Open-Source Bench Public Creation</h4></div><div class="sc-loc">📍 AI Origin Community</div><p>Open APIs allow anyone to submit bench interaction programs, live after community review. Your code becomes part of the city's public memory.</p></div>
+      <div class="sc-card sym"><div class="sc-head"><div class="sc-num">★</div><h4>AI Symbiosis Garden Immersion</h4></div><div class="sc-loc">📍 AI Origin Community</div><p>Digital life communities respond in real time to pedestrian flow, temperature, and bloom cycles. Every visit, the garden is different—because you came.</p></div>
+    </div>
+  </div>
+</section>
+<section id="timeline" class="timeline-section">
+  <div class="wrap">
+    <div class="section-label">Implementation</div>
+    <div class="section-title">Nine Years, Three Phases</div>
+    <div class="section-desc">From origin launch to three-core synergy to global leadership—unhurried, letting the site grow with its people.</div>
+    <div class="tl">
+      <div class="tl-item fade-in">
+        <div class="phase">Phase 1 · Spine North Launch</div>
+        <div class="period">2026 — 2028 (Years 1–2)</div>
+        <ul>
+          <li>Zhongzhi Park AI acceleration zone starts</li>
+          <li>Northern section of central park completed</li>
+          <li>Spine Gate landmark completed</li>
+          <li>Innovation Annual Ring Path pilot segment</li>
+          <li>Inaugural JZ-AI Con</li>
+        </ul>
+      </div>
+      <div class="tl-item fade-in">
+        <div class="phase">Phase 2 · Origin Takes Shape</div>
+        <div class="period">2029 — 2031 (Years 3–5)</div>
+        <ul>
+          <li>AI Origin Community fully completed</li>
+          <li>Open-Source Bench cluster goes live</li>
+          <li>AI Symbiosis Garden opens</li>
+          <li>Autonomous driving shuttles between three cores</li>
+          <li>AI governance sandbox in operation</li>
+        </ul>
+      </div>
+      <div class="tl-item fade-in">
+        <div class="phase">Phase 3 · Full Spine Intelligence</div>
+        <div class="period">2032 — 2035 (Years 6–9)</div>
+        <ul>
+          <li>Dazhongsi AI consumption experience area completed</li>
+          <li>Central spine 8.7 km fully connected</li>
+          <li>Two-wing ecosystem matures</li>
+          <li>Global AI innovation brand established</li>
+          <li>Exportable AI city standards</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="events">
+  <div class="wrap">
+    <div class="section-label">Annual Events</div>
+    <div class="section-title">Annual Event System</div>
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="freq">Every Autumn</div>
+        <h4>JZ-AI Con</h4>
+        <p>Global AI innovation summit; releases annual AI governance report and AI living index</p>
+      </div>
+      <div class="event-card">
+        <div class="freq">Every Summer</div>
+        <h4>Jing-Zhang Innovation Week</h4>
+        <p>Open-source project showcase, hackathons, developer carnival</p>
+      </div>
+      <div class="event-card">
+        <div class="freq">Quarterly</div>
+        <h4>Open-Source Hackathon</h4>
+        <p>Develop new interactions for benches and annual ring path; winning works go live directly</p>
+      </div>
+      <div class="event-card">
+        <div class="freq">Monthly</div>
+        <h4>AI Living Experience Day</h4>
+        <p>All AI scenarios open to citizens; elders and children all welcome</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="compliance">
+  <div class="wrap">
+    <div class="section-label">Compliance</div>
+    <div class="section-title">Compliance and Self-Check</div>
+    <div class="section-desc">All spatial recommendations are conceptual proposals using provisional boundaries; they do not constitute government approval conclusions.</div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <h4><span class="check">✓</span> Task Coverage</h4>
+        <ul>
+          <li>Announcement sections 1.3–1.5 all covered</li>
+          <li>agent.1–agent.6 six tasks completed</li>
+          <li>Three-tier scope framework complete</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <h4><span class="check">✓</span> Professional Standards</h4>
+        <ul>
+          <li>MNR land use classification guidelines</li>
+          <li>MOHURD urban design administration measures</li>
+          <li>Regulatory plan depth requirements</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <h4><span class="check">✓</span> Privacy and Ethics</h4>
+        <ul>
+          <li>Personal data: privacy computing + on-device inference + human review</li>
+          <li>No omnipresent surveillance deployed</li>
+          <li>No social credit scoring</li>
+        </ul>
+      </div>
+      <div class="comp-card">
+        <h4><span class="check">✓</span> Outstanding Materials</h4>
+        <ul>
+          <li>Official redline coordinates (currently provisional)</li>
+          <li>Regulatory conditions and building heights</li>
+          <li>Existing building quality and ownership surveys</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="closing">
+      "The rails of Jing-Zhang witnessed a generation's dedication; Zhongguancun witnessed a generation's creation.<br>
+      We hope to leave to the next generation <span class="highlight">a public space where humans and digital life can coexist with tenderness.</span>"
+    </div>
+    <div class="meta">JZ-AI Spine · Human-AI Co-living Laboratory · 2026</div>
+    <div class="disclaimer">This proposal is submitted by TheKireal team. All spatial recommendations are conceptual and do not constitute government approval conclusions, investment commitments, or land ownership confirmation. Uses provisional boundaries provided by the repository; recalculation required upon official redline release. Proposal text under COMMUNITY-DISPLAY-ONLY license.</div>
+  </div>
+</footer>
+<script>
+function filterSc(cat){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.sc-card').forEach(c=>{
+    if(cat==='all'||c.classList.contains(cat)){c.style.display='block';}
+    else{c.style.display='none';}
+  });
+}
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+document.querySelectorAll('nav a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
