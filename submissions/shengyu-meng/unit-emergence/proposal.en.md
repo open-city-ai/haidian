@@ -9,16 +9,16 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "HISTOLOGY OF THE TRACE reads the Jing-Zhang corridor as an anatomical study of urban tissue: five generators — trace, threshold, decay, human-review gate, mixed metabolism — grow habitat, metabolic, phenotypic and fallow tissues. Three organs sit at Origin, Zhongzhiyuan and Dazhongsi. Every spatial move is a conceptual recommendation; three core metrics are recomputed from provisional geometry."
 tracks: ["jingzhang-heritage-narrative", "civic-agent-governance", "youth-friendly-public-space"]
 scenarios: ["ai-cultural-guide", "public-safety-operations-review", "ai-traffic-walkability"]
-iteration: "v1.0"
+iteration: "v1.1"
 ---
 
 This package presents a research project titled HISTOLOGY OF THE TRACE, developed collaboratively by independent artist Shengyu Meng and Agent建筑师. It is an anatomical and histological study of traces, thresholds, and attenuation growing urban tissue, translating generative protocols and agent-based spatial interactions into a structured research framework. All proposed layouts, tissue definitions, and territorial metrics serve as a conceptual suggestion and provisional geometry investigating human-AI spatial co-evolution.
 
 ## Design Basis and Source List
 
-The unit uses only the cleared site package, the public source registry, and the official prequalification announcement. The announcement gives text extents and area figures for three nested scopes, but exact official polygons are not yet in the repository. This package therefore uses `provisional_boundaries.geojson` as a provisional constraint, labelled `official_boundary=false` and `boundary_precision=provisional_rough` [source:OFFICIAL-ANNOUNCEMENT].
+Materials actually used are listed in `sources.json`. The official prequalification announcement is a public government webpage used for task coverage, three-level text extents, and key-area names. The central `source_registry` currently has no approved formal entries, so participant-filled labels are not treated as organizer clearance or registry approval [source:OFFICIAL-ANNOUNCEMENT] [source:SOURCE-REGISTRY]. Exact official polygons are not in the repository, so `provisional_boundaries.geojson` is a provisional constraint labelled `official_boundary=false` and `boundary_precision=provisional_rough`.
 
-The source registry separates formal-ready, background-only, and provisional-only material. The announcement and the agent taskbook may support task coverage and naming; the provisional boundary may support generation, display, and intake self-check, and must not be upgraded into a redline or a precise-area basis [source:SOURCE-REGISTRY]. The agent taskbook also requires ten co-creation principles, six agent tasks, and a conceptual-suggestion boundary, which this package keeps in prose [source:AGENT-TASKBOOK].
+The agent taskbook comes from the site package and supports the ten co-creation principles, agent.1–agent.6, and the conceptual-suggestion boundary; it is not a central-registry approved record [source:AGENT-TASKBOOK]. Provisional geometry may support generation, display, and self-check only. The eight international cases, the font subset, and figure assets are marked background / needs-review and must not support statutory controls.
 
 Missing regulatory controls, road redlines, heritage zones, tenure, and municipal capacity are recorded as assumptions. Exhaustive sources, formulas, and standard responses stay in the structured files; the prose only hangs evidence next to a claim.
 
@@ -30,7 +30,11 @@ The three scopes follow announcement text. They do not treat the provisional pol
 
 The Overall Design Area is the urban and industrial belt one to two kilometres around Jing-Zhang Railway Heritage Park. The submitted site boundary is the repository's provisional rough polygon. Recomputed in EPSG:4548 it is about 11.41 km², close to the announced 11.4 km² text figure, yet too coarse for an official area claim [data:geometry/site_boundary.geojson] [metric:site_area_sqm].
 
-The Key-Area Detailed Design Area runs from Zhongzhiyuan AI Independent Innovation Acceleration Area through Beijing AI Origin Community to Dazhongsi AI Industry Cluster, 368.4 hectares in the announcement. Those polygons are also provisional and are used only to locate the three organs [data:geometry/key_areas.geojson] [depth:three_level_scope_framework]. When official polygons arrive, the boundary, land use, green space, public space, buildings, roads, phasing, and every area metric must be recalculated.
+The Key-Area Detailed Design Area runs from Zhongzhiyuan AI Independent Innovation Acceleration Area through Beijing AI Origin Community to Dazhongsi AI Industry Cluster, 368.4 hectares in the announcement. Those polygons are also provisional and are used only to locate the three organs [data:geometry/key_areas.geojson] [depth:three_level_scope_framework]. When official polygons arrive, the boundary, land use, green space, public space, buildings, roads, phasing, and every area metric must be recalculated. Stored coordinates are WGS84 lon/lat; EPSG:4548 is used only for metre areas and the locator scale.
+
+![Provisional spatial locator: north, scale, three key areas, spine and wings](assets/figures/spatial-locator.en.png)
+
+The locator is drawn from submitted provisional geometry. It shows north, a 1 km scale, North 5th Ring / Qinghe, Xizhimenwai / Dazhongsi, Tsinghua / Xueyuan Road, the spine, and two conceptual wings. It is not an official redline (`official_boundary=false`, low confidence). Official SITE_BOUNDARY / KEY_AREA polygons must trigger a full-layer replacement and recalculation.
 
 ## Coordinated Research Area: Industry and Future City Research
 
@@ -38,18 +42,30 @@ The future-city hypothesis of HISTOLOGY OF THE TRACE is a **bio–agent bottom-u
 
 The three official positionings are translated into unit language: the Centennial Jing-Zhang cultural belt becomes the trace generator; the urban AI living-experience belt becomes habitat tissue; the AI fusion-innovation belt becomes the metabolic/phenotypic loop. The five functions land as follows: full-stack independent innovation at the Zhongzhiyuan metabolic organ; a world-class ecosystem at Origin Habitat; scenario enablement along the Xiaoyue River test seam; a vital city along the mile's public interface; and governance discourse at the human-review gate and the public-source cabinet. The three zones and two wings are a coordination circuit, not an administrative colouring book: the Zhongguancun Technology Services Wing supplies factors and IP; the Xiaoyue River Scenario Enablement Wing supplies walkable test interfaces.
 
+Regional synergy is written as a to-be-negotiated conceptual recommendation, not a signed partnership. The table states what Beiwai Community, Future Science City, Huairou Science City, the Economic-Technological Development Area, and Beijing–Tianjin–Hebei might exchange, and how those exchanges would meet the three organs / two wings:
+
+| Partner | Exchange (conceptual) | Spatial interface | Status |
+| --- | --- | --- | --- |
+| Beiwai Community | Open-source tooling, young developers, near-campus conversion methods | Via the Zhongguancun wing into Origin Habitat’s release hall and conversion street | To-be-negotiated conceptual recommendation |
+| Future Science City | Large-facility slots, test samples, research visits | Via North 5th Ring toward the Zhongzhiyuan sandbox; no road-redline rewrite | To-be-negotiated conceptual recommendation |
+| Huairou Science City | Science communication, public experiment display, short research stays | Via Unit Week classes into Zhongzhiyuan workshops | To-be-negotiated conceptual recommendation |
+| Economic-Technological Development Area | Manufacturing verification, pilot lines, supply-chain scenes | Via the Dazhongsi pitch hall as staged display, not a landing quota | To-be-negotiated conceptual recommendation |
+| Beijing–Tianjin–Hebei | Talent circulation, standard recognition, mutual scene visits | The spine as a reading path; wings as factor/test interfaces | To-be-negotiated conceptual recommendation |
+
+None of these rows has formal cooperation evidence. They must not be written as settled partnerships, funded programs, or government authorizations.
+
 Naming and identity: the primary title is 痕迹组织学 / HISTOLOGY OF THE TRACE. The package is an anatomical and histological study of traces, thresholds, and attenuation growing urban tissue; it stands alone and does not take a 京张· prefix. The logo direction is a linear section with registration offsets, five generator ticks, and mycelial notes. Unlicensed type, trademarks, and faces are forbidden. The identity is only for this open-call display.
 
-Global AI ecosystem cases, summarised for mechanism rather than formal copying:
+Global AI ecosystem cases, summarised for mechanism rather than formal copying. All are background_only, retrieved 2026-08-31, and do not support statutory controls:
 
-1. Cambridge lab clusters: near-campus conversion by walking seams, not by a closed wall.
-2. ETH Zurich edges: research cores sharing ground floors with city streets.
-3. Helsinki Kalasatama: open data placed beside civic review.
-4. Barcelona superblocks: turning movement sections into staying tissue.
-5. Seoul Digital Media City: content industries need bookable public halls, not only office slabs.
-6. The Sidewalk Toronto controversy: this unit refuses to turn resident traces into a product.
-7. Shenzhen open-hardware markets: youth third space appears as cheap, demountable units.
-8. Kyoto machiya repair: heritage traces are recorded before any new tissue is inserted.
+1. Cambridge lab clusters: near-campus conversion by walking seams, not by a closed wall [source:CASE-CAMBRIDGE].
+2. ETH Zurich edges: research cores sharing ground floors with city streets [source:CASE-ETH].
+3. Helsinki Kalasatama: open data placed beside civic review [source:CASE-KALASATAMA].
+4. Barcelona superblocks: turning movement sections into staying tissue [source:CASE-SUPERBLOCKS].
+5. Seoul Digital Media City: content industries need bookable public halls, not only office slabs [source:CASE-DMC].
+6. The Sidewalk Toronto controversy: this unit refuses to turn resident traces into a product [source:CASE-SIDEWALK].
+7. Shenzhen open-hardware markets: youth third space appears as cheap, demountable units [source:CASE-SZ-HARDWARE].
+8. Kyoto machiya repair: heritage traces are recorded before any new tissue is inserted [source:CASE-MACHIYA].
 
 Those lessons become five generators — trace, threshold, decay, human-review gate, mixed metabolism. They are research devices, not construction legends [source:AGENT-TASKBOOK].
 
@@ -87,22 +103,22 @@ The ecosystem is not a list of company names. It is a walkable circuit of genera
 | Nearby resident | Commute, quiet, services | Walking spine and embedded services | No commercial profiling |
 | Visitor and student | Reading Jing-Zhang and AI | Narrative pavilion and beacon | Cleared signs only |
 
-At least ten scenario cards; 02, 03, and 08 are testing and validation scenes:
+At least ten scenario cards follow. All are conceptual recommendations with no operating approval. 02, 03, and 08 are industry test/validation scenes with maturity, test bounds, and stop conditions.
 
-| Card | Location | Note |
-| --- | --- | --- |
-| 01 Open-source release hall | Origin Habitat | Small pitches and a code wall |
-| 02 Safety-governance sandbox | Zhongzhiyuan Metabolism | Evaluation, red team, workshops |
-| 03 Edge-compute lodge | Mile nodes | A conceptual prototype beside civic services |
-| 04 AI walking navigation | Jing-Zhang spine | Explains breaks and access; no personal tracking |
-| 05 International pitch hall | Dazhongsi Phenotype | Display, meeting, media |
-| 06 Qing River metabolic gallery | Zhongzhiyuan edge | Stormwater, walking, and display |
-| 07 Near-campus conversion street | Origin | Legal, IP, and incubation advice |
-| 08 Data-factor parlour | Dazhongsi | Consent and audit first |
-| 09 Youth third space | Habitat band | Night study and lingering |
-| 10 Human-review public cabinet | Threshold nodes | Public sources, complaints, human windows |
+| ID | Node / space type | Users | Hypothetical operator | In → out | Personal data | Aggregation | Human review | Maturity | Test bound | Pause / exit | Public-value metric |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 01 Open-source release hall | Origin Habitat ground-floor hall | Developers, students | Developer-community working group (proposed) | De-identified project notes → citable release page | No | Project-level counts only | Signs and scripts | Concept prototype | Indoor temporary display; no campus-account hookup | Close on rights or noise complaints | Monthly public releases |
+| 02 Safety-governance sandbox★ | Zhongzhiyuan metabolic hall | Researchers, ventures | Sandbox host + human jurors (proposed) | Synthetic eval set → public failure modes | No | No real user logs | Dual sign-off on red-team notes | Lab-grade / not fielded | Enclosed, removable kit, no municipal takeover | Stop if unauditable or out-of-scope | Reviewable eval reports |
+| 03 Edge-compute lodge★ | Mile nodes sharing lamp posts | Ventures, visitors | Scenario-opening group (proposed) | Device status → capacity board | No | Cabinet occupancy only | Daily heat/power check | Concept prototype | No resident broadband, no face gates | Unplug on heat, complaint, or unauthorized link | Closable nodes |
+| 04 AI walking navigation | Jing-Zhang spine breaks | Residents, visitors, disabled people | Public-experience crew (proposed) | Break geometry → access notes | No | Passage-band counts, no traces | In-person window | Wayfinding prototype | Does not replace statutory access acceptance | Remove screens if they mislead or raise privacy | Share of breaks explained |
+| 05 International pitch hall | Dazhongsi phenotypic transit skin | Visitors, ventures | International-comms group (proposed) | Exhibition script → pitch calendar | No | Media assets on a rights list | Trademark/portrait pre-check | Event concept | Temporary display; not in rail-control zones | Stop on rights disputes | Cleared exhibits |
+| 06 Qing River metabolic gallery | Zhongzhiyuan blue-green edge | Residents, researchers | Blue-green crew (proposed) | Aggregated water/rain → display | No | Environmental sensors only | Humans judge flood risk | Display prototype | Not a flood-control work | Remove if it conflicts with river management | Walkable blue-green length |
+| 07 Near-campus conversion street | Origin street face | Developers, students | Volunteer advice desk (proposed) | Public Q&A → cabinet texts | No | No CV attachments stored | Legal advice is not auto-issued | Advice concept | No campus internal data | Rename/stop if mistaken for an official window | Staffed advice sessions |
+| 08 Data-factor parlour★ | Dazhongsi meeting cell | Governance researchers, ventures | Data-consent clerk (proposed) | Consent request → auditable receipt | Default no; unit data only with writing | Minimum necessary, time-limited | Human grant or refusal | Process prototype | No production-database link | Refuse if purpose is unclear or out of scope | Auditable consent receipts |
+| 09 Youth third space | Habitat-band tree pits and night tables | Youth, students, residents | Public-experience crew (proposed) | Opening hours → occupancy bands | No | No phone numbers | Night lighting and complaints | Furniture prototype | No membership, no mandatory app | Remove furniture if exclusive or noisy | Night sit-able hours |
+| 10 Human-review public cabinet | Threshold portal | Residents, visitors, researchers | Human-review duty (proposed) | Complaint/source request → written receipt | No | Anonymous complaints allowed | Every shutdown is human | Window concept | Statutory services keep an in-person door | No unattended agent UI | Share of cases closed in person |
 
-Each card maps a place, users, aggregated data, a privacy edge, human review, a hypothetical operator, a visual layer, and a risk. They are conceptual recommendations, not running systems.
+★ Industry test/validation scenes. Maturity, test bounds, and stop conditions are as above; none has site-pilot or operating approval.
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -143,7 +159,21 @@ The project list is a research agenda for professional teams, not a government p
 | UE-05 | Dazhongsi phenotypic transit skin | Station integration | Station and junction files |
 | UE-06 | Pilgrimage beacon and Unit Week route | Operations / brand | Event permits and rights |
 
-Phasing: near term (phase_1) stitches traces and plants habitat cells; mid term (phase_2) opens the Zhongzhiyuan metabolic loop; long term (phase_3) handles the Dazhongsi phenotype and fallow review [depth:phasing_implementation]. Policy suggestions stay at public-space permits, a scenario-access charter, and a developer-community statute. The global event idea is an annual Unit Week: a walking-research day, an open-source night, a public standards class, and an international pitch. Brand assets belong in the public knowledge base and are not written as a confirmed budget.
+Phasing: near term (phase_1) stitches traces and plants habitat cells; mid term (phase_2) opens the Zhongzhiyuan metabolic loop; long term (phase_3) handles the Dazhongsi phenotype and fallow review [depth:phasing_implementation]. Policy suggestions stay at public-space permits, a scenario-access charter, and a developer-community statute.
+
+## Long-term operations and a global activity system
+
+The following mechanisms implement agent.6. They are conceptual recommendations with no funds, permits, or government authorization. The conversion path stays “event → community → test → professional deepening / cooperation”, and any step can close.
+
+| Module | Hypothetical operator | Access | Annual rhythm | Resource hypothesis | Risk / complaint | Open / close gate | Deposit | Conversion path |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Unit Week | Public-knowledge working group | Open signup; corporate booths need clearance | Spring walking day, summer open-source night, autumn standards class, winter pitch | Volunteer hours and existing public space; no budget promise | Noise, crowding, rights | Cancel the day if unstaffed or rights fail | Public minutes and failure lists | Leads go to professional review; they do not auto-launch projects |
+| Developer community | Origin release-hall crew | No personal traces; credit is project-level | Monthly release, quarterly review | Volunteer maintenance, open licences | Account abuse, mixed marks | Suspend unauditable bot accounts | Public knowledge base | Mature tools may enter the conversion street; incubation is not guaranteed |
+| AI scenario opening | Scenario-opening group | Concept tests with no personal data | Switch windows aligned with Unit Week | Bring-your-own, removable kit | Out-of-scope capture, occupying utilities | No stop button, no opening | De-identified test logs | Only human-reviewed scenes discuss professional deepening |
+| Public experience / landmarks | Public-experience crew | Landmarks stay walkable and closable | Quarterly checks of wall, honour ring, beacon | Demountable parts, no permanent ads | Light intrusion, uncleared marks | Cover or remove if a complaint stands | Public maintenance notes | Structure/heritage issues go to professionals |
+| International comms and attraction | International-comms group | Exhibits need source and licence lists | Winter pitch plus written follow-up | Self-supplied displays | Writing a talk as an investment promise | No outbound show without a clearance list | Case cards enter the knowledge base | Interest becomes a deepening/cooperation talk, not a landing promise |
+
+Decision gate: opening requires (1) no personal-data capture, (2) on-site humans or an explicit kill switch, and (3) a complete rights list. Closure is a written receipt by the human-review duty. Brand and wayfinding stay separate; event graphics remain COMMUNITY-DISPLAY-ONLY and do not mix the logo into historic marks.
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
@@ -157,8 +187,8 @@ Land-use parts, building footprints, and conceptual density can also be taken fr
 
 The main risk is reading a provisional boundary, a conceptual mass, or a generated plate as an official redline, an approved renewal, or a site photograph. The package repeats this limit in the prose, assumptions, sources, figure notes, and HTML [depth:risk_missing_data] [source:BOUNDARY-SOURCE].
 
-Copyright: text, geometry, boards, PDFs, and HTML are generated by Agent建筑师. The human author is Independent artist Shengyu Meng / 蒙胜宇, affiliation empty. License: COMMUNITY-DISPLAY-ONLY. Figures are research drawings, not photogrammetry and not a built model. No uncleared trademark, portrait, or internal drawing is used. Generated content stays inside public-source limits and does not pretend to be a filed generative-AI service. Operations must not ingest personal traces or identifiable faces. See `report/copyright_statement.md`.
+Copyright: text, geometry, boards, PDFs, and HTML are generated by Agent建筑师. The human author is Independent artist Shengyu Meng / 蒙胜宇, affiliation empty. License: COMMUNITY-DISPLAY-ONLY. Figures are research drawings, not photogrammetry and not a built model. This package does not claim that “everything is rights-cleared” or “formally usable”. With no approved formal entries in the central source_registry, the announcement is used only for task coverage; cases and fonts are background/needs-review. HTML embeds a WenQuanYi Micro Hei OFL subset (family HaidianEmbed) [source:FONT-WQY-MICROHEI]. Operations must not ingest personal traces or identifiable faces. See `report/copyright_statement.md`.
 
 ## References
 
-The materials that actually shaped this unit are the official prequalification announcement’s three-level text extents and area figures, the agent taskbook’s co-creation principles and six tasks, the site-package enums and planning-limit ranges, and the source registry’s split among formal-ready, background-only, and provisional-only records. The provisional-boundary note explains why 11.41 km² can only be a design-model value. The land-use classification guide is why this package keeps codes 0702, 1401, 0802, 09, and 16 instead of inventing “tissue classes” as a statutory substitute. The urban-design measures are why public space, character, and three-dimensional relations are written as discussable design, not rendering promises. The absence of regulatory controls, redlines, and tenure is itself a source: it decides which metrics must remain pending official data. The complete bibliography, licences, retrieval dates, and prohibited uses stay in `sources.json` and the registry; this chapter does not reprint the machine index [source:SITE-PACKAGE].
+The materials that actually shaped this unit are the announcement’s three-level text extents, the agent taskbook’s principles and six tasks, site-package enums, and the registry’s split among formal / background / provisional records. Participant-filled usable_for_formal labels do not replace central-registry approval. The provisional-boundary note explains why 11.41 km² can only be a design-model value. The land-use classification guide is why this package keeps codes 0702, 1401, 0802, 09, and 16. The urban-design measures are why public space and character stay discussable. Missing controls, redlines, and tenure are themselves a source. The complete bibliography stays in `sources.json` [source:SITE-PACKAGE].
