@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Boundary is explicitly provisional_constraint with official_boundary=false; eligible for content scoring but never described as an official redline. Full-chain replacement and recalculation are required when official geometry arrives."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/key_areas.geojson",
+      "message": "All three mandatory key areas are present and explicitly provisional; their working areas are used only for design discussion and reproducible intake review."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/land_use.geojson",
+      "message": "Twenty-five concept polygons share boundaries, remain inside the site, have no material overlaps, and completely cover the current working boundary."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "Spatial review passes containment, key-area presence, land-use coverage and metric consistency; only the intended provisional-boundary notices remain."
+    },
+    {
+      "check_id": "METRICS_RECALC",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Known spatial metrics are calculated in EPSG:4548 from submitted GeoJSON and align with static HTML declarations; unsupported regulatory metrics remain unknown."
+    },
+    {
+      "check_id": "AI_GOVERNANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/constraints.geojson",
+      "message": "Twelve scenario nodes include limited-window status, human review, minimum-data policy, an exit condition and a non-digital fallback; four are explicitly industry-validation concepts."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Static visualization is complete and offline, references only local figures, contains no forms, remote media, scripts, network calls or tracking, and matches metrics.json."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal references all registered sources, known metrics, nine geometry files, six standards and fifteen required design-depth items."
+    },
+    {
+      "check_id": "PDF_OUTPUTS",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/",
+      "message": "A3 booklet and A0 boards contain real pages, use the same five generated figures, and remain below repository file-size limits."
+    },
+    {
+      "check_id": "COPYRIGHT",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "Submission graphics, geometry, text and layouts are original; no third-party photos, map tiles, portraits, logos or remotely loaded assets are embedded."
+    },
+    {
+      "check_id": "MISSING_CONTROLS",
+      "result": "pass",
+      "severity": "info",
+      "target": "assumptions.json",
+      "message": "Missing parcel, ownership, control-plan, building survey, transport, municipal, fire, ecological and heritage data are disclosed; legal intensity and construction claims remain unknown."
+    }
+  ]
+}
